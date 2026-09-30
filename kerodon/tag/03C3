@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" id="main">
+<div class="html" id="tag">
+<h3 class="tex-subsection" id="subsection:cofibrant-diagrams"><span data-tag="03C3">7.5.6</span> The Homotopy Colimit as a Derived Functor</h3>
+<p>
+Let $\operatorname{\mathcal{C}}$ be a small category and let $\mathscr {F}: \operatorname{\mathcal{C}}\rightarrow \operatorname{QCat}$ be a diagram of $\infty $-categories. In §<a data-tag="03AP" href="/tag/03AP">7.5.3</a>, we showed that the homotopy limit $ \underset {\longleftarrow }{\mathrm{holim}}( \mathscr {F} )$ can be identified with the limit of an <em>isofibrant replacement</em> for $\mathscr {F}$: that is, there exists an isomorphism $ \underset {\longleftarrow }{\mathrm{holim}}( \mathscr {F} ) \simeq \varprojlim ( \mathscr {F}^{+} )$, where $\mathscr {F}^{+}: \operatorname{\mathcal{C}}\rightarrow \operatorname{QCat}$ is an isofibrant diagram equipped with a levelwise categorical equivalence $\mathscr {F} \hookrightarrow \mathscr {F}^{+}$ (Construction <a data-tag="03AS" href="/tag/03AS">7.5.3.3</a> and Proposition <a data-tag="03AW" href="/tag/03AW">7.5.3.7</a>). Our goal in this section is to present a parallel treatment of the homotopy colimit functor of Construction <a data-tag="035V" href="/tag/035V">5.3.2.1</a>. More precisely, we show that the homotopy colimit of a diagram $\mathscr {F}: \operatorname{\mathcal{C}}\rightarrow \operatorname{Set_{\Delta }}$ can be identified with the colimit of an auxiliary diagram $\mathscr {F}_{+}: \operatorname{\mathcal{C}}\rightarrow \operatorname{Set_{\Delta }}$ which is equipped with a levelwise weak homotopy equivalence $\mathscr {F}_{+} \twoheadrightarrow \mathscr {F}$ (Proposition <a data-tag="03CG" href="/tag/03CG">7.5.6.12</a>). 
+</p>
+<p>
+We begin by introducing some terminology. Recall that a natural transformation $\beta : \widetilde{\mathscr {G}} \rightarrow \mathscr {G}$ is a <em>levelwise trivial Kan fibration</em> if, for each object $C \in \operatorname{\mathcal{C}}$, the morphism $\beta _{C}: \widetilde{\mathscr {G}}(C) \rightarrow \mathscr {G}(C)$ is a trivial Kan fibration of simplicial sets. 
+</p>
+<p>
+<article class="env-definition" id="03C4">
+<p><a class="environment-identifier" href="/tag/03C4">Definition <span data-tag="03C4">7.5.6.1</span>.</a> Let $\operatorname{\mathcal{C}}$ be a small category. We say that a diagram of simplicial sets $\mathscr {F}: \operatorname{\mathcal{C}}\rightarrow \operatorname{Set_{\Delta }}$ is <em>projectively cofibrant</em> if, for every levelwise trivial Kan fibration $\beta : \mathscr {G}' \rightarrow \mathscr {G}$, the induced map </p>
+<div class="equation">
+  \[  \operatorname{Hom}_{ \operatorname{Fun}(\operatorname{\mathcal{C}},\operatorname{Set_{\Delta }}) }( \mathscr {F}, \mathscr {G}' ) \rightarrow \operatorname{Hom}_{ \operatorname{Fun}(\operatorname{\mathcal{C}},\operatorname{Set_{\Delta }}) }( \mathscr {F}, \mathscr {G}) \]
+</div>
+<p> is surjective. That is, every natural transformation $\alpha : \mathscr {F} \rightarrow \mathscr {G}$ factors through $\beta $. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="03C5">
+<p><a class="environment-identifier" href="/tag/03C5">Example <span data-tag="03C5">7.5.6.2</span>.</a> Let $\operatorname{\mathcal{C}}$ be a category and let $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{N}_{\bullet }(\operatorname{\mathcal{C}})$ be a morphism of simplicial sets. Then the diagram </p>
+<div class="equation">
+  \[ \mathscr {F}_{\operatorname{\mathcal{E}}}: \operatorname{\mathcal{C}}\rightarrow \operatorname{Set_{\Delta }}\quad \quad \mathscr {F}_{\operatorname{\mathcal{E}}}(C) = \operatorname{N}_{\bullet }( \operatorname{\mathcal{C}}_{/C} ) \times _{ \operatorname{N}_{\bullet }(\operatorname{\mathcal{C}}) } \operatorname{\mathcal{E}} \]
+</div>
+<p> is projectively cofibrant, in the sense of Definition <a data-tag="03C4" href="/tag/03C4">7.5.6.1</a>. To prove this, we must show that for every levelwise trivial Kan fibration $\mathscr {G}' \rightarrow \mathscr {G}$ between functors $\mathscr {G}', \mathscr {G}: \operatorname{\mathcal{C}}\rightarrow \operatorname{Set_{\Delta }}$, the induced map </p>
+<div class="equation">
+  \[  \theta : \operatorname{Hom}_{ \operatorname{Fun}(\operatorname{\mathcal{C}}, \operatorname{\mathcal{S}}) }( \mathscr {F}_{\operatorname{\mathcal{E}}}, \mathscr {G}') \rightarrow \operatorname{Hom}_{ \operatorname{Fun}(\operatorname{\mathcal{C}}, \operatorname{\mathcal{S}}) }( \mathscr {F}_{\operatorname{\mathcal{E}}}, \mathscr {G} ) \]
+</div>
+<p> is surjective. Using Proposition <a data-tag="036S" href="/tag/036S">5.3.3.24</a>, we can identify $\theta $ with a pullback of the map $\operatorname{Hom}_{\operatorname{Set_{\Delta }}}( \operatorname{\mathcal{E}}, \operatorname{N}_{\bullet }^{\mathscr {G}'}(\operatorname{\mathcal{C}}) ) \rightarrow \operatorname{Hom}_{\operatorname{Set_{\Delta }}}( \operatorname{\mathcal{E}}, \operatorname{N}_{\bullet }^{\mathscr {G} }(\operatorname{\mathcal{C}}) )$, which is surjective by virtue of Exercise <a data-tag="036L" href="/tag/036L">5.3.3.11</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-exercise" id="03C6">
+<p><a class="environment-identifier" href="/tag/03C6">Exercise <span data-tag="03C6">7.5.6.3</span> <span class="named">(Well-Founded Diagrams)</span>.</a> Let $(Q, \leq )$ be a well-founded partially ordered set. Show that a diagram of simplicial sets $\mathscr {F}: Q \rightarrow \operatorname{Set_{\Delta }}$ is projectively cofibrant if and only if, for each element $q \in Q$, the associated map $\varinjlim _{ p &lt; q} \mathscr {F}(p) \rightarrow \mathscr {F}(q)$ is a monomorphism of simplicial sets (compare with Proposition <a data-tag="034D" href="/tag/034D">4.5.7.6</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="03C7">
+<p><a class="environment-identifier" href="/tag/03C7">Example <span data-tag="03C7">7.5.6.4</span> <span class="named">(Projectively Cofibrant Sequences)</span>.</a> A sequential diagram of simplicial sets </p>
+<div class="equation">
+  \[  X(0) \rightarrow X(1) \rightarrow X(2) \rightarrow X(3) \rightarrow \cdots  \]
+</div>
+<p> is projectively cofibrant (when regarded as a functor $\operatorname{\mathbf{Z}}_{\geq 0} \rightarrow \operatorname{Set_{\Delta }})$ if and only if each of the transition maps $X(n) \rightarrow X(n+1)$ is a monomorphism. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="03C8">
+<p><a class="environment-identifier" href="/tag/03C8">Example <span data-tag="03C8">7.5.6.5</span> <span class="named">(Projectively Cofibrant Squares)</span>.</a> A commutative diagram of simplicial sets </p>
+<div class="equation" id="03C9">
+<span class="equation-label"><a data-tag="03C9" href="/tag/03C9">7.66</a></span>
+<div>\begin{equation}  \begin{gathered}\label{equation:projectively-cofibrant-squares} \xymatrix@C =50pt@R=50pt{ A \ar [r]^-{f_0} \ar [d]^{f_1} &amp;  A_0 \ar [d]^{f'_1} \\ A_1 \ar [r]^-{f'_0} &amp;  A_{01} } \end{gathered} \end{equation}</div>
+</div>
+<p> is projectively cofibrant (when regarded as a functor $[1] \times [1] \rightarrow \operatorname{Set_{\Delta }}$) if and only if the morphisms </p>
+<div class="equation">
+  \[  f_0: A \rightarrow A_0 \quad \quad f_1: A \rightarrow A_1 \quad \quad (f'_1, f'_0): A_0 {\coprod }_{A} A_1 \rightarrow A_{01} \]
+</div>
+<p> are monomorphisms of simplicial sets. Equivalently, (<a data-tag="03C9" href="/tag/03C9">7.66</a>) is projectively cofibrant if it is a pullback square consisting of monomorphisms. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="03CA">
+<p><a class="environment-identifier" href="/tag/03CA">Remark <span data-tag="03CA">7.5.6.6</span> <span class="named">(Relationship to Isofibrant Diagrams)</span>.</a> Let $\mathscr {F}: \operatorname{\mathcal{C}}\rightarrow \operatorname{Set_{\Delta }}$ be a diagram of simplicial sets, let $\operatorname{\mathcal{D}}$ be an $\infty $-category, and let $\operatorname{\mathcal{D}}^{\mathscr {F}}: \operatorname{\mathcal{C}}^{\operatorname{op}} \rightarrow \operatorname{Set_{\Delta }}$ denote the functor given by the construction $C \mapsto \operatorname{Fun}( \mathscr {F}(C), \operatorname{\mathcal{D}})$. If $\mathscr {F}$ is projectively cofibrant (in the sense of Definition <a data-tag="03C4" href="/tag/03C4">7.5.6.1</a>), then $\operatorname{\mathcal{D}}^{\mathscr {F}}$ is isofibrant (in the sense of Definition <a data-tag="0349" href="/tag/0349">4.5.7.3</a>). That is, if $\mathscr {E}: \operatorname{\mathcal{C}}^{\operatorname{op}} \rightarrow \operatorname{Set_{\Delta }}$ is a diagram of simplicial sets and $\mathscr {E}_0 \subseteq \mathscr {E}$ is a subfunctor for which the inclusion $\mathscr {E}_0 \hookrightarrow \mathscr {E}$ is a levelwise categorical equivalence, then the restriction map </p>
+<div class="equation">
+  \[  \theta : \operatorname{Hom}_{ \operatorname{Fun}(\operatorname{\mathcal{C}}^{\operatorname{op}}, \operatorname{Set_{\Delta }}) }( \mathscr {E}, \operatorname{\mathcal{D}}^{\mathscr {F}} ) \rightarrow \operatorname{Hom}_{ \operatorname{Fun}(\operatorname{\mathcal{C}}^{\operatorname{op}}, \operatorname{Set_{\Delta }}) }( \mathscr {E}_0, \operatorname{\mathcal{D}}^{\mathscr {F}} ) \]
+</div>
+<p> is surjective. This follows from the observation that $\theta $ can be identified with the map </p>
+<div class="equation">
+  \[  \operatorname{Hom}_{ \operatorname{Fun}(\operatorname{\mathcal{C}}, \operatorname{Set_{\Delta }}) }( \mathscr {F}, \operatorname{\mathcal{D}}^{\mathscr {E}} ) \rightarrow \operatorname{Hom}_{ \operatorname{Fun}(\operatorname{\mathcal{C}}, \operatorname{Set_{\Delta }}) }( \mathscr {F}, \operatorname{\mathcal{D}}^{\mathscr {E}_0} ) \]
+</div>
+<p> given by composition with the restriction map $\operatorname{\mathcal{D}}^{\mathscr {E}} \rightarrow \operatorname{\mathcal{D}}^{\mathscr {E}_0}$, which is a levelwise trivial Kan fibration by virtue of Corollary <a data-tag="01G6" href="/tag/01G6">4.5.6.19</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-proposition" id="03CB">
+<p><a class="environment-identifier" href="/tag/03CB">Proposition <span data-tag="03CB">7.5.6.7</span>.</a> Let $\operatorname{\mathcal{C}}$ be a small category and let $\alpha : \mathscr {F} \rightarrow \mathscr {G}$ be a natural transformation between projectively cofibrant diagrams $\mathscr {F}, \mathscr {G}: \operatorname{\mathcal{C}}\rightarrow \operatorname{Set_{\Delta }}$. If $\alpha $ is a levelwise categorical equivalence, then the induced map $\varinjlim (\alpha ): \varinjlim ( \mathscr {F} ) \rightarrow \varinjlim ( \mathscr {G} )$ is a categorical equivalence of simplicial sets. If $\alpha $ is a levelwise weak homotopy equivalence, then $\varinjlim (\alpha )$ is a weak homotopy equivalence. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      We will prove the first assertion; the second follows by a similar argument. Assume that $\alpha $ is levelwise categorical equivalence and let $\operatorname{\mathcal{D}}$ be an $\infty $-category; we wish to show that precomposition with $\varprojlim (\alpha )$ induces an equivalence of $\infty $-categories $\alpha ^{\ast }: \operatorname{Fun}( \varinjlim ( \mathscr {G} ), \operatorname{\mathcal{D}}) \rightarrow \operatorname{Fun}( \varinjlim ( \mathscr {F}), \operatorname{\mathcal{D}})$. $\alpha $ is a levelwise categorical equivalence, precomposition with $\alpha $ induces a levelwise categorical equivalence $\beta : \operatorname{\mathcal{D}}^{ \mathscr {G} } \rightarrow \operatorname{\mathcal{D}}^{\mathscr {F}}$ in the category $\operatorname{Fun}( \operatorname{\mathcal{C}}^{\operatorname{op}}, \operatorname{Set_{\Delta }})$. Unwinding the definitions, we see that $\alpha ^{\ast }$ can be identified with the limit $\varprojlim (\beta )$. Since $\operatorname{\mathcal{D}}^{\mathscr {F}}$ and $\operatorname{\mathcal{D}}^{\mathscr {G}}$ are isofibrant diagrams (Remark <a data-tag="03CA" href="/tag/03CA">7.5.6.6</a>), the functor $\varprojlim (\beta )$ is an equivalence of $\infty $-categories (Corollary <a data-tag="034Q" href="/tag/034Q">4.5.7.17</a>). 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+We now show that every diagram of simplicial sets $\mathscr {F}: \operatorname{\mathcal{C}}\rightarrow \operatorname{Set_{\Delta }}$ admits a weak homotopy equivalence from a projectively cofibrant diagram (for a stronger statement, see Proposition <a data-tag="03DL" href="/tag/03DL">9.1.6.7</a>). 
+</p>
+<p>
+<article class="env-construction" id="03CC">
+<p><a class="environment-identifier" href="/tag/03CC">Construction <span data-tag="03CC">7.5.6.8</span> <span class="named">(Explicit Cofibrant Replacement)</span>.</a> Let $\operatorname{\mathcal{C}}$ be a small category, let $\mathscr {F}: \operatorname{\mathcal{C}}\rightarrow \operatorname{Set_{\Delta }}$ be a diagram of simplicial sets, and let $ \underset { \longrightarrow }{\mathrm{holim}}( \mathscr {F} )$ denote the homotopy colimit of $\mathscr {F}$ (Construction <a data-tag="035V" href="/tag/035V">5.3.2.1</a>). For each object $C \in \operatorname{\mathcal{C}}$, we let $\mathscr {F}_{+}(C)$ denote the simplicial set given by the fiber product </p>
+<div class="equation">
+  \[  \operatorname{N}_{\bullet }( \operatorname{\mathcal{C}}_{ /C} ) \times _{ \operatorname{N}_{\bullet }(\operatorname{\mathcal{C}}) }  \underset { \longrightarrow }{\mathrm{holim}}( \mathscr {F} ) =  \underset { \longrightarrow }{\mathrm{holim}}( \mathscr {F}|_{ \operatorname{\mathcal{C}}_{/C} } ). \]
+</div>
+<p> The construction $C \mapsto \mathscr {F}_{+}(C)$ determines a diagram of simplicial sets $\mathscr {F}_{+}: \operatorname{\mathcal{C}}\rightarrow \operatorname{Set_{\Delta }}$. This diagram is equipped with a natural transformation $\alpha : \mathscr {F}_{+} \twoheadrightarrow \mathscr {F}$, which carries each object $C \in \operatorname{\mathcal{C}}$ to the comparison map </p>
+<div class="equation">
+  \[  \mathscr {F}_{+}(C) =  \underset { \longrightarrow }{\mathrm{holim}}( \mathscr {F}|_{ \operatorname{\mathcal{C}}_{/C} } ) \twoheadrightarrow \varinjlim ( \mathscr {F}|_{ \operatorname{\mathcal{C}}_{/C} } ) \simeq \mathscr {F}(C) \]
+</div>
+<p> of Remark <a data-tag="0363" href="/tag/0363">5.3.2.9</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-proposition" id="03CD">
+<p><a class="environment-identifier" href="/tag/03CD">Proposition <span data-tag="03CD">7.5.6.9</span>.</a> Let $\operatorname{\mathcal{C}}$ be a small category and let $\mathscr {F}: \operatorname{\mathcal{C}}\rightarrow \operatorname{Set_{\Delta }}$ be a diagram of simplicial sets. Then the diagram $\mathscr {F}_{+}: \operatorname{\mathcal{C}}\rightarrow \operatorname{Set_{\Delta }}$ of Construction <a data-tag="03CC" href="/tag/03CC">7.5.6.8</a> is projectively cofibrant, and the natural transformation $\alpha : \mathscr {F}_{+} \rightarrow \mathscr {F}$ is a levelwise weak homotopy equivalence. Moreover, $\alpha $ is also an epimorphism. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Example <a data-tag="03C5" href="/tag/03C5">7.5.6.2</a> shows that the diagram $\mathscr {F}_{+}$ is projectively cofibrant and Remark <a data-tag="0363" href="/tag/0363">5.3.2.9</a> shows that $\alpha $ is an epimorphism. To complete the proof, it will suffice to show that for each object $C \in \operatorname{\mathcal{C}}$, the map $\alpha _{C}: \mathscr {F}_{+}(C) \rightarrow \mathscr {F}(C)$ is a weak homotopy equivalence of simplicial sets. Replacing $\operatorname{\mathcal{C}}$ by the slice category $\operatorname{\mathcal{C}}_{/C}$, we can reduce to the case where $C$ is a final object of $\operatorname{\mathcal{C}}$; in this case, we wish to prove that the comparison map 
+    <p>
+<div class="equation">
+  \[  \underset { \longrightarrow }{\mathrm{holim}}( \mathscr {F} ) \rightarrow \varinjlim ( \mathscr {F} ) \simeq \mathscr {F}(C) \]
+</div>
+<p>
+       is a weak homotopy equivalence. Note that this map admits a section, given by the inclusion map 
+    <p>
+<div class="equation">
+  \[ \iota : \mathscr {F}(C) \simeq \{ C\}  \times _{ \operatorname{N}_{\bullet }(\operatorname{\mathcal{C}}) }  \underset { \longrightarrow }{\mathrm{holim}}( \mathscr {F} ) \rightarrow  \underset { \longrightarrow }{\mathrm{holim}}( \mathscr {F} ). \]
+</div>
+<p>
+       We complete the proof by that our assumption that $C \in \operatorname{\mathcal{C}}$ is a final object guarantees that $\iota $ is right anodyne (Example <a data-tag="039E" href="/tag/039E">5.3.6.4</a>). 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></p></p></article>
+<p>
+<article class="env-warning" id="03CE">
+<p><a class="environment-identifier" href="/tag/03CE">Warning <span data-tag="03CE">7.5.6.10</span>.</a> In the situation of Proposition <a data-tag="03CD" href="/tag/03CD">7.5.6.9</a>, the natural transformation $\alpha : \mathscr {F}_{+} \twoheadrightarrow \mathscr {F}$ is usually not a levelwise categorical equivalence. For example, if $\mathscr {F}$ is the constant functor taking the value $\Delta ^0$, then $\mathscr {F}_{+}$ is given by the construction $C \mapsto \operatorname{N}_{\bullet }( \operatorname{\mathcal{C}}_{/C} )$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="03CF">
+<p><a class="environment-identifier" href="/tag/03CF">Remark <span data-tag="03CF">7.5.6.11</span>.</a> Constructions <a data-tag="03CC" href="/tag/03CC">7.5.6.8</a> and <a data-tag="03AS" href="/tag/03AS">7.5.3.3</a> are closely related. Let $\operatorname{\mathcal{C}}$ be a small category, let $\mathscr {F}: \operatorname{\mathcal{C}}\rightarrow \operatorname{Set_{\Delta }}$ be a diagram of simplicial sets, and let $\mathscr {G}: \operatorname{\mathcal{C}}\rightarrow \operatorname{Kan}$ be a diagram of Kan complexes. Combining Corollary <a data-tag="036H" href="/tag/036H">5.3.2.23</a> with Proposition <a data-tag="036S" href="/tag/036S">5.3.3.24</a>, we obtain canonical isomorphisms of Kan complexes </p>
+<div class="equation">
+  \begin{eqnarray*}  \operatorname{Hom}_{ \operatorname{Fun}(\operatorname{\mathcal{C}}, \operatorname{Set_{\Delta }}) }( \mathscr {F}, \mathscr {G}^{+} )_{\bullet } &amp;  = &amp;  \operatorname{Hom}_{ \operatorname{Fun}(\operatorname{\mathcal{C}}, \operatorname{Set_{\Delta }}) }( \mathscr {F}, \operatorname{sTr}_{ \operatorname{N}_{\bullet }^{\mathscr {G}}(\operatorname{\mathcal{C}})/\operatorname{\mathcal{C}}} ) \\ &amp;  \simeq &amp;  \operatorname{Fun}_{ / \operatorname{N}_{\bullet }(\operatorname{\mathcal{C}}) }(  \underset { \longrightarrow }{\mathrm{holim}}( \mathscr {F} ), \operatorname{N}_{\bullet }^{\mathscr {G}}(\operatorname{\mathcal{C}}) ) \\ &amp;  \simeq &amp;  \operatorname{Hom}_{ \operatorname{Fun}(\operatorname{\mathcal{C}}, \operatorname{Set_{\Delta }}) }( \mathscr {F}_{+}, \mathscr {G} )_{\bullet }. \end{eqnarray*}
+</div>
+<p> More generally, if $\mathscr {G}$ is a diagram of $\infty $-categories, we can identify $\operatorname{Hom}_{ \operatorname{Fun}(\operatorname{\mathcal{C}}, \operatorname{Set_{\Delta }}) }( \mathscr {F}, \mathscr {G}^{+} )_{\bullet }$ with the full subcategory of $\operatorname{Hom}_{ \operatorname{Fun}(\operatorname{\mathcal{C}}, \operatorname{Set_{\Delta }}) }( \mathscr {F}_{+}, \mathscr {G} )_{\bullet }$ spanned by those natural transformations $\alpha : \mathscr {F}_{+} \rightarrow \mathscr {G}$ having the property that, for each object $C \in \operatorname{\mathcal{C}}$, the diagram </p>
+<div class="equation">
+  \[  \alpha _{C}: \mathscr {F}_{+}(C) =  \underset { \longrightarrow }{\mathrm{holim}}( \mathscr {F}|_{ \operatorname{\mathcal{C}}_{/C} } ) \rightarrow \mathscr {G}(C) \]
+</div>
+<p> carries horizontal edges of $  \underset { \longrightarrow }{\mathrm{holim}}( \mathscr {F}|_{ \operatorname{\mathcal{C}}_{/C} } )$ to isomorphisms in the $\infty $-category $\mathscr {G}(C)$. </p>
+</article>
+</p>
+<p>
+<article class="env-proposition" id="03CG">
+<p><a class="environment-identifier" href="/tag/03CG">Proposition <span data-tag="03CG">7.5.6.12</span>.</a> Let $\operatorname{\mathcal{C}}$ be a small category, let $\mathscr {F}: \operatorname{\mathcal{C}}\rightarrow \operatorname{Set_{\Delta }}$ be a diagram of simplicial sets, and let $\mathscr {F}_{+}: \operatorname{\mathcal{C}}\rightarrow \operatorname{Set_{\Delta }}$ be the diagram of Construction <a data-tag="03CC" href="/tag/03CC">7.5.6.8</a>. Then there is a canonical isomorphism of simplicial sets $\lambda : \varinjlim ( \mathscr {F}_{+} ) \rightarrow  \underset { \longrightarrow }{\mathrm{holim}}(\mathscr {F})$ which is characterized by the following requirement: for each object $C \in \operatorname{\mathcal{C}}$, the composition </p>
+<div class="equation">
+  \begin{eqnarray*}  \operatorname{N}_{\bullet }( \operatorname{\mathcal{C}}_{/C} ) \times _{ \operatorname{N}_{\bullet }(\operatorname{\mathcal{C}}) }  \underset { \longrightarrow }{\mathrm{holim}}( \mathscr {F} ) &amp;  = &amp;  \mathscr {F}_{+}(C) \\ &amp;  \rightarrow &amp;  \varinjlim ( \mathscr {F}_{+} ) \\ &amp;  \xrightarrow {\lambda } &amp;   \underset { \longrightarrow }{\mathrm{holim}}( \mathscr {F} ) \end{eqnarray*}
+</div>
+<p> is given by projection onto the second factor. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      It follows from the definition of the colimit that there is a unique morphism of simplicial sets $\lambda : \varinjlim ( \mathscr {F}_{+} ) \rightarrow  \underset { \longrightarrow }{\mathrm{holim}}( \mathscr {F} )$ having the desired property. Using the dual of Lemma <a data-tag="03AX" href="/tag/03AX">7.5.3.8</a>, we deduce that $\lambda $ is an isomorphism. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+<article class="env-remark" id="03CH">
+<p><a class="environment-identifier" href="/tag/03CH">Remark <span data-tag="03CH">7.5.6.13</span>.</a> Let $\mathscr {F}: \operatorname{\mathcal{C}}\rightarrow \operatorname{Set_{\Delta }}$ be a diagram of simplicial sets, let $\theta :  \underset { \longrightarrow }{\mathrm{holim}}( \mathscr {F} ) \twoheadrightarrow \varinjlim ( \mathscr {F} )$ be the comparison map of Remark <a data-tag="0363" href="/tag/0363">5.3.2.9</a>, and let $\lambda : \varinjlim ( \mathscr {F}_{+} ) \xrightarrow {\sim }  \underset { \longrightarrow }{\mathrm{holim}}( \mathscr {F} )$ be the isomorphism of Proposition <a data-tag="03CG" href="/tag/03CG">7.5.6.12</a>. Then the composition $(\theta \circ \lambda ): \varinjlim ( \mathscr {F}_{+} ) \rightarrow \varinjlim ( \mathscr {F} )$ is induced by the natural transformation $\alpha : \mathscr {F}_{+} \twoheadrightarrow \mathscr {F}$ appearing in Construction <a data-tag="03CC" href="/tag/03CC">7.5.6.8</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-corollary" id="03CJ">
+<p><a class="environment-identifier" href="/tag/03CJ">Corollary <span data-tag="03CJ">7.5.6.14</span>.</a> Let $\operatorname{\mathcal{C}}$ be a small category and let $\mathscr {F}: \operatorname{\mathcal{C}}\rightarrow \operatorname{Set_{\Delta }}$ be a projectively cofibrant diagram of simplicial sets. Then the comparison map $ \underset { \longrightarrow }{\mathrm{holim}}( \mathscr {F} ) \twoheadrightarrow \varinjlim ( \mathscr {F} )$ of Remark <a data-tag="0363" href="/tag/0363">5.3.2.9</a> is a weak homotopy equivalence. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      By virtue of Remark <a data-tag="03CH" href="/tag/03CH">7.5.6.13</a>, it will suffice to show that the natural transformation $\alpha : \mathscr {F}_{+} \twoheadrightarrow \mathscr {F}$ of Construction <a data-tag="03CC" href="/tag/03CC">7.5.6.8</a> induces a weak homotopy equivalence $\varinjlim (\alpha ): \varinjlim ( \mathscr {F}_{+} ) \rightarrow \varinjlim ( \mathscr {F} )$. This is a special case of Proposition <a data-tag="03CB" href="/tag/03CB">7.5.6.7</a>, since $\alpha $ is a levelwise weak homotopy equivalence between projectively cofibrant diagrams (Proposition <a data-tag="03CD" href="/tag/03CD">7.5.6.9</a>). 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+<article class="env-warning" id="03CK">
+<p><a class="environment-identifier" href="/tag/03CK">Warning <span data-tag="03CK">7.5.6.15</span>.</a> Let $\mathscr {F}: \operatorname{\mathcal{C}}\rightarrow \operatorname{QCat}$ be a diagram of simplicial sets, let $\alpha : \mathscr {F}_{+} \twoheadrightarrow \mathscr {F}$ be the natural transformation of Construction <a data-tag="03CC" href="/tag/03CC">7.5.6.8</a>, and let $\lambda : \varinjlim ( \mathscr {F}_{+} ) \xrightarrow {\sim }  \underset { \longrightarrow }{\mathrm{holim}}( \mathscr {F} )$ be the isomorphism of Proposition <a data-tag="03CG" href="/tag/03CG">7.5.6.12</a>. Then we have a diagram of simplicial sets </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{  \underset { \longrightarrow }{\mathrm{holim}}( \mathscr {F}_{+} ) \ar [r]^-{  \underset { \longrightarrow }{\mathrm{holim}}( \alpha ) } \ar [d] &amp;   \underset { \longrightarrow }{\mathrm{holim}}( \mathscr {F} ) \ar [d] \\ \varinjlim ( \mathscr {F}_{+} ) \ar [r]_{\varinjlim (\alpha ) } \ar [ur]^{\lambda }_{\sim } &amp;  \varinjlim ( \mathscr {F} ), } \]
+</div>
+<p> where the outer square and the lower right triangle are commutative (Remark <a data-tag="03CH" href="/tag/03CH">7.5.6.13</a>). Beware that the upper left triangle is usually <em>not</em> commutative. That is, $ \underset { \longrightarrow }{\mathrm{holim}}( \mathscr {F} )$ and $\varinjlim ( \mathscr {F}_{+} )$ are isomorphic when viewed as abstract simplicial sets, but not when viewed as quotients of the simplicial set $ \underset { \longrightarrow }{\mathrm{holim}}( \mathscr {F}_{+} )$ (compare with Warning <a data-tag="03B3" href="/tag/03B3">7.5.3.14</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="03CL">
+<p><a class="environment-identifier" href="/tag/03CL">Remark <span data-tag="03CL">7.5.6.16</span> <span class="named">(The Homotopy Colimit as a Left Derived Functor)</span>.</a> The preceding results can be interpreted in the language of model categories. For every small category $\operatorname{\mathcal{C}}$, the category $\operatorname{Fun}( \operatorname{\mathcal{C}}, \operatorname{Set_{\Delta }})$ can be equipped with a model structure in which the fibrations are levelwise Kan fibrations and weak equivalences are levelwise weak homotopy equivalences (see Example <a class="" data-content="This is a reference to something which is not yet available in Kerodon." data-html="true" data-placement="bottom" data-toggle="popover" data-trigger="focus" role="button" style="cursor: pointer;" tabindex="0" title="Future reference"><img src="/static/images/question.svg"/></a>). Combining Propositions <a data-tag="03CD" href="/tag/03CD">7.5.6.9</a> and <a data-tag="03CG" href="/tag/03CG">7.5.6.12</a>, we deduce that the homotopy colimit functor $ \underset { \longrightarrow }{\mathrm{holim}}: \operatorname{Fun}(\operatorname{\mathcal{C}}, \operatorname{Set_{\Delta }}) \rightarrow \operatorname{Set_{\Delta }}$ can be viewed as a <em>left derived</em> functor of the usual colimit $\varinjlim : \operatorname{Fun}(\operatorname{\mathcal{C}}, \operatorname{Set_{\Delta }}) \rightarrow \operatorname{Set_{\Delta }}$ (see Definition <a class="" data-content="This is a reference to something which is not yet available in Kerodon." data-html="true" data-placement="bottom" data-toggle="popover" data-trigger="focus" role="button" style="cursor: pointer;" tabindex="0" title="Future reference"><img src="/static/images/question.svg"/></a>). </p>
+</article>
+</p>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.html a[data-toggle="popover"]').popover()
+
+  // render mathematics in popovers
+  $("[data-toggle=popover]").on('shown.bs.popover', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $("div.popover-body").html()]);
+  });
+});
+  </script>
+</div>
+</section></body>
+</html>

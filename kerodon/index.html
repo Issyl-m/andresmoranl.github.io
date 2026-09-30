@@ -1,0 +1,2307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Logs // Tags</title>
+
+    <style>
+        :root {
+            --bg-color: #f4f6f9;
+            --container-bg: #ffffff;
+            --text-color: #1e293b;
+            --text-dim: #64748b;
+            --accent-color: #0284c7;
+            --border-color: #cbd5e1;
+            --glow-color: rgba(2, 132, 199, 0.15);
+        }
+
+        .MathJax_Main,
+        .MathJax_Math,
+        .MathJax_Italic,
+        .MathJax_SansSerif,
+        .MathJax_Typewriter {
+            color: var(--text-color) !important;
+        }
+
+        div#MathJax_MenuFrame,
+        div#MathJax_ZoomFrame,
+        div#MathJax_Message,
+        .MathJax_Hover_Frame,
+        #MathJax_ZoomOverlay {
+            z-index: 2147483647 !important;
+        }
+
+        svg,
+        svg *,
+        symbol {
+            fill: var(--text-color) !important;
+            stroke: var(--text-color) !important;
+        }
+
+        img[src$=".svg"],
+        img[src*=".svg?"] {
+            filter: brightness(0.2) contrast(1.2);
+            transition: filter 0.2s ease;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: Consolas, Monaco, "Courier New", monospace;
+            line-height: 1.7;
+            margin: 0;
+            padding: 90px 20px 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .floating-search-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(244, 246, 249, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 20px;
+            box-sizing: border-box;
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .floating-search-container {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 16px;
+            font-family: Consolas, Monaco, "Courier New", monospace;
+            font-size: 0.9rem;
+            background: var(--container-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            border-radius: 4px;
+            box-sizing: border-box;
+            outline: none;
+            transition:
+                border-color 0.2s,
+                box-shadow 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 8px var(--glow-color);
+        }
+
+        .book-container {
+            background-color: var(--container-bg);
+            width: 100%;
+            max-width: 900px;
+            padding: 50px;
+            box-shadow: 0 4px 20px var(--glow-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            position: relative;
+        }
+
+        .book-container::before {
+            content: "// ROOT DIRECTORY: /tag";
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            border-bottom: 1px dashed var(--accent-color);
+            padding-bottom: 5px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .tag-content h1::before {
+            content: "> ";
+            color: var(--accent-color);
+        }
+
+        .tag-content {
+            margin-bottom: 40px;
+        }
+
+        .tag-content p,
+        .preview-content p {
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        a.tag-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--accent-color);
+            cursor: pointer;
+        }
+
+        a.tag-link:hover {
+            background-color: rgba(2, 132, 199, 0.1);
+        }
+
+        .link-hint {
+            position: absolute;
+            background: #fef08a;
+            color: #854d0e;
+            font-family: Consolas, Monaco, "Courier New", monospace;
+            font-weight: bold;
+            font-size: 0.75rem;
+            padding: 1px 4px;
+            border-radius: 3px;
+            border: 1px solid #ca8a04;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 2147483646;
+            text-transform: uppercase;
+            pointer-events: none;
+        }
+
+        .link-hint.matched {
+            background: #bbf7d0;
+            color: #15803d;
+            border-color: #16a34a;
+        }
+
+        .preview-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.5);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .preview-overlay.active {
+            display: flex;
+        }
+
+        .preview-box {
+            position: relative;
+            width: 1000px;
+            max-width: 95vw;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: var(--container-bg);
+            border: 2px solid var(--accent-color);
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(2, 132, 199, 0.2);
+            font-size: 0.9rem;
+            font-family: Consolas, Monaco, "Courier New", monospace;
+            color: var(--text-color);
+            border-radius: 8px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .popup-filter-wrapper {
+            position: sticky;
+            top: -30px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            margin: -30px -30px 20px -30px;
+            padding: 15px 30px;
+            border-bottom: 1px solid var(--border-color);
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .preview-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            font-family: Consolas, Monaco, "Courier New", monospace;
+            font-weight: bold;
+            font-size: 1.3rem;
+            cursor: pointer;
+            z-index: 15;
+        }
+
+        .preview-close:hover {
+            color: #dc2626;
+        }
+
+        .loading {
+            font-style: italic;
+            color: var(--text-dim);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+    </style>
+
+    <script>
+        document.documentElement.style.filter =
+            'invert(1) hue-rotate(180deg)';
+    </script>
+</head>
+
+<body>
+
+    <div class="floating-search-wrapper">
+        <div class="floating-search-container">
+            <input
+                type="text"
+                id="tagSearchInput"
+                class="search-input"
+                list="searchHistoryList"
+                placeholder="[Floating Filter: Type words, auto-saves history after 2s, Ctrl + / to focus, Ctrl + L to clear]..."
+                autocomplete="off"
+            >
+
+            <datalist id="searchHistoryList"></datalist>
+        </div>
+    </div>
+
+    <div class="book-container" id="book">
+        <h1
+            style="
+                text-align: center;
+                border: none;
+                font-size: 1.6rem;
+                margin-top: 0;
+            "
+        >
+            System Index // Tags
+        </h1>
+
+        <div id="content-container">
+            <p class="loading">
+                [Scanning /tag directory...]
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const activePopupStack = [];
+        let globalTagFiles = [];
+        let baseZIndex = 10000;
+        let searchDebounceTimer = null;
+
+        // Vimium Hint Mode State
+        let isHintModeActive = false;
+        let currentHintBuffer = "";
+        let activeHintsMap = new Map();
+
+        const HISTORY_KEY = 'hacker_search_history';
+
+        const DEFAULT_SAMPLES = [
+            'payload',
+            'error',
+            'config',
+            'user',
+            'theorem'
+        ];
+
+        const HIGHLIGHT_PALETTE = [
+            {
+                bg: '#fef08a',
+                text: '#854d0e'
+            },
+            {
+                bg: '#bae6fd',
+                text: '#0369a1'
+            },
+            {
+                bg: '#bbf7d0',
+                text: '#15803d'
+            },
+            {
+                bg: '#fbcfe8',
+                text: '#be185d'
+            },
+            {
+                bg: '#fed7aa',
+                text: '#c2410c'
+            },
+            {
+                bg: '#e9d5ff',
+                text: '#6b21a8'
+            }
+        ];
+
+        /*
+         * ============================================================
+         * SEARCH HISTORY
+         * ============================================================
+         */
+
+        function initSearchHistory() {
+            let history = JSON.parse(
+                localStorage.getItem(HISTORY_KEY) || '[]'
+            );
+
+            if (history.length === 0) {
+                history = DEFAULT_SAMPLES;
+            }
+
+            renderSearchSuggestions(history);
+        }
+
+        function saveSearchQuery(query) {
+            if (!query || query.trim() === '') {
+                return;
+            }
+
+            let history = JSON.parse(
+                localStorage.getItem(HISTORY_KEY) || '[]'
+            );
+
+            history = history.filter(
+                q => q.toLowerCase() !== query.toLowerCase()
+            );
+
+            history.unshift(query);
+
+            if (history.length > 10) {
+                history.pop();
+            }
+
+            localStorage.setItem(
+                HISTORY_KEY,
+                JSON.stringify(history)
+            );
+
+            renderSearchSuggestions(history);
+        }
+
+        function renderSearchSuggestions(history) {
+            const datalist =
+                document.getElementById(
+                    'searchHistoryList'
+                );
+
+            datalist.innerHTML = '';
+
+            history.forEach(item => {
+                const option =
+                    document.createElement('option');
+
+                option.value = item;
+
+                datalist.appendChild(option);
+            });
+        }
+
+        /*
+         * ============================================================
+         * HINT MODE
+         * ============================================================
+         */
+
+        function generateTwoCharHintLabels(count) {
+            const chars =
+                "sadfjklewcmpghion";
+
+            const labels = [];
+
+            for (let i = 0; i < chars.length; i++) {
+                for (let j = 0; j < chars.length; j++) {
+                    labels.push(
+                        chars[i] + chars[j]
+                    );
+
+                    if (labels.length >= count) {
+                        return labels;
+                    }
+                }
+            }
+
+            return labels;
+        }
+
+        function activateHintMode() {
+            return;
+
+            let container = document.body;
+
+            if (activePopupStack.length > 0) {
+                const topOverlay =
+                    activePopupStack[
+                        activePopupStack.length - 1
+                    ];
+
+                container =
+                    topOverlay.querySelector(
+                        '.preview-box'
+                    );
+            }
+
+            const links =
+                Array.from(
+                    container.querySelectorAll(
+                        'a.tag-link'
+                    )
+                ).filter(el => {
+                    return (
+                        el.offsetParent !== null &&
+                        window.getComputedStyle(el)
+                            .display !== 'none'
+                    );
+                });
+
+            if (links.length === 0) {
+                return;
+            }
+
+            isHintModeActive = true;
+            currentHintBuffer = "";
+            activeHintsMap.clear();
+
+            const labels =
+                generateTwoCharHintLabels(
+                    links.length
+                );
+
+            links.forEach((link, idx) => {
+                const label = labels[idx];
+
+                const rect =
+                    link.getBoundingClientRect();
+
+                const matchedFile =
+                    link.dataset.matchedFile;
+
+                const badge =
+                    document.createElement('span');
+
+                badge.className = 'link-hint';
+                badge.textContent = label;
+
+                badge.style.top =
+                    (window.scrollY +
+                        rect.top -
+                        2) + 'px';
+
+                badge.style.left =
+                    (window.scrollX +
+                        rect.left -
+                        20) + 'px';
+
+                document.body.appendChild(badge);
+
+                activeHintsMap.set(label, {
+                    element: link,
+                    badgeEl: badge,
+                    matchedFile: matchedFile
+                });
+            });
+        }
+
+        function clearHintMode() {
+            isHintModeActive = false;
+            currentHintBuffer = "";
+
+            document
+                .querySelectorAll('.link-hint')
+                .forEach(b => b.remove());
+
+            activeHintsMap.clear();
+        }
+
+        /*
+         * ============================================================
+         * FILTER HELPERS
+         * ============================================================
+         */
+
+        function getActiveSearchInput() {
+            const activeElement =
+                document.activeElement;
+
+            if (
+                activeElement &&
+                activeElement.matches(
+                    '.preview-overlay.active .search-input'
+                )
+            ) {
+                return activeElement;
+            }
+
+            if (
+                activeElement &&
+                activeElement.id === 'tagSearchInput'
+            ) {
+                return activeElement;
+            }
+
+            /*
+             * If no search input is focused, prefer the
+             * currently top-most popup.
+             */
+            if (activePopupStack.length > 0) {
+                const topOverlay =
+                    activePopupStack[
+                        activePopupStack.length - 1
+                    ];
+
+                const popupInput =
+                    topOverlay.querySelector(
+                        '.search-input'
+                    );
+
+                if (popupInput) {
+                    return popupInput;
+                }
+            }
+
+            return document.getElementById(
+                'tagSearchInput'
+            );
+        }
+
+        function getContainerForInput(inputElement) {
+            if (!inputElement) {
+                return null;
+            }
+
+            const popup =
+                inputElement.closest(
+                    '.preview-overlay'
+                );
+
+            if (popup) {
+                const previewBox =
+                    popup.querySelector(
+                        '.preview-box'
+                    );
+
+                if (!previewBox) {
+                    return null;
+                }
+
+                return previewBox.querySelector(
+                    '.preview-content'
+                );
+            }
+
+            return document.getElementById(
+                'content-container'
+            );
+        }
+
+        /*
+         * Ctrl/Cmd + L:
+         *
+         * - Clear the popup filter if a popup search input
+         *   currently has focus.
+         * - Clear the main filter if the main search has focus.
+         * - If neither is focused, clear the top-most active
+         *   popup filter; otherwise clear the main filter.
+         * - Immediately update the displayed results.
+         */
+        function clearActiveFilter() {
+            const input =
+                getActiveSearchInput();
+
+            if (!input) {
+                return;
+            }
+
+            input.value = '';
+
+            const container =
+                getContainerForInput(input);
+
+            if (container) {
+                applyFilterToContainer(
+                    container,
+                    ''
+                );
+            }
+
+            clearTimeout(
+                searchDebounceTimer
+            );
+
+            /*
+             * Move the cursor back into the cleared field.
+             */
+            input.focus();
+        }
+
+        /*
+         * ============================================================
+         * GLOBAL KEYBOARD HANDLING
+         * ============================================================
+         */
+
+        document.addEventListener(
+            'keydown',
+            e => {
+                const activeElement =
+                    document.activeElement;
+
+                const isInputFocused =
+                    activeElement &&
+                    (
+                        activeElement.tagName ===
+                            'INPUT' ||
+                        activeElement.tagName ===
+                            'TEXTAREA' ||
+                        activeElement.isContentEditable
+                    );
+
+                /*
+                 * ----------------------------------------------------
+                 * Ctrl/Cmd + L
+                 * ----------------------------------------------------
+                 *
+                 * Normally browsers use Ctrl/Cmd + L to focus the
+                 * address bar. Override it here and clear the active
+                 * application filter instead.
+                 */
+                if (
+                    (e.ctrlKey || e.metaKey) &&
+                    e.key.toLowerCase() === 'l'
+                ) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    clearHintMode();
+                    clearActiveFilter();
+
+                    return;
+                }
+
+                /*
+                 * ----------------------------------------------------
+                 * Ctrl/Cmd + /
+                 * ----------------------------------------------------
+                 */
+                if (
+                    (e.ctrlKey || e.metaKey) &&
+                    e.key === '/'
+                ) {
+                    e.preventDefault();
+
+                    clearHintMode();
+
+                    if (
+                        activePopupStack.length > 0
+                    ) {
+                        const topOverlay =
+                            activePopupStack[
+                                activePopupStack.length - 1
+                            ];
+
+                        const popupInput =
+                            topOverlay.querySelector(
+                                '.search-input'
+                            );
+
+                        if (popupInput) {
+                            popupInput.focus();
+                            popupInput.select();
+                        }
+                    } else {
+                        const globalInput =
+                            document.getElementById(
+                                'tagSearchInput'
+                            );
+
+                        if (globalInput) {
+                            globalInput.focus();
+                            globalInput.select();
+                        }
+                    }
+
+                    return;
+                }
+
+                /*
+                 * ----------------------------------------------------
+                 * Tab = hint mode
+                 * ----------------------------------------------------
+                 */
+                if (
+                    e.key === 'Tab' &&
+                    !isInputFocused
+                ) {
+                    e.preventDefault();
+
+                    if (!isHintModeActive) {
+                        activateHintMode();
+                    } else {
+                        clearHintMode();
+                    }
+
+                    return;
+                }
+
+                /*
+                 * ----------------------------------------------------
+                 * Active hint mode
+                 * ----------------------------------------------------
+                 */
+                if (isHintModeActive) {
+                    if (e.key === 'Escape') {
+                        e.preventDefault();
+                        clearHintMode();
+                        return;
+                    }
+
+                    if (
+                        e.key.length === 1 &&
+                        !e.ctrlKey &&
+                        !e.metaKey &&
+                        !e.altKey
+                    ) {
+                        e.preventDefault();
+
+                        currentHintBuffer +=
+                            e.key.toLowerCase();
+
+                        activeHintsMap.forEach(
+                            (data, hintStr) => {
+                                if (
+                                    hintStr.startsWith(
+                                        currentHintBuffer
+                                    )
+                                ) {
+                                    data.badgeEl.style.display =
+                                        '';
+
+                                    if (
+                                        hintStr ===
+                                        currentHintBuffer
+                                    ) {
+                                        data.badgeEl.classList.add(
+                                            'matched'
+                                        );
+                                    }
+                                } else {
+                                    data.badgeEl.style.display =
+                                        'none';
+                                }
+                            }
+                        );
+
+                        if (
+                            currentHintBuffer.length === 2
+                        ) {
+                            const targetData =
+                                activeHintsMap.get(
+                                    currentHintBuffer
+                                );
+
+                            if (targetData) {
+                                const linkToSelect =
+                                    targetData.element;
+
+                                clearHintMode();
+
+                                linkToSelect.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'center',
+                                    inline: 'center'
+                                });
+
+                                setTimeout(() => {
+                                    linkToSelect.click();
+                                }, 50);
+                            } else {
+                                clearHintMode();
+                            }
+                        }
+
+                        return;
+                    }
+                }
+
+                /*
+                 * ----------------------------------------------------
+                 * Escape closes the top-most popup
+                 * ----------------------------------------------------
+                 */
+                if (
+                    e.key === 'Escape' &&
+                    activePopupStack.length > 0
+                ) {
+                    const topOverlay =
+                        activePopupStack.pop();
+
+                    topOverlay.classList.remove(
+                        'active'
+                    );
+
+                    return;
+                }
+
+                /*
+                 * ----------------------------------------------------
+                 * AUTO-FOCUS SEARCH
+                 * ----------------------------------------------------
+                 *
+                 * If the user starts typing while nothing editable
+                 * is focused, place the keystroke into the main
+                 * search input automatically.
+                 *
+                 * Modifier combinations are ignored so shortcuts
+                 * such as Ctrl+C, Alt+Tab, etc. are unaffected.
+                 */
+                if (
+                    !isInputFocused &&
+                    !e.ctrlKey &&
+                    !e.metaKey &&
+                    !e.altKey &&
+                    !e.shiftKey &&
+                    e.key.length === 1
+                ) {
+                    const globalInput =
+                        document.getElementById(
+                            'tagSearchInput'
+                        );
+
+                    if (globalInput) {
+                        e.preventDefault();
+
+                        clearHintMode();
+
+                        globalInput.focus();
+
+                        /*
+                         * Put the first typed character into the
+                         * search box immediately.
+                         */
+                        const start =
+                            globalInput.selectionStart ??
+                            globalInput.value.length;
+
+                        const end =
+                            globalInput.selectionEnd ??
+                            globalInput.value.length;
+
+                        globalInput.setRangeText(
+                            e.key,
+                            start,
+                            end,
+                            'end'
+                        );
+
+                        /*
+                         * Trigger the same input event that would
+                         * normally occur from physical typing.
+                         */
+                        globalInput.dispatchEvent(
+                            new Event(
+                                'input',
+                                {
+                                    bubbles: true
+                                }
+                            )
+                        );
+                    }
+                }
+            }
+        );
+
+        /*
+         * Clicking outside hint badges exits hint mode.
+         */
+        document.addEventListener(
+            'click',
+            e => {
+                if (
+                    isHintModeActive &&
+                    !e.target.classList.contains(
+                        'link-hint'
+                    )
+                ) {
+                    clearHintMode();
+                }
+            }
+        );
+
+        /*
+         * ============================================================
+         * HTML + SCRIPT LOADING
+         * ============================================================
+         */
+
+        function setHTMLWithScripts(
+            element,
+            htmlString,
+            baseUrl = window.location.href,
+            skipMathJax = false
+        ) {
+            const parser = new DOMParser();
+
+            const doc =
+                parser.parseFromString(
+                    htmlString,
+                    'text/html'
+                );
+
+            const scripts =
+                Array.from(
+                    doc.querySelectorAll('script')
+                );
+
+            scripts.forEach(s => s.remove());
+
+            const source =
+                doc.body.innerHTML.trim()
+                    ? doc.body
+                    : doc.documentElement;
+
+            element.innerHTML =
+                source.innerHTML;
+
+            scripts.forEach(oldScript => {
+                const newScript =
+                    document.createElement(
+                        'script'
+                    );
+
+                Array.from(
+                    oldScript.attributes
+                ).forEach(attr => {
+                    newScript.setAttribute(
+                        attr.name,
+                        attr.value
+                    );
+                });
+
+                if (oldScript.src) {
+                    newScript.async = false;
+
+                    const rawSrc =
+                        oldScript.getAttribute(
+                            'src'
+                        );
+
+                    if (
+                        baseUrl &&
+                        !rawSrc.match(
+                            /^(https?:)?\/\//i
+                        ) &&
+                        !rawSrc.startsWith(
+                            'data:'
+                        )
+                    ) {
+                        try {
+                            newScript.src =
+                                new URL(
+                                    rawSrc,
+                                    baseUrl
+                                ).href;
+                        } catch (e) {}
+                    }
+
+                    document.head.appendChild(
+                        newScript
+                    );
+                } else {
+                    newScript.textContent =
+                        oldScript.textContent;
+
+                    document.body.appendChild(
+                        newScript
+                    );
+
+                    newScript.remove();
+                }
+            });
+
+            if (!skipMathJax) {
+                if (
+                    window.MathJax &&
+                    window.MathJax.Hub
+                ) {
+                    MathJax.Hub.Queue([
+                        "Typeset",
+                        MathJax.Hub,
+                        element
+                    ]);
+                }
+            }
+        }
+
+        /*
+         * ============================================================
+         * TAG FILTER
+         * ============================================================
+         */
+
+        function getTagFilterRule() {
+            let hash =
+                window.location.hash.replace(
+                    /^#/,
+                    ''
+                );
+
+            if (!hash) {
+                return {
+                    type: 'single',
+                    value: '0000'
+                };
+            }
+
+            if (hash.startsWith('tag=')) {
+                hash = hash.substring(4);
+            }
+
+            hash =
+                decodeURIComponent(hash).trim();
+
+            if (!hash) {
+                return {
+                    type: 'single',
+                    value: '0000'
+                };
+            }
+
+            if (hash.includes('-')) {
+                const parts =
+                    hash.split('-');
+
+                return {
+                    type: 'range',
+                    start: parts[0].trim(),
+                    end: parts[1].trim()
+                };
+            }
+
+            return {
+                type: 'single',
+                value: hash
+            };
+        }
+
+        function exactWordsMatch(
+            query,
+            text
+        ) {
+            if (!query) {
+                return true;
+            }
+
+            const qWords =
+                query
+                    .toLowerCase()
+                    .trim()
+                    .split(/\s+/);
+
+            const lowerText =
+                text.toLowerCase();
+
+            return qWords.every(
+                word =>
+                    lowerText.includes(word)
+            );
+        }
+
+        function clearHighlights(
+            containerEl
+        ) {
+            const highlights =
+                containerEl.querySelectorAll(
+                    'span.dynamic-highlight'
+                );
+
+            highlights.forEach(el => {
+                const parent =
+                    el.parentNode;
+
+                parent.replaceChild(
+                    document.createTextNode(
+                        el.textContent
+                    ),
+                    el
+                );
+
+                parent.normalize();
+            });
+        }
+
+        function applyHighlightsToElement(
+            element,
+            query
+        ) {
+            clearHighlights(element);
+
+            if (!query) {
+                return;
+            }
+
+            const qWords =
+                query
+                    .toLowerCase()
+                    .trim()
+                    .split(/\s+/)
+                    .filter(Boolean);
+
+            if (qWords.length === 0) {
+                return;
+            }
+
+            const walker =
+                document.createTreeWalker(
+                    element,
+                    NodeFilter.SHOW_TEXT,
+                    {
+                        acceptNode:
+                            function(node) {
+                                if (
+                                    node.parentNode.tagName ===
+                                        'SCRIPT' ||
+                                    node.parentNode.tagName ===
+                                        'STYLE' ||
+                                    node.parentNode.classList.contains(
+                                        'dynamic-highlight'
+                                    )
+                                ) {
+                                    return NodeFilter
+                                        .FILTER_REJECT;
+                                }
+
+                                return NodeFilter
+                                    .FILTER_ACCEPT;
+                            }
+                    }
+                );
+
+            const textNodes = [];
+
+            while (walker.nextNode()) {
+                textNodes.push(
+                    walker.currentNode
+                );
+            }
+
+            textNodes.forEach(node => {
+                const text =
+                    node.nodeValue;
+
+                const lowerText =
+                    text.toLowerCase();
+
+                let matches = [];
+
+                qWords.forEach(
+                    (word, wordIndex) => {
+                        let idx =
+                            lowerText.indexOf(
+                                word
+                            );
+
+                        while (idx !== -1) {
+                            matches.push({
+                                start: idx,
+                                end:
+                                    idx +
+                                    word.length,
+                                wordIndex
+                            });
+
+                            idx =
+                                lowerText.indexOf(
+                                    word,
+                                    idx + 1
+                                );
+                        }
+                    }
+                );
+
+                if (matches.length === 0) {
+                    return;
+                }
+
+                matches.sort(
+                    (a, b) =>
+                        a.start - b.start
+                );
+
+                const merged = [];
+
+                let current =
+                    matches[0];
+
+                for (
+                    let i = 1;
+                    i < matches.length;
+                    i++
+                ) {
+                    if (
+                        matches[i].start <=
+                        current.end
+                    ) {
+                        current.end =
+                            Math.max(
+                                current.end,
+                                matches[i].end
+                            );
+                    } else {
+                        merged.push(current);
+                        current =
+                            matches[i];
+                    }
+                }
+
+                merged.push(current);
+
+                const frag =
+                    document.createDocumentFragment();
+
+                let lastIdx = 0;
+
+                merged.forEach(m => {
+                    if (
+                        m.start > lastIdx
+                    ) {
+                        frag.appendChild(
+                            document.createTextNode(
+                                text.substring(
+                                    lastIdx,
+                                    m.start
+                                )
+                            )
+                        );
+                    }
+
+                    const span =
+                        document.createElement(
+                            'span'
+                        );
+
+                    span.className =
+                        'dynamic-highlight';
+
+                    const colorPair =
+                        HIGHLIGHT_PALETTE[
+                            m.wordIndex %
+                            HIGHLIGHT_PALETTE.length
+                        ];
+
+                    span.style.backgroundColor =
+                        colorPair.bg;
+
+                    span.style.color =
+                        colorPair.text;
+
+                    span.style.padding =
+                        '0 2px';
+
+                    span.style.borderRadius =
+                        '2px';
+
+                    span.textContent =
+                        text.substring(
+                            m.start,
+                            m.end
+                        );
+
+                    frag.appendChild(span);
+
+                    lastIdx = m.end;
+                });
+
+                if (lastIdx < text.length) {
+                    frag.appendChild(
+                        document.createTextNode(
+                            text.substring(
+                                lastIdx
+                            )
+                        )
+                    );
+                }
+
+                node.parentNode.replaceChild(
+                    frag,
+                    node
+                );
+            });
+        }
+
+        function applyFilterToContainer(
+            containerEl,
+            query
+        ) {
+            if (!containerEl) {
+                return;
+            }
+
+            const sections =
+                containerEl.querySelectorAll(
+                    '.tag-content'
+                );
+
+            if (!query) {
+                if (sections.length === 0) {
+                    const lines =
+                        containerEl.querySelectorAll(
+                            'p, li, div'
+                        );
+
+                    lines.forEach(
+                        line =>
+                            line.style.display =
+                                ''
+                    );
+                } else {
+                    sections.forEach(section => {
+                        section.style.display =
+                            '';
+
+                        const heading =
+                            section.querySelector(
+                                'h1'
+                            );
+
+                        if (heading) {
+                            heading.style.display =
+                                '';
+
+                            clearHighlights(
+                                heading
+                            );
+                        }
+
+                        const body =
+                            section.querySelector(
+                                '.tag-body'
+                            );
+
+                        if (body) {
+                            Array.from(
+                                body.querySelectorAll(
+                                    'p, li, div'
+                                )
+                            ).forEach(
+                                el => {
+                                    el.style.display =
+                                        '';
+
+                                    clearHighlights(
+                                        el
+                                    );
+                                }
+                            );
+                        }
+                    });
+                }
+
+                clearHighlights(
+                    containerEl
+                );
+
+                return;
+            }
+
+            if (sections.length === 0) {
+                const lines =
+                    containerEl.querySelectorAll(
+                        'p, li, div'
+                    );
+
+                lines.forEach(line => {
+                    if (
+                        exactWordsMatch(
+                            query,
+                            line.textContent
+                        )
+                    ) {
+                        line.style.display =
+                            '';
+
+                        applyHighlightsToElement(
+                            line,
+                            query
+                        );
+                    } else {
+                        line.style.display =
+                            'none';
+                    }
+                });
+
+                return;
+            }
+
+            sections.forEach(section => {
+                const heading =
+                    section.querySelector(
+                        'h1'
+                    );
+
+                const body =
+                    section.querySelector(
+                        '.tag-body'
+                    );
+
+                if (!body) {
+                    return;
+                }
+
+                let sectionHasMatch =
+                    false;
+
+                if (heading) {
+                    if (
+                        exactWordsMatch(
+                            query,
+                            heading.textContent
+                        )
+                    ) {
+                        heading.style.display =
+                            '';
+
+                        applyHighlightsToElement(
+                            heading,
+                            query
+                        );
+
+                        sectionHasMatch =
+                            true;
+                    } else {
+                        heading.style.display =
+                            'none';
+                    }
+                }
+
+                const lines =
+                    body.querySelectorAll(
+                        'p, li, div'
+                    );
+
+                lines.forEach(line => {
+                    if (
+                        exactWordsMatch(
+                            query,
+                            line.textContent
+                        )
+                    ) {
+                        line.style.display =
+                            '';
+
+                        applyHighlightsToElement(
+                            line,
+                            query
+                        );
+
+                        sectionHasMatch =
+                            true;
+                    } else {
+                        line.style.display =
+                            'none';
+                    }
+                });
+
+                section.style.display =
+                    sectionHasMatch
+                        ? ''
+                        : 'none';
+            });
+        }
+
+        /*
+         * ============================================================
+         * SEARCH INPUT SETUP
+         * ============================================================
+         */
+
+        function setupInputDebounce(
+            inputElement
+        ) {
+            inputElement.addEventListener(
+                'input',
+                e => {
+                    const query =
+                        e.target.value.trim();
+
+                    const container =
+                        getContainerForInput(
+                            inputElement
+                        );
+
+                    applyFilterToContainer(
+                        container,
+                        query
+                    );
+
+                    clearTimeout(
+                        searchDebounceTimer
+                    );
+
+                    searchDebounceTimer =
+                        setTimeout(() => {
+                            saveSearchQuery(
+                                query
+                            );
+                        }, 2000);
+                }
+            );
+
+            inputElement.addEventListener(
+                'keydown',
+                e => {
+                    if (e.key === 'Enter') {
+                        clearTimeout(
+                            searchDebounceTimer
+                        );
+
+                        saveSearchQuery(
+                            e.target.value.trim()
+                        );
+                    }
+                }
+            );
+        }
+
+        const searchInput =
+            document.getElementById(
+                'tagSearchInput'
+            );
+
+        setupInputDebounce(
+            searchInput
+        );
+
+        /*
+         * ============================================================
+         * MAIN TAG DIRECTORY
+         * ============================================================
+         */
+
+        async function initBook() {
+            initSearchHistory();
+
+            const container =
+                document.getElementById(
+                    'content-container'
+                );
+
+            try {
+                const response =
+                    await fetch('tag/');
+
+                if (!response.ok) {
+                    throw new Error(
+                        "Access denied or directory listing disabled on /tag."
+                    );
+                }
+
+                const htmlText =
+                    await response.text();
+
+                const parser =
+                    new DOMParser();
+
+                const doc =
+                    parser.parseFromString(
+                        htmlText,
+                        'text/html'
+                    );
+
+                const links =
+                    doc.querySelectorAll('a');
+
+                let tagFiles = [];
+
+                links.forEach(link => {
+                    const href =
+                        link.getAttribute(
+                            'href'
+                        );
+
+                    if (
+                        href &&
+                        !href.endsWith('/') &&
+                        !href.startsWith('?') &&
+                        href !== '../' &&
+                        href !== './'
+                    ) {
+                        const filename =
+                            href
+                                .split('/')
+                                .pop();
+
+                        if (filename) {
+                            tagFiles.push(
+                                filename
+                            );
+                        }
+                    }
+                });
+
+                globalTagFiles =
+                    [...new Set(tagFiles)];
+
+                const filterRule =
+                    getTagFilterRule();
+
+                let displayedFiles =
+                    globalTagFiles;
+
+                if (filterRule) {
+                    displayedFiles =
+                        globalTagFiles.filter(
+                            file => {
+                                const baseName =
+                                    file.replace(
+                                        /\.[^/.]+$/,
+                                        ""
+                                    );
+
+                                if (
+                                    filterRule.type ===
+                                    'single'
+                                ) {
+                                    return (
+                                        file ===
+                                            filterRule.value ||
+                                        baseName ===
+                                            filterRule.value
+                                    );
+                                }
+
+                                if (
+                                    filterRule.type ===
+                                    'range'
+                                ) {
+                                    return (
+                                        (
+                                            file >=
+                                            filterRule.start &&
+                                            file <=
+                                            filterRule.end
+                                        ) ||
+                                        (
+                                            baseName >=
+                                            filterRule.start &&
+                                            baseName <=
+                                            filterRule.end
+                                        )
+                                    );
+                                }
+
+                                return true;
+                            }
+                        );
+                }
+
+                if (
+                    displayedFiles.length === 0
+                ) {
+                    container.innerHTML =
+                        `<p>[No tag files found matching the specified filter criteria]</p>`;
+
+                    return;
+                }
+
+                container.innerHTML = '';
+
+                for (
+                    const file of displayedFiles
+                ) {
+                    const filePath =
+                        `tag/${file}`;
+
+                    const tagName =
+                        decodeURIComponent(
+                            file
+                        );
+
+                    const section =
+                        document.createElement(
+                            'div'
+                        );
+
+                    section.className =
+                        'tag-content';
+
+                    const heading =
+                        document.createElement(
+                            'h1'
+                        );
+
+                    heading.textContent =
+                        `TAG: ${tagName}`;
+
+                    section.appendChild(
+                        heading
+                    );
+
+                    const bodyDiv =
+                        document.createElement(
+                            'div'
+                        );
+
+                    bodyDiv.className =
+                        'tag-body';
+
+                    bodyDiv.innerHTML =
+                        `<p class="loading">[Loading payload: ${file}...]</p>`;
+
+                    section.appendChild(
+                        bodyDiv
+                    );
+
+                    container.appendChild(
+                        section
+                    );
+
+                    try {
+                        const fileRes =
+                            await fetch(
+                                filePath
+                            );
+
+                        if (!fileRes.ok) {
+                            throw new Error();
+                        }
+
+                        const fileHtml =
+                            await fileRes.text();
+
+                        setHTMLWithScripts(
+                            bodyDiv,
+                            fileHtml,
+                            './tag'
+                        );
+
+                        enableLinkPreviewsForElement(
+                            bodyDiv,
+                            globalTagFiles
+                        );
+
+                        applyFilterToContainer(
+                            container,
+                            searchInput.value.trim()
+                        );
+                    } catch (err) {
+                        bodyDiv.innerHTML =
+                            `<p style="color:#dc2626;">[Error: Failed to parse ${file}]</p>`;
+                    }
+                }
+            } catch (error) {
+                container.innerHTML =
+                    `<p style="color:#dc2626;">[System Error: ${error.message}]</p>`;
+            }
+        }
+
+        /*
+         * ============================================================
+         * LINK PREVIEW SYSTEM
+         * ============================================================
+         */
+
+        function enableLinkPreviewsForElement(
+            rootElement,
+            tagFiles
+        ) {
+            const links =
+                rootElement.querySelectorAll(
+                    'a'
+                );
+
+            links.forEach(link => {
+                const href =
+                    link.getAttribute(
+                        'href'
+                    );
+
+                if (!href) {
+                    return;
+                }
+
+                const matchedFile =
+                    tagFiles.find(
+                        f =>
+                            href === f ||
+                            href === `tag/${f}` ||
+                            href === `/tag/${f}` ||
+                            href.endsWith(
+                                '/' + f
+                            )
+                    );
+
+                if (!matchedFile) {
+                    return;
+                }
+
+                link.classList.add(
+                    'tag-link'
+                );
+
+                link.dataset.matchedFile =
+                    matchedFile;
+
+                let overlay =
+                    document.querySelector(
+                        `.preview-overlay[data-tag-file="${CSS.escape(matchedFile)}"]`
+                    );
+
+                if (!overlay) {
+                    overlay =
+                        document.createElement(
+                            'div'
+                        );
+
+                    overlay.className =
+                        'preview-overlay';
+
+                    overlay.dataset.tagFile =
+                        matchedFile;
+
+                    const previewBox =
+                        document.createElement(
+                            'div'
+                        );
+
+                    previewBox.className =
+                        'preview-box';
+
+                    const closeBtn =
+                        document.createElement(
+                            'button'
+                        );
+
+                    closeBtn.className =
+                        'preview-close';
+
+                    closeBtn.innerHTML =
+                        '&times;';
+
+                    closeBtn.title =
+                        'Close (or press ESC)';
+
+                    closeBtn.addEventListener(
+                        'click',
+                        e => {
+                            e.stopPropagation();
+
+                            closePopup(
+                                overlay
+                            );
+                        }
+                    );
+
+                    previewBox.appendChild(
+                        closeBtn
+                    );
+
+                    const popupFilterWrapper =
+                        document.createElement(
+                            'div'
+                        );
+
+                    popupFilterWrapper.className =
+                        'popup-filter-wrapper';
+
+                    const popupSearchInput =
+                        document.createElement(
+                            'input'
+                        );
+
+                    popupSearchInput.type =
+                        'text';
+
+                    popupSearchInput.className =
+                        'search-input';
+
+                    popupSearchInput.placeholder =
+                        '[Filter inside popup: type distinct words...]';
+
+                    popupFilterWrapper.appendChild(
+                        popupSearchInput
+                    );
+
+                    previewBox.appendChild(
+                        popupFilterWrapper
+                    );
+
+                    const contentArea =
+                        document.createElement(
+                            'div'
+                        );
+
+                    contentArea.className =
+                        'preview-content';
+
+                    contentArea.innerHTML =
+                        '<p class="loading">[fetching payload...]</p>';
+
+                    previewBox.appendChild(
+                        contentArea
+                    );
+
+                    overlay.appendChild(
+                        previewBox
+                    );
+
+                    document.body.appendChild(
+                        overlay
+                    );
+
+                    setupInputDebounce(
+                        popupSearchInput
+                    );
+
+                    overlay.addEventListener(
+                        'click',
+                        e => {
+                            if (
+                                e.target ===
+                                overlay
+                            ) {
+                                closePopup(
+                                    overlay
+                                );
+                            }
+                        }
+                    );
+                }
+
+                function closePopup(
+                    targetOverlay
+                ) {
+                    if (
+                        targetOverlay.classList.contains(
+                            'active'
+                        )
+                    ) {
+                        targetOverlay.classList.remove(
+                            'active'
+                        );
+
+                        const index =
+                            activePopupStack.indexOf(
+                                targetOverlay
+                            );
+
+                        if (index > -1) {
+                            activePopupStack.splice(
+                                index,
+                                1
+                            );
+                        }
+                    }
+                }
+
+                let cachedRawHTML = null;
+
+                const contentArea =
+                    overlay.querySelector(
+                        '.preview-content'
+                    );
+
+                const popupSearchInput =
+                    overlay.querySelector(
+                        '.search-input'
+                    );
+
+                /*
+                 * Each link owns its own popup function.
+                 */
+                link._spawnPopup =
+                    async function(
+                        sourceLink
+                    ) {
+                        const isAlreadyVisible =
+                            Array.from(
+                                document.querySelectorAll(
+                                    '.preview-overlay.active'
+                                )
+                            ).some(
+                                ov =>
+                                    ov.dataset.tagFile ===
+                                    matchedFile
+                            );
+
+                        if (
+                            isAlreadyVisible
+                        ) {
+                            return;
+                        }
+
+                        const parentOverlay =
+                            sourceLink.closest(
+                                '.preview-overlay'
+                            );
+
+                        const parentInput =
+                            parentOverlay
+                                ? parentOverlay.querySelector(
+                                      '.search-input'
+                                  )
+                                : searchInput;
+
+                        const activeQuery =
+                            parentInput
+                                ? parentInput.value.trim()
+                                : '';
+
+                        baseZIndex += 10;
+
+                        overlay.style.zIndex =
+                            baseZIndex;
+
+                        if (
+                            !overlay.classList.contains(
+                                'active'
+                            )
+                        ) {
+                            overlay.classList.add(
+                                'active'
+                            );
+
+                            activePopupStack.push(
+                                overlay
+                            );
+
+                            popupSearchInput.value =
+                                activeQuery;
+                        }
+
+                        try {
+                            if (!cachedRawHTML) {
+                                const res =
+                                    await fetch(
+                                        `tag/${matchedFile}`
+                                    );
+
+                                if (!res.ok) {
+                                    throw new Error();
+                                }
+
+                                cachedRawHTML =
+                                    await res.text();
+                            }
+
+                            setHTMLWithScripts(
+                                contentArea,
+                                cachedRawHTML,
+                                './tag',
+                                true
+                            );
+
+                            enableLinkPreviewsForElement(
+                                contentArea,
+                                tagFiles
+                            );
+
+                            applyFilterToContainer(
+                                contentArea,
+                                activeQuery
+                            );
+                        } catch (err) {
+                            console.error(
+                                'Popup load failed:',
+                                matchedFile,
+                                err
+                            );
+
+                            contentArea.innerHTML =
+                                '<span style="color:#dc2626;">[target offline]</span>';
+                        }
+
+                        setTimeout(() => {
+                            if (
+                                overlay.classList.contains(
+                                    'active'
+                                ) &&
+                                window.MathJax &&
+                                window.MathJax.Hub
+                            ) {
+                                try {
+                                    MathJax.Hub.Typeset(
+                                        contentArea
+                                    );
+                                } catch (e) {}
+                            }
+                        }, 200);
+                    };
+
+                if (
+                    link.dataset.previewInitialized ===
+                    'true'
+                ) {
+                    return;
+                }
+
+                link.dataset.previewInitialized =
+                    'true';
+
+                let hoverTimer = null;
+
+                /*
+                 * ====================================================
+                 * HOVER
+                 * ====================================================
+                 */
+
+                link.addEventListener(
+                    'mouseenter',
+                    () => {
+                        clearTimeout(
+                            hoverTimer
+                        );
+
+                        hoverTimer =
+                            setTimeout(() => {
+                                if (
+                                    link._spawnPopup
+                                ) {
+                                    link._spawnPopup(
+                                        link
+                                    );
+                                }
+                            }, 350);
+                    }
+                );
+
+                link.addEventListener(
+                    'mouseleave',
+                    () => {
+                        clearTimeout(
+                            hoverTimer
+                        );
+                    }
+                );
+
+                /*
+                 * ====================================================
+                 * CLICK
+                 * ====================================================
+                 */
+
+                link.addEventListener(
+                    'click',
+                    e => {
+                        e.preventDefault();
+
+                        clearTimeout(
+                            hoverTimer
+                        );
+
+                        if (
+                            link._spawnPopup
+                        ) {
+                            link._spawnPopup(
+                                link
+                            );
+                        }
+                    }
+                );
+            });
+        }
+
+        /*
+         * ============================================================
+         * START
+         * ============================================================
+         */
+
+        window.addEventListener(
+            'DOMContentLoaded',
+            initBook
+        );
+    </script>
+
+    <!-- MathJax Configuration -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            extensions: [
+                'tex2jax.js',
+                'MathMenu.js',
+                'MathZoom.js'
+            ],
+
+            jax: [
+                'input/TeX',
+                'output/HTML-CSS'
+            ],
+
+            TeX: {
+                extensions: [
+                    'AMSmath.js',
+                    'AMSsymbols.js',
+                    'http://127.0.0.1:8000/xypic.js',
+                    'extpfeil.js'
+                ],
+
+                Macros: {
+                    linebreak: ["[", 1, ""],
+                    textnormal: ['\\textrm{#1}', 1],
+                    xhookrightarrow: ['\\rightarrow', 1],
+                    xslongrightarrow: ['\\rightarrow', 1],
+                    xRightarrow: ['\\rightarrow', 1]
+                },
+
+                TagSide: 'left'
+            },
+
+            tex2jax: {
+                inlineMath: [['$','$']],
+
+                displayMath: [
+                    ['$$','$$'],
+                    ["\\[","\\]"]
+                ]
+            },
+
+            menuSettings: {
+                zspace: true
+            },
+
+            'HTML-CSS': {
+                scale: 95,
+                availableFonts: []
+            }
+        });
+    </script>
+
+    <!-- MathJax Script Source -->
+    <script
+        type="text/javascript"
+        async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js"
+        integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aek"
+        crossorigin="anonymous">
+    </script>
+
+    <!-- jQuery -->
+    <script
+        type="text/javascript"
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f"
+        crossorigin="anonymous">
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" id="main">
+<div class="html" id="tag">
+<h3 class="tex-subsection" id="subsection:2-categories"><span data-tag="007P">2.2.1</span> Bicategories</h3>
+<p>
+Let $\operatorname{\mathcal{C}}$ be a strict bicategory (Definition <a data-tag="007L" href="/tag/007L">2.2.0.1</a>). Then the composition of $1$-morphisms in $\operatorname{\mathcal{C}}$ is strictly associative: that is, given a triple of composable $1$-morphisms 
+</p>
+<div class="equation">
+  \[  f: W \rightarrow X \quad \quad g: X \rightarrow Y \quad \quad h: Y \rightarrow Z \]
+</div>
+<p>
+ of $\operatorname{\mathcal{C}}$, we have an equality $h \circ (g \circ f) = (h \circ g) \circ f$. Our goal in this section is to introduce the more general notion of (non-strict) <em>bicategory</em>, where we weaken the associativity requirement: rather than demand that the $1$-morphisms $h \circ (g \circ f)$ and $(h \circ g) \circ f$ are identical, we instead ask for a specified isomorphism $\alpha _{h,g,f}: h \circ (g \circ f) \xRightarrow {\sim } (h \circ g) \circ f$ in the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(W, Z)$. In order to obtain a sensible theory, we must require that these isomorphisms satisfy an analogue of the pentagon identity which appears in Definition <a data-tag="00BY" href="/tag/00BY">2.1.1.5</a>. 
+</p>
+<p>
+<article class="env-definition" id="007Q">
+<p><a class="environment-identifier" href="/tag/007Q">Definition <span data-tag="007Q">2.2.1.1</span> <span class="named">(Bénabou <span class="cite">[<a href="/bibliography/MR0220789">MR0220789</a>]</span>)</span>.</a> A <em>bicategory</em> $\operatorname{\mathcal{C}}$ consists of the following data: </p>
+<p><ul>
+<li><p>
+A collection $\operatorname{Ob}(\operatorname{\mathcal{C}})$, whose elements we refer to as <em>objects of $\operatorname{\mathcal{C}}$</em>. We will often abuse notation by writing $X \in \operatorname{\mathcal{C}}$ to indicate that $X$ is an element of $\operatorname{Ob}(\operatorname{\mathcal{C}})$. 
+</p>
+</li><li><p>
+For every pair of objects $X, Y \in \operatorname{Ob}(\operatorname{\mathcal{C}})$, a category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}( X, Y)$. We refer to objects $f$ of the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$ as <em>$1$-morphisms from $X$ to $Y$</em> and write $f: X \rightarrow Y$ to indicate that $f$ is a $1$-morphism from $X$ to $Y$. Given a pair of $1$-morphisms $f,g \in \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$, we refer to morphisms from $f$ to $g$ in the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$ as <em>$2$-morphisms from $f$ to $g$</em>. We will sometimes write $\gamma : f \Rightarrow g$ or $f \xRightarrow {\gamma } g$ to indicate that $\gamma $ is a $2$-morphism from $f$ to $g$. 
+</p>
+</li><li><p>
+For every triple of objects $X,Y,Z \in \operatorname{Ob}(\operatorname{\mathcal{C}})$, a <em>composition functor</em>
+</p>
+<div class="equation">
+  \[  \circ : \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}( Y, Z) \times \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) \rightarrow \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Z). \]
+</div>
+</li><li><p>
+For every object $X \in \operatorname{Ob}(\operatorname{\mathcal{C}})$, a $1$-morphism $\operatorname{id}_{X} \in \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,X)$, which we call the <em>identity $1$-morphism</em> from $X$ to itself. 
+</p>
+</li><li><p>
+For every object $X \in \operatorname{Ob}(\operatorname{\mathcal{C}})$, an isomorphism $\upsilon _{X}: \operatorname{id}_{X} \circ \operatorname{id}_{X} \xRightarrow {\sim } \operatorname{id}_{X}$ in the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,X)$. We refer to the $2$-morphisms $\{  \upsilon _{X} \} _{X \in \operatorname{Ob}(\operatorname{\mathcal{C}}) }$ as the <em>unit constraints</em> of $\operatorname{\mathcal{C}}$. 
+</p>
+</li><li><p>
+For every quadruple of objects $W, X, Y, Z \in \operatorname{\mathcal{C}}$, a natural isomorphism $\alpha $ from the functor 
+</p>
+<div class="equation">
+  \[  \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(Y, Z) \times \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}( X, Y) \times \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(W,X) \rightarrow \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(W, Z) \quad \quad (h,g,f) \mapsto h \circ (g \circ f) \]
+</div>
+<p>
+ to the functor 
+</p>
+<div class="equation">
+  \[  \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(Y, Z) \times \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}( X, Y) \times \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(W,X) \rightarrow \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(W, Z) \quad \quad (h,g,f) \mapsto (h \circ g) \circ f. \]
+</div>
+<p>
+ We denote the value of $\alpha $ on a triple $(h,g,f)$ by $\alpha _{h,g,f}: h \circ (g \circ f) \xRightarrow {\sim } (h \circ g) \circ f$. We refer to these isomorphisms as the <em>associativity constraints</em> of $\operatorname{\mathcal{C}}$. 
+</p>
+</li>
+</ul></p>
+<p>These data are required to satisfy the following pair of conditions: </p>
+<p><dl>
+<dt>$(C)$</dt>
+<dd><p>
+For every pair of objects $X,Y \in \operatorname{Ob}(\operatorname{\mathcal{C}})$, the functors 
+</p>
+<div class="equation">
+  \[  \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) \rightarrow \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) \quad \quad f \mapsto f \circ \operatorname{id}_{X} \]
+</div>
+<div class="equation">
+  \[  \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) \rightarrow \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) \quad \quad f \mapsto \operatorname{id}_{Y} \circ f \]
+</div>
+<p>
+ are fully faithful. 
+</p>
+</dd>
+<dt>$(P)$</dt>
+<dd><p>
+For every quadruple of composable $1$-morphisms 
+</p>
+<div class="equation">
+  \[  V \xrightarrow {e} W \xrightarrow {f} X \xrightarrow {g} Y \xrightarrow {h} Z \]
+</div>
+<p>
+ in $\operatorname{\mathcal{C}}$, the diagram of isomorphisms 
+</p>
+<div class="equation">
+  \[  \xymatrix@C =-10pt@R=30pt{ &amp;  h \circ ((g \circ f) \circ e) \ar@ {=&gt;}[rr]^{ \alpha _{h, g \circ f, e} }_{\sim } &amp;  &amp;  (h \circ (g \circ f)) \circ e \ar@ {=&gt;}[dr]^{ \alpha _{h, g, f} \circ \operatorname{id}_ e}_{\sim } &amp;  \\ h \circ (g \circ (f \circ e) ) \ar@ {=&gt;}[ur]^{ \operatorname{id}_ h \circ \alpha _{g,f,e} }_{\sim } \ar@ {=&gt;}[drr]_{ \alpha _{h,g,f\circ e}}^{\sim } &amp;  &amp;  &amp;  &amp;  ((h \circ g) \circ f) \circ e \\ &amp;  &amp;  (h \circ g) \circ (f \circ e) \ar@ {=&gt;}[urr]_{\alpha _{ h \circ g, f, e} }^{\sim } &amp;  &amp;  } \]
+</div>
+<p>
+ commutes in the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}( V, Z)$. 
+</p>
+</dd>
+</dl></p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="007S">
+<p><a class="environment-identifier" href="/tag/007S">Remark <span data-tag="007S">2.2.1.2</span>.</a> In the situation of Definition <a data-tag="007Q" href="/tag/007Q">2.2.1.1</a>, we will refer to axiom $(P)$ as the <em>pentagon identity</em>. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="007T">
+<p><a class="environment-identifier" href="/tag/007T">Example <span data-tag="007T">2.2.1.3</span> <span class="named">(Strict Bicategories)</span>.</a> Let $\operatorname{\mathcal{C}}$ be any strict bicategory (in the sense of Definition <a data-tag="007L" href="/tag/007L">2.2.0.1</a>). Then $\operatorname{\mathcal{C}}$ can be viewed as a bicategory (in the sense of Definition <a data-tag="007Q" href="/tag/007Q">2.2.1.1</a>) by taking the unit and associativity constraints $\upsilon _{X}$ and $\alpha _{h,g,f}$ to be identity $2$-morphisms in $\operatorname{\mathcal{C}}$. </p>
+</article>
+</p>
+<p>
+<article class="env-warning" id="00EU">
+<p><a class="environment-identifier" href="/tag/00EU">Warning <span data-tag="00EU">2.2.1.4</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory. If $\operatorname{\mathcal{C}}$ is strict, then we can extract from $\operatorname{\mathcal{C}}$ an underlying ordinary category having the same objects and $1$-morphisms (Remark <a data-tag="00EP" href="/tag/00EP">2.2.0.3</a>). However, this operation has no counterpart for a general bicategory $\operatorname{\mathcal{C}}$: in general, composition of $1$-morphisms in $\operatorname{\mathcal{C}}$ is associative only up to isomorphism. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="007X">
+<p><a class="environment-identifier" href="/tag/007X">Remark <span data-tag="007X">2.2.1.5</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory. Then $\operatorname{\mathcal{C}}$ can be obtained from an ordinary category (via the construction of Example <a data-tag="007W" href="/tag/007W">2.2.0.6</a>) if and only if every $2$-morphism in $\operatorname{\mathcal{C}}$ is an identity $2$-morphism (note that a bicategory with this property is automatically strict, by virtue of Example <a data-tag="007T" href="/tag/007T">2.2.1.3</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="00ET">
+<p><a class="environment-identifier" href="/tag/00ET">Remark <span data-tag="00ET">2.2.1.6</span> <span class="named">(Endomorphism Categories)</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory and let $X$ be an object of $\operatorname{\mathcal{C}}$. We will denote the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,X)$ by $\underline{\operatorname{End}}_{\operatorname{\mathcal{C}}}(X)$ and refer to it as the <em>endomorphism category</em> of $X$. The category $\underline{\operatorname{End}}_{\operatorname{\mathcal{C}}}(X)$ has a monoidal structure, with tensor product given by the composition law </p>
+<div class="equation">
+  \[  \circ : \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,X) \times \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,X) \rightarrow \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,X), \]
+</div>
+<p> unit object given by the identity $1$-morphism $\operatorname{id}_{X}$, and the unit and associativity constraints of $\underline{\operatorname{End}}_{\operatorname{\mathcal{C}}}(X)$ given by $\upsilon _{X}$ and the associativity constraints of $\operatorname{\mathcal{C}}$, respectively. </p>
+</article>
+</p>
+<p>
+<article class="env-notation" id="007Y">
+<p><a class="environment-identifier" href="/tag/007Y">Notation <span data-tag="007Y">2.2.1.7</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory. We will generally follow the convention of denoting objects of $\operatorname{\mathcal{C}}$ by capital Roman letters, $1$-morphisms of $\operatorname{\mathcal{C}}$ by lowercase Roman letters, and $2$-morphisms of $\operatorname{\mathcal{C}}$ by lowercase Greek letters. However, we will often violate this convention when discussing specific examples. For instance, when studying the (strict) bicategory $\mathbf{ Cat }$ of small categories (Example <a data-tag="007M" href="/tag/007M">2.2.0.4</a>), we denote objects using calligraphic letters (such as $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$) and $1$-morphisms using uppercase Roman letters (such as $F$ and $G$). </p>
+</article>
+</p>
+<p>
+<article class="env-warning" id="007Z">
+<p><a class="environment-identifier" href="/tag/007Z">Warning <span data-tag="007Z">2.2.1.8</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory. Then there are two different notions of composition for the $2$-morphisms of $\operatorname{\mathcal{C}}$: </p>
+<p><dl>
+<dt>$(V)$</dt>
+<dd><p>
+Let $X$ and $Y$ be objects of $\operatorname{\mathcal{C}}$. Suppose we are given $1$-morphisms $f,g,h: X \rightarrow Y$ and a pair of $2$-morphisms 
+</p>
+<div class="equation">
+  \[ \gamma : f \Rightarrow g \quad \quad \delta : g \Rightarrow h. \]
+</div>
+<p>
+ We can then apply the composition law in the ordinary category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$ to obtain a $2$-morphism $f \Rightarrow h$, which we refer to as the <em>vertical composition of $\gamma $ and $\delta $</em>. 
+</p>
+</dd>
+<dt>$(H)$</dt>
+<dd><p>
+Let $X$, $Y$, and $Z$ be objects of $\operatorname{\mathcal{C}}$. Suppose we are given $2$-morphisms $\gamma : f \Rightarrow g$ in the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$ and $\gamma ': f' \Rightarrow g'$ in the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(Y,Z)$. Then the image of $(\gamma ', \gamma )$ under the composition law 
+</p>
+<div class="equation">
+  \[  \circ : \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}( Y, Z) \times \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) \rightarrow \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X, Z), \]
+</div>
+<p>
+ is a $2$-morphism from $f' \circ f$ to $g' \circ g$, which will refer to as the <em>horizontal composition</em> of $\gamma $ and $\gamma '$. 
+</p>
+</dd>
+</dl></p>
+<p> The terminology is motivated by the following graphical representations of the data described in $(V)$ and $(H)$: </p>
+<div class="equation">
+  \[  \xymatrix@C =50pt{ X \ar@ /^30pt/[r]^{f} \ar [r]^-{g} \ar@ /_30pt/[r]_{h} \ar@ {=&gt;}[]+&lt;32pt,20pt&gt;;+&lt;32pt,10pt&gt;^{\gamma } \ar@ {=&gt;}[]+&lt;32pt,-10pt&gt;;+&lt;32pt,-20pt&gt;^{\delta } &amp;  Y &amp;  X \ar@ /^15pt/[r]^{f} \ar@ /_15pt/[r]_{g} \ar@ {=&gt;}[]+&lt;32pt,10pt&gt;;+&lt;32pt,-10pt&gt;^{\gamma } &amp;  Y \ar@ /^15pt/[r]^{f'} \ar@ /_15pt/[r]_{g'} \ar@ {=&gt;}[]+&lt;32pt,10pt&gt;;+&lt;32pt,-10pt&gt;^{\gamma '}&amp;  Z. } \]
+</div>
+<p> To avoid confusion, we will generally denote the vertical composition of $2$-morphisms $\gamma $ and $\delta $ by $\delta \gamma $ and the horizontal composition of $2$-morphisms $\gamma $ and $\gamma '$ by $\gamma ' \circ \gamma $. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="00EV">
+<p><a class="environment-identifier" href="/tag/00EV">Remark <span data-tag="00EV">2.2.1.9</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory. For each object $X \in \operatorname{Ob}(\operatorname{\mathcal{C}})$, the identity $1$-morphism $\operatorname{id}_{X}$ and the unit constraint $\upsilon _{X}$ are determined (up to unique isomorphism) by the composition law and associativity constraints. More precisely, given any other choice of identity morphism $\operatorname{id}'_{X}$ and unit constraint $\upsilon '_{X}: \operatorname{id}'_{X} \circ \operatorname{id}'_{X} \xRightarrow {\sim } \operatorname{id}'_{X}$, there exists a unique invertible $2$-morphism $\gamma : \operatorname{id}_{X} \xRightarrow {\sim } \operatorname{id}'_{X}$ for which the diagram </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \operatorname{id}_{X} \circ \operatorname{id}_{X} \ar@ {=&gt;}[r]^{\upsilon _ X} \ar@ {=&gt;}[d]^{ \gamma \circ \gamma } &amp;  \operatorname{id}_{X} \ar@ {=&gt;}[d]^{\gamma } \\ \operatorname{id}'_{X} \circ \operatorname{id}'_ X \ar@ {=&gt;}[r]^{\upsilon '_{X} } &amp;  \operatorname{id}'_{X} } \]
+</div>
+<p> commutes. This follows from Proposition <a data-tag="00CB" href="/tag/00CB">2.1.2.9</a>, applied to the monoidal category $\underline{\operatorname{End}}_{\operatorname{\mathcal{C}}}(X)$ of Remark <a data-tag="00ET" href="/tag/00ET">2.2.1.6</a>. </p>
+<p>It is possible to adopt a variant of Definition <a data-tag="007Q" href="/tag/007Q">2.2.1.1</a> where we do not require the identity morphisms $\{  \operatorname{id}_ X \} _{X \in \operatorname{Ob}(\operatorname{\mathcal{C}})}$ (or unit constraints $\{  \upsilon _{X} \} _{X \in \operatorname{Ob}(\operatorname{\mathcal{C}})}$) to be explicitly specified. This variant is equivalent to Definition <a data-tag="007Q" href="/tag/007Q">2.2.1.1</a> for many purposes. However, it is not suitable for our applications: in §<a data-tag="009P" href="/tag/009P">2.3</a>, we associate to each bicategory $\operatorname{\mathcal{C}}$ a simplicial set $\operatorname{N}^{\operatorname{D}}_{\bullet }(\operatorname{\mathcal{C}})$ called the <em>Duskin nerve</em> of $\operatorname{\mathcal{C}}$, whose degeneracy operators depend on the choice of identity morphisms and unit constraints in $\operatorname{\mathcal{C}}$ (though the face operators do not: see Warning <a data-tag="00A4" href="/tag/00A4">2.3.1.11</a>). </p>
+</article>
+</p>
+<p>
+Axiom $(C)$ of Definition <a data-tag="007Q" href="/tag/007Q">2.2.1.1</a> requires that, for every pair of objects $X$ and $Y$ of a bicategory $\operatorname{\mathcal{C}}$, the functors 
+</p>
+<div class="equation">
+  \[  \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) \rightarrow \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) \quad \quad f \mapsto f \circ \operatorname{id}_{X}, \operatorname{id}_{Y} \circ f \]
+</div>
+<p>
+ are fully faithful. In fact, we can say more: they are canonically isomorphic to the identity functor from $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$ to itself. 
+</p>
+<p>
+<article class="env-construction" id="00EW">
+<p><a class="environment-identifier" href="/tag/00EW">Construction <span data-tag="00EW">2.2.1.10</span> <span class="named">(Left and Right Unit Constraints)</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory. For every $1$-morphism $f: X \rightarrow Y$ in $\operatorname{\mathcal{C}}$, we have canonical isomorphisms </p>
+<div class="equation">
+  \[  \operatorname{id}_{Y} \circ (\operatorname{id}_{Y} \circ f) \xRightarrow {\alpha _{\operatorname{id}_ Y, \operatorname{id}_ Y, f} } (\operatorname{id}_{Y} \circ \operatorname{id}_{Y} ) \circ f \xRightarrow { \upsilon _{Y} \circ \operatorname{id}_{f} } \operatorname{id}_{Y} \circ f. \]
+</div>
+<p> Since composition on the left with $\operatorname{id}_{Y}$ is fully faithful, it follows that there is a unique isomorphism $\lambda _{f}: \operatorname{id}_{Y} \circ f \xRightarrow {\sim } f$ for which the diagram </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \operatorname{id}_{Y} \circ (\operatorname{id}_{Y} \circ f) \ar@ {=&gt;}[rr]^-{\alpha _{\operatorname{id}_ Y, \operatorname{id}_ Y, f} }_{\sim } \ar@ {=&gt;}[dr]_{ \operatorname{id}_{\operatorname{id}_ Y} \circ \lambda _ f }^{\sim } &amp;  &amp;  (\operatorname{id}_ Y \circ \operatorname{id}_ Y) \circ f \ar@ {=&gt;}[dl]^{ \upsilon _ Y \circ \operatorname{id}_ f}_{\sim } \\ &amp;  \operatorname{id}_ Y \circ f &amp;  } \]
+</div>
+<p> commutes. We will refer to $\lambda _{f}$ as the <em>left unit constraint</em>. Similarly, there is a unique isomorphism $\rho _{f}: f \circ \operatorname{id}_{X} \xRightarrow {\sim } f$ for which the diagram </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ f \circ ( \operatorname{id}_ X \circ \operatorname{id}_ X) \ar@ {=&gt;}[rr]^-{\alpha _{f, \operatorname{id}_ X, \operatorname{id}_ X} }_{\sim } \ar@ {=&gt;}[dr]_{ \operatorname{id}_{f} \circ \upsilon _ X}^{\sim } &amp;  &amp;  (f \circ \operatorname{id}_ X) \circ \operatorname{id}_ X \ar@ {=&gt;}[dl]^{ \rho _ f \circ \operatorname{id}_{ \operatorname{id}_ X } }_{\sim } \\ &amp;  f \circ \operatorname{id}_{X} &amp;  } \]
+</div>
+<p> commutes; we refer to $\rho _ f$ as the <em>right unit constraint</em>. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="00EX">
+<p><a class="environment-identifier" href="/tag/00EX">Remark <span data-tag="00EX">2.2.1.11</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory and let $X$ be an object of $\operatorname{\mathcal{C}}$. For every $1$-morphism $f: X \rightarrow X$ in $\operatorname{\mathcal{C}}$, the left and right unit constraints </p>
+<div class="equation">
+  \[  \lambda _{f}: \operatorname{id}_{X} \circ f \xRightarrow {\sim } f \quad \quad \rho _{f}: f \circ \operatorname{id}_ X \xRightarrow {\sim } f \]
+</div>
+<p> of Construction <a data-tag="00EW" href="/tag/00EW">2.2.1.10</a> coincide with the left and right unit constraints of Construction <a data-tag="00CH" href="/tag/00CH">2.1.2.17</a>, applied to the monoidal category $\underline{\operatorname{End}}_{\operatorname{\mathcal{C}}}(X)$ of Remark <a data-tag="00ET" href="/tag/00ET">2.2.1.6</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="00EY">
+<p><a class="environment-identifier" href="/tag/00EY">Remark <span data-tag="00EY">2.2.1.12</span> <span class="named">(Naturality of Unit Constraints)</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory, let $X$ and $Y$ be objects of $\operatorname{\mathcal{C}}$, and let $\gamma : f \Rightarrow g$ be a morphism in the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$. Then the diagram of $2$-morphisms </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \operatorname{id}_{Y} \circ f \ar@ {=&gt;}[r]^{ \lambda _ f } \ar@ {=&gt;}[d]^{ \operatorname{id}_{\operatorname{id}_ Y} \circ \gamma } &amp;  f \ar@ {=&gt;}[d]^{\gamma } \\ \operatorname{id}_{Y} \circ g \ar@ {=&gt;}[r]^{ \lambda _ g } &amp;  g } \]
+</div>
+<p> commutes. In other words, the construction $f \mapsto \lambda _{f}$ determines a natural isomorphism from the functor </p>
+<div class="equation">
+  \[  \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) \rightarrow \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) \quad \quad f \mapsto \operatorname{id}_{Y} \circ f \]
+</div>
+<p> to the identity functor. Similarly, the construction $f \mapsto \rho _{f}$ determines a natural isomorphism from the functor </p>
+<div class="equation">
+  \[  \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) \rightarrow \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) \quad \quad f \mapsto f \circ \operatorname{id}_ X \]
+</div>
+<p> to the identity functor. </p>
+</article>
+</p>
+<p>
+We have the following generalization of Proposition <a data-tag="00CK" href="/tag/00CK">2.1.2.19</a>: 
+</p>
+<p>
+<article class="env-proposition" id="00EZ">
+<p><a class="environment-identifier" href="/tag/00EZ">Proposition <span data-tag="00EZ">2.2.1.13</span> <span class="named">(The Triangle Identity)</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory containing a pair of $1$-morphisms $f: X \rightarrow Y$ and $g: Y \rightarrow Z$. Then the diagram of $2$-morphisms </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ g \circ (\operatorname{id}_ Y \circ f) \ar@ {=&gt;}[rr]^-{\alpha _{g, \operatorname{id}_ Y, f}}_{\sim } \ar@ {=&gt;}[dr]_{ \operatorname{id}_ g \circ \lambda _ f }^{\sim } &amp;  &amp;  (g \circ \operatorname{id}_ Y ) \circ f \ar@ {=&gt;}[dl]^{ \rho _{g} \circ \operatorname{id}_ f }_{\sim } \\ &amp;  g \circ f &amp;  } \]
+</div>
+<p> is commutative. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      We have a diagram of isomorphisms 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=-17pt{ &amp;  g \circ ( (\operatorname{id}_ Y \circ \operatorname{id}_ Y) \circ f) \ar [rr]^{\alpha } \ar [d]^{\upsilon _ Y} &amp;  &amp;  (g \circ ( \operatorname{id}_ Y \circ \operatorname{id}_ Y ) ) \circ f \ar [d]_{\upsilon _{Y} } \ar [ddr]^{\alpha } &amp;  \\ &amp;  g \circ (\operatorname{id}_ Y \circ f) \ar [rr]^{ \alpha } \ar [d]^{\alpha } &amp;  &amp;  (g \circ \operatorname{id}_ Y) \circ f \ar [dll]^{ \operatorname{id}} &amp;  \\ g \circ (\operatorname{id}_ Y \circ (\operatorname{id}_ Y \circ f) ) \ar [uur]^{\alpha } \ar [ur]_{\lambda _ f} \ar [drr]^{ \alpha } &amp;  (g \circ \operatorname{id}_ Y) \circ f \ar [r]^-{ \rho _{g}} &amp;  g \circ f &amp;  g \circ ( \operatorname{id}_ Y \circ f) \ar [l]_-{ \lambda _ f} \ar [u]^{ \alpha } &amp;  ((g \circ \operatorname{id}_ Y) \circ \operatorname{id}_ Y) \circ f \ar [ul]^{\rho _ g} \\ &amp;  &amp;  (g \circ \operatorname{id}_ Y) \circ (\operatorname{id}_ Y \circ f). \ar [ul]_{ \lambda _ f } \ar [ur]^{ \rho _ g } \ar [urr]^{ \alpha } &amp;  &amp;  } \]
+</div>
+<p>
+       Here the outer cycle commutes by the pentagon identity $(P)$ of Definition <a data-tag="007Q" href="/tag/007Q">2.2.1.1</a>, the upper rectangle by the functoriality of the associativity constraint, the upper side triangles by the definition of the left and right unit constraints, the quadrilaterals on the lower sides by the functoriality of the associativity constraints, and the lower region by the functoriality of composition. It follows that the middle square is also commutative, which is equivalent to the statement of Proposition <a data-tag="00EZ" href="/tag/00EZ">2.2.1.13</a>. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<p>
+It follows from Proposition <a data-tag="00EZ" href="/tag/00EZ">2.2.1.13</a> that we can recover the unit constraints $\{  \upsilon _{X} \} _{X \in \operatorname{Ob}(\operatorname{\mathcal{C}})}$ of a bicategory $\operatorname{\mathcal{C}}$ from the left and right unit constraints defined in Construction <a data-tag="00EW" href="/tag/00EW">2.2.1.10</a>. 
+</p>
+<p>
+<article class="env-corollary" id="0082">
+<p><a class="environment-identifier" href="/tag/0082">Corollary <span data-tag="0082">2.2.1.14</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory and let $X$ be an object of $\operatorname{\mathcal{C}}$. Then the left and right unit constraints </p>
+<div class="equation">
+  \[ \lambda _{ \operatorname{id}_ X }: \operatorname{id}_ X \circ \operatorname{id}_ X \xRightarrow {\sim } \operatorname{id}_ X \quad \quad \rho _{ \operatorname{id}_ X}: \operatorname{id}_ X \circ \operatorname{id}_ X \xRightarrow {\sim } \operatorname{id}_ X \]
+</div>
+<p> are both equal to the unit constraint $\upsilon _ X: \operatorname{id}_ X \circ \operatorname{id}_{X} \xRightarrow {\sim } \operatorname{id}_ X$. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      For any $1$-morphism $f: Y \rightarrow X$ in $\operatorname{\mathcal{C}}$, the left unit constraint $\lambda _{f}$ is characterized by the commutativity of the diagram 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \operatorname{id}_ X \circ (\operatorname{id}_ X \circ f) \ar@ {=&gt;}[rr]^-{\alpha _{\operatorname{id}_ X, \operatorname{id}_ X, f} }_{\sim } \ar@ {=&gt;}[dr]_{ \operatorname{id}_{ \operatorname{id}_ X} \circ \lambda _ f }^{\sim } &amp;  &amp;  (\operatorname{id}_ X \circ \operatorname{id}_ X) \circ f \ar@ {=&gt;}[dl]^{ \upsilon _{X} \circ \operatorname{id}_ f}_{\sim } \\ &amp;  \operatorname{id}_{X} \circ f. &amp;  } \]
+</div>
+<p>
+       Using Proposition <a data-tag="00EZ" href="/tag/00EZ">2.2.1.13</a>, we deduce that $\upsilon _{X} \circ \operatorname{id}_ f = \rho _{ \operatorname{id}_ X } \circ \operatorname{id}_ f$ as $2$-morphisms from $( \operatorname{id}_{X} \circ \operatorname{id}_{X} ) \circ f$ to $\operatorname{id}_{X} \circ f$. In other words, the $2$-morphisms $\upsilon _{X}, \rho _{ \operatorname{id}_ X }: \operatorname{id}_{X} \circ \operatorname{id}_{X} \Rightarrow \operatorname{id}_ X$ have the same image under the functor 
+    <p>
+<div class="equation">
+  \[  \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,X ) \rightarrow \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(Y,X) \quad \quad g \mapsto g \circ f. \]
+</div>
+<p>
+       In the special case where $Y = X$ and $f = \operatorname{id}_{X}$, this functor is fully faithful. It follows that $\upsilon _{X} = \rho _{ \operatorname{id}_ X }$. The equality $\upsilon _{X} = \lambda _{ \operatorname{id}_ X }$ follows by a similar argument. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></p></p></article>
+<p>
+We will also need some variants of Proposition <a data-tag="00EZ" href="/tag/00EZ">2.2.1.13</a> (generalizing Exercise <a data-tag="00CL" href="/tag/00CL">2.1.2.20</a>): 
+</p>
+<p>
+<article class="env-proposition" id="0080">
+<p><a class="environment-identifier" href="/tag/0080">Proposition <span data-tag="0080">2.2.1.15</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory containing a pair of composable $1$-morphisms $f: X \rightarrow Y$ and $g: Y \rightarrow Z$. Then: </p>
+<p><dl>
+<dt>$(1)$</dt>
+<dd><p>
+The associativity constraint $\alpha _{\operatorname{id}_ Z,g,f}: \operatorname{id}_{Z} \circ (g \circ f) \Rightarrow (\operatorname{id}_ Z \circ g) \circ f$ is given by the (vertical) composition 
+</p>
+<div class="equation">
+  \[  \operatorname{id}_{Z} \circ (g \circ f) \xRightarrow { \lambda _{g \circ f} } g \circ f \xRightarrow {\lambda ^{-1}_{g} \circ \operatorname{id}_{f} } (\operatorname{id}_ Z \circ g) \circ f. \]
+</div>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+The associativity constraint $\alpha _{g,f,\operatorname{id}_ X}: g \circ (f \circ \operatorname{id}_ X) \Rightarrow (g \circ f) \circ \operatorname{id}_ X$ is given by the (vertical) composition 
+</p>
+<div class="equation">
+  \[  g \circ (f \circ \operatorname{id}_ X) \xRightarrow { \operatorname{id}_{g} \circ \rho _{f}} g \circ f \xRightarrow { \rho ^{-1}_{g \circ f} } (g \circ f) \circ \operatorname{id}_ X \]
+</div>
+</dd>
+</dl></p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof of Proposition <a data-tag="0080" href="/tag/0080">2.2.1.15</a>.</strong>
+       We will prove $(2)$; the proof of $(1)$ is similar. Set $e = \operatorname{id}_ X$, and consider the diagram of isomorphisms 
+    <p>
+<div class="equation">
+  \[  \xymatrix@C =0pt@R=40pt{ &amp;  g \circ ((f \circ e) \circ e) \ar@ {=&gt;}[rr]^{ \alpha _{g, f \circ e, e} } \ar@ {=&gt;}[d]^-{\rho _ f} &amp;  &amp;  (g \circ (f \circ e)) \circ e \ar@ {=&gt;}[dr]^{ \alpha _{g, f, e} } \ar@ {=&gt;}[dl]_-{\rho _ f} &amp;  \\ g \circ (f \circ (e \circ e) ) \ar@ {=&gt;}[ur]^{ \alpha _{f,e,e} } \ar@ {=&gt;}[drr]_{ \alpha _{g,f,e \circ e}} \ar@ {=&gt;}[r]^-{\lambda _ e} &amp;  g \circ (f \circ e) \ar@ {=&gt;}[r]^-{\alpha _{g,f,e}} &amp;  (g \circ f) \circ e &amp;  &amp;  ((g \circ f) \circ e) \circ e \ar@ {=&gt;}[ll]_-{\rho _{g \circ f}} \\ &amp;  &amp;  (g \circ f) \circ (e \circ e). \ar@ {=&gt;}[urr]_{\alpha _{ g \circ f, e, e} } \ar@ {=&gt;}[u]_-{\lambda _ e } &amp;  &amp;  } \]
+</div>
+<p>
+       Here the outer cycle of the diagram commutes by the pentagon identity for $\operatorname{\mathcal{C}}$, the triangles on the upper left and lower right commute by virtue of Proposition <a data-tag="00EZ" href="/tag/00EZ">2.2.1.13</a>, and the upper and lower square diagrams commute by the functoriality of the associativity constraints. It follows that the triangle on the upper right commutes: that is, the identity $\alpha _{g,f,\operatorname{id}_ X} = \rho ^{-1}_{g \circ f} (\operatorname{id}_ g \circ \rho _{f} )$ holds after applying the functor $(\bullet \circ \operatorname{id}_ X): \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Z) \rightarrow \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Z)$. Since this functor is fully faithful (in fact, it is isomorphic to the identity functor by means of the right unit constraint $\rho $), we conclude that the identity $\alpha _{g,f,\operatorname{id}_ X} = \rho _{g \circ f}^{-1} (\operatorname{id}_ g \circ \rho _{f} )$ holds in $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Z)$ itself. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.html a[data-toggle="popover"]').popover()
+
+  // render mathematics in popovers
+  $("[data-toggle=popover]").on('shown.bs.popover', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $("div.popover-body").html()]);
+  });
+});
+  </script>
+</div>
+</section></body>
+</html>

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" id="main">
+<div class="html" id="tag">
+<h3 class="tex-subsection" id="subsection:composition-law-homotopy"><span data-tag="01PF">4.6.8</span> Composition of Morphisms</h3>
+<p>
+Let $\operatorname{\mathcal{C}}$ be an ordinary category. For every triple of objects $X, Y, Z \in \operatorname{Ob}(\operatorname{\mathcal{C}})$, the composition of morphisms in $\operatorname{\mathcal{C}}$ determines a map 
+</p>
+<div class="equation">
+  \[  \circ : \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y) \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z). \]
+</div>
+<p>
+ Our goal in this section is to construct an analogous operation in the $\infty $-categorical setting. Here the situation is more subtle: as we saw in §<a data-tag="0041" href="/tag/0041">1.4.4</a>, a pair of morphisms $f: X \rightarrow Y$ and $g: Y \rightarrow Z$ in an $\infty $-category $\operatorname{\mathcal{C}}$ generally do not have a unique composition. Nevertheless, we will show that the mapping spaces of Construction <a data-tag="01J5" href="/tag/01J5">4.6.1.1</a> can be endowed with a composition law which is well-defined up to homotopy (and even up to a contractible space of choices). To describe this composition law, it will be convenient to introduce a generalization of Construction <a data-tag="01J5" href="/tag/01J5">4.6.1.1</a>. 
+</p>
+<p>
+<article class="env-notation" id="01PG">
+<p><a class="environment-identifier" href="/tag/01PG">Notation <span data-tag="01PG">4.6.8.1</span>.</a> Let $\operatorname{\mathcal{C}}$ be a simplicial set containing a (nonempty) finite sequence of vertices $X_0, X_1, \ldots , X_ n$. We let $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X_{0}, X_1, \cdots , X_ n)$ denote the simplicial set given by the fiber product </p>
+<div class="equation">
+  \[  \operatorname{Fun}( \Delta ^ n, \operatorname{\mathcal{C}}) \times _{ \operatorname{Fun}( \{  0, 1, \cdots , n \} , \operatorname{\mathcal{C}}) } \{  (X_0, X_1, \cdots , X_ n) \} . \]
+</div>
+</article>
+</p>
+<p>
+<article class="env-example" id="01PH">
+<p><a class="environment-identifier" href="/tag/01PH">Example <span data-tag="01PH">4.6.8.2</span>.</a> Let $\operatorname{\mathcal{C}}$ be a simplicial set containing vertices $X_0$ and $X_1$. Then the simplicial set $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X_0, X_1)$ of Notation <a data-tag="01PG" href="/tag/01PG">4.6.8.1</a> agrees with the morphism space $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X_0, X_1)$ of Construction <a data-tag="01J5" href="/tag/01J5">4.6.1.1</a>. In particular, if $\operatorname{\mathcal{C}}$ is an $\infty $-category, then $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X_0, X_1)$ is a Kan complex (Proposition <a data-tag="01JC" href="/tag/01JC">4.6.1.10</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="01PJ">
+<p><a class="environment-identifier" href="/tag/01PJ">Example <span data-tag="01PJ">4.6.8.3</span>.</a> Let $\operatorname{\mathcal{C}}$ be a simplicial set and let $X_0$ be a vertex of $\operatorname{\mathcal{C}}$. Then the simplicial set $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X_0)$ of Notation <a data-tag="01PG" href="/tag/01PG">4.6.8.1</a> is isomorphic to $\Delta ^0$. </p>
+</article>
+</p>
+<p>
+Let $\operatorname{\mathcal{C}}$ be a simplicial set containing a sequence of vertices $X_0, X_1, \ldots , X_ n$. For every pair of integers $0 \leq i &lt; j \leq n$, precomposition with the edge $\Delta ^1 \simeq \operatorname{N}_{\bullet }( \{  i &lt; j \}  ) \hookrightarrow \Delta ^ n$ determines a restriction map $\operatorname{Hom}_{\operatorname{\mathcal{C}}}( X_0, X_1, \cdots , X_ n) \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}( X_ i, X_ j)$. 
+</p>
+<p>
+<article class="env-proposition" id="01PK">
+<p><a class="environment-identifier" href="/tag/01PK">Proposition <span data-tag="01PK">4.6.8.4</span>.</a> Let $q: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be an inner fibration of simplicial sets, and let $X_0, X_1, \ldots , X_ n$ be vertices of $\operatorname{\mathcal{C}}$ having images $\overline{X}_0, \overline{X}_1, \ldots , \overline{X}_ n \in \operatorname{\mathcal{D}}$. Then the restriction map </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X_0, \cdots , X_ n) \ar [d]^{\theta } \\ \operatorname{Hom}_{\operatorname{\mathcal{D}}}( \overline{X}_0, \cdots , \overline{X}_ n) \times _{ \prod _{i=1}^{n} \operatorname{Hom}_{\operatorname{\mathcal{D}}}( \overline{X}_{i-1}, \overline{X}_{i})} \prod _{i=1}^{n} \operatorname{Hom}_{\operatorname{\mathcal{C}}}( X_{i-1}, X_{i} ) } \]
+</div>
+<p> is a trivial Kan fibration of simplicial sets. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Let $\operatorname{Spine}[n]$ denote the spine of the standard $n$-simplex $\Delta ^ n$ (see Example <a data-tag="00JA" href="/tag/00JA">1.5.7.7</a>). Unwinding the definitions, we see that $\theta $ is a pullback of the restriction map 
+    <p>
+<div class="equation">
+  \[  \theta ': \operatorname{Fun}( \Delta ^ n, \operatorname{\mathcal{C}}) \rightarrow \operatorname{Fun}( \operatorname{Spine}[n], \operatorname{\mathcal{C}}) \times _{ \operatorname{Fun}( \operatorname{Spine}[n], \operatorname{\mathcal{D}}) } \operatorname{Fun}( \Delta ^ n, \operatorname{\mathcal{D}}). \]
+</div>
+<p>
+       Since $q$ is an inner fibration and the inclusion $\operatorname{Spine}[n] \hookrightarrow \Delta ^ n$ is inner anodyne (Example <a data-tag="00JA" href="/tag/00JA">1.5.7.7</a>), the morphism $\theta '$ is a trivial Kan fibration (Proposition <a data-tag="01BW" href="/tag/01BW">4.1.4.4</a>). 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<p>
+<article class="env-corollary" id="01PL">
+<p><a class="environment-identifier" href="/tag/01PL">Corollary <span data-tag="01PL">4.6.8.5</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category containing objects $X_0, X_1, \ldots , X_ n$. Then the restriction map </p>
+<div class="equation">
+  \[  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X_0, X_1, \cdots , X_ n) \rightarrow \prod _{i=1}^{n} \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X_{i-1}, X_ i) \]
+</div>
+<p> is a trivial Kan fibration of simplicial sets. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="01PM">
+<p><a class="environment-identifier" href="/tag/01PM">Example <span data-tag="01PM">4.6.8.6</span>.</a> Let $\operatorname{\mathcal{C}}$ be an ordinary category containing objects $X_0, X_1, \ldots , X_ n$, which we also regard as objects of the $\infty $-category $\operatorname{N}_{\bullet }(\operatorname{\mathcal{C}})$. Then the restriction map </p>
+<div class="equation">
+  \[  \theta : \operatorname{Hom}_{\operatorname{N}_{\bullet }(\operatorname{\mathcal{C}})}(X_0, X_1, \cdots , X_ n) \rightarrow \prod _{i=1}^{n} \operatorname{Hom}_{\operatorname{N}_{\bullet }(\operatorname{\mathcal{C}})}(X_{i-1}, X_ i) \]
+</div>
+<p> is an isomorphism of (discrete) simplicial sets. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="01PN">
+<p><a class="environment-identifier" href="/tag/01PN">Remark <span data-tag="01PN">4.6.8.7</span>.</a> It follows from Corollary <a data-tag="01PL" href="/tag/01PL">4.6.8.5</a> that the construction </p>
+<div class="equation">
+  \[  (X_0, X_1, \cdots , X_ n) \mapsto \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X_0, X_1, \cdots , X_ n) \]
+</div>
+<p> endows the collection of objects of $\operatorname{\mathcal{C}}$ with the structure of a <em>Segal category</em> (see Definition <a class="" data-content="This is a reference to something which is not yet available in Kerodon." data-html="true" data-placement="bottom" data-toggle="popover" data-trigger="focus" role="button" style="cursor: pointer;" tabindex="0" title="Future reference"><img src="/static/images/question.svg"/></a>). We will return to this point in §<a class="" data-content="This is a reference to something which is not yet available in Kerodon." data-html="true" data-placement="bottom" data-toggle="popover" data-trigger="focus" role="button" style="cursor: pointer;" tabindex="0" title="Future reference"><img src="/static/images/question.svg"/></a>. </p>
+</article>
+</p>
+<p>
+<article class="env-corollary" id="01PP">
+<p><a class="environment-identifier" href="/tag/01PP">Corollary <span data-tag="01PP">4.6.8.8</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category. For every sequence of objects $X_0, X_1, \cdots , X_ n \in \operatorname{\mathcal{C}}$, the simplicial set $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X_0, X_1, \cdots , X_ n)$ is a Kan complex. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Combine Corollary <a data-tag="01PL" href="/tag/01PL">4.6.8.5</a> with Proposition <a data-tag="01JC" href="/tag/01JC">4.6.1.10</a>. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+<article class="env-construction" id="01PQ">
+<p><a class="environment-identifier" href="/tag/01PQ">Construction <span data-tag="01PQ">4.6.8.9</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category containing objects $X$, $Y$, and $Z$. By virtue of Corollary <a data-tag="01PL" href="/tag/01PL">4.6.8.5</a>, the restriction map </p>
+<div class="equation">
+  \[  \theta : \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y,Z) \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y) \]
+</div>
+<p> is a trivial Kan fibration, so its homotopy class $[\theta ]$ is an isomorphism in the homotopy category $\operatorname {h}\! \mathit{\operatorname{Kan}}$. We let </p>
+<div class="equation">
+  \[  \circ : \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y) \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z) \]
+</div>
+<p> denote the morphism in $\operatorname {h}\! \mathit{\operatorname{Kan}}$ obtained by composing $[\theta ]^{-1}$ with (the homotopy class of) the restriction map $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y,Z) \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z)$. We will refer to $\circ $ as the <em>composition law</em> on the $\infty $-category $\operatorname{\mathcal{C}}$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="01PR">
+<p><a class="environment-identifier" href="/tag/01PR">Remark <span data-tag="01PR">4.6.8.10</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category containing objects $X$, $Y$, and $Z$. Then the composition law </p>
+<div class="equation">
+  \[  \circ : \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y) \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z) \]
+</div>
+<p> of Construction <a data-tag="01PQ" href="/tag/01PQ">4.6.8.9</a> induces a map of sets </p>
+<div class="equation">
+  \[  \pi _0( \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z) ) \times \pi _0( \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y) ) \rightarrow \pi _0( \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z) ). \]
+</div>
+<p> Concretely, this map is given by the construction $([g], [f]) \mapsto [h]$, where $h$ is a composition of $f$ and $g$ in the sense of Definition <a data-tag="0042" href="/tag/0042">1.4.4.1</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-proposition" id="01PS">
+<p><a class="environment-identifier" href="/tag/01PS">Proposition <span data-tag="01PS">4.6.8.11</span> <span class="named">(Unitality)</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category containing a pair of objects $X$ and $Y$. Then: </p>
+<p><dl>
+<dt>$(1)$</dt>
+<dd><p>
+The composition 
+</p>
+<div class="equation">
+  \[  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y) \simeq \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y) \times \{  \operatorname{id}_{X} \}  \hookrightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,X) \xrightarrow {\circ } \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y) \]
+</div>
+<p>
+ is equal to the identity (in the homotopy category of Kan complexes $\operatorname {h}\! \mathit{\operatorname{Kan}}$). 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+The composition 
+</p>
+<div class="equation">
+  \[  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y) \simeq \{  \operatorname{id}_{Y} \}  \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y) \hookrightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Y) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y) \xrightarrow {\circ } \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y) \]
+</div>
+<p>
+ is equal to the identity (in the homotopy category of Kan complexes $\operatorname {h}\! \mathit{\operatorname{Kan}}$). 
+</p>
+</dd>
+</dl></p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      There is a diagram of Kan complexes 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ &amp;  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,X,Y) \ar [dr] \ar [d] &amp;  \\ \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y) \ar [r]^-{ \operatorname{id}\times \{  \operatorname{id}_{X} \}  } \ar [ur] &amp;  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,X) \ar@ {--&gt;}[r]^-{\circ } &amp;  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y), } \]
+</div>
+<p>
+       where the left diagonal arrow is induced by the map $\sigma ^0_{1}: [2] \rightarrow [1]$ of Construction <a data-tag="04ZK" href="/tag/04ZK">1.1.2.1</a> and the right diagonal arrow is induced by the map $\delta ^{1}_{2}: [1] \rightarrow [2]$ of Construction <a data-tag="04ZE" href="/tag/04ZE">1.1.1.4</a>. Here the solid arrows are well-defined as morphisms of simplicial sets, while the dotted arrow is well-defined only as a morphism in the homotopy category $\operatorname {h}\! \mathit{\operatorname{Kan}}$. We now observe that the triangle on the left is strictly commutative, the triangle on the right commutes up to homotopy (by the construction of the composition law $\circ $). Assertion $(1)$ follows from the observation that the composition of the diagonal arrows is the identity on the Kan complex $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)$ (since $\sigma ^{0}_{1} \circ \delta ^{1}_{2}$ is the identity on the object $[1] \in \operatorname{{\bf \Delta }}$). Assertion $(2)$ follows by a similar argument. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<p>
+<article class="env-proposition" id="01PT">
+<p><a class="environment-identifier" href="/tag/01PT">Proposition <span data-tag="01PT">4.6.8.12</span> <span class="named">(Associativity)</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category containing objects $W$, $X$, $Y$, and $Z$. Then the diagram </p>
+<div class="equation" id="01PU">
+<span class="equation-label"><a data-tag="01PU" href="/tag/01PU">4.68</a></span>
+<div>\begin{equation}  \begin{gathered}\label{equation:homotopy-composition-diagram} \xymatrix@R =50pt@C=30pt{ \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(W,X) \ar [r]^-{\circ } \ar [d]^{\circ } &amp;  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(W,X) \ar [d]^{\circ } \\ \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(W,Y) \ar [r]^-{\circ } &amp;  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(W,Z) } \end{gathered} \end{equation}</div>
+</div>
+<p> commutes (in the homotopy category of Kan complexes $\operatorname {h}\! \mathit{\operatorname{Kan}}$). </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      By virtue of Corollary <a data-tag="01PL" href="/tag/01PL">4.6.8.5</a>, (<a data-tag="01PU" href="/tag/01PU">4.68</a>) is isomorphic to the diagram of restriction maps 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \operatorname{Hom}_{\operatorname{\mathcal{C}}}(W,X,Y,Z) \ar [r] \ar [d] &amp;  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(W,X,Z) \ar [d] \\ \operatorname{Hom}_{\operatorname{\mathcal{C}}}(W,Y,Z) \ar [r] &amp;  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(W,Z), } \]
+</div>
+<p>
+       which commutes in the category of simplicial sets (and therefore also in the homotopy category $\operatorname {h}\! \mathit{\operatorname{Kan}}$). 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<p>
+<article class="env-construction" id="01PV">
+<p><a class="environment-identifier" href="/tag/01PV">Construction <span data-tag="01PV">4.6.8.13</span> <span class="named">(The Enriched Homotopy Category)</span>.</a> Let $\operatorname {h}\! \mathit{\operatorname{Kan}}$ denote the homotopy category of Kan complexes, which we endow with the monoidal structure given by cartesian products. To every $\infty $-category $\operatorname{\mathcal{C}}$, we define an $\operatorname {h}\! \mathit{\operatorname{Kan}}$-enriched category $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ as follows: </p>
+<p><ul>
+<li><p>
+The objects of $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ are the objects of $\operatorname{\mathcal{C}}$. 
+</p>
+</li><li><p>
+For every pair of objects $X,Y \in \operatorname{\mathcal{C}}$, the Kan complex $\underline{\operatorname{Hom}}_{ \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}} }(X,Y)$ is the morphism space $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)$ of Construction <a data-tag="01J5" href="/tag/01J5">4.6.1.1</a>. 
+</p>
+</li><li><p>
+For every object $X \in \operatorname{\mathcal{C}}$, the unit map $\Delta ^{0} \rightarrow \underline{\operatorname{Hom}}_{\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}}(X,X)$ is the homotopy class of the inclusion $\{  \operatorname{id}_{X} \}  \hookrightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,X)$. 
+</p>
+</li><li><p>
+For every triple of objects $X,Y,Z \in \operatorname{\mathcal{C}}$, the composition law 
+</p>
+<div class="equation">
+  \[  \circ : \underline{\operatorname{Hom}}_{\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}}(Y,Z) \times \underline{\operatorname{Hom}}_{\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}}(X,Y) \rightarrow \underline{\operatorname{Hom}}_{\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}}(X,Z) \]
+</div>
+<p>
+ is given by Construction <a data-tag="01PQ" href="/tag/01PQ">4.6.8.9</a>. 
+</p>
+</li>
+</ul></p>
+<p> Note that this definition satisfies the axiomatics of Definition <a data-tag="00EE" href="/tag/00EE">2.1.7.1</a> by virtue of Propositions <a data-tag="01PS" href="/tag/01PS">4.6.8.11</a> and <a data-tag="01PT" href="/tag/01PT">4.6.8.12</a> We will refer to $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ as the <em>enriched homotopy category</em> of the $\infty $-category $\operatorname{\mathcal{C}}$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="01PW">
+<p><a class="environment-identifier" href="/tag/01PW">Remark <span data-tag="01PW">4.6.8.14</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category and let $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ denote the enriched homotopy category of $\operatorname{\mathcal{C}}$. Then $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ has an underlying category (Example <a data-tag="00EJ" href="/tag/00EJ">2.1.7.5</a>), which we will also denote by $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$. Concretely, this category can be described as follows: </p>
+<p><ul>
+<li><p>
+The objects of $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ are the objects of $\operatorname{\mathcal{C}}$. 
+</p>
+</li><li><p>
+For every pair of objects $X,Y \in \operatorname{\mathcal{C}}$, we have 
+</p>
+<div class="equation">
+  \[  \operatorname{Hom}_{\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}}(X,Y) = \operatorname{Hom}_{ \operatorname {h}\! \mathit{\operatorname{Kan}} }( \Delta ^0, \underline{\operatorname{Hom}}_{\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}}( X,Y) ) \simeq \pi _0( \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y) ). \]
+</div>
+<p>
+ In other words, $\operatorname{Hom}_{\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}}(X,Y)$ can be identified with the set of homotopy classes of morphisms from $X$ to $Y$ in the $\infty $-category $\operatorname{\mathcal{C}}$. 
+</p>
+</li>
+</ul></p>
+<p> By virtue of Remark <a data-tag="01PR" href="/tag/01PR">4.6.8.10</a>, the composition of morphisms in the category $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ agrees with the composition law of Construction <a data-tag="004A" href="/tag/004A">1.4.5.1</a>. In other words, we can identify $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ with the homotopy category constructed in §<a data-tag="0049" href="/tag/0049">1.4.5</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-notation" id="01TP">
+<p><a class="environment-identifier" href="/tag/01TP">Notation <span data-tag="01TP">4.6.8.15</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category containing objects $X$, $Y$, and $Z$. For every morphism $f: X \rightarrow Y$ in $\operatorname{\mathcal{C}}$, the composition law of Construction <a data-tag="01PQ" href="/tag/01PQ">4.6.8.9</a> restricts to a morphism of Kan complexes </p>
+<div class="equation">
+  \[  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z) \simeq \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z) \times \{ f\}  \hookrightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y) \xrightarrow {\circ } \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z), \]
+</div>
+<p> which is well-defined up to homotopy. Note that this morphism depends only on the homotopy class $[f]$ of the morphism $f$. We will denote this map by $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z) \xrightarrow { \circ [f]} \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z)$ and refer to it as <em>precomposition with $f$</em>. Similarly, for every morphism $g: Y \rightarrow Z$, the composition law of Remark <a data-tag="01PR" href="/tag/01PR">4.6.8.10</a> determines a homotopy class of morphisms $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y) \xrightarrow { [g] \circ } \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z)$, which we will refer to as <em>postcomposition with $g$</em>. </p>
+</article>
+</p>
+<p>
+To describe the precomposition morphism of Notation <a data-tag="01TP" href="/tag/01TP">4.6.8.15</a> concretely, it is convenient to replace the morphism spaces $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z)$ and $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z)$ by their right-pinched variants $\operatorname{Hom}_{\operatorname{\mathcal{C}}}^{\mathrm{R}}(X,Z) = \operatorname{\mathcal{C}}_{X/} \times _{\operatorname{\mathcal{C}}} \{ Z\} $ and $\operatorname{Hom}_{\operatorname{\mathcal{C}}}^{\mathrm{R}}(Y,Z) = \operatorname{\mathcal{C}}_{Y/} \times _{\operatorname{\mathcal{C}}} \{ Z\} $, respectively (see Construction <a data-tag="01KX" href="/tag/01KX">4.6.5.1</a>). 
+</p>
+<p>
+<article class="env-proposition" id="02LL">
+<p><a class="environment-identifier" href="/tag/02LL">Proposition <span data-tag="02LL">4.6.8.16</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category and let $f: X \rightarrow Y$ be a morphism of $\operatorname{\mathcal{C}}$. For every object $Z \in \operatorname{\mathcal{C}}$, the diagram of Kan complexes </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \operatorname{\mathcal{C}}_{Y/} \times _{\operatorname{\mathcal{C}}} \{ Z\}  \ar [d]^{\iota ^{\mathrm{L}}_{Y,Z}}_{\sim } &amp;  \operatorname{\mathcal{C}}_{f/} \times _{\operatorname{\mathcal{C}}} \{ Z\}  \ar [l]^{\sim } \ar [r] &amp;  \operatorname{\mathcal{C}}_{X/} \times _{\operatorname{\mathcal{C}}} \{ Z\}  \ar [d]^{\iota ^{\mathrm{L}}_{X,Z}}_{\sim } \\ \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z) \ar [rr]^{ \circ [f] } &amp;  &amp;  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z) } \]
+</div>
+<p> commutes up to homotopy, where the vertical maps are the left-pinch inclusion morphisms of Construction <a data-tag="01L2" href="/tag/01L2">4.6.5.7</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="02LM">
+<p><a class="environment-identifier" href="/tag/02LM">Remark <span data-tag="02LM">4.6.8.17</span>.</a> In the situation of Proposition <a data-tag="02LL" href="/tag/02LL">4.6.8.16</a>, the morphisms </p>
+<div class="equation">
+  \[ \iota ^{\mathrm{L}}_{Y,Z}: \operatorname{\mathcal{C}}_{Y/} \times _{\operatorname{\mathcal{C}}} \{ Z\}  \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z) \quad \quad \iota ^{\mathrm{L}}_{X,Z}: \operatorname{\mathcal{C}}_{X/} \times _{\operatorname{\mathcal{C}}} \{ Z\}  \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z) \]
+</div>
+<p> are homotopy equivalences, by virtue of Proposition <a data-tag="01L5" href="/tag/01L5">4.6.5.10</a>. Moreover, the restriction map $\operatorname{\mathcal{C}}_{f/} \times _{\operatorname{\mathcal{C}}} \{ Z\}  \rightarrow \operatorname{\mathcal{C}}_{Y/} \times _{\operatorname{\mathcal{C}}} \{ Z\} $ is a trivial Kan fibration (Corollary <a data-tag="018L" href="/tag/018L">4.3.6.14</a>). Consequently, the precomposition map $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z) \xrightarrow { \circ [f]} \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z)$ is characterized (up to homotopy) by the conclusion of Proposition <a data-tag="02LL" href="/tag/02LL">4.6.8.16</a>. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof of Proposition <a data-tag="02LL" href="/tag/02LL">4.6.8.16</a>.</strong>
+       It will suffice to show that there exists a morphism of Kan complexes 
+    <p>
+<div class="equation">
+  \[ \iota ^{\mathrm{L}}_{X,Y,Z}: \operatorname{\mathcal{C}}_{f/} \times _{\operatorname{\mathcal{C}}} \{ Z\}  \rightarrow \{ f\}  \times _{\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y) } \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y,Z) \]
+</div>
+<p>
+       for which the diagram 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \operatorname{\mathcal{C}}_{Y/} \times _{\operatorname{\mathcal{C}}} \{ Z\}  \ar [d]^{\iota ^{\mathrm{L}}_{Y,Z}} &amp;  \operatorname{\mathcal{C}}_{f/} \times _{\operatorname{\mathcal{C}}} \{ Z\}  \ar [l] \ar [d]^{ \iota ^{\mathrm{L}}_{X,Y,Z} } \ar [r] &amp;  \operatorname{\mathcal{C}}_{X/} \times _{\operatorname{\mathcal{C}}} \{ Z\}  \ar [d]^{\iota ^{\mathrm{L}}_{X,Z}} \\ \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z) &amp;  \{ f\}  \times _{\operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z) } \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y,Z) \ar [l] \ar [r] &amp;  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z) } \]
+</div>
+<p>
+       commutes (in the category of simplicial sets). 
+    <p>
+      We first observe that there is a unique morphism of simplicial sets $e: \Delta ^2 \times \operatorname{\mathcal{C}}_{f/} \rightarrow \Delta ^1 \star \operatorname{\mathcal{C}}_{f/}$ with the property that $e|_{ \Delta ^1 \times \operatorname{\mathcal{C}}_{f/} }$ is given by projection onto the first factor, and $e|_{ \{ 2\}  \times \operatorname{\mathcal{C}}_{f/} }$ is given by projection onto the second factor. Note that the composite map 
+    <p>
+<div class="equation">
+  \[  \Delta ^2 \times \operatorname{\mathcal{C}}_{f/} \xrightarrow {e} \Delta ^1 \star \operatorname{\mathcal{C}}_{f/} \rightarrow \operatorname{\mathcal{C}} \]
+</div>
+<p>
+       can be identified with a morphism of simplicial sets $e': \operatorname{\mathcal{C}}_{f/} \rightarrow \operatorname{Fun}( \Delta ^2, \operatorname{\mathcal{C}})$. Unwinding the definition, we see that $e'$ restricts to a morphism of simplicial subsets 
+    <p>
+<div class="equation">
+  \[  \iota _{X,Y,Z}^{\mathrm{L}}: \operatorname{\mathcal{C}}_{f/} \times _{\operatorname{\mathcal{C}}} \{ Z\}  \rightarrow \{ f\}  \times _{\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y) } \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y,Z) \subseteq \operatorname{Fun}(\Delta ^2, \operatorname{\mathcal{C}}) \]
+</div>
+<p>
+       having the desired properties. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></p></p></p></p></p></p></p></article>
+<p>
+<article class="env-corollary" id="02R3">
+<p><a class="environment-identifier" href="/tag/02R3">Corollary <span data-tag="02R3">4.6.8.18</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category and let $f: X \rightarrow Y$ and $g: X \rightarrow Z$ be morphisms of $\operatorname{\mathcal{C}}$, which we identify with objects of the coslice $\infty $-category $\operatorname{\mathcal{C}}_{X/}$. Then the morphism space $\operatorname{Hom}_{ \operatorname{\mathcal{C}}_{X/} }( f, g)$ can be identified with the homotopy fiber of the composition map $\operatorname{Hom}_{ \operatorname{\mathcal{C}}}(Y, Z ) \xrightarrow { \circ [f] } \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z)$ over the vertex $g \in \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z)$. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Using Proposition <a data-tag="02LL" href="/tag/02LL">4.6.8.16</a>, we can replace the composition map $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z) \xrightarrow { \circ [f] } \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z)$ with the restriction map $\theta : \operatorname{\mathcal{C}}_{f/} \times _{\operatorname{\mathcal{C}}} \{ Z\}  \rightarrow \operatorname{\mathcal{C}}_{X/} \times _{\operatorname{\mathcal{C}}} \{ Z\} $. The morphism $\theta $ is a left fibration (Corollary <a data-tag="018K" href="/tag/018K">4.3.6.12</a>). Since the left-pinched morphism space $\operatorname{\mathcal{C}}_{X/} \times _{\operatorname{\mathcal{C}}} \{ Z\}  = \operatorname{Hom}_{\operatorname{\mathcal{C}}}^{\mathrm{L}}(X,Z)$ is a Kan complex (Proposition <a data-tag="01L0" href="/tag/01L0">4.6.5.5</a>), it follows that $\theta $ is a Kan fibration (Corollary <a data-tag="01NV" href="/tag/01NV">4.4.3.8</a>). In particular, the homotopy fiber of the composition map $\operatorname{Hom}_{ \operatorname{\mathcal{C}}}(Y, Z ) \xrightarrow { \circ [f] } \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z)$ over the vertex $g$ can be identified with the fiber 
+    <p>
+<div class="equation">
+  \[ \theta ^{-1} \{ g\}  \simeq \operatorname{\mathcal{C}}_{f/} \times _{\operatorname{\mathcal{C}}_{X/} } \{ g\}  = \operatorname{Hom}_{\operatorname{\mathcal{C}}_{X/}}^{\mathrm{L}}( f, g ), \]
+</div>
+<p>
+       which is homotopy equivalent to $\operatorname{Hom}_{\operatorname{\mathcal{C}}_{X/}}(f,g)$ by virtue of Proposition <a data-tag="01L5" href="/tag/01L5">4.6.5.10</a>. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<p>
+Let $\operatorname{\mathcal{C}}$ be a locally Kan simplicial category, so that the homotopy coherent nerve $\operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}})$ is an $\infty $-category (Theorem <a data-tag="00LJ" href="/tag/00LJ">2.4.5.1</a>). In this case, the composition law of Construction <a data-tag="01PQ" href="/tag/01PQ">4.6.8.9</a> has a direct description: 
+</p>
+<p>
+<article class="env-proposition" id="02LN">
+<p><a class="environment-identifier" href="/tag/02LN">Proposition <span data-tag="02LN">4.6.8.19</span>.</a> Let $\operatorname{\mathcal{C}}$ be a locally Kan simplicial category. For every pair of objects $X,Y \in \operatorname{\mathcal{C}}$, let $\theta _{X,Y}: \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } \rightarrow \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}} }(X,Y)$ denote the homotopy equivalence of Kan complexes supplied by Remark <a data-tag="01LF" href="/tag/01LF">4.6.7.6</a>. Then, for every triple of objects $X,Y,Z \in \operatorname{\mathcal{C}}$, the diagram </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z)_{\bullet } \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } \ar [d]^{ [\theta _{Y,Z} \times \theta _{X,Y}] }_{\sim } \ar [r]^-{\circ } &amp;  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z)_{\bullet } \ar [d]^{ [ \theta _{X,Z} ]}_{\sim } \\ \operatorname{Hom}_{\operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}})}( Y,Z) \times \operatorname{Hom}_{\operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}})}( X,Y) \ar [r]^-{\circ } &amp;  \operatorname{Hom}_{\operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}})}( X,Z) } \]
+</div>
+<p> commutes in the homotopy category $\operatorname {h}\! \mathit{\operatorname{Kan}}$; here the lower horizontal map is the composition law of Construction <a data-tag="01PQ" href="/tag/01PQ">4.6.8.9</a>. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      We will show that there exists a morphism of Kan complexes 
+    <p>
+<div class="equation">
+  \[ \theta _{X,Y,Z}: \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z)_{\bullet } \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } \rightarrow \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}}( \operatorname{\mathcal{C}})}(X,Y,Z) \]
+</div>
+<p>
+       for which the diagram 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=20pt{ \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z)_{\bullet } \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } \ar [d]^{\theta _{Y,Z} \times \theta _{X,Y}} \ar [rr]^-{\circ } \ar [dr]^{\theta _{X,Y,Z}} &amp;  &amp;  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z)_{\bullet } \ar [d]^{ \theta _{X,Z} } \\ \operatorname{Hom}_{\operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}})}( Y,Z) \times \operatorname{Hom}_{\operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}})}( X,Y) &amp;  \operatorname{Hom}_{\operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}})}(X,Y,Z) \ar [l] \ar [r] &amp;  \operatorname{Hom}_{\operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}})}( X,Z) }  \]
+</div>
+<p>
+       is commutative. 
+    <p>
+      Fix an integer $n \geq 0$. Let $\operatorname{\mathcal{E}}$ denote the simplicial category with object set $\operatorname{Ob}(\operatorname{\mathcal{E}}) = \{  x,y,z \} $ and morphism spaces given by 
+    <p>
+<div class="equation">
+  \[  \operatorname{Hom}_{\operatorname{\mathcal{E}}}( x,x )_{\bullet } = \{  \operatorname{id}_ x \}  \quad \quad \operatorname{Hom}_{\operatorname{\mathcal{E}}}( y,y )_{\bullet } = \{  \operatorname{id}_ y \}  \quad \quad \operatorname{Hom}_{\operatorname{\mathcal{E}}}(z,z)_{\bullet } = \{  \operatorname{id}_ z \}   \]
+</div>
+<p>
+<div class="equation">
+  \[  \operatorname{Hom}_{\operatorname{\mathcal{E}}}( y,x )_{\bullet } = \emptyset \quad \quad \operatorname{Hom}_{\operatorname{\mathcal{E}}}(z,x)_{\bullet } = \emptyset \quad \quad \operatorname{Hom}_{\operatorname{\mathcal{E}}}( z,y)_{\bullet } = \emptyset  \]
+</div>
+<p>
+<div class="equation">
+  \[  \operatorname{Hom}_{\operatorname{\mathcal{E}}}(x,y)_{\bullet } = \Delta ^ n \quad \quad \operatorname{Hom}_{\operatorname{\mathcal{E}}}(y,z)_{\bullet } = \Delta ^ n, \]
+</div>
+<p>
+       where the composition law $\operatorname{Hom}_{\operatorname{\mathcal{E}}}(y,z)_{\bullet } \times \operatorname{Hom}_{\operatorname{\mathcal{E}}}(x,y)_{\bullet } \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{E}}}(x,z)_{\bullet }$ is an isomorphism (so that $\operatorname{Hom}_{\operatorname{\mathcal{E}}}(x,z)_{\bullet }$ can be identified with the product $\Delta ^ n \times \Delta ^ n$). Note that there is a unique simplicial functor $F: \operatorname{Path}[ \Delta ^2 \times \Delta ^ n ]_{\bullet } \rightarrow \operatorname{\mathcal{E}}$ satisfying the following conditions: 
+    <p>
+<ul>
+<li><p>
+On objects, the functor $F$ is given by the formula 
+</p>
+<div class="equation">
+  \[ F(i,j) = \begin{cases}  x &amp;  \text{ if $i=0$ } \\  y &amp;  \text{ if $i=1$} \\  z &amp;  \text{ if $i=2$.} \end{cases} \]
+</div>
+</li><li><p>
+Let $(i,j)$ and $(i',j')$ be vertices of $\Delta ^2 \times \Delta ^ n$ satisfying $i &lt; i'$ and $j \leq j'$, so that there is a unique indecomposable morphism $u$ from $(i,j)$ to $(i', j')$ in the path category $\operatorname{Path}[ \Delta ^2 \times \Delta ^ n ]$ (given by the chain $\{  (i,j) &lt; (i',j') \} $). If $i=0$ and $i' = 1$, then $F(u)$ is the vertex $j'$ of $\Delta ^ n = \operatorname{Hom}_{\operatorname{\mathcal{E}}}(x,y)_{\bullet }$. If $i = 1$ and $i' =2$, then $F(u)$ is the vertex $j'$ of $\Delta ^ n = \operatorname{Hom}_{\operatorname{\mathcal{E}}}(y,z)_{\bullet }$. If $i= 0$ and $i' = 2$, then $F(u)$ is the vertex $(j',j')$ of $\Delta ^ n \times \Delta ^ n = \operatorname{Hom}_{\operatorname{\mathcal{E}}}(x,z)_{\bullet }$. 
+</p>
+</li>
+</ul>
+<p>
+      Let $\sigma $ and $\tau $ be $n$-simplices of the Kan complexes $\operatorname{Hom}_{\operatorname{\mathcal{C}}}( Y,Z)_{\bullet }$ and $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet }$, respectively. Then there is a unique simplicial functor $G_{\sigma ,\tau }: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ satisfying the following conditions: 
+    <p>
+<ul>
+<li><p>
+On objects, the functor $G_{\sigma ,\tau }$ is given by $G_{\sigma ,\tau }(x) = X$, $G_{\sigma ,\tau }(y) = Y$, and $G_{\sigma ,\tau }(z) = Z$. 
+</p>
+</li><li><p>
+The induced map $\Delta ^ n = \operatorname{Hom}_{\operatorname{\mathcal{E}}}( x,y)_{\bullet } \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet }$ is the $n$-simplex $\tau $. 
+</p>
+</li><li><p>
+The induced map $\Delta ^ n = \operatorname{Hom}_{\operatorname{\mathcal{E}}}( y,z)_{\bullet } \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z)_{\bullet }$ is the $n$-simplex $\sigma $. 
+</p>
+</li>
+</ul>
+<p>
+      The composite simplicial functor 
+    <p>
+<div class="equation">
+  \[ \operatorname{Path}[ \Delta ^2 \times \Delta ^ n ]_{\bullet } \xrightarrow { F } \operatorname{\mathcal{E}}\xrightarrow { G_{\sigma ,\tau } } \operatorname{\mathcal{C}} \]
+</div>
+<p>
+       determines a morphism from $\Delta ^2 \times \Delta ^ n$ to the homotopy coherent nerve $\operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}})$, which can be identified with an $n$-simplex $\theta _{X,Y,Z}(\sigma ,\tau )$ of the Kan complex $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y,Z)_{\bullet }$. Allowing $n$ to vary, the construction $(\sigma ,\tau ) \mapsto \theta _{X,Y,Z}(\sigma ,\tau )$ determines a morphism of simplicial sets $\theta _{X,Y,Z}: \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z)_{\bullet } \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } \rightarrow \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}}( \operatorname{\mathcal{C}})}(X,Y,Z)$ having the desired properties. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></article>
+<p>
+<article class="env-corollary" id="02LP">
+<p><a class="environment-identifier" href="/tag/02LP">Corollary <span data-tag="02LP">4.6.8.20</span>.</a> Let $\operatorname{\mathcal{C}}$ be a locally Kan simplicial category, and let $U: \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}} \rightarrow \operatorname {h}\! \mathit{ \operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}}) }$ be the isomorphism of homotopy categories supplied by Proposition <a data-tag="00M4" href="/tag/00M4">2.4.6.9</a>. Then the homotopy equivalences $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } \rightarrow \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}}) }(X,Y)$ of Remark <a data-tag="01LF" href="/tag/01LF">4.6.7.6</a> promote $U$ to an isomorphism of $\operatorname {h}\! \mathit{\operatorname{Kan}}$-enriched categories. Here $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ is endowed with the $\operatorname {h}\! \mathit{\operatorname{Kan}}$-enrichment of Remark <a data-tag="02L1" href="/tag/02L1">3.1.5.12</a> and $\operatorname {h}\! \mathit{ \operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}}) }$ is endowed with the $\operatorname {h}\! \mathit{\operatorname{Kan}}$-enrichment of Construction <a data-tag="01PV" href="/tag/01PV">4.6.8.13</a>. </p>
+</article>
+</p>
+<p>
+Let $\operatorname{\mathcal{C}}$ be a differential graded category. For every pair of objects $X,Y \in \operatorname{\mathcal{C}}$, we let $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\ast }$ denote the chain complex of morphisms from $X$ to $Y$ and $\mathrm{K}( \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\ast } )$ the associated Eilenberg-MacLane space (Construction <a data-tag="00QT" href="/tag/00QT">2.5.6.3</a>). In what follows, let us write 
+</p>
+<div class="equation">
+  \[ \rho _{Y,X}: \mathrm{K}( \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\ast } ) \hookrightarrow \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{dg}}(\operatorname{\mathcal{C}}) }( X, Y) \]
+</div>
+<p>
+ for the composition of the isomorphism $\mathrm{K}( \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\ast } ) \simeq \operatorname{Hom}^{\mathrm{L}}_{ \operatorname{N}_{\bullet }^{\operatorname{dg}}(\operatorname{\mathcal{C}}) }( X, Y)$ of Example <a data-tag="01L9" href="/tag/01L9">4.6.5.14</a> with the pinch inclusion morphism $\operatorname{Hom}^{\mathrm{L}}_{ \operatorname{N}_{\bullet }^{\operatorname{dg}}(\operatorname{\mathcal{C}}) }( X, Y) \hookrightarrow \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{dg}}(\operatorname{\mathcal{C}}) }( X, Y)$ of Construction <a data-tag="01L2" href="/tag/01L2">4.6.5.7</a>. We then have the following: 
+</p>
+<p>
+<article class="env-proposition" id="03E0">
+<p><a class="environment-identifier" href="/tag/03E0">Proposition <span data-tag="03E0">4.6.8.21</span>.</a> Let $\operatorname{\mathcal{C}}$ be a differential graded category containing objects $X$, $Y$, and $Z$, so that the composition law </p>
+<div class="equation">
+  \[  \circ : \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z)_{\ast } \otimes \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\ast } \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z)_{\ast } \]
+</div>
+<p> induces a bilinear map of simplicial abelian groups </p>
+<div class="equation">
+  \[  \mu : \mathrm{K}( \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z)_{\ast } ) \times \mathrm{K}( \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\ast }) \rightarrow \mathrm{K}( \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z)_{\ast } ) \]
+</div>
+<p> (see Proposition <a data-tag="00SD" href="/tag/00SD">2.5.9.1</a>). Then the diagram of Kan complexes </p>
+<div class="equation" id="03E1">
+<span class="equation-label"><a data-tag="03E1" href="/tag/03E1">4.72</a></span>
+<div>\begin{equation}  \begin{gathered}\label{equation:composition-law-on-dg-nerve} \xymatrix@R =50pt@C=50pt{ \mathrm{K}( \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z)_{\ast } ) \times \mathrm{K}( \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\ast }) \ar [r]^-{\mu } \ar [d]^{ \rho _{Z,Y} \times \rho _{Y,X} } &amp;  \mathrm{K}(\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z)_{\ast }) \ar [d]^{ \rho _{Z,X} } \\ \operatorname{Hom}_{\operatorname{N}_{\bullet }^{\operatorname{dg}}(\operatorname{\mathcal{C}}) }(Y,Z) \times \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{dg}}(\operatorname{\mathcal{C}}) }( X,Y) \ar [r] &amp;  \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{dg}}(\operatorname{\mathcal{C}})}(X,Z) } \end{gathered} \end{equation}</div>
+</div>
+<p> commutes up to homotopy, where the bottom horizontal map is the composition law of Construction <a data-tag="01PQ" href="/tag/01PQ">4.6.8.9</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="03E2">
+<p><a class="environment-identifier" href="/tag/03E2">Remark <span data-tag="03E2">4.6.8.22</span>.</a> In the situation of Proposition <a data-tag="03E0" href="/tag/03E0">4.6.8.21</a>, the morphisms $\rho _{Y,X}$, $\rho _{Z,Y}$, and $\rho _{Z,X}$ are homotopy equivalences (Proposition <a data-tag="01L5" href="/tag/01L5">4.6.5.10</a>). Consequently, Proposition <a data-tag="03E0" href="/tag/03E0">4.6.8.21</a> determines the composition law on the $\operatorname {h}\! \mathit{\operatorname{Kan}}$-enriched homotopy category of $\operatorname{N}_{\bullet }^{\operatorname{dg}}(\operatorname{\mathcal{C}})$. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof of Proposition <a data-tag="03E0" href="/tag/03E0">4.6.8.21</a>.</strong>
+       Let $\operatorname{\mathcal{C}}^{\Delta }$ denote the underlying simplicial category of the differential graded category $\operatorname{\mathcal{C}}$ (Construction <a data-tag="00SE" href="/tag/00SE">2.5.9.2</a>). By virtue of Exercise <a data-tag="01PZ" href="/tag/01PZ">4.6.7.4</a>, we can identify (<a data-tag="03E1" href="/tag/03E1">4.72</a>) with the outer rectangle of a larger diagram 
+    <p>
+<div class="equation">
+  \[ \xymatrix@R =50pt{ \mathrm{K}( \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z)_{\ast } ) \times \mathrm{K}( \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\ast }) \ar [r]^-{\mu } \ar [d] &amp;  \mathrm{K}(\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z)_{\ast }) \ar [d] \\ \operatorname{Hom}_{ \operatorname{N}^{\operatorname{hc}}_{\bullet }( \operatorname{\mathcal{C}}^{\Delta } )}( Y,Z) \times \operatorname{Hom}_{ \operatorname{N}^{\operatorname{hc}}_{\bullet }( \operatorname{\mathcal{C}}^{\Delta } )}( X,Y) \ar [r] \ar [d] &amp;  \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}}( \operatorname{\mathcal{C}}^{\Delta })}(X,Z) \ar [d] \\ \operatorname{Hom}_{\operatorname{N}_{\bullet }^{\operatorname{dg}}(\operatorname{\mathcal{C}}) }(Y,Z) \ar [r] &amp;  \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{dg}}(\operatorname{\mathcal{C}}) }( X,Y) \ar [r] &amp;  \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{dg}}(\operatorname{\mathcal{C}})}(X,Z), } \]
+</div>
+<p>
+       where the middle horizontal map is given by the composition law of the $\infty $-category $\operatorname{N}_{\bullet }^{\operatorname{hc}}( \operatorname{\mathcal{C}}^{\Delta } )$. We now observe that the upper square commutes up to homotopy by virtue of Proposition <a data-tag="02LN" href="/tag/02LN">4.6.8.19</a>, and the lower square commutes up to homotopy by the functoriality of Construction <a data-tag="01PQ" href="/tag/01PQ">4.6.8.9</a>. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.html a[data-toggle="popover"]').popover()
+
+  // render mathematics in popovers
+  $("[data-toggle=popover]").on('shown.bs.popover', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $("div.popover-body").html()]);
+  });
+});
+  </script>
+</div>
+</section></body>
+</html>

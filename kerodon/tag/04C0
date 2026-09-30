@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" id="main">
+<div class="html" id="tag">
+<h2 class="tex-section" id="section:cocartesian-dual"><span data-tag="04C0">8.6</span> Conjugate and Dual Fibrations</h2>
+<p>
+Let $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ be a cocartesian fibration of $\infty $-categories. For each object $C \in \operatorname{\mathcal{C}}$, we let $\operatorname{\mathcal{E}}_{C}$ denote the fiber $U^{-1} \{ C\}  = \{ C\}  \times _{\operatorname{\mathcal{C}}} \operatorname{\mathcal{E}}$. In §<a data-tag="01VT" href="/tag/01VT">5.2.5</a>, we showed that this construction determines a functor 
+</p>
+<div class="equation">
+  \[  \operatorname{hTr}_{\operatorname{\mathcal{E}}/\operatorname{\mathcal{C}}}: \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}} \rightarrow \operatorname {h}\! \mathit{\operatorname{QCat}} \quad \quad C \mapsto \operatorname{\mathcal{E}}_{C}, \]
+</div>
+<p>
+ which we refer to as the <em>(covariant) homotopy transport representation</em> of the cocartesian fibration $U$ (Construction <a data-tag="019U" href="/tag/019U">5.2.5.2</a>). Similarly, if $U': \operatorname{\mathcal{E}}' \rightarrow \operatorname{\mathcal{C}}'$ is a cartesian fibration of $\infty $-categories, then the assignment $C \mapsto \operatorname{\mathcal{E}}'_{C}$ determines a functor 
+</p>
+<div class="equation">
+  \[  \operatorname{hTr}_{ \operatorname{\mathcal{E}}' / \operatorname{\mathcal{C}}' }: \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}'}^{\operatorname{op}} \rightarrow \operatorname {h}\! \mathit{\operatorname{QCat}} \quad \quad C \mapsto \operatorname{\mathcal{E}}'_{C} \]
+</div>
+<p>
+ which we refer to as the <em>(contravariant) homotopy transport representation</em> of the cartesian fibration $U'$ (Construction <a data-tag="019Z" href="/tag/019Z">5.2.5.7</a>). There is an obvious relationship between these constructions. If $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ is a cocartesian fibration, then the opposite map $U^{\operatorname{op}}: \operatorname{\mathcal{E}}^{\operatorname{op}} \rightarrow \operatorname{\mathcal{C}}^{\operatorname{op}}$ is a cartesian fibration, and the homotopy transport representations $\operatorname{hTr}_{ \operatorname{\mathcal{E}}/\operatorname{\mathcal{C}}}$ and $\operatorname{hTr}_{\operatorname{\mathcal{E}}^{\operatorname{op}}/\operatorname{\mathcal{C}}^{\operatorname{op}}}$ are interchanged by composing with the automorphism 
+</p>
+<div class="equation">
+  \[  \sigma : \operatorname {h}\! \mathit{\operatorname{QCat}} \rightarrow \operatorname {h}\! \mathit{\operatorname{QCat}} \quad \quad \operatorname{\mathcal{A}}\mapsto \operatorname{\mathcal{A}}^{\operatorname{op}}. \]
+</div>
+<p>
+In this section, we show that the passage from a cocartesian fibration $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ to the opposite cartesian fibration $U^{\operatorname{op}}: \operatorname{\mathcal{E}}^{\operatorname{op}} \rightarrow \operatorname{\mathcal{C}}^{\operatorname{op}}$ can be broken into two steps: 
+</p>
+<ul>
+<li><p>
+To every cocartesian fibration $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$, we will associate another cocartesian fibration $U^{\vee }: \operatorname{\mathcal{E}}^{\vee } \rightarrow \operatorname{\mathcal{C}}$ which we refer to as the <em>cocartesian dual of $U$</em>, whose (covariant) homotopy transport representation is given (up to isomorphism) by the construction 
+</p>
+<div class="equation">
+  \[  \operatorname{hTr}_{ \operatorname{\mathcal{E}}^{\vee } / \operatorname{\mathcal{C}}}: \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}} \rightarrow \operatorname {h}\! \mathit{\operatorname{QCat}} \quad \quad C \mapsto \operatorname{\mathcal{E}}_{C}^{\operatorname{op}}. \]
+</div>
+<p>
+ In particular, each fiber of $U^{\vee }$ is equivalent to the <em>opposite</em> of the corresponding fiber of $U$. 
+</p>
+</li><li><p>
+To every cocartesian fibration $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$, we will associate a cartesian fibration $U^{\dagger }: \operatorname{\mathcal{E}}^{\dagger } \rightarrow \operatorname{\mathcal{C}}^{\operatorname{op}}$ which we refer to as the <em>cartesian conjugate</em> of $U$, whose (contravariant) homotopy transport representation is given (up to isomorphism) by the construction 
+</p>
+<div class="equation">
+  \[  \operatorname{hTr}_{ \operatorname{\mathcal{E}}^{\dagger } / \operatorname{\mathcal{C}}^{\operatorname{op}} }: \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}} \rightarrow \operatorname {h}\! \mathit{\operatorname{QCat}} \quad \quad C \mapsto \operatorname{\mathcal{E}}_{C}. \]
+</div>
+<p>
+ In particular, each fiber of $U^{\dagger }$ is equivalent to the corresponding fiber of $U$. 
+</p>
+</li>
+</ul>
+<p>
+For a fixed $\infty $-category (or simplicial set) $\operatorname{\mathcal{C}}$, the relationships between these constructions is summarized by the following diagram: 
+</p>
+<div class="equation" id="04C1">
+<span class="equation-label"><a data-tag="04C1" href="/tag/04C1">8.84</a></span>
+<div>\begin{equation}  \begin{gathered}\label{equation:big-diagram-dual-fibration} \xymatrix@C =50pt@R=100pt{ \{  \textnormal{Cocartesian fibrations $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$} \}  \ar@ {&lt;=&gt;}[r]^{ U \longleftrightarrow U^{\operatorname{op}} } \ar@ {&lt;=&gt;}[dr]^{ U \longleftrightarrow U^{\vee } } \ar@ {&lt;=&gt;}[d]^{U \longleftrightarrow U^{\dagger }} &amp;  \{  \textnormal{Cartesian fibrations $U': \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}^{\operatorname{op}}$} \}  \ar@ {&lt;=&gt;}[d]^{ V^{\dagger } \longleftrightarrow V} \\ \{  \textnormal{Cartesian fibrations $V': \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}^{\operatorname{op}}$} \}  \ar@ {&lt;=&gt;}[r]^{V^{\operatorname{op}} \longleftrightarrow V} &amp;  \{  \textnormal{Cocartesian fibrations $V: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$} \}  } \end{gathered} \end{equation}</div>
+</div>
+<p>
+If $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ is a cocartesian fibration of $\infty $-categories, then the opposite fibration $U^{\operatorname{op}}: \operatorname{\mathcal{E}}^{\operatorname{op}} \rightarrow \operatorname{\mathcal{C}}^{\operatorname{op}}$ is easy to describe at the level of simplicial sets (see §<a data-tag="003L" href="/tag/003L">1.4.2</a>). For the dual and conjugate fibrations $U^{\vee }$ and $U^{\dagger }$, this is somewhat more subtle. For example, the passage from a simplicial set $\operatorname{\mathcal{E}}$ to its opposite $\operatorname{\mathcal{E}}^{\operatorname{op}}$ is involutive, in the sense that there is a canonical isomorphism $\operatorname{\mathcal{E}}\simeq (\operatorname{\mathcal{E}}^{\operatorname{op}})^{\operatorname{op}}$ (in fact, if we adhere strictly to the convention of Construction <a data-tag="003N" href="/tag/003N">1.4.2.2</a>, then the simplicial sets $\operatorname{\mathcal{E}}$ and $(\operatorname{\mathcal{E}}^{\operatorname{op}})^{\operatorname{op}}$ are <em>identical</em>). It is therefore natural to hope for the passage from a cocartesian fibration $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ to its dual $U^{\vee }: \operatorname{\mathcal{E}}^{\vee } \rightarrow \operatorname{\mathcal{C}}$ to have a similar property: heuristically, $\operatorname{\mathcal{E}}^{\vee }$ is obtained from $\operatorname{\mathcal{E}}$ by applying the preceding construction to each fiber of $U$. Unfortunately, it does not seem possible to give a construction where this property is visible at the level of simplicial sets: the best we can expect is that cocartesian duality is involutive <em>up to equivalence</em>, in the sense that the double dual $(U^{\vee })^{\vee }: (\operatorname{\mathcal{E}}^{\vee })^{\vee } \rightarrow \operatorname{\mathcal{C}}$ is equivalent to the original cocartesian fibration $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ in some natural way. To address this point, it will be convenient to view duality as a <em>relationship</em> which can exist between cocartesian fibrations $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ and $U^{\vee }: \operatorname{\mathcal{E}}^{\vee } \rightarrow \operatorname{\mathcal{C}}$ over the same base, rather than as an <em>operation</em> which takes $U$ as input and produces $U^{\vee }$ as an output. Similarly, we will view conjugacy as a relationship which can exist between a cocartesian fibration $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ and a cartesian fibration $U^{\dagger }: \operatorname{\mathcal{E}}^{\dagger } \rightarrow \operatorname{\mathcal{C}}^{\operatorname{op}}$ over the opposite base. Our first goal will be to describe these relationships more precisely: 
+</p>
+<ul>
+<li><p>
+Let $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ be a cocartesian fibration of simplicial sets. We will say that a cartesian fibration $U^{\dagger }: \operatorname{\mathcal{E}}^{\dagger } \rightarrow \operatorname{\mathcal{C}}^{\operatorname{op}}$ is a <em>cartesian conjugate</em> of $U$ if there exists a commutative diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \operatorname{\mathcal{E}}^{\dagger } \times _{ \operatorname{\mathcal{C}}^{\operatorname{op}} } \operatorname{Tw}(\operatorname{\mathcal{C}}) \ar [d] \ar [r]^-{T} &amp;  \operatorname{\mathcal{E}}\ar [d]^{U} \\ \operatorname{Tw}(\operatorname{\mathcal{C}}) \ar [r] &amp;  \operatorname{\mathcal{C}}} \]
+</div>
+<p>
+ satisfying two axioms (Definition <a data-tag="04C7" href="/tag/04C7">8.6.1.1</a>), one of which requires that $T$ restricts to an equivalence of $\infty $-categories $T_{C}: \operatorname{\mathcal{E}}^{\dagger }_{C} \rightarrow \operatorname{\mathcal{E}}_{C}$ for each vertex $C \in \operatorname{\mathcal{C}}$. In §<a data-tag="04C6" href="/tag/04C6">8.6.1</a>, we develop the properties of this definition and give some examples. 
+</p>
+</li><li><p>
+Let $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ be a cocartesian fibration of simplicial sets. We say that a cocartesian fibration $U^{\vee }: \operatorname{\mathcal{E}}^{\vee } \rightarrow \operatorname{\mathcal{C}}$ is a <em>cocartesian dual</em> of $U$ if there exists a left fibration of simplicial sets $\lambda : \widetilde{\operatorname{\mathcal{E}}} \rightarrow \operatorname{\mathcal{E}}^{\vee } \times _{\operatorname{\mathcal{C}}} \operatorname{\mathcal{E}}$ satisfying two axioms (Definition <a data-tag="04D1" href="/tag/04D1">8.6.4.1</a>), one of which requires that for each vertex $C \in \operatorname{\mathcal{C}}$, the induced map $\lambda _{C}: \widetilde{\operatorname{\mathcal{E}}}_{C} \rightarrow \operatorname{\mathcal{E}}^{\vee }_{C} \times \operatorname{\mathcal{E}}_{C}$ is a balanced coupling of $\infty $-categories (Definition <a data-tag="045X" href="/tag/045X">8.2.6.1</a>). This guarantees in particular that $\operatorname{\mathcal{E}}^{\vee }_{C}$ is equivalent to the opposite $\infty $-category $\operatorname{\mathcal{E}}_{C}^{\operatorname{op}}$ (Corollary <a data-tag="04AX" href="/tag/04AX">8.2.6.7</a>). In §<a data-tag="04D0" href="/tag/04D0">8.6.4</a>, we develop the properties of this definition and give some examples. 
+</p>
+</li>
+</ul>
+<p>
+Our next goal is to show that, if $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ is a cocartesian fibration of simplicial sets, then it admits a cartesian conjugate $U^{\dagger }: \operatorname{\mathcal{E}}^{\dagger } \rightarrow \operatorname{\mathcal{C}}^{\operatorname{op}}$ and a cocartesian dual $U^{\vee }: \operatorname{\mathcal{E}}^{\vee } \rightarrow \operatorname{\mathcal{C}}$, which are uniquely determined up to equivalence. In each case, we will prove existence (and ultimately uniqueness) using explicit constructions at the level of simplicial sets. To fix ideas, let us first assume that $\operatorname{\mathcal{C}}= \Delta ^0$. In this case, constructing the dual of cocartesian fibration $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ is tantamount to constructing an $\infty $-category $\operatorname{\mathcal{E}}^{\vee }$ which is equivalent to the opposite of $\operatorname{\mathcal{E}}$. We consider three different solutions to this problem: 
+</p>
+<dl>
+<dt>$(a)$</dt>
+<dd><p>
+We can take $\operatorname{\mathcal{E}}^{\vee }$ to be the opposite $\infty $-category $\operatorname{\mathcal{E}}^{\operatorname{op}}$ itself, given concretely by Construction <a data-tag="003N" href="/tag/003N">1.4.2.2</a>. 
+</p>
+</dd>
+<dt>$(b)$</dt>
+<dd><p>
+We can take $\operatorname{\mathcal{E}}^{\vee }$ to be the $\infty $-category $\operatorname{Cospan}^{\mathrm{iso}, \mathrm{all}}(\operatorname{\mathcal{E}})$ of Variant <a data-tag="049V" href="/tag/049V">8.1.7.14</a>, whose morphisms are given by cospans $X \xrightarrow {f} B \xleftarrow {g} Y$ in the $\infty $-category $\operatorname{\mathcal{E}}$ where $f$ is an isomorphism. By virtue of Proposition <a data-tag="049L" href="/tag/049L">8.1.7.6</a>, this is equivalent to the $\infty $-category $\operatorname{\mathcal{E}}^{\operatorname{op}}$. 
+</p>
+</dd>
+<dt>$(c)$</dt>
+<dd><p>
+We can take $\operatorname{\mathcal{E}}^{\vee }$ to be the $\infty $-category of corepresentable functors $\operatorname{Fun}^{\operatorname{corep}}( \operatorname{\mathcal{E}}, \operatorname{\mathcal{S}})$. This is equivalent to $\operatorname{\mathcal{E}}^{\operatorname{op}}$ by virtue of the $\infty $-categorical version of Yoneda's lemma (Theorem <a data-tag="03NJ" href="/tag/03NJ">8.3.3.13</a>), at least if $\operatorname{\mathcal{E}}$ is locally small. 
+</p>
+</dd>
+</dl>
+<p>
+Each of these approaches can be adapted to more general situations. Let $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ be a cocartesian fibration of simplicial sets. 
+</p>
+<ul>
+<li><p>
+Assume that $\operatorname{\mathcal{C}}$ is an $\infty $-category. In §<a data-tag="04CM" href="/tag/04CM">8.6.2</a>, we define a fibration 
+</p>
+<div class="equation">
+  \[ \operatorname{Fun}^{\operatorname{CCart}}_{ / \operatorname{\mathcal{C}}}( \operatorname{Tw}(\operatorname{\mathcal{C}}) / \operatorname{\mathcal{C}}^{\operatorname{op}}, \operatorname{\mathcal{E}}) \rightarrow \operatorname{\mathcal{C}}^{\operatorname{op}} \]
+</div>
+<p>
+ and show that it is a cartesian conjugate of $U$ (Proposition <a data-tag="04CQ" href="/tag/04CQ">8.6.2.3</a>). In the special case $\operatorname{\mathcal{C}}= \Delta ^0$, this definition reproduces the original $\infty $-category $\operatorname{\mathcal{E}}$; consequently, after passing to opposite fibrations, it can be viewed as a relative version of construction $(a)$. 
+</p>
+</li><li><p>
+Let $\operatorname{Cospan}^{\dagger }( \operatorname{\mathcal{E}}/\operatorname{\mathcal{C}})$ denote the fiber product $\operatorname{Cospan}^{\mathrm{all},R}(\operatorname{\mathcal{E}}) \times _{ \operatorname{Cospan}(\operatorname{\mathcal{C}}) } \operatorname{\mathcal{C}}^{\operatorname{op}}$, where $R$ denotes the collection of all $U$-cocartesian edges of $\operatorname{\mathcal{E}}$. In §<a data-tag="04EC" href="/tag/04EC">8.6.3</a>, we show that projection onto the second factor determines a cartesian fibration $\operatorname{Cospan}^{\dagger }(\operatorname{\mathcal{E}}/\operatorname{\mathcal{C}}) \rightarrow \operatorname{\mathcal{C}}^{\operatorname{op}}$ which is conjugate to $U$ (Proposition <a data-tag="05JK" href="/tag/05JK">8.6.3.5</a>). In the special case $\operatorname{\mathcal{C}}= \Delta ^0$, this definition reproduces the $\infty $-category $\operatorname{Cospan}^{\mathrm{all}, \mathrm{iso}}( \operatorname{\mathcal{C}})$. Consequently, after passing to opposite fibrations, it can be viewed as a relative version of construction $(b)$. 
+</p>
+</li><li><p>
+Assume that, for each vertex $C \in \operatorname{\mathcal{C}}$, the $\infty $-category $\operatorname{\mathcal{E}}_{C}$ is locally small. In §<a data-tag="04DS" href="/tag/04DS">8.6.5</a>, we define a fibration $\operatorname{Fun}^{\operatorname{corep}}( \operatorname{\mathcal{E}}/\operatorname{\mathcal{C}}, \operatorname{\mathcal{S}}) \rightarrow \operatorname{\mathcal{C}}$ and show that it is a cocartesian dual of $U$ (Proposition <a data-tag="04E0" href="/tag/04E0">8.6.5.8</a>). In the special case $\operatorname{\mathcal{C}}= \Delta ^0$, this definition reproduces the $\infty $-category of corepresentable functors $\operatorname{Fun}^{\operatorname{corep}}( \operatorname{\mathcal{E}}, \operatorname{\mathcal{S}})$; consequently, it can be viewed as a relative version of construction $(c)$. 
+</p>
+</li>
+</ul>
+<p>
+<article class="env-remark" id="04C2">
+<p><a class="environment-identifier" href="/tag/04C2">Remark <span data-tag="04C2">8.6.0.1</span>.</a> Ultimately, each of the constructions described above gives rise to essentially the same object. However, it will be useful to consider all three, since each reveals different facets of the overall picture. Fix a cocartesian fibration of simplicial sets $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$. </p>
+<p><ul>
+<li><p>
+The construction of §<a data-tag="04CM" href="/tag/04CM">8.6.2</a> can be used to show that $U$ admits a cartesian conjugate $U^{\dagger }: \operatorname{\mathcal{E}}^{\dagger } \rightarrow \operatorname{\mathcal{C}}^{\operatorname{op}}$ (Corollary <a data-tag="04CR" href="/tag/04CR">8.6.2.4</a>). However, from this point of view, it is not obvious that the cartesian fibration $U^{\dagger }$ is unique (unless $\operatorname{\mathcal{C}}$ is assumed to be an $\infty $-category), or that every cartesian fibration can be obtained in this way. 
+</p>
+</li><li><p>
+The construction of §<a data-tag="04EC" href="/tag/04EC">8.6.3</a> produces a cartesian fibration $V: \operatorname{Cospan}^{\dagger }(\operatorname{\mathcal{E}}/\operatorname{\mathcal{C}}) \rightarrow \operatorname{\mathcal{C}}^{\operatorname{op}}$ having the property that <em>every</em> cartesian conjugate of $U$ is equivalent to $V$ (Proposition <a data-tag="04F2" href="/tag/04F2">8.6.3.11</a>). This guarantees that the cartesian conjugate of $U$ is unique up to equivalence. However, it does not by itself prove existence (see Warning <a data-tag="04F6" href="/tag/04F6">8.6.3.13</a>). 
+</p>
+</li><li><p>
+The construction of §<a data-tag="04DS" href="/tag/04DS">8.6.5</a> can be used to show that $U$ admits a cocartesian dual $U^{\vee }: \operatorname{\mathcal{E}}^{\vee } \rightarrow \operatorname{\mathcal{C}}$, which is uniquely determined up to equivalence (Theorem <a data-tag="04DT" href="/tag/04DT">8.6.5.1</a>). In §<a data-tag="04ET" href="/tag/04ET">8.6.6</a>, we show that the opposite fibration $U^{\operatorname{op}}: \operatorname{\mathcal{E}}^{\operatorname{op}} \rightarrow \operatorname{\mathcal{C}}^{\operatorname{op}}$ can be realized as a cartesian conjugate of $U^{\vee }$ (Proposition <a data-tag="04EU" href="/tag/04EU">8.6.6.1</a>). It follows that every cartesian fibration can be realized as the conjugate of a cocartesian fibration. However, from this point of view, it is not obvious that this realization is unique. 
+</p>
+</li>
+</ul></p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="04C3">
+<p><a class="environment-identifier" href="/tag/04C3">Remark <span data-tag="04C3">8.6.0.2</span> <span class="named">(Duality via Transport Representations)</span>.</a> Let $\operatorname{\mathcal{QC}}$ denote the $\infty $-category of small $\infty $-categories (Construction <a data-tag="0209" href="/tag/0209">5.5.3.1</a>). Then $\operatorname{\mathcal{QC}}$ admits an autoequivalence $\sigma : \operatorname{\mathcal{QC}}\rightarrow \operatorname{\mathcal{QC}}$, given on objects by the formula $\sigma (\operatorname{\mathcal{A}}) = \operatorname{\mathcal{A}}^{\operatorname{op}}$ (see Construction <a data-tag="04FE" href="/tag/04FE">8.6.7.6</a>). Recall that an (essentially small) cocartesian fibrations $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ is determined, up to equivalence, by a functor $\operatorname{Tr}_{\operatorname{\mathcal{E}}/\operatorname{\mathcal{C}}}: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{QC}}$, which we refer to as the <em>covariant transport representation</em> of $U$ (Definition <a data-tag="028V" href="/tag/028V">5.6.5.1</a>). In §<a data-tag="04F8" href="/tag/04F8">8.6.7</a>, we show that a cocartesian fibration $U^{\vee }: \operatorname{\mathcal{E}}^{\vee } \rightarrow \operatorname{\mathcal{C}}$ is a cocartesian dual of $U$ if and only if its covariant transport representation is isomorphic to the composition $\operatorname{\mathcal{C}}\xrightarrow { \operatorname{Tr}_{\operatorname{\mathcal{E}}/\operatorname{\mathcal{C}}} } \operatorname{\mathcal{QC}}\xrightarrow {\sigma } \operatorname{\mathcal{QC}}$ (Proposition <a data-tag="04FL" href="/tag/04FL">8.6.7.12</a>). This gives another construction of the cocartesian dual of $U$ (albeit one which is cumbersome to work with). </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="04C4">
+<p><a class="environment-identifier" href="/tag/04C4">Remark <span data-tag="04C4">8.6.0.3</span>.</a> The commutativity of the diagram (<a data-tag="04C1" href="/tag/04C1">8.84</a>) is not immediately obvious: the notions of cartesian conjugacy and cocartesian duality have separate definitions that are <em>a priori</em> unrelated to one another. We will maintain this separation in our exposition: the portions of this section which discuss conjugate fibrations (§<a data-tag="04C6" href="/tag/04C6">8.6.1</a>, §<a data-tag="04CM" href="/tag/04CM">8.6.2</a>, and §<a data-tag="04EC" href="/tag/04EC">8.6.3</a>) can be read independently of those which discuss dual fibrations (§<a data-tag="04D0" href="/tag/04D0">8.6.4</a>, §<a data-tag="04DS" href="/tag/04DS">8.6.5</a>, and §<a data-tag="04F8" href="/tag/04F8">8.6.7</a>). Only in §<a data-tag="04ET" href="/tag/04ET">8.6.6</a> will we consider both notions simultaneously. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="04C5">
+<p><a class="environment-identifier" href="/tag/04C5">Remark <span data-tag="04C5">8.6.0.4</span>.</a> Let $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ be a cocartesian fibration of simplicial sets. The construction of the conjugate fibration $\operatorname{Cospan}^{\dagger }(\operatorname{\mathcal{E}}/\operatorname{\mathcal{C}}) \rightarrow \operatorname{\mathcal{C}}^{\operatorname{op}}$ studied in §<a data-tag="04EC" href="/tag/04EC">8.6.3</a> appears in work of Barwick-Glasman-Nardin; see <span class="cite">[<a href="/bibliography/BGN">BGN</a>]</span>. </p>
+</article>
+</p>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.html a[data-toggle="popover"]').popover()
+
+  // render mathematics in popovers
+  $("[data-toggle=popover]").on('shown.bs.popover', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $("div.popover-body").html()]);
+  });
+});
+  </script>
+<h2 id="structure">Structure</h2>
+<ul class="tree" id="tree">
+<li id="04C6">
+      Subsection <a data-tag="04C6" href="/tag/04C6">8.6.1</a>: Conjugate Fibrations
+
+      
+    
+      <li id="04CM">
+      Subsection <a data-tag="04CM" href="/tag/04CM">8.6.2</a>: Existence of Conjugate Fibrations
+
+      
+    
+      <li id="04EC">
+      Subsection <a data-tag="04EC" href="/tag/04EC">8.6.3</a>: Uniqueness of Conjugate Fibrations
+
+      
+    
+      <li id="04D0">
+      Subsection <a data-tag="04D0" href="/tag/04D0">8.6.4</a>: Dual Fibrations
+
+      
+    
+      <li id="04DS">
+      Subsection <a data-tag="04DS" href="/tag/04DS">8.6.5</a>: Existence of Dual Fibrations
+
+      
+    
+      <li id="04ET">
+      Subsection <a data-tag="04ET" href="/tag/04ET">8.6.6</a>: Comparison of Dual and Conjugate Fibrations
+
+      
+    
+      <li id="04F8">
+      Subsection <a data-tag="04F8" href="/tag/04F8">8.6.7</a>: The Opposition Functor
+
+      
+    
+      <li id="05WD">
+      Subsection <a data-tag="05WD" href="/tag/05WD">8.6.8</a>: Contravariant Transport Representations
+
+      
+    
+      <li id="06TV">
+      Subsection <a data-tag="06TV" href="/tag/06TV">8.6.9</a>: Coends of $\infty $-Categories
+
+      
+    
+    </li></li></li></li></li></li></li></li></li></ul>
+<script type="text/javascript">
+$("ul.tree").bonsai({
+  
+});
+
+var state = localStorage.getItem("bonsai-04C0");
+if (state !== null)
+  $("ul#tree").data("bonsai").restore(JSON.parse(state));
+
+$("ul#tree").click(function() {
+  var bonsai = $(this).data("bonsai");
+  var state = bonsai.serialize();
+  localStorage.setItem("bonsai-04C0", JSON.stringify(state));
+});
+
+// trigger the click event handler to save state even when clicking on the expand/collapse all links, which are outside ul#tree
+$("div.expand-all").click(function() {
+  $("ul#tree").click();
+});
+
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+    </script>
+</div>
+</section></body>
+</html>
