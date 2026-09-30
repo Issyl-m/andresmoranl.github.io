@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" id="main">
+<div class="html" id="tag">
+<h3 class="tex-subsection" id="subsection:parametrized-transport"><span data-tag="02RL">5.2.8</span> Parametrized Covariant Transport</h3>
+<p>
+Let $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ be a cocartesian fibration of $\infty $-categories. To every morphism $f: C \rightarrow D$ in the $\infty $-category $\operatorname{\mathcal{C}}$, Definition <a data-tag="019N" href="/tag/019N">5.2.2.4</a> associates a covariant transport functor $f_{!}: \operatorname{\mathcal{E}}_{C} \rightarrow \operatorname{\mathcal{E}}_{D}$, which is uniquely determined up to isomorphism (see Proposition <a data-tag="01VS" href="/tag/01VS">5.2.2.8</a>). Our goal in this section is to show that the functor $f_{!}$ can be chosen to depend functorially on the morphism $f$: that is, the construction $f \mapsto f_{!}$ can be promoted to a functor from the Kan complex $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D)$ to the $\infty $-category $\operatorname{Fun}( \operatorname{\mathcal{E}}_{C}, \operatorname{\mathcal{E}}_{D} )$. We begin by introducing a more elaborate version of Definition <a data-tag="019N" href="/tag/019N">5.2.2.4</a>. 
+</p>
+<p>
+<article class="env-definition" id="02RM">
+<p><a class="environment-identifier" href="/tag/02RM">Definition <span data-tag="02RM">5.2.8.1</span> <span class="named">(Parametrized Covariant Transport)</span>.</a> Let $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ be a cocartesian fibration of simplicial sets and let $C$ and $D$ be vertices of $\operatorname{\mathcal{C}}$. We will say that a morphism $F: \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \times \operatorname{\mathcal{E}}_ C \rightarrow \operatorname{\mathcal{E}}_{D}$ is <em>given by parametrized covariant transport</em> if there exists a morphism of simplicial sets $\widetilde{F}: \Delta ^1 \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \times \operatorname{\mathcal{E}}_ C \rightarrow \operatorname{\mathcal{E}}$ satisfying the following conditions: </p>
+<p><dl>
+<dt>$(1)$</dt>
+<dd><p>
+The diagram of simplicial sets 
+</p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \Delta ^1 \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \times \operatorname{\mathcal{E}}_{C} \ar [r]^-{ \widetilde{F} } \ar [d] &amp;  \operatorname{\mathcal{E}}\ar [d]^-{U} \\ \Delta ^1 \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \ar [r] &amp;  \operatorname{\mathcal{C}}} \]
+</div>
+<p>
+ commutes (where the lower horizontal map is induced by the inclusion $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \hookrightarrow \operatorname{Fun}(\Delta ^1, \operatorname{\mathcal{C}})$). 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+The restriction $\widetilde{F}|_{ \{ 0\}  \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \times \operatorname{\mathcal{E}}_{C}}$ is given by projection onto $\operatorname{\mathcal{E}}_{C}$, and the restriction $\widetilde{F}|_{ \{ 1\}  \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \times \operatorname{\mathcal{E}}_{C} }$ is equal to $F$. 
+</p>
+</dd>
+<dt>$(3)$</dt>
+<dd><p>
+For every edge $f: C \rightarrow D$ of $\operatorname{\mathcal{C}}$ and every object $X \in \operatorname{\mathcal{E}}_{C}$, the composite map 
+</p>
+<div class="equation">
+  \[  \Delta ^1 \times \{ f\}  \times \{ X\}  \hookrightarrow \Delta ^1 \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \times \operatorname{\mathcal{E}}_ C \xrightarrow { \widetilde{F} } \operatorname{\mathcal{E}} \]
+</div>
+<p>
+ is a $U$-cocartesian edge of $\operatorname{\mathcal{E}}$. 
+</p>
+</dd>
+</dl></p>
+<p> If these conditions are satisfied, we say that the morphism $\widetilde{F}$ <em>witnesses $F$ as given by parametrized covariant transport</em>. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="02RN">
+<p><a class="environment-identifier" href="/tag/02RN">Remark <span data-tag="02RN">5.2.8.2</span>.</a> Let $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ be a cocartesian fibration of simplicial sets, let $C$ and $D$ be vertices of $\operatorname{\mathcal{C}}$, and let $F: \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \times \operatorname{\mathcal{E}}_{C} \rightarrow \operatorname{\mathcal{E}}_{D}$ be given by parametrized covariant transport. Then, for every edge $f: C \rightarrow D$, the composite map </p>
+<div class="equation">
+  \[  \{ f\}  \times \operatorname{\mathcal{E}}_{C} \hookrightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \times \operatorname{\mathcal{E}}_{C} \xrightarrow {F} \operatorname{\mathcal{E}}_{D} \]
+</div>
+<p> is given by covariant transport along $f$, in the sense of Definition <a data-tag="019N" href="/tag/019N">5.2.2.4</a>. In other words, we can identify $F$ with a diagram $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \rightarrow \operatorname{Fun}( \operatorname{\mathcal{E}}_{C}, \operatorname{\mathcal{E}}_{D} )$, which carries each edge $f \in \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D)$ to the covariant transport functor $f_{!}$ of Notation <a data-tag="023Y" href="/tag/023Y">5.2.2.9</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="02RP">
+<p><a class="environment-identifier" href="/tag/02RP">Example <span data-tag="02RP">5.2.8.3</span>.</a> Let $\operatorname{Set}_{\ast }$ denote the category of pointed sets (Example <a data-tag="01QL" href="/tag/01QL">4.2.3.3</a>), and let $V: \operatorname{Set}_{\ast } \rightarrow \operatorname{Set}$ denote the forgetful functor $(X,x) \mapsto X$. Then the induced map $\operatorname{N}_{\bullet }(V): \operatorname{N}_{\bullet }( \operatorname{Set}_{\ast } ) \rightarrow \operatorname{N}_{\bullet }(\operatorname{Set})$ is a cocartesian fibration (in fact, it is a left covering map), whose fiber over an object $X \in \operatorname{N}_{\bullet }(\operatorname{Set})$ can be identified with the set $X$. For every pair of sets $X$ and $Y$, the evaluation map </p>
+<div class="equation">
+  \[  \operatorname{ev}: \operatorname{Hom}_{\operatorname{Set}}(X,Y) \times X \rightarrow Y \quad \quad (f,x) \mapsto f(x) \]
+</div>
+<p> is given by parametrized covariant transport (in the sense of Definition <a data-tag="02RM" href="/tag/02RM">5.2.8.1</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-proposition" id="02RQ">
+<p><a class="environment-identifier" href="/tag/02RQ">Proposition <span data-tag="02RQ">5.2.8.4</span>.</a> Let $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ be a cocartesian fibration of simplicial sets, and let $C$ and $D$ be vertices of $\operatorname{\mathcal{C}}$. Then: </p>
+<p><ul>
+<li><p>
+There exists a morphism $F: \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \times \operatorname{\mathcal{E}}_{C} \rightarrow \operatorname{\mathcal{E}}_{D}$ which is given by parametrized covariant transport. 
+</p>
+</li><li><p>
+An arbitrary diagram $F': \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \times \operatorname{\mathcal{E}}_{C} \rightarrow \operatorname{\mathcal{E}}_{D}$ is given by parametrized covariant transport if and only if it is isomorphic to $F$ (as an object of the $\infty $-category $\operatorname{Fun}( \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \times \operatorname{\mathcal{E}}_{C}, \operatorname{\mathcal{E}}_{D} )$). 
+</p>
+</li>
+</ul></p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Apply Lemma <a data-tag="02RB" href="/tag/02RB">5.2.2.13</a> to the simplicial set $K = \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \times \operatorname{\mathcal{E}}_{C}$. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+<article class="env-remark" id="02RR">
+<p><a class="environment-identifier" href="/tag/02RR">Remark <span data-tag="02RR">5.2.8.5</span> <span class="named">(Functoriality)</span>.</a> Suppose we are given a commutative diagram of simplicial sets </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \operatorname{\mathcal{E}}\ar [d]^-{U} \ar [r]^-{G} &amp;  \operatorname{\mathcal{E}}' \ar [d]^-{U'} \\ \operatorname{\mathcal{C}}\ar [r]^-{\overline{G}} &amp;  \operatorname{\mathcal{C}}', } \]
+</div>
+<p> where $U$ and $U'$ are cocartesian fibrations. Let $C$ and $D$ be vertices of $\operatorname{\mathcal{C}}$ having images $C' = \overline{G}(C)$ and $D' = \overline{G}(D)$, respectively, so that $G$ induces functors $G_{C}: \operatorname{\mathcal{E}}_{C} \rightarrow \operatorname{\mathcal{E}}'_{C'}$ and $G_{D}: \operatorname{\mathcal{E}}_{D} \rightarrow \operatorname{\mathcal{E}}'_{D'}$. Let $\varphi : \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}'}(C',D')$ be the morphism induced by $\overline{G}$, and let </p>
+<div class="equation">
+  \[  F: \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \times \operatorname{\mathcal{E}}_{C} \rightarrow \operatorname{\mathcal{E}}_{D} \quad \quad F': \operatorname{Hom}_{\operatorname{\mathcal{C}}'}(C',D') \times \operatorname{\mathcal{E}}'_{C'} \rightarrow \operatorname{\mathcal{E}}'_{D'} \]
+</div>
+<p> be given by parametrized covariant transport with respect to $U$ and $U'$. Suppose that the morphism $G$ carries $U$-cocartesian edges of $\operatorname{\mathcal{E}}$ to $U'$-cocartesian edges of $\operatorname{\mathcal{E}}'$. Then the diagram </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \times \operatorname{\mathcal{E}}_{C} \ar [r]^-{F} \ar [d]^{ \varphi \times G_{C} } &amp;  \operatorname{\mathcal{E}}_{D} \ar [d]^{G_ D} \\ \operatorname{Hom}_{\operatorname{\mathcal{C}}'}(C',D') \times \operatorname{\mathcal{E}}'_{C'} \ar [r]^-{F'} &amp;  \operatorname{\mathcal{E}}'_{D'} } \]
+</div>
+<p> commutes up to isomorphism: that is, $G_{D} \circ F$ and $F' \circ (\varphi \times G_{C})$ are isomorphic as objects of the $\infty $-category $\operatorname{Fun}( \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \times \operatorname{\mathcal{E}}_{C}, \operatorname{\mathcal{E}}'_{D'} )$. This follows by applying the uniqueness assertion of Lemma <a data-tag="02RB" href="/tag/02RB">5.2.2.13</a> to the lifting problem </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \{ 0\}  \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \times \operatorname{\mathcal{E}}_{C} \ar [r] \ar [d] &amp;  \operatorname{\mathcal{E}}' \ar [d]^{U'} \\ \Delta ^1 \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \times \operatorname{\mathcal{E}}_{C} \ar [r] \ar@ {--&gt;}[ur] &amp;  \operatorname{\mathcal{C}}'. } \]
+</div>
+</article>
+</p>
+<p>
+<article class="env-variant" id="02RS">
+<p><a class="environment-identifier" href="/tag/02RS">Variant <span data-tag="02RS">5.2.8.6</span> <span class="named">(Parametrized Contravariant Transport)</span>.</a> Let $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ be a cartesian fibration of simplicial sets and let $C$ and $D$ be vertices of $\operatorname{\mathcal{C}}$. Applying Proposition <a data-tag="02RQ" href="/tag/02RQ">5.2.8.4</a> to the opposite cocartesian fibration $U^{\operatorname{op}}: \operatorname{\mathcal{E}}^{\operatorname{op}} \rightarrow \operatorname{\mathcal{C}}^{\operatorname{op}}$, we obtain a diagram $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \rightarrow \operatorname{Fun}( \operatorname{\mathcal{E}}_{D}, \operatorname{\mathcal{E}}_{C} )$, carrying each edge $f: C \rightarrow D$ to a functor $f^{\ast }: \operatorname{\mathcal{E}}_{D} \rightarrow \operatorname{\mathcal{E}}_{C}$ given by contravariant transport along $f$. </p>
+</article>
+</p>
+<p>
+Let $\operatorname{\mathcal{C}}$ be an $\infty $-category. Recall that, for every pair of objects $X,Y \in \operatorname{\mathcal{C}}$, the morphism space $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)$ can be identified with the fiber over $Y$ of the left fibration $\{ X\}  \vec{\times }_{\operatorname{\mathcal{C}}} \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{C}}$ of Proposition <a data-tag="01KQ" href="/tag/01KQ">4.6.4.13</a>, or with the fiber over $X$ of the right fibration $\operatorname{\mathcal{C}}\vec{\times }_{\operatorname{\mathcal{C}}} \{ Y\} $. In either case, parametrized transport recovers the composition law of $\operatorname{\mathcal{C}}$: 
+</p>
+<p>
+<article class="env-proposition" id="02GT">
+<p><a class="environment-identifier" href="/tag/02GT">Proposition <span data-tag="02GT">5.2.8.7</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category containing objects $C$, $D$, and $E$. Then the composition law </p>
+<div class="equation">
+  \[  \circ : \operatorname{Hom}_{\operatorname{\mathcal{C}}}(D,E) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,E) \]
+</div>
+<p> of Construction <a data-tag="01PQ" href="/tag/01PQ">4.6.8.9</a> is given by parametrized covariant transport for the left fibration $U: \{ C\}  \vec{\times }_{\operatorname{\mathcal{C}}} \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{C}}$ (in the sense of Definition <a data-tag="02RM" href="/tag/02RM">5.2.8.1</a>), and also by parametrized contravariant transport for the right fibration $V: \operatorname{\mathcal{C}}\vec{\times }_{\operatorname{\mathcal{C}}} \{ E\}  \rightarrow \operatorname{\mathcal{C}}$. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      We will prove the first assertion; the second follows by a similar argument. Let $S: \Delta ^1 \times \Delta ^1 \rightarrow \Delta ^2$ be the morphism given on vertices by the formula $S(i,j) = i(j+1)$, and let $T$ be a section of the trivial Kan fibration $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D,E) \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(D,E) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D)$ (see Corollary <a data-tag="01PL" href="/tag/01PL">4.6.8.5</a>). Then the composite map 
+    <p>
+<div class="equation">
+  \[  \Delta ^1 \times \Delta ^1 \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(D,E) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \xrightarrow {S \times T} \Delta ^2 \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D,E) \rightarrow \operatorname{\mathcal{C}} \]
+</div>
+<p>
+       carries $\{ 0\}  \times \Delta ^1 \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(D,E) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D)$ to the vertex $C$, and can therefore be identified with a functor 
+    <p>
+<div class="equation">
+  \[  \widetilde{F}: \Delta ^1 \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(D,E) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \rightarrow \{ C\}  \vec{\times }_{\operatorname{\mathcal{C}}} \operatorname{\mathcal{C}}. \]
+</div>
+<p>
+       which exhibits the composition law as given by parametrized covariant transport for the left fibration $U$. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></p></p></article>
+<p>
+Proposition <a data-tag="01VU" href="/tag/01VU">5.2.5.1</a> has a counterpart for parametrized covariant transport: 
+</p>
+<p>
+<article class="env-proposition" id="02GU">
+<p><a class="environment-identifier" href="/tag/02GU">Proposition <span data-tag="02GU">5.2.8.8</span>.</a> Let $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ be a cocartesian fibration of $\infty $-categories. Let $C$, $D$, and $E$ be objects of $\operatorname{\mathcal{C}}$, and let </p>
+<div class="equation">
+  \[  F: \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \times \operatorname{\mathcal{E}}_{C} \rightarrow \operatorname{\mathcal{E}}_{D} \quad \quad G: \operatorname{Hom}_{\operatorname{\mathcal{C}}}(D,E) \times \operatorname{\mathcal{E}}_{D} \rightarrow \operatorname{\mathcal{E}}_{E} \]
+</div>
+<div class="equation">
+  \[ H: \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,E) \times \operatorname{\mathcal{E}}_{C} \rightarrow \operatorname{\mathcal{E}}_{E}  \]
+</div>
+<p> be given by parametrized covariant transport. Then the diagram </p>
+<div class="equation" id="02RT">
+<span class="equation-label"><a data-tag="02RT" href="/tag/02RT">5.25</a></span>
+<div>\begin{equation}  \begin{gathered}\label{equation:transitivity-parametrized} \xymatrix@R =50pt@C=50pt{ \operatorname{Hom}_{\operatorname{\mathcal{C}}}(D,E) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \times \operatorname{\mathcal{E}}_{C} \ar [r]^-{ \operatorname{id}\times F } \ar [d] &amp;  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(D,E) \times \operatorname{\mathcal{E}}_{D} \ar [d]^{ G } \\ \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,E) \times \operatorname{\mathcal{E}}_{C} \ar [r]^-{ H } &amp;  \operatorname{\mathcal{E}}_{E} } \end{gathered} \end{equation}</div>
+</div>
+<p> commutes in the homotopy category $\operatorname {h}\! \mathit{\operatorname{QCat}}$; here the left vertical map is given by the composition law of Construction <a data-tag="01PQ" href="/tag/01PQ">4.6.8.9</a>. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Let $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D,E)$ be the Kan complex defined in Notation <a data-tag="01PG" href="/tag/01PG">4.6.8.1</a>, let $H'$ denote the composite map 
+    <p>
+<div class="equation">
+  \[  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D,E) \times \operatorname{\mathcal{E}}_{C} \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,E) \times \operatorname{\mathcal{E}}_{C} \xrightarrow {H} \operatorname{\mathcal{E}}_{E}, \]
+</div>
+<p>
+       and let $H''$ denote the composition 
+    <p>
+<div class="equation">
+  \begin{eqnarray*}  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D,E) \times \operatorname{\mathcal{E}}_{C} &amp;  \rightarrow &amp;  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(D,E) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \times \operatorname{\mathcal{E}}_{C} \\ &amp;  \xrightarrow {F} &amp;  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(D,E) \times \operatorname{\mathcal{E}}_{D} \\ &amp;  \xrightarrow {G} &amp;  \operatorname{\mathcal{E}}_{E}. \end{eqnarray*}
+</div>
+<p>
+       We will show that $H'$ and $H''$ are isomorphic when regarded as objects of the $\infty $-category $\operatorname{Fun}( \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D,E) \times \operatorname{\mathcal{E}}_{C}, \operatorname{\mathcal{E}}_{E} )$. The homotopy commutativity of the diagram (<a data-tag="02RT" href="/tag/02RT">5.25</a>) will then follow by precomposing with any section of the trivial Kan fibration $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D,E) \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(D,E) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D)$. 
+    <p>
+      Choose morphisms 
+    <p>
+<div class="equation">
+  \[ \widetilde{F}: \operatorname{N}_{\bullet }( \{ 0 &lt; 1 \}  ) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \times \operatorname{\mathcal{E}}_{C} \rightarrow \operatorname{\mathcal{E}} \]
+</div>
+<p>
+<div class="equation">
+  \[ \widetilde{G}: \operatorname{N}_{\bullet }( \{ 1 &lt; 2 \}  ) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(D,E) \times \operatorname{\mathcal{E}}_{D} \rightarrow \operatorname{\mathcal{E}} \]
+</div>
+<p>
+<div class="equation">
+  \[ \widetilde{H}: \operatorname{N}_{\bullet }( \{ 0 &lt; 2 \}  ) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,E) \times \operatorname{\mathcal{E}}_{C} \rightarrow \operatorname{\mathcal{E}} \]
+</div>
+<p>
+       which witness $F$, $G$, and $H$ as given by parametrized covariant transport, respectively. Composing with the projection maps 
+    <p>
+<div class="equation">
+  \[  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \leftarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D,E) \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,E), \]
+</div>
+<p>
+       we obtain morphisms 
+    <p>
+<div class="equation">
+  \[  \widetilde{F}': \operatorname{N}_{\bullet }( \{ 0 &lt; 1 \}  ) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D,E) \times \operatorname{\mathcal{E}}_{C} \rightarrow \operatorname{\mathcal{E}} \]
+</div>
+<p>
+<div class="equation">
+  \[  \widetilde{H}': \operatorname{N}_{\bullet }( \{ 0 &lt; 2 \}  ) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D,E) \times \operatorname{\mathcal{E}}_{C} \rightarrow \operatorname{\mathcal{E}}. \]
+</div>
+<p>
+       Let $\widetilde{G}'$ denote the composite map 
+    <p>
+<div class="equation">
+  \begin{eqnarray*}  \operatorname{N}_{\bullet }( \{ 1 &lt; 2\} ) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D,E) \times \operatorname{\mathcal{E}}_{C} \hspace{-.5em} &amp;  \rightarrow &amp;  \operatorname{N}_{\bullet }( \{ 1 &lt; 2\}  ) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(D,E) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \times \operatorname{\mathcal{E}}_{C} \\ &amp;  \xrightarrow { F } &amp;  \operatorname{N}_{\bullet }( \{  1 &lt; 2 \}  ) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(D,E) \times \operatorname{\mathcal{E}}_{D} \\ &amp;  \xrightarrow { \widetilde{G} } &amp;  \operatorname{\mathcal{E}}. \end{eqnarray*}
+</div>
+<p>
+       Since $U$ is an inner fibration, the lifting problem 
+    <p>
+<div class="equation">
+  \[  \xymatrix@C =100pt@R=50pt{ \Lambda ^{2}_{1} \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D,E) \times \operatorname{\mathcal{E}}_{C} \ar [r]^-{ ( \widetilde{G}', \bullet , \widetilde{F}' ) } \ar [d] &amp;  \operatorname{\mathcal{E}}\ar [d]^{U} \\ \Delta ^2 \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D,E) \times \operatorname{\mathcal{E}}_{C} \ar [r] \ar@ {--&gt;}[ur]^{\Phi } &amp;  \operatorname{\mathcal{C}}} \]
+</div>
+<p>
+       admits a solution $\Phi : \Delta ^2 \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D,E) \times \operatorname{\mathcal{E}}_{C} \rightarrow \operatorname{\mathcal{E}}$. Let $\widetilde{H}''$ denote the restriction of $\Phi $ to the product $\operatorname{N}_{\bullet }( \{  0, 2\}  ) \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D,E) \times \operatorname{\mathcal{E}}_{C}$. Using Proposition <a data-tag="01UK" href="/tag/01UK">5.1.4.13</a>, we see that $\widetilde{H}''$ is a $U$-cocartesian lift of $U \circ \widetilde{H}'' = U \circ \widetilde{H}'$, in the sense of Definition <a data-tag="02R8" href="/tag/02R8">5.2.2.10</a>. Applying the uniqueness assertion of Lemma <a data-tag="02RB" href="/tag/02RB">5.2.2.13</a>, we conclude that the restrictions $H' = \widetilde{H}'|_{ \{ 2\}  \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D,E) \times \operatorname{\mathcal{E}}_{C} }$ and $H'' = \widetilde{H}''|_{ \{ 2\}  \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D,E) \times \operatorname{\mathcal{E}}_{C} }$ are isomorphic when regarded as objects of the $\infty $-category $\operatorname{Fun}( \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D,E) \times \operatorname{\mathcal{E}}_{C}, \operatorname{\mathcal{E}}_{E})$, as desired. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></article>
+<p>
+Using Proposition <a data-tag="02GU" href="/tag/02GU">5.2.8.8</a>, we obtain the following refinement of Construction <a data-tag="019U" href="/tag/019U">5.2.5.2</a>: 
+</p>
+<p>
+<article class="env-construction" id="02GW">
+<p><a class="environment-identifier" href="/tag/02GW">Construction <span data-tag="02GW">5.2.8.9</span> <span class="named">(Enriched Homotopy Transport: Covariant Case)</span>.</a> Let $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ be a cocartesian fibration of $\infty $-categories and let us regard the homotopy category $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ as enriched over the homotopy category $\operatorname {h}\! \mathit{\operatorname{Kan}}$ of Kan complexes (Construction <a data-tag="01PV" href="/tag/01PV">4.6.8.13</a>). It follows from Proposition <a data-tag="02GU" href="/tag/02GU">5.2.8.8</a> (and Example <a data-tag="019P" href="/tag/019P">5.2.2.5</a>) that there is a unique $\operatorname {h}\! \mathit{\operatorname{Kan}}$-enriched functor $\operatorname{hTr}_{\operatorname{\mathcal{E}}/\operatorname{\mathcal{C}}}: \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}} \rightarrow \operatorname {h}\! \mathit{\operatorname{QCat}}$ with the following properties: </p>
+<p><ul>
+<li><p>
+For each object $C$ of the $\infty $-category $\operatorname{\mathcal{C}}$, $\operatorname{hTr}_{\operatorname{\mathcal{E}}/\operatorname{\mathcal{C}}}(C)$ is the $\infty $-category $\operatorname{\mathcal{E}}_{C} = \{ C\}  \times _{\operatorname{\mathcal{C}}} \operatorname{\mathcal{E}}$ (regarded as an object of $\operatorname {h}\! \mathit{\operatorname{QCat}}$). 
+</p>
+</li><li><p>
+For every pair of objects $C,D \in \operatorname{\mathcal{C}}$, the induced map 
+</p>
+<div class="equation">
+  \[  \operatorname{hTr}_{\operatorname{\mathcal{E}}/\operatorname{\mathcal{C}}}: \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \rightarrow \operatorname{Fun}( \operatorname{\mathcal{E}}_{C}, \operatorname{\mathcal{E}}_{D} )^{\simeq } \]
+</div>
+<p>
+ in $\operatorname {h}\! \mathit{\operatorname{Kan}}$ corresponds to the parametrized covariant transport functor $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \times \operatorname{\mathcal{E}}_{C} \rightarrow \operatorname{\mathcal{E}}_{D}$ of supplied by Proposition <a data-tag="02RQ" href="/tag/02RQ">5.2.8.4</a> (which is well-defined up to isomorphism). 
+</p>
+</li>
+</ul></p>
+<p> We will refer to $\operatorname{hTr}_{\operatorname{\mathcal{E}}/\operatorname{\mathcal{C}}}$ as the <em>enriched homotopy transport representation</em> of the cocartesian fibration $U$. Note that the underlying functor of ordinary categories $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}} \rightarrow \operatorname {h}\! \mathit{\operatorname{QCat}}$ coincides with homotopy transport representation of Construction <a data-tag="019U" href="/tag/019U">5.2.5.2</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="02RU">
+<p><a class="environment-identifier" href="/tag/02RU">Remark <span data-tag="02RU">5.2.8.10</span> <span class="named">(Functoriality)</span>.</a> Suppose we are given a commutative diagram of $\infty $-categories </p>
+<div class="equation" id="02RV">
+<span class="equation-label"><a data-tag="02RV" href="/tag/02RV">5.26</a></span>
+<div>\begin{equation}  \begin{gathered}\label{equation:enriched-homotopy-transport-functorial} \xymatrix@R =50pt@C=50pt{ \operatorname{\mathcal{E}}\ar [d]^{U} \ar [r]^-{G} &amp;  \operatorname{\mathcal{E}}' \ar [d]^{U'} \\ \operatorname{\mathcal{C}}\ar [r]^-{ \overline{G} } &amp;  \operatorname{\mathcal{C}}', } \end{gathered} \end{equation}</div>
+</div>
+<p> where $U$ and $U'$ are cocartesian fibrations and the functor $G$ carries $U$-cocartesian morphisms of $\operatorname{\mathcal{E}}$ to $U'$-cocartesian morphisms of $\operatorname{\mathcal{E}}'$. For each object $C \in \operatorname{\mathcal{C}}$ having image $C' = \overline{G}(C)$, $G$ restricts to a functor $G_{C}: \operatorname{\mathcal{E}}_{C} \rightarrow \operatorname{\mathcal{E}}'_{C'}$. It follows from Remark <a data-tag="02RR" href="/tag/02RR">5.2.8.5</a> that the construction $C \mapsto G_{C}$ determines a natural transformation of $\operatorname {h}\! \mathit{\operatorname{Kan}}$-enriched functors $\alpha : \operatorname{hTr}_{\operatorname{\mathcal{E}}/\operatorname{\mathcal{C}}} \rightarrow \operatorname{hTr}_{\operatorname{\mathcal{E}}'/\operatorname{\mathcal{C}}'} \circ \operatorname {h}\! \mathit{\overline{G}}$ from $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ to $\operatorname {h}\! \mathit{\operatorname{QCat}}$. Moreover, if (<a data-tag="02RV" href="/tag/02RV">5.26</a>) is a pullback square, then $\alpha $ is an isomorphism of $\operatorname {h}\! \mathit{\operatorname{Kan}}$-enriched functors. </p>
+</article>
+</p>
+<p>
+<article class="env-variant" id="02RW">
+<p><a class="environment-identifier" href="/tag/02RW">Variant <span data-tag="02RW">5.2.8.11</span> <span class="named">(Enriched Homotopy Transport: Left Fibrations)</span>.</a> Let $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ be a left fibration of $\infty $-categories. Applying Construction <a data-tag="02GW" href="/tag/02GW">5.2.8.9</a>, we obtain an $\operatorname {h}\! \mathit{\operatorname{Kan}}$-enriched functor </p>
+<div class="equation">
+  \[  \operatorname{hTr}_{\operatorname{\mathcal{E}}/\operatorname{\mathcal{C}}}: \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}} \rightarrow \operatorname {h}\! \mathit{\operatorname{Kan}}, \]
+</div>
+<p> given on objects by the formula $\operatorname{hTr}_{\operatorname{\mathcal{E}}/\operatorname{\mathcal{C}}}( C ) = \{ C \}  \times _{\operatorname{\mathcal{C}}} \operatorname{\mathcal{E}}$. </p>
+</article>
+</p>
+<p>
+<article class="env-variant" id="02GX">
+<p><a class="environment-identifier" href="/tag/02GX">Variant <span data-tag="02GX">5.2.8.12</span> <span class="named">(Enriched Homotopy Transport: Contravariant Case)</span>.</a> Let $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ be a cartesian fibration of $\infty $-categories. Applying Construction <a data-tag="02GW" href="/tag/02GW">5.2.8.9</a> to the opposite functor $U^{\operatorname{op}}$, we deduce that there is a unique $\operatorname {h}\! \mathit{\operatorname{Kan}}$-enriched functor $\operatorname{hTr}_{\operatorname{\mathcal{E}}/\operatorname{\mathcal{C}}}: \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}^{\operatorname{op}} \rightarrow \operatorname {h}\! \mathit{\operatorname{QCat}}$ with the following properties: </p>
+<p><ul>
+<li><p>
+For each object $C$ of the $\infty $-category $\operatorname{\mathcal{C}}$, $\operatorname{hTr}_{\operatorname{\mathcal{E}}/\operatorname{\mathcal{C}}}(C)$ is the $\infty $-category $\operatorname{\mathcal{E}}_{C} = \{ C\}  \times _{\operatorname{\mathcal{C}}} \operatorname{\mathcal{E}}$ (regarded as an object of $\operatorname {h}\! \mathit{\operatorname{QCat}}$). 
+</p>
+</li><li><p>
+For every pair of objects $C,D \in \operatorname{\mathcal{C}}$, the induced map 
+</p>
+<div class="equation">
+  \[  \operatorname{hTr}_{\operatorname{\mathcal{E}}/\operatorname{\mathcal{C}}}: \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \rightarrow \operatorname{Fun}( \operatorname{\mathcal{E}}_{D}, \operatorname{\mathcal{E}}_{C} )^{\simeq } \]
+</div>
+<p>
+ is given by the parametrized contravariant transport functor $\operatorname{\mathcal{E}}_{D} \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \rightarrow \operatorname{\mathcal{E}}_{C}$ of Variant <a data-tag="02RS" href="/tag/02RS">5.2.8.6</a>. 
+</p>
+</li>
+</ul></p>
+<p> We will refer to $\operatorname{hTr}_{\operatorname{\mathcal{E}}/\operatorname{\mathcal{C}}}$ as the <em>enriched homotopy transport representation</em> of the cartesian fibration $U$. If $U$ is a right fibration, then $\operatorname{hTr}_{\operatorname{\mathcal{E}}/\operatorname{\mathcal{C}}}$ takes values in the full subcategory $\operatorname {h}\! \mathit{\operatorname{Kan}} \subseteq \operatorname {h}\! \mathit{\operatorname{QCat}}$. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="02GY">
+<p><a class="environment-identifier" href="/tag/02GY">Example <span data-tag="02GY">5.2.8.13</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category and let $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ denote its homotopy category, which we regard as enriched over the homotopy category $\operatorname {h}\! \mathit{\operatorname{Kan}}$ of Kan complexes. Applying Proposition <a data-tag="02GT" href="/tag/02GT">5.2.8.7</a>, we obtain the following: </p>
+<p><ul>
+<li><p>
+For every object $C \in \operatorname{\mathcal{C}}$, the corepresentable $\operatorname {h}\! \mathit{\operatorname{Kan}}$-enriched functor 
+</p>
+<div class="equation">
+  \[  \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}} \rightarrow \operatorname {h}\! \mathit{\operatorname{Kan}} \quad \quad D \mapsto \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \]
+</div>
+<p>
+ is the enriched homotopy transport representation for the left fibration $\{ C\}  \vec{\times }_{\operatorname{\mathcal{C}}} \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{C}}$. 
+</p>
+</li><li><p>
+For every object $D \in \operatorname{\mathcal{C}}$, the representable $\operatorname {h}\! \mathit{\operatorname{Kan}}$-enriched functor 
+</p>
+<div class="equation">
+  \[  \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}^{\operatorname{op}} \rightarrow \operatorname {h}\! \mathit{\operatorname{Kan}} \quad \quad C \mapsto \operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,D) \]
+</div>
+<p>
+ is the enriched homotopy transport representation for the right fibration $\operatorname{\mathcal{C}}\vec{\times }_{\operatorname{\mathcal{C}}} \{ D\}  \rightarrow \operatorname{\mathcal{C}}$. 
+</p>
+</li>
+</ul></p>
+</article>
+</p>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.html a[data-toggle="popover"]').popover()
+
+  // render mathematics in popovers
+  $("[data-toggle=popover]").on('shown.bs.popover', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $("div.popover-body").html()]);
+  });
+});
+  </script>
+</div>
+</section></body>
+</html>

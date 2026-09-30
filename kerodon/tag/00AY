@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" id="main">
+<div class="html" id="tag">
+<h3 class="tex-subsection" id="subsection:examples-of-Duskin-nerves"><span data-tag="00AY">8.1.3</span> The Cospan Construction</h3>
+<p>
+Let $\operatorname{\mathcal{C}}_0$ be a category which admits pushouts. In §<a data-tag="007P" href="/tag/007P">2.2.1</a>, we introduced a bicategory $\operatorname{Cospan}(\operatorname{\mathcal{C}}_0)$ having the same objects, where $1$-morphisms from $X$ to $Y$ in $\operatorname{Cospan}(\operatorname{\mathcal{C}}_0)$ are <em>cospans</em> from $X$ to $Y$: that is, diagrams $X \xrightarrow {f} B \xleftarrow {g} Y$ in the category $\operatorname{\mathcal{C}}_0$ (see Example <a data-tag="0084" href="/tag/0084">2.2.2.1</a>). In this section, we introduce a generalization of this construction, which will allow us to replace the ordinary category $\operatorname{\mathcal{C}}_0$ by an $\infty $-category. More precisely, we will associate to every simplicial set $\operatorname{\mathcal{C}}$ a simplicial set $\operatorname{Cospan}(\operatorname{\mathcal{C}})$ of <em>cospans in $\operatorname{\mathcal{C}}$</em> (Construction <a data-tag="03KN" href="/tag/03KN">8.1.3.1</a>). In the special case where $\operatorname{\mathcal{C}}= \operatorname{N}_{\bullet }(\operatorname{\mathcal{C}}_0)$ is the nerve of a category $\operatorname{\mathcal{C}}_0$ which admits pushouts, we show that $\operatorname{Cospan}(\operatorname{\mathcal{C}})$ can be identified with the Duskin nerve of the bicategory $\operatorname{Cospan}(\operatorname{\mathcal{C}}_0)$ (Corollary <a data-tag="00B6" href="/tag/00B6">8.1.3.15</a>). 
+</p>
+<p>
+<article class="env-construction" id="03KN">
+<p><a class="environment-identifier" href="/tag/03KN">Construction <span data-tag="03KN">8.1.3.1</span>.</a> Let $\operatorname{\mathcal{C}}$ be a simplicial set. For every integer $n \geq 0$, we let $\operatorname{Cospan}_{n}(\operatorname{\mathcal{C}})$ denote the collection of morphisms $\operatorname{Tw}( \Delta ^ n ) \rightarrow \operatorname{\mathcal{C}}$ in the category of simplicial sets. The construction $[n] \mapsto \operatorname{Cospan}_{n}(\operatorname{\mathcal{C}})$ depends functorially on the set $[n] = \{  0 &lt; 1 &lt; \cdots &lt; n \} $ as an object of the category $\operatorname{{\bf \Delta }}^{\operatorname{op}}$, and can therefore be viewed as a simplicial set. We will denote this simplicial set by $\operatorname{Cospan}(\operatorname{\mathcal{C}})$ and refer to it as the <em>simplicial set of cospans in $\operatorname{\mathcal{C}}$</em>. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="03KP">
+<p><a class="environment-identifier" href="/tag/03KP">Remark <span data-tag="03KP">8.1.3.2</span>.</a> Let $n \geq 0$ be an integer. Then the simplicial set $\operatorname{Tw}( \Delta ^{n} )$ can be identified with the nerve of the partially ordered set $Q = \{  (i,j) \in [n]^{\operatorname{op}} \times [n]: i \leq j \} $ (see Example <a data-tag="00B2" href="/tag/00B2">8.1.0.5</a>). Consequently, if $\operatorname{\mathcal{C}}$ is an arbitrary simplicial set, then $n$-simplices of $\operatorname{Cospan}(\operatorname{\mathcal{C}})$ can be identified with morphisms $\operatorname{N}_{\bullet }(Q) \rightarrow \operatorname{\mathcal{C}}$, which we depict informally as diagrams </p>
+<div class="equation">
+  \[  \xymatrix@R =40pt@C=20pt{ X_{0,0} \ar [dr] &amp;  &amp;  X_{1,1} \ar [dr] \ar [dl] &amp;  \cdots &amp;  X_{n-1,n-1} \ar [dr] \ar [dl] &amp;  &amp;  X_{n,n} \ar [dl] \\ &amp;  \cdots \ar [dr] &amp;  &amp;  \cdots \ar [dr] \ar [dl] &amp;  &amp;  \cdots \ar [dl] &amp;  \\ &amp;  &amp;  X_{0,n-1} \ar [dr] &amp;  &amp;  X_{1,n} \ar [dl] &amp;  &amp;  \\ &amp;  &amp;  &amp;  X_{0,n}. &amp;  &amp;  &amp;  \\ } \]
+</div>
+</article>
+</p>
+<p>
+<article class="env-example" id="03KQ">
+<p><a class="environment-identifier" href="/tag/03KQ">Example <span data-tag="03KQ">8.1.3.3</span>.</a> Let $\operatorname{\mathcal{C}}$ be a simplicial set. Then: </p>
+<p><ul>
+<li><p>
+Vertices of the simplicial set $\operatorname{Cospan}(\operatorname{\mathcal{C}})$ can be identified with vertices of $\operatorname{\mathcal{C}}$. 
+</p>
+</li><li><p>
+Let $X$ and $Y$ be vertices of $\operatorname{\mathcal{C}}$. Then edges of $\operatorname{Cospan}(\operatorname{\mathcal{C}})$ joining $X$ to $Y$ can be identified with pairs $(f,g)$, where $f: X \rightarrow B$ and $g: Y \rightarrow B$ are edges of $\operatorname{\mathcal{C}}$ having the same target. 
+</p>
+</li>
+</ul></p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="03KR">
+<p><a class="environment-identifier" href="/tag/03KR">Remark <span data-tag="03KR">8.1.3.4</span> <span class="named">(Symmetry)</span>.</a> Let $\operatorname{\mathcal{C}}$ be a simplicial set and let $\sigma $ be an $n$-simplex of $\operatorname{Cospan}(\operatorname{\mathcal{C}})$, which we identify with a morphism of simplicial sets $\operatorname{Tw}( \Delta ^{n} ) \rightarrow \operatorname{\mathcal{C}}$. Composing with the automorphism </p>
+<div class="equation">
+  \[  \operatorname{Tw}( \Delta ^{n} ) \xrightarrow {\sim } \operatorname{Tw}( \Delta ^{n} ) \quad \quad (i,j) \mapsto (n-j, n-i), \]
+</div>
+<p> we obtain a new $n$-simplex $\overline{\sigma }$ of $\operatorname{Cospan}(\operatorname{\mathcal{C}})$. The construction $\sigma \mapsto \overline{\sigma }$ determines an isomorphism of simplicial sets $\tau : \operatorname{Cospan}(\operatorname{\mathcal{C}}) \simeq \operatorname{Cospan}(\operatorname{\mathcal{C}})^{\operatorname{op}}$, which can be described concretely as follows: </p>
+<p><ul>
+<li><p>
+For every vertex $X \in \operatorname{\mathcal{C}}$, the morphism $\tau $ carries $X$ (regarded as a vertex of $\operatorname{Cospan}(\operatorname{\mathcal{C}})$) to itself. 
+</p>
+</li><li><p>
+Let $X$ and $Y$ be vertices of $\operatorname{\mathcal{C}}$, and let $e: X \rightarrow Y$ be an edge of $\operatorname{Cospan}(\operatorname{\mathcal{C}})$, given by a pair of edges $(f: X \rightarrow B, g: Y \rightarrow B)$ of $\operatorname{\mathcal{C}}$. Then $\tau (e): Y \rightarrow X$ is the edge of $\operatorname{Cospan}(\operatorname{\mathcal{C}})$ given by the pair $(g,f)$. 
+</p>
+</li>
+</ul></p>
+<p> Note that $\tau $ is involutive: that is, the composition </p>
+<div class="equation">
+  \[  \operatorname{Cospan}(\operatorname{\mathcal{C}}) \xrightarrow { \tau } \operatorname{Cospan}(\operatorname{\mathcal{C}})^{\operatorname{op}} \xrightarrow { \tau ^{\operatorname{op}} } \operatorname{Cospan}(\operatorname{\mathcal{C}}) \]
+</div>
+<p> is the identity automorphism of $\operatorname{Cospan}(\operatorname{\mathcal{C}})$. </p>
+</article>
+</p>
+<p>
+<article class="env-construction" id="03KT">
+<p><a class="environment-identifier" href="/tag/03KT">Construction <span data-tag="03KT">8.1.3.5</span>.</a> Let $\operatorname{\mathcal{D}}$ be a simplicial set and let $\sigma : \Delta ^ n \rightarrow \operatorname{\mathcal{D}}$ be an $n$-simplex of $\operatorname{\mathcal{D}}$. Invoking the functoriality of the twisted arrow construction, we obtain a map $\operatorname{Tw}( \Delta ^{n} ) \xrightarrow { \operatorname{Tw}(\sigma ) } \operatorname{Tw}(\operatorname{\mathcal{D}})$, which we can identify with an $n$-simplex $u( \sigma )$ of the simplicial set $\operatorname{Cospan}( \operatorname{Tw}(\operatorname{\mathcal{D}}) )$. The construction $\sigma \mapsto u(\sigma )$ is compatible with face and degeneracy operators, and therefore determines a morphism of simplicial sets $u: \operatorname{\mathcal{D}}\rightarrow \operatorname{Cospan}( \operatorname{Tw}(\operatorname{\mathcal{D}}) )$ which we will refer to as the <em>unit map</em>. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="048N">
+<p><a class="environment-identifier" href="/tag/048N">Example <span data-tag="048N">8.1.3.6</span> <span class="named">(Tautological Cospans)</span>.</a> Let $\operatorname{\mathcal{D}}$ be a simplicial set and let $e: X \rightarrow Y$ be an edge of $\operatorname{\mathcal{D}}$, which we also view as a vertex of the simplicial set $\operatorname{Tw}(\operatorname{\mathcal{D}})$. Then the morphism $\operatorname{\mathcal{D}}\rightarrow \operatorname{Cospan}( \operatorname{Tw}(\operatorname{\mathcal{D}}) )$ carries $e$ to an edge of the simplicial set $\operatorname{Cospan}( \operatorname{Tw}(\operatorname{\mathcal{D}}) )$, which we can identify with a pair of edges </p>
+<div class="equation">
+  \[ \operatorname{id}_{X} \xrightarrow { e_{L} } e \xleftarrow {e_{R}} \operatorname{id}_{Y} \]
+</div>
+<p> in the simplicial set $\operatorname{Tw}(\operatorname{\mathcal{D}})$. Here $e_{L}$ and $e_{R}$ can be identified with degenerate $3$-simplices of $\operatorname{\mathcal{D}}$, which we depict informally in the diagrams </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ X \ar [d]^{\operatorname{id}_ X} &amp;  X \ar [l]^{\operatorname{id}_{X}} &amp;  Y \ar [d]^{\operatorname{id}_ Y} &amp;  X \ar [l]^{e} \\ X \ar [r]^-{e} &amp;  Y &amp;  Y \ar [r]^-{\operatorname{id}_{Y}} &amp;  Y. } \]
+</div>
+</article>
+</p>
+<p>
+<article class="env-proposition" id="03KU">
+<p><a class="environment-identifier" href="/tag/03KU">Proposition <span data-tag="03KU">8.1.3.7</span>.</a> Let $\operatorname{\mathcal{D}}$ be a simplicial set and let $u: \operatorname{\mathcal{D}}\rightarrow \operatorname{Cospan}( \operatorname{Tw}(\operatorname{\mathcal{D}}) )$ be the unit map of Construction <a data-tag="03KT" href="/tag/03KT">8.1.3.5</a>. For every simplicial set $\operatorname{\mathcal{C}}$, the composite map </p>
+<div class="equation">
+  \begin{eqnarray*}  \operatorname{Hom}_{\operatorname{Set_{\Delta }}}( \operatorname{Tw}(\operatorname{\mathcal{D}}), \operatorname{\mathcal{C}}) &amp;  \rightarrow &amp;  \operatorname{Hom}_{\operatorname{Set_{\Delta }}}( \operatorname{Cospan}( \operatorname{Tw}(\operatorname{\mathcal{D}}) ), \operatorname{Cospan}(\operatorname{\mathcal{C}}) ) \\ &amp;  \xrightarrow { \circ u} &amp;  \operatorname{Hom}_{\operatorname{Set_{\Delta }}}( \operatorname{\mathcal{D}}, \operatorname{Cospan}(\operatorname{\mathcal{C}}) ) \end{eqnarray*}
+</div>
+<p> is a bijection. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Let us regard the simplicial set $\operatorname{\mathcal{C}}$ as fixed. For every simplicial set $\operatorname{\mathcal{D}}$, the unit map $u$ of Construction <a data-tag="03KT" href="/tag/03KT">8.1.3.5</a> determines a function 
+    <p>
+<div class="equation">
+  \[ \theta _{\operatorname{\mathcal{D}}}: \operatorname{Hom}_{\operatorname{Set_{\Delta }}}( \operatorname{Tw}(\operatorname{\mathcal{D}}), \operatorname{\mathcal{C}}) \rightarrow \operatorname{Hom}_{\operatorname{Set_{\Delta }}}( \operatorname{\mathcal{D}}, \operatorname{Cospan}(\operatorname{\mathcal{C}}) ). \]
+</div>
+<p>
+       Using Remark <a data-tag="00B3" href="/tag/00B3">8.1.1.4</a>, we see that the construction $\operatorname{\mathcal{D}}\mapsto \theta _{\operatorname{\mathcal{D}}}$ carries colimits (in the category of simplicial sets) to limits (in the arrow category $\operatorname{Fun}( [1], \operatorname{Set})$). Consequently, to show that $\theta _{\operatorname{\mathcal{D}}}$ is a bijection, we may assume without loss of generality that $\operatorname{\mathcal{D}}= \Delta ^ n$ is a standard simplex (see Remark <a data-tag="002D" href="/tag/002D">1.1.3.13</a>). In this case, the desired result follows immediately from the definition of the simplicial set $\operatorname{Cospan}(\operatorname{\mathcal{C}})$. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<p>
+<article class="env-corollary" id="03KV">
+<p><a class="environment-identifier" href="/tag/03KV">Corollary <span data-tag="03KV">8.1.3.8</span>.</a> The twisted arrow functor </p>
+<div class="equation">
+  \[  \operatorname{Tw}: \operatorname{Set_{\Delta }}\rightarrow \operatorname{Set_{\Delta }}\quad \quad \operatorname{\mathcal{D}}\mapsto \operatorname{Tw}(\operatorname{\mathcal{D}}) \]
+</div>
+<p> has a right adjoint, given on objects by the construction $\operatorname{\mathcal{C}}\mapsto \operatorname{Cospan}(\operatorname{\mathcal{C}})$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="048P">
+<p><a class="environment-identifier" href="/tag/048P">Remark <span data-tag="048P">8.1.3.9</span>.</a> Let $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ be simplicial sets. Using Proposition <a data-tag="03KU" href="/tag/03KU">8.1.3.7</a>, we obtain bijections </p>
+<div class="equation">
+  \begin{eqnarray*}  \operatorname{Hom}_{\operatorname{Set_{\Delta }}}( \Delta ^ n, \operatorname{Fun}(\operatorname{\mathcal{C}}, \operatorname{Cospan}(\operatorname{\mathcal{D}}) ) &amp;  \simeq &amp;  \operatorname{Hom}_{\operatorname{Set_{\Delta }}}( \Delta ^ n \times \operatorname{\mathcal{C}}, \operatorname{Cospan}(\operatorname{\mathcal{D}}) ) \\ &amp;  \simeq &amp;  \operatorname{Hom}_{\operatorname{Set_{\Delta }}}( \operatorname{Tw}( \Delta ^ n \times \operatorname{\mathcal{C}}), \operatorname{\mathcal{D}}) \\ &amp;  \simeq &amp;  \operatorname{Hom}_{\operatorname{Set_{\Delta }}}( \operatorname{Tw}(\Delta ^ n) \times \operatorname{Tw}(\operatorname{\mathcal{C}}), \operatorname{\mathcal{D}}) \\ &amp;  \simeq &amp;  \operatorname{Hom}_{\operatorname{Set_{\Delta }}}( \operatorname{Tw}(\Delta ^ n), \operatorname{Fun}( \operatorname{Tw}(\operatorname{\mathcal{C}}), \operatorname{\mathcal{D}}) ) \\ &amp;  \simeq &amp;  \operatorname{Hom}_{\operatorname{Set_{\Delta }}}( \Delta ^ n, \operatorname{Cospan}( \operatorname{Fun}( \operatorname{Tw}(\operatorname{\mathcal{C}}), \operatorname{\mathcal{D}}) ) ). \end{eqnarray*}
+</div>
+<p> These bijections depend functorially on $[n] \in \operatorname{{\bf \Delta }}$, and therefore determine an isomorphism of simplicial sets $\operatorname{Fun}( \operatorname{\mathcal{C}}, \operatorname{Cospan}(\operatorname{\mathcal{D}}) ) \simeq \operatorname{Cospan}( \operatorname{Fun}( \operatorname{Tw}(\operatorname{\mathcal{C}}), \operatorname{\mathcal{D}}) )$. </p>
+</article>
+</p>
+<p>
+<article class="env-corollary" id="048Q">
+<p><a class="environment-identifier" href="/tag/048Q">Corollary <span data-tag="048Q">8.1.3.10</span>.</a> Let $U: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a Kan fibration of simplicial sets. Then the induced map $\operatorname{Cospan}(U): \operatorname{Cospan}(\operatorname{\mathcal{C}}) \rightarrow \operatorname{Cospan}(\operatorname{\mathcal{D}})$ is also a Kan fibration. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Let $i: A \hookrightarrow B$ be a monomorphism of simplicial sets which is a weak homotopy equivalence. We wish to show that every lifting problem 
+    <p>
+<div class="equation" id="048R">
+<span class="equation-label"><a data-tag="048R" href="/tag/048R">8.6</a></span>
+<div>\begin{equation}  \begin{gathered}\label{equation:cospan-Kan-fibration} \xymatrix@R =50pt@C=50pt{ A \ar [r] \ar [d]^{i} &amp;  \operatorname{Cospan}(\operatorname{\mathcal{C}}) \ar [d]^{ \operatorname{Cospan}(U) } \\ B \ar [r] \ar@ {--&gt;}[ur] &amp;  \operatorname{Cospan}(\operatorname{\mathcal{D}}) } \end{gathered} \end{equation}</div>
+</div>
+<p>
+       admits a solution. Using Proposition <a data-tag="03KU" href="/tag/03KU">8.1.3.7</a>, we can rewrite (<a data-tag="048R" href="/tag/048R">8.6</a>) as a lifting problem of the form 
+    <p>
+<div class="equation">
+  \[ \xymatrix@R =50pt@C=50pt{ \operatorname{Tw}(A) \ar [r] \ar [d]^{\operatorname{Tw}(i)} &amp;  \operatorname{\mathcal{C}}\ar [d]^{U} \\ \operatorname{Tw}(B) \ar [r] \ar@ {--&gt;}[ur] &amp;  \operatorname{\mathcal{D}}. } \]
+</div>
+<p>
+       Our assumption that $U$ is a Kan fibration guarantees that this lifting problem has a solution, since the monomorphism $\operatorname{Tw}(i): \operatorname{Tw}(A) \hookrightarrow \operatorname{Tw}(B)$ is also a weak homotopy equivalence (Corollary <a data-tag="048M" href="/tag/048M">8.1.2.6</a>). 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></p></p></article>
+<p>
+<article class="env-corollary" id="048S">
+<p><a class="environment-identifier" href="/tag/048S">Corollary <span data-tag="048S">8.1.3.11</span>.</a> Let $\operatorname{\mathcal{C}}$ be a Kan complex. Then the simplicial set $\operatorname{Cospan}(\operatorname{\mathcal{C}})$ is also a Kan complex. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Apply Corollary <a data-tag="048Q" href="/tag/048Q">8.1.3.10</a> in the special case $\operatorname{\mathcal{D}}= \Delta ^0$. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+We now study the relationship between Construction <a data-tag="03KN" href="/tag/03KN">8.1.3.1</a> with the classical cospan construction (Example <a data-tag="0084" href="/tag/0084">2.2.2.1</a>). 
+</p>
+<p>
+<article class="env-construction" id="00B4">
+<p><a class="environment-identifier" href="/tag/00B4">Construction <span data-tag="00B4">8.1.3.12</span>.</a> Let $\operatorname{\mathcal{C}}$ be a category which admits pushouts, and let $\operatorname{Cospan}(\operatorname{\mathcal{C}})$ denote the bicategory of Example <a data-tag="0084" href="/tag/0084">2.2.2.1</a>. Suppose we are given another category $\operatorname{\mathcal{D}}$ and a functor $F: \operatorname{Tw}(\operatorname{\mathcal{D}}) \rightarrow \operatorname{\mathcal{C}}$. We define a strictly unital lax functor $F^{+}: \operatorname{\mathcal{D}}\rightarrow \operatorname{Cospan}(\operatorname{\mathcal{C}})$ as follows: </p>
+<p><ul>
+<li><p>
+For each $X \in \operatorname{\mathcal{D}}$, we define $F^{+}(X) = F( \operatorname{id}_{X} )$; here we regard the identity morphism $\operatorname{id}_ X: X \rightarrow X$ as an object of the twisted arrow category $\operatorname{Tw}(\operatorname{\mathcal{C}})$. 
+</p>
+</li><li><p>
+For each morphism $f: X \rightarrow Y$ in $\operatorname{\mathcal{D}}$, we define $F^{+}(f)$ to be the $1$-morphism of $\operatorname{Cospan}(\operatorname{\mathcal{C}})$ given by the cospan 
+</p>
+<div class="equation">
+  \[  F( \operatorname{id}_ X ) \xrightarrow { F(\operatorname{id}_ X, f) } F(f) \xleftarrow { F( f, \operatorname{id}_ Y) } F( \operatorname{id}_ Y ). \]
+</div>
+<p>
+ Note that this determines the values of $F^{+}$ on $2$-morphisms, since every $2$-morphism in $\operatorname{\mathcal{D}}$ is an identity $2$-morphism. 
+</p>
+</li><li><p>
+For every pair of composable morphisms $X \xrightarrow {f} Y \xrightarrow {g} Z$ in $\operatorname{\mathcal{D}}$, the composition constraint $\mu _{g,f}: F^{+}(g) \circ F^{+}(f) \Rightarrow F^{+}(g \circ f)$ is the $2$-morphism of $\operatorname{Cospan}(\operatorname{\mathcal{C}})$ corresponding to the map $F(f) \amalg _{ F( \operatorname{id}_ Y) } F(g) \rightarrow F( g \circ f )$ classifying the commutative diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ F( \operatorname{id}_ Y ) \ar [r]^-{ F(f,\operatorname{id}_ Y)} \ar [d]^{F(\operatorname{id}_ Y,g)} &amp;  F( f ) \ar [d]^{F(\operatorname{id}_ X,g)} \\ F( g ) \ar [r]^-{F(f,\operatorname{id}_ Z)} &amp;  F( g \circ f) } \]
+</div>
+<p>
+ in the category $\operatorname{\mathcal{C}}$. 
+</p>
+</li>
+</ul></p>
+</article>
+</p>
+<p>
+<article class="env-example" id="03KW">
+<p><a class="environment-identifier" href="/tag/03KW">Example <span data-tag="03KW">8.1.3.13</span>.</a> Let $\operatorname{\mathcal{C}}$ be a category which admits pushouts and let $n$ be a nonnegative integer. Applying Construction <a data-tag="00B4" href="/tag/00B4">8.1.3.12</a> in the special case where $\operatorname{\mathcal{D}}= [n]$, we obtain a function </p>
+<div class="equation">
+  \[  \{  \textnormal{Functors $\operatorname{Tw}([n]) \rightarrow \operatorname{\mathcal{C}}$} \}  \xrightarrow {\sim } \{  \textnormal{Strictly unital lax functors $[n] \rightarrow \operatorname{Cospan}(\operatorname{\mathcal{C}})$} \} . \]
+</div>
+<p> Using Propositions <a data-tag="002Z" href="/tag/002Z">1.3.3.1</a> and <a data-tag="03JN" href="/tag/03JN">8.1.1.10</a>, we can identify the left hand side with the collection of $n$-simplices of the simplicial set $\operatorname{Cospan}( \operatorname{N}_{\bullet }(\operatorname{\mathcal{C}}) )$. This construction depends functorially on $n$, and therefore determines a morphism of simplicial sets from $\operatorname{Cospan}( \operatorname{N}_{\bullet }(\operatorname{\mathcal{C}}) )$ to the Duskin nerve $\operatorname{N}_{\bullet }^{\operatorname{D}}( \operatorname{Cospan}(\operatorname{\mathcal{C}}) )$. </p>
+</article>
+</p>
+<p>
+We can now formulate our main result. 
+</p>
+<p>
+<article class="env-theorem" id="00B5">
+<p><a class="environment-identifier" href="/tag/00B5">Theorem <span data-tag="00B5">8.1.3.14</span>.</a> Let $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ be categories, where $\operatorname{\mathcal{C}}$ admits pushouts. Then Construction <a data-tag="00B4" href="/tag/00B4">8.1.3.12</a> induces a bijection of sets </p>
+<div class="equation">
+  \[  \{  \textnormal{Functors $F: \operatorname{Tw}(\operatorname{\mathcal{D}}) \rightarrow \operatorname{\mathcal{C}}$} \}  \xrightarrow {\sim } \{  \textnormal{Strictly unital lax functors $F^{+}: \operatorname{\mathcal{D}}\rightarrow \operatorname{Cospan}(\operatorname{\mathcal{C}})$} \} . \]
+</div>
+</article>
+</p>
+<p>
+<article class="env-corollary" id="00B6">
+<p><a class="environment-identifier" href="/tag/00B6">Corollary <span data-tag="00B6">8.1.3.15</span>.</a> Let $\operatorname{\mathcal{C}}$ be a category which admits pushouts. Then the comparison map of Example <a data-tag="03KW" href="/tag/03KW">8.1.3.13</a> determines an isomorphism of simplicial sets </p>
+<div class="equation">
+  \[ \operatorname{Cospan}( \operatorname{N}_{\bullet }(\operatorname{\mathcal{C}}) ) \rightarrow \operatorname{N}_{\bullet }^{\operatorname{D}}( \operatorname{Cospan}(\operatorname{\mathcal{C}}) ). \]
+</div>
+</article>
+</p>
+<p>
+<article class="env-exercise" id="03KX">
+<p><a class="environment-identifier" href="/tag/03KX">Exercise <span data-tag="03KX">8.1.3.16</span>.</a> Show that Corollary <a data-tag="00B6" href="/tag/00B6">8.1.3.15</a> implies Theorem <a data-tag="00B5" href="/tag/00B5">8.1.3.14</a>. That is, to prove Theorem <a data-tag="00B5" href="/tag/00B5">8.1.3.14</a> in general, it suffices to treat the special case where $\operatorname{\mathcal{D}}$ is a category of the form $[n] = \{  0 &lt; 1 &lt; \cdots &lt; n\} $ for $n \geq 0$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="03KY">
+<p><a class="environment-identifier" href="/tag/03KY">Remark <span data-tag="03KY">8.1.3.17</span>.</a> Let $\operatorname{\mathcal{C}}$ be a category which admits pushouts. The construction of the bicategory $\operatorname{Cospan}(\operatorname{\mathcal{C}})$ of Example <a data-tag="0084" href="/tag/0084">2.2.2.1</a> involves some auxiliary choices: if $X \rightarrow B \leftarrow Y$ and $Y \rightarrow C \leftarrow Z$ are cospans in $\operatorname{\mathcal{C}}$, then their composition (as $1$-morphisms of $\operatorname{Cospan}(\operatorname{\mathcal{C}})$) is given by $X \rightarrow (B \amalg _{Y} C) \leftarrow Z$, where the pushout $B \amalg _{Y} C$ is only well-defined up to (canonical) isomorphism. Corollary <a data-tag="00B6" href="/tag/00B6">8.1.3.15</a> supplies a description of the Duskin nerve $\operatorname{N}_{\bullet }^{\operatorname{D}}( \operatorname{Cospan}(\operatorname{\mathcal{C}}) )$ which does not depend on these choices. This shows, in particular, that the bicategory $\operatorname{Cospan}(\operatorname{\mathcal{C}})$ is well-defined up to (non-strict) isomorphism; see Example <a data-tag="009N" href="/tag/009N">2.2.6.13</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="00B8">
+<p><a class="environment-identifier" href="/tag/00B8">Example <span data-tag="00B8">8.1.3.18</span>.</a> Let $\operatorname{\mathcal{C}}$ be a category which admits pushouts. Then $2$-simplices $\sigma $ of the Duskin nerve $\operatorname{N}_{\bullet }^{\operatorname{D}}( \operatorname{Cospan}(\operatorname{\mathcal{C}}) )$ can be identified with commutative diagrams </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ X_{0,0} \ar [dr] &amp;  &amp;  X_{1,1} \ar [dr] \ar [dl] &amp;  &amp;  X_{2,2} \ar [dl] \\ &amp;  X_{0,1} \ar [dr] &amp;  &amp;  X_{1,2} \ar [dl] &amp;  \\ &amp;  &amp;  X_{0,2} &amp;  &amp;  } \]
+</div>
+<p> in the category $\operatorname{\mathcal{C}}$. It follows from Theorem <a data-tag="00AF" href="/tag/00AF">2.3.2.5</a> that the $2$-simplex $\sigma $ is thin (in the sense of Definition <a data-tag="00AD" href="/tag/00AD">2.3.2.3</a>) if and only if the square appearing in the diagram is a pushout: that is, it induces an isomorphism $X_{0,1} \amalg _{ X_{1,1} } X_{1,2} \rightarrow X_{0,2}$ in the category $\operatorname{\mathcal{C}}$. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof of Theorem <a data-tag="00B5" href="/tag/00B5">8.1.3.14</a>.</strong>
+       Let $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ be categories, where $\operatorname{\mathcal{C}}$ admits pushouts, and let $G: \operatorname{\mathcal{D}}\rightarrow \operatorname{Cospan}(\operatorname{\mathcal{C}})$ be a strictly unital lax functor of bicategories. For every morphism $f: X \rightarrow Y$ in the category $\operatorname{\mathcal{D}}$, we can identify $G(f)$ with a cospan from $G(X)$ to $G(Y)$ in the category $\operatorname{\mathcal{C}}$, given by a diagram we will denote by $G(X) \xrightarrow { b_{-}(f) } B(f) \leftarrow { b_{+}(f) } G(Y)$. Our assumption that $G$ is strictly unital guarantees the following: 
+    <p>
+<dl>
+<dt>$(\ast )$</dt>
+<dd><p>
+For each object $X \in \operatorname{\mathcal{D}}$, the object $B( \operatorname{id}_ X )$ is equal to $G(X)$, and the maps $b_{-}(\operatorname{id}_ X): G(X) \rightarrow B( \operatorname{id}_ X )$ and $b_{+}( \operatorname{id}_ X): G( X) \rightarrow B( \operatorname{id}_ X )$ are the identity morphisms from $G(X)$ to itself in the category $\operatorname{\mathcal{C}}$. 
+</p>
+</dd>
+</dl>
+<p>
+       For every pair of composable $1$-morphisms $X \xrightarrow {f} Y \xrightarrow {g} Z$, the composition constraint $\mu _{g,f}$ for the lax functor $G$ can be identified with a morphism from the pushout $B(f) \amalg _{ G(Y) } B(g)$ to $B( g \circ f)$, or equivalently with a pair of morphisms 
+    <p>
+<div class="equation">
+  \[  p(g,f): B(f) \rightarrow B(g \circ f) \quad \quad q(g,f): B(g) \rightarrow B(g \circ f) \]
+</div>
+<p>
+       satisfying $p(g,f) \circ b_{+}(f) = q(g,f) \circ b_{-}(g)$. The axioms for a lax functor (Definition <a data-tag="008K" href="/tag/008K">2.2.4.5</a>) then translate to the following additional conditions: 
+    <p>
+<dl>
+<dt>$(a)$</dt>
+<dd><p>
+For every morphism $f: X \rightarrow Y$ in the category $\operatorname{\mathcal{D}}$, $p( \operatorname{id}_ Y, f)$ is the identity morphism from $B(f)$ to itself. 
+</p>
+</dd>
+<dt>$(b)$</dt>
+<dd><p>
+For every morphism $f: X \rightarrow Y$ in the category $\operatorname{\mathcal{D}}$, $q( f, \operatorname{id}_ X )$ is the identity morphism from $B(f)$ to itself. 
+</p>
+</dd>
+<dt>$(c)$</dt>
+<dd><p>
+For every composable triple of $1$-morphisms $W \xrightarrow {f} X \xrightarrow {g} Y \xrightarrow {h} Z$ in the category $\operatorname{\mathcal{D}}$, we have 
+</p>
+<div class="equation">
+  \[  p(h \circ g, f) = p( h, g \circ f) \circ p(g,f) \quad \quad q(h, g \circ f ) = q(h \circ g, f) \circ q(h,g) \]
+</div>
+<div class="equation">
+  \[  p( h, g \circ f) \circ q(g,f) = q(h \circ g, f) \circ p( h, g). \]
+</div>
+</dd>
+</dl>
+<p>
+      We wish to show that there exists a unique functor of ordinary categories $F: \operatorname{Tw}(\operatorname{\mathcal{D}}) \rightarrow \operatorname{\mathcal{C}}$ such that $G = F^{+}$, where $F^{+}$ is the lax functor associated to $F$ by Construction <a data-tag="00B4" href="/tag/00B4">8.1.3.12</a>. For this condition to be satisfied, the functor $F$ must satisfy the following conditions: 
+    <p>
+<dl>
+<dt>$(0)$</dt>
+<dd><p>
+For each object $X \in \operatorname{\mathcal{D}}$, we have $F( \operatorname{id}_ X ) = G(X)$ (this guarantees that $G$ and $F^{+}$ coincide on objects). 
+</p>
+</dd>
+<dt>$(1)$</dt>
+<dd><p>
+For each morphism $f: X \rightarrow Y$ in $\operatorname{\mathcal{D}}$ (regarded as an object of $\operatorname{Tw}(\operatorname{\mathcal{D}})$), we have $F(f) = B(f)$, and the morphisms $b_{-}(f)$ and $b_{+}(f)$ are given by $F( \operatorname{id}_ X, f)$ and $F(f, \operatorname{id}_ Y)$, respectively (this guarantees that $G$ and $F^{+}$ coincide on $1$-morphisms, and therefore also on $2$-morphisms). 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+For every pair of composable $1$-morphisms $X \xrightarrow {f} Y \xrightarrow {g} Z$, the morphisms $p(g,f): B(f) \rightarrow B(g \circ f)$ and $q(g,f): B(g) \rightarrow B(g \circ f)$ are given by $F(\operatorname{id}_ X,g): F(f) \rightarrow F(g \circ f)$ and $F(f, \operatorname{id}_ Z): F(g) \rightarrow F(g \circ f)$, respectively (this guarantees that the composition constraints on $G$ and $F^{+}$ coincide). 
+</p>
+</dd>
+</dl>
+<p>
+       Note that the value of $F$ on each object of $\operatorname{Tw}(\operatorname{\mathcal{D}})$ is determined by condition $(1)$. Moreover, if $(u,v)$ is a morphism from $f: X \rightarrow Y$ to $f': X' \rightarrow Y'$ in the category $\operatorname{Tw}(\operatorname{\mathcal{D}})$, then condition $(2)$ guarantees that $F(u,v)$ must be equal to the composition 
+    <p>
+<div class="equation">
+  \[  F(f) = B(f) \xrightarrow { q(f,u) } B(f \circ u) \xrightarrow {p(v, f \circ u)} B( v \circ f \circ u) = B(f') = F(f'). \]
+</div>
+<p>
+       This proves the uniqueness of the functor $F$. 
+    <p>
+      To prove existence, we define $F$ on objects $f$ of $\operatorname{Tw}(\operatorname{\mathcal{D}})^{\operatorname{op}}$ by the formula $F(f) = B(f)$, and on morphisms $(u,v): f \rightarrow f'$ by the formula $F(u,v) = p(v, f \circ u) \circ q(f,u)$. For any morphism $f: X \rightarrow Y$ in $\operatorname{\mathcal{C}}$, we can use $(a)$ and $(b)$ to compute 
+    <p>
+<div class="equation">
+  \[  F(\operatorname{id}_ X, \operatorname{id}_ Y) = p( \operatorname{id}_{X}, f) \circ q( f, \operatorname{id}_ Y) = \operatorname{id}_{B(f)} \circ \operatorname{id}_{ B(f)} = \operatorname{id}_{ B(f) }, \]
+</div>
+<p>
+       so that $F$ carries identity morphisms in $\operatorname{Tw}(\operatorname{\mathcal{D}})$ to identity morphisms in $\operatorname{\mathcal{C}}$. To complete the proof that $F$ is a functor, we note that for every pair of composable morphisms 
+    <p>
+<div class="equation">
+  \[  (f: X \rightarrow Y) \xrightarrow { (u,v)} (f': X' \rightarrow Y') \xrightarrow { (u',v')} (f'': X'' \rightarrow Y'') \]
+</div>
+<p>
+       in the twisted arrow category $\operatorname{Tw}(\operatorname{\mathcal{D}})$, the identities given in $(c)$ allow us to compute 
+    <p>
+<div class="equation">
+  \begin{eqnarray*}  F(u', v') \circ F(u,v) &amp;  = &amp;  p(v', f' \circ u') \circ q(f', u') \circ p( v, f \circ u) \circ q(f, u) \\ &amp;  = &amp;  p( v', v \circ f \circ u \circ u' ) \circ q( v \circ f \circ u, u') \circ p( v, f \circ u ) \circ q(f,u) \\ &amp;  = &amp;  p( v', v \circ f \circ u \circ u' ) \circ p( v, f \circ u \circ u' ) \circ q( f \circ u, u' ) \circ q(f, u ) \\ &amp;  = &amp;  p( v' \circ v, f \circ u \circ u' ) \circ q( f, u \circ u' ) \\ &amp;  = &amp;  F(u \circ u', v' \circ v). \end{eqnarray*}
+</div>
+<p>
+      We now complete the proof by showing that the functor $F$ satisfies conditions $(0)$, $(1)$, and $(2)$. Condition $(0)$ is an immediate consequence of $(\ast )$. To prove $(2)$, we note that for any pair of composable morphisms $X \xrightarrow {f} Y \xrightarrow {g} Z$ in $\operatorname{\mathcal{D}}$, identities $(a)$ and $(b)$ yield equalities 
+    <p>
+<div class="equation">
+  \[  F( \operatorname{id}_ X, g) = p( g, f) \circ q(f, \operatorname{id}_ X) = p(g,f) \quad \quad F(f, \operatorname{id}_ Z) = p( \operatorname{id}_ Z, g \circ f) \circ q( g, f) = q(g,f). \]
+</div>
+<p>
+       To prove $(1)$, we note that if $f: X \rightarrow Y$ is a morphism in $\operatorname{\mathcal{D}}$, then we have 
+    <p>
+<div class="equation">
+  \begin{eqnarray*}  F(\operatorname{id}_ X, f) &amp;  = &amp;  p( f, \operatorname{id}_ X \circ \operatorname{id}_ X) \circ q( \operatorname{id}_ X, \operatorname{id}_ X ) \\ &amp;  = &amp;  p(f, \operatorname{id}_ X ) \circ \operatorname{id}_{ G(X) } \\ &amp;  = &amp;  p(f, \operatorname{id}_ X) \circ b_{+}( \operatorname{id}_ X ) \\ &amp;  = &amp;  q(f, \operatorname{id}_ X ) \circ b_{-}( f ) \\ &amp;  = &amp;  \operatorname{id}_{ B(f) } \circ b_{-}(f) \\ &amp;  = &amp;  b_{-}(f), \end{eqnarray*}
+</div>
+<p>
+       and a similar calculation yields $F(f, \operatorname{id}_ Y) = b_{+}(f)$. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></article>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.html a[data-toggle="popover"]').popover()
+
+  // render mathematics in popovers
+  $("[data-toggle=popover]").on('shown.bs.popover', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $("div.popover-body").html()]);
+  });
+});
+  </script>
+</div>
+</section></body>
+</html>

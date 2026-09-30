@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" id="main">
+<div class="html" id="tag">
+<h3 class="tex-subsection" id="subsection:morphisms-in-hc-nerve"><span data-tag="01LA">4.6.7</span> Morphism Spaces in the Homotopy Coherent Nerve</h3>
+<p>
+Let $\operatorname{\mathcal{C}}$ be a simplicial category and let $\operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}})$ denote the homotopy coherent nerve of $\operatorname{\mathcal{C}}$ (Definition <a data-tag="00KS" href="/tag/00KS">2.4.3.5</a>). Suppose that $\operatorname{\mathcal{C}}$ is locally Kan, so that the simplicial set $\operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}})$ is an $\infty $-category (Theorem <a data-tag="00LJ" href="/tag/00LJ">2.4.5.1</a>). Our goal in this section is to describe the morphism spaces in the $\infty $-category $\operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}})$. Our main result (Theorem <a data-tag="01LE" href="/tag/01LE">4.6.7.5</a>) implies that, for every pair of objects $X,Y \in \operatorname{\mathcal{C}}$, there is a canonical homotopy equivalence 
+</p>
+<div class="equation">
+  \[  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } \rightarrow \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}}) }(X,Y), \]
+</div>
+<p>
+ where $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet }$ denotes the Kan complex of morphisms from $X$ to $Y$ in $\operatorname{\mathcal{C}}$, and $\operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}}) }(X,Y)$ is given by Construction <a data-tag="01J5" href="/tag/01J5">4.6.1.1</a>. 
+</p>
+<p>
+<article class="env-notation" id="01LB">
+<p><a class="environment-identifier" href="/tag/01LB">Notation <span data-tag="01LB">4.6.7.1</span>.</a> Let $K$ be a simplicial set. We define a simplicial category $\operatorname{\mathcal{E}}[K]$ as follows: </p>
+<p><ul>
+<li><p>
+The category $\operatorname{\mathcal{E}}[K]$ has exactly two objects, which we will denote by $x$ and $y$. 
+</p>
+</li><li><p>
+The morphism spaces in $\operatorname{\mathcal{E}}[K]$ are given by the formulae 
+</p>
+<div class="equation">
+  \[  \operatorname{Hom}_{\operatorname{\mathcal{E}}[K]}( x, x)_{\bullet } = \{  \operatorname{id}_{x} \}  \quad \quad \operatorname{Hom}_{\operatorname{\mathcal{E}}[K]}(y,y)_{\bullet } = \{  \operatorname{id}_ y \}  \]
+</div>
+<div class="equation">
+  \[  \operatorname{Hom}_{\operatorname{\mathcal{E}}[K]}(x,y)_{\bullet } = K \quad \quad \operatorname{Hom}_{\operatorname{\mathcal{E}}[K]}( y,x)_{\bullet } = \emptyset . \]
+</div>
+</li>
+</ul></p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="01LC">
+<p><a class="environment-identifier" href="/tag/01LC">Remark <span data-tag="01LC">4.6.7.2</span>.</a> The simplicial category $\operatorname{\mathcal{E}}[K]$ is characterized by the following universal property: if $\operatorname{\mathcal{C}}$ is any simplicial category containing a pair of objects $X$ and $Y$, then the natural map </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \{  \textnormal{Simplicial functors $F: \operatorname{\mathcal{E}}[K] \rightarrow \operatorname{\mathcal{C}}$ with $F(x) = X$ and $F(y) = Y$} \}  \ar [d] \\ \operatorname{Hom}_{\operatorname{Set_{\Delta }}}(K, \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } ) } \]
+</div>
+<p> is a bijection (see Proposition <a data-tag="00LS" href="/tag/00LS">2.4.5.9</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-construction" id="01LD">
+<p><a class="environment-identifier" href="/tag/01LD">Construction <span data-tag="01LD">4.6.7.3</span>.</a> Fix an integer $n \geq 0$, let $[n]$ denote the linearly ordered set $\{  0 &lt; 1 &lt; \cdots &lt; n \} $, and let $\{ x\}  \star [n]$ denote the linearly ordered set obtained from $[n]$ by adjoining a new least element $x$. Let $\operatorname{Path}[ \{ x\}  \star [n] ]_{\bullet }$ denote the simplicial path category of Notation <a data-tag="00KN" href="/tag/00KN">2.4.3.1</a>. We define a simplicial functor $\pi : \operatorname{Path}[ \{ x\}  \star [n] ]_{\bullet } \rightarrow \operatorname{\mathcal{E}}[\Delta ^ n]$ as follows: </p>
+<p><ul>
+<li><p>
+On objects, the functor $\pi $ is given by the formula 
+</p>
+<div class="equation">
+  \[  \pi (i) = \begin{cases}  x &amp;  \textnormal{ if $i = x$} \\  y &amp;  \textnormal{ if $0 \leq i \leq n$.} \end{cases} \]
+</div>
+</li><li><p>
+For $0 \leq m \leq n$, the morphism of simplicial sets 
+</p>
+<div class="equation">
+  \[ \operatorname{Hom}_{ \operatorname{Path}[ \{ x\}  \star [n] ] }(x, m)_{\bullet } \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{E}}[\Delta ^ n]}( x,y )_{\bullet } = \Delta ^ n \]
+</div>
+<p>
+ is given by the map of partially ordered sets 
+</p>
+<div class="equation">
+  \[  \{  \textnormal{Subsets $S = \{  x &lt; i_0 &lt; \cdots &lt; i_ k = m \}  \subseteq \{ x\}  \star [n]$} \} ^{\operatorname{op}} \rightarrow [n] \quad \quad S \mapsto i_0. \]
+</div>
+</li>
+</ul></p>
+<p>Let $\operatorname{\mathcal{C}}$ be a simplicial category containing a pair of objects $X$ and $Y$. Then every $n$-simplex $\sigma \in \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{n}$ determines a simplicial functor $F_{\sigma }: \operatorname{\mathcal{E}}[\Delta ^ n] \rightarrow \operatorname{\mathcal{C}}$, given on objects by $F_{\sigma }(x) = X$ and $F_{\sigma }(y) = Y$. The composition $F_{\sigma } \circ \pi $ is a simplicial functor from $\operatorname{Path}[ \{ x\}  \star [n]]_{\bullet }$ to $\operatorname{\mathcal{C}}$, which (by Proposition <a data-tag="00LE" href="/tag/00LE">2.4.4.15</a>) we can view as a map of simplicial sets $f_{\sigma }: \{ x\}  \star \Delta ^{n} \rightarrow \operatorname{N}_{\bullet }^{\operatorname{hc}}( \operatorname{\mathcal{C}})$. By construction, $f_{\sigma }$ carries $x$ to $X$, and the restriction $f_{\sigma }|_{ \operatorname{N}_{\bullet }( \{  0 &lt; 1 &lt; \dots &lt; n \}  ) }$ is the constant map taking the value $Y$. We can therefore identify $f_{\sigma }$ with an $n$-simplex $\theta (\sigma )$ of the left-pinched morphism space $\operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}}( \operatorname{\mathcal{C}})}^{\mathrm{L}}( X, Y)$ introduced in Construction <a data-tag="01KX" href="/tag/01KX">4.6.5.1</a> (see Remark <a data-tag="01KY" href="/tag/01KY">4.6.5.2</a>). The construction $\sigma \mapsto \theta (\sigma )$ depends functorially on the object $[n] \in \operatorname{{\bf \Delta }}$, and therefore determines a map of simplicial sets </p>
+<div class="equation">
+  \[  \theta : \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } \rightarrow \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}}( \operatorname{\mathcal{C}})}^{\mathrm{L}}( X, Y), \]
+</div>
+<p> which we will refer to as the <em>comparison map</em>. </p>
+</article>
+</p>
+<p>
+<article class="env-exercise" id="01PZ">
+<p><a class="environment-identifier" href="/tag/01PZ">Exercise <span data-tag="01PZ">4.6.7.4</span>.</a> Let $\operatorname{\mathcal{C}}$ be a differential graded category containing a pair of objects $X$ and $Y$, and let $\operatorname{\mathcal{C}}^{\Delta }$ denote the associated simplicial category (Construction <a data-tag="00SE" href="/tag/00SE">2.5.9.2</a>). Show that the isomorphism $K( \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\ast } ) \xrightarrow {\sim } \operatorname{Hom}^{\mathrm{L}}_{ \operatorname{N}_{\bullet }^{\operatorname{dg}}(\operatorname{\mathcal{C}})}(X,Y)$ of Example <a data-tag="01L9" href="/tag/01L9">4.6.5.14</a> factors as a composition </p>
+<div class="equation">
+  \[  K( \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\ast } ) = \operatorname{Hom}_{\operatorname{\mathcal{C}}^{\Delta }}(X,Y)_{\bullet } \xrightarrow {\theta } \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}}( \operatorname{\mathcal{C}}^{\Delta } )}^{\mathrm{L}}( X, Y) \xrightarrow {\rho } \operatorname{Hom}^{\mathrm{L}}_{ \operatorname{N}_{\bullet }^{\operatorname{dg}}(\operatorname{\mathcal{C}})}( X,Y ), \]
+</div>
+<p> where $\theta $ is the comparison map of Construction <a data-tag="01LD" href="/tag/01LD">4.6.7.3</a> and $\rho $ is induced by the trivial Kan fibration $\mathfrak {Z}: \operatorname{N}_{\bullet }^{\operatorname{hc}}( \operatorname{\mathcal{C}}^{\Delta } ) \rightarrow \operatorname{N}_{\bullet }^{\operatorname{dg}}(\operatorname{\mathcal{C}})$ of Proposition <a data-tag="00SN" href="/tag/00SN">2.5.9.10</a>. Beware that $\theta $ and $\rho $ are generally not isomorphisms. </p>
+</article>
+</p>
+<p>
+Our comparison result can now be formulated as follows: 
+</p>
+<p>
+<article class="env-theorem" id="01LE">
+<p><a class="environment-identifier" href="/tag/01LE">Theorem <span data-tag="01LE">4.6.7.5</span>.</a> Let $\operatorname{\mathcal{C}}$ be a locally Kan simplicial category containing a pair of objects $X,Y \in \operatorname{\mathcal{C}}$. Then the comparison map </p>
+<div class="equation">
+  \[  \theta : \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } \rightarrow \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}}( \operatorname{\mathcal{C}})}^{\mathrm{L}}( X, Y) \]
+</div>
+<p> of Construction <a data-tag="01LD" href="/tag/01LD">4.6.7.3</a> is a homotopy equivalence of Kan complexes. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="01LF">
+<p><a class="environment-identifier" href="/tag/01LF">Remark <span data-tag="01LF">4.6.7.6</span>.</a> Let $\operatorname{\mathcal{C}}$ be a locally Kan simplicial category containing a pair of objects $X,Y \in \operatorname{\mathcal{C}}$. Combining Theorem <a data-tag="01LE" href="/tag/01LE">4.6.7.5</a> with Proposition <a data-tag="01L5" href="/tag/01L5">4.6.5.10</a>, we obtain a homotopy equivalence of Kan complexes $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } \rightarrow \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}}( \operatorname{\mathcal{C}})}( X, Y)$, given by composing the comparison map $\theta $ of Construction <a data-tag="01LD" href="/tag/01LD">4.6.7.3</a> with the left-pinch inclusion map of Construction <a data-tag="01L2" href="/tag/01L2">4.6.5.7</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="06QR">
+<p><a class="environment-identifier" href="/tag/06QR">Example <span data-tag="06QR">4.6.7.7</span>.</a> Let $\operatorname{\mathcal{S}}$ denote the $\infty $-category of spaces (Construction <a data-tag="00TZ" href="/tag/00TZ">3.1.6.1</a>). If $X$ and $Y$ are Kan complexes, then Remark <a data-tag="01LF" href="/tag/01LF">4.6.7.6</a> supplies a canonical homotopy equivalence $\operatorname{Fun}(X,Y) \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{S}}}( X,Y)$. Beware that this homotopy equivalence is generally not an isomorphism. </p>
+</article>
+</p>
+<p>
+We will deduce Theorem <a data-tag="01LE" href="/tag/01LE">4.6.7.5</a> from the following more general result: 
+</p>
+<p>
+<article class="env-theorem" id="01LG">
+<p><a class="environment-identifier" href="/tag/01LG">Theorem <span data-tag="01LG">4.6.7.8</span>.</a> Let $\operatorname{\mathcal{C}}$ be a simplicial category containing a pair of objects $X$ and $Y$, and suppose that the simplicial set $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet }$ is an $\infty $-category. Then the left-pinched morphism space $\operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}})}^{\mathrm{L}}(X,Y)$ is also an $\infty $-category, and the comparison map </p>
+<div class="equation">
+  \[  \theta : \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } \rightarrow \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}}( \operatorname{\mathcal{C}})}^{\mathrm{L}}( X, Y) \]
+</div>
+<p> of Construction <a data-tag="01LD" href="/tag/01LD">4.6.7.3</a> is an equivalence of $\infty $-categories. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="01LH">
+<p><a class="environment-identifier" href="/tag/01LH">Remark <span data-tag="01LH">4.6.7.9</span>.</a> Let $\operatorname{\mathcal{C}}$ be a simplicial category containing a pair of objects $X$ and $Y$, and suppose that the simplicial set $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet }$ is an $\infty $-category. Applying Theorem <a data-tag="01LG" href="/tag/01LG">4.6.7.8</a> to the opposite simplicial category $\operatorname{\mathcal{C}}^{\operatorname{op}}$ (and using Remark <a data-tag="01KZ" href="/tag/01KZ">4.6.5.3</a>), we obtain an equivalence of $\infty $-categories </p>
+<div class="equation">
+  \[  \theta ': \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet }^{\operatorname{op}} \rightarrow \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}}( \operatorname{\mathcal{C}})}^{\mathrm{R}}( X, Y), \]
+</div>
+<p> which can be described explicitly using a variant of Construction <a data-tag="01LD" href="/tag/01LD">4.6.7.3</a>. </p>
+</article>
+</p>
+<p>
+The remainder of this section is devoted to the proof of Theorem <a data-tag="01LG" href="/tag/01LG">4.6.7.8</a>. 
+</p>
+<p>
+<article class="env-construction" id="01LJ">
+<p><a class="environment-identifier" href="/tag/01LJ">Construction <span data-tag="01LJ">4.6.7.10</span>.</a> Let $K$ be a simplicial set. We let $\Sigma (K)$ denote the pushout $(\{ x\}  \star K) \coprod _{K} \{ y\} $ (this is a model for the <em>unreduced suspension</em> of $K$). Let $\operatorname{Path}[ \Sigma (K) ]_{\bullet }$ denote the simplicial path category of $\Sigma (K)$ (Notation <a data-tag="00L2" href="/tag/00L2">2.4.4.2</a>). Then $\operatorname{Path}[ \Sigma (K) ]_{\bullet }$ has exactly two objects, which we denote by $x$ and $y$. We let $\Phi (K)$ denote the simplicial set $\operatorname{Hom}_{ \operatorname{Path}[ \Sigma (K) ]}(x,y)_{\bullet }$. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="01LK">
+<p><a class="environment-identifier" href="/tag/01LK">Example <span data-tag="01LK">4.6.7.11</span>.</a> If $K = \Delta ^0$, then the suspension $\Sigma (K)$ can be identified with $\Delta ^1$. In this case, the simplicial path category $\operatorname{Path}[ \Sigma (K) ]_{\bullet }$ can be identified with the ordinary category $[1]$, and the simplicial set $\Phi (K)$ is isomorphic to $\Delta ^{0}$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="01LL">
+<p><a class="environment-identifier" href="/tag/01LL">Remark <span data-tag="01LL">4.6.7.12</span>.</a> Let $K$ be a simplicial set, and let $\operatorname{\mathcal{D}}$ be another simplicial set containing vertices $X$ and $Y$. Unwinding the definitions, we have a canonical bijection </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \{  \textnormal{Morphisms $K \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{D}}}^{\mathrm{L}}(X,Y)$} \}  \ar [d]^{\sim } \\ \{  \textnormal{Morphisms $F: \Sigma (K) \rightarrow \operatorname{\mathcal{D}}$ with $F(x) = X$ and $F(y) = Y$} \}  . } \]
+</div>
+</article>
+</p>
+<p>
+<article class="env-remark" id="01LM">
+<p><a class="environment-identifier" href="/tag/01LM">Remark <span data-tag="01LM">4.6.7.13</span>.</a> Let $K$ be a simplicial set. Note that, for $n &gt; 0$, every nondegenerate simplex $\sigma : \Delta ^ n \rightarrow \Sigma (K)$ satisfies $\sigma (0) = x$ and $\sigma (n) = y$. Using Theorem <a data-tag="00LA" href="/tag/00LA">2.4.4.10</a>, we see that for each $m \geq 0$, $\operatorname{Path}[ \Sigma (K) ]_{m}$ can be identified with the path category of a directed graph $G_ m$ with vertex set $\operatorname{Vert}(G_ m) = \{ x,y\} $, where each edge of $G_ m$ has source $x$ and target $y$. These path categories are easy to describe: they satisfy </p>
+<div class="equation">
+  \[ \operatorname{Hom}_{ \operatorname{Path}[G_ m] }( x, x) = \{  \operatorname{id}_{x} \}  \quad \quad \operatorname{Hom}_{\operatorname{Path}[G_ m] }( y,y) = \{  \operatorname{id}_{y} \}  \]
+</div>
+<div class="equation">
+  \[  \operatorname{Hom}_{ \operatorname{Path}[G_ m] }(x,y) = \operatorname{Edge}(G_ m) \quad \quad \operatorname{Hom}_{ \operatorname{Path}[G_ m] }( y,x) = \emptyset . \]
+</div>
+<p> Allowing $m$ to vary, we conclude that the simplicial category $\operatorname{Path}[ \Sigma (K) ]_{\bullet }$ satisfies </p>
+<div class="equation">
+  \[  \operatorname{Hom}_{ \operatorname{Path}[\Sigma (K)] }(x,x)_{\bullet } = \{  \operatorname{id}_{x} \}  \quad \operatorname{Hom}_{ \operatorname{Path}[\Sigma (K)] }(y,x)_{\bullet } = \emptyset \quad \operatorname{Hom}_{ \operatorname{Path}[\Sigma (K)] }(y,y)_{\bullet } = \{  \operatorname{id}_{y} \} . \]
+</div>
+<p> That is, $\operatorname{Path}[\Sigma (K)]_{\bullet }$ can be identified with the simplicial category $\operatorname{\mathcal{E}}[ \Phi (K) ]$ of Notation <a data-tag="01LB" href="/tag/01LB">4.6.7.1</a>. Moreover, we can identify $m$-simplices of $\Phi (K)$ with elements of the set $E( \Sigma (K), m)$ defined in Notation <a data-tag="00L9" href="/tag/00L9">2.4.4.9</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="01LN">
+<p><a class="environment-identifier" href="/tag/01LN">Remark <span data-tag="01LN">4.6.7.14</span>.</a> Let $u: K \rightarrow K'$ be a monomorphism of simplicial sets. Then the induced map $\Phi (u): \Phi (K) \rightarrow \Phi (K')$ is also a monomorphism (this follows immediately from the description given in Remark <a data-tag="01LM" href="/tag/01LM">4.6.7.13</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-lemma" id="01LP">
+<p><a class="environment-identifier" href="/tag/01LP">Lemma <span data-tag="01LP">4.6.7.15</span>.</a> Let $K$ be a simplicial set and let $\operatorname{\mathcal{C}}$ be a simplicial category containing objects $X$ and $Y$. Then the natural map </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \{  \textnormal{Functors $F: \operatorname{Path}[\Sigma (K)]_{\bullet } \rightarrow \operatorname{\mathcal{C}}$ with $F(x) = X$ and $F(y) = Y$} \}  \ar [d] \\ \{  \textnormal{Morphisms $\Phi (K) \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet }$} \}  } \]
+</div>
+<p> is a bijection. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Combine Remarks <a data-tag="01LC" href="/tag/01LC">4.6.7.2</a> and <a data-tag="01LM" href="/tag/01LM">4.6.7.13</a>. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+Combining Remark <a data-tag="01LL" href="/tag/01LL">4.6.7.12</a> with Lemma <a data-tag="01LP" href="/tag/01LP">4.6.7.15</a> and invoking the universal property of simplicial path categories, we obtain the following: 
+</p>
+<p>
+<article class="env-corollary" id="01LQ">
+<p><a class="environment-identifier" href="/tag/01LQ">Corollary <span data-tag="01LQ">4.6.7.16</span>.</a> Let $K$ be a simplicial set and let $\operatorname{\mathcal{C}}$ be a simplicial category containing objects $X$ and $Y$. Then we have a canonical bijection </p>
+<div class="equation">
+  \[  \{  \textnormal{Morphisms $K \rightarrow \operatorname{Hom}_{\operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}})}^{\mathrm{L}}(X,Y)$} \}  \simeq \{  \textnormal{Morphisms $\Phi (K) \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet }$} \} . \]
+</div>
+</article>
+</p>
+<p>
+<article class="env-remark" id="03LK">
+<p><a class="environment-identifier" href="/tag/03LK">Remark <span data-tag="03LK">4.6.7.17</span>.</a> It follows from Corollary <a data-tag="01LQ" href="/tag/01LQ">4.6.7.16</a> that the left-pinched morphism space $\operatorname{Hom}_{\operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}})}^{\mathrm{L}}(X,Y)$ depends only on the simplicial set $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet }$, and not on any other features of the simplicial category $\operatorname{\mathcal{C}}$. In particular, there is a canonical isomorphism </p>
+<div class="equation">
+  \[  \operatorname{Hom}_{\operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}})}^{\mathrm{L}}(X,Y) \rightarrow \operatorname{Hom}^{\mathrm{L}}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{Set_{\Delta }}) }( \Delta ^0, \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } ). \]
+</div>
+</article>
+</p>
+<p>
+<article class="env-corollary" id="01LR">
+<p><a class="environment-identifier" href="/tag/01LR">Corollary <span data-tag="01LR">4.6.7.18</span>.</a> Let $A$ and $B$ be simplicial sets, and let $\operatorname{\mathcal{E}}[B]$ be the simplicial category of Notation <a data-tag="01LB" href="/tag/01LB">4.6.7.1</a>. Then we have a canonical bijection </p>
+<div class="equation">
+  \[  \{  \textnormal{Morphisms $A \rightarrow \operatorname{Hom}_{\operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{E}}[B])}^{\mathrm{L}}(x,y)$} \}  \simeq \{  \textnormal{Morphisms $\Phi (A) \rightarrow B$} \} . \]
+</div>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Apply Corollary <a data-tag="01LQ" href="/tag/01LQ">4.6.7.16</a> in the special case $\operatorname{\mathcal{C}}= \operatorname{\mathcal{E}}[B]$. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+<article class="env-corollary" id="01LS">
+<p><a class="environment-identifier" href="/tag/01LS">Corollary <span data-tag="01LS">4.6.7.19</span>.</a> The functor </p>
+<div class="equation">
+  \[  \operatorname{Set_{\Delta }}\rightarrow \operatorname{Set_{\Delta }}\quad \quad B \mapsto \operatorname{Hom}^{\mathrm{L}}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}}( \operatorname{\mathcal{E}}[B] )}(x,y) \]
+</div>
+<p> has a left adjoint, given by the functor $A \mapsto \Phi (A)$ of Construction <a data-tag="01LJ" href="/tag/01LJ">4.6.7.10</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="01LT">
+<p><a class="environment-identifier" href="/tag/01LT">Remark <span data-tag="01LT">4.6.7.20</span>.</a> The adjunction of Corollary <a data-tag="01LS" href="/tag/01LS">4.6.7.19</a> has an interpretation in the framework of Proposition <a data-tag="002F" href="/tag/002F">1.2.3.15</a>. Let $Q^{\bullet }$ denote the cosimplicial object of $\operatorname{Set_{\Delta }}$ given by the construction $[n] \mapsto \Phi ( \Delta ^ n )$. For every simplicial set $B$, Corollary <a data-tag="01LR" href="/tag/01LR">4.6.7.18</a> supplies a canonical isomorphism of simplicial sets </p>
+<div class="equation">
+  \[  \operatorname{Hom}^{\mathrm{L}}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}}( \operatorname{\mathcal{E}}[B] )}(x,y) \simeq \operatorname{Sing}_{\bullet }^{Q}( B ), \]
+</div>
+<p> where $\operatorname{Sing}_{\bullet }^{Q}(B)$ is the simplicial set defined in Variant <a data-tag="001T" href="/tag/001T">1.2.2.8</a>. It follows that $\Phi $ can be identified with the generalized geometric realization functor $K \mapsto | K |^{Q}$ of Proposition <a data-tag="002F" href="/tag/002F">1.2.3.15</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-corollary" id="01LU">
+<p><a class="environment-identifier" href="/tag/01LU">Corollary <span data-tag="01LU">4.6.7.21</span>.</a> The functor $\Phi : \operatorname{Set_{\Delta }}\rightarrow \operatorname{Set_{\Delta }}$ of Construction <a data-tag="01LJ" href="/tag/01LJ">4.6.7.10</a> preserves colimits. </p>
+</article>
+</p>
+<p>
+<article class="env-construction" id="01LV">
+<p><a class="environment-identifier" href="/tag/01LV">Construction <span data-tag="01LV">4.6.7.22</span>.</a> Let $K$ be a simplicial set, let $\operatorname{\mathcal{E}}[K]$ be the simplicial category of Notation <a data-tag="01LB" href="/tag/01LB">4.6.7.1</a>, and let </p>
+<div class="equation">
+  \[  \theta : K = \operatorname{Hom}_{\operatorname{\mathcal{E}}[K]}(x,y)_{\bullet } \rightarrow \operatorname{Hom}^{\mathrm{L}}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{E}}[K])}( x, y) \]
+</div>
+<p> be the comparison map of Construction <a data-tag="01LD" href="/tag/01LD">4.6.7.3</a>. We let $\rho _{K}: \Phi (K) \rightarrow K$ denote the image of $\theta $ under the bijection of Corollary <a data-tag="01LR" href="/tag/01LR">4.6.7.18</a>. </p>
+</article>
+</p>
+<p>
+We will deduce Theorem <a data-tag="01LG" href="/tag/01LG">4.6.7.8</a> from the following result, which we prove at the end of this section: 
+</p>
+<p>
+<article class="env-proposition" id="01LW">
+<p><a class="environment-identifier" href="/tag/01LW">Proposition <span data-tag="01LW">4.6.7.23</span>.</a> Let $K$ be a simplicial set. Then the morphism $\rho _{K}: \Phi (K) \rightarrow K$ of Construction <a data-tag="01LV" href="/tag/01LV">4.6.7.22</a> is a categorical equivalence of simplicial sets. </p>
+</article>
+</p>
+<p>
+<article class="env-corollary" id="01LX">
+<p><a class="environment-identifier" href="/tag/01LX">Corollary <span data-tag="01LX">4.6.7.24</span>.</a> Let $u: K \rightarrow K'$ be a categorical equivalence of simplicial sets. Then the induced map $\Phi (u): \Phi (K) \rightarrow \Phi (K')$ is also a categorial equivalence of simplicial sets. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      We have a commutative diagram 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \Phi (K) \ar [r]^-{ \Phi (u) } \ar [d]^{\rho _ K} &amp;  \Phi (K') \ar [d]^{ \rho _{K'} } \\ K \ar [r]^-{u} &amp;  K' } \]
+</div>
+<p>
+       where $u$ is a categorical equivalence by hypothesis and the vertical maps are categorical equivalences by Proposition <a data-tag="01LW" href="/tag/01LW">4.6.7.23</a>. Using Remark <a data-tag="01ED" href="/tag/01ED">4.5.4.5</a>, we conclude that $\Phi (u)$ is a categorical equivalence as well. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<p>
+<article class="env-corollary" id="01LY">
+<p><a class="environment-identifier" href="/tag/01LY">Corollary <span data-tag="01LY">4.6.7.25</span>.</a> Let $\operatorname{\mathcal{C}}$ be a simplicial category containing a pair of objects $X$ and $Y$, and assume that the simplicial set $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet }$ is an $\infty $-category. Then the simplicial set $\operatorname{Hom}^{\mathrm{L}}_{\operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}})}(X,Y)$ is also an $\infty $-category. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Let $i: A \hookrightarrow B$ be an inner anodyne morphism of simplicial sets. We wish to show that every lifting problem 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ A \ar [r] \ar [d]^{i} &amp;  \operatorname{Hom}^{\mathrm{L}}_{\operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}})}(X,Y) \ar [d] \\ B \ar [r] \ar@ {--&gt;}[ur] &amp;  \Delta ^0 } \]
+</div>
+<p>
+       admits a solution. By virtue of Corollary <a data-tag="01LQ" href="/tag/01LQ">4.6.7.16</a>, we can rephrase this as a lifting problem 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \Phi (A) \ar [r] \ar [d]^{\Phi (i)} &amp;  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } \ar [d] \\ \Phi (B) \ar [r] \ar@ {--&gt;}[ur] &amp;  \Delta ^0. } \]
+</div>
+<p>
+       Note that $\Phi (i)$ is a monomorphism (Remark <a data-tag="01LN" href="/tag/01LN">4.6.7.14</a>) and a categorical equivalence (Corollary <a data-tag="01LX" href="/tag/01LX">4.6.7.24</a>), so the desired result follows from Lemma <a data-tag="01FS" href="/tag/01FS">4.5.6.2</a>. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></p></p></article>
+<p>
+<article class="env-corollary" id="01LZ">
+<p><a class="environment-identifier" href="/tag/01LZ">Corollary <span data-tag="01LZ">4.6.7.26</span>.</a> Let $\operatorname{\mathcal{C}}$ be a simplicial category containing a pair of objects $X$ and $Y$, and assume that the simplicial set $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet }$ is an $\infty $-category. Let $K$ be another simplicial set, and suppose we are given a pair of morphisms $f_0, f_1: K \rightarrow \operatorname{Hom}^{\mathrm{L}}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}}) }(X,Y)$, which correspond (under the bijection of Corollary <a data-tag="01LQ" href="/tag/01LQ">4.6.7.16</a>) to diagrams $f'_0,f'_1: \Phi (K) \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet }$. The following conditions are equivalent: </p>
+<p><dl>
+<dt>$(1)$</dt>
+<dd><p>
+The diagrams $f_0$ and $f_1$ are isomorphic when regarded as objects of the $\infty $-category $\operatorname{Fun}(K, \operatorname{Hom}^{\mathrm{L}}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}}) }(X,Y) )$. 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+The diagrams $f'_0$ and $f'_1$ are isomorphic when regarded as objects of the $\infty $-category $\operatorname{Fun}( \Phi (K), \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } )$. 
+</p>
+</dd>
+</dl></p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Choose a categorical mapping cylinder 
+    <p>
+<div class="equation">
+  \[  K \coprod K \xrightarrow { (s_0, s_1) } \overline{K} \xrightarrow {\pi } K \]
+</div>
+<p>
+       for the simplicial set $K$ (Definition <a data-tag="01K5" href="/tag/01K5">4.6.3.3</a>). Using Remark <a data-tag="01LN" href="/tag/01LN">4.6.7.14</a>, Corollary <a data-tag="01LU" href="/tag/01LU">4.6.7.21</a>, and Corollary <a data-tag="01LX" href="/tag/01LX">4.6.7.24</a>, we conclude that the induced diagram 
+    <p>
+<div class="equation">
+  \[  \Phi (K) \coprod \Phi (K) \xrightarrow { ( \Phi (s_0), \Phi (s_1) ) } \Phi ( \overline{K} ) \xrightarrow { \Phi (\pi ) } \Phi (K) \]
+</div>
+<p>
+       exhibits $\Phi ( \overline{K} )$ as a categorical mapping cylinder of $K$. Using Corollary <a data-tag="01K9" href="/tag/01K9">4.6.3.7</a>, we see that $(1)$ and $(2)$ are equivalent to the following: 
+    <p>
+<dl>
+<dt>$(1')$</dt>
+<dd><p>
+There exists a diagram $\overline{f}: \overline{K} \rightarrow \operatorname{Hom}^{\mathrm{L}}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}}) }(X,Y)$ satisfying $f_0 = \overline{f} \circ s_0$ and $f_1 = \overline{f} \circ s_1$. 
+</p>
+</dd>
+<dt>$(2')$</dt>
+<dd><p>
+There exists a diagram $\overline{f}': \Phi ( \overline{K} ) \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet }$ satisfying $f'_0 = \overline{f}' \circ \Phi (s_0)$ and $f'_1 = \overline{f}' \circ \Phi (s_1)$. 
+</p>
+</dd>
+</dl>
+<p>
+       The equivalence of $(1')$ and $(2')$ follows from Corollary <a data-tag="01LQ" href="/tag/01LQ">4.6.7.16</a>. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></p></p></p></p></article>
+<article class="env-proof">
+<p>
+<strong>Proof of Theorem <a data-tag="01LG" href="/tag/01LG">4.6.7.8</a>.</strong>
+       Let $\operatorname{\mathcal{C}}$ be a simplicial category containing a pair of objects $X,Y \in \operatorname{\mathcal{C}}$ for which the simplicial set $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet }$ is an $\infty $-category. Applying Corollary <a data-tag="01LY" href="/tag/01LY">4.6.7.25</a>, we deduce that the left-pinched morphism space $\operatorname{Hom}^{\mathrm{L}}_{\operatorname{N}_{\bullet }^{\operatorname{hc}}(\operatorname{\mathcal{C}})}(X, Y)$ is also an $\infty $-category. We wish to show that the comparison map 
+    <p>
+<div class="equation">
+  \[  \theta : \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } \rightarrow \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}}( \operatorname{\mathcal{C}})}^{\mathrm{L}}( X, Y) \]
+</div>
+<p>
+       of Construction <a data-tag="01LD" href="/tag/01LD">4.6.7.3</a> is an equivalence of $\infty $-categories. To prove this, it will suffice to show that for every simplicial set $K$, postcomposition with $\theta $ induces a bijection 
+    <p>
+<div class="equation">
+  \[  \theta _{K}: \pi _0( \operatorname{Fun}( K, \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } )^{\simeq } ) \rightarrow \pi _0( \operatorname{Fun}(K, \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}}( \operatorname{\mathcal{C}})}^{\mathrm{L}}( X, Y))^{\simeq } ). \]
+</div>
+<p>
+       By virtue of Corollary <a data-tag="01LZ" href="/tag/01LZ">4.6.7.26</a>, we can identify $\pi _0( \operatorname{Fun}(K, \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{hc}}( \operatorname{\mathcal{C}})}^{\mathrm{L}}( X, Y))^{\simeq } )$ with the set $\pi _0( \operatorname{Fun}( \Phi (K), \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } )^{\simeq } )$. Under this identification, $\theta _{K}$ corresponds to the map 
+    <p>
+<div class="equation">
+  \[  \pi _0( \operatorname{Fun}( K, \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } )^{\simeq } ) \rightarrow \pi _0( \operatorname{Fun}( \Phi (K), \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } )^{\simeq } ) \]
+</div>
+<p>
+       given by precomposition with the map $\rho _{K}: \Phi (K) \rightarrow K$ of Construction <a data-tag="01LV" href="/tag/01LV">4.6.7.22</a>, which is bijective by virtue of the fact that $\rho _{K}$ is a categorical equivalence of simplicial sets (Proposition <a data-tag="01LW" href="/tag/01LW">4.6.7.23</a>). 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></p></p></p></p></article>
+<p>
+We now turn to the proof of Proposition <a data-tag="01LW" href="/tag/01LW">4.6.7.23</a>. Our strategy is to use formal arguments to reduce to the case where the simplicial set $K$ is a standard simplex, which can be analyzed explicitly. 
+</p>
+<p>
+<article class="env-example" id="01M0">
+<p><a class="environment-identifier" href="/tag/01M0">Example <span data-tag="01M0">4.6.7.27</span>.</a> Let $m$ and $n$ be nonnegative integers. By virtue of Remark <a data-tag="01LM" href="/tag/01LM">4.6.7.13</a>, we can identify $m$-simplices of the simplicial set $\Phi ( \Delta ^ n )$ with the set $E( \Sigma (\Delta ^ n), m)$ defined in Notation <a data-tag="00L9" href="/tag/00L9">2.4.4.9</a>. By definition, the elements of $E( \Sigma (\Delta ^ n), m)$ are given by pairs $(\sigma , \overrightarrow {I} )$, where $\sigma : \Delta ^ k \rightarrow \Sigma (\Delta ^ n)$ is a nondegenerate simplex of dimension $k &gt; 0$ and $\overrightarrow {I} = ( I_0 \supseteq I_1 \supseteq \cdots \supseteq I_ m )$ is a chain of subsets of $[k]$ satisfying $I_0 = [k]$ and $I_ m = \{ 0, k\} $. </p>
+<p>For each $k &gt; 0$, there is a canonical bijection </p>
+<div class="equation">
+  \[  \{  \textnormal{Subsets $S \subseteq [n]$ of cardinality $k$} \}  \simeq \{  \textnormal{Nondegenerate $k$-Simplices of $\Sigma (\Delta ^ n)$} \} , \]
+</div>
+<p> which carries a subset $S$ to the $k$-simplex $\sigma _{S}$ given by the composite map </p>
+<div class="equation">
+  \[ \Delta ^ k \simeq \{ x\}  \star \operatorname{N}_{\bullet }(S) \hookrightarrow \{ x\}  \star \Delta ^ n \twoheadrightarrow \Sigma (\Delta ^ n). \]
+</div>
+<p> For every such subset $S$, let $\iota _{S}: \operatorname{N}_{\bullet }(S) \hookrightarrow \Delta ^ k$ be the inclusion map. Then the construction </p>
+<div class="equation">
+  \[  ( \sigma _ S, \overrightarrow {I} ) \mapsto ( \sigma _{S}^{-1}(I_0) \supseteq \sigma _{S}^{-1}(I_1) \supseteq \cdots \supseteq \sigma _{S}^{-1}(I_ m) ) \]
+</div>
+<p> induces a bijection from $E( \Sigma ( \Delta ^ n), m)$ to the collection of chains $\overrightarrow {S} = ( S_0 \supseteq S_1 \supseteq \cdots \supseteq S_ m )$ of subsets of $[n]$ which satisfy the following pair of conditions: </p>
+<p><dl>
+<dt>$(a)$</dt>
+<dd><p>
+The set $S_ m$ contains exactly one element. 
+</p>
+</dd>
+<dt>$(b)$</dt>
+<dd><p>
+For $0 \leq i \leq m$, the unique element of $S_ m$ is the largest element of $S_ i$. 
+</p>
+</dd>
+</dl></p>
+<p> Let us henceforth use this bijection to identify $m$-simplices of $\Phi ( \Delta ^ n )$ with chains $\overrightarrow {S}$ satisfying $(a)$ and $(b)$. In these terms, the face and degeneracy operators for the simplicial set $\Phi ( \Delta ^ n ) = \Phi (\Delta ^ n)_{\bullet }$ can be described explicitly as follows: </p>
+<p><ul>
+<li><p>
+For $0 \leq i \leq m$, the degeneracy operator $s^{m}_ i: \Phi ( \Delta ^ n)_{m} \rightarrow \Phi ( \Delta ^ n)_{m+1}$ is given by 
+</p>
+<div class="equation">
+  \[  s^{m}_ i( S_0 \supseteq \cdots \supseteq S_ m ) = (S_0 \supseteq \cdots \supseteq S_{i-1} \supseteq S_{i} \supseteq S_ i \supseteq S_{i+1} \supseteq \cdots \supseteq S_ m) \]
+</div>
+</li><li><p>
+For $0 \leq i &lt; m$, the face operator $d^{m}_ i: \Phi ( \Delta ^ n)_{m} \rightarrow \Phi ( \Delta ^ n)_{m-1}$ is given by the construction 
+</p>
+<div class="equation">
+  \[  d^{m}_ i( S_0 \supseteq \cdots \supseteq S_ m ) = (S_0 \supseteq \cdots \supseteq S_{i-1} \supseteq S_{i+1} \supseteq \cdots \supseteq S_ m). \]
+</div>
+</li><li><p>
+For $m &gt; 0$, the face operator $d^{m}_ m: \Phi ( \Delta ^ n)_{m} \rightarrow \Phi ( \Delta ^ n)_{m-1}$ is given by 
+</p>
+<div class="equation">
+  \[  d^{m}_ m( S_0 \supseteq \cdots \supseteq S_ m ) = (S'_0 \supseteq S'_1 \supseteq \cdots \supseteq S'_{m-1} ), \]
+</div>
+<p>
+ where $S'_{i} = \{  j \in S_ i: j \leq \min (S_{m-1}) \} $. 
+</p>
+</li>
+</ul></p>
+<p> See Remark <a data-tag="00LG" href="/tag/00LG">2.4.4.17</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-construction" id="01M1">
+<p><a class="environment-identifier" href="/tag/01M1">Construction <span data-tag="01M1">4.6.7.28</span>.</a> Let $m$ and $n$ be nonnegative integers. Suppose we are given an $m$-simplex of $\Phi (\Delta ^ n)$, which we identify with a chain of subsets $\overrightarrow {S} = (S_0 \supseteq \cdots \supseteq S_ m)$ satisfying conditions $(a)$ and $(b)$ of Example <a data-tag="01M0" href="/tag/01M0">4.6.7.27</a>. Let $\tau : [m] \rightarrow [1]$ be a nondecreasing function. Let $\overrightarrow {S}' = (S'_0 \supseteq \cdots \supseteq S'_ m)$ be the chain of subsets of $[n+1]$ given by the formula </p>
+<div class="equation">
+  \[  S'_{i} = \begin{cases}  \{  s+1: s \in S_ i \}  \text{ if } \tau (i) = 1 \\  \{ 0\}  &amp;  \text{ if } \tau (m) = 0 \\  \{  0 \}  \cup \{  s+1: s \in S_ i \}  &amp;  \text{ otherwise. } \end{cases} \]
+</div>
+<p> The construction $(\overrightarrow {S}, \tau ) \mapsto \overrightarrow {S}'$ is compatible with the formation of face and degeneracy operators, and therefore determines a morphism of simplicial sets $\pi : \Phi ( \Delta ^ n) \times \Delta ^1 \rightarrow \Phi ( \Delta ^{n+1} )$. </p>
+</article>
+</p>
+<p>
+<article class="env-lemma" id="01M2">
+<p><a class="environment-identifier" href="/tag/01M2">Lemma <span data-tag="01M2">4.6.7.29</span>.</a> Let $n \geq 0$ be an integer, and let $\pi : \Phi ( \Delta ^ n) \times \Delta ^1 \rightarrow \Phi ( \Delta ^{n+1} )$ be the morphism of simplicial sets defined in Construction <a data-tag="01M1" href="/tag/01M1">4.6.7.28</a>. Then $\pi $ fits into a pushout diagram of simplicial sets </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \Phi ( \Delta ^ n ) \times \{ 0\}  \ar [r] \ar [d] &amp;  \Phi ( \Delta ^ n ) \times \Delta ^1 \ar [d]^{\pi } \\ \Delta ^0 \ar [r] &amp;  \Phi ( \Delta ^{n+1} ). } \]
+</div>
+</article>
+</p>
+<p>
+<article class="env-remark" id="01M3">
+<p><a class="environment-identifier" href="/tag/01M3">Remark <span data-tag="01M3">4.6.7.30</span>.</a> It follows from Lemma <a data-tag="01M2" href="/tag/01M2">4.6.7.29</a> that the morphism $\pi $ of Construction <a data-tag="01M1" href="/tag/01M1">4.6.7.28</a> induces an isomorphism of simplicial sets $\Delta ^{0} \diamond \Phi (\Delta ^ n) \rightarrow \Phi ( \Delta ^{n+1} )$, where $\diamond $ denotes the blunt join of Notation <a data-tag="01HR" href="/tag/01HR">4.6.2.3</a>. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof of Lemma <a data-tag="01M2" href="/tag/01M2">4.6.7.29</a>.</strong>
+       Fix an integer $m \geq 0$. By construction, the restriction $\pi |_{ \Phi (\Delta ^ n) \times \{ 0\}  }$ is the constant map which carries each $m$-simplex of $\Phi ( \Delta ^{n} )$ to the element of $\Phi ( \Delta ^{n+1} )$ given by the constant chain $\overrightarrow {S}_0 = ( \{  0 \}  \subseteq \{  0 \}  \subseteq \cdots \subseteq \{  0 \}  )$. To complete the proof, we must show that for each $m \geq 0$, the map $\pi $ induces a bijection 
+    <p>
+<div class="equation">
+  \[ \xymatrix@R =50pt@C=50pt{ \Phi ( \Delta ^ n)_ m \times \{  \textnormal{Nondecreasing functions $\tau : [m] \rightarrow [1]$ with $\tau (m) = 1$} \}  \ar [d] \\ \Phi ( \Delta ^{n+1})_{m} \setminus \{  \overrightarrow {S}_0 \}  }. \]
+</div>
+<p>
+       The inverse bijection can be described explicitly as follows: it carries an $m$-simplex $(S'_0 \supseteq \cdots \supseteq S'_ m) \neq \overrightarrow {S}_0$ of $\Phi ( \Delta ^{n+1} )$ to the pair $( \overrightarrow {S}, \tau )$, where $\overrightarrow {S} = (S_0 \supseteq \cdots \supseteq S_ m)$ is the $m$-simplex of $\Phi ( \Delta ^ n )$ given by 
+    <p>
+<div class="equation">
+  \[ S_{i} = \{  s-1: s \in S'_ i, s &gt; 0 \}  \quad \quad \tau (i) = \begin{cases}  0 &amp;  \textnormal{ if } 0 \in S'_ i \\  1 &amp;  \textnormal{ if } 0 \notin S'_ i. \end{cases} \]
+</div>
+<span class="qed">$\square$</span>
+</p>
+</p></p></p></article>
+<article class="env-proof">
+<p>
+<strong>Proof of Proposition <a data-tag="01LW" href="/tag/01LW">4.6.7.23</a>.</strong>
+       Let $K$ be a simplicial set. We wish to show that the map $\rho _{K}: \Phi (K) \rightarrow K$ of Construction <a data-tag="01LV" href="/tag/01LV">4.6.7.22</a> is a categorical equivalence of simplicial sets. Using Corollary <a data-tag="01LU" href="/tag/01LU">4.6.7.21</a>, we can write $\rho _{K}$ as a filtered colimit of morphisms $\rho _{K_{\alpha }}: \Phi ( K_{\alpha } ) \rightarrow K_{\alpha }$, where $K_{\alpha }$ ranges over the collection of all finite simplicial subsets of $K$ (Remark <a data-tag="0138" href="/tag/0138">3.6.1.8</a>). Since the collection of categorical equivalences is closed under the formation of filtered colimits (Corollary <a data-tag="01HH" href="/tag/01HH">4.8.8.11</a>), it will suffice to show that each $\rho _{ K_{\alpha } }$ is a categorical equivalence. We may therefore replace $K$ by $K_{\alpha }$ and thereby reduce to the case where the simplicial set $K$ is finite. 
+    <p>
+      Since $K$ is a finite simplicial set, it has dimension $\leq n$ for some integer $n \geq -1$. We proceed by induction on $n$. If $n=-1$, then both $K$ and $\Phi (K)$ are empty, and there is nothing to prove. We may therefore assume that $n \geq 0$ and that $\rho _{K'}$ is a categorical equivalence for every simplicial set $K'$ of dimension $&lt; n$. We now proceed by induction on the number $m$ of nondegenerate $n$-simplices of $K$. If $m = 0$, then $K$ has dimension $\leq n-1$ and the desired result holds by virtue of our inductive hypothesis. We may therefore assume that $K$ has at least one nondegenerate $n$-simplex $\sigma : \Delta ^ n \rightarrow K$. Using Proposition <a data-tag="001B" href="/tag/001B">1.1.4.12</a>, we see that there is a pushout diagram of simplicial sets 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \operatorname{\partial \Delta }^ n \ar [r] \ar [d] &amp;  \Delta ^ n \ar [d]^{\sigma } \\ K' \ar [r] &amp;  K, } \]
+</div>
+<p>
+       where $S'$ is a simplicial set of dimension $\leq n$ with exactly $(m-1)$-nondegenerate $m$-simplices. We then have a commutative diagram of simplicial sets 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \Phi ( \operatorname{\partial \Delta }^ n ) \ar [rr] \ar [dd] \ar [dr]^{ \rho _{ \operatorname{\partial \Delta }^ n }} &amp;  &amp;  \Phi ( \Delta ^ n) \ar [dd] \ar [dr]^{ \rho _{ \Delta ^ n } } &amp;  \\ &amp;  \operatorname{\partial \Delta }^ n \ar [rr] \ar [dd] &amp;  &amp;  \Delta ^ n \ar [dd] \\ \Phi (K') \ar [rr] \ar [dr]^{ \rho _{K'} } &amp;  &amp;  \Phi (K) \ar [dr]^{ \rho _ K} &amp;  \\ &amp;  K' \ar [rr] &amp;  &amp;  K } \]
+</div>
+<p>
+       where the front and back faces are pushout squares (Corollary <a data-tag="01LU" href="/tag/01LU">4.6.7.21</a>) in which the horizontal maps are monomorphisms (Remark <a data-tag="01LN" href="/tag/01LN">4.6.7.14</a>), and are therefore categorical pushout squares (Example <a data-tag="01FJ" href="/tag/01FJ">4.5.5.12</a>). Our inductive hypotheses guarantees that the maps $\rho _{K'}$ and $\rho _{\operatorname{\partial \Delta }^ n}$ are categorical equivalences. Consequently, to show that $\rho _{K}$ is a categorical equivalence, it will suffice to show that $\rho _{\Delta ^ n}$ is a categorical equivalence (Proposition <a data-tag="01FB" href="/tag/01FB">4.5.5.9</a>). We may therefore replace $K$ by $\Delta ^ n$ and thereby reduce to the case where $K$ is a standard simplex. 
+    <p>
+      If $n = 0$, then the map $\rho _{\Delta ^ n}: \Phi ( \Delta ^ n ) \rightarrow \Delta ^ n$ is an isomorphism (Example <a data-tag="01LK" href="/tag/01LK">4.6.7.11</a>). We may therefore assume without loss of generality that $n &gt; 0$, so that Lemma <a data-tag="01M2" href="/tag/01M2">4.6.7.29</a> supplies an isomorphism of simplicial sets $\Phi ( \Delta ^ n ) \simeq \Delta ^{0} \diamond \Phi ( \Delta ^{n-1} )$. Using this isomorphism, we can identify $\rho _{\Delta ^ n}$ with the composite map 
+    <p>
+<div class="equation">
+  \[ \Delta ^{0} \diamond \Phi ( \Delta ^{n-1} ) \xrightarrow { \operatorname{id}\diamond \rho _{ \Delta ^{n-1} } } \Delta ^{0} \diamond \Delta ^{n-1} \xrightarrow {c} \Delta ^{0} \star \Delta ^{n-1} \simeq \Delta ^ n, \]
+</div>
+<p>
+       where $c$ is the comparison map of Notation <a data-tag="01HR" href="/tag/01HR">4.6.2.3</a> (to check this, it suffices to observe that they agree on vertices). Our inductive hypothesis guarantees that $\rho _{ \Delta ^{n-1} }$ is a categorical equivalence of simplicial sets, so that the induced map $\Delta ^{0} \diamond \Phi ( \Delta ^{n-1} ) \xrightarrow { \operatorname{id}\diamond \rho _{ \Delta ^{n-1} }} \Delta ^0 \diamond \Delta ^{n-1}$ is also a categorical equivalence by virtue of Remark <a data-tag="01HU" href="/tag/01HU">4.6.2.7</a>. We are therefore reduced to showing that $c$ is a categorical equivalence, which is a special case of Proposition <a data-tag="01HZ" href="/tag/01HZ">4.6.2.12</a>. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></p></p></p></p></p></p></article>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.html a[data-toggle="popover"]').popover()
+
+  // render mathematics in popovers
+  $("[data-toggle=popover]").on('shown.bs.popover', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $("div.popover-body").html()]);
+  });
+});
+  </script>
+</div>
+</section></body>
+</html>

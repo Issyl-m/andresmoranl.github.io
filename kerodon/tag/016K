@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" id="main">
+<div class="html" id="tag">
+<h3 class="tex-subsection" id="subcategory:joins-simplicial-sets"><span data-tag="016K">4.3.3</span> Joins of Simplicial Sets</h3>
+<p>
+Our next goal is to extend the join operation of Definition <a data-tag="0161" href="/tag/0161">4.3.2.1</a> to the setting of $\infty $-categories (and more general simplicial sets). We begin with a slightly more general discussion. Let $\operatorname{Lin}$ denote the category whose objects are finite linearly ordered sets and whose morphisms are nondecreasing functions. The functor category $\operatorname{Fun}( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set})$ is equivalent to the category of <em>augmented</em> simplicial sets (see §<a class="" data-content="This is a reference to something which is not yet available in Kerodon." data-html="true" data-placement="bottom" data-toggle="popover" data-trigger="focus" role="button" style="cursor: pointer;" tabindex="0" title="Future reference"><img src="/static/images/question.svg"/></a>), and contains a full subcategory which is equivalent to the category of simplicial sets (see Proposition <a data-tag="016W" href="/tag/016W">4.3.3.11</a> below). 
+</p>
+<p>
+<article class="env-notation" id="016L">
+<p><a class="environment-identifier" href="/tag/016L">Notation <span data-tag="016L">4.3.3.1</span>.</a> Let $J$ be a linearly ordered set. We say that a subset $I \subseteq J$ is an <em>initial segment</em> of $J$ if it is closed downwards: that is, if, for every pair of elements $i \leq j$ in $J$, we have $(j \in I) \Rightarrow (i \in I)$. We will write $I \sqsubseteq J$ to indicate that $I$ is an initial segment of $J$. </p>
+</article>
+</p>
+<p>
+<article class="env-construction" id="016M">
+<p><a class="environment-identifier" href="/tag/016M">Construction <span data-tag="016M">4.3.3.2</span> <span class="named">(Joins of Augmented Simplicial Sets)</span>.</a> For every pair of functors $X,Y: \operatorname{Lin}^{\operatorname{op}} \rightarrow \operatorname{Set}$, we let $(X \star Y): \operatorname{Lin}^{\operatorname{op}} \rightarrow \operatorname{Set}$ denote a new functor given on objects by the formula </p>
+<div class="equation">
+  \[  (X \star Y)(J) = \coprod _{I \sqsubseteq J} (X(I) \times Y(J \setminus I)). \]
+</div>
+<p> Here the coproduct is indexed by the collection of all initial segments $I \sqsubseteq J$. </p>
+<p>More formally, the functor $(X \star Y): \operatorname{Lin}^{\operatorname{op}} \rightarrow \operatorname{Set}$ can be described as follows: </p>
+<p><ul>
+<li><p>
+For every finite linearly ordered set $J$, $(X \star Y)(J)$ is the collection of all triples $(I, x, y)$, where $I$ is an initial segment of $J$, $x$ is an element of $X(I)$, and $y$ is an element of $Y(J \setminus I)$. 
+</p>
+</li><li><p>
+If $\alpha : J' \rightarrow J$ is a nondecreasing function, then the induced map $(X \star Y)(\alpha ): (X \star Y)(J) \rightarrow (X \star Y)(J')$ is given by the construction 
+</p>
+<div class="equation">
+  \[  (I, x, y) \mapsto ( \alpha ^{-1}(I), X( \alpha |_{ \alpha ^{-1}(I) })(x), Y( \alpha |_{ \alpha ^{-1}(J \setminus I)} )(y) ). \]
+</div>
+</li>
+</ul></p>
+<p> We will refer to $X \star Y$ as the <em>join of $X$ and $Y$</em>. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="016N">
+<p><a class="environment-identifier" href="/tag/016N">Example <span data-tag="016N">4.3.3.3</span>.</a> Let $E: \operatorname{Lin}^{\operatorname{op}} \rightarrow \operatorname{Set}$ denote the functor given by </p>
+<div class="equation">
+  \[ E(I) = \begin{cases}  \ast &amp;  \textnormal{ if $I = \emptyset $} \\  \emptyset &amp;  \textnormal{ otherwise. } \end{cases} \]
+</div>
+<p> For every functor $X: \operatorname{Lin}^{\operatorname{op}} \rightarrow \operatorname{Set}$, we have canonical bijections </p>
+<div class="equation">
+  \[ (X \star E)(J) = \coprod _{I \sqsubseteq J} (X(I) \times E( J \setminus I)) \simeq X(J) \times E(\emptyset ) \simeq X(J) \]
+</div>
+<div class="equation">
+  \[ (E \star X)(J) = \coprod _{I \sqsubseteq J} (E(I) \times X(J \setminus I)) \simeq E(\emptyset ) \times X(J) \simeq X(J). \]
+</div>
+<p> These bijections depend functorially on $J$, and therefore determine isomorphisms of functors </p>
+<div class="equation">
+  \[  X \star E \simeq X \simeq E \star X. \]
+</div>
+</article>
+</p>
+<p>
+<article class="env-remark" id="016P">
+<p><a class="environment-identifier" href="/tag/016P">Remark <span data-tag="016P">4.3.3.4</span> <span class="named">(Functoriality)</span>.</a> Construction <a data-tag="016M" href="/tag/016M">4.3.3.2</a> determines a functor </p>
+<div class="equation">
+  \[  \star : \operatorname{Fun}( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set}) \times \operatorname{Fun}(\operatorname{Lin}^{\operatorname{op}}, \operatorname{Set}) \rightarrow \operatorname{Fun}( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set}) \quad \quad (X,Y) \mapsto X \star Y. \]
+</div>
+<p> Note that this functor preserves colimits separately in each variable. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="016Q">
+<p><a class="environment-identifier" href="/tag/016Q">Remark <span data-tag="016Q">4.3.3.5</span> <span class="named">(Associativity)</span>.</a> Let $X$, $Y$, and $Z$ be functors from $\operatorname{Lin}^{\operatorname{op}}$ to the category of sets. For every finite linearly ordered set $K$, we have a canonical bijection </p>
+<div class="equation">
+  \begin{eqnarray*}  (X \star (Y \star Z))(K) &amp;  = &amp;  \coprod _{ I \sqsubseteq K} (X(I) \times (Y \star Z)(K \setminus I) ) \\ &amp;  = &amp;  \coprod _{I \sqsubseteq K} (X(I) \times \coprod _{J \sqsubseteq K \setminus I} (Y(J) \times Z(K \setminus (I \cup J)) ) ) \\ &amp;  \simeq &amp;  \coprod _{I \sqsubseteq K} \coprod _{J \sqsubseteq K \setminus I} (X(I) \times Y(J) \times Z(K \setminus (I \cup J) ) ) \\ &amp;  \simeq &amp;  \coprod _{J' \sqsubseteq K} \coprod _{I \sqsubseteq J'} (X(I) \times Y(J' \setminus I) \times Z(K \setminus J') ) \\ &amp;  \simeq &amp;  \coprod _{J' \sqsubseteq K} ( \coprod _{I \sqsubseteq J'} (X(I) \times Y(J' \setminus I) \times Z(K \setminus J' ) ) \\ &amp;  = &amp;  \coprod _{J \sqsubseteq K} ((X \star Y)(J') \star Z(K \setminus J' )) \\ &amp;  = &amp;  ((X \star Y) \star Z)(K). \end{eqnarray*}
+</div>
+<p> These bijections depend functorially on $K \in \operatorname{Lin}^{\operatorname{op}}$, and therefore supply an isomorphism of functors $\alpha _{X,Y,Z}: X \star (Y \star Z) \simeq (X \star Y) \star Z$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="016R">
+<p><a class="environment-identifier" href="/tag/016R">Remark <span data-tag="016R">4.3.3.6</span>.</a> The join operation of Construction <a data-tag="016M" href="/tag/016M">4.3.3.2</a> determines a functor </p>
+<div class="equation">
+  \[  \star : \operatorname{Fun}( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set}) \times \operatorname{Fun}(\operatorname{Lin}^{\operatorname{op}}, \operatorname{Set}) \rightarrow \operatorname{Fun}(\operatorname{Lin}^{\operatorname{op}}, \operatorname{Set}). \]
+</div>
+<p> This functor determines a monoidal structure on the category $\operatorname{Fun}(\operatorname{Lin}^{\operatorname{op}}, \operatorname{Set})$, whose associativity constraints are the isomorphisms $\alpha _{X,Y,Z}$ of Remark <a data-tag="016Q" href="/tag/016Q">4.3.3.5</a> and whose unit object is the functor $E$ of Example <a data-tag="016N" href="/tag/016N">4.3.3.3</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="016S">
+<p><a class="environment-identifier" href="/tag/016S">Example <span data-tag="016S">4.3.3.7</span>.</a> For every category $\operatorname{\mathcal{C}}$, let $h_{\operatorname{\mathcal{C}}}: \operatorname{Lin}^{\operatorname{op}} \rightarrow \operatorname{Set}$ denote the functor represented by $\operatorname{\mathcal{C}}$, given by the formula </p>
+<div class="equation">
+  \[  h_{\operatorname{\mathcal{C}}}(J) = \{  \textnormal{Functors from $J$ to $\operatorname{\mathcal{C}}$} \} . \]
+</div>
+<p> For every pair of categories $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ and every finite linearly ordered set $J$, we have a canonical bijection </p>
+<div class="equation">
+  \begin{eqnarray*}  (h_{\operatorname{\mathcal{C}}} \star h_{\operatorname{\mathcal{D}}})(J) &amp;  = &amp;  \coprod _{ I \sqsubseteq J} h_{\operatorname{\mathcal{C}}}( I) \times h_{\operatorname{\mathcal{D}}}(J \setminus I) \\ &amp;  = &amp;  \coprod _{I \sqsubseteq J} \{  \textnormal{Functors $I \rightarrow \operatorname{\mathcal{C}}$} \}  \times \{  \textnormal{Functors $(J \setminus I) \rightarrow \operatorname{\mathcal{D}}$} \}  \\ &amp;  \simeq &amp;  \{  \textnormal{Functors $J \rightarrow \operatorname{\mathcal{C}}\star \operatorname{\mathcal{D}}$} \}  \\ &amp;  = &amp;  h_{\operatorname{\mathcal{C}}\star \operatorname{\mathcal{D}}}(J). \end{eqnarray*}
+</div>
+<p> These bijections depend functorially on $J$, and therefore determine an isomorphism $h_{\operatorname{\mathcal{C}}} \star h_{\operatorname{\mathcal{D}}} \simeq h_{\operatorname{\mathcal{C}}\star \operatorname{\mathcal{D}}}$ in the category $\operatorname{Fun}( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set})$; here $\operatorname{\mathcal{C}}\star \operatorname{\mathcal{D}}$ denotes the join of the categories $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$, in the sense of Definition <a data-tag="0161" href="/tag/0161">4.3.2.1</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="016T">
+<p><a class="environment-identifier" href="/tag/016T">Remark <span data-tag="016T">4.3.3.8</span>.</a> Let $\operatorname{\mathcal{C}}$ be a small monoidal category. Then the presheaf category $\operatorname{Fun}( \operatorname{\mathcal{C}}^{\operatorname{op}}, \operatorname{Set})$ inherits a monoidal structure given by <em>Day convolution</em> (see §<a class="" data-content="This is a reference to something which is not yet available in Kerodon." data-html="true" data-placement="bottom" data-toggle="popover" data-trigger="focus" role="button" style="cursor: pointer;" tabindex="0" title="Future reference"><img src="/static/images/question.svg"/></a>), which is characterized up to equivalence by the following properties: </p>
+<p><dl>
+<dt>$(1)$</dt>
+<dd><p>
+The Yoneda embedding 
+</p>
+<div class="equation">
+  \[ h: \operatorname{\mathcal{C}}\rightarrow \operatorname{Fun}( \operatorname{\mathcal{C}}^{\operatorname{op}}, \operatorname{Set}) \quad \quad C \mapsto \operatorname{Hom}_{\operatorname{\mathcal{C}}}( \bullet , C) \]
+</div>
+<p>
+ can be promoted to a monoidal functor. 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+The tensor product on $\operatorname{Fun}( \operatorname{\mathcal{C}}^{\operatorname{op}}, \operatorname{Set})$ preserves small colimits separately in each variable. 
+</p>
+</dd>
+</dl></p>
+<p> Let us specialize to the case where $\operatorname{\mathcal{C}}= \operatorname{Lin}$ is the category of finite linearly ordered sets. Note that $\operatorname{Lin}$ can be identified with a full subcategory of $\operatorname{Cat}$ which is closed under the formation of joins (and contains the unit object $\emptyset \in \operatorname{Cat}$), and therefore inherits the structure of a monoidal category (where the tensor product is given by joins). With respect to this monoidal structure, the Yoneda embedding $h: \operatorname{Lin}\rightarrow \operatorname{Fun}( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set})$ satisfies condition $(1)$ (Example <a data-tag="016S" href="/tag/016S">4.3.3.7</a>), and the join functor on $\operatorname{Fun}( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set})$ satisfies $(2)$ by virtue of Remark <a data-tag="016P" href="/tag/016P">4.3.3.4</a>. It follows that the join operation on $\operatorname{Fun}( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set})$ is given by Day convolution (with respect to the join operation on the category $\operatorname{Lin}$). </p>
+</article>
+</p>
+<p>
+We now adapt Construction <a data-tag="016M" href="/tag/016M">4.3.3.2</a> to the setting of simplicial sets. 
+</p>
+<p>
+<article class="env-notation" id="016U">
+<p><a class="environment-identifier" href="/tag/016U">Notation <span data-tag="016U">4.3.3.9</span>.</a> Let $\operatorname{Fun}_{\ast }( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set})$ denote the full subcategory of $\operatorname{Fun}( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set})$ spanned by those functors $X: \operatorname{Lin}^{\operatorname{op}} \rightarrow \operatorname{Set}$ for which the set $X(\emptyset )$ is a singleton (that is, the full subcategory spanned by those functors which preserve final objects). </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="016V">
+<p><a class="environment-identifier" href="/tag/016V">Remark <span data-tag="016V">4.3.3.10</span>.</a> For every pair of functors $X,Y: \operatorname{Lin}^{\operatorname{op}} \rightarrow \operatorname{Set}$, we have a canonical bijection $(X \star Y)(\emptyset ) = X(\emptyset ) \times Y(\emptyset )$. In particular, if $X$ and $Y$ belong to the subcategory $\operatorname{Fun}_{\ast }( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set}) \subseteq \operatorname{Fun}(\operatorname{Lin}^{\operatorname{op}}, \operatorname{Set})$, then the join $X \star Y$ also belongs to $\operatorname{Fun}_{\ast }( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set})$. Moreover, $\operatorname{Fun}_{\ast }( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set})$ contains the unit object $E$ of Example <a data-tag="016N" href="/tag/016N">4.3.3.3</a>. It follows that $\operatorname{Fun}_{\ast }( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set})$ inherits the structure of a monoidal category (with respect to the join operation of Construction <a data-tag="016M" href="/tag/016M">4.3.3.2</a>). </p>
+</article>
+</p>
+<p>
+Recall that the simplex category $\operatorname{{\bf \Delta }}$ of Definition <a data-tag="000A" href="/tag/000A">1.1.0.2</a> is the full subcategory of $\operatorname{Lin}$ spanned by objects of the form $[n] = \{  0 &lt; 1 &lt; \cdots &lt; n \} $ for $n \geq 0$. 
+</p>
+<p>
+<article class="env-proposition" id="016W">
+<p><a class="environment-identifier" href="/tag/016W">Proposition <span data-tag="016W">4.3.3.11</span>.</a> The restriction functor </p>
+<div class="equation">
+  \[ \operatorname{Fun}_{\ast }( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set}) \rightarrow \operatorname{Set_{\Delta }}\quad \quad X \mapsto X|_{ \operatorname{{\bf \Delta }}^{\operatorname{op}} } \]
+</div>
+<p> is an equivalence of categories. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Let $S$ be a one-element set, and let $\operatorname{Fun}'_{\ast }(\operatorname{Lin}^{\operatorname{op}},\operatorname{Set})$ denote the full subcategory of $\operatorname{Fun}( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set})$ spanned by those functors $X: \operatorname{Lin}^{\operatorname{op}} \rightarrow \operatorname{Set}$ satisfying $X(\emptyset ) = S$. Since the inclusion functor $\operatorname{Fun}'_{\ast }( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set}) \hookrightarrow \operatorname{Fun}_{\ast }( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set})$ is an equivalence of categories, it will suffice to show that the restriction functor 
+    <p>
+<div class="equation">
+  \[  \operatorname{Fun}'_{\ast }( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set}) \rightarrow \operatorname{Set_{\Delta }}\quad \quad X \mapsto X|_{ \operatorname{{\bf \Delta }}^{\operatorname{op}} } \]
+</div>
+<p>
+       is an equivalence of categories. Let $\operatorname{Lin}_{\neq \emptyset }$ denote the full subcategory of $\operatorname{Lin}$ spanned by the nonempty finite linearly ordered sets, so that the category $\operatorname{Lin}$ can be identified with the left cone $\operatorname{Lin}_{\neq \emptyset }^{\triangleleft }$ of Example <a data-tag="0165" href="/tag/0165">4.3.2.5</a>. Using Proposition <a data-tag="016D" href="/tag/016D">4.3.2.13</a> (and the fact that the forgetful functor $\operatorname{Set}_{/\ast } \rightarrow \operatorname{Set}$ is an isomorphism), we deduce that the restriction functor $\operatorname{\mathcal{C}}\rightarrow \operatorname{Fun}( \operatorname{Lin}_{\neq \emptyset }^{\operatorname{op}}, \operatorname{Set})$ is an isomorphism of categories. We are therefore reduced to showing that the restriction functor $\operatorname{Fun}( \operatorname{Lin}_{\neq \emptyset }^{\operatorname{op}}, \operatorname{Set}) \rightarrow \operatorname{Fun}( \operatorname{{\bf \Delta }}^{\operatorname{op}}, \operatorname{Set}) = \operatorname{Set_{\Delta }}$ is an equivalence of categories. This is clear, since the inclusion $\operatorname{{\bf \Delta }}\hookrightarrow \operatorname{Lin}_{\neq \emptyset }$ is an equivalence (Remark <a data-tag="000B" href="/tag/000B">1.1.0.3</a>). 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<p>
+<article class="env-remark" id="016X">
+<p><a class="environment-identifier" href="/tag/016X">Remark <span data-tag="016X">4.3.3.12</span>.</a> The inclusion functor $\operatorname{{\bf \Delta }}\hookrightarrow \operatorname{Lin}_{\neq \emptyset }$ has a <em>unique</em> left inverse $R: \operatorname{Lin}_{\neq \emptyset } \rightarrow \operatorname{{\bf \Delta }}$, given on objects by the formula $R(I) = [n]$ when $I$ has cardinality $n+1$. It follows that the equivalence $\operatorname{Fun}_{\ast }( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set}) \rightarrow \operatorname{Set_{\Delta }}$ of Proposition <a data-tag="016W" href="/tag/016W">4.3.3.11</a> admits an explicit right inverse, which carries a simplicial set $X: \operatorname{{\bf \Delta }}^{\operatorname{op}} \rightarrow \operatorname{Set}$ to the functor $X^{+}: \operatorname{Lin}^{\operatorname{op}} \rightarrow \operatorname{Set}$ given by the formula </p>
+<div class="equation">
+  \[  X^{+}(I) = \begin{cases}  X( R(I) ) &amp;  \textnormal{ if $I$ is nonempty } \\  \ast &amp;  \textnormal{ otherwise. } \end{cases} \]
+</div>
+</article>
+</p>
+<p>
+<article class="env-construction" id="016Y">
+<p><a class="environment-identifier" href="/tag/016Y">Construction <span data-tag="016Y">4.3.3.13</span> <span class="named">(Joins of Simplicial Sets)</span>.</a> Let $X$ and $Y$ be simplicial sets. We let $X \star Y$ denote the simplicial set given by the restriction $( X^{+} \star Y^{+} )|_{ \operatorname{{\bf \Delta }}^{\operatorname{op}} }$. Here $X^{+}, Y^{+} \in \operatorname{Fun}_{\ast }( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set})$ are given by Remark <a data-tag="016X" href="/tag/016X">4.3.3.12</a>, and $X^{+} \star Y^{+}$ denotes the join of Construction <a data-tag="016M" href="/tag/016M">4.3.3.2</a>. We will refer to $X \star Y$ as the <em>join of $X$ and $Y$</em>. The construction $X,Y \mapsto X \star Y$ determines a functor $\star : \operatorname{Set_{\Delta }}\times \operatorname{Set_{\Delta }}\rightarrow \operatorname{Set_{\Delta }}$, which we will refer to as the <em>join functor</em>. It is characterized (up to isomorphism) by the fact that the diagram </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \operatorname{Fun}_{\ast }( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set}) \times \operatorname{Fun}_{\ast }( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set}) \ar [r]^-{\star } \ar [d] &amp;  \operatorname{Fun}_{\ast }( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set}) \ar [d] \\ \operatorname{Set_{\Delta }}\times \operatorname{Set_{\Delta }}\ar [r]^-{\star } &amp;  \operatorname{Set_{\Delta }}} \]
+</div>
+<p> commutes up to isomorphism, where the vertical maps are the equivalences supplied by Proposition <a data-tag="016W" href="/tag/016W">4.3.3.11</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="0175">
+<p><a class="environment-identifier" href="/tag/0175">Example <span data-tag="0175">4.3.3.14</span>.</a> Let $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ be categories. Using Example <a data-tag="016S" href="/tag/016S">4.3.3.7</a>, we obtain a canonical isomorphism of simplicial sets $\operatorname{N}_{\bullet }(\operatorname{\mathcal{C}}) \star \operatorname{N}_{\bullet }(\operatorname{\mathcal{D}}) \simeq \operatorname{N}_{\bullet }( \operatorname{\mathcal{C}}\star \operatorname{\mathcal{D}})$, where $\operatorname{\mathcal{C}}\star \operatorname{\mathcal{D}}$ denotes the join of the categories $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$. </p>
+<p>In particular, for integers $p, q \geq 0$, there is a unique isomorphism of simplicial sets </p>
+<div class="equation">
+  \[ \Delta ^{p} \star \Delta ^{q} \simeq \Delta ^{p+1+q}, \]
+</div>
+<p> which is given on vertices of $\Delta ^{p}$ by the construction $i \mapsto i$ and on vertices of $\Delta ^{q}$ by $j \mapsto p+1+j$. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="0174">
+<p><a class="environment-identifier" href="/tag/0174">Example <span data-tag="0174">4.3.3.15</span>.</a> For every simplicial set $X$, we have canonical isomorphisms $X \star \emptyset \simeq X \simeq \emptyset \star X$ (compare with Example <a data-tag="016N" href="/tag/016N">4.3.3.3</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="016Z">
+<p><a class="environment-identifier" href="/tag/016Z">Remark <span data-tag="016Z">4.3.3.16</span>.</a> For every pair of simplicial sets $X$ and $Y$, we have canonical monomorphisms </p>
+<div class="equation">
+  \[  X \simeq X \star \emptyset \hookrightarrow X \star Y \hookleftarrow \emptyset \star Y \simeq Y. \]
+</div>
+<p> We will often abuse notation by identifying $X$ and $Y$ with the simplicial subsets of $X \star Y$ given by the images of these monomorphisms. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="0170">
+<p><a class="environment-identifier" href="/tag/0170">Remark <span data-tag="0170">4.3.3.17</span>.</a> Let $X$ and $Y$ be simplicial sets. For each $n$-simplex $\sigma : \Delta ^ n \rightarrow X \star Y$, exactly one of the following conditions holds: </p>
+<p><ul>
+<li><p>
+The morphism $\sigma $ factors through $X$ (where we identify $X$ with a simplicial subset of $X \star Y$ as in Remark <a data-tag="016Z" href="/tag/016Z">4.3.3.16</a>). 
+</p>
+</li><li><p>
+The morphism $\sigma $ factors through $Y$ (where we identify $Y$ with a simplicial subset of $X \star Y$ as in Remark <a data-tag="016Z" href="/tag/016Z">4.3.3.16</a>). 
+</p>
+</li><li><p>
+The morphism $\sigma $ factors as a composition 
+</p>
+<div class="equation">
+  \[  \Delta ^{n} = \Delta ^{p+1+q} \simeq \Delta ^{p} \star \Delta ^{q} \xrightarrow { \sigma _{-} \star \sigma _{+} } X \star Y, \]
+</div>
+<p>
+ for integers $p,q \geq 0$ satisfying $p+1+q=n$ and simplices $\sigma _{-}: \Delta ^{p} \rightarrow X$ and $\sigma _{+}: \Delta ^{q} \rightarrow Y$ of $X$ and $Y$, respectively. Moreover, in this case, the simplices $\sigma _{-}$ and $\sigma _{+}$ (and the integers $p,q \geq 0$) are uniquely determined. 
+</p>
+</li>
+</ul></p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="0171">
+<p><a class="environment-identifier" href="/tag/0171">Remark <span data-tag="0171">4.3.3.18</span>.</a> Let $i: X \hookrightarrow X'$ and $j: Y \hookrightarrow Y'$ be monomorphisms of simplicial sets. From the description of Remark <a data-tag="0170" href="/tag/0170">4.3.3.17</a>, we see that the join $(i \star j): X \star Y \rightarrow X' \star Y'$ is also a monomorphism of simplicial sets. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="0172">
+<p><a class="environment-identifier" href="/tag/0172">Remark <span data-tag="0172">4.3.3.19</span>.</a> Let $X_{\bullet }$ and $Y_{\bullet }$ be simplicial sets. By virtue of Remark <a data-tag="0170" href="/tag/0170">4.3.3.17</a>, the join $(X \star Y)_{\bullet }$ can be described explicitly by the formula </p>
+<div class="equation">
+  \[  (X \star Y)_{n} = X_{n} \amalg ( \coprod _{ p+1+q = n } X_{p} \times Y_ q ) \amalg Y_{n}. \]
+</div>
+<p> In these terms, the face and degeneracy operators $\{  d^{n}_ i: (X \star Y)_{n} \rightarrow (X \star Y)_{n-1} \} _{0 \leq i \leq n}$ and $\{  s^{n}_ i: (X \star Y)_{n} \rightarrow ( X \star Y)_{n+1} \} $ are given on the first and third summand by the analogous operators for $X_{\bullet }$ and $Y_{\bullet }$, and on elements $(\sigma , \tau ) \in X_{p} \times Y_{q}$ by the formula </p>
+<div class="equation">
+  \[  d^{n}_ i( \sigma , \tau ) = \begin{cases}  ( d^{p}_ i(\sigma ), \tau ) &amp;  \textnormal{ if $i \leq p$ } \\  (\sigma , d^{q}_{i-1-p}(\tau )) &amp;  \textnormal{ if } i &gt; p. \end{cases} \quad \quad s^{n}_ i(\sigma , \tau ) = \begin{cases}  (s^{p}_ i(\sigma ), \tau ) &amp;  \textnormal{ if } i \leq p \\  (\sigma , s^{q}_{i-1-p}(\tau )) &amp;  \textnormal{ if } i &gt; p. \end{cases} \]
+</div>
+</article>
+</p>
+<p>
+<article class="env-remark" id="056W">
+<p><a class="environment-identifier" href="/tag/056W">Remark <span data-tag="056W">4.3.3.20</span>.</a> Let $X$ and $Y$ be simplicial sets, and let $\sigma : \Delta ^{m} \rightarrow X \star Y$ be an $m$-simplex which factors as a composition </p>
+<div class="equation">
+  \[  \Delta ^{m} \simeq \Delta ^{m_{-}} \star \Delta ^{m_{+}} \xrightarrow { \sigma _{-} \star \sigma _{+} } X \star Y \]
+</div>
+<p> for some integers $m_{-}, m_{+} \geq 0$ satisfying $m_{-} + 1 + m_{+} = m$. Then $\sigma $ is nondegenerate if and only if both $\sigma _{-}$ and $\sigma _{+}$ are nondegenerate. It follows that, for every integer $n$, the $n$-skeleton of $X \star Y$ is given by the union </p>
+<div class="equation">
+  \[  \operatorname{sk}_{n}(X) \cup (\bigcup _{p+1+q =n} \operatorname{sk}_{p}(X) \star \operatorname{sk}_{q}(Y) ) \cup \operatorname{sk}_{n}(Y). \]
+</div>
+<p> In particular, we have an equality </p>
+<div class="equation">
+  \[  \mathrm{dim}(X \star Y) = \mathrm{dim}(X) + 1 + \mathrm{dim}(Y), \]
+</div>
+<p> provided that we adopt the convention that an empty simplicial set has dimension $-1$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="02LH">
+<p><a class="environment-identifier" href="/tag/02LH">Remark <span data-tag="02LH">4.3.3.21</span>.</a> Let $X$ and $Y$ be finite simplicial sets. Then the join $X \star Y$ is also finite. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="0173">
+<p><a class="environment-identifier" href="/tag/0173">Remark <span data-tag="0173">4.3.3.22</span>.</a> For every pair of simplicial sets $X$ and $Y$, we have a canonical isomorphism $(X \star Y)^{\operatorname{op}} \simeq Y^{\operatorname{op}} \star X^{\operatorname{op}}$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="0234">
+<p><a class="environment-identifier" href="/tag/0234">Remark <span data-tag="0234">4.3.3.23</span>.</a> Let $X$, $Y$, and $K$ be simplicial sets. Unwinding the definitions, we see that morphisms from $K$ to $X \star Y$ can be identified with triples $(\pi , f_{-}, f_{+} )$, where </p>
+<div class="equation">
+  \[ \pi : K \rightarrow \Delta ^1 \quad \quad f_{-}: \{ 0\}  \times _{\Delta ^1} K \rightarrow X \quad \quad f_{+}: \{ 1\}  \times _{\Delta ^1} K \rightarrow Y \]
+</div>
+<p> are morphisms of simplicial sets (note that, when $K$ is a simplex, this recovers the description of Remark <a data-tag="0172" href="/tag/0172">4.3.3.19</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-proposition" id="02QU">
+<p><a class="environment-identifier" href="/tag/02QU">Proposition <span data-tag="02QU">4.3.3.24</span>.</a> Let $u: X \rightarrow X'$ and $v: Y \rightarrow Y'$ be inner fibrations of simplicial sets. Then the join $(u \star v): X \star Y \rightarrow X' \star Y'$ is also an inner fibration of simplicial sets. </p>
+</article>
+</p>
+<p>
+<article class="env-corollary" id="02QV">
+<p><a class="environment-identifier" href="/tag/02QV">Corollary <span data-tag="02QV">4.3.3.25</span>.</a> Let $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ be $\infty $-categories. Then the join $\operatorname{\mathcal{C}}\star \operatorname{\mathcal{D}}$ is an $\infty $-category. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Since $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ are $\infty $-categories, the projection maps $u: \operatorname{\mathcal{C}}\rightarrow \Delta ^0$ and $v: \operatorname{\mathcal{D}}\rightarrow \Delta ^0$ are inner fibrations (Example <a data-tag="01BB" href="/tag/01BB">4.1.1.2</a>). Applying Proposition <a data-tag="02QU" href="/tag/02QU">4.3.3.24</a>, we deduce that the join 
+    <p>
+<div class="equation">
+  \[  (u \star v): \operatorname{\mathcal{C}}\star \operatorname{\mathcal{D}}\rightarrow \Delta ^0 \star \Delta ^0 \simeq \Delta ^1 \]
+</div>
+<p>
+       is also an inner fibration. Since $\Delta ^1$ is an $\infty $-category, it follows that $\operatorname{\mathcal{C}}\star \operatorname{\mathcal{D}}$ is an $\infty $-category (Remark <a data-tag="01BJ" href="/tag/01BJ">4.1.1.9</a>). 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<article class="env-proof">
+<p>
+<strong>Proof of Proposition <a data-tag="02QU" href="/tag/02QU">4.3.3.24</a>.</strong>
+       Let $u: X \rightarrow X'$ and $v: Y \rightarrow Y'$ be inner fibrations of simplicial sets and let $0 &lt; i &lt; n$ be integers; we wish to show that every lifting problem 
+    <p>
+<div class="equation" id="02QW">
+<span class="equation-label"><a data-tag="02QW" href="/tag/02QW">4.14</a></span>
+<div>\begin{equation}  \begin{gathered}\label{equation:join-of-inner-fibration} \xymatrix@R =50pt@C=50pt{ \Lambda ^{n}_{i} \ar [r]^-{ \sigma _0 } \ar [d] &amp;  X \star Y \ar [d]^{u \star v } \\ \Delta ^{n} \ar [r]^-{ \sigma ' } \ar@ {--&gt;}[ur]^{ \sigma } &amp;  X' \star Y' } \end{gathered} \end{equation}</div>
+</div>
+<p>
+       admits a solution. If $\sigma '$ factors through either $X'$ or $Y'$, this follows immediately from our assumption that $u$ and $v$ are inner fibrations. We may therefore assume without loss of generality that $\sigma '$ factors as a composition 
+    <p>
+<div class="equation">
+  \[  \Delta ^{n} = \Delta ^{p+1+q} \simeq \Delta ^{p} \star \Delta ^{q} \xrightarrow { \sigma '_{-} \star \sigma '_{+} } X' \star Y' \]
+</div>
+<p>
+       for some pair of integers $p,q \geq 0$ satisfying $p+1+q=n$ and simplices $\sigma '_{-}: \Delta ^{p} \rightarrow X'$ and $\sigma '_{+}: \Delta ^{q} \rightarrow Y'$. Let $\iota _{-}$ denote the inclusion map 
+    <p>
+<div class="equation">
+  \[  \Delta ^{p} \hookrightarrow \Delta ^{p} \star \Delta ^{q} \simeq \Delta ^{p+1+q} = \Delta ^{n}, \]
+</div>
+<p>
+       and define $\iota _{+}: \Delta ^{q} \hookrightarrow \Delta ^ n$ similarly. Note that both $\iota _{-}$ and $\iota _{+}$ factor through the inner horn $\Lambda ^{n}_{i} \subseteq \Delta ^ n$. Set $\sigma _{-} = \sigma _0 \circ \iota _{-}$ and $\sigma _{+} = \sigma _0 \circ \iota _{+}$. Unwinding the definitions, we see that the composite map 
+    <p>
+<div class="equation">
+  \[  \Delta ^{n} = \Delta ^{p+1+q} \simeq \Delta ^{p} \star \Delta ^{q} \xrightarrow { \sigma _{-} \star \sigma _{+} } X \star Y \]
+</div>
+<p>
+       determines an $n$-simplex $\sigma $ of $X \star Y$ which is a solution to the lifting problem (<a data-tag="02QW" href="/tag/02QW">4.14</a>). 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></p></p></p></p></p></p></article>
+<p>
+<article class="env-construction" id="0177">
+<p><a class="environment-identifier" href="/tag/0177">Construction <span data-tag="0177">4.3.3.26</span>.</a> Let $X$ be a simplicial set. We will denote the join $\Delta ^{0} \star X$ by $X^{\triangleleft }$ and refer to it as the <em>left cone of $X$</em>. Similarly, we denote the join $X \star \Delta ^0$ by $X^{\triangleright }$ and refer to it as the <em>right cone of $X$</em>. We will often abuse notation by using Remark <a data-tag="016Z" href="/tag/016Z">4.3.3.16</a> to identify $X$ with its image in the cones $X^{\triangleleft }$ and $X^{\triangleright }$. Moreover, Remark <a data-tag="016Z" href="/tag/016Z">4.3.3.16</a> also supplies morphisms of simplicial sets $X^{\triangleleft } \hookleftarrow \Delta ^0 \hookrightarrow X^{\triangleright }$, which we can identify with vertices which we refer to as the <em>cone points</em> of $X^{\triangleleft }$ and $X^{\triangleright }$, respectively. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="0178">
+<p><a class="environment-identifier" href="/tag/0178">Example <span data-tag="0178">4.3.3.27</span>.</a> Let $\operatorname{\mathcal{C}}$ be a category. Then Example <a data-tag="0175" href="/tag/0175">4.3.3.14</a> supplies canonical isomorphisms </p>
+<div class="equation">
+  \[  \operatorname{N}_{\bullet }( \operatorname{\mathcal{C}})^{\triangleleft } \simeq \operatorname{N}_{\bullet }( \operatorname{\mathcal{C}}^{\triangleleft } ) \quad \quad \operatorname{N}_{\bullet }( \operatorname{\mathcal{C}})^{\triangleright } \simeq \operatorname{N}_{\bullet }(\operatorname{\mathcal{C}}^{\triangleright } ), \]
+</div>
+<p> where $\operatorname{\mathcal{C}}^{\triangleleft }$ and $\operatorname{\mathcal{C}}^{\triangleright }$ denote the left and right cones of $\operatorname{\mathcal{C}}$ (see Example <a data-tag="0165" href="/tag/0165">4.3.2.5</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="0179">
+<p><a class="environment-identifier" href="/tag/0179">Example <span data-tag="0179">4.3.3.28</span>.</a> Let $n \geq 0$, and let $\Delta ^{n}$ denote the standard $n$-simplex. Using Example <a data-tag="0178" href="/tag/0178">4.3.3.27</a>, we see that there is a unique isomorphism of simplicial sets $(\Delta ^{n})^{\triangleright } \simeq \Delta ^{n+1}$, which carries each vertex $i \in \{  0, 1, \ldots , n \} $ to itself and the cone point of $( \Delta ^{n} )^{\triangleright }$ to the final vertex $n+1$. This isomorphism carries the simplicial subset $(\operatorname{\partial \Delta }^{n})^{\triangleright } \subseteq ( \Delta ^{n} )^{\triangleright }$ to the horn $\Lambda ^{n+1}_{n+1} \subseteq \Delta ^{n+1}$. Similarly, the left cone $( \operatorname{\partial \Delta }^{n} )^{\triangleleft }$ is isomorphic to the horn $\Lambda ^{n+1}_{0}$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="017A">
+<p><a class="environment-identifier" href="/tag/017A">Remark <span data-tag="017A">4.3.3.29</span>.</a> For every simplicial set $X$, Remark <a data-tag="0173" href="/tag/0173">4.3.3.22</a> supplies a canonical isomorphism $(X^{\triangleleft })^{\operatorname{op}} \simeq (X^{\operatorname{op}})^{\triangleright }$, carrying the cone point of $X^{\triangleleft }$ to the cone point of $(X^{\operatorname{op}})^{\triangleright }$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="056X">
+<p><a class="environment-identifier" href="/tag/056X">Remark <span data-tag="056X">4.3.3.30</span>.</a> Let $X$ be a simplicial set. Then, for every nonnegative integer $n$, the $n$-skeleton of the cone $X^{\triangleright }$ fits into a pushout diagram </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \operatorname{sk}_{n-1}(X) \ar [r] \ar [d] &amp;  \operatorname{sk}_{n-1}(X)^{\triangleright } \ar [d] \\ \operatorname{sk}_{n}(X) \ar [r] &amp;  \operatorname{sk}_{n}(X^{\triangleright }); } \]
+</div>
+<p> see Remark <a data-tag="056W" href="/tag/056W">4.3.3.20</a>. In particular, $X^{\triangleright }$ has dimension $\leq n$ if and only if $X$ has dimension $\leq n-1$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="017B">
+<p><a class="environment-identifier" href="/tag/017B">Remark <span data-tag="017B">4.3.3.31</span>.</a> Let $X$ be a simplicial set. Then the construction $Y \mapsto X \star Y$ determines a functor </p>
+<div class="equation">
+  \[  \operatorname{Set_{\Delta }}\rightarrow (\operatorname{Set_{\Delta }})_{X/} \]
+</div>
+<p> which preserves small colimits. It follows that the composite functor </p>
+<div class="equation">
+  \[  \operatorname{Set_{\Delta }}\rightarrow (\operatorname{Set_{\Delta }})_{X/} \rightarrow \operatorname{Set_{\Delta }}\quad \quad Y \mapsto X \star Y \]
+</div>
+<p> preserves filtered colimits and pushouts. Beware that it does not preserve colimits in general (for example, it carries the initial object $\emptyset \in \operatorname{Set_{\Delta }}$ to the simplicial set $X$, which need not be initial). </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="017C">
+<p><a class="environment-identifier" href="/tag/017C">Remark <span data-tag="017C">4.3.3.32</span> <span class="named">(Associativity)</span>.</a> Let $X$, $Y$, and $Z$ be simplicial sets. Then Remark <a data-tag="016Q" href="/tag/016Q">4.3.3.5</a> supplies a canonical isomorphism of simplicial sets $\alpha _{X,Y,Z}: X \star (Y \star Z) \simeq (X \star Y) \star Z$. These isomorphisms are associativity constraints for a monoidal structure on the category of simplicial sets, which is characterized (up to isomorphism) by the requirement that the equivalence $\operatorname{Fun}_{\ast }( \operatorname{Lin}^{\operatorname{op}}, \operatorname{Set}) \rightarrow \operatorname{Set_{\Delta }}$ of Proposition <a data-tag="016W" href="/tag/016W">4.3.3.11</a> can be promoted to a monoidal functor. </p>
+</article>
+</p>
+<p>
+<article class="env-warning" id="017D">
+<p><a class="environment-identifier" href="/tag/017D">Warning <span data-tag="017D">4.3.3.33</span>.</a> Let $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ be categories. Then the join $\operatorname{\mathcal{C}}\star \operatorname{\mathcal{D}}$ of Definition <a data-tag="0161" href="/tag/0161">4.3.2.1</a> is characterized (up to isomorphism) by the existence of a pushout diagram </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ (\{ 0\}  \times \operatorname{\mathcal{C}}\times \operatorname{\mathcal{D}}) \coprod ( \{ 1\}  \times \operatorname{\mathcal{C}}\times \operatorname{\mathcal{D}}) \ar [r] \ar [d] &amp;  [1] \times \operatorname{\mathcal{C}}\times \operatorname{\mathcal{D}}\ar [d] \\ ( \{ 0\}  \times \operatorname{\mathcal{C}}) \coprod ( \{ 1\}  \times \operatorname{\mathcal{D}}) \ar [r] &amp;  \operatorname{\mathcal{C}}\star \operatorname{\mathcal{D}}} \]
+</div>
+<p> in the category $\operatorname{Cat}$ (see Remark <a data-tag="016E" href="/tag/016E">4.3.2.14</a>). Beware that, in the setting of simplicial sets, the analogous statement is not quite true. To every pair of simplicial sets $X$ and $Y$, one can associate a commutative diagram of simplicial sets </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ (\{ 0\}  \times X \times Y) \coprod ( \{ 1\}  \times X \times Y) \ar [r] \ar [d] &amp;  \Delta ^1 \times X \times Y \ar [d] \\ ( \{ 0\}  \times X ) \coprod ( \{ 1\}  \times Y) \ar [r] &amp;  X \star Y } \]
+</div>
+<p> (see Construction <a data-tag="01HN" href="/tag/01HN">4.6.2.1</a>), which is almost never a pushout square. Nevertheless, the pushout can be regarded as a good approximation to the join $X \star Y$: see Proposition <a data-tag="01HP" href="/tag/01HP">4.6.2.2</a> and Theorem <a data-tag="01HV" href="/tag/01HV">4.6.2.8</a>. </p>
+</article>
+</p>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.html a[data-toggle="popover"]').popover()
+
+  // render mathematics in popovers
+  $("[data-toggle=popover]").on('shown.bs.popover', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $("div.popover-body").html()]);
+  });
+});
+  </script>
+</div>
+</section></body>
+</html>

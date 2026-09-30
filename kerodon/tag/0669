@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" id="main">
+<div class="html" id="tag">
+<h3 class="tex-subsection" id="subsection:exact-functors"><span data-tag="0669">9.3.5</span> Exact Functors</h3>
+<p>
+We begin by reviewing some terminology. 
+</p>
+<p>
+<article class="env-definition" id="066A">
+<p><a class="environment-identifier" href="/tag/066A">Definition <span data-tag="066A">9.3.5.1</span>.</a> Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a functor between categories which admit finite limits. We say that $F$ is <em>left exact</em> if it preserves finite limits. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="066B">
+<p><a class="environment-identifier" href="/tag/066B">Example <span data-tag="066B">9.3.5.2</span>.</a> The terminology of Definition <a data-tag="066A" href="/tag/066A">9.3.5.1</a> originates in homological algebra. Suppose that $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ are abelian categories (Definition <a class="" data-content="This is a reference to something which is not yet available in Kerodon." data-html="true" data-placement="bottom" data-toggle="popover" data-trigger="focus" role="button" style="cursor: pointer;" tabindex="0" title="Future reference"><img src="/static/images/question.svg"/></a>) and that $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ is an additive functor (that is, a functor which preserves direct sums). In this case, the following conditions are equivalent: </p>
+<p><dl>
+<dt>$(1)$</dt>
+<dd><p>
+The functor $F$ is left exact: that is, it preserves finite limits. 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+The functor $F$ preserves equalizers. 
+</p>
+</dd>
+<dt>$(3)$</dt>
+<dd><p>
+The functor $F$ preserves kernels. That is, for every exact sequence 
+</p>
+<div class="equation">
+  \[  0 \rightarrow X \xrightarrow {u} Y \xrightarrow {v} Z \]
+</div>
+<p>
+ in the abelian category $\operatorname{\mathcal{C}}$, the image 
+</p>
+<div class="equation">
+  \[  0 \rightarrow F(X) \xrightarrow {F(u)} F(Y) \xrightarrow { F(v) } F(Z) \]
+</div>
+<p>
+ is an exact sequence in the abelian category $\operatorname{\mathcal{D}}$. 
+</p>
+</dd>
+</dl></p>
+<p> The equivalence $(1) \Leftrightarrow (2)$ follows from Corollary <a data-tag="03HF" href="/tag/03HF">7.6.4.25</a> (since $F$ is assumed to be additive). The equivalence $(2) \Leftrightarrow (3)$ follows from the observation that, for every pair of morphisms $f_0,f_1: Y \rightrightarrows Z$, the equalizer $\operatorname{Eq}(f_0, f_1)$ can be identified with the kernel of the morphism $(f_1 - f_0): Y \rightarrow Z$ (see Proposition <a class="" data-content="This is a reference to something which is not yet available in Kerodon." data-html="true" data-placement="bottom" data-toggle="popover" data-trigger="focus" role="button" style="cursor: pointer;" tabindex="0" title="Future reference"><img src="/static/images/question.svg"/></a>). </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="066C">
+<p><a class="environment-identifier" href="/tag/066C">Remark <span data-tag="066C">9.3.5.3</span>.</a> In the situation of Example <a data-tag="066B" href="/tag/066B">9.3.5.2</a>, we can replace $(3)$ by the following <em>a priori</em> weaker condition: </p>
+<p><dl>
+<dt>$(3')$</dt>
+<dd><p>
+For every short exact sequence 
+</p>
+<div class="equation">
+  \[  0 \rightarrow X \xrightarrow {u} Y \xrightarrow {v} Z \rightarrow 0 \]
+</div>
+<p>
+ in the abelian category $\operatorname{\mathcal{C}}$, the sequence 
+</p>
+<div class="equation">
+  \[  0 \rightarrow F(X) \xrightarrow {F(u)} F(Y) \xrightarrow {F(v)} F(Z) \]
+</div>
+<p>
+ is also exact. 
+</p>
+</dd>
+</dl></p>
+<p> The implication $(3) \Rightarrow (3')$ is immediate. Conversely, suppose that $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ is an additive functor which satisfies condition $(3')$, and suppose we are given an exact sequence $0 \rightarrow X \xrightarrow {u} Y \xrightarrow {v} Z$ in $\operatorname{\mathcal{C}}$; we wish to show that the sequence $0 \rightarrow F(X) \xrightarrow {F(u)} F(Y) \xrightarrow {F(v)} F(Z)$ is exact in $\operatorname{\mathcal{D}}$. Applying condition $(3')$ to the short exact sequence </p>
+<div class="equation">
+  \[  0 \rightarrow X \xrightarrow {u} Y \xrightarrow {q} \operatorname{coker}(u) \rightarrow 0, \]
+</div>
+<p> we deduce that $F(u): F(X) \rightarrow F(Y)$ is a monomorphism, whose image is the kernel of the map of the map $F( Y ) \rightarrow F( \operatorname{coker}(u) )$. To show that this agrees with the kernel of $F(v)$, it will suffice to show that $v$ induces a monomorphism $F(\operatorname{coker}(u)) \rightarrow F(Z)$ in the abelian category $\operatorname{\mathcal{D}}$. This follows by applying condition $(3')$ to the short exact sequence </p>
+<div class="equation">
+  \[  0 \rightarrow \operatorname{coker}(u) \rightarrow Z \rightarrow \operatorname{coker}(v) \rightarrow 0. \]
+</div>
+</article>
+</p>
+<p>
+<article class="env-variant" id="066D">
+<p><a class="environment-identifier" href="/tag/066D">Variant <span data-tag="066D">9.3.5.4</span>.</a> Let $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ be categories which admit finite colimits. We say that a functor $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ is <em>right exact</em> if it preserves finite colimits: that is, if the opposite functor $F^{\operatorname{op}}: \operatorname{\mathcal{C}}^{\operatorname{op}} \rightarrow \operatorname{\mathcal{D}}^{\operatorname{op}}$ is left exact. When $F$ is an additive functor between abelian categories, this condition can be restated as follows: </p>
+<p><dl>
+<dt>$(\ast )$</dt>
+<dd><p>
+For every exact sequence 
+</p>
+<div class="equation">
+  \[  X \xrightarrow {u} Y \xrightarrow {v} Z \rightarrow 0 \]
+</div>
+<p>
+ in the abelian category $\operatorname{\mathcal{C}}$, the sequence 
+</p>
+<div class="equation">
+  \[  F(X) \xrightarrow {F(u)} F(Y) \xrightarrow {F(v)} F(Z) \rightarrow 0 \]
+</div>
+<p>
+ is exact in the abelian category $\operatorname{\mathcal{D}}$. 
+</p>
+</dd>
+</dl></p>
+<p> Moreover, it suffices to verify condition $(\ast )$ in the special case where $u$ is an monomorphism (Remark <a data-tag="066C" href="/tag/066C">9.3.5.3</a>). </p>
+</article>
+</p>
+<p>
+In this section, we study an $\infty $-categorical counterpart of Definition <a data-tag="066A" href="/tag/066A">9.3.5.1</a>. 
+</p>
+<p>
+<article class="env-definition" id="066E">
+<p><a class="environment-identifier" href="/tag/066E">Definition <span data-tag="066E">9.3.5.5</span>.</a> Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a functor between $\infty $-categories. We say that $F$ is <em>left exact</em> if, for every left fibration $\widetilde{\operatorname{\mathcal{D}}} \rightarrow \operatorname{\mathcal{D}}$ where the $\infty $-category $\widetilde{\operatorname{\mathcal{D}}}$ is cofiltered, the $\infty $-category $\widetilde{\operatorname{\mathcal{C}}} = \operatorname{\mathcal{C}}\times _{\operatorname{\mathcal{D}}} \widetilde{\operatorname{\mathcal{D}}}$ is also cofiltered. </p>
+</article>
+</p>
+<p>
+<article class="env-variant" id="066F">
+<p><a class="environment-identifier" href="/tag/066F">Variant <span data-tag="066F">9.3.5.6</span>.</a> Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a functor between $\infty $-categories. We say that $F$ is <em>right exact</em> if, for every right fibration $\widetilde{\operatorname{\mathcal{D}}} \rightarrow \operatorname{\mathcal{D}}$ where the $\infty $-category $\widetilde{\operatorname{\mathcal{D}}}$ is filtered, the $\infty $-category $\widetilde{\operatorname{\mathcal{C}}} = \operatorname{\mathcal{C}}\times _{\operatorname{\mathcal{D}}} \widetilde{\operatorname{\mathcal{D}}}$ is also filtered. Equivalently, $F$ is right exact if the opposite functor $F^{\operatorname{op}}: \operatorname{\mathcal{C}}^{\operatorname{op}} \rightarrow \operatorname{\mathcal{D}}^{\operatorname{op}}$ is left exact. </p>
+</article>
+</p>
+<p>
+<article class="env-notation" id="066G">
+<p><a class="environment-identifier" href="/tag/066G">Notation <span data-tag="066G">9.3.5.7</span>.</a> Let $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ be $\infty $-categories. We let $\operatorname{Fun}^{\operatorname{lex}}(\operatorname{\mathcal{C}}, \operatorname{\mathcal{D}})$ denote the full subcategory of $\operatorname{Fun}(\operatorname{\mathcal{C}}, \operatorname{\mathcal{D}})$ spanned by the left exact functors $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$, and we let $\operatorname{Fun}^{\operatorname{rex}}(\operatorname{\mathcal{C}}, \operatorname{\mathcal{D}})$ denote the full subcategory of $\operatorname{Fun}( \operatorname{\mathcal{C}}, \operatorname{\mathcal{D}})$ spanned by the right exact functors $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$. </p>
+</article>
+</p>
+<p>
+<article class="env-theorem" id="066H">
+<p><a class="environment-identifier" href="/tag/066H">Theorem <span data-tag="066H">9.3.5.8</span>.</a> Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a functor of $\infty $-categories. Then: </p>
+<p><dl>
+<dt>$(1)$</dt>
+<dd><p>
+If the functor $F$ is right exact (in the sense of Definition <a data-tag="066E" href="/tag/066E">9.3.5.5</a>), then it preserves finite colimits. 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+If the $\infty $-category $\operatorname{\mathcal{C}}$ admits finite colimits and $F$ preserves finite colimits, then $F$ is right exact. 
+</p>
+</dd>
+</dl></p>
+</article>
+</p>
+<p>
+We will give a proof of Theorem <a data-tag="066H" href="/tag/066H">9.3.5.8</a> at the end of this section. 
+</p>
+<p>
+<article class="env-corollary" id="066J">
+<p><a class="environment-identifier" href="/tag/066J">Corollary <span data-tag="066J">9.3.5.9</span>.</a> Let $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ be categories which admit finite limits. Then a functor $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ is left exact (in the sense of Definition <a data-tag="066A" href="/tag/066A">9.3.5.1</a>) if and only if the functor of $\infty $-categories $\operatorname{N}_{\bullet }(F): \operatorname{N}_{\bullet }(\operatorname{\mathcal{C}}) \rightarrow \operatorname{N}_{\bullet }(\operatorname{\mathcal{D}})$ is left exact (in the sense of Definition <a data-tag="066E" href="/tag/066E">9.3.5.5</a>). </p>
+</article>
+</p>
+<p>
+It will be useful to consider an infinitary version of Definition <a data-tag="066E" href="/tag/066E">9.3.5.5</a>. 
+</p>
+<p>
+<article class="env-definition" id="066K">
+<p><a class="environment-identifier" href="/tag/066K">Definition <span data-tag="066K">9.3.5.10</span>.</a> Let $\kappa $ be a regular cardinal and let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a functor of $\infty $-categories. We say that $F$ is <em>$\kappa $-left exact</em> if, for every left fibration $\widetilde{\operatorname{\mathcal{D}}} \rightarrow \operatorname{\mathcal{D}}$ where the $\infty $-category $\widetilde{\operatorname{\mathcal{D}}}$ is $\kappa $-cofiltered, the $\infty $-category $\operatorname{\mathcal{C}}\times _{\operatorname{\mathcal{D}}} \widetilde{\operatorname{\mathcal{D}}}$ is also $\kappa $-cofiltered (see Definition <a data-tag="05X0" href="/tag/05X0">9.1.1.4</a>). We say that $F$ is <em>$\kappa $-right exact</em> if the opposite functor $F^{\operatorname{op}}: \operatorname{\mathcal{C}}^{\operatorname{op}} \rightarrow \operatorname{\mathcal{D}}^{\operatorname{op}}$ is $\kappa $-left exact. We let $\operatorname{Fun}^{\kappa -\operatorname{lex}}(\operatorname{\mathcal{C}}, \operatorname{\mathcal{D}})$ denote the full subcategory of $\operatorname{Fun}( \operatorname{\mathcal{C}}, \operatorname{\mathcal{D}})$ spanned by those functors which are $\kappa $-left exact, and $\operatorname{Fun}^{\kappa -\operatorname{rex}}(\operatorname{\mathcal{C}}, \operatorname{\mathcal{D}})$ the full subcategory spanned by those functors which are $\kappa $-right exact. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="066L">
+<p><a class="environment-identifier" href="/tag/066L">Remark <span data-tag="066L">9.3.5.11</span>.</a> Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a functor of $\infty $-categories. Then $F$ is left exact (in the sense of Definition <a data-tag="066E" href="/tag/066E">9.3.5.5</a>) if and only if it is $\aleph _0$-left exact (in the sense of Definition <a data-tag="066K" href="/tag/066K">9.3.5.10</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="066M">
+<p><a class="environment-identifier" href="/tag/066M">Remark <span data-tag="066M">9.3.5.12</span> <span class="named">(Monotonicity)</span>.</a> Let $\kappa $ be a regular cardinal and let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a $\kappa $-left exact functor of $\infty $-categories. Then $F$ is also $\kappa '$-left exact, for any regular cardinal $\kappa ' \leq \kappa $ (see Remark <a data-tag="05X3" href="/tag/05X3">9.1.1.11</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="066N">
+<p><a class="environment-identifier" href="/tag/066N">Remark <span data-tag="066N">9.3.5.13</span> <span class="named">(Composition)</span>.</a> Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ and $G: \operatorname{\mathcal{D}}\rightarrow \operatorname{\mathcal{E}}$ be functors of $\infty $-categories and let $\kappa $ be a regular cardinal. If $F$ and $G$ are $\kappa $-left exact, then the composition $(G \circ F): \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{E}}$ is also $\kappa $-left exact. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="066P">
+<p><a class="environment-identifier" href="/tag/066P">Example <span data-tag="066P">9.3.5.14</span> <span class="named">(Morita Equivalence)</span>.</a> Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a Morita equivalence of $\infty $-categories (see Definition <a data-tag="05M9" href="/tag/05M9">8.5.6.1</a>). Then $F$ is $\kappa $-left exact for every regular cardinal $\kappa $. To prove this, choose a left fibration $\widetilde{\operatorname{\mathcal{D}}} \rightarrow \operatorname{\mathcal{D}}$, where the $\infty $-category $\widetilde{\operatorname{\mathcal{D}}}$ is $\kappa $-cofiltered; we wish to show that the $\infty $-category $\widetilde{\operatorname{\mathcal{C}}} = \operatorname{\mathcal{C}}\times _{\operatorname{\mathcal{D}}} \widetilde{\operatorname{\mathcal{D}}}$ is also $\kappa $-cofiltered. This follows from Remark <a data-tag="0618" href="/tag/0618">9.1.1.21</a>, since the projection map $\widetilde{F}: \widetilde{\operatorname{\mathcal{C}}} \rightarrow \widetilde{\operatorname{\mathcal{D}}}$ is also a Morita equivalence (Corollary <a data-tag="060G" href="/tag/060G">8.5.6.15</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-theorem" id="066Q">
+<p><a class="environment-identifier" href="/tag/066Q">Theorem <span data-tag="066Q">9.3.5.15</span>.</a> Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a functor of $\infty $-categories. For every regular cardinal $\kappa $, the following conditions are equivalent: </p>
+<p><dl>
+<dt>$(1_{\kappa })$</dt>
+<dd><p>
+The functor $F$ is $\kappa $-left exact. 
+</p>
+</dd>
+<dt>$(2_{\kappa })$</dt>
+<dd><p>
+For every object $D \in \operatorname{\mathcal{D}}$, the $\infty $-category $\operatorname{\mathcal{C}}\times _{\operatorname{\mathcal{D}}} \operatorname{\mathcal{D}}_{D/}$ is $\kappa $-cofiltered. 
+</p>
+</dd>
+</dl></p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      For each object $D \in \operatorname{\mathcal{D}}$, the $\infty $-category $\operatorname{\mathcal{D}}_{D/}$ has an initial object (Proposition <a data-tag="02J2" href="/tag/02J2">4.7.3.20</a>), and is therefore $\kappa $-cofiltered (Example <a data-tag="02PD" href="/tag/02PD">9.1.1.6</a> ). Consequently, if $F$ is $\kappa $-left exact, then the $\infty $-category $\operatorname{\mathcal{C}}\times _{\operatorname{\mathcal{D}}} \operatorname{\mathcal{D}}_{D/}$ is also $\kappa $-cofiltered. We now prove the converse. Assume that, for each object $D \in \operatorname{\mathcal{D}}$, the $\infty $-category $\operatorname{\mathcal{C}}\times _{\operatorname{\mathcal{D}}} \operatorname{\mathcal{D}}_{D/}$ is $\kappa $-cofiltered. Let $U: \widetilde{\operatorname{\mathcal{D}}} \rightarrow \operatorname{\mathcal{D}}$ be a left fibration, where $\widetilde{\operatorname{\mathcal{D}}}$ is $\kappa $-cofiltered; we wish to show that the fiber product $\widetilde{\operatorname{\mathcal{C}}} = \operatorname{\mathcal{C}}\times _{\operatorname{\mathcal{D}}} \widetilde{\operatorname{\mathcal{D}}}$ is also $\kappa $-cofiltered. Applying Example <a data-tag="05ZW" href="/tag/05ZW">7.4.5.6</a>, we deduce that $\widetilde{\operatorname{\mathcal{C}}}$ can be realized as the colimit of a diagram 
+    <p>
+<div class="equation">
+  \[  \mathscr {F}: \widetilde{\operatorname{\mathcal{D}}}^{\operatorname{op}} \rightarrow \operatorname{\mathcal{QC}}\quad \quad X \mapsto \{ X\}  \vec{\times }_{\operatorname{\mathcal{D}}} \operatorname{\mathcal{C}}. \]
+</div>
+<p>
+       For each object $X \in \widetilde{\operatorname{\mathcal{D}}}$, the $\infty $-category $\mathscr {F}(X)$ is equivalent to $\operatorname{\mathcal{C}}\times _{\operatorname{\mathcal{D}}} \operatorname{\mathcal{D}}_{ U(X)/ }$ (Corollary <a data-tag="02VT" href="/tag/02VT">4.6.4.20</a>), and is therefore $\kappa $-cofiltered. Since $\widetilde{\operatorname{\mathcal{D}}}^{\operatorname{op}}$ is $\kappa $-filtered, Proposition <a data-tag="02QC" href="/tag/02QC">9.1.5.18</a> implies that $\widetilde{\operatorname{\mathcal{C}}}$ is also $\kappa $-cofiltered. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<p>
+<article class="env-remark" id="066R">
+<p><a class="environment-identifier" href="/tag/066R">Remark <span data-tag="066R">9.3.5.16</span> <span class="named">(Exactness and Flatness)</span>.</a> Let $\kappa $ be a regular cardinal and let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a functor of $\infty $-categories. Using the classification of left fibrations (see Corollary <a data-tag="028T" href="/tag/028T">5.6.0.6</a>), we see that the following conditions are equivalent: </p>
+<p><dl>
+<dt>$(a)$</dt>
+<dd><p>
+The functor $F$ is $\kappa $-left exact (Definition <a data-tag="066K" href="/tag/066K">9.3.5.10</a>). 
+</p>
+</dd>
+<dt>$(b)$</dt>
+<dd><p>
+For every uncountable regular cardinal $\lambda $ and every $\kappa $-flat functor $G: \operatorname{\mathcal{D}}\rightarrow \operatorname{\mathcal{S}}_{&lt; \lambda }$ (Definition <a data-tag="065Q" href="/tag/065Q">9.3.4.7</a>), the composite functor 
+</p>
+<div class="equation">
+  \[  \operatorname{\mathcal{C}}\xrightarrow {F} \operatorname{\mathcal{D}}\xrightarrow {G} \operatorname{\mathcal{S}}_{&lt; \lambda } \]
+</div>
+<p>
+ is also $\kappa $-flat. 
+</p>
+</dd>
+</dl></p>
+<p> Moreover, if the $\infty $-category $\operatorname{\mathcal{D}}$ is locally $\lambda _0$-small (for some uncountable regular cardinal $\lambda _0$), then it suffices to verify condition $(b)$ in the special case where $\lambda = \lambda _0$ and $G: \operatorname{\mathcal{D}}\rightarrow \operatorname{\mathcal{S}}_{&lt; \lambda }$ is a corepresentable functor (Theorem <a data-tag="066Q" href="/tag/066Q">9.3.5.15</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-corollary" id="066S">
+<p><a class="environment-identifier" href="/tag/066S">Corollary <span data-tag="066S">9.3.5.17</span>.</a> Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a left exact functor of $\infty $-categories. Then $F$ is right cofinal. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      For every object $D \in \operatorname{\mathcal{D}}$, Theorem <a data-tag="066Q" href="/tag/066Q">9.3.5.15</a> guarantees that the $\infty $-category $\widetilde{\operatorname{\mathcal{C}}} = \operatorname{\mathcal{C}}\times _{\operatorname{\mathcal{D}}} \operatorname{\mathcal{D}}_{D/}$ is cofiltered. In particular, $\widetilde{\operatorname{\mathcal{C}}}$ is weakly contractible (Proposition <a data-tag="02PH" href="/tag/02PH">9.1.1.17</a>). Allowing the object $D$ to vary, we conclude that $F$ is right cofinal (Theorem <a data-tag="02NY" href="/tag/02NY">7.2.3.1</a>). 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+<article class="env-corollary" id="066T">
+<p><a class="environment-identifier" href="/tag/066T">Corollary <span data-tag="066T">9.3.5.18</span>.</a> Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a functor of $\infty $-categories which admits a left adjoint. Then $F$ is $\kappa $-left exact for every regular cardinal $\kappa $. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      For every object $D \in \operatorname{\mathcal{D}}$, our assumption guarantees the $\infty $-category $\operatorname{\mathcal{C}}\times _{\operatorname{\mathcal{D}}} \operatorname{\mathcal{D}}_{D/}$ has an initial object (given by $F(D)$; see Corollary <a data-tag="02J9" href="/tag/02J9">6.2.6.2</a>). In particular, $\operatorname{\mathcal{C}}\times _{\operatorname{\mathcal{D}}} \operatorname{\mathcal{D}}_{D/}$ is $\kappa $-cofiltered (Example <a data-tag="02PD" href="/tag/02PD">9.1.1.6</a>). Allowing $D$ to vary, we conclude that $F$ is $\kappa $-left exact (Theorem <a data-tag="066Q" href="/tag/066Q">9.3.5.15</a>). 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+For sufficiently large $\kappa $, we have the following converse of Corollary <a data-tag="066T" href="/tag/066T">9.3.5.18</a>: 
+</p>
+<p>
+<article class="env-corollary" id="066U">
+<p><a class="environment-identifier" href="/tag/066U">Corollary <span data-tag="066U">9.3.5.19</span>.</a> Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a functor of $\infty $-categories and let $\kappa $ be a regular cardinal. Assume that $\operatorname{\mathcal{C}}$ is essentially $\kappa $-small, that $\operatorname{\mathcal{D}}$ is locally $\kappa $-small, and that $\operatorname{\mathcal{C}}$ is idempotent-complete. Then $F$ admits a left adjoint $\operatorname{\mathcal{D}}\rightarrow \operatorname{\mathcal{C}}$ if and only if it is $\kappa $-left exact. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Assume that $F$ is $\kappa $-left exact; we will show that it admits a left adjoint (the converse is a special case of Corollary <a data-tag="066T" href="/tag/066T">9.3.5.18</a>). By virtue of Corollary <a data-tag="02J9" href="/tag/02J9">6.2.6.2</a>, it will suffice to show that for each object $D \in \operatorname{\mathcal{D}}$, the $\infty $-category $\widetilde{\operatorname{\mathcal{C}}} = \operatorname{\mathcal{C}}\times _{\operatorname{\mathcal{D}}} \operatorname{\mathcal{D}}_{D/}$ has an initial object. Our assumption that $F$ is $\kappa $-left exact guarantees that $\widetilde{\operatorname{\mathcal{C}}}$ is $\kappa $-cofiltered (Theorem <a data-tag="066Q" href="/tag/066Q">9.3.5.15</a>), and our assumption that $\operatorname{\mathcal{C}}$ is idempotent-complete guarantees that $\widetilde{\operatorname{\mathcal{C}}}$ is also idempotent-complete (Corollary <a data-tag="0606" href="/tag/0606">8.5.4.26</a>). It will therefore suffice to show that the $\infty $-category $\widetilde{\operatorname{\mathcal{C}}}$ is essentially $\kappa $-small (Proposition <a data-tag="0629" href="/tag/0629">9.1.8.11</a>). The $\infty $-category $\operatorname{\mathcal{C}}$ is essentially $\kappa $-small by assumption, and the assumption that $\operatorname{\mathcal{D}}$ is locally $\kappa $-small guarantees that projection map $U: \widetilde{\operatorname{\mathcal{C}}} \rightarrow \operatorname{\mathcal{C}}$ is an essentially $\kappa $-small left fibration (Corollary <a data-tag="03TX" href="/tag/03TX">5.6.7.7</a>). The desired result now follows from Corollary <a data-tag="047G" href="/tag/047G">4.9.8.12</a>. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+<article class="env-warning" id="066V">
+<p><a class="environment-identifier" href="/tag/066V">Warning <span data-tag="066V">9.3.5.20</span>.</a> In the formulation of Corollary <a data-tag="066U" href="/tag/066U">9.3.5.19</a>, the assumption that $\operatorname{\mathcal{C}}$ is idempotent-complete cannot be omitted. For example, suppose that $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ is a functor which exhibits $\operatorname{\mathcal{D}}$ as an idempotent-completion of $\operatorname{\mathcal{C}}$. Then $F$ is $\kappa $-left exact for every regular cardinal $\kappa $ (Example <a data-tag="066P" href="/tag/066P">9.3.5.14</a>). However, $F$ admits a left adjoint only if it is an equivalence of $\infty $-categories: that is, only if the $\infty $-category $\operatorname{\mathcal{C}}$ is idempotent-complete. </p>
+</article>
+</p>
+<p>
+<article class="env-corollary" id="066W">
+<p><a class="environment-identifier" href="/tag/066W">Corollary <span data-tag="066W">9.3.5.21</span>.</a> Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a functor of $\infty $-categories, let $\kappa $ be a regular cardinal, and let $G: K \rightarrow \operatorname{\mathcal{C}}$ be a $\kappa $-small diagram. If $F$ is $\kappa $-left exact, then the induced map of slice $\infty $-categories $F_{/G}: \operatorname{\mathcal{C}}_{/G} \rightarrow \operatorname{\mathcal{D}}_{/(F \circ G)}$ is also $\kappa $-left exact. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      By virtue of Theorem <a data-tag="066Q" href="/tag/066Q">9.3.5.15</a>, it will suffice to show that for each object $\widetilde{D} \in \operatorname{\mathcal{D}}_{/ (F \circ G)}$, the $\infty $-category 
+    <p>
+<div class="equation">
+  \[  \operatorname{\mathcal{E}}= \operatorname{\mathcal{C}}_{/G} \times _{ \operatorname{\mathcal{D}}_{ / F \circ G} } (\operatorname{\mathcal{D}}_{ / F \circ G})_{ \widetilde{D}/ } \]
+</div>
+<p>
+       is $\kappa $-cofiltered. Let $D$ denote the image of $\widetilde{D}$ in $\operatorname{\mathcal{D}}$, and set $\widetilde{\operatorname{\mathcal{C}}} = \operatorname{\mathcal{C}}\times _{\operatorname{\mathcal{D}}} \operatorname{\mathcal{D}}_{D/}$. Then $\widetilde{D}$ determines a lift of $G$ to a diagram $\widetilde{G}: K \rightarrow \widetilde{\operatorname{\mathcal{C}}}$, and $\operatorname{\mathcal{E}}$ can be identified with the slice $\infty $-category $\widetilde{\operatorname{\mathcal{C}}}_{ / \widetilde{G} }$. By Proposition <a data-tag="02PG" href="/tag/02PG">9.1.1.16</a>, it will suffice to show that the $\infty $-category $\widetilde{\operatorname{\mathcal{C}}}$ is $\kappa $-cofiltered, which follows from our assumption that $F$ is $\kappa $-left exact (Theorem <a data-tag="066Q" href="/tag/066Q">9.3.5.15</a>). 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<p>
+<article class="env-corollary" id="06N8">
+<p><a class="environment-identifier" href="/tag/06N8">Corollary <span data-tag="06N8">9.3.5.22</span>.</a> Let $\kappa \leq \lambda $ be regular cardinals and let $h: \operatorname{\mathcal{C}}\rightarrow \widehat{\operatorname{\mathcal{C}}}$ be a functor of $\infty $-categories which exhibits $\widehat{\operatorname{\mathcal{C}}}$ as an $\operatorname{Ind}_{\kappa }^{\lambda }$-completion of $\operatorname{\mathcal{C}}$. Then $h$ is $\kappa $-right exact. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      By virtue of Theorem <a data-tag="066Q" href="/tag/066Q">9.3.5.15</a>, this is a reformulation of Corollary <a data-tag="06N6" href="/tag/06N6">9.3.4.16</a>. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+Theorem <a data-tag="066H" href="/tag/066H">9.3.5.8</a> is a special case of the following: 
+</p>
+<p>
+<article class="env-theorem" id="066X">
+<p><a class="environment-identifier" href="/tag/066X">Theorem <span data-tag="066X">9.3.5.23</span>.</a> Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a functor of $\infty $-categories and let $\kappa $ be a regular cardinal. Then: </p>
+<p><dl>
+<dt>$(1)$</dt>
+<dd><p>
+If the functor $F$ is $\kappa $-left exact, then it it preserves all $\kappa $-small limits which exist in $\operatorname{\mathcal{C}}$ 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+If the $\infty $-category $\operatorname{\mathcal{C}}$ is $\kappa $-complete and $F$ is $\kappa $-continuous, then $F$ is $\kappa $-left exact. 
+</p>
+</dd>
+</dl></p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      We first prove $(1)$. Assume that $F$ is $\kappa $-left exact; we wish to show that it preserves $\kappa $-small limits. Equivalently, we wish to show that if $G: K \rightarrow \operatorname{\mathcal{C}}$ is a $\kappa $-small diagram, then the functor $F_{/G}: \operatorname{\mathcal{C}}_{/G} \rightarrow \operatorname{\mathcal{D}}_{ /(F \circ G)}$ preserves final objects. It follows from Corollary <a data-tag="066W" href="/tag/066W">9.3.5.21</a> that the functor $F_{/G}$ is also $\kappa $-left exact. In particular, it is right cofinal (Corollary <a data-tag="066S" href="/tag/066S">9.3.5.17</a>), and therefore preserves final objects by virtue of Corollary <a data-tag="043E" href="/tag/043E">7.2.1.9</a>. 
+    <p>
+      We now prove $(2)$. Assume that $\operatorname{\mathcal{C}}$ is $\kappa $-complete and that $F$ is $\kappa $-continuous; we wish to show that $F$ is $\kappa $-left exact. By virtue of Theorem <a data-tag="066Q" href="/tag/066Q">9.3.5.15</a>, it will suffice to show that for every object $D \in \operatorname{\mathcal{D}}$, the $\infty $-category $\widetilde{\operatorname{\mathcal{C}}} = \operatorname{\mathcal{C}}\times _{\operatorname{\mathcal{D}}} \operatorname{\mathcal{D}}_{D/}$ is $\kappa $-cofiltered. Fix a $\kappa $-small simplicial set $K$ and a diagram $\widetilde{G}: K \rightarrow \widetilde{\operatorname{\mathcal{C}}}$; we wish to show that $\widetilde{G}$ can be extended to the cone $K^{\triangleleft }$. Let us identify $\widetilde{G}$ with a pair $(G, D')$, where $G: K \rightarrow \operatorname{\mathcal{C}}$ is a diagram in $\operatorname{\mathcal{C}}$ and $D'$ is an object of the $\infty $-category $\operatorname{\mathcal{D}}_{/ (F \circ G)}$ lying over $D$. Since $\operatorname{\mathcal{C}}$ is $\kappa $-complete, we can extend $G$ to a limit diagram $\overline{G}: K^{\triangleleft } \rightarrow \operatorname{\mathcal{C}}$. Our assumption that $F$ is $\kappa $-continuous guarantees that $F \circ \overline{G}$ is a limit diagram in $\operatorname{\mathcal{D}}$: that is, the restriction functor $\operatorname{\mathcal{D}}_{ / (F \circ \overline{G} )} \rightarrow \operatorname{\mathcal{D}}_{ / (F \circ G)}$ is a trivial Kan fibration. In particular, we can lift $D'$ to an object $\overline{D}' \in \operatorname{\mathcal{D}}_{ / (F \circ \overline{G} )}$. The pair $(\overline{G}, \overline{D}' )$ can then determines an extension of $\widetilde{G}$ to a diagram $K^{\triangleleft } \rightarrow \widetilde{\operatorname{\mathcal{C}}}$. 
+      <span class="qed">$\square$</span>
+</p>
+</p></article>
+<p>
+<article class="env-remark" id="06U4">
+<p><a class="environment-identifier" href="/tag/06U4">Remark <span data-tag="06U4">9.3.5.24</span>.</a> Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a left exact functor of $\infty $-categories. Then, for every integer $n$, the functor $F$ carries $n$-truncated objects of $\operatorname{\mathcal{C}}$ to $n$-truncated objects of $\operatorname{\mathcal{D}}$ and $n$-truncated morphisms of $\operatorname{\mathcal{C}}$ to $n$-truncated morphisms of $\operatorname{\mathcal{D}}$. This follows from Remark <a data-tag="05EP" href="/tag/05EP">7.1.4.10</a> and Theorem <a data-tag="066X" href="/tag/066X">9.3.5.23</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-corollary" id="066Y">
+<p><a class="environment-identifier" href="/tag/066Y">Corollary <span data-tag="066Y">9.3.5.25</span>.</a> Let $\kappa $ and $\lambda $ be regular cardinals, where $\lambda $ is uncountable, and let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{S}}_{&lt; \lambda }$ be a functor of $\infty $-categories. Each of the following conditions implies the next: </p>
+<p><dl>
+<dt>$(1)$</dt>
+<dd><p>
+The functor $F$ is $\kappa $-left exact. 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+The functor $F$ is $\kappa $-flat. 
+</p>
+</dd>
+<dt>$(3)$</dt>
+<dd><p>
+The functor $F$ preserves all $\kappa $-small limits which exist in $\operatorname{\mathcal{C}}$. 
+</p>
+</dd>
+</dl></p>
+<p> If $\operatorname{\mathcal{C}}$ is $\kappa $-complete, then all three conditions are equivalent. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      The implication $(1) \Rightarrow (2)$ follows from Remark <a data-tag="066R" href="/tag/066R">9.3.5.16</a> and the implication $(2) \Rightarrow (3)$ is Corollary <a data-tag="0662" href="/tag/0662">9.3.4.23</a>. If $\operatorname{\mathcal{C}}$ is $\kappa $-complete, then the implication $(3) \Rightarrow (1)$ is a special case of Theorem <a data-tag="066X" href="/tag/066X">9.3.5.23</a>. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+<article class="env-warning" id="066Z">
+<p><a class="environment-identifier" href="/tag/066Z">Warning <span data-tag="066Z">9.3.5.26</span>.</a> Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{S}}$ be a functor of $\infty $-categories. It follows from Corollary <a data-tag="066Y" href="/tag/066Y">9.3.5.25</a> that if $F$ is left exact, then it is flat. Moreover, the converse holds if $\operatorname{\mathcal{C}}$ admits finite limits. Beware that the converse does not hold in general. For example, let $R$ be an associative ring, let $\operatorname{\mathcal{E}}$ be (the nerve of) the category of free left $R$-modules of finite rank, and let </p>
+<div class="equation">
+  \[ F: \operatorname{\mathcal{E}}^{\operatorname{op}} \rightarrow \operatorname{N}_{\bullet }(\operatorname{Set}) \subseteq \operatorname{\mathcal{S}}\quad \quad F(M) = \operatorname{Hom}_{R}(M,R) \]
+</div>
+<p> be the functor represented by $R$. Then $F$ is a flat functor. Using Remark <a data-tag="066R" href="/tag/066R">9.3.5.16</a>, we see that $F$ is left exact if and only if, for every set $S$, the functor </p>
+<div class="equation">
+  \[ F^{S}: \operatorname{\mathcal{E}}^{\operatorname{op}} \rightarrow \operatorname{N}_{\bullet }(\operatorname{Set}) \subseteq \operatorname{\mathcal{S}}\quad \quad F(M) = \operatorname{Hom}_{R}(M,R^{S}) \]
+</div>
+<p> is also flat. By virtue of Example <a data-tag="065L" href="/tag/065L">9.3.4.3</a>, this is equivalent the requirement that $R^{S}$ is a flat left $R$-module. This condition is satisfied only when the ring $R$ is <em>right coherent</em>: that is, every finitely generated right ideal $I \subseteq R$ is finitely presented as a right $R$-module. See Theorem 2.1 of <span class="cite">[<a href="/bibliography/chase">chase</a>]</span>. </p>
+</article>
+</p>
+<p>
+<article class="env-corollary" id="06N9">
+<p><a class="environment-identifier" href="/tag/06N9">Corollary <span data-tag="06N9">9.3.5.27</span>.</a> Let $\kappa \leq \lambda $ be regular cardinals and let $\operatorname{\mathcal{C}}$ be an $\infty $-category. Then the tautological map $h: \operatorname{\mathcal{C}}\rightarrow \operatorname{Ind}_{\kappa }^{\lambda }(\operatorname{\mathcal{C}})$ preserves all $\kappa $-small colimits which exist in $\operatorname{\mathcal{C}}$. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Combine Corollary <a data-tag="06N8" href="/tag/06N8">9.3.5.22</a> with Theorem <a data-tag="066X" href="/tag/066X">9.3.5.23</a>. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+<article class="env-corollary" id="0670">
+<p><a class="environment-identifier" href="/tag/0670">Corollary <span data-tag="0670">9.3.5.28</span>.</a> Let $\kappa \leq \lambda $ be regular cardinals, where $\lambda $ is uncountable. Let $\operatorname{\mathcal{C}}$ be an $\infty $-category which is $\kappa $-cocomplete and essentially $\lambda $-small. Then the covariant Yoneda embedding </p>
+<div class="equation">
+  \[  h_{\bullet }: \operatorname{\mathcal{C}}\rightarrow \operatorname{Fun}^{\kappa -\operatorname{lex}}( \operatorname{\mathcal{C}}^{\operatorname{op}}, \operatorname{\mathcal{S}}_{&lt; \lambda } ) \]
+</div>
+<p> exhibits $\operatorname{Fun}^{\kappa -\operatorname{lex}}( \operatorname{\mathcal{C}}^{\operatorname{op}}, \operatorname{\mathcal{S}}_{&lt; \lambda } )$ as an $\operatorname{Ind}_{\kappa }^{\lambda }$-completion of $\operatorname{\mathcal{C}}$. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Combine Theorem <a data-tag="065X" href="/tag/065X">9.3.4.14</a> with Corollary <a data-tag="066Y" href="/tag/066Y">9.3.5.25</a>. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+<article class="env-corollary" id="0671">
+<p><a class="environment-identifier" href="/tag/0671">Corollary <span data-tag="0671">9.3.5.29</span>.</a> Let $\kappa $ be a small regular cardinal and let $\operatorname{\mathcal{C}}$ be an $\infty $-category which is $\kappa $-cocomplete and essentially small. Then the covariant Yoneda embedding </p>
+<div class="equation">
+  \[  h_{\bullet }: \operatorname{\mathcal{C}}\rightarrow \operatorname{Fun}^{\kappa -\operatorname{lex}}( \operatorname{\mathcal{C}}^{\operatorname{op}}, \operatorname{\mathcal{S}}) \]
+</div>
+<p> exhibits $\operatorname{Fun}^{\kappa -\operatorname{lex}}( \operatorname{\mathcal{C}}^{\operatorname{op}}, \operatorname{\mathcal{S}})$ as an $\operatorname{Ind}_{\kappa }$-completion of $\operatorname{\mathcal{C}}$. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Apply Corollary <a data-tag="0670" href="/tag/0670">9.3.5.28</a> in the special case where $\lambda =  \Omega $ is a strongly inaccessible cardinal. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+<article class="env-corollary" id="0672">
+<p><a class="environment-identifier" href="/tag/0672">Corollary <span data-tag="0672">9.3.5.30</span>.</a> Let $\operatorname{\mathcal{C}}$ be an essentially small $\infty $-category which admits finite colimits. Then the covariant Yoneda embedding </p>
+<div class="equation">
+  \[  h_{\bullet }: \operatorname{\mathcal{C}}\rightarrow \operatorname{Fun}^{\operatorname{lex}}( \operatorname{\mathcal{C}}^{\operatorname{op}}, \operatorname{\mathcal{S}}) \]
+</div>
+<p> exhibits $\operatorname{Fun}^{\operatorname{lex}}( \operatorname{\mathcal{C}}^{\operatorname{op}}, \operatorname{\mathcal{S}})$ as an $\operatorname{Ind}$-completion of $\operatorname{\mathcal{C}}$. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Apply Corollary <a data-tag="0671" href="/tag/0671">9.3.5.29</a> in the special case $\kappa = \aleph _0$. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.html a[data-toggle="popover"]').popover()
+
+  // render mathematics in popovers
+  $("[data-toggle=popover]").on('shown.bs.popover', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $("div.popover-body").html()]);
+  });
+});
+  </script>
+</div>
+</section></body>
+</html>

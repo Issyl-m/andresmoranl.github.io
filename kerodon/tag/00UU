@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" id="main">
+<div class="html" id="tag">
+<h3 class="tex-subsection" id="subsection:fibrant-replacement"><span data-tag="00UU">3.1.8</span> Fibrant Replacement</h3>
+<p>
+The formalism of Kan complexes is extremely useful as a combinatorial foundation for homotopy theory. However, when studying the homotopy theory of Kan complexes, it is often necessary to contemplate more general simplicial sets. For example, if $f_0, f_1: S_{} \rightarrow T_{}$ are morphisms of Kan complexes, then a homotopy from $f_0$ to $f_1$ is defined as a morphism of simplicial sets $h: \Delta ^1 \times S_{} \rightarrow T_{}$; here neither $\Delta ^1$ nor the product $\Delta ^1 \times S_{}$ is a Kan complex (except in the trivial case $S_{} = \emptyset $; see Exercise <a data-tag="002J" href="/tag/002J">1.2.5.2</a>). When working with a simplicial set $X_{}$ which is not a Kan complex, it is often convenient to <em>replace</em> $X_{}$ by a Kan complex having the same weak homotopy type. This can always be achieved: more precisely, one can always find a weak homotopy equivalence $X_{} \rightarrow Q_{}$, where $Q_{}$ is a Kan complex (Corollary <a data-tag="00UW" href="/tag/00UW">3.1.8.2</a>). Our goal in this section is to prove a “fiberwise” version of this result, which can be stated as follows: 
+</p>
+<p>
+<article class="env-proposition" id="00UV">
+<p><a class="environment-identifier" href="/tag/00UV">Proposition <span data-tag="00UV">3.1.8.1</span>.</a> Let $f: X_{} \rightarrow Y_{}$ be a morphism of simplicial sets. Then $f$ can be factored as a composition $X_{} \xrightarrow {f'} Q_{}(f) \xrightarrow {f''} Y_{}$, where $f''$ is a Kan fibration and $f'$ is anodyne (hence a weak homotopy equivalence, by virtue of Proposition <a data-tag="00UP" href="/tag/00UP">3.1.7.14</a>). Moreover, the simplicial set $Q_{}(f)$ (and the morphisms $f'$ and $f''$) can be chosen to depend functorially on $f$, in such a way that the functor </p>
+<div class="equation">
+  \[  \operatorname{Fun}( [1], \operatorname{Set_{\Delta }}) \rightarrow \operatorname{Set_{\Delta }}\quad \quad (f: X_{} \rightarrow Y_{} ) \rightarrow Q_{}(f) \]
+</div>
+<p> commutes with filtered colimits. </p>
+</article>
+</p>
+<p>
+Before giving the proof of Proposition <a data-tag="00UV" href="/tag/00UV">3.1.8.1</a>, let us note some of its consequences. Applying Proposition <a data-tag="00UV" href="/tag/00UV">3.1.8.1</a> in the special case $Y_{} = \Delta ^0$, we obtain the following: 
+</p>
+<p>
+<article class="env-corollary" id="00UW">
+<p><a class="environment-identifier" href="/tag/00UW">Corollary <span data-tag="00UW">3.1.8.2</span>.</a> Let $X_{}$ be a simplicial set. Then there exists an anodyne morphism $f: X_{} \hookrightarrow Q_{}$, where $Q_{}$ is a Kan complex. </p>
+</article>
+</p>
+<p>
+<article class="env-warning" id="04GC">
+<p><a class="environment-identifier" href="/tag/04GC">Warning <span data-tag="04GC">3.1.8.3</span>.</a> In the situation of Corollary <a data-tag="00UW" href="/tag/00UW">3.1.8.2</a>, the Kan complex $Q$ is not uniquely determined. However, the homotopy type of $Q$ depends only on $X$. If $Q'$ is another Kan complex equipped with a map $f': X \rightarrow Q'$, then we can write $f' = g \circ f$ for some map of Kan complexes $g: Q \rightarrow Q'$ (Remark <a data-tag="00UN" href="/tag/00UN">3.1.2.7</a>). If $f'$ is a weak homotopy equivalence, then $g$ is also a weak homotopy equivalence (Remark <a data-tag="00UD" href="/tag/00UD">3.1.7.16</a>) and therefore a homotopy equivalence (Proposition <a data-tag="00UB" href="/tag/00UB">3.1.7.13</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="00UX">
+<p><a class="environment-identifier" href="/tag/00UX">Remark <span data-tag="00UX">3.1.8.4</span>.</a> In the situation of Corollary <a data-tag="00UW" href="/tag/00UW">3.1.8.2</a>, the Kan complex $Q_{}$ (and the anodyne morphism $f$) can be chosen to depend functorially on $X_{}$. This follows from the proof of Proposition <a data-tag="00UV" href="/tag/00UV">3.1.8.1</a> given below, but there are other (arguably more elegant) ways to achieve the same result. For example, we can take $Q$ to be the simplicial set $\operatorname{Ex}^{\infty }(X)$ of Construction <a data-tag="00ZB" href="/tag/00ZB">3.3.6.1</a> (see Propositions <a data-tag="00ZK" href="/tag/00ZK">3.3.6.9</a> and <a data-tag="00ZH" href="/tag/00ZH">3.3.6.7</a>), or the singular simplicial set $\operatorname{Sing}_{\bullet }(|X|)$ (see Proposition <a data-tag="002K" href="/tag/002K">1.2.5.8</a> and Theorem <a data-tag="0142" href="/tag/0142">3.6.4.1</a>). These constructions also have non-aesthetic advantages: for example, the functors $X \mapsto \operatorname{Ex}^{\infty }(X)$ and $X \mapsto \operatorname{Sing}_{\bullet }(|X|)$ both preserve finite limits. </p>
+</article>
+</p>
+<p>
+<article class="env-corollary" id="00X8">
+<p><a class="environment-identifier" href="/tag/00X8">Corollary <span data-tag="00X8">3.1.8.5</span>.</a> Let $f: X \rightarrow Y$ be a morphism of simplicial sets. The following conditions are equivalent: </p>
+<p><dl>
+<dt>$(1)$</dt>
+<dd><p>
+The morphism $f$ is anodyne. 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+The morphism $f$ is weakly left orthogonal to all Kan fibrations. That is, if $g: Z \rightarrow S$ is a Kan fibration of simplicial sets, then every lifting problem 
+</p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ X \ar [d]^{f} \ar [r] &amp;  Z \ar [d]^{g} \\ Y \ar [r] \ar@ {--&gt;}[ur] &amp;  S } \]
+</div>
+<p>
+ admits a solution. 
+</p>
+</dd>
+</dl></p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      The implication $(1) \Rightarrow (2)$ follows from Remark <a data-tag="00UN" href="/tag/00UN">3.1.2.7</a>. To deduce the converse, we first apply Proposition <a data-tag="00UV" href="/tag/00UV">3.1.8.1</a> to write $f$ as a composition $X \xrightarrow {f'} Q \xrightarrow {f''} Y$, where $f'$ is anodyne and $f''$ is a Kan fibration. If $f$ satisfies condition $(2)$, then the lifting problem 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ X \ar [d]^{f} \ar [r]^-{f'} &amp;  Q \ar [d]^{f''} \\ Y \ar [r]^-{\operatorname{id}} \ar@ {--&gt;}[ur] &amp;  Y } \]
+</div>
+<p>
+       admits a solution. It follows that $f$ is a retract of $f'$ (in the arrow category $\operatorname{Fun}([1], \operatorname{Set_{\Delta }})$). Since the collection of anodyne morphisms is closed under retracts, it follows that $f$ is anodyne. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<p>
+Recall that the homotopy category $\operatorname {h}\! \mathit{\operatorname{Kan}}$ of Construction <a data-tag="00TY" href="/tag/00TY">3.1.5.10</a> is defined as a quotient of the category of Kan complexes $\operatorname{Kan}$ (by identifying morphisms which are homotopic). However, it can also be described as a <em>localization</em> of $\operatorname{Kan}$, obtained by inverting the class of homotopy equivalences (see §<a data-tag="01M4" href="/tag/01M4">6.3</a>). 
+</p>
+<p>
+<article class="env-proposition" id="012U">
+<p><a class="environment-identifier" href="/tag/012U">Proposition <span data-tag="012U">3.1.8.6</span>.</a> Let $\operatorname{\mathcal{C}}$ be a category and let $F: \operatorname{Kan}\rightarrow \operatorname{\mathcal{C}}$ be a functor. The following conditions are equivalent: </p>
+<p><dl>
+<dt>$(\ast )$</dt>
+<dd><p>
+If $X$ and $Y$ are Kan complexes and $u_0, u_1: X \rightarrow Y$ are homotopic morphisms, then $F(u_0) = F(u_1)$ in $\operatorname{Hom}_{\operatorname{\mathcal{C}}}( F(X), F(Y) )$. 
+</p>
+</dd>
+<dt>$(\ast ')$</dt>
+<dd><p>
+For every homotopy equivalence of Kan complexes $u: X \rightarrow Y$, the induced map $F(u): F(X) \rightarrow F(Y)$ is an isomorphism in the category $\operatorname{\mathcal{C}}$. 
+</p>
+</dd>
+</dl></p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      The implication $(\ast ) \Rightarrow (\ast ')$ is immediate (note that a morphism of Kan complexes $u: X \rightarrow Y$ is a homotopy equivalence if and only if its homotopy class $[u]$ is an isomorphism in the homotopy category $\operatorname {h}\! \mathit{\operatorname{Kan}}$). For the converse, assume that $(\ast ')$ is satisfied, let $X$ and $Y$ be Kan complexes, and let $u_0, u_1: X \rightarrow Y$ be a pair of homotopic morphisms. Let us regard $u_0$ and $u_1$ as vertices of the Kan complex $\operatorname{Fun}(X,Y)$. Since $u_0$ and $u_1$ are homotopic, there exists an edge $e: \Delta ^1 \rightarrow \operatorname{Fun}(X,Y)$ satisfying $e(0) = u_0$ and $e(1) = u_1$. By virtue of Proposition <a data-tag="00UV" href="/tag/00UV">3.1.8.1</a>, this morphism factors as a composition $\Delta ^1 \xrightarrow {e'} Q \xrightarrow {e''} \operatorname{Fun}(X,Y)$, where $e'$ is anodyne and $e''$ is a Kan fibration. Since $\operatorname{Fun}(X,Y)$ is a Kan complex (Corollary <a data-tag="00TN" href="/tag/00TN">3.1.3.4</a>), it follows that $Q$ is also a Kan complex. Let us identify $e''$ with a morphism of Kan complexes $h: Q \times X \rightarrow Y$. Let $i_0: X \hookrightarrow Q \times X$ be the product of the identity map $\operatorname{id}_{X}$ with the inclusion $\{  e'(0) \}  \hookrightarrow Q$, and define $i_1: X \hookrightarrow Q \times X$ similarly. Since $e'$ is anodyne, the restrictions $e'|_{\{ 0\} }$ and $e'|_{\{ 1\} }$ are anodyne. In particular, they are weak homotopy equivalences (Proposition <a data-tag="00UP" href="/tag/00UP">3.1.7.14</a>) and therefore homotopy equivalences (Proposition <a data-tag="00UB" href="/tag/00UB">3.1.7.13</a>), since $Q$ is a Kan complex. It follows that $i_0$ and $i_1$ are also homotopy equivalences, so that $F(i_0)$ and $F(i_1)$ are isomorphisms (by virtue of assumption $(\ast ')$). Using the fact that $i_0$ and $i_1$ are left inverse to the projection map $\pi : Q \times X \rightarrow X$, we see that $F(\pi )$ is an isomorphism in $\operatorname{\mathcal{C}}$ and that we have 
+    <p>
+<div class="equation">
+  \[  F(u_0) = F(h) \circ F(i_0) = F(h) \circ F(\pi )^{-1} = F(h) \circ F(i_1) = F(u_1), \]
+</div>
+<p>
+       as desired. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<p>
+<article class="env-corollary" id="012V">
+<p><a class="environment-identifier" href="/tag/012V">Corollary <span data-tag="012V">3.1.8.7</span>.</a> Let $\operatorname{\mathcal{C}}$ be a category, let $\operatorname{\mathcal{E}}\subseteq \operatorname{Fun}( \operatorname{Kan}, \operatorname{\mathcal{C}})$ be the full subcategory spanned by those functors $F: \operatorname{Kan}\rightarrow \operatorname{\mathcal{C}}$ which carry homotopy equivalences of Kan complexes to isomorphisms in the category $\operatorname{\mathcal{C}}$. Then precomposition with the quotient map $\operatorname{Kan}\rightarrow \operatorname {h}\! \mathit{\operatorname{Kan}}$ induces an isomorphism of categories $\operatorname{Fun}( \operatorname {h}\! \mathit{\operatorname{Kan}}, \operatorname{\mathcal{C}}) \rightarrow \operatorname{\mathcal{E}}$. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Combine Remark <a data-tag="012T" href="/tag/012T">3.1.5.11</a> with Proposition <a data-tag="012U" href="/tag/012U">3.1.8.6</a>. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+<article class="env-variant" id="012W">
+<p><a class="environment-identifier" href="/tag/012W">Variant <span data-tag="012W">3.1.8.8</span>.</a> Let $\operatorname{\mathcal{C}}$ be a category, and let $\operatorname{\mathcal{E}}' \subseteq \operatorname{Fun}( \operatorname{Set_{\Delta }}, \operatorname{\mathcal{C}})$ be the full subcategory spanned by those functors $F: \operatorname{Set_{\Delta }}\rightarrow \operatorname{\mathcal{C}}$. which carry weak homotopy equivalences of simplicial sets to isomorphisms in the category $\operatorname{\mathcal{C}}$. Then: </p>
+<p><dl>
+<dt>$(a)$</dt>
+<dd><p>
+For every functor $F \in \operatorname{\mathcal{E}}'$, the restriction $F|_{\operatorname{Kan}}$ factors (uniquely) as a composition $\operatorname{Kan}\twoheadrightarrow \operatorname {h}\! \mathit{\operatorname{Kan}} \xrightarrow { \overline{F} } \operatorname{\mathcal{C}}$. 
+</p>
+</dd>
+<dt>$(b)$</dt>
+<dd><p>
+The construction $F \mapsto \overline{F}$ induces an equivalence of categories $\operatorname{\mathcal{E}}' \rightarrow \operatorname{Fun}( \operatorname {h}\! \mathit{\operatorname{Kan}}, \operatorname{\mathcal{C}})$. 
+</p>
+</dd>
+</dl></p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="012X">
+<p><a class="environment-identifier" href="/tag/012X">Remark <span data-tag="012X">3.1.8.9</span>.</a> Corollary <a data-tag="012V" href="/tag/012V">3.1.8.7</a> and Variant <a data-tag="012W" href="/tag/012W">3.1.8.8</a> can be stated more informally as follows: </p>
+<p><ul>
+<li><p>
+The homotopy category $\operatorname {h}\! \mathit{\operatorname{Kan}}$ can be obtained from the category $\operatorname{Kan}$ of Kan complexes by formally adjoining inverses to all homotopy equivalences. 
+</p>
+</li><li><p>
+The homotopy category $\operatorname {h}\! \mathit{\operatorname{Kan}}$ can be obtained from the category $\operatorname{Set_{\Delta }}$ of simplicial sets by formally adjoining inverses to all weak homotopy equivalences. 
+</p>
+</li>
+</ul></p>
+<p> Either of these assertions characterizes the homotopy category $\operatorname {h}\! \mathit{\operatorname{Kan}}$ up to equivalence (in fact, Corollary <a data-tag="012V" href="/tag/012V">3.1.8.7</a> even characterizes $\operatorname {h}\! \mathit{\operatorname{Kan}}$ up to <em>isomorphism</em>). </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof of Variant <a data-tag="012W" href="/tag/012W">3.1.8.8</a>.</strong>
+       Let $\operatorname{\mathcal{E}}\subseteq \operatorname{Fun}( \operatorname{Kan}, \operatorname{\mathcal{C}})$ be the full subcategory spanned by those functors $F: \operatorname{Kan}\rightarrow \operatorname{\mathcal{C}}$ which carry homotopy equivalences of Kan complexes to isomorphisms in $\operatorname{\mathcal{C}}$. By virtue of Corollary <a data-tag="012V" href="/tag/012V">3.1.8.7</a>, it will suffice to show that the restriction functor $F \mapsto F|_{\operatorname{Kan}}$ induces an equivalence of categories $\operatorname{\mathcal{E}}' \rightarrow \operatorname{\mathcal{E}}$. Using Proposition <a data-tag="00UV" href="/tag/00UV">3.1.8.1</a>, we can choose a functor $Q: \operatorname{Set_{\Delta }}\rightarrow \operatorname{Kan}$ and a natural transformation $u: \operatorname{id}_{\operatorname{Set_{\Delta }}} \rightarrow Q$ with the property that, for every simplicial set $X$, the induced map $u_{X}: X \rightarrow Q(X)$ is anodyne. For every morphism of simplicial sets $f: X \rightarrow Y$, we have a commutative diagram 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ X \ar [r]^-{f} \ar [d]^{u_ X} &amp;  Y \ar [d]^{ u_ Y} \\ Q(X) \ar [r]^-{ Q(f) } &amp;  Q(Y), } \]
+</div>
+<p>
+       where the vertical maps are weak homotopy equivalences (Proposition <a data-tag="00UP" href="/tag/00UP">3.1.7.14</a>). It follows that if $f$ is a weak homotopy equivalence, then $Q(f)$ is also a weak homotopy equivalence (Remark <a data-tag="00UD" href="/tag/00UD">3.1.7.16</a>) and therefore a homotopy equivalence (Proposition <a data-tag="00UB" href="/tag/00UB">3.1.7.13</a>). In other words, the functor $Q$ carries weak homotopy equivalences of simplicial sets to homotopy equivalences of Kan complexes. It follows that precomposition with $Q$ induces a functor $\theta : \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{E}}'$. We claim that $\theta $ is homotopy inverse to the restriction functor $\operatorname{\mathcal{E}}' \rightarrow \operatorname{\mathcal{E}}$. This follows from the following pair of observations: 
+    <p>
+<ul>
+<li><p>
+For every functor $F: \operatorname{Set_{\Delta }}\rightarrow \operatorname{\mathcal{C}}$, $u$ induces a natural transformation $F \rightarrow F|_{\operatorname{Kan}} \circ Q$, which depends functorially on $F$ and is an isomorphism for $F \in \operatorname{\mathcal{E}}'$. 
+</p>
+</li><li><p>
+For every functor $F_0: \operatorname{Kan}\rightarrow \operatorname{\mathcal{C}}$, $u$ induces a natural transformation $F_0 \rightarrow (F_0 \circ Q)|_{\operatorname{Kan}}$, which depends functorially on $F_0$ and is an isomorphism for $F_0 \in \operatorname{\mathcal{E}}$. 
+</p>
+</li>
+</ul>
+<span class="qed">$\square$</span>
+</p>
+</p></p></p></article>
+<p>
+We now turn to the proof of Proposition <a data-tag="00UV" href="/tag/00UV">3.1.8.1</a>. We will use an easy version of Quillen's “small object argument” (which we will revisit in greater generality in §<a class="" data-content="This is a reference to something which is not yet available in Kerodon." data-html="true" data-placement="bottom" data-toggle="popover" data-trigger="focus" role="button" style="cursor: pointer;" tabindex="0" title="Future reference"><img src="/static/images/question.svg"/></a>). 
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof of Proposition <a data-tag="00UV" href="/tag/00UV">3.1.8.1</a>.</strong>
+       Let $f: X_{} \rightarrow Y_{}$ be a morphism of simplicial sets. We construct a sequence of simplicial sets $\{  X(m)_{} \} _{m \geq 0}$ and morphisms $f(m): X(m)_{} \rightarrow Y_{}$ by recursion. Set $X(0)_{} = X_{}$ and $f(0) = f$. Assuming that $f(m): X(m)_{} \rightarrow Y_{}$ has been defined, let $S(m)$ denote the set of all commutative diagrams $\sigma :$ 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \Lambda ^ n_ i \ar [r] \ar [d] &amp;  X(m)_{} \ar [d]^{f(m)} \\ \Delta ^ n \ar [r]^-{u_{\sigma }} &amp;  Y_{}, } \]
+</div>
+<p>
+       where $0 \leq i \leq n$, $n &gt; 0$, and the left vertical map is the inclusion. For every such commutative diagram $\sigma $, let $C_{\sigma } = \Lambda ^ n_{i}$ denote the upper left hand corner of the diagram $\sigma $, and $D_{\sigma } = \Delta ^ n$ the lower left hand corner. Form a pushout diagram 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \coprod _{\sigma \in S(m)} C_{\sigma } \ar [r] \ar [d] &amp;  X(m)_{} \ar [d] \\ \coprod _{\sigma \in S(m)} D_{\sigma } \ar [r] &amp;  X(m+1)_{} } \]
+</div>
+<p>
+       and let $f(m+1): X(m+1)_{} \rightarrow Y_{}$ be the unique map whose restriction to $X(m)_{}$ is equal to $f(m)$ and whose restriction to each $D_{\sigma }$ is equal to $u_{\sigma }$. By construction, we have a direct system of anodyne morphisms 
+    <p>
+<div class="equation">
+  \[  X_{} = X(0)_{} \hookrightarrow X(1)_{} \hookrightarrow X(2)_{} \hookrightarrow \cdots  \]
+</div>
+<p>
+       Set $Q_{}(f) = \varinjlim _{m} X(m)_{}$. Then the natural map $f': X_{} \rightarrow Q_{}(f)$ is anodyne (since the collection of anodyne maps is closed under transfinite composition), and the system of morphisms $\{  f(m) \} _{m \geq 0}$ can be amalgamated to a single map $f'': Q_{}(f) \rightarrow Y_{}$ satisfying $f = f'' \circ f'$. It is clear from the definition that the construction $f \mapsto Q_{}(f)$ is functorial and commutes with filtered colimits. To complete the proof, it will suffice to show that $f''$ is a Kan fibration: that is, that every lifting problem $\sigma :$ 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \Lambda ^{n}_{i} \ar [r]^-{v} \ar [d] &amp;  Q_{}(f) \ar [d]^{f''} \\ \Delta ^ n \ar [r] \ar@ {--&gt;}[ur] &amp;  Y_{} } \]
+</div>
+<p>
+       admits a solution (provided that $n &gt; 0$). Let us abuse notation by identifying each $X(m)_{}$ with its image in $Q_{}(f)$. Since $\Lambda ^{n}_{i}$ is a finite simplicial set, its image under $v$ is contained in $X(m)_{}$ for some $m \gg 0$. In this case, we can identify $\sigma $ with an element of the set $S(m)$, so that the lifting problem 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \Lambda ^{n}_{i} \ar [r]^-{v} \ar [d] &amp;  X(m+1)_{} \ar [d]^{f(m+1)} \\ \Delta ^ n \ar [r] \ar@ {--&gt;}[ur] &amp;  Y_{} } \]
+</div>
+<p>
+       admits a solution by construction. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></p></p></p></p></p></p></p></p></article>
+<p>
+<article class="env-example" id="0101">
+<p><a class="environment-identifier" href="/tag/0101">Example <span data-tag="0101">3.1.8.10</span> <span class="named">(Path Fibrations)</span>.</a> If $f: X \rightarrow Y$ is a morphism of Kan complexes, then we can give a much more explicit proof of Proposition <a data-tag="00UV" href="/tag/00UV">3.1.8.1</a>. Let $P(f)$ denote the fiber product $X \times _{ \operatorname{Fun}( \{ 0\} , Y)} \operatorname{Fun}( \Delta ^1, Y)$. Then $f$ factors as a composition $X \xrightarrow {f'} P(f) \xrightarrow {f''} Y$, where $f''$ is given by evaluation at the vertex $\{ 1\}  \subseteq \Delta ^1$ and $f'$ is obtained by amalgamating the identity morphism $\operatorname{id}_{X}$ with the composition $X \xrightarrow {f} Y \xrightarrow {\delta } \operatorname{Fun}( \Delta ^1, Y)$. Moreover: </p>
+<p><ul>
+<li><p>
+The morphism $f'$ is a section of the projection map $P(f) \rightarrow X$, which is a pullback of the evaluation map $\operatorname{Fun}( \Delta ^1, Y) \rightarrow \operatorname{Fun}( \{ 0\} , Y)$ and therefore a trivial Kan fibration (Corollary <a data-tag="00UT" href="/tag/00UT">3.1.3.6</a>). It follows that $f'$ is a weak homotopy equivalence. Since it is also a monomorphism, it is anodyne (see Corollary <a data-tag="00ZQ" href="/tag/00ZQ">3.3.7.7</a>). 
+</p>
+</li><li><p>
+The morphism $f''$ factors as a composition 
+</p>
+<div class="equation">
+  \[  P(f) = X \times _{ \operatorname{Fun}( \{ 0\} , Y)} \operatorname{Fun}(\Delta ^1, Y) \xrightarrow {u} X \times \operatorname{Fun}(\{ 1\} , Y) \xrightarrow {v} Y, \]
+</div>
+<p>
+ where $u$ is a pullback of the restriction map $\operatorname{Fun}(\Delta ^1, Y) \rightarrow \operatorname{Fun}(\operatorname{\partial \Delta }^{1}, Y)$ (and therefore a Kan fibration by virtue of Corollary <a data-tag="00TM" href="/tag/00TM">3.1.3.3</a>) and $v$ is a pullback of the projection map $X \rightarrow \Delta ^0$ (and therefore a Kan fibration by virtue of our assumption that $X$ is a Kan complex). It follows that $f''$ is also a Kan fibration. 
+</p>
+</li>
+</ul></p>
+</article>
+</p>
+<p>
+The proof of Proposition <a data-tag="00UV" href="/tag/00UV">3.1.8.1</a> can be repurposed to obtain many analogous results. 
+</p>
+<p>
+<article class="env-exercise" id="00UY">
+<p><a class="environment-identifier" href="/tag/00UY">Exercise <span data-tag="00UY">3.1.8.11</span>.</a> Let $f: X_{} \rightarrow Y_{}$ be a morphism of simplicial sets. Show that $f$ can be factored as a composition $X_{} \xrightarrow {f'} P_{}(f) \xrightarrow {f''} Y_{}$, where $f'$ is a monomorphism and $f''$ is a trivial Kan fibration. Moreover, this factorization can be chosen to depend functorially on $f$ (as an object of the arrow category $\operatorname{Fun}( [1], \operatorname{Set_{\Delta }})$). </p>
+</article>
+</p>
+<p>
+<article class="env-variant" id="050L">
+<p><a class="environment-identifier" href="/tag/050L">Variant <span data-tag="050L">3.1.8.12</span>.</a> Let $f: X \rightarrow Y$ be a morphism of simplicial sets, and let $n$ be a nonnegative integer. Arguing as in the proof of Proposition <a data-tag="00UV" href="/tag/00UV">3.1.8.1</a>, we see that $f$ admits a factorization $X \xrightarrow {f'} Q(f) \xrightarrow {f''} Y$ with the following properties: </p>
+<p><dl>
+<dt>$(a)$</dt>
+<dd><p>
+The morphism $f'$ can be realized as a transfinite pushout of horn inclusions $\Lambda ^{m}_{i} \hookrightarrow \Delta ^ m$ for $0 \leq i \leq m$ and $m &gt; n$. 
+</p>
+</dd>
+<dt>$(b)$</dt>
+<dd><p>
+For $0 \leq i \leq m$ and $m &gt; n$, every lifting problem 
+</p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \Lambda ^{m}_{i} \ar [r] \ar [d] &amp;  Q(f) \ar [d]^{f''} \\ \Delta ^{m} \ar [r] \ar@ {--&gt;}[ur] &amp;  Y } \]
+</div>
+<p>
+ admits a solution. 
+</p>
+</dd>
+</dl></p>
+<p> It follows from $(a)$ that morphism $f'$ is a monomorphism which is bijective on $k$-simplices for $k &lt; n$. </p>
+<p>Now suppose that the morphism $f$ satisfies the following additional condition: </p>
+<p><dl>
+<dt>$(\ast )$</dt>
+<dd><p>
+For $0 \leq i \leq m$ and $0 &lt; m \leq n$, every lifting problem 
+</p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \Lambda ^{m}_{i} \ar [r] \ar [d] &amp;  X \ar [d]^{f} \\ \Delta ^{m} \ar [r] \ar@ {--&gt;}[ur] &amp;  Y } \]
+</div>
+<p>
+ admits a solution. 
+</p>
+</dd>
+</dl></p>
+<p> Since $f'$ is bijective on $k$-simplices for $k &lt; n$, it follows that the morphism $f''$ also satisfies condition $(\ast )$. Combining this with assumption $(b)$, we conclude that $f''$ is a Kan fibration. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="050M">
+<p><a class="environment-identifier" href="/tag/050M">Example <span data-tag="050M">3.1.8.13</span>.</a> Let $n \geq 0$ be an integer and let $X$ be a simplicial set which satisfies the following condition: </p>
+<p><dl>
+<dt>$(\ast )$</dt>
+<dd><p>
+For $0 &lt; m \leq n$, every horn $\Lambda ^{m}_{i} \rightarrow X$ can be extended to an $m$-simplex of $X$. 
+</p>
+</dd>
+</dl></p>
+<p> Applying Variant <a data-tag="050L" href="/tag/050L">3.1.8.12</a> to the projection map $X \rightarrow \Delta ^0$, we conclude that $X$ admits an anodyne map $f: X \hookrightarrow Q$ which is bijective on $k$-simplices for $k &lt; n$, where $Q$ is a Kan complex. </p>
+</article>
+</p>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.html a[data-toggle="popover"]').popover()
+
+  // render mathematics in popovers
+  $("[data-toggle=popover]").on('shown.bs.popover', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $("div.popover-body").html()]);
+  });
+});
+  </script>
+</div>
+</section></body>
+</html>

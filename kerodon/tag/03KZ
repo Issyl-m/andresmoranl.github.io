@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" id="main">
+<div class="html" id="tag">
+<h3 class="tex-subsection" id="subsection:morphisms-in-Duskin-nerve"><span data-tag="03KZ">8.1.8</span> Morphisms in the Duskin Nerve</h3>
+<p>
+Let $S$ be a simplicial set. Recall that, for every pair of vertices $X,Y \in S$, the morphism space $\operatorname{Hom}_{S}(X,Y)$ is defined by the formula 
+</p>
+<div class="equation">
+  \[  \operatorname{Hom}_{S}(X,Y) = \{ X\}  \vec{\times }_{S} \{ Y\}  = \{ X\}  \times _{ \operatorname{Fun}(\{ 0\} , S) } \operatorname{Fun}(\Delta ^1,S) \times _{ \operatorname{Fun}(\{ 1\} , S) } \{ Y\} . \]
+</div>
+<p>
+ In this section, we specialize to the case where $S = \operatorname{N}_{\bullet }^{\operatorname{D}}(\operatorname{\mathcal{C}})$ is the Duskin nerve of a bicategory $\operatorname{\mathcal{C}}$. In this case, we will see that there is close relationship between the simplicial set $\operatorname{Hom}_{S}(X,Y)$ and the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$ of $1$-morphisms from $X$ to $Y$. More precisely, we will construct a comparison map 
+</p>
+<div class="equation">
+  \[  \operatorname{Cospan}( \operatorname{N}_{\bullet } \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) ) \rightarrow \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{D}}(\operatorname{\mathcal{C}}) }( X, Y), \]
+</div>
+<p>
+ and show that it is an isomorphism of simplicial sets (Corollary <a data-tag="01GC" href="/tag/01GC">8.1.8.6</a>). 
+</p>
+<p>
+<article class="env-warning" id="03L0">
+<p><a class="environment-identifier" href="/tag/03L0">Warning <span data-tag="03L0">8.1.8.1</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory. If every $2$-morphism in $\operatorname{\mathcal{C}}$ is invertible, then the Duskin nerve $\operatorname{N}_{\bullet }^{\operatorname{D}}(\operatorname{\mathcal{C}})$ is an $\infty $-category (Theorem <a data-tag="00AC" href="/tag/00AC">2.3.2.1</a>). It follows that, for every pair of objects $X,Y \in \operatorname{\mathcal{C}}$, the simplicial set $\operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{D}}(\operatorname{\mathcal{C}}) }( X,Y )$ is a Kan complex. Beware that, in the case where $\operatorname{\mathcal{C}}$ contains non-invertible $2$-morphisms, the simplicial set $\operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{D}}(\operatorname{\mathcal{C}}) }( X,Y )$ is generally not an $\infty $-category (in fact, it is not even an $\infty $-bicategory unless the category $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)$ admits pushouts: see Proposition <a data-tag="03L5" href="/tag/03L5">8.1.4.1</a>). In such cases, it may be more useful to consider the <em>pinched</em> morphism spaces of $\operatorname{N}_{\bullet }^{\operatorname{D}}(\operatorname{\mathcal{C}})$: see Example <a data-tag="01L7" href="/tag/01L7">4.6.5.12</a> and Remark <a data-tag="03L3" href="/tag/03L3">8.1.8.8</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-construction" id="01G9">
+<p><a class="environment-identifier" href="/tag/01G9">Construction <span data-tag="01G9">8.1.8.2</span>.</a> Let $\operatorname{\mathcal{A}}$ be a category, let $\operatorname{\mathcal{C}}$ be a bicategory containing objects $X$ and $Y$, and let $F: \operatorname{Tw}(\operatorname{\mathcal{A}}) \rightarrow \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$ be a functor. We define a strictly unital lax functor $U_ F: [1] \times \operatorname{\mathcal{A}}\rightarrow \operatorname{\mathcal{C}}$ as follows: </p>
+<p><dl>
+<dt>$(1)$</dt>
+<dd><p>
+The lax functor $U_{F}$ is given on objects by $U_ F(0,A) = X$ and $U_ F(1,A) = Y$ for each object $A \in \operatorname{\mathcal{A}}$. 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+Let $f: A \rightarrow B$ be a morphism in the category $\operatorname{\mathcal{A}}$, which we also regard as an object of the twisted arrow category $\operatorname{Tw}(\operatorname{\mathcal{A}})$. For $0 \leq i \leq j \leq 1$, we let $f_{ji}$ denote the corresponding morphism from $(i,A)$ to $(j,B)$ in the product category $[1] \times \operatorname{\mathcal{A}}$. Then the lax functor $U_{F}$ is given on $1$-morphisms by the formula 
+</p>
+<div class="equation">
+  \[  U_{F}( f_{ji} ) = \begin{cases}  \operatorname{id}_{X} &amp;  \text{ if } i = j = 0 \\  \operatorname{id}_{Y} &amp;  \text{ if } i = j = 1 \\  F(f) &amp;  \text{ if } 0 = i &lt; j = 1. \end{cases} \]
+</div>
+</dd>
+<dt>$(3)$</dt>
+<dd><p>
+Let $f: A \rightarrow B$ and $v: B \rightarrow C$ be composable morphisms in the category $\operatorname{\mathcal{A}}$, and let $0 \leq i \leq j \leq k \leq 1$. Then the composition constraint $\mu _{g_{kj}, f_{ji} }$ for the lax functor $U_ F$ is given as follows: 
+</p>
+<ul>
+<li><p>
+If $i=j=k=0$, then $\mu _{g_{kj},f_{ji} }$ is the unit constraint $\upsilon _{X}: \operatorname{id}_{X} \circ \operatorname{id}_{X} \xRightarrow {\sim } \operatorname{id}_{X}$ of the bicategory $\operatorname{\mathcal{C}}$. 
+</p>
+</li><li><p>
+If $i=0$ and $j=k=1$, then $\mu _{g_{kj},f_{ji} }$ is given by the composition 
+</p>
+<div class="equation">
+  \[  \operatorname{id}_{Y} \circ F(f) \xRightarrow { \lambda _{F(f)} } F(f) \xRightarrow { F(\operatorname{id}_ A, g) } F( g \circ f), \]
+</div>
+<p>
+ where $\lambda _{F(f)}$ is the left unit constraint of Construction <a data-tag="00EW" href="/tag/00EW">2.2.1.10</a> and we regard the pair $(\operatorname{id}_ A,g)$ as an element of $\operatorname{Hom}_{\operatorname{Tw}(\operatorname{\mathcal{A}})}( f, g \circ f)$. 
+</p>
+</li><li><p>
+If $i=j=0$ and $k=1$, then $\mu _{g_{kj},f_{ji} }$ is given by the composition 
+</p>
+<div class="equation">
+  \[  F(g) \circ \operatorname{id}_{X} \xRightarrow { \rho _{F(g)} } F(g) \xRightarrow { F(f, \operatorname{id}_ C) } F( g \circ f), \]
+</div>
+<p>
+ where $\rho _{F(g)}$ is the right unit constraint of Construction <a data-tag="00EW" href="/tag/00EW">2.2.1.10</a> and we regard the pair $(f, \operatorname{id}_ C)$ as an element of $\operatorname{Hom}_{\operatorname{Tw}(\operatorname{\mathcal{A}})}(g, g \circ f)$. 
+</p>
+</li><li><p>
+If $i=j=k=1$, then $\mu _{g_{kj},f_{ji} }$ is equal to the unit constraint $\upsilon _{Y}: \operatorname{id}_{Y} \circ \operatorname{id}_{Y} \xRightarrow {\sim } \operatorname{id}_{Y}$ of the bicategory $\operatorname{\mathcal{C}}$. 
+</p>
+</li>
+</ul>
+</dd>
+</dl></p>
+</article>
+</p>
+<p>
+<article class="env-exercise" id="01GA">
+<p><a class="environment-identifier" href="/tag/01GA">Exercise <span data-tag="01GA">8.1.8.3</span>.</a> Show that Construction <a data-tag="01G9" href="/tag/01G9">8.1.8.2</a> is well-defined. That is, given a functor $F: \operatorname{Tw}(\operatorname{\mathcal{A}}) \rightarrow \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$ as in Construction <a data-tag="01G9" href="/tag/01G9">8.1.8.2</a>, show that there is a unique strictly unital lax functor $U_{F}$ satisfying properties $(1)$, $(2)$, and $(3)$ of Construction <a data-tag="01G9" href="/tag/01G9">8.1.8.2</a>. </p>
+</article>
+</p>
+<p>
+We can now formulate the main result of this section. 
+</p>
+<p>
+<article class="env-theorem" id="01GB">
+<p><a class="environment-identifier" href="/tag/01GB">Theorem <span data-tag="01GB">8.1.8.4</span>.</a> Let $\operatorname{\mathcal{A}}$ be a category and let $\operatorname{\mathcal{C}}$ be a bicategory containing objects $X$ and $Y$. Then the assignment $F \mapsto U_{F}$ of Construction <a data-tag="01G9" href="/tag/01G9">8.1.8.2</a> induces a monomorphism of sets </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \{  \textnormal{Functors $F: \operatorname{Tw}(\operatorname{\mathcal{A}}) \rightarrow \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$} \}  \ar [d] \\ \{  \textnormal{Strictly unital lax functors $U: [1] \times \operatorname{\mathcal{A}}\rightarrow \operatorname{\mathcal{C}}$} \} . } \]
+</div>
+<p> The image of this monomorphism consists of those strictly unital lax functors $U: [1] \times \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ having the property that $U|_{ \{ 0\}  \times \operatorname{\mathcal{A}}}$ and $U|_{ \{ 1\}  \times \operatorname{\mathcal{A}}}$ are the constant functors taking the values $X$ and $Y$, respectively. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="03L1">
+<p><a class="environment-identifier" href="/tag/03L1">Remark <span data-tag="03L1">8.1.8.5</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory containing objects $X$ and $Y$. For every category $\operatorname{\mathcal{A}}$, we can use Theorem <a data-tag="00AU" href="/tag/00AU">2.3.4.1</a> to identify strictly unital lax functors $U: [1] \times \operatorname{\mathcal{A}}\rightarrow \operatorname{\mathcal{C}}$ with morphisms of simplicial sets $G: \Delta ^1 \times \operatorname{N}_{\bullet }(\operatorname{\mathcal{A}}) \rightarrow \operatorname{N}_{\bullet }^{\operatorname{D}}(\operatorname{\mathcal{C}})$. Consequently, Theorem <a data-tag="01GB" href="/tag/01GB">8.1.8.4</a> supplies a bijection </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \{  \textnormal{Functors $F: \operatorname{Tw}(\operatorname{\mathcal{A}}) \rightarrow \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$} \}  \ar [d]^{\sim } \\ \{  \textnormal{Morphisms of simplicial sets $\operatorname{N}_{\bullet }(\operatorname{\mathcal{A}}) \rightarrow \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{D}}(\operatorname{\mathcal{C}})}(X,Y)$} \} . } \]
+</div>
+</article>
+</p>
+<p>
+Note that the bijection of Remark <a data-tag="03L1" href="/tag/03L1">8.1.8.5</a> depends functorially on the simplicial set $\operatorname{\mathcal{A}}$. Specializing to categories of the form $\operatorname{\mathcal{A}}= [n]$, we obtain the following: 
+</p>
+<p>
+<article class="env-corollary" id="01GC">
+<p><a class="environment-identifier" href="/tag/01GC">Corollary <span data-tag="01GC">8.1.8.6</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory containing objects $X$ and $Y$. Then Construction <a data-tag="01G9" href="/tag/01G9">8.1.8.2</a> induces an isomorphism of simplicial sets </p>
+<div class="equation">
+  \[ \operatorname{Cospan}( \operatorname{N}_{\bullet } \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) ) \xrightarrow {\sim } \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{D}}(\operatorname{\mathcal{C}}) }( X, Y). \]
+</div>
+</article>
+</p>
+<p>
+<article class="env-exercise" id="03L2">
+<p><a class="environment-identifier" href="/tag/03L2">Exercise <span data-tag="03L2">8.1.8.7</span>.</a> Show that Theorem <a data-tag="01GB" href="/tag/01GB">8.1.8.4</a> follows from Corollary <a data-tag="01GC" href="/tag/01GC">8.1.8.6</a>. In other words, to prove Theorem <a data-tag="01GB" href="/tag/01GB">8.1.8.4</a>, there is no loss of generality in assuming that $\operatorname{\mathcal{A}}$ has the form $\{  0 &lt; 1 &lt; \cdots &lt; n \} $ for some integer $n \geq 0$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="03L3">
+<p><a class="environment-identifier" href="/tag/03L3">Remark <span data-tag="03L3">8.1.8.8</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory containing a pair of objects $X$ and $Y$. Then we have a commutative diagram of simplicial sets </p>
+<div class="equation">
+  \[  \xymatrix@C =50pt@R=50pt{ \operatorname{N}_{\bullet } \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) \ar [r]^-{\rho _{+} } \ar [d]^{\sim } &amp;  \operatorname{Cospan}( \operatorname{N}_{\bullet } \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) ) \ar [d]^{\sim } &amp;  \operatorname{N}_{\bullet } \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)^{\operatorname{op}} \ar [l]_-{ \rho _{-} } \ar [d]^{\sim } \\ \operatorname{Hom}^{\mathrm{L}}_{ \operatorname{N}_{\bullet }^{\operatorname{D}}(\operatorname{\mathcal{C}})}(X,Y) \ar [r]^-{ \iota ^{\mathrm{L}} } &amp;  \operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{D}}(\operatorname{\mathcal{C}}) }(X,Y) &amp;  \operatorname{Hom}^{\mathrm{R}}_{ \operatorname{N}_{\bullet }^{\operatorname{D}}(\operatorname{\mathcal{C}})}(X,Y) \ar [l]_-{ \iota ^{\mathrm{R}} } } \]
+</div>
+<p> where the upper horizontal maps are the inclusions of Construction <a data-tag="049F" href="/tag/049F">8.1.7.1</a> and Variant <a data-tag="049V" href="/tag/049V">8.1.7.14</a>, the lower horizontal maps are the pinch inclusion maps of Construction <a data-tag="01L2" href="/tag/01L2">4.6.5.7</a>, the outer vertical maps are the isomorphisms of Example <a data-tag="01L7" href="/tag/01L7">4.6.5.12</a>, and the inner vertical map is the isomorphism of Corollary <a data-tag="01GC" href="/tag/01GC">8.1.8.6</a>. </p>
+<p>Stated more concretely, Corollary <a data-tag="01GC" href="/tag/01GC">8.1.8.6</a> asserts that we can identify $n$-simplices of the simplicial set $\operatorname{Hom}_{ \operatorname{N}_{\bullet }^{\operatorname{D}}(\operatorname{\mathcal{C}}) }( X, Y)$ with commutative diagrams </p>
+<div class="equation">
+  \[  \xymatrix@R =20pt@C=20pt{ f_{0,0} \ar@ {=&gt;}[dr] &amp;  &amp;  f_{1,1} \ar@ {=&gt;}[dl] \ar@ {=&gt;}[dr] &amp;  &amp;  \cdots \ar@ {=&gt;}[dl] \ar@ {=&gt;}[dr] &amp;  &amp;  f_{n-1,n-1} \ar@ {=&gt;}[dl] \ar@ {=&gt;}[dr] &amp;  &amp;  f_{n,n} \ar@ {=&gt;}[dl] \\ &amp; \cdots \ar@ {=&gt;}[dr] &amp;  &amp;  \cdots \ar@ {=&gt;}[dr] \ar@ {=&gt;}[dl] &amp;  &amp;  \cdots \ar@ {=&gt;}[dl] \ar@ {=&gt;}[dr] &amp;  &amp;  \cdots \ar@ {=&gt;}[dl] &amp; \\ &amp;  &amp;  f_{0,n-2} \ar@ {=&gt;}[dr] &amp;  &amp;  f_{1,n-1} \ar@ {=&gt;}[dl] \ar@ {=&gt;}[dr] &amp;  &amp;  f_{2,n} \ar@ {=&gt;}[dl] &amp;  &amp; \\ &amp;  &amp;  &amp;  f_{0,n-1} \ar@ {=&gt;}[dr] &amp;  &amp;  f_{1,n} \ar@ {=&gt;}[dl] &amp;  &amp;  &amp; \\ &amp;  &amp;  &amp;  &amp;  f_{0,n} &amp;  &amp;  &amp;  &amp;  } \]
+</div>
+<p> in the category of $1$-morphisms $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$. The image of the left-pinch inclusion morphism </p>
+<div class="equation">
+  \[ \iota ^{\mathrm{L}}: \operatorname{Hom}_{\operatorname{N}_{\bullet }^{\operatorname{D}}(\operatorname{\mathcal{C}})}^{\mathrm{L}}( X, Y) \hookrightarrow \operatorname{Hom}_{\operatorname{N}_{\bullet }^{\operatorname{D}}(\operatorname{\mathcal{C}})}( X, Y) \]
+</div>
+<p> consists of those simplices which correspond (under this identification) to commutative diagrams in which each of the leftward pointing $2$-morphisms $f_{i,j} \Rightarrow f_{i-1,j}$ is an identity map. In this case, the entire diagram is determined by the sequence of composable morphisms $f_{0,0} \Rightarrow f_{0,1} \Rightarrow f_{0,2} \Rightarrow \cdots \Rightarrow f_{0,n}$ in the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$. Similarly, the image of the right-pinch inclusion morphism </p>
+<div class="equation">
+  \[ \iota ^{\mathrm{R}}: \operatorname{Hom}_{\operatorname{N}_{\bullet }^{\operatorname{D}}(\operatorname{\mathcal{C}})}^{\mathrm{R}}( X, Y) \hookrightarrow \operatorname{Hom}_{\operatorname{N}_{\bullet }^{\operatorname{D}}(\operatorname{\mathcal{C}})}( X, Y) \]
+</div>
+<p> consists of those simplices which correspond to commutative diagrams in which the rightward pointing $2$-morphisms $f_{i,j} \Rightarrow f_{i,j+1}$ are identity maps, which ensures that the entire diagram is determined by the sequence of composable morphisms $f_{n,n} \Rightarrow f_{n-1,n} \Rightarrow f_{n-2,n} \Rightarrow \cdots \Rightarrow f_{0,n}$ in $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof of Theorem <a data-tag="01GB" href="/tag/01GB">8.1.8.4</a>.</strong>
+       Let $\operatorname{\mathcal{A}}$ be an ordinary category, let $\operatorname{\mathcal{C}}$ be a bicategory containing objects $X$ and $Y$, and let $U: [1] \times \operatorname{\mathcal{A}}\rightarrow \operatorname{\mathcal{C}}$ be a strictly unital lax functor having the property that $U|_{ \{ 0\}  \times \operatorname{\mathcal{A}}}$ and $U|_{ \{ 1\}  \times \operatorname{\mathcal{A}}}$ are the constant functors taking the values $X$ and $Y$, respectively. We wish to show that there exists a unique functor of ordinary categories $F: \operatorname{Tw}(\operatorname{\mathcal{A}}) \rightarrow \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$ such that $U$ is equal to the strictly unital lax functor $U_{F}$ given by Construction <a data-tag="01G9" href="/tag/01G9">8.1.8.2</a>. To prove this, we may assume without loss of generality that the bicategory $\operatorname{\mathcal{C}}$ is strictly unital (Proposition <a data-tag="00FG" href="/tag/00FG">2.2.7.7</a>). Given a morphism $f: A \rightarrow B$ in the category $\operatorname{\mathcal{A}}$ and a pair of integers $0 \leq i \leq j \leq 1$, we write $f_{ji}: (i,A) \rightarrow (j,B)$ for the corresponding morphism in the product category $[1] \times \operatorname{\mathcal{A}}$. Unwinding the definitions, we see that the identity $U = U_{F}$ imposes the following requirements on the functor $F$: 
+    <p>
+<dl>
+<dt>$(1)$</dt>
+<dd><p>
+Let $f: A \rightarrow B$ be a morphism in the category $\operatorname{\mathcal{C}}$, which we identify with an object of the twisted arrow category $\operatorname{Tw}(\operatorname{\mathcal{A}})$. Then $F(f)$ is equal to $U( f_{10} ) \in \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$. 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+Let $f: A \rightarrow B$ and $g: B \rightarrow C$ be composable morphisms in the category $\operatorname{\mathcal{A}}$, and regard the pairs $(\operatorname{id}_ A, g)$ and $(f, \operatorname{id}_ C)$ as elements of $\operatorname{Hom}_{\operatorname{Tw}(\operatorname{\mathcal{A}})}(f, g \circ f)$ and $\operatorname{Hom}_{\operatorname{Tw}(\operatorname{\mathcal{A}})}( g, g \circ f)$, respectively. Then $F( \operatorname{id}_ A, g)$ and $F(f, \operatorname{id}_ C)$ are equal to the composition constraints $\mu _{ g_{11}, f_{10} }$ and $\mu _{ g_{10}, f_{00} }$ for the lax functor $U$, respectively. 
+</p>
+</dd>
+</dl>
+<p>
+      We now establish the uniqueness of the functor $F$. The value of $F$ on objects is determined by condition $(1)$. If $f: A \rightarrow B$ and $f': A' \rightarrow B'$ are objects of the twisted arrow category $\operatorname{Tw}(\operatorname{\mathcal{A}})$, then an element of $\operatorname{Hom}_{\operatorname{Tw}(\operatorname{\mathcal{A}})}(f, f')$ can be identified with a pair $(u,v)$ where $u \in \operatorname{Hom}_{\operatorname{\mathcal{A}}}(A',A)$ and $v \in \operatorname{Hom}_{\operatorname{\mathcal{A}}}(B,B')$ satisfy $f' = v \circ f \circ u$. In this case, the morphism $(u,v)$ factors as a composition $(u, \operatorname{id}_{B'} ) \circ (\operatorname{id}_{A}, v)$, so condition $(2)$ guarantees the identity 
+    <p>
+<div class="equation">
+  \[  F(u,v) = F(u, \operatorname{id}_{B'} ) \circ F( \operatorname{id}_{A}, v) = \mu _{ (vf)_{10}, u_{00} } \circ \mu _{ v_{11}, f_{10} }. \]
+</div>
+<p>
+       This proves the uniqueness of $F$ on morphisms. 
+    <p>
+      To prove existence, we define the functor $F$ on objects $f \in \operatorname{Tw}(\operatorname{\mathcal{A}})$ by setting $F(f) = U( f_{10} )$, and on morphisms $(u,v) \in \operatorname{Hom}_{\operatorname{Tw}(\operatorname{\mathcal{A}})}(f,f')$ by the formula 
+    <p>
+<div class="equation">
+  \[ F(u,v) = \mu _{ (vf)_{10}, u_{00} } \circ \mu _{ v_{11}, f_{10} }. \]
+</div>
+<p>
+       Note that this prescription automatically satisfies condition $(1)$. Since $U$ is a strictly unital functor between strictly unital bicategories, its composition constraints $\mu _{g,h}$ are the identity whenever either $g$ or $h$ is an identity morphism (Remark <a data-tag="008T" href="/tag/008T">2.2.7.5</a>), which shows that $F$ satisfies condition $(2)$ and that it carries identity morphisms to identity morphisms. We will complete the proof by showing that $F$ is compatible with composition. Let $f: A \rightarrow B$, $f': A' \rightarrow B'$, and $f'': A'' \rightarrow B''$ be objects of the twisted arrow category $\operatorname{Tw}(\operatorname{\mathcal{A}})$, and suppose we are given morphisms $(u,v) \in \operatorname{Hom}_{\operatorname{Tw}(\operatorname{\mathcal{A}})}( f, f')$ and $(u',v') \in \operatorname{Hom}_{\operatorname{Tw}(\operatorname{\mathcal{A}})}( f',f'')$. We wish to prove an equality $F( u \circ u', v' \circ v) = F(u',v') \circ F(u,v)$ of morphisms from $F(f)$ to $F(f'')$ in the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$. Unwinding the definitions, this is equivalent to the commutativity of the outer cycle of the diagram 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ &amp;  &amp;  F(vfu) \ar@ {=&gt;}[dr]^{ \mu _{v'_{11}, (vfu)_{10} } } &amp;  &amp;  \\ &amp;  F(vf) \ar@ {=&gt;}[ur]^{ \mu _{ (vf)_{10}, u_{00}}} \ar@ {=&gt;}[dr]^{ \mu _{v'_{11}, (vf)_{10} } } &amp;  &amp;  F(v'vfu) \ar@ {=&gt;}[dr]^{ \mu _{ (v'vfu)_{10}, u'_{00} } } &amp;  \\ F(f) \ar@ {=&gt;}[ur]^{ \mu _{v_{11}, f_{10} } }\ar@ {=&gt;}[rr]^{ \mu _{ (v'v)_{11}, f_{10} }} &amp;  &amp;  F(v'vf) \ar@ {=&gt;}[ur]^{ \mu _{ (v'vf)_{10}, u_{00} }} \ar@ {=&gt;}[rr]^{ \mu _{ (v'vf)_{10}, (uu')_{00} }} &amp;  &amp;  F( v'vfuu') } \]
+</div>
+<p>
+       in the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$. In fact, the entire diagram commutes. The commutativity of the upper square follows by applying property $(c)$ of Definition <a data-tag="008K" href="/tag/008K">2.2.4.5</a> to the composable triple of morphisms 
+    <p>
+<div class="equation">
+  \[  (0,A') \xrightarrow {u_{00} } (0,A) \xrightarrow { (vf)_{10} } (1,B') \xrightarrow { v'_{11} } (1,B'') \]
+</div>
+<p>
+       in the product category $[1] \times \operatorname{\mathcal{A}}$. The commutativity of the lower left triangle follows by applying property $(c)$ to the composable triple of morphisms 
+    <p>
+<div class="equation">
+  \[  (0,A) \xrightarrow {f_{10}} (1,B) \xrightarrow { v_{11} } (1,B') \xrightarrow { v'_{11} } (1,B'') \]
+</div>
+<p>
+       and noting that the composition constraint $\mu _{ v'_{11}, v_{11} }$ is equal to the identity (by virtue of our assumption that the lax functor $U|_{ \{ 1\}  \times \operatorname{\mathcal{A}}}$ is constant). Similarly, the commutativity of the lower right triangle follows by applying $(c)$ to the compostable triple of morphisms 
+    <p>
+<div class="equation">
+  \[  (0,A'') \xrightarrow { u'_{00} } (0,A') \xrightarrow {u_{00} } (0,A) \xrightarrow { (v'vf)_{10} } (1,B'') \]
+</div>
+<p>
+       and noting that the composition constraint $\mu _{ u_{00}, u'_{00} }$ is equal to the identity (by virtue of our assumption that the lax functor $U|_{ \{ 0\}  \times \operatorname{\mathcal{A}}}$ is constant). 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></article>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.html a[data-toggle="popover"]').popover()
+
+  // render mathematics in popovers
+  $("[data-toggle=popover]").on('shown.bs.popover', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $("div.popover-body").html()]);
+  });
+});
+  </script>
+</div>
+</section></body>
+</html>

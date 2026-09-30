@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" id="main">
+<div class="html" id="tag">
+<h3 class="tex-subsection" id="subsection:skeletal-filtration"><span data-tag="0010">1.1.4</span> The Skeletal Filtration</h3>
+<p>
+Roughly speaking, one can think of the simplicial sets $\Delta ^ n$ of Example <a data-tag="04Z6" href="/tag/04Z6">1.1.0.9</a> as elementary building blocks out of which more complicated simplicial sets can be constructed. In this section, we make this idea more precise by introducing the <em>skeletal filtration</em> of a simplicial set. This filtration allows us to write every simplicial set $S$ as the union of an increasing sequence of simplicial subsets 
+</p>
+<div class="equation">
+  \[  \operatorname{sk}_0( S ) \subseteq \operatorname{sk}_1( S ) \subseteq \operatorname{sk}_2( S ) \subseteq \operatorname{sk}_3( S ) \subseteq \cdots , \]
+</div>
+<p>
+ where each $\operatorname{sk}_{n}( S )$ is obtained from $\operatorname{sk}_{n-1}( S )$ by attaching copies of $\Delta ^ n$ (see Proposition <a data-tag="001B" href="/tag/001B">1.1.4.12</a> below for a precise statement). 
+</p>
+<p>
+<article class="env-construction" id="0015">
+<p><a class="environment-identifier" href="/tag/0015">Construction <span data-tag="0015">1.1.4.1</span>.</a> Let $S = S_{\bullet }$ be a simplicial set and let $k$ be an integer. For every integer $n$, we let $\operatorname{sk}_{k}(S)_{n}$ denote the subset of $S_{n}$ consisting of those $n$-simplices $\sigma : \Delta ^ n \rightarrow S$ which satisfy the following condition: </p>
+<p><dl>
+<dt>$(\ast )$</dt>
+<dd><p>
+In the category of simplicial sets, $\sigma $ admits a factorization 
+</p>
+<div class="equation">
+  \[  \Delta ^{n} \rightarrow \Delta ^{m} \xrightarrow { \tau } S \]
+</div>
+<p>
+ where $m \leq k$. 
+</p>
+</dd>
+</dl></p>
+<p> It follows immediately from the definitions that the collection of subsets $\{  \operatorname{sk}_{k}(S)_{n} \subseteq S_{n} \} _{n \geq 0}$ is stable under the face and degeneracy operators for the simplicial set $S_{\bullet }$, and therefore defines a simplicial subset $\operatorname{sk}_{k}(S) \subseteq S$. We will refer to $\operatorname{sk}_{k}(S)$ as the <em>$k$-skeleton</em> of $S$. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="0018">
+<p><a class="environment-identifier" href="/tag/0018">Example <span data-tag="0018">1.1.4.2</span>.</a> For every simplicial set $S$, the $k$-skeleton $\operatorname{sk}_{k}( S)$ is empty for $k &lt; 0$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="0500">
+<p><a class="environment-identifier" href="/tag/0500">Remark <span data-tag="0500">1.1.4.3</span>.</a> Let $m$ and $n$ be integers with $m \leq n$. Then, for every simplicial set $S$, the $m$-skeleton $\operatorname{sk}_{m}(S)$ is contained in the $n$-skeleton $\operatorname{sk}_{n}(S)$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="0016">
+<p><a class="environment-identifier" href="/tag/0016">Remark <span data-tag="0016">1.1.4.4</span>.</a> Let $S$ be a simplicial set and let $k$ be an integer. If $n \leq k$, then $\operatorname{sk}_{k}( S )$ contains every $n$-simplex of $S$. In particular, the union $\bigcup _{k} \operatorname{sk}_{k}( S )$ is equal to $S$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="0017">
+<p><a class="environment-identifier" href="/tag/0017">Remark <span data-tag="0017">1.1.4.5</span>.</a> Let $S$ be a simplicial set and let $\sigma $ be a <em>nondegenerate</em> $n$-simplex of $S$. Then $\sigma $ is contained in the $k$-skeleton $\operatorname{sk}_{k}(S)$ if and only if $n \leq k$ (see Proposition <a data-tag="0011" href="/tag/0011">1.1.2.10</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-proposition" id="001A">
+<p><a class="environment-identifier" href="/tag/001A">Proposition <span data-tag="001A">1.1.4.6</span>.</a> Let $S$ be a simplicial set and let $k$ be an integer. Then: </p>
+<p><dl>
+<dt>$(a)$</dt>
+<dd><p>
+The simplicial set $\operatorname{sk}_{k}( S )$ has dimension $\leq k$. 
+</p>
+</dd>
+<dt>$(b)$</dt>
+<dd><p>
+For every simplicial set $T$ of dimension $\leq k$, composition with the inclusion map $\operatorname{sk}_{k}( S ) \hookrightarrow S$ induces a bijection 
+</p>
+<div class="equation">
+  \[  \operatorname{Hom}_{\operatorname{Set_{\Delta }}}( T, \operatorname{sk}_{k}( S ) ) \rightarrow \operatorname{Hom}_{ \operatorname{Set_{\Delta }}}( T, S). \]
+</div>
+<p>
+ In other words, the image of any map $T \rightarrow S$ is contained in $\operatorname{sk}_{k}( S )$. 
+</p>
+</dd>
+</dl></p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Assertion $(a)$ follows from Remark <a data-tag="0017" href="/tag/0017">1.1.4.5</a>. To prove $(b)$, suppose that $f: T \rightarrow S$ is a map of simplicial sets, where $T$ has dimension $\leq k$. We wish to show that $f$ carries every $n$-simplex $\sigma $ of $T$ to an $n$-simplex of $\operatorname{sk}_{k}( S )$. Using Proposition <a data-tag="0014" href="/tag/0014">1.1.3.8</a>, we can reduce to the case where $\sigma $ is a nondegenerate $n$-simplex of $T$. In this case, our assumption that $T$ has dimension $\leq k$ guarantees that $n \leq k$, so that $f( \sigma )$ belongs to $\operatorname{sk}_{k}( S)$ by virtue of Remark <a data-tag="0016" href="/tag/0016">1.1.4.4</a>. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+<article class="env-corollary" id="0501">
+<p><a class="environment-identifier" href="/tag/0501">Corollary <span data-tag="0501">1.1.4.7</span>.</a> Let $S$ be a simplicial set. For every integer $k$, the $k$-skeleton $\operatorname{sk}_{k}(S)$ is the largest simplicial subset of $S$ of dimension $\leq k$. </p>
+</article>
+</p>
+<p>
+<article class="env-corollary" id="0502">
+<p><a class="environment-identifier" href="/tag/0502">Corollary <span data-tag="0502">1.1.4.8</span>.</a> Let $k$ be an integer, let $S$ be a simplicial set, and let $\operatorname{{\bf \Delta }}_{S}^{ \leq k}$ denote the category of simplices of $S$ having dimension $\leq k$ (see Construction <a data-tag="00X4" href="/tag/00X4">1.1.3.9</a>). Then the tautological map </p>
+<div class="equation">
+  \[ \varinjlim _{ ([n], \sigma ) \in \operatorname{{\bf \Delta }}_{S}^{ \leq k} } \Delta ^ n \rightarrow S \]
+</div>
+<p> is a monomorphism, whose image is the $k$-skeleton $\operatorname{sk}_{k}(S) \subseteq S$. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      By virtue of Remark <a data-tag="0016" href="/tag/0016">1.1.4.4</a>, replacing $S$ by the $k$-skeleton $\operatorname{sk}_{k}(S)$ does not change the category $\operatorname{{\bf \Delta }}_{S}^{ \leq k}$. We may therefore assume without loss of generality that $S$ has dimension $\leq k$, in which case the desired result follows from Proposition <a data-tag="04ZX" href="/tag/04ZX">1.1.3.11</a>. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+<article class="env-corollary" id="0503">
+<p><a class="environment-identifier" href="/tag/0503">Corollary <span data-tag="0503">1.1.4.9</span>.</a> For every integer $k$, the skeleton functor $\operatorname{sk}_{k}: \operatorname{Set_{\Delta }}\rightarrow \operatorname{Set_{\Delta }}$ preserves small colimits. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Let $S: \operatorname{\mathcal{J}}\rightarrow \operatorname{Set_{\Delta }}$ be a diagram of simplicial sets; we wish to show that the comparison map 
+    <p>
+<div class="equation">
+  \[  \theta : \varinjlim _{J \in \operatorname{\mathcal{J}}} \operatorname{sk}_{k}( S(J) ) \rightarrow \operatorname{sk}_{k}( \varinjlim _{J \in \operatorname{\mathcal{J}}} S(J) ) \]
+</div>
+<p>
+       is an isomorphism of simplicial sets. Using Propositions <a data-tag="001A" href="/tag/001A">1.1.4.6</a> and <a data-tag="04ZX" href="/tag/04ZX">1.1.3.11</a>, we see that the source and target of $\theta $ are simplicial sets of dimension $\leq k$. It will therefore suffice to show that $\theta $ induces a bijection on $n$-simplices for $n \leq k$ (Corollary <a data-tag="04ZZ" href="/tag/04ZZ">1.1.3.14</a>), which follows immediately from Remark <a data-tag="0016" href="/tag/0016">1.1.4.4</a> (and Remark <a data-tag="000J" href="/tag/000J">1.1.0.8</a>). 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<p>
+<article class="env-construction" id="000R">
+<p><a class="environment-identifier" href="/tag/000R">Construction <span data-tag="000R">1.1.4.10</span> <span class="named">(The Boundary of $\Delta ^ n$)</span>.</a> Let $n \geq 0$ be an integer and let $\Delta ^{n}$ denote the standard $n$-simplex (Example <a data-tag="04Z6" href="/tag/04Z6">1.1.0.9</a>). We let $\operatorname{\partial \Delta }^{n}$ denote the $(n-1)$-skeleton of $\Delta ^{n}$. We will refer to $\operatorname{\partial \Delta }^ n$ as the <em>boundary of $\Delta ^ n$</em>. More explicitly, the simplicial set $(\operatorname{\partial \Delta }^ n): \operatorname{{\bf \Delta }}^{\operatorname{op}} \rightarrow \operatorname{Set}$ is defined by the formula </p>
+<div class="equation">
+  \[  ( \operatorname{\partial \Delta }^{n} )( [m] ) = \{  \alpha \in \operatorname{Hom}_{\operatorname{{\bf \Delta }}}( [m], [n] ): \text{$\alpha $ is not surjective} \} . \]
+</div>
+</article>
+</p>
+<p>
+<article class="env-example" id="000S">
+<p><a class="environment-identifier" href="/tag/000S">Example <span data-tag="000S">1.1.4.11</span>.</a> The simplicial set $\operatorname{\partial \Delta }^{0}$ is empty. </p>
+</article>
+</p>
+<p>
+Let $S$ be a simplicial set. For each $k \geq 0$, we let $S_{k}^{\mathrm{nd}}$ denote the collection of all <em>nondegenerate</em> $k$-simplices of $S$. Every element $\sigma \in S_{k}^{\mathrm{nd}}$ determines a map of simplicial sets $\Delta ^{k} \rightarrow \operatorname{sk}_{k}( S )$. Since the boundary $\operatorname{\partial \Delta }^ k \subseteq \Delta ^{k}$ has dimension $\leq k-1$, this map carries $\operatorname{\partial \Delta }^{k}$ into the $(k-1)$-skeleton $\operatorname{sk}_{k-1}( S)$ (Proposition <a data-tag="001A" href="/tag/001A">1.1.4.6</a>). 
+</p>
+<p>
+<article class="env-proposition" id="001B">
+<p><a class="environment-identifier" href="/tag/001B">Proposition <span data-tag="001B">1.1.4.12</span>.</a> Let $S$ be a simplicial set and let $k \geq 0$. Then the construction outlined above determines a pushout square </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \underset { \sigma \in S_{k}^{\mathrm{nd}} }{\coprod } \operatorname{\partial \Delta }^{k} \ar [r] \ar [d] &amp;  \underset { \sigma \in S_{k}^{\mathrm{nd}} }{\coprod } \Delta ^{k} \ar [d] \\ \operatorname{sk}_{k-1}( S ) \ar [r] &amp;  \operatorname{sk}_{k}( S ) } \]
+</div>
+<p> in the category $\operatorname{Set_{\Delta }}$ of simplicial sets. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Unwinding the definitions, we must prove the following: 
+    <p>
+<dl>
+<dt>$(\ast )$</dt>
+<dd><p>
+Let $\tau $ be an $n$-simplex of $\operatorname{sk}_{k}( S )$ which is not contained in $\operatorname{sk}_{k-1}(S)$. Then $\tau $ factors uniquely as a composition 
+</p>
+<div class="equation">
+  \[  \Delta ^{n} \xrightarrow {\alpha } \Delta ^{k} \xrightarrow {\sigma } S, \]
+</div>
+<p>
+ where $\sigma $ is a nondegenerate simplex of $S$ and $\alpha $ does not factor through the boundary $\operatorname{\partial \Delta }^{k}$ (in other words, $\alpha $ is surjective on vertices). 
+</p>
+</dd>
+</dl>
+<p>
+       Proposition <a data-tag="0014" href="/tag/0014">1.1.3.8</a> implies that <em>any</em> $n$-simplex of $S$ admits a unique factorization $\Delta ^{n} \xrightarrow {\alpha } \Delta ^{m} \xrightarrow {\sigma } S$, where $\alpha $ is surjective on vertices and $\sigma $ is nondegenerate. Our assumption that $\tau $ belongs to $\operatorname{sk}_{k}(S)$ guarantees that $m \leq k$, and our assumption that $\tau $ does not belong to $\operatorname{sk}_{k-1}( S )$ guarantees that $m \geq k$. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<p>
+We close this section by analyzing the simplicial sets $\operatorname{\partial \Delta }^ n$ of Construction <a data-tag="000R" href="/tag/000R">1.1.4.10</a> in a bit more detail. Note that, for every pair of integers $0 \leq k \leq n$, the morphism $\delta ^{k}_{n}: \Delta ^{n-1} \rightarrow \Delta ^ n$ of Construction <a data-tag="04ZE" href="/tag/04ZE">1.1.1.4</a> factors through the boundary $\operatorname{\partial \Delta }^{n}$. 
+</p>
+<p>
+<article class="env-proposition" id="0504">
+<p><a class="environment-identifier" href="/tag/0504">Proposition <span data-tag="0504">1.1.4.13</span>.</a> Let $n$ be a positive integer. For every simplicial set $S_{\bullet }$, the map </p>
+<div class="equation">
+  \[  \operatorname{Hom}_{\operatorname{Set_{\Delta }}}( \operatorname{\partial \Delta }^{n}, S_{\bullet } ) \rightarrow (S_{n-1})^{n+1} \quad \quad f \mapsto \{  f \circ \delta ^{k}_{n} \} _{0 \leq k \leq n} \]
+</div>
+<p> is an injection, whose image consists of those tuples of $( \sigma _0, \sigma _1, \cdots , \sigma _ n )$ of $(n-1)$-simplices of $S$ which satisfy the identity $d^{n-1}_ i(\sigma _ j) = d^{n-1}_{j-1}( \sigma _{i})$ for $0 \leq i &lt; j \leq n$. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="0505">
+<p><a class="environment-identifier" href="/tag/0505">Example <span data-tag="0505">1.1.4.14</span>.</a> When $n = 1$, Proposition <a data-tag="0504" href="/tag/0504">1.1.4.13</a> asserts that we can identify maps $\operatorname{\partial \Delta }^1 \rightarrow S$ with ordered pairs $(s,t)$ of vertices of $S$. Equivalently, the boundary $\operatorname{\partial \Delta }^1$ can be identified with the coproduct of $\{ 0\} $ and $\{ 1\} $ (which we regard as simplicial subsets of $\Delta ^1$ as in Example <a data-tag="000Q" href="/tag/000Q">1.1.0.15</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="0506">
+<p><a class="environment-identifier" href="/tag/0506">Example <span data-tag="0506">1.1.4.15</span>.</a> When $n=2$, Proposition <a data-tag="0504" href="/tag/0504">1.1.4.13</a> asserts that morphisms of simplicial sets $\operatorname{\partial \Delta }^2 \rightarrow S$ can be identified with ordered triples $(g, h, f)$ of edges of $S$ having the property that $f$ and $h$ have the same source vertex $x \in S$, $g$ and $h$ have the same target vertex $z \in S$, and the target $y$ of $f$ coincides with the source of $g$; these relationships are summarized visually in the diagram </p>
+<div class="equation">
+  \[  \xymatrix { &amp;  y \ar [dr]^{g} &amp;  \\ x \ar [ur]^{f} \ar [rr]^{h} &amp;  &amp;  z. } \]
+</div>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof of Proposition <a data-tag="0504" href="/tag/0504">1.1.4.13</a>.</strong>
+       Let $w: \coprod _{0 \leq k \leq n} \Delta ^{n-1} \rightarrow \operatorname{\partial \Delta }^{n}$ be the map given on the $k$th summand by $\delta ^{k}_{n}$. To prove the first assertion of Proposition <a data-tag="0504" href="/tag/0504">1.1.4.13</a>, we must show that $w$ is an epimorphism of simplicial sets: that is, it is surjective on $m$-simplices for each $m \geq 0$. In fact, we can be a bit more precise. Let $\alpha $ be an $m$-simplex of $\Delta ^{n}$, which we identify with a nondecreasing function from $[m]$ to $[n]$. Then $\alpha $ belongs to the boundary $\operatorname{\partial \Delta }^{n}$ if and only if it is not surjective: that is, if and only if there exists some integer $0 \leq i \leq n$ such that $\alpha $ factors through $[n] \setminus \{ i\} $. In this case, there is a unique $m$-simplex $\beta _{i}$ which belongs to the $i$th summand of $\coprod _{0 \leq k \leq n} \Delta ^{n-1}$ and satisfies $w( \beta _ i ) = \alpha $. 
+    <p>
+      For every integer $0 \leq k \leq n$, let $u_{k}: \coprod _{ 0 \leq i &lt; k } \Delta ^{n-2} \rightarrow \Delta ^{n-1}$ be the map given on the $i$th summand by $\delta ^{i}_{n-1}$, and let $v_{k}: \coprod _{ k &lt; j \leq n} \Delta ^{n-2} \rightarrow \Delta ^{n-1}$ by the map given on the $j$th summand by $\delta ^{j-1}_{n-1}$. Passing to the coproduct over $k$ and reindexing, we obtain a pair of maps 
+    <p>
+<div class="equation">
+  \[  (u,v): \coprod _{0 \leq i &lt; j \leq n} \Delta ^{n-2} \rightrightarrows \coprod _{0 \leq k \leq n} \Delta ^{n-1}. \]
+</div>
+<p>
+       Let $\operatorname{Coeq}(u,v)_{\bullet }$ denote the coequalizer of $u$ and $v$ in the category of simplicial sets. The morphism $w$ satisfies $w \circ u = w \circ v$ (see Remark <a data-tag="04FP" href="/tag/04FP">1.1.1.7</a>), and therefore factors uniquely through a map $\overline{w}: \operatorname{Coeq}(u,v)_{\bullet } \rightarrow \operatorname{\partial \Delta }^{n}$. Proposition <a data-tag="0504" href="/tag/0504">1.1.4.13</a> asserts that $\overline{w}$ is an isomorphism of simplicial sets: that is, for every integer $m \geq 0$, it induces a bijection from $\operatorname{Coeq}(u,v)_{m}$ to the set of $m$-simplices of $\operatorname{\partial \Delta }^{n}$. The surjectivity of this map was established above. To prove injectivity, it will suffice to observe that if $\alpha : [m] \rightarrow [n]$ is as above and we are given two elements $i,j \in [n]$ which do not belong to the image of $\alpha $, then $\beta _{i}$ and $\beta _{j}$ have the same image in $\operatorname{Coeq}(u,v)_{\bullet }$. If $i = j$, this is automatic; we may therefore assume without loss of generality that $i &lt; j$. In this case, the desired result follows from the observation that we can write $\beta _ j = u(\gamma )$ and $\beta _ i = v(\gamma )$, where $\gamma $ is the $m$-simplex of the $(i,j)$th summand of $\coprod _{ 0 \leq i &lt; j \leq n} \Delta ^{n-2}$ corresponding to the nondecreasing function $[m] \xrightarrow {\alpha } [n] \setminus \{  i &lt; j \}  \simeq [n-2]$. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></p></article>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.html a[data-toggle="popover"]').popover()
+
+  // render mathematics in popovers
+  $("[data-toggle=popover]").on('shown.bs.popover', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $("div.popover-body").html()]);
+  });
+});
+  </script>
+</div>
+</section></body>
+</html>

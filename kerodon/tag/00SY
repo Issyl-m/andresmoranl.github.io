@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" id="main">
+<div class="html" id="tag">
+<h1 class="tex-chapter" id="Chapter:Kan-Complexes"><span data-tag="00SY">3</span> Kan Complexes</h1>
+<p>
+Recall that a <em>Kan complex</em> is a simplicial set $X$ with the property that, for $n &gt; 0$ and $0 \leq i \leq n$, any morphism of simplicial sets $\sigma _0: \Lambda ^ n_ i \rightarrow X$ can be extended to an $n$-simplex of $X$ (Definition <a data-tag="002H" href="/tag/002H">1.2.5.1</a>). Kan complexes play an important role in the theory of $\infty $-categories, for three different (but closely related) reasons: 
+</p>
+<dl>
+<dt>$(a)$</dt>
+<dd><p>
+Every Kan complex is an $\infty $-category (Example <a data-tag="003C" href="/tag/003C">1.4.0.3</a>). Conversely, every $\infty $-category $\operatorname{\mathcal{C}}$ contains a largest Kan complex $\operatorname{\mathcal{C}}^{\simeq } \subseteq \operatorname{\mathcal{C}}$ (obtained from $\operatorname{\mathcal{C}}$ by removing all non-invertible morphisms; see Construction <a data-tag="01D0" href="/tag/01D0">4.4.3.1</a>), which is an important invariant of $\operatorname{\mathcal{C}}$. Consequently, understanding the homotopy theory of Kan complexes can be regarded as a first step towards understanding $\infty $-categories in general. 
+</p>
+</dd>
+<dt>$(b)$</dt>
+<dd><p>
+Let $\operatorname{\mathcal{C}}$ be an $\infty $-category. To every pair of objects $X,Y \in \operatorname{\mathcal{C}}$, one can associate a Kan complex $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)$ which we will refer to as the <em>space of maps from $X$ to $Y$</em> (see Construction <a data-tag="01J5" href="/tag/01J5">4.6.1.1</a>). These mapping spaces are essential to the structure of $\operatorname{\mathcal{C}}$. For example, we will see later that a functor of $\infty $-categories $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ admits a homotopy inverse if and only if it is essentially surjective at the level of homotopy categories and induces a homotopy equivalence $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y) \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{D}}}( F(X), F(Y) )$ for every pair of objects $X,Y \in \operatorname{\mathcal{C}}$ (see Theorem <a data-tag="01JX" href="/tag/01JX">4.8.4.1</a>). 
+</p>
+</dd>
+<dt>$(c)$</dt>
+<dd><p>
+The collection of all Kan complexes can be organized into an $\infty $-category, which we will denote by $\operatorname{\mathcal{S}}$ and refer to as the <em>$\infty $-category of spaces</em> (Construction <a data-tag="00TZ" href="/tag/00TZ">3.1.6.1</a>). The $\infty $-category $\operatorname{\mathcal{S}}$ plays a central role in the general theory of $\infty $-categories, analogous to the role of $\operatorname{Set}$ in classical category theory. This can be articulated in several different ways: 
+</p>
+<ul>
+<li><p>
+To any $\infty $-category $\operatorname{\mathcal{C}}$, one can associate a functor $h: \operatorname{\mathcal{C}}\rightarrow \operatorname{Fun}( \operatorname{\mathcal{C}}^{\operatorname{op}}, \operatorname{\mathcal{S}})$ called the <em>Yoneda embedding</em>, which is given informally (and up to homotopy equivalence) by the construction $C \mapsto \operatorname{Hom}_{\operatorname{\mathcal{C}}}( \bullet , C)$ (see Definition <a data-tag="03NF" href="/tag/03NF">8.3.3.9</a>). Like the classical Yoneda embedding, the functor $h$ is fully faithful: that is, it induces an equivalence on mapping spaces (Theorem <a data-tag="03NJ" href="/tag/03NJ">8.3.3.13</a>). 
+</p>
+</li><li><p>
+The $\infty $-category $\operatorname{\mathcal{S}}$ has a pointed variant $\operatorname{\mathcal{S}}_{\ast }$, whose objects are <em>pointed</em> Kan complexes (Construction <a data-tag="01ZW" href="/tag/01ZW">5.5.2.1</a>). This $\infty $-category is equipped with a forgetful functor $\operatorname{\mathcal{S}}_{\ast } \rightarrow \operatorname{\mathcal{S}}$, given on objects by the construction $(X,x) \mapsto X$. This forgetful functor is an example of a <em>left fibration</em> of $\infty $-categories (see Definition <a data-tag="00T9" href="/tag/00T9">4.2.1.1</a>). In fact, it is a <em>universal</em> left fibration in the following sense: for any $\infty $-category $\operatorname{\mathcal{C}}$, the construction 
+</p>
+<div class="equation">
+  \[  ( F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{S}}) \mapsto (u: \operatorname{\mathcal{C}}\times _{\operatorname{\mathcal{S}}} \operatorname{\mathcal{S}}_{\ast } \rightarrow \operatorname{\mathcal{C}}) \]
+</div>
+<p>
+ induces a bijection from the set of isomorphism classes of functors $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{S}}$ to the set of equivalence classes of left fibrations $\overline{\operatorname{\mathcal{C}}} \rightarrow \operatorname{\mathcal{C}}$ having essentially small fibers (Corollary <a data-tag="028T" href="/tag/028T">5.6.0.6</a>). 
+</p>
+</li><li><p>
+The $\infty $-category $\operatorname{\mathcal{S}}$ admits small colimits (Corollary <a data-tag="02VF" href="/tag/02VF">7.4.3.3</a>). Moreover, if $\operatorname{\mathcal{C}}$ is any other $\infty $-category which admits small colimits, then evaluation on the Kan complex $\Delta ^{0} \in \operatorname{\mathcal{S}}$ induces an equivalence of $\infty $-categories 
+</p>
+<div class="equation">
+  \[  \operatorname{Fun}'( \operatorname{\mathcal{S}}, \operatorname{\mathcal{C}}) \rightarrow \operatorname{\mathcal{C}}\quad \quad F \mapsto F( \Delta ^0), \]
+</div>
+<p>
+ where $\operatorname{Fun}'( \operatorname{\mathcal{S}}, \operatorname{\mathcal{C}})$ denotes the full subcategory of $\operatorname{Fun}(\operatorname{\mathcal{S}}, \operatorname{\mathcal{C}})$ spanned by those functors which preserve small colimits (Example <a data-tag="03WC" href="/tag/03WC">8.4.0.4</a>). In other words, the $\infty $-category $\operatorname{\mathcal{S}}$ is <em>freely</em> generated under small colimits by the Kan complex $\Delta ^{0}$. 
+</p>
+</li>
+</ul>
+</dd>
+</dl>
+<p>
+Our goal in this chapter is to give an exposition of the homotopy theory of Kan complexes. We begin in §<a data-tag="00SZ" href="/tag/00SZ">3.1</a> by developing the basic vocabulary of simplicial homotopy theory. In particular, we introduce the notions of <em>Kan fibration</em> (Definition <a data-tag="00T1" href="/tag/00T1">3.1.1.1</a>), <em>anodyne morphism</em> (Definition <a data-tag="00UH" href="/tag/00UH">3.1.2.1</a>), and <em>(weak) homotopy equivalence</em> between simplicial sets (Definitions <a data-tag="00U2" href="/tag/00U2">3.1.7.1</a> and <a data-tag="00UA" href="/tag/00UA">3.1.7.12</a>), and establish some of their basic formal properties. 
+</p>
+<p>
+Recall that, to any Kan complex $X$, we can associate a set $\pi _0(X)$ of <em>connected components</em> of $X$ (Definition <a data-tag="00GD" href="/tag/00GD">1.2.1.8</a>). In §<a data-tag="00V2" href="/tag/00V2">3.2</a>, we associate to each base point $x \in X$ a sequence of groups $\{  \pi _{n}(X,x) \} _{n &gt; 0}$, which we refer to as the <em>homotopy groups of $X$</em> (Construction <a data-tag="00VN" href="/tag/00VN">3.2.2.4</a> and Theorem <a data-tag="00VU" href="/tag/00VU">3.2.2.10</a>), and establish some of their essential properties. In particular, we prove a simplicial analogue of Whitehead's theorem: a morphism of Kan complexes $f: X \rightarrow Y$ is a homotopy equivalence if and only if it induces a bijection $\pi _{0}(X) \rightarrow \pi _0(Y)$ and isomorphisms $\pi _{n}(X,x) \rightarrow \pi _{n}(Y, f(x) )$, for every choice of base point $x \in X$ and every positive integer $n$ (Theorem <a data-tag="00WV" href="/tag/00WV">3.2.7.1</a>). 
+</p>
+<p>
+A general simplicial set $X$ need not be a Kan complex. However, one can always find a weak homotopy equivalence $f: X \rightarrow Y$, where $Y$ is a Kan complex; in this case, we refer to $Y$ as a <em>fibrant replacement</em> for $X$ (in the case where $X$ is an $\infty $-category, one can think of $Y$ as another $\infty $-category obtained from $X$ by formally adjoining inverses of all morphisms: see Proposition <a data-tag="01MY" href="/tag/01MY">6.3.1.21</a>). The existence of fibrant replacements has an easy formal proof (a special case of Quillen's <em>small object argument</em>; see §<a data-tag="00UU" href="/tag/00UU">3.1.8</a>), which gives very little information about the structure of the Kan complex $Y$. In §<a data-tag="00XF" href="/tag/00XF">3.3</a>, we outline another approach (due to Kan) which associates to each simplicial set $X$ a Kan complex $\operatorname{Ex}^{\infty }(X) = \varinjlim _{n \geq 0} \operatorname{Ex}^{n}(X)$ which is defined using combinatorics of iterated subdivision (Construction <a data-tag="00ZB" href="/tag/00ZB">3.3.6.1</a>). The functor $X \mapsto \operatorname{Ex}^{\infty }(X)$ has many useful properties: for example, it preserves Kan fibrations (Proposition <a data-tag="00ZG" href="/tag/00ZG">3.3.6.6</a>) and commutes with finite limits (Proposition <a data-tag="00ZE" href="/tag/00ZE">3.3.6.4</a>). As an application, we show that a Kan fibration of simplicial sets $f: X \rightarrow Y$ is a weak homotopy equivalence if and only if it is a trivial Kan fibration (Proposition <a data-tag="00ZP" href="/tag/00ZP">3.3.7.6</a>), and that a monomorphism of simplicial sets $i: A \hookrightarrow B$ is a weak homotopy equivalence if and only if it is anodyne (Corollary <a data-tag="00ZQ" href="/tag/00ZQ">3.3.7.7</a>). 
+</p>
+<p>
+Let $\operatorname{Set_{\Delta }}$ denote the category of simplicial sets, and let $\operatorname{Kan}\subset \operatorname{Set_{\Delta }}$ denote the full subcategory spanned by the Kan complexes. We let $\operatorname {h}\! \mathit{\operatorname{Kan}}$ denote the <em>homotopy category of Kan complexes</em> (Construction <a data-tag="00TY" href="/tag/00TY">3.1.5.10</a>), which can be obtained from $\operatorname{Kan}$ by identifying morphisms which are homotopic. Beware that the category $\operatorname {h}\! \mathit{\operatorname{Kan}}$ is somewhat ill-behaved: for example, it admits neither pullbacks or pushouts. In §<a data-tag="0106" href="/tag/0106">3.4</a>, we address this point by introducing the notions of <em>homotopy pullback</em> and <em>homotopy pushout</em> diagrams of simplicial sets (which can be regarded as homotopy-theoretic counterparts for the classical categorical notion of pullback and pushout diagrams), and establishing their basic properties. We will later see that these diagrams can be interpreted as pullback and pushout squares in the $\infty $-category $\operatorname{\mathcal{S}}$ (see Examples <a data-tag="03G5" href="/tag/03G5">7.6.3.2</a> and <a data-tag="03G6" href="/tag/03G6">7.6.3.3</a>), rather than its homotopy category $\operatorname {h}\! \mathit{\operatorname{Kan}} \simeq \operatorname {h}\! \mathit{\operatorname{\mathcal{S}}}$. 
+</p>
+<p>
+Recall that, for every topological space $Y$, the singular simplicial set $\operatorname{Sing}_{\bullet }(Y)$ is a Kan complex (Proposition <a data-tag="002K" href="/tag/002K">1.2.5.8</a>). In §<a data-tag="012Y" href="/tag/012Y">3.6</a>, we show that every Kan complex arises in this way, at least up to homotopy equivalence. More precisely, we show that the unit map $u_{X}: X \rightarrow \operatorname{Sing}_{\bullet }(|X| )$ is a homotopy equivalence for any Kan complex $X$ (and a weak homotopy equivalence for any simplicial set $X$; see Theorem <a data-tag="0142" href="/tag/0142">3.6.4.1</a>). Using this fact, we show that the geometric realization functor $X \mapsto |X|$ induces a fully faithful embedding of homotopy categories $\operatorname {h}\! \mathit{\operatorname{Kan}} \hookrightarrow \operatorname {h}\! \mathit{\operatorname{Top}}$, whose essential image consists of those topological spaces having the homotopy type of a CW complex (Theorem <a data-tag="012Z" href="/tag/012Z">3.6.0.1</a>). In other words, the (combinatorially defined) homotopy theory of Kan complexes studied in this section is essentially equivalent to the (topologically defined) homotopy theory of CW complexes. 
+</p>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.html a[data-toggle="popover"]').popover()
+
+  // render mathematics in popovers
+  $("[data-toggle=popover]").on('shown.bs.popover', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $("div.popover-body").html()]);
+  });
+});
+  </script>
+<h2 id="structure">Structure</h2>
+<ul class="tree" id="tree">
+<li id="00SZ">
+      Section <a data-tag="00SZ" href="/tag/00SZ">3.1</a>: The Homotopy Theory of Kan Complexes
+
+      
+        
+        <ul>
+<li id="00T0">
+      Subsection <a data-tag="00T0" href="/tag/00T0">3.1.1</a>: Kan Fibrations
+
+      
+    
+      <li id="00UG">
+      Subsection <a data-tag="00UG" href="/tag/00UG">3.1.2</a>: Anodyne Morphisms
+
+      
+    
+      <li id="00TJ">
+      Subsection <a data-tag="00TJ" href="/tag/00TJ">3.1.3</a>: Exponentiation for Kan Fibrations
+
+      
+    
+      <li id="0219">
+      Subsection <a data-tag="0219" href="/tag/0219">3.1.4</a>: Covering Maps
+
+      
+    
+      <li id="00TR">
+      Subsection <a data-tag="00TR" href="/tag/00TR">3.1.5</a>: The Homotopy Category of Kan Complexes
+
+      
+    
+      <li id="01YX">
+      Subsection <a data-tag="01YX" href="/tag/01YX">3.1.6</a>: The $\infty $-Category of Spaces
+
+      
+    
+      <li id="00U1">
+      Subsection <a data-tag="00U1" href="/tag/00U1">3.1.7</a>: Homotopy Equivalences and Weak Homotopy Equivalences
+
+      
+    
+      <li id="00UU">
+      Subsection <a data-tag="00UU" href="/tag/00UU">3.1.8</a>: Fibrant Replacement
+
+      
+    </li></li></li></li></li></li></li></li></ul>
+<li id="00V2">
+      Section <a data-tag="00V2" href="/tag/00V2">3.2</a>: Homotopy Groups
+
+      
+        
+        <ul>
+<li id="00V4">
+      Subsection <a data-tag="00V4" href="/tag/00V4">3.2.1</a>: Pointed Kan Complexes
+
+      
+    
+      <li id="00VJ">
+      Subsection <a data-tag="00VJ" href="/tag/00VJ">3.2.2</a>: The Homotopy Groups of a Kan Complex
+
+      
+    
+      <li id="00W3">
+      Subsection <a data-tag="00W3" href="/tag/00W3">3.2.3</a>: The Group Structure on $\pi _{n}(X,x)$
+
+      
+    
+      <li id="02L4">
+      Subsection <a data-tag="02L4" href="/tag/02L4">3.2.4</a>: Contractibility
+
+      
+    
+      <li id="00WD">
+      Subsection <a data-tag="00WD" href="/tag/00WD">3.2.5</a>: The Connecting Homomorphism
+
+      
+    
+      <li id="00WL">
+      Subsection <a data-tag="00WL" href="/tag/00WL">3.2.6</a>: The Long Exact Sequence of a Fibration
+
+      
+    
+      <li id="00WU">
+      Subsection <a data-tag="00WU" href="/tag/00WU">3.2.7</a>: Whitehead's Theorem for Kan Complexes
+
+      
+    
+      <li id="00XB">
+      Subsection <a data-tag="00XB" href="/tag/00XB">3.2.8</a>: Closure Properties of Homotopy Equivalences
+
+      
+    </li></li></li></li></li></li></li></li></ul>
+<li id="00XF">
+      Section <a data-tag="00XF" href="/tag/00XF">3.3</a>: The $\operatorname{Ex}^{\infty }$ Functor
+
+      
+        
+        <ul>
+<li id="00XT">
+      Subsection <a data-tag="00XT" href="/tag/00XT">3.3.1</a>: Digression: Braced Simplicial Sets
+
+      
+    
+      <li id="00XH">
+      Subsection <a data-tag="00XH" href="/tag/00XH">3.3.2</a>: The Subdivision of a Simplex
+
+      
+    
+      <li id="00Y5">
+      Subsection <a data-tag="00Y5" href="/tag/00Y5">3.3.3</a>: The Subdivision of a Simplicial Set
+
+      
+    
+      <li id="00YR">
+      Subsection <a data-tag="00YR" href="/tag/00YR">3.3.4</a>: The Last Vertex Map
+
+      
+    
+      <li id="00Z1">
+      Subsection <a data-tag="00Z1" href="/tag/00Z1">3.3.5</a>: Comparison of $X$ with $\operatorname{Ex}(X)$
+
+      
+    
+      <li id="00ZA">
+      Subsection <a data-tag="00ZA" href="/tag/00ZA">3.3.6</a>: The $\operatorname{Ex}^{\infty }$ Functor
+
+      
+    
+      <li id="00ZM">
+      Subsection <a data-tag="00ZM" href="/tag/00ZM">3.3.7</a>: Application: Characterizations of Weak Homotopy Equivalences
+
+      
+    
+      <li id="00ZR">
+      Subsection <a data-tag="00ZR" href="/tag/00ZR">3.3.8</a>: Application: Extending Kan Fibrations
+
+      
+    </li></li></li></li></li></li></li></li></ul>
+<li id="0106">
+      Section <a data-tag="0106" href="/tag/0106">3.4</a>: Homotopy Pullback and Homotopy Pushout Squares
+
+      
+        
+        <ul>
+<li id="010K">
+      Subsection <a data-tag="010K" href="/tag/010K">3.4.1</a>: Homotopy Pullback Squares
+
+      
+    
+      <li id="0112">
+      Subsection <a data-tag="0112" href="/tag/0112">3.4.2</a>: Homotopy Pushout Squares
+
+      
+    
+      <li id="011H">
+      Subsection <a data-tag="011H" href="/tag/011H">3.4.3</a>: Mather's Second Cube Theorem
+
+      
+    
+      <li id="011Q">
+      Subsection <a data-tag="011Q" href="/tag/011Q">3.4.4</a>: Mather's First Cube Theorem
+
+      
+    
+      <li id="0120">
+      Subsection <a data-tag="0120" href="/tag/0120">3.4.5</a>: Digression: Weak Homotopy Equivalences of Semisimplicial Sets
+
+      
+    
+      <li id="012B">
+      Subsection <a data-tag="012B" href="/tag/012B">3.4.6</a>: Excision
+
+      
+    
+      <li id="012K">
+      Subsection <a data-tag="012K" href="/tag/012K">3.4.7</a>: The Seifert van-Kampen Theorem
+
+      
+    </li></li></li></li></li></li></li></ul>
+<li id="0513">
+      Section <a data-tag="0513" href="/tag/0513">3.5</a>: Truncations and Postnikov Towers
+
+      
+        
+        <ul>
+<li id="0517">
+      Subsection <a data-tag="0517" href="/tag/0517">3.5.1</a>: Connectivity
+
+      
+    
+      <li id="051J">
+      Subsection <a data-tag="051J" href="/tag/051J">3.5.2</a>: Connectivity as a Lifting Property
+
+      
+    
+      <li id="051Z">
+      Subsection <a data-tag="051Z" href="/tag/051Z">3.5.3</a>: Coskeletal Simplicial Sets
+
+      
+    
+      <li id="052Q">
+      Subsection <a data-tag="052Q" href="/tag/052Q">3.5.4</a>: Weakly Coskeletal Simplicial Sets
+
+      
+    
+      <li id="053L">
+      Subsection <a data-tag="053L" href="/tag/053L">3.5.5</a>: Higher Groupoids
+
+      
+    
+      <li id="0543">
+      Subsection <a data-tag="0543" href="/tag/0543">3.5.6</a>: Higher Fundamental Groupoids
+
+      
+    
+      <li id="054N">
+      Subsection <a data-tag="054N" href="/tag/054N">3.5.7</a>: Truncated Kan Complexes
+
+      
+    
+      <li id="055K">
+      Subsection <a data-tag="055K" href="/tag/055K">3.5.8</a>: The Postnikov Tower of a Kan Complex
+
+      
+    
+      <li id="055Y">
+      Subsection <a data-tag="055Y" href="/tag/055Y">3.5.9</a>: Truncated Morphisms
+
+      
+    </li></li></li></li></li></li></li></li></li></ul>
+<li id="012Y">
+      Section <a data-tag="012Y" href="/tag/012Y">3.6</a>: Comparison with Topological Spaces
+
+      
+        
+        <ul>
+<li id="0130">
+      Subsection <a data-tag="0130" href="/tag/0130">3.6.1</a>: Digression: Finite Simplicial Sets
+
+      
+    
+      <li id="013C">
+      Subsection <a data-tag="013C" href="/tag/013C">3.6.2</a>: Exactness of Geometric Realization
+
+      
+    
+      <li id="013P">
+      Subsection <a data-tag="013P" href="/tag/013P">3.6.3</a>: Weak Homotopy Equivalences in Topology
+
+      
+    
+      <li id="0141">
+      Subsection <a data-tag="0141" href="/tag/0141">3.6.4</a>: The Unit Map $u: X \rightarrow \operatorname{Sing}_{\bullet }(|X|)$
+
+      
+    
+      <li id="0147">
+      Subsection <a data-tag="0147" href="/tag/0147">3.6.5</a>: Comparison of Homotopy Categories
+
+      
+    
+      <li id="021Q">
+      Subsection <a data-tag="021Q" href="/tag/021Q">3.6.6</a>: Serre Fibrations
+
+      
+    </li></li></li></li></li></li></ul>
+</li></li></li></li></li></li></ul>
+<script type="text/javascript">
+$("ul.tree").bonsai({
+  
+    addExpandAll: true,
+  
+});
+
+var state = localStorage.getItem("bonsai-00SY");
+if (state !== null)
+  $("ul#tree").data("bonsai").restore(JSON.parse(state));
+
+$("ul#tree").click(function() {
+  var bonsai = $(this).data("bonsai");
+  var state = bonsai.serialize();
+  localStorage.setItem("bonsai-00SY", JSON.stringify(state));
+});
+
+// trigger the click event handler to save state even when clicking on the expand/collapse all links, which are outside ul#tree
+$("div.expand-all").click(function() {
+  $("ul#tree").click();
+});
+
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+    </script>
+</div>
+</section></body>
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" id="main">
+<div class="html" id="tag">
+<h3 class="tex-subsection" id="subsection:homotopy-of-2-category"><span data-tag="02GD">2.2.8</span> The Homotopy Category of a Bicategory</h3>
+<p>
+Every ordinary category can be regarded as a bicategory having only identity $2$-morphisms (Remark <a data-tag="007X" href="/tag/007X">2.2.1.5</a>). Conversely, to every bicategory $\operatorname{\mathcal{C}}$ one can associate ordinary category $\operatorname{hPith}(\operatorname{\mathcal{C}})$ having the same objects, in which morphisms are given by isomorphism classes of $1$-morphisms in $\operatorname{\mathcal{C}}$. We will refer to $\operatorname{hPith}(\operatorname{\mathcal{C}})$ as the <em>homotopy category</em> of the bicategory $\operatorname{\mathcal{C}}$ (Construction <a data-tag="02AW" href="/tag/02AW">2.2.8.12</a>). It will be convenient to view this construction as a composition of two different operations: 
+</p>
+<ul>
+<li><p>
+To every bicategory $\operatorname{\mathcal{C}}$, one can associate a subcategory $\operatorname{Pith}(\operatorname{\mathcal{C}}) \subseteq \operatorname{\mathcal{C}}$ by removing the non-invertible $2$-morphisms of $\operatorname{\mathcal{C}}$; we will refer to $\operatorname{Pith}(\operatorname{\mathcal{C}})$ as the <em>pith of $\operatorname{\mathcal{C}}$</em> (Construction <a data-tag="00AL" href="/tag/00AL">2.2.8.9</a>). 
+</p>
+</li><li><p>
+To every bicategory $\operatorname{\mathcal{C}}$, one can associate an ordinary category $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ by “collapsing” all $2$-morphisms of $\operatorname{\mathcal{C}}$ to identity $2$-morphisms (Construction <a data-tag="02AS" href="/tag/02AS">2.2.8.2</a>). We will refer to $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ as the <em>coarse homotopy category</em> of the bicategory $\operatorname{\mathcal{C}}$. 
+</p>
+</li>
+</ul>
+<p>
+We begin by formulating the latter construction more precisely. 
+</p>
+<p>
+<article class="env-definition" id="02AR">
+<p><a class="environment-identifier" href="/tag/02AR">Definition <span data-tag="02AR">2.2.8.1</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory and let $\operatorname{\mathcal{H}}$ be an ordinary category, viewed as a bicategory having only identity $2$-morphisms. We say that a functor $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{H}}$ <em>exhibits $\operatorname{\mathcal{H}}$ as a coarse homotopy category of $\operatorname{\mathcal{C}}$</em> if, for every ordinary category $\operatorname{\mathcal{E}}$, precomposition with $F$ induces a bijection </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \{  \textnormal{Functors of ordinary categories from $\operatorname{\mathcal{H}}$ to $\operatorname{\mathcal{E}}$} \}  \ar [d] \\ \{  \textnormal{Functors of bicategories from $\operatorname{\mathcal{C}}$ to $\operatorname{\mathcal{E}}$} \} . } \]
+</div>
+</article>
+</p>
+<p>
+It follows immediately from the definitions that if a bicategory $\operatorname{\mathcal{C}}$ admits a coarse homotopy category $\operatorname{\mathcal{H}}$, then $\operatorname{\mathcal{H}}$ is uniquely determined up to isomorphism. We will prove existence by an explicit construction. 
+</p>
+<p>
+<article class="env-construction" id="02AS">
+<p><a class="environment-identifier" href="/tag/02AS">Construction <span data-tag="02AS">2.2.8.2</span> <span class="named">(The Coarse Homotopy Category of a Bicategory)</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory. We define a category $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ as follows: </p>
+<p><ul>
+<li><p>
+The objects of $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ are the objects of $\operatorname{\mathcal{C}}$. 
+</p>
+</li><li><p>
+If $X$ and $Y$ are objects of $\operatorname{\mathcal{C}}$, then $\operatorname{Hom}_{\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}}(X,Y)$ is the set of connected components of the simplicial set $\operatorname{N}_{\bullet }( \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) )$. 
+</p>
+</li><li><p>
+For objects $X$, $Y$, and $Z$ of $\operatorname{\mathcal{C}}$, the composition of morphisms in $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ is given by the map 
+</p>
+<div class="equation">
+  \begin{eqnarray*}  \operatorname{Hom}_{\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}}(Y,Z) \times \operatorname{Hom}_{\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}}(X,Y) &amp;  = &amp;  \pi _0( \operatorname{N}_{\bullet } \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(Y,Z) ) \times \pi _0( \operatorname{N}_{\bullet } \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) ) \\ &amp;  \simeq &amp;  \pi _0( \operatorname{N}_{\bullet }( \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(Y,Z) \times \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) ) ) \\ &amp;  \xrightarrow {\circ } &amp;  \pi _0( \operatorname{N}_{\bullet } \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Z) ) \\ &amp;  = &amp;  \operatorname{Hom}_{\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}}(X,Z). \end{eqnarray*}
+</div>
+</li>
+</ul></p>
+<p> We will refer to $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ as the <em>coarse homotopy category</em> of $\operatorname{\mathcal{C}}$. </p>
+</article>
+</p>
+<p>
+The terminology of Construction <a data-tag="02AS" href="/tag/02AS">2.2.8.2</a> is consistent with that of Definition <a data-tag="02AR" href="/tag/02AR">2.2.8.1</a>, by virtue of the following: 
+</p>
+<p>
+<article class="env-proposition" id="02AT">
+<p><a class="environment-identifier" href="/tag/02AT">Proposition <span data-tag="02AT">2.2.8.3</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory and let $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ be the ordinary category of Construction <a data-tag="02AS" href="/tag/02AS">2.2.8.2</a>, regarded as a bicategory having only identity $2$-morphisms. Then there is a unique functor of bicategories $F: \operatorname{\mathcal{C}}\rightarrow \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ with the following properties: </p>
+<p><ul>
+<li><p>
+The functor $F$ carries each object of $\operatorname{\mathcal{C}}$ to itself (regarded as an object of $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$). 
+</p>
+</li><li><p>
+The functor $F$ carries each $1$-morphism $u: X \rightarrow Y$ of $\operatorname{\mathcal{C}}$ to the connected component of $u$, regarded as a vertex of the nerve $\operatorname{N}_{\bullet }( \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) )$. 
+</p>
+</li>
+</ul></p>
+<p> Moreover, the functor $F$ exhibits $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ as a coarse homotopy category of $\operatorname{\mathcal{C}}$, in the sense of Definition <a data-tag="02AR" href="/tag/02AR">2.2.8.1</a>. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      The existence of $F$ follows from Example <a data-tag="008P" href="/tag/008P">2.2.4.14</a>. Let $\operatorname{\mathcal{E}}$ be an ordinary category, and suppose we are given a functor of bicategories $G: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{E}}$. We wish to show that there is a unique functor of ordinary categories $\overline{G}: \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}} \rightarrow \operatorname{\mathcal{E}}$ satisfying $G = \overline{G} \circ F$. The uniqueness is clear (since the functor $F$ is surjective on objects and on $1$-morphisms). To prove existence, we define $\overline{G}$ on objects by the formula $\overline{G}(X) = G(X)$ and on morphism by using the map of simplicial sets 
+    <p>
+<div class="equation">
+  \[  \operatorname{N}_{\bullet }( \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) ) \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{E}}}( G(X), G(Y) ) \]
+</div>
+<p>
+       and passing to connected components. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<p>
+<article class="env-corollary" id="02AU">
+<p><a class="environment-identifier" href="/tag/02AU">Corollary <span data-tag="02AU">2.2.8.4</span>.</a> Let $\operatorname{Cat}$ denote the category of (small) categories and let $\operatorname{2Cat}$ denote the category of (small) bicategories (Definition <a data-tag="0090" href="/tag/0090">2.2.5.5</a>. Then the inclusion $\operatorname{Cat}\hookrightarrow \operatorname{2Cat}$ admits a left adjoint, given on objects by the construction $\operatorname{\mathcal{C}}\mapsto \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$. </p>
+</article>
+</p>
+<p>
+In general, passage from a bicategory $\operatorname{\mathcal{C}}$ to its coarse homotopy category $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ is a very destructive procedure: if $u,v: X \rightarrow Y$ are $1$-morphisms of $\operatorname{\mathcal{C}}$ having the same source and target, then the existence of <em>any</em> $2$-morphism $\gamma : u \Rightarrow v$ in $\operatorname{\mathcal{C}}$ guarantees that $u$ and $v$ have the same image in $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$. For many purposes, it is more appropriate to work with a variant of $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ which identifies only <em>isomorphic</em> $1$-morphisms of $\operatorname{\mathcal{C}}$ (Construction <a data-tag="02AW" href="/tag/02AW">2.2.8.12</a>). First, let us introduce some terminology. 
+</p>
+<p>
+<article class="env-definition" id="009Q">
+<p><a class="environment-identifier" href="/tag/009Q">Definition <span data-tag="009Q">2.2.8.5</span>.</a> A <em>$2$-category</em> is a bicategory $\operatorname{\mathcal{C}}$ with the property that every $2$-morphism in $\operatorname{\mathcal{C}}$ is invertible. </p>
+</article>
+</p>
+<p>
+<article class="env-warning" id="06QG">
+<p><a class="environment-identifier" href="/tag/06QG">Warning <span data-tag="06QG">2.2.8.6</span>.</a> Definition <a data-tag="009Q" href="/tag/009Q">2.2.8.5</a> is not standard. The term $2$-category was originally used for what we refer to as a strict bicategory (Definition <a data-tag="007L" href="/tag/007L">2.2.0.1</a>), where $2$-morphisms are not required to be invertible. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="02AV">
+<p><a class="environment-identifier" href="/tag/02AV">Example <span data-tag="02AV">2.2.8.7</span>.</a> Let $\operatorname{\mathcal{C}}$ be an ordinary category, viewed as a bicategory having only identity $2$-morphisms (Remark <a data-tag="007X" href="/tag/007X">2.2.1.5</a>). Then $\operatorname{\mathcal{C}}$ is a $2$-category. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="009S">
+<p><a class="environment-identifier" href="/tag/009S">Remark <span data-tag="009S">2.2.8.8</span>.</a> Let $\operatorname{\mathcal{C}}$ be a $2$-category. Then every lax functor of bicategories $F: \operatorname{\mathcal{D}}\rightarrow \operatorname{\mathcal{C}}$ is automatically a functor. Consequently, there is no need to distinguish between functors and lax functors when working in the setting of $2$-categories. </p>
+</article>
+</p>
+<p>
+<article class="env-construction" id="00AL">
+<p><a class="environment-identifier" href="/tag/00AL">Construction <span data-tag="00AL">2.2.8.9</span> <span class="named">(The Pith of a Bicategory)</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory. We define a new bicategory $\operatorname{Pith}(\operatorname{\mathcal{C}})$ as follows: </p>
+<p><ul>
+<li><p>
+The objects of $\operatorname{Pith}(\operatorname{\mathcal{C}})$ are the objects of $\operatorname{\mathcal{C}}$. 
+</p>
+</li><li><p>
+For every pair of objects $X,Y \in \operatorname{\mathcal{C}}$, the category $\underline{\operatorname{Hom}}_{\operatorname{Pith}(\operatorname{\mathcal{C}})}( X, Y)$ is the core $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)^{\simeq }$ of the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$ (see Construction <a data-tag="007G" href="/tag/007G">1.3.5.4</a>). 
+</p>
+</li><li><p>
+The composition law, associativity constraints, and unit constraints of $\operatorname{Pith}(\operatorname{\mathcal{C}})$ are given by restricting the composition law, associativity constraints, and unit constraints of $\operatorname{\mathcal{C}}$. 
+</p>
+</li>
+</ul></p>
+<p> Then $\operatorname{Pith}(\operatorname{\mathcal{C}})$ is a $2$-category which we will refer to as the <em>pith</em> of $\operatorname{\mathcal{C}}$. </p>
+</article>
+</p>
+<p>
+More informally: for any bicategory $\operatorname{\mathcal{C}}$, the $2$-category $\operatorname{Pith}(\operatorname{\mathcal{C}})$ is obtained by discarding the non-invertible $2$-morphisms of $\operatorname{\mathcal{C}}$. 
+</p>
+<p>
+<article class="env-remark" id="00AM">
+<p><a class="environment-identifier" href="/tag/00AM">Remark <span data-tag="00AM">2.2.8.10</span> <span class="named">(The Universal Property of the Pith)</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory. Then $\operatorname{Pith}(\operatorname{\mathcal{C}})$ is characterized (up to isomorphism) by the following properties: </p>
+<p><ul>
+<li><p>
+The pith $\operatorname{Pith}(\operatorname{\mathcal{C}})$ is a $2$-category. 
+</p>
+</li><li><p>
+For every $2$-category $\operatorname{\mathcal{D}}$, every functor $F: \operatorname{\mathcal{D}}\rightarrow \operatorname{\mathcal{C}}$ factors (uniquely) through $\operatorname{Pith}(\operatorname{\mathcal{C}})$. 
+</p>
+</li>
+</ul></p>
+</article>
+</p>
+<p>
+<article class="env-warning" id="00AN">
+<p><a class="environment-identifier" href="/tag/00AN">Warning <span data-tag="00AN">2.2.8.11</span>.</a> In the situation of Remark <a data-tag="00AM" href="/tag/00AM">2.2.8.10</a>, it is not true that a <em>lax</em> functor $F: \operatorname{\mathcal{D}}\rightarrow \operatorname{\mathcal{C}}$ factors through the pith $\operatorname{Pith}(\operatorname{\mathcal{C}})$ (even when $\operatorname{\mathcal{D}}$ is a $2$-category): any lax functor which admits such a factorization is automatically a functor, by virtue of Remark <a data-tag="009S" href="/tag/009S">2.2.8.8</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-construction" id="02AW">
+<p><a class="environment-identifier" href="/tag/02AW">Construction <span data-tag="02AW">2.2.8.12</span> <span class="named">(The Homotopy Category of a Bicategory)</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory. We define a category $\operatorname{hPith}(\operatorname{\mathcal{C}})$ as follows: </p>
+<p><ul>
+<li><p>
+The objects of $\operatorname{hPith}(\operatorname{\mathcal{C}})$ are the objects of $\operatorname{\mathcal{C}}$. 
+</p>
+</li><li><p>
+If $X$ and $Y$ are objects of $\operatorname{\mathcal{C}}$, then $\operatorname{Hom}_{\operatorname{hPith}(\operatorname{\mathcal{C}})}(X,Y)$ is the set of isomorphism classes of objects in the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$. If $f: X \rightarrow Y$ is a $1$-morphism from $X$ to $Y$, we typically denote its isomorphism class by $[f] \in \operatorname{Hom}_{ \operatorname{hPith}(\operatorname{\mathcal{C}}) }(X,Y)$. 
+</p>
+</li><li><p>
+The composition law on $\operatorname{hPith}(\operatorname{\mathcal{C}})$ is determined by the requirement that $[g] \circ [f] = [g \circ f]$ for every pair of composable $1$-morphisms $f: X \rightarrow Y$ and $g: Y \rightarrow Z$ (this composition law is associative by virtue of the <em>existence</em> of the associativity contraints of the bicategory $\operatorname{\mathcal{C}}$). 
+</p>
+</li><li><p>
+For every object $Y \in \operatorname{\mathcal{C}}$, the identity morphism from $Y$ to itself in $\operatorname{hPith}(\operatorname{\mathcal{C}})$ is the isomorphism class of the identity morphism $\operatorname{id}_{Y}$ in $\operatorname{\mathcal{C}}$. For $1$-morphisms $f: X \rightarrow Y$ and $g: Y \rightarrow Z$, the identities 
+</p>
+<div class="equation">
+  \[  [\operatorname{id}_ Y] \circ [f] = [f] \quad \quad [g] \circ [\operatorname{id}_ Y] = [g] \]
+</div>
+<p>
+ follow from the existence of left and right unit constraints (see Construction <a data-tag="00EW" href="/tag/00EW">2.2.1.10</a>). 
+</p>
+</li>
+</ul></p>
+<p> We will refer to $\operatorname{hPith}(\operatorname{\mathcal{C}})$ as the <em>homotopy category</em> of $\operatorname{\mathcal{C}}$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="02AX">
+<p><a class="environment-identifier" href="/tag/02AX">Remark <span data-tag="02AX">2.2.8.13</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory. For every pair of objects $X,Y \in \operatorname{\mathcal{C}}$, the category </p>
+<div class="equation">
+  \[  \underline{\operatorname{Hom}}_{\operatorname{Pith}(\operatorname{\mathcal{C}})}( X,Y ) = \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)^{\simeq } \]
+</div>
+<p> is a groupoid, so that the nerve $\operatorname{N}_{\bullet }( \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)^{\simeq } )$ is a Kan complex. It follows that $1$-morphisms $u,v: X \rightarrow Y$ belong to the same connected component of $\operatorname{N}_{\bullet }( \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)^{\simeq } )$ if and only if they are connected by an edge of $\operatorname{N}_{\bullet }( \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)^{\simeq } )$ (Remark <a data-tag="00J0" href="/tag/00J0">1.4.6.13</a>): that is, if and only if $u$ and $v$ are isomorphic as objects of the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$. It follows that the homotopy category $\operatorname{hPith}(\operatorname{\mathcal{C}})$ of Construction <a data-tag="02AW" href="/tag/02AW">2.2.8.12</a> can be identified with the coarse homotopy category of the bicategory $\operatorname{Pith}(\operatorname{\mathcal{C}})$ (as suggested by the notation). </p>
+</article>
+</p>
+<p>
+<article class="env-warning" id="02AY">
+<p><a class="environment-identifier" href="/tag/02AY">Warning <span data-tag="02AY">2.2.8.14</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory and let $\operatorname{hPith}(\operatorname{\mathcal{C}})$ be the homotopy category of $\operatorname{\mathcal{C}}$, which we regard as a bicategory having only identity $2$-morphisms. In general, there is no functor which directly relates $\operatorname{\mathcal{C}}$ to the homotopy category $\operatorname{hPith}(\operatorname{\mathcal{C}})$. Instead, there is a commutative diagram of bicategories </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \operatorname{Pith}(\operatorname{\mathcal{C}}) \ar@ {^{(}-&gt;}[r] \ar [d] &amp;  \operatorname{\mathcal{C}}\ar [d] \\ \operatorname{hPith}(\operatorname{\mathcal{C}}) \ar [r] &amp;  \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}. } \]
+</div>
+<p> Here the functor $\operatorname{hPith}(\operatorname{\mathcal{C}}) \rightarrow \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ is bijective on objects and <em>full</em>: that is, for every pair of objects $X,Y \in \operatorname{\mathcal{C}}$, the induced map </p>
+<div class="equation">
+  \[  \operatorname{Hom}_{ \operatorname{hPith}(\operatorname{\mathcal{C}})}(X,Y) = \pi _0( \operatorname{N}_{\bullet } \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)^{\simeq } ) \rightarrow \pi _0( \operatorname{N}_{\bullet } \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) ) = \operatorname{Hom}_{\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}} }(X,Y) \]
+</div>
+<p> is surjective. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="02AZ">
+<p><a class="environment-identifier" href="/tag/02AZ">Example <span data-tag="02AZ">2.2.8.15</span>.</a> Let $\operatorname{\mathcal{C}}$ be a $2$-category, so that $\operatorname{Pith}(\operatorname{\mathcal{C}}) = \operatorname{\mathcal{C}}$. In particular, the inclusion $\operatorname{Pith}(\operatorname{\mathcal{C}}) \hookrightarrow \operatorname{\mathcal{C}}$ induces an isomorphism of categories $\operatorname{hPith}(\operatorname{\mathcal{C}}) \simeq \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$. In this situation, we will generally abuse notation by identifying $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ with $\operatorname{hPith}(\operatorname{\mathcal{C}})$ and referring to it as the <em>homotopy category</em> of $\operatorname{\mathcal{C}}$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="02B0">
+<p><a class="environment-identifier" href="/tag/02B0">Remark <span data-tag="02B0">2.2.8.16</span> <span class="named">(Functoriality)</span>.</a> Let $U: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a functor of bicategories. Then there is a unique functor of ordinary categories $\operatorname{hPith}(U): \operatorname{hPith}(\operatorname{\mathcal{C}}) \rightarrow \operatorname{hPith}(\operatorname{\mathcal{D}})$ with the following properties: </p>
+<p><ul>
+<li><p>
+For each object $X \in \operatorname{\mathcal{C}}$, the functor $\operatorname{hPith}(U)$ carries $X$ to the object $U(X) \in \operatorname{\mathcal{D}}$. 
+</p>
+</li><li><p>
+For each $1$-morphism $f: X \rightarrow Y$ of $\operatorname{\mathcal{C}}$, the functor $\operatorname{hPith}(U)$ carries the isomorphism class $[f]$ to the isomorphism class of the $1$-morphism $U(f): U(X) \rightarrow U(Y)$. 
+</p>
+</li>
+</ul></p>
+<p> Beware that the analogous assertion does not hold if $U$ is only assumed to be a lax functor of bicategories. </p>
+</article>
+</p>
+<p>
+<article class="env-definition" id="02B1">
+<p><a class="environment-identifier" href="/tag/02B1">Definition <span data-tag="02B1">2.2.8.17</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory. We say that a $1$-morphism $f: X \rightarrow Y$ in $\operatorname{\mathcal{C}}$ is an <em>isomorphism</em> if the homotopy class $[f]$ is an isomorphism in the homotopy category $\operatorname{hPith}(\operatorname{\mathcal{C}})$. Equivalently, $f$ is an isomorphism if there exists another $1$-morphism $g: Y \rightarrow X$ such that $g \circ f$ and $f \circ g$ are isomorphic to $\operatorname{id}_{X}$ and $\operatorname{id}_{Y}$ as objects of the categories $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,X)$ and $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(Y,Y)$, respectively. In this case, $g$ is also an isomorphism in $\operatorname{\mathcal{C}}$, which we will refer to as a <em>homotopy inverse</em> to $f$. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="02B2">
+<p><a class="environment-identifier" href="/tag/02B2">Example <span data-tag="02B2">2.2.8.18</span>.</a> Let $\operatorname{\mathcal{C}}$ be an ordinary category, regarded as a bicategory having only identity $2$-morphisms (Remark <a data-tag="007X" href="/tag/007X">2.2.1.5</a>). Then a morphism $f: X \rightarrow Y$ in $\operatorname{\mathcal{C}}$ is an isomorphism in the sense of Definition <a data-tag="02B1" href="/tag/02B1">2.2.8.17</a> if and only if it is an isomorphism in the usual sense: that is, if and only if there exists a morphism $g: Y \rightarrow X$ satisfying $g \circ f = \operatorname{id}_{X}$ and $f \circ g = \operatorname{id}_ Y$. </p>
+</article>
+</p>
+<p>
+<article class="env-warning" id="02B3">
+<p><a class="environment-identifier" href="/tag/02B3">Warning <span data-tag="02B3">2.2.8.19</span>.</a> Let $\operatorname{\mathcal{C}}$ be a strict bicategory. We can then consider two different notions of isomorphism in $\operatorname{\mathcal{C}}$: </p>
+<p><ul>
+<li><p>
+We say that a morphism $f: X \rightarrow Y$ is a <em>strict isomorphism</em> if it is an isomorphism in the underlying category of $\operatorname{\mathcal{C}}$: that is, if there exists a $1$-morphism $g: Y \rightarrow X$ satisfying $g \circ f = \operatorname{id}_ X$ and $f \circ g = \operatorname{id}_ Y$. 
+</p>
+</li><li><p>
+We say that a morphism $f: X \rightarrow Y$ is an <em>isomorphism</em> if the homotopy class $[f]$ is an isomorphism in the homotopy category $\operatorname{hPith}(\operatorname{\mathcal{C}})$: that is, if there exists a $1$-morphism $g: Y \rightarrow X$ such that $g \circ f$ and $f \circ g$ are isomorphic to $\operatorname{id}_{X}$ and $\operatorname{id}_{Y}$ as objects of the categories $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,X)$ and $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(Y,Y)$, respectively. 
+</p>
+</li>
+</ul></p>
+<p> Every strict isomorphism in $\operatorname{\mathcal{C}}$ is an isomorphism. However, the converse is false in general (see Example <a data-tag="02B4" href="/tag/02B4">2.2.8.20</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="02B4">
+<p><a class="environment-identifier" href="/tag/02B4">Example <span data-tag="02B4">2.2.8.20</span>.</a> Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a functor between (small) categories. Then $F$ is an equivalence of categories if and only if it is an isomorphism when regarded as a $1$-morphism in the bicategory $\mathbf{Cat}$ of Example <a data-tag="007M" href="/tag/007M">2.2.0.4</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="02B5">
+<p><a class="environment-identifier" href="/tag/02B5">Remark <span data-tag="02B5">2.2.8.21</span>.</a> Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a functor between bicategories. Then $F$ carries isomorphisms in $\operatorname{\mathcal{C}}$ to isomorphisms in $\operatorname{\mathcal{D}}$ (see Remark <a data-tag="02B0" href="/tag/02B0">2.2.8.16</a>). Beware that the analogous assertion need not hold if we assume only that $F$ is a lax functor of bicategories. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="02B6">
+<p><a class="environment-identifier" href="/tag/02B6">Remark <span data-tag="02B6">2.2.8.22</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory and let $f: X \rightarrow Y$ and $g: Y \rightarrow Z$ be $1$-morphisms of $\operatorname{\mathcal{C}}$. If any two of the $1$-morphisms $f$, $g$, and $g \circ f$ is an isomorphism, then so is the third. In particular, the collection of isomorphisms is closed under composition. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="02B7">
+<p><a class="environment-identifier" href="/tag/02B7">Remark <span data-tag="02B7">2.2.8.23</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory and let $f,g: X \rightarrow Y$ be $1$-morphisms in $\operatorname{\mathcal{C}}$ having the same source and target. If $f$ and $g$ are isomorphic (as objects of the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$), then $f$ is an isomorphism if and only if $g$ is an isomorphism. </p>
+</article>
+</p>
+<p>
+We close this section by discussing a strengthening of Definition <a data-tag="009Q" href="/tag/009Q">2.2.8.5</a>. 
+</p>
+<p>
+<article class="env-definition" id="02B8">
+<p><a class="environment-identifier" href="/tag/02B8">Definition <span data-tag="02B8">2.2.8.24</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory. We say that $\operatorname{\mathcal{C}}$ is a <em>$2$-groupoid</em> if every $1$-morphism in $\operatorname{\mathcal{C}}$ is an isomorphism and every $2$-morphism of $\operatorname{\mathcal{C}}$ is an isomorphism. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="02B9">
+<p><a class="environment-identifier" href="/tag/02B9">Remark <span data-tag="02B9">2.2.8.25</span>.</a> A bicategory $\operatorname{\mathcal{C}}$ is a $2$-groupoid if and only if it is a $2$-category and the homotopy category $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ is a groupoid. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="02BA">
+<p><a class="environment-identifier" href="/tag/02BA">Example <span data-tag="02BA">2.2.8.26</span>.</a> Let $\operatorname{\mathcal{C}}$ be an ordinary category. Then $\operatorname{\mathcal{C}}$ is a groupoid if and only if it is a $2$-groupoid (when viewed as a bicategory having only identity $2$-morphisms). </p>
+</article>
+</p>
+<p>
+<article class="env-construction" id="02BB">
+<p><a class="environment-identifier" href="/tag/02BB">Construction <span data-tag="02BB">2.2.8.27</span> <span class="named">(The Core of a Bicategory)</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory. We define a new bicategory $\operatorname{\mathcal{C}}^{\simeq }$ as follows: </p>
+<p><ul>
+<li><p>
+The objects of $\operatorname{\mathcal{C}}^{\simeq }$ are the objects of $\operatorname{\mathcal{C}}$. 
+</p>
+</li><li><p>
+For every pair of objects $X,Y \in \operatorname{\mathcal{C}}$, the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}^{\simeq } }( X, Y)$ is the full subcategory of $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)^{\simeq }$ spanned by the isomorphisms $f: X \rightarrow Y$. 
+</p>
+</li><li><p>
+The composition law, associativity constraints, and unit constraints of $\operatorname{\mathcal{C}}^{\simeq }$ are obtained by restricting the composition law, associativity constraints, and unit constraints of $\operatorname{\mathcal{C}}$ (which is well-defined by virtue of Remark <a data-tag="02B6" href="/tag/02B6">2.2.8.22</a>). 
+</p>
+</li>
+</ul></p>
+<p> We will refer to $\operatorname{\mathcal{C}}^{\simeq }$ as the <em>core</em> of the bicategory $\operatorname{\mathcal{C}}$. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="02BC">
+<p><a class="environment-identifier" href="/tag/02BC">Example <span data-tag="02BC">2.2.8.28</span>.</a> Let $\operatorname{\mathcal{C}}$ be a category. Then the core $\operatorname{\mathcal{C}}^{\simeq } \subseteq \operatorname{\mathcal{C}}$ of Construction <a data-tag="007G" href="/tag/007G">1.3.5.4</a> coincides with the core $\operatorname{\mathcal{C}}^{\simeq } \subseteq \operatorname{\mathcal{C}}$ of Construction <a data-tag="02BB" href="/tag/02BB">2.2.8.27</a>, where we regard $\operatorname{\mathcal{C}}$ as a bicategory having only identity $2$-morphisms. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="02BD">
+<p><a class="environment-identifier" href="/tag/02BD">Remark <span data-tag="02BD">2.2.8.29</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory. Then the inclusion functor $\operatorname{\mathcal{C}}^{\simeq } \hookrightarrow \operatorname{\mathcal{C}}$ is a functor of bicategories, which induces an isomorphism of categories from $\operatorname {h}\! \mathit{(\operatorname{\mathcal{C}}^{\simeq } )}$ to the core $\operatorname{hPith}(\operatorname{\mathcal{C}})^{\simeq }$ of the homotopy category $\operatorname{hPith}(\operatorname{\mathcal{C}})$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="02BE">
+<p><a class="environment-identifier" href="/tag/02BE">Remark <span data-tag="02BE">2.2.8.30</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory. Then the core $\operatorname{\mathcal{C}}^{\simeq }$ is a $2$-groupoid. This follows from Remark <a data-tag="02B9" href="/tag/02B9">2.2.8.25</a>: it is immediate from the construction that $\operatorname{\mathcal{C}}^{\simeq }$ is a $2$-category, and the homotopy category $\operatorname {h}\! \mathit{(\operatorname{\mathcal{C}}^{\simeq })}$ is a groupoid by virtue of the isomorphism $\operatorname {h}\! \mathit{(\operatorname{\mathcal{C}}^{\simeq } )} \simeq \operatorname{hPith}(\operatorname{\mathcal{C}})^{\simeq }$ of Remark <a data-tag="02BD" href="/tag/02BD">2.2.8.29</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="02BF">
+<p><a class="environment-identifier" href="/tag/02BF">Remark <span data-tag="02BF">2.2.8.31</span> <span class="named">(The Universal Property of the Core)</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory. Then the core $\operatorname{\mathcal{C}}^{\simeq }$ is characterized by the following properties: </p>
+<p><ul>
+<li><p>
+The bicategory $\operatorname{\mathcal{C}}^{\simeq }$ is a $2$-groupoid (Remark <a data-tag="02BE" href="/tag/02BE">2.2.8.30</a>). 
+</p>
+</li><li><p>
+For every $2$-groupoid $\operatorname{\mathcal{D}}$, every functor $F: \operatorname{\mathcal{D}}\rightarrow \operatorname{\mathcal{C}}$ factors (uniquely) through $\operatorname{\mathcal{C}}^{\simeq }$. 
+</p>
+</li>
+</ul></p>
+</article>
+</p>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.html a[data-toggle="popover"]').popover()
+
+  // render mathematics in popovers
+  $("[data-toggle=popover]").on('shown.bs.popover', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $("div.popover-body").html()]);
+  });
+});
+  </script>
+</div>
+</section></body>
+</html>

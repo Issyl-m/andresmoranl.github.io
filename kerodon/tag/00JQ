@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" id="main">
+<div class="html" id="tag">
+<h3 class="tex-subsection" id="subsection:simplicial-enrichment"><span data-tag="00JQ">2.4.1</span> Simplicial Enrichment</h3>
+<p>
+Let $\operatorname{Set_{\Delta }}$ denote the category of simplicial sets (Definition <a data-tag="000H" href="/tag/000H">1.1.0.6</a>). Then $\operatorname{Set_{\Delta }}$ admits cartesian products (Remark <a data-tag="000J" href="/tag/000J">1.1.0.8</a>), and can therefore be endowed with the cartesian monoidal structure described in Example <a data-tag="00CR" href="/tag/00CR">2.1.3.2</a>. We will use the term <em>simplicial category</em> to refer to a category which is enriched over $\operatorname{Set_{\Delta }}$, in the sense of Definition <a data-tag="00EE" href="/tag/00EE">2.1.7.1</a>. For the reader's convenience, we spell this definition out in detail (and establish some notation we will use when discussing simplicial categories, which differs somewhat from the general conventions of §<a data-tag="00ED" href="/tag/00ED">2.1.7</a>). 
+</p>
+<p>
+<article class="env-definition" id="00JR">
+<p><a class="environment-identifier" href="/tag/00JR">Definition <span data-tag="00JR">2.4.1.1</span> <span class="named">(Simplicial Categories)</span>.</a> A <em>simplicial category</em> $\operatorname{\mathcal{C}}_{\bullet }$ consists of the following data: </p>
+<p><dl>
+<dt>$(1)$</dt>
+<dd><p>
+A collection $\operatorname{Ob}(\operatorname{\mathcal{C}}_{\bullet })$, whose elements we refer to as <em>objects of $\operatorname{\mathcal{C}}_{\bullet }$</em>. We will often abuse notation by writing $X \in \operatorname{\mathcal{C}}_{\bullet }$ to indicate that $X$ is an element of $\operatorname{Ob}(\operatorname{\mathcal{C}}_{\bullet })$. 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+For every pair of objects $X,Y \in \operatorname{Ob}(\operatorname{\mathcal{C}}_{\bullet })$, a simplicial set $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet }$. 
+</p>
+</dd>
+<dt>$(3)$</dt>
+<dd><p>
+For every triple of objects $X,Y,Z \in \operatorname{Ob}(\operatorname{\mathcal{C}}_{\bullet })$, a morphism of simplicial sets 
+</p>
+<div class="equation">
+  \[  c_{Z,Y,X}: \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z)_{\bullet } \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X, Z)_{\bullet }, \]
+</div>
+<p>
+ which we will refer to as the <em>composition law</em>. 
+</p>
+</dd>
+<dt>$(4)$</dt>
+<dd><p>
+For every object $X \in \operatorname{Ob}(\operatorname{\mathcal{C}})$, a vertex $\operatorname{id}_{X} \in \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,X)_{0}$, which we will refer to as the <em>identity morphism of $X$</em>. 
+</p>
+</dd>
+</dl></p>
+<p>These data are required to satisfy the following conditions: </p>
+<p><dl>
+<dt>$(A)$</dt>
+<dd><p>
+For every quadruple of objects $W,X,Y,Z \in \operatorname{Ob}(\operatorname{\mathcal{C}}_{\bullet })$, the diagram of simplicial sets 
+</p>
+<div class="equation">
+  \[  \xymatrix@C =-80pt{ &amp;  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z)_{\bullet } \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(W,X)_{\bullet } \ar [dl]_{ \operatorname{id}\times c_{Y,X,W} } \ar [dr]^{ c_{Z,Y,X} \times \operatorname{id}} &amp;  \\ \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z)_{\bullet } \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(W,Y)_{\bullet } \ar [dr]_{ c_{Z,Y,W} } &amp;  &amp;  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z)_{\bullet } \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(W,X)_{\bullet } \ar [dl]^{ c_{Z,X,W} } \\ &amp;  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(W,Z)_{\bullet } &amp;  } \]
+</div>
+<p>
+ commutes (in other words, the composition law of $(3)$ is associative). 
+</p>
+</dd>
+<dt>$(U)$</dt>
+<dd><p>
+For every pair of objects $X,Y \in \operatorname{Ob}(\operatorname{\mathcal{C}}_{\bullet })$, the maps of simplicial sets 
+</p>
+<div class="equation">
+  \[  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } \times \{  \operatorname{id}_ X \}  \hookrightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,X)_{\bullet } \xrightarrow { c_{Y,X,X} } \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } \]
+</div>
+<div class="equation">
+  \[  \{  \operatorname{id}_ Y \}  \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } \hookrightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Y)_{\bullet } \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } \xrightarrow { c_{Y,Y,X} } \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } \]
+</div>
+<p>
+ coincide with the projection maps onto the factor $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet }$. 
+</p>
+</dd>
+</dl></p>
+</article>
+</p>
+<p>
+<article class="env-warning" id="00JS">
+<p><a class="environment-identifier" href="/tag/00JS">Warning <span data-tag="00JS">2.4.1.2</span>.</a> The terminology of Definition <a data-tag="00JR" href="/tag/00JR">2.4.1.1</a> is not standard. Many authors use the term <em>simplicial category</em> to mean a simplicial object of the category $\operatorname{Cat}$, and the term <em>simplicially enriched category</em> to mean a category enriched over simplicial sets. These notions are closely related: see Remark <a data-tag="00K2" href="/tag/00K2">2.4.1.12</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-construction" id="00JT">
+<p><a class="environment-identifier" href="/tag/00JT">Construction <span data-tag="00JT">2.4.1.3</span>.</a> Let $\operatorname{\mathcal{C}}_{\bullet }$ be a simplicial category. For every nonnegative integer $n \geq 0$, we define an ordinary category $\operatorname{\mathcal{C}}_{n}$ as follows: </p>
+<p><ul>
+<li><p>
+The objects of $\operatorname{\mathcal{C}}_ n$ are the objects of $\operatorname{\mathcal{C}}_{\bullet }$. 
+</p>
+</li><li><p>
+Let $X,Y \in \operatorname{Ob}(\operatorname{\mathcal{C}}_ n) = \operatorname{Ob}(\operatorname{\mathcal{C}}_{\bullet })$ be objects of $\operatorname{\mathcal{C}}_ n$. A morphism from $X$ to $Y$ in the category $\operatorname{\mathcal{C}}_ n$ is an $n$-simplex of the simplicial set $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet }$. In other words, we have an equality of sets $\operatorname{Hom}_{\operatorname{\mathcal{C}}_ n}(X,Y) = \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{n}$. 
+</p>
+</li><li><p>
+For every pair of morphisms $f: X \rightarrow Y$ and $g: Y \rightarrow Z$ in $\operatorname{\mathcal{C}}_ n$, the composition $g \circ f: X \rightarrow Z$ is given by the image of the $n$-simplex $(g,f)$ under the map of simplicial sets 
+</p>
+<div class="equation">
+  \[  c_{Z,Y,X}: \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z)_{\bullet } \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z)_{\bullet }. \]
+</div>
+</li><li><p>
+For every object $X \in \operatorname{Ob}(\operatorname{\mathcal{C}}_ n) = \operatorname{Ob}(\operatorname{\mathcal{C}}_{\bullet })$, the identity morphism from $X$ to itself in the category $\operatorname{\mathcal{C}}_ n$ is the $n$-simplex of $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,X)_{\bullet }$ which corresponds to the composite map 
+</p>
+<div class="equation">
+  \[  \Delta ^ n \rightarrow \Delta ^{0} \xrightarrow { \operatorname{id}_ X } \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,X)_{\bullet } \]
+</div>
+</li>
+</ul></p>
+</article>
+</p>
+<p>
+<article class="env-example" id="00JU">
+<p><a class="environment-identifier" href="/tag/00JU">Example <span data-tag="00JU">2.4.1.4</span> <span class="named">(The Underlying Category of a Simplicial Category)</span>.</a> Let $\operatorname{\mathcal{C}}_{\bullet }$ be a simplicial category. We let $\operatorname{\mathcal{C}}= \operatorname{\mathcal{C}}_0$ denote the ordinary category obtained by applying Construction <a data-tag="00JT" href="/tag/00JT">2.4.1.3</a> in the case $n=0$. We will refer to $\operatorname{\mathcal{C}}$ as the <em>underlying category</em> of the simplicial category $\operatorname{\mathcal{C}}_{\bullet }$. Note that $\operatorname{\mathcal{C}}$ can also be obtained from $\operatorname{\mathcal{C}}_{\bullet }$ by applying the general procedure described in Example <a data-tag="00EJ" href="/tag/00EJ">2.1.7.5</a>. </p>
+<p>We will sometimes abuse terminology by identifying a simplicial category $\operatorname{\mathcal{C}}_{\bullet }$ with its underlying category $\operatorname{\mathcal{C}}$. In particular, if $X$ and $Y$ are objects of $\operatorname{\mathcal{C}}_{\bullet }$, we will write $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)$ to denote the set $\operatorname{Hom}_{\operatorname{\mathcal{C}}_0}(X,Y) = \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{0}$ of morphisms from $X$ to $Y$ in the category $\operatorname{\mathcal{C}}$. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="00JV">
+<p><a class="environment-identifier" href="/tag/00JV">Example <span data-tag="00JV">2.4.1.5</span> <span class="named">(Topological Spaces)</span>.</a> Let $\operatorname{Top}$ denote the category whose objects are topological spaces and whose morphisms are continuous functions. Then $\operatorname{Top}$ can be promoted to a simplicial category $\operatorname{Top}_{\bullet }$: given a pair of topological spaces $X$ and $Y$, we define the simplicial set $\operatorname{Hom}_{\operatorname{Top}}(X,Y)_{\bullet }$ informally by the formula </p>
+<div class="equation">
+  \[  \operatorname{Hom}_{\operatorname{Top}}(X,Y)_{n} = \operatorname{Hom}_{\operatorname{Top}}( | \Delta ^ n | \times X, Y) \]
+</div>
+<p> In particular, a vertex of $\operatorname{Hom}_{\operatorname{Top}}(X,Y)_{\bullet }$ can be identified with a continuous function $f: X \rightarrow Y$. Moreover, for any topological space $Y$, we have a canonical isomorphism of simplicial sets $\operatorname{Hom}_{\operatorname{Top}}( \ast , Y )_{\bullet } \simeq \operatorname{Sing}_{\bullet }(Y)$, where $\operatorname{Sing}_{\bullet }(Y)$ is the singular simplicial set of Construction <a data-tag="001R" href="/tag/001R">1.2.2.2</a>. </p>
+</article>
+</p>
+<p>
+Let $\operatorname{\mathcal{C}}$ be a category. Roughly speaking, a simplicial enrichment $\operatorname{\mathcal{C}}_{\bullet }$ of $\operatorname{\mathcal{C}}$ can be viewed as a datum which allows us to “do homotopy theory” in $\operatorname{\mathcal{C}}$. For example, it allows us to define a notion of homotopy between morphisms of $\operatorname{\mathcal{C}}$: 
+</p>
+<p>
+<article class="env-definition" id="00JW">
+<p><a class="environment-identifier" href="/tag/00JW">Definition <span data-tag="00JW">2.4.1.6</span>.</a> Let $\operatorname{\mathcal{C}}_{\bullet }$ be a simplicial category, and let $f,g: X \rightarrow Y$ be two morphisms in the underlying category $\operatorname{\mathcal{C}}= \operatorname{\mathcal{C}}_0$ having the same source and target. A <em>homotopy</em> from $f$ to $g$ is an edge $h \in \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{1}$ satisfying $d^{1}_1(h) = f$ and $d^{1}_0(h) = g$. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="00JX">
+<p><a class="environment-identifier" href="/tag/00JX">Example <span data-tag="00JX">2.4.1.7</span>.</a> Let $X$ and $Y$ be topological spaces and let $f,g: X \rightarrow Y$ be continuous functions, which we regard as morphisms in the simplicial category $\operatorname{Top}_{\bullet }$ of Example <a data-tag="00JV" href="/tag/00JV">2.4.1.5</a>. Then a homotopy from $f$ to $g$ in the sense of Definition <a data-tag="00JW" href="/tag/00JW">2.4.1.6</a> is a homotopy in the usual sense: a continuous function $h: [0,1] \times X = | \Delta ^1 | \times X \rightarrow Y$ satisfying $h(0,x) = f(x)$ and $h(1,x) = g(x)$ for all $x \in X$. </p>
+</article>
+</p>
+<p>
+In a general simplicial category $\operatorname{\mathcal{C}}$, the notion of homotopy (in the sense of Definition <a data-tag="00JW" href="/tag/00JW">2.4.1.6</a>) need not be well-behaved: for example, the existence of a homotopy from $f$ to $g$ need not imply the existence of a homotopy from $g$ to $f$. To remedy the situation, it is convenient to restrict attention to a special class of simplicial categories: 
+</p>
+<p>
+<article class="env-definition" id="00JY">
+<p><a class="environment-identifier" href="/tag/00JY">Definition <span data-tag="00JY">2.4.1.8</span>.</a> Let $\operatorname{\mathcal{C}}_{\bullet }$ be a simplicial category. We will say that $\operatorname{\mathcal{C}}_{\bullet }$ is <em>locally Kan</em> if, for every pair of objects $X,Y \in \operatorname{\mathcal{C}}_{\bullet }$, the simplicial set $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet }$ is a Kan complex (Definition <a data-tag="002H" href="/tag/002H">1.2.5.1</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="00JZ">
+<p><a class="environment-identifier" href="/tag/00JZ">Remark <span data-tag="00JZ">2.4.1.9</span>.</a> Let $\operatorname{\mathcal{C}}_{\bullet }$ be a locally Kan simplicial category, and let $f,g: X \rightarrow Y$ be a pair of morphisms in the underlying category $\operatorname{\mathcal{C}}= \operatorname{\mathcal{C}}_0$ having the same source and target. Invoking Proposition <a data-tag="00HC" href="/tag/00HC">1.2.5.10</a>, we see that the following conditions are equivalent: </p>
+<p><dl>
+<dt>$(a)$</dt>
+<dd><p>
+There exists a homotopy from $f$ to $g$, in the sense of Definition <a data-tag="00JW" href="/tag/00JW">2.4.1.6</a>. 
+</p>
+</dd>
+<dt>$(b)$</dt>
+<dd><p>
+The morphisms $f$ and $g$ belong to the same connected component of the Kan complex $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet }$. 
+</p>
+</dd>
+</dl></p>
+<p> In particular, condition $(a)$ defines an equivalence relation on the set $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)$. </p>
+</article>
+</p>
+<p>
+<article class="env-exercise" id="00K0">
+<p><a class="environment-identifier" href="/tag/00K0">Exercise <span data-tag="00K0">2.4.1.10</span>.</a> Let $\operatorname{Top}_{\bullet }$ be the simplicial category of Example <a data-tag="00JV" href="/tag/00JV">2.4.1.5</a>. Show that $\operatorname{Top}_{\bullet }$ is locally Kan (hint: generalize the proof of Proposition <a data-tag="002K" href="/tag/002K">1.2.5.8</a>). </p>
+</article>
+</p>
+<p>
+Specializing Definition <a data-tag="00JE" href="/tag/00JE">2.1.7.10</a> to the setting of simplicial enrichments, we obtain the following: 
+</p>
+<p>
+<article class="env-definition" id="00K1">
+<p><a class="environment-identifier" href="/tag/00K1">Definition <span data-tag="00K1">2.4.1.11</span> <span class="named">(Simplicial Functors)</span>.</a> Let $\operatorname{\mathcal{C}}_{\bullet }$ and $\operatorname{\mathcal{D}}_{\bullet }$ be simplicial categories. A <em>simplicial functor</em> $F: \operatorname{\mathcal{C}}_{\bullet } \rightarrow \operatorname{\mathcal{D}}_{\bullet }$ consists of the following data: </p>
+<p><dl>
+<dt>$(1)$</dt>
+<dd><p>
+For every object $X \in \operatorname{Ob}(\operatorname{\mathcal{C}}_{\bullet })$, an object $F(X) \in \operatorname{Ob}(\operatorname{\mathcal{D}}_{\bullet })$. 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+For every pair of objects $X,Y \in \operatorname{Ob}(\operatorname{\mathcal{C}}_{\bullet })$, a map of simplicial sets $F_{X,Y}: \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{D}}}( F(X), F(Y) )_{\bullet }$. 
+</p>
+</dd>
+</dl></p>
+<p> These data are required to satisfy the following conditions: </p>
+<p><ul>
+<li><p>
+For every object $X \in \operatorname{Ob}(\operatorname{\mathcal{C}}_{\bullet })$, the map of simplicial sets $F_{X,X}: \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,X)_{\bullet } \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{D}}}( F(X), F(X) )_{\bullet }$ carries the vertex $\operatorname{id}_ X$ to the vertex $\operatorname{id}_{F(X)}$. 
+</p>
+</li><li><p>
+For every triple of objects $X,Y,Z \in \operatorname{Ob}(\operatorname{\mathcal{C}}_{\bullet })$, the diagram of simplicial sets 
+</p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \operatorname{Hom}_{\operatorname{\mathcal{C}}}(Y,Z)_{\bullet } \times \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\bullet } \ar [r] \ar [d]^{ F_{Y,Z} \times F_{X,Y} } &amp;  \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Z)_{\bullet } \ar [d]^{ F_{X,Z} } \\ \operatorname{Hom}_{\operatorname{\mathcal{D}}}( F(Y), F(Z) )_{\bullet } \times \operatorname{Hom}_{\operatorname{\mathcal{D}}}( F(X), F(Y) )_{\bullet } \ar [r] &amp;  \operatorname{Hom}_{\operatorname{\mathcal{D}}}( F(X), F(Z) )_{\bullet } } \]
+</div>
+<p>
+ is commutative. 
+</p>
+</li>
+</ul></p>
+<p> We let $\operatorname{Cat_{\Delta }}$ denote the category whose objects are (small) simplicial categories and whose morphisms are simplicial functors. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="00K2">
+<p><a class="environment-identifier" href="/tag/00K2">Remark <span data-tag="00K2">2.4.1.12</span>.</a> Let $\operatorname{\mathcal{C}}_{\bullet }$ be a (small) simplicial category. Then the construction $[n] \mapsto \operatorname{\mathcal{C}}_{n}$ determines a functor from the simplex category $\operatorname{{\bf \Delta }}^{\operatorname{op}}$ (Definition <a data-tag="000A" href="/tag/000A">1.1.0.2</a>) to the category $\operatorname{Cat}$ of (small) categories. Allowing $\operatorname{\mathcal{C}}_{\bullet }$ to vary, we obtain a functor $\operatorname{Cat_{\Delta }}\rightarrow \operatorname{Fun}( \operatorname{{\bf \Delta }}^{\operatorname{op}}, \operatorname{Cat})$, which fits into a pullback diagram of categories </p>
+<div class="equation">
+  \[  \xymatrix@C =80pt@R=50pt{ \operatorname{Cat_{\Delta }}\ar [r]^-{ \operatorname{\mathcal{C}}_{\bullet } \mapsto ([n] \mapsto \operatorname{\mathcal{C}}_ n)} \ar [d]^{\operatorname{Ob}} &amp;  \operatorname{Fun}( \operatorname{{\bf \Delta }}^{\operatorname{op}}, \operatorname{Cat}) \ar [d]^{ \operatorname{Ob}} \\ \operatorname{Set}\ar [r] &amp;  \operatorname{Fun}( \operatorname{{\bf \Delta }}^{\operatorname{op}}, \operatorname{Set}), } \]
+</div>
+<p> where the lower horizontal map carries each set $S$ to the constant functor $\operatorname{{\bf \Delta }}^{\operatorname{op}} \rightarrow \operatorname{Set}$ taking the value $S$. </p>
+<p>Phrased more informally: simplicial categories can be identified with simplicial objects $\operatorname{\mathcal{C}}_{\bullet }$ of $\operatorname{Cat}$ for which the underlying simplicial set of objects $[n] \mapsto \operatorname{Ob}( \operatorname{\mathcal{C}}_{n} )$ is constant. In particular, the functor $\operatorname{Cat_{\Delta }}\rightarrow \operatorname{Fun}( \operatorname{{\bf \Delta }}^{\operatorname{op}}, \operatorname{Cat})$ is a fully faithful embedding. </p>
+</article>
+</p>
+<p>
+<article class="env-proposition" id="00K3">
+<p><a class="environment-identifier" href="/tag/00K3">Proposition <span data-tag="00K3">2.4.1.13</span>.</a> The category $\operatorname{Cat_{\Delta }}$ admits small limits and colimits. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      The category $\operatorname{Cat}$ admits small limits and colimits, which are preserved by the forgetful functor $\operatorname{Ob}: \operatorname{Cat}\rightarrow \operatorname{Set}$. It follows that the category $\operatorname{Fun}( \operatorname{{\bf \Delta }}^{\operatorname{op}}, \operatorname{Cat})$ of simplicial objects in $\operatorname{Cat}$ also admits small limits and colimits, which are computed pointwise. Remark <a data-tag="00K2" href="/tag/00K2">2.4.1.12</a> supplies a fully faithful embedding $\operatorname{Cat_{\Delta }}\hookrightarrow \operatorname{Fun}( \operatorname{{\bf \Delta }}^{\operatorname{op}}, \operatorname{Cat})$ whose essential image is closed under small limits and colimits, so that $\operatorname{Cat_{\Delta }}$ admits small limits and colimits as well. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.html a[data-toggle="popover"]').popover()
+
+  // render mathematics in popovers
+  $("[data-toggle=popover]").on('shown.bs.popover', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $("div.popover-body").html()]);
+  });
+});
+  </script>
+</div>
+</section></body>
+</html>

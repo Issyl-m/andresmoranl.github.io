@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" id="main">
+<div class="html" id="tag">
+<h3 class="tex-subsection" id="subsection:2-functors"><span data-tag="008G">2.2.4</span> Functors of Bicategories</h3>
+<p>
+Let $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ be bicategories. Roughly speaking, a <em>functor</em> $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ should be an operation which carries objects, $1$-morphisms, and $2$-morphisms of $\operatorname{\mathcal{C}}$ to objects, $1$-morphisms, and $2$-morphisms of $\operatorname{\mathcal{D}}$, which is suitably compatible with (horizontal and vertical) composition. Here it is useful to distinguish between various notions of functor, which are differentiated by the degree of compatibility which is assumed. 
+</p>
+<p>
+<article class="env-definition" id="008H">
+<p><a class="environment-identifier" href="/tag/008H">Definition <span data-tag="008H">2.2.4.1</span> <span class="named">(Strict Functors)</span>.</a> Let $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ be bicategories. A <em>strict functor</em> $F$ from $\operatorname{\mathcal{C}}$ to $\operatorname{\mathcal{D}}$ consists of the following data: </p>
+<p><ul>
+<li><p>
+For every object $X \in \operatorname{\mathcal{C}}$, an object $F(X)$ in $\operatorname{\mathcal{D}}$. 
+</p>
+</li><li><p>
+For every pair of objects $X,Y \in \operatorname{\mathcal{C}}$, a functor of ordinary categories 
+</p>
+<div class="equation">
+  \[ F_{X,Y}: \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) \rightarrow \underline{\operatorname{Hom}}_{\operatorname{\mathcal{D}}}(F(X),F(Y)). \]
+</div>
+<p>
+ We will generally abuse notation by writing $F(f)$ for the value of the functor $F_{X,Y}$ on an object $f$ of the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$, and $F(\gamma )$ for the value of $F$ on a morphism $\gamma $ in the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$. 
+</p>
+</li>
+</ul></p>
+<p> This data is required to satisfy the following compatibility conditions: </p>
+<p><dl>
+<dt>$(1)$</dt>
+<dd><p>
+For every object $X \in \operatorname{\mathcal{C}}$, we have $\operatorname{id}_{F(X)} = F( \operatorname{id}_ X )$. 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+For every triple of objects $X,Y,Z \in \operatorname{\mathcal{C}}$, the diagram of categories 
+</p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(Y,Z) \times \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) \ar [r]^-{\circ } \ar [d]^{F_{Y,Z} \times F_{X,Y}} &amp;  \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Z) \ar [d]^{F_{X,Z}} \\ \underline{\operatorname{Hom}}_{\operatorname{\mathcal{D}}}(F(Y),F(Z)) \times \underline{\operatorname{Hom}}_{\operatorname{\mathcal{D}}}(F(X),F(Y)) \ar [r]^-{ \circ } &amp;  \underline{\operatorname{Hom}}_{\operatorname{\mathcal{D}}}( F(X), F(Z) ) } \]
+</div>
+<p>
+ is strictly commutative. 
+</p>
+</dd>
+<dt>$(3)$</dt>
+<dd><p>
+For every object $X \in \operatorname{\mathcal{C}}$, the functor $F_{X,X}$ carries the unit constraint $\upsilon _{X}: \operatorname{id}_{X} \circ \operatorname{id}_{X} \xRightarrow {\sim } \operatorname{id}_{X}$ to the unit constraint $\upsilon _{F(X)}: \operatorname{id}_{F(X)} \circ \operatorname{id}_{F(X)} \xRightarrow {\sim } \operatorname{id}_{F(X)}$. 
+</p>
+</dd>
+<dt>$(4)$</dt>
+<dd><p>
+For every composable triple of $1$-morphisms $W \xrightarrow {f} X \xrightarrow {g} Y \xrightarrow {h} Z$ in $\operatorname{\mathcal{C}}$, we have $F( \alpha _{h,g,f} ) = \alpha _{F(h), F(g), F(f) }$. In other words, $F$ carries the associativity constraints of $\operatorname{\mathcal{C}}$ to the associativity constraints of $\operatorname{\mathcal{D}}$. 
+</p>
+</dd>
+</dl></p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="008J">
+<p><a class="environment-identifier" href="/tag/008J">Remark <span data-tag="008J">2.2.4.2</span>.</a> In the situation of Definition <a data-tag="008H" href="/tag/008H">2.2.4.1</a>, conditions $(3)$ and $(4)$ are automatically satisfied if the bicategories $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ are strict. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="00JK">
+<p><a class="environment-identifier" href="/tag/00JK">Example <span data-tag="00JK">2.2.4.3</span>.</a> Let $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ be strict bicategories, which we regard as $\operatorname{Cat}$-enriched categories (Remark <a data-tag="00EN" href="/tag/00EN">2.2.0.2</a>). Then strict functors from $\operatorname{\mathcal{C}}$ to $\operatorname{\mathcal{D}}$ (in the sense of Definition <a data-tag="008H" href="/tag/008H">2.2.4.1</a>) can be identified with $\operatorname{Cat}$-enriched functors from $\operatorname{\mathcal{C}}$ to $\operatorname{\mathcal{D}}$ (in the sense of Definition <a data-tag="00JE" href="/tag/00JE">2.1.7.10</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-exercise" id="00F5">
+<p><a class="environment-identifier" href="/tag/00F5">Exercise <span data-tag="00F5">2.2.4.4</span>.</a> Let $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ be bicategories and let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a strict functor. Show that, for each morphism $f: X \rightarrow Y$ in $\operatorname{\mathcal{C}}$, the functor $F_{X,Y}: \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) \rightarrow \underline{\operatorname{Hom}}_{\operatorname{\mathcal{D}}}( F(X), F(Y) )$ carries the left and right unit constraints $\lambda _{f}: \operatorname{id}_{Y} \circ f \xRightarrow {\sim } f$ and $\rho _{f}: f \circ \operatorname{id}_{X} \xRightarrow {\sim } f$ to $\lambda _{F(f) }$ and $\rho _{F(f)}$, respectively (see Construction <a data-tag="00EW" href="/tag/00EW">2.2.1.10</a>). </p>
+</article>
+</p>
+<p>
+Note that axiom $(2)$ of Definition <a data-tag="008H" href="/tag/008H">2.2.4.1</a> implies in particular that for every pair of composable $1$-morphisms $X \xrightarrow {f} Y \xrightarrow {g} Z$ in the bicategory $\operatorname{\mathcal{C}}$, we have an <em>equality</em> $F(g) \circ F(f) = F( g \circ f)$ between objects of the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{D}}}( F(X), F(Z) )$. In practice, this requirement is often too strong: it is often better to allow a more liberal notion of functor, which is only required to preserve composition <em>up to isomorphism</em>. 
+</p>
+<p>
+<article class="env-definition" id="008K">
+<p><a class="environment-identifier" href="/tag/008K">Definition <span data-tag="008K">2.2.4.5</span> <span class="named">(Lax Functors)</span>.</a> Let $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ be bicategories. A <em>lax functor</em> $F$ from $\operatorname{\mathcal{C}}$ to $\operatorname{\mathcal{D}}$ consists of the following data: </p>
+<p><ul>
+<li><p>
+For every object $X \in \operatorname{\mathcal{C}}$, an object $F(X) \in \operatorname{\mathcal{D}}$. 
+</p>
+</li><li><p>
+For every pair of objects $X,Y \in \operatorname{\mathcal{C}}$, a functor of ordinary categories 
+</p>
+<div class="equation">
+  \[ F_{X,Y}: \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) \rightarrow \underline{\operatorname{Hom}}_{\operatorname{\mathcal{D}}}(F(X),F(Y)). \]
+</div>
+<p>
+ We will generally abuse notation by writing $F(f)$ for the value of the functor $F_{X,Y}$ on an object $f$ of the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$, an $F(\gamma )$ for the value of $F$ on a morphism $\gamma $ in the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y)$. 
+</p>
+</li><li><p>
+For every object $X \in \operatorname{\mathcal{C}}$, a $2$-morphism $\epsilon _{X}: \operatorname{id}_{ F(X)} \Rightarrow F( \operatorname{id}_ X )$ in the bicategory $\operatorname{\mathcal{D}}$, which we will refer to as the <em>identity constraint</em>. 
+</p>
+</li><li><p>
+For every pair of composable $1$-morphisms $X \xrightarrow {f} Y \xrightarrow {g} Z$ in the bicategory $\operatorname{\mathcal{C}}$, a $2$-morphism 
+</p>
+<div class="equation">
+  \[  \mu _{g,f}: F(g) \circ F(f) \Rightarrow F( g \circ f ), \]
+</div>
+<p>
+ which we will refer to as the <em>composition constraint</em>. We require that, if the objects $X$, $Y$, and $Z$ are fixed, then the construction $(g,f) \mapsto \mu _{g,f}$ is functorial: that is, we can regard $\mu $ as a natural transformation of functors as indicated in the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix@C =40pt@R=40pt{ \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(Y,Z) \times \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Y) \ar [r]^-{\circ } \ar [d]_{F_{Y,Z} \times F_{X,Y}} &amp;  \underline{\operatorname{Hom}}_{\operatorname{\mathcal{C}}}(X,Z) \ar [d]^{F_{X,Z}} \\ \underline{\operatorname{Hom}}_{\operatorname{\mathcal{D}}}(F(Y),F(Z)) \times \underline{\operatorname{Hom}}_{\operatorname{\mathcal{D}}}(F(X),F(Y)) \ar [r]^-{ \circ } \ar@ {=&gt;}[]+&lt;30pt,15pt&gt;;+&lt;150pt,45pt&gt;_-{\mu } &amp;  \underline{\operatorname{Hom}}_{\operatorname{\mathcal{D}}}( F(X), F(Z) ) } \]
+</div>
+</li>
+</ul></p>
+<p>This data is required to be compatible with the unit and associativity constraints of $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ in the following sense: </p>
+<p><dl>
+<dt>$(a)$</dt>
+<dd><p>
+For every $1$-morphism $f: X \rightarrow Y$ in $\operatorname{\mathcal{C}}$, the left unit constraint $\lambda _{F(f)}$ in $\operatorname{\mathcal{D}}$ is given by the vertical composition 
+</p>
+<div class="equation">
+  \[  \operatorname{id}_{ F(Y) } \circ F(f) \xRightarrow { \epsilon _{Y} \circ \operatorname{id}_{F(f)} } F( \operatorname{id}_{Y} ) \circ F(f) \xRightarrow { \mu _{ \operatorname{id}_ Y, f} } F( \operatorname{id}_ Y \circ f ) \xRightarrow { F( \lambda _ f) } F(f). \]
+</div>
+</dd>
+<dt>$(b)$</dt>
+<dd><p>
+For every $1$-morphism $f: X \rightarrow Y$ in $\operatorname{\mathcal{C}}$, the right unit constraint $\rho _{F(f)}$ in $\operatorname{\mathcal{D}}$ is given by the vertical composition 
+</p>
+<div class="equation">
+  \[  F(f) \circ \operatorname{id}_{F(X)} \xRightarrow { \operatorname{id}_{F(f)} \circ \epsilon _{X} } F(f) \circ F( \operatorname{id}_ X ) \xRightarrow { \mu _{ f, \operatorname{id}_ X} } F( f \circ \operatorname{id}_ X ) \xRightarrow { F( \rho _ f) } F(f). \]
+</div>
+</dd>
+<dt>$(c)$</dt>
+<dd><p>
+For every triple of composable $1$-morphisms $W \xrightarrow {f} X \xrightarrow {g} Y \xrightarrow {h} Z$ in the bicategory $\operatorname{\mathcal{C}}$, we have a commutative diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix@C =60pt@R=40pt{ F(h) \circ (F(g) \circ F(f) ) \ar@ {=&gt;}[d]^{ \operatorname{id}_{F(h)} \circ \mu _{g,f} } \ar@ {=&gt;}[r]^-{ \alpha _{F(h), F(g), F(f)} } &amp;  (F(h) \circ F(g) ) \circ F(f) \ar@ {=&gt;}[d]^{ \mu _{h,g} \circ \operatorname{id}_{F(f)} } \\ F(h) \circ F( g \circ f) \ar@ {=&gt;}[d]^{\mu _{h, g\circ f}} &amp;  F(h \circ g) \circ F(f) \ar@ {=&gt;}[d]^{ \mu _{h \circ g, f} } \\ F( h \circ (g \circ f)) \ar@ {=&gt;}[r]^-{ F( \alpha _{h,g,f})} &amp;  F( (h \circ g) \circ f) } \]
+</div>
+<p>
+ in the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{D}}}( F(W), F(Z) )$. 
+</p>
+</dd>
+</dl></p>
+<p>A <em>functor</em> from $\operatorname{\mathcal{C}}$ to $\operatorname{\mathcal{D}}$ is a lax functor $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ with the property that the identity and composition constraints </p>
+<div class="equation">
+  \[  \epsilon _{X}: \operatorname{id}_{F(X)} \Rightarrow F( \operatorname{id}_ X ) \quad \quad \mu _{g,f}: F(g) \circ F(f) \Rightarrow F( g \circ f) \]
+</div>
+<p> are isomorphisms. </p>
+</article>
+</p>
+<p>
+<article class="env-warning" id="008L">
+<p><a class="environment-identifier" href="/tag/008L">Warning <span data-tag="008L">2.2.4.6</span>.</a> The terminology of Definition <a data-tag="008K" href="/tag/008K">2.2.4.5</a> is not standard. In <span class="cite">[<a href="/bibliography/MR0220789">MR0220789</a>]</span>, Bénabou uses the term <em>morphism</em> for what we call a lax functor of bicategories, <em>homomorphism</em> for what we call a functor of bicategories, and <em>strict homomorphism</em> for what we call a strict functor of bicategories. Other authors refer to functors of bicategories (in the sense of Definition <a data-tag="008K" href="/tag/008K">2.2.4.5</a>) as <em>weak functors</em> or <em>pseudofunctors</em> (to avoid confusion with the notion of strict functor). </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="00F6">
+<p><a class="environment-identifier" href="/tag/00F6">Remark <span data-tag="00F6">2.2.4.7</span>.</a> Let $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ be bicategories and let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a lax functor from $\operatorname{\mathcal{C}}$ to $\operatorname{\mathcal{D}}$. Then, for each object $X \in \operatorname{Ob}(\operatorname{\mathcal{C}})$, we can regard $F_{X,X}: \underline{\operatorname{End}}_{\operatorname{\mathcal{C}}}(X) \rightarrow \underline{\operatorname{End}}_{\operatorname{\mathcal{D}}}( F(X) )$ as a lax monoidal functor from $\underline{\operatorname{End}}_{\operatorname{\mathcal{C}}}(X)$ (endowed with the monoidal structure of Remark <a data-tag="00ET" href="/tag/00ET">2.2.1.6</a>) to $\underline{\operatorname{End}}_{\operatorname{\mathcal{D}}}( F(X) )$: the tensor and unit constraints on $F_{X,X}$ are given by the composition and identity constraints on $F$, respectively. If $F$ is a functor, then $F_{X,X}$ is a monoidal functor. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="00F7">
+<p><a class="environment-identifier" href="/tag/00F7">Remark <span data-tag="00F7">2.2.4.8</span>.</a> Let $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ be bicategories and let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a lax functor from $\operatorname{\mathcal{C}}$ to $\operatorname{\mathcal{D}}$. Then the identity constraints $\{  \epsilon _{X}: \operatorname{id}_{ F(X) } \Rightarrow F( \operatorname{id}_{X} ) \} _{X \in \operatorname{Ob}(\operatorname{\mathcal{C}}) }$ are uniquely determined by the other data of Definition <a data-tag="008K" href="/tag/008K">2.2.4.5</a>. This follows from Proposition <a data-tag="00DJ" href="/tag/00DJ">2.1.5.4</a>, applied to the lax monoidal functor $F_{X,X}: \underline{\operatorname{End}}_{\operatorname{\mathcal{C}}}(X) \rightarrow \underline{\operatorname{End}}_{\operatorname{\mathcal{D}}}( F(X) )$ of Remark <a data-tag="00F6" href="/tag/00F6">2.2.4.7</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="00F8">
+<p><a class="environment-identifier" href="/tag/00F8">Remark <span data-tag="00F8">2.2.4.9</span>.</a> Let $\operatorname{\mathcal{C}}$ be a monoidal category, let $B\operatorname{\mathcal{C}}$ be the bicategory obtained by delooping $\operatorname{\mathcal{C}}$ (Example <a data-tag="00F1" href="/tag/00F1">2.2.2.5</a>), and let $X$ denote the unique object of $B\operatorname{\mathcal{C}}$. Let $\operatorname{\mathcal{D}}$ be any bicategory, and let $Y$ be an object of $\operatorname{\mathcal{D}}$. Then the construction of Remark <a data-tag="00F6" href="/tag/00F6">2.2.4.7</a> induces bijections </p>
+<div class="equation">
+  \[  \{  \text{Lax Functors $F: B\operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ with $F(X) = Y$} \}  \simeq \{  \text{Lax monoidal functors $\operatorname{\mathcal{C}}\rightarrow \underline{\operatorname{End}}_{\operatorname{\mathcal{D}}}(Y)$} \}  \]
+</div>
+<div class="equation">
+  \[  \{  \text{Functors $F: B\operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ with $F(X) = Y$} \}  \simeq \{  \text{Monoidal functors $\operatorname{\mathcal{C}}\rightarrow \underline{\operatorname{End}}_{\operatorname{\mathcal{D}}}(Y)$ } \} . \]
+</div>
+<p> Applying this observation in the case where $\operatorname{\mathcal{D}}= B\operatorname{\mathcal{C}}'$ for some other monoidal category $\operatorname{\mathcal{C}}'$, we deduce that (lax) monoidal functors from $\operatorname{\mathcal{C}}$ to $\operatorname{\mathcal{C}}'$ can be identified with (lax) functors of bicategories from $B\operatorname{\mathcal{C}}$ to $B\operatorname{\mathcal{C}}'$. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="01NL">
+<p><a class="environment-identifier" href="/tag/01NL">Example <span data-tag="01NL">2.2.4.10</span> <span class="named">(Algebras as Lax Functors)</span>.</a> Let $[0]$ denote the category having a single object and a single morphism, which we regard as a (strict) bicategory, and let $\operatorname{\mathcal{D}}$ be any bicategory. Combining Remark <a data-tag="00F8" href="/tag/00F8">2.2.4.9</a> and Example <a data-tag="00DW" href="/tag/00DW">2.1.5.21</a>, we deduce that lax functors $[0] \rightarrow \operatorname{\mathcal{D}}$ can be identified with pairs $(Y, A)$, where $Y \in \operatorname{\mathcal{D}}$ is an object and $A$ is an algebra object of the monoidal category $\underline{\operatorname{End}}_{\operatorname{\mathcal{D}}}(Y)$. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="008M">
+<p><a class="environment-identifier" href="/tag/008M">Example <span data-tag="008M">2.2.4.11</span>.</a> Let $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ be bicategories, and let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a strict functor (in the sense of Definition <a data-tag="008H" href="/tag/008H">2.2.4.1</a>). Then we can regard $F$ as a functor from $\operatorname{\mathcal{C}}$ to $\operatorname{\mathcal{D}}$ (in the sense of Definition <a data-tag="008K" href="/tag/008K">2.2.4.5</a>) by taking the identity and composition constraints </p>
+<div class="equation">
+  \[ \epsilon _ X: \operatorname{id}_{F(X)} \Rightarrow F( \operatorname{id}_ X) \quad \quad \mu _{g,f}: F(g) \circ F(f) \Rightarrow F( g \circ f) \]
+</div>
+<p> to be the identity maps (note that in this case, conditions $(a)$, $(b)$, and $(c)$ of Definition <a data-tag="008K" href="/tag/008K">2.2.4.5</a> reduce to conditions $(3)$ and $(4)$ of Definition <a data-tag="008H" href="/tag/008H">2.2.4.1</a>). Conversely, if $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ is a lax functor having the property that each of the identity and composition constraints $\epsilon _{X}$ and $\mu _{g,f}$ is an identity $2$-morphism of $\operatorname{\mathcal{D}}$, then we can regard $F$ as a strict $2$-functor from $\operatorname{\mathcal{C}}$ to $\operatorname{\mathcal{D}}$. We therefore have inclusions </p>
+<div class="equation">
+  \[  \{  \text{Strict functors $F:\operatorname{\mathcal{C}}\to \operatorname{\mathcal{D}}$} \}  \subseteq \{  \text{Functors $F: \operatorname{\mathcal{C}}\to \operatorname{\mathcal{D}}$} \}  \subseteq \{  \text{Lax functors $F: \operatorname{\mathcal{C}}\to \operatorname{\mathcal{D}}$} \} . \]
+</div>
+<p> In general, neither of these inclusions is reversible. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="00F9">
+<p><a class="environment-identifier" href="/tag/00F9">Example <span data-tag="00F9">2.2.4.12</span> <span class="named">(Enriched Categories as Lax Functors)</span>.</a> Let $S$ be a set, and let $\operatorname{\mathcal{E}}_{S}$ denote the <em>indiscrete</em> category with object set $S$: that is, the objects of $\operatorname{\mathcal{E}}_{S}$ are the elements of $S$, and $\operatorname{Hom}_{\operatorname{\mathcal{E}}_{S}}(X,Y)$ is a singleton for every pair of elements $X,Y \in S$. Regard $\operatorname{\mathcal{E}}_{S}$ as a (strict) bicategory having only identity $2$-morphisms (Example <a data-tag="007W" href="/tag/007W">2.2.0.6</a>). Let $\operatorname{\mathcal{C}}$ be a monoidal category, and let $B\operatorname{\mathcal{C}}$ be its delooping (Example <a data-tag="00F1" href="/tag/00F1">2.2.2.5</a>). Unwinding the definitions, we see that lax functors $F: \operatorname{\mathcal{E}}_{S} \rightarrow B \operatorname{\mathcal{C}}$ (in the sense of Definition <a data-tag="008K" href="/tag/008K">2.2.4.5</a>) can be identified with $\operatorname{\mathcal{C}}$-enriched categories having object set $S$ (in the sense of Definition <a data-tag="00EE" href="/tag/00EE">2.1.7.1</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-warning" id="008N">
+<p><a class="environment-identifier" href="/tag/008N">Warning <span data-tag="008N">2.2.4.13</span>.</a> Let $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ be strict bicategories, and let $\operatorname{\mathcal{C}}_0$ and $\operatorname{\mathcal{D}}_0$ denote their underlying ordinary categories (obtained by ignoring the $2$-morphisms of $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$, respectively). Every strict functor $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ induces a functor of ordinary categories $F_0: \operatorname{\mathcal{C}}_0 \rightarrow \operatorname{\mathcal{D}}_0$. However, if a functor $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ is not strict, then it need not give rise to a functor from $\operatorname{\mathcal{C}}_0$ to $\operatorname{\mathcal{D}}_0$. If $X \xrightarrow {f} Y \xrightarrow {g} Z$ is a composable pair of $1$-morphisms in $\operatorname{\mathcal{C}}$, then Definition <a data-tag="008K" href="/tag/008K">2.2.4.5</a> guarantees that the $1$-morphisms $F(g) \circ F(f)$ and $F(g \circ f)$ are isomorphic (via the composition constraint $\mu _{g,f}$), but not that they are identical. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="008P">
+<p><a class="environment-identifier" href="/tag/008P">Example <span data-tag="008P">2.2.4.14</span>.</a> Let $\operatorname{\mathcal{C}}$ be a bicategory and let $\operatorname{\mathcal{D}}$ be an ordinary category, which we regard as a bicategory having only identity $2$-morphisms. If $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ is lax functor of bicategories, then its values on the $1$-morphisms of $\operatorname{\mathcal{C}}$ must satisfy the following conditions: </p>
+<p><dl>
+<dt>$(1)$</dt>
+<dd><p>
+If $u,v: X \rightarrow Y$ are $1$-morphisms of $\operatorname{\mathcal{C}}$ having the same source and target and $\gamma : u \Rightarrow v$ is a $2$-morphism of $\operatorname{\mathcal{C}}$, then $F(u) = F(v)$ (since $F(\gamma ): F(u) \Rightarrow F(v)$ must be an identity $2$-morphism of $\operatorname{\mathcal{D}}$). 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+If $u: X \rightarrow Y$ and $v: Y \rightarrow Z$ are composable $1$-morphisms of $\operatorname{\mathcal{C}}$, then $F(v \circ u) = F(v) \circ F(u)$ (since the composition constraint $\mu _{v,u}: F(v) \circ F(u) \Rightarrow F(v \circ u)$ is an identity $2$-morphism of $\operatorname{\mathcal{D}}$). 
+</p>
+</dd>
+<dt>$(3)$</dt>
+<dd><p>
+For every object $X \in \operatorname{\mathcal{C}}$, $F( \operatorname{id}_ X )$ is the identity morphism $\operatorname{id}_{ F(X)}$ in $\operatorname{\mathcal{D}}$ (since the identity constraint $\epsilon _{X}: \operatorname{id}_{ F(X)} \Rightarrow F( \operatorname{id}_ X )$ is an identity $2$-morphism of $\operatorname{\mathcal{D}}$). 
+</p>
+</dd>
+</dl></p>
+<p> Conversely, any specification of the values of $F$ on objects and $1$-morphisms which satisfies conditions $(1)$, $(2)$, and $(3)$ extends uniquely to a strict functor $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ (the coherence conditions appearing in Definition <a data-tag="008K" href="/tag/008K">2.2.4.5</a> are automatic, by virtue of the fact that every $2$-morphism of $\operatorname{\mathcal{D}}$ is an identity). In particular, every lax functor $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ is automatically strict. Beware that the analogous statement is generally false if the roles of $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ are reversed. </p>
+</article>
+</p>
+<p>
+<article class="env-notation" id="008Q">
+<p><a class="environment-identifier" href="/tag/008Q">Notation <span data-tag="008Q">2.2.4.15</span>.</a> Let $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ be bicategories. To supply a lax $2$-functor $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$, one must specify not only the values of $F$ on objects, $1$-morphisms, and $2$-morphisms of $\operatorname{\mathcal{C}}$, but also the identity and composition constraints </p>
+<div class="equation">
+  \[  \epsilon _ X: \operatorname{id}_{F(X)} \Rightarrow F( \operatorname{id}_ X ) \quad \quad \mu _{g,f}: F(g) \circ F(f) \Rightarrow F( g \circ f ). \]
+</div>
+<p> In situations where we need to consider more than one lax functor at a time, we will denote these $2$-morphisms by $\epsilon _{X}^{F}$ and $\mu _{g,f}^{F}$ (to avoid ambiguity). </p>
+</article>
+</p>
+<p>
+<article class="env-exercise" id="00FA">
+<p><a class="environment-identifier" href="/tag/00FA">Exercise <span data-tag="00FA">2.2.4.16</span>.</a> In the situation of Definition <a data-tag="008K" href="/tag/008K">2.2.4.5</a>, show that we can replace $(a)$ and $(b)$ by the following alternative conditions: </p>
+<p><ul>
+<li><p>
+For every object $X \in \operatorname{\mathcal{C}}$, the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \operatorname{id}_{F(X)} \circ \operatorname{id}_{ F(X)} \ar@ {=&gt;}[r]^-{ \upsilon _{F(X)} } \ar@ {=&gt;}[d]^{ \epsilon _{X} \circ \epsilon _{X}} &amp;  \operatorname{id}_{ F(X) } \ar@ {=&gt;}[dd]^{ \epsilon _{X} } \\ F( \operatorname{id}_ X) \circ F( \operatorname{id}_ X ) \ar@ {=&gt;}[d]^{ \mu _{ \operatorname{id}_ X, \operatorname{id}_ X } } &amp;  \\ F( \operatorname{id}_ X \circ \operatorname{id}_ X ) \ar@ {=&gt;}[r]^{ F( \upsilon _{X} )} &amp;  F(\operatorname{id}_ X) } \]
+</div>
+<p>
+ commutes (in the endomorphism category $\underline{\operatorname{End}}_{\operatorname{\mathcal{C}}}(X)$). 
+</p>
+</li><li><p>
+For every $1$-morphism $f: X \rightarrow Y$ in $\operatorname{\mathcal{C}}$, the vertical compositions 
+</p>
+<div class="equation">
+  \[  \operatorname{id}_{F(Y)} \circ F(f) \xRightarrow { \epsilon _{Y} \circ \operatorname{id}_{F(f)} } F( \operatorname{id}_{Y} ) \circ F(f) \xRightarrow { \mu _{ \operatorname{id}_ Y, f} } F( \operatorname{id}_ Y \circ f) \]
+</div>
+<div class="equation">
+  \[  F(f) \circ \operatorname{id}_{F(X)} \xRightarrow { \operatorname{id}_{F(f)} \circ \epsilon _ X } F(f) \circ F( \operatorname{id}_ X) \xRightarrow { \mu _{ f, \operatorname{id}_ X} } F(f \circ \operatorname{id}_ X) \]
+</div>
+<p>
+ are monomorphisms in the category $\underline{\operatorname{Hom}}_{\operatorname{\mathcal{D}}}( F(X), F(Y) )$. 
+</p>
+</li>
+</ul></p>
+<p> See Proposition <a data-tag="00DN" href="/tag/00DN">2.1.5.13</a>. </p>
+</article>
+</p>
+<p>
+Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a (lax) functor between bicategories. According to Example <a data-tag="008M" href="/tag/008M">2.2.4.11</a>, $F$ is strict if and only if the identity and composition constraints 
+</p>
+<div class="equation">
+  \[  \epsilon _{X}: \operatorname{id}_{F(X)} \Rightarrow F( \operatorname{id}_ X ) \quad \quad \mu _{g,f}: F(g) \circ F(f) \Rightarrow F( g \circ f) \]
+</div>
+<p>
+ are identity $2$-morphisms in $\operatorname{\mathcal{D}}$. In §<a data-tag="009T" href="/tag/009T">2.3.1</a>, it will be useful to consider a weaker version of this condition, where we require strict compatibility with the formation of identity morphisms but not with respect to composition in general. 
+</p>
+<p>
+<article class="env-definition" id="008R">
+<p><a class="environment-identifier" href="/tag/008R">Definition <span data-tag="008R">2.2.4.17</span>.</a> Let $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ be bicategories, and let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a lax functor. We say that $F$ is <em>unital</em> if, for every object $X \in \operatorname{\mathcal{C}}$, the identity constraint $\epsilon _{X}: \operatorname{id}_{ F(X)} \Rightarrow F( \operatorname{id}_ X)$ is an invertible $2$-morphism of $\operatorname{\mathcal{D}}$. We say that $F$ is <em>strictly unital</em> if, for every object $X \in \operatorname{\mathcal{C}}$, we have an equality $\operatorname{id}_{F(X)} = F( \operatorname{id}_ X)$ and the identity constraint $\epsilon _{X}$ is the identity $2$-morphism from $\operatorname{id}_{F(X)}$ to itself. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="008S">
+<p><a class="environment-identifier" href="/tag/008S">Remark <span data-tag="008S">2.2.4.18</span>.</a> Let $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ be bicategories. Every functor $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ is unital when viewed as a lax functor from $\operatorname{\mathcal{C}}$ to $\operatorname{\mathcal{D}}$. Every strict functor $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ is strictly unital when viewed as a lax functor from $\operatorname{\mathcal{C}}$ to $\operatorname{\mathcal{D}}$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="008U">
+<p><a class="environment-identifier" href="/tag/008U">Remark <span data-tag="008U">2.2.4.19</span>.</a> Let $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ be bicategories and let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a unital lax functor. Then one can modify $F$ to produce a strictly unital lax functor $F': \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ by the following explicit procedure: </p>
+<p><ul>
+<li><p>
+For every object $X \in \operatorname{\mathcal{C}}$, we set $F'(X) = F(X)$. 
+</p>
+</li><li><p>
+For every $1$-morphism $f: X \rightarrow Y$ in $\operatorname{\mathcal{C}}$ which is not an identity morphism, we set $F'(f) = F(f)$; if $X = Y$ and $f = \operatorname{id}_{X}$ we instead set $F'(f) = \operatorname{id}_{F(X)}$. In either case, we have an invertible $2$-morphism $\varphi _{f}: F'(f) \xRightarrow {\sim } F(f)$, given by 
+</p>
+<div class="equation">
+  \[  \varphi _{f} = \begin{cases}  \epsilon _{X}^{F} &amp;  \text{ if } f = \operatorname{id}_ X \\  \operatorname{id}_{ F(f) } &amp;  \text{ otherwise. } \end{cases} \]
+</div>
+</li><li><p>
+Let $X$ and $Y$ be objects of $\operatorname{\mathcal{C}}$, and let $\gamma : f \Rightarrow g$ be a $2$-morphism between $1$-morphisms $f,g: X \rightarrow Y$. We define $F'(\gamma )$ to be the vertical composition $\varphi _{g}^{-1} F(\gamma ) \varphi _{f}$. 
+</p>
+</li><li><p>
+For every pair of composable $1$-morphisms $X \xrightarrow {f} Y \xrightarrow {g} Z$ in the bicategory $\operatorname{\mathcal{D}}$, we define the composition constraint $\mu ^{F'}_{g,f}: F'(g) \circ F'(f) \Rightarrow F'(g \circ f)$ to be the vertical composition 
+</p>
+<div class="equation">
+  \[  F'(g) \circ F'(f) \xRightarrow { \varphi _{g} \circ \varphi _{f} } F(g) \circ F(f) \xRightarrow { \mu _{g,f}^{F}} F(g \circ f) \xRightarrow { \varphi _{g \circ f}^{-1} } F'( g \circ f ). \]
+</div>
+</li>
+</ul></p>
+<p> Consequently, it is generally harmless to assume that a unital lax functor of bicategories $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ is strictly unital. </p>
+</article>
+</p>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.html a[data-toggle="popover"]').popover()
+
+  // render mathematics in popovers
+  $("[data-toggle=popover]").on('shown.bs.popover', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $("div.popover-body").html()]);
+  });
+});
+  </script>
+</div>
+</section></body>
+</html>
