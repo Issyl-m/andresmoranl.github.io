@@ -1,0 +1,585 @@
+<h2 id="catreview" class="tex-section"><span data-tag="D1DCA9">8.1</span> Category Theory</h2>
+
+
+<p>
+Familiarity with classical category theory is the main prerequisite for reading this book. In this section, we will fix some of the notation that we will use when discussing categories, and summarize (generally without proofs) some of the concepts which we will use in the body of the text.category 
+</p>
+<p>
+If $\calC $ is a category, we let $\Ob (\calC )$ denote the set of objects of $\calC $.ObC@$\Ob (\calC )$ We will write $X \in \calC $ to mean that $X$ is an object of $\calC $. For $X,Y \in \calC $, we write $\Hom _{\calC }(X,Y)$ for the set of morphisms from $X$ to $Y$ in $\calC $. We also write $\id _ X$ for the identity automorphism of $X \in \calC $ (regarded as an element of $\Hom _{\calC }(X,X)$).HomC@$\Hom _{\calC }(X,Y)$ 
+</p>
+<p>
+If $Z$ is an object in a category $\calC $, then the <em>overcategory</em>overcategory $\calC _{/Z}$ of <em>objects over $Z$</em> is defined as follows: the objects of $\calC _{/Z}$ are diagrams $X \rightarrow Z$ in $\calC $. A morphism from $f: X \rightarrow Z$ to $g: Y \rightarrow Z$ is a commutative triangle 
+</p>
+<div class="equation">
+  \[  \xymatrix { X \ar [rr] \ar [dr]_{f} &  &  Y \ar [dl]^{g} \\ &  Z.} \]
+</div>
+<p>
+ Dually, we have an <em>undercategory</em> $\calC _{Z/} = ((\calC ^{op})_{Z/})^{op}$ of <em>objects under $Z$</em>undercategory.calC/X@$\calC _{/X}$calCX/@$\calX _{X/}$ 
+</p>
+<p>
+If $f: X \rightarrow Z$ and $g: Y \rightarrow Z$ are objects in $\calC _{/Z}$, then we will often write $\Hom _{Z}(X,Y)$ rather than $\Hom _{\calC _{/Z}}(f,g)$.HomZXY@$\Hom _{Z}(X,Y)$ 
+</p>
+<p>
+We let $\Set $ denote the category of sets, and $\Cat $ the category of (small) categories (where the morphisms are given by functors).Cat@$\Cat $Set@$\Set $ 
+</p>
+<p>
+If $\kappa $ is a regular cardinal, we will say that a set $S$ is <em>$\kappa $-small</em>$\kappa $-small if it has cardinality less than $\kappa $. We will also use this terminology when discussing mathematical objects other than sets, which are built out of sets. For example, we will say that a category $\calC $ is <em>$\kappa $-small</em> if the set of all objects of $\calC $ is $\kappa $-small, and the set of all morphisms in $\calC $ is likewise $\kappa $-small. 
+</p>
+<p>
+We will need to discuss categories which are not small. In order to minimize the effort spent dealing with set-theoretic complications, we will adopt the usual device of “Grothendieck universes”. We fix a strongly inaccessible cardinal $\kappa $, and refer to a mathematical object (such as a set or category) as <em>small</em> if it is $\kappa $-small, and <em>large</em> otherwise. It should be emphasized that this is primarily a linguistic device, and that none of our results depend in an essential way on the existence of a strongly inaccessible cardinal $\kappa $.small 
+</p>
+<p>
+Throughout this book, the word “topos” will always mean <em>Grothendieck topos</em>. Strictly speaking, a knowledge of classical topos theory is not required to read this paper: all of the relevant classical concepts will be introduced (though sometimes in a hurried fashion) in the course of our search for suitable $\infty $-categorical analogues. 
+</p>
+<h3 id="a0000000070" class="tex-subsection"><span data-tag="">8.1.1</span> Compactness and Presentability</h3>
+<p>
+Let $\kappa $ be a regular cardinal. 
+</p>
+<p>
+<article class="env-definition" id="">
+  <p><a class="environment-identifier" href="/tag/">Definition <span data-tag="">8.1.1.1</span>.</a>filtered!partially ordered set A partially ordered set $\calI $ is <em>$\kappa $-filtered</em> if, for any subset $\calI _0 \subseteq \calI $ having cardinality $< \kappa $, there exists an upper bound for $\calI _0$ in $\calI $. </p>
+</article> 
+</p>
+<p>
+Let $\calC $ be a category which admits (small) colimits, and let $X$ be an object of $\calC $. Suppose given a $\kappa $-filtered partially ordered set $\calI $ and a diagram $\{ Y_{\alpha } \} _{\alpha \in \calI }$ in $\calC $, indexed by $\calI $. Let $Y$ denote a colimit of this diagram. There there is an associated map of sets 
+</p>
+<div class="equation">
+  \[  \psi : \colim \Hom _{\calC }(X, Y_{\alpha }) \rightarrow \Hom _{\calC }(X,Y). \]
+</div>
+<p>
+ We say that $X$ is <em>$\kappa $-compact</em> if $\psi $ is bijective, for <em>every</em> $\kappa $-filtered partially ordered set $\calI $ and <em>every</em> diagram $\{  Y_{\alpha } \} $ indexed by $\calI $. We say that $X$ is <em>small</em> if it is $\kappa $-compact for some (small) regular cardinal $\kappa $. In this case, $X$ is $\kappa $-compact for all sufficiently large regular cardinals $\kappa $.compact!object of a categorysmall!object of a category 
+</p>
+<p>
+<article class="env-definition" id="175E24">
+  <p><a class="environment-identifier" href="/tag/175E24">Definition <span data-tag="175E24">8.1.1.2</span>.</a>presentable!category A category $\calC $ is <em>presentable</em> if it satisfies the following conditions: </p>
+  <p><ul>
+  <li class="custom-item" data-marker="$(1)$"><p>
+The category $\calC $ admits all (small) colimits. 
+</p>
+</li><li class="custom-item" data-marker="$(2)$"><p>
+There exists a (small) set $S$ of objects of $\calC $ which generates $\calC $ under colimits; in other words, every object of $\calC $ may be obtained as the colimit of a (small) diagram taking values in $S$. 
+</p>
+</li><li class="custom-item" data-marker="$(3)$"><p>
+Every object in $\calC $ is small. (Assuming $(2)$, this is equivalent to the assertion that every object which belongs to $S$ is small.) 
+</p>
+</li><li class="custom-item" data-marker="$(4)$"><p>
+For any pair of objects $X,Y \in \calC $, the set $\Hom _{\calC }(X,Y)$ is small. 
+</p>
+</li>
+</ul></p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="">
+  <p><a class="environment-identifier" href="/tag/">Remark <span data-tag="">8.1.1.3</span>.</a>In §<a href="/tag/6A907C" data-tag="6A907C">5.5</a>, we describe an $\infty $-categorical generalization of Definition <a href="/tag/175E24" data-tag="175E24">8.1.1.2</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="">
+  <p><a class="environment-identifier" href="/tag/">Remark <span data-tag="">8.1.1.4</span>.</a>For more details of the theory of presentable categories, we refer the reader to <span class="cite">[<a href="/bibliography/adamek">adamek</a>]</span>. Note that our terminology differs slightly from that of <span class="cite">[<a href="/bibliography/adamek">adamek</a>]</span>, in which our presentable categories are called <em>locally presentable</em> categories. </p>
+</article> 
+</p>
+<h3 id="a0000000052" class="tex-subsection"><span data-tag="">8.1.5</span> Trees</h3>
+<p>
+Let $\calC $ be a presentable category and $S$ a small collection of morphisms in $\calC $. According to Remark <a href="/tag/3285D0" data-tag="3285D0">8.1.2.8</a>, the smallest weakly saturated class of morphisms $\overline{S}$ containing $S$ can be obtained from $S$ using pushouts, retracts, and transfinite composition. It is natural to ask if the formation of retracts is necessary: that is, does the weakly saturated class of morphisms generated by $S$ coincide with the class of morphisms which are given by transfinite compositions of pushouts of morphisms of $S$? Our goal for the remainder of this section is to give an affirmative answer, at least after $S$ has been suitably enlarged (Proposition <a href="/tag/763A77" data-tag="763A77">8.1.5.12</a>). This result is of a somewhat technical nature, and will be needed only during our discussion of combinatorial model categories in §<a href="/tag/A61D92" data-tag="A61D92">8.2.6</a>. 
+</p>
+<p>
+We begin by introducing a generalization of the notion of a transfinite chain of morphisms. 
+</p>
+<p>
+<article class="env-definition" id="">
+  <p><a class="environment-identifier" href="/tag/">Definition <span data-tag="">8.1.5.1</span>.</a>tree$S$-treeroot of an $S$-tree Let $\calC $ be a presentable category, and let $S$ be a collection of morphisms in $\calC $. An <em>$S$-tree</em> in $\calC $ consists of the following data: </p>
+  <p><ul>
+  <li class="custom-item" data-marker="$(1)$"><p>
+An object $X \in \calC $, called the <em>root</em> of the $S$-tree. 
+</p>
+</li><li class="custom-item" data-marker="$(2)$"><p>
+A partially ordered set $A$ which is <em>well-founded</em> (that is, every nonempty subset of $P$ has a minimal element). 
+</p>
+</li><li class="custom-item" data-marker="$(3)$"><p>
+A diagram $A \rightarrow \calC _{X/}$, which we will denote by $\alpha \mapsto Y_{\alpha }$. 
+</p>
+</li><li class="custom-item" data-marker="$(4)$"><p>
+For each $\alpha \in A$, a pushout diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix { C \ar [r]^{f} \ar [d] &  D \ar [d] \\ \colim _{\beta < \alpha } X_{\beta } \ar [r] &  X_{\alpha }, } \]
+</div>
+<p>
+ where $f \in S$. 
+</p>
+</li>
+</ul></p>
+  <p> Let $\kappa $ be a regular cardinal. We will say that an $S$-tree in $\calC $ is <em>$\kappa $-good</em> if each of the objects $C$ and $D$ appearing above is $\kappa $-compact, and for each $\alpha \in A$, the set $\{  \beta \in A: \beta < \alpha \} $ is $\kappa $-small.$S$-tree!$\kappa $-goodtree!$\kappa $-good </p>
+</article> 
+</p>
+<p>
+<article class="env-notation" id="">
+  <p><a class="environment-identifier" href="/tag/">Notation <span data-tag="">8.1.5.2</span>.</a>Let $\calC $ be a presentable category and $S$ a collection of morphisms in $\calC $. We will indicate an $S$-tree by writing $\{  Y_{\alpha } \} _{\alpha \in A}$. Here the root $X \in \calC $ and the relevant pushout diagrams are understood implicitly to be part of the data. </p>
+  <p>Suppose given an $S$-tree $\{  Y_{\alpha } \} _{\alpha \in A}$, and a subset $B \subseteq A$ which is closed downwards in the following sense: if $\alpha \in B$ and $\beta \leq \alpha $, then $\beta \in B$. Then $\{  Y_{\alpha } \} _{\alpha \in B}$ is an $S$-tree. We let $Y_{B}$ denote the colimit $\colim _{\alpha \in B} Y_{\alpha }$, formed in the category $\calC _{X/}$. In particular we have a canonical isomorhism $Y_{\emptyset } \simeq X$. If $B = \{  \alpha \in A| \alpha \leq \beta \} $, then $Y_{B} \simeq Y_{\alpha }$. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="B2C43F">
+  <p><a class="environment-identifier" href="/tag/B2C43F">Remark <span data-tag="B2C43F">8.1.5.3</span>.</a>$S$-tree!associated Let $\calC $ be a presentable category, $S$ a collection of morphisms in $\calC $, and $\{  Y_{\alpha } \} _{ \alpha in A}$ an $S$-tree in $\calC $ with root $X$. Given a map $f: X \rightarrow X'$, we can form an <em>associated $S$-tree</em> $ \{  Y_{\alpha } \coprod _{X} X' \} _{\alpha \in A}$, having root $X'$. </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="">
+  <p><a class="environment-identifier" href="/tag/">Example <span data-tag="">8.1.5.4</span>.</a>Let $\calC $ be a presentable category, $S$ a collection of morphisms in $\calC $, and $\{  Y_{\alpha } \} _{\alpha \in A}$ an $S$-tree in $\calC $ with root $X$. If $A$ is linearly ordered, then we may identify $\{  Y_{\alpha } \} _{\alpha \in A}$ with a (possibly transfinite) sequence of morphisms belonging to $S$, </p>
+  <div class="equation">
+  \[  X \rightarrow Y_0 \rightarrow Y_1 \rightarrow \ldots ,  \]
+</div>
+  <p> as in the statement of $(2)$ in Definition <a href="/tag/2E7F80" data-tag="2E7F80">8.1.2.2</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="A883EF">
+  <p><a class="environment-identifier" href="/tag/A883EF">Remark <span data-tag="A883EF">8.1.5.5</span>.</a> Let $\calC $ be a presentable category, $S$ a collection morphisms in $\calC $, and $\{ Y_{\alpha } \} _{\alpha \in A}$ an $S$-tree in $\calC $. Let $B \subseteq A$ be closed downward. For $\alpha \in A - B$, let $B_{\alpha } = B \cup \{  \beta \in A: \beta \leq \alpha \} $, and let $Z_{\alpha } = Y_{B_{\alpha }}$. Then $ \{  Z_{\alpha } \} _{ \alpha \in A-B}$ is an $S$-tree in $\calC $ with root $Y_{B}$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="1B6679">
+  <p><a class="environment-identifier" href="/tag/1B6679">Lemma <span data-tag="1B6679">8.1.5.6</span>.</a> Let $\calC $ be a presentable category and let $S$ be a collection of morphisms in $\calC $. Let $\{  Y_{\alpha } \} _{\alpha \in A}$ be an $S$-tree in $\calC $, and let $A'' \subseteq A' \subseteq A$ be subsets which are closed downward in $A$. Then the induced map $ Y_{A''} \rightarrow Y_{A'}$ belongs to the weakly saturated class of morphisms generated by $S$. In particular, the canonical map $Y_{\emptyset } \rightarrow Y_{A}$ belongs to the weakly saturated class of morphisms generated by $S$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Using Remarks <a href="/tag/A883EF" data-tag="A883EF">8.1.5.5</a> and <a href="/tag/B2C43F" data-tag="B2C43F">8.1.5.3</a>, we can assume without loss of enerality that $A'' = \emptyset $ and $A' = A$. Using the assumption that $A$ is well-founded, we can write $A$ as the union of a transfinite sequence (downward closed) subsets $\{  B( \gamma ) \subseteq A \} _{\gamma < \beta }$ with the following property: 
+    <p>
+      <ul>
+  <li class="custom-item" data-marker="$(\ast )$"><p>
+For each $\gamma < \beta $, the set $B(\gamma )$ is obtained from $B'(\gamma ) = \bigcup _{\gamma ' < \gamma } B(\gamma ')$ by adjoining a minimal element of $\alpha _{\gamma }$ of $A - B'(\gamma )$. 
+</p>
+</li>
+</ul>
+    <p>
+       For $\gamma < \beta $, let $Z_{\gamma } = Y_{B(\gamma )}$. We now observe that $Y_{A} \simeq \colim _{\gamma < \beta } Z_{\gamma }$, and that for each $\gamma < \beta $ there is a pushout diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { \colim _{\alpha < \alpha _{\gamma }} Y_{\alpha } \ar [r] \ar [d] &  Y_{\alpha } \ar [d] \\ \colim _{\gamma ' < \gamma } Z_{\gamma '} \ar [r]^{f} &  Z_{\gamma }, } \]
+</div>
+    <p>
+       so that $f$ is the pushout of a morphism belonging to $S$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="2F1AA6">
+  <p><a class="environment-identifier" href="/tag/2F1AA6">Lemma <span data-tag="2F1AA6">8.1.5.7</span>.</a> Let $\calC $ be a presentable category, $\kappa $ a regular cardinal, and let $S = \{  f_{s}: C_{s} \rightarrow D_{s} \} $ be a collection of morphisms in $\calC $, where each of the objects $C_{s}$ and $D_{s}$ is $\kappa $-compact. Suppose that $\{  Y_{\alpha } \} _{\alpha \in A}$ is an $S$-tree in $\calC $, indexed by a partially ordered set $(A, \leq )$. Then there exists the following: </p>
+  <p><ul>
+  <li class="custom-item" data-marker="$(1)$"><p>
+A new ordering $\preceq $ on $A$, which refines $\leq $ in the following sense: if $\alpha \preceq \beta $, then $\alpha \leq \beta $. Let $A'$ denote the partially ordered set $A$, with this new partial ordering. 
+</p>
+</li><li class="custom-item" data-marker="$(2)$"><p>
+A $\kappa $-good $S$-tree $\{  Y'_{\alpha } \} _{\alpha \in A'}$, having the same root $X$ as $\{  Y_{\alpha } \} _{\alpha \in A}$. 
+</p>
+</li><li class="custom-item" data-marker="$(3)$"><p>
+A collection of maps $f_{\alpha }: Y'_{\alpha } \rightarrow Y_{\alpha }$, which form a commutative diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix { Y'_{\alpha '} \ar [r] \ar [d]^{f_{\alpha '}} &  Y'_{\alpha } \ar [d]^{f_{\alpha }} \\ Y_{\alpha '} \ar [r] &  Y_{\alpha } } \]
+</div>
+<p>
+ when $\alpha ' \preceq \alpha $. 
+</p>
+</li><li class="custom-item" data-marker="$(4)$"><p>
+For every subset $B \subseteq A$ which is closed downwards with respect to $\preceq $, the induced map $f_{B}: Y'_{B} \rightarrow Y_{B}$ is an isomorphism. 
+</p>
+</li>
+</ul></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a transfinite sequence of downward-closed subsets $\{  A(\gamma ) \subseteq A \} _{\gamma \leq \beta }$ so that the following conditions are satisfied: 
+    <p>
+      <ul>
+  <li class="custom-item" data-marker="$(i)$"><p>
+If $\gamma ' \leq \gamma \leq \beta $, then $A(\gamma ') \subseteq A(\gamma )$. 
+</p>
+</li><li class="custom-item" data-marker="$(ii)$"><p>
+If $\lambda \leq \beta $ is a limit ordinal (possibly zero), then $A(\lambda ) = \bigcup _{ \gamma < \lambda } A(\gamma )$. 
+</p>
+</li><li class="custom-item" data-marker="$(iii)$"><p>
+If $\gamma + 1 \leq \beta $, then $A(\gamma +1) = A(\gamma ) \cup \{  \alpha _{\gamma } \} $, where $\alpha _{\gamma }$ is a minimal element of $A - A(\gamma )$. 
+</p>
+</li><li class="custom-item" data-marker="$(iv)$"><p>
+The subset $A(\beta )$ coincides with $A$. 
+</p>
+</li>
+</ul>
+    <p>
+      We will construct a compatible family of orderings $A'(\gamma ) = (A(\gamma ), \preceq )$, $S$-trees $\{  Y'_{\alpha } \} _{ \alpha \in A'(\gamma )} \} $, and collections of morphisms $\{  Y'_{\alpha } \rightarrow Y_{\alpha } \} _{\alpha \in A(\gamma )}$ by induction on $\gamma $, so that the analogues of conditions $(1)$ through $(4)$ are satisfied. If $\gamma $ is a limit ordinal, there is nothing to do; let us assume therefore that $\gamma < \beta $ and that the data $( A'(\gamma ), \{  Y'_{\alpha } \} _{\alpha \in A'(\gamma )}, \{  f_{\alpha } \} _{\alpha \in A(\gamma )} )$ has already been constructed. Let $B = \{  \alpha \in A: \alpha < \alpha _{\gamma } \} $, so that we have a pushout diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { C \ar [r]^{f} \ar [d]^{i} &  D \ar [d] \\ Y_ B \ar [r] &  Y_{\alpha } } \]
+</div>
+    <p>
+       where $f \in S$. By the inductive hypothesis, we may identify $Y_{B}$ with $Y'_{B}$. Since $C$ is $\kappa $-compact, the map $i$ admits a factorization 
+    <p>
+      <div class="equation">
+  \[ C \stackrel{i'}{\rightarrow } Y'_{B'} \stackrel{i''}{\rightarrow } Y'_{B} \]
+</div>
+    <p>
+       where $B'$ is $\kappa $-small. Enlarging $B'$ if necessary, we may suppose that $B'$ is closed downwards under $\preceq $. We now extend the partial ordering $\preceq $ to $A'(\gamma +1) = A'(\gamma ) \cup \{  \alpha _{\gamma } \} $ by declaring that $\alpha \leq \alpha _{\gamma }$ if and only if $\alpha \in B'$. We define $Y'_{\alpha _{\gamma }}$ by forming a pushout diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { C \ar [r]^{f} \ar [d]^{i'} &  D \ar [d] \\ Y'_{B'} \ar [r] &  Y'_{\alpha _{\gamma }}, } \]
+</div>
+    <p>
+       and we define $f_{\alpha _{\gamma }}: Y'_{\alpha _{\gamma }} \rightarrow Y_{\alpha _{\gamma }}$ to be the map induced by $i''$. It is readily verified that these data satisfy the desired conditions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="F11E61">
+  <p><a class="environment-identifier" href="/tag/F11E61">Lemma <span data-tag="F11E61">8.1.5.8</span>.</a> Let $\calC $ be a presentable category, $\kappa $ an uncountable regular cardinal, and $S$ a collection of morphisms in $\calC $. Let $\{  Y_{\alpha } \} _{\alpha \in A}$ be a $\kappa $-good $S$-tree with root $X$, and $T_ A: Y_{A} \rightarrow Y_{A}$ an idempotent endomorphism of $Y_{A}$ in the category $\calC _{X/}$. Let $B_0$ be an arbitrary $\kappa $-small subset of $A$. Then there exists a $\kappa $-small subset $B \subseteq A$ which is downward closed and contains $B_0$ and an idempotent endomorphism $T_{B}: Y_{B} \rightarrow Y_{B}$ such that the following diagram commutes: </p>
+  <div class="equation">
+  \[  \xymatrix { X \ar [r] \ar [d]^{=} &  Y_ B \ar [d]^{T_ B} \ar [r] &  Y_{A} \ar [d]^{T_ A} \ar [d] \\ X \ar [r] &  Y_ B \ar [r] &  Y_ A. } \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Enlarging $B_0$ if necessary, we may assume that $B_0$ is closed downwards. For every pair of downward closed subsets $A'' \subseteq A' \subseteq A$, let $i_{A'',A'}$ denote the canonical map from $Y_{A''}$ to $Y_{A'}$. Note that because $\{  Y_{\alpha } \} _{\alpha \in A}$ is a $\kappa $-good $S$-tree, if $A' \subseteq A$ is closed downward and $\kappa $-small, $Y_{A'}$ is $\kappa $-compact when viewed as an object of $\calC _{X/}$. In particular, $Y_{B_0}$ is a $\kappa $-compact object of $\calC _{X/}$. It follows that the composition 
+    <p>
+      <div class="equation">
+  \[  Y_{B_0} \stackrel{i_{B_0,A}}{\rightarrow } Y_{A} \stackrel{T_ A}{\rightarrow } Y_{A} \]
+</div>
+    <p>
+       can also be factored as a composition 
+    <p>
+      <div class="equation">
+  \[  Y_{B_0} \stackrel{T_0}{\rightarrow } Y_{B_1} \stackrel{ i_{B_1,A}}{\rightarrow } Y_ A, \]
+</div>
+    <p>
+       where $B_1 \subseteq A$ is closed downwards and $\kappa $-small. Enlarging $B_1$ if necessary, we may suppose that $B_1$ contains $B_0$. 
+    <p>
+      We now proceed to define a sequence of $\kappa $-small, downward closed subsets 
+    <p>
+      <div class="equation">
+  \[  B_0 \subseteq B_1 \subseteq B_2 \subseteq \ldots  \]
+</div>
+    <p>
+       of $A$, and maps $T_ i: Y_{B_ i} \rightarrow Y_{B_{i+1}}$. Suppose that $i > 0$, and that $B_{i}$ and $T_{i-1}$ have already been constructed. By compactness again, we conclude that the composite map 
+    <p>
+      <div class="equation">
+  \[  Y_{B_ i} \stackrel{ i_{B_ i, A}}{\rightarrow } Y_{A} \stackrel{T_ A}{\rightarrow } Y_ A  \]
+</div>
+    <p>
+       can be factored as 
+    <p>
+      <div class="equation">
+  \[  Y_{B_ i} \stackrel{ T_{i} }{\rightarrow } Y_{B_{i+1} } \stackrel{ i_{B_{i+1}, A}}{\rightarrow } Y_ A, \]
+</div>
+    <p>
+       where $B_{i+1}$ is $\kappa $-small. Enlarging $B_{i+1}$ if necessary, we may assume that $B_{i+1}$ contains $B_{i}$ and that the following diagrams commute: 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { Y_{B_{i-1}} \ar [r]^{T_{i-1}} \ar [d]^{i_{B_{i-1}, B_{i}}} &  Y_{B_{i}} \ar [d]^{i_{B_{i}, B_{i+1}}} \\ Y_{B_ i} \ar [r]^{T_ i} &  Y_{B_{i+1}} } \]
+</div>
+    <p>
+      <div class="equation">
+  \[  \xymatrix { Y_{B_{i-1}} \ar [r]^{T_{i-1}} \ar [d]^{T_{i-1}} &  Y_{B_ i} \ar [d]^{T_{i}} \\ Y_{B_ i} \ar [r]^{i_{B_ i, B_{i+1}}} &  Y_{B_{i+1}}. } \]
+</div>
+    <p>
+       Let $B = \bigcup B_ i$; then $B$ is $\kappa $-small in virtue of our assumption that $\kappa $ is uncountable. The collection of maps $\{  T_ i \} $ assemble to a map $T_{B}: Y_{B} \rightarrow Y_{B}$ with the desired properties. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="B2E5A9">
+  <p><a class="environment-identifier" href="/tag/B2E5A9">Lemma <span data-tag="B2E5A9">8.1.5.9</span>.</a> Let $\calC $ be a presentable category, $\kappa $ an uncountable regular cardinal, and $S$ a collection of morphisms in $\calC $. Let $\{  Y_{\alpha } \} _{\alpha \in A}$ be a $\kappa $-good $S$-tree with root $X$, let $B \subseteq A$ be downward closed, and suppose given a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix { Y_{B} \ar [r] \ar [d]^{T_ B} \ar [r] &  Y_ A \ar [d]^{T_ A} \\ Y_{B} \ar [r] &  Y_ A } \]
+</div>
+  <p> in $\calC _{X/}$, where $T_ A$ and $T_ B$ are idempotent. Let $C_0 \subseteq A$ be a $\kappa $-small subset. Then there exists a downward closed $\kappa $-small subset $C \subseteq A$ containing $C_0$ and a pair idempotent maps </p>
+  <div class="equation">
+  \[ T_{C}: Y_{C} \rightarrow Y_{C} \]
+</div>
+  <div class="equation">
+  \[ T_{B \cap C}: Y_{B \cap C} \rightarrow Y_{B \cap C} \]
+</div>
+  <p> such that the following diagram commutes $($in $\calC _{X/}$$)$: </p>
+  <div class="equation">
+  \[  \xymatrix { Y_{B} \ar [d]^{T_ B} &  Y_{B \cap C} \ar [l] \ar [r] \ar [d]^{T_{B \cap C}} &  Y_{C} \ar [d]^{T_{C}} \ar [r] &  Y_{A} \ar [d]^{T_ A} \\ Y_{B} &  Y_{B \cap C} \ar [l] \ar [r] &  Y_{C} \ar [r] &  Y_ A.} \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Enlarging $C_0$ if necessary, we may suppose that $C_0$ is downward closed. We will define sequences of $\kappa $-small, downward closed subsets 
+    <p>
+      <div class="equation">
+  \[ C_0 \subseteq C_1 \subseteq \ldots \subseteq A \]
+</div>
+    <p>
+      <div class="equation">
+  \[ D_1 \subseteq D_2 \subseteq \ldots \subseteq B \]
+</div>
+    <p>
+       and idempotent maps $\{  T_{C_ i}: Y_{C_ i} \rightarrow Y_{C_{i}} \} _{i \geq 1}$, $\{  T_{D_ i}: Y_{D_ i} \rightarrow Y_{D_{i}} \} _{i \geq 1}$. Moreover, we will guarantee that the following conditions are satisfied: 
+    <p>
+      <ul>
+  <li class="custom-item" data-marker="$(i)$"><p>
+For each $i > 0$, the set $D_ i$ contains the intersection $B \cap C_{i-1}$. 
+</p>
+</li><li class="custom-item" data-marker="$(ii)$"><p>
+For each $i > 0$, the set $C_{i}$ contains $D_ i$. 
+</p>
+</li><li class="custom-item" data-marker="$(iii)$"><p>
+For each $i > 0$, the diagrams 
+</p>
+<div class="equation">
+  \[  \xymatrix { Y_{D_{i}} \ar [r] \ar [d]^{T_{D_ i}} &  Y_{B} \ar [d] &  Y_{C_{i}} \ar [d]^{T_{C_ i}} \ar [r] &  Y_{A} \ar [d]^{T_ A} \\ Y_{D_ i} \ar [r] &  Y_{B} &  Y_{C_ i} \ar [r] &  Y_ A} \]
+</div>
+<p>
+ are commutative. 
+</p>
+</li><li class="custom-item" data-marker="$(iv)$"><p>
+For each $i > 2$, the diagrams 
+</p>
+<div class="equation">
+  \[  \xymatrix { Y_{D_{i-2}} \ar [d]^{T_{D_{i-2}}} \ar [r] &  Y_{D_{i-1}} \ar [d]^{T_{D_{i-2}}} &  Y_{C_{i-2}} \ar [d]^{T_{C_{i-2}}} \ar [r] &  Y_{C_{i-1}} \ar [d]^{T_{C_{i-1}}} \\ Y_{D_{i-2}} \ar [d] &  Y_{D_{i-1}} \ar [d] &  Y_{C_{i-2}} \ar [d] &  Y_{C_{i-1}} \ar [d] \\ Y_{D_{i}} \ar [r]^{=} &  Y_{D_{i}} &  Y_{C_{i}} \ar [r]^{=} &  Y_{C_{i}} } \]
+</div>
+<p>
+ commute. 
+</p>
+</li><li class="custom-item" data-marker="$(v)$"><p>
+For each $i > 1$, the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix { Y_{D_{i-1}} \ar [r] \ar [d]^{T_{D_{i-1}}} &  Y_{C_{i-1}} \ar [d]^{T_{C_{i-1}}} \\ Y_{D_{i-1}} \ar [d] &  Y_{C_{i-1}} \ar [d] \\ Y_{D_{i}} \ar [r] &  Y_{C_{i}}} \]
+</div>
+<p>
+ is commutative. 
+</p>
+</li>
+</ul>
+    <p>
+       The construction goes by induction on $i$. Using a compactness argument, we see that conditions $(iv)$ and $(v)$ are satisfied provided that we choose $C_ i$ and $D_ i$ to be sufficiently large. The existence of the desired idempotent maps satisfying $(iii)$ then follows from Lemma <a href="/tag/F11E61" data-tag="F11E61">8.1.5.8</a>, applied to the roots $\{  Y_{\alpha } \} _{\alpha \in A}$ and $\{  Y_{\alpha } \} _{\alpha \in B}$. We now take $C = \bigcup C_{i}$. Conditions $(i)$ and $(ii)$ guarantee that $B \cap C = \bigcup D_{i}$. Using $(iv)$, it follows that the maps $\{  T_{C_{i}} \} $ and $\{  T_{D_{i}} \} $ glue to give idempotent endomorphisms $T_{C}: Y_{C} \rightarrow Y_{C}$, $T_{B \cap C}: Y_{B \cap C} \rightarrow Y_{B \cap C}$. Using $(iii)$ and $(v)$, we deduce that all of the desired diagrams are commutative. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="E25F9B">
+  <p><a class="environment-identifier" href="/tag/E25F9B">Lemma <span data-tag="E25F9B">8.1.5.10</span>.</a> Let $\calC $ be a presentable category, $\kappa $ a regular cardinal, and suppose that $\calC $ is $\kappa $-accessible: that is, $\calC $ is generated under $\kappa $-filtered colimits by $\kappa $-compact objects $($Definition <a href="/tag/E97D68" data-tag="E97D68">5.4.2.1</a>$)$. Let $f: C \rightarrow D$ be a morphism between $\kappa $-compact object of $\calC $, let $g: X \rightarrow Y$ be a pushout of $f$ $($so that $Y \simeq X \coprod _{C} D$$)$, and let $g': X' \rightarrow Y'$ be a retract of $g$ in the category of morphisms of $\calC $. Then there exists a morphism $f': C' \rightarrow D'$ with the following properties: </p>
+  <p><ul>
+  <li class="custom-item" data-marker="$(1)$"><p>
+The objects $C', D' \in \calC $ are $\kappa $-compact. 
+</p>
+</li><li class="custom-item" data-marker="$(2)$"><p>
+The morphism $g'$ is a pushout of $f'$. 
+</p>
+</li><li class="custom-item" data-marker="$(3)$"><p>
+The morphism $f'$ belongs to the weakly saturated class of morphisms generated by $f$. 
+</p>
+</li>
+</ul></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $g'$ is a retract of $g$, there exists a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { X' \ar [r] \ar [d]^{g'} &  X \ar [d]^{g} \ar [r] &  X' \ar [d]^{g'} \\ Y' \ar [r] &  Y \ar [r] &  Y'. } \]
+</div>
+    <p>
+       Replacing $g$ by the induced map $X' \rightarrow X' \coprod _{X} Y$, we can reduce to the case where $X = X'$, and $Y'$ is a retract of $Y$ in $\calC _{X/}$. Then $Y'$ can be identified with the image of some idempotent $i: Y \rightarrow Y$. 
+    <p>
+      Since $\calC $ is $\kappa $-accessible, we can write $X$ as the colimit of a $\kappa $-filtered diagram $\{  X_{\lambda } \} $. The object $C$ is $\kappa $-compact by assumption. Refining our diagram if necessary, we may assume that it takes values in $\calC _{C/}$, and that $Y$ is given as the colimit of the $\kappa $-filtered diagram $\{  X_{\lambda } \coprod _{C} D \} $. 
+    <p>
+      Because $D$ is $\kappa $-compact, the composition $D \rightarrow Y \stackrel{i}{\rightarrow } Y$ admits a factorization 
+    <p>
+      <div class="equation">
+  \[  D \stackrel{j}{\rightarrow } X_{\lambda } \coprod _{C} D \rightarrow Y. \]
+</div>
+    <p>
+       The $\kappa $-compactness of $C$ implies that, after enlarging $\lambda $ if necessary, we may suppose that the composition $j \circ f$ coincides with the canonical map from $C$ to $X_{\lambda } \coprod _{C} D$. Consequently, $j$ and the $\id _{X_{\lambda }}$ determine a map $i'$ from $Y_{\lambda } = X_{\lambda } \coprod _{C} D$ to itself. Enlarging $\lambda $ once more, we may suppose that $i'$ is idempotent, and that the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { Y_{\lambda } \ar [d]^{i'} \ar [r] &  Y \ar [d]^{i} \\ Y_{\lambda } \ar [r] &  Y } \]
+</div>
+    <p>
+       is commutative. Let $Y'_{\lambda }$ be the image of the idempotent $i'$, and let $f': X_{\lambda } \rightarrow Y'_{\lambda }$ be the canonical map. Then $f'$ is a retract of the map $X_{\lambda } \rightarrow Y_{\lambda }$, which is a pushout of $f$. This proves $(3)$. The objects $X_{\lambda }$ and $Y'_{\lambda }$ are $\kappa $-compact by construction, so that $(1)$ is satisfied. We now observe that the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { X_{\lambda } \ar [r] \ar [d] &  Y'_{\lambda } \ar [d] \\ X \ar [r] &  Y' } \]
+</div>
+    <p>
+       is a retract of the pushout diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { X_{\lambda } \ar [r] \ar [d] &  Y_{\lambda } \ar [d] \\ X \ar [r] &  Y, } \]
+</div>
+    <p>
+       and therefore itself a pushout diagram. This proves $(2)$ and completes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01D644">
+  <p><a class="environment-identifier" href="/tag/01D644">Lemma <span data-tag="01D644">8.1.5.11</span>.</a> Let $\calC $ be a presentable category, $\kappa $ a regular cardinal such that $\calC $ is $\kappa $-accessible, and $S = \{  f_ s: C_ s \rightarrow D_ s \} $ a collection of morphisms $\calC $ such that each $C_ s$ is $\kappa $-compact. Let $\{  Y_{\alpha } \} _{ \alpha \in A}$ be an $S$-tree in $\calC $, with root $X$, and suppose that $A$ is $\kappa $-small. Then there exists a map $X' \rightarrow X$, where $X$ is $\kappa $-compact, an $S$-tree $\{  Y'_{\alpha } \} _{\alpha \in A}$ with root $X'$, and an isomorphism of $S$-trees </p>
+  <div class="equation">
+  \[  \{  Y'_{\alpha } \coprod _{X'} X \} _{\alpha \in A} \simeq \{ Y_{\alpha } \} _{\alpha \in A} \]
+</div>
+  <p> $($see Remark <a href="/tag/B2C43F" data-tag="B2C43F">8.1.5.3</a>$)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $\calC $ is $\kappa $-accessible, we can write $X$ as the colimit of diagram $\{  X_{i} \} _{i \in I}$ indexed by a $\kappa $-filtered partially ordered set $I$, where each $X_{i}$ is $\kappa $-compact. Choose a transfinite sequence of downward-closed subsets $\{  A(\gamma ) \subseteq A \} _{\gamma \leq \beta }$ so that the following conditions are satisfied: 
+    <p>
+      <ul>
+  <li class="custom-item" data-marker="$(i)$"><p>
+If $\gamma ' \leq \gamma \leq \beta $, then $A(\gamma ') \subseteq A(\gamma )$. 
+</p>
+</li><li class="custom-item" data-marker="$(ii)$"><p>
+If $\lambda \leq \beta $ is a limit ordinal (possibly zero), then $A(\lambda ) = \bigcup _{ \gamma < \lambda } A(\gamma )$. 
+</p>
+</li><li class="custom-item" data-marker="$(iii)$"><p>
+If $\gamma + 1 \leq \beta $, then $A(\gamma +1) = A(\gamma ) \cup \{  \alpha _{\gamma } \} $, where $\alpha _{\gamma }$ is a minimal element of $A - A(\gamma )$. 
+</p>
+</li><li class="custom-item" data-marker="$(iv)$"><p>
+The subset $A(\beta )$ coincides with $A$. 
+</p>
+</li>
+</ul>
+    <p>
+       Note that, since $A$ is $\kappa $-small, we have $\beta < \kappa $. 
+    <p>
+      We will construct: 
+    <p>
+      <ul>
+  <li class="custom-item" data-marker="$(a)$"><p>
+A transfinite sequence of elements $\{  i_{\gamma } \in I \} _{\gamma \leq \beta }$, such that $i_{\gamma } \leq i_{\gamma '}$ for $\gamma \leq \gamma '$. 
+</p>
+</li><li class="custom-item" data-marker="$(b)$"><p>
+A sequence of $S$-trees $\{  Y^{\gamma }_{\alpha } \} _{\alpha \in A(\gamma )} \} $, having roots $X_{i_{\gamma }}$. 
+</p>
+</li><li class="custom-item" data-marker="$(c)$"><p>
+A collection of isomorphisms of $S$-trees 
+</p>
+<div class="equation">
+  \[  \{  Y^{\gamma }_{\alpha } \coprod _{X_{i_{\gamma }}} X_{i_{\gamma '}} \} _{\alpha \in A(\gamma )} \simeq \{  Y^{\gamma '}_{\alpha } \} _{\alpha \in A(\gamma )} \]
+</div>
+<div class="equation">
+  \[  \{  Y^{\gamma }_{\alpha } \coprod _{ X_{i_{\gamma }}} X \} _{\alpha \in A(\gamma )} \simeq \{  Y_{\alpha } \} _{ \alpha \in A(\gamma ) } \]
+</div>
+<p>
+ which are compatible with one another in the obvious sense. 
+</p>
+</li>
+</ul>
+    <p>
+       If $\gamma $ is a limit ordinal (or zero), we simply choose $i_{\gamma }$ to be any upper bound for $\{  i_{\gamma '} \} _{\gamma ' < \gamma }$ in $I$. The rest of the data is uniquely determined. The existence of such an upper bound is guaranteed by our assumption that $I$ is $\kappa $-filtered, since $\gamma \leq \beta < \kappa $. Let us therefore suppose that the above data has been constructed for all ordinals $\leq \gamma $, and proceed to define $i_{\gamma +1}$. Let $i = i_{\gamma }$, $\alpha = \alpha _{\gamma }$, and let $B = \{  \beta \in A: \beta < \alpha \} $. Then we have canonical isomorphisms 
+    <p>
+      <div class="equation">
+  \[ Y_{B} \simeq Y^{\gamma }_{B} \coprod _{X_ i} X \simeq \colim \{  Y^{\gamma }_{B} \coprod _{X_ i} X_ j \} _{j \geq i}, \]
+</div>
+    <p>
+       and a pushout diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { C_{s} \ar [r]^{f_{s}} \ar [d]^{g} &  D_{s} \ar [d] \\ Y_ B \ar [r] &  Y_{\alpha }. } \]
+</div>
+    <p>
+       The $\kappa $-compactness of $C_{s}$ implies that $g$ factors as a composition 
+    <p>
+      <div class="equation">
+  \[  C_{s} \stackrel{g'}{\rightarrow } Y^{\gamma }_{B} \coprod _{ X_ i} X_ j  \]
+</div>
+    <p>
+       for some $j \geq i$. We now define $i_{\gamma +1} = j$, and $Y^{\gamma +1}_{\alpha }$ by forming a pushout diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { C_{s} \ar [d]^{g_{s}} \ar [r] &  D_{s} \ar [d] \\ Y^{\gamma }_{B} \coprod _{X_ i} X_ j \ar [r] &  Y^{\gamma +1}_{\alpha }. } \]
+</div>
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="763A77">
+  <p><a class="environment-identifier" href="/tag/763A77">Proposition <span data-tag="763A77">8.1.5.12</span>.</a> Let $\calC $ be presentable $\infty $-category, $\kappa $ a regular cardinal, $\overline{S}$ a weakly saturated class of morphisms in $\calC $. Let $S \subseteq \overline{S}$ be the subset consisting of those morphisms $f: X \rightarrow Y$ in $\overline{S}$ such that $X$ and $Y$ are $\kappa $-compact. Assume that: </p>
+  <p><ul>
+  <li class="custom-item" data-marker="$(i)$"><p>
+The regular cardinal $\kappa $ is uncountable, and $\calC $ is $\kappa $-accessible. 
+</p>
+</li><li class="custom-item" data-marker="$(ii)$"><p>
+The set $S$ generates $\overline{S}$ as a weakly saturated class of morphisms. 
+</p>
+</li>
+</ul></p>
+  <p> Then, for every morphism $f: X \rightarrow Y$ belonging to $\overline{S}$, there exists an transfinite sequence of objects $\{  Y_{\gamma } \} _{\gamma < \beta }$ of $\calC _{X/}$ with the following properties: </p>
+  <p><ul>
+  <li class="custom-item" data-marker="$(1)$"><p>
+For every ordinal $\gamma < \beta $, the natural map $\colim _{\gamma ' < \gamma } Z_{\gamma '} \rightarrow Z_{\gamma }$ is the pushout of a morphism in $S$. 
+</p>
+</li><li class="custom-item" data-marker="$(2)$"><p>
+The colimit $\colim _{\gamma < \beta } Z_{\gamma }$ is isomorphic to $Y$ (as objects of $\calC _{X/}$). 
+</p>
+</li>
+</ul></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Remark <a href="/tag/3285D0" data-tag="3285D0">8.1.2.8</a> implies the existence of a transfinite sequence of objects 
+    <p>
+      <div class="equation">
+  \[  Y_0 \rightarrow Y_1 \rightarrow \ldots  \]
+</div>
+    <p>
+       in $\calC _{X/}$ indexed by a set of ordinals $A = \{  \alpha | \alpha < \lambda \} $, satisfying condition $(1)$, such that $Y$ is a <em>retract</em> of $\colim _{\alpha < \lambda } Y_{\alpha }$ in $\calC _{X/}$. We may view the sequence $\{  Y_{\alpha } \} _{ \alpha \in A}$ as an $S$-tree in $\calC $, having root $X$. According to Lemma <a href="/tag/2F1AA6" data-tag="2F1AA6">8.1.5.7</a>, we can choose a new $S$-tree $\{  Y'_{\alpha } \} _{ \alpha \in A'}$ which is $\kappa $-good, where $Y'_{A'} \simeq Y_ A$, so that $Y$ is a retract of $Y'_{A'}$. Choose an idempotent map $T_{A'}: Y'_{A'} \rightarrow Y'_{A'}$ in $\calC _{X/}$, whose image is isomorphic to $Y$. 
+    <p>
+      We now define a transfinite sequence 
+    <p>
+      <div class="equation">
+  \[  B(0) \subseteq B(1) \subseteq B(2) \subseteq \ldots ,  \]
+</div>
+    <p>
+       indexed by ordinals $\gamma < \beta $, and a compatible system of idempotent maps $T_{B(\gamma )}: Y'_{B_\gamma } \rightarrow Y'_{B_{\gamma }}.$ Fix an ordinal $\gamma $, and suppose that $B(\gamma ')$ and $T_{B(\gamma ')}$ have been defined for $\gamma ' < \gamma $. Let $B'(\gamma ) = \bigcup _{ \gamma ' < \gamma } B(\gamma ')$, and let $T_{B'(\gamma )}$ be the result of amalgamating the maps $\{  T_{B(\gamma ')} \} _{\gamma ' < \gamma }$. If $B'(\gamma ) = A'$, we set $\beta = \gamma $ and conclude the construction; otherwise, choose a minimal element $a \in A' - B'(\gamma )$. Applying Lemma <a href="/tag/B2E5A9" data-tag="B2E5A9">8.1.5.9</a>, we deduce the existence of a downward closed subset $C(\gamma ) \subseteq A'$, and a compatible collection of idempotent maps 
+    <p>
+      <div class="equation">
+  \[  T_{C(\gamma )} : Y'_{C(\gamma )} \rightarrow Y'_{C(\gamma )}  \]
+</div>
+    <p>
+      <div class="equation">
+  \[  T_{C(\gamma ) \cap B'(\gamma )}: Y'_{C(\gamma ) \cap B'(\gamma )} \rightarrow Y'_{C(\gamma ) \cap B'(\gamma )}. \]
+</div>
+    <p>
+       We then define $B(\gamma ) = B'(\gamma ) \cup C(\gamma )$, and $T_{B(\gamma )}$ to be the result of amalgamating $T_{B'(\gamma )}$ and $T_{C(\gamma )}$. 
+    <p>
+      We observe that, for every ordinal $\gamma $, there is a $\kappa $-good $S$-tree $\{  Y''_{\alpha } \} _{ \alpha \in B(\gamma ) - B'(\gamma )}$ with root $Y'_{B(\gamma )}$, such that $Y''_{B(\gamma )-B'(\gamma )} \simeq Y'_{B(\gamma )}$ (Remark <a href="/tag/A883EF" data-tag="A883EF">8.1.5.5</a>). Combining Lemma <a href="/tag/01D644" data-tag="01D644">8.1.5.11</a> with the observation that $B(\gamma )-B'(\gamma )$ is $\kappa $-small, we deduce that the map 
+    <p>
+      <div class="equation">
+  \[  Y'_{B'(\gamma )} \rightarrow Y'_{B(\gamma )} \]
+</div>
+    <p>
+       is the pushout of a morphism in $S$. 
+    <p>
+      For each ordinal $\gamma < \beta $, let $Z_{\gamma }$ denote the image of the idempotent map $T_{B(\gamma )}$. Then $\colim _{\gamma < \beta } Z_{\gamma } \simeq Y$, so that $(2)$ is satisfied. Condition $(1)$ follows from Lemma <a href="/tag/E25F9B" data-tag="E25F9B">8.1.5.10</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-corollary" id="CE19B1">
+  <p><a class="environment-identifier" href="/tag/CE19B1">Corollary <span data-tag="CE19B1">8.1.5.13</span>.</a> Under the hypotheses of Proposition <a href="/tag/763A77" data-tag="763A77">8.1.5.12</a>, there exists a $\kappa $-good $S$-tree $\{  Y_{\alpha } \} _{\alpha \in A}$ such that $Y_{A} \simeq Y$ in $\calC _{X/}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Combine Proposition <a href="/tag/763A77" data-tag="763A77">8.1.5.12</a> with Lemma <a href="/tag/2F1AA6" data-tag="2F1AA6">8.1.5.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

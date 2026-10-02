@@ -1,0 +1,775 @@
+<h3 id="gemor2" class="tex-subsection"><span data-tag="E4CF5F">6.3.5</span> Étale Morphisms of $\infty $-Topoi</h3>
+
+<p>
+Let $f: X \rightarrow Y$ be a continuous map of topological spaces. We say that $f$ is <em>étale</em> (or a <em>local homeomorphism</em>) if, for every point $x \in X$, there exist open sets $U \subseteq X$ containing $x$ and $V \subseteq Y$ containing $f(x)$ such that $f$ induces a homeomorphism $U \rightarrow V$. Let $\calF $ denote the sheaf of sections of $f$: that is, $\calF $ is a sheaf of sets on $Y$ such that for every open set $V \subseteq Y$, $\calF (V)$ is the set of all continuous maps $s: V \rightarrow X$ such that $f \circ s = \id : V \rightarrow Y$. The construction $(f: X \rightarrow Y) \mapsto \calF $ determines an equivalence of categories, from the category of topological spaces which are étale over $Y$ to the category of sheaves (of sets) on $Y$. In particular, we can recover the topological space $X$ (up to homeomorphism) from the sheaf of sets $\calF $ on $Y$. For example, we can reconstruct the category $\Shv _{\Set }(X)$ of sheaves on $X$ as the overcategory $\Shv _{\Set }(Y)_{/ \calF }$. 
+</p>
+<p>
+Our goal in this section is to develop an analogous theory of étale morphisms in the setting of $\infty $-topoi. Suppose given a geometric morphism $f_{\ast }: \calX \rightarrow \calY $. Under what circumstances should we say that $f_{\ast }$ is étale? By analogy with the case of topological spaces, we should expect that an étale morphism determines a “sheaf” on $\calY $: that is, an object $U$ of the $\infty $-category $\calY $. Moreover, we should then be able to recover the $\infty $-category $\calX $ as an overcategory $\calY _{/U}$. The following result guarantees that this expectation is somewhat reasonable: 
+</p>
+<p>
+<article class="env-proposition" id="779C2B">
+  <p><a class="environment-identifier" href="/tag/779C2B">Proposition <span data-tag="779C2B">6.3.5.1</span>.</a>overcategory!of an $\infty $-topos Let $\calX $ be an $\infty $-topos, and let $U$ be an object of $\calX $. </p>
+  <p><ul>
+  <li class="custom-item" data-marker="$(1)$"><p>
+The $\infty $-category $\calX _{/U}$ is an $\infty $-topos. 
+</p>
+</li><li class="custom-item" data-marker="$(2)$"><p>
+The projection $\pi _{!}: \calX _{/U} \rightarrow \calX $ has a right adjoint $\pi ^{\ast }$ which commutes with colimits. Consequently, $\pi ^{\ast }$ itself has a right adjoint $\pi _{\ast }: \calX _{/U} \rightarrow \calX $, which is a geometric morphism of $\infty $-topoi. 
+</p>
+</li>
+</ul></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The existence of a right adjoint $\pi ^{\ast }$ to the projection $\pi _{!}: \calX _{/U} \rightarrow \calX $ follows from the assumption that $\calX $ admits finite limits. Moreover, the assertion that $\pi ^{\ast }$ preserves colimits is a special case of the assumption that colimits in $\calX $ are universal. This proves $(2)$. 
+    <p>
+      To prove $(1)$, we will show that $\calX _{/U}$ satisfies criterion $(2)$ of Theorem <a href="/tag/5A32AA" data-tag="5A32AA">6.1.0.6</a>. We first observe that $\calX _{/U}$ is presentable (Proposition <a href="/tag/096916" data-tag="096916">5.5.3.10</a>). Let $K$ be a small simplicial set, and let $\overline{\alpha }: \overline{p} \rightarrow \overline{q}$ be a natural transformation of diagrams $\overline{p}, \overline{q}: K^{\triangleright } \rightarrow \calX _{/U}$. Suppose that $\overline{q}$ is a colimit diagram, and that $\alpha = \overline{\alpha } | K$ is a Cartesian transformation. The projection $\pi _{!}$ preserves all colimits (since it is a left adjoint), so that $\pi _{!} \circ \overline{q}$ is a colimit diagram in $\calX $. Since $\pi _{!}$ preserves pullback squares (Proposition <a href="/tag/1FF226" data-tag="1FF226">4.4.2.9</a>), $\pi _{!} \circ \alpha $ is a Cartesian transformation. By assumption, $\calX $ is an $\infty $-topos, so that Theorem <a href="/tag/5A32AA" data-tag="5A32AA">6.1.0.6</a> implies that $\pi _{!} \circ \overline{p}$ is a colimit diagram if and only if $\pi _{!} \circ \overline{\alpha }$ is a Cartesian transformation. Using Propositions <a href="/tag/1FF226" data-tag="1FF226">4.4.2.9</a> and <a href="/tag/9233A3" data-tag="9233A3">1.2.13.8</a>, we conclude that $\overline{p}$ is a colimit diagram if and only if $\overline{\alpha }$ is a Cartesian transformation, as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+A geometric morphism $f_{\ast }: \calX \rightarrow \calY $ of $\infty $-topoi is said to be <em>étale</em>étale morphism if it arises via the construction of Proposition <a href="/tag/779C2B" data-tag="779C2B">6.3.5.1</a>; that is, if $f$ admits a factorization 
+</p>
+<div class="equation">
+  \[  \calX \stackrel{f'_{\ast }}{\rightarrow } \calY _{/U} \stackrel{f''_{\ast }}{\rightarrow } \calY  \]
+</div>
+<p>
+ where $U$ is an object of $\calY $, $f'_{\ast }$ is a categorical equivalence, and $f''_{\ast }$ is a right adjoint to the pullback functor ${f''}^{\ast }: \calY \rightarrow \calY _{/U}$. We note that in this case, $f^{\ast }$ has a <em>left adjoint</em> $f_{!} = f''_{!} \circ f'_{\ast }$. Consequently, $f^{\ast }$ preserves <em>all</em> limits, not just finite limits. 
+</p>
+<p>
+<article class="env-remark" id="72EE5E">
+  <p><a class="environment-identifier" href="/tag/72EE5E">Remark <span data-tag="72EE5E">6.3.5.2</span>.</a> Given an étale geometric morphism $f: \calX _{/U} \rightarrow \calX $ of $\infty $-topoi, the description of the pushforward functor $f_{\ast }$ is slightly more complicated than that of $f_{!}$ (which is merely the forgetful functor) or $f^{\ast }$ (which is given by taking products with $U$). Given an object $p: X \rightarrow U$ of $\calX _{/U}$, the pushforward $f_{\ast } X$ is an object of $\calX $ which represents the functor “sections of $p$”. </p>
+</article> 
+</p>
+<p>
+The collection of étale geometric morphisms contains all equivalences and is stable under composition. Consequently, we can consider the subcategory $\RGeom _{\text{ét}} \subseteq \RGeom $RGeomet@$\RGeom _{\text{ét}}$ containing all objects of $\RGeom $, whose morphisms are precisely the étale geometric morphisms. Our goal in this section is to study the $\infty $-category $\RGeom _{\text{ét}}$. Our main results are the following: 
+</p>
+<ul>
+  <li class="custom-item" data-marker="$(a)$"><p>
+If $\calX $ is an $\infty $-topos containing an object $U$, then the associated étale geometric morphism $\pi _{\ast }: \calX _{/U} \rightarrow \calX $ can be described by a universal property. Namely, $\calX _{/U}$ is universal among $\infty $-topoi $\calY $ with a geometric morphism $\phi _{\ast }: \calY \rightarrow \calX $ such that $\phi ^{\ast } U$ admits a global section (Proposition <a href="/tag/670AAD" data-tag="670AAD">6.3.5.5</a>). 
+</p>
+</li><li class="custom-item" data-marker="$(b)$"><p>
+There is a simple criterion for testing whether a geometric morphism $\pi _{\ast }: \calX \rightarrow \calY $ is étale. Namely, $\pi _{\ast }$ is étale if and only if the functor $\pi ^{\ast }$ admits a left adjoint $\pi _{!}$, the functor $\pi _{!}$ is conservative, and an appropriate push-pull formula holds in the the $\infty $-category $\calY $ (Proposition <a href="/tag/630A91" data-tag="630A91">6.3.5.11</a>). 
+</p>
+</li><li class="custom-item" data-marker="$(c)$"><p>
+Given a pair of topological spaces $X_0$ and $X_1$ and a homeomorphism $\phi : U_0 \simeq U_1$ between open subsets $U_0 \subseteq X_0$ and $U_1 \subseteq X_1$, we can “glue” $X_0$ to $X_1$ along $\phi $ to obtain a new topological space $X = X_0 \coprod _{U_0} X_1$. Moreover, the topological space $X$ contains open subsets homeomorphic to $X_0$ and $X_1$. In the setting of $\infty $-topoi, it is possible to make much more general “gluing” constructions of the same type. We can formulate this idea more precisely as follows: given any diagram $\{  \calX _{\alpha } \} $ in the $\infty $-category $\RGeom _{\text{ét}}$ having a colimit $\calX $ in $\RGeom $, each of the associated geometric morphisms $\calX _{\alpha } \rightarrow \calX $ is étale (Theorem <a href="/tag/F44670" data-tag="F44670">6.3.5.13</a>). Using this fact, we will show that the $\infty $-category $\RGeom _{\text{ét}}$ admits small colimits. 
+</p>
+</li>
+</ul>
+<p>
+<article class="env-remark" id="">
+  <p><a class="environment-identifier" href="/tag/">Remark <span data-tag="">6.3.5.3</span>.</a>We will say that a geometric morphism of $\infty $-topoi $f^{\ast }: \calY \rightarrow \calX $ is étale if and only if its right adjoint $f_{\ast }: \calX \rightarrow \calY $ is étale. We let $\LGeom _{\text{ét}}$ denote the subcategory of $\LGeom $ spanned by the étale geometric morphisms, so that there is a canonical equivalence $\RGeom _{\text{ét}} \simeq \LGeom _{\text{ét}}^{op}$.Ltopet@$\LGeom _{\text{ét}}$ </p>
+</article> 
+</p>
+<p>
+Our first step is to obtain a more precise formulation of the universal property described in $(a)$: 
+</p>
+<p>
+<article class="env-definition" id="">
+  <p><a class="environment-identifier" href="/tag/">Definition <span data-tag="">6.3.5.4</span>.</a>Let $f^{\ast }: \calX \rightarrow \calY $ be a geometric morphism of $\infty $-topoi. Let $U$ be an object of $\calX $ and $\alpha : 1_{\calY } \rightarrow f^{\ast } U$ a morphism in $\calY $, where $1_{\calY }$ denotes a final object of $\calY $. We will say that $\alpha $ <em>exhibits $\calY $ as a classifying $\infty $-topos for sections of $U$</em> if, for every $\infty $-topos $\calZ $, the diagram </p>
+  <div class="equation">
+  \[  \xymatrix { \Fun ^{\ast }( \calY , \calZ ) \ar [r]^{\circ f^{\ast }} \ar [d]^{\phi } &  \Fun ^{\ast }(\calX , \calZ ) \ar [d]^{\phi _0} \\ \calZ _{\ast } \ar [r] &  \calZ } \]
+</div>
+  <p> is a homotopy pullback square of $\infty $-categories. Here $\calZ _{\ast }$ denotes the $\infty $-category of pointed objects of $\calZ $ (that is, the full subcategory of $\Fun (\Delta ^1, \calZ )$ spanned by morphisms $f: Z \rightarrow Z'$ where $Z$ is a final object of $\calZ $), and the morphisms $\phi $ and $\phi _0$ are given by evaluation on $\alpha $ and $U$, respectively. </p>
+</article> 
+</p>
+<p>
+Let $\calX $ be an $\infty $-topos containing an object $U$. It follows immediately from the definition that a classifying $\infty $-topos for sections of $U$ is uniquely determined up to equivalence, provided that it exists. For the existence, we have the following result: 
+</p>
+<p>
+<article class="env-proposition" id="670AAD">
+  <p><a class="environment-identifier" href="/tag/670AAD">Proposition <span data-tag="670AAD">6.3.5.5</span>.</a> Let $\calX $ be an $\infty $-topos containing an object $U$, let $\pi _{!}: \calX _{/U} \rightarrow \calX $ be the projection map, and let $\pi ^{\ast }: \calX \rightarrow \calX _{/U}$ be a right adjoint to $\pi _{!}$. Let $1_{U}$ denote the identity map from $U$ to itself, regarded as a $($final$)$ object of $\calX _{/U}$, and let $\alpha : 1_{U} \rightarrow \pi ^{\ast } U$ be adjoint to the identity map $\pi _{!} 1_{U} \simeq U$. Then $\alpha $ exhibits $\calX _{/U}$ as a classifying $\infty $-topos for sections of $U$. </p>
+</article> 
+</p>
+<p>
+Before giving the proof of Proposition <a href="/tag/670AAD" data-tag="670AAD">6.3.5.5</a>, we summarize some of the pleasant consequences. 
+</p>
+<p>
+<article class="env-corollary" id="B83FF1">
+  <p><a class="environment-identifier" href="/tag/B83FF1">Corollary <span data-tag="B83FF1">6.3.5.6</span>.</a> Let $\calX $ be an $\infty $-topos containing an object $U$, and let $\pi ^{\ast }: \calX \rightarrow \calX _{/U}$ be the corresponding étale geometric morphism. For every $\infty $-topos $\calZ $, composition with $\pi ^{\ast }$ induces a left fibration </p>
+  <div class="equation">
+  \[  \Fun ^{\ast }( \calX _{/U}, \calZ ) \rightarrow \Fun ^{\ast }( \calX , \calZ ). \]
+</div>
+  <p> Moreover, the fiber over a geometric morphism $\phi ^{\ast }: \calX \rightarrow \calZ $ is homotopy equivalent to the mapping space $\bHom _{\calZ }( 1_{\calZ }, \phi ^{\ast } U )$. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="9BBA18">
+  <p><a class="environment-identifier" href="/tag/9BBA18">Remark <span data-tag="9BBA18">6.3.5.7</span>.</a> Corollary <a href="/tag/B83FF1" data-tag="B83FF1">6.3.5.6</a> implies in particular the existence of homotopy fiber sequences </p>
+  <div class="equation">
+  \[  \bHom _{\calZ }( 1_{\calZ }, \phi ^{\ast } U ) \rightarrow \bHom _{ \LGeom }( \calX _{/U}, \calZ ) \rightarrow \bHom _{\LGeom }(\calX , \calZ ) \]
+</div>
+  <p> (where the fiber is taken over a geometric morphism $\phi ^{\ast } \in \bHom _{\LGeom }(\calX , \calZ )$). </p>
+  <p>Suppose that $\calZ = \calX _{/V}$, and that $\phi ^{\ast }$ is a right adjoint to the projection $\calX _{/V} \rightarrow \calZ $. We then deduce the existence of a canonical homotopy equivalence </p>
+  <div class="equation">
+  \[  \bHom _{\calX }(V,U) \simeq \bHom _{\calZ }( 1_{\calZ }, \phi ^{\ast } U ) \simeq \bHom _{ \LGeom _{\calX /}}( \calX _{/U}, \calX _{/V} ). \]
+</div>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="3B7669">
+  <p><a class="environment-identifier" href="/tag/3B7669">Remark <span data-tag="3B7669">6.3.5.8</span>.</a> It follows from Remark <a href="/tag/9BBA18" data-tag="9BBA18">6.3.5.7</a> that if $f^{\ast }: \calX \rightarrow \calY $ is a geometric morphism of $\infty $-topoi and $U \in \calX $ is an object, then the induced diagram </p>
+  <div class="equation">
+  \[  \xymatrix { \calX \ar [r] \ar [d] &  \calY \ar [d] \\ \calX _{/U} \ar [r] &  \calY _{/ f^{\ast } U } } \]
+</div>
+  <p> is a pushout square in $\LGeom $. </p>
+</article> 
+</p>
+<p>
+<article class="env-corollary" id="3FE2A4">
+  <p><a class="environment-identifier" href="/tag/3FE2A4">Corollary <span data-tag="3FE2A4">6.3.5.9</span>.</a> Suppose given a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix { &  \calY \ar [dr]^{g_{\ast }} &  \\ \calX \ar [ur]^{f_{\ast }} \ar [rr]^{h_{\ast }} &  &  \calZ } \]
+</div>
+  <p> in $\LGeom ^{op}$, where $g_{\ast }$ is étale. Then $f_{\ast }$ is étale if and only if $h_{\ast }$ is étale. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The “only if” direction is obvious. To prove the converse, let us suppose that $g_{\ast }$ and $h_{\ast }$ are both étale, so that we have equivalences $\calX \simeq \calZ _{/U}$ and $\calU \simeq \calZ _{/V}$ for some pair of objects $U, V \in \calZ $. Using Remark <a href="/tag/9BBA18" data-tag="9BBA18">6.3.5.7</a>, we deduce that the morphism $f_{\ast }$ is determined by a map $U \rightarrow V$ in $\calZ $, which we can identify with an object $\overline{V} \in \calY $ such that $\calX \simeq \calY _{/ \overline{V} }$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="E2FC8B">
+  <p><a class="environment-identifier" href="/tag/E2FC8B">Remark <span data-tag="E2FC8B">6.3.5.10</span>.</a> Let $\calX $ be an $\infty $-topos. The projection map </p>
+  <div class="equation">
+  \[ p: \Fun ( \Delta ^1, \calX ) \rightarrow \Fun ( \{ 1\} , \calX ) \simeq \calX  \]
+</div>
+  <p> is a Cartesian fibration. Moreover, for every morphism $\alpha : U \rightarrow V$ in $\calX $, the associated functor $\alpha ^{\ast }: \calX ^{/V} \rightarrow \calX ^{/U}$ is an étale geometric morphism of $\infty $-topoi, so that $p$ is classified by a functor $\chi _0: \calX ^{op} \rightarrow \LGeom _{\text{ét}}$. The functor $\chi _0$ carries the final object of $\calX $ to an $\infty $-topos equivalent to $\calX $, and therefore factors as a composition </p>
+  <div class="equation">
+  \[  \calX ^{op} \stackrel{\chi }{\rightarrow } (\LGeom _{\text{ét}})_{\calX /} \rightarrow \LGeom _{\text{ét}}. \]
+</div>
+  <p> The argument of Remark <a href="/tag/9BBA18" data-tag="9BBA18">6.3.5.7</a> shows that $\chi $ is fully faithful, and it follows immediately from the definitions that $\chi $ is essentially surjective. Corollary <a href="/tag/3FE2A4" data-tag="3FE2A4">6.3.5.9</a> allows us to identify $(\LGeom _{\text{ét}})_{\calX /}$ with the full subcategory of $\LGeom _{\calX /}$ spanned by the étale geometric morphisms $f^{\ast }: \calX \rightarrow \calY $. Consequently, we can regard $\chi $ as a fully faithful embedding of $\calX $ into the $\infty $-category $(\LGeom ^{op})_{/\calX }$ of $\infty $-topoi over $\calX $, whose essential image consists of those $\infty $-topoi which are étale over $\calX $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof of Proposition <a href="/tag/670AAD" data-tag="670AAD">6.3.5.5</a>.</strong>
+       Let $p: \calM \rightarrow \Delta ^1$ be a correspondence from $\calX _{/U} \simeq \calM \times _{ \Delta ^1} \{ 0\} $ to $\calX \simeq \calM \times _{ \Delta ^1} \{ 1\} $ associated to the adjoint functors 
+    <p>
+      <div class="equation">
+  \[  \xymatrix \1 { \calX _{/U}  \ar \< .4ex>[r]^{ \pi _{!} } &  \calX  \ar \< .4ex>[l]^{\pi ^{\ast }.}} \]
+</div>
+    <p>
+       Let $\alpha _0$ be a morphism from $1_{U} \in \calX _{/U}$ to $1_{\calX } \in \calX $ in $\calM $ (so that $\alpha _0$ is determined uniquely up to homotopy). We observe that there is a retraction $r: \calM \rightarrow \calX _{/U}$ which restricts to $\pi ^{\ast }$ on $\calX \subseteq \calM $, and we can identify $\alpha $ with $r( \alpha _0 )$. 
+    <p>
+      Let $\calZ $ be an arbitrary $\infty $-topos. Let $\calC $ be the full subcategory of $\Fun ( \calM , \calZ )$ spanned by those functors $F: \calM \rightarrow \calZ $ with the following properties: 
+    <p>
+      <ul>
+  <li class="custom-item" data-marker="$(a)$"><p>
+The restriction $F | \calX _{/U}: \calX _{/U} \rightarrow \calZ $ preserves small colimits and finite limits. 
+</p>
+</li><li class="custom-item" data-marker="$(b)$"><p>
+The functor $F$ is a left Kan extension of $F| \calX _{/U}$. In other words, $F$ carries $p$-Cartesian morphisms in $\calM $ to equivalences in $\calZ $. 
+</p>
+</li>
+</ul>
+    <p>
+       Proposition <a href="/tag/DD1683" data-tag="DD1683">4.3.2.15</a> implies that the restriction map $\calC \rightarrow \Fun ^{\ast }( \calX _{/U}, \calZ )$ is a trivial Kan fibration. Moreover, this trivial Kan fibration has a section given by composition with $r$. It will therefore suffice to show that the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { \calC \ar [r] \ar [d] &  \Fun ^{\ast }( \calX , \calZ ) \ar [d] \\ \calZ _{\ast } \ar [r] &  \calZ } \]
+</div>
+    <p>
+       is a homotopy pullback square. In other words, we wish to show that restriction along $\alpha _0$ and the inclusion $\calX \subseteq \calM $ induce a categorical equivalence $\calC \rightarrow \calZ _{\ast } \times _{ \calZ } \Fun ^{\ast }( \calX , \calZ )$. 
+    <p>
+      We define simplicial subsets $\calM '' \subseteq \calM ' \subseteq \calM $ as follows: 
+    <p>
+      <ul>
+  <li class="custom-item" data-marker="$(i)$"><p>
+Let $\calM '' \simeq \calX \coprod _{ \{ 1\}  } \Delta ^1$ be the union of $\calX $ with the $1$-simplex of $\calM $ corresponding to the morphism $\alpha _0$. 
+</p>
+</li><li class="custom-item" data-marker="$(ii)$"><p>
+Let $\calM '$ be the full subcategory of $\calM $ spanned by $\calX $ together with the object $1_ U$. 
+</p>
+</li>
+</ul>
+    <p>
+      We can identify $\calZ _{\ast } \times _{ \calZ } \Fun ^{\ast }(\calX , \calZ )$ with the full subcategory $\calC '' \subseteq \Fun ( \calM '', \calZ )$ spanned by those functors $F$ satisfying the following conditions: 
+    <p>
+      <ul>
+  <li class="custom-item" data-marker="$(a')$"><p>
+The restriction $F| \calX $ preserves small colimits and finite limits. 
+</p>
+</li><li class="custom-item" data-marker="$(b')$"><p>
+The object $F( 1_{U} )$ is final in $\calZ $. 
+</p>
+</li>
+</ul>
+    <p>
+       Let $\calC '$ be the full subcategory of $\Fun ( \calM ', \calZ )$ spanned by those functors which satisfy $(a')$ and $(b')$. To complete the proof, it will suffice to show that the restriction maps 
+    <p>
+      <div class="equation">
+  \[  \calC \stackrel{u}{\rightarrow } \calC ' \stackrel{v}{\rightarrow } \calC '' \]
+</div>
+    <p>
+       are trivial Kan fibrations. 
+    <p>
+      We first show that $u$ is a trivial Kan fibration. In view of Proposition <a href="/tag/DD1683" data-tag="DD1683">4.3.2.15</a>, it will suffice to prove the following: 
+    <p>
+      <ul>
+  <li class="custom-item" data-marker="$(\ast )$"><p>
+A functor $F: \calM \rightarrow \calZ $ satisfies $(a)$ and $(b)$ if and only if it satisfies $(a')$ and $(b')$, and $F$ is a right Kan extension of $F | \calM '$. 
+</p>
+</li>
+</ul>
+    <p>
+       To prove the “only if” direction, let us suppose that $F$ satisfies $(a)$ and $(b)$. Without loss of generality, we may suppose $F = F_0 \circ r$, where $F_0 = F | \calX _{/U}$. Then $F | \calX = F_0 \circ \pi ^{\ast }$. Since $F_0$ and $\pi ^{\ast }$ both preserve small colimits and finite limits, we deduce $(a')$. Condition $(b')$ is an immediate consequence of $(a)$. We must show that $F$ is a right Kan extension of $F | \calX $. Unwinding the definitions (and applying Corollary <a href="/tag/A37F6A" data-tag="A37F6A">4.1.3.1</a>), we are reduced to showing that for every object $\overline{V} \in \calX _{/U}$ corresponding to a morphism $V \rightarrow U$ in $\calX $, the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { F(\overline{V}) \ar [r] \ar [d] &  F( V) \ar [d] \\ F(1_ U) \ar [r] &  F(U) } \]
+</div>
+    <p>
+       is a pullback square in $\calZ $. Since $F = F_0 \circ r$ and $F_0$ preserves finite limits, it suffices to show that the square 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { \overline{V} \ar [r] \ar [d] &  \pi ^{\ast } V \ar [d] \\ 1_{U} \ar [r] &  \pi ^{\ast } U } \]
+</div>
+    <p>
+       is a pullback square in $\calX _{/U}$. In view of Proposition <a href="/tag/9233A3" data-tag="9233A3">1.2.13.8</a>, it suffices to observe that the square 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { V \ar [r] \ar [d] &  V \times U \ar [d] \\ U \ar [r] &  U \times U } \]
+</div>
+    <p>
+       is a pullback in $\calX $. 
+    <p>
+      Now let us suppose that $F$ is a right Kan extension of $F_1 = F | \calM '$, and that $F_1$ satisfies conditions $(a')$ and $(b')$. We first claim that $F$ satisfies $(b)$. In other words, we claim that for every object $V \in \calX $, the canonical map $F( \pi ^{\ast } V) \rightarrow F(V)$ is an equivalence. Consider the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { F( \pi ^{\ast } V) \ar [r] \ar [d] &  F(V \times U) \ar [d] \ar [r] &  F(V) \ar [d] \\ F(1_ U) \ar [r] &  F(U) \ar [r] &  F(1_{\calX }). } \]
+</div>
+    <p>
+       Since $F$ is a right Kan extension of $F_1$, the left square is a pullback. Since $F_1$ satisfies $(a)$, the right square is a pullback. Therefore the outer square is a pullback. Condition $(b')$ implies that the lower horizontal composition is an equivalence, so the upper horizontal composition is an equivalence as well. 
+    <p>
+      We now prove that $F$ satisfies $(a)$. Condition $(b')$ implies that the functor $F_0 = F | \calX _{/U}$ preserves final objects. It will therefore suffice to show that $F_0$ preserves small colimits and pullback squares. Since $F$ is a right Kan extension of $F_1$, the functor $F_0$ can be described by the formula 
+    <p>
+      <div class="equation">
+  \[  V \mapsto F( \pi _{!} V) \times _{ F(U) } F(1_ U). \]
+</div>
+    <p>
+       It therefore suffices to show that the functors $\pi _{!}$, $F|\calX $, and $\bullet \times _{ F(U)} F(1_ U)$ preserve small colimits and pullback squares. For $\pi _{!}$, this follows from Propositions <a href="/tag/9233A3" data-tag="9233A3">1.2.13.8</a> and <a href="/tag/1FF226" data-tag="1FF226">4.4.2.9</a>. For $F|\calX $, we invoke assumption $(a')$. For the functor $\bullet \times _{ F(U)} F(1_{U})$, we invoke our assumption that $\calZ $ is an $\infty $-topos (so that colimits in $\calZ $ are universal). This completes the verification that $u$ is a trivial Kan fibration. 
+    <p>
+      To complete the proof, we must show that the functor $v$ is a trivial Kan fibration. We note that $v$ fits into a pullback diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { \calC ' \ar [r]^{v} \ar [d] &  \calC '' \ar [d] \\ \Fun ( \calM ', \calZ ) \ar [r]^{v'} &  \Fun ( \calM '', \calZ ). } \]
+</div>
+    <p>
+       It will therefore suffice to show that $v'$ is a trivial Kan fibration. Since $\calZ $ is an $\infty $-category, we need only show that the inclusion $\calM '' \subseteq \calM '$ is a categorical equivalence of simplicial sets. This is a special case of Proposition <a href="/tag/533E26" data-tag="533E26">3.2.2.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We next establish the recognition principle promised in $(b)$: 
+</p>
+<p>
+<article class="env-proposition" id="630A91">
+  <p><a class="environment-identifier" href="/tag/630A91">Proposition <span data-tag="630A91">6.3.5.11</span>.</a> Let $f^{\ast }: \calX \rightarrow \calY $ be a geometric morphism of $\infty $-topoi. Then $f^{\ast }$ is étale if and only if the following conditions are satisfied: </p>
+  <p><ul>
+  <li class="custom-item" data-marker="$(1)$"><p>
+The functor $f^{\ast }$ admits a left adjoint $f_{!}$ $($in view of Corollary <a href="/tag/D622E3" data-tag="D622E3">5.5.2.9</a>, this is equivalent to the assumption that $f^{\ast }$ preserves small limits$)$. 
+</p>
+</li><li class="custom-item" data-marker="$(2)$"><p>
+The functor $f_{!}$ is conservative. That is, if $\alpha $ is a morphism in $\calY $ such that $f_{!} \alpha $ is an equivalence in $\calX $, then $\alpha $ is an equivalence in $\calY $. 
+</p>
+</li><li class="custom-item" data-marker="$(3)$"><p>
+For every morphism $X \rightarrow Y$ in $\calX $, every object $Z \in \calY $, and every morphism $f_{!} Z \rightarrow Y$, the induced diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix { f_{!} ( f^{\ast } X \times _{ f^{\ast } Y } Z) \ar [r] \ar [d] &  f_{!} Z \ar [d] \\ X \ar [r] &  Y } \]
+</div>
+<p>
+ is a pullback square in $\calX $. 
+</p>
+</li>
+</ul></p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="">
+  <p><a class="environment-identifier" href="/tag/">Remark <span data-tag="">6.3.5.12</span>.</a>Condition $(3)$ of Proposition <a href="/tag/630A91" data-tag="630A91">6.3.5.11</a> can be regarded as a push-pull formula: it provides a canonical equivalence </p>
+  <div class="equation">
+  \[  f_{!}( f^{\ast } X \times _{ f^{\ast } Y} Z) \simeq X \times _{Y} f_{!} Z. \]
+</div>
+  <p> In particular, when $Y$ is final in $\calX $, we have an equivalence $f_{!}( f^{\ast } X \times Z) \simeq X \times f_{!} Z$: in other words, the functor $f_{!}$ is “linear” with respect to the action of $\calX $ on $\calY $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof of Proposition <a href="/tag/630A91" data-tag="630A91">6.3.5.11</a>.</strong>
+       Suppose first that $f^{\ast }$ is an étale geometric morphism. Without loss of generality, we may suppose that $\calY = \calX _{/U}$, and that $f^{\ast }$ is right adjoint to the forgetful functor $f_{!}: \calX _{/U} \rightarrow \calX $. Assertions $(1)$ and $(2)$ are obvious, and assertion $(3)$ follows from the observation that, for every diagram 
+    <p>
+      <div class="equation">
+  \[  X \rightarrow Y \leftarrow Z \rightarrow U, \]
+</div>
+    <p>
+       the induced map $(X \times U) \times _{ Y \times U } Z \rightarrow X \times _{Y} Z$ is an equivalence in $\calX $. 
+    <p>
+      For the converse, let us suppose that $(1)$, $(2)$ and $(3)$ are satisfied. We wish to show that $f^{\ast }$ is étale. Let $U = f_{!} 1_{\calY }$. Let $F$ denote the composition $\calY \simeq \calY _{/1_{\calY }} \stackrel{f_{!}}{\rightarrow } \calX _{/U}$. To complete the proof, it will suffice to show that $F$ is an equivalence of $\infty $-categories. Proposition <a href="/tag/11051A" data-tag="11051A">5.2.5.1</a> implies that $F$ admits a right adjoint $G$, given by the formula 
+    <p>
+      <div class="equation">
+  \[ (X \rightarrow U) \mapsto f^{\ast } X \times _{ f^{\ast } U} 1_{\calY }. \]
+</div>
+    <p>
+       Assumption $(3)$ guarantees that the counit map $v: FG \rightarrow \id _{\calX _{/U}}$ is an equivalence. To complete the proof, it suffices to show that for each $Y \in \calY $, the unit map $u_ Y: Y \rightarrow GFY$ is an equivalence. The map $Fu_ Y: FY \rightarrow FGFY$ has a left homotopy inverse (given by $v_{FY}$) which is an equivalence, so that $F u_{Y}$ is an equivalence. It follows that $f_{!} u_ Y$ is an equivalence, so that $u_ Y$ is an equivalence by virtue of assumption $(2)$. Thus $G$ is a homotopy inverse to $F$, so that $F$ is an equivalence of $\infty $-categories as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Our final goal in this section is to prove the following result: 
+</p>
+<p>
+<article class="env-theorem" id="F44670">
+  <p><a class="environment-identifier" href="/tag/F44670">Theorem <span data-tag="F44670">6.3.5.13</span>.</a> The $\infty $-category $\RGeom _{\text{ét}}$ admits small colimits, and the inclusion $\RGeom _{\text{ét}} \subseteq \RGeom $ preserves small colimits. </p>
+</article> 
+</p>
+<p>
+The proof of Theorem <a href="/tag/F44670" data-tag="F44670">6.3.5.13</a> is rather technical and will occupy our attention for the remainder of this section. However, the analogous result is elementary if we work with $\infty $-topoi which are assume to be étale over a fixed base $\calX $. In this case, Theorem <a href="/tag/F44670" data-tag="F44670">6.3.5.13</a> can be reduced (with the aid of Remark <a href="/tag/E2FC8B" data-tag="E2FC8B">6.3.5.10</a>) to the following assertion: 
+</p>
+<p>
+<article class="env-proposition" id="37047A">
+  <p><a class="environment-identifier" href="/tag/37047A">Proposition <span data-tag="37047A">6.3.5.14</span>.</a> Let $\calX $ be an $\infty $-topos, and let $\chi : \calX \rightarrow \LGeom ^{op}_{/ \calX }$ be the functor of Remark <a href="/tag/E2FC8B" data-tag="E2FC8B">6.3.5.10</a>. Then $\chi $ preserves small colimits. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Combine Propositions <a href="/tag/9233A3" data-tag="9233A3">1.2.13.8</a>, <a href="/tag/39ADD2" data-tag="39ADD2">6.3.2.3</a>, and Theorem <a href="/tag/53AECD" data-tag="53AECD">6.1.3.9</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<article class="env-proof">
+    <p>
+      <strong>Proof of Theorem <a href="/tag/F44670" data-tag="F44670">6.3.5.13</a>.</strong>
+       As a first step, we establish the following: 
+    <p>
+      <ul>
+  <li class="custom-item" data-marker="$(\ast )$"><p>
+Suppose given a small diagram $p: K \rightarrow \LGeom ^{op}$ and a geometric morphism of $\infty $-topoi $\phi _{\ast }: \colim (p) \rightarrow \calY $. Suppose further that for each vertex $v$ in $K$, the induced geometric morphism $\phi (v)_{\ast }: p(v) \rightarrow \calY $ is étale. Then $\phi _{\ast }$ is étale. 
+</p>
+</li>
+</ul>
+    <p>
+       To prove $(\ast )$, we note that $\phi _{\ast }$ determines a functor $\overline{p}: K \rightarrow \LGeom ^{op}_{/\calY }$ lifting $p$. Since each $\phi (v)_{\ast }$ is étale, Remark <a href="/tag/E2FC8B" data-tag="E2FC8B">6.3.5.10</a> implies that $\overline{p}$ factors as a composition 
+    <p>
+      <div class="equation">
+  \[  K \stackrel{q}{\rightarrow } \calY \stackrel{\chi }{\rightarrow } \LGeom ^{op}_{/\calY }. \]
+</div>
+    <p>
+       Let $U \in \calY $ be a colimit of the diagram $q$. Then Corollary <a href="/tag/3FE2A4" data-tag="3FE2A4">6.3.5.9</a> implies that $\colim (p) \simeq \calY _{/U}$, so that $\phi _{\ast }$ is étale as desired. 
+    <p>
+      We now return to the proof of Theorem <a href="/tag/F44670" data-tag="F44670">6.3.5.13</a>. Using Proposition <a href="/tag/22E8EC" data-tag="22E8EC">4.4.3.2</a> and its proof, we can reduce the proof to the following special cases: 
+    <p>
+      <ul>
+  <li class="custom-item" data-marker="$(a)$"><p>
+The $\infty $-category $\LGeom ^{op}_{\text{ét}}$ admits small coproducts, and the inclusion $\LGeom ^{op}_{\text{ét}} \subseteq \LGeom ^{op}$ preserves small coproducts. 
+</p>
+</li><li class="custom-item" data-marker="$(b)$"><p>
+The $\infty $-category $\LGeom ^{op}_{\text{ét}}$ admits coequalizers, and the inclusion $\LGeom ^{op}_{\text{ét}} \subseteq \LGeom ^{op}$ preserves coequalizer diagrams. 
+</p>
+</li>
+</ul>
+    <p>
+      We first prove $(a)$. In view of $(\ast )$, it will suffice to prove the following: 
+    <p>
+      <ul>
+  <li class="custom-item" data-marker="$(a')$"><p>
+Let $\{  \calX _{\alpha } \} $ be a small collection of $\infty $-topoi, and let $\calX $ be their coproduct in $\LGeom ^{op}$ (so that we have an equivalence of $\infty $-categories $\calX \simeq \prod _{\alpha } \calX _{\alpha }$). Then each of the associated geometric morphisms $\phi _{\alpha }^{\ast }: \calX \rightarrow \calX _{\alpha }$ is étale. 
+</p>
+</li>
+</ul>
+    <p>
+       To prove $(a')$, we may assume without loss of generality that $\calX = \prod _{\alpha } \calX _{\alpha }$ and that $\phi _{\alpha }^{\ast }$ is given by projection onto the corresponding factor. The desired result then follows from the criterion of Proposition <a href="/tag/630A91" data-tag="630A91">6.3.5.11</a> (more concretely: let let $U \in \calX $ be an object whose image in $\calX _{\alpha }$ is a final object $U_{\alpha } \in \calX _{\alpha }$, and whose image in $\calX _{\beta }$ is an initial object $U_{\beta } \in \calX _{\beta }$ for $\beta \neq \alpha $. Then $\calX _{/U} \simeq \prod _{\beta } (\calX _{\beta })_{/U_{\beta }} \simeq \calX _{\alpha }$.) 
+    <p>
+      To prove $(b)$, we can again invoke $(\ast )$ to reduce to the following assertion: 
+    <p>
+      <ul>
+  <li class="custom-item" data-marker="$(b')$"><p>
+Suppose given a diagram 
+</p>
+<div class="equation">
+  \[ \xymatrix { \calY \ar @<.4ex>[r] \ar @<-.4ex>[r] &  \calX _0}. \]
+</div>
+<p>
+ in $\LGeom _{\text{ét}}^{op}$, having colimit $\calX $ in $\LGeom ^{op}$. Then the induced geometric morphism $\phi _{\ast }: \calX _0 \rightarrow \calX $ is étale. 
+</p>
+</li>
+</ul>
+    <p>
+      To prove $(b')$, we identify the diagram in question with a functor $p: \calI \rightarrow \LGeom ^{op}$, and $\calI $ with the subcategory of $\Nerve (\cDelta )^{op}$ spanned by the objects $\{  [0], [1] \} $ and injective maps of linearly ordered sets. Let $\calX _{\bullet }$ be the simplicial object of $\LGeom ^{op}$ given by left Kan extension along the inclusion $\calI \subseteq \Nerve (\cDelta )^{op}$, so that each $\calX _{n}$ is equivalent to a coproduct (in $\LGeom ^{op}$) of $\calX _0$ with $n$ copies of $\calY $. Using $(\ast )$ and Corollary <a href="/tag/3FE2A4" data-tag="3FE2A4">6.3.5.9</a>, we deduce that $\calX _{\bullet }$ is a simplicial object in $\LGeom ^{op}_{\text{ét}}$. Consequently, assertion $(b')$ is an immediate consequence of Lemma <a href="/tag/FFFCA4" data-tag="FFFCA4">4.3.2.7</a> and the following: 
+    <p>
+      <ul>
+  <li class="custom-item" data-marker="$(b'')$"><p>
+Let $\calX _{\bullet }$ be a simplicial object of $\LGeom ^{op}_{\text{ét}}$, and let $\calX $ be its geometric realization in $\LGeom ^{op}$. Then the induced geometric morphism $\phi _{\ast }: \calX _0 \rightarrow \calX $ is étale. 
+</p>
+</li>
+</ul>
+    <p>
+      The proof of $(b'')$ is based on the following Lemma, whose proof we defer until the end of this section: 
+    <p>
+      <article class="env-lemma" id="3A8C63">
+  <p><a class="environment-identifier" href="/tag/3A8C63">Lemma <span data-tag="3A8C63">6.3.5.15</span>.</a> Suppose given a simplicial object $\calX _{\bullet }$ in $\LGeom ^{op}_{\text{ét}}$. Then there exists a morphism of simplicial objects $\calX _{\bullet } \rightarrow \calX '_{\bullet }$ of $\LGeom ^{op}_{\text{ét}}$ with the following properties: </p>
+  <p><ul>
+  <li class="custom-item" data-marker="$(1)$"><p>
+The induced map $\calX _0 \rightarrow \calX '_0$ is an equivalence of $\infty $-topoi. 
+</p>
+</li><li class="custom-item" data-marker="$(2)$"><p>
+The simplicial object $\calX '_{\bullet }$ is a groupoid object in $\LGeom ^{op}$. 
+</p>
+</li><li class="custom-item" data-marker="$(3)$"><p>
+The induced map of geometric realizations $($in $\LGeom ^{op}$$)$ is an equivalence $| \calX _{\bullet } | \rightarrow | \calX '_{\bullet } |$. 
+</p>
+</li>
+</ul></p>
+</article> 
+    <p>
+      Using Lemma <a href="/tag/3A8C63" data-tag="3A8C63">6.3.5.15</a>, we can reduce the proof of $(b'')$ to the special case where $\calX _{\bullet }$ is a groupoid object of $\LGeom ^{op}$. The diagram 
+    <p>
+      <div class="equation">
+  \[  \Nerve ( \cDelta )^{op} \stackrel{\calX _{\bullet }}{\rightarrow } \LGeom ^{op}_{\text{ét}} \subseteq \widehat{\Cat }_{\infty }^{op} \]
+</div>
+    <p>
+       is classified by a Cartesian fibration $q: \calZ \rightarrow \Nerve ( \cDelta )^{op}$. Here we can identify $\calX _{n}$ with the fiber $\calZ _{[n]} = \calZ \times _{ \Nerve (\cDelta )^{op} } \{  [n] \} $, and every map of linearly ordered sets $\alpha : [m] \rightarrow [n]$ induces a geometric morphism $\alpha ^{\ast }: \calZ _{[m]} \rightarrow \calZ _{[n]}$. Since the geometric morphism $\alpha ^{\ast }$ is étale, it admits a left adjoint $\alpha _{!}$, so that $q$ is also a coCartesian fibration (Corollary <a href="/tag/D4A82A" data-tag="D4A82A">5.2.2.4</a>). 
+    <p>
+      It follows from Propositions <a href="/tag/39ADD2" data-tag="39ADD2">6.3.2.3</a> and <a href="/tag/C6AD64" data-tag="C6AD64">3.3.3.1</a> that we can identify $\calX $ with the full subcategory of $\Fun _{ \Nerve (\cDelta )^{op} } ( \Nerve (\cDelta )^{op}, \calZ )$ spanned by the Cartesian sections of $q$; under this identification, the pullback functor $\phi ^{\ast }$ corresponds to the functor $\calX \rightarrow \calZ _{[0]} \simeq \calX _0$ given by evaluation at $[0]$. 
+    <p>
+      Let $1_{\calX }$ denote a final object of $\calX $, which we regard as a section of $q$. Let $T: \Nerve (\cDelta )^{op} \rightarrow \Nerve (\cDelta )^{op}$ denote the shift functor $[n] \mapsto [n] \star [0]$, and let $\beta _0: T \rightarrow \id _{ \Nerve (\cDelta )^{op} }$ denote the evident natural transformation. Let $\beta : (1_{\calX } \circ T) \rightarrow U_{\bullet }$ be a natural transformation in $\Fun ( \Nerve (\cDelta )^{op}, \calZ )$ lifting $\beta $ which is $q$-coCartesian. Since $\calX _{\bullet }$ is a groupoid object of $\LGeom ^{op}_{\text{ét}}$, we deduce that $U_{\bullet }$ is a Cartesian section of $q$, which we can identify with an object of $\calX $. 
+    <p>
+      Let $S = \Nerve (\cDelta )^{op} \times \Delta ^1$, so that $\beta _0$ defines a map $S \rightarrow \Nerve (\cDelta )^{op}$. Let $\calZ ' = \calZ \times _{ \Nerve (\cDelta )^{op} } S$ and let $\beta _{S} = \beta $, regarded as a section of of the projection $q': \calZ ' \rightarrow S$. Let $\calZ '' = {\calZ '}^{/\beta _ S}$ (see §<a href="/tag/913B75" data-tag="913B75">4.2.2</a> for an explanation of this notation). Let $q'': \calZ '' \rightarrow S$. The fibers of $q''$ can be described as follows: 
+    <p>
+      <ul>
+  <li><p>
+The fiber of $q''$ over $([n], 0)$ can be identified with $\calZ _{[n+1]}^{/ 1_{\calZ _{[n+1]}}} \simeq \calZ _{[n+1]}$. 
+</p>
+</li><li><p>
+The fiber of $q''$ over $([n], 1)$ can be identified with $\calZ _{[n]}^{/U_{n}} \simeq \calZ _{[n+1]}$. 
+</p>
+</li>
+</ul>
+    <p>
+       Proposition <a href="/tag/BFE09D" data-tag="BFE09D">4.2.2.4</a> implies that the projection $q'': \calZ '' \rightarrow S$ is a coCartesian fibration, classified by a map $\chi : S \rightarrow \widehat{\Cat }_{\infty }$. The above description shows that $\chi $ can be regarded as an equivalence from $\chi ^0 = \chi | \Nerve (\cDelta )^{op} \times \{ 0\} $ to $\chi ^1 = \chi | \Nerve (\cDelta )^{op} \times \{ 1\} $ in the $\infty $-category of simplicial objects of $\widehat{\Cat }_{\infty }$. Moreover, the functor $\chi ^0$ classifies the pullback of the coCartesian fibration $q$ by the translation map $T: \Nerve (\cDelta )^{op} \rightarrow \Nerve (\cDelta ^{op})$, so that $\chi ^0$ and $\chi ^1$ factor through $\LGeom ^{op}_{\text{ét}}$. Lemma <a href="/tag/F41DC5" data-tag="F41DC5">6.1.3.17</a> implies that the colimit of $\chi ^0$ (hence also of $\chi ^1$) in $\LGeom ^{op}$ is canonically equivalent to $\calX _0$. On the other hand, Propositions <a href="/tag/C6AD64" data-tag="C6AD64">3.3.3.1</a> and <a href="/tag/39ADD2" data-tag="39ADD2">6.3.2.3</a> allow us to identify $\colim ( \chi ^1)$ with the $\infty $-category of Cartesian sections of the projection $\calZ '' \times _{ S} ( \Nerve (\cDelta )^{op} \times \{ 1\}  ) \rightarrow \Nerve (\cDelta )^{op}$, which is isomorphic to $\calX ^{/U_{\bullet }}$ as a simplicial set. We now complete the proof by observing that the resulting identification $\calX _0 \simeq \calX ^{/U_{\bullet }}$ is compatible with the projection $\phi _{\ast }: \calX _0 \rightarrow \calX $. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The remainder of this section is devoted to the proof of Lemma <a href="/tag/3A8C63" data-tag="3A8C63">6.3.5.15</a>. We first need to introduce a bit of notation. We begin with a few remarks about the behavior of $\infty $-topoi under change of universe. 
+</p>
+<p>
+<article class="env-notation" id="">
+  <p><a class="environment-identifier" href="/tag/">Notation <span data-tag="">6.3.5.16</span>.</a>Let $\calX $ be an $\infty $-topos and $\calC $ an arbitrary $\infty $-category. We let $\Shv _{\calC }(\calX )$ denote the full subcategory of $\Fun ( \calX ^{op}, \calC )$ spanned by those functors which preserve small limits.ShvCX@$\Shv _{\calC }(\calX )$ We will refer to $\Shv _{\calC }(\calX )$ as the <em>$\infty $-category of $\calC $-valued sheaves on $\calX $</em>. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="4FBC92">
+  <p><a class="environment-identifier" href="/tag/4FBC92">Remark <span data-tag="4FBC92">6.3.5.17</span>.</a> Let $\calX $ be an $\infty $-topos. Proposition <a href="/tag/275CAF" data-tag="275CAF">5.5.2.2</a> implies that the Yoneda embedding $\calX \rightarrow \Shv _{\SSet }(\calX )$ is an equivalence; in other words, we can identify $\calX $ with the $\infty $-category of sheaves of (small) spaces on itself. Let $\widehat{\SSet }$ denote the $\infty $-category of spaces which belong to some larger universe $\calU $. We claim the following: </p>
+  <p><ul>
+  <li class="custom-item" data-marker="$(a)$"><p>
+The $\infty $-category $\Shv _{ \widehat{\SSet } }( \calX )$ can be regarded as an $\infty $-topos in $\calU $. 
+</p>
+</li><li class="custom-item" data-marker="$(b)$"><p>
+The inclusion $\Shv _{\SSet }(\calX ) \subseteq \Shv _{\widehat{\SSet }}(\calX )$ preserves small colimits. 
+</p>
+</li>
+</ul></p>
+  <p> To prove $(a)$, let us suppose that $\calX = S^{-1} \calP (\calC )$, where $\calC $ is a small $\infty $-category and $S$ is a strongly saturated class of morphisms in $\calP (\calC )$, which is stable under pullbacks and of small generation. Theorem <a href="/tag/9EF11D" data-tag="9EF11D">5.1.5.6</a> and Proposition <a href="/tag/D7F67F" data-tag="D7F67F">5.5.4.20</a> allow us to identify $\Shv _{\widehat{\SSet }}(\calX )$ with $S^{-1} \widehat{\calP }(\calC )$, where $\widehat{\calP }(\calC )$ denotes the presheaf $\infty $-category $\Fun ( \calC ^{op}, \widehat{\SSet })$. Let $\widehat{S}$ denote the strongly saturated class of morphisms of $\widehat{\calP }(\calC )$ generated by $S$. Then $\widehat{S}$ is of small generation (and therefore of $\calU $-small generation); to complete the proof of $(a)$ it will suffice to show that $\widehat{S}$ is stable under pullbacks. </p>
+  <p>Let $\widehat{\calP }(\calC )^{0}$ denote the full subcategory of $\widehat{\calP }(\calC )$ spanned by those objects $X$ with the following property: </p>
+  <p><ul>
+  <li class="custom-item" data-marker="$(\ast )$"><p>
+Let 
+</p>
+<div class="equation">
+  \[  \xymatrix { Y \ar [d]^{f} \ar [r] &  Y' \ar [d]^{f'} \\ X \ar [r] &  X' } \]
+</div>
+<p>
+ be a pullback diagram in $\widehat{\calP }(\calC )$. If $f' \in S$, then $f \in \widehat{S'}$. 
+</p>
+</li>
+</ul></p>
+  <p> Since colimits in $\widehat{\calP }(\calC )$ are universal, the subcategory $\widehat{\calP }(\calC )^{0}$ is stable under $\calU $-small colimits in $\widehat{\calP }(\calC )$. Moreover, since $S$ is stable under pullbacks in $\calP (\calC )$ (and since the inclusion $\calP (\calC ) \subseteq \widehat{\calP }(\calC )$ is fully faithful), the $\infty $-category $\widehat{\calP }(\calC )^{0}$ contains $\calP (\calC )$. Since $\widehat{\calP }(\calC )$ is generated (under $\calU $-small colimits) by the essential image of the Yoneda embedding $\calC \rightarrow \calP (\calC )$, we conclude that $\widehat{\calP }(\calC )^{0} = \widehat{\calP }(\calC )$. </p>
+  <p>We now let $S'$ denote the collection of all morphisms in $\widehat{\calP }(\calC )$ such that, for every pullback diagram </p>
+  <div class="equation">
+  \[  \xymatrix { Y \ar [d]^{f} \ar [r] &  Y' \ar [d]^{f'} \\ X \ar [r] &  X' } \]
+</div>
+  <p> in $\calP (\calC )$, if $f' \in S'$ then $f \in \widehat{S}$. The above argument shows that $S \subseteq S'$. Since $S'$ is strongly saturated, we conclude that $\widehat{S} \subseteq S'$, so that $\widehat{S}$ is stable under pullbacks as desired. This completes the proof of $(a)$. </p>
+  <p>To prove $(b)$, it will suffice to show that the composite map </p>
+  <div class="equation">
+  \[  \calP (\calC ) \rightarrow S^{-1} \calP (\calC ) \rightarrow \widehat{S}^{-1} \widehat{\calP }(\calC ) \]
+</div>
+  <p> preserves small colimits. We can rewrite this as the composition of a pair of functors </p>
+  <div class="equation">
+  \[  \calP (\calC ) \stackrel{i}{\rightarrow } \widehat{\calP }(\calC ) \stackrel{L}{\rightarrow } \widehat{S}^{-1} \widehat{\calP }(\calC ). \]
+</div>
+  <p> The functor $L$ is left adjoint to the inclusion of $\widehat{S}^{-1} \widehat{\calP }(\calC )$ into $\widehat{\calP }(\calC )$, and therefore preserves all $\calU $-small colimits. It therefore suffices to show that the inclusion $i: \Fun ( \calC ^{op}, \SSet ) \rightarrow \Fun ( \calC ^{op}, \widehat{\SSet })$ preserves small colimits. In view of Proposition <a href="/tag/5DFB66" data-tag="5DFB66">5.1.2.2</a>, it will suffice to prove the inclusion $i_0: \SSet \rightarrow \widehat{\SSet }$ preserves small colimits. We note that $i_0$ is an equivalence from $\SSet $ to the full subcategory $\widehat{\SSet }^0 \subseteq \widehat{\SSet }$ spanned by the essentially small spaces. It now suffices to observe that the collection of essentially small spaces is stable under small colimits (this follows from Corollaries <a href="/tag/283537" data-tag="283537">5.4.1.5</a> and <a href="/tag/BF383D" data-tag="BF383D">5.3.4.15</a>). </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="5030A4">
+  <p><a class="environment-identifier" href="/tag/5030A4">Remark <span data-tag="5030A4">6.3.5.18</span>.</a> Let $\calU $ be a universe as in Example <a href="/tag/4FBC92" data-tag="4FBC92">6.3.5.17</a>, let $f^{\ast }: \calX \rightarrow \calY $ be a geometric morphism of $\infty $-topoi, and let $\widehat{f}_{\ast }: \Shv _{ \widehat{\SSet }}(\calX ) \rightarrow \Shv _{ \widehat{\SSet }}(\calY )$ be given by composition with $f^{\ast }$. Then $\widehat{f}_{\ast }$ can be identified with a geometric morphism in the universe $\calU $. To prove this, let $\kappa $ denote the regular cardinal in the universe $\calU $ such that small sets (in our original universe) can be identified with $\kappa $-small sets in $\calU $. It follows from Corollary <a href="/tag/FB6059" data-tag="FB6059">5.3.5.4</a> that we can identify $\Shv _{\widehat{\SSet }}(\calX )$ and $\Shv _{\widehat{\SSet }}(\calX )$ with $\widehat{\Ind }_{\kappa }(\calX )$ and $\widehat{\Ind }_{\kappa }(\calY )$, respectively. Proposition <a href="/tag/209940" data-tag="209940">5.2.6.3</a> implies that $\widehat{f}_{\ast }$ admits a left adjoint $\widehat{f}^{\ast }$ which fits into a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix { \calX \ar [r]^{f^{\ast }} \ar [r] \ar [d] &  \calY \ar [d] \\ \Shv _{\widehat{\SSet }}(\calX ) \ar [r]^{ \widehat{f}^{\ast } } &  \Shv _{ \widehat{\SSet }}(\calY ). } \]
+</div>
+  <p> To complete the proof, it will suffice to show that $\widehat{f}^{\ast }$ is left exact. Since $f^{\ast }$ preserves final objects, the functor $\widehat{f}^{\ast }$ preserves final objects as well. It therefore suffices to show that $\widehat{f}^{\ast }$ preserves pullback diagrams. Using Proposition <a href="/tag/156456" data-tag="156456">5.3.5.15</a> and Example <a href="/tag/983BFA" data-tag="983BFA">7.3.4.7</a>, we conclude that every pullback diagram in $\Shv _{ \widehat{\SSet }}(\calX )$ can be obtained as a $\calU $-small, $\kappa $-filtered colimit of pullback diagrams in $\calX $. The desired result now follows from the assumption that $f^{\ast }$ is left exact, and the observation that the class of pullback diagrams in $\Shv _{ \widehat{\SSet }}(\calY )$ is stable under $\calU $-small filtered colimits (Example <a href="/tag/983BFA" data-tag="983BFA">7.3.4.7</a>). </p>
+</article> 
+</p>
+<p>
+For the remainder of this section, we fix a larger universe $\calU $. Let $\widehat{\SSet }$ denote the $\infty $-category of $\calU $-small spaces. 
+</p>
+<p>
+<article class="env-notation" id="">
+  <p><a class="environment-identifier" href="/tag/">Notation <span data-tag="">6.3.5.19</span>.</a>Let $F: \LGeom \rightarrow \widehat{\SSet }$ be a functor. For every $\infty $-topos $\calX $, we let $F_{\calX }: \calX ^{op} \rightarrow \widehat{\SSet }$ denote the composition </p>
+  <div class="equation">
+  \[  \calX ^{op} \simeq \LGeom _{\text{ét}}^{\calX /} \rightarrow \LGeom \stackrel{F}{\rightarrow } \widehat{\SSet }. \]
+</div>
+  <p> We will say that $F_{\calX }$ is a <em>sheaf</em> if, for every $\infty $-topos $\calX $, the functor $F_{\calX }$ preserves small limits. We let $\widehat{\Shv }( \LGeom ^{op} )$ denote the full subcategory of $\Fun ( \LGeom , \widehat{\SSet } )$ spanned by the sheaves. </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="D0529F">
+  <p><a class="environment-identifier" href="/tag/D0529F">Example <span data-tag="D0529F">6.3.5.20</span>.</a> Let $\calX $ be an $\infty $-topos, and let $e_{\calX }: \LGeom \rightarrow \widehat{\SSet }$ be the functor represented by $\calX $. Proposition <a href="/tag/37047A" data-tag="37047A">6.3.5.14</a> implies that $e_{\calX }$ belongs to $\widehat{\Shv }( \LGeom ^{op} )$. We will say that a sheaf $F \in \widehat{\Shv }( \LGeom ^{op} )$ is <em>representable</em> if $F \simeq e_{\calX }$ for some $\infty $-topos $\calX $. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="F823E3">
+  <p><a class="environment-identifier" href="/tag/F823E3">Lemma <span data-tag="F823E3">6.3.5.21</span>.</a> The $\infty $-category $\widehat{\Shv }( \LGeom ^{op} )$ is an $\infty $-topos in the universe $\calU $. Moreover, for every $\infty $-topos $\calX $, the restriction functor $F \mapsto F_{\calX }$ determines a functor $\widehat{\Shv }(\LGeom ^{op}) \rightarrow \Shv _{ \widehat{\SSet } }(\calX )$ which preserves $\calU $-small colimits and finite limits. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\Fun ^{\text{ét}}( \Delta ^1, \LGeom )$ denote the full subcategory $\Fun ( \Delta ^1, \LGeom )$ spanned by the étale morphisms, and let $e: \Fun ^{\text{ét}}( \Delta ^1, \LGeom ) \rightarrow \LGeom $ be given by evaluation at the vertex $\{ 0\}  \in \Delta ^1$. Since the collection of étale morphisms in $\LGeom $ is stable under pushouts (Remark <a href="/tag/3B7669" data-tag="3B7669">6.3.5.8</a>), the map $e$ is a coCartesian fibration. 
+    <p>
+      We define a simplicial set $\calK $ equipped with a projection $p: \calK \rightarrow \LGeom $ so that the following universal property is satisfied: for every simplicial set $K$, we have a natural bijection 
+    <p>
+      <div class="equation">
+  \[  \Hom _{\Ind (\calG ^{op})}(K, \calK ) = \Hom _{\sSet }( K \times _{ \LGeom } \Fun ^{\text{ét}}(\Delta ^1, \LGeom ), \widehat{\SSet } ). \]
+</div>
+    <p>
+       Then $\calK $ is an $\infty $-category, whose objects can be identified with pairs $(\calX , F_{\calX })$, where $\calX $ is an $\infty $-topos and $F_{\calX }: \LGeom ^{\calX /}_{\text{ét}} \rightarrow \widehat{\SSet }$ is a functor. It follows from Corollary <a href="/tag/31C7FC" data-tag="31C7FC">3.2.2.13</a> that the projection $p$ is a Cartesian fibration, and that a morphism $(\calX ,F_{\calX }) \rightarrow (\calY , F_{\calY })$ is $p$-Cartesian if and only if, for every object $U \in \calX $, the canonical map $F_{\calX }( \calX _{/U}) \rightarrow F_{\calY }( \calY _{/f^{\ast } U})$ is a homotopy equivalence, where $f^{\ast }$ denotes the underlying geometric morphism from $\calX $ to $\calY $. 
+    <p>
+      Let $\calK _0$ denote the full subcategory of $\calK $ spanned by pairs $(\calX , F_{\calX })$ where the functor $F_{\calX }$ preserves small limits. It follows from the above that the Cartesian fibration $p$ restricts to a Cartesian fibration $p_0: \calK _0 \rightarrow \LGeom $ (with the same class of Cartesian morphisms). The fiber of $\calK _0$ over an object $\calX \in \LGeom $ can be identified with $\Shv _{\widehat{\SSet }}( \calX )$, which is an $\infty $-topos in the universe $\calU $ (Remark <a href="/tag/4FBC92" data-tag="4FBC92">6.3.5.17</a>). Moreover, to every geometric morphism $f^{\ast }: \calX \rightarrow \calY $ in $\LGeom $, the Cartesian fibration $p_0$ associates the pushforward functor $\widehat{f}_{\ast }: \Shv _{ \widehat{\SSet } }(\calY ) \rightarrow \Shv _{ \widehat{\SSet } }(\calX )$ given by composition with $f^{\ast }$. It follows from Remark <a href="/tag/5030A4" data-tag="5030A4">6.3.5.18</a> that $\widehat{f}_{\ast }$ admits a left adjoint $\widehat{f}^{\ast }$, and that $\widehat{f}^{\ast }$ is left exact. We may summarize the situation by saying that $p_0$ is a topos fibration (see Definition <a href="/tag/84BF8E" data-tag="84BF8E">6.3.1.6</a>); in particular, $p_0$ is a coCartesian fibration. 
+    <p>
+      Let $\calY = \Fun _{ \LGeom }( \LGeom , \calK _0)$ denote the $\infty $-category of sections of $p_0$. Unwinding the definition, we can identify $\calY $ with the $\infty $-category $\Fun ( \Fun ^{\text{ét}}( \Delta ^1, \LGeom ),\widehat{\SSet })$. Let $\LGeom '$ denote the essential image of the (fully faithful) diagonal embedding $\LGeom \rightarrow \Fun ( \Delta ^1, \LGeom )$. Consider the following conditions on a section $s: \LGeom \rightarrow \calK _0$ of $p_0$: 
+    <p>
+      <ul>
+  <li class="custom-item" data-marker="$(a)$"><p>
+The functor $s$ carries étale morphisms in $\LGeom $ to $p$-coCartesian morphisms in $\calX $. 
+</p>
+</li><li class="custom-item" data-marker="$(b)$"><p>
+Let $S: \Fun ^{\text{ét}}( \Delta ^1, \LGeom ) \rightarrow \widehat{\SSet }$ be the functor corresponding to $s$. Then, for every commutative diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix { &  \calY \ar [dr] &  \\ \calX \ar [ur] \ar [rr] &  &  \calZ } \]
+</div>
+<p>
+ of étale morphisms in $\LGeom $, the induced map $S(\calX \rightarrow \calZ ) \rightarrow S(\calY \rightarrow \calZ )$ is an equivalence in $\widehat{\SSet }$. 
+</p>
+</li><li class="custom-item" data-marker="$(c)$"><p>
+For every étale morphism $f^{\ast }: \calX \rightarrow \calY $ in $\LGeom $, the canonical map $S( \id _{\calX } ) \rightarrow S(f^{\ast })$ is an equivalence in $\widehat{\SSet }$. 
+</p>
+</li><li class="custom-item" data-marker="$(d)$"><p>
+The functor $S$ is a left Kan extension of $S | \LGeom '$. 
+</p>
+</li>
+</ul>
+    <p>
+       Unwinding the definitions, we see that $(a) \Leftrightarrow (b) \Rightarrow (c) \Leftrightarrow (d)$. Moreover, the implication $(c) \Rightarrow (b)$ follows by a two-out-of-three argument. Let $\calY '$ denote the full subcategory of $\calY $ spanned by those sections which satisfy the equivalent conditions $(a)$ through $(d)$; it follows from Proposition <a href="/tag/DD1683" data-tag="DD1683">4.3.2.15</a> that composition with the diagonal embedding $\LGeom \rightarrow \Fun ^{\text{ét}}( \Delta ^1, \LGeom )$ induces an equivalence $\theta : \calY ' \rightarrow \widehat{\Shv }(\LGeom ^{op})$. The desired result now follows from Proposition <a href="/tag/ED2C97" data-tag="ED2C97">5.4.7.11</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+To prove Lemma <a href="/tag/3A8C63" data-tag="3A8C63">6.3.5.15</a>, we need a criterion which will allow us to detect étale geometric morphisms of $\infty $-topoi in terms of the functors that they represent. To formulate this criterion, we introduce a bit of temporary terminology. 
+</p>
+<p>
+<article class="env-definition" id="63AF34">
+  <p><a class="environment-identifier" href="/tag/63AF34">Definition <span data-tag="63AF34">6.3.5.22</span>.</a> Let $\alpha : F \rightarrow G$ be a morphism in $\widehat{\Shv }(\LGeom ^{op})$. We will say that $\alpha $ is <em>universal</em> if, for every geometric morphism of $\infty $-topoi $f^{\ast }: \calX \rightarrow \calY $, the induced diagram </p>
+  <div class="equation">
+  \[  \xymatrix { \widehat{f}^{\ast } F_{\calX } \ar [r] \ar [d] &  \widehat{f}^{\ast } G_{\calX } \ar [d] \\ F_{\calY } \ar [r] &  G_{\calY } } \]
+</div>
+  <p> is a pullback square in $\Shv _{ \widehat{\SSet }}( \calY )$. (Here $\widehat{f}^{\ast }$ denotes the geometric morphism described in Remark <a href="/tag/5030A4" data-tag="5030A4">6.3.5.18</a>). </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="">
+  <p><a class="environment-identifier" href="/tag/">Remark <span data-tag="">6.3.5.23</span>.</a>The collection of universal morphisms in $\widehat{\Shv }(\LGeom ^{op})$ is stable under pullbacks and composition, and contains every equivalence in $\widehat{\Shv }(\LGeom ^{op})$. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="ED5745">
+  <p><a class="environment-identifier" href="/tag/ED5745">Remark <span data-tag="ED5745">6.3.5.24</span>.</a> Let $p: K \rightarrow \widehat{\Shv }(\LGeom ^{op})$ be a small diagram having a colimit $F$. Assume that for every edge $v \rightarrow v'$ of $K$, the induced map $p(v) \rightarrow p(v')$ is universal. Then each of the induced maps $p(v) \rightarrow F$ is universal. This follows immediately from Theorem <a href="/tag/53AECD" data-tag="53AECD">6.1.3.9</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="5E6DDE">
+  <p><a class="environment-identifier" href="/tag/5E6DDE">Lemma <span data-tag="5E6DDE">6.3.5.25</span>.</a> Let $\alpha : F \rightarrow G$ be a morphism in $\widehat{\Shv }(\LGeom ^{op})$, and assume that $G$ is representable by an $\infty $-topos $\calX $. Then $F$ is representable by an $\infty $-topos étale over $\calX $ if the following conditions are satisfied: </p>
+  <p><ul>
+  <li class="custom-item" data-marker="$(1)$"><p>
+The morphism $\alpha $ is universal $($in the sense of Definition <a href="/tag/63AF34" data-tag="63AF34">6.3.5.22</a>$)$. 
+</p>
+</li><li class="custom-item" data-marker="$(2)$"><p>
+For every $\infty $-topos $\calY $, the homotopy fibers of the induced map $F(\calY ) \rightarrow G(\calY )$ are essentially small. 
+</p>
+</li>
+</ul></p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="">
+  <p><a class="environment-identifier" href="/tag/">Remark <span data-tag="">6.3.5.26</span>.</a>In fact, the converse to Lemma <a href="/tag/5E6DDE" data-tag="5E6DDE">6.3.5.25</a> is true as well, but we will not need this fact. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a point $\eta \in G(\calX )$ which induces an equivalence $e_{\calX } \rightarrow G$. The map $\eta $ induces a global section $\overline{\eta }$ of $G_{\calX }$ in the $\infty $-topos $\Shv _{ \widehat{\SSet }}(\calX )$. Let $F_0$ denote the fiber product $F_{\calX } \times _{ G_{\calX } } 1_{ \Shv _{ \widehat{\SSet }}(\calX )}.$ Assumption $(2)$ implies that the functor $F_0: \calX ^{op} \rightarrow \widehat{\SSet }$ takes values which are essentially small. It follows from Proposition <a href="/tag/275CAF" data-tag="275CAF">5.5.2.2</a> that $F_0$ is representable by an object $U \in \calX $. In particular, we have a tautological point $\eta ' \in F_0(U)$, which determines a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { e_{ \calX _{/U}} \ar [r] \ar [d] &  F \ar [d]^{\alpha } \\ e_{\calX } \ar [r] &  G } \]
+</div>
+    <p>
+       in $\widehat{\Shv }(\LGeom ^{op})$. To complete the proof, it will suffice to show that the upper horizontal map is an equivalence. 
+    <p>
+      Fix an $\infty $-topos $\calY $, and let $R: \widehat{\Shv }( \LGeom ^{op} ) \rightarrow \Shv _{ \widehat{\SSet }}(\calY )$ be the restriction map; we will show that the induced map $R( e_{\calX _{/U}}) \rightarrow R(F)$ is an equivalence in $\Shv _{ \widehat{\SSet }}(\calY )$. It will suffice to show that for every $V \in \calY $, the map $R(e_{\calX _{/U}}(V) \rightarrow R(F)(V)$ induces a homotopy equivalence after passing to the homotopy fibers over any point $\eta ' \in R(G)(V)$. Replacing $\calY $ by $\calY _{/V}$, we may assume that $\eta '$ is induced by a geometric morphism $f^{\ast }: \calX \rightarrow \calY $, which determines a map $1 \rightarrow R(G)$, where $1$ denotes the final object of $\Shv _{\widehat{\SSet }}(\calY )$. Let $F' = R( e_{\calX _{/U}}) \times _{ R(G)} 1$ and $F'' = R(F) \times _{ R(G) } 1$; to complete the proof it will suffice to show that the induced map $F' \rightarrow F''$ is an equivalence. 
+    <p>
+      We have a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { F'' \ar [r] \ar [d] &  \widehat{f}^{\ast } F_{\calX } \ar [r] \ar [d] &  R(F) \ar [d] \\ 1 \ar [r]^{ \widehat{f}^{\ast } \overline{\eta } }&  \widehat{f}^{\ast } G_{\calX } \ar [r] &  R(G) } \]
+</div>
+    <p>
+       in the $\infty $-category $\Shv _{ \widehat{\SSet }}(\calY )$. Here the right square is a pullback since $\alpha $ is universal, and the outer square is a pullback by construction. It follows that the left square is also a pullback, so that 
+    <p>
+      <div class="equation">
+  \[ F'' \simeq \widehat{f}^{\ast } (1_{\calX } \times _{ G_{\calX } } F_{\calX }) \simeq \widehat{f}^{\ast } F_0. \]
+</div>
+    <p>
+       We note that $\widehat{f}^{\ast } F_0$ can be identified with the functor represented by the object $f^{\ast } U \in \calY $, which (by virtue of Remark <a href="/tag/9BBA18" data-tag="9BBA18">6.3.5.7</a>) is equivalent to $F'$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="D1330A">
+  <p><a class="environment-identifier" href="/tag/D1330A">Lemma <span data-tag="D1330A">6.3.5.27</span>.</a> Let $\kappa $ be an uncountable regular cardinal, and let $X_{\bullet }$ be a simplicial object of $\SSet $ with the following properties: </p>
+  <p><ul>
+  <li class="custom-item" data-marker="$(a)$"><p>
+For each $n \geq 0$, the connected components of $X_{\bullet }$ are essentially $\kappa $-small. 
+</p>
+</li><li class="custom-item" data-marker="$(b)$"><p>
+For every morphism $[m] \rightarrow [n]$ in $\cDelta $, the induced map $X_{n} \rightarrow X_{m}$ has essentially $\kappa $-small homotopy fibers. 
+</p>
+</li>
+</ul></p>
+  <p> Let $X$ be the geometric realization of $X_{\bullet }$. Then the induced map $X_0 \rightarrow X$ has essentially $\kappa $-small homotopy fibers. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Replacing $X$ by one of its connected components $X'$ (and each $X_{n}$ by the inverse image $X' \times _{X} X_ n$), we may suppose that $X$ is connected. 
+    <p>
+      Let $R \subseteq \pi _0 X_0 \times \pi _0 X_0$ denote the image of $\pi _0 X_1$, and let $\sim $ denote the equivalence relation on $\pi _0 X_0$ generated by $R$. It follows from assumption $(b)$ that for every $\kappa $-small subset $A \subseteq \pi _0 X_0$, the intersections $R \cap (A \times \pi _0 X_0)$ and $R \cap (\pi _0 X_0 \times A)$ are again $\kappa $-small. Since $\kappa $ is uncountable, it follows that the every $\sim $-equivalence class is $\kappa $-small. Since $(\pi _0 X_0)/ \sim $ is isomorphic to $\pi _0 X \simeq \ast $, we conclude that $\pi _0 X$ is itself $\kappa $-small. Combining this with $(a)$, we conclude that $X_0$ is essentially $\kappa $-small. Invoking $(b)$, we deduce that each $X_{n}$ is essentially $\kappa $-small, so that $X$ is essentially $\kappa $-small. The desired conclusion now follows from the long exact sequences associated to the fibration sequences $X_0 \times _{X} \{ \ast \}  \rightarrow X_0 \rightarrow X.$ 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="D5D767">
+  <p><a class="environment-identifier" href="/tag/D5D767">Lemma <span data-tag="D5D767">6.3.5.28</span>.</a> Let $\calX $ be an $\infty $-topos. Then: </p>
+  <p><ul>
+  <li class="custom-item" data-marker="$(1)$"><p>
+The inclusion $\Shv _{ \widehat{\SSet }}(\calX ) \subseteq \Fun ( \calX ^{op}, \widehat{\SSet })$ admits a left exact left adjoint $L$. 
+</p>
+</li><li class="custom-item" data-marker="$(2)$"><p>
+Let $F \in \Fun ( \calX ^{op}, \widehat{\SSet })$ be a functor such that each of the spaces $F(X)$ is essentially small. Then each of the spaces $LF(X)$ is essentially small. 
+</p>
+</li><li class="custom-item" data-marker="$(3)$"><p>
+Let $\alpha : F \rightarrow G$ be a morphism in $\Fun ( \calX ^{op}, \widehat{\SSet })$ such that, for each $X \in \calX $, the homotopy fibers of the induced map $F(X) \rightarrow G(X)$ are essentially small. Then for each $X \in \calX $, the homotopy fibers of the map $LF(X) \rightarrow LG(X)$ are also essentially small. 
+</p>
+</li>
+</ul></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The existence of the left adjoint $L$ follows from Lemma <a href="/tag/48CDAD" data-tag="48CDAD">5.5.4.19</a>. Since $\Shv _{ \widehat{\SSet }}(\calX )$ contains the essential image of the Yoneda embedding $j: \calX \rightarrow \Fun ( \calX ^{op}, \widehat{\SSet })$, we can identify $L \circ j$ with $j$. Since $j$ is left exact, Proposition <a href="/tag/A529FA" data-tag="A529FA">6.1.5.2</a> implies that $L$ is also left exact. This proves $(1)$. 
+    <p>
+      We now prove $(2)$. Choose a (small) regular cardinal $\kappa $ such that $\calX $ is $\kappa $-accessible, and let $\calX ^{\kappa }$ denote the full subcategory of $\calX $ spanned by the $\kappa $-compact objects. Let $T$ denote the composition 
+    <p>
+      <div class="equation">
+  \[  \Fun ( \calX ^{op}, \widehat{\SSet }) \stackrel{T'}{\rightarrow } \Fun ( (\calX ^{\kappa })^{op}, \widehat{\SSet }) \stackrel{T''}{\rightarrow } \Fun ( \calX ^{op}, \widehat{\SSet }), \]
+</div>
+    <p>
+       where $T'$ is the restriction functor and $T''$ is given by the right Kan extension. We have an evident natural transformation $\id \rightarrow T$, which exhibits $T$ as a localization functor on $\Fun ( \calX ^{op}, \widehat{\SSet })$. Proposition <a href="/tag/0FD9C4" data-tag="0FD9C4">6.1.3.6</a> implies that every $\widehat{\SSet }$-valued sheaf on $\calX $ is $T$-local. It follows that the canonical map $L \rightarrow LT$ is an equivalence of functors. In particular, to prove that $LF(X)$ is locally small, we may assume without loss of generality that $F$ is $T$-local. 
+    <p>
+      Let $\Fun '( \calX ^{op}, \widehat{\SSet })$ denote the full subcategory of $\Fun (\calX ^{op}, \widehat{\SSet })$ spanned by the $T$-local functors (in other words, those functors which are right Kan extensions of their restriction to $(\calX ^{\kappa })^{op}$; by Proposition <a href="/tag/DD1683" data-tag="DD1683">4.3.2.15</a> this $\infty $-category is equivalent to $\Fun ( (\calX ^{\kappa })^{op}, \widehat{\SSet } )$). We can identify $\Fun '( \calX ^{op}, \widehat{\SSet } )$ with the $\infty $-category of $\widehat{\SSet }$-valued sheaves $\Shv _{ \widehat{\SSet }}( \calP ( \calX ^{\kappa }) )$ on the $\infty $-topos $\calP ( \calX ^{\kappa })$. Let $F'$ be the image of $F$ under this identification; we observe that the functor $F': \calP ( \calX ^{\kappa })^{op} \rightarrow \widehat{\SSet }$ takes essentially small values. In Remark <a href="/tag/4FBC92" data-tag="4FBC92">6.3.5.17</a>, we saw that this $\infty $-category contains $\Shv _{\widehat{\SSet }}( \calX )$ as a left exact localization, and that the localization functor $L': \Shv _{\widehat{\SSet }}(\calP (\calX ^{\kappa })) \rightarrow \Shv _{\widehat{\SSet }}( \calX )$. Since $F'$ belongs to the essential image of the inclusion $\Shv _{ \SSet }( \calP (\calX ^{\kappa })) \subseteq \Shv _{ \widehat{\SSet }}( \calP ( \calX ^{\kappa }))$, the argument given there proves that $L'F'$ belongs to the essential image of the inclusion $\Shv _{\SSet }(\calX ) \subseteq \Shv _{ \widehat{\SSet }}(\calX )$, so that $LF(X)$ is essentially small as desired. 
+    <p>
+      To prove $(3)$, let us fix a point $\eta \in LG(X)$. We wish to prove the following stronger version of $(3)$: 
+    <p>
+      <ul>
+  <li class="custom-item" data-marker="$(3')$"><p>
+For every map $U \rightarrow X$ in $\calX $, the homotopy fiber of the induced map $LF \rightarrow LG$ is essentially small (here the homotopy fiber is taken over the point determined by $\eta $). 
+</p>
+</li>
+</ul>
+    <p>
+      Let $\calX ^{0}_{/X}$ denote the full subcategory of $\calX _{/X}$ spanned by those morphisms $U \rightarrow X$ for which condition $(2')$ is satisfied. Since $LF$ and $LG$ belong to $\Shv _{\widehat{\SSet }}(\calX )$ (and since the collection of essentially small spaces is stable under small limits), we conclude that $\calX ^{0}_{/X}$ is stable under small colimits in $\calX _{/X}$. 
+    <p>
+      Let $\calX ^{1}_{/X}$ be the largest sieve contained in $\calX ^{0}_{/X}$ (in other words, a morphism $U \rightarrow X$ belongs to $\calX ^{1}_{/X}$ if and only if, for every morphism $V \rightarrow U$ in $\calX $, the composite map $V \rightarrow X$ beongs to $\calX ^{0}_{/X}$). Since colimits in $\calX $ are universal, we conclude that $\calX ^{1}_{/X}$ is stable under small colimits in $\calX _{/X}$. It follows that $\calX ^{1}_{/X} \simeq \calX _{/X_0}$ for some monomorphism $i: X_0 \rightarrow X$ in $\calX $. We wish to show that $i$ is an equivalence. 
+    <p>
+      Since $L$ is left exact, we have $L( G \times _{LG} j(X) ) \simeq L j(X) \simeq j(X)$. In particular, the map $G \times _{LG} j(X) \rightarrow j(X_0)$ cannot factor through $j(X_0)$ unless $i$ is an equivalence. It will therefore suffice to show that $G \times _{ j(X) } j(X_0) \simeq G$. In other words, it will suffice to show that if $U \in \calX _{/X}$ and $\eta ' \in G(U)$ is a point such that the images of $\eta $ and $\eta '$ lie in the same connected component of $LG(U)$, then $U \in \calX ^{1}_{/X}$. Since the existence of $\eta '$ is stable under the process of replacing $U$ by some further refinement $V \rightarrow U$, it will suffice to show that $U \in \calX ^{0}_{/X}$. Replacing $X$ by $U$, we obtain the following reformulation of $(3')$: 
+    <p>
+      <ul>
+  <li class="custom-item" data-marker="$(3'')$"><p>
+Let $\eta ' \in G(X)$. Then the homotopy fiber $Z$ of the induced map $LF(X) \rightarrow LG(X)$ (over the point determined by $\eta $) is essentially small. 
+</p>
+</li>
+</ul>
+    <p>
+      Since $L$ is left exact, we can identify $Z$ with $LF_0(X)$, where $F_0 = F \times _{G} j(X)$. Since the homotopy fibers of the maps $F(Y) \rightarrow G(Y)$ are essentially small, we may assume without loss of generality that $F_0 \in \Fun ( \calX ^{op}, \SSet )$. Invoking $(2)$, we deduce that the values of $LF_0$ are essentially small as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<article class="env-proof">
+    <p>
+      <strong>Proof of Lemma <a href="/tag/3A8C63" data-tag="3A8C63">6.3.5.15</a>.</strong>
+       Let $\calX _{\bullet }$ be a simplicial object of $\LGeom ^{op}_{\text{ét}}$, and let $F_{\bullet }$ be its image under the Yoneda embedding $j: \LGeom ^{op} \rightarrow \widehat{\Shv }( \LGeom ^{op} )$. Let $F$ be a geometric realization of $|F_{\bullet }|$. We will prove the following: 
+    <p>
+      <ul>
+  <li class="custom-item" data-marker="$(\ast )$"><p>
+The map $\beta : F_0 \rightarrow F$ satisfies conditions $(1)$ and $(2)$ of Lemma <a href="/tag/5E6DDE" data-tag="5E6DDE">6.3.5.25</a>. 
+</p>
+</li>
+</ul>
+    <p>
+       Assuming $(\ast )$ for the moment, we will complete the proof of Lemma <a href="/tag/3A8C63" data-tag="3A8C63">6.3.5.15</a>. Let $F'_{\bullet }$ be a Čech nerve of the induced map $F_0 \rightarrow F$ (so that $F'_{n} \simeq F_0 \times _{F} F_0 \times \ldots \times _{F} F_0$; in particular $F'_0 \simeq F_0$). We first claim that each $F'_{n}$ is representable by an $\infty $-topos $\calX '_{n}$, and that each inclusion $[0] \hookrightarrow [n]$ induces an étale map of $\infty $-topos $\calX '_{n} \rightarrow \calX '_0 \simeq \calX _0$. Since $F'_{\bullet }$ is a groupoid object of $\widehat{\Shv }( \LGeom ^{op} )$ (and $F'_0 \simeq F_0$ is representable by the $\infty $-topos $\calX _0$), it will suffice to prove this result when $n=1$. Consider the pullback diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { F'_1 \ar [r]^{\beta '} \ar [d] &  F'_0 \ar [d] \\ F_0 \ar [r]^{\beta } &  F. } \]
+</div>
+    <p>
+       It follows from condition $(\ast )$ that $\beta '$ satisfies conditions $(1)$ and $(2)$ of Lemma <a href="/tag/5E6DDE" data-tag="5E6DDE">6.3.5.25</a>, so that $F'_1$ is representable by an $\infty $-topos étale over $\calX _0$ as desired. 
+    <p>
+      Since the Yoneda embedding $j$ is fully faithful, we may assume without loss of generality that $F'_{\bullet }$ is the image under $j$ of a groupoid object $\calX '_{\bullet }$ of $\LGeom ^{op}$. Using Corollary <a href="/tag/3FE2A4" data-tag="3FE2A4">6.3.5.9</a>, we deduce that $\calX '_{\bullet }$ defines a simplicial object of the subcategory $\LGeom ^{op}_{\text{ét}}$. The evident natural transformation $F_{\bullet } \rightarrow F'_{\bullet }$ induces a map of simplicial objects $\alpha : \calX _{\bullet } \rightarrow \calX '_{\bullet }$; we claim that $\alpha $ has the desired properties. The only nontrivial point is to verify that the induced map of geometric realizations $| \calX _{\bullet } | \rightarrow | \calX '_{\bullet } |$ is an equivalence of $\infty $-topoi. For this, it suffices to show that for every $\infty $-topos $\calY $, the upper horizontal map in the diagram 
+    <p>
+      <div class="equation">
+  \[ \xymatrix { \bHom _{ \LGeom ^{op} }( | \calX '_{\bullet } |, \calY ) \ar [r] \ar [d] &  \bHom _{ \LGeom ^{op} }( | \calX _{\bullet } |, \calY ) \ar [d] \\ \varprojlim \bHom _{ \LGeom ^{op} }( \calX '_{n}, \calY ) \ar [r] &  \varprojlim \bHom _{ \LGeom ^{op} }( \calX _{n}, \calY ) } \]
+</div>
+    <p>
+       is a homotopy equivalence. Since the vertical maps are homotopy equivalences, it suffices to show that the lower horizontal map is a homotopy equivalence. Since $j$ is fully faithful, it suffices to show that the lower horizontal map in the analogous diagram 
+    <p>
+      <div class="equation">
+  \[ \xymatrix { \bHom _{ \widehat{\Shv }(\LGeom ^{op}) }( | F'_{\bullet } |, e_{\calY }) \ar [r] \ar [d] &  \bHom _{ \widehat{\Shv }(\LGeom ^{op})}( | F_{\bullet } |, e_{\calY }) \ar [d] \\ \varprojlim \bHom _{ \widehat{\Shv }(\LGeom ^{op})}( F'_{n}, e_{\calY }) \ar [r] &  \varprojlim \bHom _{ \widehat{\Shv }(\LGeom ^{op}) }( F_{n}, e_{\calY } ) } \]
+</div>
+    <p>
+       is a homotopy equivalence. Again, the vertical maps are homotopy equivalences, so we are reduced to showing that the upper horizontal map is a homotopy equivalence. This follows from the fact that we have an equivalence $|F_{\bullet }| \simeq F \simeq |F'_{\bullet }|$ in $\widehat{\Shv }( \LGeom ^{op} )$, since groupoid objects in $\widehat{\Shv }(\LGeom ^{op})$ are effective (Lemma <a href="/tag/F823E3" data-tag="F823E3">6.3.5.21</a>). 
+    <p>
+      It remains to prove $(\ast )$. Remark <a href="/tag/ED5745" data-tag="ED5745">6.3.5.24</a> implies that $\beta : F_0 \rightarrow F$ is universal. To complete the proof, we must show that for every $\infty $-topos $\calY $, the homotopy fibers of the induced map $F_0( \calY ) \rightarrow F(\calY )$ are essentially small. Let $R: \widehat{\Shv }( \LGeom ^{op}) \rightarrow \Shv _{ \widehat{\SSet }}( \calY )$ denote the restriction map, let $G_{\bullet }$ denote the image of $F_{\bullet }$ under $R$, and let $G = | G_{\bullet } | \simeq R(F)$. Let $G'$ denote the geometric realization of $G_{\bullet }$ in the larger $\infty $-category $\Fun ( \calY ^{op}, \widehat{\SSet })$, and let $L: \Fun ( \calY ^{op}, \widehat{\SSet } ) \rightarrow \Shv _{ \widehat{\SSet } }(\calY )$ be a left adjoint to the inclusion (see Lemma <a href="/tag/D5D767" data-tag="D5D767">6.3.5.28</a>). Then we can identify the map $G_0 \rightarrow G$ with the image under $L$ of the map $u: G_0 \rightarrow G'$. In view of Lemma <a href="/tag/D5D767" data-tag="D5D767">6.3.5.28</a>, it will suffice to show that for every object $U \in \calY $, the induced map $G_0(U) \rightarrow G'(U)$ has essentially small homotopy fibers. 
+    <p>
+      For each $n \geq 0$ and each object $U \in \calY $, we can identify $G_{n}(U)$ with the maximal Kan complex contained in $\Fun ^{\ast }( \calX _{n}, \calY _{/U})$. Since the $\infty $-category $\Fun ^{\ast }( \calX _{n}, \calY _{/U})$ is locally small (Proposition <a href="/tag/8552A9" data-tag="8552A9">6.3.1.13</a>), we conclude that each connected component of $G_{n}(U)$ is essentially small. Moreover, for every morphism $[m] \rightarrow [n]$ in $\cDelta $, the induced map $\beta : G_{n}(U) \rightarrow G_{m}(U)$ is induced by composition with an étale geometric morphism $g^{\ast }: \calX _{m} \rightarrow \calX _{n}$, so that the homotopy fibers of $\beta $ are essentially small by Remark <a href="/tag/9BBA18" data-tag="9BBA18">6.3.5.7</a>. The desired result now follows from Lemma <a href="/tag/D1330A" data-tag="D1330A">6.3.5.27</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
