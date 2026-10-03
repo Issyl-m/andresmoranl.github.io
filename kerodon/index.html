@@ -958,6 +958,66 @@
                     return;
                 }
 
+                if (activePopupStack.length == 0) {
+                    popup = window;
+                } else {
+                    popup = activePopupStack[
+                        activePopupStack.length - 1
+                    ].getElementsByClassName('preview-box')[0];
+                }
+
+                const scrollAmount = 50;
+
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault(); // Stop internal focus navigation
+                    popup.scrollBy(
+                        {
+                            top: scrollAmount
+                        }
+                    );
+                    return;
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault(); // Stop internal focus navigation
+                    popup.scrollBy(
+                        {
+                            top: -scrollAmount
+                        }
+                    );
+                    return;
+                } else if (e.key === 'Home') {
+                    e.preventDefault(); // Stop internal focus navigation
+                    popup.scrollBy(
+                        {
+                            top: -99999999
+                        }
+                    );
+                    return;
+                } else if (e.key === 'End') {
+                    e.preventDefault(); // Stop internal focus navigation
+                    popup.scrollBy(
+                        {
+                            top: 99999999
+                        }
+                    );
+                    return;
+                } else if (e.key === 'PageUp') {
+                    e.preventDefault(); // Stop internal focus navigation
+                    popup.scrollBy(
+                        {
+                            top: -scrollAmount*3
+                        }
+                    );
+                    return;
+                } else if (e.key === 'PageDown') {
+                    e.preventDefault(); // Stop internal focus navigation
+                    popup.scrollBy(
+                        {
+                            top: scrollAmount*3
+                        }
+                    );
+                    return;
+                }     
+
                 /*
                  * ----------------------------------------------------
                  * Ctrl/Cmd + /
