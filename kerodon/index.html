@@ -1400,7 +1400,156 @@
             });
         }
 
-        function applyHighlightsToElement(
+        function applyHighlightsToElement(element, query) {
+            clearHighlights(element);
+
+            if (!query) {
+                return;
+            }
+
+            const qWords = query
+                .toLowerCase()
+                .trim()
+                .split(/\s+/)
+                .filter(Boolean);
+
+            if (qWords.length === 0) {
+                return;
+            }
+
+            const walker = document.createTreeWalker(
+                element,
+                NodeFilter.SHOW_TEXT,
+                {
+                    acceptNode: function(node) {
+                        if (
+                            node.parentNode.tagName === 'SCRIPT' ||
+                            node.parentNode.tagName === 'STYLE' ||
+                            node.parentNode.classList.contains('dynamic-highlight')
+                        ) {
+                            return NodeFilter.FILTER_REJECT;
+                        }
+                        return NodeFilter.FILTER_ACCEPT;
+                    }
+                }
+            );
+
+            const textNodes = [];
+            while (walker.nextNode()) {
+                textNodes.push(walker.currentNode);
+            }
+
+            textNodes.forEach(node => {
+                const text = node.nodeValue;
+                const lowerText = text.toLowerCase();
+
+                // 1. Find all raw MathJax ranges in this text node so we can protect them
+                const mathRanges = [];
+                // Matches $$...$$, \[...\], $...$, and \(...\)
+                const mathRegex = /(\$\$[\s\S]*?\$\$|\\\[[\s\S]*?\\\]|\$[^\$\n]+?\$|\\\([\s\S]*?\\\))/g;
+                let mathMatch;
+                while ((mathMatch = mathRegex.exec(text)) !== null) {
+                    mathRanges.push({
+                        start: mathMatch.index,
+                        end: mathMatch.index + mathMatch[0].length
+                    });
+                }
+
+                // Helper to check if a match overlaps with any MathJax block
+                function isInsideMath(start, end) {
+                    return mathRanges.some(r => !(end <= r.start || start >= r.end));
+                }
+
+                let matches = [];
+
+                qWords.forEach((word, wordIndex) => {
+                    let idx = lowerText.indexOf(word);
+
+                    while (idx !== -1) {
+                        const start = idx;
+                        const end = idx + word.length;
+
+                        // 2. Only accept the match if it is NOT inside a raw MathJax block
+                        if (!isInsideMath(start, end)) {
+                            matches.push({
+                                start: start,
+                                end: end,
+                                wordIndex
+                            });
+                        }
+
+                        idx = lowerText.indexOf(word, idx + 1);
+                    }
+                });
+
+                if (matches.length === 0) {
+                    return;
+                }
+
+                matches.sort((a, b) => a.start - b.start);
+
+                const merged = [];
+                let current = matches[0];
+
+                for (let i = 1; i < matches.length; i++) {
+                    if (matches[i].start <= current.end) {
+                        current.end = Math.max(current.end, matches[i].end);
+                    } else {
+                        merged.push(current);
+                        current = matches[i];
+                    }
+                }
+
+                merged.push(current);
+
+                const frag = document.createDocumentFragment();
+                let lastIdx = 0;
+
+                merged.forEach(m => {
+                    if (m.start > lastIdx) {
+                        frag.appendChild(
+                            document.createTextNode(
+                                text.substring(lastIdx, m.start)
+                            )
+                        );
+                    }
+
+                    const span = document.createElement('span');
+                    span.className = 'dynamic-highlight';
+
+                    const colorPair =
+                        HIGHLIGHT_PALETTE[
+                            m.wordIndex % HIGHLIGHT_PALETTE.length
+                        ];
+
+                    span.style.backgroundColor = colorPair.bg;
+                    span.style.color = colorPair.text;
+                    span.style.padding = '0 2px';
+                    span.style.borderRadius = '2px';
+
+                    span.textContent = text.substring(
+                        m.start,
+                        m.end
+                    );
+
+                    frag.appendChild(span);
+
+                    lastIdx = m.end;
+                });
+
+                if (lastIdx < text.length) {
+                    frag.appendChild(
+                        document.createTextNode(
+                            text.substring(lastIdx)
+                        )
+                    );
+                }
+
+                node.parentNode.replaceChild(frag, node);
+            });
+        }
+
+        function applyHighlightsToElement__(
             element,
             query
         ) {
