@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" id="main">
+<div class="html" id="tag">
+<h3 class="tex-subsection" id="subsection:natural-iso-mapping-cylinder"><span data-tag="01K2">4.6.3</span> Digression: Categorical Mapping Cylinders</h3>
+<p>
+Let $\operatorname{\mathcal{C}}$ be an $\infty $-category, and let $f_0, f_1: B \rightarrow \operatorname{\mathcal{C}}$ be diagrams in $\operatorname{\mathcal{C}}$ indexed by a simplicial set $B$. Recall that $f_0$ and $f_1$ are <em>naturally isomorphic</em> if they are isomorphic as objects of the diagram $\infty $-category $\operatorname{Fun}(B,\operatorname{\mathcal{C}})$ (Definition <a data-tag="01DG" href="/tag/01DG">4.4.4.1</a>). Our goal in this section is to establish a detection criterion for natural isomorphisms. 
+</p>
+<p>
+<article class="env-proposition" id="01K3">
+<p><a class="environment-identifier" href="/tag/01K3">Proposition <span data-tag="01K3">4.6.3.1</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category and let $f_0, f_1: B \rightarrow \operatorname{\mathcal{C}}$ be a pair of diagrams. The following conditions are equivalent: </p>
+<p><dl>
+<dt>$(1)$</dt>
+<dd><p>
+The diagrams $f_0$ and $f_1$ are isomorphic when regarded as objects of the $\infty $-category $\operatorname{Fun}(B, \operatorname{\mathcal{C}})$. 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+There exists a factorization of the fold map $(\operatorname{id}_ B, \operatorname{id}_ B): B \coprod B \rightarrow B$ as a composition 
+</p>
+<div class="equation">
+  \[  B \coprod B \xrightarrow { (s_0, s_1)} \overline{B} \xrightarrow {\pi } B, \]
+</div>
+<p>
+ where $\pi $ is a categorical equivalence, and a diagram $\overline{f}: \overline{B} \rightarrow \operatorname{\mathcal{C}}$ satisfying $f_0 = \overline{f} \circ s_0$ and $f_1 = \overline{f} \circ s_1$. 
+</p>
+</dd>
+<dt>$(3)$</dt>
+<dd><p>
+For every factorization of the fold map $(\operatorname{id}_ B, \operatorname{id}_ B): B \coprod B \rightarrow B$ as a composition 
+</p>
+<div class="equation">
+  \[  B \coprod B \xrightarrow { (s_0, s_1)} \overline{B} \xrightarrow {\pi } B, \]
+</div>
+<p>
+ where $s_0$ and $s_1$ have disjoint images, there exists a diagram $\overline{f}: \overline{B} \rightarrow \operatorname{\mathcal{C}}$ satisfying $f_0 = \overline{f} \circ s_0$ and $f_1 = \overline{f} \circ s_1$. 
+</p>
+</dd>
+</dl></p>
+</article>
+</p>
+<p>
+We will deduce Proposition <a data-tag="01K3" href="/tag/01K3">4.6.3.1</a> from a more general statement (Theorem <a data-tag="01KA" href="/tag/01KA">4.6.3.8</a>), which we prove at the end of this section. 
+</p>
+<p>
+<article class="env-remark" id="01K4">
+<p><a class="environment-identifier" href="/tag/01K4">Remark <span data-tag="01K4">4.6.3.2</span>.</a> Proposition <a data-tag="01K3" href="/tag/01K3">4.6.3.1</a> has an interpretation in the language of model categories. Let us regard the category $\operatorname{Set_{\Delta }}$ of simplicial sets as equipped with the Joyal model structure of Remark <a class="" data-content="This is a reference to something which is not yet available in Kerodon." data-html="true" data-placement="bottom" data-toggle="popover" data-trigger="focus" role="button" style="cursor: pointer;" tabindex="0" title="Future reference"><img src="/static/images/question.svg"/></a>. Conditions $(2)$ and $(3)$ of Proposition <a data-tag="01K3" href="/tag/01K3">4.6.3.1</a> are equivalent to the requirement that the morphisms $f_0, f_1: B \rightarrow \operatorname{\mathcal{C}}$ are homotopic with respect to the Joyal model structure (in the sense of Definition <a class="" data-content="This is a reference to something which is not yet available in Kerodon." data-html="true" data-placement="bottom" data-toggle="popover" data-trigger="focus" role="button" style="cursor: pointer;" tabindex="0" title="Future reference"><img src="/static/images/question.svg"/></a>). Proposition <a data-tag="01K3" href="/tag/01K3">4.6.3.1</a> asserts that this is equivalent to the requirement that $f_0$ and $f_1$ are naturally isomorphic (in the sense of Definition <a data-tag="01DG" href="/tag/01DG">4.4.4.1</a>). </p>
+</article>
+</p>
+<p>
+Let us introduce a bit of terminology which is useful for exploiting Proposition <a data-tag="01K3" href="/tag/01K3">4.6.3.1</a>. 
+</p>
+<p>
+<article class="env-definition" id="01K5">
+<p><a class="environment-identifier" href="/tag/01K5">Definition <span data-tag="01K5">4.6.3.3</span>.</a> Let $i: A \hookrightarrow B$ be a monomorphism of simplicial sets. A <em>categorical mapping cylinder for $B$ relative to $A$</em> is a simplicial set $\overline{B}$ equipped with a morphism $\pi : \overline{B} \rightarrow B$ together with a pair of sections $s_0, s_1: B \rightarrow \overline{B}$ having the following properties: </p>
+<p><ul>
+<li class="custom-item" data-marker="(1)"><p>
+The morphism $\pi : \overline{B} \rightarrow B$ is a categorical equivalence of simplicial sets. 
+</p>
+</li><li class="custom-item" data-marker="(2)"><p>
+The morphisms $s_0, s_1: B \rightarrow \overline{B}$ satisfy $s_0 \circ i = s_1 \circ i$, and the induced map $(s_0, s_1): (B \coprod _{A} B) \rightarrow \overline{B}$ is a monomorphism. 
+</p>
+</li>
+</ul></p>
+<p> If these conditions are satisfied in the special case $A = \emptyset $, we will simply refer to $\overline{B}$ (together with the morphisms $\pi $, $s_0$, and $s_1$) as a <em>categorical mapping cylinder for $B$</em>. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="01K6">
+<p><a class="environment-identifier" href="/tag/01K6">Remark <span data-tag="01K6">4.6.3.4</span>.</a> In the situation of Definition <a data-tag="01K5" href="/tag/01K5">4.6.3.3</a>, condition $(2)$ is equivalent to the requirement that the diagram of simplicial sets </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ A \ar [r]^-{i} \ar [d]^{i} &amp;  B \ar [d]^{s_0} \\ B \ar [r]^-{s_1} &amp;  \overline{B} } \]
+</div>
+<p> commutes and is a pullback square (note that the morphisms $s_0$ and $s_1$ are automatically monomorphisms, since they are right inverse to the map $\pi : \overline{B} \rightarrow B$). </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="01K7">
+<p><a class="environment-identifier" href="/tag/01K7">Remark <span data-tag="01K7">4.6.3.5</span>.</a> Let $i: A \hookrightarrow B$ be a monomorphism of simplicial sets, and let $(\operatorname{id}_ B, \operatorname{id}_ B): (B \coprod _{A} B) \rightarrow B$ be the fold map. Unwinding the definitions, we see that a categorical mapping cylinder for $B$ relative to $A$ can be identified with a factorization of $(\operatorname{id}_ B, \operatorname{id}_ B)$ as a composition </p>
+<div class="equation">
+  \[  B \coprod _{A} B \xrightarrow {\iota } \overline{B} \xrightarrow {\pi } B, \]
+</div>
+<p> where $\iota $ is a monomorphism of simplicial sets and $\pi $ is a categorical equivalence. Such factorizations always exist: by virtue of Exercise <a data-tag="00UY" href="/tag/00UY">3.1.8.11</a>, we can even arrange that $\pi $ is a trivial Kan fibration of simplicial sets (hence a categorical equivalence by virtue of Proposition <a data-tag="01EG" href="/tag/01EG">4.5.4.11</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="01K8">
+<p><a class="environment-identifier" href="/tag/01K8">Example <span data-tag="01K8">4.6.3.6</span>.</a> Let $i: A \hookrightarrow B$ be a monomorphism of simplicial sets, and let $Q$ be a contractible Kan complex containing vertices $x_0, x_1 \in Q$ with $x_0 \neq x_1$. Set $\overline{B} = A \coprod _{ (Q \times A) } (Q \times B)$. The commutative diagram </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ Q \times A \ar [r] \ar [d] &amp;  Q \times B \ar [d] \\ A \ar [r]^-{i} &amp;  B } \]
+</div>
+<p> is a categorical pushout square (since the vertical maps are categorical equivalences), and therefore induces a categorical equivalence $\overline{\pi }: \overline{B} \rightarrow B$ (Proposition <a data-tag="01FF" href="/tag/01FF">4.5.5.11</a>). Let $s_0: B \rightarrow \overline{B}$ be the section of $\pi $ given by the composition </p>
+<div class="equation">
+  \[  B \simeq \{  x_0 \}  \times B \hookrightarrow Q \times B \rightarrow \overline{B}, \]
+</div>
+<p> and define $s_1: B \rightarrow \overline{B}$ similarly. Then the quadruple $(\overline{B}, \pi , s_0, s_1)$ is a categorical mapping cylinder of $B$ relative to $A$. </p>
+</article>
+</p>
+<p>
+<article class="env-corollary" id="01K9">
+<p><a class="environment-identifier" href="/tag/01K9">Corollary <span data-tag="01K9">4.6.3.7</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category, and let $f_0, f_1: B \rightarrow \operatorname{\mathcal{C}}$ be a pair of diagrams indexed by a simplicial set $B$. Let </p>
+<div class="equation">
+  \[ (B \coprod B) \xrightarrow {(s_0, s_1)} \overline{B} \xrightarrow {\pi } B \]
+</div>
+<p> be a categorical mapping cylinder for $B$ (Definition <a data-tag="01K5" href="/tag/01K5">4.6.3.3</a>). The following conditions are equivalent: </p>
+<p><dl>
+<dt>$(a)$</dt>
+<dd><p>
+The diagrams $f_0$ and $f_1$ are isomorphic when regarded as objects of the $\infty $-category $\operatorname{Fun}(B, \operatorname{\mathcal{C}})$. 
+</p>
+</dd>
+<dt>$(b)$</dt>
+<dd><p>
+There exists a diagram $\overline{f}: \overline{B} \rightarrow \operatorname{\mathcal{C}}$ satisfying $f_0 = \overline{f} \circ s_0$ and $f_1 = \overline{f} \circ s_1$. 
+</p>
+</dd>
+</dl></p>
+<p> In particular, condition $(b)$ does not depend on the choice of categorical mapping cylinder. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      The implication $(a) \Rightarrow (b)$ follows from the implication $(1) \Rightarrow (3)$ of Proposition <a data-tag="01K3" href="/tag/01K3">4.6.3.1</a>, and the implication $(b) \Rightarrow (a)$ from the implication $(2) \Rightarrow (1)$ of Proposition <a data-tag="01K3" href="/tag/01K3">4.6.3.1</a>. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+We will deduce Proposition <a data-tag="01K3" href="/tag/01K3">4.6.3.1</a> from a more general relative statement. 
+</p>
+<p>
+<article class="env-theorem" id="01KA">
+<p><a class="environment-identifier" href="/tag/01KA">Theorem <span data-tag="01KA">4.6.3.8</span>.</a> Let $q: X \rightarrow S$ be an isofibration of simplicial sets, let $g: B \rightarrow S$ be a morphism of simplicial sets, and let $f_0, f_1: B \rightarrow X$ be morphisms satisfying $q \circ f_0 = g = q \circ f_1$. Let $A \subseteq B$ be a simplicial subset satisfying $f_0|_{A} = f_1|_{A}$. The following conditions are equivalent: </p>
+<p><dl>
+<dt>$(1)$</dt>
+<dd><p>
+The diagrams $f_0$ and $f_1$ are isomorphic when regarded as objects of the $\infty $-category $\operatorname{Fun}_{A/ \,  /S}(B, X)$ (see Proposition <a data-tag="01GQ" href="/tag/01GQ">4.1.4.6</a>). 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+There exists a factorization of the fold map $(\operatorname{id}_ B, \operatorname{id}_ B): B \coprod _{A} B \rightarrow B$ as a composition 
+</p>
+<div class="equation">
+  \[  B \coprod _{A} B \xrightarrow { (s_0, s_1)} \overline{B} \xrightarrow {\pi } B, \]
+</div>
+<p>
+ where $\pi $ is a categorical equivalence and the lifting problem 
+</p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ B \coprod _{A} B \ar [d]_{ (s_0, s_1)} \ar [r]^-{ (f_0, f_1)} &amp;  X \ar [d]^{q} \\ \overline{B} \ar [r]^-{ g \circ \pi } \ar@ {--&gt;}[ur]^{ \overline{f} } &amp;  S } \]
+</div>
+<p>
+ admits a solution. 
+</p>
+</dd>
+<dt>$(3)$</dt>
+<dd><p>
+For every factorization of the fold map $(\operatorname{id}_ B, \operatorname{id}_ B): B \coprod _{A} B \rightarrow B$ as a composition 
+</p>
+<div class="equation">
+  \[  B \coprod _{A} B \xrightarrow { (s_0, s_1)} \overline{B} \xrightarrow {\pi } B, \]
+</div>
+<p>
+ where the map $(s_0, s_1): B \coprod _{A} B \rightarrow \overline{B}$ is a monomorphism, the lifting problem 
+</p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ B \coprod _{A} B \ar [d]_{ (s_0, s_1)} \ar [r]^-{ (f_0, f_1)} &amp;  X \ar [d]^{q} \\ \overline{B} \ar [r]^-{ g \circ \pi } \ar@ {--&gt;}[ur]^{ \overline{f} } &amp;  S } \]
+</div>
+<p>
+ admits a solution. 
+</p>
+</dd>
+</dl></p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      By virtue of Corollary <a data-tag="01H3" href="/tag/01H3">4.4.3.15</a>, condition $(1)$ is satisfied if and only if there exists a morphism of simplicial sets $u: Q \rightarrow \operatorname{Fun}_{A/\, /S}( B, X)$, where $Q$ is a contractible Kan complex, and a pair of vertices $x_0, x_1 \in Q$ satisfying $u(x_0) = f_0$ and $u(x_1) =f_1$. Moreover, we may assume (modifying $Q$ if necessary) that the vertices $x_0$ and $x_1$ are distinct. In this case, let $\overline{B} = A \coprod _{ (Q \times A) } (Q \times B)$ and let 
+    <p>
+<div class="equation">
+  \[  B \coprod _{A} B \xrightarrow { (s_0, s_1)} \overline{B} \xrightarrow {\pi } B \]
+</div>
+<p>
+       be the categorical mapping cylinder described in Example <a data-tag="01K8" href="/tag/01K8">4.6.3.6</a>. Unwinding the definitions, we see that morphisms $u: Q \rightarrow \operatorname{Fun}_{A/\, /S}( B, X)$ satisfying $u(x_0) = f_0$ and $u(x_1) = f_1$ can be identified with solutions to the lifting problem 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ B \coprod _{A} B \ar [d]_{ (s_0, s_1)} \ar [r]^-{ (f_0, f_1)} &amp;  X \ar [d]^{q} \\ \overline{B} \ar [r]^-{ g \circ \pi } \ar@ {--&gt;}[ur] &amp;  S. } \]
+</div>
+<p>
+       This proves that $(3) \Rightarrow (1) \Rightarrow (2)$. 
+    <p>
+      We will complete the proof by showing that $(2) \Rightarrow (3)$. Assume that $(2)$ is satisfied, so that the fold map $(\operatorname{id}_ B, \operatorname{id}_ B): B \coprod _{A} B \rightarrow B$ factors as a composition 
+    <p>
+<div class="equation">
+  \[  B \coprod _{A} B \xrightarrow { (s_0, s_1)} \overline{B} \xrightarrow {\pi } B \]
+</div>
+<p>
+       where $\pi $ is a categorical equivalence and there exists a morphism $\overline{f}: \overline{B} \rightarrow X$ for which the diagram 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ B \coprod _{A} B \ar [d]_{ (s_0, s_1)} \ar [r]^-{ (f_0, f_1)} &amp;  X \ar [d]^{q} \\ \overline{B} \ar [r]^-{ g \circ \pi } \ar [ur]^{ \overline{f} } &amp;  S } \]
+</div>
+<p>
+       commutes. Using Exercise <a data-tag="00UY" href="/tag/00UY">3.1.8.11</a>, we can factor $\pi $ as a composition 
+    <p>
+<div class="equation">
+  \[  \overline{B} \xrightarrow {j} \overline{B}' \xrightarrow {\pi '} B, \]
+</div>
+<p>
+       where $j$ is a monomorphism and $\pi '$ is a trivial Kan fibration. Then $\pi '$ is also a categorical equivalence (Proposition <a data-tag="01EG" href="/tag/01EG">4.5.4.11</a>), so the morphism $j$ is a categorical equivalence (Remark <a data-tag="01ED" href="/tag/01ED">4.5.4.5</a>). Our assumption that $q$ is an isofibration guarantees that the lifting problem 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \overline{B} \ar [d]_{j} \ar [r]^-{ \overline{f} } &amp;  X \ar [d]^{q} \\ \overline{B}' \ar [r]^-{ g \circ \pi ' } \ar@ {--&gt;}[ur]^{ \overline{f}' } &amp;  S } \]
+</div>
+<p>
+       admits a solution $\overline{f}': \overline{B}' \rightarrow X$. 
+    <p>
+      We now show that condition $(3)$ is satisfied. Suppose that we are given another factorization of the fold map $(\operatorname{id}_ B, \operatorname{id}_ B): B \coprod _{A} B \rightarrow B$ as a composition 
+    <p>
+<div class="equation">
+  \[  B \coprod _{A} B \xrightarrow {\iota } \overline{B}'' \xrightarrow {\pi ''} B, \]
+</div>
+<p>
+       where $\iota $ is a monomorphism. We wish to show that the lifting problem 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ B \coprod _{A} B \ar [d]_{ \iota } \ar [r]^-{ (f_0, f_1)} &amp;  X \ar [d]^{q} \\ \overline{B}'' \ar [r]^-{ g \circ \pi ''} \ar@ {--&gt;}[ur]^{\overline{f}''} &amp;  S } \]
+</div>
+<p>
+       admits a solution $\overline{f}'': \overline{B}'' \rightarrow X$. We first observe that the lifting problem 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ B \coprod _{A} B \ar [r]^-{j \circ (s_0, s_1)} \ar [d]_{\iota } &amp;  \overline{B}' \ar [d]^{ \pi ' } \\ \overline{B}'' \ar [r]^-{\pi ''} \ar@ {--&gt;}[ur]^{v} &amp;  B } \]
+</div>
+<p>
+       admits a solution $v: \overline{B}'' \rightarrow \overline{B}'$, since $\iota $ is a monomorphism and $\pi '$ is a trivial Kan fibration. We now conclude the proof by setting $\overline{f}'' = \overline{f}' \circ v$. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></article>
+<p>
+<article class="env-corollary" id="01KB">
+<p><a class="environment-identifier" href="/tag/01KB">Corollary <span data-tag="01KB">4.6.3.9</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category, let $f_0, f_1: B \rightarrow \operatorname{\mathcal{C}}$ be a pair of diagrams indexed by a simplicial set $B$, and let $A \subseteq B$ be a simplicial subset satisfying $f_0|_{A} = f_1|_{A}$. The following conditions are equivalent: </p>
+<p><dl>
+<dt>$(1)$</dt>
+<dd><p>
+The diagrams $f_0$ and $f_1$ are isomorphic when regarded as objects of the $\infty $-category $\operatorname{Fun}_{A/}(B, \operatorname{\mathcal{C}})$. 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+There exists a factorization of the fold map $(\operatorname{id}_ B, \operatorname{id}_ B): B \coprod _{A} B \rightarrow B$ as a composition 
+</p>
+<div class="equation">
+  \[  B \coprod _{A} B \xrightarrow { (s_0, s_1)} \overline{B} \xrightarrow {\pi } B, \]
+</div>
+<p>
+ where $\pi $ is a categorical equivalence, and a morphism $\overline{f}: \overline{B} \rightarrow \operatorname{\mathcal{C}}$ satisfying $f_0 = \overline{f} \circ s_0$ and $f_1 = \overline{f} \circ s_1$. 
+</p>
+</dd>
+<dt>$(3)$</dt>
+<dd><p>
+For every factorization of the fold map $(\operatorname{id}_ B, \operatorname{id}_ B): B \coprod _{A} B \rightarrow B$ as a composition 
+</p>
+<div class="equation">
+  \[  B \coprod _{A} B \xrightarrow { (s_0, s_1)} \overline{B} \xrightarrow {\pi } B \]
+</div>
+<p>
+ where the map $(s_0, s_1): B \coprod _{A} B \rightarrow \overline{B}$ is a monomorphism, there exists a morphism $\overline{f}: \overline{B} \rightarrow \operatorname{\mathcal{C}}$ satisfying $f_0 = \overline{f} \circ s_0$ and $f_1 = \overline{f} \circ s_1$. 
+</p>
+</dd>
+</dl></p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Apply Theorem <a data-tag="01KA" href="/tag/01KA">4.6.3.8</a> in the special case where $S = \Delta ^{0}$. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<article class="env-proof">
+<p>
+<strong>Proof of Proposition <a data-tag="01K3" href="/tag/01K3">4.6.3.1</a>.</strong>
+       Apply Corollary <a data-tag="01KB" href="/tag/01KB">4.6.3.9</a> in the special case $A = \emptyset $. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+For later use, we record a relative version of Corollary <a data-tag="01K9" href="/tag/01K9">4.6.3.7</a>. 
+</p>
+<p>
+<article class="env-corollary" id="01KC">
+<p><a class="environment-identifier" href="/tag/01KC">Corollary <span data-tag="01KC">4.6.3.10</span>.</a> Let $q: X \rightarrow S$ be an isofibration of simplicial sets, let $g: B \rightarrow S$ be a morphism of simplicial sets, and let $f_0, f_1: B \rightarrow X$ be morphisms satisfying $q \circ f_0 = g = q \circ f_1$. Let $A$ be a simplicial subset of $B$ satisfying $f_0|_{A} = f_1|_{A}$, and let </p>
+<div class="equation">
+  \[  (B \coprod _{A} B) \xrightarrow { (s_0, s_1)} \overline{B} \xrightarrow {\pi } B \]
+</div>
+<p> be a categorical mapping cylinder of $B$ relative to $A$. The following conditions are equivalent: </p>
+<p><dl>
+<dt>$(a)$</dt>
+<dd><p>
+The diagrams $f_0$ and $f_1$ are isomorphic when regarded as objects of the $\infty $-category $\operatorname{Fun}_{A/ \,  /S}(B, X)$. 
+</p>
+</dd>
+<dt>$(b)$</dt>
+<dd><p>
+The lifting problem 
+</p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ B \coprod _{A} B \ar [d]_{ (s_0, s_1)} \ar [r]^-{ (f_0, f_1)} &amp;  X \ar [d]^{q} \\ \overline{B} \ar [r]^-{ g \circ \pi } \ar@ {--&gt;}[ur]^{ \overline{f} } &amp;  S } \]
+</div>
+<p>
+ admits a solution. 
+</p>
+</dd>
+</dl></p>
+<p> In particular, condition $(b)$ does not depend on the choice of categorical mapping cylinder. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      The implication $(a) \Rightarrow (b)$ follows from the implication $(1) \Rightarrow (3)$ of Theorem <a data-tag="01KA" href="/tag/01KA">4.6.3.8</a>, and the implication $(b) \Rightarrow (a)$ from the implication $(2) \Rightarrow (1)$ of Theorem <a data-tag="01KA" href="/tag/01KA">4.6.3.8</a>. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+<article class="env-corollary" id="01KD">
+<p><a class="environment-identifier" href="/tag/01KD">Corollary <span data-tag="01KD">4.6.3.11</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category and let $f_0, f_1: B \rightarrow \operatorname{\mathcal{C}}$ be a pair of diagrams indexed by a simplicial set $B$. Let $A$ be a simplicial subset of $B$ satisfying $f_0|_{A} = f_1|_{A}$, and let </p>
+<div class="equation">
+  \[  (B \coprod _{A} B) \xrightarrow { (s_0, s_1)} \overline{B} \xrightarrow {\pi } B \]
+</div>
+<p> be a categorical mapping cylinder of $B$ relative to $A$. The following conditions are equivalent: </p>
+<p><dl>
+<dt>$(a)$</dt>
+<dd><p>
+The diagrams $f_0$ and $f_1$ are isomorphic when regarded as objects of the $\infty $-category $\operatorname{Fun}_{A/}(B, \operatorname{\mathcal{C}})$. 
+</p>
+</dd>
+<dt>$(b)$</dt>
+<dd><p>
+There exists a diagram $\overline{f}: \overline{B} \rightarrow \operatorname{\mathcal{C}}$ satisfying $f_0 = \overline{f} \circ s_0$ and $f_1 = \overline{f} \circ s_1$. 
+</p>
+</dd>
+</dl></p>
+<p> In particular, condition $(b)$ does not depend on the choice of categorical mapping cylinder. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Apply Corollary <a data-tag="01KC" href="/tag/01KC">4.6.3.10</a> in the special case $S = \Delta ^{0}$. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.html a[data-toggle="popover"]').popover()
+
+  // render mathematics in popovers
+  $("[data-toggle=popover]").on('shown.bs.popover', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $("div.popover-body").html()]);
+  });
+});
+  </script>
+</div>
+</section></body>
+</html>

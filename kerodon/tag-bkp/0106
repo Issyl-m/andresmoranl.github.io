@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" id="main">
+<div class="html" id="tag">
+<h2 class="tex-section" id="section:pullback-and-pushout"><span data-tag="0106">3.4</span> Homotopy Pullback and Homotopy Pushout Squares</h2>
+<p>
+Recall that the category of simplicial sets admits arbitrary limits and colimits (Remark <a data-tag="000J" href="/tag/000J">1.1.0.8</a>). In particular, given a diagram of simplicial sets $X_0 \rightarrow X \leftarrow X_1$, we can form the fiber product $X_0 \times _{X} X_1$. Beware that, in general, this construction is not invariant under weak homotopy equivalence: 
+</p>
+<p>
+<article class="env-warning" id="0107">
+<p><a class="environment-identifier" href="/tag/0107">Warning <span data-tag="0107">3.4.0.1</span>.</a> Suppose we are given a commutative diagram of simplicial sets </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ X_0 \ar [d] \ar [r] &amp;  X \ar [d] &amp;  X_1 \ar [l] \ar [d] \\ Y_0 \ar [r] &amp;  Y &amp;  Y_1 \ar [l] } \]
+</div>
+<p> for which the vertical maps are weak homotopy equivalences. Then the induced map </p>
+<div class="equation">
+  \[  X_0 \times _{X} X_1 \rightarrow Y_0 \times _{Y} Y_1 \]
+</div>
+<p> need not be a weak homotopy equivalence. For example, the pullback of the upper half of the diagram </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \{ 0\}  \ar [r] \ar@ {=}[d] &amp;  \Delta ^1 \ar [d] &amp;  \{ 1\}  \ar@ {=}[d] \ar [l] \\ \{ 0\}  \ar [r]^-{\sim } &amp;  \Delta ^0 &amp;  \{ 1\} , \ar [l]_{\sim } } \]
+</div>
+<p> is empty, while the pullback of the lower half is isomorphic to $\Delta ^0$. </p>
+</article>
+</p>
+<p>
+Under some mild assumptions, the bad behavior described in Warning <a data-tag="0107" href="/tag/0107">3.4.0.1</a> can be avoided. 
+</p>
+<p>
+<article class="env-proposition" id="0109">
+<p><a class="environment-identifier" href="/tag/0109">Proposition <span data-tag="0109">3.4.0.2</span>.</a> Suppose we are given a commutative diagram of simplicial sets </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ X_0 \ar [d] \ar [r]^-{f} &amp;  X \ar [d] &amp;  X_1 \ar [l] \ar [d] \\ Y_0 \ar [r]^-{f'} &amp;  Y &amp;  Y_1, \ar [l] } \]
+</div>
+<p> where the vertical maps are weak homotopy equivalences. If $f$ and $f'$ are Kan fibrations, then the induced map $X_0 \times _{X} X_1 \rightarrow Y_0 \times _{Y} Y_1$ is a weak homotopy equivalence. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      We have a commutative diagram 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ X_0 \times _{X} X_1 \ar [r] \ar [d] &amp;  Y_0 \times _{Y} Y_1 \ar [d] \\ X_1 \ar [r] &amp;  Y_1, } \]
+</div>
+<p>
+       where the vertical maps are Kan fibrations (since they are pullbacks of $f$ and $f'$, respectively). By virtue of Proposition <a data-tag="00ZN" href="/tag/00ZN">3.3.7.1</a>, it will suffice to show that for each vertex $x \in X_1$ having image $y \in Y_1$, the induced map of fibers 
+    <p>
+<div class="equation">
+  \[  (X_0 \times _{X} X_1)_{x} \simeq X_0 \times _{X} \{ x\}  \rightarrow Y_0 \times _{Y} \{ y\}  = (Y_0 \times _{Y} Y_1)_{y} \]
+</div>
+<p>
+       is a homotopy equivalence of Kan complexes. This follows by applying Proposition <a data-tag="00ZN" href="/tag/00ZN">3.3.7.1</a> to the diagram 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ X_0 \ar [d]^{f} \ar [r] &amp;  Y_0 \ar [d]^{f'} \\ X \ar [r] &amp;  Y. } \]
+</div>
+<span class="qed">$\square$</span>
+</p>
+</p></p></p></p></p></article>
+<p>
+To address the phenomenon described in Warning <a data-tag="0107" href="/tag/0107">3.4.0.1</a> more generally, it is convenient to work with a homotopy-invariant replacement for the fiber product. 
+</p>
+<p>
+<article class="env-construction" id="010B">
+<p><a class="environment-identifier" href="/tag/010B">Construction <span data-tag="010B">3.4.0.3</span> <span class="named">(The Homotopy Fiber Product)</span>.</a> Let $f_0: X_0 \rightarrow X$ and $f_1: X_1 \rightarrow X$ be morphisms of simplicial sets, where $X$ is a Kan complex. We let $X_0 \times _{X}^{\mathrm{h}} X_1$ denote the simplicial set </p>
+<div class="equation">
+  \[  X_0 \times _{ \operatorname{Fun}( \{ 0\} , X) } \operatorname{Fun}( \Delta ^1, X ) \times _{ \operatorname{Fun}( \{ 1\} , X) } X_1. \]
+</div>
+<p> We will refer to $X_0 \times _{X}^{\mathrm{h}} X_1$ as the <em>homotopy fiber product of $X_0$ with $X_1$ over $X$</em>. </p>
+</article>
+</p>
+<p>
+<article class="env-warning" id="0327">
+<p><a class="environment-identifier" href="/tag/0327">Warning <span data-tag="0327">3.4.0.4</span>.</a> For any diagram of simplicial sets $X_0 \rightarrow X \leftarrow X_1$, the simplicial set $X_0 \times _{ \operatorname{Fun}( \{ 0\} , X) } \operatorname{Fun}( \Delta ^1, X ) \times _{ \operatorname{Fun}( \{ 1\} , X) } X_1$ is well-defined. However, we will refer to it as a <em>homotopy fiber product</em> (and denote it by $X_0 \times ^{\mathrm{h}}_{X} X_1$) only in the case where $X$ is a Kan complex. In more general situations, we will refer to this simplicial set as the <em>oriented fiber product</em> of $X_0$ with $X_1$ over $X$, and denote it by $X_0 \vec{\times }_{X} X_1$ (Definition <a data-tag="01KF" href="/tag/01KF">4.6.4.1</a>). In the setting of $\infty $-categories, we will adopt a slightly different definition for the homotopy fiber product $X_0 \times _{X}^{\mathrm{h}} X_1$: see Construction <a data-tag="032Z" href="/tag/032Z">4.5.3.1</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="01KK">
+<p><a class="environment-identifier" href="/tag/01KK">Example <span data-tag="01KK">3.4.0.5</span>.</a> Let $f_0: X_0 \rightarrow X$ and $f_1: X_1 \rightarrow X$ be continuous functions between topological spaces. We let $X_0 \times ^{\mathrm{h}}_{X} X_1$ denote the set of all triples $(x_0, x_1, p)$ where $x_0$ is a point of $X_0$, $x_1$ is a point of $X_1$, and $p: [0,1] \rightarrow X$ is a continuous function satisfying $p(0) = f_0(x_0)$ and $p(1) = f_1(x_1)$. We will refer to $X_0 \times ^{\mathrm{h}}_{X} X_1$ as the <em>homotopy fiber product of $X_0$ with $X_1$ over $X$</em>. The homotopy fiber product $X_1 \times ^{\mathrm{h}}_{X} X_1$ carries a natural topology, given by viewing it as a subspace of the product $X_0 \times X_1 \times \operatorname{Hom}_{\operatorname{Top}}( [0,1], X)$ (where we endow the path space $\operatorname{Hom}_{\operatorname{Top}}([0,1],X)$ with the compact-open topology). We then have a canonical isomorphism of simplicial sets </p>
+<div class="equation">
+  \[  \operatorname{Sing}_{\bullet }( X_0 \times _{X}^{\mathrm{h}} X_1) \simeq \operatorname{Sing}_{\bullet }(X_0) \times ^{\mathrm{h}}_{ \operatorname{Sing}_{\bullet }(X) } \operatorname{Sing}_{\bullet }(X_1) \]
+</div>
+<p> where the right hand side is the homotopy fiber product of Kan complexes given in Construction <a data-tag="010B" href="/tag/010B">3.4.0.3</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="0328">
+<p><a class="environment-identifier" href="/tag/0328">Remark <span data-tag="0328">3.4.0.6</span> <span class="named">(Homotopy Fibers)</span>.</a> Let $f: X \rightarrow Y$ be a morphism of Kan complexes. Then $f$ is a homotopy equivalence if and only if, for each vertex $y \in Y$, the homotopy fiber $X \times ^{\mathrm{h}}_{Y} \{ y\} $ is a contractible Kan complex. To see this, we observe that $f$ factors as a composition </p>
+<div class="equation">
+  \[  X \xrightarrow {\delta } X \times _{Y}^{\mathrm{h}} Y \xrightarrow {\pi } Y, \]
+</div>
+<p> where $\delta $ is a homotopy equivalence and $\pi $ is a Kan fibration (Example <a data-tag="0101" href="/tag/0101">3.1.8.10</a>). It follows that $f$ is a homotopy equivalence if and only if $\pi $ is a homotopy equivalence, which is equivalent to the requirement that each fiber $\pi ^{-1} \{ y\}  = X \times _{Y}^{\mathrm{h}} \{ y\} $ is contractible (Proposition <a data-tag="00ZP" href="/tag/00ZP">3.3.7.6</a>). </p>
+</article>
+</p>
+<p>
+In the situation of Construction <a data-tag="010B" href="/tag/010B">3.4.0.3</a>, the diagonal inclusion 
+</p>
+<div class="equation">
+  \[ X \hookrightarrow \operatorname{Fun}(\Delta ^1, X) \quad \quad x \mapsto \operatorname{id}_ x \]
+</div>
+<p>
+ induces a monomorphism from the ordinary fiber product $X_0 \times _{X} X_1$ to the homotopy fiber product $X_0 \times _{X}^{\mathrm{h}} X_1$. 
+</p>
+<p>
+<article class="env-proposition" id="0329">
+<p><a class="environment-identifier" href="/tag/0329">Proposition <span data-tag="0329">3.4.0.7</span>.</a> Let $f_0: X_0 \rightarrow X$ and $f_1: X_1 \rightarrow X$ be morphisms of simplicial sets. Assume that $X$ is a Kan complex and that either $f_0$ or $f_1$ is a Kan fibration. Then the inclusion map $X_0 \times _{X} X_1 \rightarrow X_{0} \times _{X}^{\mathrm{h}} X_1$ is a weak homotopy equivalence. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Without loss of generality we may assume that $f_0$ is a Kan fibration. Since $X$ is a Kan complex, the evaluation map $\operatorname{ev}_1: \operatorname{Fun}(\Delta ^1, X) \rightarrow \operatorname{Fun}(\{ 1\} , X)$ is a trivial Kan fibration (Corollary <a data-tag="00UT" href="/tag/00UT">3.1.3.6</a>), and therefore induces a trivial Kan fibration $q: \operatorname{Fun}(\Delta ^1,X) \times _{ \operatorname{Fun}(\{ 1\} , X) } X_1 \rightarrow X_1$. The diagonal map $\delta : X \hookrightarrow \operatorname{Fun}(\Delta ^1,X)$ determines a map $s: X_1 \rightarrow \operatorname{Fun}(\Delta ^1,X) \times _{ \operatorname{Fun}(\{ 1\} , X) } X_1$ which is a section of $q$, and therefore a homotopy equivalence. The desired result now follows by applying Proposition <a data-tag="0109" href="/tag/0109">3.4.0.2</a> to the diagram 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ X_0 \ar@ {=}[d] \ar [r]^-{f_0} &amp;  X \ar@ {=}[d] &amp;  X_1 \ar [l]_{f_1} \ar [d]^{s} \\ X_0 \ar [r]^-{f_0} &amp;  X &amp;  \operatorname{Fun}( \Delta ^1, X) \times _{ \operatorname{Fun}(\{ 1\} , X) } X_1. \ar [l] } \]
+</div>
+<span class="qed">$\square$</span>
+</p>
+</p></article>
+<p>
+<article class="env-warning" id="032A">
+<p><a class="environment-identifier" href="/tag/032A">Warning <span data-tag="032A">3.4.0.8</span>.</a> The conclusion of Proposition <a data-tag="0329" href="/tag/0329">3.4.0.7</a> is generally false if neither $f_0$ or $f_1$ is assumed to be a Kan fibration. For example, suppose that $X$ is a Kan complex containing vertices $x$ and $y$. If $x \neq y$, then the fiber product $\{ x\}  \times _{X} \{ y\} $ is empty. However, the homotopy fiber product $\{ x\}  \times ^{\mathrm{h}}_{X} \{ y\} $ is not necessarily empty: its vertices can be identified with edges $p: x \rightarrow y$ having source $x$ and target $y$. </p>
+</article>
+</p>
+<p>
+In general, the failure of the inclusion map $X_0 \times _{X} X_1 \hookrightarrow X_0 \times ^{\mathrm{h}}_{X} X_1$ to be a weak homotopy equivalence should be viewed as a feature, rather than a bug. From the perspective of homotopy theory, the homotopy fiber product is better behaved than the ordinary fiber product: 
+</p>
+<p>
+<article class="env-proposition" id="032B">
+<p><a class="environment-identifier" href="/tag/032B">Proposition <span data-tag="032B">3.4.0.9</span>.</a> Suppose we are given a commutative diagram of simplicial sets </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ X_0 \ar [r] \ar [d] &amp;  X \ar [d] &amp;  X_1 \ar [l] \ar [d] \\ Y_0 \ar [r] &amp;  Y &amp;  Y_1 \ar [l] } \]
+</div>
+<p> where $X$ and $Y$ are Kan complexes and the vertical maps are weak homotopy equivalences. Then the induced map $X_0 \times _{X}^{\mathrm{h}} X_1 \rightarrow Y_0 \times _{Y}^{\mathrm{h}} Y_1$ is also a weak homotopy equivalence. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Apply Proposition <a data-tag="0109" href="/tag/0109">3.4.0.2</a> to the commutative diagram 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \operatorname{Fun}(\Delta ^1, X) \ar [r] \ar [d] &amp;  \operatorname{Fun}( \operatorname{\partial \Delta }^1, X) \ar [d] &amp;  X_0 \times X_1 \ar [l] \ar [d] \\ \operatorname{Fun}( \Delta ^1, Y) \ar [r] &amp;  \operatorname{Fun}( \operatorname{\partial \Delta }^1, Y) &amp;  Y_0 \times Y_1, \ar [l] } \]
+</div>
+<p>
+       noting that the left horizontal maps are Kan fibrations by virtue of Corollary <a data-tag="00TM" href="/tag/00TM">3.1.3.3</a>. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<p>
+<article class="env-warning" id="032C">
+<p><a class="environment-identifier" href="/tag/032C">Warning <span data-tag="032C">3.4.0.10</span>.</a> Let $f_0: X_0 \rightarrow X$ and $f_1: X_1 \rightarrow X$ be morphisms of simplicial sets, where $X$ is a Kan complex. The homotopy fiber products $X_0 \times ^{\mathrm{h}}_{X} X_1$ and $X_{1} \times _{X}^{\mathrm{h}} X_0$ are generally not isomorphic as simplicial sets. Instead, we have a canonical isomorphism </p>
+<div class="equation">
+  \[  (X_1 \times ^{\mathrm{h}}_{X} X_0)^{\operatorname{op}} \simeq X_{0}^{\operatorname{op}} \times ^{\mathrm{h}}_{ X^{\operatorname{op}} } X_1^{\operatorname{op}}. \]
+</div>
+<p> However, $X_0 \times ^{\mathrm{h}}_{X} X_1$ and $X_{1} \times _{X}^{\mathrm{h}} X_0$ have the same weak homotopy type. To see this, we can use Proposition <a data-tag="00UV" href="/tag/00UV">3.1.8.1</a> to factor $f_0$ as a composition $X_0 \xrightarrow {w} X'_0 \xrightarrow {f'_0} X$, where $w$ is a weak homotopy equivalence and $f'_{0}$ is a Kan fibration. Using Propositions <a data-tag="0329" href="/tag/0329">3.4.0.7</a> and <a data-tag="032B" href="/tag/032B">3.4.0.9</a>, we see that the maps </p>
+<div class="equation">
+  \[  X_0 \times ^{\mathrm{h}}_{X} X_1 \rightarrow X'_{0} \times _{X}^{\mathrm{h}} X_1 \hookleftarrow X'_0 \times _{X} X_1 \simeq X_1 \times _{X} X'_0 \hookrightarrow X_1 \times _{X}^{\mathrm{h}} X'_{0} \leftarrow X_1 \times _{X}^{\mathrm{h}} X_0 \]
+</div>
+<p> are weak homotopy equivalences. </p>
+</article>
+</p>
+<p>
+For many applications, it will be useful to reformulate the notion of homotopy fiber product by viewing it as a <em>property</em> of diagrams, rather than as a construction. Recall that a commutative diagram of simplicial sets 
+</p>
+<div class="equation" id="032D">
+<span class="equation-label"><a data-tag="032D" href="/tag/032D">3.35</a></span>
+<div>\begin{equation}  \begin{gathered}\label{equation:homotopy-pullback-candidate} \xymatrix@R =50pt@C=50pt{ X_{01} \ar [r] \ar [d] &amp;  X_0 \ar [d] \\ X_1 \ar [r] &amp;  X } \end{gathered} \end{equation}</div>
+</div>
+<p>
+ is a <em>pullback square</em> if the induced map $\theta : X_{01} \rightarrow X_{0} \times _{X} X_1$ is an isomorphism of simplicial sets. If $X$ is a Kan complex, we will say that the diagram (<a data-tag="032D" href="/tag/032D">3.35</a>) is a <em>homotopy pullback square</em> if the composite map 
+</p>
+<div class="equation">
+  \[  X_{01} \xrightarrow {\theta } X_{0} \times _{X} X_{1} \hookrightarrow X_{0} \times _{X}^{\mathrm{h}} X_1 \]
+</div>
+<p>
+ is a weak homotopy equivalence of simplicial sets. In §<a data-tag="010K" href="/tag/010K">3.4.1</a>, we give an overview of the theory of homotopy pullback diagrams (beginning with an extension to the case where $X$ is not a Kan complex: see Definition <a data-tag="010L" href="/tag/010L">3.4.1.1</a> and Corollary <a data-tag="032E" href="/tag/032E">3.4.1.6</a>). 
+</p>
+<p>
+The preceding discussion has an analogue for pushout diagrams. Given morphisms of simplicial sets $f_0: A \rightarrow A_0$ and $f_1: A \rightarrow A_1$ having the same source, we define the <em>homotopy pushout of $A_0$ with $A_1$ along $A$</em> to be the iterated coproduct 
+</p>
+<div class="equation">
+  \[  A_{0} {\coprod }^{\mathrm{h}}_{A} A_1 = A_0 \coprod _{ (\{ 0 \}  \times A)} ( \Delta ^1 \times A) \coprod _{( \{ 1\}  \times A) } A_1 \]
+</div>
+<p>
+ (Construction <a data-tag="032K" href="/tag/032K">3.4.2.2</a>). We say that a commutative diagram of simplicial sets 
+</p>
+<div class="equation">
+  \[  \xymatrix@C =50pt@R=50pt{ A \ar [r]^-{f_0} \ar [d]^{f_1} &amp;  A_0 \ar [d] \\ A_1 \ar [r] &amp;  A_{01} } \]
+</div>
+<p>
+ is a <em>homotopy pushout square</em> if the induced map 
+</p>
+<div class="equation">
+  \[  A_{0} {\coprod }_{A}^{\mathrm{h}} A_{1} \twoheadrightarrow A_{0} {\coprod }_{A} A_{1} \rightarrow A_{01} \]
+</div>
+<p>
+ is a weak homotopy equivalence (Proposition <a data-tag="032N" href="/tag/032N">3.4.2.5</a>). Many of the basic properties of homotopy pullback diagrams have counterparts for homotopy pushout diagrams, which we summarize in §<a data-tag="0112" href="/tag/0112">3.4.2</a>. 
+</p>
+<p>
+The notions of homotopy pullback and homotopy pushout diagram were introduced by Mather (in the setting of topological spaces, rather than simplicial sets) and have subsequently proven to be a very useful tool in algebraic topology. In <span class="cite">[<a href="/bibliography/MR402694">MR402694</a>]</span>, Mather established two fundamental results relating homotopy pullback and homotopy pushout squares, which are now known as the <em>Mather cube theorems</em>: 
+</p>
+<ul>
+<li><p>
+Suppose we are given a homotopy pushout square of simplicial sets 
+</p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ A \ar [r] \ar [d] &amp;  B \ar [d] \\ C \ar [r] &amp;  D. } \]
+</div>
+<p>
+ If $\overline{D} \rightarrow D$ is a Kan fibration, then the induced diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ A \times _{D} \overline{D} \ar [r] \ar [d] &amp;  B \times _{D} \overline{D} \ar [d] \\ C \times _{D} \overline{D} \ar [r] &amp;  \overline{D} } \]
+</div>
+<p>
+ is also a homotopy pushout square (Proposition <a data-tag="011K" href="/tag/011K">3.4.3.2</a>). Stated more informally, the collection of homotopy pushout squares is stable under pullback by Kan fibrations. In §<a data-tag="011H" href="/tag/011H">3.4.3</a> we establish a slightly more general (and homotopy invariant) version of this statement, which is known as <em>Mather's second cube theorem</em> (Theorem <a data-tag="011M" href="/tag/011M">3.4.3.3</a>). 
+</p>
+</li><li><p>
+Suppose we are given a commutative diagram of simplicial sets 
+</p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \overline{C} \ar [d] &amp;  \overline{A} \ar [l] \ar [r]^-{\overline{i}} \ar [d] &amp;  \overline{B} \ar [d] \\ C &amp;  A \ar [r]^-{i} \ar [l] &amp;  B, } \]
+</div>
+<p>
+ in which both squares are homotopy pullbacks. If $i$ and $\overline{i}$ are monomorphisms, then both squares in the induced diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \overline{C} \ar [r] \ar [d] &amp;  \overline{C} \coprod _{ \overline{A} } \overline{B} \ar [d] &amp;  \overline{B} \ar [l] \ar [d] \\ C \ar [r] &amp;  C \coprod _{ A} B &amp;  B \ar [l] } \]
+</div>
+<p>
+ are also homotopy pullback squares (Proposition <a data-tag="011T" href="/tag/011T">3.4.4.3</a>). In §<a data-tag="011Q" href="/tag/011Q">3.4.4</a> we establish a slightly more general (and homotopy invariant) version of this statement, which is known as <em>Mather's first cube theorem</em> (Theorem <a data-tag="011U" href="/tag/011U">3.4.4.4</a>). 
+</p>
+</li>
+</ul>
+<p>
+The homotopy theory of topological spaces provides a rich supply of examples of homotopy pushout squares. Let $X$ be a topological space which can be written as the union of two open subsets $U,V \subseteq X$. In §<a data-tag="012B" href="/tag/012B">3.4.6</a>, we show that the resulting diagram of singular simplicial sets 
+</p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \operatorname{Sing}_{\bullet }(U \cap V) \ar [r] \ar [d] &amp;  \operatorname{Sing}_{\bullet }(U) \ar [d] \\ \operatorname{Sing}_{\bullet }(V) \ar [r] &amp;  \operatorname{Sing}_{\bullet }(X) } \]
+</div>
+<p>
+ is a homotopy pushout square (Theorem <a data-tag="012C" href="/tag/012C">3.4.6.1</a>). To carry out the proof, we make use of the fact that the weak homotopy type of a simplicial set $X$ can be recovered from its underlying semisimplicial set (see Proposition <a data-tag="0124" href="/tag/0124">3.4.5.4</a> and Corollary <a data-tag="0125" href="/tag/0125">3.4.5.5</a>), which we explain in §<a data-tag="0120" href="/tag/0120">3.4.5</a>). We conclude in §<a data-tag="012K" href="/tag/012K">3.4.7</a> by applying Theorem <a data-tag="012C" href="/tag/012C">3.4.6.1</a> to deduce the classical Seifert-van Kampen theorem (Theorem <a data-tag="012L" href="/tag/012L">3.4.7.1</a>) and the excision theorem for singular homology (Theorem <a data-tag="012N" href="/tag/012N">3.4.7.3</a>). 
+</p>
+<p>
+<article class="env-remark" id="010J">
+<p><a class="environment-identifier" href="/tag/010J">Remark <span data-tag="010J">3.4.0.11</span>.</a> The notions of homotopy pullback and homotopy pushout diagrams can be regarded as homotopy-invariant replacements for the usual notion of pullback and pushout diagrams, respectively. We will later make this heuristic precise by showing that a commutative diagram in the ordinary category of Kan complexes </p>
+<div class="equation">
+  \[  \xymatrix@C =50pt@R=50pt{ X_{01} \ar [r] \ar [d] &amp;  X_0 \ar [d] \\ X_1 \ar [r] &amp;  X } \]
+</div>
+<p> is a homotopy pullback square (homotopy pushout square) if and only if it is a pullback square (pushout square) when regarded as a diagram in the $\infty $-category $\operatorname{\mathcal{S}}$ of Kan complexes (Construction <a data-tag="00TZ" href="/tag/00TZ">3.1.6.1</a>); see Examples <a data-tag="03G5" href="/tag/03G5">7.6.3.2</a> and <a data-tag="03G6" href="/tag/03G6">7.6.3.3</a>. </p>
+</article>
+</p>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.html a[data-toggle="popover"]').popover()
+
+  // render mathematics in popovers
+  $("[data-toggle=popover]").on('shown.bs.popover', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $("div.popover-body").html()]);
+  });
+});
+  </script>
+<h2 id="structure">Structure</h2>
+<ul class="tree" id="tree">
+<li id="010K">
+      Subsection <a data-tag="010K" href="/tag/010K">3.4.1</a>: Homotopy Pullback Squares
+
+      
+    
+      <li id="0112">
+      Subsection <a data-tag="0112" href="/tag/0112">3.4.2</a>: Homotopy Pushout Squares
+
+      
+    
+      <li id="011H">
+      Subsection <a data-tag="011H" href="/tag/011H">3.4.3</a>: Mather's Second Cube Theorem
+
+      
+    
+      <li id="011Q">
+      Subsection <a data-tag="011Q" href="/tag/011Q">3.4.4</a>: Mather's First Cube Theorem
+
+      
+    
+      <li id="0120">
+      Subsection <a data-tag="0120" href="/tag/0120">3.4.5</a>: Digression: Weak Homotopy Equivalences of Semisimplicial Sets
+
+      
+    
+      <li id="012B">
+      Subsection <a data-tag="012B" href="/tag/012B">3.4.6</a>: Excision
+
+      
+    
+      <li id="012K">
+      Subsection <a data-tag="012K" href="/tag/012K">3.4.7</a>: The Seifert van-Kampen Theorem
+
+      
+    
+    </li></li></li></li></li></li></li></ul>
+<script type="text/javascript">
+$("ul.tree").bonsai({
+  
+});
+
+var state = localStorage.getItem("bonsai-0106");
+if (state !== null)
+  $("ul#tree").data("bonsai").restore(JSON.parse(state));
+
+$("ul#tree").click(function() {
+  var bonsai = $(this).data("bonsai");
+  var state = bonsai.serialize();
+  localStorage.setItem("bonsai-0106", JSON.stringify(state));
+});
+
+// trigger the click event handler to save state even when clicking on the expand/collapse all links, which are outside ul#tree
+$("div.expand-all").click(function() {
+  $("ul#tree").click();
+});
+
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+    </script>
+</div>
+</section></body>
+</html>

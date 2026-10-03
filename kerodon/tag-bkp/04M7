@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" id="main">
+<div class="html" id="tag">
+<h3 class="tex-subsection" id="subsection:small-object"><span data-tag="04M7">9.6.3</span> The Small Object Argument</h3>
+<p>
+In §<a data-tag="00UU" href="/tag/00UU">3.1.8</a>, we showed that every simplicial set $X$ admits an anodyne morphism $X \hookrightarrow Q$, where $Q$ is a Kan complex (Corollary <a data-tag="00UW" href="/tag/00UW">3.1.8.2</a>). The proof is easy to describe: if $X$ is not a Kan complex, then there is some horn $\sigma _0: \Lambda ^{n}_{i} \rightarrow X$ which cannot be extended to an $n$-simplex of $X$. This defect can be remedied by replacing $X$ by the pushout $\Delta ^ n \coprod _{ \Lambda ^{n}_{i} } X$. The desired Kan complex $Q$ is obtained by a (possibly transfinite) iteration of this procedure. A similar strategy can be used to prove many related results (see for example Exercise <a data-tag="00UY" href="/tag/00UY">3.1.8.11</a>, Proposition <a data-tag="01BP" href="/tag/01BP">4.1.3.2</a>, and Proposition <a data-tag="014Z" href="/tag/014Z">4.2.4.7</a>). Following Quillen (<span class="cite">[<a href="/bibliography/MR0223432">MR0223432</a>]</span>), we will refer to this proof strategy as the <em>small object argument</em>. Our goal in this section is to formalize a version of this argument in the $\infty $-categorical setting. First, we need a bit of terminology. 
+</p>
+<p>
+<article class="env-definition" id="04M8">
+<p><a class="environment-identifier" href="/tag/04M8">Definition <span data-tag="04M8">9.6.3.1</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category, let $W$ be a collection of morphisms of $\operatorname{\mathcal{C}}$, and let $W'$ denote the collection of those morphisms $w': C' \rightarrow D'$ for which there exists a pushout square </p>
+<div class="equation">
+  \[  \xymatrix@C =50pt@R=50pt{ C \ar [d]^{w} \ar [r] &amp;  C' \ar [d]^{w'} \\ D \ar [r] &amp;  D', } \]
+</div>
+<p> where $w \in W$. We say that a morphism $f$ of $\operatorname{\mathcal{C}}$ is a <em>transfinite pushout of morphisms of $W$</em> if it is a transfinite composition of morphisms of $W'$ (in the sense of Definition <a data-tag="04L0" href="/tag/04L0">9.6.1.1</a>). If $\kappa $ is an infinite cardinal, we say that $f$ is a <em>$\kappa $-small transfinite pushout of morphisms of $W$</em> if it is a $\kappa $-small transfinite composition of morphisms of $W'$, in the sense of Variant <a data-tag="06VX" href="/tag/06VX">9.6.1.3</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="04M9">
+<p><a class="environment-identifier" href="/tag/04M9">Remark <span data-tag="04M9">9.6.3.2</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category, let $W$ be a collection of morphisms of $\operatorname{\mathcal{C}}$, and let $f: X \rightarrow Y$ be a morphism of $\operatorname{\mathcal{C}}$ which is a transfinite pushout of morphisms belonging to $W$. If an object $Z \in \operatorname{\mathcal{C}}$ is weakly $W$-local, then it is weakly $f$-local. See Propositions <a data-tag="04LW" href="/tag/04LW">9.6.2.13</a> and <a data-tag="04M0" href="/tag/04M0">9.6.2.16</a>. </p>
+</article>
+</p>
+<p>
+We can now formulate the main result of this section: 
+</p>
+<p>
+<article class="env-theorem" id="04MA">
+<p><a class="environment-identifier" href="/tag/04MA">Theorem <span data-tag="04MA">9.6.3.3</span> <span class="named">(The Small Object Argument)</span>.</a> Let $\operatorname{\mathcal{C}}$ be a presentable $\infty $-category and let $W$ be a small collection of morphisms of $\operatorname{\mathcal{C}}$. For every object $X \in \operatorname{\mathcal{C}}$, there exists a morphism $f: X \rightarrow Y$ where $Y$ is weakly $W$-local and $f$ is a (small) transfinite pushout of morphisms of $W$. </p>
+</article>
+</p>
+<p>
+<article class="env-warning" id="04MB">
+<p><a class="environment-identifier" href="/tag/04MB">Warning <span data-tag="04MB">9.6.3.4</span>.</a> If $\operatorname{\mathcal{C}}$ is (the nerve of) an ordinary category, then the morphism $f: X \rightarrow Y$ of Theorem <a data-tag="04MA" href="/tag/04MA">9.6.3.3</a> can be chosen to depend functorially on $X$. Beware that this is generally not possible if $\operatorname{\mathcal{C}}$ is an $\infty $-category (see Example <a data-tag="04MC" href="/tag/04MC">9.6.3.5</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="04MC">
+<p><a class="environment-identifier" href="/tag/04MC">Example <span data-tag="04MC">9.6.3.5</span>.</a> Fix an integer $n \geq 0$. Let $\operatorname{\mathcal{C}}= \operatorname{\mathcal{S}}$ be the $\infty $-category of spaces and let $W$ be the collection of morphisms of $\operatorname{\mathcal{C}}$ given by the inclusion maps $\{  \operatorname{Ex}^{\infty }( \operatorname{\partial \Delta }^{m} ) \hookrightarrow \operatorname{Ex}^{\infty }( \Delta ^ m ) \} _{0 \leq m \leq n}$. Then an object $X \in \operatorname{\mathcal{C}}$ weakly $W$-local if and only if it is $n$-connective (see Definition <a data-tag="04GL" href="/tag/04GL">3.5.1.1</a>). In this case, Theorem <a data-tag="04MA" href="/tag/04MA">9.6.3.3</a> asserts that every Kan complex $X$ admits a morphism $f: X \rightarrow Y$, where $Y$ is an $n$-connective Kan complex which can be obtained from $X$ by attaching cells of dimension $\leq n$. Beware that, if $n &gt; 0$, then $Y$ cannot be chosen to depend functorially on $X$. </p>
+</article>
+</p>
+<p>
+We will deduce Theorem <a data-tag="04MA" href="/tag/04MA">9.6.3.3</a> from a more quantitative result (Proposition <a data-tag="06VZ" href="/tag/06VZ">9.6.3.9</a>), which we prove at the end of this section. The proof will require some preliminaries. 
+</p>
+<p>
+<article class="env-lemma" id="04ME">
+<p><a class="environment-identifier" href="/tag/04ME">Lemma <span data-tag="04ME">9.6.3.6</span>.</a> Let $\lambda $ be a regular cardinal, let $\operatorname{\mathcal{C}}$ be a $\lambda $-cocomplete $\infty $-category, let $\{  w_ s: C_ s \rightarrow D_ s \} _{s \in S}$ be a collection of morphisms of $\operatorname{\mathcal{C}}$ indexed by a $\lambda $-small set $S$, let $\{  e_{s}: C_{s} \rightarrow X \} _{ s \in S}$ be another collection of morphisms of $\operatorname{\mathcal{C}}$, and let $Y$ be a colimit of the diagram </p>
+<div class="equation">
+  \[  (S \times \Delta ^1) \coprod _{ S \times \{ 0\}  } S^{\triangleright } \xrightarrow { (\{  w_ s \} , \{  e_ s \}  ) } \operatorname{\mathcal{C}}. \]
+</div>
+<p> Then the tautological map $u: X \rightarrow Y$ is a $\lambda $-small transfinite pushout of morphisms belonging to $\{  w_ s \} _{s \in S}$. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Using the well-ordering theorem (Theorem <a data-tag="03QU" href="/tag/03QU">4.9.1.34</a>), we can choose an ordinal $\alpha &lt; \lambda $ and a bijection $\ell : S \rightarrow \mathrm{Ord}_{ &lt; \alpha }$. Let $Q$ denote the disjoint union $(S \times [1]) \coprod \mathrm{Ord}_{\leq \alpha }$. For elements $q,q' \in Q$, we write $q \leq q'$ if (exactly) one of the following conditions holds: 
+    <p>
+<ul>
+<li><p>
+There exist an element $s \in S$ such that $q = (s,i)$ and $q' = (s, i' )$, where $i \leq i'$. 
+</p>
+</li><li><p>
+We have $q = \beta $ and $q' = \beta '$ for ordinals $\beta , \beta ' \in \mathrm{Ord}_{\leq \alpha }$ satisfying $\beta \leq \beta '$ (for the usual ordering of $\mathrm{Ord}_{\leq \alpha }$). 
+</p>
+</li><li><p>
+We have $q = (s,0)$ for some $s \in S$ and $q' = \beta $ for some $\beta \in \mathrm{Ord}_{\leq \alpha }$. 
+</p>
+</li><li><p>
+We have $q = (s,1)$ and $q' = \beta $ for some $\beta \in \mathrm{Ord}_{\leq \alpha }$ satisfying $\ell (s) &lt; \beta $. 
+</p>
+</li>
+</ul>
+<p>
+       Let $Q_0 = (S \times [1]) \coprod \{  0 \} $, which we regard as a partially ordered subset of $Q$. By construction, the nerve $\operatorname{N}_{\bullet }( Q_{0} )$ can be identified with the pushout $(S \times \Delta ^1) \coprod _{ S \times \{ 0\}  } S^{\triangleright }$. Consequently, the collections $\{  e_ s \} _{s \in S}$ and $\{  w_ s \} _{s \in S}$ determine a diagram $F_0: \operatorname{N}_{\bullet }( Q_{\leq 0 } ) \rightarrow \operatorname{\mathcal{C}}$. Since $\operatorname{\mathcal{C}}$ is $\lambda $-cocomplete, the diagram $F_0$ admits a left Kan extension $F: \operatorname{N}_{\bullet }( Q ) \rightarrow \operatorname{\mathcal{C}}$ (Proposition <a data-tag="03UP" href="/tag/03UP">7.6.6.19</a>). Then $Y = F( \alpha )$ is a colimit of the diagram $F_{0}$, and we can identify $u$ with the morphism obtained by evaluating the functor $F$ on the edge of $\operatorname{N}_{\bullet }( Q )$ given by the pair $(0 \leq \alpha )$. We will show that the restriction $F|_{ \operatorname{N}_{\bullet }( \mathrm{Ord}_{\leq \alpha } )}$ exhibits $u$ as a transfinite pushout of morphisms belonging to $\{  w_ s \} _{s \in S}$. 
+    <p>
+      We first claim that if $\beta \leq \alpha $ is a nonzero limit ordinal, then the restriction $F|_{ \operatorname{N}_{\bullet }( \mathrm{Ord}_{ \leq \beta } ) }$ is a colimit diagram in $\operatorname{\mathcal{C}}$. Set $Q_{\leq \beta } = \{  q \in Q: q \leq \beta \} $ and $Q_{ &lt; \beta } = \{  q \in Q: q &lt; \beta \} $. Since the functor $F$ is left Kan extended from $\operatorname{N}_{\bullet }(Q_0)$, it is also left Kan extended from larger $\infty $-category $\operatorname{N}_{\bullet }( (S \times [1]) \coprod \mathrm{Ord}_{ &lt; \beta } )$ (see Corollary <a data-tag="0314" href="/tag/0314">7.3.8.14</a>). It follows that $F|_{ \operatorname{N}_{\bullet }( Q_{\leq \beta } ) }$ is a colimit diagram in $\operatorname{\mathcal{C}}$. It will therefore suffice to show that $\operatorname{N}_{\bullet }(\iota )$ is right cofinal, where $\iota $ denotes the inclusion map $\mathrm{Ord}_{&lt; \beta } \hookrightarrow Q_{ &lt; \beta }$ (Corollary <a data-tag="02XQ" href="/tag/02XQ">7.2.2.2</a>). This is a special case of Corollary <a data-tag="02P3" href="/tag/02P3">7.2.3.7</a>, since $\iota $ admits a left adjoint (given on $S \times [1]$ by the construction $(s,0) \mapsto 0$ and $(s,1) \mapsto \ell (s) + 1$). 
+    <p>
+      Now suppose that $\beta = \gamma +1$ is a successor ordinal. Let $s \in S$ be the unique element satisfying $\ell (s) = \gamma $. We will complete the proof by showing that the morphism $F(\gamma ) \rightarrow F(\beta )$ in $\operatorname{\mathcal{C}}$ can be realized as a pushout of $w_ s$. More precisely, we will show that the functor $F$ carries the diagram 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ (s,0) \ar [r] \ar [d] &amp;  (s,1) \ar [d] \\ \gamma \ar [r] &amp;  \beta } \]
+</div>
+<p>
+       in $\operatorname{N}_{\bullet }( Q )$ to a pushout diagram in the $\infty $-category $\operatorname{\mathcal{C}}$. Arguing as above, we see that the restriction $F|_{ \operatorname{N}_{\bullet }(Q_{\leq \beta }) }$ is a colimit diagram. Using Corollary <a data-tag="02XQ" href="/tag/02XQ">7.2.2.2</a> again, we are reduced to showing that $\operatorname{N}_{\bullet }( \iota )$ is right cofinal, where $\iota $ denotes the inclusion of partially ordered sets $\{  (s,1) &gt; (s,0) &lt; \gamma \}  \hookrightarrow Q_{&lt; \beta }$. This again follows from Corollary <a data-tag="02P3" href="/tag/02P3">7.2.3.7</a>, since $\iota $ admits a left adjoint given by the construction 
+    <p>
+<div class="equation">
+  \[  (q \in Q_{&lt; \beta } ) \mapsto \begin{cases}  q &amp;  \text{ if $q = (s,0)$ or $q = (s,1)$ } \\  \gamma &amp;  \text{ otherwise. } \end{cases} \]
+</div>
+<span class="qed">$\square$</span>
+</p>
+</p></p></p></p></p></p></p></article>
+<p>
+<article class="env-lemma" id="04MF">
+<p><a class="environment-identifier" href="/tag/04MF">Lemma <span data-tag="04MF">9.6.3.7</span>.</a> Let $\lambda $ be a regular cardinal, let $\operatorname{\mathcal{C}}$ be an $\infty $-category which is $\lambda $-cocomplete, and let $W$ be a $\lambda $-small collection of morphisms of $\operatorname{\mathcal{C}}$. Assume that, for every morphism $w: C \rightarrow D$ of $W$ and every object $X \in \operatorname{\mathcal{C}}$, the set of homotopy classes $\operatorname{Hom}_{\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}}( C, X )$ is $\lambda $-small. Then, for every object $X \in \operatorname{\mathcal{C}}$, there exists a morphism $f: X \rightarrow Y$ which is a $\lambda $-small transfinite pushout of morphisms of $W$ having the following property: for every morphism $w: C \rightarrow D$ which belongs to $W$ and every morphism $e: C \rightarrow X$, there exists a commutative diagram </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ C \ar [r]^-{w} \ar [d]^{e} &amp;  D \ar [d] \\ X \ar [r]^-{f} &amp;  Y } \]
+</div>
+<p> in the $\infty $-category $\operatorname{\mathcal{C}}$. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      For each morphism $w: C \rightarrow D$ belonging to $W$, let $\{  e_{s}: C \rightarrow X \} _{ s \in S_{w} }$ be a set of representatives for the homotopy classes of morphisms from $C$ to $X$. Since $\lambda $ is regular, the disjoint union $S = \coprod _{w \in W} S_ w$ is small. The desired result now follows by applying Lemma <a data-tag="04ME" href="/tag/04ME">9.6.3.6</a> to the collection $\{  e_ s \} _{s \in S}$. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+<article class="env-lemma" id="04MG">
+<p><a class="environment-identifier" href="/tag/04MG">Lemma <span data-tag="04MG">9.6.3.8</span>.</a> Let $\lambda $ be a regular cardinal and let $\operatorname{\mathcal{C}}$ be an $\infty $-category which admits $\lambda $-small filtered colimits. Let $U$ be a collection of morphisms of $\operatorname{\mathcal{C}}$ with the following property: for every object $Y \in \operatorname{\mathcal{C}}$, there exists a morphism $u: Y \rightarrow Z$ which belongs to $U$. Then, for every object $X \in \operatorname{\mathcal{C}}$ and every ordinal $\alpha &lt; \lambda $, there exists a diagram $F: \operatorname{N}_{\bullet }( \mathrm{Ord}_{\leq \alpha } ) \rightarrow \operatorname{\mathcal{C}}$ satisfying the following conditions: </p>
+<p><dl>
+<dt>$(a)$</dt>
+<dd><p>
+The object $F(0)$ coincides with $X$. 
+</p>
+</dd>
+<dt>$(b)$</dt>
+<dd><p>
+For every ordinal $\alpha &lt; \lambda $, the morphism $F(\alpha ) \rightarrow F(\alpha +1)$ belongs to $U$. 
+</p>
+</dd>
+<dt>$(c)$</dt>
+<dd><p>
+For every nonzero limit ordinal $\alpha \leq \lambda $, the restriction $F|_{ \operatorname{N}_{\bullet }( \mathrm{Ord}_{\leq \alpha }) }$ is a colimit diagram. 
+</p>
+</dd>
+</dl></p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Let $Q$ denote the collection of all diagrams $F_{\beta }: \operatorname{N}_{\bullet }( \mathrm{Ord}_{\leq \beta } ) \rightarrow \operatorname{\mathcal{C}}$ satisfying conditions $(a)$, $(b)$, and $(c)$, where $\beta $ is an ordinal $\leq \alpha $. We regard $Q$ as a partially ordered set, where $F_{\beta } \leq F_{\beta '}$ if $\beta \leq \beta '$ and $F_{\beta } = F_{\beta '} |_{ \operatorname{N}_{\bullet }( \mathrm{Ord}_{\leq \beta } ) }$. Note that $Q$ is nonempty: it has a least element given by the diagram $\operatorname{N}_{\bullet }( \mathrm{Ord}_{\leq 0} ) \simeq \{ X\}  \hookrightarrow \operatorname{\mathcal{C}}$ taking the value $X$. We claim that $Q$ satisfies the hypothesis of Zorn's lemma: that is, every linearly ordered set $Q' \subset Q$ admits an upper bound. Without loss of generality, we may assume that $Q'$ is nonempty and has no largest element. In this case, the elements of $Q'$ can be amalgamated to a diagram $F_{ &lt; \gamma }: \operatorname{N}_{\bullet }( \mathrm{Ord}_{ &lt; \gamma } ) \rightarrow \operatorname{\mathcal{C}}$, where $\gamma \leq \alpha $ is a nonzero limit ordinal. Our assumption on $\operatorname{\mathcal{C}}$ then guarantees that $F_{ &lt; \gamma }$ can be extended to a colimit diagram 
+    <p>
+<div class="equation">
+  \[ F_{\leq \gamma }: \operatorname{N}_{\bullet }( \mathrm{Ord}_{\leq \gamma } ) \simeq \operatorname{N}_{\bullet }( \mathrm{Ord}_{ &lt; \gamma } )^{\triangleright } \rightarrow \operatorname{\mathcal{C}}. \]
+</div>
+<p>
+       By construction, this diagram satisfies conditions $(a)$, $(b)$, and $(c)$, and is therefore an upper bound for $Q'$. 
+    <p>
+      Applying Zorn's lemma, we deduce that $Q$ has a maximal element $F_{\beta }: \operatorname{N}_{\bullet }( \mathrm{Ord}_{\leq \beta } ) \rightarrow \operatorname{\mathcal{C}}$. We will complete the proof by showing that $\beta = \alpha $. Assume otherwise, and set $Y = F_{\beta }(\beta )$. By assumption, we can choose a morphism $u: Y \rightarrow Z$ which belongs to $U$. Let us identify $u$ with an object $\widetilde{Z}$ of the coslice $\infty $-category $\operatorname{\mathcal{C}}_{Y/}$. Since the inclusion map $\{  \beta + 1\}  \hookrightarrow \operatorname{N}_{\bullet }( \mathrm{Ord}_{\leq \beta + 1} )$ is right anodyne (Example <a data-tag="02LJ" href="/tag/02LJ">4.3.7.11</a>), the restriction map $\operatorname{\mathcal{C}}_{ F_{\beta } / } \rightarrow \operatorname{\mathcal{C}}_{ Y/ }$ is a trivial Kan fibration (Corollary <a data-tag="018L" href="/tag/018L">4.3.6.14</a>). We can therefore lift $\widetilde{Z}$ to an object of the $\infty $-category $\operatorname{\mathcal{C}}_{ F_{\beta } / }$, which we can identify with an extension of $F_{\beta }$ to a diagram $F_{\beta +1}: \operatorname{N}_{\bullet }( \mathrm{Ord}_{ \leq \beta +1 }) \rightarrow \operatorname{\mathcal{C}}$. By construction, this diagram carries the pair $(\beta , \beta +1)$ to the morphism $u$ of $\operatorname{\mathcal{C}}$. It follows that $F_{\beta +1}$ is also an element of $Q$, contradicting the maximality of $F_{\beta }$. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></p></article>
+<p>
+<article class="env-proposition" id="06VZ">
+<p><a class="environment-identifier" href="/tag/06VZ">Proposition <span data-tag="06VZ">9.6.3.9</span>.</a> Let $\lambda $ be a regular cardinal, let $\operatorname{\mathcal{C}}$ be a $\lambda $-cocomplete $\infty $-category and let $W = \{  w_ s: C_ s \rightarrow D_ s \} _{s \in S}$ be a $\lambda $-small collection of morphisms of $\operatorname{\mathcal{C}}$. Assume that: </p>
+<p><dl>
+<dt>$(1)$</dt>
+<dd><p>
+There exists a regular cardinal $\kappa &lt; \lambda $ such that each of the objects $C_ s$ is $(\kappa ,\lambda )$-compact. 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+For every object $E \in \operatorname{\mathcal{C}}$ and every $s \in S$, the set of homotopy classes $\operatorname{Hom}_{\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}}( C_ s, E )$ is $\lambda $-small. 
+</p>
+</dd>
+</dl></p>
+<p> For every object $X \in \operatorname{\mathcal{C}}$, there exists a morphism $f: X \rightarrow Y$ where $Y$ is weakly $W$-local and $f$ is a $\lambda $-small transfinite pushout of morphisms of $W$. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Without loss of generality, we may assume that $X$ is not weakly $W$-local (otherwise, we can take $f = \operatorname{id}_ X$). Let $W'$ be the collection of all morphisms of $\operatorname{\mathcal{C}}$ which are pushouts of morphisms of $W$, and let $\overline{W}$ denote the transfinite closure of $W'$ (Definition <a data-tag="04L9" href="/tag/04L9">9.6.1.13</a>). Let $U \subseteq \overline{W}$ denote the subcollection consisting of those morphisms $u$ which satisfy the requirement of Lemma <a data-tag="04MF" href="/tag/04MF">9.6.3.7</a>. Using Lemma <a data-tag="04MG" href="/tag/04MG">9.6.3.8</a> we deduce that there exists a diagram $F: \operatorname{N}_{\bullet }( \mathrm{Ord}_{\leq \kappa } ) \rightarrow \operatorname{\mathcal{C}}$ where $F(0) = X$ and $F$ exhibits the induced map $F(0) \xrightarrow {f} F(\kappa )$ as a transfinite composition of morphisms of $U$. 
+    <p>
+      We first claim that the object $Y = F(\kappa )$ is weakly $W$-local. Let $w: C \rightarrow D$ be a morphism which belongs to $W$. We wish to show that every morphism $[ \overline{e} ]: C \rightarrow Y$ in the homotopy category $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ factors through the homotopy class $[w]$. Since $F$ is a colimit diagram and the object $C$ is $(\kappa ,\lambda )$-compact, the morphism $[ \overline{e} ]$ factors as a composition $C \xrightarrow { [e] } F(\alpha ) \rightarrow F(\kappa ) = Y$ for some ordinal $\alpha &lt; \kappa $ and some morphism $e: C \rightarrow F(\alpha )$ in the $\infty $-category $\operatorname{\mathcal{C}}$. Since the transition map $F( \alpha ) \rightarrow F(\alpha +1)$ belongs to $U$, we can choose a commutative diagram 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ C \ar [d] \ar [r]^-{w} \ar [d]^{e} &amp;  D \ar [d]^{e'} \\ F(\alpha ) \ar [r] &amp;  F(\alpha +1). } \]
+</div>
+<p>
+       It follows that $[ \overline{e} ]$ factors as a composition $C \xrightarrow {[w]} D \xrightarrow { [e'] } F(\alpha +1) \rightarrow F(\kappa ) = Y$. 
+    <p>
+      To complete the proof, it will suffice to show that $f$ is a $\lambda $-small transfinite composition of morphisms belonging to $W'$. By construction, $f$ is a $\lambda $-small transfinite pushout of morphisms of $U \subseteq \overline{W}$, and therefore belongs to $\overline{W}$. The desired result now follows from Corollary <a data-tag="04LF" href="/tag/04LF">9.6.1.19</a>, since $f$ is not an isomorphism (otherwise, the object $X$ would also be weakly $W$-local, contrary to our initial assumption). 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></p></p></article>
+<article class="env-proof">
+<p>
+<strong>Proof of Theorem <a data-tag="04MA" href="/tag/04MA">9.6.3.3</a>.</strong>
+       Let $\operatorname{\mathcal{C}}$ be a presentable $\infty $-category and let $W = \{  w_ s: C_ s \rightarrow D_ s \} $ be a small collection of morphisms of $\operatorname{\mathcal{C}}$. It follows from Remark <a data-tag="06KD" href="/tag/06KD">9.4.7.8</a> that there exists a small regular cardinal $\kappa $ such that each of the objects $C_ s$ is $\kappa $-compact. The desired result now follows from Proposition <a data-tag="06VZ" href="/tag/06VZ">9.6.3.9</a> (applied in the case where $\lambda =  \Omega $ is a strongly inaccessible cardinal). 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+From Proposition <a data-tag="06VZ" href="/tag/06VZ">9.6.3.9</a>, we can deduce a more refined version of Theorem <a data-tag="06VH" href="/tag/06VH">9.5.7.1</a>: 
+</p>
+<p>
+<article class="env-proposition" id="06ZB">
+<p><a class="environment-identifier" href="/tag/06ZB">Proposition <span data-tag="06ZB">9.6.3.10</span>.</a> Let $\lambda $ be a regular cardinal, let $\operatorname{\mathcal{C}}$ be a $\lambda $-cocomplete $\infty $-category and let $W = \{  w_ s: C_ s \rightarrow D_ s \} _{s \in S}$ be a $\lambda $-small collection of morphisms of $\operatorname{\mathcal{C}}$. Assume that: </p>
+<p><dl>
+<dt>$(1)$</dt>
+<dd><p>
+There exists a regular cardinal $\kappa &lt; \lambda $ such that each of the objects $C_ s$ and $D_{s}$ is $(\kappa ,\lambda )$-compact. 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+For every object $E \in \operatorname{\mathcal{C}}$ and every $s \in S$, the morphism spaces $\operatorname{Hom}_{\operatorname{\mathcal{C}}}( C_ s, E)$ and $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(D_ s, E)$ are essentially $\lambda $-small. 
+</p>
+</dd>
+</dl></p>
+<p> Let $\operatorname{\mathcal{C}}_0 \subseteq \operatorname{\mathcal{C}}$ be the full subcategory spanned by the $W$-local objects, and let $\overline{W}$ be the smallest collection of morphisms of $\operatorname{\mathcal{C}}$ containing $W$ which is closed under $\lambda $-small colimits, contains all identity morphisms, and has the two-out-of-three property. Then $\operatorname{\mathcal{C}}_0$ is a reflective subcategory of $\operatorname{\mathcal{C}}$, and $\overline{W}$ is the collection of $\operatorname{\mathcal{C}}_0$-local equivalences in $\operatorname{\mathcal{C}}$. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Note that the collection of $\operatorname{\mathcal{C}}_0$-local equivalences in $\operatorname{\mathcal{C}}$ is closed under $\lambda $-small colimits, contains all identity morphisms, and has the two-out-of-three property. Since every morphism belonging to $W$ is a $\operatorname{\mathcal{C}}_0$-local equivalence (by the definition of $\operatorname{\mathcal{C}}_0$), it follows that every morphism belonging to $\overline{W}$ is a $\operatorname{\mathcal{C}}_0$-local equivalence. By virtue of Proposition <a data-tag="05Z2" href="/tag/05Z2">6.2.3.14</a>, it will suffice to show that for every object $X \in \operatorname{\mathcal{C}}$, there exists a morphism $f: X \rightarrow Y$ which belongs to $\overline{W}$ where $Y$ is $W$-local. 
+    <p>
+      For each morphism $w: C \rightarrow D$ of $\operatorname{\mathcal{C}}$, choose a relative codiagonal $\gamma _{w}: D \coprod _{C} D \rightarrow D$ (Variant <a data-tag="04K7" href="/tag/04K7">7.6.2.23</a>). Let $W'$ be the smallest collection of morphisms of $\operatorname{\mathcal{C}}$ which contains $W$ and is closed under the operation $w \mapsto \gamma _{w}$. Note that $\gamma _{w}$ can be regarded as a pushout (in the $\infty $-category $\operatorname{Fun}( \Delta ^1, \operatorname{\mathcal{C}})$) of the identity morphism $\operatorname{id}_{D}$ with itself along $f$; in particular, if $w$ belongs to $\overline{W}$, then so does $\gamma _{w}$. It follows that $W'$ is contained in $\overline{W}$. Note that if $C$ and $D$ are $(\kappa ,\lambda )$-compact, then $D \coprod _{C} D$ is also $(\kappa ,\lambda )$-compact (Proposition <a data-tag="064W" href="/tag/064W">9.2.5.24</a>). Moreover, if the morphism spaces $\operatorname{Hom}_{\operatorname{\mathcal{C}}}( C, E)$ and $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(D,E)$ are essentially $\lambda $-small for some object $E \in \operatorname{\mathcal{C}}$, then $\operatorname{Hom}_{\operatorname{\mathcal{C}}}( D \coprod _{C} D, E)$ is also essentially $\lambda $-small (Variant <a data-tag="03UB" href="/tag/03UB">7.4.1.15</a>). Consequently, the collection of morphisms $W'$ also satisfies conditions $(1)$ and $(2)$, and therefore satisfies the hypotheses of Proposition <a data-tag="06VZ" href="/tag/06VZ">9.6.3.9</a>. 
+    <p>
+      Applying Proposition <a data-tag="06VZ" href="/tag/06VZ">9.6.3.9</a>, we conclude that for every object $X \in \operatorname{\mathcal{C}}$ there is a morphism $f: X \rightarrow Y$, where $Y$ is weakly $W'$-local and $f$ is a $\lambda $-small transfinite pushout of morphisms belonging to $W'$, and therefore belongs to $\overline{W}$. We conclude by observing that the object $Y$ is automatically $W'$-local (Proposition <a data-tag="04LY" href="/tag/04LY">9.6.2.14</a>), and therefore $W$-local. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<p>
+<article class="env-remark" id="06ZC">
+<p><a class="environment-identifier" href="/tag/06ZC">Remark <span data-tag="06ZC">9.6.3.11</span>.</a> In the situation of Proposition <a data-tag="06ZB" href="/tag/06ZB">9.6.3.10</a>, let $L: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{C}}_0$ be a left adjoint to the inclusion functor. Then, for any $\lambda $-cocomplete $\infty $-category $\operatorname{\mathcal{D}}$, precomposition with $L$ induces a fully faithful functor </p>
+<div class="equation">
+  \[  L^{\ast }: \operatorname{Fun}^{\lambda -\mathrm{cocont}}( \operatorname{\mathcal{C}}_0, \operatorname{\mathcal{D}}) \rightarrow \operatorname{Fun}^{\lambda -\mathrm{cocont}}(\operatorname{\mathcal{C}}, \operatorname{\mathcal{D}}), \]
+</div>
+<p> whose essential image is spanned by those $\lambda $-cocontinuous functors $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ which carry each element of $W$ to an isomorphism in $\operatorname{\mathcal{D}}$. To prove this, we observe that $L$ exhibits $\operatorname{\mathcal{C}}_0$ as a localization of $\operatorname{\mathcal{C}}$ with respect to $\overline{W}$ (Example <a data-tag="04JM" href="/tag/04JM">6.3.3.11</a>). It therefore suffices to observe the following: </p>
+<p><ul>
+<li><p>
+A $\lambda $-cocontinuous functor $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ carries each element of $W$ to an isomorphism in $\operatorname{\mathcal{D}}$ if and only if it carries each element of $\overline{W}$ to an isomorphism in $\operatorname{\mathcal{D}}$. 
+</p>
+</li><li><p>
+A functor $F_0: \operatorname{\mathcal{C}}_0 \rightarrow \operatorname{\mathcal{D}}$ is $\lambda $-cocontinuous if and only if $(F_0 \circ L): \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ is $\lambda $-cocontinuous (Remark <a data-tag="06YC" href="/tag/06YC">7.1.4.32</a>). 
+</p>
+</li>
+</ul></p>
+</article>
+</p>
+<p>
+As an application of, we record a stronger version of Proposition <a data-tag="06VJ" href="/tag/06VJ">9.5.7.2</a>: 
+</p>
+<p>
+<article class="env-corollary" id="06XT">
+<p><a class="environment-identifier" href="/tag/06XT">Corollary <span data-tag="06XT">9.6.3.12</span>.</a> Let $\operatorname{\mathcal{C}}$ be a presentable $\infty $-category, let $W$ be a small collection of morphisms of $\operatorname{\mathcal{C}}$, let $\operatorname{\mathcal{C}}_0 \subseteq \operatorname{\mathcal{C}}$ be the full subcategory spanned by the $W$-local objects, and let $L: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{C}}_0$ be a left adjoint to the inclusion functor. For every cocomplete $\infty $-category $\operatorname{\mathcal{D}}$, precomposition with $L$ determines a fully faithful functor </p>
+<div class="equation">
+  \[  L^{\ast }: \operatorname{Fun}^{\operatorname{\mathrm{cocont}}}( \operatorname{\mathcal{C}}_0, \operatorname{\mathcal{D}}) \rightarrow \operatorname{Fun}^{\operatorname{\mathrm{cocont}}}(\operatorname{\mathcal{C}}, \operatorname{\mathcal{D}}), \]
+</div>
+<p> whose essential image is spanned by the cocontinuous functors $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ which carry each element of $W$ to an isomorphism in $\operatorname{\mathcal{D}}$. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Apply Remark <a data-tag="06ZC" href="/tag/06ZC">9.6.3.11</a> in the special case where $\lambda =  \Omega $ is a strongly inaccessible cardinal. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.html a[data-toggle="popover"]').popover()
+
+  // render mathematics in popovers
+  $("[data-toggle=popover]").on('shown.bs.popover', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $("div.popover-body").html()]);
+  });
+});
+  </script>
+</div>
+</section></body>
+</html>

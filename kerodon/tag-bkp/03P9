@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" id="main">
+<div class="html" id="tag">
+<h3 class="tex-subsection" id="subsection:adjunction-as-profunctor"><span data-tag="03P9">11.9.6</span> Adjunctions as Profunctors</h3>
+<p>
+Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a functor of $\infty $-categories. Suppose that $F$ admits a right adjoint $G: \operatorname{\mathcal{D}}\rightarrow \operatorname{\mathcal{C}}$. Then, for every pair of objects $X \in \operatorname{\mathcal{C}}$ and $Y \in \operatorname{\mathcal{D}}$, Proposition <a data-tag="02F1" href="/tag/02F1">6.2.1.17</a> supplies a homotopy equivalence of Kan complexes 
+</p>
+<div class="equation">
+  \[  \operatorname{Hom}_{\operatorname{\mathcal{D}}}( F(X), Y ) \xrightarrow {\sim } \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X, G(Y) ). \]
+</div>
+<p>
+ Our goal in this section is to prove a converse of this assertion: if we can choose homotopy equivalences $\operatorname{Hom}_{\operatorname{\mathcal{D}}}( F(X), Y ) \xrightarrow {\sim } \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X, G(Y) )$ depending functorially on $X$ and $Y$, then the functor $G$ must be right adjoint to $F$. Using the language of profunctors, we can formulate this statement as follows: 
+</p>
+<p>
+We will deduce Proposition <a data-tag="03PA" href="/tag/03PA">8.3.4.9</a> from a more precise statement (Proposition <a data-tag="03PH" href="/tag/03PH">11.9.6.5</a>), which classifies natural transformations $\operatorname{id}_{\operatorname{\mathcal{C}}} \rightarrow G \circ F$ which are units of adjunctions between $F$ and $G$. First, we study the functoriality of the constructions introduced in §<a data-tag="03MR" href="/tag/03MR">8.3.3</a>. To avoid confusion, we will denote $\operatorname{Hom}$-functors on $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ by $\mathscr {H}_{\operatorname{\mathcal{C}}}$ and $\mathscr {H}_{\operatorname{\mathcal{D}}}$, respectively. 
+</p>
+<p>
+<article class="env-proposition" id="03PB">
+<p><a class="environment-identifier" href="/tag/03PB">Proposition <span data-tag="03PB">11.9.6.1</span> <span class="named">(Functoriality of $\operatorname{Hom}$-Functors)</span>.</a> Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a functor between $\infty $-categories which admit $\operatorname{Hom}$-functors $( \mathscr {H}_{\operatorname{\mathcal{C}}}, \alpha )$ and $( \mathscr {H}_{\operatorname{\mathcal{D}}}, \beta )$, respectively. Then there exists a natural transformation $\gamma : \mathscr {H}_{\operatorname{\mathcal{C}}}(-,-)\rightarrow \mathscr {H}_{\operatorname{\mathcal{D}}}( F(-), F(-) )$ for which the diagram </p>
+<div class="equation" id="03PC">
+<span class="equation-label"><a data-tag="03PC" href="/tag/03PC">11.24</a></span>
+<div>\begin{equation}  \begin{gathered}\label{equation:Hom-functoriality} \xymatrix@R =50pt@C=50pt{ &amp;  \underline{ \Delta ^{0} }_{ \operatorname{Tw}(\operatorname{\mathcal{C}}) } \ar [dl]_-{ [\alpha ] } \ar [dr]^-{ [\beta ]} \\ \mathscr {H}_{\operatorname{\mathcal{C}}}|_{ \operatorname{Tw}(\operatorname{\mathcal{C}}) } \ar [rr]^{ [\gamma ] } &amp;  &amp;  \mathscr {H}_{\operatorname{\mathcal{D}}}|_{ \operatorname{Tw}(\operatorname{\mathcal{C}}) } } \end{gathered} \end{equation}</div>
+</div>
+<p> commutes (in the homotopy category $\operatorname {h}\! \mathit{ \operatorname{Fun}( \operatorname{Tw}(\operatorname{\mathcal{C}}), \operatorname{\mathcal{S}}) }$). Moreover, the natural transformation $\gamma $ is uniquely determined up to homotopy. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      This is a special case of Proposition <a data-tag="0309" href="/tag/0309">7.3.6.1</a>, since $\alpha $ exhibits $\mathscr {H}_{\operatorname{\mathcal{C}}}$ as a left Kan extension of $\underline{ \Delta ^0}_{ \operatorname{Tw}(\operatorname{\mathcal{C}}) }$ along the left fibration $\operatorname{Tw}(\operatorname{\mathcal{C}}) \rightarrow \operatorname{\mathcal{C}}^{\operatorname{op}} \times \operatorname{\mathcal{C}}$ (see Proposition <a data-tag="03N3" href="/tag/03N3">8.3.5.6</a>). 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+<article class="env-proposition" id="03PE">
+<p><a class="environment-identifier" href="/tag/03PE">Proposition <span data-tag="03PE">11.9.6.2</span>.</a> Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a functor between locally small $\infty $-categories, and let $\gamma : \mathscr {H}_{\operatorname{\mathcal{C}}}(-,-) \rightarrow \mathscr {H}_{\operatorname{\mathcal{D}}}( F(-), F(-) )$ be as in Proposition <a data-tag="03PB" href="/tag/03PB">11.9.6.1</a>. Then: </p>
+<p><ul>
+<li><p>
+The natural transformation $\gamma $ exhibits the functor $\mathscr {H}_{\operatorname{\mathcal{D}}}( F(-), - ): \operatorname{\mathcal{C}}^{\operatorname{op}} \times \operatorname{\mathcal{D}}\rightarrow \operatorname{\mathcal{S}}$ as a left Kan extension of $\mathscr {H}_{\operatorname{\mathcal{C}}}$ along the functor $(\operatorname{id}\times F): \operatorname{\mathcal{C}}^{\operatorname{op}} \times \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{C}}^{\operatorname{op}} \times \operatorname{\mathcal{D}}$. 
+</p>
+</li><li><p>
+The natural transformation $\gamma $ exhibits the functor $\mathscr {H}_{\operatorname{\mathcal{D}}}(-, F(-) ): \operatorname{\mathcal{D}}^{\operatorname{op}} \times \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{S}}$ as a left Kan extension of $\mathscr {H}_{\operatorname{\mathcal{C}}}$ along the functor $(F^{\operatorname{op}} \times \operatorname{id}): \operatorname{\mathcal{C}}^{\operatorname{op}} \times \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}^{\operatorname{op}} \times \operatorname{\mathcal{C}}$. 
+</p>
+</li>
+</ul></p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      We will prove the second assertion; the second follows by a similar argument. By virtue of the commutative diagram (<a data-tag="03PC" href="/tag/03PC">11.24</a>) and the transitivity of left Kan extensions (Proposition <a data-tag="031M" href="/tag/031M">7.3.8.24</a>), it will suffice to prove the following: 
+    <p>
+<dl>
+<dt>$(1)$</dt>
+<dd><p>
+The natural transformation $\alpha $ exhibits $\mathscr {H}_{\operatorname{\mathcal{C}}}(-,-)$ as a left Kan extension of $\underline{ \Delta ^0 }_{ \operatorname{Tw}(\operatorname{\mathcal{C}})}$ along the forgetful functor $\operatorname{Tw}( \operatorname{\mathcal{C}}) \rightarrow \operatorname{\mathcal{C}}^{\operatorname{op}} \times \operatorname{\mathcal{C}}$. 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+The natural transformation $\beta |_{ \operatorname{Tw}(\operatorname{\mathcal{C}})}$ exhibits the functor $\mathscr {H}_{\operatorname{\mathcal{D}}}( -, F(-) )$ as a left Kan extension of $\underline{ \Delta ^0 }_{ \operatorname{Tw}(\operatorname{\mathcal{C}})}$ along the composite functor 
+</p>
+<div class="equation">
+  \[  \operatorname{Tw}( \operatorname{\mathcal{C}}) \rightarrow \operatorname{\mathcal{C}}^{\operatorname{op}} \times \operatorname{\mathcal{C}}\xrightarrow { F^{\operatorname{op}} \times \operatorname{id}} \operatorname{\mathcal{C}}^{\operatorname{op}} \times \operatorname{\mathcal{D}}. \]
+</div>
+</dd>
+</dl>
+<p>
+       Assertion $(1)$ is a special case of Proposition <a data-tag="03N3" href="/tag/03N3">8.3.5.6</a>. Assertion $(2)$ follows from Proposition <a data-tag="03P3" href="/tag/03P3">8.3.4.20</a>, since the natural transformation $\beta |_{ \operatorname{Tw}(\operatorname{\mathcal{C}})}$ exhibits the profunctor $\mathscr {H}_{\operatorname{\mathcal{D}}}( -, F(-) )$ as represented by $F$ (see the proof of Proposition <a data-tag="03P5" href="/tag/03P5">8.3.4.15</a>). 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<p>
+<article class="env-corollary" id="03PF">
+<p><a class="environment-identifier" href="/tag/03PF">Corollary <span data-tag="03PF">11.9.6.3</span>.</a> Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a functor between locally small $\infty $-categories. Then, for any functor $G: \operatorname{\mathcal{D}}\rightarrow \operatorname{\mathcal{C}}$, precomposition with the natural transformation $\gamma $ of Proposition <a data-tag="03PB" href="/tag/03PB">11.9.6.1</a> induces a homotopy equivalence </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \operatorname{Hom}_{ \operatorname{Fun}( \operatorname{\mathcal{C}}^{\operatorname{op}} \times \operatorname{\mathcal{D}}, \operatorname{\mathcal{S}}) }( \mathscr {H}_{\operatorname{\mathcal{D}}}(F(-), -), \mathscr {H}_{\operatorname{\mathcal{C}}}(-, G(-)) ) \ar [d] \\ \operatorname{Hom}_{ \operatorname{Fun}( \operatorname{\mathcal{C}}^{\operatorname{op}} \times \operatorname{\mathcal{C}}, \operatorname{\mathcal{S}}) }( \mathscr {H}_{\operatorname{\mathcal{C}}}(-,-), \mathscr {H}_{\operatorname{\mathcal{C}}}( -, (G \circ F)(-)) ). } \]
+</div>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Combine Propositions <a data-tag="03PE" href="/tag/03PE">11.9.6.2</a> and <a data-tag="0309" href="/tag/0309">7.3.6.1</a>. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+<article class="env-remark" id="03PG">
+<p><a class="environment-identifier" href="/tag/03PG">Remark <span data-tag="03PG">11.9.6.4</span>.</a> Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ and $G: \operatorname{\mathcal{D}}\rightarrow \operatorname{\mathcal{C}}$ be locally small $\infty $-categories, with $\operatorname{Hom}$-functors </p>
+<div class="equation">
+  \[ \mathscr {H}_{\operatorname{\mathcal{C}}}: \operatorname{\mathcal{C}}^{\operatorname{op}} \times \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{S}}\quad \quad \mathscr {H}_{\operatorname{\mathcal{D}}}: \operatorname{\mathcal{D}}^{\operatorname{op}} \times \operatorname{\mathcal{D}}\rightarrow \operatorname{\mathcal{S}}. \]
+</div>
+<p> Combining Corollary <a data-tag="03PF" href="/tag/03PF">11.9.6.3</a> and Proposition <a data-tag="03NR" href="/tag/03NR">8.3.4.1</a>, we obtain homotopy equivalences </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \operatorname{Hom}_{ \operatorname{Fun}( \operatorname{\mathcal{C}}, \operatorname{\mathcal{C}})}( \operatorname{id}_{ \operatorname{\mathcal{C}}}, G \circ F) \ar [d] \\ \operatorname{Hom}_{ \operatorname{Fun}( \operatorname{\mathcal{C}}^{\operatorname{op}} \times \operatorname{\mathcal{C}}, \operatorname{\mathcal{S}})}( \mathscr {H}_{\operatorname{\mathcal{C}}}(-, -), \mathscr {H}_{\operatorname{\mathcal{C}}}( -, (G \circ F)(-) ) \\ \operatorname{Hom}_{ \operatorname{Fun}( \operatorname{\mathcal{C}}^{\operatorname{op}} \times \operatorname{\mathcal{D}}, \operatorname{\mathcal{S}})}( \mathscr {H}_{\operatorname{\mathcal{D}}}(F(-), -), \mathscr {H}_{\operatorname{\mathcal{C}}}( -, G(-) ) \ar [u] .} \]
+</div>
+<p> In particular, every natural transformation of functors $\eta : \operatorname{id}_{ \operatorname{\mathcal{C}}} \rightarrow G \circ F$ determines a natural transformation of profunctors $\eta ': \mathscr {H}_{\operatorname{\mathcal{D}}}( F(-), -) \rightarrow \mathscr {H}_{\operatorname{\mathcal{C}}}( -, G(-) )$, which is characterized up to homotopy by the requirement that the diagram </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ &amp;  \mathscr {H}_{\operatorname{\mathcal{D}}}( F(-), F(-) ) \ar [dr]^-{ [\eta '] } &amp;  \\ \mathscr {H}_{\operatorname{\mathcal{C}}}(-,-) \ar [rr]^{ [\eta ] } \ar [ur]^{ [\gamma ] } &amp;  &amp;  \mathscr {H}_{\operatorname{\mathcal{C}}}( -, (G \circ F)(-) ) } \]
+</div>
+<p> commutes in the homotopy category $\operatorname {h}\! \mathit{ \operatorname{Fun}( \operatorname{\mathcal{C}}^{\operatorname{op}} \times \operatorname{\mathcal{C}}, \operatorname{\mathcal{S}}) }$. </p>
+</article>
+</p>
+<p>
+<article class="env-proposition" id="03PH">
+<p><a class="environment-identifier" href="/tag/03PH">Proposition <span data-tag="03PH">11.9.6.5</span>.</a> Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ and $G: \operatorname{\mathcal{D}}\rightarrow \operatorname{\mathcal{C}}$ be functors between locally small $\infty $-categories and let $\eta : \operatorname{id}_{ \operatorname{\mathcal{C}}} \rightarrow G \circ F$ be a natural transformation. Then $\eta $ exhibits $G$ as a right adjoint to $F$ if and only if the morphism $\mathscr {H}_{\operatorname{\mathcal{D}}}( F(-), -) \rightarrow \mathscr {H}_{\operatorname{\mathcal{C}}}( -, G(-) )$ of Remark <a data-tag="03PG" href="/tag/03PG">11.9.6.4</a> is an isomorphism of profunctors. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      This is a reformulation of Corollary <a data-tag="02FX" href="/tag/02FX">6.2.6.5</a>. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<article class="env-proof">
+<p>
+<strong>Proof of Proposition <a data-tag="03PA" href="/tag/03PA">8.3.4.9</a>.</strong>
+       Let $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ be $\infty $-categories which admit $\operatorname{Hom}$-functors 
+    <p>
+<div class="equation">
+  \[ \mathscr {H}_{\operatorname{\mathcal{C}}}: \operatorname{\mathcal{C}}^{\operatorname{op}} \times \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{S}}\quad \quad \mathscr {H}_{\operatorname{\mathcal{D}}}: \operatorname{\mathcal{D}}^{\operatorname{op}} \times \operatorname{\mathcal{D}}\rightarrow \operatorname{\mathcal{S}}. \]
+</div>
+<p>
+       Suppose we are given functors $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ and $G: \operatorname{\mathcal{D}}\rightarrow \operatorname{\mathcal{C}}$. It follows from Proposition <a data-tag="03PH" href="/tag/03PH">11.9.6.5</a> (and Remark <a data-tag="03PG" href="/tag/03PG">11.9.6.4</a>) that $G$ is right adjoint to $F$ if and only if the profunctors $\mathscr {H}_{\operatorname{\mathcal{D}}}( F(-), -)$ and $\mathscr {H}_{\operatorname{\mathcal{C}}}( -, G(-) )$ are isomorphic (as objects of the $\infty $-category $\operatorname{Fun}( \operatorname{\mathcal{C}}^{\operatorname{op}} \times \operatorname{\mathcal{D}}, \operatorname{\mathcal{S}})$). In particular, if a profunctor $\mathscr {K}: \operatorname{\mathcal{C}}^{\operatorname{op}} \times \operatorname{\mathcal{D}}\rightarrow \operatorname{\mathcal{S}}$ is corepresented by $F$, then it is represented by $G$ if and only if $G$ is right adjoint to $F$. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.html a[data-toggle="popover"]').popover()
+
+  // render mathematics in popovers
+  $("[data-toggle=popover]").on('shown.bs.popover', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $("div.popover-body").html()]);
+  });
+});
+  </script>
+</div>
+</section></body>
+</html>

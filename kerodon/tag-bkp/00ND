@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" id="main">
+<div class="html" id="tag">
+<h2 class="tex-section" id="section:differential-graded-categories"><span data-tag="00ND">2.5</span> Differential Graded Categories</h2>
+<p>
+Homological algebra provides a plentiful supply of examples of $\infty $-categories. Let us begin by reviewing some terminology. 
+</p>
+<p>
+<article class="env-definition" id="00NE">
+<p><a class="environment-identifier" href="/tag/00NE">Definition <span data-tag="00NE">2.5.0.1</span>.</a> Let $\operatorname{\mathcal{A}}$ be an additive category (Definition <a class="" data-content="This is a reference to something which is not yet available in Kerodon." data-html="true" data-placement="bottom" data-toggle="popover" data-trigger="focus" role="button" style="cursor: pointer;" tabindex="0" title="Future reference"><img src="/static/images/question.svg"/></a>). A <em>chain complex with values in $\operatorname{\mathcal{A}}$</em> is a pair $( C_{\ast }, \partial )$, where $C_{\ast } = \{  C_ n \} _{n \in \operatorname{\mathbf{Z}}}$ is a collection of objects of $\operatorname{\mathcal{A}}$ and $\partial = \{  \partial _{n} \} _{n \in \operatorname{\mathbf{Z}}}$ is a collection of morphisms $\partial _{n}: C_ n \rightarrow C_{n-1}$ in $\operatorname{\mathcal{A}}$ with the property that each composition $\partial _{n} \circ \partial _{n+1}$ is the zero morphism from $C_{n+1}$ to $C_{n-1}$. </p>
+</article>
+</p>
+<p>
+<article class="env-notation" id="00NF">
+<p><a class="environment-identifier" href="/tag/00NF">Notation <span data-tag="00NF">2.5.0.2</span>.</a> Let $\operatorname{\mathcal{A}}$ be an additive category. Then a chain complex $(C_{\ast }, \partial )$ with values in $\operatorname{\mathcal{A}}$ can be graphically represented by a diagram </p>
+<div class="equation">
+  \[  \cdots \rightarrow C_2 \xrightarrow { \partial _2} C_1 \xrightarrow { \partial _1} C_0 \xrightarrow { \partial _0 } C_{-1} \xrightarrow { \partial _{-1} } C_{-2} \rightarrow \cdots  \]
+</div>
+<p> in which each successive composition is equal to zero. We will generally abuse terminology by identifying $( C_{\ast }, \partial )$ with the underlying collection $C_{\ast } = \{  C_ n \} _{n \in \operatorname{\mathbf{Z}}}$, which we will refer to as a <em>graded object of $\operatorname{\mathcal{A}}$</em>. We view $\partial = \{  \partial _{n} \} _{n \in \operatorname{\mathbf{Z}}}$ as an endomorphism of $C_{\ast }$ which is homogeneous of degree $-1$, which we refer to as the <em>differential</em> or the <em>boundary operator</em> of the chain complex $C_{\ast }$. We will generally abuse notation by omitting the subscript from the expression $\partial _ n$; that is, we denote each of the boundary operators $C_{n} \rightarrow C_{n-1}$ by the same symbol $\partial $ (or $\partial _{C}$, when we need to emphasize its association with the particular chain complex $C_{\ast }$). </p>
+</article>
+</p>
+<p>
+Chain complexes with values in an additive category $\operatorname{\mathcal{A}}$ can themselves be organized into a category. 
+</p>
+<p>
+<article class="env-definition" id="00NG">
+<p><a class="environment-identifier" href="/tag/00NG">Definition <span data-tag="00NG">2.5.0.3</span>.</a> Let $( C_{\ast }, \partial _ C)$ and $( D_{\ast }, \partial _{D} )$ be chain complexes with values in an additive category $\operatorname{\mathcal{A}}$. A <em>chain map from $( C_{\ast }, \partial _ C)$ and $( D_{\ast }, \partial _{D} )$</em> is a collection $f = \{  f_ n \} _{n \in \operatorname{\mathbf{Z}}}$, where each $f_ n$ is a morphism from $C_ n$ to $D_{n}$ in the category $\operatorname{\mathcal{A}}$, for which each of the diagrams </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ C_{n} \ar [r]^-{ \partial _{C} } \ar [d]^{ f_ n } &amp;  C_{n-1} \ar [d]^{ f_{n-1} } \\ D_{n} \ar [r]^-{ \partial _{D} } &amp;  D_{n-1} } \]
+</div>
+<p> is commutative. </p>
+<p>If $\operatorname{\mathcal{A}}$ is an additive category, we let $\operatorname{Ch}(\operatorname{\mathcal{A}})$ denote the category whose objects are chain complexes with values in $\operatorname{\mathcal{A}}$ and whose morphisms are chain maps. </p>
+</article>
+</p>
+<p>
+<article class="env-notation" id="00NH">
+<p><a class="environment-identifier" href="/tag/00NH">Notation <span data-tag="00NH">2.5.0.4</span>.</a> Let $k$ be a commutative ring. We will write $\operatorname{Ch}(k)$ for the category $\operatorname{Ch}(\operatorname{\mathcal{A}})$, where $\operatorname{\mathcal{A}}$ is the category of $k$-modules and $k$-module homomorphisms. In particular, we will write $\operatorname{Ch}(\operatorname{\mathbf{Z}})$ for the category of chain complexes of abelian groups. </p>
+</article>
+</p>
+<p>
+<article class="env-definition" id="00NJ">
+<p><a class="environment-identifier" href="/tag/00NJ">Definition <span data-tag="00NJ">2.5.0.5</span> <span class="named">(Chain Homotopy)</span>.</a> Let $\operatorname{\mathcal{A}}$ be an additive category and let $(C_{\ast }, \partial _ C)$ and $(D_{\ast }, \partial _ D)$ be chain complexes with values in $\operatorname{\mathcal{A}}$. Let $f = \{  f_ n \} _{n \in \operatorname{\mathbf{Z}}}$ and $f' = \{  f'_ n \} _{n \in \operatorname{\mathbf{Z}}}$ be chain maps from $C_{\ast }$ to $D_{\ast }$. A <em>chain homotopy from $f$ to $f'$</em> is a collection of maps $h = \{  h_ n: C_ n \rightarrow D_{n+1} \} $ which satisfy the identity </p>
+<div class="equation">
+  \[ f'_ n - f_{n} = \partial _{D} \circ h_{n} + h_{n-1} \circ \partial _ C \]
+</div>
+<p> for every integer $n$. </p>
+<p>We say that $f$ and $f'$ are <em>chain homotopic</em> if there exists a chain homotopy from $f$ to $f'$. We will say that $f$ is a <em>chain homotopy equivalence</em> if there exists a chain map $g: D_{\ast } \rightarrow C_{\ast }$ such that $g \circ f$ and $f \circ g$ are chain homotopic to the identity morphisms $\operatorname{id}_{ C_{\ast } }$ and $\operatorname{id}_{ D_{\ast } }$, respectively. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="04GB">
+<p><a class="environment-identifier" href="/tag/04GB">Example <span data-tag="04GB">2.5.0.6</span>.</a> Let $\operatorname{\mathcal{A}}$ be an additive category and suppose we are given a chain complex </p>
+<div class="equation">
+  \[  \cdots \rightarrow C_{2} \xrightarrow {\partial } C_{1} \xrightarrow {\partial } C_{0} \xrightarrow {\partial } C_{-1} \xrightarrow { \partial } C_{-2} \rightarrow \cdots  \]
+</div>
+<p> with values in $\operatorname{\mathcal{A}}$. A <em>contracting homotopy</em> for $( C_{\ast }, \partial )$ is a chain homotopy from the zero morphism $0: C_{\ast } \rightarrow C_{\ast }$ to the identity morphism $\operatorname{id}: C_{\ast } \rightarrow C_{\ast }$ (in the sense of Definition <a data-tag="00NJ" href="/tag/00NJ">2.5.0.5</a>). More concretely, a contracting homotopy is a system of morphisms $\{  h_{n}: C_{n} \rightarrow C_{n+1} \} _{n \in \operatorname{\mathbf{Z}}}$ which satisfy the identity $\operatorname{id}_{ C_{n} } = \partial \circ h_{n} + h_{n-1} \circ \partial $ for every integer $n$. We will say that the complex $(C_{\ast }, \partial )$ is <em>contractible</em> if it admits a contracting homotopy. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="00NK">
+<p><a class="environment-identifier" href="/tag/00NK">Remark <span data-tag="00NK">2.5.0.7</span>.</a> Let $C_{\ast }$ and $D_{\ast }$ be chain complexes with values in an additive category $\operatorname{\mathcal{A}}$. Then chain homotopy determines an equivalence relation on the set of chain maps $f: C_{\ast } \rightarrow D_{\ast }$. More precisely: </p>
+<p><ul>
+<li><p>
+Every chain map $f: C_{\ast } \rightarrow D_{\ast }$ is chain homotopic to itself, via the chain homotopy given by the collection of zero maps $\{  0: C_{n} \rightarrow D_{n+1} \} $. 
+</p>
+</li><li><p>
+Let $f,f': C_{\ast } \rightarrow D_{\ast }$ be chain maps. If $f$ is chain homotopic to $f'$, then $f'$ is chain homotopic to $f$. More precisely, if $h$ is a chain homotopy from $f$ to $f'$, then $-h$ is a chain homotopy from $f'$ to $f$. 
+</p>
+</li><li><p>
+Let $f,f',f'': C_{\ast } \rightarrow D_{\ast }$ be chain maps. If $f$ is chain homotopic to $f'$ and $f'$ is chain homotopic to $f''$, then $f$ is chain homotopic to $f''$. More precisely, if $h$ is a chain homotopy from $f$ to $f'$ and $h'$ is a chain homotopy from $f'$ to $f''$, then $h + h'$ is a chain homotopy from $f$ to $f''$. 
+</p>
+</li>
+</ul></p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="00NL">
+<p><a class="environment-identifier" href="/tag/00NL">Remark <span data-tag="00NL">2.5.0.8</span>.</a> Let $C_{\ast }$ and $D_{\ast }$ be chain complexes with values in an additive category $\operatorname{\mathcal{A}}$, and let $f,f': C_{\ast } \rightarrow D_{\ast }$ be chain maps which are chain homotopic. Then: </p>
+<p><ul>
+<li><p>
+For every chain map $g: D_{\ast } \rightarrow E_{\ast }$, the composite maps $g \circ f$ and $g \circ f'$ are chain homotopic. More precisely, if $h = \{  h_ n \} _{n \in \operatorname{\mathbf{Z}}}$ is a chain homotopy from $f$ to $f'$, then the collection of composite maps $\{  g_{n+1} \circ h_{n} \} $ is a chain homotopy from $g \circ f$ to $g \circ f'$. 
+</p>
+</li><li><p>
+For every chain map $e: B_{\ast } \rightarrow C_{\ast }$, the composite maps $f \circ e$ and $f' \circ e$ are chain homotopic. More precisely, if $h = \{  h_ n \} _{n \in \operatorname{\mathbf{Z}}}$ is a chain homotopy from $f$ to $f'$, then the collection of composite maps $\{  h_ n \circ e_ n \} $ is a chain homotopy from $f \circ e$ to $f' \circ e$. 
+</p>
+</li>
+</ul></p>
+</article>
+</p>
+<p>
+<article class="env-construction" id="00NM">
+<p><a class="environment-identifier" href="/tag/00NM">Construction <span data-tag="00NM">2.5.0.9</span> <span class="named">(The Homotopy Category of Chain Complexes)</span>.</a> Let $\operatorname{\mathcal{A}}$ be an additive category. We define a category $\operatorname{hCh}(\operatorname{\mathcal{A}})$ as follows: </p>
+<p><ul>
+<li><p>
+The objects of $\operatorname{hCh}(\operatorname{\mathcal{A}})$ are chain complexes with values in $\operatorname{\mathcal{A}}$. 
+</p>
+</li><li><p>
+If $C_{\ast }$ and $D_{\ast }$ are chain complexes with values in $\operatorname{\mathcal{A}}$, then $\operatorname{Hom}_{ \operatorname{hCh}(\operatorname{\mathcal{A}})}( C_{\ast }, D_{\ast } )$ is the quotient of $\operatorname{Hom}_{ \operatorname{Ch}(\operatorname{\mathcal{A}})}( C_{\ast }, D_{\ast } )$ by the relation of chain homotopy equivalence. If $f: C_{\ast } \rightarrow D_{\ast }$ is a chain map, we denote its equivalence class by $[f] \in \operatorname{Hom}_{\operatorname{hCh}(\operatorname{\mathcal{A}})}( C_{\ast }, D_{\ast } )$. 
+</p>
+</li><li><p>
+If $C_{\ast }$, $D_{\ast }$, and $E_{\ast }$ are chain complexes with values in $\operatorname{\mathcal{A}}$, then the composition law 
+</p>
+<div class="equation">
+  \[  \circ : \operatorname{Hom}_{\operatorname{hCh}(\operatorname{\mathcal{A}})}( D_{\ast }, E_{\ast }) \times \operatorname{Hom}_{ \operatorname{hCh}(\operatorname{\mathcal{A}})}( C_{\ast }, D_{\ast }) \rightarrow \operatorname{Hom}_{ \operatorname{hCh}(\operatorname{\mathcal{A}})}( C_{\ast }, E_{\ast } )  \]
+</div>
+<p>
+ is uniquely determined by the requirement that $[g] \circ [f] = [g \circ f]$ for every pair of chain maps $f: C_{\ast } \rightarrow D_{\ast }$ and $g: D_{\ast } \rightarrow E_{\ast }$ (this operation is well-defined by virtue of Remark <a data-tag="00NL" href="/tag/00NL">2.5.0.8</a>). 
+</p>
+</li>
+</ul></p>
+<p> We will refer to $\operatorname{hCh}(\operatorname{\mathcal{A}})$ as the <em>homotopy category</em> of $\operatorname{Ch}(\operatorname{\mathcal{A}})$. </p>
+</article>
+</p>
+<p>
+The definition of the homotopy category $\operatorname{hCh}(\operatorname{\mathcal{A}})$ of chain complexes is analogous to the definition of the homotopy category $\operatorname {h}\! \mathit{\operatorname{Top}}$ of topological spaces: the latter is obtained by working with continuous functions up to homotopy, and the former by working with chain maps up to chain homotopy. As with its topological counterpart, passage from $\operatorname{Ch}(\operatorname{\mathcal{A}})$ to $\operatorname{hCh}(\operatorname{\mathcal{A}})$ is a destructive procedure. By enforcing the equality $[f] = [f']$ whenever there <em>exists</em> a chain homotopy $h$ from $f$ to $f'$, we sacrifice the ability to extract information which depends on a particular <em>choice</em> of chain homotopy. The situation can be remedied by contemplating a more elaborate structure. 
+</p>
+<p>
+<article class="env-construction" id="00NN">
+<p><a class="environment-identifier" href="/tag/00NN">Construction <span data-tag="00NN">2.5.0.10</span> <span class="named">(Mapping Complexes)</span>.</a> Let $(C_{\ast }, \partial _ C)$ and $(D_{\ast }, \partial _ D)$ be chain complexes with values in an additive category $\operatorname{\mathcal{A}}$. For each integer $d$, we let $[ C, D ]_{d}$ denote the abelian group $\prod _{n \in \operatorname{\mathbf{Z}}} \operatorname{Hom}_{\operatorname{\mathcal{A}}}( C_ n, D_{n+d} )$ consisting of maps from $C_{\ast }$ to $D_{\ast }$ which are homogeneous of degree $d$. These abelian groups can be organized into a chain complex </p>
+<div class="equation">
+  \[  \cdots \xrightarrow {\partial } [ C, D ]_{2} \xrightarrow {\partial } [ C,D]_{1} \xrightarrow {\partial } [C,D]_{0} \xrightarrow {\partial } [ C,D]_{-1} \xrightarrow { \partial } [ C,D ]_{-2} \xrightarrow {\partial } \cdots , \]
+</div>
+<p> whose boundary operator $\partial : [ C,D]_{d} \rightarrow [ C,D ]_{d-1}$ is given by the formula $\partial \{  f_{n}: C_{n} \rightarrow D_{n+d} \} _{n \in \operatorname{\mathbf{Z}}} = \{  \partial _{D} \circ f_ n - (-1)^{d} f_{n-1} \circ \partial _{C} \} _{n \in \operatorname{\mathbf{Z}}}$. We will refer to $[ C, D]_{\ast }$ as the <em>mapping complex</em> associated to the chain complexes $C_{\ast }$ and $D_{\ast }$. </p>
+</article>
+</p>
+<p>
+Note that from the mapping complexes $[C,D]_{\ast }$, we can extract <em>both</em> the set of chain maps $\operatorname{Hom}_{ \operatorname{Ch}(\operatorname{\mathcal{A}})}( C_{\ast }, D_{\ast } )$ and the set of homotopy equivalence classes $\operatorname{Hom}_{ \operatorname{hCh}(\operatorname{\mathcal{A}})}( C_{\ast }, D_{\ast } )$: 
+</p>
+<ul>
+<li><p>
+Chain maps from $C_{\ast }$ to $D_{\ast }$ can be identified with <em>$0$-cycles</em> of the chain complex $[ C,D ]_{\ast }$: that is, with elements $f = \{  f_ n \} _{ n \in \operatorname{\mathbf{Z}}} \in [C,D]_{0}$ satisfying $\partial (f) = 0$. 
+</p>
+</li><li><p>
+Given a pair of chain maps $f,f': C_{\ast } \rightarrow D_{\ast }$, a chain homotopy from $f$ to $f'$ is an element $h = \{  h_ n \} _{n \in \operatorname{\mathbf{Z}}} \in [C,D]_1$ satisfying $\partial (h) = f' - f$. In particular, $f$ and $f'$ are chain homotopic if and only if they are <em>homologous</em> when viewed as $0$-cycles of the complex $[C,D]_{\ast }$, so $\operatorname{Hom}_{\operatorname{hCh}(\operatorname{\mathcal{A}})}(C_{\ast }, D_{\ast } )$ can be identified with the $0$th homology group of $[C,D]_{\ast }$. 
+</p>
+</li>
+</ul>
+<p>
+ Moreover, the mapping complexes of Construction <a data-tag="00NN" href="/tag/00NN">2.5.0.10</a> are equipped with maps 
+</p>
+<div class="equation">
+  \[  \circ : [D,E]_{m} \times [C,D]_{n} \rightarrow [C,E]_{m+n}, \]
+</div>
+<p>
+ which refine the composition laws on the categories $\operatorname{Ch}(\operatorname{\mathcal{A}})$ and $\operatorname{hCh}(\operatorname{\mathcal{A}})$. In §<a data-tag="00P9" href="/tag/00P9">2.5.2</a>, we axiomatize this structure by introducing the notion of a <em>differential graded category</em> (Definition <a data-tag="00PA" href="/tag/00PA">2.5.2.1</a>). By definition, a differential graded category is a category which is enriched over the category $\operatorname{Ch}(\operatorname{\mathbf{Z}})$ of graded abelian groups (endowed with the monoidal structure given by the tensor product of chain complexes, which we review in §<a data-tag="00NQ" href="/tag/00NQ">2.5.1</a>). The category of chain complexes $\operatorname{Ch}(\operatorname{\mathcal{A}})$ is a prototypical example of a differential graded category (Example <a data-tag="00PE" href="/tag/00PE">2.5.2.5</a>), with the enrichment supplied by the mapping complexes of Construction <a data-tag="00NN" href="/tag/00NN">2.5.0.10</a>. 
+</p>
+<p>
+Let $\operatorname{\mathcal{C}}$ be a differential graded category. To every pair of objects $X,Y \in \operatorname{\mathcal{C}}$, the enrichment of $\operatorname{\mathcal{C}}$ supplies a chain complex $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\ast }$, whose $0$-cycles are the morphisms from $X$ to $Y$ in $\operatorname{\mathcal{C}}$. Heuristically, one can think of this data as endowing $\operatorname{\mathcal{C}}$ with the structure of a higher category, whose $n$-morphisms (for $n \geq 2$) are given by the elements of $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{n-1}$ (for varying $X$ and $Y$). In §<a data-tag="00PK" href="/tag/00PK">2.5.3</a>, we make this heuristic precise by constructing a simplicial set $\operatorname{N}_{\bullet }^{\operatorname{dg}}(\operatorname{\mathcal{C}})$ called the <em>differential graded nerve</em> of $\operatorname{\mathcal{C}}$ (Definition <a data-tag="00PT" href="/tag/00PT">2.5.3.7</a>), and proving that it is an $\infty $-category in the sense of Definition <a data-tag="003A" href="/tag/003A">1.4.0.1</a> (Theorem <a data-tag="00PW" href="/tag/00PW">2.5.3.10</a>). In §<a data-tag="00SW" href="/tag/00SW">2.5.4</a> we show that the homotopy category of $\operatorname{N}_{\bullet }^{\operatorname{dg}}(\operatorname{\mathcal{C}})$ can be obtained directly from $\operatorname{\mathcal{C}}$ by identifying homotopic morphisms (Proposition <a data-tag="00Q8" href="/tag/00Q8">2.5.4.10</a>); in particular, the homotopy category of $\operatorname{N}_{\bullet }^{\operatorname{dg}}( \operatorname{Ch}(\operatorname{\mathcal{A}}) )$ can be identified with the homotopy category of chain complexes $\operatorname{hCh}(\operatorname{\mathcal{A}})$ of Construction <a data-tag="00NM" href="/tag/00NM">2.5.0.9</a>. 
+</p>
+<p>
+The remainder of this section is devoted to studying the relationship between the differential graded nerve $\operatorname{N}_{\bullet }^{\operatorname{dg}}(\operatorname{\mathcal{C}})$ and the homotopy coherent nerve of §<a data-tag="00JN" href="/tag/00JN">2.4</a>. This will require a somewhat lengthy detour through the theory of simplicial abelian groups. In §<a data-tag="00Q9" href="/tag/00Q9">2.5.5</a>, we will associate to each simplicial set $S_{\bullet }$ its <em>normalized chain complex $\mathrm{N}_{\ast }(S; \operatorname{\mathbf{Z}})$</em>, given in each degree $n$ by the free abelian group on the set of nondegenerate $n$-simplices of $S_{\bullet }$ (Construction <a data-tag="00QH" href="/tag/00QH">2.5.5.9</a>). The construction $S_{\bullet } \mapsto \mathrm{N}_{\ast }(S; \operatorname{\mathbf{Z}})$ determines a functor from the category of simplicial sets to the category $\operatorname{Ch}(\operatorname{\mathbf{Z}})$ of chain complexes of abelian groups. In §<a data-tag="00QQ" href="/tag/00QQ">2.5.6</a>, we show that this functor has a right adjoint $\mathrm{K}: \operatorname{Ch}(\operatorname{\mathbf{Z}}) \rightarrow \operatorname{Set_{\Delta }}$, which we will refer to as the <em>Eilenberg-MacLane functor</em> (Construction <a data-tag="00QT" href="/tag/00QT">2.5.6.3</a>). To each chain complex of abelian groups $M_{\ast }$, this functor associates a simplicial abelian group $\mathrm{K}(M_{\ast })$, which we will refer to as the <em>(generalized) Eilenberg-MacLane space of $M_{\ast }$</em>. Moreover, the celebrated <em>Dold-Kan correspondence</em> (Theorem <a data-tag="00QR" href="/tag/00QR">2.5.6.1</a>) asserts that the Eilenberg-MacLane functor restricts to an equivalence 
+</p>
+<div class="equation">
+  \[  \operatorname{Ch}(\operatorname{\mathbf{Z}})_{\geq 0} \xrightarrow {\sim } \{  \text{Simplicial Abelian Groups} \} , \]
+</div>
+<p>
+ where $\operatorname{Ch}(\operatorname{\mathbf{Z}})_{\geq 0} \subset \operatorname{Ch}(\operatorname{\mathbf{Z}})$ denotes the full subcategory spanned by those chain complexes which are concentrated in nonnegative degrees (Definition <a data-tag="00NR" href="/tag/00NR">2.5.1.1</a>). 
+</p>
+<p>
+Let $S_{\bullet }$ and $T_{\bullet }$ be simplicial sets. In §<a data-tag="00S0" href="/tag/00S0">2.5.8</a>, we review the classical <em>Alexander-Whitney construction</em>, which supplies a chain map 
+</p>
+<div class="equation">
+  \[  \mathrm{AW}: \mathrm{N}_{\ast }( S \times T; \operatorname{\mathbf{Z}}) \rightarrow \mathrm{N}_{\ast }(S; \operatorname{\mathbf{Z}}) \boxtimes \mathrm{N}_{\ast }(T; \operatorname{\mathbf{Z}}); \]
+</div>
+<p>
+ here the right hand side denotes the tensor product of the normalized chain complexes $\mathrm{N}_{\ast }(S; \operatorname{\mathbf{Z}})$ and $\mathrm{N}_{\ast }(T;\operatorname{\mathbf{Z}})$. Allowing $S_{\bullet }$ and $T_{\bullet }$ to vary, these maps determine a lax monoidal structure on the Eilenberg-MacLane functor $\mathrm{K}: \operatorname{Ch}(\operatorname{\mathbf{Z}}) \rightarrow \operatorname{Set_{\Delta }}$. Using this structure, we will associate to each differential graded category $\operatorname{\mathcal{C}}$ a simplicial category $\operatorname{\mathcal{C}}^{\Delta }_{\bullet }$ having the same objects, with simplicial mapping sets given by $\operatorname{Hom}_{ \operatorname{\mathcal{C}}^{\Delta }}(X,Y) = \mathrm{K}( \operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)_{\ast } )$ (Construction <a data-tag="00SE" href="/tag/00SE">2.5.9.2</a>). In §<a data-tag="00SC" href="/tag/00SC">2.5.9</a>, we construct a comparison map $\mathfrak {Z}$ from the homotopy coherent nerve $\operatorname{N}_{\bullet }^{\operatorname{hc}}( \operatorname{\mathcal{C}}^{\Delta } )$ to the differential graded nerve $\operatorname{N}_{\bullet }^{\operatorname{dg}}(\operatorname{\mathcal{C}})$ (Proposition <a data-tag="00SN" href="/tag/00SN">2.5.9.10</a>), and show that it is a trivial Kan fibration (Theorem <a data-tag="00SV" href="/tag/00SV">2.5.9.18</a>). The proof of this result (and the construction of the map $\mathfrak {Z}$) rely heavily on the <em>shuffle product</em> $\triangledown : \mathrm{N}_{\ast }(S; \operatorname{\mathbf{Z}}) \times \mathrm{N}_{\ast }(T;\operatorname{\mathbf{Z}}) \rightarrow \mathrm{N}_{\ast }(S \times T; \operatorname{\mathbf{Z}})$ introduced by Eilenberg and MacLane, which we review in §<a data-tag="00RF" href="/tag/00RF">2.5.7</a>. 
+</p>
+<p>
+<article class="env-warning" id="00NP">
+<p><a class="environment-identifier" href="/tag/00NP">Warning <span data-tag="00NP">2.5.0.11</span>.</a> The differential graded nerve construction $\operatorname{\mathcal{C}}\mapsto \operatorname{N}_{\bullet }^{\operatorname{dg}}(\operatorname{\mathcal{C}})$ can be used to produce many interesting examples of $\infty $-categories. However, not every $\infty $-category can be obtained in this way (even up to equivalence). Put differently, $\infty $-categories of the form $\operatorname{N}_{\bullet }^{\operatorname{dg}}(\operatorname{\mathcal{C}})$ have some special features, which are not shared by general $\infty $-categories. For example, if $\operatorname{\mathcal{C}}$ is a <em>pretriangulated</em> differential graded category (Definition <a class="" data-content="This is a reference to something which is not yet available in Kerodon." data-html="true" data-placement="bottom" data-toggle="popover" data-trigger="focus" role="button" style="cursor: pointer;" tabindex="0" title="Future reference"><img src="/static/images/question.svg"/></a>), then the differential graded nerve $\operatorname{N}_{\bullet }^{\operatorname{dg}}( \operatorname{\mathcal{C}})$ is a <em>stable</em> $\infty $-category (see Proposition <a class="" data-content="This is a reference to something which is not yet available in Kerodon." data-html="true" data-placement="bottom" data-toggle="popover" data-trigger="focus" role="button" style="cursor: pointer;" tabindex="0" title="Future reference"><img src="/static/images/question.svg"/></a>). </p>
+</article>
+</p>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.html a[data-toggle="popover"]').popover()
+
+  // render mathematics in popovers
+  $("[data-toggle=popover]").on('shown.bs.popover', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $("div.popover-body").html()]);
+  });
+});
+  </script>
+<h2 id="structure">Structure</h2>
+<ul class="tree" id="tree">
+<li id="00NQ">
+      Subsection <a data-tag="00NQ" href="/tag/00NQ">2.5.1</a>: Generalities on Chain Complexes
+
+      
+    
+      <li id="00P9">
+      Subsection <a data-tag="00P9" href="/tag/00P9">2.5.2</a>: Differential Graded Categories
+
+      
+    
+      <li id="00PK">
+      Subsection <a data-tag="00PK" href="/tag/00PK">2.5.3</a>: The Differential Graded Nerve
+
+      
+    
+      <li id="00SW">
+      Subsection <a data-tag="00SW" href="/tag/00SW">2.5.4</a>: The Homotopy Category of a Differential Graded Category
+
+      
+    
+      <li id="00Q9">
+      Subsection <a data-tag="00Q9" href="/tag/00Q9">2.5.5</a>: Digression: The Homology of Simplicial Sets
+
+      
+    
+      <li id="00QQ">
+      Subsection <a data-tag="00QQ" href="/tag/00QQ">2.5.6</a>: The Dold-Kan Correspondence
+
+      
+    
+      <li id="00RF">
+      Subsection <a data-tag="00RF" href="/tag/00RF">2.5.7</a>: The Shuffle Product
+
+      
+    
+      <li id="00S0">
+      Subsection <a data-tag="00S0" href="/tag/00S0">2.5.8</a>: The Alexander-Whitney Construction
+
+      
+    
+      <li id="00SC">
+      Subsection <a data-tag="00SC" href="/tag/00SC">2.5.9</a>: Comparison with the Homotopy Coherent Nerve
+
+      
+    
+    </li></li></li></li></li></li></li></li></li></ul>
+<script type="text/javascript">
+$("ul.tree").bonsai({
+  
+});
+
+var state = localStorage.getItem("bonsai-00ND");
+if (state !== null)
+  $("ul#tree").data("bonsai").restore(JSON.parse(state));
+
+$("ul#tree").click(function() {
+  var bonsai = $(this).data("bonsai");
+  var state = bonsai.serialize();
+  localStorage.setItem("bonsai-00ND", JSON.stringify(state));
+});
+
+// trigger the click event handler to save state even when clicking on the expand/collapse all links, which are outside ul#tree
+$("div.expand-all").click(function() {
+  $("ul#tree").click();
+});
+
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+    </script>
+</div>
+</section></body>
+</html>

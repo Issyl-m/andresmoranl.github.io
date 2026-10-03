@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" id="main">
+<div class="html" id="tag">
+<h3 class="tex-subsection" id="subsection:sieve"><span data-tag="04TZ">10.2.1</span> Sieves</h3>
+<p>
+Let $\operatorname{\mathcal{C}}$ be a category. Recall that a <em>sieve on $\operatorname{\mathcal{C}}$</em> is a full subcategory $\operatorname{\mathcal{C}}^{0} \subseteq \operatorname{\mathcal{C}}$ satisfying the following condition: 
+</p>
+<ul>
+<li><p>
+If $f: X \rightarrow Y$ is a morphism of $\operatorname{\mathcal{C}}$ and $Y$ belongs to the subcategory $\operatorname{\mathcal{C}}^{0}$, then $X$ also belongs to the subcategory $\operatorname{\mathcal{C}}^{0}$. 
+</p>
+</li>
+</ul>
+<p>
+ This condition has a counterpart in the setting of $\infty $-categories. 
+</p>
+<p>
+<article class="env-definition" id="04U0">
+<p><a class="environment-identifier" href="/tag/04U0">Definition <span data-tag="04U0">10.2.1.1</span>.</a> Let $\operatorname{\mathcal{C}}$ be a simplicial set. A <em>sieve on $\operatorname{\mathcal{C}}$</em> is a simplicial subset $\operatorname{\mathcal{C}}^{0} \subseteq \operatorname{\mathcal{C}}$ for which the inclusion map $\operatorname{\mathcal{C}}^{0} \hookrightarrow \operatorname{\mathcal{C}}$ is a right fibration. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="04U1">
+<p><a class="environment-identifier" href="/tag/04U1">Example <span data-tag="04U1">10.2.1.2</span>.</a> Let $\operatorname{\mathcal{C}}$ be a simplicial set. Then the simplicial subsets $\emptyset , \operatorname{\mathcal{C}}\subseteq \operatorname{\mathcal{C}}$ are sieves on $\operatorname{\mathcal{C}}$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="04U2">
+<p><a class="environment-identifier" href="/tag/04U2">Remark <span data-tag="04U2">10.2.1.3</span> <span class="named">(Base Change)</span>.</a> Let $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ be a morphism of simplicial sets, and let $\operatorname{\mathcal{D}}^{0} \subseteq \operatorname{\mathcal{D}}$ be a sieve on $\operatorname{\mathcal{D}}$. Then the inverse image $\operatorname{\mathcal{C}}^{0} = F^{-1}( \operatorname{\mathcal{D}}^{0} )$ is a sieve on $\operatorname{\mathcal{C}}$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="04U3">
+<p><a class="environment-identifier" href="/tag/04U3">Remark <span data-tag="04U3">10.2.1.4</span> <span class="named">(Transitivity)</span>.</a> Let $\operatorname{\mathcal{C}}$ be a simplicial set containing simplicial subsets $\operatorname{\mathcal{C}}^{1} \subseteq \operatorname{\mathcal{C}}^{0} \subseteq \operatorname{\mathcal{C}}$, where $\operatorname{\mathcal{C}}^0$ is a sieve on $\operatorname{\mathcal{C}}$. Then $\operatorname{\mathcal{C}}^1$ is a sieve on $\operatorname{\mathcal{C}}^0$ if and only if it is a sieve on $\operatorname{\mathcal{C}}$. </p>
+</article>
+</p>
+<p>
+<article class="env-proposition" id="04U4">
+<p><a class="environment-identifier" href="/tag/04U4">Proposition <span data-tag="04U4">10.2.1.5</span>.</a> Let $\operatorname{\mathcal{C}}$ be a simplicial set. Then a simplicial subset $\operatorname{\mathcal{C}}^{0} \subseteq \operatorname{\mathcal{C}}$ is a sieve if and only if it satisfies the following condition: </p>
+<p><dl>
+<dt>$(\ast )$</dt>
+<dd><p>
+Let $\sigma : \Delta ^ n \rightarrow \operatorname{\mathcal{C}}$ be an $n$-simplex of $\operatorname{\mathcal{C}}$. If the final vertex $\sigma (n)$ is contained in $\operatorname{\mathcal{C}}^{0}$, then $\sigma $ is contained in $\operatorname{\mathcal{C}}^{0}$. 
+</p>
+</dd>
+</dl></p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      For every integer $n \geq 0$, the inclusion map $\{ n\}  \hookrightarrow \Delta ^ n$ is right anodyne (Example <a data-tag="02LJ" href="/tag/02LJ">4.3.7.11</a>). If the inclusion map $\iota : \operatorname{\mathcal{C}}^{0} \hookrightarrow \operatorname{\mathcal{C}}$ is a right fibration, then condition $(\ast )$ is a special case of Proposition <a data-tag="014X" href="/tag/014X">4.2.4.5</a>. Conversely, suppose that condition $(\ast )$ is satisfied, and let $\sigma : \Delta ^ n \rightarrow \operatorname{\mathcal{C}}$ be an $n$-simplex of $\operatorname{\mathcal{C}}$. For every integer $0 &lt; i \leq n$, the horn $\Lambda ^{n}_{i}$ contains the final vertex $\{ n\}  \subseteq \Delta ^ n$. Consequently, if the restriction $\sigma |_{ \Lambda ^{n}_{i} }$ factors (uniquely) through $\iota $, then condition $(\ast )$ guarantees that $\sigma $ factors (uniquely) through $\iota $. Allowing $n$ and $i$ to vary, we conclude that $\iota $ is a right fibration. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+<article class="env-corollary" id="04U5">
+<p><a class="environment-identifier" href="/tag/04U5">Corollary <span data-tag="04U5">10.2.1.6</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category and let $\operatorname{\mathcal{C}}^{0} \subseteq \operatorname{\mathcal{C}}$ be a simplicial subset. Then $\operatorname{\mathcal{C}}^{0}$ is a sieve on $\operatorname{\mathcal{C}}$ if and only if it is a full subcategory of $\operatorname{\mathcal{C}}$ which satisfies the following condition: </p>
+<p><dl>
+<dt>$(\ast )$</dt>
+<dd><p>
+If $f: X \rightarrow Y$ is a morphism of $\operatorname{\mathcal{C}}$ and $Y$ belongs to the subcategory $\operatorname{\mathcal{C}}^{0}$, then $X$ also belongs to the subcategory $\operatorname{\mathcal{C}}^{0}$. 
+</p>
+</dd>
+</dl></p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      By definition, $\operatorname{\mathcal{C}}^{0}$ is a sieve on $\operatorname{\mathcal{C}}$ if and only if the inclusion map $\iota : \operatorname{\mathcal{C}}^{0} \hookrightarrow \operatorname{\mathcal{C}}$ is a right fibration. In particular, this guarantees that $\iota $ is an inner fibration, so that $\operatorname{\mathcal{C}}^{0}$ is a subcategory of $\operatorname{\mathcal{C}}$. It also guarantees that a morphism $f: X \rightarrow Y$ is contained in $\operatorname{\mathcal{C}}^{0}$ if and only if the object $Y$ is contained in $\operatorname{\mathcal{C}}^{0}$, so that the subcategory $\operatorname{\mathcal{C}}^{0} \subseteq \operatorname{\mathcal{C}}$ is full and satisfies $(\ast )$. Conversely, if $\operatorname{\mathcal{C}}^{0} \subseteq \operatorname{\mathcal{C}}$ is a full subcategory satisfying condition $(\ast )$, then $\iota $ satisfies the criterion of Proposition <a data-tag="04U4" href="/tag/04U4">10.2.1.5</a> and is therefore a right fibration. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+<article class="env-example" id="04U6">
+<p><a class="environment-identifier" href="/tag/04U6">Example <span data-tag="04U6">10.2.1.7</span>.</a> Let $\operatorname{\mathcal{C}}$ be a category and let $S$ be a simplicial subset of $\operatorname{N}_{\bullet }(\operatorname{\mathcal{C}})$. Then $S$ is a sieve on $\operatorname{N}_{\bullet }(\operatorname{\mathcal{C}})$ (in the sense of Definition <a data-tag="04U0" href="/tag/04U0">10.2.1.1</a>) if and only if it has the form $\operatorname{N}_{\bullet }( \operatorname{\mathcal{C}}^0 )$, where $\operatorname{\mathcal{C}}^0$ is sieve on $\operatorname{\mathcal{C}}$ (in the usual category-theoretic sense). </p>
+</article>
+</p>
+<p>
+<article class="env-corollary" id="04U7">
+<p><a class="environment-identifier" href="/tag/04U7">Corollary <span data-tag="04U7">10.2.1.8</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category and let $\operatorname{\mathcal{C}}^{0} \subseteq \operatorname{\mathcal{C}}$ be a sieve. Then $\operatorname{\mathcal{C}}^{0}$ is a replete full subcategory of $\operatorname{\mathcal{C}}$. In particular, $\operatorname{\mathcal{C}}^{0}$ is an $\infty $-category. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="04U8">
+<p><a class="environment-identifier" href="/tag/04U8">Remark <span data-tag="04U8">10.2.1.9</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category, let $\operatorname{\mathcal{C}}^{0} \subseteq \operatorname{\mathcal{C}}$ be a sieve, and let $f: K \rightarrow \operatorname{\mathcal{C}}^{0}$ be a diagram. If the simplicial set $K$ is nonempty, then the inclusion map $\operatorname{\mathcal{C}}^{0}_{/f} \hookrightarrow \operatorname{\mathcal{C}}_{/f}$ is an isomorphism. In particular, an extension $\overline{f}: K^{\triangleleft } \rightarrow \operatorname{\mathcal{C}}^{0}$ is a limit diagram in the $\infty $-category $\operatorname{\mathcal{C}}^{0}$ if and only if it is a limit diagram in $\operatorname{\mathcal{C}}$. See Variant <a data-tag="06TG" href="/tag/06TG">7.1.4.14</a> for a more general statement. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="04V5">
+<p><a class="environment-identifier" href="/tag/04V5">Remark <span data-tag="04V5">10.2.1.10</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category, let $X$ be an object of $\operatorname{\mathcal{C}}$, and let $\operatorname{\mathcal{C}}^{0} \subseteq \operatorname{\mathcal{C}}$ be the sieve generated by $X$. Then the projection map $U: \operatorname{\mathcal{C}}_{/X} \rightarrow \operatorname{\mathcal{C}}$ factors through a functor $U^{0}: \operatorname{\mathcal{C}}_{/X} \rightarrow \operatorname{\mathcal{C}}^{0}$. Moreover, the following conditions are equivalent: </p>
+<p><dl>
+<dt>$(1)$</dt>
+<dd><p>
+The object $X \in \operatorname{\mathcal{C}}$ is subterminal (see Definition <a data-tag="04UY" href="/tag/04UY">4.7.4.1</a>). 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+The functor $U^{0}$ is a trivial Kan fibration. 
+</p>
+</dd>
+<dt>$(3)$</dt>
+<dd><p>
+The functor $U^{0}$ is an equivalence of $\infty $-categories. 
+</p>
+</dd>
+</dl></p>
+<p> The equivalence $(1) \Leftrightarrow (2)$ is a reformulation of Remark <a data-tag="04V4" href="/tag/04V4">4.7.4.7</a>. Note that $U^0$ is a pullback of $U$, and therefore a right fibration (Proposition <a data-tag="018F" href="/tag/018F">4.3.6.1</a>). In particular, $U^{0}$ is an isofibration (Example <a data-tag="01EW" href="/tag/01EW">4.4.1.11</a>), so the equivalence $(2) \Leftrightarrow (3)$ follows from Proposition <a data-tag="01G7" href="/tag/01G7">4.5.6.20</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="04U9">
+<p><a class="environment-identifier" href="/tag/04U9">Example <span data-tag="04U9">10.2.1.11</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category, let $\operatorname{\mathcal{C}}^{0} \subseteq \operatorname{\mathcal{C}}$ be a sieve, and let $X$ be an object of $\operatorname{\mathcal{C}}^{0}$. If $C_{\bullet }$ is any simplicial object of $\operatorname{\mathcal{C}}$ satisfying $C_{0} = X$, then $C_{\bullet }$ can also be regarded as a simplicial object of $\operatorname{\mathcal{C}}^{0}$. Applying Remark <a data-tag="04U8" href="/tag/04U8">10.2.1.9</a>, we deduce that $C_{\bullet }$ is a Čech nerve of $X$ in the $\infty $-category $\operatorname{\mathcal{C}}^{0}$ if and only if it is a Čech nerve of $X$ in the $\infty $-category $\operatorname{\mathcal{C}}$ (see Definition <a data-tag="04SW" href="/tag/04SW">10.1.4.1</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-proposition" id="04UA">
+<p><a class="environment-identifier" href="/tag/04UA">Proposition <span data-tag="04UA">10.2.1.12</span>.</a> Let $U: \operatorname{\mathcal{E}}\rightarrow \operatorname{\mathcal{C}}$ be a morphism of simplicial sets. The following conditions are equivalent: </p>
+<p><dl>
+<dt>$(1)$</dt>
+<dd><p>
+The morphism $U$ restricts to an isomorphism of $\operatorname{\mathcal{E}}$ with a sieve $\operatorname{\mathcal{C}}^{0} \subseteq \operatorname{\mathcal{C}}$. 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+The morphism $U$ is a right covering map (Definition <a data-tag="022N" href="/tag/022N">4.2.3.8</a>) and, for every vertex $C \in \operatorname{\mathcal{C}}$, the fiber $U^{-1} \{ C\} $ has at most one element. 
+</p>
+</dd>
+</dl></p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      The implication $(1) \Rightarrow (2)$ follows from Example <a data-tag="022S" href="/tag/022S">4.2.3.12</a>. Conversely, suppose that condition $(2)$ is satisfied, and let $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ denote the homotopy category of $\operatorname{\mathcal{C}}$. Our assumption that $U$ is a right covering map guarantees the existence of a pullback square 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ \operatorname{\mathcal{E}}\ar [r]^-{U} \ar [d] &amp;  \operatorname{N}_{\bullet }( \int ^{ \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}} } \mathscr {F}) \ar [d] \\ \operatorname{\mathcal{C}}\ar [r] &amp;  \operatorname{N}_{\bullet }( \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}} ) } \]
+</div>
+<p>
+       where $\mathscr {F}: \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}^{\operatorname{op}} \rightarrow \operatorname{Set}$ is the contravariant homotopy transport representation of $\operatorname{\mathcal{C}}$, given concretely by the formula $\mathscr {F}(C) = U^{-1} \{ C\} $ (see Corollary <a data-tag="027X" href="/tag/027X">5.2.7.4</a>). Our assumption that each of the sets $\mathscr {F}(C)$ has at most one element guarantees that the right vertical map induces an isomorphism from $\int ^{ \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}} } \mathscr {F}$ to the sieve $\operatorname{\mathcal{D}}\subseteq \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ spanned by those objects $C$ for which the fiber $U^{-1} \{ C\} $ is nonempty. Condition $(1)$ now follows from Example <a data-tag="04U6" href="/tag/04U6">10.2.1.7</a> and Remark <a data-tag="04U2" href="/tag/04U2">10.2.1.3</a>. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<p>
+<article class="env-corollary" id="04UB">
+<p><a class="environment-identifier" href="/tag/04UB">Corollary <span data-tag="04UB">10.2.1.13</span>.</a> Let $\operatorname{\mathcal{C}}$ be a simplicial set and let $\operatorname{\mathcal{D}}= \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ denote its homotopy category. Then the construction $(\operatorname{\mathcal{D}}^{0} \subseteq \operatorname{\mathcal{D}}) \mapsto \operatorname{N}_{\bullet }(\operatorname{\mathcal{D}}^{0} ) \times _{ \operatorname{N}_{\bullet }(\operatorname{\mathcal{D}}) } \operatorname{\mathcal{C}}$ induces a bijection </p>
+<div class="equation">
+  \[  \{  \textnormal{Sieves $\operatorname{\mathcal{D}}^{0} \subseteq \operatorname{\mathcal{D}}$} \}  \rightarrow \{  \textnormal{Sieves $\operatorname{\mathcal{C}}^{0} \subseteq \operatorname{\mathcal{C}}$} \} . \]
+</div>
+</article>
+</p>
+<p>
+<article class="env-remark" id="04UC">
+<p><a class="environment-identifier" href="/tag/04UC">Remark <span data-tag="04UC">10.2.1.14</span>.</a> Let $\operatorname{\mathcal{C}}$ be a simplicial set. Then the collection of sieves on $\operatorname{\mathcal{C}}$ is closed under the formation of intersections. In particular, for every vertex $X \in \operatorname{\mathcal{C}}$, there is a smallest sieve $\operatorname{\mathcal{C}}^{0} \subseteq \operatorname{\mathcal{C}}$ containing $X$. We will refer to $\operatorname{\mathcal{C}}^{0}$ as the <em>sieve generated by $X$</em>. If $\operatorname{\mathcal{C}}$ is an $\infty $-category, then $\operatorname{\mathcal{C}}^{0}$ admits a more explicit description: it is the full subcategory of $\operatorname{\mathcal{C}}$ spanned by those objects $C$ for which there exists a morphism $f: C \rightarrow X$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="04UZ">
+<p><a class="environment-identifier" href="/tag/04UZ">Remark <span data-tag="04UZ">10.2.1.15</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category, let $X$ be an object of $\operatorname{\mathcal{C}}$, and let $\operatorname{\mathcal{C}}^{0} \subseteq \operatorname{\mathcal{C}}$ be the sieve generated by $X$ (Remark <a data-tag="04UC" href="/tag/04UC">10.2.1.14</a>): that is, the full subcategory of $\operatorname{\mathcal{C}}$ spanned by those objects $C$ for which the morphism space $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(C,X)$ is nonempty. Then $X$ is a subterminal object of $\operatorname{\mathcal{C}}$ (in the sense of Definition <a data-tag="04UY" href="/tag/04UY">4.7.4.1</a>) if and only if it is a final object of $\operatorname{\mathcal{C}}^{0}$ (in the sense of Definition <a data-tag="02H7" href="/tag/02H7">4.7.3.1</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="04V6">
+<p><a class="environment-identifier" href="/tag/04V6">Remark <span data-tag="04V6">10.2.1.16</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category and let $f: X \rightarrow Y$ be a morphism of $\operatorname{\mathcal{C}}$. Suppose that $\operatorname{\mathcal{C}}$ admits finite limits, so that $f$ admits a Čech nerve $\operatorname{\check{C}}_{\bullet }(X/Y)$ (Proposition <a data-tag="04T9" href="/tag/04T9">10.1.5.6</a>). If $Y$ is a subterminal object of $\operatorname{\mathcal{C}}$, then the underlying simplicial object of $\operatorname{\check{C}}_{\bullet }(X/Y)$ is also a Čech nerve of the object $X$. This follows by combining Remark <a data-tag="04V5" href="/tag/04V5">10.2.1.10</a> with Example <a data-tag="04U9" href="/tag/04U9">10.2.1.11</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="04W3">
+<p><a class="environment-identifier" href="/tag/04W3">Remark <span data-tag="04W3">10.2.1.17</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category containing a $2$-simplex </p>
+<div class="equation" id="04W4">
+<span class="equation-label"><a data-tag="04W4" href="/tag/04W4">10.19</a></span>
+<div>\begin{equation}  \begin{gathered}\label{equation:monomorphism-of-Cech-nerves} \xymatrix@C =50pt@R=50pt{ &amp;  Y \ar [dr]^{g} &amp;  \\ X \ar [ur]^{f} \ar [rr]^{h} &amp;  &amp;  Z, } \end{gathered} \end{equation}</div>
+</div>
+<p> where $g$ is a monomorphism. Suppose that $\operatorname{\mathcal{C}}$ admits pullbacks, so that the morphisms $f$ and $h$ admit Čech nerves $\operatorname{\check{C}}_{\bullet }(X/Y)$ and $\operatorname{\check{C}}_{\bullet }(X/Z)$ (Proposition <a data-tag="04T9" href="/tag/04T9">10.1.5.6</a>). Then the underlying simplicial objects of $\operatorname{\check{C}}_{\bullet }(X/Y)$ and $\operatorname{\check{C}}_{\bullet }(X/Z)$ are canonically isomorphic. To see this, let us regard (<a data-tag="04W4" href="/tag/04W4">10.19</a>) as morphism $\widetilde{f}: \widetilde{X} \rightarrow \widetilde{Y}$ in the slice $\infty $-category $\operatorname{\mathcal{C}}_{/Z}$. Since the forgetful functor $\operatorname{\mathcal{C}}_{/Z} \rightarrow \operatorname{\mathcal{C}}$ preserves pullbacks (Corollary <a data-tag="02KT" href="/tag/02KT">7.1.7.5</a>), we can identify $\operatorname{\check{C}}_{\bullet }(X/Y)$ with the image of $\operatorname{\check{C}}_{\bullet }( \widetilde{X} / \widetilde{Y} )$. The desired result now follows by applying Example <a data-tag="04V6" href="/tag/04V6">10.2.1.16</a> to the object $\widetilde{Y} \in \operatorname{\mathcal{C}}_{/Z}$ (which is subterminal by virtue of Remark <a data-tag="05FX" href="/tag/05FX">4.7.5.16</a>). </p>
+</article>
+</p>
+<p>
+It will often be convenient to work with a variant Definition <a data-tag="04U0" href="/tag/04U0">10.2.1.1</a>. 
+</p>
+<p>
+<article class="env-definition" id="04UD">
+<p><a class="environment-identifier" href="/tag/04UD">Definition <span data-tag="04UD">10.2.1.18</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category and let $Y$ be an object of $\operatorname{\mathcal{C}}$. A <em>sieve on $Y$</em> is a sieve on the slice $\infty $-category $\operatorname{\mathcal{C}}_{/Y}$; that is, a full subcategory $\operatorname{\mathcal{C}}^{0}_{/Y} \subseteq \operatorname{\mathcal{C}}_{/Y}$ satisfying the following condition: </p>
+<p><dl>
+<dt>$(\ast )$</dt>
+<dd><p>
+For every $2$-simplex 
+</p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ X' \ar [rr] \ar [dr]_{f'} &amp;  &amp;  X \ar [dl]^{f} \\ &amp;  Y &amp;  } \]
+</div>
+<p>
+ in the $\infty $-category $\operatorname{\mathcal{C}}$, if $f$ is contained in the subcategory $\operatorname{\mathcal{C}}^{0}_{/Y} \subseteq \operatorname{\mathcal{C}}_{/Y}$, then $f'$ is also contained in $\operatorname{\mathcal{C}}^{0}_{/Y} \subseteq \operatorname{\mathcal{C}}_{/Y}$. 
+</p>
+</dd>
+</dl></p>
+</article>
+</p>
+<p>
+<article class="env-example" id="04UE">
+<p><a class="environment-identifier" href="/tag/04UE">Example <span data-tag="04UE">10.2.1.19</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category and let $f: X \rightarrow Y$ be a morphism of $\operatorname{\mathcal{C}}$. By virtue of Remark <a data-tag="04UC" href="/tag/04UC">10.2.1.14</a>, there is a smallest sieve $\operatorname{\mathcal{C}}^{0}_{/Y} \subseteq \operatorname{\mathcal{C}}_{/Y}$ on the object $Y$ which contains the morphism $f$. We will refer to $\operatorname{\mathcal{C}}^{0}_{/Y}$ as the <em>sieve generated by $f$</em>. Concretely, a morphism $e: C \rightarrow Y$ belongs to the sieve $\operatorname{\mathcal{C}}^{0}_{/Y}$ if and only if there exists a commutative diagram </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ C \ar [dr]_{e} \ar [rr] &amp;  &amp;  X \ar [dl]^{f} \\ &amp;  Y &amp;  } \]
+</div>
+<p> in the $\infty $-category $\operatorname{\mathcal{C}}$. Stated more informally, a morphism $e$ belongs to the sieve $\operatorname{\mathcal{C}}^{0}_{/Y}$ if and only if it factors through $f$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="04UF">
+<p><a class="environment-identifier" href="/tag/04UF">Remark <span data-tag="04UF">10.2.1.20</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category and let $\operatorname{\mathcal{C}}^{0}_{/Y} \subseteq \operatorname{\mathcal{C}}_{/Y}$ be a sieve on an object $Y$. Then $\operatorname{\mathcal{C}}^{0}_{/Y}$ coincides with $\operatorname{\mathcal{C}}_{/Y}$ if and only if it contains the identity morphism ${\operatorname{id}}_{Y}: Y \rightarrow Y$. In particular, if $\operatorname{\mathcal{C}}^{0}_{/Y}$ is the sieve generated by a morphism $f: X \rightarrow Y$ (Example <a data-tag="04UE" href="/tag/04UE">10.2.1.19</a>), then $\operatorname{\mathcal{C}}^{0}_{/Y} = \operatorname{\mathcal{C}}_{/Y}$ if and only if the morphism $f$ admits a right homotopy inverse $s: Y \rightarrow X$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="04UG">
+<p><a class="environment-identifier" href="/tag/04UG">Remark <span data-tag="04UG">10.2.1.21</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category, let $Y$ be an object of $\operatorname{\mathcal{C}}$, and let $\operatorname{\mathcal{C}}^{0}_{/Y} \subseteq \operatorname{\mathcal{C}}_{/Y}$ be a sieve on $Y$. The condition that a morphism $f: X \rightarrow Y$ belongs to $\operatorname{\mathcal{C}}^{0}_{/Y}$ depends only on the isomorphism class of $f$ as an object of the $\infty $-category $\operatorname{\mathcal{C}}_{/Y}$. In particular, if $X$ is fixed, then the condition that $f$ belongs to $\operatorname{\mathcal{C}}^{0}_{/Y}$ depends only on the homotopy class $[f] \in \operatorname{Hom}_{ \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}}( X, Y)$. </p>
+</article>
+</p>
+<p>
+We have the following variant of Corollary <a data-tag="04UB" href="/tag/04UB">10.2.1.13</a>: 
+</p>
+<p>
+<article class="env-proposition" id="04UH">
+<p><a class="environment-identifier" href="/tag/04UH">Proposition <span data-tag="04UH">10.2.1.22</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category, let $\operatorname{\mathcal{D}}= \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ be its homotopy category, and let $Y$ be an object of $\operatorname{\mathcal{C}}$ (which we also regard as an object of $\operatorname{\mathcal{D}}$). Then the construction $(\operatorname{\mathcal{D}}^{0}_{/Y} \subseteq \operatorname{\mathcal{D}}_{/Y}) \mapsto \operatorname{N}_{\bullet }(\operatorname{\mathcal{D}}^{0}_{/Y} ) \times _{ \operatorname{N}_{\bullet }(\operatorname{\mathcal{D}}_{/Y}) } \operatorname{\mathcal{C}}_{/Y}$ induces a bijection </p>
+<div class="equation">
+  \[  \{  \textnormal{Sieves $\operatorname{\mathcal{D}}^{0}_{/Y} \subseteq \operatorname{\mathcal{D}}_{/Y}$} \}  \xrightarrow {\sim } \{  \textnormal{Sieves $\operatorname{\mathcal{C}}^{0}_{/Y} \subseteq \operatorname{\mathcal{C}}_{/Y}$} \} . \]
+</div>
+</article>
+</p>
+<p>
+<article class="env-warning" id="04UJ">
+<p><a class="environment-identifier" href="/tag/04UJ">Warning <span data-tag="04UJ">10.2.1.23</span>.</a> Proposition <a data-tag="04UH" href="/tag/04UH">10.2.1.22</a> is not a special case of Corollary <a data-tag="04UB" href="/tag/04UB">10.2.1.13</a>, because the slice category $\operatorname{\mathcal{D}}_{/Y}$ is usually not equivalent to the homotopy category of $\operatorname{\mathcal{C}}_{/Y}$. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof of Proposition <a data-tag="04UH" href="/tag/04UH">10.2.1.22</a>.</strong>
+       Let $\operatorname{\mathcal{C}}^{0}_{/Y} \subseteq \operatorname{\mathcal{C}}_{/Y}$ be a sieve on the $\infty $-category $\operatorname{\mathcal{C}}_{/Y}$. We wish to show that there is a unique sieve $\operatorname{\mathcal{D}}^{0}_{/Y} \subseteq \operatorname{\mathcal{D}}_{/Y}$ with the following property: a morphism $f: X \rightarrow Y$ belongs to the sieve $\operatorname{\mathcal{C}}^{0}_{/Y}$ if and only if the homotopy class $[f]$ belongs to the sieve $\operatorname{\mathcal{D}}^{0}_{/Y}$. The uniqueness assertion is immediate. To prove existence, we define $\operatorname{\mathcal{D}}^{0}_{/Y}$ to be the full subcategory of $\operatorname{\mathcal{D}}_{/Y}$ spanned by those homotopy classes $[f]: X \rightarrow Y$ such that $f$ belongs to $\operatorname{\mathcal{C}}^{0}_{/Y}$; by virtue of Remark <a data-tag="04UG" href="/tag/04UG">10.2.1.21</a>, this condition depends only on the homotopy class $[f]$ and not on the choice of representative $f$. To complete the proof, it will suffice to show that the subcategory $\operatorname{\mathcal{D}}^{0}_{/Y} \subseteq \operatorname{\mathcal{D}}_{/Y}$ is a sieve. Suppose we are given a commutative diagram 
+    <p>
+<div class="equation" id="04UK">
+<span class="equation-label"><a data-tag="04UK" href="/tag/04UK">10.20</a></span>
+<div>\begin{equation}  \begin{gathered}\label{equation:sieve-in-homotopy} \xymatrix@R =50pt@C=50pt{ X' \ar [dr]_{ [f'] } \ar [rr] &amp;  &amp;  X \ar [dl]^{ [f] } \\ &amp;  Y &amp;  } \end{gathered} \end{equation}</div>
+</div>
+<p>
+       in the homotopy category $\operatorname{\mathcal{D}}= \operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$. We wish to show that if $[f]$ belongs to $\operatorname{\mathcal{D}}^{0}_{/Y}$, then $[f']$ also belongs to $\operatorname{\mathcal{D}}^{0}_{/Y}$. This follows from our assumption that $\operatorname{\mathcal{C}}^{0}_{/Y}$ is a sieve on $Y$, since (<a data-tag="04UK" href="/tag/04UK">10.20</a>) can be lifted to a $2$-simplex in the $\infty $-category $\operatorname{\mathcal{C}}$. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<p>
+<article class="env-notation" id="04UL">
+<p><a class="environment-identifier" href="/tag/04UL">Notation <span data-tag="04UL">10.2.1.24</span> <span class="named">(Pullback Sieves)</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category, let $f: X \rightarrow Y$ be a morphism of $\operatorname{\mathcal{C}}$, and let $\operatorname{\mathcal{C}}^{0}_{/Y} \subseteq \operatorname{\mathcal{C}}_{/Y}$ be a sieve on the object $Y$. We let $f^{\ast }( \operatorname{\mathcal{C}}^{0}_{/Y} )$ denote the full subcategory of $\operatorname{\mathcal{C}}_{/X}$ spanned by those objects $e: C \rightarrow X$ for which the composition $(f \circ e): C \rightarrow Y$ belongs to $\operatorname{\mathcal{C}}^{0}_{/Y}$. By virtue of Remark <a data-tag="04UG" href="/tag/04UG">10.2.1.21</a>, this condition is independent of the choice of composition $f \circ e$. The subcategory $f^{\ast }( \operatorname{\mathcal{C}}^{0}_{/Y} )$ is a sieve on the object $X$, which we will refer to as the <em>pullback of $\operatorname{\mathcal{C}}^{0}_{/Y}$ along the morphism $f$</em>. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="04UM">
+<p><a class="environment-identifier" href="/tag/04UM">Example <span data-tag="04UM">10.2.1.25</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category containing a pullback diagram </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ X' \ar [d]^{f'} \ar [r] &amp;  X \ar [d]^{f} \\ Y' \ar [r]^-{u} &amp;  Y, } \]
+</div>
+<p> and let $\operatorname{\mathcal{C}}^{0}_{/Y} \subseteq \operatorname{\mathcal{C}}_{/Y}$ be the sieve on $Y$ generated by the morphism $f$. Then the pullback $u^{\ast }( \operatorname{\mathcal{C}}^{0}_{/Y} )$ is the sieve on $Y'$ generated by the morphism $f'$. In other words, a morphism $[v]: C \rightarrow X'$ in the homotopy category $\operatorname {h}\! \mathit{\operatorname{\mathcal{C}}}$ factors through $[f']$ if and only if the composite morphism $[u] \circ [v]$ factors through $[f]$ (see Warning <a data-tag="03FH" href="/tag/03FH">7.6.2.3</a>). </p>
+</article>
+</p>
+<p>
+Let $\operatorname{\mathcal{C}}$ be an $\infty $-category. Recall that a full subcategory $\operatorname{\mathcal{C}}^{0} \subseteq \operatorname{\mathcal{C}}$ is <em>dense</em> if the identity functor $\operatorname{id}_{\operatorname{\mathcal{C}}}: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{C}}$ is left Kan extended from $\operatorname{\mathcal{C}}^{0}$ (Definition <a data-tag="03VD" href="/tag/03VD">8.4.1.5</a>). We now consider a slight variant of this condition. 
+</p>
+<p>
+<article class="env-definition" id="04UN">
+<p><a class="environment-identifier" href="/tag/04UN">Definition <span data-tag="04UN">10.2.1.26</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category and let $X$ be an object of $\operatorname{\mathcal{C}}$. We say that a sieve $\operatorname{\mathcal{C}}^{0}_{/X} \subseteq \operatorname{\mathcal{C}}_{/X}$ on $X$ is <em>dense</em> if the forgetful functor $\operatorname{\mathcal{C}}_{/X} \rightarrow \operatorname{\mathcal{C}}$ is left Kan extended from $\operatorname{\mathcal{C}}^{0}_{/X}$. </p>
+</article>
+</p>
+<p>
+<article class="env-warning" id="04UP">
+<p><a class="environment-identifier" href="/tag/04UP">Warning <span data-tag="04UP">10.2.1.27</span>.</a> The terminology of Definition <a data-tag="04UN" href="/tag/04UN">10.2.1.26</a> has the potential to create confusion. Since the forgetful functor $\operatorname{\mathcal{C}}_{/X} \rightarrow \operatorname{\mathcal{C}}$ creates colimits (Proposition <a data-tag="02KB" href="/tag/02KB">7.1.4.26</a>), a sieve $\operatorname{\mathcal{C}}^{0}_{/X} \subseteq \operatorname{\mathcal{C}}_{/X}$ which is dense in the sense of Definition <a data-tag="04UN" href="/tag/04UN">10.2.1.26</a> is also dense when regarded as a full subcategory of $\operatorname{\mathcal{C}}_{/X}$ (in the sense of Definition <a data-tag="03VD" href="/tag/03VD">8.4.1.5</a>). Beware that the converse is false in general (Example <a data-tag="04UQ" href="/tag/04UQ">10.2.1.28</a>). However, it is true if $\operatorname{\mathcal{C}}$ admits finite products (Proposition <a data-tag="04UR" href="/tag/04UR">10.2.1.29</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="04UQ">
+<p><a class="environment-identifier" href="/tag/04UQ">Example <span data-tag="04UQ">10.2.1.28</span>.</a> Let $\operatorname{\mathcal{C}}$ be the $1$-dimensional simplicial set associated to the directed graph depicted in the diagram </p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ A \ar [r] \ar [d] &amp;  X \\ Y &amp;  B, \ar [l] \ar [u] } \]
+</div>
+<p> and let $\operatorname{\mathcal{C}}^{0}_{/X} \subseteq \operatorname{\mathcal{C}}_{/X}$ be the sieve spanned by the objects $A$ and $B$. Then $\operatorname{\mathcal{C}}^{0}_{/X}$ is dense when regarded as a full category of $\operatorname{\mathcal{C}}_{/X}$ (in the sense of Definition <a data-tag="03VD" href="/tag/03VD">8.4.1.5</a>), but not when regarded as a sieve on $X$ (in the sense of Definition <a data-tag="04UN" href="/tag/04UN">10.2.1.26</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-proposition" id="04UR">
+<p><a class="environment-identifier" href="/tag/04UR">Proposition <span data-tag="04UR">10.2.1.29</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category which admits pairwise products and let $X \in \operatorname{\mathcal{C}}$. Then a sieve $\operatorname{\mathcal{C}}^{0}_{/X} \subseteq \operatorname{\mathcal{C}}_{/X}$ is dense (in the sense of Definition <a data-tag="04UN" href="/tag/04UN">10.2.1.26</a>) if and only if it is dense when regarded as a subcategory of $\operatorname{\mathcal{C}}_{/X}$ (in the sense of Definition <a data-tag="03VD" href="/tag/03VD">8.4.1.5</a>). </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Assume that $\operatorname{\mathcal{C}}^{0}_{/X}$ is a dense subcategory of $\operatorname{\mathcal{C}}_{/X}$; we will show that it is dense when regarded as a sieve (for the reverse implication, see Warning <a data-tag="04UP" href="/tag/04UP">10.2.1.27</a>). By assumption, the identity functor $\operatorname{id}: \operatorname{\mathcal{C}}_{/X} \rightarrow \operatorname{\mathcal{C}}_{/X}$ is left Kan extended from $\operatorname{\mathcal{C}}^0_{/X}$. We wish to show that the forgetful functor $U: \operatorname{\mathcal{C}}_{/X} \rightarrow \operatorname{\mathcal{C}}$ is also left Kan extended from $\operatorname{\mathcal{C}}^{0}_{/X}$. To prove this, it suffices to show that the functor $U$ preserves colimits. This is a special case of Corollary <a data-tag="02KE" href="/tag/02KE">7.1.4.28</a>, since the functor $U$ admits a right adjoint (given on objects by the construction $Y \mapsto X \times Y$; see Proposition <a data-tag="04Q7" href="/tag/04Q7">7.6.1.17</a>). 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+<article class="env-example" id="04US">
+<p><a class="environment-identifier" href="/tag/04US">Example <span data-tag="04US">10.2.1.30</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category. For every object $X \in \operatorname{\mathcal{C}}$, the $\infty $-category $\operatorname{\mathcal{C}}_{/X}$ is a dense sieve on $X$ (see Example <a data-tag="03U4" href="/tag/03U4">7.3.3.8</a>). </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="04UT">
+<p><a class="environment-identifier" href="/tag/04UT">Remark <span data-tag="04UT">10.2.1.31</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category and let $\operatorname{\mathcal{C}}^{0}_{/X} \subseteq \operatorname{\mathcal{C}}^{1}_{/X} \subseteq \operatorname{\mathcal{C}}_{/X}$ be sieves on an object $X$. If $\operatorname{\mathcal{C}}^{0}_{/X}$ is dense, then $\operatorname{\mathcal{C}}^{1}_{/X}$ is also dense. See Proposition <a data-tag="0312" href="/tag/0312">7.3.8.12</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="04UU">
+<p><a class="environment-identifier" href="/tag/04UU">Remark <span data-tag="04UU">10.2.1.32</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category, let $Y$ be an object of $\operatorname{\mathcal{C}}$, and let $\operatorname{\mathcal{C}}^{0}_{/Y} \subseteq \operatorname{\mathcal{C}}_{/Y}$ be a sieve on $X$. Let $f: X \rightarrow Y$ be a morphism of $\operatorname{\mathcal{C}}$, which we regard as an object of $\operatorname{\mathcal{C}}_{/Y}$, and let $\operatorname{\mathcal{C}}^{0}_{/X} = f^{\ast }( \operatorname{\mathcal{C}}^{0}_{/Y})$ be the pullback sieve (Notation <a data-tag="04UL" href="/tag/04UL">10.2.1.24</a>). Then the forgetful functor $\operatorname{\mathcal{C}}_{/Y} \rightarrow \operatorname{\mathcal{C}}$ is left Kan extended from $\operatorname{\mathcal{C}}^{0}_{/Y}$ at $f$ if and only if the following condition is satisfied: </p>
+<p><dl>
+<dt>$(\ast _{f})$</dt>
+<dd><p>
+The composite map 
+</p>
+<div class="equation">
+  \[  ( \operatorname{\mathcal{C}}_{/X}^{0} )^{\triangleright } \hookrightarrow \operatorname{\mathcal{C}}^{\triangleright }_{/X} \rightarrow \operatorname{\mathcal{C}} \]
+</div>
+<p>
+ is a colimit diagram in the $\infty $-category $\operatorname{\mathcal{C}}$. 
+</p>
+</dd>
+</dl></p>
+<p> In particular, the sieve $\operatorname{\mathcal{C}}^{0}_{/Y}$ is dense if and only if it satisfies condition $(\ast _{f})$ for <em>every</em> morphism $f: X \rightarrow Y$ of $\operatorname{\mathcal{C}}$. </p>
+</article>
+</p>
+<p>
+<article class="env-proposition" id="04UV">
+<p><a class="environment-identifier" href="/tag/04UV">Proposition <span data-tag="04UV">10.2.1.33</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category and let $f: X \rightarrow Y$ be a morphism of $\operatorname{\mathcal{C}}$. For every dense sieve $\operatorname{\mathcal{C}}^{0}_{/Y} \subseteq \operatorname{\mathcal{C}}_{/Y}$, the pullback sieve $f^{\ast } \operatorname{\mathcal{C}}^{0}_{/Y} \subseteq \operatorname{\mathcal{C}}_{/X}$ is also dense. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      This is an immediate consequence of the criterion of Remark <a data-tag="04UU" href="/tag/04UU">10.2.1.32</a>. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<p>
+<article class="env-proposition" id="04UW">
+<p><a class="environment-identifier" href="/tag/04UW">Proposition <span data-tag="04UW">10.2.1.34</span> <span class="named">(Transitivity)</span>.</a> Let $\operatorname{\mathcal{C}}$ be an $\infty $-category, let $Y$ be an object of $\operatorname{\mathcal{C}}$, and let $\operatorname{\mathcal{C}}^{0}_{/Y}, \operatorname{\mathcal{C}}^{1}_{/Y} \subseteq \operatorname{\mathcal{C}}_{/Y}$ be sieves on $Y$. Assume that: </p>
+<p><dl>
+<dt>$(1)$</dt>
+<dd><p>
+The sieve $\operatorname{\mathcal{C}}^{0}_{/Y}$ is dense. 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+For each morphism $f: X \rightarrow Y$ which belongs to $\operatorname{\mathcal{C}}^{0}_{/Y}$, the pullback sieve $f^{\ast }( \operatorname{\mathcal{C}}^{1}_{/Y} ) \subseteq \operatorname{\mathcal{C}}_{/X}$ is dense. 
+</p>
+</dd>
+</dl></p>
+<p> Then $\operatorname{\mathcal{C}}^{1}_{/Y}$ is also a dense sieve. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Let $U: \operatorname{\mathcal{C}}_{/Y} \rightarrow \operatorname{\mathcal{C}}$ denote the projection map; we wish to show that $U$ is left Kan extended from $\operatorname{\mathcal{C}}^{1}_{/Y}$. Assumption $(1)$ guarantees that $U$ is left Kan extended from $\operatorname{\mathcal{C}}^{0}_{/Y}$. By virtue of Corollary <a data-tag="0314" href="/tag/0314">7.3.8.14</a>, it will suffice to show that $U|_{ \operatorname{\mathcal{C}}^{0}_{/Y} }$ is left Kan extended from the intersection $\operatorname{\mathcal{C}}^{01}_{/Y} = \operatorname{\mathcal{C}}^{0}_{/Y} \cap \operatorname{\mathcal{C}}^{1}_{/Y}$. Fix a morphism $f: X \rightarrow Y$ which belongs to the sieve $\operatorname{\mathcal{C}}^{0}_{/Y}$; we wish to show that $U$ is left Kan extended from $\operatorname{\mathcal{C}}^{01}_{/Y}$ at $f$. This follows from our assumption that $f^{\ast } \operatorname{\mathcal{C}}^{01}_{/Y} = f^{\ast } \operatorname{\mathcal{C}}^{1}_{/Y}$ is a dense sieve on $X$. 
+      <span class="qed">$\square$</span>
+</p>
+</article>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.html a[data-toggle="popover"]').popover()
+
+  // render mathematics in popovers
+  $("[data-toggle=popover]").on('shown.bs.popover', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $("div.popover-body").html()]);
+  });
+});
+  </script>
+</div>
+</section></body>
+</html>

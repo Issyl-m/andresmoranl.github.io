@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" id="main">
+<div class="html" id="tag">
+<h1 class="tex-chapter" id="Chapter:Fibrations"><span data-tag="01GP">4</span> The Homotopy Theory of $\infty $-Categories</h1>
+<p>
+Let $q: X \rightarrow S$ be a morphism of simplicial sets. Recall that $q$ is a <em>Kan fibration</em> if and only if it is weakly right orthogonal to every horn inclusion $\Lambda ^{n}_{i} \hookrightarrow \Delta ^ n$ for $n &gt; 0$ and $0 \leq i \leq n$. The theory of Kan fibrations can be viewed as a relativization of the theory of Kan complexes, which plays an essential role in the classical homotopy theory of simplicial sets (as in Chapter <a data-tag="00SY" href="/tag/00SY">3</a>). In this chapter, we study several weaker notions of fibration, which will play an analogous role in the study of $\infty $-categories: 
+</p>
+<ul>
+<li><p>
+We say that a morphism of simplicial sets $q: X \rightarrow S$ is an <em>inner fibration</em> if it is weakly right orthogonal to every <em>inner</em> horn inclusion $\Lambda ^{n}_{i} \hookrightarrow \Delta ^ n$, $0 &lt; i &lt; n$ (Definition <a data-tag="01BA" href="/tag/01BA">4.1.1.1</a>). If this condition is satisfied, then for each vertex $s \in S$, the fiber $X_{s} = \{ s\}  \times _{S} X$ is an $\infty $-category (Remark <a data-tag="01BF" href="/tag/01BF">4.1.1.6</a>). Consequently, the theory of inner fibrations can be regarded as a relative version of the theory of $\infty $-categories, which we study in §<a data-tag="01B8" href="/tag/01B8">4.1</a>. 
+</p>
+</li><li><p>
+We say that a morphism of simplicial sets $q: X \rightarrow S$ is a <em>left fibration</em> if it is weakly right orthogonal to the horn inclusions $\Lambda ^{n}_{i} \hookrightarrow \Delta ^ n$ for $0 \leq i &lt; n$, and a <em>right fibration</em> if it is weakly right orthogonal to the horn inclusions $\Lambda ^{n}_{i} \hookrightarrow \Delta ^ n$ for $0 &lt; i \leq n$ (Definition <a data-tag="00T9" href="/tag/00T9">4.2.1.1</a>). If either of these conditions are satisfied, then the fiber $X_{s} = \{ s\}  \times _{S} X$ is a Kan complex for each vertex $s \in S$ (Corollary <a data-tag="019E" href="/tag/019E">4.4.2.3</a>). We will see later that the construction $s \mapsto X_{s}$ is <em>covariantly</em> functorial when $q$ is a left fibration, and <em>contravariantly</em> functorial when $q$ is a right fibration (see §<a data-tag="019M" href="/tag/019M">5.2.2</a>). In §<a data-tag="014H" href="/tag/014H">4.2</a>, we develop some basic formal properties of left and right fibrations; we will carry out a more detailed analysis in Chapter <a data-tag="01J2" href="/tag/01J2">5</a>. 
+</p>
+</li><li><p>
+We say that a morphism of simplicial sets $q: X \rightarrow S$ is an <em>isofibration</em> if it is weakly right orthogonal to every inclusion of simplicial sets $A \hookrightarrow B$ which is a categorical equivalence (Definition <a data-tag="01FV" href="/tag/01FV">4.5.6.5</a>). This condition is primarily useful in the case where $X$ and $S$ are $\infty $-categories, in which case it is equivalent to the requirement that $q$ is an inner fibration which satisfies a lifting property with respect to isomorphisms (Proposition <a data-tag="01FR" href="/tag/01FR">4.5.6.1</a>). We study isofibrations between $\infty $-categories in §<a data-tag="01EM" href="/tag/01EM">4.4</a>, and between general simplicial sets in §<a data-tag="01FU" href="/tag/01FU">4.5.6</a>). 
+</p>
+</li>
+</ul>
+<p>
+If $q: X \rightarrow S$ is a morphism of simplicial sets, we have the following diagram of implications: 
+</p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=40pt{ &amp;  \txt { $q$ is a trivial Kan fibration} \ar@ {=&gt;}[d] &amp;  \\ &amp;  \txt { $q$ is a Kan fibration} \ar@ {=&gt;}[dr] \ar@ {=&gt;}[dl] &amp;  \\ \txt { $q$ is a left fibration} \ar@ {=&gt;}[dr] &amp;  &amp;  \txt { $q$ is a right fibration} \ar@ {=&gt;}[dl] \\ &amp;  \txt { $q$ is an isofibration } \ar@ {=&gt;}[d] &amp;  \\ &amp;  \txt { $q$ is an inner fibration. } &amp;  } \]
+</div>
+<p>
+ Beware that, in general, none of these implications is reversible. 
+</p>
+<p>
+In §<a data-tag="015M" href="/tag/015M">4.3</a>, we consider some prototypical examples of left and right fibrations which arise frequently in practice. Let $\operatorname{\mathcal{C}}$ be an $\infty $-category. To each object $X \in \operatorname{\mathcal{C}}$, one can associate a simplicial set $\operatorname{\mathcal{C}}_{/X}$, whose $n$-simplices are given by maps $\sigma : \Delta ^{n+1} \rightarrow \operatorname{\mathcal{C}}$ which carry the final vertex of $\Delta ^{n+1}$ to the object $X \in \operatorname{\mathcal{C}}$. In particular, vertices of $\operatorname{\mathcal{C}}_{/X}$ can be identified with morphisms $f: Y \rightarrow X$ in $\operatorname{\mathcal{C}}$ having target $X$, and edges of $\operatorname{\mathcal{C}}_{/X}$ can be identified with commutative diagrams 
+</p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=50pt{ Z \ar [rr] \ar [dr] &amp;  &amp;  Y \ar [dl] \\ &amp;  X. &amp;  } \]
+</div>
+<p>
+ in the $\infty $-category $\operatorname{\mathcal{C}}$ (see Notation <a data-tag="0181" href="/tag/0181">4.3.5.6</a> for a precise definition). The simplicial set $\operatorname{\mathcal{C}}_{/X}$ is itself an $\infty $-category, which we will refer to as the <em>slice $\infty $-category of $\operatorname{\mathcal{C}}$ over the object $X$</em>. Moreover, the evident forgetful functor $\operatorname{\mathcal{C}}_{/X} \rightarrow \operatorname{\mathcal{C}}$ (given on objects by the construction $(f: Y \rightarrow X) \mapsto Y$) is a right fibration (Proposition <a data-tag="018F" href="/tag/018F">4.3.6.1</a>). A dual version of this construction produces another $\infty $-category $\operatorname{\mathcal{C}}_{X/}$ whose objects are morphisms $f: X \rightarrow Y$ in the $\infty $-category $\operatorname{\mathcal{C}}$, which we refer to as the <em>coslice $\infty $-category of $\operatorname{\mathcal{C}}$ under the object $X$</em>. The slice and coslice constructions (and generalizations thereof) provide a rich supply of right and left fibrations between simplicial sets, and will play an essential role throughout this book. 
+</p>
+<p>
+Recall that an <em>equivalence of categories</em> is a functor $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ which admits a homotopy inverse: that is, for which there exists another functor $G: \operatorname{\mathcal{D}}\rightarrow \operatorname{\mathcal{C}}$ such that $G \circ F$ and $F \circ G$ are isomorphic to the identity functors $\operatorname{id}_{\operatorname{\mathcal{C}}}$ and $\operatorname{id}_{\operatorname{\mathcal{D}}}$, respectively. In §<a data-tag="01DE" href="/tag/01DE">4.5</a>, we study the $\infty $-categorical counterpart of this notion. We say that a morphism of simplicial sets $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ is a <em>categorical equivalence</em> if, for every $\infty $-category $\operatorname{\mathcal{E}}$, precomposition with $F$ induces a bijection 
+</p>
+<div class="equation">
+  \[  \{  \text{Isomorphism classes of diagrams $\operatorname{\mathcal{D}}\rightarrow \operatorname{\mathcal{E}}$} \}  \rightarrow \{  \text{Isomorphism classes of diagrams $\operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{E}}$} \} ; \]
+</div>
+<p>
+ see Definition <a data-tag="01E8" href="/tag/01E8">4.5.4.1</a>. If $\operatorname{\mathcal{C}}$ and $\operatorname{\mathcal{D}}$ are $\infty $-categories, then this is equivalent to the requirement that $F$ admits a homotopy inverse $G: \operatorname{\mathcal{D}}\rightarrow \operatorname{\mathcal{C}}$ in the sense described above (see Example <a data-tag="01EA" href="/tag/01EA">4.5.4.3</a>). In this case, we say that $F$ is an <em>equivalence of $\infty $-categories</em> (Definition <a data-tag="01DY" href="/tag/01DY">4.5.1.10</a>). 
+</p>
+<p>
+A functor $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ between ordinary categories is an equivalence if and only if it satisfies the following pair of conditions: 
+</p>
+<dl>
+<dt>$(1)$</dt>
+<dd><p>
+The functor $F$ is <em>fully faithful</em>. That is, for every pair of objects $X,Y \in \operatorname{\mathcal{C}}$, the functor $F$ induces a bijection $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y) \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{D}}}( F(X), F(Y) )$. 
+</p>
+</dd>
+<dt>$(2)$</dt>
+<dd><p>
+The functor $F$ is <em>essentially surjective</em>: that is, every object $Y \in \operatorname{\mathcal{D}}$ is isomorphic to $F(X)$, for some object $X \in \operatorname{\mathcal{C}}$. 
+</p>
+</dd>
+</dl>
+<p>
+ This characterization is quite useful: in practice, it is often easier to verify conditions $(1)$ and $(2)$ than to explicitly describe a homotopy inverse of the functor $F$ (which might require some auxiliary choices). In §<a data-tag="01J3" href="/tag/01J3">4.6</a>, we establish an analogue of this characterization in the $\infty $-categorical setting. To every pair of objects $X$ and $Y$ of an $\infty $-category $\operatorname{\mathcal{C}}$, we associate a Kan complex $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y)$ which we refer to as the <em>space of morphisms from $X$ to $Y$</em> (Construction <a data-tag="01J5" href="/tag/01J5">4.6.1.1</a>). We say that a functor of $\infty $-categories $F: \operatorname{\mathcal{C}}\rightarrow \operatorname{\mathcal{D}}$ is <em>fully faithful</em> if it induces a homotopy equivalence $\operatorname{Hom}_{\operatorname{\mathcal{C}}}(X,Y) \rightarrow \operatorname{Hom}_{\operatorname{\mathcal{D}}}( F(X), F(Y) )$ for every pair of objects $X,Y \in \operatorname{\mathcal{C}}$ (Definition <a data-tag="01JH" href="/tag/01JH">4.8.3.1</a>). In §<a data-tag="0578" href="/tag/0578">4.8</a>, we show that $F$ is an equivalence of $\infty $-categories if and only if it is fully faithful and essentially surjective at the level of homotopy categories (Theorem <a data-tag="01JX" href="/tag/01JX">4.8.4.1</a>). 
+</p>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.html a[data-toggle="popover"]').popover()
+
+  // render mathematics in popovers
+  $("[data-toggle=popover]").on('shown.bs.popover', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $("div.popover-body").html()]);
+  });
+});
+  </script>
+<h2 id="structure">Structure</h2>
+<ul class="tree" id="tree">
+<li id="01B8">
+      Section <a data-tag="01B8" href="/tag/01B8">4.1</a>: Inner Fibrations
+
+      
+        
+        <ul>
+<li id="01B9">
+      Subsection <a data-tag="01B9" href="/tag/01B9">4.1.1</a>: Inner Fibrations of Simplicial Sets
+
+      
+    
+      <li id="01CD">
+      Subsection <a data-tag="01CD" href="/tag/01CD">4.1.2</a>: Subcategories of $\infty $-Categories
+
+      
+    
+      <li id="01BM">
+      Subsection <a data-tag="01BM" href="/tag/01BM">4.1.3</a>: Inner Anodyne Morphisms
+
+      
+    
+      <li id="01BS">
+      Subsection <a data-tag="01BS" href="/tag/01BS">4.1.4</a>: Exponentiation for Inner Fibrations
+
+      
+    
+      <li id="0226">
+      Subsection <a data-tag="0226" href="/tag/0226">4.1.5</a>: Inner Covering Maps
+
+      
+    </li></li></li></li></li></ul>
+<li id="014H">
+      Section <a data-tag="014H" href="/tag/014H">4.2</a>: Left and Right Fibrations
+
+      
+        
+        <ul>
+<li id="01GT">
+      Subsection <a data-tag="01GT" href="/tag/01GT">4.2.1</a>: Left and Right Fibrations of Simplicial Sets
+
+      
+    
+      <li id="0156">
+      Subsection <a data-tag="0156" href="/tag/0156">4.2.2</a>: Fibrations in Groupoids
+
+      
+    
+      <li id="022K">
+      Subsection <a data-tag="022K" href="/tag/022K">4.2.3</a>: Left and Right Covering Maps
+
+      
+    
+      <li id="014S">
+      Subsection <a data-tag="014S" href="/tag/014S">4.2.4</a>: Left Anodyne and Right Anodyne Morphisms
+
+      
+    
+      <li id="0152">
+      Subsection <a data-tag="0152" href="/tag/0152">4.2.5</a>: Exponentiation for Left and Right Fibrations
+
+      
+    
+      <li id="00T8">
+      Subsection <a data-tag="00T8" href="/tag/00T8">4.2.6</a>: The Homotopy Extension Lifting Property
+
+      
+    </li></li></li></li></li></li></ul>
+<li id="015M">
+      Section <a data-tag="015M" href="/tag/015M">4.3</a>: The Slice and Join Constructions
+
+      
+        
+        <ul>
+<li id="015N">
+      Subsection <a data-tag="015N" href="/tag/015N">4.3.1</a>: Slices of Categories
+
+      
+    
+      <li id="0160">
+      Subsection <a data-tag="0160" href="/tag/0160">4.3.2</a>: Joins of Categories
+
+      
+    
+      <li id="016K">
+      Subsection <a data-tag="016K" href="/tag/016K">4.3.3</a>: Joins of Simplicial Sets
+
+      
+    
+      <li id="017E">
+      Subsection <a data-tag="017E" href="/tag/017E">4.3.4</a>: Joins of Topological Spaces
+
+      
+    
+      <li id="017V">
+      Subsection <a data-tag="017V" href="/tag/017V">4.3.5</a>: Slices of Simplicial Sets
+
+      
+    
+      <li id="018E">
+      Subsection <a data-tag="018E" href="/tag/018E">4.3.6</a>: Slices of $\infty $-Categories
+
+      
+    
+      <li id="018P">
+      Subsection <a data-tag="018P" href="/tag/018P">4.3.7</a>: Slices of Left and Right Fibrations
+
+      
+    </li></li></li></li></li></li></li></ul>
+<li id="01EM">
+      Section <a data-tag="01EM" href="/tag/01EM">4.4</a>: Isomorphisms and Isofibrations
+
+      
+        
+        <ul>
+<li id="01ER">
+      Subsection <a data-tag="01ER" href="/tag/01ER">4.4.1</a>: Isofibrations of $\infty $-Categories
+
+      
+    
+      <li id="019C">
+      Subsection <a data-tag="019C" href="/tag/019C">4.4.2</a>: Isomorphisms and Lifting Properties
+
+      
+    
+      <li id="01CZ">
+      Subsection <a data-tag="01CZ" href="/tag/01CZ">4.4.3</a>: The Core of an $\infty $-Category
+
+      
+    
+      <li id="01DF">
+      Subsection <a data-tag="01DF" href="/tag/01DF">4.4.4</a>: Natural Isomorphisms
+
+      
+    
+      <li id="01F0">
+      Subsection <a data-tag="01F0" href="/tag/01F0">4.4.5</a>: Exponentiation for Isofibrations
+
+      
+    </li></li></li></li></li></ul>
+<li id="01DE">
+      Section <a data-tag="01DE" href="/tag/01DE">4.5</a>: Equivalence
+
+      
+        
+        <ul>
+<li id="01DQ">
+      Subsection <a data-tag="01DQ" href="/tag/01DQ">4.5.1</a>: Equivalences of $\infty $-Categories
+
+      
+    
+      <li id="03T1">
+      Subsection <a data-tag="03T1" href="/tag/03T1">4.5.2</a>: Minimal $\infty $-Categories
+
+      
+    
+      <li id="032Y">
+      Subsection <a data-tag="032Y" href="/tag/032Y">4.5.3</a>: Categorical Pullback Squares
+
+      
+    
+      <li id="01E7">
+      Subsection <a data-tag="01E7" href="/tag/01E7">4.5.4</a>: Categorical Equivalence
+
+      
+    
+      <li id="01F6">
+      Subsection <a data-tag="01F6" href="/tag/01F6">4.5.5</a>: Categorical Pushout Squares
+
+      
+    
+      <li id="01FU">
+      Subsection <a data-tag="01FU" href="/tag/01FU">4.5.6</a>: Isofibrations of Simplicial Sets
+
+      
+    
+      <li id="0346">
+      Subsection <a data-tag="0346" href="/tag/0346">4.5.7</a>: Isofibrant Diagrams
+
+      
+    
+      <li id="02TM">
+      Subsection <a data-tag="02TM" href="/tag/02TM">4.5.8</a>: Relative Exponentiation
+
+      
+    </li></li></li></li></li></li></li></li></ul>
+<li id="01J3">
+      Section <a data-tag="01J3" href="/tag/01J3">4.6</a>: Morphism Spaces
+
+      
+        
+        <ul>
+<li id="01J4">
+      Subsection <a data-tag="01J4" href="/tag/01J4">4.6.1</a>: Morphism Spaces
+
+      
+    
+      <li id="01HM">
+      Subsection <a data-tag="01HM" href="/tag/01HM">4.6.2</a>: Digression: Universal Property of the Join
+
+      
+    
+      <li id="01K2">
+      Subsection <a data-tag="01K2" href="/tag/01K2">4.6.3</a>: Digression: Categorical Mapping Cylinders
+
+      
+    
+      <li id="01KE">
+      Subsection <a data-tag="01KE" href="/tag/01KE">4.6.4</a>: Oriented Fiber Products
+
+      
+    
+      <li id="01KW">
+      Subsection <a data-tag="01KW" href="/tag/01KW">4.6.5</a>: Pinched Morphism Spaces
+
+      
+    
+      <li id="04HY">
+      Subsection <a data-tag="04HY" href="/tag/04HY">4.6.6</a>: Digression: Diagrams in Slice $\infty $-Categories
+
+      
+    
+      <li id="01LA">
+      Subsection <a data-tag="01LA" href="/tag/01LA">4.6.7</a>: Morphism Spaces in the Homotopy Coherent Nerve
+
+      
+    
+      <li id="01PF">
+      Subsection <a data-tag="01PF" href="/tag/01PF">4.6.8</a>: Composition of Morphisms
+
+      
+    </li></li></li></li></li></li></li></li></ul>
+<li id="05EA">
+      Section <a data-tag="05EA" href="/tag/05EA">4.7</a>: Truncated Objects and Higher Homotopy Categories
+
+      
+        
+        <ul>
+<li id="05EB">
+      Subsection <a data-tag="05EB" href="/tag/05EB">4.7.1</a>: Truncated Objects
+
+      
+    
+      <li id="05F8">
+      Subsection <a data-tag="05F8" href="/tag/05F8">4.7.2</a>: Truncated Morphisms
+
+      
+    
+      <li id="02H6">
+      Subsection <a data-tag="02H6" href="/tag/02H6">4.7.3</a>: Initial and Final Objects
+
+      
+    
+      <li id="04UX">
+      Subsection <a data-tag="04UX" href="/tag/04UX">4.7.4</a>: Discrete and Subterminal Objects
+
+      
+    
+      <li id="04VD">
+      Subsection <a data-tag="04VD" href="/tag/04VD">4.7.5</a>: Monomorphisms
+
+      
+    
+      <li id="0583">
+      Subsection <a data-tag="0583" href="/tag/0583">4.7.6</a>: Locally Truncated $\infty $-Categories
+
+      
+    
+      <li id="057D">
+      Subsection <a data-tag="057D" href="/tag/057D">4.7.7</a>: $n$-Categories
+
+      
+    
+      <li id="058P">
+      Subsection <a data-tag="058P" href="/tag/058P">4.7.8</a>: Minimality Conditions
+
+      
+    
+      <li id="0596">
+      Subsection <a data-tag="0596" href="/tag/0596">4.7.9</a>: Higher Homotopy Categories
+
+      
+    </li></li></li></li></li></li></li></li></li></ul>
+<li id="0578">
+      Section <a data-tag="0578" href="/tag/0578">4.8</a>: Full, Faithful, and Essentially Surjective Functors
+
+      
+        
+        <ul>
+<li id="01JG">
+      Subsection <a data-tag="01JG" href="/tag/01JG">4.8.1</a>: Essentially Surjective Functors
+
+      
+    
+      <li id="059U">
+      Subsection <a data-tag="059U" href="/tag/059U">4.8.2</a>: Full Functors
+
+      
+    
+      <li id="05AW">
+      Subsection <a data-tag="05AW" href="/tag/05AW">4.8.3</a>: Faithful Functors
+
+      
+    
+      <li id="06SQ">
+      Subsection <a data-tag="06SQ" href="/tag/06SQ">4.8.4</a>: Detecting Equivalences of $\infty $-Categories
+
+      
+    
+      <li id="05BY">
+      Subsection <a data-tag="05BY" href="/tag/05BY">4.8.5</a>: Categorically Connective Functors
+
+      
+    
+      <li id="06SY">
+      Subsection <a data-tag="06SY" href="/tag/06SY">4.8.6</a>: Digression: $n$-Categorical Fibrations
+
+      
+    
+      <li id="05CP">
+      Subsection <a data-tag="05CP" href="/tag/05CP">4.8.7</a>: Canonical Factorizations
+
+      
+    
+      <li id="05DG">
+      Subsection <a data-tag="05DG" href="/tag/05DG">4.8.8</a>: Categorically Connective Morphisms of Simplicial Sets
+
+      
+    </li></li></li></li></li></li></li></li></ul>
+<li id="03PP">
+      Section <a data-tag="03PP" href="/tag/03PP">4.9</a>: Size Conditions on $\infty $-Categories
+
+      
+        
+        <ul>
+<li id="03PV">
+      Subsection <a data-tag="03PV" href="/tag/03PV">4.9.1</a>: Ordinals and Well-Orderings
+
+      
+    
+      <li id="03QW">
+      Subsection <a data-tag="03QW" href="/tag/03QW">4.9.2</a>: Cardinals and Cardinality
+
+      
+    
+      <li id="03RB">
+      Subsection <a data-tag="03RB" href="/tag/03RB">4.9.3</a>: Small Sets
+
+      
+    
+      <li id="03S1">
+      Subsection <a data-tag="03S1" href="/tag/03S1">4.9.4</a>: Small Simplicial Sets
+
+      
+    
+      <li id="03SH">
+      Subsection <a data-tag="03SH" href="/tag/03SH">4.9.5</a>: Essential Smallness
+
+      
+    
+      <li id="03TJ">
+      Subsection <a data-tag="03TJ" href="/tag/03TJ">4.9.6</a>: Small Kan Complexes
+
+      
+    
+      <li id="03TN">
+      Subsection <a data-tag="03TN" href="/tag/03TN">4.9.7</a>: Local Smallness
+
+      
+    
+      <li id="047A">
+      Subsection <a data-tag="047A" href="/tag/047A">4.9.8</a>: Small Fibrations
+
+      
+    </li></li></li></li></li></li></li></li></ul>
+</li></li></li></li></li></li></li></li></li></ul>
+<script type="text/javascript">
+$("ul.tree").bonsai({
+  
+    addExpandAll: true,
+  
+});
+
+var state = localStorage.getItem("bonsai-01GP");
+if (state !== null)
+  $("ul#tree").data("bonsai").restore(JSON.parse(state));
+
+$("ul#tree").click(function() {
+  var bonsai = $(this).data("bonsai");
+  var state = bonsai.serialize();
+  localStorage.setItem("bonsai-01GP", JSON.stringify(state));
+});
+
+// trigger the click event handler to save state even when clicking on the expand/collapse all links, which are outside ul#tree
+$("div.expand-all").click(function() {
+  $("ul#tree").click();
+});
+
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+    </script>
+</div>
+</section></body>
+</html>

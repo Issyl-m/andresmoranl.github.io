@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" id="main">
+<div class="html" id="tag">
+<h3 class="tex-subsection" id="subsection:Dold-Kan"><span data-tag="00QQ">2.5.6</span> The Dold-Kan Correspondence</h3>
+<p>
+Let $\operatorname{ Ab }$ denote the category of abelian groups, and $\operatorname{ Ab }_{\Delta } = \operatorname{Fun}( \operatorname{{\bf \Delta }}^{\operatorname{op}}, \operatorname{ Ab })$ the category of simplicial abelian groups. The formation of normalized Moore complexes (Construction <a data-tag="00QG" href="/tag/00QG">2.5.5.7</a>) determines a functor $\mathrm{N}_{\ast }: \operatorname{ Ab }_{\Delta } \rightarrow \operatorname{Ch}(\operatorname{\mathbf{Z}})$. Our goal in this section is to prove the following fundamental result, which was discovered independently by Dold (<span class="cite">[<a href="/bibliography/MR0097057">MR0097057</a>]</span>) and Kan (<span class="cite">[<a href="/bibliography/MR0131873">MR0131873</a>]</span>): 
+</p>
+<p>
+<article class="env-theorem" id="00QR">
+<p><a class="environment-identifier" href="/tag/00QR">Theorem <span data-tag="00QR">2.5.6.1</span> <span class="named">(The Dold-Kan Correspondence)</span>.</a> The normalized Moore complex functor determines an equivalence of categories $\mathrm{N}_{\ast }: \operatorname{ Ab }_{\Delta } \rightarrow \operatorname{Ch}(\operatorname{\mathbf{Z}})_{\geq 0}$. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="00QS">
+<p><a class="environment-identifier" href="/tag/00QS">Remark <span data-tag="00QS">2.5.6.2</span>.</a> Theorem <a data-tag="00QR" href="/tag/00QR">2.5.6.1</a> admits many generalizations. For example, if $\operatorname{\mathcal{A}}$ is an abelian category (Definition <a class="" data-content="This is a reference to something which is not yet available in Kerodon." data-html="true" data-placement="bottom" data-toggle="popover" data-trigger="focus" role="button" style="cursor: pointer;" tabindex="0" title="Future reference"><img src="/static/images/question.svg"/></a>), then a variant of Construction <a data-tag="00QH" href="/tag/00QH">2.5.5.9</a> supplies an equivalence of categories </p>
+<div class="equation">
+  \[  \mathrm{N}_{\ast }: \{  \text{Simplicial objects of $\operatorname{\mathcal{A}}$} \}  \rightarrow \operatorname{Ch}(\operatorname{\mathcal{A}})_{\geq 0}, \]
+</div>
+<p> where $\operatorname{Ch}(\operatorname{\mathcal{A}})_{\geq 0}$ denotes the category of (nonnegatively graded) chain complexes with values in $\operatorname{\mathcal{A}}$ (see Theorem <a class="" data-content="This is a reference to something which is not yet available in Kerodon." data-html="true" data-placement="bottom" data-toggle="popover" data-trigger="focus" role="button" style="cursor: pointer;" tabindex="0" title="Future reference"><img src="/static/images/question.svg"/></a>). For more general categories $\operatorname{\mathcal{A}}$, one can think of the category of simplicial objects $\operatorname{\mathcal{A}}_{\Delta } = \operatorname{Fun}( \operatorname{{\bf \Delta }}^{\operatorname{op}}, \operatorname{\mathcal{A}})$ as a <em>replacement</em> for the category of chain complexes $\operatorname{Ch}(\operatorname{\mathcal{A}})_{\geq 0}$, which is better behaved in “non-additive” situations. </p>
+</article>
+</p>
+<p>
+We begin by constructing a right adjoint to the normalized Moore complex functor. 
+</p>
+<p>
+<article class="env-construction" id="00QT">
+<p><a class="environment-identifier" href="/tag/00QT">Construction <span data-tag="00QT">2.5.6.3</span> <span class="named">(The Eilenberg-MacLane Functor)</span>.</a> Let $n$ be a nonnegative integer and let $\mathrm{N}_{\ast }( \Delta ^ n; \operatorname{\mathbf{Z}})$ denote the normalized chain complex of the standard $n$-simplex (Construction <a data-tag="00QH" href="/tag/00QH">2.5.5.9</a>). For every chain complex $M_{\ast }$, we let $\mathrm{K}_{n}( M_{\ast } )$ denote the collection of chain maps from $\mathrm{N}_{\ast }( \Delta ^ n; \operatorname{\mathbf{Z}})$ into $M_{\ast }$ (which we regard as an abelian group under addition). Note that the construction $[n] \mapsto \mathrm{N}_{\ast }( \Delta ^ n; \operatorname{\mathbf{Z}})$ determines a functor from the simplex category $\operatorname{{\bf \Delta }}$ to the category of chain complexes, so we can regard $[n] \mapsto \mathrm{K}_{n}( M_{\ast } )$ as a functor from $\operatorname{{\bf \Delta }}^{\operatorname{op}}$ to the category of abelian groups. We denote this simplicial abelian group by $\mathrm{K}( M_{\ast } )$, and refer to it as the <em>Eilenberg-MacLane space associated to $M_{\ast }$</em>. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="00QU">
+<p><a class="environment-identifier" href="/tag/00QU">Remark <span data-tag="00QU">2.5.6.4</span>.</a> Let $M_{\ast }$ be a chain complex. We will generally not distinguish in notation between the simplicial abelian group $\mathrm{K}( M_{\ast } )$ and its underlying simplicial set. Note that $\mathrm{K}( M_{\ast } )$ is automatically a Kan complex (Proposition <a data-tag="00MG" href="/tag/00MG">1.2.5.9</a>), which motivates our usage of the term “space”. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="00QV">
+<p><a class="environment-identifier" href="/tag/00QV">Example <span data-tag="00QV">2.5.6.5</span>.</a> Let $M_{\ast }$ be a chain complex. Then we have canonical isomorphisms </p>
+<div class="equation">
+  \[  \mathrm{K}_{0}( M_{\ast } ) \simeq \operatorname{Hom}_{ \operatorname{Ch}(\operatorname{\mathbf{Z}})}( \mathrm{N}_{\ast }( \Delta ^0; \operatorname{\mathbf{Z}}), M_{\ast } ) \simeq \operatorname{Hom}_{ \operatorname{Ch}(\operatorname{\mathbf{Z}})}( \operatorname{\mathbf{Z}}[0], M_{\ast }) \simeq \mathrm{Z}_0( M ). \]
+</div>
+<p> In other words, we can identify vertices of the simplicial set $\mathrm{K}(M_{\ast })$ with $0$-cycles of the chain complex $M_{\ast }$. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="00QW">
+<p><a class="environment-identifier" href="/tag/00QW">Example <span data-tag="00QW">2.5.6.6</span>.</a> Let $M_{\ast }$ be a chain complex, and let $x,y \in M_0$ be a pair of $0$-cycles, which we identify with vertices of the simplicial set $\mathrm{K}(M_{\ast })$. The following conditions are equivalent: </p>
+<p><dl>
+<dt>$(a)$</dt>
+<dd><p>
+The vertices $x$ and $y$ belong to the same connected component of the simplicial set $\mathrm{K}(M_{\ast } )$ (Definition <a data-tag="00GD" href="/tag/00GD">1.2.1.8</a>). 
+</p>
+</dd>
+<dt>$(b)$</dt>
+<dd><p>
+There exists an edge $e$ of the simplicial set $\mathrm{K}(M_{\ast })$ connecting $x$ to $y$ (so that $d^{1}_1(e) = x$ and $d^{1}_0(e) = y$). 
+</p>
+</dd>
+<dt>$(c)$</dt>
+<dd><p>
+The cycles $x$ and $y$ are homologous: that is, there exists an element $u \in M_{1}$ satisfying $\partial (u) = x - y$. 
+</p>
+</dd>
+</dl></p>
+<p> The equivalence of $(a) \Leftrightarrow (b)$ follows from the fact that $\mathrm{K}( M_{\ast } )$ is a Kan complex (see Remark <a data-tag="00J0" href="/tag/00J0">1.4.6.13</a>), while the equivalence $(b) \Leftrightarrow (c)$ follows immediately from the construction of the simplicial set $\mathrm{K}(M_{\ast } )$. It follows that the set of connected components $\pi _0( \mathrm{K}(M_{\ast } ))$ can be identified with the $0$th homology group $\mathrm{H}_{0}( M )$. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="00QZ">
+<p><a class="environment-identifier" href="/tag/00QZ">Example <span data-tag="00QZ">2.5.6.7</span>.</a> Let $G$ be an abelian group and let $G[0]$ denote the chain complex given by the single group $G$, concentrated in degree $0$. To supply an $n$-simplex of the simplicial set $\mathrm{K}( G[0] )$, one must give a chain map $\sigma : \mathrm{N}_{\ast }( \Delta ^ n; \operatorname{\mathbf{Z}}) \rightarrow G[0]$. By definition, a homomorphism of graded abelian groups from $\mathrm{N}_{\ast }( \Delta ^ n; \operatorname{\mathbf{Z}})$ to $G[0]$ is given by a tuple $\{  g_ i \} _{0 \leq i \leq n}$ of elements of $G$, indexed by the set $[n] = \{  0 &lt; 1 &lt; \cdots &lt; n \} $ of vertices of $\Delta ^ n$. Under this identification, the chain maps can be identified with those tuples $\{  g_ i \} _{0 \leq i \leq n}$ which are <em>constant</em>: that is, which satisfy $g_ i = g_ j$ for all $i,j \in [n]$. It follows that the Eilenberg-MacLane space $\mathrm{K}( G[0] )$ can be identified with the constant simplicial abelian group $\underline{G}$. </p>
+</article>
+</p>
+<p>
+<article class="env-example" id="00R0">
+<p><a class="environment-identifier" href="/tag/00R0">Example <span data-tag="00R0">2.5.6.8</span>.</a> Let $G$ be an abelian group and let $G[1]$ denote the chain complex consisting of the single abelian group $G$, concentrated in degree $1$. To supply an $n$-simplex of the simplicial set $\mathrm{K}(G[1])$, one must give a chain map $\sigma : \mathrm{N}_{\ast }( \Delta ^ n; \operatorname{\mathbf{Z}}) \rightarrow G[1]$. By definition, a homomorphism of graded abelian groups from $\mathrm{N}_{\ast }( \Delta ^ n; \operatorname{\mathbf{Z}})$ to $G[1]$ is given by a system $\{  a_{i,j} \} _{0 \leq i &lt; j \leq n}$ of elements of $G$, indexed by the set of all nondegenerate edges of $\Delta ^ n$. Under this identification, the chain maps can be identified with those systems $\{  g_{i,j} \} _{0 \leq i &lt; j \leq n}$ satisfying $g_{i,j} + g_{j,k} = g_{i,k}$ for $0 \leq i &lt; j &lt; k \leq n$. It follows that the Eilenberg-MacLane space $\mathrm{K}(G[1])$ can be identified with the classifying simplicial set $B_{\bullet }G$ of Construction <a data-tag="04G0" href="/tag/04G0">1.3.2.5</a>. </p>
+</article>
+</p>
+<p>
+We now consider a particularly important special case of Construction <a data-tag="00QT" href="/tag/00QT">2.5.6.3</a>. 
+</p>
+<p>
+<article class="env-construction" id="00QX">
+<p><a class="environment-identifier" href="/tag/00QX">Construction <span data-tag="00QX">2.5.6.9</span> <span class="named">(Eilenberg-MacLane Spaces)</span>.</a> Let $G$ be an abelian group, let $n$ be a nonnegative integer, and let $G[n]$ denote the chain complex consisting of the single abelian group $G$, concentrated in degree $n$ (Example <a data-tag="00NS" href="/tag/00NS">2.5.1.2</a>). We will denote the simplicial abelian group $\mathrm{K}( G[n] )$ by $\mathrm{K}(G,n)$ and refer to it as the <em>$n$th Eilenberg-MacLane space of $G$</em>. </p>
+<p>For small values of $n$, it will be useful to allow more general coefficients. </p>
+<p><ul>
+<li><p>
+If $G$ is any group (not necessarily abelian), we let $\mathrm{K}(G,1)$ denote the classifying simplicial set $B_{\bullet }(G)$ (Construction <a data-tag="04G0" href="/tag/04G0">1.3.2.5</a>). 
+</p>
+</li><li><p>
+If $G$ is any set, we let $\mathrm{K}(G,0)$ denote the constant simplicial set $\underline{G}$ (Construction <a data-tag="00FS" href="/tag/00FS">1.1.5.2</a>). 
+</p>
+</li>
+</ul></p>
+<p> By virtue of Examples <a data-tag="00QZ" href="/tag/00QZ">2.5.6.7</a> and <a data-tag="00R0" href="/tag/00R0">2.5.6.8</a>, we recover the first definition in the case where $G$ is an abelian group. </p>
+</article>
+</p>
+<p>
+<article class="env-notation" id="00R1">
+<p><a class="environment-identifier" href="/tag/00R1">Notation <span data-tag="00R1">2.5.6.10</span>.</a> Let $M_{\ast }$ be a chain complex. Then every $n$-simplex $\sigma $ of the simplicial set $\mathrm{K}( M_{\ast } )$ can be identified with a map of chain complexes $\mathrm{N}_{\ast }( \Delta ^ n; \operatorname{\mathbf{Z}}) \rightarrow M_{\ast }$, which carries the generator of $\mathrm{N}_{n}( \Delta ^ n; \operatorname{\mathbf{Z}})$ to an $n$-chain $\widetilde{v}(\sigma ) \in M_ n$. Moreover: </p>
+<p><ul>
+<li><p>
+Since $\sigma $ is a morphism of chain complexes, we have 
+</p>
+<div class="equation">
+  \[ \partial ( \widetilde{v}(\sigma ) ) = \sum _{i =0}^{n} (-1)^{i} \widetilde{v}( d^{n}_ i \sigma ). \]
+</div>
+<p>
+ In other words, the construction $\sigma \mapsto \widetilde{v}(\sigma )$ determines a chain map from the Moore complex $\mathrm{C}_{\ast }( \mathrm{K}( M_{\ast } ) )$ to the chain complex $M_{\ast }$. 
+</p>
+</li><li><p>
+If $\sigma $ is a degenerate $n$-simplex of $\mathrm{K}( M_{\ast } )$, then the map of chain complexes $\sigma : \mathrm{N}_{\ast }( \Delta ^ n; \operatorname{\mathbf{Z}}) \rightarrow M_{\ast }$ factors through $\mathrm{N}_{\ast }( \Delta ^{m}; \operatorname{\mathbf{Z}})$ for some $m &lt; n$, and therefore annihilates the generator of $\mathrm{N}_{n}( \Delta ^ n; \operatorname{\mathbf{Z}})$. It follows that $\widetilde{v}$ factors (uniquely) as a composition 
+</p>
+<div class="equation">
+  \[  \mathrm{C}_{\ast }( \mathrm{K}( M_{\ast } ) ) \twoheadrightarrow \mathrm{N}_{\ast }( \mathrm{K}(M_{\ast }) ) \xrightarrow {v} M_{\ast }. \]
+</div>
+</li>
+</ul></p>
+<p> We will refer to the chain map $v: \mathrm{N}_{\ast }( \mathrm{K}(M_{\ast }) ) \rightarrow M_{\ast }$ as the <em>counit map</em>. </p>
+</article>
+</p>
+<p>
+<article class="env-proposition" id="00R2">
+<p><a class="environment-identifier" href="/tag/00R2">Proposition <span data-tag="00R2">2.5.6.11</span>.</a> Let $M_{\ast }$ be a chain complex and let $v: \mathrm{N}_{\ast }( \mathrm{K}(M_{\ast }) ) \rightarrow M_{\ast }$ be the counit map of Notation <a data-tag="00R1" href="/tag/00R1">2.5.6.10</a>. Then, for any simplicial abelian group $A_{\bullet }$, the composite map </p>
+<div class="equation">
+  \[  \theta : \operatorname{Hom}_{ \operatorname{ Ab }_{\Delta }}( A_{\bullet }, \mathrm{K}( M_{\ast }) ) \rightarrow \operatorname{Hom}_{\operatorname{Ch}(\operatorname{\mathbf{Z}})}( \mathrm{N}_{\ast }(A), \mathrm{N}_{\ast }( \mathrm{K}( M_{\ast }) ) ) \xrightarrow {v \circ } \operatorname{Hom}_{ \operatorname{Ch}(\operatorname{\mathbf{Z}})}( \mathrm{N}_{\ast }(A), M_{\ast } ) \]
+</div>
+<p> is an isomorphism of abelian groups. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      Let us say that a simplicial abelian group $A_{\bullet }$ is <em>free</em> if it can be written as a (possibly infinite) direct sum of simplicial abelian groups of the form $\operatorname{\mathbf{Z}}[ \Delta ^ n ]$. Note that every simplicial abelian group $A_{\bullet }$ admits a surjection $P_{\bullet } \twoheadrightarrow A_{\bullet }$, where $P_{\bullet }$ is free (for example, we can take $P_{\bullet }$ to be the direct sum $\bigoplus _{\sigma } \operatorname{\mathbf{Z}}[ \Delta ^{ \mathrm{dim}(\sigma ) }]$ where $\sigma $ ranges over all the simplices of $A_{\bullet }$). Applying this observation twice, we observe that every simplicial abelian group $A_{\bullet }$ admits a resolution 
+    <p>
+<div class="equation">
+  \[  Q_{\bullet } \rightarrow P_{\bullet } \twoheadrightarrow A_{\bullet } \rightarrow 0, \]
+</div>
+<p>
+       which determines a commutative diagram of exact sequences 
+    <p>
+<div class="equation">
+  \[  \xymatrix@R =50pt@C=25pt{0 \ar [r] &amp;  \operatorname{Hom}_{ \operatorname{ Ab }_{\Delta }}( A_{\bullet }, \mathrm{K}( M_{\ast }) ) \ar [r] \ar [d]^{\theta } &amp;  \operatorname{Hom}_{ \operatorname{ Ab }_{\Delta }}( P_{\bullet }, \mathrm{K}( M_{\ast }) ) \ar [d]^{\theta '} \ar [r] &amp;  \operatorname{Hom}_{ \operatorname{ Ab }_{\Delta }}( Q_{\bullet }, \mathrm{K}( M_{\ast }) ) \ar [d]^{\theta ''} \\ 0 \ar [r] &amp;  \operatorname{Hom}_{ \operatorname{Ch}(\operatorname{\mathbf{Z}})}( \mathrm{N}_{\ast }(A), M_{\ast } ) \ar [r] &amp;  \operatorname{Hom}_{ \operatorname{Ch}(\operatorname{\mathbf{Z}})}( \mathrm{N}_{\ast }(P), M_{\ast } ) \ar [r] &amp;  \operatorname{Hom}_{ \operatorname{Ch}(\operatorname{\mathbf{Z}})}( \mathrm{N}_{\ast }(Q), M_{\ast } ). } \]
+</div>
+<p>
+       Consequently, to prove that $\theta $ is an isomorphism, it will suffice to show that $\theta '$ and $\theta ''$ are isomorphisms. In other words, we may assume without loss of generality that the simplicial abelian group $A_{\bullet }$ is free. Decomposing $A_{\bullet }$ as a direct sum, we can further reduce to the case $A_{\bullet } = \operatorname{\mathbf{Z}}[ \Delta ^ n ]$, in which case the result follows immediately from the definitions. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></p></p></article>
+<p>
+<article class="env-corollary" id="00R3">
+<p><a class="environment-identifier" href="/tag/00R3">Corollary <span data-tag="00R3">2.5.6.12</span>.</a> The normalized Moore complex functor $\mathrm{N}_{\ast }: \operatorname{ Ab }_{\Delta } \rightarrow \operatorname{Ch}(\operatorname{\mathbf{Z}})$ admits a right adjoint $\mathrm{K}: \operatorname{Ch}(\operatorname{\mathbf{Z}}) \rightarrow \operatorname{ Ab }_{\Delta }$, given on objects by Construction <a data-tag="00QT" href="/tag/00QT">2.5.6.3</a>. </p>
+</article>
+</p>
+<p>
+Note that we can also regard $M_{\ast } \mapsto \mathrm{K}( M_{\ast } )$ as a functor from chain complexes to simplicial <em>sets</em> (by neglecting the group structure on $\mathrm{K}( M_{\ast } )$. This simplicial set also has a universal property: 
+</p>
+<p>
+<article class="env-corollary" id="00R4">
+<p><a class="environment-identifier" href="/tag/00R4">Corollary <span data-tag="00R4">2.5.6.13</span>.</a> The normalized chain complex functor </p>
+<div class="equation">
+  \[  \mathrm{N}_{\ast }( -; \operatorname{\mathbf{Z}}): \operatorname{Set_{\Delta }}\rightarrow \operatorname{Ch}(\operatorname{\mathbf{Z}}) \]
+</div>
+<p> admits a right adjoint, given on objects by the functor $M_{\ast } \mapsto \mathrm{K}( M_{\ast } )$ of Construction <a data-tag="00QT" href="/tag/00QT">2.5.6.3</a>. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="00R5">
+<p><a class="environment-identifier" href="/tag/00R5">Remark <span data-tag="00R5">2.5.6.14</span>.</a> When regarded as a functor from $\operatorname{Ch}(\operatorname{\mathbf{Z}})$ to the category of simplicial <em>sets</em>, the functor $M_{\ast } \mapsto \mathrm{K}( M_{\ast } )$ fits into the paradigm of Variant <a data-tag="001T" href="/tag/001T">1.2.2.8</a>: it is the functor $\operatorname{Sing}^{Q}_{\bullet }$ associated to the cosimplicial chain complex </p>
+<div class="equation">
+  \[  Q: \operatorname{{\bf \Delta }}\rightarrow \operatorname{Ch}(\operatorname{\mathbf{Z}}) \quad \quad [n] \mapsto \mathrm{N}_{\ast }( \Delta ^ n; \operatorname{\mathbf{Z}}). \]
+</div>
+</article>
+</p>
+<p>
+To deduce Theorem <a data-tag="00QR" href="/tag/00QR">2.5.6.1</a>, it is convenient to use a different description of the normalized Moore complex. 
+</p>
+<p>
+<article class="env-construction" id="00R6">
+<p><a class="environment-identifier" href="/tag/00R6">Construction <span data-tag="00R6">2.5.6.15</span> <span class="named">(The Normalized Moore Complex: Second Construction)</span>.</a> Let $A_{\bullet }$ be a simplicial abelian group. For each $n \geq 0$, we let $\widetilde{ \mathrm{N} }_{n}( A)$ denote the subgroup of $\mathrm{C}_{n}(A) = A_ n$ consisting of those elements $x$ which satisfy $d^{n}_{i}(x) = 0$ for $1 \leq i \leq n$. Note that if $x$ satisfies this condition, then we have </p>
+<div class="equation">
+  \[  \partial (x) = \sum _{i = 0}^{n} (-1)^{i} d^{n}_ i(x) = d^{n}_0(x). \]
+</div>
+<p> Moreover, the identity $d^{n-1}_{i} d^{n}_0(x) = d^{n-1}_0 d^{n}_{i+1}(x) = 0$ shows that $\partial (x) = d^{n}_0(x)$ belongs to the subgroup $\widetilde{ \mathrm{N} }_{n-1}(A) \subseteq \mathrm{C}_{n-1} = A_{n-1}$. We can therefore regard $\widetilde{N}_{\ast }( A)$ as a subcomplex of the Moore complex $\mathrm{C}_{\ast }(A)$. </p>
+</article>
+</p>
+<p>
+In the situation of Construction <a data-tag="00R6" href="/tag/00R6">2.5.6.15</a>, we will abuse terminology by referring to the chain complex $\widetilde{\mathrm{N}}_{\ast }(A)$ as the normalized Moore complex of $A_{\bullet }$. This abuse is justified by the observation that the chain complexes $\widetilde{\mathrm{N}}_{\ast }(A)$ is canonically isomorphic to the normalized Moore complex $\mathrm{N}_{\ast }(A)$ of Construction <a data-tag="00QG" href="/tag/00QG">2.5.5.7</a> (Proposition <a data-tag="00R9" href="/tag/00R9">2.5.6.17</a> below). We will deduce this from the following more precise statement: 
+</p>
+<p>
+<article class="env-lemma" id="00R7">
+<p><a class="environment-identifier" href="/tag/00R7">Lemma <span data-tag="00R7">2.5.6.16</span>.</a> Let $A_{\bullet }$ be a simplicial abelian group and let $n$ be a nonnegative integer. Then the map </p>
+<div class="equation">
+  \[  f: \bigoplus _{ \alpha : [n] \twoheadrightarrow [m] } \widetilde{\mathrm{N}}_{m}(A) \rightarrow A_{n} \quad \quad \{  x_{\alpha } \}  \mapsto \sum \alpha ^{\ast }( x_{\alpha } ) \]
+</div>
+<p> is an isomorphism of abelian groups. Here the direct sum is indexed by surjective nondecreasing maps $\alpha : [n] \rightarrow [m]$ for $0 \leq m \leq n$, and $\alpha ^{\ast }: A_{m} \rightarrow A_{n}$ denotes the associated group homomorphism. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      We first prove that $f$ is surjective. The proof proceeds by induction on $n$. By virtue of our inductive hypothesis, the image of $f$ contains the subgroups $\widetilde{\mathrm{N}}_{n}(A), \mathrm{D}_{n}(A) \subseteq \mathrm{C}_{n}(A) = A_ n$. It will therefore suffice to show that the composite map 
+    <p>
+<div class="equation">
+  \[ \widetilde{\mathrm{N}}_{n}(A) \hookrightarrow \mathrm{C}_{n}( A ) \twoheadrightarrow \mathrm{C}_{n}(A) / \mathrm{D}_{n}(A) \]
+</div>
+<p>
+       is surjective. Fix an element $\overline{x} \in \mathrm{C}_{n}(A) / \mathrm{D}_{n}(A)$. For each $x \in \mathrm{C}_{n}(A)$ representing $\overline{x}$, let $i_{x}$ be the smallest nonnegative integer such that $d^{n}_ j(x)$ vanishes for $i_{x} &lt; j \leq n$. Without loss of generality, we may assume that $x$ is chosen so that $i = i_{x}$ is as small as possible. We wish to prove that $i = 0$ (so that $x$ belongs to $\mathrm{N}_{n}(A)$). Assume otherwise, and set $y = x - (s^{n-1}_{i-1} \circ d^{n}_ i)(x)$. Then $y$ is congruent to $x$ modulo $\mathrm{D}_{n}(A)$, and for $i \leq j \leq n$ we have 
+    <p>
+<div class="equation">
+  \begin{eqnarray*}  d^{n}_ j(y) &amp;  = &amp;  d^{n}_ j(x) - (d^{n}_ j \circ s^{n-1}_{i-1} \circ d^{n}_ i)(x) \\ &amp;  = &amp;  d^{n}_ j( x) - \begin{cases}  d^{n}_ i(x) &amp;  \text{ if } i = j \\  (s^{n-2}_{i-1} \circ d^{n-1}_{j-1} \circ d^{n}_ i )(x) &amp;  \text{ if } i &lt; j. \end{cases}\\ &amp;  = &amp;  d^{n}_ j(x) - \begin{cases}  d^{n}_ i(x) &amp;  \text{ if } i = j \\  (s^{n-2}_{i-1} \circ d^{n-1}_{i} \circ d^{n}_ j )(x) &amp;  \text{ if } i &lt; j. \end{cases}\\ &amp;  = &amp;  0. \end{eqnarray*}
+</div>
+<p>
+       It follows that $i_{y} &lt; i = i_{x}$, contradicting our choice of $x$. 
+    <p>
+      We now prove that $f$ is injective. Suppose otherwise, so that there exists a nonzero element 
+    <p>
+<div class="equation">
+  \[ \{  x_{\alpha } \}  \in \bigoplus _{ \alpha : [n] \twoheadrightarrow [m] } \widetilde{\mathrm{N}}_{m}(A)  \]
+</div>
+<p>
+       which is annihilated by $f$. Then there exists some surjective map $\beta : [n] \twoheadrightarrow [k]$ such that $x_{\beta }$ is nonzero. Assume that $k$ has been chosen as small as possible. Moreover, we may assume that $\beta $ is <em>maximal</em> among nondecreasing maps $[n] \twoheadrightarrow [k]$ such that $x_{\beta } \neq 0$: in other words, that for any other map $\alpha : [n] \twoheadrightarrow [k]$ satisfying $\beta (i) \leq \alpha (i)$ for $0 \leq i \leq n$, we either have $\beta = \alpha $ or $x_{\alpha } = 0$. Let $\gamma : [k] \rightarrow [n]$ be the map given by $\gamma (j) = \min \{  i \in [n]: \beta (i) = j \} $. Then $\gamma $ is a nondecreasing map satisfying $\beta \circ \gamma = \operatorname{id}_{[k]}$ and $\gamma (0) = 0$. We then have 
+    <p>
+<div class="equation">
+  \begin{eqnarray*}  \gamma ^{\ast } f( \{  x_{\alpha } \}  ) &amp;  = &amp;  \gamma ^{\ast }( \sum _{ \alpha : [n] \twoheadrightarrow [m] } \alpha ^{\ast }( x_{\alpha } )) \\ &amp;  = &amp;  \sum _{ \alpha : [n] \twoheadrightarrow [m] } ( \alpha \circ \gamma )^{\ast }( x_{\alpha } ). \end{eqnarray*}
+</div>
+<p>
+       We now inspect the summands appearing on the right hand side: 
+    <p>
+<ul>
+<li><p>
+Let $\alpha : [n] \twoheadrightarrow [m]$ be a surjective nondecreasing function, and suppose that the composite map $[k] \xrightarrow {\gamma } [n] \xrightarrow {\alpha } [m]$ is not surjective. Then we can choose $0 \leq i \leq m$ such that $i$ does not belong the image of $\alpha \circ \gamma $. Then the homomorphism $(\alpha \circ \gamma )^{\ast }: A_{m} \rightarrow A_{k}$ factors through the face operator $d^{m}_ i: A_{m} \rightarrow A_{m-1}$. Note that we must have $i &gt; 0$ (since $\gamma (0) = 0$ and $\alpha (0) = 0$), so that $x_{\alpha }$ is annihilated by $d^{m}_ i$ (by virtue of our assumption that $x_{\alpha }$ belongs to the subgroup $\mathrm{N}_{m}(A) \subseteq A_ m$) and therefore also by $(\alpha \circ \gamma )^{\ast }$. 
+</p>
+</li><li><p>
+Let $\alpha : [n] \twoheadrightarrow [m]$ be a surjective nondecreasing function, and suppose that the composite map $[k] \xrightarrow {\gamma } [n] \xrightarrow {\alpha } [m]$ is surjective but not injective. In this case, we must have $m &lt; k$, so that $x_{\alpha }$ vanishes by virtue of the minimality assumption on $k$. 
+</p>
+</li><li><p>
+Let $\alpha : [n] \twoheadrightarrow [m]$ be a surjective map, and suppose that the composite map $[k] \xrightarrow {\gamma } [n] \xrightarrow {\alpha } [m]$ is bijective, so that $m = k$ and $\alpha \circ \gamma $ is the identity on $[k]$. For $0 \leq i \leq n$, we have $(\gamma \circ \beta )(i) \leq i$ (by the definition of $\gamma $), so that 
+</p>
+<div class="equation">
+  \[  \beta (i) = ((\alpha \circ \gamma ) \circ \beta )(i) = (\alpha \circ (\gamma \circ \beta ))(i) \leq \alpha (i). \]
+</div>
+<p>
+ Invoking our maximality assumption on $\beta $, we conclude that either $\alpha = \beta $ or $x_{\alpha }$ vanishes. 
+</p>
+</li>
+</ul>
+<p>
+       Combining these observations, we obtain an equality 
+    <p>
+<div class="equation">
+  \[  x_{\beta } = \sum _{ \alpha : [n] \twoheadrightarrow [m] } ( \alpha \circ \gamma )^{\ast }( x_{\alpha } ) = \gamma ^{\ast } f( \{  x_{\alpha } \}  ) = 0, \]
+</div>
+<p>
+       contradicting our choice of $\beta $. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></p></p></p></p></p></p></p></p></p></p></p></article>
+<p>
+<article class="env-proposition" id="00R9">
+<p><a class="environment-identifier" href="/tag/00R9">Proposition <span data-tag="00R9">2.5.6.17</span>.</a> Let $A_{\bullet }$ be a simplicial abelian group. Then the composite map $\widetilde{ \mathrm{N} }_{\ast }(A) \hookrightarrow \mathrm{C}_{\ast }(A) \twoheadrightarrow \mathrm{N}_{\ast }(A)$ is an isomorphism of chain complexes. In other words, the Moore complex $\mathrm{C}_{\ast }(A)$ splits as a direct sum of the subcomplex $\widetilde{ \mathrm{N} }_{\ast }(A)$ of Construction <a data-tag="00R6" href="/tag/00R6">2.5.6.15</a> and the subcomplex $\mathrm{D}_{\ast }(A)$ of Proposition <a data-tag="00QF" href="/tag/00QF">2.5.5.6</a>. </p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      The surjectivity of the composite map $\widetilde{ \mathrm{N} }_{\ast }(A) \hookrightarrow \mathrm{C}_{\ast }(A) \twoheadrightarrow \mathrm{N}_{\ast }(A)$ follows from Lemma <a data-tag="00R7" href="/tag/00R7">2.5.6.16</a>. Moreover, it follows by induction that the subgroup $\mathrm{D}_{n}(A) \subseteq A_ n$ is generated by the images of the maps 
+    <p>
+<div class="equation">
+  \[  \widetilde{\mathrm{N}}_{m}(A) \hookrightarrow A_{m} \xrightarrow { \alpha ^{\ast } } A_{n} \]
+</div>
+<p>
+       where $\alpha : [n] \twoheadrightarrow [m]$ is a nondecreasing surjection and $m &lt; n$, so that the injectivity also follows from Lemma <a data-tag="00R7" href="/tag/00R7">2.5.6.16</a>. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<p>
+<article class="env-remark" id="00R8">
+<p><a class="environment-identifier" href="/tag/00R8">Remark <span data-tag="00R8">2.5.6.18</span>.</a> Let $f: A_{\bullet } \rightarrow B_{\bullet }$ be a morphism of simplicial abelian groups. By virtue of Proposition <a data-tag="00R9" href="/tag/00R9">2.5.6.17</a> and Lemma <a data-tag="00R7" href="/tag/00R7">2.5.6.16</a>, the following assertions are equivalent: </p>
+<p><ul>
+<li><p>
+For every integer $n \geq 0$, the map of abelian groups $A_{n} \rightarrow B_ n$ is surjective (respectively split surjective, injective, split injective). 
+</p>
+</li><li><p>
+For every integer $n \geq 0$, the map of abelian groups $\mathrm{N}_{n}(A) \rightarrow \mathrm{N}_{n}(B)$ is surjective (respectively split surjective, injective, split injective). 
+</p>
+</li>
+</ul></p>
+</article>
+</p>
+<p>
+<article class="env-warning" id="00RA">
+<p><a class="environment-identifier" href="/tag/00RA">Warning <span data-tag="00RA">2.5.6.19</span>.</a> Let $A_{\bullet }$ be a simplicial abelian group, and let $A_{\bullet }^{\operatorname{op}}$ be the opposite simplicial abelian group (obtained by precomposing the functor $A_{\bullet }: \operatorname{{\bf \Delta }}^{\operatorname{op}} \rightarrow \operatorname{ Ab }$ with the order-reversal involution $\mathrm{Op}: \operatorname{{\bf \Delta }}^{\operatorname{op}} \rightarrow \operatorname{{\bf \Delta }}^{\operatorname{op}}$ of Notation <a data-tag="003M" href="/tag/003M">1.4.2.1</a>). Then there is a canonical isomorphism of Moore complexes $\psi : \mathrm{C}_{\ast }( A^{\operatorname{op}} ) \simeq \mathrm{C}_{\ast }(A )$, given by $\psi (x) = (-1)^{\frac{n^2+n}{2}} x$ for $x \in A_ n$. This isomorphism carries the subcomplex $\mathrm{D}_{\ast }( A^{\operatorname{op}} )$ generated by the degenerate simplices of $A_{\bullet }^{\operatorname{op}}$ to the subcomplex $\mathrm{D}_{\ast }( A )$ generated by the degenerate simplices of $A_{\bullet }$, and therefore descends to an isomorphism of normalized Moore complexes $\mathrm{N}_{\ast }( A^{\operatorname{op}} ) \simeq \mathrm{N}_{\ast }( A )$, where we view $\mathrm{N}_{\ast }(A)$ and $\mathrm{N}_{\ast }(A^{\operatorname{op}})$ as <em>quotients</em> of $\mathrm{C}_{\ast }(A)$ and $\mathrm{C}_{\ast }(A^{\operatorname{op}})$ (as in Construction <a data-tag="00QG" href="/tag/00QG">2.5.5.7</a>). Beware that the isomorphism $\psi $ does <em>not</em> carry the subcomplex $\widetilde{ \mathrm{N} }_{\ast }(A^{\operatorname{op}}) \subseteq \mathrm{C}_{\ast }(A^{\operatorname{op}})$ of Construction <a data-tag="00R6" href="/tag/00R6">2.5.6.15</a> to the subcomplex $\widetilde{ \mathrm{N} }_{\ast }(A) \subseteq \mathrm{C}_{\ast }(A)$. Instead, it carries $\widetilde{ \mathrm{N} }_{\ast }( A^{\operatorname{op}} )$ to a different subcomplex of $\mathrm{C}_{\ast }(A)$, given in degree $n$ by those elements $x \in \mathrm{C}_{n}(A) = A_ n$ satisfying $d^{n}_ i(x) = 0$ for $0 \leq i &lt; n$, and with differential given by $x \mapsto (-1)^{n} d^{n}_ n(x)$. This subcomplex is yet another incarnation of the normalized Moore complex of $A_{\bullet }$, which is canonically isomorphic to $\widetilde{ \mathrm{N} }_{\ast }(A)$ but not identical as a subcomplex of $\mathrm{C}_{\ast }(A)$. </p>
+<p>Stated more informally: the definition of the normalized Moore complex $\mathrm{N}_{\ast }(A)$ as a <em>quotient</em> of $\mathrm{C}_{\ast }(A)$ (via Construction <a data-tag="00QG" href="/tag/00QG">2.5.5.7</a>) is compatible with passage from a simplicial abelian group $A_{\bullet }$ to its opposite $A_{\bullet }^{\operatorname{op}}$, but the realization as a <em>subcomplex</em> of $\mathrm{C}_{\ast }(A)$ (via Construction <a data-tag="00R6" href="/tag/00R6">2.5.6.15</a>) is not. </p>
+</article>
+</p>
+<p>
+<article class="env-remark" id="00RB">
+<p><a class="environment-identifier" href="/tag/00RB">Remark <span data-tag="00RB">2.5.6.20</span>.</a> Let $A_{\bullet }$ be a simplicial abelian group. Then Warning <a data-tag="00RA" href="/tag/00RA">2.5.6.19</a> supplies a canonical isomorphism of normalized Moore complexes $\mathrm{N}_{\ast }(A) \simeq \mathrm{N}_{\ast }( A^{\operatorname{op}} )$. By virtue of Theorem <a data-tag="00QR" href="/tag/00QR">2.5.6.1</a>, this isomorphism can be lifted uniquely to an isomorphism of simplicial abelian groups $\varphi : A_{\bullet } \simeq A_{\bullet }^{\operatorname{op}}$. The isomorphism $\varphi $ is characterized by the requirement that for every $n$-simplex $x \in A_ n$, we have $\varphi (x) \equiv (-1)^{\frac{n^2+n}{2}} x$ modulo degenerate simplices of $A_{\bullet }$. </p>
+</article>
+</p>
+<p>
+We now use Proposition <a data-tag="00R9" href="/tag/00R9">2.5.6.17</a> to deduce Proposition <a data-tag="00QK" href="/tag/00QK">2.5.5.11</a>, which was stated without proof in §<a data-tag="00Q9" href="/tag/00Q9">2.5.5</a>. The statement can be reformulated as follows: 
+</p>
+<p>
+<article class="env-proposition" id="00RC">
+<p><a class="environment-identifier" href="/tag/00RC">Proposition <span data-tag="00RC">2.5.6.21</span>.</a> Let $A_{\bullet }$ be a simplicial abelian group. Then: </p>
+<p><ul>
+<li class="custom-item" data-marker="(a)"><p>
+The quotient map $\mathrm{C}_{\ast }(A) \twoheadrightarrow \mathrm{N}_{\ast }(A)$ induces an isomorphism on homology. 
+</p>
+</li><li class="custom-item" data-marker="(b)"><p>
+The inclusion map $\widetilde{ \mathrm{N} }_{\ast }(A) \hookrightarrow \mathrm{C}_{\ast }(A)$ induces an isomorphism on homology. 
+</p>
+</li><li class="custom-item" data-marker="(c)"><p>
+The subcomplex $\mathrm{D}_{\ast }(A) \subseteq \mathrm{C}_{\ast }(A)$ of Notation <a data-tag="00QE" href="/tag/00QE">2.5.5.5</a> is acyclic: that is, its homology groups are trivial. 
+</p>
+</li>
+</ul></p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      By virtue of Proposition <a data-tag="00R9" href="/tag/00R9">2.5.6.17</a>, assertions $(a)$, $(b)$, and $(c)$ are equivalent. It will therefore suffice to prove $(b)$. Note that the map $\widetilde{ \mathrm{N} }_{\ast }(A) \hookrightarrow \mathrm{C}_{\ast }(A)$ is the inclusion of a direct summand (Proposition <a data-tag="00R9" href="/tag/00R9">2.5.6.17</a>) and is therefore automatically injective on homology. To show that it also induces a surjective map, it will suffice to show that every $n$-cycle $x \in \mathrm{C}_{n}(A)$ is homologous to an element of the subgroup $\widetilde{\mathrm{N}}_{n}(A)$. Let $i$ denote the smallest nonnegative integer for which the faces $d^{n}_ j(x)$ vanish for $i &lt; j \leq n$; our proof will proceed by induction on $i$. If $i = 0$, then $x$ belongs to $\widetilde{\mathrm{N}}_{n}(A)$, and there is nothing to prove. Otherwise, let $y \in \mathrm{C}_{n}(A)$ denote the boundary given by $\partial ( s^{n}_{i}(x) )$. We then compute 
+    <p>
+<div class="equation">
+  \begin{eqnarray*}  y &amp;  = &amp;  \partial (s^{n}_ i(x) ) \\ &amp;  = &amp;  \sum _{j = 0}^{n+1} (-1)^{j} (d^{n+1}_ j \circ s^{n}_ i)(x) \\ &amp;  = &amp;  (\sum _{j = 0}^{i-1} (-1)^{j} (s^{n-1}_{i-1} \circ d^{n}_ j)(x) ) + (-1)^{i} x + (-1)^{i+1} x + (\sum _{j = i+2}^{n} (-1)^{j} (s^{n-1}_{i} \circ d^{n}_{j-1})(x) ) \\ &amp;  = &amp;  s^{n-1}_{i-1}( \sum _{j=0}^{i-1} (-1)^{j} d^{n}_ j(x) ) \\ &amp;  = &amp;  s^{n-1}_{i-1}( (\sum _{j=0}^{i-1} (-1)^{j} d^{n}_ j(x) ) + (\sum _{j=i+1}^{n} (-1)^{j} d^{n}_ j(x) ) ) \\ &amp;  = &amp;  s^{n-1}_{i-1}( \partial (x) - (-1)^{i} d^{n}_ i(x) ) \\ &amp;  = &amp;  (-1)^{i+1} (s^{n-1}_{i-1} \circ d^{n}_ i)(x). \end{eqnarray*}
+</div>
+<p>
+       Set $x' = x + (-1)^{i} y$. For $j \geq i$ we compute 
+    <p>
+<div class="equation">
+  \begin{eqnarray*}  d^{n}_ j(x') &amp;  = &amp;  d^{n}_ j(x) + (-1)^{i} d^{n}_ j(y) \\ &amp;  = &amp;  d^{n}_ j(x) - (d^{n}_ j \circ s^{n-1}_{i-1} \circ d^{n}_ i)(x) \\ &amp;  = &amp; \begin{cases}  d^{n}_ j(x) - d^{n}_ i(x) &amp;  \text{ if } j = i \\  d^{n}_ j(x) - (s^{n-2}_{i-1} \circ d^{n-1}_ i \circ d^{n}_ j)(x) &amp;  \text{ if } j &gt; i \end{cases}\\ &amp;  = &amp;  0. \end{eqnarray*}
+</div>
+<p>
+       Our inductive hypothesis then guarantees that $x'$ is homologous to an element of the subgroup $\widetilde{\mathrm{N}}_{n}(A)$. Since $x$ is homologous to $x'$, it follows that $x$ is also homologous to an element of the subgroup $\widetilde{\mathrm{N}}_{n}(A)$. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></p></p></article>
+<p>
+<article class="env-warning" id="00RD">
+<p><a class="environment-identifier" href="/tag/00RD">Warning <span data-tag="00RD">2.5.6.22</span>.</a> Let $A_{\bullet }$ be a semisimplicial abelian group. Then we can still apply Construction <a data-tag="00R6" href="/tag/00R6">2.5.6.15</a> to define a subcomplex $\widetilde{ \mathrm{N} }_{\ast }(A)$ of the Moore complex $\mathrm{C}_{\ast }(A)$ (note that the definition of $\widetilde{ \mathrm{N} }_{\ast }(A)$ refers only to the face operators of $A_{\bullet }$). However, it is generally not true that the inclusion map $\widetilde{ \mathrm{N} }_{\ast }(A) \hookrightarrow \mathrm{C}_{\ast }(A)$ induces an isomorphism on homology unless $A_{\bullet }$ can be promoted to a simplicial abelian group. </p>
+</article>
+</p>
+<p>
+We now turn to the proof of the Dold-Kan correspondence. The main ingredient is the following consequence of Proposition <a data-tag="00R9" href="/tag/00R9">2.5.6.17</a>: 
+</p>
+<p>
+<article class="env-proposition" id="00RE">
+<p><a class="environment-identifier" href="/tag/00RE">Proposition <span data-tag="00RE">2.5.6.23</span>.</a> Let $M_{\ast }$ be a chain complex and let $v: \mathrm{N}_{\ast }( \mathrm{K}(M_{\ast } )) \rightarrow M_{\ast }$ be the counit map of Notation <a data-tag="00R1" href="/tag/00R1">2.5.6.10</a>. Then: </p>
+<p><ul>
+<li><p>
+The map $v_0: \mathrm{N}_0( \mathrm{K}( M_{\ast } ) ) \rightarrow M_0$ is a monomorphism, whose image is the set $\mathrm{Z}_0(M)$ of $0$-cycles in $M_{\ast }$. 
+</p>
+</li><li><p>
+For $n &gt; 0$, the map $v_ n: \mathrm{N}_{n}( \mathrm{K}(M_{\ast } )) \rightarrow M_{n}$ is an isomorphism. 
+</p>
+</li>
+</ul></p>
+</article>
+</p>
+<article class="env-proof">
+<p>
+<strong>Proof.</strong>
+      The first assertion follows from Example <a data-tag="00QV" href="/tag/00QV">2.5.6.5</a>. To prove the second, fix $n &gt; 0$ and let $f$ denote the composite map 
+    <p>
+<div class="equation">
+  \[  \widetilde{ \mathrm{N} }_{n}( \mathrm{K}(M_{\ast }) ) \hookrightarrow \mathrm{C}_{n}( \mathrm{K}( M_{\ast } ) ) \twoheadrightarrow \mathrm{N}_{n}( \mathrm{K}(M_{\ast }) ) \xrightarrow {v_ n} M_{n}. \]
+</div>
+<p>
+       By virtue of Proposition <a data-tag="00R9" href="/tag/00R9">2.5.6.17</a>, it will suffice to show that $f$ is an isomorphism. By definition, we can identify $\mathrm{C}_{n}( \mathrm{K}( M_{\ast } ) ) = \mathrm{K}_{n}( M_{\ast } )$ with the set of all chain maps $\sigma : \mathrm{N}_{\ast }( \Delta ^ n; \operatorname{\mathbf{Z}}) \rightarrow M_{\ast }$. Unwinding the definitions, we see that $\sigma $ belongs to the subgroup $\widetilde{ \mathrm{N} }_{n}( \mathrm{K}(M_{\ast }) ) \subseteq \mathrm{C}_{n}( \mathrm{K}( M_{\ast } ) )$ if and only if it annihilates the subcomplex $\mathrm{N}_{\ast }( \Lambda ^ n_0; \operatorname{\mathbf{Z}})$, where $\Lambda ^ n_0 \subset \Delta ^ n$ is the $0$-horn defined in Construction <a data-tag="000U" href="/tag/000U">1.2.4.1</a>. We can therefore identify $\widetilde{ \mathrm{N} }_{n}( \mathrm{K}(M_{\ast }) )$ with the abelian group $\operatorname{Hom}_{ \operatorname{Ch}(\operatorname{\mathbf{Z}})}( K_{\ast }, M_{\ast } )$, where $K_{\ast }$ denotes the quotient of $\mathrm{N}_{\ast }( \Delta ^ n; \operatorname{\mathbf{Z}})$ by the subcomplex $\mathrm{N}_{\ast }( \Lambda ^ n_0; \operatorname{\mathbf{Z}})$. Note that there are exactly two nondegenerate simplices of $\Delta ^ n$ which do not belong to $\Lambda ^ n_0$; let us denote them by $\tau $ and $\tau '$ (where $\tau $ is of dimension $n$ and $\tau '$ of dimension $n-1$). Moreover, the differential on $\mathrm{N}_{\ast }( \Delta ^ n; \operatorname{\mathbf{Z}})$ satisfies $\partial (\tau ) \equiv \tau ' \pmod{ \mathrm{N}_{\ast }( \Lambda ^ n_0; \operatorname{\mathbf{Z}}) }$. We conclude by observing that, under the preceding identification, the homomorphism $f: \operatorname{Hom}_{ \operatorname{Ch}(\operatorname{\mathbf{Z}})}( K_{\ast }, M_{\ast } ) \rightarrow M_ n$ is given by evaluation on $\tau $, and is therefore an isomorphism. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></article>
+<article class="env-proof">
+<p>
+<strong>Proof of Theorem <a data-tag="00QR" href="/tag/00QR">2.5.6.1</a>.</strong>
+       By virtue of Corollary <a data-tag="00R3" href="/tag/00R3">2.5.6.12</a>, it will suffice to show that the construction $M_{\ast } \mapsto \mathrm{K}(M_{\ast })$ induces an equivalence of categories $\mathrm{K}: \operatorname{Ch}(\operatorname{\mathbf{Z}})_{\geq 0} \rightarrow \operatorname{ Ab }_{\Delta }$. We first show that the functor $\mathrm{K}$ is fully faithful when restricted to $\operatorname{Ch}(\operatorname{\mathbf{Z}})_{\geq 0}$. Let $M_{\ast }$ and $M'_{\ast }$ be chain complexes which are concentrated in degrees $\geq 0$; we wish to show that the canonical map 
+    <p>
+<div class="equation">
+  \[  \varphi : \operatorname{Hom}_{\operatorname{Ch}(\operatorname{\mathbf{Z}})}( M_{\ast }, M'_{\ast }) \rightarrow \operatorname{Hom}_{ \operatorname{ Ab }_{\Delta }}( \mathrm{K}( M_{\ast }), \mathrm{K}( M'_{\ast } ) ) \]
+</div>
+<p>
+       is an isomorphism. Let $\theta : \operatorname{Hom}_{\operatorname{ Ab }_{\Delta }}( \mathrm{K}( M_{\ast }), \mathrm{K}( M'_{\ast } ) ) \simeq \operatorname{Hom}_{ \operatorname{Ch}(\operatorname{\mathbf{Z}}) }( \mathrm{N}_{\ast }( \mathrm{K}( M_{\ast }) ), M'_{\ast } )$ be the isomorphism of Proposition <a data-tag="00R2" href="/tag/00R2">2.5.6.11</a>. Unwinding the definitions, we see that $\theta \circ \varphi $ is given by precomposition with the counit map $v: \mathrm{N}_{\ast }( \mathrm{K}( M_{\ast }) ) \rightarrow M_{\ast }$ of Notation <a data-tag="00R1" href="/tag/00R1">2.5.6.10</a>, and is therefore an isomorphism by virtue of Proposition <a data-tag="00RE" href="/tag/00RE">2.5.6.23</a> (together with our assumption that $M_{\ast }$ is concentrated in degrees $\geq 0$). It follows that $\varphi $ is also an isomorphism, as desired. 
+    <p>
+      We now prove that the functor $\mathrm{K}: \operatorname{Ch}(\operatorname{\mathbf{Z}})_{\geq 0} \rightarrow \operatorname{ Ab }_{\Delta }$ is essentially surjective. Let $A_{\bullet }$ be a simplicial abelian group and let $M_{\ast } = \mathrm{N}_{\ast }(A)$ be its normalized Moore complex. Then there is a unique map of simplicial abelian groups $u: A_{\bullet } \rightarrow \mathrm{K}( M_{\ast } )$ for which the isomorphism 
+    <p>
+<div class="equation">
+  \[  \theta : \operatorname{Hom}_{\operatorname{ Ab }_{\Delta }}( A_{\bullet }, \mathrm{K}(M_{\ast } ) ) \rightarrow \operatorname{Hom}_{ \operatorname{Ch}(\operatorname{\mathbf{Z}})}( \mathrm{N}_{\ast }(A), M_{\ast } ) \]
+</div>
+<p>
+       of Proposition <a data-tag="00R2" href="/tag/00R2">2.5.6.11</a> carries $u$ to the identity map $\operatorname{id}: \mathrm{N}_{\ast }(A) \rightarrow M_{\ast }$. By construction, the induced map of normalized Moore complexes $\mathrm{N}_{\ast }(u): \mathrm{N}_{\ast }(A) \rightarrow \mathrm{N}_{\ast }( \mathrm{K}(M_{\ast }))$ is right inverse to the counit map $v: \mathrm{N}_{\ast }( \mathrm{K}(M_{\ast })) \rightarrow M_{\ast }$, which is an isomorphism by virtue of Proposition <a data-tag="00RE" href="/tag/00RE">2.5.6.23</a>. Combining this observation with Proposition <a data-tag="00R9" href="/tag/00R9">2.5.6.17</a>, we deduce that $u$ induces an isomorphism of chain complexes $\widetilde{\mathrm{N}}_{\ast }( A ) \rightarrow \widetilde{ \mathrm{N}}_{\ast }( \mathrm{K}(M_{\ast }) )$, and is therefore an isomorphism by virtue of Lemma <a data-tag="00R7" href="/tag/00R7">2.5.6.16</a>. It follows that $A_{\bullet } \simeq \mathrm{K}(M_{\ast })$ belongs to the essential image of the functor $\mathrm{K}$, as desired. 
+      <span class="qed">$\square$</span>
+</p>
+</p></p></p></p></p></article>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.html a[data-toggle="popover"]').popover()
+
+  // render mathematics in popovers
+  $("[data-toggle=popover]").on('shown.bs.popover', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $("div.popover-body").html()]);
+  });
+});
+  </script>
+</div>
+</section></body>
+</html>
