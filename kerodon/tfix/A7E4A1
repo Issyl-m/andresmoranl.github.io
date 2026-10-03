@@ -1,0 +1,253 @@
+<h3 id="hcat" class="tex-subsection"><span data-tag="A7E4A1">1.2.3</span> The Homotopy Category</h3>
+
+<p>
+For every ordinary category $\calC $, the nerve $\Nerve (\calC )$ is an $\infty $-category. Informally, we can describe the situation as follows: the nerve functor is a fully faithful inclusion from the bicategory of categories to the $\infty $-bicategory of $\infty $-categories. Moreover, this inclusion has a left adjoint: 
+</p>
+<p>
+<article class="env-proposition" id="96BE90">
+  <p><a class="environment-identifier" href="/tag/96BE90">Proposition <span data-tag="96BE90">1.2.3.1</span>.</a> The nerve functor $\Cat \rightarrow \sSet $ is right adjoint to the functor $\rm {h} \it {:} \sSet \rightarrow \Cat $, which associates to every simplicial set $S$ its homotopy category $\rm {h} \it {S}$ (here we ignore the $\calH $-enrichment of $\rm {h} \it {S}$). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let us temporarily distinguish between the nerve functor $\Nerve : \Cat \rightarrow \sSet $ and the simplicial nerve functor $\Nerve ': \sCat \rightarrow \sSet $. These two functors are related by the fact that $\Nerve $ can be written as a composition 
+    <p>
+      <div class="equation">
+  \[  \Cat \stackrel{i}{\subseteq } \sCat \stackrel{\Nerve '}{\rightarrow } \sSet . \]
+</div>
+    <p>
+       The functor $\pi _0: \sSet \rightarrow \Set $ is a left adjoint to the inclusion functor $\Set \rightarrow \sSet $, so the functor 
+    <p>
+      <div class="equation">
+  \[  \sCat \rightarrow \Cat  \]
+</div>
+    <p>
+      <div class="equation">
+  \[  \calC \mapsto \rm {h} \it {\calC } \]
+</div>
+    <p>
+       is left adjoint to $i$. It follows that $\Nerve = \Nerve ' \circ i$ has a left adjoint, given by the composition 
+    <p>
+      <div class="equation">
+  \[  \sSet \stackrel{ \sCoNerve [ \bullet ] }{\rightarrow } \sCat \stackrel{ \rm {h} \it {}}{\rightarrow } \Cat , \]
+</div>
+    <p>
+       which coincides with the homotopy category functor $\rm {h} \it {}: \sSet \rightarrow \Cat $ by definition. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="">
+  <p><a class="environment-identifier" href="/tag/">Remark <span data-tag="">1.2.3.2</span>.</a>The formation of the homotopy category is literally left adjoint to the inclusion $\Cat \subseteq \sCat $. The analogous assertion is not quite true in the setting of topological categories, since the functor $\pi _0: \CG \rightarrow \Set $ is a left adjoint only when restricted to locally path connected spaces. </p>
+</article> 
+</p>
+<p>
+<article class="env-warning" id="">
+  <p><a class="environment-identifier" href="/tag/">Warning <span data-tag="">1.2.3.3</span>.</a>If $\calC $ is a simplicial category, then we do not necessarily expect that $\rm {h} \it {\calC } \simeq \rm {h} \it {\sNerve (\calC )}$. However, this is always the case when $\calC $ is <em>fibrant</em>, in the sense that every simplicial set $\bHom _{\calC }(X,Y)$ is a Kan complex. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="">
+  <p><a class="environment-identifier" href="/tag/">Remark <span data-tag="">1.2.3.4</span>.</a>If $S$ is a simplicial set, Joyal (<span class="cite">[<a href="/bibliography/joyalnotpub">joyalnotpub</a>]</span>) refers to the category $\rm {h} \it {S}$ as the <em>fundamental category</em> of $S$. This is motivated by the observation that if $S$ is a Kan complex, then $\rm {h} \it {S}$ is the fundamental groupoid of $S$ in the usual sense. </p>
+</article> 
+</p>
+<p>
+Our objective, for the remainder of this section, is to obtain a more explicit understanding of the homotopy category $\rm {h} \it {S}$ of a simplicial set $S$. Proposition <a href="/tag/96BE90" data-tag="96BE90">1.2.3.1</a> implies that $\rm {h} \it {S}$ admits the following presentation by generators and relations: 
+</p>
+<ul>
+  <li><p>
+The objects of $\rm {h} \it {S}$ are the vertices of $S$. 
+</p>
+</li><li><p>
+For every edge $\phi : \Delta ^1 \rightarrow S$, there is a morphism $\overline{\phi }$ from $\phi (0)$ to $\phi (1)$. 
+</p>
+</li><li><p>
+For each $\sigma : \Delta ^2 \rightarrow S$, we have $\overline{d_0(\sigma )} \circ \overline{d_2(\sigma )} = \overline{d_1(\sigma )}$. 
+</p>
+</li><li><p>
+For each vertex $x$ of $S$, the morphism $\overline{s_0 x}$ is the identity $\id _ x$. 
+</p>
+</li>
+</ul>
+<p>
+If $S$ is an $\infty $-category, there is a much more satisfying construction of the category $\rm {h} \it {S}$. We will describe this construction in detail, since it nicely illustrates the utility of the weak Kan condition of Definition <a href="/tag/95C995" data-tag="95C995">1.1.2.4</a>. 
+</p>
+<p>
+Let $\calC $ be an $\infty $-category. We will construct a category $\pi (\calC )$homotopy category!of an $\infty $-category (which we will eventually show to be equivalent to the homotopy category $\rm {h} \it {\calC }$). The objects of $\pi (\calC )$ are the vertices of $\calC $. Given an edge $\phi : \Delta ^1 \rightarrow \calC $, we shall say that $\phi $ has <em>source</em> $C= \phi (0)$ and <em>target</em> $C' = \phi (1) $, and write $\phi : C \rightarrow C'$. For each object $C$ of $\calC $, we let $\id _{C}$ denote the degenerate edge $s_0(C): C \rightarrow C$. 
+</p>
+<p>
+Let $\phi : C \rightarrow C'$ and $\phi ': C \rightarrow C'$ be a pair of edges of $\calC $ having the same source and target. We will say that $\phi $ and $\phi '$ are <em>homotopic</em> if there is a $2$-simplex $\sigma : \Delta ^2 \rightarrow \calC $, which we depict as follows: 
+</p>
+<div class="equation">
+  \[  \xymatrix { &amp;  C' \ar [dr]^{\id _{C'}} &amp;  \\ C \ar [ur]^{\phi } \ar [rr]^{\phi '} &amp;  &amp;  C'} \]
+</div>
+<p>
+ In this case, we say that $\sigma $ is a <em>homotopy</em> between $\phi $ and $\phi '$.homotopy!between morphisms of $\calC $ 
+</p>
+<p>
+<article class="env-proposition" id="8C5634">
+  <p><a class="environment-identifier" href="/tag/8C5634">Proposition <span data-tag="8C5634">1.2.3.5</span>.</a> Let $\calC $ be an $\infty $-category, and let $C$ and $C'$ be objects of $\pi (\calC )$. Then the relation of homotopy is an equivalence relation on the edges joining $C$ to $C'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\phi : \Delta ^1 \rightarrow \calC $ be an edge. Then $s_1(\phi )$ is a homotopy from $\phi $ to itself. Thus homotopy is a reflexive relation. 
+    <p>
+      Suppose next that $\phi , \phi ', \phi '': C \rightarrow C'$ are edges with the same source and target. Let $\sigma $ be a homotopy from $\phi $ to $\phi '$ and $\sigma '$ a homotopy from $\phi $ to $\phi ''$. Let $\sigma '': \Delta ^2 \rightarrow \calC $ denote the constant map at the vertex $C'$. We have a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { \Lambda ^3_1 \ar @{^{(}->}[d] \ar [rr]^{ (\sigma '', \bullet , \sigma ', \sigma ) } &amp;  &amp;  \calC \\ \Delta ^3 \ar @{-->}[urr]^{\tau }. &amp;  &amp;  } \]
+</div>
+    <p>
+       Since $\calC $ is an $\infty $-category, there exists a $3$-simplex $\tau : \Delta ^3 \rightarrow \calC $ as indicated by the dotted arrow in the diagram. It is easy to see that $d_1(\tau )$ is a homotopy from $\phi '$ to $\phi ''$. 
+    <p>
+      As a special case, we may take $\phi =\phi ''$; we then deduce that the relation of homotopy is symmetric. It then follows immediately from the above that the relation of homotopy is also transitive. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="A6B15C">
+  <p><a class="environment-identifier" href="/tag/A6B15C">Remark <span data-tag="A6B15C">1.2.3.6</span>.</a> The definition of homotopy that we have given is not evidently self-dual; in other words, it is not immediately obvious a homotopic pair of edges $\phi , \phi ': C \rightarrow C'$ of an $\infty $-category $\calC $ remain homotopic when regarded as edges in the opposite $\infty $-category $\calC ^{op}$. To prove this, let $\sigma $ be a homotopy from $\phi $ to $\phi '$, and consider the commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix { \Lambda ^3_2 \ar @{^{(}->}[d] \ar [rr]^{ ( \sigma , s_1 \phi , \bullet , s_0 \phi )} &amp;  &amp;  \calC \\ \Delta ^3 \ar @{-->}[urr]^{\tau }. &amp;  &amp;  } \]
+</div>
+  <p> The assumption that $\calC $ is an $\infty $-category guarantees a $3$-simplex $\tau $ rendering the diagram commutative. The face $d_2 \tau $ may be regarded as a homotopy from $\phi '$ to $\phi $ in $\calC ^{op}$. </p>
+</article> 
+</p>
+<p>
+We can now define the morphism sets of the category $\pi (\calC )$: given vertices $X$ and $Y$ of $\calC $, we let $\Hom _{\pi (\calC )}(X,Y)$ denote the set of homotopy classes of edges $\phi : X \rightarrow Y$ in $\calC $. For each edge $\phi : \Delta ^1 \rightarrow \calC $, we let $[ \phi ]$ denote the corresponding morphism in $\pi (\calC )$. 
+</p>
+<p>
+We define a composition law on $\pi (\calC )$ as follows. Suppose that $X$, $Y$, and $Z$ are vertices of $\calC $, and that we are given edges $\phi : X \rightarrow Y$, $ \psi : Y \rightarrow Z$. The pair $(\phi , \psi )$ determines a map $\Lambda ^2_1 \rightarrow \calC $. Since $\calC $ is an $\infty $-category, this map extends to a $2$-simplex $\sigma : \Delta ^2 \rightarrow \calC $. We now define $[ \psi ] \circ [ \phi ] = [ d_1 \sigma ]$. 
+</p>
+<p>
+<article class="env-proposition" id="2BB67F">
+  <p><a class="environment-identifier" href="/tag/2BB67F">Proposition <span data-tag="2BB67F">1.2.3.7</span>.</a> Let $\calC $ be an $\infty $-category. The composition law on $\pi (\calC )$ is well-defined. In other words, the homotopy class $[\psi ] \circ [\phi ]$ does not depend on the choice of $\psi $ representing $[\psi ]$, the choice of $\phi $ representing $[ \phi ]$, or the choice of the the $2$-simplex $\sigma $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We begin by verifying the independence of the choice of $\sigma $. Suppose that we are given two $2$-simplices $\sigma , \sigma ': \Delta ^2 \rightarrow \calC $, satisfying 
+    <p>
+      <div class="equation">
+  \[  d_0 \sigma = d_0 \sigma ' = \psi  \]
+</div>
+    <p>
+      <div class="equation">
+  \[  d_2 \sigma = d_2 \sigma ' = \phi . \]
+</div>
+    <p>
+       Consider the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { \Lambda ^3_1 \ar @{^{(}->}[d] \ar [rr]^{( s_1 \psi , \bullet , \sigma ', \sigma )} &amp;  &amp;  \calC \\ \Delta ^3 \ar @{-->}[urr]^{\tau }. &amp;  &amp;  } \]
+</div>
+    <p>
+       Since $\calC $ is an $\infty $-category, there exists a $3$-simplex $\tau $ as indicated by the dotted arrow. It follows that $d_1 \tau $ is a homotopy from $d_1 \sigma $ to $d_1 \sigma '$. 
+    <p>
+      We now show that $[\psi ] \circ [\phi ]$ depends only on $\psi $ and $\phi $ only up to homotopy. In view of Remark <a href="/tag/A6B15C" data-tag="A6B15C">1.2.3.6</a>, the assertion is symmetric with respect to $\psi $ and $\phi $; it will therefore suffice to show that $[ \psi ] \circ [ \phi ]$ does not change if we replace $\phi $ by a morphism $\phi '$ which is homotopic to $\phi $. Let $\sigma $ be a $2$-simplex with $d_0 \sigma = \psi $, $d_2 \sigma = \phi $, and let $\sigma '$ be a homotopy from $\phi $ to $\phi '$. Consider the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { \Lambda ^3_1 \ar @{^{(}->}[d] \ar [rr]^{ (s_0 \psi , \bullet , \sigma , \sigma ') } &amp;  &amp;  \calC \\ \Delta ^3. \ar @{-->}[urr]^{\tau } &amp;  &amp;  } \]
+</div>
+    <p>
+       Again, the hypothesis that $\calC $ is an $\infty $-category guarantees the existence of a $3$-simplex $\tau $ as indicated in the diagram. Let $\sigma '' = d_1 \tau $. Then $[ \psi ] \circ [ \phi ' ] = [ d_1 \sigma ' ]$. But $d_1 \sigma = d_1 \sigma '$ by construction, so that $[ \psi ] \circ [ \phi ] = [ \psi ] \circ [ \phi ' ]$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="">
+  <p><a class="environment-identifier" href="/tag/">Proposition <span data-tag="">1.2.3.8</span>.</a>If $\calC $ is an $\infty $-category, then $\pi (\calC )$ is a category. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $C$ be a vertex of $\calC $. We first verify that $[\id _{C}]$ is an identity with respect to the composition law on $\pi (\calC )$. For every edge $\phi : C' \rightarrow C$ in $\calC $, the $2$-simplex $s_1(\phi )$ verifies the equation 
+    <p>
+      <div class="equation">
+  \[  [ \id _{C} ] \circ [\phi ] = [\phi ]. \]
+</div>
+    <p>
+       This proves that $\id _{C}$ is a left identity; the dual argument (Remark <a href="/tag/A6B15C" data-tag="A6B15C">1.2.3.6</a>) shows that $[\id _{C}]$ is a right identity. 
+    <p>
+      The only other thing we need to check is the associative law for composition in $\pi (\calC )$. Suppose given a composable sequence of edges 
+    <p>
+      <div class="equation">
+  \[  C \stackrel{\phi }{\rightarrow } C' \stackrel{\phi '}{\rightarrow } C'' \stackrel{\phi ''}{\rightarrow } C'''. \]
+</div>
+    <p>
+       Choose $2$-simplices $\sigma , \sigma ', \sigma '': \Delta ^2 \rightarrow \calC $, corresponding to diagrams 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { &amp;  C' \ar [dr]^{\phi '} &amp;  \\ C \ar [ur]^{\phi } \ar [rr]^{\psi } &amp;  &amp;  C'' } \]
+</div>
+    <p>
+      <div class="equation">
+  \[  \xymatrix { &amp;  C'' \ar [dr]^{\phi ''} &amp;  \\ C \ar [ur]^{\psi } \ar [rr]^{\theta } &amp;  &amp;  C''' } \]
+</div>
+    <p>
+      <div class="equation">
+  \[  \xymatrix { &amp;  C'' \ar [dr]^{\phi ''} &amp;  \\ C' \ar [ur]^{\phi '} \ar [rr]^{\psi '} &amp;  &amp;  C''',} \]
+</div>
+    <p>
+       respectively. Then $[\phi '] \circ [\phi ] = [\psi ]$, $[\phi ''] \circ [\psi ] = [\theta ]$, and $[\phi ''] \circ [\phi '] = [\psi ']$. Consider the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { \Lambda ^3_2 \ar [rr]^{(\sigma '', \sigma ', \bullet , \sigma )} \ar @{^{(}->}[d] &amp;  &amp;  \calC \\ \Delta ^3. \ar @{-->}[urr]^{\tau } &amp;  &amp;  } \]
+</div>
+    <p>
+       Since $\calC $ is an $\infty $-category, there exists a $3$-simplex $\tau $ rendering the diagram commutative. Then $d_2(\tau )$ verifies the equation $[\psi '] \circ [\phi ] = [\theta ]$, so that 
+    <p>
+      <div class="equation">
+  \[ ([\phi ''] \circ [\phi ']) \circ [\phi ] = [\theta ] = [\phi ''] \circ [\psi ] = [\phi ''] \circ ([\phi '] \circ [\phi ]) \]
+</div>
+    <p>
+       as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We now show that if $\calC $ is an $\infty $-category, then $\pi (\calC )$ is naturally equivalent (in fact isomorphic) to $\rm {h} \it {\calC }$. 
+</p>
+<p>
+<article class="env-proposition" id="">
+  <p><a class="environment-identifier" href="/tag/">Proposition <span data-tag="">1.2.3.9</span>.</a>Let $\calC $ be an $\infty $-category. There exists a unique functor $F: \rm {h} \it {\calC } \rightarrow \pi (\calC )$ with the following properties: </p>
+  <p><ul>
+  <li class="custom-item" data-marker="$(1)$"><p>
+On objects, $F$ is the identity map. 
+</p>
+</li><li class="custom-item" data-marker="$(2)$"><p>
+For every edge $\phi $ of $\calC $, $F( \overline{\phi } ) = [\phi ]$. 
+</p>
+</li>
+</ul></p>
+  <p> Moreover, $F$ is an isomorphism of categories. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The existence and uniqueness of $F$ follows immediately from our presentation of $\rm {h} \it {\calC }$ by generators and relations. It is obvious that $F$ is bijective on objects and surjective on morphisms. To complete the proof, it will suffice to show that $F$ is faithful. 
+    <p>
+      We first show that every morphism $f: x \rightarrow y$ in $\rm {h} \it {\calC }$ may be written as $\overline{\phi }$ for some $\phi \in \calC $. Since the morphisms in $\rm {h} \it {\calC }$ are generated by morphisms having the form $\overline{\phi }$ under composition, it suffices to show that the set of such morphisms contains all identity morphisms and is stable under composition. The first assertion is clear, since $\overline{ s_0 x}=\id _ x$. For the second, we note that if $\phi : x \rightarrow y$ and $\phi ': y \rightarrow z$ are composable edges, then there exists a 2-simplex $\sigma : \Delta ^2 \rightarrow \calC $, which we may depict as follows: 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { &amp;  y \ar [dr]^{\phi '} &amp;  \\ x \ar [ur]^{\phi } \ar [rr]^{\psi } &amp;  &amp;  z} \]
+</div>
+    <p>
+       Thus $\overline{ \phi ' } \circ \overline{\phi } = \overline{ \psi }$. 
+    <p>
+      Now suppose that $\phi ,\phi ': x \rightarrow y$ are such that $[\phi ]=[\phi ']$; we wish to show that $\overline{\phi }=\overline{\phi '}$. By definition, there exists a homotopy $\sigma : \Delta ^2 \rightarrow \calC $ joining $\phi $ and $\phi '$. The existence of $\sigma $ entails the relation 
+    <p>
+      <div class="equation">
+  \[  \id _ y \circ \overline{\phi } = \overline{\phi '}  \]
+</div>
+    <p>
+       in the homotopy category $\rm {h} \it {S}$, so that $\overline{\phi } = \overline{\phi '}$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

@@ -1,0 +1,80 @@
+<h3 id="simpset" class="tex-subsection"><span data-tag="B5A8B5">8.2.7</span> Simplicial Sets</h3>
+
+<p>
+The formalism of simplicial sets plays a prominent role throughout this book. In this section, we will review the definition of a simplicial set, and establish some notation. 
+</p>
+<p>
+For each $n \geq 0$, we let $[n]$ denote the linearly ordered set $\{  0, \ldots , n \} $.[n]@$[n]$ We let $\cDelta $ denoteDelta@$\cDelta $ the category of <em>combinatorial simplices</em>: the objects of $\cDelta $ are the linearly ordered sets $[n]$, and morphisms in $\cDelta $ are given by (nonstrictly) order-preserving maps. 
+</p>
+<p>
+If $\calC $ is any category, a <em>simplicial object</em> of $\calC $simplicial object!of a category is a functor $\cDelta ^{op} \rightarrow \calC $. Dually, a <em>cosimplicial object</em> of $\calC $ is a functor $\cDelta \rightarrow \calC $. A <em>simplicial set</em> is a simplicial object in the category of sets. More explicitly, a simplicial set $S$ is determined by the following data:simplicial set 
+</p>
+<ul>
+  <li><p>
+A set $S_{n}$ for each $n \geq 0$ (the value of $S$ on the object $[n] \in \cDelta $). 
+</p>
+</li><li><p>
+A map $p^{\ast }: S_ n \rightarrow S_ m$ for each order-preserving map $[m] \rightarrow [n]$, the formation of which is compatible with composition (including empty composition, so that $( \id _{[n]} )^{\ast } = \id _{S_ n}$). 
+</p>
+</li>
+</ul>
+<p>
+Let recall a bit of standard notation for working with a simplicial set $S$. For each $0 \leq j \leq n$, the <em>face map</em> $d_ j: S_ n \rightarrow S_{n-1}$ is defined to be the pullback $p^{\ast }$, where $p: [n-1] \rightarrow [n]$ is given by 
+</p>
+<div class="equation">
+  \[ p(i) = \begin{cases} i &amp;  \text{if } i<j \\ i+1 &amp;  \text{if } i \geq j. \end{cases}  \]
+</div>
+<p>
+ Similarly, the <em>degeneracy map</em> $s_ j: S_{n} \rightarrow S_{n+1}$ is defined to be the pullback $q^{\ast }$, where $q: [n+1] \rightarrow [n]$ is defined by the formula 
+</p>
+<div class="equation">
+  \[ q(i) = \begin{cases} i &amp;  \text{if } i \leq j \\ i-1 &amp;  \text{if } i > j. \end{cases} \]
+</div>
+<p>
+d_i@$d_ i$s_i@$s_ i$face mapdegeneracy map Because every order-preserving map from $[n]$ to $[m]$ can be factored as a composition of face and degeneracy maps, the structure of a simplicial set $S$ is completely determined by the sets $S_ n$ for $n \geq 0$, together with the face and degeneracy operations defined above. These operations are required to satisfy certain identities, which we will not make explicit here. 
+</p>
+<p>
+<article class="env-remark" id="">
+  <p><a class="environment-identifier" href="/tag/">Remark <span data-tag="">8.2.7.1</span>.</a>The category $\cDelta $ is equivalent to the (larger) category of all finite, nonempty linearly ordered sets. We will sometimes abuse notation by identifying $\cDelta $ with this larger subcategory, and regarding simplicial sets (or more general simplicial objects) as functors which are defined on all nonempty linearly ordered sets. </p>
+</article> 
+</p>
+<p>
+<article class="env-notation" id="">
+  <p><a class="environment-identifier" href="/tag/">Notation <span data-tag="">8.2.7.2</span>.</a>The category of simplicial sets will be denoted by $\sSet $.sSet@$\sSet $ If $J$ is a linearly ordered set, we let $\Delta ^ J \in \sSet $ denote the representable functor $[n] \mapsto \Hom ( [n], J)$, where the morphisms are taken in the category of linearly ordered sets. For each $n \geq 0$, we will write $\Delta ^{n}$ in place of $\Delta ^{[n]}$. We observe that, for any simplicial set $S$, there is a natural identification of sets $S_{n} \simeq \Hom _{\sSet }(\Delta ^ n, S)$.DeltaJ@$\Delta ^ J$Deltan@$\Delta ^ n$ </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="">
+  <p><a class="environment-identifier" href="/tag/">Example <span data-tag="">8.2.7.3</span>.</a>For $0 \leq j \leq n$, we let $\Lambda ^ n_ j \subset \Delta ^ n$Lambdanj@$\Lambda ^ n_{k}$ denote the “$j$-th horn”. It is determined by the following property: an element of $(\Lambda ^ n_ j)_ m$ is given by an order-preserving map $p: [m] \rightarrow [n]$ satisfying the condition that $\{ j \}  \cup p( [m] ) \neq [n]$. Geometrically, $\Lambda ^ n_ j$ corresponds to the subset of an $n$-simplex $\Delta ^ n$ in which the $j$th face and the interior have been removed.horn </p>
+  <p>More generally, if $J$ is any linearly ordered set containing an element $j$, we let $\Lambda ^ J_ j$ denote the simplicial subset of $\Delta ^ J$ obtained by removing the interior and the “opposite face” to the vertex $j$.LambdaJj@$\Lambda ^ J_{j}$ </p>
+</article> 
+</p>
+<p>
+The category $\sSet $ of simplicial sets has a (combinatorial, left and right proper) model structure, which we will refer to as the <em>Kan model structure</em>. It may be described as follows: simplicial set!Kan model structureKan!model structure 
+</p>
+<ul>
+  <li><p>
+A map of simplicial sets $f: X \rightarrow Y$ is a <em>cofibration</em> if it is a monomorphism; that is, if the induced map $X_ n \rightarrow Y_ n$ is injective for all $n \geq 0$.cofibration!of simplicial sets 
+</p>
+</li><li><p>
+A map of simplicial sets $f: X \rightarrow Y$ is a <em>fibration</em> if it is a Kan fibration; that is, if for any diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix { \Lambda ^ n_ i \ar @{^{(}->}[d] \ar [r] &amp;  X \ar [d]^{f} \\ \Delta ^ n \ar [r] \ar @{-->}[ur] &amp;  Y} \]
+</div>
+<p>
+ it is possible to supply the dotted arrow rendering the diagram commutative.fibration!KanKan fibration 
+</p>
+</li><li><p>
+A map of simplicial sets $f: X \rightarrow Y$ is a <em>weak equivalence</em> if the induced map of geometric realizations $|X| \rightarrow |Y|$ is a homotopy equivalence of topological spaces.weak homotopy equivalence!of simplicial sets 
+</p>
+</li>
+</ul>
+<p>
+To prove this, we observe that the class of all cofibrations is generated by the collection of all inclusions $\bd \Delta ^ n \subseteq \Delta ^ n$; it is then easy to see that the conditions of Proposition <a href="/tag/8C7DD0" data-tag="8C7DD0">8.2.6.13</a> are satisfied. The nontrivial point is to verify that the fibrations for the resulting model structure are precisely the Kan fibrations, and that $\sSet $ is right proper; these facts ultimately rely on a delicate analysis due to Quillen (see <span class="cite">[<a href="/bibliography/goerssjardine">goerssjardine</a>]</span>). 
+</p>
+<p>
+<article class="env-remark" id="">
+  <p><a class="environment-identifier" href="/tag/">Remark <span data-tag="">8.2.7.4</span>.</a>In §<a href="/tag/00F21B" data-tag="00F21B">2.2.5</a>, we introduce another model structure on $\sSet $, the <em>Joyal model structure</em>. This model structure has the same class of cofibrations, but the fibrations and the weak equivalences differ from those defined in this section. To avoid confusion, we will refer to the fibrations and weak equivalences for the usual model structure on simplicial sets as <em>Kan fibrations</em> and <em>weak homotopy equivalences</em>, respectively. </p>
+</article> 
+</p>

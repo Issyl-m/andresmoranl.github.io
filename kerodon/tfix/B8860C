@@ -1,0 +1,514 @@
+<h3 id="stable11" class="tex-subsection"><span data-tag="B8860C">5.5.8</span> Nonabelian Derived Categories</h3>
+
+<p>
+According to Corollary <a href="/tag/E1B861" data-tag="E1B861">4.2.3.11</a>, we can analyze arbitrary colimits in an $\infty $-category $\calC $ in terms of finite colimits and filtered colimits. In particular, suppose that $\calC $ admits finite colimits and that we construct new $\infty $-category $\Ind (\calC )$ by formally adjoining filtered colimits to $\calC $. Then $\Ind (\calC )$ admits all small colimits (Theorem <a href="/tag/170748" data-tag="170748">5.5.1.1</a>), and the Yoneda embedding $\calC \rightarrow \Ind (\calC )$ preserves finite colimits (Proposition <a href="/tag/548F9E" data-tag="548F9E">5.3.5.14</a>). Moreover, we can identify $\Ind (\calC )$ with the $\infty $-category of functors $\calC ^{op} \rightarrow \SSet $ which carry finite colimits in $\calC $ to finite limits in $\SSet $. In this section, we will introduce a variation on the same theme. Instead of assuming $\calC $ admits <em>all</em> finite colimits, we will only assume that $\calC $ admits finite coproducts. We will construct a coproduct-preserving embedding of $\calC $ into a larger $\infty $-category $\calP _{\Sigma }(\calC )$ which admits all small colimits. Moreover, we can characterize $\calP _{\Sigma }(\calC )$ as the $\infty $-category obtained from $\calC $ by formally adjoining colimits of <em>sifted diagrams</em> (Proposition <a href="/tag/0CC413" data-tag="0CC413">5.5.8.15</a>). 
+</p>
+<p>
+Our first goal in this section is to introduce the notion of a <em>sifted</em> simplicial set. We begin with a bit of motivation. Let $\calC $ denote the (ordinary) category of groups. Then $\calC $ admits arbitrary colimits. However, colimits of diagrams in $\calC $ can be very difficult to analyze, even if the diagram itself is quite simple. For example, the coproduct of a pair of groups $G$ and $H$ is the <em>amalgamated product</em> $G \star H$. The group $G \star H$ is typically very complicated, even when $G$ and $H$ are not. For example, the amalgamated product $\mathbf{Z}/ 2 \mathbf{Z}\star \mathbf{Z}/ 3 \mathbf{Z}$ is isomorphic to arithmetic group $\PSL _2(\mathbf{Z})$. In general, $G \star H$ is much larger than the coproduct $G \coprod H$ of the underlying sets of $G$ and $H$. In other words, the forgetful functor $U: \calC \rightarrow \Set $ does not preserve coproducts. However, $U$ does preserve <em>some</em> colimits: for example, the colimit of a sequence of groups 
+</p>
+<div class="equation">
+  \[  G_0 \rightarrow G_1 \rightarrow \ldots  \]
+</div>
+<p>
+ can be obtained by taking the colimit of the underlying sets, and equipping the result with an appropriate group structure. 
+</p>
+<p>
+The forgetful functor $U$ from groups to sets preserves another important type of colimit: namely, the formation of quotients by equivalence relations. If $G$ is a group, then a subgroup $R \subseteq G \times G$ is an equivalence relation on $G$ if and only if there exists a normal subgroup $H \subseteq G$ such that $R = \{  (g,g'): g^{-1} g' \in H \} $. In this case, the set of $R$-equivalence classes in $G$ is in bijection with the quotient $G/H$, which inherits a group structure from $G$. In other words, the quotient of $G$ by the equivalence relation $R$ can be computed either in the category of groups or the category of sets; the result is the same. 
+</p>
+<p>
+Each of the examples given above admits a generalization: the colimit of a sequence is a special case of a <em>filtered colimit</em>, and the quotient by an equivalence relation is a special case of a <em>reflexive coequalizer</em>. The forgetful functor $\calC \rightarrow \Set $ preserves filtered colimits and reflexive coequalizers; moreover, the same is true if we replace the category of groups by any other category of sets with some sort of finitary algebraic structure (for example, abelian groups, or commutative rings). The following definition, which is taken from <span class="cite">[<a href="/bibliography/homotopyvarieties">homotopyvarieties</a>]</span>, is an attempt to axiomatize the essence of the situation:coequalizer!reflexivereflexive coequalizer 
+</p>
+<p>
+<article class="env-definition" id="6D0F2A">
+  <p><a class="environment-identifier" href="/tag/6D0F2A">Definition <span data-tag="6D0F2A">5.5.8.1</span> <span class="named">(<span class="cite">[<a href="/bibliography/homotopyvarieties">homotopyvarieties</a>]</span>)</span>.</a>siftedsimplicial set!sifted A simplicial set $K$ is <em>sifted</em> if it satisfies the following conditions: </p>
+  <p><ul>
+  <li class="custom-item" data-marker="$(1)$"><p>
+The simplicial set $K$ is nonempty. 
+</p>
+</li><li class="custom-item" data-marker="$(2)$"><p>
+The diagonal map $K \rightarrow K \times K$ is cofinal. 
+</p>
+</li>
+</ul></p>
+</article> 
+</p>
+<p>
+<article class="env-warning" id="">
+  <p><a class="environment-identifier" href="/tag/">Warning <span data-tag="">5.5.8.2</span>.</a>In <span class="cite">[<a href="/bibliography/homotopyvarieties">homotopyvarieties</a>]</span>, Rosicki uses the term <em>homotopy sifted</em> to describe the analogue of Definition <a href="/tag/6D0F2A" data-tag="6D0F2A">5.5.8.1</a> for simplicial categories, and reserves the term <em>sifted</em> for analogous notion in the setting of ordinary categories. There is some danger of confusion with our terminology: if $\calC $ is an ordinary category and $\Nerve (\calC )$ is sifted (in the sense of Definition <a href="/tag/6D0F2A" data-tag="6D0F2A">5.5.8.1</a>), then $\calC $ is sifted in the sense of <span class="cite">[<a href="/bibliography/homotopyvarieties">homotopyvarieties</a>]</span>. However, the converse is false in general. </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="8B45E2">
+  <p><a class="environment-identifier" href="/tag/8B45E2">Example <span data-tag="8B45E2">5.5.8.3</span>.</a> Every filtered $\infty $-category is sifted (Proposition <a href="/tag/A12CB8" data-tag="A12CB8">5.3.1.20</a>). </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="4D343C">
+  <p><a class="environment-identifier" href="/tag/4D343C">Lemma <span data-tag="4D343C">5.5.8.4</span>.</a> The simplicial set $\Nerve ( \cDelta )^{op}$ is sifted. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $\Nerve (\cDelta )^{op}$ is clearly nonempty, it will suffice to show that the diagonal map $\Nerve ( \cDelta )^{op} \rightarrow \Nerve ( \cDelta )^{op} \times \Nerve (\cDelta )^{op}$ is cofinal. According to Theorem <a href="/tag/A37F6A" data-tag="A37F6A">4.1.3.1</a>, this is equivalent to the assertion that for every object $([m], [n]) \in \cDelta \times \cDelta $, the category 
+    <p>
+      <div class="equation">
+  \[  \calC = \cDelta _{/ [m]} \times _{ \cDelta } \cDelta _{/ [n] } \]
+</div>
+    <p>
+       has weakly contractible nerve. Let $\calC ^{0}$ be the full subcategory of $\calC $ spanned by those objects which correspond to <em>monomorphisms</em> of partially ordered sets $J \rightarrow [m] \times [n]$. The inclusion of $\calC ^{0}$ into $\calC $ has a left adjoint, so the inclusion $\Nerve (\calC ^{0}) \subseteq \Nerve (\calC )$ is a weak homotopy equivalence. It will therefore suffice to show that $\Nerve (\calC ^{0})$ is weakly contractible. We now observe that $\Nerve (\calC ^{0})$ can be identified with the first barycentric subdivision of $\Delta ^ m \times \Delta ^ n$, and is therefore weakly homotopy equivalent to $\Delta ^ m \times \Delta ^ n$ and so weakly contractible. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="">
+  <p><a class="environment-identifier" href="/tag/">Remark <span data-tag="">5.5.8.5</span>.</a>The formation of geometric realization of simplicial objects should be thought of as the $\infty $-categorical analogue of the formation of reflexive coequalizers. </p>
+</article> 
+</p>
+<p>
+Our next pair of results captures some of the essential features of the theory of sifted simplicial sets: 
+</p>
+<p>
+<article class="env-proposition" id="701B90">
+  <p><a class="environment-identifier" href="/tag/701B90">Proposition <span data-tag="701B90">5.5.8.6</span>.</a> Let $K$ be a sifted simplicial set, let $\calC $, $\calD $, and $\calE $ be $\infty $-categories which admit $K$-indexed colimits, and let $f: \calC \times \calD \rightarrow \calE $ be a map which preserves $K$-indexed colimits separately in each variable. Then $f$ preserves $K$-indexed colimits. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $p: K \rightarrow \calC $ and $q: K \rightarrow \calD $ be diagrams indexed by a small simplicial set $K$, and let $\delta : K \rightarrow K \times K$ be the diagonal map. Using the fact that $f$ preserves $K$-indexed colimits separately in each variable and Lemma <a href="/tag/03BF08" data-tag="03BF08">5.5.2.3</a>, we conclude that $\colim ( f \circ (p \times q) )$ is a colimit for the diagram $f \circ (p \times q) \circ \delta $. Consequently, $f$ preserves $K$-indexed colimits provided that the diagonal $\delta $ is cofinal. We conclude by invoking the assumption that $K$ is sifted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="E24BF5">
+  <p><a class="environment-identifier" href="/tag/E24BF5">Proposition <span data-tag="E24BF5">5.5.8.7</span>.</a> Let $K$ be a sifted simplicial set. Then $K$ is weakly contractible. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a vertex $x$ in $K$. According to Whitehead's theorem, it will suffice to show that for each $n \geq 0$, the homotopy set $\pi _ n( |K|,x)$ consists of a single element. Let $\delta : K \rightarrow K \times K$ be the diagonal map. Since $\delta $ is cofinal, Proposition <a href="/tag/F11AAC" data-tag="F11AAC">4.1.1.3</a> implies that the induced map 
+    <p>
+      <div class="equation">
+  \[  \pi _ n( |K|, x) \rightarrow \pi _ n( |K \times K|, \delta (x) ) \simeq \pi _ n(|K|,x) \times \pi _ n(|K|,x) \]
+</div>
+    <p>
+       is bijective. Since $\pi _ n( |K|,x)$ is nonempty, we conclude that it is a singleton. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We now return to the problem introduced in the beginning of this section. 
+</p>
+<p>
+<article class="env-definition" id="48DC2F">
+  <p><a class="environment-identifier" href="/tag/48DC2F">Definition <span data-tag="48DC2F">5.5.8.8</span>.</a> Let $\calC $ be a small $\infty $-category which admits finite coproducts. We let $\calP _{\Sigma }(\calC )$ denote the full subcategory of $\calP (\calC )$ spanned by those functors $\calC ^{op} \rightarrow \SSet $ which preserve finite products. </p>
+</article>PSigmaC@$\calP _{\Sigma }(\calC )$ 
+</p>
+<p>
+<article class="env-remark" id="">
+  <p><a class="environment-identifier" href="/tag/">Remark <span data-tag="">5.5.8.9</span>.</a>The $\infty $-categories of the form $\calP _{\Sigma }(\calC )$ have been studied in <span class="cite">[<a href="/bibliography/homotopyvarieties">homotopyvarieties</a>]</span>, where they are called <em>homotopy varieties</em>. Many of the results proven below can also be found in <span class="cite">[<a href="/bibliography/homotopyvarieties">homotopyvarieties</a>]</span>.homotopy varieties </p>
+</article> 
+</p>
+<p>
+<article class="env-proposition" id="0C5801">
+  <p><a class="environment-identifier" href="/tag/0C5801">Proposition <span data-tag="0C5801">5.5.8.10</span>.</a> Let $\calC $ be a small $\infty $-category which admits finite coproducts. Then: </p>
+  <p><ul>
+  <li class="custom-item" data-marker="$(1)$"><p>
+The $\infty $-category $\calP _{\Sigma }(\calC )$ is an accessible localization of $\calP (\calC )$. 
+</p>
+</li><li class="custom-item" data-marker="$(2)$"><p>
+The Yoneda embedding $j: \calC \rightarrow \calP (\calC )$ factors through $\calP _{\Sigma }(\calC )$. Moreover, $j$ carries finite coproducts in $\calC $ to finite coproducts in $\calP _{\Sigma }(\calC )$. 
+</p>
+</li><li class="custom-item" data-marker="$(3)$"><p>
+Let $\calD $ be a presentable $\infty $-category, and let 
+</p>
+<div class="equation">
+  \[  \xymatrix {\calP (\calC ) \ar @< .4ex>[r]^{ F} &amp;  \calD  \ar @< .4ex>[l]^{G}} \]
+</div>
+<p>
+ be a pair of adjoint functors. Then $G$ factors through $\calP _{\Sigma }(\calC )$ if and only if $f = F \circ j: \calC \rightarrow \calD $ preserves finite coproducts. 
+</p>
+</li><li class="custom-item" data-marker="$(4)$"><p>
+The full subcategory $\calP _{\Sigma }(\calC ) \subseteq \calP (\calC )$ is stable under sifted colimits. 
+</p>
+</li><li class="custom-item" data-marker="$(5)$"><p>
+Let $L: \calP (\calC ) \rightarrow \calP _{\Sigma }(\calC )$ be a left adjoint to the inclusion. Then $L$ preserves sifted colimits (when regarded as a functor from $\calP (\calC )$ to itself). 
+</p>
+</li><li class="custom-item" data-marker="$(6)$"><p>
+The $\infty $-category $\calP _{\Sigma }(\calC )$ is compactly generated. 
+</p>
+</li>
+</ul></p>
+</article> 
+</p>
+<p>
+Before giving the proof, we need a preliminary result concerning the interactions between products sifted colimits. 
+</p>
+<p>
+<article class="env-lemma" id="1F2E92">
+  <p><a class="environment-identifier" href="/tag/1F2E92">Lemma <span data-tag="1F2E92">5.5.8.11</span>.</a> Let $K$ be a sifted simplicial set. Let $\calX $ be an $\infty $-category which admits finite products and $K$-indexed colimits, and suppose that the formation of products in $\calX $ preserves $K$-indexed colimits separately in each variable. Then the colimit functor $\colim : \Fun (K, \calX ) \rightarrow \calX $ preserves finite products. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="71745F">
+  <p><a class="environment-identifier" href="/tag/71745F">Remark <span data-tag="71745F">5.5.8.12</span>.</a> The hypotheses of Lemma <a href="/tag/1F2E92" data-tag="1F2E92">5.5.8.11</a> are satisfied when $\calX $ is the $\infty $-category $\SSet $ of spaces: see Lemma <a href="/tag/D7754E" data-tag="D7754E">6.1.3.14</a>. More generally, Lemma <a href="/tag/1F2E92" data-tag="1F2E92">5.5.8.11</a> applies whenever the $\infty $-category $\calX $ is an $\infty $-topos (see Definition <a href="/tag/8F7A99" data-tag="8F7A99">6.1.0.2</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since the simplicial set $K$ is weakly contractible (Proposition <a href="/tag/E24BF5" data-tag="E24BF5">5.5.8.7</a>), Corollary <a href="/tag/31D86E" data-tag="31D86E">4.4.4.9</a> implies that the functor $\colim $ preserves final objects. To complete the proof, it will suffice to show that the functor $\colim $ preserves pairwise products. Let $X$ and $Y$ be objects of $\Fun (K, \calX )$. We wish to prove that the canonical map 
+    <p>
+      <div class="equation">
+  \[  \colim ( X \times Y) \rightarrow \colim (X) \times \colim (Y) \]
+</div>
+    <p>
+       is an equivalence. In other words, we must show that the formation of products commutes with $K$-indexed colimits, which follows immediately by applying Proposition <a href="/tag/701B90" data-tag="701B90">5.5.8.6</a> to the Cartesian product functor $\calX \times \calX \rightarrow \calX $. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<article class="env-proof">
+    <p>
+      <strong>Proof of Proposition <a href="/tag/0C5801" data-tag="0C5801">5.5.8.10</a>.</strong>
+       Assertion $(1)$ is an immediate consequence of Lemmas <a href="/tag/95196D" data-tag="95196D">5.5.4.17</a>, <a href="/tag/7C6D26" data-tag="7C6D26">5.5.4.18</a>, and <a href="/tag/48CDAD" data-tag="48CDAD">5.5.4.19</a>. To prove $(2)$, it will suffice to show that for every representable functor $e: \calP _{\Sigma }(\calC )^{op} \rightarrow \SSet $, the composition 
+    <p>
+      <div class="equation">
+  \[  \calC ^{op} \stackrel{j^{op}}{\rightarrow } \calP _{\Sigma }(\calC )^{op} \stackrel{e}{\rightarrow } \SSet  \]
+</div>
+    <p>
+       preserves finite products (Proposition <a href="/tag/1F6842" data-tag="1F6842">5.1.3.2</a>). This is obvious, since the composition can be identified with the object of $\calP _{\Sigma }(\calC ) \subseteq \Fun ( \calC ^{op}, \SSet )$ representing $e$. 
+    <p>
+      We next prove $(3)$. We note that $f$ preserves finite coproducts if and only if, for every object $D \in \calD $, the composition 
+    <p>
+      <div class="equation">
+  \[  \calC ^{op} \stackrel{f^{op}}{\rightarrow } \calD ^{op} \stackrel{e_ D}{\rightarrow } \SSet  \]
+</div>
+    <p>
+       preserves finite products, where $e_ D$ denotes the functor represented by $D$. This composition can be identified with $G(D)$, so that $f$ preserves finite coproducts if and only if $G$ factors through $\calP _{\Sigma }(\calC )$. 
+    <p>
+      Assertion $(4)$ is an immediate consequence of Lemma <a href="/tag/1F2E92" data-tag="1F2E92">5.5.8.11</a> and Remark <a href="/tag/71745F" data-tag="71745F">5.5.8.12</a>, and $(5)$ follows formally from $(4)$. To prove $(6)$, we first observe that $\calP (\calC )$ is compactly generated (Proposition <a href="/tag/51050B" data-tag="51050B">5.3.5.12</a>). Let $\calE \subseteq \calP (\calC )$ be the full subcategory spanned by the compact objects, and let $L: \calP (\calC ) \rightarrow \calP _{\Sigma }(\calC )$ be a localization functor. Since $\calE $ generates $\calP (\calC )$ under filtered colimits, $L(\calD )$ generates $\calP _{\Sigma }(\calC )$ under filtered colimits. Consequently, it will suffice to show that for each $E \in \calE $, the object $LE \in \calP _{\Sigma }(\calC )$ is compact. Let $f: \calP _{\Sigma }(\calC ) \rightarrow \SSet $ be the functor corepresented by $LE$, and let $f': \calP (\calC ) \rightarrow \SSet $ be the functor corepresented by $E$. Then the map $E \rightarrow LE$ induces an equivalence $f \rightarrow f' | \calP _{\Sigma }(\calC )$. Since $f'$ is continuous and $\calP _{\Sigma }(\calC )$ is stable under filtered colimits in $\calP (\calC )$, we conclude that $f$ is continuous, so that $LE$ is a compact object of $\calP _{\Sigma }(\calC )$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Our next goal is to prove a converse to part $(4)$ of Proposition <a href="/tag/0C5801" data-tag="0C5801">5.5.8.10</a>. Namely, we will show that $\calP _{\Sigma }(\calC )$ is generated by the essential image of the Yoneda embedding under sifted colimits. In fact, we will only need to use special types of sifted colimits: namely, filtered colimits and geometric realizations (Lemma <a href="/tag/31BB47" data-tag="31BB47">5.5.8.14</a>). The proof is based on the following technical result: 
+</p>
+<p>
+<article class="env-lemma" id="E335DE">
+  <p><a class="environment-identifier" href="/tag/E335DE">Lemma <span data-tag="E335DE">5.5.8.13</span>.</a> Let $\calC $ be a small $\infty $-category, and let $X$ be an object of $\calP (\calC )$. Then there exists a simplicial object $Y_{\bullet }: \Nerve (\cDelta )^{op} \rightarrow \calP (\calC )$ with the following properties: </p>
+  <p><ul>
+  <li class="custom-item" data-marker="$(1)$"><p>
+The colimit of $Y_{\bullet }$ is equivalent to $X$. 
+</p>
+</li><li class="custom-item" data-marker="$(2)$"><p>
+For each $n \geq 0$, the object $Y_ n \in \calP (\calC )$ is equivalent to a small coproduct of objects lying in the image of the Yoneda embedding $j: \calC \rightarrow \calP (\calC )$. 
+</p>
+</li>
+</ul></p>
+</article> 
+</p>
+<p>
+We will defer the proof until the end of this section. 
+</p>
+<p>
+<article class="env-lemma" id="31BB47">
+  <p><a class="environment-identifier" href="/tag/31BB47">Lemma <span data-tag="31BB47">5.5.8.14</span>.</a> Let $\calC $ be a small $\infty $-category which admits finite coproducts, and let $X \in \calP (\calC )$. The following conditions are equivalent: </p>
+  <p><ul>
+  <li class="custom-item" data-marker="$(1)$"><p>
+The object $X$ belongs to $\calP _{\Sigma }(\calC )$. 
+</p>
+</li><li class="custom-item" data-marker="$(2)$"><p>
+There exists a simplicial object $U_{\bullet }: \Nerve ( \cDelta )^{op} \rightarrow \Ind (\calC )$ whose colimit in $\calP (\calC )$ is $X$. 
+</p>
+</li>
+</ul></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The full subcategory $\calP _{\Sigma }(\calC )$ contains the essential image of the Yoneda embedding and is stable under filtered colimits and geometric realizations (Proposition <a href="/tag/0C5801" data-tag="0C5801">5.5.8.10</a>); thus $(2) \Rightarrow (1)$. We will prove that $(1) \Rightarrow (2)$. 
+    <p>
+      We first choose a simplicial object $Y_{\bullet }$ of $\calP (\calC )$ which satisfies the conclusions of Lemma <a href="/tag/E335DE" data-tag="E335DE">5.5.8.13</a>. Let $L$ be a left adjoint to the inclusion $\calP _{\Sigma }(\calC ) \subseteq \calP (\calC )$. Since $X$ is a colimit of $Y_{\bullet }$, $LX \simeq X$ is a colimit of $LY_{\bullet }$ (part $(5)$ of Proposition <a href="/tag/0C5801" data-tag="0C5801">5.5.8.10</a>). It will therefore suffice to prove that each $LY_{n}$ belongs to $\Ind (\calC )$. By hypothesis, each $Y_{n}$ can be written as a small coproduct $\coprod _{\alpha \in A} j(C_{\alpha } )$, where $j: \calC \rightarrow \calP (\calC )$ denotes the Yoneda embedding. Using the results of §<a href="/tag/A7118A" data-tag="A7118A">4.2.3</a>, we see that $Y_{n}$ can be obtained also as a filtered colimit of coproducts $\coprod _{ \alpha \in A_0} j(C_{\alpha })$, where $A_0$ ranges over the finite subsets of $A$. Since $L$ preserves filtered colimits (Proposition <a href="/tag/0C5801" data-tag="0C5801">5.5.8.10</a>), it will suffice to show that each of the objects 
+    <p>
+      <div class="equation">
+  \[ L(\coprod _{\alpha \in A_0} j(C_{\alpha } )) \]
+</div>
+    <p>
+       belongs to $\Ind (\calC )$. We now invoke part $(2)$ of Proposition <a href="/tag/0C5801" data-tag="0C5801">5.5.8.10</a> to identify this object with $j( \coprod _{\alpha \in A_0} C_{\alpha } )$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="0CC413">
+  <p><a class="environment-identifier" href="/tag/0CC413">Proposition <span data-tag="0CC413">5.5.8.15</span>.</a> Let $\calC $ be a small $\infty $-category which admits finite coproducts, and let $\calD $ be an $\infty $-category which admits filtered colimits and geometric realizations. Let $\Fun _{\Sigma }( \calP _{\Sigma }(\calC ), \calD )$ denote the full subcategory spanned by those functors $\calP _{\Sigma }(\calC ) \rightarrow \calD $ which preserve filtered colimits and geometric realizations. Then: </p>
+  <p><ul>
+  <li class="custom-item" data-marker="$(1)$"><p>
+Composition with the Yoneda embedding $j: \calC \rightarrow \calP _{\Sigma }(\calC )$ induces an equivalence of categories 
+</p>
+<div class="equation">
+  \[  \theta : \Fun _{\Sigma }( \calP _{\Sigma }(\calC ), \calD ) \rightarrow \Fun (\calC , \calD ). \]
+</div>
+</li><li class="custom-item" data-marker="$(2)$"><p>
+Any functor $g \in \Fun _{\Sigma }( \calP _{\Sigma }(\calC ), \calD )$ preserves sifted colimits. 
+</p>
+</li><li class="custom-item" data-marker="$(3)$"><p>
+Assume that $\calD $ admits finite coproducts. A functor $g \in \Fun _{\Sigma }( \calP _{\Sigma }(\calC ), \calD )$ preserves small colimits if and only if $g \circ j$ preserves finite coproducts.FunSigma@$\Fun _{\Sigma }( \calC , \calD )$ 
+</p>
+</li>
+</ul></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Lemma <a href="/tag/31BB47" data-tag="31BB47">5.5.8.14</a> and Proposition <a href="/tag/0C5801" data-tag="0C5801">5.5.8.10</a> imply that $\calP _{\Sigma }(\calC )$ is the smallest full subcategory of $\calP (\calC )$ which is closed under filtered colimits, closed under geometric realizations, and contains the essential image of the Yoneda embedding. Consequently, assertion $(1)$ follows from Remark <a href="/tag/D614C3" data-tag="D614C3">5.3.5.9</a> and Proposition <a href="/tag/DD1683" data-tag="DD1683">4.3.2.15</a>. 
+    <p>
+      We now prove $(2)$. Let $g \in \Fun _{\Sigma }( \calP _{\Sigma }(\calC ), \calD )$; we wish to show that $g$ preserves sifted colimits. It will suffice to show that for every representable functor $e: \calD \rightarrow \SSet ^{op}$, the composition $e \circ g$ preserves sifted colimits. In other words, we may replace $\calD $ by $\SSet ^{op}$, and thereby reduce to the case where $\calD $ itself admits sifted colimits. Let $\Fun '_{\Sigma }( \calP _{\Sigma }(\calC ), \calD )$ denote the full subcategory of $\Fun _{\Sigma }( \calP _{\Sigma }(\calC ), \calD )$ spanned by those functors which preserve sifted colimits. Since $\calP _{\Sigma }(\calC )$ is also the smallest full subcategory of $\calP (\calC )$ which contains the essential image of the Yoneda embedding and is stable under sifted colimits, Remark <a href="/tag/D614C3" data-tag="D614C3">5.3.5.9</a> implies that $\theta $ induces an equivalence 
+    <p>
+      <div class="equation">
+  \[  \Fun '_{\Sigma }( \calP _{\Sigma }(\calC ), \calD ) \rightarrow \Fun (\calC , \calD ). \]
+</div>
+    <p>
+       Combining this observation with $(1)$, we deduce that the inclusion $\Fun '_{\Sigma }( \calP _{\Sigma }(\calC ), \calD ) \subseteq \Fun _{\Sigma }( \calP _{\Sigma }(\calC ), \calD )$ is an equivalence of $\infty $-categories, and therefore an equality. 
+    <p>
+      The “only if” direction of $(3)$ is immediate, since the Yoneda embedding $j: \calC \rightarrow \calP _{\Sigma }(\calC )$ preserves finite coproducts (Proposition <a href="/tag/0C5801" data-tag="0C5801">5.5.8.10</a>). To prove the converse, we first apply Lemma <a href="/tag/E6E837" data-tag="E6E837">5.3.5.7</a> to reduce to the case where $\calD $ is a full subcategory of an $\infty $-category $\calD '$, with the following properties: 
+    <p>
+      <ul>
+  <li class="custom-item" data-marker="$(i)$"><p>
+The $\infty $-category $\calD '$ admits small colimits. 
+</p>
+</li><li class="custom-item" data-marker="$(ii)$"><p>
+A small diagram $K^{\triangleright } \rightarrow \calD $ is a colimit if and only if the induced diagram $K^{\triangleright } \rightarrow \calD '$ is a colimit. 
+</p>
+</li>
+</ul>
+    <p>
+       Let $\calC '$ denote the essential image of the Yoneda embedding $j: \calC \rightarrow \calP (\calC )$. Using Lemma <a href="/tag/854A23" data-tag="854A23">5.1.5.5</a>, we conclude that there exists functor $G: \calP (\calC ) \rightarrow \calD '$ which is a left Kan extension of $G | \calC ' = g | \calC '$, and that $G$ preserves small colimits. Let $G_0 = G | \calP _{\Sigma }(\calC )$. Then $G_0$ is a left Kan extension of $g | \calC '$, so there is a canonical natural transformation $G_0 \rightarrow g$. Let $\calC ''$ denote the full subcategory of $\calP _{\Sigma }(\calC )$ spanned by those objects $C$ for which the map $G_0(C) \rightarrow g(C)$ is an equivalence. Then $\calC ''$ contains $\calC '$ and is stable under filtered colimits and geometric realizations, and therefore contains all of $\calP _{\Sigma }(\calC )$. We may therefore replace $g$ by $G_0$ and thereby assume that $G | \calP _{\Sigma }(\calC ) = g$. Since $G \circ j = g \circ j$ preserves finite coproducts, the right adjoint to $G$ factors through $\calP _{\Sigma }(\calC )$ (Proposition <a href="/tag/0C5801" data-tag="0C5801">5.5.8.10</a>), so that $G$ is equivalent to the composition 
+    <p>
+      <div class="equation">
+  \[  \calP (\calC ) \stackrel{L}{\rightarrow } \calP _{\Sigma }(\calC ) \stackrel{G'}{\rightarrow } \calD ' \]
+</div>
+    <p>
+       for some colimit-preserving functor $G': \calP _{\Sigma }(\calC ) \rightarrow \calD '$. Restricting to the subcategory $\calP _{\Sigma }(\calC ) \subseteq \calP (\calC )$, we deduce that $G'$ is equivalent to $g$, so that $g$ preserves small colimits as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="8F7B9B">
+  <p><a class="environment-identifier" href="/tag/8F7B9B">Remark <span data-tag="8F7B9B">5.5.8.16</span>.</a> Let $\calC $ be a small $\infty $-category which admits finite coproducts. It follows from Proposition <a href="/tag/0CC413" data-tag="0CC413">5.5.8.15</a> that we can identify $\calP _{\Sigma }(\calC )$ with $\calP _{\calK }^{\calK '}(\calC )$ in each of the following three cases (for an explanation of this notation, we refer the reader to §<a href="/tag/CF873F" data-tag="CF873F">5.3.6</a>): </p>
+  <p><ul>
+  <li class="custom-item" data-marker="$(1)$"><p>
+The collection $\calK $ is empty, and the collection $\calK '$ consists of all small filtered simplicial sets together with $\Nerve (\cDelta )^{op}$. 
+</p>
+</li><li class="custom-item" data-marker="$(2)$"><p>
+The collection $\calK $ is empty, and the collection $\calK '$ consists of all small sifted simplicial sets. 
+</p>
+</li><li class="custom-item" data-marker="$(3)$"><p>
+The collection $\calK $ consists of all finite discrete simplicial sets, and the collection $\calK '$ consists of all small simplicial sets. 
+</p>
+</li>
+</ul></p>
+</article> 
+</p>
+<p>
+<article class="env-corollary" id="A9C1DB">
+  <p><a class="environment-identifier" href="/tag/A9C1DB">Corollary <span data-tag="A9C1DB">5.5.8.17</span>.</a> Let $f: \calC \rightarrow \calD $ be a functor between $\infty $-categories. Assume that $\calC $ admits small colimits. Then $f$ preserves sifted colimits if and only if $f$ preserves filtered colimits and geometric realizations. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The “only if” direction is clear. For the converse, suppose that $f$ preserves filtered colimits and geometric realizations. Let $\calI $ be a small sifted $\infty $-category and $\overline{p}: \calI ^{\triangleright } \rightarrow \calC $ a colimit diagram; we wish to prove that $f \circ \overline{p}$ is also a colimit diagram. Let $p = \overline{p} | \calI $. Let $\calJ \subseteq \calP (\calI )$ denote a small full subcategory which contains the essential image of the Yoneda embedding $j: \calI \rightarrow \calP (\calI )$ and is closed under finite coproducts. It follows from Remark <a href="/tag/D614C3" data-tag="D614C3">5.3.5.9</a> that the functor $p$ is homotopic to a composition $q \circ j$, where $q: \calJ \rightarrow \calC $ is a functor which preserves finite coproducts. Proposition <a href="/tag/0CC413" data-tag="0CC413">5.5.8.15</a> implies that $q$ is homotopic to a composition 
+    <p>
+      <div class="equation">
+  \[  \calJ \stackrel{j'}{\rightarrow } \calP _{\Sigma }(\calJ ) \stackrel{q'}{\rightarrow } \calC , \]
+</div>
+    <p>
+       where $j'$ denotes the Yoneda embedding and $q'$ preserves small colimits. The composition $f \circ q'$ preserves filtered colimits and geometric realization, and therefore preserves sifted colimits (Proposition <a href="/tag/0CC413" data-tag="0CC413">5.5.8.15</a>). 
+    <p>
+      Let $\overline{p}': \calI ^{\triangleright } \rightarrow \calP _{\Sigma }(\calJ )$ be a colimit of the diagram $j' \circ j$. Since $q'$ preserves colimits, the composition $q' \circ \overline{p}'$ is a colimit of $q' \circ j' \circ j \simeq p$, and is therefore equivalent to $\overline{p}$. Consequently, it will suffice to show that $f \circ q' \circ \overline{p}'$ is a colimit diagram. Since $\calI $ is sifted, we need only verify that $f \circ q'$ preserves sifted colimits. By Proposition <a href="/tag/0CC413" data-tag="0CC413">5.5.8.15</a>, it will suffice to show that $f \circ q'$ preserves filtered colimits and geometric realizations. Since $q'$ preserves all colimits, this follows from our assumption that $f$ preserves filtered colimits and geometric realizations. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In the situation of Proposition <a href="/tag/0CC413" data-tag="0CC413">5.5.8.15</a>, every functor $f: \calC \rightarrow \calD $ extends (up to homotopy) to a functor $F: \calP _{\Sigma }(\calC ) \rightarrow \calD $, which preserves sifted colimits. We will sometimes refer to $F$ as the <em>left derived functor</em> of $f$derived functorleft derived functor. In §<a href="/tag/774DB6" data-tag="774DB6">5.5.9</a> we will explain the connection of this notion of derived functor with the more classical definition provided by Quillen's theory of homotopical algebra.derived functorfunctor!derived 
+</p>
+<p>
+Our next goal is to characterize those $\infty $-categories which have the form $\calP _{\Sigma }(\calC )$. 
+</p>
+<p>
+<article class="env-definition" id="FDCFF1">
+  <p><a class="environment-identifier" href="/tag/FDCFF1">Definition <span data-tag="FDCFF1">5.5.8.18</span>.</a> Let $\calC $ be an $\infty $-category which admits geometric realizations of simplicial objects. We will say that an object $P \in \calC $ is <em>projective</em> if the functor $\calC \rightarrow \SSet $ co-represented by $P$ commutes with geometric realizations.projective objectobject!projective </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="68F48E">
+  <p><a class="environment-identifier" href="/tag/68F48E">Remark <span data-tag="68F48E">5.5.8.19</span>.</a> Let $\calC $ be an $\infty $-category which admits geometric realizations of simplicial objects. Then the collection of projective objects of $\calC $ is stable under all finite coproducts which exist in $\calC $. This follows immediately from Lemma <a href="/tag/1F2E92" data-tag="1F2E92">5.5.8.11</a> and Remark <a href="/tag/71745F" data-tag="71745F">5.5.8.12</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="471A14">
+  <p><a class="environment-identifier" href="/tag/471A14">Remark <span data-tag="471A14">5.5.8.20</span>.</a> Let $\calC $ be an $\infty $-category which admits small colimits, and let $X$ be an object of $\calC $. Then $X$ is compact and projective if and only if $X$ corepresents a functor $\calC \rightarrow \sSet $ which preserves sifted colimits. The “only if” direction is obvious, and the converse follows from Corollary <a href="/tag/A9C1DB" data-tag="A9C1DB">5.5.8.17</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="">
+  <p><a class="environment-identifier" href="/tag/">Example <span data-tag="">5.5.8.21</span>.</a>Let $\calA $ be an abelian category. Then an object $P \in \calA $ is projective in the sense of classical homological algebra (that is, the functor $\Hom _{\calA }(P, \bullet )$ is exact) if and only if $P$ corepresents a functor $\calA \rightarrow \Set $ which commutes with geometric realizations of simplicial objects. This is <em>not</em> equivalent to the condition of Definition <a href="/tag/FDCFF1" data-tag="FDCFF1">5.5.8.18</a>, since the fully faithful embedding $\Set \rightarrow \SSet $ does not preserve geometric realizations. However, it is equivalent to the requirement that $P$ be a projective object (in the sense of Definition <a href="/tag/FDCFF1" data-tag="FDCFF1">5.5.8.18</a>) in the $\infty $-category underlying the homotopy theory of simplicial objects of $\calA $ (equivalently, the theory of nonpositively graded chain complexes with values in $\calA $; we will discuss this example in greater detail in <span class="cite">[<a href="/bibliography/DAG">DAG</a>]</span>). </p>
+</article> 
+</p>
+<p>
+<article class="env-proposition" id="161B2C">
+  <p><a class="environment-identifier" href="/tag/161B2C">Proposition <span data-tag="161B2C">5.5.8.22</span>.</a> Let $\calC $ be a small $\infty $-category which admits finite coproducts, $\calD $ an $\infty $-category which admits filtered colimits and geometric realizations, and $F: \calP _{\Sigma }(\calC ) \rightarrow \calD $ a left derived functor of $f = F \circ j: \calC \rightarrow \calD $, where $j: \calC \rightarrow \calP _{\Sigma }(\calC )$ denotes the Yoneda embedding. Consider the following conditions: </p>
+  <p><ul>
+  <li class="custom-item" data-marker="$(i)$"><p>
+The functor $f$ is fully faithful. 
+</p>
+</li><li class="custom-item" data-marker="$(ii)$"><p>
+The essential image of $f$ consists of compact projective objects of $\calD $. 
+</p>
+</li><li class="custom-item" data-marker="$(iii)$"><p>
+The $\infty $-category $\calD $ is generated by the essential image of $f$ under filtered colimits and geometric realizations. 
+</p>
+</li>
+</ul></p>
+  <p> If $(i)$ and $(ii)$ are satisfied, then $F$ is fully faithful. Moreover, $F$ is an equivalence if and only if $(i)$, $(ii)$, and $(iii)$ are satisfied. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $F$ is an equivalence of $\infty $-categories, then $(i)$ follows from Proposition <a href="/tag/533C60" data-tag="533C60">5.1.3.1</a>, and $(iii)$ from Lemma <a href="/tag/31BB47" data-tag="31BB47">5.5.8.14</a>. To prove $(ii)$, it suffices to show that for each $C \in \calC $, the functor $e: \calP _{\Sigma }(\calC ) \rightarrow \SSet $ corepresented by $C$ preserves filtered colimits and geometric realizations. We can identify $e$ with the composition 
+    <p>
+      <div class="equation">
+  \[  \calP _{\Sigma }(\calC ) \stackrel{e'}{\subseteq } \calP (\calC ) \stackrel{e''}{\rightarrow } \SSet , \]
+</div>
+    <p>
+       where $e''$ denotes evaluation at $C$. It now suffices to observe that $e'$ and $e''$ preserve filtered colimits and geometric realizations (Lemma <a href="/tag/31BB47" data-tag="31BB47">5.5.8.14</a> and Proposition <a href="/tag/5DFB66" data-tag="5DFB66">5.1.2.2</a>). 
+    <p>
+      For the converse, let us suppose that $(i)$ and $(ii)$ are satisfied. We will show that $F$ is fully faithful. First fix an object $C \in \calC $, and let $\calP '_{\sigma }(\calC )$ be the full subcategory of $\calP _{\Sigma }(\calC )$ spanned by those objects $M$ for which the map 
+    <p>
+      <div class="equation">
+  \[  \bHom _{ \calP _{\Sigma }(\calC )}( j(C), M) \rightarrow \bHom _{\calD }(f(C), F(M) ) \]
+</div>
+    <p>
+       is an equivalence. Condition $(i)$ implies that $\calP '_{\sigma }(\calC )$ contains the essential image of $j$, and condition $(ii)$ implies that $\calP '_{\sigma }(\calC )$ is stable under filtered colimits and geometric realizations. Lemma <a href="/tag/31BB47" data-tag="31BB47">5.5.8.14</a> now implies that $\calP '_{\Sigma }(\calC ) = \calP _{\Sigma }(\calC )$. 
+    <p>
+      We now define $\calP ''_{\Sigma }(\calC )$ to be the full subcategory of $\calP _{\Sigma }(\calC )$ spanned by those objects $M$ such that for all $N \in \calP _{\Sigma }(\calC )$, the map 
+    <p>
+      <div class="equation">
+  \[  \bHom _{ \calP _{\Sigma }(\calC )}(M,N) \rightarrow \bHom _{\calD }( F(M), F(N) ) \]
+</div>
+    <p>
+       is a homotopy equivalence. The above argument shows that $\calP ''_{\Sigma }(\calC )$ contains the essential image of $j$. Since $F$ preserves filtered colimits and geometric realizations, $\calP ''_{\Sigma }(\calC )$ is stable under filtered colimits and geometric realizations. Applying Lemma <a href="/tag/31BB47" data-tag="31BB47">5.5.8.14</a>, we conclude that $\calP ''_{\Sigma }(\calC ) = \calP _{\Sigma }(\calC )$; this proves that $F$ is fully faithful. 
+    <p>
+      If $F$ is fully faithful, then the essential image of $F$ contains $f(\calC )$ and is stable under filtered colimits and geometric realizations. If $(iii)$ is satisfied, it follows that $F$ is an equivalence of $\infty $-categories. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="136B68">
+  <p><a class="environment-identifier" href="/tag/136B68">Definition <span data-tag="136B68">5.5.8.23</span>.</a> Let $\calC $ be an $\infty $-category which admits small colimits, and let $S$ be a collection of objects of $\calC $. We will say that $S$ is a <em>set of compact projective generators for $\calC $</em> if the following conditions are satisfied: </p>
+  <p><ul>
+  <li class="custom-item" data-marker="$(1)$"><p>
+Each element of $S$ is a compact projective object of $\calC $. 
+</p>
+</li><li class="custom-item" data-marker="$(2)$"><p>
+The full subcategory of $\calC $ spanned by the elements of $S$ is essentially small. 
+</p>
+</li><li class="custom-item" data-marker="$(3)$"><p>
+The set $S$ generates $\calC $ under small colimits. 
+</p>
+</li>
+</ul></p>
+  <p> We will say that $\calC $ is <em>projectively generated</em> if there exists a set $S$ of compact projective generators for $\calC $.projectively generatedgenerator!projective </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="FC65E4">
+  <p><a class="environment-identifier" href="/tag/FC65E4">Example <span data-tag="FC65E4">5.5.8.24</span>.</a> The $\infty $-category $\SSet $ of spaces is projectively generated. The compact projective objects of $\SSet $ are precisely those spaces which are homotopy equivalent to finite sets (endowed with the discrete topology). </p>
+</article> 
+</p>
+<p>
+<article class="env-proposition" id="9CAC31">
+  <p><a class="environment-identifier" href="/tag/9CAC31">Proposition <span data-tag="9CAC31">5.5.8.25</span>.</a> Let $\calC $ be an $\infty $-category which admits small colimits, and let $S$ be a set of compact projective generators for $\calC $. Then: </p>
+  <p><ul>
+  <li class="custom-item" data-marker="$(1)$"><p>
+Let $\calC ^{0} \subseteq \calC $ be the full subcategory spanned by finite coproducts of the objects $S$, let $\calD \subseteq \calC ^{0}$ be a minimal model for $\calC ^{0}$, and let $F: \calP _{\Sigma }( \calD ) \rightarrow \calC $ be a left derived functor of the inclusion. Then $F$ is an equivalence of $\infty $-categories. In particular, $\calC $ is a compactly generated presentable $\infty $-category. 
+</p>
+</li><li class="custom-item" data-marker="$(2)$"><p>
+Let $C \in \calC $ be an object. The following conditions are equivalent: 
+</p>
+<ul>
+  <li class="custom-item" data-marker="$(i)$"><p>
+The object $C$ is compact and projective. 
+</p>
+</li><li class="custom-item" data-marker="$(ii)$"><p>
+The functor $e: \calC \rightarrow \widehat{\SSet }$ corepresented by $C$ preserves sifted colimits. 
+</p>
+</li><li class="custom-item" data-marker="$(iii)$"><p>
+There exists an object $C' \in \calC ^{0}$ such that $C$ is a retract of $C'$. 
+</p>
+</li>
+</ul>
+</li>
+</ul></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Remark <a href="/tag/68F48E" data-tag="68F48E">5.5.8.19</a> implies that $\calC ^{0}$ consists of compact projective objects of $\calC $. Assertion $(1)$ now follows immediately from Proposition <a href="/tag/161B2C" data-tag="161B2C">5.5.8.22</a>. We now prove $(2)$. The implications $(iii) \Rightarrow (i)$ and $(ii) \Rightarrow (i)$ are obvious. To complete the proof, we will show that $(i) \Rightarrow (iii)$. Using $(1)$, we are free to assume $\calC = \calP _{\Sigma }(\calD )$. Let $C \in \calC $ be a compact projective object. Using Lemma <a href="/tag/31BB47" data-tag="31BB47">5.5.8.14</a>, we conclude that there exists a simplicial object $X_{\bullet }$ of $\Ind (\calD )$ and an equivalence $C \simeq | X_{\bullet } |$. Since $C$ is projective, we deduce $\bHom _{\calC }(C,C)$ is equivalent to the geometric realization of the simplicial space $\bHom _{\calC }(C, X_{\bullet })$. In particular, $\id _{C} \in \bHom _{\calC }(C,C)$ is homotopic to the image of the some map $f: C \rightarrow X_0$. Using our assumption that $C$ is compact, we conclude that $f$ factors as a composition 
+    <p>
+      <div class="equation">
+  \[  C \stackrel{f_0}{\rightarrow } j(D) \rightarrow X_0, \]
+</div>
+    <p>
+       where $j: \calD \rightarrow \Ind (\calD )$ denotes the Yoneda embedding. It follows that $C$ is a retract of $j(D)$ in $\calC $, as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="FFD9E5">
+  <p><a class="environment-identifier" href="/tag/FFD9E5">Remark <span data-tag="FFD9E5">5.5.8.26</span>.</a> Let $\calC $ be a small $\infty $-category which admits finite coproducts. Since the truncation functor $\tau _{\leq n}: \SSet \rightarrow \SSet $ preserves finite products, it induces a map $\tau : \calP _{\Sigma }(\calC ) \rightarrow \calP _{\Sigma }(\calC )$, which is easily seen to be a localization functor. The essential image of $\tau $ consists of those functors $F \in \calP _{\Sigma }(\calC )$ which take $n$-truncated values. We claim that these are precisely the $n$-truncated object of $\calP _{\Sigma }(\calC )$. Consequently, we can identify $\tau $ with the $n$-truncation functor on $\calP _{\Sigma }(\calC )$. </p>
+  <p>One direction is clear: if $F \in \calP _{\Sigma }(\calC )$ is $n$-truncated, then for each $C \in \calC $ the space $\bHom _{ \calP _{\Sigma }(\calC )}( j(C), F) \simeq F(C)$ must be $n$-truncated. Conversely, suppose that $F: \calC ^{op} \rightarrow \SSet $ takes $n$-truncated values. We wish to prove that the space $\bHom _{ \calP _{\Sigma }(\calC )}(F', F)$ is $n$-truncated, for each $F' \in \calP _{\Sigma }(\calC )$. The collection of all objects $F'$ which satisfy this condition is stable under small colimits in $\calP _{\Sigma }(\calC )$ and contains the essential image of the Yoneda embedding. It therefore contains the entirety of $\calP _{\Sigma }(\calC )$, as desired. </p>
+</article> 
+</p>
+<p>
+We conclude this section by giving the proof of Lemma <a href="/tag/E335DE" data-tag="E335DE">5.5.8.13</a>. Our argument uses some concepts and results from §<a href="/tag/615A11" data-tag="615A11">6</a>, and may be omitted at first reading. 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof of Lemma <a href="/tag/E335DE" data-tag="E335DE">5.5.8.13</a>.</strong>
+       For $n \geq 0$, let $\cDelta ^{\leq n}$ denote the full subcategory of $\cDelta $ spanned by the objects $\{  [k] \} _{k \leq n}$. We will construct a compatible sequence of functors $f_{n}: \Nerve ( \cDelta ^{\leq n})^{op} \rightarrow \calP (\calC )_{/X}$ with the following properties: 
+    <p>
+      <ul>
+  <li class="custom-item" data-marker="$(A)$"><p>
+For $n \geq 0$, let $L_ n$ denote a colimit of the composite diagram 
+</p>
+<div class="equation">
+  \[  \Nerve ( \cDelta ^{\leq n-1})^{op} \times _{ \Nerve (\cDelta )^{op} } \Nerve ( \cDelta _{[n]/})^{op} \rightarrow \Nerve ( \cDelta ^{\leq n-1})^{op} \stackrel{ f_{n-1}}{\rightarrow } \calP (\calC )_{/X} \rightarrow \calP (\calC ). \]
+</div>
+<p>
+ (the $n$th <em>latching object</em>). Then there exists an object $Z_{n} \in \calP (\calC )$ which is a small coproduct of objects in the essential image of the Yoneda embedding $\calC \rightarrow \calP (\calC )$, and a map $Z_{n} \rightarrow f_{n}([n])$ which, together with the canonical map $L_ n \rightarrow f_{n}([n])$, determines an equivalence $L_ n \coprod Z_{n} \simeq f_{n}([n])$. 
+</p>
+</li><li class="custom-item" data-marker="$(B)$"><p>
+For $n \geq 0$, let $\overline{M}_ n$ denote the limit of the diagram 
+</p>
+<div class="equation">
+  \[  \Nerve ( \cDelta ^{\leq n-1})^{op} \times _{ \Nerve (\cDelta )^{op} } \Nerve ( \cDelta _{/[n]})^{op} \rightarrow \Nerve ( \cDelta ^{\leq n-1})^{op} \stackrel{ f_{n-1}}{\rightarrow } \calP (\calC )_{/X} \]
+</div>
+<p>
+ (the $n$th <em>matching object</em>), and let $M_ n$ denote its image in $\calP (\calC )$. Then the canonical map $f_{n}([n]) \rightarrow M_ n$ is an effective epimorphism in $\calP (\calC )$ (see §<a href="/tag/3EC251" data-tag="3EC251">6.2.3</a>). 
+</p>
+</li>
+</ul>
+    <p>
+       The construction of the functors $f_{n}$ proceeds by induction on $n$, the case $n < 0$ being trivial. For $n \geq 0$, we invoke Remark <a href="/tag/04D98F" data-tag="04D98F">8.2.9.16</a>: to extend $f_{n-1}$ to a functor $f_{n}$ satisfying $(A)$ and $(B)$, it suffices to produce an object $Z_{n}$ and a morphism $\psi : Z_{n} \rightarrow M_ n$ in $\calP (\calC )$, such that the coproduct $L_ n \coprod Z_{n} \rightarrow M_ n$ is an effective epimorphism. This is satisfied in particular if $\psi $ itself is an effective epimorphism. 
+    <p>
+      The maps $f_{n}$ together determine a simplicial object $\overline{Y}_{\bullet }$ of $\calP (\calC )_{/X}$, which we can identify with a simplicial object $Y_{\bullet }$ in $\calP (\calC )$ equipped with a map $\theta : \varinjlim Y_{\bullet } \rightarrow X$. Assumption $(B)$ guarantees that $\theta $ is a hypercovering of $X$ (see §<a href="/tag/C43E41" data-tag="C43E41">6.5.3</a>), so that the map $\theta $ is $\infty $-connective (Lemma <a href="/tag/64E0DB" data-tag="64E0DB">6.5.3.11</a>). The $\infty $-topos $\calP (\calC )$ has enough points (given by evaluation at objects of $\calC $), and is therefore hypercomplete (Remark <a href="/tag/256588" data-tag="256588">6.5.4.8</a>). It follows that $\theta $ is an equivalence. We now complete the proof by observing that for $n \geq 0$, we have an equivalence $Y_{n} \simeq \coprod _{ [n] \rightarrow [k] } Z_{k}$ where the coproduct is taken over all surjective maps of linearly ordered sets $[n] \rightarrow [k]$, so that $Y_{n}$ is itself a small coproduct of objects lying in the essential image of the Yoneda embedding $j: \calC \rightarrow \calP (\calC )$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

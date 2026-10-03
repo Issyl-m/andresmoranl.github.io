@@ -1,0 +1,286 @@
+<h3 id="theequiv" class="tex-subsection"><span data-tag="A2E5E2">1.1.5</span> Comparing $\infty $-Categories with Simplicial Categories</h3>
+
+<p>
+In §<a href="/tag/8F9A99" data-tag="8F9A99">1.1.4</a>, we introduced the theory of simplicial categories and explained why (for our purposes) it is equivalent to the theory of topological categories. In this section, we will show that the theory of simplicial categories is also closely related to the theory of $\infty $-categories. Our discussion requires somewhat more elaborate constructions than were needed in the previous sections; a reader who does not wish to become bogged down in details is urged to skip ahead to §<a href="/tag/AFA492" data-tag="AFA492">1.2.1</a>. 
+</p>
+<p>
+We will relate simplicial categories with simplicial sets by means of the <em>simplicial nerve functor</em> 
+</p>
+<div class="equation">
+  \[  \sNerve : \sCat \rightarrow \sSet , \]
+</div>
+<p>
+ originally introduced by Cordier (see <span class="cite">[<a href="/bibliography/coherentnerve">coherentnerve</a>]</span>). The nerve of an ordinary category $\calC $ is characterized by the formula 
+</p>
+<div class="equation">
+  \[  \Hom _{ \sSet }( \Delta ^ n, \Nerve (\calC )) = \Hom _{\Cat }( [n], \calC ); \]
+</div>
+<p>
+ here $[n]$ denotes the linearly ordered set $\{  0, \ldots , n\} $, regarded as a category. This definition makes sense also when $\calC $ is a simplicial category, but is clearly not very interesting: it makes no use of the simplicial structure on $\calC $. In order to obtain a more interesting construction, we need to replace the ordinary category $[n]$ by a suitable “thickening”, a simplicial category which we will denote by $\sCoNerve [\Delta ^ n]$CoNerve@$\sCoNerve [S]$. 
+</p>
+<p>
+<article class="env-definition" id="DBCB83">
+  <p><a class="environment-identifier" href="/tag/DBCB83">Definition <span data-tag="DBCB83">1.1.5.1</span>.</a> Let $J$ be a finite nonempty linearly ordered set. The simplicial category $\sCoNerve [\Delta ^ J]$ is defined as follows: </p>
+  <p><ul>
+  <li><p>
+The objects of $\sCoNerve [\Delta ^ J]$ are the elements of $J$. 
+</p>
+</li><li><p>
+If $i,j \in J$, then 
+</p>
+<div class="equation">
+  \[ \bHom _{\sCoNerve [\Delta ^ J]}(i,j) = \begin{cases} \emptyset &amp;  \text{if } j < i \\ \Nerve (P_{i,j}) &amp;  \text{if } i \leq j. \end{cases} \]
+</div>
+<p>
+ Here $P_{i,j}$ denotes the partially ordered set $\{  I \subseteq J: (i,j \in I) \wedge ( \forall k \in I) [i \leq k \leq j] ) \} $. 
+</p>
+</li><li><p>
+If $i_0 \leq i_1 \leq \ldots \leq i_ n$, then the composition 
+</p>
+<div class="equation">
+  \[  \bHom _{\sCoNerve [\Delta ^ J]}(i_0,i_1) \times \ldots \times \bHom _{\sCoNerve [\Delta ^ J]}(i_{n-1},i_ n) \rightarrow \bHom _{\sCoNerve [\Delta ^ J]}(i_0,i_ n) \]
+</div>
+<p>
+ is induced by the map of partially ordered sets 
+</p>
+<div class="equation">
+  \[  P_{i_0,i_1} \times \ldots \times P_{i_{n-1},i_ n} \rightarrow P_{i_0,i_ n} \]
+</div>
+<div class="equation">
+  \[  ( I_1, \ldots , I_ n ) \mapsto I_1 \cup \ldots \cup I_ n. \]
+</div>
+</li>
+</ul></p>
+</article> 
+</p>
+<p>
+In order to help digest Definition <a href="/tag/DBCB83" data-tag="DBCB83">1.1.5.1</a>, let us analyze the structure of the topological category $| \sCoNerve [ \Delta ^ n ] |$. The objects of this category are elements of the set $[n] = \{  0, \ldots , n\} $. For each $0 \leq i \leq j \leq n$, the topological space $\bHom _{ |\sCoNerve [\Delta ^ n]| }(i,j)$ is homeomorphic to a cube; it may be identified with the set of all functions $p: \{  k \in [n]: i \leq k \leq j \}  \rightarrow [0,1]$ which satisfy $p(i) = p(j) = 1$. The morphism space $\bHom _{ | \sCoNerve [\Delta ^ n] |}(i,j)$ is empty when $j < i$, and composition of morphisms is given by concatenation of functions. 
+</p>
+<p>
+<article class="env-remark" id="2DA180">
+  <p><a class="environment-identifier" href="/tag/2DA180">Remark <span data-tag="2DA180">1.1.5.2</span>.</a> Let us try to understand better the simplicial category $\sCoNerve [\Delta ^ n]$ and its relationship to the ordinary category $[n]$. These categories have the same objects, namely the elements of $\{  0, \ldots , n\} $. In the category $[n]$, there is a unique morphism $q_{ij}: i \rightarrow j$ whenever $i \leq j$. In virtue of the uniqueness, these elements satisfy $q_{jk} \circ q_{ij} = q_{ik}$ for $i \leq j \leq k$. </p>
+  <p>In the simplicial category $\sCoNerve [\Delta ^ n]$, there is a vertex $p_{ij} \in \bHom _{ \sCoNerve [\Delta ^ n] }(i,j)$, given by the element $\{  i, j \}  \in P_{ij}$. We note that $p_{jk} \circ p_{ij} \neq p_{ik}$ (unless we are in one of the degenerate cases where $i =j$ or $j=k$). Instead, the collection of all compositions </p>
+  <div class="equation">
+  \[  p_{i_ n i_{n-1}} \circ p_{i_{n-1} i_{n-2}} \circ \ldots \circ p_{i_1 i_0}, \]
+</div>
+  <p> where $i=i_0 < i_1 < \ldots < i_{n-1} < i_ n = j$ constitute all of the different vertices of the cube $\bHom _{\sCoNerve [\Delta ^ n]}(i,j)$. The weak contractibility of $\bHom _{\sCoNerve [\Delta ^ n]}(i,j)$ expresses the idea that although these compositions do not coincide, they are all canonically homotopic to one another. We observe that there is a (unique) functor $\sCoNerve [\Delta ^ n] \rightarrow [n]$ which is the identity on objects, and that this functor is an equivalence of simplicial categories. We can summarize the situation informally as follows: the simplicial category $\sCoNerve [\Delta ^ n]$ is a “thickened version” of $[n]$, where we have dropped the strict associativity condition </p>
+  <div class="equation">
+  \[  q_{jk} \circ q_{ij} = q_{ik} \]
+</div>
+  <p> and instead have imposed associativity only up to (coherent) homotopy. (We can formulate this idea more precisely by saying that $\sCoNerve [ \Delta ^{\bullet }]$ is a cofibrant replacement for $[\bullet ]$ with respect to a suitable model structure on the category of cosimplicial objects of $\sCat $.) </p>
+</article> 
+</p>
+<p>
+The construction $J \mapsto \sCoNerve [\Delta ^ J]$ is functorial in $J$, as we now explain. 
+</p>
+<p>
+<article class="env-definition" id="6A779E">
+  <p><a class="environment-identifier" href="/tag/6A779E">Definition <span data-tag="6A779E">1.1.5.3</span>.</a> Let $f: J \rightarrow J'$ be a monotone map between linearly ordered sets. The simplicial functor $\sCoNerve [f]: \sCoNerve [\Delta ^ J] \rightarrow \sCoNerve [\Delta ^{J'}]$ is defined as follows: </p>
+  <p><ul>
+  <li><p>
+For each object $i \in \sCoNerve [\Delta ^ J]$, $\sCoNerve [f](i) = f(i) \in \sCoNerve [\Delta ^{J'}]$. 
+</p>
+</li><li><p>
+If $i \leq j$ in $J$, then the map $ \bHom _{\sCoNerve [\Delta ^ J]}(i,j) \rightarrow \bHom _{\sCoNerve [\Delta ^{J'}]}(f(i),f(j))$ induced by $f$ is the nerve of the map 
+</p>
+<div class="equation">
+  \[ P_{i,j} \rightarrow P_{f(i),f(j)} \]
+</div>
+<div class="equation">
+  \[  I \mapsto f(I). \]
+</div>
+</li>
+</ul></p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="">
+  <p><a class="environment-identifier" href="/tag/">Remark <span data-tag="">1.1.5.4</span>.</a>Using the notation of Remark <a href="/tag/2DA180" data-tag="2DA180">1.1.5.2</a>, we note that Definition <a href="/tag/6A779E" data-tag="6A779E">1.1.5.3</a> has been rigged so that the functor $\sCoNerve [f]$ carries the vertex $p_{ij} \in \bHom _{\sCoNerve [ \Delta ^ J ]}(i,j)$ to the vertex $p_{f(i) f(j)} \in \bHom _{\sCoNerve [\Delta ^{J'}]}(f(i), f(j))$. </p>
+</article> 
+</p>
+<p>
+It is not difficult to check that the construction described in Definition <a href="/tag/6A779E" data-tag="6A779E">1.1.5.3</a> is well-defined, and compatible with composition in $f$. Consequently, we deduce that $\sCoNerve $ determines a functor 
+</p>
+<div class="equation">
+  \[  \cDelta \rightarrow \sCat  \]
+</div>
+<div class="equation">
+  \[  \Delta ^ n \mapsto \sCoNerve [ \Delta ^ n ], \]
+</div>
+<p>
+ which we may view as a cosimplicial object of $\sCat $. 
+</p>
+<p>
+<article class="env-definition" id="87BE39">
+  <p><a class="environment-identifier" href="/tag/87BE39">Definition <span data-tag="87BE39">1.1.5.5</span>.</a>simplicial nervenerve!of a simplicial categoryNervecalC@$\Nerve (\calC )$ Let $\calC $ be a simplicial category. The <em>simplicial nerve</em> $\Nerve (\calC )$ is the simplicial set described by the formula </p>
+  <div class="equation">
+  \[  \Hom _{ \sSet }( \Delta ^ n, \Nerve (\calC )) = \Hom _{\sCat }( \sCoNerve [ \Delta ^ n ], \calC ). \]
+</div>
+  <p>If $\calC $ is a topological category, we define the <em>topological</em> <em>nerve</em> $\tNerve (\calC )$ of $\calC $ to be the simplicial nerve of $\Sing \calC $.topological nervenerve!of a topological category </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="">
+  <p><a class="environment-identifier" href="/tag/">Remark <span data-tag="">1.1.5.6</span>.</a>If $\calC $ is a simplicial (topological) category, we will often abuse terminology by referring to the simplicial (topological) nerve of $\calC $ simply as the <em>nerve</em> of $\calC $. </p>
+</article> 
+</p>
+<p>
+<article class="env-warning" id="">
+  <p><a class="environment-identifier" href="/tag/">Warning <span data-tag="">1.1.5.7</span>.</a>Let $\calC $ be a simplicial category. Then $\calC $ can be regarded as an ordinary category, by ignoring all simplices of positive dimension in the mapping spaces of $\calC $. The simplicial nerve of $\calC $ does <em>not</em> coincide with the nerve of this underlying ordinary category. Our notation is therefore potentially ambiguous. We will adopt the following convention: whenever $\calC $ is a simplicial category, $\Nerve (\calC )$ will denote the <em>simplicial</em> nerve of $\calC $, unless we specify otherwise. Similarly, if $\calC $ is a topological category, then the topological nerve of $\calC $ does not generally coincide with the nerve of the underlying category; the notation $\Nerve (\calC )$ will be used to indicate the topological nerve, unless otherwise specified. </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="">
+  <p><a class="environment-identifier" href="/tag/">Example <span data-tag="">1.1.5.8</span>.</a>Any ordinary category $\calC $ may be considered as a simplicial category, by taking each of the simplicial sets $\Hom _{\calC }(X,Y)$ to be <em>constant</em>. In this case, the set of simplicial functors $\sCoNerve [\Delta ^ n] \rightarrow \calC $ may be identified with the set of functors from $[n]$ into $\calC $. Consequently, the simplicial nerve of $\calC $ agrees with the ordinary nerve of $\calC $, as defined in §<a href="/tag/95994B" data-tag="95994B">1.1.2</a>. Similarly, the ordinary nerve of $\calC $ can be identified with the topological nerve of $\calC $, where $\calC $ is regarded as a topological category with discrete morphism spaces. </p>
+</article> 
+</p>
+<p>
+In order to get a feel for what the nerve of a topological category $\calC $ looks like, let us explicitly describe its low-dimensional simplices: 
+</p>
+<ul>
+  <li><p>
+The $0$-simplices of $\tNerve (\calC )$ may be identified with the objects of $\calC $. 
+</p>
+</li><li><p>
+The $1$-simplices of $\tNerve (\calC )$ may be identified with the morphisms of $\calC $. 
+</p>
+</li><li><p>
+To give a map from the boundary of a $2$-simplex into $\tNerve (\calC )$ is to give a diagram (not necessarily commutative) 
+</p>
+<div class="equation">
+  \[  \xymatrix { &amp;  Y \ar [dr]^{f_{YZ}} &amp;  \\ X \ar [ur]^{f_{XY}} \ar [rr]^{f_{XZ}} &amp;  &amp;  Z} \]
+</div>
+<p>
+ To give a $2$-simplex of $\tNerve (\calC )$ having this specified boundary is equivalent to giving a path from $f_{XZ}$ to $f_{YZ} \circ f_{XY}$ in $\bHom _{\calC }(X,Z)$. 
+</p>
+</li>
+</ul>
+<p>
+The category $\sCat $ of simplicial categories admits (small) colimits. Consequently, by formal nonsense, the functor $\sCoNerve : \cDelta \rightarrow \sCat $ extends uniquely (up to unique isomorphism) to a colimit-preserving functor $\sSet \rightarrow \sCat $, which we will denote also by $\sCoNerve $. By construction, the functor $\sCoNerve $ is left adjoint to the simplicial nerve functor $\sNerve $CoNerve@$\sCoNerve [S]$. For each simplicial set $S$, we can view $\sCoNerve [S]$ as the simplicial category “freely generated” by $S$: every $n$-simplex $\sigma : \Delta ^ n \rightarrow S$ determines a functor $\sCoNerve [\Delta ^ n] \rightarrow \sCoNerve [S]$, which we can think of as a homotopy coherent diagram $[n] \rightarrow \sCoNerve [S]$. 
+</p>
+<p>
+<article class="env-example" id="">
+  <p><a class="environment-identifier" href="/tag/">Example <span data-tag="">1.1.5.9</span>.</a>Let $A$ be a partially ordered set. The simplicial category $\sCoNerve [\Nerve A]$ can be constructed using the following generalization of Definition <a href="/tag/DBCB83" data-tag="DBCB83">1.1.5.1</a>: </p>
+  <p><ul>
+  <li><p>
+The objects of $\sCoNerve [ \Nerve A]$ are the elements of $A$. 
+</p>
+</li><li><p>
+Given a pair of elements $a,b \in A$, the simplicial set $\bHom _{ \sCoNerve [ \Nerve A]}(a,b)$ can be identified with $\Nerve P_{a,b}$, where $P_{a,b}$ denotes the collection of linearly ordered subsets $S \subseteq A$ with least element $a$ and largest element $b$, partially ordered by inclusion. 
+</p>
+</li><li><p>
+Given a sequence of elements $a_0, \ldots , a_ n \in A$, the composition map 
+</p>
+<div class="equation">
+  \[  \bHom _{ \sCoNerve [ \Nerve A]}(a_0, a_1) \times \ldots \times \bHom _{ \sCoNerve [ \Nerve A]}( a_{n-1}, a_ n) \rightarrow \bHom _{ \sCoNerve [ \Nerve A]}(a_0, a_ n) \]
+</div>
+<p>
+ is induced by the map of partially ordered sets 
+</p>
+<div class="equation">
+  \[  P_{a_0, a_1} \times \ldots \times P_{a_{n-1}, a_ n} \rightarrow P_{ a_0, a_ n} \]
+</div>
+<div class="equation">
+  \[  (S_1, \ldots , S_ n) \mapsto S_1 \cup \ldots \cup S_ n. \]
+</div>
+</li>
+</ul></p>
+</article> 
+</p>
+<p>
+<article class="env-proposition" id="8ADA46">
+  <p><a class="environment-identifier" href="/tag/8ADA46">Proposition <span data-tag="8ADA46">1.1.5.10</span>.</a> Let $\calC $ be a simplicial category having the property that, for every pair of objects $X,Y \in \calC $, the simplicial set $\bHom _{\calC }(X,Y)$ is a Kan complex. Then the simplicial nerve $\sNerve (\calC )$ is an $\infty $-category. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We must show that if $0 < i < n$, then $\sNerve (\calC )$ has the right extension property with respect to the inclusion $\Lambda ^ n_ i \subseteq \Delta ^ n$. Rephrasing this in the language of simplicial categories, we must show that $\calC $ has the right extension property with respect to the simplicial functor $\sCoNerve [\Lambda ^ n_ i] \rightarrow \sCoNerve [\Delta ^ n].$ To prove this, we make use of the following observations concerning $\sCoNerve [\Lambda ^ n_ i]$, which we view as a simplicial subcategory of $\sCoNerve [\Delta ^ n]$: 
+    <p>
+      <ul>
+  <li><p>
+The objects of $\sCoNerve [\Lambda ^ n_ i]$ are the objects of $\sCoNerve [\Delta ^ n]$: that is, elements of the set $[n]$. 
+</p>
+</li><li><p>
+For $0 \leq j \leq k \leq n$, the simplicial set $\bHom _{\sCoNerve [\Lambda ^ n_ i]}(j,k)$ coincides with $\bHom _{\sCoNerve [\Delta ^ n]}(j,k)$ unless $j=0$ and $k=n$ (note that this condition fails if $i=0$ or $i=n$). 
+</p>
+</li>
+</ul>
+    <p>
+      Consequently, every extension problem 
+    <p>
+      <div class="equation">
+  \[  \xymatrix { \Lambda ^ n_ i \ar @{^{(}->}[d] \ar [r]^{F} &amp;  \Nerve (\calC ) \\ \Delta ^ n \ar @{-->}[ur] &amp;  } \]
+</div>
+    <p>
+       is equivalent to 
+    <p>
+      <div class="equation">
+  \[ \xymatrix { \bHom _{\sCoNerve [\Lambda ^ n_ i]}(0,n) \ar [d] \ar [r] &amp;  \bHom _{\calC }(F(0), F(n)) \\ \bHom _{ \sCoNerve [\Delta ^ n]}(0,n) \ar @{-->}[ur]. &amp;  } \]
+</div>
+    <p>
+       Since the simplicial set on the right is a Kan complex by assumption, it suffices to verify that the left vertical map is anodyne. This follows by inspection: the simplicial set $\bHom _{ \sCoNerve [ \Delta ^ n]}(0,n)$ can be identified with the cube $( \Delta ^1 )^{ \{  1, \ldots , n-1\}  }$, and $\bHom _{\sCoNerve [ \Lambda ^ n_ i]}(0,n)$ can be identified with the simplicial subset obtained by removing the interior of the cube together with one of its faces. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="86B6CE">
+  <p><a class="environment-identifier" href="/tag/86B6CE">Remark <span data-tag="86B6CE">1.1.5.11</span>.</a> The proof of Proposition <a href="/tag/8ADA46" data-tag="8ADA46">1.1.5.10</a> yields a slightly stronger result: if $F: \calC \rightarrow \calD $ is a functor between simplicial categories which induces Kan fibrations $\bHom _{\calC }(C,C') \rightarrow \bHom _{\calD }(F(C),F(C'))$ for every pair of objects $C,C' \in \calC $, then the associated map $\sNerve (\calC ) \rightarrow \sNerve (\calD )$ is an inner fibration of simplicial sets (see Definition <a href="/tag/04D6DB" data-tag="04D6DB">2.0.0.3</a>). </p>
+</article> 
+</p>
+<p>
+<article class="env-corollary" id="9AD68F">
+  <p><a class="environment-identifier" href="/tag/9AD68F">Corollary <span data-tag="9AD68F">1.1.5.12</span>.</a> Let $\calC $ be a topological category. Then the topological nerve $\tNerve (\calC )$ is an $\infty $-category. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows immediately from Proposition <a href="/tag/8ADA46" data-tag="8ADA46">1.1.5.10</a>, since the singular complex of any topological space is a Kan complex. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We now cite the following theorem, which will be proven in §<a href="/tag/4C39BB" data-tag="4C39BB">2.2.4</a> and refined in §<a href="/tag/00F21B" data-tag="00F21B">2.2.5</a>: 
+</p>
+<p>
+<article class="env-theorem" id="BDB1F7">
+  <p><a class="environment-identifier" href="/tag/BDB1F7">Theorem <span data-tag="BDB1F7">1.1.5.13</span>.</a> Let $\calC $ be a topological category, and let $X, Y \in \calC $ be objects. Then the counit map </p>
+  <div class="equation">
+  \[ |\bHom _{\sCoNerve [\tNerve (\calC )]}(X,Y)| \rightarrow \bHom _{\calC }(X,Y) \]
+</div>
+  <p> is a weak homotopy equivalence of topological spaces. </p>
+</article> 
+</p>
+<p>
+Assuming Theorem <a href="/tag/BDB1F7" data-tag="BDB1F7">1.1.5.13</a>, we can now explain why the theory of $\infty $-categories is equivalent to the theory of topological categories (or, equivalently, simplicial categories). The adjoint functors $\Nerve $ and $| \sCoNerve [ \bullet ] |$ are not mutually inverse equivalences of categories. However, they <em>are</em> homotopy inverse to one another. To make this precise, we need to introduce a definition. 
+</p>
+<p>
+<article class="env-definition" id="713A3C">
+  <p><a class="environment-identifier" href="/tag/713A3C">Definition <span data-tag="713A3C">1.1.5.14</span>.</a>homotopy category!of a simplicial set Let $S$ be a simplicial set. The <em>homotopy category</em> $\rm {h} \it {S}$ is defined to be the homotopy category $\rm {h} \it { \sCoNerve [S]}$ of the simplicial category $\sCoNerve [S]$.hS@$\rm {h} \it {S}$ We will often view $\rm {h} \it {S}$ as a category enriched over the homotopy category $\calH $ of spaces via the construction of §<a href="/tag/8F9A99" data-tag="8F9A99">1.1.4</a>: that is, for every pair of vertices $x,y \in S$, we have $\bHom _{ \rm {h} \it {S}}(x,y) = [ \bHom _{ \sCoNerve [S]}(x,y) ]$. A map $f: S \rightarrow T$ of simplicial sets is a <em>categorical equivalence</em> if the induced map $\rm {h} \it {S} \rightarrow \rm {h} \it {T}$ is an equivalence of $\calH $-enriched categories.categorical equivalence </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="">
+  <p><a class="environment-identifier" href="/tag/">Remark <span data-tag="">1.1.5.15</span>.</a>In <span class="cite">[<a href="/bibliography/joyalnotpub">joyalnotpub</a>]</span>, Joyal uses the term “weak categorical equivalence” for what we have called a “categorical equivalence”, and reserves the term “categorical equivalence” for a stronger notion of equivalence. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="">
+  <p><a class="environment-identifier" href="/tag/">Remark <span data-tag="">1.1.5.16</span>.</a>We have introduced the term “categorical equivalence”, rather than simply “equivalence” or “weak equivalence”, in order to avoid confusing the notion of categorical equivalence of simplicial sets with the (more classical) notion of weak homotopy equivalence of simplicial sets. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="2ED47F">
+  <p><a class="environment-identifier" href="/tag/2ED47F">Remark <span data-tag="2ED47F">1.1.5.17</span>.</a> It is immediate from the definition that $f: S \rightarrow T$ is a categorical equivalence if and only if $\sCoNerve [S] \rightarrow \sCoNerve [T]$ is an equivalence (of simplicial categories), if and only if $|\sCoNerve [S]| \rightarrow |\sCoNerve [T]|$ is an equivalence (of topological categories). </p>
+</article> 
+</p>
+<p>
+We now observe that the adjoint functors $(|\sCoNerve [ \bullet ]|, \tNerve )$ determine an equivalence between the theory of simplicial sets (up to categorical equivalence) and that of topological categories (up to equivalence). In other words, for any topological category $\calC $ the counit map $|\sCoNerve [ \tNerve (\calC )] | \rightarrow \calC $ is an equivalence of topological categories, and for any simplicial set $S$ the unit map $S \rightarrow \tNerve |\sCoNerve [S]|$ is a categorical equivalence of simplicial sets. In view of Remark <a href="/tag/2ED47F" data-tag="2ED47F">1.1.5.17</a>, the second assertion is a formal consequence of the first. Moreover, the first assertion is merely a reformulation of Theorem <a href="/tag/BDB1F7" data-tag="BDB1F7">1.1.5.13</a>. 
+</p>
+<p>
+<article class="env-remark" id="">
+  <p><a class="environment-identifier" href="/tag/">Remark <span data-tag="">1.1.5.18</span>.</a>The reader may at this point object that we have achieved a comparison between the theory of topological categories with the theory of simplicial sets, but that not every simplicial set is an $\infty $-category. However, every simplicial set is categorically equivalent to an $\infty $-category. In fact, Theorem <a href="/tag/BDB1F7" data-tag="BDB1F7">1.1.5.13</a> implies that every simplicial set $S$ is categorically equivalent to the nerve of the topological category $| \sCoNerve [S] |$, which is an $\infty $-category (Corollary <a href="/tag/9AD68F" data-tag="9AD68F">1.1.5.12</a>). </p>
+</article> 
+</p>
+
