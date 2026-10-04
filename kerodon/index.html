@@ -1392,9 +1392,19 @@
                 };
             }
 
-            if (hash.startsWith('tag=')) {
-                hash = hash.substring(4);
-            }
+            const params = new URLSearchParams(window.location.hash.substring(1));
+            hash = params.get('tag');
+            let hash_param_q = params.get('q');
+
+            const searchInput =
+            document.getElementById(
+                'tagSearchInput'
+            );
+
+            if(hash_param_q != null)
+                if(hash_param_q.length > 0){
+                    searchInput.value = hash_param_q;
+                }
 
             hash =
                 decodeURIComponent(hash).trim();
