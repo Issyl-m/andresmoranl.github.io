@@ -577,6 +577,9 @@
         let currentHintBuffer = "";
         let activeHintsMap = new Map();
 
+        let caseSensitiveSearch = false;
+        let filterSearch = true;
+
         const HISTORY_KEY = 'hacker_search_history';
 
         const DEFAULT_SAMPLES = [
@@ -1016,8 +1019,36 @@
                         }
                     );
                     return;
-                }     
+                }
 
+                /*
+                 * ----------------------------------------------------
+                 * Ctrl/Cmd + M
+                 * ----------------------------------------------------
+                */
+
+                if (
+                    (e.ctrlKey || e.metaKey) &&
+                    e.key === 'm'
+                ) {
+                    e.preventDefault();
+
+                    caseSensitiveSearch = caseSensitiveSearch ? false: true;
+                }
+                /*
+                 * ----------------------------------------------------
+                 * Ctrl/Cmd + ,
+                 * ----------------------------------------------------
+                */
+
+                if (
+                    (e.ctrlKey || e.metaKey) &&
+                    e.key === ','
+                ) {
+                    e.preventDefault();
+
+                    filterSearch = filterSearch ? false: true;
+                }
                 /*
                  * ----------------------------------------------------
                  * Ctrl/Cmd + /
@@ -1437,18 +1468,30 @@
             query,
             text
         ) {
-            if (!query) {
+            if (!query || !filterSearch) {
                 return true;
             }
 
-            const qWords =
-                query
-                    .toLowerCase()
-                    .trim()
-                    .split(/\s+/);
+            let qWords = "";
+            let lowerText = "";
 
-            const lowerText =
-                text.toLowerCase();
+            if(!caseSensitiveSearch){
+                qWords =
+                    query
+                        .toLowerCase()
+                        .trim()
+                        .split(/\s+/);
+
+                lowerText =
+                    text.toLowerCase();
+            } else {
+                qWords =
+                    query
+                        .trim()
+                        .split(/\s+/);
+
+                lowerText = text;
+            }
 
             return qWords.every(
                 word =>
@@ -1486,8 +1529,16 @@
                 return;
             }
 
-            const qWords = query
+            let qWords = "";
+
+            if(!caseSensitiveSearch) 
+                qWords = query
                 .toLowerCase()
+                .trim()
+                .split(/\s+/)
+                .filter(Boolean);
+            else
+                qWords = query
                 .trim()
                 .split(/\s+/)
                 .filter(Boolean);
@@ -1520,7 +1571,11 @@
 
             textNodes.forEach(node => {
                 const text = node.nodeValue;
-                const lowerText = text.toLowerCase();
+                let lowerText = ""
+                if (!caseSensitiveSearch) 
+                    lowerText = text.toLowerCase();
+                else
+                    lowerText = text
 
                 // 1. Find all raw MathJax ranges in this text node so we can protect them
                 const mathRanges = [];
