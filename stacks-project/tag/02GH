@@ -1,0 +1,546 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="morphisms-section-etale" class="tex-section"><span data-tag="02GH">29.37</span> Étale morphisms</h2>
+
+<p>
+The Zariski topology of a scheme is a very coarse topology. This is particularly clear when looking at varieties over $\mathbf{C}$. It turns out that declaring an étale morphism to be the analogue of a local isomorphism in topology introduces a much finer topology. On varieties over $\mathbf{C}$ this topology gives rise to the “correct” Betti numbers when computing cohomology with finite coefficients. Another observable is that if $f : X \to Y$ is an étale morphism of varieties over $\mathbf{C}$, and if $x$ is a closed point of $X$, then $f$ induces an isomorphism $\mathcal{O}^{\wedge }_{Y, f(x)} \to \mathcal{O}^{\wedge }_{X, x}$ of complete local rings. 
+</p>
+<p>
+In this section we start our study of these matters. In fact we deliberately restrict our discussion to a minimum since we will discuss more interesting results elsewhere. Recall that a ring map $R \to A$ is said to be <em>étale</em> if it is smooth and $\Omega _{A/R} = 0$, see Algebra, Definition <a href="/tag/00U1" data-tag="00U1">10.143.1</a>. 
+</p>
+<p>
+<article class="env-definition" id="02GI">
+  <p><a class="environment-identifier" href="/tag/02GI">Definition <span data-tag="02GI">29.37.1</span>.</a> Let $f : X \to S$ be a morphism of schemes. </p>
+  <p><ol>
+  <li><p>
+We say that $f$ is <em>étale at $x \in X$</em> if there exists an affine open neighbourhood $\mathop{\mathrm{Spec}}(A) = U \subset X$ of $x$ and affine open $\mathop{\mathrm{Spec}}(R) = V \subset S$ with $f(U) \subset V$ such that the induced ring map $R \to A$ is étale. 
+</p>
+</li><li><p>
+We say that $f$ is <em>étale</em> if it is étale at every point of $X$. 
+</p>
+</li><li><p>
+A morphism of affine schemes $f : X \to S$ is called <em>standard étale</em> if $X \to S$ is isomorphic to 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Spec}}(R[x]_ h/(g)) \to \mathop{\mathrm{Spec}}(R)  \]
+</div>
+<p>
+ where $R \to R[x]_ h/(g)$ is a standard étale ring map, see Algebra, Definition <a href="/tag/00UB" data-tag="00UB">10.144.1</a>, i.e., $g$ is monic and $g'$ invertible in $R[x]_ h/(g)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+A morphism is étale if and only if it is smooth of relative dimension $0$ (see Definition <a href="/tag/02G2" data-tag="02G2">29.35.13</a>). A pleasing feature of the definition is that the set of points where a morphism is étale is automatically open. 
+</p>
+<p>
+Note that there is no separation or quasi-compactness hypotheses in the definition. Hence the question of being étale is local in nature on the source. Here is the precise result. 
+</p>
+<p>
+<article class="env-lemma" id="02GJ">
+  <p><a class="environment-identifier" href="/tag/02GJ">Lemma <span data-tag="02GJ">29.37.2</span>.</a> Let $f : X \to S$ be a morphism of schemes. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+The morphism $f$ is étale. 
+</p>
+</li><li><p>
+For every affine opens $U \subset X$, $V \subset S$ with $f(U) \subset V$ the ring map $\mathcal{O}_ S(V) \to \mathcal{O}_ X(U)$ is étale. 
+</p>
+</li><li><p>
+There exists an open covering $S = \bigcup _{j \in J} V_ j$ and open coverings $f^{-1}(V_ j) = \bigcup _{i \in I_ j} U_ i$ such that each of the morphisms $U_ i \to V_ j$, $j\in J, i\in I_ j$ is étale. 
+</p>
+</li><li><p>
+There exists an affine open covering $S = \bigcup _{j \in J} V_ j$ and affine open coverings $f^{-1}(V_ j) = \bigcup _{i \in I_ j} U_ i$ such that the ring map $\mathcal{O}_ S(V_ j) \to \mathcal{O}_ X(U_ i)$ is étale, for all $j\in J, i\in I_ j$. 
+</p>
+</li>
+</ol></p>
+  <p> Moreover, if $f$ is étale then for any open subschemes $U \subset X$, $V \subset S$ with $f(U) \subset V$ the restriction $f|_ U : U \to V$ is étale. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from Lemma <a href="/tag/01ST" data-tag="01ST">29.14.3</a> if we show that the property “$R \to A$ is étale” is local. We check conditions (a), (b) and (c) of Definition <a href="/tag/01SR" data-tag="01SR">29.14.1</a>. These all follow from Algebra, Lemma <a href="/tag/00U2" data-tag="00U2">10.143.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02GN">
+  <p><a class="environment-identifier" href="/tag/02GN">Lemma <span data-tag="02GN">29.37.3</span>.</a> The composition of two morphisms which are étale is étale. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In the proof of Lemma <a href="/tag/02GJ" data-tag="02GJ">29.37.2</a> we saw that being étale is a local property of ring maps. Hence the first statement of the lemma follows from Lemma <a href="/tag/01SV" data-tag="01SV">29.14.5</a> combined with the fact that being étale is a property of ring maps that is stable under composition, see Algebra, Lemma <a href="/tag/00U2" data-tag="00U2">10.143.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02GO">
+  <p><a class="environment-identifier" href="/tag/02GO">Lemma <span data-tag="02GO">29.37.4</span>.</a> The base change of a morphism which is étale is étale. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In the proof of Lemma <a href="/tag/02GJ" data-tag="02GJ">29.37.2</a> we saw that being étale is a local property of ring maps. Hence the lemma follows from Lemma <a href="/tag/01SV" data-tag="01SV">29.14.5</a> combined with the fact that being étale is a property of ring maps that is stable under base change, see Algebra, Lemma <a href="/tag/00U2" data-tag="00U2">10.143.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02GK">
+  <p><a class="environment-identifier" href="/tag/02GK">Lemma <span data-tag="02GK">29.37.5</span>.</a> Let $f : X \to S$ be a morphism of schemes. Let $x \in X$. Then $f$ is étale at $x$ if and only if $f$ is smooth and unramified at $x$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows immediately from the definitions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03WS">
+  <p><a class="environment-identifier" href="/tag/03WS">Lemma <span data-tag="03WS">29.37.6</span>.</a> An étale morphism is locally quasi-finite. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/02GK" data-tag="02GK">29.37.5</a> an étale morphism is unramified. By Lemma <a href="/tag/02V5" data-tag="02V5">29.36.10</a> an unramified morphism is locally quasi-finite. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02GL">
+       
+      
+  <p><a class="environment-identifier" href="/tag/02GL">Lemma <span data-tag="02GL">29.37.7</span>.</a> Fibres of étale morphisms. </p>
+  <p><ol>
+  <li><p>
+Let $X$ be a scheme over a field $k$. The structure morphism $X \to \mathop{\mathrm{Spec}}(k)$ is étale if and only if $X$ is a disjoint union of spectra of finite separable field extensions of $k$. 
+</p>
+</li><li><p>
+If $f : X \to S$ is an étale morphism, then for every $s \in S$ the fibre $X_ s$ is a disjoint union of spectra of finite separable field extensions of $\kappa (s)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      You can deduce this from Lemma <a href="/tag/02G7" data-tag="02G7">29.36.11</a> via Lemma <a href="/tag/02GK" data-tag="02GK">29.37.5</a> above. Here is a direct proof. 
+    <p>
+      We will use Algebra, Lemma <a href="/tag/00U3" data-tag="00U3">10.143.4</a>. Hence it is clear that if $X$ is a disjoint union of spectra of finite separable field extensions of $k$ then $X \to \mathop{\mathrm{Spec}}(k)$ is étale. Conversely, suppose that $X \to \mathop{\mathrm{Spec}}(k)$ is étale. Then for any affine open $U \subset X$ we see that $U$ is a finite disjoint union of spectra of finite separable field extensions of $k$. Hence all points of $X$ are closed points (see Lemma <a href="/tag/01TE" data-tag="01TE">29.21.2</a> for example). Thus $X$ is a discrete space and we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma characterizes an étale morphism as a flat, finitely presented morphism with “étale fibres”. 
+</p>
+<p>
+<article class="env-lemma" id="02GM">
+  <p><a class="environment-identifier" href="/tag/02GM">Lemma <span data-tag="02GM">29.37.8</span>.</a> Let $f : X \to S$ be a morphism of schemes. If $f$ is flat, locally of finite presentation, and for every $s \in S$ the fibre $X_ s$ is a disjoint union of spectra of finite separable field extensions of $\kappa (s)$, then $f$ is étale. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      You can deduce this from Algebra, Lemma <a href="/tag/00U6" data-tag="00U6">10.143.7</a>. Here is another proof. 
+    <p>
+      By Lemma <a href="/tag/02GL" data-tag="02GL">29.37.7</a> a fibre $X_ s$ is étale and hence smooth over $s$. By Lemma <a href="/tag/01V8" data-tag="01V8">29.35.3</a> we see that $X \to S$ is smooth. By Lemma <a href="/tag/02G8" data-tag="02G8">29.36.12</a> we see that $f$ is unramified. We conclude by Lemma <a href="/tag/02GK" data-tag="02GK">29.37.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02GP">
+  <p><a class="environment-identifier" href="/tag/02GP">Lemma <span data-tag="02GP">29.37.9</span>.</a> Any open immersion is étale. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is true because an open immersion is a local isomorphism. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02GQ">
+  <p><a class="environment-identifier" href="/tag/02GQ">Lemma <span data-tag="02GQ">29.37.10</span>.</a> An étale morphism is syntomic. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See Algebra, Lemma <a href="/tag/00TA" data-tag="00TA">10.137.9</a> and use that an étale morphism is the same as a smooth morphism of relative dimension $0$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02GR">
+  <p><a class="environment-identifier" href="/tag/02GR">Lemma <span data-tag="02GR">29.37.11</span>.</a> An étale morphism is locally of finite presentation. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      True because an étale ring map is of finite presentation by definition. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02GS">
+  <p><a class="environment-identifier" href="/tag/02GS">Lemma <span data-tag="02GS">29.37.12</span>.</a> An étale morphism is flat. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Combine Lemmas <a href="/tag/01UL" data-tag="01UL">29.31.7</a> and <a href="/tag/02GQ" data-tag="02GQ">29.37.10</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03WT">
+  <p><a class="environment-identifier" href="/tag/03WT">Lemma <span data-tag="03WT">29.37.13</span>.</a> An étale morphism is open. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Combine Lemmas <a href="/tag/02GS" data-tag="02GS">29.37.12</a>, <a href="/tag/02GR" data-tag="02GR">29.37.11</a>, and <a href="/tag/01UA" data-tag="01UA">29.26.10</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma says locally any étale morphism is standard étale. This is actually kind of a tricky result to prove in complete generality. The tricky parts are hidden in the chapter on commutative algebra. Hence a standard étale morphism is a <em>local model</em> for a general étale morphism. 
+</p>
+<p>
+<article class="env-lemma" id="02GT">
+  <p><a class="environment-identifier" href="/tag/02GT">Lemma <span data-tag="02GT">29.37.14</span>.</a> Let $f : X \to S$ be a morphism of schemes. Let $x \in X$ be a point. Let $V \subset S$ be an affine open neighbourhood of $f(x)$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+The morphism $f$ is étale at $x$. 
+</p>
+</li><li><p>
+There exist an affine open $U \subset X$ with $x \in U$ and $f(U) \subset V$ such that the induced morphism $f|_ U : U \to V$ is standard étale (see Definition <a href="/tag/02GI" data-tag="02GI">29.37.1</a>). 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows from the definitions and Algebra, Proposition <a href="/tag/00UE" data-tag="00UE">10.144.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Here is a differential criterion of étaleness at a point. There are many variants of this result all of which may be useful at some point. We will just add them here as needed. 
+</p>
+<p>
+<article class="env-lemma" id="02GU">
+  <p><a class="environment-identifier" href="/tag/02GU">Lemma <span data-tag="02GU">29.37.15</span>.</a> Let $f : X \to S$ be a morphism of schemes. Let $x \in X$. Set $s = f(x)$. Assume $f$ is locally of finite presentation. The following are equivalent: </p>
+  <p><ol>
+  <li><p>
+The morphism $f$ is étale at $x$. 
+</p>
+</li><li><p>
+The local ring map $\mathcal{O}_{S, s} \to \mathcal{O}_{X, x}$ is flat and $X_ s \to \mathop{\mathrm{Spec}}(\kappa (s))$ is étale at $x$. 
+</p>
+</li><li><p>
+The local ring map $\mathcal{O}_{S, s} \to \mathcal{O}_{X, x}$ is flat and $X_ s \to \mathop{\mathrm{Spec}}(\kappa (s))$ is unramified at $x$. 
+</p>
+</li><li><p>
+The local ring map $\mathcal{O}_{S, s} \to \mathcal{O}_{X, x}$ is flat and the $\mathcal{O}_{X, x}$-module $\Omega _{X/S, x}$ is zero. 
+</p>
+</li><li><p>
+The local ring map $\mathcal{O}_{S, s} \to \mathcal{O}_{X, x}$ is flat and the $\kappa (x)$-vector space 
+</p>
+<div class="equation">
+  \[  \Omega _{X_ s/s, x} \otimes _{\mathcal{O}_{X_ s, x}} \kappa (x) = \Omega _{X/S, x} \otimes _{\mathcal{O}_{X, x}} \kappa (x)  \]
+</div>
+<p>
+ is zero. 
+</p>
+</li><li><p>
+The local ring map $\mathcal{O}_{S, s} \to \mathcal{O}_{X, x}$ is flat, we have $\mathfrak m_ s\mathcal{O}_{X, x} = \mathfrak m_ x$ and the field extension $\kappa (x)/\kappa (s)$ is finite separable. 
+</p>
+</li><li><p>
+There exist affine opens $U \subset X$, and $V \subset S$ such that $x \in U$, $f(U) \subset V$ and the induced morphism $f|_ U : U \to V$ is standard smooth of relative dimension $0$. 
+</p>
+</li><li><p>
+There exist affine opens $\mathop{\mathrm{Spec}}(A) = U \subset X$ and $\mathop{\mathrm{Spec}}(R) = V \subset S$ with $x \in U$ corresponding to $\mathfrak q \subset A$, and $f(U) \subset V$ such that there exists a presentation 
+</p>
+<div class="equation">
+  \[  A = R[x_1, \ldots , x_ n]/(f_1, \ldots , f_ n)  \]
+</div>
+<p>
+ with 
+</p>
+<div class="equation">
+  \[  g = \det \left( \begin{matrix}  \partial f_1/\partial x_1 
+
+&  \partial f_2/\partial x_1 
+
+&  \ldots 
+
+&  \partial f_ n/\partial x_1 
+
+\\  \partial f_1/\partial x_2 
+
+&  \partial f_2/\partial x_2 
+
+&  \ldots 
+
+&  \partial f_ n/\partial x_2 
+
+\\  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+\\  \partial f_1/\partial x_ n 
+
+&  \partial f_2/\partial x_ n 
+
+&  \ldots 
+
+&  \partial f_ n/\partial x_ n 
+
+\end{matrix} \right)  \]
+</div>
+<p>
+ mapping to an element of $A$ not in $\mathfrak q$. 
+</p>
+</li><li><p>
+There exist affine opens $U \subset X$, and $V \subset S$ such that $x \in U$, $f(U) \subset V$ and the induced morphism $f|_ U : U \to V$ is standard étale. 
+</p>
+</li><li><p>
+There exist affine opens $\mathop{\mathrm{Spec}}(A) = U \subset X$ and $\mathop{\mathrm{Spec}}(R) = V \subset S$ with $x \in U$ corresponding to $\mathfrak q \subset A$, and $f(U) \subset V$ such that there exists a presentation 
+</p>
+<div class="equation">
+  \[  A = R[x]_ Q/(P) = R[x, 1/Q]/(P)  \]
+</div>
+<p>
+ with $P, Q \in R[x]$, $P$ monic and $P' = \text{d}P/\text{d}x$ mapping to an element of $A$ not in $\mathfrak q$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Use Lemma <a href="/tag/02GT" data-tag="02GT">29.37.14</a> and the definitions to see that (1) implies all of the other conditions. For each of the conditions (2) – (10) combine Lemmas <a href="/tag/01V9" data-tag="01V9">29.35.14</a> and <a href="/tag/02GF" data-tag="02GF">29.36.14</a> to see that (1) holds by showing $f$ is both smooth and unramified at $x$ and applying Lemma <a href="/tag/02GK" data-tag="02GK">29.37.5</a>. Some details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02GV">
+  <p><a class="environment-identifier" href="/tag/02GV">Lemma <span data-tag="02GV">29.37.16</span>.</a> A morphism is étale at a point if and only if it is flat and G-unramified at that point. A morphism is étale if and only if it is flat and G-unramified. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is clear from Lemmas <a href="/tag/02GU" data-tag="02GU">29.37.15</a> and <a href="/tag/02GF" data-tag="02GF">29.36.14</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0476">
+  <p><a class="environment-identifier" href="/tag/0476">Lemma <span data-tag="0476">29.37.17</span>.</a> Let </p>
+  <div class="equation">
+  \[  \xymatrix{ X' \ar[r]_{g'} \ar[d]_{f'} &  X \ar[d]^ f \\  S' \ar[r]^ g &  S }  \]
+</div>
+  <p> be a cartesian diagram of schemes. Let $W \subset X$, resp. $W' \subset X'$ be the open subscheme of points where $f$, resp. $f'$ is étale. Then $W' = (g')^{-1}(W)$ if </p>
+  <p><ol>
+  <li><p>
+$f$ is flat and locally of finite presentation, or 
+</p>
+</li><li><p>
+$f$ is locally of finite presentation and $g$ is flat. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume first that $f$ locally of finite type. Consider the set 
+    <p>
+      <div class="equation">
+  \[  T = \{ x \in X \mid f\text{ is unramified at }x\}   \]
+</div>
+    <p>
+       and the corresponding set $T' \subset X'$ for $f'$. Then $T' = (g')^{-1}(T)$ by Lemma <a href="/tag/0475" data-tag="0475">29.36.15</a>. 
+    <p>
+      Thus case (1) follows because in case (1) $T$ is the (open) set of points where $f$ is étale by Lemma <a href="/tag/02GV" data-tag="02GV">29.37.16</a>. 
+    <p>
+      In case (2) let $x' \in W'$. Then $g'$ is flat at $x'$ (Lemma <a href="/tag/01U8" data-tag="01U8">29.26.7</a>) and $g \circ f'$ is flat at $x'$ (Lemma <a href="/tag/01U6" data-tag="01U6">29.26.5</a>). It follows that $f$ is flat at $x = g'(x')$ by Lemma <a href="/tag/02JZ" data-tag="02JZ">29.26.13</a>. On the other hand, since $x' \in T'$ (Lemma <a href="/tag/01VB" data-tag="01VB">29.35.5</a>) we see that $x \in T$. Hence $f$ is étale at $x$ by Lemma <a href="/tag/02GU" data-tag="02GU">29.37.15</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0HB1">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0HB1">Lemma <span data-tag="0HB1">29.37.18</span>.</a> Let $f : X \to Y$ be a morphism of schemes over $S$. If $X$ is étale over $S$ and $Y$ is unramified over $S$, then $f$ is étale. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider the factorization $X \to X \times _ S Y \to Y$, where the first arrow is given by $\text{id}_ X$ and $f$ and the second arrow is the projection. We claim both arrows are étale and hence $f$ is étale by Lemma <a href="/tag/02GN" data-tag="02GN">29.37.3</a>. Namely, the projection is étale as it is the base change of $X \to S$, see Lemma <a href="/tag/02GO" data-tag="02GO">29.37.4</a>. The first arrow is the base change of the diagonal morphism $Y \to Y \times _ S Y$ because the square 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X \ar[d] \ar[r] &  X \times _ S Y \ar[d] \\  Y \ar[r] &  Y \times _ S Y }  \]
+</div>
+    <p>
+       is cartesian. The diagonal $Y \to Y \times _ S Y$ is an open immersion by Lemma <a href="/tag/02GE" data-tag="02GE">29.36.13</a>. The base change of an open immersion is an open immersion (Schemes, Lemma <a href="/tag/01JY" data-tag="01JY">26.18.2</a>) and an open immersion is étale (Lemma <a href="/tag/02GP" data-tag="02GP">29.37.9</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02GW">
+       
+      
+  <p><a class="environment-identifier" href="/tag/02GW">Lemma <span data-tag="02GW">29.37.19</span>.</a> Let $f : X \to Y$ be a morphism of schemes over $S$. If $X$ and $Y$ are étale over $S$, then $f$ is étale. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $Y \to S$ is unramified by Lemma <a href="/tag/02GK" data-tag="02GK">29.37.5</a> we may apply Lemma <a href="/tag/0HB1" data-tag="0HB1">29.37.18</a>. See also Algebra, Lemma <a href="/tag/00U7" data-tag="00U7">10.143.8</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02K6">
+  <p><a class="environment-identifier" href="/tag/02K6">Lemma <span data-tag="02K6">29.37.20</span>.</a> Let </p>
+  <div class="equation">
+  \[  \xymatrix{ X \ar[rr]_ f \ar[rd]_ p &  &  Y \ar[dl]^ q \\  &  S }  \]
+</div>
+  <p> be a commutative diagram of morphisms of schemes. Assume that </p>
+  <p><ol>
+  <li><p>
+$f$ is surjective, and étale, 
+</p>
+</li><li><p>
+$p$ is étale, and 
+</p>
+</li><li><p>
+$q$ is locally of finite presentation<a class="footnotemark" href="#a0000648415" id="a0000648415-mark"><sup>1</sup></a>. 
+</p>
+</li>
+</ol></p>
+  <p> Then $q$ is étale. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/02K5" data-tag="02K5">29.35.19</a> we see that $q$ is smooth. Thus we only need to see that $q$ has relative dimension $0$. This follows from Lemma <a href="/tag/02JS" data-tag="02JS">29.29.2</a> and the fact that $f$ and $p$ have relative dimension $0$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+A final characterization of smooth morphisms is that a smooth morphism $f : X \to S$ is locally the composition of an étale morphism by a projection $\mathbf{A}_ S^ d \to S$. 
+</p>
+<p>
+<article class="env-lemma" id="054L">
+       
+      
+  <p><a class="environment-identifier" href="/tag/054L">Lemma <span data-tag="054L">29.37.21</span>.</a> Let $\varphi : X \to Y$ be a morphism of schemes. Let $x \in X$. Let $V \subset Y$ be an affine open neighbourhood of $\varphi (x)$. If $\varphi $ is smooth at $x$, then there exists an integer $d \geq 0$ and an affine open $U \subset X$ with $x \in U$ and $\varphi (U) \subset V$ such that there exists a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ X \ar[d] &  U \ar[l] \ar[d] \ar[r]_-\pi &  \mathbf{A}^ d_ V \ar[ld] \\  Y &  V \ar[l] }  \]
+</div>
+  <p> where $\pi $ is étale. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/01V7" data-tag="01V7">29.35.11</a> we can find an affine open $U$ as in the lemma such that $\varphi |_ U : U \to V$ is standard smooth. Write $U = \mathop{\mathrm{Spec}}(A)$ and $V = \mathop{\mathrm{Spec}}(R)$ so that we can write 
+    <p>
+      <div class="equation">
+  \[  A = R[x_1, \ldots , x_ n]/(f_1, \ldots , f_ c)  \]
+</div>
+    <p>
+       with 
+    <p>
+      <div class="equation">
+  \[  g = \det \left( \begin{matrix}  \partial f_1/\partial x_1 
+
+&  \partial f_2/\partial x_1 
+
+&  \ldots 
+
+&  \partial f_ c/\partial x_1 
+
+\\  \partial f_1/\partial x_2 
+
+&  \partial f_2/\partial x_2 
+
+&  \ldots 
+
+&  \partial f_ c/\partial x_2 
+
+\\  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+\\  \partial f_1/\partial x_ c 
+
+&  \partial f_2/\partial x_ c 
+
+&  \ldots 
+
+&  \partial f_ c/\partial x_ c 
+
+\end{matrix} \right)  \]
+</div>
+    <p>
+       mapping to an invertible element of $A$. Then it is clear that $R[x_{c + 1}, \ldots , x_ n] \to A$ is standard smooth of relative dimension $0$. Hence it is smooth of relative dimension $0$. In other words the ring map $R[x_{c + 1}, \ldots , x_ n] \to A$ is étale. As $\mathbf{A}^{n - c}_ V = \mathop{\mathrm{Spec}}(R[x_{c + 1}, \ldots , x_ n])$ the lemma with $d = n - c$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

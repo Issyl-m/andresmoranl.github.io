@@ -1,0 +1,103 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sheaves-section-sheaves-structures" class="tex-section"><span data-tag="0071">6.9</span> Sheaves of algebraic structures</h2>
+
+<p>
+Let us clarify the definition of sheaves of certain types of structures. First, let us reformulate the sheaf condition. Namely, suppose that $\mathcal{F}$ is a presheaf of sets on the topological space $X$. The sheaf condition can be reformulated as follows. Let $U = \bigcup _{i\in I} U_ i$ be an open covering. Consider the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathcal{F}(U) \ar[r] &  \prod \nolimits _{i\in I} \mathcal{F}(U_ i) \ar@<1ex>[r] \ar@<-1ex>[r] &  \prod \nolimits _{(i_0, i_1) \in I \times I} \mathcal{F}(U_{i_0} \cap U_{i_1}) }  \]
+</div>
+<p>
+ Here the left map is defined by the rule $s \mapsto \prod _{i \in I} s|_{U_ i}$. The two maps on the right are the maps 
+</p>
+<div class="equation">
+  \[  \prod \nolimits _ i s_ i \mapsto \prod \nolimits _{(i_0, i_1)} s_{i_0}|_{U_{i_0} \cap U_{i_1}} \text{ resp. } \prod \nolimits _ i s_ i \mapsto \prod \nolimits _{(i_0, i_1)} s_{i_1}|_{U_{i_0} \cap U_{i_1}}.  \]
+</div>
+<p>
+ The sheaf condition exactly says that the left arrow is the equalizer of the right two. This generalizes immediately to the case of presheaves with values in a category as long as the category has products. 
+</p>
+<p>
+<article class="env-definition" id="0072">
+  <p><a class="environment-identifier" href="/tag/0072">Definition <span data-tag="0072">6.9.1</span>.</a> Let $X$ be a topological space. Let $\mathcal{C}$ be a category with products. A presheaf $\mathcal{F}$ with values in $\mathcal{C}$ on $X$ is a <em>sheaf</em> if for every open covering the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{F}(U) \ar[r] &  \prod \nolimits _{i\in I} \mathcal{F}(U_ i) \ar@<1ex>[r] \ar@<-1ex>[r] &  \prod \nolimits _{(i_0, i_1) \in I \times I} \mathcal{F}(U_{i_0} \cap U_{i_1}) }  \]
+</div>
+  <p> is an equalizer diagram in the category $\mathcal{C}$. </p>
+</article> 
+</p>
+<p>
+Suppose that $\mathcal{C}$ is a category and that $F : \mathcal{C} \to \textit{Sets}$ is a faithful functor. A good example to keep in mind is the case where $\mathcal{C}$ is the category of abelian groups and $F$ is the forgetful functor. Consider a presheaf $\mathcal{F}$ with values in $\mathcal{C}$ on $X$. We would like to reformulate the condition above in terms of the underlying presheaf of sets (Definition <a href="/tag/006O" data-tag="006O">6.5.2</a>). Note that the underlying presheaf of sets is a sheaf of sets if and only if all the diagrams 
+</p>
+<div class="equation">
+  \[  \xymatrix{ F(\mathcal{F}(U)) \ar[r] &  \prod \nolimits _{i\in I} F(\mathcal{F}(U_ i)) \ar@<1ex>[r] \ar@<-1ex>[r] &  \prod \nolimits _{(i_0, i_1) \in I \times I} F(\mathcal{F}(U_{i_0} \cap U_{i_1})) }  \]
+</div>
+<p>
+ of sets – after applying the forgetful functor $F$ – are equalizer diagrams! Thus we would like $\mathcal{C}$ to have products and equalizers and we would like $F$ to commute with them. This is equivalent to the condition that $\mathcal{C}$ has limits and that $F$ commutes with them, see Categories, Lemma <a href="/tag/002N" data-tag="002N">4.14.11</a>. But this is not yet good enough (see Example <a href="/tag/0075" data-tag="0075">6.9.4</a>); we also need $F$ to <em>reflect isomorphisms</em>. This property means that given a morphism $f : A \to A'$ in $\mathcal{C}$, then $f$ is an isomorphism if (and only if) $F(f)$ is a bijection. 
+</p>
+<p>
+<article class="env-lemma" id="0073">
+  <p><a class="environment-identifier" href="/tag/0073">Lemma <span data-tag="0073">6.9.2</span>.</a> Suppose the category $\mathcal{C}$ and the functor $F : \mathcal{C} \to \textit{Sets}$ have the following properties: </p>
+  <p><ol>
+  <li><p>
+$F$ is faithful, 
+</p>
+</li><li><p>
+$\mathcal{C}$ has limits and $F$ commutes with them, and 
+</p>
+</li><li><p>
+the functor $F$ reflects isomorphisms. 
+</p>
+</li>
+</ol></p>
+  <p> Let $X$ be a topological space. Let $\mathcal{F}$ be a presheaf with values in $\mathcal{C}$. Then $\mathcal{F}$ is a sheaf if and only if the underlying presheaf of sets is a sheaf. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume that $\mathcal{F}$ is a sheaf. Then $\mathcal{F}(U)$ is the equalizer of the diagram above and by assumption we see $F(\mathcal{F}(U))$ is the equalizer of the corresponding diagram of sets. Hence $F(\mathcal{F})$ is a sheaf of sets. 
+    <p>
+      Assume that $F(\mathcal{F})$ is a sheaf. Let $E \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ be the equalizer of the two parallel arrows in Definition <a href="/tag/0072" data-tag="0072">6.9.1</a>. We get a canonical morphism $\mathcal{F}(U) \to E$, simply because $\mathcal{F}$ is a presheaf. By assumption, the induced map $F(\mathcal{F}(U)) \to F(E)$ is an isomorphism, because $F(E)$ is the equalizer of the corresponding diagram of sets. Hence we see $\mathcal{F}(U) \to E$ is an isomorphism by condition (3) of the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The lemma in particular applies to <em>sheaves of groups, rings, algebras over a fixed ring, modules over a fixed ring, vector spaces over a fixed field, </em> etc. In other words, these are presheaves of groups, rings, modules over a fixed ring, vector spaces over a fixed field, etc such that the underlying presheaf of sets is a sheaf. 
+</p>
+<p>
+<article class="env-example" id="0074">
+  <p><a class="environment-identifier" href="/tag/0074">Example <span data-tag="0074">6.9.3</span>.</a> Let $X$ be a topological space. For each open $U \subset X$ consider the $\mathbf{R}$-algebra $\mathcal{C}^{0}(U) = \{  f : U \to \mathbf{R} \mid f\text{ is continuous}\} $. There are obvious restriction mappings that turn this into a presheaf of $\mathbf{R}$-algebras over $X$. By Example <a href="/tag/006V" data-tag="006V">6.7.3</a> it is a sheaf of sets. Hence by the Lemma <a href="/tag/0073" data-tag="0073">6.9.2</a> it is a sheaf of $\mathbf{R}$-algebras over $X$. </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="0075">
+  <p><a class="environment-identifier" href="/tag/0075">Example <span data-tag="0075">6.9.4</span>.</a> Consider the category of topological spaces $\textit{Top}$. There is a natural faithful functor $\textit{Top} \to \textit{Sets}$ which commutes with products and equalizers. But it does not reflect isomorphisms. And, in fact it turns out that the analogue of Lemma <a href="/tag/0073" data-tag="0073">6.9.2</a> is wrong. Namely, suppose $X = \mathbf{N}$ with the discrete topology. Let $A_ i$, for $i \in \mathbf{N}$ be a discrete topological space. For any subset $U \subset \mathbf{N}$ define $\mathcal{F}(U) = \prod _{i\in U} A_ i$ with the discrete topology. Then this is a presheaf of topological spaces whose underlying presheaf of sets is a sheaf, see Example <a href="/tag/006X" data-tag="006X">6.7.5</a>. However, if each $A_ i$ has at least two elements, then this is not a sheaf of topological spaces according to Definition <a href="/tag/0072" data-tag="0072">6.9.1</a>. The reader may check that putting the <em>product topology</em> on each $\mathcal{F}(U) = \prod _{i\in U} A_ i$ does lead to a sheaf of topological spaces over $X$. </p>
+</article> 
+</p>

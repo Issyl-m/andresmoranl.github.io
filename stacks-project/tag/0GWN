@@ -1,0 +1,141 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-algebra-section-symmetric-monoidal" class="tex-section"><span data-tag="0GWN">15.59</span> Tensor products of complexes</h2>
+
+<p>
+Let $R$ be a ring. The category $\text{Comp}(R)$ of complexes of $R$-modules has a symmetric monoidal structure. Namely, suppose that we have two complexes of $R$-modules $L^\bullet $ and $M^\bullet $. Using Homology, Example <a href="/tag/0A5J" data-tag="0A5J">12.18.2</a> and Homology, Definition <a href="/tag/012Z" data-tag="012Z">12.18.3</a> we obtain a third complex of $R$-modules, namely 
+</p>
+<div class="equation">
+  \[  \text{Tot}(L^\bullet \otimes _ R M^\bullet )  \]
+</div>
+<p>
+ Clearly this construction is functorial in both $L^\bullet $ and $M^\bullet $. The associativity constraint will be the canonical isomorphism of complexes 
+</p>
+<div class="equation">
+  \[  \text{Tot}(\text{Tot}(K^\bullet \otimes _ R L^\bullet ) \otimes _ R M^\bullet ) \longrightarrow \text{Tot}(K^\bullet \otimes _ R \text{Tot}(L^\bullet \otimes _ R M^\bullet ))  \]
+</div>
+<p>
+ constructed in Homology, Remark <a href="/tag/08BI" data-tag="08BI">12.18.4</a> from the triple complex $K^\bullet \otimes _ R L^\bullet \otimes _ R M^\bullet $. The commutativity constraint is the canonical isomorphism 
+</p>
+<div class="equation">
+  \[  \text{Tot}(L^\bullet \otimes _ R M^\bullet ) \to \text{Tot}(M^\bullet \otimes _ R L^\bullet )  \]
+</div>
+<p>
+ which uses the sign $(-1)^{pq}$ on the summand $L^ p \otimes _ R M^ q$. To see that it is a map of complexes we compute for $x \in L^ p$ and $y \in M^ q$ that 
+</p>
+<div class="equation">
+  \[  \text{d}(x \otimes y) = \text{d}_ L(x) \otimes y + (-1)^ px \otimes \text{d}_ M(y)  \]
+</div>
+<p>
+ Our rule says the right hand side is mapped to 
+</p>
+<div class="equation">
+  \[  (-1)^{(p + 1)q}y \otimes \text{d}_ L(x) + (-1)^{p + p(q + 1)} \text{d}_ M(y) \otimes x  \]
+</div>
+<p>
+ On the other hand, we see that 
+</p>
+<div class="equation">
+  \[  \text{d}((-1)^{pq}y \otimes x) = (-1)^{pq} \text{d}_ M(y) \otimes x + (-1)^{pq + q} y \otimes \text{d}_ L(x)  \]
+</div>
+<p>
+ These two expressions agree by inspection as desired. 
+</p>
+<p>
+<article class="env-lemma" id="0FNI">
+  <p><a class="environment-identifier" href="/tag/0FNI">Lemma <span data-tag="0FNI">15.59.1</span>.</a> Let $R$ be a ring. The category $\text{Comp}(R)$ of complexes of $R$-modules endowed with the functor $(L^\bullet , M^\bullet ) \mapsto \text{Tot}(L^\bullet \otimes _ R M^\bullet )$ and associativity and commutativity constraints as above is a symmetric monoidal category. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. Hints: as unit $\mathbf{1}$ we take the complex having $R$ in degree $0$ and zero in other degrees with obvious isomorphisms $\text{Tot}(\mathbf{1} \otimes _ R M^\bullet ) = M^\bullet $ and $\text{Tot}(K^\bullet \otimes _ R \mathbf{1}) = K^\bullet $. to prove the lemma you have to check the commutativity of various diagrams, see Categories, Definitions <a href="/tag/0FFK" data-tag="0FFK">4.43.3</a> and <a href="/tag/0FFW" data-tag="0FFW">4.43.12</a>. The verifications are straightforward in each case. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="064I">
+  <p><a class="environment-identifier" href="/tag/064I">Lemma <span data-tag="064I">15.59.2</span>.</a> Let $R$ be a ring. Let $P^\bullet $ be a complex of $R$-modules. Let $\alpha , \beta : L^\bullet \to M^\bullet $ be homotopic maps of complexes. Then $\alpha $ and $\beta $ induce homotopic maps </p>
+  <div class="equation">
+  \[  \text{Tot}(\alpha \otimes \text{id}_ P), \text{Tot}(\beta \otimes \text{id}_ P) : \text{Tot}(L^\bullet \otimes _ R P^\bullet ) \longrightarrow \text{Tot}(M^\bullet \otimes _ R P^\bullet ).  \]
+</div>
+  <p> In particular the construction $L^\bullet \mapsto \text{Tot}(L^\bullet \otimes _ R P^\bullet )$ defines an endo-functor of the homotopy category of complexes. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Say $\alpha = \beta + dh + hd$ for some homotopy $h$ defined by $h^ n : L^ n \to M^{n - 1}$. Set 
+    <p>
+      <div class="equation">
+  \[  H^ n = \bigoplus \nolimits _{a + b = n} h^ a \otimes \text{id}_{P^ b} : \bigoplus \nolimits _{a + b = n} L^ a \otimes _ R P^ b \longrightarrow \bigoplus \nolimits _{a + b = n} M^{a - 1} \otimes _ R P^ b  \]
+</div>
+    <p>
+       Then a straightforward computation shows that 
+    <p>
+      <div class="equation">
+  \[  \text{Tot}(\alpha \otimes \text{id}_ P) = \text{Tot}(\beta \otimes \text{id}_ P) + dH + Hd  \]
+</div>
+    <p>
+       as maps $\text{Tot}(L^\bullet \otimes _ R P^\bullet ) \to \text{Tot}(M^\bullet \otimes _ R P^\bullet )$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GWP">
+  <p><a class="environment-identifier" href="/tag/0GWP">Lemma <span data-tag="0GWP">15.59.3</span>.</a> Let $R$ be a ring. The homotopy category $K(R)$ of complexes of $R$-modules endowed with the functor $(L^\bullet , M^\bullet ) \mapsto \text{Tot}(L^\bullet \otimes _ R M^\bullet )$ and associativity and commutativity constraints as above is a symmetric monoidal category. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from Lemmas <a href="/tag/0FNI" data-tag="0FNI">15.59.1</a> and <a href="/tag/064I" data-tag="064I">15.59.2</a>. Details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="064J">
+  <p><a class="environment-identifier" href="/tag/064J">Lemma <span data-tag="064J">15.59.4</span>.</a> Let $R$ be a ring. Let $P^\bullet $ be a complex of $R$-modules. The functors </p>
+  <div class="equation">
+  \[  K(R) \longrightarrow K(R), \quad L^\bullet \longmapsto \text{Tot}(P^\bullet \otimes _ R L^\bullet )  \]
+</div>
+  <p> and </p>
+  <div class="equation">
+  \[  K(R) \longrightarrow K(R), \quad L^\bullet \longmapsto \text{Tot}(L^\bullet \otimes _ R P^\bullet )  \]
+</div>
+  <p> are exact functors of triangulated categories. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from Derived Categories, Remark <a href="/tag/0G6E" data-tag="0G6E">13.10.9</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

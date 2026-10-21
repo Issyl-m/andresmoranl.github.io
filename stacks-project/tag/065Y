@@ -1,0 +1,205 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-algebra-section-tor-independence" class="tex-section"><span data-tag="065Y">15.62</span> Tor independence</h2>
+
+<p>
+Consider a commutative diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ A \ar[r] &  A' \\  R \ar[r] \ar[u] &  R' \ar[u] }  \]
+</div>
+<p>
+ of rings. Given an object $K$ of $D(A)$ we can consider its derived base change $K \otimes _ A^\mathbf {L} A'$ to an object of $D(A')$. Or we can take the restriction of $K$ to an object of $D(R)$ and consider the derived base change of this to an object of $D(R')$, denoted $K \otimes _ R^\mathbf {L} R'$. We claim there is a functorial comparison map 
+</p>
+<div class="equation" id="065Z">
+    <span class="equation-label"><a href="/tag/065Z" data-tag="065Z">15.62.0.1</a></span>
+  <div>\begin{equation}  \label{more-algebra-equation-comparison-map} K \otimes _ R^{\mathbf{L}} R' \longrightarrow K \otimes _ A^{\mathbf{L}} A' \end{equation}</div>
+</div>
+<p>
+ in $D(R')$. To construct this comparison map choose a K-flat complex $K^\bullet $ of $A$-modules representing $K$. Next, choose a quasi-isomorphism $E^\bullet \to K^\bullet $ where $E^\bullet $ is a K-flat complex of $R$-modules. The map above is the map 
+</p>
+<div class="equation">
+  \[  K \otimes _ R^{\mathbf{L}} R' = E^\bullet \otimes _ R R' \longrightarrow K^\bullet \otimes _ A A' = K \otimes _ A^{\mathbf{L}} A'  \]
+</div>
+<p>
+ In general there is no chance that this map is an isomorphism. 
+</p>
+<p>
+However, we often encounter the situation where the diagram above is a “base change” diagram of rings, i.e., $A' = A \otimes _ R R'$. In this situation, for any $A$-module $M$ we have $M \otimes _ A A' = M \otimes _ R R'$. Thus $- \otimes _ R R'$ is equal to $- \otimes _ A A'$ as a functor $\text{Mod}_ A \to \text{Mod}_{A'}$. In general this equality <strong>does not extend</strong> to derived tensor products. In other words, the comparison map is not an isomorphism. A simple example is to take $R = k[x]$, $A = R' = A' = k[x]/(x) = k$ and $K^\bullet = A[0]$. Clearly, a necessary condition is that $\text{Tor}_ p^ R(A, R') = 0$ for all $p > 0$. 
+</p>
+<p>
+<article class="env-definition" id="0660">
+  <p><a class="environment-identifier" href="/tag/0660">Definition <span data-tag="0660">15.62.1</span>.</a> Let $R$ be a ring. Let $A$, $B$ be $R$-algebras. We say $A$ and $B$ are <em>Tor independent over $R$</em> if $\text{Tor}_ p^ R(A, B) = 0$ for all $p > 0$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0661">
+  <p><a class="environment-identifier" href="/tag/0661">Lemma <span data-tag="0661">15.62.2</span>.</a> The comparison map (<a href="/tag/065Z" data-tag="065Z">15.62.0.1</a>) is an isomorphism if $A' = A \otimes _ R R'$ and $A$ and $R'$ are Tor independent over $R$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      To prove this we choose a free resolution $F^\bullet \to R'$ of $R'$ as an $R$-module. Because $A$ and $R'$ are Tor independent over $R$ we see that $F^\bullet \otimes _ R A$ is a free $A$-module resolution of $A'$ over $A$. By our general construction of the derived tensor product above we see that 
+    <p>
+      <div class="equation">
+  \[  K^\bullet \otimes _ A A' \cong \text{Tot}(K^\bullet \otimes _ A (F^\bullet \otimes _ R A)) = \text{Tot}(K^\bullet \otimes _ R F^\bullet ) \cong \text{Tot}(E^\bullet \otimes _ R F^\bullet ) \cong E^\bullet \otimes _ R R'  \]
+</div>
+    <p>
+       as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08HW">
+  <p><a class="environment-identifier" href="/tag/08HW">Lemma <span data-tag="08HW">15.62.3</span>.</a> Consider a commutative diagram of rings </p>
+  <div class="equation">
+  \[  \xymatrix{ A' &  R' \ar[r] \ar[l] &  B' \\  A \ar[u] &  R \ar[l] \ar[u] \ar[r] &  B \ar[u] }  \]
+</div>
+  <p> Assume that $R'$ is flat over $R$ and $A'$ is flat over $A \otimes _ R R'$ and $B'$ is flat over $R' \otimes _ R B$. Then </p>
+  <div class="equation">
+  \[  \text{Tor}_ i^ R(A, B) \otimes _{(A \otimes _ R B)} (A' \otimes _{R'} B') = \text{Tor}_ i^{R'}(A', B')  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Algebra, Section <a href="/tag/00M7" data-tag="00M7">10.76</a> there are canonical maps 
+    <p>
+      <div class="equation">
+  \[  \text{Tor}_ i^ R(A, B) \longrightarrow \text{Tor}_ i^{R'}(A \otimes _ R R', B \otimes _ R R') \longrightarrow \text{Tor}_ i^{R'}(A', B')  \]
+</div>
+    <p>
+       These induce a map from left to right in the formula of the lemma. 
+    <p>
+      Take a free resolution $F_\bullet \to A$ of $A$ as an $R$-module. Then we see that $F_\bullet \otimes _ R R'$ is a resolution of $A \otimes _ R R'$. Hence $\text{Tor}_ i^{R'}(A \otimes _ R R', B \otimes _ R R')$ is computed by $F_\bullet \otimes _ R B \otimes _ R R'$. By our assumption that $R'$ is flat over $R$, this computes $\text{Tor}_ i^ R(A, B) \otimes _ R R'$. Thus $\text{Tor}_ i^{R'}(A \otimes _ R R', B \otimes _ R R') = \text{Tor}_ i^ R(A, B) \otimes _ R R'$ (uses only flatness of $R'$ over $R$). 
+    <p>
+      By Lazard's theorem (Algebra, Theorem <a href="/tag/058G" data-tag="058G">10.81.4</a>) we can write $A'$, resp. $B'$ as a filtered colimit of finite free $A \otimes _ R R'$, resp. $B \otimes _ R R'$-modules. Say $A' = \mathop{\mathrm{colim}}\nolimits M_ i$ and $B' = \mathop{\mathrm{colim}}\nolimits N_ j$. The result above gives 
+    <p>
+      <div class="equation">
+  \[  \text{Tor}_ i^{R'}(M_ i, N_ j) = \text{Tor}_ i^ R(A, B) \otimes _{A \otimes _ R B} (M_ i \otimes _{R'} N_ j)  \]
+</div>
+    <p>
+       as one can see by writing everything out in terms of bases. Taking the colimit we get the result of the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FXF">
+  <p><a class="environment-identifier" href="/tag/0FXF">Lemma <span data-tag="0FXF">15.62.4</span>.</a> Let $R \to A$ and $R \to B$ be ring maps. Let $R \to R'$ be a ring map and set $A' = A \otimes _ R R'$ and $B' = B \otimes _ R R'$. If $A$ and $B$ are tor independent over $R$ and $R \to R'$ is flat, then $A'$ and $B'$ are tor independent over $R'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows immediately from Lemma <a href="/tag/08HW" data-tag="08HW">15.62.3</a> and Definition <a href="/tag/0660" data-tag="0660">15.62.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DJD">
+  <p><a class="environment-identifier" href="/tag/0DJD">Lemma <span data-tag="0DJD">15.62.5</span>.</a> Assumptions as in Lemma <a href="/tag/08HW" data-tag="08HW">15.62.3</a>. For $M \in D(A)$ there are canonical isomorphisms </p>
+  <div class="equation">
+  \[  H^ i((M \otimes _ A^\mathbf {L} A') \otimes _{R'}^\mathbf {L} B') = H^ i(M \otimes _ R^\mathbf {L} B) \otimes _{(A \otimes _ R B)} (A' \otimes _{R'} B')  \]
+</div>
+  <p> of $A' \otimes _{R'} B'$-modules. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let us elucidate the two sides of the equation. On the left hand side we have the composition of the functors $D(A) \to D(A') \to D(R') \to D(B')$ with the functor $H^ i : D(B') \to \text{Mod}_{B'}$. Since there is a map from $A'$ to the endomorphisms of the object $(M \otimes _ A^\mathbf {L} A') \otimes _{R'}^\mathbf {L} B'$ in $D(B')$, we see that the left hand side is indeed an $A' \otimes _{R'} B'$-module. By the same arguments we see that $H^ i(M \otimes _ R^\mathbf {L} B)$ has an $A \otimes _ R B$-module structure. 
+    <p>
+      We first prove the result in case $B' = R' \otimes _ R B$. In this case we choose a resolution $F^\bullet \to B$ by free $R$-modules. We also choose a K-flat complex $M^\bullet $ of $A$-modules representing $M$. Then the left hand side is represented by 
+    <p>
+      <div class="equation">
+  \begin{align*}  H^ i(\text{Tot}((M^\bullet \otimes _ A A') \otimes _{R'} (R' \otimes _ R F^\bullet ))) &  = H^ i(\text{Tot}(M^\bullet \otimes _ A A' \otimes _ R F^\bullet )) \\ &  = H^ i(\text{Tot}(M^\bullet \otimes _ R F^\bullet ) \otimes _ A A') \\ &  = H^ i(M \otimes _ R^\mathbf {L} B) \otimes _ A A' \end{align*}
+</div>
+    <p>
+       The final equality because $A \to A'$ is flat. The final module is the desired module because $A' \otimes _{R'} B' = A' \otimes _ R B$ since we've assumed $B' = R' \otimes _ R B$ in this paragraph. 
+    <p>
+      General case. Suppose that $B' \to B''$ is a flat ring map. Then it is easy to see that 
+    <p>
+      <div class="equation">
+  \[  H^ i((M \otimes _ A^\mathbf {L} A') \otimes _{R'}^\mathbf {L} B'') = H^ i((M \otimes _ A^\mathbf {L} A') \otimes _{R'}^\mathbf {L} B') \otimes _{B'} B''  \]
+</div>
+    <p>
+       and 
+    <p>
+      <div class="equation">
+  \[  H^ i(M \otimes _ R^\mathbf {L} B) \otimes _{(A \otimes _ R B)} (A' \otimes _{R'} B'') = \left( H^ i(M \otimes _ R^\mathbf {L} B) \otimes _{(A \otimes _ R B)} (A' \otimes _{R'} B') \right) \otimes _{B'} B''  \]
+</div>
+    <p>
+       Thus the result for $B'$ implies the result for $B''$. Since we've proven the result for $R' \otimes _ R B$ in the previous paragraph, this implies the result in general. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08HX">
+  <p><a class="environment-identifier" href="/tag/08HX">Lemma <span data-tag="08HX">15.62.6</span>.</a> Let $R$ be a ring. Let $A$, $B$ be $R$-algebras. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$A$ and $B$ are Tor independent over $R$, 
+</p>
+</li><li><p>
+for every pair of primes $\mathfrak p \subset A$ and $\mathfrak q \subset B$ lying over the same prime $\mathfrak r \subset R$ the rings $A_\mathfrak p$ and $B_\mathfrak q$ are Tor independent over $R_\mathfrak r$, and 
+</p>
+</li><li><p>
+For every prime $\mathfrak s$ of $A \otimes _ R B$ the module 
+</p>
+<div class="equation">
+  \[  \text{Tor}_ i^ R(A, B)_\mathfrak s = \text{Tor}_ i^{R_\mathfrak r}(A_\mathfrak p, B_\mathfrak q)_\mathfrak s  \]
+</div>
+<p>
+ (where $\mathfrak p = A \cap \mathfrak s$, $\mathfrak q = B \cap \mathfrak s$ and $\mathfrak r = R \cap \mathfrak s$) is zero. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\mathfrak s$ be a prime of $A \otimes _ R B$ as in (3). The equality 
+    <p>
+      <div class="equation">
+  \[  \text{Tor}_ i^ R(A, B)_\mathfrak s = \text{Tor}_ i^{R_\mathfrak r}(A_\mathfrak p, B_\mathfrak q)_\mathfrak s  \]
+</div>
+    <p>
+       where $\mathfrak p = A \cap \mathfrak s$, $\mathfrak q = B \cap \mathfrak s$ and $\mathfrak r = R \cap \mathfrak s$ follows from Lemma <a href="/tag/08HW" data-tag="08HW">15.62.3</a>. Hence (2) implies (3). Since we can test the vanishing of modules by localizing at primes (Algebra, Lemma <a href="/tag/00HN" data-tag="00HN">10.23.1</a>) we conclude that (3) implies (1). For (1) $\Rightarrow $ (2) we use that 
+    <p>
+      <div class="equation">
+  \[  \text{Tor}_ i^{R_\mathfrak r}(A_\mathfrak p, B_\mathfrak q) = \text{Tor}_ i^ R(A, B) \otimes _{(A \otimes _ R B)} (A_\mathfrak p \otimes _{R_{\mathfrak r}} B_\mathfrak q)  \]
+</div>
+    <p>
+       again by Lemma <a href="/tag/08HW" data-tag="08HW">15.62.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

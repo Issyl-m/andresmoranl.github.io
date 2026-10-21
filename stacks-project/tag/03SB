@@ -1,0 +1,317 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="etale-cohomology-section-vanishing-torsion" class="tex-section"><span data-tag="03SB">59.83</span> Cohomology of torsion sheaves on curves</h2>
+
+<p>
+The goal of this section is to prove the basic finiteness and vanishing results for cohomology of torsion sheaves on curves, see Theorem <a href="/tag/03SC" data-tag="03SC">59.83.10</a>. In Section <a href="/tag/0GJB" data-tag="0GJB">59.84</a> we will discuss constructible sheaves of torsion modules over a Noetherian ring. 
+</p>
+<p>
+<article class="env-situation" id="0A52">
+  <p><a class="environment-identifier" href="/tag/0A52">Situation <span data-tag="0A52">59.83.1</span>.</a> Here $k$ is an algebraically closed field, $X$ is a separated, finite type scheme of dimension $\leq 1$ over $k$, and $\mathcal{F}$ is a torsion abelian sheaf on $X_{\acute{e}tale}$. </p>
+</article> 
+</p>
+<p>
+In Situation <a href="/tag/0A52" data-tag="0A52">59.83.1</a> we want to prove the following statements 
+</p>
+<ol>
+  <li class="custom-item" id="0A53"><p>
+ $H^ q_{\acute{e}tale}(X, \mathcal{F}) = 0$ for $q > 2$, 
+</p>
+</li><li class="custom-item" id="0A54"><p>
+ $H^ q_{\acute{e}tale}(X, \mathcal{F}) = 0$ for $q > 1$ if $X$ is affine, 
+</p>
+</li><li class="custom-item" id="0A55"><p>
+ $H^ q_{\acute{e}tale}(X, \mathcal{F}) = 0$ for $q > 1$ if $p = \text{char}(k) > 0$ and $\mathcal{F}$ is $p$-power torsion, 
+</p>
+</li><li class="custom-item" id="0A56"><p>
+ $H^ q_{\acute{e}tale}(X, \mathcal{F})$ is finite if $\mathcal{F}$ is constructible and torsion prime to $\text{char}(k)$, 
+</p>
+</li><li class="custom-item" id="0A57"><p>
+ $H^ q_{\acute{e}tale}(X, \mathcal{F})$ is finite if $X$ is proper and $\mathcal{F}$ constructible, 
+</p>
+</li><li class="custom-item" id="0A58"><p>
+ $H^ q_{\acute{e}tale}(X, \mathcal{F}) \to H^ q_{\acute{e}tale}(X_{k'}, \mathcal{F}|_{X_{k'}})$ is an isomorphism for any extension $k'/k$ of algebraically closed fields if $\mathcal{F}$ is torsion prime to $\text{char}(k)$, 
+</p>
+</li><li class="custom-item" id="0A59"><p>
+ $H^ q_{\acute{e}tale}(X, \mathcal{F}) \to H^ q_{\acute{e}tale}(X_{k'}, \mathcal{F}|_{X_{k'}})$ is an isomorphism for any extension $k'/k$ of algebraically closed fields if $X$ is proper, 
+</p>
+</li><li class="custom-item" id="0A5A"><p>
+ $H^2_{\acute{e}tale}(X, \mathcal{F}) \to H^2_{\acute{e}tale}(U, \mathcal{F})$ is surjective for all $U \subset X$ open. 
+</p>
+</li>
+</ol>
+<p>
+ Given any Situation <a href="/tag/0A52" data-tag="0A52">59.83.1</a> we will say that “statements (<a href="/tag/0A53" data-tag="0A53">1</a>) – (<a href="/tag/0A5A" data-tag="0A5A">8</a>) hold” if those statements that apply to the given situation are true. We start the proof with the following consequence of our computation of cohomology with constant coefficients. 
+</p>
+<p>
+<article class="env-lemma" id="0A5B">
+  <p><a class="environment-identifier" href="/tag/0A5B">Lemma <span data-tag="0A5B">59.83.2</span>.</a> In Situation <a href="/tag/0A52" data-tag="0A52">59.83.1</a> assume $X$ is smooth and $\mathcal{F} = \underline{\mathbf{Z}/\ell \mathbf{Z}}$ for some prime number $\ell $. Then statements (<a href="/tag/0A53" data-tag="0A53">1</a>) – (<a href="/tag/0A5A" data-tag="0A5A">8</a>) hold for $\mathcal{F}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $X$ is smooth, we see that $X$ is a finite disjoint union of smooth curves and points. The higher étale cohomology of any sheaf on a point (the spectrum of $k$) is trivial, for example by Lemma <a href="/tag/03QU" data-tag="03QU">59.59.2</a> or <a href="/tag/09AY" data-tag="09AY">59.80.3</a>. Hence we may assume $X$ is a smooth curve. 
+    <p>
+      Case I: $\ell $ different from the characteristic of $k$. This case follows from Lemma <a href="/tag/03RQ" data-tag="03RQ">59.69.1</a> (projective case) and Lemma <a href="/tag/03RR" data-tag="03RR">59.69.3</a> (affine case). Statement (<a href="/tag/0A58" data-tag="0A58">6</a>) on cohomology and extension of algebraically closed ground field follows from the fact that the genus $g$ and the number of “punctures” $r$ do not change when passing from $k$ to $k'$. Statement (<a href="/tag/0A5A" data-tag="0A5A">8</a>) follows as $H^2_{\acute{e}tale}(U, \mathcal{F})$ is zero as soon as $U \not= X$, because then $U$ is affine (Varieties, Lemmas <a href="/tag/0A24" data-tag="0A24">33.43.2</a> and <a href="/tag/0A27" data-tag="0A27">33.43.10</a>). 
+    <p>
+      Case II: $\ell $ is equal to the characteristic of $k$. Vanishing by Lemma <a href="/tag/0A3N" data-tag="0A3N">59.63.5</a>. Statements (<a href="/tag/0A57" data-tag="0A57">5</a>) and (<a href="/tag/0A59" data-tag="0A59">7</a>) follow from Lemma <a href="/tag/0A3P" data-tag="0A3P">59.63.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0A47">
+  <p><a class="environment-identifier" href="/tag/0A47">Remark <span data-tag="0A47">59.83.3</span> <span class="named">(Invariance under extension of algebraically closed ground field)</span>.</a>  Let $k$ be an algebraically closed field of characteristic $p > 0$. In Section <a href="/tag/0A3J" data-tag="0A3J">59.63</a> we have seen that there is an exact sequence </p>
+  <div class="equation">
+  \[  k[x] \to k[x] \to H^1_{\acute{e}tale}(\mathbf{A}^1_ k, \mathbf{Z}/p\mathbf{Z}) \to 0  \]
+</div>
+  <p> where the first arrow maps $f(x)$ to $f^ p - f$. A set of representatives for the cokernel is formed by the polynomials </p>
+  <div class="equation">
+  \[  \sum \nolimits _{p \not| n} \lambda _ n x^ n  \]
+</div>
+  <p> with $\lambda _ n \in k$. (If $k$ is not algebraically closed you have to add some constants to this as well.) In particular when $k'/k$ is an algebraically closed extension, then the map </p>
+  <div class="equation">
+  \[  H^1_{\acute{e}tale}(\mathbf{A}^1_ k, \mathbf{Z}/p\mathbf{Z}) \to H^1_{\acute{e}tale}(\mathbf{A}^1_{k'}, \mathbf{Z}/p\mathbf{Z})  \]
+</div>
+  <p> is not an isomorphism in general. In particular, the map $\pi _1(\mathbf{A}^1_{k'}) \to \pi _1(\mathbf{A}^1_ k)$ between étale fundamental groups (insert future reference here) is not an isomorphism either. Thus the étale homotopy type of the affine line depends on the algebraically closed ground field. From Lemma <a href="/tag/0A5B" data-tag="0A5B">59.83.2</a> above we see that this is a phenomenon which only happens in characteristic $p$ with $p$-power torsion coefficients. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0A5C">
+  <p><a class="environment-identifier" href="/tag/0A5C">Lemma <span data-tag="0A5C">59.83.4</span>.</a> Let $k$ be an algebraically closed field. Let $X$ be a separated finite type scheme over $k$ of dimension $\leq 1$. Let $0 \to \mathcal{F}_1 \to \mathcal{F} \to \mathcal{F}_2 \to 0$ be a short exact sequence of torsion abelian sheaves on $X$. If statements (<a href="/tag/0A53" data-tag="0A53">1</a>) – (<a href="/tag/0A5A" data-tag="0A5A">8</a>) hold for $\mathcal{F}_1$ and $\mathcal{F}_2$, then they hold for $\mathcal{F}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is mostly immediate from the definitions and the long exact sequence of cohomology. Also observe that $\mathcal{F}$ is constructible (resp. of torsion prime to the characteristic of $k$) if and only if both $\mathcal{F}_1$ and $\mathcal{F}_2$ are constructible (resp. of torsion prime to the characteristic of $k$). See Proposition <a href="/tag/09BH" data-tag="09BH">59.74.1</a>. Some details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0A5D">
+  <p><a class="environment-identifier" href="/tag/0A5D">Lemma <span data-tag="0A5D">59.83.5</span>.</a> Let $k$ be an algebraically closed field. Let $f : X \to Y$ be a finite morphism of separated finite type schemes over $k$ of dimension $\leq 1$. Let $\mathcal{F}$ be a torsion abelian sheaf on $X$. If statements (<a href="/tag/0A53" data-tag="0A53">1</a>) – (<a href="/tag/0A5A" data-tag="0A5A">8</a>) hold for $\mathcal{F}$, then they hold for $f_*\mathcal{F}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Namely, we have $H^ q_{\acute{e}tale}(X, \mathcal{F}) = H^ q_{\acute{e}tale}(Y, f_*\mathcal{F})$ by the vanishing of $R^ qf_*$ for $q > 0$ (Proposition <a href="/tag/03QP" data-tag="03QP">59.55.2</a>) and the Leray spectral sequence (Cohomology on Sites, Lemma <a href="/tag/0733" data-tag="0733">21.14.6</a>). For (<a href="/tag/0A5A" data-tag="0A5A">8</a>) use that formation of $f_*$ commutes with arbitrary base change (Lemma <a href="/tag/0959" data-tag="0959">59.55.3</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GJA">
+  <p><a class="environment-identifier" href="/tag/0GJA">Lemma <span data-tag="0GJA">59.83.6</span>.</a> In Situation <a href="/tag/0A52" data-tag="0A52">59.83.1</a> assume $\mathcal{F}$ constructible. Let $j : X' \to X$ be the inclusion of a dense open subscheme. Then statements (<a href="/tag/0A53" data-tag="0A53">1</a>) – (<a href="/tag/0A5A" data-tag="0A5A">8</a>) hold for $\mathcal{F}$ if and only if they hold for $j_!j^{-1}\mathcal{F}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $X'$ is dense, we see that $Z = X \setminus X'$ has dimension $0$ and hence is a finite set $Z = \{ x_1, \ldots , x_ n\} $ of $k$-rational points. Consider the short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to j_!j^{-1}\mathcal{F} \to \mathcal{F} \to i_*i^{-1}\mathcal{F} \to 0  \]
+</div>
+    <p>
+       of Lemma <a href="/tag/095L" data-tag="095L">59.70.8</a>. Observe that $H^ q_{\acute{e}tale}(X, i_*i^{-1}\mathcal{F}) = H^ q_{\acute{e}tale}(Z, i^*\mathcal{F})$. Namely, $i : Z \to X$ is a closed immersion, hence finite, hence we have the vanishing of $R^ qi_*$ for $q > 0$ by Proposition <a href="/tag/03QP" data-tag="03QP">59.55.2</a>, and hence the equality follows from the Leray spectral sequence (Cohomology on Sites, Lemma <a href="/tag/0733" data-tag="0733">21.14.6</a>). Since $Z$ is a disjoint union of spectra of algebraically closed fields, we conclude that $H^ q_{\acute{e}tale}(Z, i^*\mathcal{F}) = 0$ for $q > 0$ and 
+    <p>
+      <div class="equation">
+  \[  H^0_{\acute{e}tale}(Z, i^{-1}\mathcal{F}) = \bigoplus \nolimits _{i = 1, \ldots , n} \mathcal{F}_{x_ i}  \]
+</div>
+    <p>
+       which is finite as $\mathcal{F}_{x_ i}$ is finite due to the assumption that $\mathcal{F}$ is constructible. The long exact cohomology sequence gives an exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to H^0_{\acute{e}tale}(X, j_!j^{-1}\mathcal{F}) \to H^0_{\acute{e}tale}(X, \mathcal{F}) \to H^0_{\acute{e}tale}(Z, i^{-1}\mathcal{F}) \to H^1_{\acute{e}tale}(X, j_!j^{-1}\mathcal{F}) \to H^1_{\acute{e}tale}(X, \mathcal{F}) \to 0  \]
+</div>
+    <p>
+       and isomorphisms $H^ q_{\acute{e}tale}(X, j_!j^{-1}\mathcal{F}) \to H^ q_{\acute{e}tale}(X, \mathcal{F})$ for $q > 1$. 
+    <p>
+      At this point it is easy to deduce each of (<a href="/tag/0A53" data-tag="0A53">1</a>) – (<a href="/tag/0A5A" data-tag="0A5A">8</a>) holds for $\mathcal{F}$ if and only if it holds for $j_!j^{-1}\mathcal{F}$. We make a few small remarks to help the reader: (a) if $\mathcal{F}$ is torsion prime to the characteristic of $k$, then so is $j_!j^{-1}\mathcal{F}$, (b) the sheaf $j_!j^{-1}\mathcal{F}$ is constructible, (c) we have $H^0_{\acute{e}tale}(Z, i^{-1}\mathcal{F}) = H^0_{\acute{e}tale}(Z_{k'}, i^{-1}\mathcal{F}|_{Z_{k'}})$, and (d) if $U \subset X$ is an open, then $U' = U \cap X'$ is dense in $U$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03SG">
+  <p><a class="environment-identifier" href="/tag/03SG">Lemma <span data-tag="03SG">59.83.7</span>.</a> In Situation <a href="/tag/0A52" data-tag="0A52">59.83.1</a> assume $X$ is smooth. Let $j : U \to X$ an open immersion. Let $\ell $ be a prime number. Let $\mathcal{F} = j_!\underline{\mathbf{Z}/\ell \mathbf{Z}}$. Then statements (<a href="/tag/0A53" data-tag="0A53">1</a>) – (<a href="/tag/0A5A" data-tag="0A5A">8</a>) hold for $\mathcal{F}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $X$ is smooth, it is a disjoint union of smooth curves and hence we may assume $X$ is a curve (i.e., irreducible). Then either $U = \emptyset $ and there is nothing to prove or $U \subset X$ is dense. In this case the lemma follows from Lemmas <a href="/tag/0A5B" data-tag="0A5B">59.83.2</a> and <a href="/tag/0GJA" data-tag="0GJA">59.83.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0A3Q">
+  <p><a class="environment-identifier" href="/tag/0A3Q">Lemma <span data-tag="0A3Q">59.83.8</span>.</a> In Situation <a href="/tag/0A52" data-tag="0A52">59.83.1</a> assume $X$ reduced. Let $j : U \to X$ an open immersion. Let $\ell $ be a prime number and $\mathcal{F} = j_!\underline{\mathbf{Z}/\ell \mathbf{Z}}$. Then statements (<a href="/tag/0A53" data-tag="0A53">1</a>) – (<a href="/tag/0A5A" data-tag="0A5A">8</a>) hold for $\mathcal{F}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The difference with Lemma <a href="/tag/03SG" data-tag="03SG">59.83.7</a> is that here we do not assume $X$ is smooth. Let $\nu : X^\nu \to X$ be the normalization morphism. Then $\nu $ is finite (Varieties, Lemma <a href="/tag/0BXR" data-tag="0BXR">33.27.1</a>) and $X^\nu $ is smooth (Varieties, Lemma <a href="/tag/0B8Y" data-tag="0B8Y">33.43.8</a>). Let $j^\nu : U^\nu \to X^\nu $ be the inverse image of $U$. By Lemma <a href="/tag/03SG" data-tag="03SG">59.83.7</a> the result holds for $j^\nu _!\underline{\mathbf{Z}/\ell \mathbf{Z}}$. By Lemma <a href="/tag/0A5D" data-tag="0A5D">59.83.5</a> the result holds for $\nu _*j^\nu _!\underline{\mathbf{Z}/\ell \mathbf{Z}}$. In general it won't be true that $\nu _*j^\nu _!\underline{\mathbf{Z}/\ell \mathbf{Z}}$ is equal to $j_!\underline{\mathbf{Z}/\ell \mathbf{Z}}$ but we can work around this as follows. As $X$ is reduced the morphism $\nu : X^\nu \to X$ is an isomorphism over a dense open $j' : X' \to X$ (Varieties, Lemma <a href="/tag/0BXR" data-tag="0BXR">33.27.1</a>). Over this open we have agreement 
+    <p>
+      <div class="equation">
+  \[  (j')^{-1}(\nu _*j^\nu _!\underline{\mathbf{Z}/\ell \mathbf{Z}}) = (j')^{-1}(j_!\underline{\mathbf{Z}/\ell \mathbf{Z}})  \]
+</div>
+    <p>
+       Using Lemma <a href="/tag/0GJA" data-tag="0GJA">59.83.6</a> twice for $j' : X' \to X$ and the sheaves above we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03SD">
+  <p><a class="environment-identifier" href="/tag/03SD">Lemma <span data-tag="03SD">59.83.9</span>.</a> In Situation <a href="/tag/0A52" data-tag="0A52">59.83.1</a> assume $X$ reduced. Let $j : U \to X$ an open immersion with $U$ connected. Let $\ell $ be a prime number. Let $\mathcal{G}$ a finite locally constant sheaf of $\mathbf{F}_\ell $-vector spaces on $U$. Let $\mathcal{F} = j_!\mathcal{G}$. Then statements (<a href="/tag/0A53" data-tag="0A53">1</a>) – (<a href="/tag/0A5A" data-tag="0A5A">8</a>) hold for $\mathcal{F}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $f : V \to U$ be a finite étale morphism of degree prime to $\ell $ as in Lemma <a href="/tag/0A3R" data-tag="0A3R">59.66.2</a>. The discussion in Section <a href="/tag/03SH" data-tag="03SH">59.66</a> gives maps 
+    <p>
+      <div class="equation">
+  \[  \mathcal{G} \to f_*f^{-1}\mathcal{G} \to \mathcal{G}  \]
+</div>
+    <p>
+       whose composition is an isomorphism. Hence it suffices to prove the lemma with $\mathcal{F} = j_!f_*f^{-1}\mathcal{G}$. By Zariski's Main theorem (More on Morphisms, Lemma <a href="/tag/05K0" data-tag="05K0">37.43.3</a>) we can choose a diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ V \ar[r]_{j'} \ar[d]_ f &  Y \ar[d]^{\overline{f}} \\  U \ar[r]^ j &  X }  \]
+</div>
+    <p>
+       with $\overline{f} : Y \to X$ finite and $j'$ an open immersion with dense image. We may replace $Y$ by its reduction (this does not change $V$ as $V$ is reduced being étale over $U$). Since $f$ is finite and $V$ dense in $Y$ we have $V = U \times _ X Y$. By Lemma <a href="/tag/0GJ1" data-tag="0GJ1">59.70.9</a> we have 
+    <p>
+      <div class="equation">
+  \[  j_!f_*f^{-1}\mathcal{G} = \overline{f}_*j'_!f^{-1}\mathcal{G}  \]
+</div>
+    <p>
+       By Lemma <a href="/tag/0A5D" data-tag="0A5D">59.83.5</a> it suffices to consider $j'_!f^{-1}\mathcal{G}$. The existence of the filtration given by Lemma <a href="/tag/0A3R" data-tag="0A3R">59.66.2</a>, the fact that $j'_!$ is exact, and Lemma <a href="/tag/0A5C" data-tag="0A5C">59.83.4</a> reduces us to the case $\mathcal{F} = j'_!\underline{\mathbf{Z}/\ell \mathbf{Z}}$ which is Lemma <a href="/tag/0A3Q" data-tag="0A3Q">59.83.8</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-theorem" id="03SC">
+  <p><a class="environment-identifier" href="/tag/03SC">Theorem <span data-tag="03SC">59.83.10</span>.</a> If $k$ is an algebraically closed field, $X$ is a separated, finite type scheme of dimension $\leq 1$ over $k$, and $\mathcal{F}$ is a torsion abelian sheaf on $X_{\acute{e}tale}$, then </p>
+  <p><ol>
+  <li><p>
+$H^ q_{\acute{e}tale}(X, \mathcal{F}) = 0$ for $q > 2$, 
+</p>
+</li><li><p>
+$H^ q_{\acute{e}tale}(X, \mathcal{F}) = 0$ for $q > 1$ if $X$ is affine, 
+</p>
+</li><li><p>
+$H^ q_{\acute{e}tale}(X, \mathcal{F}) = 0$ for $q > 1$ if $p = \text{char}(k) > 0$ and $\mathcal{F}$ is $p$-power torsion, 
+</p>
+</li><li><p>
+$H^ q_{\acute{e}tale}(X, \mathcal{F})$ is finite if $\mathcal{F}$ is constructible and torsion prime to $\text{char}(k)$, 
+</p>
+</li><li><p>
+$H^ q_{\acute{e}tale}(X, \mathcal{F})$ is finite if $X$ is proper and $\mathcal{F}$ constructible, 
+</p>
+</li><li><p>
+$H^ q_{\acute{e}tale}(X, \mathcal{F}) \to H^ q_{\acute{e}tale}(X_{k'}, \mathcal{F}|_{X_{k'}})$ is an isomorphism for any extension $k'/k$ of algebraically closed fields if $\mathcal{F}$ is torsion prime to $\text{char}(k)$, 
+</p>
+</li><li><p>
+$H^ q_{\acute{e}tale}(X, \mathcal{F}) \to H^ q_{\acute{e}tale}(X_{k'}, \mathcal{F}|_{X_{k'}})$ is an isomorphism for any extension $k'/k$ of algebraically closed fields if $X$ is proper, 
+</p>
+</li><li><p>
+$H^2_{\acute{e}tale}(X, \mathcal{F}) \to H^2_{\acute{e}tale}(U, \mathcal{F})$ is surjective for all $U \subset X$ open. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The theorem says that in Situation <a href="/tag/0A52" data-tag="0A52">59.83.1</a> statements (<a href="/tag/0A53" data-tag="0A53">1</a>) – (<a href="/tag/0A5A" data-tag="0A5A">8</a>) hold. Our first step is to replace $X$ by its reduction, which is permissible by Proposition <a href="/tag/03SI" data-tag="03SI">59.45.4</a>. By Lemma <a href="/tag/03SA" data-tag="03SA">59.73.2</a> we can write $\mathcal{F}$ as a filtered colimit of constructible abelian sheaves. Taking cohomology commutes with colimits, see Lemma <a href="/tag/03Q5" data-tag="03Q5">59.51.4</a>. Moreover, pullback via $X_{k'} \to X$ commutes with colimits as a left adjoint. Thus it suffices to prove the statements for a constructible sheaf. 
+    <p>
+      In this paragraph we use Lemma <a href="/tag/0A5C" data-tag="0A5C">59.83.4</a> without further mention. Writing $\mathcal{F} = \mathcal{F}_1 \oplus \ldots \oplus \mathcal{F}_ r$ where $\mathcal{F}_ i$ is $\ell _ i$-primary for some prime $\ell _ i$, we may assume that $\ell ^ n$ kills $\mathcal{F}$ for some prime $\ell $. Now consider the exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{F}[\ell ] \to \mathcal{F} \to \mathcal{F}/\mathcal{F}[\ell ] \to 0.  \]
+</div>
+    <p>
+       Thus we see that it suffices to assume that $\mathcal{F}$ is $\ell $-torsion. This means that $\mathcal{F}$ is a constructible sheaf of $\mathbf{F}_\ell $-vector spaces for some prime number $\ell $. 
+    <p>
+      By definition this means there is a dense open $U \subset X$ such that $\mathcal{F}|_ U$ is finite locally constant sheaf of $\mathbf{F}_\ell $-vector spaces. Since $\dim (X) \leq 1$ we may assume, after shrinking $U$, that $U = U_1 \amalg \ldots \amalg U_ n$ is a disjoint union of irreducible schemes (just remove the closed points which lie in the intersections of $\geq 2$ components of $U$). By Lemma <a href="/tag/0GJA" data-tag="0GJA">59.83.6</a> we reduce to the case $\mathcal{F} = j_!\mathcal{G}$ where $\mathcal{G}$ is a finite locally constant sheaf of $\mathbf{F}_\ell $-vector spaces on $U$. 
+    <p>
+      Since we chose $U = U_1 \amalg \ldots \amalg U_ n$ with $U_ i$ irreducible we have 
+    <p>
+      <div class="equation">
+  \[  j_!\mathcal{G} = j_{1!}(\mathcal{G}|_{U_1}) \oplus \ldots \oplus j_{n!}(\mathcal{G}|_{U_ n})  \]
+</div>
+    <p>
+       where $j_ i : U_ i \to X$ is the inclusion morphism. The case of $j_{i!}(\mathcal{G}|_{U_ i})$ is handled in Lemma <a href="/tag/03SD" data-tag="03SD">59.83.9</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-theorem" id="03RT">
+  <p><a class="environment-identifier" href="/tag/03RT">Theorem <span data-tag="03RT">59.83.11</span>.</a> Let $X$ be a finite type, dimension $1$ scheme over an algebraically closed field $k$. Let $\mathcal{F}$ be a torsion sheaf on $X_{\acute{e}tale}$. Then </p>
+  <div class="equation">
+  \[  H_{\acute{e}tale}^ q(X, \mathcal{F}) = 0, \quad \forall q \geq 3.  \]
+</div>
+  <p> If $X$ affine then also $H_{\acute{e}tale}^2(X, \mathcal{F}) = 0$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $X$ is separated, this follows immediately from the more precise Theorem <a href="/tag/03SC" data-tag="03SC">59.83.10</a>. If $X$ is nonseparated, choose an affine open covering $X = X_1 \cup \ldots \cup X_ n$. By induction on $n$ we may assume the vanishing holds over $U = X_1 \cup \ldots \cup X_{n - 1}$. Then Mayer-Vietoris (Lemma <a href="/tag/0A50" data-tag="0A50">59.50.1</a>) gives 
+    <p>
+      <div class="equation">
+  \[  H^2_{\acute{e}tale}(U, \mathcal{F}) \oplus H^2_{\acute{e}tale}(X_ n, \mathcal{F}) \to H^2_{\acute{e}tale}(U \cap X_ n, \mathcal{F}) \to H^3_{\acute{e}tale}(X, \mathcal{F}) \to 0  \]
+</div>
+    <p>
+       However, since $U \cap X_ n$ is an open of an affine scheme and hence affine by our dimension assumption, the group $H^2_{\acute{e}tale}(U \cap X_ n, \mathcal{F})$ vanishes by Theorem <a href="/tag/03SC" data-tag="03SC">59.83.10</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0A5E">
+  <p><a class="environment-identifier" href="/tag/0A5E">Lemma <span data-tag="0A5E">59.83.12</span>.</a> Let $k'/k$ be an extension of separably closed fields. Let $X$ be a proper scheme over $k$ of dimension $\leq 1$. Let $\mathcal{F}$ be a torsion abelian sheaf on $X$. Then the map $H^ q_{\acute{e}tale}(X, \mathcal{F}) \to H^ q_{\acute{e}tale}(X_{k'}, \mathcal{F}|_{X_{k'}})$ is an isomorphism for $q \geq 0$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We have seen this for algebraically closed fields in Theorem <a href="/tag/03SC" data-tag="03SC">59.83.10</a>. Given $k \subset k'$ as in the statement of the lemma we can choose a diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ k' \ar[r] &  \overline{k}' \\  k \ar[u] \ar[r] &  \overline{k} \ar[u] }  \]
+</div>
+    <p>
+       where $k \subset \overline{k}$ and $k' \subset \overline{k}'$ are the algebraic closures. Since $k$ and $k'$ are separably closed the field extensions $\overline{k}/k$ and $\overline{k}'/k'$ are algebraic and purely inseparable. In this case the morphisms $X_{\overline{k}} \to X$ and $X_{\overline{k}'} \to X_{k'}$ are universal homeomorphisms. Thus the cohomology of $\mathcal{F}$ may be computed on $X_{\overline{k}}$ and the cohomology of $\mathcal{F}|_{X_{k'}}$ may be computed on $X_{\overline{k}'}$, see Proposition <a href="/tag/03SI" data-tag="03SI">59.45.4</a>. Hence we deduce the general case from the case of algebraically closed fields. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

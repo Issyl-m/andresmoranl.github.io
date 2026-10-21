@@ -1,0 +1,459 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="cohomology-section-cech-cohomology-of-complexes" class="tex-section"><span data-tag="01FP">20.25</span> Čech cohomology of complexes</h2>
+
+<p>
+In general for sheaves of abelian groups ${\mathcal F}$ and ${\mathcal G}$ on $X$ there is a cup product map 
+</p>
+<div class="equation">
+  \[  H^ i(X, {\mathcal F}) \times H^ j(X, {\mathcal G}) \longrightarrow H^{i + j}(X, {\mathcal F} \otimes _{\mathbf Z} {\mathcal G}).  \]
+</div>
+<p>
+ In this section we define it using Čech cocycles by an explicit formula for the cup product. If you are worried about the fact that cohomology may not equal Čech cohomology, then you can use hypercoverings and still use the cocycle notation. This also has the advantage that it works to define the cup product for hypercohomology on any topos (insert future reference here). 
+</p>
+<p>
+Let ${\mathcal F}^\bullet $ be a bounded below complex of presheaves of abelian groups on $X$. We can often compute $H^ n(X, {\mathcal F}^\bullet )$ using Čech cocycles. Namely, let ${\mathcal U} : X = \bigcup _{i \in I} U_ i$ be an open covering of $X$. Since the Čech complex $\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{F})$ (Definition <a href="/tag/01EF" data-tag="01EF">20.9.1</a>) is functorial in the presheaf $\mathcal{F}$ we obtain a double complex $\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{F}^\bullet )$. The associated total complex to $\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}^\bullet )$ is the complex with degree $n$ term 
+</p>
+<div class="equation">
+  \[  \text{Tot}^ n(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}^\bullet )) = \bigoplus \nolimits _{p + q = n} \prod \nolimits _{i_0\ldots i_ p} {\mathcal F}^ q(U_{i_0\ldots i_ p})  \]
+</div>
+<p>
+ see Homology, Definition <a href="/tag/012Z" data-tag="012Z">12.18.3</a>. A typical element in $\text{Tot}^ n$ will be denoted $\alpha = \{ \alpha _{i_0\ldots i_ p}\} $ where $\alpha _{i_0 \ldots i_ p} \in \mathcal{F}^ q(U_{i_0\ldots i_ p})$. In other words the $\mathcal{F}$-degree of $\alpha _{i_0\ldots i_ p}$ is $q = n - p$. This notation requires us to be aware of the degree $\alpha $ lives in at all times. We indicate this situation by the formula $\deg _{\mathcal F}(\alpha _{i_0\ldots i_ p}) = q$. According to our conventions in Homology, Definition <a href="/tag/012Z" data-tag="012Z">12.18.3</a> the differential of an element $\alpha $ of degree $n$ is given by 
+</p>
+<div class="equation">
+  \[  d(\alpha )_{i_0\ldots i_{p + 1}} = \sum \nolimits _{j = 0}^{p + 1} (-1)^ j \alpha _{i_0 \ldots \hat i_ j \ldots i_{p + 1}} + (-1)^{p + 1}d_{{\mathcal F}}(\alpha _{i_0 \ldots i_{p + 1}})  \]
+</div>
+<p>
+ where $d_\mathcal {F}$ denotes the differential on the complex $\mathcal{F}^\bullet $. The expression $\alpha _{i_0 \ldots \hat i_ j \ldots i_{p + 1}}$ means the restriction of $\alpha _{i_0 \ldots \hat i_ j \ldots i_{p + 1}} \in {\mathcal F}(U_{i_0\ldots \hat i_ j\ldots i_{p + 1}})$ to $U_{i_0 \ldots i_{p + 1}}$. 
+</p>
+<p>
+The construction of $\text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}^\bullet ))$ is functorial in ${\mathcal F}^\bullet $. As well there is a functorial transformation 
+</p>
+<div class="equation" id="07M9">
+    <span class="equation-label"><a href="/tag/07M9" data-tag="07M9">20.25.0.1</a></span>
+  <div>\begin{equation}  \label{cohomology-equation-global-sections-to-cech} \Gamma (X, {\mathcal F}^\bullet ) \longrightarrow \text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}^\bullet )) \end{equation}</div>
+</div>
+<p>
+ of complexes defined by the following rule: The section $s\in \Gamma (X, {\mathcal F}^ n)$ is mapped to the element $\alpha = \{ \alpha _{i_0\ldots i_ p}\} $ with $\alpha _{i_0} = s|_{U_{i_0}}$ and $\alpha _{i_0\ldots i_ p} = 0$ for $p > 0$. 
+</p>
+<p>
+Refinements. Let ${\mathcal V} = \{  V_ j \} _{j\in J}$ be a refinement of ${\mathcal U}$. This means there is a map $t: J \to I$ such that $V_ j \subset U_{t(j)}$ for all $j\in J$. This gives rise to a functorial transformation 
+</p>
+<div class="equation" id="08BM">
+    <span class="equation-label"><a href="/tag/08BM" data-tag="08BM">20.25.0.2</a></span>
+  <div>\begin{equation}  \label{cohomology-equation-transformation} T_ t : \text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}^\bullet )) \longrightarrow \text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal V}, {\mathcal F}^\bullet )). \end{equation}</div>
+</div>
+<p>
+ defined by the rule 
+</p>
+<div class="equation">
+  \[  T_ t(\alpha )_{j_0\ldots j_ p} = \alpha _{t(j_0)\ldots t(j_ p)}|_{V_{j_0\ldots j_ p}}.  \]
+</div>
+<p>
+ Given two maps $t, t' : J \to I$ as above the maps $T_ t$ and $T_{t'}$ constructed above are homotopic. The homotopy is given by 
+</p>
+<div class="equation">
+  \[  h(\alpha )_{j_0\ldots j_ p} = \sum \nolimits _{a = 0}^{p} (-1)^ a \alpha _{t(j_0)\ldots t(j_ a) t'(j_ a) \ldots t'(j_ p)}  \]
+</div>
+<p>
+ for an element $\alpha $ of degree $n$. This works because of the following computation, again with $\alpha $ an element of degree $n$ (so $d(\alpha )$ has degree $n + 1$ and $h(\alpha )$ has degree $n - 1$): 
+</p>
+<div class="equation">
+  \begin{align*}  ( d(h(\alpha )) + h(d(\alpha )) )_{j_0\ldots j_ p} = &  \sum \nolimits _{k = 0}^ p (-1)^ k h(\alpha )_{j_0 \ldots \hat j_ k \ldots j_ p} + \\ &  (-1)^ p d_{\mathcal F}(h(\alpha )_{j_0 \ldots j_ p}) + \\ &  \sum \nolimits _{a = 0}^ p (-1)^ a d(\alpha )_{t(j_0) \ldots t(j_ a) t'(j_ a) \ldots t'(j_ p)} \\  = &  \sum \nolimits _{k = 0}^ p \sum \nolimits _{a = 0}^{k - 1} (-1)^{k + a} \alpha _{t(j_0)\ldots t(j_ a)t'(j_ a)\ldots \hat{t'(j_ k)}\ldots t'(j_ p)} + \\ &  \sum \nolimits _{k = 0}^ p \sum \nolimits _{a = k + 1}^ p (-1)^{k + a - 1} \alpha _{t(j_0)\ldots \hat{t(j_ k)}\ldots t(j_ a)t'(j_ a)\ldots t'(j_ p)} + \\ &  \sum \nolimits _{a = 0}^ p (-1)^{p + a} d_{\mathcal F}(\alpha _{t(j_0)\ldots t(j_ a) t'(j_ a) \ldots t'(j_ p)}) + \\ &  \sum \nolimits _{a = 0}^ p \sum \nolimits _{k = 0}^ a (-1)^{a + k} \alpha _{t(j_0)\ldots \hat{t(j_ k)}\ldots t(j_ a)t'(j_ a)\ldots t'(j_ p)} + \\ &  \sum \nolimits _{a = 0}^ p \sum \nolimits _{k = a}^ p (-1)^{a + k + 1} \alpha _{t(j_0) \ldots t(j_ a) t'(j_ a) \ldots \hat{t'(j_ k)} \ldots t'(j_ p)} + \\ &  \sum \nolimits _{a = 0}^ p (-1)^{a + p + 1} d_{\mathcal F}(\alpha _{t(j_0)\ldots t(j_ a) t'(j_ a) \ldots t'(j_ p)}) \\  = &  \alpha _{t'(j_0)\ldots t'(j_ p)} + (-1)^{2p + 1}\alpha _{t(j_0)\ldots t(j_ p)} \\  = &  T_{t'}(\alpha )_{j_0\ldots j_ p} - T_ t(\alpha )_{j_0\ldots j_ p} \end{align*}
+</div>
+<p>
+ We leave it to the reader to verify the cancellations. (Note that the terms having both $k$ and $a$ in the 1st, 2nd and 4th, 5th summands cancel, except the ones where $a = k$ which only occur in the 4th and 5th and these cancel against each other except for the two desired terms.) It follows that the induced map 
+</p>
+<div class="equation">
+  \[  H^ n(T_ t) : H^ n( \text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}^\bullet )) ) \to H^ n( \text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal V}, {\mathcal F}^\bullet )) )  \]
+</div>
+<p>
+ is independent of the choice of $t$. We define <em>Čech hypercohomology</em> as the colimit of the Čech cohomology groups over all refinements via the maps $H^\bullet (T_ t)$. 
+</p>
+<p>
+In the colimit (over all open coverings of $X$) the following lemma provides a map of Čech hypercohomology into cohomology, which is often an isomorphism and is always an isomorphism if we use hypercoverings. 
+</p>
+<p>
+<article class="env-lemma" id="08BN">
+  <p><a class="environment-identifier" href="/tag/08BN">Lemma <span data-tag="08BN">20.25.1</span>.</a> Let $(X, \mathcal{O}_ X)$ be a ringed space. Let $\mathcal{U} : X = \bigcup _{i \in I} U_ i$ be an open covering. For a bounded below complex $\mathcal{F}^\bullet $ of $\mathcal{O}_ X$-modules there is a canonical map </p>
+  <div class="equation">
+  \[  \text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{F}^\bullet )) \longrightarrow R\Gamma (X, \mathcal{F}^\bullet )  \]
+</div>
+  <p> functorial in $\mathcal{F}^\bullet $ and compatible with (<a href="/tag/07M9" data-tag="07M9">20.25.0.1</a>) and (<a href="/tag/08BM" data-tag="08BM">20.25.0.2</a>). There is a spectral sequence $(E_ r, d_ r)_{r \geq 0}$ with </p>
+  <div class="equation">
+  \[  E_2^{p, q} = H^ p(\text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \underline{H}^ q(\mathcal{F}^\bullet )))  \]
+</div>
+  <p> converging to $H^{p + q}(X, \mathcal{F}^\bullet )$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let ${\mathcal I}^\bullet $ be a bounded below complex of injectives. The map (<a href="/tag/07M9" data-tag="07M9">20.25.0.1</a>) for $\mathcal{I}^\bullet $ is a map $\Gamma (X, {\mathcal I}^\bullet ) \to \text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal I}^\bullet ))$. This is a quasi-isomorphism of complexes of abelian groups as follows from Homology, Lemma <a href="/tag/0133" data-tag="0133">12.25.4</a> applied to the double complex $\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal I}^\bullet )$ using Lemma <a href="/tag/01EP" data-tag="01EP">20.11.1</a>. Suppose ${\mathcal F}^\bullet \to {\mathcal I}^\bullet $ is a quasi-isomorphism of ${\mathcal F}^\bullet $ into a bounded below complex of injectives. Since $R\Gamma (X, {\mathcal F}^\bullet )$ is represented by the complex $\Gamma (X, {\mathcal I}^\bullet )$ we obtain the map of the lemma using 
+    <p>
+      <div class="equation">
+  \[  \text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}^\bullet )) \longrightarrow \text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal I}^\bullet )).  \]
+</div>
+    <p>
+       We omit the verification of functoriality and compatibilities. To construct the spectral sequence of the lemma, choose a Cartan-Eilenberg resolution $\mathcal{F}^\bullet \to \mathcal{I}^{\bullet , \bullet }$, see Derived Categories, Lemma <a href="/tag/015I" data-tag="015I">13.21.2</a>. In this case $\mathcal{F}^\bullet \to \text{Tot}(\mathcal{I}^{\bullet , \bullet })$ is an injective resolution and hence 
+    <p>
+      <div class="equation">
+  \[  \text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, \text{Tot}({\mathcal I}^{\bullet , \bullet })))  \]
+</div>
+    <p>
+       computes $R\Gamma (X, \mathcal{F}^\bullet )$ as we've seen above. By Homology, Remark <a href="/tag/08BI" data-tag="08BI">12.18.4</a> we can view this as the total complex associated to the triple complex $\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal I}^{\bullet , \bullet })$ hence, using the same remark we can view it as the total complex associate to the double complex $A^{\bullet , \bullet }$ with terms 
+    <p>
+      <div class="equation">
+  \[  A^{n, m} = \bigoplus \nolimits _{p + q = n} \check{\mathcal{C}}^ p({\mathcal U}, \mathcal{I}^{q, m})  \]
+</div>
+    <p>
+       Since $\mathcal{I}^{q, \bullet }$ is an injective resolution of $\mathcal{F}^ q$ we can apply the first spectral sequence associated to $A^{\bullet , \bullet }$ (Homology, Lemma <a href="/tag/0130" data-tag="0130">12.25.1</a>) to get a spectral sequence with 
+    <p>
+      <div class="equation">
+  \[  E_1^{n, m} = \bigoplus \nolimits _{p + q = n} \check{\mathcal{C}}^ p(\mathcal{U}, \underline{H}^ m(\mathcal{F}^ q))  \]
+</div>
+    <p>
+       which is the $n$th term of the complex $\text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \underline{H}^ m(\mathcal{F}^\bullet ))$. Hence we obtain $E_2$ terms as described in the lemma. Convergence by Homology, Lemma <a href="/tag/0132" data-tag="0132">12.25.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FLH">
+  <p><a class="environment-identifier" href="/tag/0FLH">Lemma <span data-tag="0FLH">20.25.2</span>.</a> Let $(X, \mathcal{O}_ X)$ be a ringed space. Let $\mathcal{U} : X = \bigcup _{i \in I} U_ i$ be an open covering. Let $\mathcal{F}^\bullet $ be a bounded below complex of $\mathcal{O}_ X$-modules. If $H^ i(U_{i_0 \ldots i_ p}, \mathcal{F}^ q) = 0$ for all $i > 0$ and all $p, i_0, \ldots , i_ p, q$, then the map $ \text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{F}^\bullet )) \to R\Gamma (X, \mathcal{F}^\bullet ) $ of Lemma <a href="/tag/08BN" data-tag="08BN">20.25.1</a> is an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Immediate from the spectral sequence of Lemma <a href="/tag/08BN" data-tag="08BN">20.25.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0FLI">
+  <p><a class="environment-identifier" href="/tag/0FLI">Remark <span data-tag="0FLI">20.25.3</span>.</a> Let $(X, \mathcal{O}_ X)$ be a ringed space. Let $\mathcal{U} : X = \bigcup _{i \in I} U_ i$ be an open covering. Let $\mathcal{F}^\bullet $ be a bounded below complex of $\mathcal{O}_ X$-modules. Let $b$ be an integer. We claim there is a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{F}^\bullet ))[b] \ar[r] \ar[d]_\gamma &  R\Gamma (X, \mathcal{F}^\bullet )[b] \ar[d] \\  \text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{F}^\bullet [b])) \ar[r] &  R\Gamma (X, \mathcal{F}^\bullet [b]) }  \]
+</div>
+  <p> in the derived category where the map $\gamma $ is the map on complexes constructed in Homology, Remark <a href="/tag/0FLG" data-tag="0FLG">12.18.5</a>. This makes sense because the double complex $\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{F}^\bullet [b])$ is clearly the same as the double complex $\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{F}^\bullet )[0, b]$ introduced in Homology, Remark <a href="/tag/0FLG" data-tag="0FLG">12.18.5</a>. To check that the diagram commutes, we may choose an injective resolution $\mathcal{F}^\bullet \to \mathcal{I}^\bullet $ as in the proof of Lemma <a href="/tag/08BN" data-tag="08BN">20.25.1</a>. Chasing diagrams, we see that it suffices to check the diagram commutes when we replace $\mathcal{F}^\bullet $ by $\mathcal{I}^\bullet $. Then we consider the extended diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \Gamma (X, \mathcal{I}^\bullet )[b] \ar[r] \ar[d] &  \text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{I}^\bullet ))[b] \ar[r] \ar[d]_\gamma &  R\Gamma (X, \mathcal{I}^\bullet )[b] \ar[d] \\  \Gamma (X, \mathcal{I}^\bullet [b]) \ar[r] &  \text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{I}^\bullet [b])) \ar[r] &  R\Gamma (X, \mathcal{I}^\bullet [b]) }  \]
+</div>
+  <p> where the left horizontal arrows are (<a href="/tag/07M9" data-tag="07M9">20.25.0.1</a>). Since in this case the horizontal arrows are isomorphisms in the derived category (see proof of Lemma <a href="/tag/08BN" data-tag="08BN">20.25.1</a>) it suffices to show that the left square commutes. This is true because the map $\gamma $ uses the sign $1$ on the summands $\check{\mathcal{C}}^0(\mathcal{U}, \mathcal{I}^{q + b})$, see formula in Homology, Remark <a href="/tag/0FLG" data-tag="0FLG">12.18.5</a>. </p>
+</article> 
+</p>
+<p>
+Let $X$ be a topological space, let $\mathcal{U} : X = \bigcup _{i \in I} U_ i$ be an open covering, and let $\mathcal{F}^\bullet $ be a bounded below complex of presheaves of abelian groups. Consider the map $\tau : \text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}^\bullet )) \to \text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}^\bullet ))$ defined by 
+</p>
+<div class="equation">
+  \[  \tau (\alpha )_{i_0 \ldots i_ p} = (-1)^{p(p + 1)/2} \alpha _{i_ p \ldots i_0}.  \]
+</div>
+<p>
+ Then we have for an element $\alpha $ of degree $n$ that 
+</p>
+<div class="equation">
+  \begin{align*} &  d(\tau (\alpha ))_{i_0 \ldots i_{p + 1}} \\ &  = \sum \nolimits _{j = 0}^{p + 1} (-1)^ j \tau (\alpha )_{i_0 \ldots \hat i_ j \ldots i_{p + 1}} + (-1)^{p + 1} d_{\mathcal F}(\tau (\alpha )_{i_0 \ldots i_{p + 1}}) \\ &  = \sum \nolimits _{j = 0}^{p + 1} (-1)^{j + \frac{p(p + 1)}{2}} \alpha _{i_{p + 1} \ldots \hat i_ j \ldots i_0} + (-1)^{p + 1 + \frac{(p + 1)(p + 2)}{2}} d_{\mathcal F}(\alpha _{i_{p + 1} \ldots i_0}) \end{align*}
+</div>
+<p>
+ On the other hand we have 
+</p>
+<div class="equation">
+  \begin{align*} &  \tau (d(\alpha ))_{i_0\ldots i_{p + 1}} \\ &  = (-1)^{\frac{(p + 1)(p + 2)}{2}} d(\alpha )_{i_{p + 1} \ldots i_0} \\ &  = (-1)^{\frac{(p + 1)(p + 2)}{2}} \left( \sum \nolimits _{j = 0}^{p + 1} (-1)^ j \alpha _{i_{p + 1}\ldots \hat i_{p + 1 - j} \ldots i_0} + (-1)^{p + 1} d_{\mathcal F}(\alpha _{i_{p + 1}\ldots i_0}) \right) \end{align*}
+</div>
+<p>
+ Thus we conclude that $d(\tau (\alpha )) = \tau (d(\alpha ))$ because $p(p + 1)/2 \equiv (p + 1)(p + 2)/2 + p + 1 \bmod 2$. In other words $\tau $ is an endomorphism of the complex $\text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}^\bullet ))$. Note that the diagram 
+</p>
+<div class="equation">
+  \[  \begin{matrix}  \Gamma (X, {\mathcal F}^\bullet ) 
+
+&  \longrightarrow 
+
+&  \text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}^\bullet )) 
+
+\\  \downarrow \text{id} 
+
+& &  \downarrow \tau 
+
+\\  \Gamma (X, {\mathcal F}^\bullet ) 
+
+&  \longrightarrow 
+
+&  \text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}^\bullet )) 
+
+\end{matrix}  \]
+</div>
+<p>
+ commutes. In addition $\tau $ is clearly compatible with refinements. This suggests that $\tau $ acts as the identity on Čech cohomology (i.e., in the colimit – provided Čech hypercohomology agrees with hypercohomology, which is always the case if we use hypercoverings). We claim that $\tau $ actually is homotopic to the identity on the total Čech complex $\text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}^\bullet ))$. To prove this, we use as homotopy 
+</p>
+<div class="equation">
+  \[  h(\alpha )_{i_0 \ldots i_ p} = \sum \nolimits _{a = 0}^ p \epsilon _ p(a) \alpha _{i_0 \ldots i_ a i_ p \ldots i_ a} \quad \text{with}\quad \epsilon _ p(a) = (-1)^{\frac{(p - a)(p - a - 1)}{2} + p}  \]
+</div>
+<p>
+ for $\alpha $ of degree $n$. As usual we omit writing $|_{U_{i_0 \ldots i_ p}}$. This works because of the following computation, again with $\alpha $ an element of degree $n$: 
+</p>
+<div class="equation">
+  \begin{align*}  (d(h(\alpha )) + h(d(\alpha )))_{i_0 \ldots i_ p} = &  \sum \nolimits _{k = 0}^ p (-1)^ k h(\alpha )_{i_0 \ldots \hat i_ k \ldots i_ p} + \\ &  (-1)^ p d_{\mathcal F}(h(\alpha )_{i_0 \ldots i_ p}) + \\ &  \sum \nolimits _{a = 0}^ p \epsilon _ p(a) d(\alpha )_{i_0 \ldots i_ a i_ p \ldots i_ a} \\  = &  \sum \nolimits _{k = 0}^ p \sum \nolimits _{a = 0}^{k - 1} (-1)^ k \epsilon _{p - 1}(a) \alpha _{i_0 \ldots i_ a i_ p \ldots \hat{i_ k} \ldots i_ a} + \\ &  \sum \nolimits _{k = 0}^ p \sum \nolimits _{a = k + 1}^ p (-1)^ k \epsilon _{p - 1}(a - 1) \alpha _{i_0 \ldots \hat{i_ k} \ldots i_ a i_ p \ldots i_ a} + \\ &  \sum \nolimits _{a = 0}^ p (-1)^ p \epsilon _ p(a) d_{\mathcal F}(\alpha _{i_0 \ldots i_ a i_ p \ldots i_ a}) + \\ &  \sum \nolimits _{a = 0}^ p \sum \nolimits _{k = 0}^ a \epsilon _ p(a) (-1)^ k \alpha _{i_0 \ldots \hat{i_ k} \ldots i_ a i_ p \ldots i_ a} + \\ &  \sum \nolimits _{a = 0}^ p \sum \nolimits _{k = a}^ p \epsilon _ p(a) (-1)^{p + a + 1 - k} \alpha _{i_0 \ldots i_ a i_ p \ldots \hat{i_ k} \ldots i_ a} + \\ &  \sum \nolimits _{a = 0}^ p \epsilon _ p(a) (-1)^{p + 1} d_{\mathcal F}(\alpha _{i_0 \ldots i_ a i_ p \ldots i_ a}) \\  = &  \epsilon _ p(0) \alpha _{i_ p \ldots i_0} + \epsilon _ p(p) (-1)^{p + 1} \alpha _{i_0 \ldots i_ p} \\  = &  (-1)^{\frac{p(p + 1)}{2}}\alpha _{i_ p \ldots i_0} - \alpha _{i_0 \ldots i_ p} \end{align*}
+</div>
+<p>
+ The cancellations follow because 
+</p>
+<div class="equation">
+  \[  (-1)^ k \epsilon _{p - 1}(a) + \epsilon _ p(a)(-1)^{p + a + 1 - k} = 0 \quad \text{and}\quad (-1)^ k\epsilon _{p - 1}(a - 1) + \epsilon _ p(a) (-1)^ k = 0  \]
+</div>
+<p>
+ We leave it to the reader to verify the cancellations. 
+</p>
+<p>
+Suppose we have two bounded below complexes of abelian sheaves ${\mathcal F}^\bullet $ and ${\mathcal G}^\bullet $. We define the complex $\text{Tot}({\mathcal F}^\bullet \otimes _{\mathbf Z} {\mathcal G}^\bullet )$ to be to complex with terms $\bigoplus _{p + q = n} {\mathcal F}^ p \otimes {\mathcal G}^ q$ and differential according to the rule 
+</p>
+<div class="equation" id="07MA">
+    <span class="equation-label"><a href="/tag/07MA" data-tag="07MA">20.25.3.1</a></span>
+  <div>\begin{equation}  \label{cohomology-equation-differential-tensor-product-complexes} d(\alpha \otimes \beta ) = d(\alpha )\otimes \beta + (-1)^{\deg (\alpha )} \alpha \otimes d(\beta ) \end{equation}</div>
+</div>
+<p>
+ when $\alpha $ and $\beta $ are homogeneous, see Homology, Definition <a href="/tag/012Z" data-tag="012Z">12.18.3</a>. 
+</p>
+<p>
+Suppose that $M^\bullet $ and $N^\bullet $ are two bounded below complexes of abelian groups. Then if $m$, resp. $n$ is a cocycle for $M^\bullet $, resp. $N^\bullet $, it is immediate that $m \otimes n$ is a cocycle for $\text{Tot}(M^\bullet \otimes N^\bullet )$. Hence a cup product 
+</p>
+<div class="equation">
+  \[  H^ i(M^\bullet ) \times H^ j(N^\bullet ) \longrightarrow H^{i + j}(Tot(M^\bullet \otimes N^\bullet )).  \]
+</div>
+<p>
+ This is discussed also in More on Algebra, Section <a href="/tag/068G" data-tag="068G">15.64</a>. 
+</p>
+<p>
+So the construction of the cup product in hypercohomology of complexes rests on a construction of a map of complexes 
+</p>
+<div class="equation" id="07MB">
+    <span class="equation-label"><a href="/tag/07MB" data-tag="07MB">20.25.3.2</a></span>
+  <div>\begin{equation}  \label{cohomology-equation-needs-signs} \text{Tot}\left( \text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}^\bullet )) \otimes _{\mathbf Z} \text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal G}^\bullet )) \right) \longrightarrow \text{Tot}( \check{\mathcal{C}}^\bullet ({\mathcal U}, \text{Tot}({\mathcal F}^\bullet \otimes {\mathcal G}^\bullet ) )) \end{equation}</div>
+</div>
+<p>
+ This map is denoted $\cup $ and is given by the rule 
+</p>
+<div class="equation">
+  \[  (\alpha \cup \beta )_{i_0 \ldots i_ p} = \sum \nolimits _{r = 0}^ p \epsilon (n, m, p, r) \alpha _{i_0 \ldots i_ r} \otimes \beta _{i_ r \ldots i_ p}.  \]
+</div>
+<p>
+ where $\alpha $ has degree $n$ and $\beta $ has degree $m$ and with 
+</p>
+<div class="equation">
+  \[  \epsilon (n, m, p, r) = (-1)^{(p + r)n + rp + r}.  \]
+</div>
+<p>
+ Note that $\epsilon (n, m, p, n) = 1$. Hence if $\mathcal{F}^\bullet = \mathcal{F}[0]$ is the complex consisting in a single abelian sheaf $\mathcal{F}$ placed in degree $0$, then there no signs in the formula for $\cup $ (as in that case $\alpha _{i_0 \ldots i_ r} = 0$ unless $r = n$). For an explanation of why there has to be a sign and how to compute it see <span class="cite">[<span class="postnote">Exposee XVII</span>, <a href="/bibliography/SGA4">SGA4</a>]</span> by Deligne. To check (<a href="/tag/07MB" data-tag="07MB">20.25.3.2</a>) is a map of complexes we have to show that 
+</p>
+<div class="equation">
+  \[  d(\alpha \cup \beta ) = d(\alpha ) \cup \beta + (-1)^{\deg (\alpha )} \alpha \cup d(\beta )  \]
+</div>
+<p>
+ by the definition of the differential on $\text{Tot}( \text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}^\bullet )) \otimes _{\mathbf Z} \text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal G}^\bullet )) )$ as given in Homology, Definition <a href="/tag/012Z" data-tag="012Z">12.18.3</a>. We compute first 
+</p>
+<div class="equation">
+  \begin{align*}  d(\alpha \cup \beta )_{i_0 \ldots i_{p + 1}} = &  \sum \nolimits _{j = 0}^{p + 1} (-1)^ j (\alpha \cup \beta )_{i_0 \ldots \hat i_ j \ldots i_{p + 1}} + (-1)^{p + 1} d_{{\mathcal F} \otimes {\mathcal G}} ((\alpha \cup \beta )_{i_0 \ldots i_{p + 1}}) \\  = &  \sum \nolimits _{j = 0}^{p + 1} \sum \nolimits _{r = 0}^{j - 1} (-1)^ j \epsilon (n, m, p, r) \alpha _{i_0 \ldots i_ r} \otimes \beta _{i_ r \ldots \hat i_ j \ldots i_{p + 1}} + \\ &  \sum \nolimits _{j = 0}^{p + 1} \sum \nolimits _{r = j + 1}^{p + 1} (-1)^ j \epsilon (n, m, p, r - 1) \alpha _{i_0 \ldots \hat i_ j \ldots i_ r} \otimes \beta _{i_ r \ldots i_{p + 1}} + \\ &  \sum \nolimits _{r = 0}^{p + 1} (-1)^{p + 1} \epsilon (n, m, p + 1, r) d_{{\mathcal F} \otimes {\mathcal G}} (\alpha _{i_0 \ldots i_ r} \otimes \beta _{i_ r \ldots i_{p + 1}}) \end{align*}
+</div>
+<p>
+ and note that the summands in the last term equal 
+</p>
+<div class="equation">
+  \[  (-1)^{p + 1} \epsilon (n, m, p + 1, r) \left( d_{\mathcal F}(\alpha _{i_0 \ldots i_ r}) \otimes \beta _{i_ r \ldots i_{p + 1}} + (-1)^{n - r} \alpha _{i_0 \ldots i_ r} \otimes d_{\mathcal G}(\beta _{i_ r \ldots i_{p + 1}}) \right).  \]
+</div>
+<p>
+ because $\deg _\mathcal {F}(\alpha _{i_0 \ldots i_ r}) = n - r$. On the other hand 
+</p>
+<div class="equation">
+  \begin{align*}  (d(\alpha ) \cup \beta )_{i_0\ldots i_{p + 1}} = &  \sum \nolimits _{r = 0}^{p + 1} \epsilon (n + 1, m, p + 1, r) d(\alpha )_{i_0\ldots i_ r} \otimes \beta _{i_ r\ldots i_{p + 1}} \\  = &  \sum \nolimits _{r = 0}^{p + 1} \sum \nolimits _{j = 0}^{r} \epsilon (n + 1, m, p + 1, r) (-1)^ j \alpha _{i_0\ldots \hat{i_ j}\ldots i_ r} \otimes \beta _{i_ r\ldots i_{p + 1}} + \\ &  \sum \nolimits _{r = 0}^{p + 1} \epsilon (n + 1, m, p + 1, r) (-1)^ r d_{\mathcal F}(\alpha _{i_0 \ldots i_ r}) \otimes \beta _{i_ r\ldots i_{p + 1}} \end{align*}
+</div>
+<p>
+ and 
+</p>
+<div class="equation">
+  \begin{align*}  (\alpha \cup d(\beta ))_{i_0\ldots i_{p + 1}} = &  \sum \nolimits _{r = 0}^{p + 1} \epsilon (n, m + 1, p + 1, r) \alpha _{i_0 \ldots i_ r} \otimes d(\beta )_{i_ r \ldots i_{p + 1}} \\  = &  \sum \nolimits _{r = 0}^{p + 1} \sum \nolimits _{j = r}^{p + 1} \epsilon (n, m + 1, p + 1, r) (-1)^{j - r} \alpha _{i_0 \ldots i_ r} \otimes \beta _{i_ r \ldots \hat{i_ j}\ldots i_{p + 1}} + \\ &  \sum \nolimits _{r = 0}^{p + 1} \epsilon (n, m + 1, p + 1, r) (-1)^{p + 1 - r} \alpha _{i_0 \ldots i_ r} \otimes d_{\mathcal G}(\beta _{i_ r \ldots i_{p + 1}}) \end{align*}
+</div>
+<p>
+ The desired equality holds if we have 
+</p>
+<div class="equation">
+  \begin{align*}  (-1)^{p + 1} \epsilon (n, m, p + 1, r) &  = \epsilon (n + 1, m, p + 1, r) (-1)^ r \\  (-1)^{p + 1} \epsilon (n, m, p + 1, r) (-1)^{n - r} &  = (-1)^ n \epsilon (n, m + 1, p + 1, r) (-1)^{p + 1 - r} \\  \epsilon (n + 1, m, p + 1, r) (-1)^ r &  = (-1)^{1 + n} \epsilon (n, m + 1, p + 1, r - 1) \\  (-1)^ j \epsilon (n, m, p, r) &  = (-1)^ n \epsilon (n, m + 1, p + 1, r) (-1)^{j - r} \\  (-1)^ j \epsilon (n, m, p, r - 1) &  = \epsilon (n + 1, m, p + 1, r) (-1)^ j \end{align*}
+</div>
+<p>
+ (The third equality is necessary to get the terms with $r = j$ from $d(\alpha ) \cup \beta $ and $(-1)^ n \alpha \cup d(\beta )$ to cancel each other.) We leave the verifications to the reader. (Alternatively, check the script signs.gp in the scripts subdirectory of the Stacks project.) 
+</p>
+<p>
+Associativity of the cup product. Suppose that ${\mathcal F}^\bullet $, ${\mathcal G}^\bullet $ and ${\mathcal H}^\bullet $ are bounded below complexes of abelian groups on $X$. The obvious map (without the intervention of signs) is an isomorphism of complexes 
+</p>
+<div class="equation">
+  \[  \text{Tot}( \text{Tot}({\mathcal F}^\bullet \otimes _{\mathbf Z} {\mathcal G}^\bullet ) \otimes _{\mathbf Z} {\mathcal H}^\bullet ) \longrightarrow \text{Tot}( {\mathcal F}^\bullet \otimes _{\mathbf Z} \text{Tot}({\mathcal G}^\bullet \otimes _{\mathbf Z} {\mathcal H}^\bullet ) ).  \]
+</div>
+<p>
+ Another way to say this is that the triple complex ${\mathcal F}^\bullet \otimes _{\mathbf Z} {\mathcal G}^\bullet \otimes _{\mathbf Z} {\mathcal H}^\bullet $ gives rise to a well defined total complex with differential satisfying 
+</p>
+<div class="equation">
+  \[  d(\alpha \otimes \beta \otimes \gamma ) = d(\alpha ) \otimes \beta \otimes \gamma + (-1)^{\deg (\alpha )} \alpha \otimes d(\beta ) \otimes \gamma + (-1)^{\deg (\alpha ) + \deg (\beta )} \alpha \otimes \beta \otimes d(\gamma )  \]
+</div>
+<p>
+ for homogeneous elements. Using this map it is easy to verify that 
+</p>
+<div class="equation">
+  \[  (\alpha \cup \beta ) \cup \gamma = \alpha \cup ( \beta \cup \gamma )  \]
+</div>
+<p>
+ namely, if $\alpha $ has degree $a$, $\beta $ has degree $b$ and $\gamma $ has degree $c$, then 
+</p>
+<div class="equation">
+  \begin{align*}  ((\alpha \cup \beta ) \cup \gamma )_{i_0 \ldots i_ p} = &  \sum \nolimits _{r = 0}^ p \epsilon (a + b, c, p, r) (\alpha \cup \beta )_{i_0 \ldots i_ r} \otimes \gamma _{i_ r \ldots i_ p} \\  = &  \sum \nolimits _{r = 0}^ p \sum \nolimits _{s = 0}^ r \epsilon (a + b, c, p, r) \epsilon (a, b, r, s) \alpha _{i_0 \ldots i_ s} \otimes \beta _{i_ s \ldots i_ r} \otimes \gamma _{i_ r \ldots i_ p} \end{align*}
+</div>
+<p>
+ and 
+</p>
+<div class="equation">
+  \begin{align*}  (\alpha \cup (\beta \cup \gamma )_{i_0\ldots i_ p} = &  \sum \nolimits _{s = 0}^ p \epsilon (a, b + c, p, s) \alpha _{i_0 \ldots i_ s} \otimes (\beta \cup \gamma )_{i_ s \ldots i_ p} \\  = &  \sum \nolimits _{s = 0}^ p \sum \nolimits _{r = s}^ p \epsilon (a, b + c, p, s) \epsilon (b, c, p - s, r - s) \alpha _{i_0 \ldots i_ s} \otimes \beta _{i_ s \ldots i_ r} \otimes \gamma _{i_ r \ldots i_ p} \end{align*}
+</div>
+<p>
+ and a trivial mod $2$ calculation shows the signs match up. (Alternatively, check the script signs.gp in the scripts subdirectory of the Stacks project.) 
+</p>
+<p>
+Finally, we indicate why the cup product preserves a graded commutative structure, at least on a cohomological level. For this we use the operator $\tau $ introduced above. Let ${\mathcal F}^\bullet $ be a bounded below complexes of abelian groups, and assume we are given a graded commutative multiplication 
+</p>
+<div class="equation">
+  \[  \wedge ^\bullet : \text{Tot}({\mathcal F}^\bullet \otimes {\mathcal F}^\bullet ) \longrightarrow {\mathcal F}^\bullet .  \]
+</div>
+<p>
+ This means the following: For $s$ a local section of ${\mathcal F}^ a$, and $t$ a local section of ${\mathcal F}^ b$ we have $s \wedge t$ a local section of ${\mathcal F}^{a + b}$. Graded commutative means we have $s \wedge t = (-1)^{ab} t \wedge s$. Since $\wedge $ is a map of complexes we have $d(s\wedge t) = d(s) \wedge t + (-1)^ a s \wedge d(t)$. The composition 
+</p>
+<div class="equation">
+  \[  \text{Tot}( \text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}^\bullet )) \otimes \text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}^\bullet )) ) \to \text{Tot}( \check{\mathcal{C}}^\bullet ({\mathcal U}, \text{Tot}({\mathcal F}^\bullet \otimes _{\mathbf Z}{\mathcal F}^\bullet )) ) \to \text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}^\bullet ))  \]
+</div>
+<p>
+ induces a cup product on cohomology 
+</p>
+<div class="equation">
+  \[  H^ n( \text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}^\bullet )) ) \times H^ m( \text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}^\bullet )) ) \longrightarrow H^{n + m}( \text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}^\bullet )) )  \]
+</div>
+<p>
+ and so in the colimit also a product on Čech cohomology and therefore (using hypercoverings if needed) a product in cohomology of ${\mathcal F}^\bullet $. We claim this product (on cohomology) is graded commutative as well. To prove this we first consider an element $\alpha $ of degree $n$ in $\text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}^\bullet ))$ and an element $\beta $ of degree $m$ in $\text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}^\bullet ))$ and we compute 
+</p>
+<div class="equation">
+  \begin{align*}  \wedge ^\bullet (\alpha \cup \beta )_{i_0 \ldots i_ p} = &  \sum \nolimits _{r = 0}^ p \epsilon (n, m, p, r) \alpha _{i_0 \ldots i_ r} \wedge \beta _{i_ r \ldots i_ p} \\  = &  \sum \nolimits _{r = 0}^ p \epsilon (n, m, p, r) (-1)^{\deg (\alpha _{i_0 \ldots i_ r})\deg (\beta _{i_ r \ldots i_ p})} \beta _{i_ r \ldots i_ p} \wedge \alpha _{i_0 \ldots i_ r} \end{align*}
+</div>
+<p>
+ because $\wedge $ is graded commutative. On the other hand we have 
+</p>
+<div class="equation">
+  \begin{align*}  \tau (\wedge ^\bullet (\tau (\beta ) \cup \tau (\alpha )))_{i_0 \ldots i_ p} = &  \chi (p) \sum \nolimits _{r = 0}^ p \epsilon (m, n, p, r) \tau (\beta )_{i_ p \ldots i_{p - r}} \wedge \tau (\alpha )_{i_{p - r} \ldots i_0} \\  = &  \chi (p) \sum \nolimits _{r = 0}^ p \epsilon (m, n, p, r) \chi (r) \chi (p - r) \beta _{i_{p - r} \ldots i_ p} \wedge \alpha _{i_0 \ldots i_{p - r}} \\  = &  \chi (p) \sum \nolimits _{r = 0}^ p \epsilon (m, n, p, p - r) \chi (r) \chi (p - r) \beta _{i_ r \ldots i_ p} \wedge \alpha _{i_0 \ldots i_ r} \end{align*}
+</div>
+<p>
+ where $\chi (t) = (-1)^{\frac{t(t + 1)}{2}}$. Since we proved earlier that $\tau $ acts as the identity on cohomology we have to verify that 
+</p>
+<div class="equation">
+  \[  \epsilon (n, m, p, r) (-1)^{(n - r)(m - (p - r))} = (-1)^{nm} \chi (p)\epsilon (m, n, p, p - r) \chi (r) \chi (p - r)  \]
+</div>
+<p>
+ A trivial mod $2$ calculation shows these signs match up. (Alternatively, check the script signs.gp in the scripts subdirectory of the Stacks project.) 
+</p>
+<p>
+Finally, we study the compatibility of cup product with boundary maps. Suppose that 
+</p>
+<div class="equation">
+  \[  0 \to {\mathcal F}_1^\bullet \to {\mathcal F}_2^\bullet \to {\mathcal F}_3^\bullet \to 0 \quad \text{and}\quad 0 \leftarrow {\mathcal G}_1^\bullet \leftarrow {\mathcal G}_2^\bullet \leftarrow {\mathcal G}_3^\bullet \leftarrow 0  \]
+</div>
+<p>
+ are short exact sequences of bounded below complexes of abelian sheaves on $X$. Let ${\mathcal H}^\bullet $ be another bounded below complex of abelian sheaves, and suppose we have maps of complexes 
+</p>
+<div class="equation">
+  \[  \gamma _ i : \text{Tot}({\mathcal F}_ i^\bullet \otimes _{\mathbf Z} {\mathcal G}_ i^\bullet ) \longrightarrow {\mathcal H}^\bullet  \]
+</div>
+<p>
+ which are compatible with the maps between the complexes, namely such that the diagrams 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \text{Tot}({\mathcal F}_1^\bullet \otimes _{\mathbf Z} {\mathcal G}_1^\bullet ) \ar[d]_{\gamma _1} &  \text{Tot}({\mathcal F}_1^\bullet \otimes _{\mathbf Z} {\mathcal G}_2^\bullet ) \ar[l] \ar[d] \\  \mathcal{H}^\bullet &  \text{Tot}({\mathcal F}_2^\bullet \otimes _{\mathbf Z} {\mathcal G}_2^\bullet ) \ar[l]_-{\gamma _2} }  \]
+</div>
+<p>
+ and 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \text{Tot}({\mathcal F}_2^\bullet \otimes _{\mathbf Z} {\mathcal G}_2^\bullet ) \ar[d]_{\gamma _2} &  \text{Tot}({\mathcal F}_2^\bullet \otimes _{\mathbf Z} {\mathcal G}_3^\bullet ) \ar[l] \ar[d] \\  \mathcal{H}^\bullet &  \text{Tot}({\mathcal F}_3^\bullet \otimes _{\mathbf Z} {\mathcal G}_3^\bullet ) \ar[l]_-{\gamma _3} }  \]
+</div>
+<p>
+ are commutative. 
+</p>
+<p>
+<article class="env-lemma" id="07MC">
+  <p><a class="environment-identifier" href="/tag/07MC">Lemma <span data-tag="07MC">20.25.4</span>.</a> In the situation above, assume Čech cohomology agrees with cohomology for the sheaves $\mathcal{F}_ i^ p$ and $\mathcal{G}_ j^ q$. Let $a_3 \in H^ n(X, \mathcal{F}_3^\bullet )$ and $b_1 \in H^ m(X, \mathcal{G}_1^\bullet )$. Then we have </p>
+  <div class="equation">
+  \[  \gamma _1( \partial a_3 \cup b_1) = (-1)^{n + 1} \gamma _3( a_3 \cup \partial b_1)  \]
+</div>
+  <p> in $H^{n + m + 1}(X, \mathcal{H}^\bullet )$ where $\partial $ indicates the boundary map on cohomology associated to the short exact sequences of complexes above. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use the following conventions and notation. We think of ${\mathcal F}_1^ p$ as a subsheaf of ${\mathcal F}_2^ p$ and we think of ${\mathcal G}_3^ q$ as a subsheaf of ${\mathcal G}_2^ q$. Hence if $s$ is a local section of ${\mathcal F}_1^ p$ we use $s$ to denote the corresponding section of ${\mathcal F}_2^ p$ as well. Similarly for local sections of ${\mathcal G}_3^ q$. Furthermore, if $s$ is a local section of ${\mathcal F}_2^ p$ then we denote $\bar s$ its image in ${\mathcal F}_3^ p$. Similarly for the map ${\mathcal G}_2^ q \to {\mathcal G}^ q_1$. In particular if $s$ is a local section of ${\mathcal F}_2^ p$ and $\bar s = 0$ then $s$ is a local section of ${\mathcal F}_1^ p$. The commutativity of the diagrams above implies, for local sections $s$ of ${\mathcal F}_2^ p$ and $t$ of ${\mathcal G}_3^ q$ that $\gamma _2(s \otimes t) = \gamma _3(\bar s \otimes t)$ as sections of ${\mathcal H}^{p + q}$. 
+    <p>
+      Let ${\mathcal U} : X = \bigcup _{i \in I} U_ i$ be an open covering of $X$. Suppose that $\alpha _3$, resp. $\beta _1$ is a degree $n$, resp. $m$ cocycle of $\text{Tot}( \check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}_3^\bullet ))$, resp. $\text{Tot}( \check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal G}_1^\bullet ))$ representing $a_3$, resp. $b_1$. After refining $\mathcal{U}$ if necessary, we can find cochains $\alpha _2$, resp. $\beta _2$ of degree $n$, resp. $m$ in $\text{Tot}( \check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}_2^\bullet ))$, resp. $\text{Tot}( \check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal G}_2^\bullet ))$ mapping to $\alpha _3$, resp. $\beta _1$. Then we see that 
+    <p>
+      <div class="equation">
+  \[  \overline{d(\alpha _2)} = d(\bar\alpha _2) = 0 \quad \text{and}\quad \overline{d(\beta _2)} = d(\bar\beta _2) = 0.  \]
+</div>
+    <p>
+       This means that $\alpha _1 = d(\alpha _2)$ is a degree $n + 1$ cocycle in $\text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal F}_1^\bullet ))$ representing $\partial a_3$. Similarly, $\beta _3 = d(\beta _2)$ is a degree $m + 1$ cocycle in $\text{Tot}(\check{\mathcal{C}}^\bullet ({\mathcal U}, {\mathcal G}_3^\bullet ))$ representing $\partial b_1$. Thus we may compute 
+    <p>
+      <div class="equation">
+  \begin{align*}  d(\gamma _2(\alpha _2 \cup \beta _2)) &  = \gamma _2(d(\alpha _2 \cup \beta _2)) \\ &  = \gamma _2(d(\alpha _2) \cup \beta _2 + (-1)^ n \alpha _2 \cup d(\beta _2) ) \\ &  = \gamma _2( \alpha _1 \cup \beta _2) + (-1)^ n \gamma _2( \alpha _2 \cup \beta _3) \\ &  = \gamma _1(\alpha _1 \cup \beta _1) + (-1)^ n \gamma _3(\alpha _3 \cup \beta _3) \end{align*}
+</div>
+    <p>
+       So this even tells us that the sign is $(-1)^{n + 1}$ as indicated in the lemma<a class="footnotemark" href="#a0000479958" id="a0000479958-mark"><sup>1</sup></a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0B8S">
+  <p><a class="environment-identifier" href="/tag/0B8S">Lemma <span data-tag="0B8S">20.25.5</span>.</a> Let $X$ be a topological space. Let $\mathcal{O}' \to \mathcal{O}$ be a surjection of sheaves of rings whose kernel $\mathcal{I} \subset \mathcal{O}'$ has square zero. Then $M = H^1(X, \mathcal{I})$ is a $R = H^0(X, \mathcal{O})$-module and the boundary map $\partial : R \to M$ associated to the short exact sequence </p>
+  <div class="equation">
+  \[  0 \to \mathcal{I} \to \mathcal{O}' \to \mathcal{O} \to 0  \]
+</div>
+  <p> is a derivation (Algebra, Definition <a href="/tag/00RN" data-tag="00RN">10.131.1</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The map $\mathcal{O}' \to \mathop{\mathcal{H}\! \mathit{om}}\nolimits (\mathcal{I}, \mathcal{I})$ factors through $\mathcal{O}$ as $\mathcal{I} \cdot \mathcal{I} = 0$ by assumption. Hence $\mathcal{I}$ is a sheaf of $\mathcal{O}$-modules and this defines the $R$-module structure on $M$. The boundary map is additive hence it suffices to prove the Leibniz rule. Let $f \in R$. Choose an open covering $\mathcal{U} : X = \bigcup U_ i$ such that there exist $f_ i \in \mathcal{O}'(U_ i)$ lifting $f|_{U_ i} \in \mathcal{O}(U_ i)$. Observe that $f_ i - f_ j$ is an element of $\mathcal{I}(U_ i \cap U_ j)$. Then $\partial (f)$ corresponds to the Čech cohomology class of the $1$-cocycle $\alpha $ with $\alpha _{i_0i_1} = f_{i_0} - f_{i_1}$. (Observe that by Lemma <a href="/tag/0B8R" data-tag="0B8R">20.11.3</a> the first Čech cohomology group with respect to $\mathcal{U}$ is a submodule of $M$.) Next, let $g \in R$ be a second element and assume (after possibly refining the open covering) that $g_ i \in \mathcal{O}'(U_ i)$ lifts $g|_{U_ i} \in \mathcal{O}(U_ i)$. Then we see that $\partial (g)$ is given by the cocycle $\beta $ with $\beta _{i_0i_1} = g_{i_0} - g_{i_1}$. Since $f_ ig_ i \in \mathcal{O}'(U_ i)$ lifts $fg|_{U_ i}$ we see that $\partial (fg)$ is given by the cocycle $\gamma $ with 
+    <p>
+      <div class="equation">
+  \[  \gamma _{i_0i_1} = f_{i_0}g_{i_0} - f_{i_1}g_{i_1} = (f_{i_0} - f_{i_1})g_{i_0} + f_{i_1}(g_{i_0} - g_{i_1}) = \alpha _{i_0i_1}g + f\beta _{i_0i_1}  \]
+</div>
+    <p>
+       by our definition of the $\mathcal{O}$-module structure on $\mathcal{I}$. This proves the Leibniz rule and the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

@@ -1,0 +1,369 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="spaces-simplicial-section-simplicial-top" class="tex-section"><span data-tag="09VK">85.2</span> Simplicial topological spaces</h2>
+
+<p>
+A <em>simplicial space</em> is a simplicial object in the category of topological spaces where morphisms are continuous maps of topological spaces. (We will use “simplicial algebraic space” to refer to simplicial objects in the category of algebraic spaces.) We may picture a simplicial space $X$ as follows 
+</p>
+<div class="equation">
+  \[  \xymatrix{ X_2 \ar@<2ex>[r] \ar@<0ex>[r] \ar@<-2ex>[r] &  X_1 \ar@<1ex>[r] \ar@<-1ex>[r] \ar@<1ex>[l] \ar@<-1ex>[l] &  X_0 \ar@<0ex>[l] }  \]
+</div>
+<p>
+ Here there are two morphisms $d^1_0, d^1_1 : X_1 \to X_0$ and a single morphism $s^0_0 : X_0 \to X_1$, etc. It is important to keep in mind that $d^ n_ i : X_ n \to X_{n - 1}$ should be thought of as a “projection forgetting the $i$th coordinate” and $s^ n_ j : X_ n \to X_{n + 1}$ as the diagonal map repeating the $j$th coordinate. 
+</p>
+<p>
+Let $X$ be a simplicial space. We associate a site $X_{Zar}$<a class="footnotemark" href="#a0001530759" id="a0001530759-mark"><sup>1</sup></a> to $X$ as follows. 
+</p>
+<ol>
+  <li><p>
+An object of $X_{Zar}$ is an open $U$ of $X_ n$ for some $n$, 
+</p>
+</li><li><p>
+a morphism $U \to V$ of $X_{Zar}$ is given by a $\varphi : [m] \to [n]$ where $n, m$ are such that $U \subset X_ n$, $V \subset X_ m$ and $\varphi $ is such that $X(\varphi )(U) \subset V$, and 
+</p>
+</li><li><p>
+a covering $\{ U_ i \to U\} $ in $X_{Zar}$ means that $U, U_ i \subset X_ n$ are open, the maps $U_ i \to U$ are given by $\text{id} : [n] \to [n]$, and $U = \bigcup U_ i$. 
+</p>
+</li>
+</ol>
+<p>
+ Note that in particular, if $U \to V$ is a morphism of $X_{Zar}$ given by $\varphi $, then $X(\varphi ) : X_ n \to X_ m$ does in fact induce a continuous map $U \to V$ of topological spaces. 
+</p>
+<p>
+It is clear that the above is a special case of a construction that associates to any diagram of topological spaces a site. We formulate the obligatory lemma. 
+</p>
+<p>
+<article class="env-lemma" id="09VL">
+  <p><a class="environment-identifier" href="/tag/09VL">Lemma <span data-tag="09VL">85.2.1</span>.</a> Let $X$ be a simplicial space. Then $X_{Zar}$ as defined above is a site. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $X$ be a simplicial space. Let $\mathcal{F}$ be a sheaf on $X_{Zar}$. It is clear from the definition of coverings, that the restriction of $\mathcal{F}$ to the opens of $X_ n$ defines a sheaf $\mathcal{F}_ n$ on the topological space $X_ n$. For every $\varphi : [m] \to [n]$ the restriction maps of $\mathcal{F}$ for pairs $U \subset X_ n$, $V \subset X_ m$ with $X(\varphi )(U) \subset V$, define an $X(\varphi )$-map $\mathcal{F}(\varphi ) : \mathcal{F}_ m \to \mathcal{F}_ n$, see Sheaves, Definition <a href="/tag/008J" data-tag="008J">6.21.7</a>. Moreover, given $\varphi : [m] \to [n]$ and $\psi : [l] \to [m]$ we have 
+</p>
+<div class="equation">
+  \[  \mathcal{F}(\varphi ) \circ \mathcal{F}(\psi ) = \mathcal{F}(\varphi \circ \psi )  \]
+</div>
+<p>
+ (LHS uses composition of $f$-maps, see Sheaves, Definition <a href="/tag/008L" data-tag="008L">6.21.9</a>). Clearly, the converse is true as well: if we have a system $(\{ \mathcal{F}_ n\} _{n \geq 0}, \{ \mathcal{F}(\varphi )\} _{\varphi \in \text{Arrows}(\Delta )})$ as above, satisfying the displayed equalities, then we obtain a sheaf on $X_{Zar}$. 
+</p>
+<p>
+<article class="env-lemma" id="09VM">
+  <p><a class="environment-identifier" href="/tag/09VM">Lemma <span data-tag="09VM">85.2.2</span>.</a> Let $X$ be a simplicial space. There is an equivalence of categories between </p>
+  <p><ol>
+  <li><p>
+$\mathop{\mathit{Sh}}\nolimits (X_{Zar})$, and 
+</p>
+</li><li><p>
+category of systems $(\mathcal{F}_ n, \mathcal{F}(\varphi ))$ described above. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See discussion above. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09VN">
+  <p><a class="environment-identifier" href="/tag/09VN">Lemma <span data-tag="09VN">85.2.3</span>.</a> Let $f : Y \to X$ be a morphism of simplicial spaces. Then the functor $u : X_{Zar} \to Y_{Zar}$ which associates to the open $U \subset X_ n$ the open $f_ n^{-1}(U) \subset Y_ n$ defines a morphism of sites $f_{Zar} : Y_{Zar} \to X_{Zar}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It is clear that $u$ is a continuous functor. Hence we obtain functors $f_{Zar, *} = u^ s$ and $f_{Zar}^{-1} = u_ s$, see Sites, Section <a href="/tag/00X0" data-tag="00X0">7.14</a>. To see that we obtain a morphism of sites we have to show that $u_ s$ is exact. We will use Sites, Lemma <a href="/tag/00X5" data-tag="00X5">7.14.6</a> to see this. Let $V \subset Y_ n$ be an open subset. The category $\mathcal{I}_ V^ u$ (see Sites, Section <a href="/tag/00VC" data-tag="00VC">7.5</a>) consists of pairs $(U, \varphi )$ where $\varphi : [m] \to [n]$ and $U \subset X_ m$ open such that $Y(\varphi )(V) \subset f_ m^{-1}(U)$. Moreover, a morphism $(U, \varphi ) \to (U', \varphi ')$ is given by a $\psi : [m'] \to [m]$ such that $X(\psi )(U) \subset U'$ and $\varphi \circ \psi = \varphi '$. It is our task to show that $\mathcal{I}_ V^ u$ is cofiltered. 
+    <p>
+      We verify the conditions of Categories, Definition <a href="/tag/04AZ" data-tag="04AZ">4.20.1</a>. Condition (1) holds because $(X_ n, \text{id}_{[n]})$ is an object. Let $(U, \varphi )$ be an object. The condition $Y(\varphi )(V) \subset f_ m^{-1}(U)$ is equivalent to $V \subset f_ n^{-1}(X(\varphi )^{-1}(U))$. Hence we obtain a morphism $(X(\varphi )^{-1}(U), \text{id}_{[n]}) \to (U, \varphi )$ given by setting $\psi = \varphi $. Moreover, given a pair of objects of the form $(U, \text{id}_{[n]})$ and $(U', \text{id}_{[n]})$ we see there exists an object, namely $(U \cap U', \text{id}_{[n]})$, which maps to both of them. Thus condition (2) holds. To verify condition (3) suppose given two morphisms $a, a': (U, \varphi ) \to (U', \varphi ')$ given by $\psi , \psi ' : [m'] \to [m]$. Then precomposing with the morphism $(X(\varphi )^{-1}(U), \text{id}_{[n]}) \to (U, \varphi )$ given by $\varphi $ equalizes $a, a'$ because $\varphi \circ \psi = \varphi ' = \varphi \circ \psi '$. This finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09VP">
+  <p><a class="environment-identifier" href="/tag/09VP">Lemma <span data-tag="09VP">85.2.4</span>.</a> Let $f : Y \to X$ be a morphism of simplicial spaces. In terms of the description of sheaves in Lemma <a href="/tag/09VM" data-tag="09VM">85.2.2</a> the morphism $f_{Zar}$ of Lemma <a href="/tag/09VN" data-tag="09VN">85.2.3</a> can be described as follows. </p>
+  <p><ol>
+  <li><p>
+If $\mathcal{G}$ is a sheaf on $Y$, then $(f_{Zar, *}\mathcal{G})_ n = f_{n, *}\mathcal{G}_ n$. 
+</p>
+</li><li><p>
+If $\mathcal{F}$ is a sheaf on $X$, then $(f_{Zar}^{-1}\mathcal{F})_ n = f_ n^{-1}\mathcal{F}_ n$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The first part is immediate from the definitions. For the second part, note that in the proof of Lemma <a href="/tag/09VN" data-tag="09VN">85.2.3</a> we have shown that for a $V \subset Y_ n$ open the category $(\mathcal{I}_ V^ u)^{opp}$ contains as a cofinal subcategory the category of opens $U \subset X_ n$ with $f_ n^{-1}(U) \supset V$ and morphisms given by inclusions. Hence we see that the restriction of $u_ p\mathcal{F}$ to opens of $Y_ n$ is the presheaf $f_{n, p}\mathcal{F}_ n$ as defined in Sheaves, Lemma <a href="/tag/008F" data-tag="008F">6.21.3</a>. Since $f_{Zar}^{-1}\mathcal{F} = u_ s\mathcal{F}$ is the sheafification of $u_ p\mathcal{F}$ and since sheafification uses only coverings and since coverings in $Y_{Zar}$ use only inclusions between opens on the same $Y_ n$, the result follows from the fact that $f_ n^{-1}\mathcal{F}_ n$ is (correspondingly) the sheafification of $f_{n, p}\mathcal{F}_ n$, see Sheaves, Section <a href="/tag/008C" data-tag="008C">6.21</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $X$ be a topological space. In Sites, Example <a href="/tag/00VJ" data-tag="00VJ">7.6.4</a> we denoted $X_{Zar}$ the site consisting of opens of $X$ with inclusions as morphisms and coverings given by open coverings. We identify the topos $\mathop{\mathit{Sh}}\nolimits (X_{Zar})$ with the category of sheaves on $X$. 
+</p>
+<p>
+<article class="env-lemma" id="09W0">
+  <p><a class="environment-identifier" href="/tag/09W0">Lemma <span data-tag="09W0">85.2.5</span>.</a> Let $X$ be a simplicial space. The functor $X_{n, Zar} \to X_{Zar}$, $U \mapsto U$ is continuous and cocontinuous. The associated morphism of topoi $g_ n : \mathop{\mathit{Sh}}\nolimits (X_ n) \to \mathop{\mathit{Sh}}\nolimits (X_{Zar})$ satisfies </p>
+  <p><ol>
+  <li><p>
+$g_ n^{-1}$ associates to the sheaf $\mathcal{F}$ on $X$ the sheaf $\mathcal{F}_ n$ on $X_ n$, 
+</p>
+</li><li><p>
+$g_ n^{-1} : \mathop{\mathit{Sh}}\nolimits (X_{Zar}) \to \mathop{\mathit{Sh}}\nolimits (X_ n)$ has a left adjoint $g^{Sh}_{n!}$, 
+</p>
+</li><li><p>
+$g^{Sh}_{n!}$ commutes with finite connected limits, 
+</p>
+</li><li><p>
+$g_ n^{-1} : \textit{Ab}(X_{Zar}) \to \textit{Ab}(X_ n)$ has a left adjoint $g_{n!}$, and 
+</p>
+</li><li><p>
+$g_{n!}$ is exact. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Besides the properties of our functor mentioned in the statement, the category $X_{n, Zar}$ has fibre products and equalizers and the functor commutes with them (beware that $X_{Zar}$ does not have all fibre products). Hence the lemma follows from the discussion in Sites, Sections <a href="/tag/00XI" data-tag="00XI">7.20</a> and <a href="/tag/00XN" data-tag="00XN">7.21</a> and Modules on Sites, Section <a href="/tag/04BE" data-tag="04BE">18.16</a>. More precisely, Sites, Lemmas <a href="/tag/00XO" data-tag="00XO">7.21.1</a>, <a href="/tag/00XR" data-tag="00XR">7.21.5</a>, and <a href="/tag/00XS" data-tag="00XS">7.21.6</a> and Modules on Sites, Lemmas <a href="/tag/04BG" data-tag="04BG">18.16.2</a> and <a href="/tag/04BH" data-tag="04BH">18.16.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09W1">
+  <p><a class="environment-identifier" href="/tag/09W1">Lemma <span data-tag="09W1">85.2.6</span>.</a> Let $X$ be a simplicial space. If $\mathcal{I}$ is an injective abelian sheaf on $X_{Zar}$, then $\mathcal{I}_ n$ is an injective abelian sheaf on $X_ n$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from Homology, Lemma <a href="/tag/015Z" data-tag="015Z">12.29.1</a> and Lemma <a href="/tag/09W0" data-tag="09W0">85.2.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09W2">
+  <p><a class="environment-identifier" href="/tag/09W2">Lemma <span data-tag="09W2">85.2.7</span>.</a> Let $f : Y \to X$ be a morphism of simplicial spaces. Then </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathop{\mathit{Sh}}\nolimits (Y_ n) \ar[d] \ar[r]_{f_ n} &  \mathop{\mathit{Sh}}\nolimits (X_ n) \ar[d] \\  \mathop{\mathit{Sh}}\nolimits (Y_{Zar}) \ar[r]^{f_{Zar}} &  \mathop{\mathit{Sh}}\nolimits (X_{Zar}) }  \]
+</div>
+  <p> is a commutative diagram of topoi. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Direct from the description of pullback functors in Lemmas <a href="/tag/09VP" data-tag="09VP">85.2.4</a> and <a href="/tag/09W0" data-tag="09W0">85.2.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09W4">
+  <p><a class="environment-identifier" href="/tag/09W4">Lemma <span data-tag="09W4">85.2.8</span>.</a> Let $Y$ be a simplicial space and let $a : Y \to X$ be an augmentation (Simplicial, Definition <a href="/tag/018G" data-tag="018G">14.20.1</a>). Let $a_ n : Y_ n \to X$ be the corresponding morphisms of topological spaces. There is a canonical morphism of topoi </p>
+  <div class="equation">
+  \[  a : \mathop{\mathit{Sh}}\nolimits (Y_{Zar}) \to \mathop{\mathit{Sh}}\nolimits (X)  \]
+</div>
+  <p> with the following properties: </p>
+  <p><ol>
+  <li><p>
+$a^{-1}\mathcal{F}$ is the sheaf restricting to $a_ n^{-1}\mathcal{F}$ on $Y_ n$, 
+</p>
+</li><li><p>
+$a_ m \circ Y(\varphi ) = a_ n$ for all $\varphi : [m] \to [n]$, 
+</p>
+</li><li><p>
+$a \circ g_ n = a_ n$ as morphisms of topoi with $g_ n$ as in Lemma <a href="/tag/09W0" data-tag="09W0">85.2.5</a>, 
+</p>
+</li><li><p>
+$a_*\mathcal{G}$ for $\mathcal{G} \in \mathop{\mathit{Sh}}\nolimits (Y_{Zar})$ is the equalizer of the two maps $a_{0, *}\mathcal{G}_0 \to a_{1, *}\mathcal{G}_1$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Part (2) holds for augmentations of simplicial objects in any category. Thus $Y(\varphi )^{-1} a_ m^{-1} \mathcal{F} = a_ n^{-1}\mathcal{F}$ which defines an $Y(\varphi )$-map from $a_ m^{-1}\mathcal{F}$ to $a_ n^{-1}\mathcal{F}$. Thus we can use (1) as the definition of $a^{-1}\mathcal{F}$ (using Lemma <a href="/tag/09VM" data-tag="09VM">85.2.2</a>) and (4) as the definition of $a_*$. If this defines a morphism of topoi then part (3) follows because we'll have $g_ n^{-1} \circ a^{-1} = a_ n^{-1}$ by construction. To check $a$ is a morphism of topoi we have to show that $a^{-1}$ is left adjoint to $a_*$ and we have to show that $a^{-1}$ is exact. The last fact is immediate from the exactness of the functors $a_ n^{-1}$. 
+    <p>
+      Let $\mathcal{F}$ be an object of $\mathop{\mathit{Sh}}\nolimits (X)$ and let $\mathcal{G}$ be an object of $\mathop{\mathit{Sh}}\nolimits (Y_{Zar})$. Given $\beta : a^{-1}\mathcal{F} \to \mathcal{G}$ we can look at the components $\beta _ n : a_ n^{-1}\mathcal{F} \to \mathcal{G}_ n$. These maps are adjoint to maps $\beta _ n : \mathcal{F} \to a_{n, *}\mathcal{G}_ n$. Compatibility with the simplicial structure shows that $\beta _0$ maps into $a_*\mathcal{G}$. Conversely, suppose given a map $\alpha : \mathcal{F} \to a_*\mathcal{G}$. For any $n$ choose a $\varphi : [0] \to [n]$. Then we can look at the composition 
+    <p>
+      <div class="equation">
+  \[  \mathcal{F} \xrightarrow {\alpha } a_*\mathcal{G} \to a_{0, *}\mathcal{G}_0 \xrightarrow {\mathcal{G}(\varphi )} a_{n, *}\mathcal{G}_ n  \]
+</div>
+    <p>
+       These are adjoint to maps $a_ n^{-1}\mathcal{F} \to \mathcal{G}_ n$ which define a morphism of sheaves $a^{-1}\mathcal{F} \to \mathcal{G}$. We omit the proof that the constructions given above define mutually inverse bijections 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (Y_{Zar})}(a^{-1}\mathcal{F}, \mathcal{G}) = \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (X)}(\mathcal{F}, a_*\mathcal{G})  \]
+</div>
+    <p>
+       This finishes the proof. An interesting observation is here that this morphism of topoi does not correspond to any obvious geometric functor between the sites defining the topoi. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09W5">
+  <p><a class="environment-identifier" href="/tag/09W5">Lemma <span data-tag="09W5">85.2.9</span>.</a> Let $X$ be a simplicial topological space. The complex of abelian presheaves on $X_{Zar}$ </p>
+  <div class="equation">
+  \[  \ldots \to \mathbf{Z}_{X_2} \to \mathbf{Z}_{X_1} \to \mathbf{Z}_{X_0}  \]
+</div>
+  <p> with boundary $\sum (-1)^ i d^ n_ i$ is a resolution of the constant presheaf $\mathbf{Z}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $U \subset X_ m$ be an object of $X_{Zar}$. Then the value of the complex above on $U$ is the complex of abelian groups 
+    <p>
+      <div class="equation">
+  \[  \ldots \to \mathbf{Z}[\mathop{\mathrm{Mor}}\nolimits _\Delta ([2], [m])] \to \mathbf{Z}[\mathop{\mathrm{Mor}}\nolimits _\Delta ([1], [m])] \to \mathbf{Z}[\mathop{\mathrm{Mor}}\nolimits _\Delta ([0], [m])]  \]
+</div>
+    <p>
+       In other words, this is the complex associated to the free abelian group on the simplicial set $\Delta [m]$, see Simplicial, Example <a href="/tag/0176" data-tag="0176">14.11.2</a>. Since $\Delta [m]$ is homotopy equivalent to $\Delta [0]$, see Simplicial, Example <a href="/tag/08Q3" data-tag="08Q3">14.26.7</a>, and since “taking free abelian groups” is a functor, we see that the complex above is homotopy equivalent to the free abelian group on $\Delta [0]$ (Simplicial, Remark <a href="/tag/019M" data-tag="019M">14.26.4</a> and Lemma <a href="/tag/019T" data-tag="019T">14.27.2</a>). This complex is acyclic in positive degrees and equal to $\mathbf{Z}$ in degree $0$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09W6">
+  <p><a class="environment-identifier" href="/tag/09W6">Lemma <span data-tag="09W6">85.2.10</span>.</a> Let $X$ be a simplicial topological space. Let $\mathcal{F}$ be an abelian sheaf on $X$. There is a spectral sequence $(E_ r, d_ r)_{r \geq 0}$ with </p>
+  <div class="equation">
+  \[  E_1^{p, q} = H^ q(X_ p, \mathcal{F}_ p)  \]
+</div>
+  <p> converging to $H^{p + q}(X_{Zar}, \mathcal{F})$. This spectral sequence is functorial in $\mathcal{F}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\mathcal{F} \to \mathcal{I}^\bullet $ be an injective resolution. Consider the double complex with terms 
+    <p>
+      <div class="equation">
+  \[  A^{p, q} = \mathcal{I}^ q(X_ p)  \]
+</div>
+    <p>
+       and first differential given by the alternating sum along the maps $d^{p + 1}_ i$-maps $\mathcal{I}_ p^ q \to \mathcal{I}_{p + 1}^ q$, see Lemma <a href="/tag/09VM" data-tag="09VM">85.2.2</a>. Note that 
+    <p>
+      <div class="equation">
+  \[  A^{p, q} = \Gamma (X_ p, \mathcal{I}_ p^ q) = \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}}(h_{X_ p}, \mathcal{I}^ q) = \mathop{\mathrm{Mor}}\nolimits _{\textit{PAb}}(\mathbf{Z}_{X_ p}, \mathcal{I}^ q)  \]
+</div>
+    <p>
+       Hence it follows from Lemma <a href="/tag/09W5" data-tag="09W5">85.2.9</a> and Cohomology on Sites, Lemma <a href="/tag/03F6" data-tag="03F6">21.10.1</a> that the rows of the double complex are exact in positive degrees and evaluate to $\Gamma (X_{Zar}, \mathcal{I}^ q)$ in degree $0$. On the other hand, since restriction is exact (Lemma <a href="/tag/09W0" data-tag="09W0">85.2.5</a>) the map 
+    <p>
+      <div class="equation">
+  \[  \mathcal{F}_ p \to \mathcal{I}_ p^\bullet  \]
+</div>
+    <p>
+       is a resolution. The sheaves $\mathcal{I}_ p^ q$ are injective abelian sheaves on $X_ p$ (Lemma <a href="/tag/09W1" data-tag="09W1">85.2.6</a>). Hence the cohomology of the columns computes the groups $H^ q(X_ p, \mathcal{F}_ p)$. We conclude by applying Homology, Lemmas <a href="/tag/0132" data-tag="0132">12.25.3</a> and <a href="/tag/0133" data-tag="0133">12.25.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0D84">
+  <p><a class="environment-identifier" href="/tag/0D84">Lemma <span data-tag="0D84">85.2.11</span>.</a> Let $X$ be a simplicial space and let $a : X \to Y$ be an augmentation. Let $\mathcal{F}$ be an abelian sheaf on $X_{Zar}$. Then $R^ na_*\mathcal{F}$ is the sheaf associated to the presheaf </p>
+  <div class="equation">
+  \[  V \longmapsto H^ n((X \times _ Y V)_{Zar}, \mathcal{F}|_{(X \times _ Y V)_{Zar}})  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is the analogue of Cohomology, Lemma <a href="/tag/01E4" data-tag="01E4">20.7.3</a> or of Cohomology on Sites, Lemma <a href="/tag/072W" data-tag="072W">21.7.4</a> and we strongly encourage the reader to skip the proof. Choosing an injective resolution of $\mathcal{F}$ on $X_{Zar}$ and using the definitions we see that it suffices to show: (1) the restriction of an injective abelian sheaf on $X_{Zar}$ to $(X \times _ Y V)_{Zar}$ is an injective abelian sheaf and (2) $a_*\mathcal{F}$ is equal to the rule 
+    <p>
+      <div class="equation">
+  \[  V \longmapsto H^0((X \times _ Y V)_{Zar}, \mathcal{F}|_{(X \times _ Y V)_{Zar}})  \]
+</div>
+    <p>
+       Part (2) follows from the following facts 
+    <p>
+      <ol>
+  <li class="custom-item" data-marker="(2a)"><p>
+$a_*\mathcal{F}$ is the equalizer of the two maps $a_{0, *}\mathcal{F}_0 \to a_{1, *}\mathcal{F}_1$ by Lemma <a href="/tag/09W4" data-tag="09W4">85.2.8</a>, 
+</p>
+</li><li class="custom-item" data-marker="(2b)"><p>
+$a_{0, *}\mathcal{F}_0(V) = H^0(a_0^{-1}(V), \mathcal{F}_0)$ and $a_{1, *}\mathcal{F}_1(V) = H^0(a_1^{-1}(V), \mathcal{F}_1)$, 
+</p>
+</li><li class="custom-item" data-marker="(2c)"><p>
+$X_0 \times _ Y V = a_0^{-1}(V)$ and $X_1 \times _ Y V = a_1^{-1}(V)$, 
+</p>
+</li><li class="custom-item" data-marker="(2d)"><p>
+$H^0((X \times _ Y V)_{Zar}, \mathcal{F}|_{(X \times _ Y V)_{Zar}})$ is the equalizer of the two maps $H^0(X_0 \times _ Y V, \mathcal{F}_0) \to H^0(X_1 \times _ Y V, \mathcal{F}_1)$ for example by Lemma <a href="/tag/09W6" data-tag="09W6">85.2.10</a>. 
+</p>
+</li>
+</ol>
+    <p>
+       Part (1) follows after one defines an exact left adjoint $j_! : \textit{Ab}((X \times _ Y V)_{Zar}) \to \textit{Ab}(X_{Zar})$ (extension by zero) to restriction $\textit{Ab}(X_{Zar}) \to \textit{Ab}((X \times _ Y V)_{Zar})$ and using Homology, Lemma <a href="/tag/015Z" data-tag="015Z">12.29.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $X$ be a topological space. Denote $X_\bullet $ the constant simplicial topological space with value $X$. By Lemma <a href="/tag/09VM" data-tag="09VM">85.2.2</a> a sheaf on $X_{\bullet , Zar}$ is the same thing as a cosimplicial object in the category of sheaves on $X$. 
+</p>
+<p>
+<article class="env-lemma" id="09W3">
+  <p><a class="environment-identifier" href="/tag/09W3">Lemma <span data-tag="09W3">85.2.12</span>.</a> Let $X$ be a topological space. Let $X_\bullet $ be the constant simplicial topological space with value $X$. The functor </p>
+  <div class="equation">
+  \[  X_{\bullet , Zar} \longrightarrow X_{Zar},\quad U \longmapsto U  \]
+</div>
+  <p> is continuous and cocontinuous and defines a morphism of topoi $g : \mathop{\mathit{Sh}}\nolimits (X_{\bullet , Zar}) \to \mathop{\mathit{Sh}}\nolimits (X)$ as well as a left adjoint $g_!$ to $g^{-1}$. We have </p>
+  <p><ol>
+  <li><p>
+$g^{-1}$ associates to a sheaf on $X$ the constant cosimplicial sheaf on $X$, 
+</p>
+</li><li><p>
+$g_!$ associates to a sheaf $\mathcal{F}$ on $X_{\bullet , Zar}$ the sheaf $\mathcal{F}_0$, and 
+</p>
+</li><li><p>
+$g_*$ associates to a sheaf $\mathcal{F}$ on $X_{\bullet , Zar}$ the equalizer of the two maps $\mathcal{F}_0 \to \mathcal{F}_1$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The statements about the functor are straightforward to verify. The existence of $g$ and $g_!$ follow from Sites, Lemmas <a href="/tag/00XO" data-tag="00XO">7.21.1</a> and <a href="/tag/00XR" data-tag="00XR">7.21.5</a>. The description of $g^{-1}$ is immediate from Sites, Lemma <a href="/tag/00XR" data-tag="00XR">7.21.5</a>. The description of $g_*$ and $g_!$ follows as the functors given are right and left adjoint to $g^{-1}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

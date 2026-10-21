@@ -1,0 +1,503 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-algebra-section-weakly-etale" class="tex-section"><span data-tag="092A">15.106</span> Weakly étale ring maps</h2>
+
+<p>
+Most of the results in this section are from the paper <span class="cite">[<a href="/bibliography/Olivier-AF">Olivier-AF</a>]</span> by Olivier. See also the related paper <span class="cite">[<a href="/bibliography/Ferrand-epi">Ferrand-epi</a>]</span>. 
+</p>
+<p>
+<article class="env-definition" id="092B">
+  <p><a class="environment-identifier" href="/tag/092B">Definition <span data-tag="092B">15.106.1</span>.</a> A ring $A$ is called <em>absolutely flat</em> if every $A$-module is flat over $A$. A ring map $A \to B$ is <em>weakly étale</em> or <em>absolutely flat</em> if both $A \to B$ and $B \otimes _ A B \to B$ are flat. </p>
+</article> 
+</p>
+<p>
+Absolutely flat rings are sometimes called von Neumann regular rings (often in the setting of noncommutative rings). A localization is a weakly étale ring map. An étale ring map is weakly étale. Here is a simple, yet key property. 
+</p>
+<p>
+<article class="env-lemma" id="092C">
+  <p><a class="environment-identifier" href="/tag/092C">Lemma <span data-tag="092C">15.106.2</span>.</a> Let $A \to B$ be a ring map such that $B \otimes _ A B \to B$ is flat. Let $N$ be a $B$-module. If $N$ is flat as an $A$-module, then $N$ is flat as a $B$-module. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume $N$ is a flat as an $A$-module. Then the functor 
+    <p>
+      <div class="equation">
+  \[  \text{Mod}_ B \longrightarrow \text{Mod}_{B \otimes _ A B},\quad N' \mapsto N \otimes _ A N'  \]
+</div>
+    <p>
+       is exact. As $B \otimes _ A B \to B$ is flat we conclude that the functor 
+    <p>
+      <div class="equation">
+  \[  \text{Mod}_ B \longrightarrow \text{Mod}_ B,\quad N' \mapsto (N \otimes _ A N') \otimes _{B \otimes _ A B} B = N \otimes _ B N'  \]
+</div>
+    <p>
+       is exact, hence $N$ is flat over $B$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="092D">
+  <p><a class="environment-identifier" href="/tag/092D">Definition <span data-tag="092D">15.106.3</span>.</a> Let $A$ be a ring. Let $d \geq 0$ be an integer. We say that $A$ has <em>weak dimension $\leq d$</em> if every $A$-module has tor dimension $\leq d$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="092E">
+  <p><a class="environment-identifier" href="/tag/092E">Lemma <span data-tag="092E">15.106.4</span>.</a> Let $A \to B$ be a weakly étale ring map. If $A$ has weak dimension at most $d$, then so does $B$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $N$ be a $B$-module. If $d = 0$, then $N$ is flat as an $A$-module, hence flat as a $B$-module by Lemma <a href="/tag/092C" data-tag="092C">15.106.2</a>. Assume $d > 0$. Choose a resolution $F_\bullet \to N$ by free $B$-modules. Our assumption implies that $K = \mathop{\mathrm{Im}}(F_ d \to F_{d - 1})$ is $A$-flat, see Lemma <a href="/tag/0653" data-tag="0653">15.68.2</a>. Hence it is $B$-flat by Lemma <a href="/tag/092C" data-tag="092C">15.106.2</a>. Thus $0 \to K \to F_{d - 1} \to \ldots \to F_0 \to N \to 0$ is a flat resolution of length $d$ and we see that $N$ has tor dimension at most $d$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="092F">
+  <p><a class="environment-identifier" href="/tag/092F">Lemma <span data-tag="092F">15.106.5</span>.</a> Let $A$ be a ring. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$A$ has weak dimension $\leq 0$, 
+</p>
+</li><li><p>
+$A$ is absolutely flat, 
+</p>
+</li><li><p>
+$A$ is reduced and every prime is maximal, and 
+</p>
+</li><li><p>
+every local ring of $A$ is a field. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The equivalence of (1) and (2) is immediate. 
+    <p>
+      Proof of (1) $\Rightarrow $ (3). Assume $A$ is absolutely flat. Then every ideal of $A$ is pure, see Algebra, Definition <a href="/tag/04PR" data-tag="04PR">10.108.1</a>. Hence every finitely generated ideal is generated by an idempotent by Algebra, Lemma <a href="/tag/05KK" data-tag="05KK">10.108.5</a>. If $f \in A$, then $(f) = (e)$ for some idempotent $e \in A$ and $D(f) = D(e)$ is open and closed (Algebra, Lemma <a href="/tag/00EC" data-tag="00EC">10.21.1</a>). This implies every prime ideal of $A$ is maximal by Algebra, Lemma <a href="/tag/04MG" data-tag="04MG">10.26.5</a>. Moreover, if $f$ is nilpotent, then $e = 0$ hence $f = 0$. Thus $A$ is reduced. 
+    <p>
+      Proof of (3) $\Rightarrow $ (4). If $A$ is reduced and every prime is maximal, then every local ring is a field by Algebra, Lemma <a href="/tag/00EU" data-tag="00EU">10.25.1</a>. 
+    <p>
+      Proof of (4) $\Rightarrow $ (2). If every local ring of $A$ is a field, then every $A$-module is flat by Algebra, Lemma <a href="/tag/00HT" data-tag="00HT">10.39.18</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="092G">
+  <p><a class="environment-identifier" href="/tag/092G">Lemma <span data-tag="092G">15.106.6</span>.</a> A product of fields is an absolutely flat ring. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $K_ i$ be a family of fields. If $f = (f_ i) \in \prod K_ i$, then the ideal generated by $f$ is the same as the ideal generated by the idempotent $e = (e_ i)$ with $e_ i = 0, 1$ according to whether $f_ i$ is $0$ or not. Thus $D(f) = D(e)$ is open and closed and we conclude by Lemma <a href="/tag/092F" data-tag="092F">15.106.5</a> and Algebra, Lemma <a href="/tag/04MG" data-tag="04MG">10.26.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="092H">
+  <p><a class="environment-identifier" href="/tag/092H">Lemma <span data-tag="092H">15.106.7</span>.</a> Let $A \to B$ and $A \to A'$ be ring maps. Let $B' = B \otimes _ A A'$ be the base change of $B$. </p>
+  <p><ol>
+  <li><p>
+If $B \otimes _ A B \to B$ is flat, then $B' \otimes _{A'} B' \to B'$ is flat. 
+</p>
+</li><li><p>
+If $A \to B$ is weakly étale, then $A' \to B'$ is weakly étale. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume $B \otimes _ A B \to B$ is flat. The ring map $B' \otimes _{A'} B' \to B'$ is the base change of $B \otimes _ A B \to B$ by $A \to A'$. Hence it is flat by Algebra, Lemma <a href="/tag/00HI" data-tag="00HI">10.39.7</a>. This proves (1). Part (2) follows from (1) and the fact (just used) that the base change of a flat ring map is flat. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="092I">
+  <p><a class="environment-identifier" href="/tag/092I">Lemma <span data-tag="092I">15.106.8</span>.</a> Let $A \to B$ be a ring map such that $B \otimes _ A B \to B$ is flat. </p>
+  <p><ol>
+  <li><p>
+If $A$ is an absolutely flat ring, then so is $B$. 
+</p>
+</li><li><p>
+If $A$ is reduced and $A \to B$ is weakly étale, then $B$ is reduced. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Part (1) follows immediately from Lemma <a href="/tag/092C" data-tag="092C">15.106.2</a> and the definitions. If $A$ is reduced, then there exists an injection $A \to A' = \prod _{\mathfrak p \subset A\text{ minimal}} A_\mathfrak p$ of $A$ into an absolutely flat ring (Algebra, Lemma <a href="/tag/00EW" data-tag="00EW">10.25.2</a> and Lemma <a href="/tag/092G" data-tag="092G">15.106.6</a>). If $A \to B$ is flat, then the induced map $B \to B' = B \otimes _ A A'$ is injective too. By Lemma <a href="/tag/092H" data-tag="092H">15.106.7</a> the ring map $A' \to B'$ is weakly étale. By part (1) we see that $B'$ is absolutely flat. By Lemma <a href="/tag/092F" data-tag="092F">15.106.5</a> the ring $B'$ is reduced. Hence $B$ is reduced. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="092J">
+  <p><a class="environment-identifier" href="/tag/092J">Lemma <span data-tag="092J">15.106.9</span>.</a> Let $A \to B$ and $B \to C$ be ring maps. </p>
+  <p><ol>
+  <li><p>
+If $B \otimes _ A B \to B$ and $C \otimes _ B C \to C$ are flat, then $C \otimes _ A C \to C$ is flat. 
+</p>
+</li><li><p>
+If $A \to B$ and $B \to C$ are weakly étale, then $A \to C$ is weakly étale. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Part (1) follows from the factorization 
+    <p>
+      <div class="equation">
+  \[  C \otimes _ A C \longrightarrow C \otimes _ B C \longrightarrow C  \]
+</div>
+    <p>
+       of the multiplication map, the fact that 
+    <p>
+      <div class="equation">
+  \[  C \otimes _ B C = (C \otimes _ A C) \otimes _{B \otimes _ A B} B,  \]
+</div>
+    <p>
+       the fact that a base change of a flat map is flat, and the fact that the composition of flat ring maps is flat. See Algebra, Lemmas <a href="/tag/00HI" data-tag="00HI">10.39.7</a> and <a href="/tag/00HC" data-tag="00HC">10.39.4</a>. Part (2) follows from (1) and the fact (just used) that the composition of flat ring maps is flat. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="092K">
+  <p><a class="environment-identifier" href="/tag/092K">Lemma <span data-tag="092K">15.106.10</span>.</a> Let $A \to B \to C$ be ring maps. </p>
+  <p><ol>
+  <li><p>
+If $B \to C$ is faithfully flat and $C \otimes _ A C \to C$ is flat, then $B \otimes _ A B \to B$ is flat. 
+</p>
+</li><li><p>
+If $B \to C$ is faithfully flat and $A \to C$ is weakly étale, then $A \to B$ is weakly étale. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume $B \to C$ is faithfully flat and $C \otimes _ A C \to C$ is flat. Consider the commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ C \otimes _ A C \ar[r] &  C \\  B \otimes _ A B \ar[r] \ar[u] &  B \ar[u] }  \]
+</div>
+    <p>
+       The vertical arrows are flat, the top horizontal arrow is flat. Hence $C$ is flat as a $B \otimes _ A B$-module. The map $B \to C$ is faithfully flat and $C = B \otimes _ B C$. Hence $B$ is flat as a $B \otimes _ A B$-module by Algebra, Lemma <a href="/tag/0584" data-tag="0584">10.39.9</a>. This proves (1). Part (2) follows from (1) and the fact that $A \to B$ is flat if $A \to C$ is flat and $B \to C$ is faithfully flat (Algebra, Lemma <a href="/tag/0584" data-tag="0584">10.39.9</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="092L">
+  <p><a class="environment-identifier" href="/tag/092L">Lemma <span data-tag="092L">15.106.11</span>.</a> Let $A$ be a ring. Let $B \to C$ be an $A$-algebra map of weakly étale $A$-algebras. Then $B \to C$ is weakly étale. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The ring map $B \to C$ is flat by Lemma <a href="/tag/092C" data-tag="092C">15.106.2</a>. The ring map $C \otimes _ A C \to C \otimes _ B C$ is surjective, hence an epimorphism. Thus Lemma <a href="/tag/092C" data-tag="092C">15.106.2</a> implies, that since $C$ is flat over $C \otimes _ A C$ also $C$ is flat over $C \otimes _ B C$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="092M">
+  <p><a class="environment-identifier" href="/tag/092M">Lemma <span data-tag="092M">15.106.12</span>.</a> Let $A \to B$ be a ring map such that $B \otimes _ A B \to B$ is flat. Then $\Omega _{B/A} = 0$, i.e., $B$ is formally unramified over $A$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $I \subset B \otimes _ A B$ be the kernel of the flat surjective map $B \otimes _ A B \to B$. Then $I$ is a pure ideal (Algebra, Definition <a href="/tag/04PR" data-tag="04PR">10.108.1</a>), so $I^2 = I$ (Algebra, Lemma <a href="/tag/04PS" data-tag="04PS">10.108.2</a>). Since $\Omega _{B/A} = I/I^2$ (Algebra, Lemma <a href="/tag/00RW" data-tag="00RW">10.131.13</a>) we obtain the vanishing. This means $B$ is formally unramified over $A$ by Algebra, Lemma <a href="/tag/00UO" data-tag="00UO">10.148.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CKP">
+  <p><a class="environment-identifier" href="/tag/0CKP">Lemma <span data-tag="0CKP">15.106.13</span>.</a> Let $A \to B$ be a ring map such that $B \otimes _ A B \to B$ is flat. </p>
+  <p><ol>
+  <li><p>
+If $A \to B$ is of finite type, then $A \to B$ is unramified. 
+</p>
+</li><li><p>
+If $A \to B$ is of finite presentation and flat, then $A \to B$ is étale. 
+</p>
+</li>
+</ol></p>
+  <p> In particular a weakly étale ring map of finite presentation is étale. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Part (1) follows from Lemma <a href="/tag/092M" data-tag="092M">15.106.12</a> and Algebra, Definition <a href="/tag/00UT" data-tag="00UT">10.151.1</a>. Part (2) follows from part (1) and Algebra, Lemma <a href="/tag/08WD" data-tag="08WD">10.151.8</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="092N">
+  <p><a class="environment-identifier" href="/tag/092N">Lemma <span data-tag="092N">15.106.14</span>.</a> Let $A \to B$ be a ring map. Then $A \to B$ is weakly étale in each of the following cases </p>
+  <p><ol>
+  <li><p>
+$B = S^{-1}A$ is a localization of $A$, 
+</p>
+</li><li><p>
+$A \to B$ is étale, 
+</p>
+</li><li><p>
+$B$ is a filtered colimit of weakly étale $A$-algebras. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      An étale ring map is flat and the map $B \otimes _ A B \to B$ is also étale as a map between étale $A$-algebras (Algebra, Lemma <a href="/tag/00U7" data-tag="00U7">10.143.8</a>). This proves (2). 
+    <p>
+      Let $B_ i$ be a directed system of weakly étale $A$-algebras. Then $B = \mathop{\mathrm{colim}}\nolimits B_ i$ is flat over $A$ by Algebra, Lemma <a href="/tag/05UT" data-tag="05UT">10.39.3</a>. Note that the transition maps $B_ i \to B_{i'}$ are flat by Lemma <a href="/tag/092L" data-tag="092L">15.106.11</a>. Hence $B$ is flat over $B_ i$ for each $i$, and we see that $B$ is flat over $B_ i \otimes _ A B_ i$ by Algebra, Lemma <a href="/tag/00HC" data-tag="00HC">10.39.4</a>. Thus $B$ is flat over $B \otimes _ A B = \mathop{\mathrm{colim}}\nolimits B_ i \otimes _ A B_ i$ by Algebra, Lemma <a href="/tag/05UU" data-tag="05UU">10.39.6</a>. 
+    <p>
+      Part (1) can be proved directly, but also follows by combining (2) and (3). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="092P">
+  <p><a class="environment-identifier" href="/tag/092P">Lemma <span data-tag="092P">15.106.15</span>.</a> Let $L/K$ be an extension of fields. If $L \otimes _ K L \to L$ is flat, then $L$ is an algebraic separable extension of $K$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/092K" data-tag="092K">15.106.10</a> we see that any subfield $K \subset L' \subset L$ the map $L' \otimes _ K L' \to L'$ is flat. Thus we may assume $L$ is a finitely generated field extension of $K$. In this case the fact that $L/K$ is formally unramified (Lemma <a href="/tag/092M" data-tag="092M">15.106.12</a>) implies that $L/K$ is finite separable, see Algebra, Lemma <a href="/tag/090W" data-tag="090W">10.158.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="092Q">
+  <p><a class="environment-identifier" href="/tag/092Q">Lemma <span data-tag="092Q">15.106.16</span>.</a> Let $B$ be an algebra over a field $K$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$B \otimes _ K B \to B$ is flat, 
+</p>
+</li><li><p>
+$K \to B$ is weakly étale, and 
+</p>
+</li><li><p>
+$B$ is a filtered colimit of étale $K$-algebras. 
+</p>
+</li>
+</ol></p>
+  <p> Moreover, every finitely generated $K$-subalgebra of $B$ is étale over $K$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Parts (1) and (2) are equivalent because every $K$-algebra is flat over $K$. Part (3) implies (1) and (2) by Lemma <a href="/tag/092N" data-tag="092N">15.106.14</a> 
+    <p>
+      Assume (1) and (2) hold. We will prove (3) and the finite statement of the lemma. A field is absolutely flat ring, hence $B$ is a absolutely flat ring by Lemma <a href="/tag/092I" data-tag="092I">15.106.8</a>. Hence $B$ is reduced and every local ring is a field, see Lemma <a href="/tag/092F" data-tag="092F">15.106.5</a>. 
+    <p>
+      Let $\mathfrak q \subset B$ be a prime. The ring map $B \to B_\mathfrak q$ is weakly étale, hence $B_\mathfrak q$ is weakly étale over $K$ (Lemma <a href="/tag/092J" data-tag="092J">15.106.9</a>). Thus $B_\mathfrak q$ is a separable algebraic extension of $K$ by Lemma <a href="/tag/092P" data-tag="092P">15.106.15</a>. 
+    <p>
+      Let $K \subset A \subset B$ be a finitely generated $K$-sub algebra. We will show that $A$ is étale over $K$ which will finish the proof of the lemma. Then every minimal prime $\mathfrak p \subset A$ is the image of a prime $\mathfrak q$ of $B$, see Algebra, Lemma <a href="/tag/00FK" data-tag="00FK">10.30.5</a>. Thus $\kappa (\mathfrak p)$ as a subfield of $B_\mathfrak q = \kappa (\mathfrak q)$ is separable algebraic over $K$. Hence every generic point of $\mathop{\mathrm{Spec}}(A)$ is closed (Algebra, Lemma <a href="/tag/00GA" data-tag="00GA">10.35.9</a>). Thus $\dim (A) = 0$. Then $A$ is the product of its local rings, e.g., by Algebra, Proposition <a href="/tag/00KJ" data-tag="00KJ">10.60.7</a>. Moreover, since $A$ is reduced, all local rings are equal to their residue fields which are finite separable over $K$. This means that $A$ is étale over $K$ by Algebra, Lemma <a href="/tag/00U3" data-tag="00U3">10.143.4</a> and finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="092R">
+  <p><a class="environment-identifier" href="/tag/092R">Lemma <span data-tag="092R">15.106.17</span>.</a> Let $A \to B$ be a ring map. If $A \to B$ is weakly étale, then $A \to B$ induces separable algebraic residue field extensions. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\mathfrak p$ be a prime of $A$. Then $\kappa (\mathfrak p) \to B \otimes _ A \kappa (\mathfrak p)$ is weakly étale by Lemma <a href="/tag/092H" data-tag="092H">15.106.7</a>. Hence $B \otimes _ A \kappa (\mathfrak p)$ is a filtered colimit of étale $\kappa (\mathfrak p)$-algebras by Lemma <a href="/tag/092Q" data-tag="092Q">15.106.16</a>. Hence for $\mathfrak q \subset B$ lying over $\mathfrak p$ the extension $\kappa (\mathfrak q)/\kappa (\mathfrak p)$ is a filtered colimit of finite separable extensions by Algebra, Lemma <a href="/tag/00U3" data-tag="00U3">10.143.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="092S">
+  <p><a class="environment-identifier" href="/tag/092S">Lemma <span data-tag="092S">15.106.18</span>.</a> Let $A$ be a ring. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$A$ has weak dimension $\leq 1$, 
+</p>
+</li><li><p>
+every ideal of $A$ is flat, 
+</p>
+</li><li><p>
+every finitely generated ideal of $A$ is flat, 
+</p>
+</li><li><p>
+every submodule of a flat $A$-module is flat, and 
+</p>
+</li><li><p>
+every local ring of $A$ is a valuation ring. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $A$ has weak dimension $\leq 1$, then the resolution $0 \to I \to A \to A/I \to 0$ shows that every ideal $I$ is flat by Lemma <a href="/tag/0653" data-tag="0653">15.68.2</a>. Hence (1) $\Rightarrow $ (2). 
+    <p>
+      Assume (4). Let $M$ be an $A$-module. Choose a surjection $F \to M$ where $F$ is a free $A$-module. Then $\mathop{\mathrm{Ker}}(F \to M)$ is flat by assumption, and we see that $M$ has tor dimension $\leq 1$ by Lemma <a href="/tag/066F" data-tag="066F">15.68.6</a>. Hence (4) $\Rightarrow $ (1). 
+    <p>
+      Every ideal is the union of the finitely generated ideals contained in it. Hence (3) implies (2) by Algebra, Lemma <a href="/tag/05UT" data-tag="05UT">10.39.3</a>. Thus (3) $\Leftrightarrow $ (2). 
+    <p>
+      Assume (2). Suppose that $N \subset M$ with $M$ a flat $A$-module. We will prove that $N$ is flat. We can write $M = \mathop{\mathrm{colim}}\nolimits M_ i$ with each $M_ i$ finite free, see Algebra, Theorem <a href="/tag/058G" data-tag="058G">10.81.4</a>. Setting $N_ i \subset M_ i$ the inverse image of $N$ we see that $N = \mathop{\mathrm{colim}}\nolimits N_ i$. By Algebra, Lemma <a href="/tag/05UT" data-tag="05UT">10.39.3</a>. it suffices to prove $N_ i$ is flat and we reduce to the case $M = R^{\oplus n}$. In this case the module $N$ has a finite filtration by the submodules $R^{\oplus j} \cap N$ whose subquotients are ideals. By (2) these ideals are flat and hence $N$ is flat by Algebra, Lemma <a href="/tag/00HM" data-tag="00HM">10.39.13</a>. Thus (2) $\Rightarrow $ (4). 
+    <p>
+      Assume $A$ satisfies (1) and let $\mathfrak p \subset A$ be a prime ideal. By Lemmas <a href="/tag/092N" data-tag="092N">15.106.14</a> and <a href="/tag/092E" data-tag="092E">15.106.4</a> we see that $A_\mathfrak p$ satisfies (1). We will show $A$ is a valuation ring if $A$ is a local ring satisfying (3). Let $f \in \mathfrak m$ be a nonzero element. Then $(f)$ is a flat nonzero module generated by one element. Hence it is a free $A$-module by Algebra, Lemma <a href="/tag/00NZ" data-tag="00NZ">10.78.5</a>. It follows that $f$ is a nonzerodivisor and $A$ is a domain. If $I \subset A$ is a finitely generated ideal, then we similarly see that $I$ is a finite free $A$-module, hence (by considering the rank) free of rank $1$ and $I$ is a principal ideal. Thus $A$ is a valuation ring by Algebra, Lemma <a href="/tag/090Q" data-tag="090Q">10.50.15</a>. Thus (1) $\Rightarrow $ (5). 
+    <p>
+      Assume (5). Let $I \subset A$ be a finitely generated ideal. Then $I_\mathfrak p \subset A_\mathfrak p$ is a finitely generated ideal in a valuation ring, hence principal (Algebra, Lemma <a href="/tag/090Q" data-tag="090Q">10.50.15</a>), hence flat. Thus $I$ is flat by Algebra, Lemma <a href="/tag/00HT" data-tag="00HT">10.39.18</a>. Thus (5) $\Rightarrow $ (3). This finishes the proof of the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="092T">
+  <p><a class="environment-identifier" href="/tag/092T">Lemma <span data-tag="092T">15.106.19</span>.</a> Let $J$ be a set. For each $j \in J$ let $A_ j$ be a valuation ring with fraction field $K_ j$. Set $A = \prod A_ j$ and $K = \prod K_ j$. Then $A$ has weak dimension at most $1$ and $A \to K$ is a localization. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $I \subset A$ be a finitely generated ideal. By Lemma <a href="/tag/092S" data-tag="092S">15.106.18</a> it suffices to show that $I$ is a flat $A$-module. Let $I_ j \subset A_ j$ be the image of $I$. Observe that $I_ j = I \otimes _ A A_ j$, hence $I \to \prod I_ j$ is surjective by Algebra, Proposition <a href="/tag/059J" data-tag="059J">10.89.2</a>. Thus $I = \prod I_ j$. Since $A_ j$ is a valuation ring, the ideal $I_ j$ is generated by a single element (Algebra, Lemma <a href="/tag/090Q" data-tag="090Q">10.50.15</a>). Say $I_ j = (f_ j)$. Then $I$ is generated by the element $f = (f_ j)$. Let $e \in A$ be the idempotent which has a $0$ or $1$ in $A_ j$ depending on whether $f_ j$ is $0$ or not. Then $f = g e$ for some nonzerodivisor $g \in A$: take $g = (g_ j)$ with $g_ j = 1$ if $f_ j = 0$ and $g_ j = f_ j$ else. Thus $I \cong (e)$ as a module. We conclude $I$ is flat as $(e)$ is a direct summand of $A$. The final statement is true because $K = S^{-1}A$ where $S = \prod (A_ j \setminus \{ 0\} )$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="092U">
+  <p><a class="environment-identifier" href="/tag/092U">Lemma <span data-tag="092U">15.106.20</span>.</a> Let $A$ be a normal domain with fraction field $K$. There exists a cartesian diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ A \ar[d] \ar[r] &  K \ar[d] \\  V \ar[r] &  L }  \]
+</div>
+  <p> of rings where $V$ has weak dimension at most $1$ and $V \to L$ is a flat, injective, epimorphism of rings. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      For every $x \in K$, $x \not\in A$ pick $V_ x \subset K$ as in Algebra, Lemma <a href="/tag/090P" data-tag="090P">10.50.11</a>. Set $V = \prod _{x \in K \setminus A} V_ x$ and $L = \prod _{x \in K \setminus A} K$. The ring $V$ has weak dimension at most $1$ by Lemma <a href="/tag/092T" data-tag="092T">15.106.19</a> which also shows that $V \to L$ is a localization. A localization is flat and an epimorphism, see Algebra, Lemmas <a href="/tag/00HT" data-tag="00HT">10.39.18</a> and <a href="/tag/04VS" data-tag="04VS">10.107.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="092V">
+  <p><a class="environment-identifier" href="/tag/092V">Lemma <span data-tag="092V">15.106.21</span>.</a> Let $A$ be a ring of weak dimension at most $1$. If $A \to B$ is a flat, injective, epimorphism of rings, then $A$ is integrally closed in $B$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $x \in B$ be integral over $A$. Let $A' = A[x] \subset B$. Then $A'$ is a finite ring extension of $A$ by Algebra, Lemma <a href="/tag/02JJ" data-tag="02JJ">10.36.5</a>. To show $A = A'$ it suffices to show $A \to A'$ is an epimorphism by Algebra, Lemma <a href="/tag/04VT" data-tag="04VT">10.107.6</a>. Note that $A'$ is flat over $A$ by assumption on $A$ and the fact that $B$ is flat over $A$ (Lemma <a href="/tag/092S" data-tag="092S">15.106.18</a>). Hence the composition 
+    <p>
+      <div class="equation">
+  \[  A' \otimes _ A A' \to B \otimes _ A A' \to B \otimes _ A B \to B  \]
+</div>
+    <p>
+       is injective, i.e., $A' \otimes _ A A' \cong A'$ and the lemma is proved. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="092W">
+  <p><a class="environment-identifier" href="/tag/092W">Lemma <span data-tag="092W">15.106.22</span>.</a> Let $A$ be a normal domain with fraction field $K$. Let $A \to B$ be weakly étale. Then $B$ is integrally closed in $B \otimes _ A K$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a diagram as in Lemma <a href="/tag/092U" data-tag="092U">15.106.20</a>. As $A \to B$ is flat, the base change gives a cartesian diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ B \ar[d] \ar[r] &  B \otimes _ A K \ar[d] \\  B \otimes _ A V \ar[r] &  B \otimes _ A L }  \]
+</div>
+    <p>
+       of rings. Note that $V \to B \otimes _ A V$ is weakly étale (Lemma <a href="/tag/092H" data-tag="092H">15.106.7</a>), hence $B \otimes _ A V$ has weak dimension at most $1$ by Lemma <a href="/tag/092E" data-tag="092E">15.106.4</a>. Note that $B \otimes _ A V \to B \otimes _ A L$ is a flat, injective, epimorphism of rings as a flat base change of such (Algebra, Lemmas <a href="/tag/00HI" data-tag="00HI">10.39.7</a> and <a href="/tag/04VQ" data-tag="04VQ">10.107.3</a>). By Lemma <a href="/tag/092V" data-tag="092V">15.106.21</a> we see that $B \otimes _ A V$ is integrally closed in $B \otimes _ A L$. It follows from the cartesian property of the diagram that $B$ is integrally closed in $B \otimes _ A K$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="092X">
+  <p><a class="environment-identifier" href="/tag/092X">Lemma <span data-tag="092X">15.106.23</span>.</a> Let $A \to B$ be a ring homomorphism. Assume </p>
+  <p><ol>
+  <li><p>
+$A$ is a henselian local ring, 
+</p>
+</li><li><p>
+$A \to B$ is integral, 
+</p>
+</li><li><p>
+$B$ is a domain. 
+</p>
+</li>
+</ol></p>
+  <p> Then $B$ is a henselian local ring and $A \to B$ is a local homomorphism. If $A$ is strictly henselian, then $B$ is a strictly henselian local ring and the extension $\kappa (\mathfrak m_ B)/\kappa (\mathfrak m_ A)$ of residue fields is purely inseparable. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Write $B$ as a filtered colimit $B = \mathop{\mathrm{colim}}\nolimits B_ i$ of finite $A$-sub algebras. If we prove the results for each $B_ i$, then the result follows for $B$. See Algebra, Lemma <a href="/tag/04GI" data-tag="04GI">10.154.8</a>. If $A \to B$ is finite, then $B$ is a product of local henselian rings by Algebra, Lemma <a href="/tag/04GH" data-tag="04GH">10.153.4</a>. Since $B$ is a domain we see that $B$ is a local ring. The maximal ideal of $B$ lies over the maximal ideal of $A$ by going up for $A \to B$ (Algebra, Lemma <a href="/tag/00GU" data-tag="00GU">10.36.22</a>). If $A$ is strictly henselian, then the field extension $\kappa (\mathfrak m_ B)/\kappa (\mathfrak m_ A)$ being algebraic, has to be purely inseparable. Of course, then $\kappa (\mathfrak m_ B)$ is separably algebraically closed and $B$ is strictly henselian. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-theorem" id="092Z">
+  <p><a class="environment-identifier" href="/tag/092Z">Theorem <span data-tag="092Z">15.106.24</span> <span class="named">(Olivier)</span>.</a>  Let $A \to B$ be a local homomorphism of local rings. If $A$ is strictly henselian and $A \to B$ is weakly étale, then $A = B$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will show that for all $\mathfrak p \subset A$ there is a unique prime $\mathfrak q \subset B$ lying over $\mathfrak p$ and $\kappa (\mathfrak p) = \kappa (\mathfrak q)$. This implies that $B \otimes _ A B \to B$ is bijective on spectra as well as surjective and flat. Hence it is an isomorphism for example by the description of pure ideals in Algebra, Lemma <a href="/tag/04PU" data-tag="04PU">10.108.4</a>. Hence $A \to B$ is a faithfully flat epimorphism of rings. We get $A = B$ by Algebra, Lemma <a href="/tag/04VU" data-tag="04VU">10.107.7</a>. 
+    <p>
+      Note that the fibre ring $B \otimes _ A \kappa (\mathfrak p)$ is a colimit of étale extensions of $\kappa (\mathfrak p)$ by Lemmas <a href="/tag/092H" data-tag="092H">15.106.7</a> and <a href="/tag/092Q" data-tag="092Q">15.106.16</a>. Hence, if there exists more than one prime lying over $\mathfrak p$ or if $\kappa (\mathfrak p) \not= \kappa (\mathfrak q)$ for some $\mathfrak q$, then $B \otimes _ A L$ has a nontrivial idempotent for some (separable) algebraic field extension $L/\kappa (\mathfrak p)$. 
+    <p>
+      Let $L/\kappa (\mathfrak p)$ be an algebraic field extension. Let $A' \subset L$ be the integral closure of $A/\mathfrak p$ in $L$. By Lemma <a href="/tag/092X" data-tag="092X">15.106.23</a> we see that $A'$ is a strictly henselian local ring whose residue field is a purely inseparable extension of the residue field of $A$. Thus $B \otimes _ A A'$ is a local ring by Algebra, Lemma <a href="/tag/092Y" data-tag="092Y">10.156.5</a>. On the other hand, $B \otimes _ A A'$ is integrally closed in $B \otimes _ A L$ by Lemma <a href="/tag/092W" data-tag="092W">15.106.22</a>. Since $B \otimes _ A A'$ is local, it follows that the ring $B \otimes _ A L$ does not have nontrivial idempotents which is what we wanted to prove. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

@@ -1,0 +1,245 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="stacks-section-gerbes" class="tex-section"><span data-tag="06NY">8.11</span> Gerbes</h2>
+
+<p>
+Gerbes are a special kind of stacks in groupoids. 
+</p>
+<p>
+<article class="env-definition" id="06NZ">
+  <p><a class="environment-identifier" href="/tag/06NZ">Definition <span data-tag="06NZ">8.11.1</span>.</a> A <em>gerbe</em> over a site $\mathcal{C}$ is a category $p : \mathcal{S} \to \mathcal{C}$ over $\mathcal{C}$ such that </p>
+  <p><ol>
+  <li><p>
+$p : \mathcal{S} \to \mathcal{C}$ is a stack in groupoids over $\mathcal{C}$ (see Definition <a href="/tag/02ZI" data-tag="02ZI">8.5.1</a>), 
+</p>
+</li><li><p>
+for $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ there exists a covering $\{ U_ i \to U\} $ in $\mathcal{C}$ such that $\mathcal{S}_{U_ i}$ is nonempty, and 
+</p>
+</li><li><p>
+for $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and $x, y \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{S}_ U)$ there exists a covering $\{ U_ i \to U\} $ in $\mathcal{C}$ such that $x|_{U_ i} \cong y|_{U_ i}$ in $\mathcal{S}_{U_ i}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+In other words, a gerbe is a stack in groupoids such that any two objects are locally isomorphic and such that objects exist locally. 
+</p>
+<p>
+<article class="env-lemma" id="06P0">
+  <p><a class="environment-identifier" href="/tag/06P0">Lemma <span data-tag="06P0">8.11.2</span>.</a> Let $\mathcal{C}$ be a site. Let $\mathcal{S}_1$, $\mathcal{S}_2$ be categories over $\mathcal{C}$. Suppose that $\mathcal{S}_1$ and $\mathcal{S}_2$ are equivalent as categories over $\mathcal{C}$. Then $\mathcal{S}_1$ is a gerbe over $\mathcal{C}$ if and only if $\mathcal{S}_2$ is a gerbe over $\mathcal{C}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume $\mathcal{S}_1$ is a gerbe over $\mathcal{C}$. By Lemma <a href="/tag/042X" data-tag="042X">8.5.4</a> we see $\mathcal{S}_2$ is a stack in groupoids over $\mathcal{C}$. Let $F : \mathcal{S}_1 \to \mathcal{S}_2$, $G : \mathcal{S}_2 \to \mathcal{S}_1$ be equivalences of categories over $\mathcal{C}$. Given $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ we see that there exists a covering $\{ U_ i \to U\} $ such that $(\mathcal{S}_1)_{U_ i}$ is nonempty. Applying $F$ we see that $(\mathcal{S}_2)_{U_ i}$ is nonempty. Given $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and $x, y \in \mathop{\mathrm{Ob}}\nolimits ((\mathcal{S}_2)_ U)$ there exists a covering $\{ U_ i \to U\} $ in $\mathcal{C}$ such that $G(x)|_{U_ i} \cong G(y)|_{U_ i}$ in $(\mathcal{S}_1)_{U_ i}$. By Categories, Lemma <a href="/tag/003Z" data-tag="003Z">4.35.9</a> this implies $x|_{U_ i} \cong y|_{U_ i}$ in $(\mathcal{S}_2)_{U_ i}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We want to generalize the definition of gerbes a bit. Namely, let $F : \mathcal{X} \to \mathcal{Y}$ be a $1$-morphism of stacks in groupoids over a site $\mathcal{C}$. We want to say what it means for $\mathcal{X}$ to be a gerbe over $\mathcal{Y}$. By Section <a href="/tag/06NT" data-tag="06NT">8.10</a> the category $\mathcal{Y}$ inherits the structure of a site from $\mathcal{C}$. A naive guess is: Just require that $\mathcal{X} \to \mathcal{Y}$ <em>is</em> a gerbe in the sense above. Except the notion so obtained is not invariant under replacing $\mathcal{X}$ by an equivalent stack in groupoids over $\mathcal{C}$; this is even the case for the property of being fibred in groupoids over $\mathcal{Y}$. However, it turns out that we can replace $\mathcal{X}$ by an equivalent stack in groupoids over $\mathcal{C}$ which is fibred in groupoids over $\mathcal{Y}$, and then the property of being a gerbe over $\mathcal{Y}$ is independent of this choice. Here is the precise formulation. 
+</p>
+<p>
+<article class="env-lemma" id="06P1">
+  <p><a class="environment-identifier" href="/tag/06P1">Lemma <span data-tag="06P1">8.11.3</span>.</a> Let $\mathcal{C}$ be a site. Let $p : \mathcal{X} \to \mathcal{C}$ and $q : \mathcal{Y} \to \mathcal{C}$ be stacks in groupoids. Let $F : \mathcal{X} \to \mathcal{Y}$ be a $1$-morphism of categories over $\mathcal{C}$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+For some (equivalently any) factorization $F = F' \circ a$ where $a : \mathcal{X} \to \mathcal{X}'$ is an equivalence of categories over $\mathcal{C}$ and $F'$ is fibred in groupoids, the map $F' : \mathcal{X}' \to \mathcal{Y}$ is a gerbe (with the topology on $\mathcal{Y}$ inherited from $\mathcal{C}$). 
+</p>
+</li><li><p>
+The following two conditions are satisfied 
+</p>
+<ol>
+  <li><p>
+for $y \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{Y})$ lying over $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ there exists a covering $\{ U_ i \to U\} $ in $\mathcal{C}$ and objects $x_ i$ of $\mathcal{X}$ over $U_ i$ such that $F(x_ i) \cong y|_{U_ i}$ in $\mathcal{Y}_{U_ i}$, and 
+</p>
+</li><li><p>
+for $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$, $x, x' \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{X}_ U)$, and $b : F(x) \to F(x')$ in $\mathcal{Y}_ U$ there exists a covering $\{ U_ i \to U\} $ in $\mathcal{C}$ and morphisms $a_ i : x|_{U_ i} \to x'|_{U_ i}$ in $\mathcal{X}_{U_ i}$ with $F(a_ i) = b|_{U_ i}$. 
+</p>
+</li>
+</ol>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Categories, Lemma <a href="/tag/06N7" data-tag="06N7">4.35.16</a> there exists a factorization $F = F' \circ a$ where $a : \mathcal{X} \to \mathcal{X}'$ is an equivalence of categories over $\mathcal{C}$ and $F'$ is fibred in groupoids. By Categories, Lemma <a href="/tag/06N8" data-tag="06N8">4.35.17</a> given any two such factorizations $F = F' \circ a = F'' \circ b$ we have that $\mathcal{X}'$ is equivalent to $\mathcal{X}''$ as categories over $\mathcal{Y}$. Hence Lemma <a href="/tag/06P0" data-tag="06P0">8.11.2</a> guarantees that the condition (1) is independent of the choice of the factorization. Moreover, this means that we may assume $\mathcal{X}' = \mathcal{X} \times _{F, \mathcal{Y}, \text{id}} \mathcal{Y}$ as in the proof of Categories, Lemma <a href="/tag/06N7" data-tag="06N7">4.35.16</a> 
+    <p>
+      Let us prove that (a) and (b) imply that $\mathcal{X}' \to \mathcal{Y}$ is a gerbe. First of all, by Lemma <a href="/tag/06NX" data-tag="06NX">8.10.5</a> we see that $\mathcal{X}' \to \mathcal{Y}$ is a stack in groupoids. Next, let $y$ be an object of $\mathcal{Y}$ lying over $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$. By (a) we can find a covering $\{ U_ i \to U\} $ in $\mathcal{C}$ and objects $x_ i$ of $\mathcal{X}$ over $U_ i$ and isomorphisms $f_ i : F(x_ i) \to y|_{U_ i}$ in $\mathcal{Y}_{U_ i}$. Then $(U_ i, x_ i, y|_{U_ i}, f_ i)$ are objects of $\mathcal{X}'_{U_ i}$, i.e., the second condition of Definition <a href="/tag/06NZ" data-tag="06NZ">8.11.1</a> holds. Finally, let $(U, x, y, f)$ and $(U, x', y, f')$ be objects of $\mathcal{X}'$ lying over the same object $y \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{Y})$. Set $b = (f')^{-1} \circ f$. By condition (b) we can find a covering $\{ U_ i \to U\} $ and isomorphisms $a_ i : x|_{U_ i} \to x'|_{U_ i}$ in $\mathcal{X}_{U_ i}$ with $F(a_ i) = b|_{U_ i}$. Then 
+    <p>
+      <div class="equation">
+  \[  (a_ i, \text{id}) : (U, x, y, f)|_{U_ i} \to (U, x', y, f')|_{U_ i}  \]
+</div>
+    <p>
+       is a morphism in $\mathcal{X}'_{U_ i}$ as desired. This proves that (2) implies (1). 
+    <p>
+      To prove that (1) implies (2) one reads the arguments in the preceding paragraph backwards. Details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="06P2">
+  <p><a class="environment-identifier" href="/tag/06P2">Definition <span data-tag="06P2">8.11.4</span>.</a> Let $\mathcal{C}$ be a site. Let $\mathcal{X}$ and $\mathcal{Y}$ be stacks in groupoids over $\mathcal{C}$. Let $F : \mathcal{X} \to \mathcal{Y}$ be a $1$-morphism of categories over $\mathcal{C}$. We say $\mathcal{X}$ is a <em>gerbe over</em> $\mathcal{Y}$ if the equivalent conditions of Lemma <a href="/tag/06P1" data-tag="06P1">8.11.3</a> are satisfied. </p>
+</article> 
+</p>
+<p>
+This definition does not conflict with Definition <a href="/tag/06NZ" data-tag="06NZ">8.11.1</a> when $\mathcal{Y} = \mathcal{C}$ because in this case we may take $\mathcal{X}' = \mathcal{X}$ in part (1) of Lemma <a href="/tag/06P1" data-tag="06P1">8.11.3</a>. Note that conditions (2)(a) and (2)(b) of Lemma <a href="/tag/06P1" data-tag="06P1">8.11.3</a> are quite close in spirit to conditions (2) and (3) of Definition <a href="/tag/06NZ" data-tag="06NZ">8.11.1</a>. Namely, (2)(a) says that the map of presheaves of isomorphism classes of objects becomes a surjection after sheafification. Moreover, (2)(b) says that 
+</p>
+<div class="equation">
+  \[  \mathit{Isom}_\mathcal {X}(x, x') \longrightarrow \mathit{Isom}_\mathcal {Y}(F(x), F(x'))  \]
+</div>
+<p>
+ is a surjection of sheaves on $\mathcal{C}/U$ for any $U$ and $x, x' \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{X}_ U)$. 
+</p>
+<p>
+<article class="env-lemma" id="06P3">
+  <p><a class="environment-identifier" href="/tag/06P3">Lemma <span data-tag="06P3">8.11.5</span>.</a> Let $\mathcal{C}$ be a site. Let </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{X}' \ar[r]_{G'} \ar[d]_{F'} &  \mathcal{X} \ar[d]^ F \\  \mathcal{Y}' \ar[r]^ G &  \mathcal{Y} }  \]
+</div>
+  <p> be a $2$-fibre product of stacks in groupoids over $\mathcal{C}$. If $\mathcal{X}$ is a gerbe over $\mathcal{Y}$, then $\mathcal{X}'$ is a gerbe over $\mathcal{Y}'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By the uniqueness property of a $2$-fibre product may assume that $\mathcal{X}' = \mathcal{Y}' \times _\mathcal {Y} \mathcal{X}$ as in Categories, Lemma <a href="/tag/0040" data-tag="0040">4.32.3</a>. Let us prove properties (2)(a) and (2)(b) of Lemma <a href="/tag/06P1" data-tag="06P1">8.11.3</a> for $\mathcal{Y}' \times _\mathcal {Y} \mathcal{X} \to \mathcal{Y}'$. 
+    <p>
+      Let $y'$ be an object of $\mathcal{Y}'$ lying over the object $U$ of $\mathcal{C}$. By assumption there exists a covering $\{ U_ i \to U\} $ of $U$ and objects $x_ i \in \mathcal{X}_{U_ i}$ with isomorphisms $\alpha _ i : G(y')|_{U_ i} \to F(x_ i)$. Then $(U_ i, y'|_{U_ i}, x_ i, \alpha _ i)$ is an object of $\mathcal{Y}' \times _\mathcal {Y} \mathcal{X}$ over $U_ i$ whose image in $\mathcal{Y}'$ is $y'|_{U_ i}$. Thus (2)(a) holds. 
+    <p>
+      Let $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$, let $x'_1, x'_2$ be objects of $\mathcal{Y}' \times _\mathcal {Y} \mathcal{X}$ over $U$, and let $b' : F'(x'_1) \to F'(x'_2)$ be a morphism in $\mathcal{Y}'_ U$. Write $x'_ i = (U, y'_ i, x_ i, \alpha _ i)$. Note that $F'(x'_ i) = x_ i$ and $G'(x'_ i) = y'_ i$. By assumption there exists a covering $\{ U_ i \to U\} $ in $\mathcal{C}$ and morphisms $a_ i : x_1|_{U_ i} \to x_2|_{U_ i}$ in $\mathcal{X}_{U_ i}$ with $F(a_ i) = G(b')|_{U_ i}$. Then $(b'|_{U_ i}, a_ i)$ is a morphism $x'_1|_{U_ i} \to x'_2|_{U_ i}$ as required in (2)(b). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06R3">
+  <p><a class="environment-identifier" href="/tag/06R3">Lemma <span data-tag="06R3">8.11.6</span>.</a> Let $\mathcal{C}$ be a site. Let $F : \mathcal{X} \to \mathcal{Y}$ and $G : \mathcal{Y} \to \mathcal{Z}$ be $1$-morphisms of stacks in groupoids over $\mathcal{C}$. If $\mathcal{X}$ is a gerbe over $\mathcal{Y}$ and $\mathcal{Y}$ is a gerbe over $\mathcal{Z}$, then $\mathcal{X}$ is a gerbe over $\mathcal{Z}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let us prove properties (2)(a) and (2)(b) of Lemma <a href="/tag/06P1" data-tag="06P1">8.11.3</a> for $\mathcal{X} \to \mathcal{Z}$. 
+    <p>
+      Let $z$ be an object of $\mathcal{Z}$ lying over the object $U$ of $\mathcal{C}$. By assumption on $G$ there exists a covering $\{ U_ i \to U\} $ of $U$ and objects $y_ i \in \mathcal{Y}_{U_ i}$ such that $G(y_ i) \cong z|_{U_ i}$. By assumption on $F$ there exist coverings $\{ U_{ij} \to U_ i\} $ and objects $x_{ij} \in \mathcal{X}_{U_{ij}}$ such that $F(x_{ij}) \cong y_ i|_{U_{ij}}$. Then $\{ U_{ij} \to U\} $ is a covering of $\mathcal{C}$ and $(G \circ F)(x_{ij}) \cong z|_{U_{ij}}$. Thus (2)(a) holds. 
+    <p>
+      Let $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$, let $x_1, x_2$ be objects of $\mathcal{X}$ over $U$, and let $c : (G \circ F)(x_1) \to (G \circ F)(x_2)$ be a morphism in $\mathcal{Z}_ U$. By assumption on $G$ there exists a covering $\{ U_ i \to U\} $ of $U$ and morphisms $b_ i : F(x_1)|_{U_ i} \to F(x_2)|_{U_ i}$ in $\mathcal{Y}_{U_ i}$ such that $G(b_ i) = c|_{U_ i}$. By assumption on $F$ there exist coverings $\{ U_{ij} \to U_ i\} $ and morphisms $a_{ij} : x_1|_{U_{ij}} \to x_2|_{U_{ij}}$ in $\mathcal{X}_{U_{ij}}$ such that $F(a_{ij}) = b_ i|_{U_{ij}}$. Then $\{ U_{ij} \to U\} $ is a covering of $\mathcal{C}$ and $(G \circ F)(a_{ij}) = c|_{U_{ij}}$ as required in (2)(b). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06P4">
+  <p><a class="environment-identifier" href="/tag/06P4">Lemma <span data-tag="06P4">8.11.7</span>.</a> Let $\mathcal{C}$ be a site. Let </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{X}' \ar[r]_{G'} \ar[d]_{F'} &  \mathcal{X} \ar[d]^ F \\  \mathcal{Y}' \ar[r]^ G &  \mathcal{Y} }  \]
+</div>
+  <p> be a $2$-cartesian diagram of stacks in groupoids over $\mathcal{C}$. If for every $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and $x \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{Y}_ U)$ there exists a covering $\{ U_ i \to U\} $ such that $x|_{U_ i}$ is in the essential image of $G : \mathcal{Y}'_{U_ i} \to \mathcal{Y}_{U_ i}$ and $\mathcal{X}'$ is a gerbe over $\mathcal{Y}'$, then $\mathcal{X}$ is a gerbe over $\mathcal{Y}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By the uniqueness property of a $2$-fibre product may assume that $\mathcal{X}' = \mathcal{Y}' \times _\mathcal {Y} \mathcal{X}$ as in Categories, Lemma <a href="/tag/0040" data-tag="0040">4.32.3</a>. Let us prove properties (2)(a) and (2)(b) of Lemma <a href="/tag/06P1" data-tag="06P1">8.11.3</a> for $\mathcal{X} \to \mathcal{Y}$. 
+    <p>
+      Let $y$ be an object of $\mathcal{Y}$ lying over the object $U$ of $\mathcal{C}$. By assumption there exists a covering $\{ U_ i \to U\} $ of $U$ and objects $y'_ i \in \mathcal{Y}'_{U_ i}$ with $G(y'_ i) \cong y|_{U_ i}$. By (2)(a) for $\mathcal{X}' \to \mathcal{Y}'$ there exist coverings $\{ U_{ij} \to U_ i\} $ and objects $x'_{ij}$ of $\mathcal{X}'$ over $U_{ij}$ with $F'(x'_{ij})$ isomorphic to the restriction of $y'_ i$ to $U_{ij}$. Then $\{ U_{ij} \to U\} $ is a covering of $\mathcal{C}$ and $G'(x'_{ij})$ are objects of $\mathcal{X}$ over $U_{ij}$ whose images in $\mathcal{Y}$ are isomorphic to the restrictions $y|_{U_{ij}}$. This proves (2)(a) for $\mathcal{X} \to \mathcal{Y}$. 
+    <p>
+      Let $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$, let $x_1, x_2$ be objects of $\mathcal{X}$ over $U$, and let $b : F(x_1) \to F(x_2)$ be a morphism in $\mathcal{Y}_ U$. By assumption we may choose a covering $\{ U_ i \to U\} $ and objects $y'_ i$ of $\mathcal{Y}'$ over $U_ i$ such that there exist isomorphisms $\alpha _ i : G(y'_ i) \to F(x_1)|_{U_ i}$. Then we get objects 
+    <p>
+      <div class="equation">
+  \[  x'_{1i} = (U_ i, y'_ i, x_1|_{U_ i}, \alpha _ i) \quad \text{and}\quad x'_{2i} = (U_ i, y'_ i, x_2|_{U_ i}, b|_{U_ i} \circ \alpha _ i)  \]
+</div>
+    <p>
+       of $\mathcal{X}'$ over $U_ i$. The identity morphism on $y'_ i$ is a morphism $F'(x'_{1i}) \to F'(x'_{2i})$. By (2)(b) for $\mathcal{X}' \to \mathcal{Y}'$ there exist coverings $\{ U_{ij} \to U_ i\} $ and morphisms $a'_{ij} : x'_{1i}|_{U_{ij}} \to x'_{2i}|_{U_{ij}}$ such that $F'(a'_{ij}) = \text{id}_{y'_ i}|_{U_{ij}}$. Unwinding the definition of morphisms in $\mathcal{Y}' \times _\mathcal {Y} \mathcal{X}$ we see that $G'(a'_{ij}) : x_1|_{U_{ij}} \to x_2|_{U_{ij}}$ are the morphisms we're looking for, i.e., (2)(b) holds for $\mathcal{X} \to \mathcal{Y}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Gerbes all of whose automorphism sheaves are abelian play an important role in algebraic geometry. 
+</p>
+<p>
+<article class="env-lemma" id="0CJY">
+  <p><a class="environment-identifier" href="/tag/0CJY">Lemma <span data-tag="0CJY">8.11.8</span>.</a> Let $p : \mathcal{S} \to \mathcal{C}$ be a gerbe over a site $\mathcal{C}$. Assume that for all $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and $x \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{S}_ U)$ the sheaf of groups $\mathit{Aut}(x) = \mathit{Isom}(x, x)$ on $\mathcal{C}/U$ is abelian. Then there exist </p>
+  <p><ol>
+  <li><p>
+a sheaf $\mathcal{G}$ of abelian groups on $\mathcal{C}$, 
+</p>
+</li><li><p>
+for every $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and every $x \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{S}_ U)$ an isomorphism $\mathcal{G}|_ U \to \mathit{Aut}(x)$ 
+</p>
+</li>
+</ol></p>
+  <p> such that for every $U$ and every morphism $\varphi : x \to y$ in $\mathcal{S}_ U$ the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{G}|_ U \ar[d] \ar@{=}[rr] &  &  \mathcal{G}|_ U \ar[d] \\  \mathit{Aut}(x) \ar[rr]^{\alpha \mapsto \varphi \circ \alpha \circ \varphi ^{-1}} &  &  \mathit{Aut}(y) }  \]
+</div>
+  <p> is commutative. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $x, y$ be two objects of $\mathcal{S}$ with $U = p(x) = p(y)$. 
+    <p>
+      If there is a morphism $\varphi : x \to y$ over $U$, then it is an isomorphism and then we indeed get an isomorphism $\mathit{Aut}(x) \to \mathit{Aut}(y)$ sending $\alpha $ to $\varphi \circ \alpha \circ \varphi ^{-1}$. Moreover, since we are assuming $\mathit{Aut}(x)$ is commutative, this isomorphism is independent of the choice of $\varphi $ by a simple computation: namely, if $\psi $ is a second such map, then 
+    <p>
+      <div class="equation">
+  \[  \varphi \circ \alpha \circ \varphi ^{-1} = \psi \circ \psi ^{-1} \circ \varphi \circ \alpha \circ \varphi ^{-1} = \psi \circ \alpha \circ \psi ^{-1} \circ \varphi \circ \varphi ^{-1} = \psi \circ \alpha \circ \psi ^{-1}  \]
+</div>
+    <p>
+       The upshot is a canonical isomorphism of sheaves $\mathit{Aut}(x) \to \mathit{Aut}(y)$. Furthermore, if there is a third object $z$ and a morphism $y \to z$ (and hence also a morphism $x \to z$), then the canonical isomorphisms $\mathit{Aut}(x) \to \mathit{Aut}(y)$, $\mathit{Aut}(y) \to \mathit{Aut}(z)$, and $\mathit{Aut}(x) \to \mathit{Aut}(z)$ are compatible in the sense that 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathit{Aut}(x) \ar[rd] \ar[rr] &  &  \mathit{Aut}(z) \\  &  \mathit{Aut}(y) \ar[ru] }  \]
+</div>
+    <p>
+       commutes. 
+    <p>
+      If there is no morphism from $x$ to $y$ over $U$, then we can choose a covering $\{ U_ i \to U\} $ such that there exist morphisms $x|_{U_ i} \to y|_{U_ i}$. This gives canonical isomorphisms 
+    <p>
+      <div class="equation">
+  \[  \mathit{Aut}(x)|_{U_ i} \longrightarrow \mathit{Aut}(y)|_{U_ i}  \]
+</div>
+    <p>
+       which agree over $U_ i \times _ U U_ j$ (by canonicity). By glueing of sheaves (Sites, Lemma <a href="/tag/04TQ" data-tag="04TQ">7.26.1</a>) we get a unique isomorphism $\mathit{Aut}(x) \to \mathit{Aut}(y)$ whose restriction to any $U_ i$ is the canonical isomorphism of the previous paragraph. Similarly to the above these canonical isomorphisms satisfy a compatibility if we have a third object over $U$. 
+    <p>
+      What if the fibre category of $\mathcal{S}$ over $U$ is empty? Well, in this case we can find a covering $\{ U_ i \to U\} $ and objects $x_ i$ of $\mathcal{S}$ over $U_ i$. Then we set $\mathcal{G}_ i = \mathit{Aut}(x_ i)$. By the above we obtain canonical isomorphisms 
+    <p>
+      <div class="equation">
+  \[  \varphi _{ij} : \mathcal{G}_ i|_{U_ i \times _ U U_ j} \longrightarrow \mathcal{G}_ j|_{U_ i \times _ U U_ j}  \]
+</div>
+    <p>
+       whose restrictions to $U_ i \times _ U U_ j \times _ U U_ k$ satisfy the cocycle condition explained in Sites, Section <a href="/tag/04TP" data-tag="04TP">7.26</a>. By Sites, Lemma <a href="/tag/04TR" data-tag="04TR">7.26.4</a> we obtain a sheaf $\mathcal{G}$ over $U$ whose restriction to $U_ i$ gives $\mathcal{G}_ i$ in a manner compatible with the glueing maps $\varphi _{ij}$. 
+    <p>
+      If $\mathcal{C}$ has a final object $U$, then this finishes the proof as we can take $\mathcal{G}$ equal to the sheaf we just constructed. In the general case we need to verify that the sheaves $\mathcal{G}$ constructed over varying $U$ are compatible in a canonical manner. This is omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

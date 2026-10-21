@@ -1,0 +1,248 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="pic-section-hilbert-scheme-points" class="tex-section"><span data-tag="0B94">44.2</span> Hilbert scheme of points</h2>
+
+<p>
+Let $X \to S$ be a morphism of schemes. Let $d \geq 0$ be an integer. For a scheme $T$ over $S$ we let 
+</p>
+<div class="equation">
+  \[  \mathrm{Hilb}^ d_{X/S}(T) = \left\{  \begin{matrix}  Z \subset X_ T\text{ closed subscheme such that }
+
+\\  Z \to T\text{ is finite locally free of degree }d 
+
+\end{matrix} \right\}   \]
+</div>
+<p>
+ If $T' \to T$ is a morphism of schemes over $S$ and if $Z \in \mathrm{Hilb}^ d_{X/S}(T)$, then the base change $Z_{T'} \subset X_{T'}$ is an element of $\mathrm{Hilb}^ d_{X/S}(T')$. In this way we obtain a functor 
+</p>
+<div class="equation">
+  \[  \mathrm{Hilb}^ d_{X/S} : (\mathit{Sch}/S)^{opp} \longrightarrow \textit{Sets},\quad T \longrightarrow \mathrm{Hilb}^ d_{X/S}(T)  \]
+</div>
+<p>
+ In general $\mathrm{Hilb}^ d_{X/S}$ is an algebraic space (insert future reference here). In this section we will show that $\mathrm{Hilb}^ d_{X/S}$ is representable by a scheme if any finite number of points in a fibre of $X \to S$ are contained in an affine open. If $\mathrm{Hilb}^ d_{X/S}$ is representable by a scheme, we often denote this scheme by $\underline{\mathrm{Hilb}}^ d_{X/S}$. 
+</p>
+<p>
+<article class="env-lemma" id="0B95">
+  <p><a class="environment-identifier" href="/tag/0B95">Lemma <span data-tag="0B95">44.2.1</span>.</a> Let $X \to S$ be a morphism of schemes. The functor $\mathrm{Hilb}^ d_{X/S}$ satisfies the sheaf property for the fpqc topology (Topologies, Definition <a href="/tag/022G" data-tag="022G">34.9.13</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\{ T_ i \to T\} _{i \in I}$ be an fpqc covering of schemes over $S$. Set $X_ i = X_{T_ i} = X \times _ S T_ i$. Note that $\{ X_ i \to X_ T\} _{i \in I}$ is an fpqc covering of $X_ T$ (Topologies, Lemma <a href="/tag/022D" data-tag="022D">34.9.8</a>) and that $X_{T_ i \times _ T T_{i'}} = X_ i \times _{X_ T} X_{i'}$. Suppose that $Z_ i \in \mathrm{Hilb}^ d_{X/S}(T_ i)$ is a collection of elements such that $Z_ i$ and $Z_{i'}$ map to the same element of $\mathrm{Hilb}^ d_{X/S}(T_ i \times _ T T_{i'})$. By effective descent for closed immersions (Descent, Lemma <a href="/tag/03I0" data-tag="03I0">35.37.2</a>) there is a closed immersion $Z \to X_ T$ whose base change by $X_ i \to X_ T$ is equal to $Z_ i \to X_ i$. The morphism $Z \to T$ then has the property that its base change to $T_ i$ is the morphism $Z_ i \to T_ i$. Hence $Z \to T$ is finite locally free of degree $d$ by Descent, Lemma <a href="/tag/02VO" data-tag="02VO">35.23.32</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0B96">
+  <p><a class="environment-identifier" href="/tag/0B96">Lemma <span data-tag="0B96">44.2.2</span>.</a> Let $X \to S$ be a morphism of schemes. If $X \to S$ is of finite presentation, then the functor $\mathrm{Hilb}^ d_{X/S}$ is limit preserving (Limits, Remark <a href="/tag/05LX" data-tag="05LX">32.6.2</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $T = \mathop{\mathrm{lim}}\nolimits T_ i$ be a limit of affine schemes over $S$. We have to show that $\mathrm{Hilb}^ d_{X/S}(T) = \mathop{\mathrm{colim}}\nolimits \mathrm{Hilb}^ d_{X/S}(T_ i)$. Observe that if $Z \to X_ T$ is an element of $\mathrm{Hilb}^ d_{X/S}(T)$, then $Z \to T$ is of finite presentation. Hence by Limits, Lemma <a href="/tag/01ZM" data-tag="01ZM">32.10.1</a> there exists an $i$, a scheme $Z_ i$ of finite presentation over $T_ i$, and a morphism $Z_ i \to X_{T_ i}$ over $T_ i$ whose base change to $T$ gives $Z \to X_ T$. We apply Limits, Lemma <a href="/tag/01ZP" data-tag="01ZP">32.8.5</a> to see that we may assume $Z_ i \to X_{T_ i}$ is a closed immersion after increasing $i$. We apply Limits, Lemma <a href="/tag/06AC" data-tag="06AC">32.8.8</a> to see that $Z_ i \to T_ i$ is finite locally free of degree $d$ after possibly increasing $i$. Then $Z_ i \in \mathrm{Hilb}^ d_{X/S}(T_ i)$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $S$ be a scheme. Let $i : X \to Y$ be a closed immersion of schemes over $S$. Then there is a transformation of functors 
+</p>
+<div class="equation">
+  \[  \mathrm{Hilb}^ d_{X/S} \longrightarrow \mathrm{Hilb}^ d_{Y/S}  \]
+</div>
+<p>
+ which maps an element $Z \in \mathrm{Hilb}^ d_{X/S}(T)$ to $i_ T(Z) \subset Y_ T$ in $\mathrm{Hilb}^ d_{Y/S}$. Here $i_ T : X_ T \to Y_ T$ is the base change of $i$. 
+</p>
+<p>
+<article class="env-lemma" id="0B97">
+  <p><a class="environment-identifier" href="/tag/0B97">Lemma <span data-tag="0B97">44.2.3</span>.</a> Let $S$ be a scheme. Let $i : X \to Y$ be a closed immersion of schemes. If $\mathrm{Hilb}^ d_{Y/S}$ is representable by a scheme, so is $\mathrm{Hilb}^ d_{X/S}$ and the corresponding morphism of schemes $\underline{\mathrm{Hilb}}^ d_{X/S} \to \underline{\mathrm{Hilb}}^ d_{Y/S}$ is a closed immersion. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $T$ be a scheme over $S$ and let $Z \in \mathrm{Hilb}^ d_{Y/S}(T)$. Claim: there is a closed subscheme $T_ X \subset T$ such that a morphism of schemes $T' \to T$ factors through $T_ X$ if and only if $Z_{T'} \to Y_{T'}$ factors through $X_{T'}$. Applying this to a scheme $T_{univ}$ representing $\mathrm{Hilb}^ d_{Y/S}$ and the universal object<a class="footnotemark" href="#a0000987449" id="a0000987449-mark"><sup>1</sup></a> $Z_{univ} \in \mathrm{Hilb}^ d_{Y/S}(T_{univ})$ we get a closed subscheme $T_{univ, X} \subset T_{univ}$ such that $Z_{univ, X} = Z_{univ} \times _{T_{univ}} T_{univ, X}$ is a closed subscheme of $X \times _ S T_{univ, X}$ and hence defines an element of $\mathrm{Hilb}^ d_{X/S}(T_{univ, X})$. A formal argument then shows that $T_{univ, X}$ is a scheme representing $\mathrm{Hilb}^ d_{X/S}$ with universal object $Z_{univ, X}$. 
+    <p>
+      Proof of the claim. Consider $Z' = X_ T \times _{Y_ T} Z$. Given $T' \to T$ we see that $Z_{T'} \to Y_{T'}$ factors through $X_{T'}$ if and only if $Z'_{T'} \to Z_{T'}$ is an isomorphism. Thus the claim follows from the very general More on Flatness, Lemma <a href="/tag/07AI" data-tag="07AI">38.23.4</a>. However, in this special case one can prove the statement directly as follows: first reduce to the case $T = \mathop{\mathrm{Spec}}(A)$ and $Z = \mathop{\mathrm{Spec}}(B)$. After shrinking $T$ further we may assume there is an isomorphism $\varphi : B \to A^{\oplus d}$ as $A$-modules. Then $Z' = \mathop{\mathrm{Spec}}(B/J)$ for some ideal $J \subset B$. Let $g_\beta \in J$ be a collection of generators and write $\varphi (g_\beta ) = (g_\beta ^1, \ldots , g_\beta ^ d)$. Then it is clear that $T_ X$ is given by $\mathop{\mathrm{Spec}}(A/(g_\beta ^ j))$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0B98">
+  <p><a class="environment-identifier" href="/tag/0B98">Lemma <span data-tag="0B98">44.2.4</span>.</a> Let $X \to S$ be a morphism of schemes. If $X \to S$ is separated and $\mathrm{Hilb}^ d_{X/S}$ is representable, then $\underline{\mathrm{Hilb}}^ d_{X/S} \to S$ is separated. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In this proof all unadorned products are over $S$. Let $H = \underline{\mathrm{Hilb}}^ d_{X/S}$ and let $Z \in \mathrm{Hilb}^ d_{X/S}(H)$ be the universal object. Consider the two objects $Z_1, Z_2 \in \mathrm{Hilb}^ d_{X/S}(H \times H)$ we get by pulling back $Z$ by the two projections $H \times H \to H$. Then $Z_1 = Z \times H \subset X_{H \times H}$ and $Z_2 = H \times Z \subset X_{H \times H}$. Since $H$ represents the functor $\mathrm{Hilb}^ d_{X/S}$, the diagonal morphism $\Delta : H \to H \times H$ has the following universal property: A morphism of schemes $T \to H \times H$ factors through $\Delta $ if and only if $Z_{1, T} = Z_{2, T}$ as elements of $\mathrm{Hilb}^ d_{X/S}(T)$. Set $Z = Z_1 \times _{X_{H \times H}} Z_2$. Then we see that $T \to H \times H$ factors through $\Delta $ if and only if the morphisms $Z_ T \to Z_{1, T}$ and $Z_ T \to Z_{2, T}$ are isomorphisms. It follows from the very general More on Flatness, Lemma <a href="/tag/07AI" data-tag="07AI">38.23.4</a> that $\Delta $ is a closed immersion. In the proof of Lemma <a href="/tag/0B97" data-tag="0B97">44.2.3</a> the reader finds an alternative easier proof of the needed result in our special case. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0B99">
+  <p><a class="environment-identifier" href="/tag/0B99">Lemma <span data-tag="0B99">44.2.5</span>.</a> Let $X \to S$ be a morphism of affine schemes. Let $d \geq 0$. Then $\mathrm{Hilb}^ d_{X/S}$ is representable. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Say $S = \mathop{\mathrm{Spec}}(R)$. Then we can choose a closed immersion of $X$ into the spectrum of $R[x_ i; i \in I]$ for some set $I$ (of sufficiently large cardinality. Hence by Lemma <a href="/tag/0B97" data-tag="0B97">44.2.3</a> we may assume that $X = \mathop{\mathrm{Spec}}(A)$ where $A = R[x_ i; i \in I]$. We will use Schemes, Lemma <a href="/tag/01JJ" data-tag="01JJ">26.15.4</a> to prove the lemma in this case. 
+    <p>
+      Condition (1) of the lemma follows from Lemma <a href="/tag/0B95" data-tag="0B95">44.2.1</a>. 
+    <p>
+      For every subset $W \subset A$ of cardinality $d$ we will construct a subfunctor $F_ W$ of $\mathrm{Hilb}^ d_{X/S}$. (It would be enough to consider the case where $W$ consists of a collection of monomials in the $x_ i$ but we do not need this.) Namely, we will say that $Z \in \mathrm{Hilb}^ d_{X/S}(T)$ is in $F_ W(T)$ if and only if the $\mathcal{O}_ T$-linear map 
+    <p>
+      <div class="equation">
+  \[  \bigoplus \nolimits _{f \in W} \mathcal{O}_ T \longrightarrow (Z \to T)_*\mathcal{O}_ Z,\quad (g_ f) \longmapsto \sum g_ f f|_ Z  \]
+</div>
+    <p>
+       is surjective (equivalently an isomorphism). Here for $f \in A$ and $Z \in \mathrm{Hilb}^ d_{X/S}(T)$ we denote $f|_ Z$ the pullback of $f$ by the morphism $Z \to X_ T \to X$. 
+    <p>
+      Openness, i.e., condition (2)(b) of the lemma. This follows from Algebra, Lemma <a href="/tag/00O0" data-tag="00O0">10.79.4</a>. 
+    <p>
+      Covering, i.e., condition (2)(c) of the lemma. Since 
+    <p>
+      <div class="equation">
+  \[  A \otimes _ R \mathcal{O}_ T = (X_ T \to T)_*\mathcal{O}_{X_ T} \to (Z \to T)_*\mathcal{O}_ Z  \]
+</div>
+    <p>
+       is surjective and since $(Z \to T)_*\mathcal{O}_ Z$ is finite locally free of rank $d$, for every point $t \in T$ we can find a finite subset $W \subset A$ of cardinality $d$ whose images form a basis of the $d$-dimensional $\kappa (t)$-vector space $((Z \to T)_*\mathcal{O}_ Z)_ t \otimes _{\mathcal{O}_{T, t}} \kappa (t)$. By Nakayama's lemma there is an open neighbourhood $V \subset T$ of $t$ such that $Z_ V \in F_ W(V)$. 
+    <p>
+      Representable, i.e., condition (2)(a) of the lemma. Let $W \subset A$ have cardinality $d$. We claim that $F_ W$ is representable by an affine scheme over $R$. We will construct this affine scheme here, but we encourage the reader to think it through for themselves. Choose a numbering $f_1, \ldots , f_ d$ of the elements of $W$. We will construct a universal element $Z_{univ} = \mathop{\mathrm{Spec}}(B_{univ})$ of $F_ W$ over $T_{univ} = \mathop{\mathrm{Spec}}(R_{univ})$ as follows. First, we set 
+    <p>
+      <div class="equation">
+  \[  R_{univ} = R[c_{kl}^ m, b^ l, b_ i^ l]/\mathfrak a_{univ}  \]
+</div>
+    <p>
+       for some ideal $\mathfrak a_{univ}$ which we describe below. Here the indices $k, l, m, i$ are all ranging through $\{ 1, \ldots , d\} $. Then we set 
+    <p>
+      <div class="equation">
+  \[  B_{univ} = R_{univ}e_1 \oplus R_{univ}e_2 \oplus \ldots \oplus R_{univ}e_ d  \]
+</div>
+    <p>
+       as an $R_{univ}$-module with algebra structure given by the rule 
+    <p>
+      <div class="equation">
+  \[  e_ ke_ l = \sum c_{kl}^ m e_ m  \]
+</div>
+    <p>
+       The closed immersion $Z_{univ} \to X_{T_{univ}}$ is given by the $R_{univ}$-algebra map 
+    <p>
+      <div class="equation">
+  \[  \Psi : A \otimes _ R R_{univ} \longrightarrow B_{univ}  \]
+</div>
+    <p>
+       mapping $1 \otimes 1$ to $\sum b^ le_ l$ and $x_ i$ to $\sum b_ i^ le_ l$ (for existence see below). As for the ideal $\mathfrak a_{univ}$ we have the following prescription: 
+    <p>
+      <ol>
+  <li><p>
+multiplication on $B_{univ}$ is commutative, i.e., we should have $c_{lk}^ m - c_{kl}^ m \in \mathfrak a_{univ}$, 
+</p>
+</li><li><p>
+multiplication on $B_{univ}$ is associative, i.e., we should have $c_{lk}^ m c_{m n}^ p - c_{lq}^ p c_{kn}^ q \in \mathfrak a_{univ}$, 
+</p>
+</li><li><p>
+$\sum b^ le_ l$ is a multiplicative $1$ in $B_{univ}$, in other words, we should have $(\sum b^ le_ l)e_ k = e_ k$ for all $k$, which means $\sum b^ lc_{lk}^ m - \delta _{km} \in \mathfrak a_{univ}$ (Kronecker delta). 
+</p>
+</li>
+</ol>
+    <p>
+       Since we've guaranteed that $B_{univ}$ is a commutative $R_{univ}$-algebra with $1$ given by $\sum b^ le_ l$ the homomorphism $\Psi $ exists. The final condition is that 
+    <p>
+      <ol>
+  <li class="custom-item" data-marker="(5)"><p>
+$f_ l$ to map to $e_ l$ in $B_{univ}$. Write $\Psi (f_ l) - e_ l \equiv \sum h_ l^ me_ m$ for some $h_ l^ m \in R[c_{kl}^ m, b^ l, b_ i^ l]$ then we should have $h_ l^ m \in \mathfrak a_{univ}$. 
+</p>
+</li>
+</ol>
+    <p>
+       With $\mathfrak a_{univ} \subset R[c_{kl}^ m, b^ l, b_ i^ l]$ generated by the elements listed in (1) – (5) it is clear that $F_ W$ is represented by $\mathop{\mathrm{Spec}}(R_{univ})$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="0B9A">
+  <p><a class="environment-identifier" href="/tag/0B9A">Proposition <span data-tag="0B9A">44.2.6</span>.</a> Let $X \to S$ be a morphism of schemes. Let $d \geq 0$. Assume for all $(s, x_1, \ldots , x_ d)$ where $s \in S$ and $x_1, \ldots , x_ d \in X_ s$ there exists an affine open $U \subset X$ with $x_1, \ldots , x_ d \in U$. Then $\mathrm{Hilb}^ d_{X/S}$ is representable by a scheme. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Either using relative glueing (Constructions, Section <a href="/tag/01LG" data-tag="01LG">27.2</a>) or using the functorial point of view (Schemes, Lemma <a href="/tag/01JJ" data-tag="01JJ">26.15.4</a>) we reduce to the case where $S$ is affine. Details omitted. 
+    <p>
+      Assume $S$ is affine. For $U \subset X$ affine open, denote $F_ U \subset \mathrm{Hilb}^ d_{X/S}$ the subfunctor such that for a scheme $T/S$ an element $Z \in \mathrm{Hilb}^ d_{X/S}(T)$ is in $F_ U(T)$ if and only if $Z \subset U_ T$. We will use Schemes, Lemma <a href="/tag/01JJ" data-tag="01JJ">26.15.4</a> and the subfunctors $F_ U$ to conclude. 
+    <p>
+      Condition (1) is Lemma <a href="/tag/0B95" data-tag="0B95">44.2.1</a>. 
+    <p>
+      Condition (2)(a) follows from the fact that $F_ U = \mathrm{Hilb}^ d_{U/S}$ and that this is representable by Lemma <a href="/tag/0B99" data-tag="0B99">44.2.5</a>. Namely, if $Z \in F_ U(T)$, then $Z$ can be viewed as a closed subscheme of $U_ T$ which is finite locally free of degree $d$ over $T$ and hence $Z \in \mathrm{Hilb}^ d_{U/S}(T)$. Conversely, if $Z \in \mathrm{Hilb}^ d_{U/S}(T)$ then $Z \to U_ T \to X_ T$ is a closed immersion<a class="footnotemark" href="#a0000988116" id="a0000988116-mark"><sup>2</sup></a> and we may view $Z$ as an element of $F_ U(T)$. 
+    <p>
+      Let $Z \in \mathrm{Hilb}^ d_{X/S}(T)$ for some scheme $T$ over $S$. Let 
+    <p>
+      <div class="equation">
+  \[  B = (Z \to T)\left((Z \to X_ T \to X)^{-1}(X \setminus U)\right)  \]
+</div>
+    <p>
+       This is a closed subset of $T$ and it is clear that over the open $T_{Z, U} = T \setminus B$ the restriction $Z_{t'}$ maps into $U_{T'}$. On the other hand, for any $b \in B$ the fibre $Z_ b$ does not map into $U$. Thus we see that given a morphism $T' \to T$ we have $Z_{T'} \in F_ U(T')$ $\Leftrightarrow $ $T' \to T$ factors through the open $T_{Z, U}$. This proves condition (2)(b). 
+    <p>
+      Condition (2)(c) follows from our assumption on $X/S$. All we have to do is show the following: If $T$ is the spectrum of a field and $Z \subset X_ T$ is a closed subscheme, finite flat of degree $d$ over $T$, then $Z \to X_ T \to X$ factors through an affine open $U$ of $X$. This is clear because $Z$ will have at most $d$ points and these will all map into the fibre of $X$ over the image point of $T \to S$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0B9B">
+  <p><a class="environment-identifier" href="/tag/0B9B">Remark <span data-tag="0B9B">44.2.7</span>.</a> Let $f : X \to S$ be a morphism of schemes. The assumption of Proposition <a href="/tag/0B9A" data-tag="0B9A">44.2.6</a> and hence the conclusion holds in each of the following cases: </p>
+  <p><ol>
+  <li><p>
+$X$ is quasi-affine, 
+</p>
+</li><li><p>
+$f$ is quasi-affine, 
+</p>
+</li><li><p>
+$f$ is quasi-projective, 
+</p>
+</li><li><p>
+$f$ is locally projective, 
+</p>
+</li><li><p>
+there exists an ample invertible sheaf on $X$, 
+</p>
+</li><li><p>
+there exists an $f$-ample invertible sheaf on $X$, and 
+</p>
+</li><li><p>
+there exists an $f$-very ample invertible sheaf on $X$. 
+</p>
+</li>
+</ol></p>
+  <p> Namely, in each of these cases, every finite set of points of a fibre $X_ s$ is contained in a quasi-compact open $U$ of $X$ which comes with an ample invertible sheaf, is isomorphic to an open of an affine scheme, or is isomorphic to an open of $\text{Proj}$ of a graded ring (in each case this follows by unwinding the definitions). Thus the existence of suitable affine opens by Properties, Lemma <a href="/tag/01ZY" data-tag="01ZY">28.30.5</a>. </p>
+</article> 
+</p>

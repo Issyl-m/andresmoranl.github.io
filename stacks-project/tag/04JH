@@ -1,0 +1,242 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="etale-cohomology-section-morphisms" class="tex-section"><span data-tag="04JH">59.40</span> Recovering morphisms</h2>
+
+<p>
+In this section we prove that the rule which associates to a scheme its locally ringed small étale topos is fully faithful in a suitable sense, see Theorem <a href="/tag/04I7" data-tag="04I7">59.40.5</a>. 
+</p>
+<p>
+<article class="env-lemma" id="04I5">
+  <p><a class="environment-identifier" href="/tag/04I5">Lemma <span data-tag="04I5">59.40.1</span>.</a> Let $f : X \to Y$ be a morphism of schemes. The morphism of ringed sites $(f_{small}, f_{small}^\sharp )$ associated to $f$ is a morphism of locally ringed sites, see Modules on Sites, Definition <a href="/tag/04HA" data-tag="04HA">18.40.9</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Note that the assertion makes sense since we have seen that $(X_{\acute{e}tale}, \mathcal{O}_{X_{\acute{e}tale}})$ and $(Y_{\acute{e}tale}, \mathcal{O}_{Y_{\acute{e}tale}})$ are locally ringed sites, see Lemma <a href="/tag/04HZ" data-tag="04HZ">59.33.5</a>. Moreover, we know that $X_{\acute{e}tale}$ has enough points, see Theorem <a href="/tag/03PU" data-tag="03PU">59.29.10</a> and Remarks <a href="/tag/040S" data-tag="040S">59.29.11</a>. Hence it suffices to prove that $(f_{small}, f_{small}^\sharp )$ satisfies condition (3) of Modules on Sites, Lemma <a href="/tag/04H9" data-tag="04H9">18.40.8</a>. To see this take a point $p$ of $X_{\acute{e}tale}$. By Lemma <a href="/tag/04HU" data-tag="04HU">59.29.12</a> $p$ corresponds to a geometric point $\overline{x}$ of $X$. By Lemma <a href="/tag/03Q1" data-tag="03Q1">59.36.2</a> the point $q = f_{small} \circ p$ corresponds to the geometric point $\overline{y} = f \circ \overline{x}$ of $Y$. Hence the assertion we have to prove is that the induced map of stalks 
+    <p>
+      <div class="equation">
+  \[  (\mathcal{O}_ Y)_{\overline{y}} \longrightarrow (\mathcal{O}_ X)_{\overline{x}}  \]
+</div>
+    <p>
+       is a local ring map. Suppose that $a \in (\mathcal{O}_ Y)_{\overline{y}}$ is an element of the left hand side which maps to an element of the maximal ideal of the right hand side. Suppose that $a$ is the equivalence class of a triple $(V, \overline{v}, a)$ with $V \to Y$ étale, $\overline{v} : \overline{x} \to V$ over $Y$, and $a \in \mathcal{O}(V)$. It maps to the equivalence class of $(X \times _ Y V, \overline{x} \times \overline{v}, \text{pr}_ V^\sharp (a))$ in the local ring $(\mathcal{O}_ X)_{\overline{x}}$. But it is clear that being in the maximal ideal means that pulling back $\text{pr}_ V^\sharp (a)$ to an element of $\kappa (\overline{x})$ gives zero. Hence also pulling back $a$ to $\kappa (\overline{x})$ is zero. Which means that $a$ lies in the maximal ideal of $(\mathcal{O}_ Y)_{\overline{y}}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="04IJ">
+  <p><a class="environment-identifier" href="/tag/04IJ">Lemma <span data-tag="04IJ">59.40.2</span>.</a> Let $X$, $Y$ be schemes. Let $f : X \to Y$ be a morphism of schemes. Let $t$ be a $2$-morphism from $(f_{small}, f_{small}^\sharp )$ to itself, see Modules on Sites, Definition <a href="/tag/04IC" data-tag="04IC">18.8.1</a>. Then $t = \text{id}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This means that $t : f^{-1}_{small} \to f^{-1}_{small}$ is a transformation of functors such that the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ f_{small}^{-1}\mathcal{O}_ Y \ar[rd]_{f_{small}^\sharp } &  &  f_{small}^{-1}\mathcal{O}_ Y \ar[ll]^ t \ar[ld]^{f_{small}^\sharp } \\  &  \mathcal{O}_ X }  \]
+</div>
+    <p>
+       is commutative. Suppose $V \to Y$ is étale with $V$ affine. By Morphisms, Lemma <a href="/tag/04II" data-tag="04II">29.40.2</a> we may choose an immersion $i : V \to \mathbf{A}^ n_ Y$ over $Y$. In terms of sheaves this means that $i$ induces an injection $h_ i : h_ V \to \prod _{j = 1, \ldots , n} \mathcal{O}_ Y$ of sheaves. The base change $i'$ of $i$ to $X$ is an immersion (Schemes, Lemma <a href="/tag/01JY" data-tag="01JY">26.18.2</a>). Hence $i' : X \times _ Y V \to \mathbf{A}^ n_ X$ is an immersion, which in turn means that $h_{i'} : h_{X \times _ Y V} \to \prod _{j = 1, \ldots , n} \mathcal{O}_ X$ is an injection of sheaves. Via the identification $f_{small}^{-1}h_ V = h_{X \times _ Y V}$ of Lemma <a href="/tag/03Q1" data-tag="03Q1">59.36.2</a> the map $h_{i'}$ is equal to 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ f_{small}^{-1}h_ V \ar[r]^-{f^{-1}h_ i} &  \prod _{j = 1, \ldots , n} f_{small}^{-1}\mathcal{O}_ Y \ar[r]^{\prod f^\sharp } &  \prod _{j = 1, \ldots , n} \mathcal{O}_ X }  \]
+</div>
+    <p>
+       (verification omitted). This means that the map $t : f_{small}^{-1}h_ V \to f_{small}^{-1}h_ V$ fits into the commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ f_{small}^{-1}h_ V \ar[r]^-{f^{-1}h_ i} \ar[d]^ t &  \prod _{j = 1, \ldots , n} f_{small}^{-1}\mathcal{O}_ Y \ar[r]^-{\prod f^\sharp } \ar[d]^{\prod t} &  \prod _{j = 1, \ldots , n} \mathcal{O}_ X \ar[d]^{\text{id}}\\  f_{small}^{-1}h_ V \ar[r]^-{f^{-1}h_ i} &  \prod _{j = 1, \ldots , n} f_{small}^{-1}\mathcal{O}_ Y \ar[r]^-{\prod f^\sharp } &  \prod _{j = 1, \ldots , n} \mathcal{O}_ X }  \]
+</div>
+    <p>
+       The commutativity of the right square holds by our assumption on $t$ explained above. Since the composition of the horizontal arrows is injective by the discussion above we conclude that the left vertical arrow is the identity map as well. Any sheaf of sets on $Y_{\acute{e}tale}$ admits a surjection from a (huge) coproduct of sheaves of the form $h_ V$ with $V$ affine (combine Topologies, Lemma <a href="/tag/04HR" data-tag="04HR">34.4.12</a> with Sites, Lemma <a href="/tag/00WS" data-tag="00WS">7.12.5</a>). Thus we conclude that $t : f_{small}^{-1} \to f_{small}^{-1}$ is the identity transformation as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="04LW">
+  <p><a class="environment-identifier" href="/tag/04LW">Lemma <span data-tag="04LW">59.40.3</span>.</a> Let $X$, $Y$ be schemes. Any two morphisms $a, b : X \to Y$ of schemes for which there exists a $2$-isomorphism $(a_{small}, a_{small}^\sharp ) \cong (b_{small}, b_{small}^\sharp )$ in the $2$-category of ringed topoi are equal. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let us argue this carefully since it is a bit confusing. Let $t : a_{small}^{-1} \to b_{small}^{-1}$ be the $2$-isomorphism. Consider any open $V \subset Y$. Note that $h_ V$ is a subsheaf of the final sheaf $*$. Thus both $a_{small}^{-1}h_ V = h_{a^{-1}(V)}$ and $b_{small}^{-1}h_ V = h_{b^{-1}(V)}$ are subsheaves of the final sheaf. Thus the isomorphism 
+    <p>
+      <div class="equation">
+  \[  t : a_{small}^{-1}h_ V = h_{a^{-1}(V)} \to b_{small}^{-1}h_ V = h_{b^{-1}(V)}  \]
+</div>
+    <p>
+       has to be the identity, and $a^{-1}(V) = b^{-1}(V)$. It follows that $a$ and $b$ are equal on underlying topological spaces. Next, take a section $f \in \mathcal{O}_ Y(V)$. This determines and is determined by a map of sheaves of sets $f : h_ V \to \mathcal{O}_ Y$. Pull this back and apply $t$ to get a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ h_{b^{-1}(V)} \ar@{=}[r] &  b_{small}^{-1}h_ V \ar[d]^{b_{small}^{-1}(f)} &  &  a_{small}^{-1}h_ V \ar[d]^{a_{small}^{-1}(f)} \ar[ll]^ t &  h_{a^{-1}(V)} \ar@{=}[l] \\  &  b_{small}^{-1}\mathcal{O}_ Y \ar[rd]_{b^\sharp } &  &  a_{small}^{-1}\mathcal{O}_ Y \ar[ll]^ t \ar[ld]^{a^\sharp } \\  &  &  \mathcal{O}_ X }  \]
+</div>
+    <p>
+       where the triangle is commutative by definition of a $2$-isomorphism in Modules on Sites, Section <a href="/tag/04IB" data-tag="04IB">18.8</a>. Above we have seen that the composition of the top horizontal arrows comes from the identity $a^{-1}(V) = b^{-1}(V)$. Thus the commutativity of the diagram tells us that $a_{small}^\sharp (f) = b_{small}^\sharp (f)$ in $\mathcal{O}_ X(a^{-1}(V)) = \mathcal{O}_ X(b^{-1}(V))$. Since this holds for every open $V$ and every $f \in \mathcal{O}_ Y(V)$ we conclude that $a = b$ as morphisms of schemes. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="04I6">
+  <p><a class="environment-identifier" href="/tag/04I6">Lemma <span data-tag="04I6">59.40.4</span>.</a> Let $X$, $Y$ be affine schemes. Let </p>
+  <div class="equation">
+  \[  (g, g^\# ) : (\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale}), \mathcal{O}_ X) \longrightarrow (\mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale}), \mathcal{O}_ Y)  \]
+</div>
+  <p> be a morphism of locally ringed topoi. Then there exists a unique morphism of schemes $f : X \to Y$ such that $(g, g^\# )$ is $2$-isomorphic to $(f_{small}, f_{small}^\sharp )$, see Modules on Sites, Definition <a href="/tag/04IC" data-tag="04IC">18.8.1</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In this proof we write $\mathcal{O}_ X$ for the structure sheaf of the small étale site $X_{\acute{e}tale}$, and similarly for $\mathcal{O}_ Y$. Say $Y = \mathop{\mathrm{Spec}}(B)$ and $X = \mathop{\mathrm{Spec}}(A)$. Since $B = \Gamma (Y_{\acute{e}tale}, \mathcal{O}_ Y)$, $A = \Gamma (X_{\acute{e}tale}, \mathcal{O}_ X)$ we see that $g^\sharp $ induces a ring map $\varphi : B \to A$. Let $f = \mathop{\mathrm{Spec}}(\varphi ) : X \to Y$ be the corresponding morphism of affine schemes. We will show this $f$ does the job. 
+    <p>
+      Let $V \to Y$ be an affine scheme étale over $Y$. Thus we may write $V = \mathop{\mathrm{Spec}}(C)$ with $C$ an étale $B$-algebra. We can write 
+    <p>
+      <div class="equation">
+  \[  C = B[x_1, \ldots , x_ n]/(P_1, \ldots , P_ n)  \]
+</div>
+    <p>
+       with $P_ i$ polynomials such that $\Delta = \det (\partial P_ i/ \partial x_ j)$ is invertible in $C$, see for example Algebra, Lemma <a href="/tag/00U9" data-tag="00U9">10.143.2</a>. If $T$ is a scheme over $Y$, then a $T$-valued point of $V$ is given by $n$ sections of $\Gamma (T, \mathcal{O}_ T)$ which satisfy the polynomial equations $P_1 = 0, \ldots , P_ n = 0$. In other words, the sheaf $h_ V$ on $Y_{\acute{e}tale}$ is the equalizer of the two maps 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \prod \nolimits _{i = 1, \ldots , n} \mathcal{O}_ Y \ar@<1ex>[r]^ a \ar@<-1ex>[r]_ b &  \prod \nolimits _{j = 1, \ldots , n} \mathcal{O}_ Y }  \]
+</div>
+    <p>
+       where $b(h_1, \ldots , h_ n) = 0$ and $a(h_1, \ldots , h_ n) = (P_1(h_1, \ldots , h_ n), \ldots , P_ n(h_1, \ldots , h_ n))$. Since $g^{-1}$ is exact we conclude that the top row of the following solid commutative diagram is an equalizer diagram as well: 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ g^{-1}h_ V \ar[r] \ar@{..>}[d] &  \prod \nolimits _{i = 1, \ldots , n} g^{-1}\mathcal{O}_ Y \ar@<1ex>[r]^{g^{-1}a} \ar@<-1ex>[r]_{g^{-1}b} \ar[d]^{\prod g^\sharp } &  \prod \nolimits _{j = 1, \ldots , n} g^{-1}\mathcal{O}_ Y \ar[d]^{\prod g^\sharp }\\  h_{X \times _ Y V} \ar[r] &  \prod \nolimits _{i = 1, \ldots , n} \mathcal{O}_ X \ar@<1ex>[r]^{a'} \ar@<-1ex>[r]_{b'} &  \prod \nolimits _{j = 1, \ldots , n} \mathcal{O}_ X \\  }  \]
+</div>
+    <p>
+       Here $b'$ is the zero map and $a'$ is the map defined by the images $P'_ i = \varphi (P_ i) \in A[x_1, \ldots , x_ n]$ via the same rule $a'(h_1, \ldots , h_ n) = (P'_1(h_1, \ldots , h_ n), \ldots , P'_ n(h_1, \ldots , h_ n))$. that $a$ was defined by. The commutativity of the diagram follows from the fact that $\varphi = g^\sharp $ on global sections. The lower row is an equalizer diagram also, by exactly the same arguments as before since $X \times _ Y V$ is the affine scheme $\mathop{\mathrm{Spec}}(A \otimes _ B C)$ and $A \otimes _ B C = A[x_1, \ldots , x_ n]/(P'_1, \ldots , P'_ n)$. Thus we obtain a unique dotted arrow $g^{-1}h_ V \to h_{X \times _ Y V}$ fitting into the diagram 
+    <p>
+      We claim that the map of sheaves $g^{-1}h_ V \to h_{X \times _ Y V}$ is an isomorphism. Since the small étale site of $X$ has enough points (Theorem <a href="/tag/03PU" data-tag="03PU">59.29.10</a>) it suffices to prove this on stalks. Hence let $\overline{x}$ be a geometric point of $X$, and denote $p$ the associate point of the small étale topos of $X$. Set $q = g \circ p$. This is a point of the small étale topos of $Y$. By Lemma <a href="/tag/04HU" data-tag="04HU">59.29.12</a> we see that $q$ corresponds to a geometric point $\overline{y}$ of $Y$. Consider the map of stalks 
+    <p>
+      <div class="equation">
+  \[  (g^\sharp )_ p : (\mathcal{O}_ Y)_{\overline{y}} = \mathcal{O}_{Y, q} = (g^{-1}\mathcal{O}_ Y)_ p \longrightarrow \mathcal{O}_{X, p} = (\mathcal{O}_ X)_{\overline{x}}  \]
+</div>
+    <p>
+       Since $(g, g^\sharp )$ is a morphism of <em>locally</em> ringed topoi $(g^\sharp )_ p$ is a local ring homomorphism of strictly henselian local rings. Applying localization to the big commutative diagram above and Algebra, Lemma <a href="/tag/04GX" data-tag="04GX">10.153.12</a> we conclude that $(g^{-1}h_ V)_ p \to (h_{X \times _ Y V})_ p$ is an isomorphism as desired. 
+    <p>
+      We claim that the isomorphisms $g^{-1}h_ V \to h_{X \times _ Y V}$ are functorial. Namely, suppose that $V_1 \to V_2$ is a morphism of affine schemes étale over $Y$. Write $V_ i = \mathop{\mathrm{Spec}}(C_ i)$ with 
+    <p>
+      <div class="equation">
+  \[  C_ i = B[x_{i, 1}, \ldots , x_{i, n_ i}]/(P_{i, 1}, \ldots , P_{i, n_ i})  \]
+</div>
+    <p>
+       The morphism $V_1 \to V_2$ is given by a $B$-algebra map $C_2 \to C_1$ which in turn is given by some polynomials $Q_ j \in B[x_{1, 1}, \ldots , x_{1, n_1}]$ for $j = 1, \ldots , n_2$. Then it is an easy matter to show that the diagram of sheaves 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ h_{V_1} \ar[d] \ar[r] &  \prod _{i = 1, \ldots , n_1} \mathcal{O}_ Y \ar[d]^{Q_1, \ldots , Q_{n_2}}\\  h_{V_2} \ar[r] &  \prod _{i = 1, \ldots , n_2} \mathcal{O}_ Y }  \]
+</div>
+    <p>
+       is commutative, and pulling back to $X_{\acute{e}tale}$ we obtain the solid commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ g^{-1}h_{V_1} \ar@{..>}[dd] \ar[rrd] \ar[r] &  \prod _{i = 1, \ldots , n_1} g^{-1}\mathcal{O}_ Y \ar[dd]^{g^\sharp } \ar[rrd]^{Q_1, \ldots , Q_{n_2}} \\  &  &  g^{-1}h_{V_2} \ar@{..>}[dd] \ar[r] &  \prod _{i = 1, \ldots , n_2} g^{-1}\mathcal{O}_ Y \ar[dd]^{g^\sharp } \\  h_{X \times _ Y V_1} \ar[r] \ar[rrd] &  \prod \nolimits _{i = 1, \ldots , n_1} \mathcal{O}_ X \ar[rrd]^{Q'_1, \ldots , Q'_{n_2}} \\  &  &  h_{X \times _ Y V_2} \ar[r] &  \prod \nolimits _{i = 1, \ldots , n_2} \mathcal{O}_ X }  \]
+</div>
+    <p>
+       where $Q'_ j \in A[x_{1, 1}, \ldots , x_{1, n_1}]$ is the image of $Q_ j$ via $\varphi $. Since the dotted arrows exist, make the two squares commute, and the horizontal arrows are injective we see that the whole diagram commutes. This proves functoriality (and also that the construction of $g^{-1}h_ V \to h_{X \times _ Y V}$ is independent of the choice of the presentation, although we strictly speaking do not need to show this). 
+    <p>
+      At this point we are able to show that $f_{small, *} \cong g_*$. Namely, let $\mathcal{F}$ be a sheaf on $X_{\acute{e}tale}$. For every $V \in \mathop{\mathrm{Ob}}\nolimits (X_{\acute{e}tale})$ affine we have 
+    <p>
+      <div class="equation">
+  \begin{align*}  (g_*\mathcal{F})(V) &  = \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale})}(h_ V, g_*\mathcal{F}) \\ &  = \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale})}(g^{-1}h_ V, \mathcal{F}) \\ &  = \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale})}(h_{X \times _ Y V}, \mathcal{F}) \\ &  = \mathcal{F}(X \times _ Y V) \\ &  = f_{small, *}\mathcal{F}(V) \end{align*}
+</div>
+    <p>
+       where in the third equality we use the isomorphism $g^{-1}h_ V \cong h_{X \times _ Y V}$ constructed above. These isomorphisms are clearly functorial in $\mathcal{F}$ and functorial in $V$ as the isomorphisms $g^{-1}h_ V \cong h_{X \times _ Y V}$ are functorial. Now any sheaf on $Y_{\acute{e}tale}$ is determined by the restriction to the subcategory of affine schemes (Topologies, Lemma <a href="/tag/04HR" data-tag="04HR">34.4.12</a>), and hence we obtain an isomorphism of functors $f_{small, *} \cong g_*$ as desired. 
+    <p>
+      Finally, we have to check that, via the isomorphism $f_{small, *} \cong g_*$ above, the maps $f_{small}^\sharp $ and $g^\sharp $ agree. By construction this is already the case for the global sections of $\mathcal{O}_ Y$, i.e., for the elements of $B$. We only need to check the result on sections over an affine $V$ étale over $Y$ (by Topologies, Lemma <a href="/tag/04HR" data-tag="04HR">34.4.12</a> again). Writing $V = \mathop{\mathrm{Spec}}(C)$, $C = B[x_ i]/(P_ j)$ as before it suffices to check that the coordinate functions $x_ i$ are mapped to the same sections of $\mathcal{O}_ X$ over $X \times _ Y V$. And this is exactly what it means that the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ g^{-1}h_ V \ar[r] \ar@{..>}[d] &  \prod \nolimits _{i = 1, \ldots , n} g^{-1}\mathcal{O}_ Y \ar[d]^{\prod g^\sharp } \\  h_{X \times _ Y V} \ar[r] &  \prod \nolimits _{i = 1, \ldots , n} \mathcal{O}_ X }  \]
+</div>
+    <p>
+       commutes. Thus the lemma is proved. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Here is a version for general schemes. 
+</p>
+<p>
+<article class="env-theorem" id="04I7">
+  <p><a class="environment-identifier" href="/tag/04I7">Theorem <span data-tag="04I7">59.40.5</span>.</a> Let $X$, $Y$ be schemes. Let </p>
+  <div class="equation">
+  \[  (g, g^\# ) : (\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale}), \mathcal{O}_ X) \longrightarrow (\mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale}), \mathcal{O}_ Y)  \]
+</div>
+  <p> be a morphism of locally ringed topoi. Then there exists a unique morphism of schemes $f : X \to Y$ such that $(g, g^\# )$ is isomorphic to $(f_{small}, f_{small}^\sharp )$. In other words, the construction </p>
+  <div class="equation">
+  \[  \mathit{Sch}\longrightarrow \textit{Locally ringed topoi}, \quad X \longrightarrow (X_{\acute{e}tale}, \mathcal{O}_ X)  \]
+</div>
+  <p> is fully faithful (morphisms up to $2$-isomorphisms on the right hand side). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      You can prove this theorem by carefully adjusting the arguments of the proof of Lemma <a href="/tag/04I6" data-tag="04I6">59.40.4</a> to the global setting. However, we want to indicate how we can glue the result of that lemma to get a global morphism due to the rigidity provided by the result of Lemma <a href="/tag/04IJ" data-tag="04IJ">59.40.2</a>. Unfortunately, this is a bit messy. 
+    <p>
+      Let us prove existence when $Y$ is affine. In this case choose an affine open covering $X = \bigcup U_ i$. For each $i$ the inclusion morphism $j_ i : U_ i \to X$ induces a morphism of locally ringed topoi $(j_{i, small}, j_{i, small}^\sharp ) : (\mathop{\mathit{Sh}}\nolimits (U_{i, {\acute{e}tale}}), \mathcal{O}_{U_ i}) \to (\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale}), \mathcal{O}_ X)$ by Lemma <a href="/tag/04I5" data-tag="04I5">59.40.1</a>. We can compose this with $(g, g^\sharp )$ to obtain a morphism of locally ringed topoi 
+    <p>
+      <div class="equation">
+  \[  (g, g^\sharp ) \circ (j_{i, small}, j_{i, small}^\sharp ) : (\mathop{\mathit{Sh}}\nolimits (U_{i, {\acute{e}tale}}), \mathcal{O}_{U_ i}) \to (\mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale}), \mathcal{O}_ Y)  \]
+</div>
+    <p>
+       see Modules on Sites, Lemma <a href="/tag/04IG" data-tag="04IG">18.40.10</a>. By Lemma <a href="/tag/04I6" data-tag="04I6">59.40.4</a> there exists a unique morphism of schemes $f_ i : U_ i \to Y$ and a $2$-isomorphism 
+    <p>
+      <div class="equation">
+  \[  t_ i : (f_{i, small}, f_{i, small}^\sharp ) \longrightarrow (g, g^\sharp ) \circ (j_{i, small}, j_{i, small}^\sharp ).  \]
+</div>
+    <p>
+       Set $U_{i, i'} = U_ i \cap U_{i'}$, and denote $j_{i, i'} : U_{i, i'} \to U_ i$ the inclusion morphism. Since we have $j_ i \circ j_{i, i'} = j_{i'} \circ j_{i', i}$ we see that 
+    <p>
+      <div class="equation">
+  \begin{align*}  (g, g^\sharp ) \circ (j_{i, small}, j_{i, small}^\sharp ) \circ (j_{i, i', small}, j_{i, i', small}^\sharp ) = \\  (g, g^\sharp ) \circ (j_{i', small}, j_{i', small}^\sharp ) \circ (j_{i', i, small}, j_{i', i, small}^\sharp ) \end{align*}
+</div>
+    <p>
+       Hence by uniqueness (see Lemma <a href="/tag/04LW" data-tag="04LW">59.40.3</a>) we conclude that $f_ i \circ j_{i, i'} = f_{i'} \circ j_{i', i}$, in other words the morphisms of schemes $f_ i = f \circ j_ i$ are the restrictions of a global morphism of schemes $f : X \to Y$. Consider the diagram of $2$-isomorphisms (where we drop the components ${}^\sharp $ to ease the notation) 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ g \circ j_{i, small} \circ j_{i, i', small} \ar[rr]^{t_ i \star \text{id}_{j_{i, i', small}}} \ar@{=}[d] &  &  f_{small} \circ j_{i, small} \circ j_{i, i', small} \ar@{=}[d] \\  g \circ j_{i', small} \circ j_{i', i, small} \ar[rr]^{t_{i'} \star \text{id}_{j_{i', i, small}}} &  &  f_{small} \circ j_{i', small} \circ j_{i', i, small} }  \]
+</div>
+    <p>
+       The notation $\star $ indicates horizontal composition, see Categories, Definition <a href="/tag/003H" data-tag="003H">4.29.1</a> in general and Sites, Section <a href="/tag/04I9" data-tag="04I9">7.36</a> for our particular case. By the result of Lemma <a href="/tag/04IJ" data-tag="04IJ">59.40.2</a> this diagram commutes. Hence for any sheaf $\mathcal{G}$ on $Y_{\acute{e}tale}$ the isomorphisms $t_ i : f_{small}^{-1}\mathcal{G}|_{U_ i} \to g^{-1}\mathcal{G}|_{U_ i}$ agree over $U_{i, i'}$ and we obtain a global isomorphism $t : f_{small}^{-1}\mathcal{G} \to g^{-1}\mathcal{G}$. It is clear that this isomorphism is functorial in $\mathcal{G}$ and is compatible with the maps $f_{small}^\sharp $ and $g^\sharp $ (because it is compatible with these maps locally). This proves the theorem in case $Y$ is affine. 
+    <p>
+      In the general case, let $V \subset Y$ be an affine open. Then $h_ V$ is a subsheaf of the final sheaf $*$ on $Y_{\acute{e}tale}$. As $g$ is exact we see that $g^{-1}h_ V$ is a subsheaf of the final sheaf on $X_{\acute{e}tale}$. Hence by Lemma <a href="/tag/04HV" data-tag="04HV">59.31.1</a> there exists an open subscheme $W \subset X$ such that $g^{-1}h_ V = h_ W$. By Modules on Sites, Lemma <a href="/tag/04IH" data-tag="04IH">18.40.12</a> there exists a commutative diagram of morphisms of locally ringed topoi 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ (\mathop{\mathit{Sh}}\nolimits (W_{\acute{e}tale}), \mathcal{O}_ W) \ar[r] \ar[d]_{g'} &  (\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale}), \mathcal{O}_ X) \ar[d]^ g \\  (\mathop{\mathit{Sh}}\nolimits (V_{\acute{e}tale}), \mathcal{O}_ V) \ar[r] &  (\mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale}), \mathcal{O}_ Y) }  \]
+</div>
+    <p>
+       where the horizontal arrows are the localization morphisms (induced by the inclusion morphisms $V \to Y$ and $W \to X$) and where $g'$ is induced from $g$. By the result of the preceding paragraph we obtain a morphism of schemes $f' : W \to V$ and a $2$-isomorphism $t : (f'_{small}, (f'_{small})^\sharp ) \to (g', (g')^\sharp )$. Exactly as before these morphisms $f'$ (for varying affine opens $V \subset Y$) agree on overlaps by uniqueness, so we get a morphism $f : X \to Y$. Moreover, the $2$-isomorphisms $t$ are compatible on overlaps by Lemma <a href="/tag/04IJ" data-tag="04IJ">59.40.2</a> again and we obtain a global $2$-isomorphism $(f_{small}, (f_{small})^\sharp ) \to (g, (g)^\sharp )$. as desired. Some details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

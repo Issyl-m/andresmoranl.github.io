@@ -1,0 +1,97 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="etale-cohomology-section-presheaves" class="tex-section"><span data-tag="03NB">59.9</span> Presheaves</h2>
+
+<p>
+A reference for this section is Sites, Section <a href="/tag/00V1" data-tag="00V1">7.2</a>. 
+</p>
+<p>
+<article class="env-definition" id="03NC">
+  <p><a class="environment-identifier" href="/tag/03NC">Definition <span data-tag="03NC">59.9.1</span>.</a> Let $\mathcal{C}$ be a category. A <em>presheaf of sets</em> (respectively, an <em>abelian presheaf</em>) on $\mathcal{C}$ is a functor $\mathcal{C}^{opp} \to \textit{Sets}$ (resp. $\textit{Ab}$). </p>
+</article> 
+</p>
+<p>
+<strong>Terminology.</strong> If $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$, then elements of $\mathcal{F}(U)$ are called <em>sections</em> of $\mathcal{F}$ over $U$. For $\varphi : V \to U$ in $\mathcal{C}$, the map $\mathcal{F}(\varphi ) : \mathcal{F}(U) \to \mathcal{F}(V)$ is called the <em>restriction map</em> and is often denoted $s \mapsto s|_ V$ or sometimes $s \mapsto \varphi ^*s$. The notation $s|_ V$ is ambiguous since the restriction map depends on $\varphi $, but it is a standard abuse of notation. We also use the notation $\Gamma (U, \mathcal{F}) = \mathcal{F}(U)$. 
+</p>
+<p>
+Saying that $\mathcal{F}$ is a functor means that if $W \to V \to U$ are morphisms in $\mathcal{C}$ and $s \in \Gamma (U, \mathcal{F})$ then $(s|_ V)|_ W = s |_ W$, with the abuse of notation just seen. Moreover, the restriction mappings corresponding to the identity morphisms $\text{id}_ U : U \to U$ are the identity. 
+</p>
+<p>
+The category of presheaves of sets (respectively of abelian presheaves) on $\mathcal{C}$ is denoted $\textit{PSh} (\mathcal{C})$ (resp. $\textit{PAb} (\mathcal{C})$). It is the category of functors from $\mathcal{C}^{opp}$ to $\textit{Sets}$ (resp. $\textit{Ab}$), which is to say that the morphisms of presheaves are natural transformations of functors. We only consider the categories $\textit{PSh}(\mathcal{C})$ and $\textit{PAb}(\mathcal{C})$ when the category $\mathcal{C}$ is small. (Our convention is that a category is small unless otherwise mentioned, and if it isn't small it should be listed in Categories, Remark <a href="/tag/0015" data-tag="0015">4.2.2</a>.) 
+</p>
+<p>
+<article class="env-example" id="03ND">
+  <p><a class="environment-identifier" href="/tag/03ND">Example <span data-tag="03ND">59.9.2</span>.</a> Given an object $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$, we consider the rule </p>
+  <div class="equation">
+  \[  \begin{matrix}  U 
+
+&  \longmapsto 
+
+&  h_ X(U) = \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(U, X) 
+
+\\  V \xrightarrow {\varphi } U 
+
+&  \longmapsto 
+
+&  (\psi \mapsto \psi \circ \varphi ) : h_ X(U) \to h_ X(V). 
+
+\end{matrix}  \]
+</div>
+  <p> This defines a functor $h_ X : \mathcal{C}^{opp} \to \textit{Sets}$ and hence a presheaf. This is called the <em>representable presheaf associated to $X$.</em> It is not true that representable presheaves are sheaves in every topology on every site. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="03NE">
+        
+      
+  <p><a class="environment-identifier" href="/tag/03NE">Lemma <span data-tag="03NE">59.9.3</span> <span class="named">(Yoneda)</span>.</a> Let $\mathcal{C}$ be a category, and $X, Y \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$. There is a natural bijection </p>
+  <div class="equation">
+  \[  \begin{matrix}  \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(X, Y) 
+
+&  \longrightarrow 
+
+&  \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})} (h_ X, h_ Y) 
+
+\\  \psi 
+
+&  \longmapsto 
+
+&  h_\psi = \psi \circ - : h_ X \to h_ Y. 
+
+\end{matrix}  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See Categories, Lemma <a href="/tag/001P" data-tag="001P">4.3.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

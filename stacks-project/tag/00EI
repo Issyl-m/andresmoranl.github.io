@@ -1,0 +1,163 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="algebra-section-tilde-module-sheaf" class="tex-section"><span data-tag="00EI">10.24</span> Glueing functions</h2>
+
+<p>
+In this section we show that given an open covering 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Spec}}(R) = \bigcup \nolimits _{i = 1}^ n D(f_ i)  \]
+</div>
+<p>
+ by standard opens, and given an element $h_ i \in R_{f_ i}$ for each $i$ such that $h_ i = h_ j$ as elements of $R_{f_ i f_ j}$ then there exists a unique $h \in R$ such that the image of $h$ in $R_{f_ i}$ is $h_ i$. This result can be interpreted in two ways: 
+</p>
+<ol>
+  <li><p>
+The rule $D(f) \mapsto R_ f$ is a sheaf of rings on the standard opens, see Sheaves, Section <a href="/tag/009H" data-tag="009H">6.30</a>. 
+</p>
+</li><li><p>
+If we think of elements of $R_ f$ as the “algebraic” or “regular” functions on $D(f)$, then these glue as would continuous, resp. differentiable functions on a topological, resp. differentiable manifold. 
+</p>
+</li>
+</ol>
+<p>
+<article class="env-lemma" id="00EK">
+  <p><a class="environment-identifier" href="/tag/00EK">Lemma <span data-tag="00EK">10.24.1</span>.</a> Let $R$ be a ring. Let $f_1, \ldots , f_ n$ be elements of $R$ generating the unit ideal. Let $M$ be an $R$-module. The sequence </p>
+  <div class="equation">
+  \[  0 \to M \xrightarrow {\alpha } \bigoplus \nolimits _{i = 1}^ n M_{f_ i} \xrightarrow {\beta } \bigoplus \nolimits _{i, j = 1}^ n M_{f_ i f_ j}  \]
+</div>
+  <p> is exact, where $\alpha (m) = (m/1, \ldots , m/1)$ and $\beta (m_1/f_1^{e_1}, \ldots , m_ n/f_ n^{e_ n}) = (m_ i/f_ i^{e_ i} - m_ j/f_ j^{e_ j})_{(i, j)}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It suffices to show that the localization of the sequence at any maximal ideal $\mathfrak m$ is exact, see Lemma <a href="/tag/00HN" data-tag="00HN">10.23.1</a>. Since $f_1, \ldots , f_ n$ generate the unit ideal, there is an $i$ such that $f_ i \not\in \mathfrak m$. After renumbering we may assume $i = 1$. Note that $(M_{f_ i})_\mathfrak m = (M_\mathfrak m)_{f_ i}$ and $(M_{f_ if_ j})_\mathfrak m = (M_\mathfrak m)_{f_ if_ j}$, see Proposition <a href="/tag/02C7" data-tag="02C7">10.9.11</a>. In particular $(M_{f_1})_\mathfrak m = M_\mathfrak m$ and $(M_{f_1 f_ i})_\mathfrak m = (M_\mathfrak m)_{f_ i}$, because $f_1$ is a unit. Note that the maps in the sequence are the canonical ones coming from Lemma <a href="/tag/07K0" data-tag="07K0">10.9.7</a> and the identity map on $M$. Having said all of this, after replacing $R$ by $R_\mathfrak m$, $M$ by $M_\mathfrak m$, and $f_ i$ by their image in $R_\mathfrak m$, and $f_1$ by $1 \in R_\mathfrak m$, we reduce to the case where $f_1 = 1$. 
+    <p>
+      Assume $f_1 = 1$. Injectivity of $\alpha $ is now trivial. Let $m = (m_ i) \in \bigoplus _{i = 1}^ n M_{f_ i}$ be in the kernel of $\beta $. Then $m_1 \in M_{f_1} = M$. Moreover, $\beta (m) = 0$ implies that $m_1$ and $m_ i$ map to the same element of $M_{f_1f_ i} = M_{f_ i}$. Thus $\alpha (m_1) = m$ and the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00EJ">
+  <p><a class="environment-identifier" href="/tag/00EJ">Lemma <span data-tag="00EJ">10.24.2</span>.</a> Let $R$ be a ring, and let $f_1, f_2, \ldots f_ n\in R$ generate the unit ideal in $R$. Then the following sequence is exact: </p>
+  <div class="equation">
+  \[  0 \longrightarrow R \longrightarrow \bigoplus \nolimits _ i R_{f_ i} \longrightarrow \bigoplus \nolimits _{i, j}R_{f_ if_ j}  \]
+</div>
+  <p> where the maps $\alpha : R \longrightarrow \bigoplus _ i R_{f_ i}$ and $\beta : \bigoplus _ i R_{f_ i} \longrightarrow \bigoplus _{i, j} R_{f_ if_ j}$ are defined as </p>
+  <div class="equation">
+  \[  \alpha (x) = \left(\frac{x}{1}, \ldots , \frac{x}{1}\right) \text{ and } \beta \left(\frac{x_1}{f_1^{r_1}}, \ldots , \frac{x_ n}{f_ n^{r_ n}}\right) = \left(\frac{x_ i}{f_ i^{r_ i}}-\frac{x_ j}{f_ j^{r_ j}}~ \text{in}~ R_{f_ if_ j}\right).  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Special case of Lemma <a href="/tag/00EK" data-tag="00EK">10.24.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following we have already seen above, but we state it explicitly here for convenience. 
+</p>
+<p>
+<article class="env-lemma" id="00EM">
+  <p><a class="environment-identifier" href="/tag/00EM">Lemma <span data-tag="00EM">10.24.3</span>.</a> Let $R$ be a ring. If $\mathop{\mathrm{Spec}}(R) = U \amalg V$ with both $U$ and $V$ open then $R \cong R_1 \times R_2$ with $U \cong \mathop{\mathrm{Spec}}(R_1)$ and $V \cong \mathop{\mathrm{Spec}}(R_2)$ via the maps in Lemma <a href="/tag/00ED" data-tag="00ED">10.21.2</a>. Moreover, both $R_1$ and $R_2$ are localizations as well as quotients of the ring $R$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/00EE" data-tag="00EE">10.21.3</a> we have $U = D(e)$ and $V = D(1-e)$ for some idempotent $e$. By Lemma <a href="/tag/00EJ" data-tag="00EJ">10.24.2</a> we see that $R \cong R_ e \times R_{1 - e}$ (since clearly $R_{e(1-e)} = 0$ so the glueing condition is trivial; of course it is trivial to prove the product decomposition directly in this case). The lemma follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0565">
+  <p><a class="environment-identifier" href="/tag/0565">Lemma <span data-tag="0565">10.24.4</span>.</a> Let $R$ be a ring. Let $f_1, \ldots , f_ n \in R$. Let $M$ be an $R$-module. Then $M \to \bigoplus M_{f_ i}$ is injective if and only if </p>
+  <div class="equation">
+  \[  M \longrightarrow \bigoplus \nolimits _{i = 1, \ldots , n} M, \quad m \longmapsto (f_1m, \ldots , f_ nm)  \]
+</div>
+  <p> is injective. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The map $M \to \bigoplus M_{f_ i}$ is injective if and only if for all $m \in M$ and $e_1, \ldots , e_ n \geq 1$ such that $f_ i^{e_ i}m = 0$, $i = 1, \ldots , n$ we have $m = 0$. This clearly implies the displayed map is injective. Conversely, suppose the displayed map is injective and $m \in M$ and $e_1, \ldots , e_ n \geq 1$ are such that $f_ i^{e_ i}m = 0$, $i = 1, \ldots , n$. If $e_ i = 1$ for all $i$, then we immediately conclude that $m = 0$ from the injectivity of the displayed map. Next, we prove this holds for any such data by induction on $e = \sum e_ i$. The base case is $e = n$, and we have just dealt with this. If some $e_ i > 1$, then set $m' = f_ im$. By induction we see that $m' = 0$. Hence we see that $f_ i m = 0$, i.e., we may take $e_ i = 1$ which decreases $e$ and we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma is better stated and proved in the more general context of flat descent. However, it makes sense to state it here since it fits well with the above. 
+</p>
+<p>
+<article class="env-lemma" id="00EQ">
+  <p><a class="environment-identifier" href="/tag/00EQ">Lemma <span data-tag="00EQ">10.24.5</span>.</a> Let $R$ be a ring. Let $f_1, \ldots , f_ n \in R$. Suppose we are given the following data: </p>
+  <p><ol>
+  <li><p>
+For each $i$ an $R_{f_ i}$-module $M_ i$. 
+</p>
+</li><li><p>
+For each pair $i, j$ an $R_{f_ if_ j}$-module isomorphism $\psi _{ij} : (M_ i)_{f_ j} \to (M_ j)_{f_ i}$. 
+</p>
+</li>
+</ol></p>
+  <p> which satisfy the “cocycle condition” that all the diagrams </p>
+  <div class="equation">
+  \[  \xymatrix{ (M_ i)_{f_ jf_ k} \ar[rd]_{\psi _{ij}} \ar[rr]^{\psi _{ik}} &  &  (M_ k)_{f_ if_ j} \\  &  (M_ j)_{f_ if_ k} \ar[ru]_{\psi _{jk}} }  \]
+</div>
+  <p> commute (for all triples $i, j, k$). Given this data define </p>
+  <div class="equation">
+  \[  M = \mathop{\mathrm{Ker}}\left( \bigoplus \nolimits _{1 \leq i \leq n} M_ i \longrightarrow \bigoplus \nolimits _{1 \leq i, j \leq n} (M_ i)_{f_ j} \right)  \]
+</div>
+  <p> where $(m_1, \ldots , m_ n)$ maps to the element whose $(i, j)$th entry is $m_ i/1 - \psi _{ji}(m_ j/1)$. Then the natural map $M \to M_ i$ induces an isomorphism $M_{f_ i} \to M_ i$. Moreover $\psi _{ij}(m/1) = m/1$ for all $m \in M$ (with obvious notation). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      To show that $M_{f_1} \to M_1$ is an isomorphism, it suffices to show that its localization at every prime $\mathfrak p'$ of $R_{f_1}$ is an isomorphism, see Lemma <a href="/tag/00HN" data-tag="00HN">10.23.1</a>. Write $\mathfrak p' = \mathfrak p R_{f_1}$ for some prime $\mathfrak p \subset R$, $f_1 \not\in \mathfrak p$, see Lemma <a href="/tag/00E4" data-tag="00E4">10.17.6</a>. Since localization is exact (Proposition <a href="/tag/00CS" data-tag="00CS">10.9.12</a>), we see that 
+    <p>
+      <div class="equation">
+  \begin{align*}  (M_{f_1})_{\mathfrak p'} &  = M_\mathfrak p \\ &  = \mathop{\mathrm{Ker}}\left( \bigoplus \nolimits _{1 \leq i \leq n} M_{i, \mathfrak p} \longrightarrow \bigoplus \nolimits _{1 \leq i, j \leq n} ((M_ i)_{f_ j})_\mathfrak p \right) \\ &  = \mathop{\mathrm{Ker}}\left( \bigoplus \nolimits _{1 \leq i \leq n} M_{i, \mathfrak p} \longrightarrow \bigoplus \nolimits _{1 \leq i, j \leq n} (M_{i, \mathfrak p})_{f_ j} \right) \end{align*}
+</div>
+    <p>
+       Here we also used Proposition <a href="/tag/02C7" data-tag="02C7">10.9.11</a>. Since $f_1$ is a unit in $R_\mathfrak p$, this reduces us to the case where $f_1 = 1$ by replacing $R$ by $R_\mathfrak p$, $f_ i$ by the image of $f_ i$ in $R_\mathfrak p$, $M$ by $M_\mathfrak p$, and $f_1$ by $1$. 
+    <p>
+      Assume $f_1 = 1$. Then $\psi _{1j} : (M_1)_{f_ j} \to M_ j$ is an isomorphism for $j = 2, \ldots , n$. If we use these isomorphisms to identify $M_ j = (M_1)_{f_ j}$, then we see that $\psi _{ij} : (M_1)_{f_ if_ j} \to (M_1)_{f_ if_ j}$ is the canonical identification. Thus the complex 
+    <p>
+      <div class="equation">
+  \[  0 \to M_1 \to \bigoplus \nolimits _{1 \leq i \leq n} (M_1)_{f_ i} \longrightarrow \bigoplus \nolimits _{1 \leq i, j \leq n} (M_1)_{f_ if_ j}  \]
+</div>
+    <p>
+       is exact by Lemma <a href="/tag/00EK" data-tag="00EK">10.24.1</a>. Thus the first map identifies $M_1$ with $M$ in this case and everything is clear. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

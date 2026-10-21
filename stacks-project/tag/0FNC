@@ -1,0 +1,89 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="derived-section-deriving-adjoints" class="tex-section"><span data-tag="0FNC">13.30</span> Deriving adjoints</h2>
+
+<p>
+Let $F : \mathcal{D} \to \mathcal{D}'$ and $G : \mathcal{D}' \to \mathcal{D}$ be exact functors of triangulated categories. Let $S$, resp. $S'$ be a multiplicative system for $\mathcal{D}$, resp. $\mathcal{D}'$ compatible with the triangulated structure. Denote $Q : \mathcal{D} \to S^{-1}\mathcal{D}$ and $Q' : \mathcal{D}' \to (S')^{-1}\mathcal{D}'$ the localization functors. In this situation, by abuse of notation, one often denotes $RF$ the partially defined right derived functor corresponding to $Q' \circ F : \mathcal{D} \to (S')^{-1}\mathcal{D}'$ and the multiplicative system $S$. Similarly one denotes $LG$ the partially defined left derived functor corresponding to $Q \circ G : \mathcal{D}' \to S^{-1}\mathcal{D}$ and the multiplicative system $S'$. Picture 
+</p>
+<div class="equation">
+  \[  \vcenter { \xymatrix{ \mathcal{D} \ar[r]_ F \ar[d]_ Q &  \mathcal{D}' \ar[d]^{Q'} \\  S^{-1}\mathcal{D} \ar@{..>}[r]^{RF} &  (S')^{-1}\mathcal{D}' } } \quad \text{and}\quad \vcenter { \xymatrix{ \mathcal{D}' \ar[r]_ G \ar[d]_{Q'} &  \mathcal{D} \ar[d]^ Q \\  (S')^{-1}\mathcal{D}' \ar@{..>}[r]^{LG} &  S^{-1}\mathcal{D} } }  \]
+</div>
+<p>
+<article class="env-lemma" id="0FND">
+  <p><a class="environment-identifier" href="/tag/0FND">Lemma <span data-tag="0FND">13.30.1</span>.</a> In the situation above assume $F$ is right adjoint to $G$. Let $K \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{D})$ and $M \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{D}')$. If $RF$ is defined at $K$ and $LG$ is defined at $M$, then there is a canonical isomorphism </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _{(S')^{-1}\mathcal{D}'}(M, RF(K)) = \mathop{\mathrm{Hom}}\nolimits _{S^{-1}\mathcal{D}}(LG(M), K)  \]
+</div>
+  <p> This isomorphism is functorial in both variables on the triangulated subcategories of $S^{-1}\mathcal{D}$ and $(S')^{-1}\mathcal{D}'$ where $RF$ and $LG$ are defined. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $RF$ is defined at $K$, we see that the rule which assigns to an $s : K \to I$ in $S$ the object $F(I)$ is essentially constant as an ind-object of $(S')^{-1}\mathcal{D}'$ with value $RF(K)$. Similarly, the rule which assigns to a $t : P \to M$ in $S'$ the object $G(P)$ is essentially constant as a pro-object of $S^{-1}\mathcal{D}$ with value $LG(M)$. Thus we have 
+    <p>
+      <div class="equation">
+  \begin{align*}  \mathop{\mathrm{Hom}}\nolimits _{(S')^{-1}\mathcal{D}'}(M, RF(K)) &  = \mathop{\mathrm{colim}}\nolimits _{s : K \to I} \mathop{\mathrm{Hom}}\nolimits _{(S')^{-1}\mathcal{D}'}(M, F(I)) \\ &  = \mathop{\mathrm{colim}}\nolimits _{s : K \to I} \mathop{\mathrm{colim}}\nolimits _{t : P \to M} \mathop{\mathrm{Hom}}\nolimits _{\mathcal{D}'}(P, F(I)) \\ &  = \mathop{\mathrm{colim}}\nolimits _{t : P \to M} \mathop{\mathrm{colim}}\nolimits _{s : K \to I} \mathop{\mathrm{Hom}}\nolimits _{\mathcal{D}'}(P, F(I)) \\ &  = \mathop{\mathrm{colim}}\nolimits _{t : P \to M} \mathop{\mathrm{colim}}\nolimits _{s : K \to I} \mathop{\mathrm{Hom}}\nolimits _{\mathcal{D}}(G(P), I) \\ &  = \mathop{\mathrm{colim}}\nolimits _{t : P \to M} \mathop{\mathrm{Hom}}\nolimits _{S^{-1}\mathcal{D}}(G(P), K) \\ &  = \mathop{\mathrm{Hom}}\nolimits _{S^{-1}\mathcal{D}}(LG(M), K) \end{align*}
+</div>
+    <p>
+       The first equality holds by Categories, Lemma <a href="/tag/05PY" data-tag="05PY">4.22.9</a>. The second equality holds by the definition of morphisms in $D(\mathcal{B})$, see Categories, Remark <a href="/tag/05Q4" data-tag="05Q4">4.27.15</a>. The third equality holds by Categories, Lemma <a href="/tag/002M" data-tag="002M">4.14.10</a>. The fourth equality holds because $F$ and $G$ are adjoint. The fifth equality holds by definition of morphism in $D(\mathcal{A})$, see Categories, Remark <a href="/tag/05Q0" data-tag="05Q0">4.27.7</a>. The sixth equality holds by Categories, Lemma <a href="/tag/05PZ" data-tag="05PZ">4.22.10</a>. We omit the proof of functoriality. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DVC">
+  <p><a class="environment-identifier" href="/tag/0DVC">Lemma <span data-tag="0DVC">13.30.2</span>.</a> Let $F : \mathcal{A} \to \mathcal{B}$ and $G : \mathcal{B} \to \mathcal{A}$ be functors of abelian categories such that $F$ is a right adjoint to $G$. Let $K^\bullet $ be a complex of $\mathcal{A}$ and let $M^\bullet $ be a complex of $\mathcal{B}$. If $RF$ is defined at $K^\bullet $ and $LG$ is defined at $M^\bullet $, then there is a canonical isomorphism </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _{D(\mathcal{B})}(M^\bullet , RF(K^\bullet )) = \mathop{\mathrm{Hom}}\nolimits _{D(\mathcal{A})}(LG(M^\bullet ), K^\bullet )  \]
+</div>
+  <p> This isomorphism is functorial in both variables on the triangulated subcategories of $D(\mathcal{A})$ and $D(\mathcal{B})$ where $RF$ and $LG$ are defined. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a special case of the very general Lemma <a href="/tag/0FND" data-tag="0FND">13.30.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma is an example of why it is easier to work with unbounded derived categories. Namely, without having the unbounded derived functors, the lemma could not even be stated. 
+</p>
+<p>
+<article class="env-lemma" id="09T5">
+  <p><a class="environment-identifier" href="/tag/09T5">Lemma <span data-tag="09T5">13.30.3</span>.</a> Let $F : \mathcal{A} \to \mathcal{B}$ and $G : \mathcal{B} \to \mathcal{A}$ be functors of abelian categories such that $F$ is a right adjoint to $G$. If the derived functors $RF : D(\mathcal{A}) \to D(\mathcal{B})$ and $LG : D(\mathcal{B}) \to D(\mathcal{A})$ exist, then $RF$ is a right adjoint to $LG$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Immediate from Lemma <a href="/tag/0DVC" data-tag="0DVC">13.30.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

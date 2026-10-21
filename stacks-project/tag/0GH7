@@ -1,0 +1,781 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="artin-section-contractions" class="tex-section"><span data-tag="0GH7">98.27</span> Artin's theorem on contractions</h2>
+
+<p>
+In this section we will freely use the language of formal algebraic spaces, see Formal Spaces, Section <a href="/tag/0AHX" data-tag="0AHX">87.1</a>. Artin's theorem on contractions is one of the two main theorems of Artin's paper <span class="cite">[<a href="/bibliography/ArtinII">ArtinII</a>]</span>; the first one is his theorem on dilatations which we stated and proved in Algebraization of Formal Spaces, Section <a href="/tag/0GDT" data-tag="0GDT">88.29</a>. 
+</p>
+<p>
+<article class="env-situation" id="0GH8">
+  <p><a class="environment-identifier" href="/tag/0GH8">Situation <span data-tag="0GH8">98.27.1</span>.</a> Let $S$ be a locally Noetherian scheme. Let $X'$ be an algebraic space locally of finite type over $S$. Let $T' \subset |X'|$ be a closed subset. Let $U' \subset X'$ be the open subspace with $|U'| = |X'| \setminus T'$. Let $W$ be a locally Noetherian formal algebraic space over $S$ with $W_{red}$ locally of finite type over $S$. Finally, we let </p>
+  <div class="equation">
+  \[  g : X'_{/T'} \longrightarrow W  \]
+</div>
+  <p> be a formal modification, see Algebraization of Formal Spaces, Definition <a href="/tag/0GDK" data-tag="0GDK">88.24.1</a>. Recall that $X'_{/T'}$ denotes the formal completion of $X'$ along $T'$, see Formal Spaces, Section <a href="/tag/0AIX" data-tag="0AIX">87.14</a>. </p>
+</article> 
+</p>
+<p>
+In the situation above our goal is to prove that there exists a proper morphism $f : X' \to X$ of algebraic spaces over $S$, a closed subset $T \subset |X|$, and an isomorphism $a : X_{/T} \to W$ of formal algebraic spaces such that 
+</p>
+<ol>
+  <li><p>
+$T'$ is the inverse image of $T$ by $|f| : |X'| \to |X|$, 
+</p>
+</li><li><p>
+$f : X' \to X$ maps $U'$ isomorphically to an open subspace $U$ of $X$, and 
+</p>
+</li><li><p>
+$g = a \circ f_{/T}$ where $f_{/T} : X'_{/T'} \to X_{/T}$ is the induced morphism. 
+</p>
+</li>
+</ol>
+<p>
+ Let us say that $(f : X' \to X, T, a)$ is a <em>solution</em>. 
+</p>
+<p>
+We will follow Artin's strategy by constructing a functor $F$ on the category of locally Noetherian schemes over $S$, showing that $F$ is an algebraic space using Proposition <a href="/tag/0GE7" data-tag="0GE7">98.26.1</a>, and proving that setting $X = F$ works. 
+</p>
+<p>
+<article class="env-remark" id="0GH9">
+  <p><a class="environment-identifier" href="/tag/0GH9">Remark <span data-tag="0GH9">98.27.2</span>.</a> In particular, we cannot prove that the desired result is true for every Situation <a href="/tag/0GH8" data-tag="0GH8">98.27.1</a> because we will need to assume the local rings of $S$ are G-rings. If you can prove the result in general or if you have a counter example, please let us know at <a href="mailto:stacks.project@gmail.com">stacks.project@gmail.com</a>. </p>
+</article> 
+</p>
+<p>
+In Situation <a href="/tag/0GH8" data-tag="0GH8">98.27.1</a> let $V$ be a locally Noetherian scheme over $S$. The value of our functor $F$ on $V$ will be all triples 
+</p>
+<div class="equation">
+  \[  (Z, u' : V \setminus Z \to U', \hat x : V_{/Z} \to W)  \]
+</div>
+<p>
+ satisfying the following conditions 
+</p>
+<ol>
+  <li><p>
+$Z \subset V$ is a closed subset, 
+</p>
+</li><li><p>
+$u' : V \setminus Z \to U'$ is a morphism over $S$, 
+</p>
+</li><li><p>
+$\hat x : V_{/Z} \to W$ is an adic morphism of formal algebraic spaces over $S$, 
+</p>
+</li><li><p>
+$u'$ and $\hat x$ are compatible (see below). 
+</p>
+</li>
+</ol>
+<p>
+ The compatibility condition is the following: pulling back the formal modification $g$ we obtain a formal modification 
+</p>
+<div class="equation">
+  \[  X'_{/T'} \times _{g, W, \hat x} V_{/Z} \longrightarrow V_{/Z}  \]
+</div>
+<p>
+ See Algebraization of Formal Spaces, Lemma <a href="/tag/0GDN" data-tag="0GDN">88.24.4</a>. By the main theorem on dilatations (Algebraization of Formal Spaces, Theorem <a href="/tag/0GDU" data-tag="0GDU">88.29.1</a>), there is a unique proper morphism $V' \to V$ of algebraic spaces which is an isomorphism over $V \setminus Z$ such that $V'_{/Z} \to V_{/Z}$ is isomorphic to the displayed arrow. In other words, for some morphism $\hat x' : V'_{/Z} \to X'_{/T'}$ we have a cartesian diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ V'_{/Z} \ar[r] \ar[d]_{\hat x'} &  V_{/Z} \ar[d]^{\hat x} \\  X'_{/T'} \ar[r]^ g &  W }  \]
+</div>
+<p>
+ of formal algebraic spaces. We will think of $V \setminus Z$ as an open subspace of $V'$ without further mention. The compatibility condition is that there should be a morphism $x' : V' \to X'$ restricting to $u'$ and $\hat x$ over $V \setminus Z \subset V'$ and $V'_{/Z}$. In other words, such that the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ V \setminus Z \ar[r] \ar[d]_{u'} &  V' \ar[d]^{x'} &  V'_{/Z} \ar[l] \ar[d]^{\hat x'} \ar[r] &  V_{/Z} \ar[d]^{\hat x} \\  U' \ar[r] &  X' &  X'_{/T'} \ar[r]^ g \ar[l] &  W }  \]
+</div>
+<p>
+ is commutative. Observe that by Algebraization of Formal Spaces, Lemma <a href="/tag/0AR7" data-tag="0AR7">88.25.5</a> the morphism $x'$ is unique if it exists. We will indicate this situation by saying “<em>$V' \to V$, $\hat x'$, and $x'$ witness the compatibility between $u'$ and $\hat x$</em>”. 
+</p>
+<p>
+<article class="env-remark" id="0GID">
+  <p><a class="environment-identifier" href="/tag/0GID">Remark <span data-tag="0GID">98.27.3</span>.</a> In Situation <a href="/tag/0GH8" data-tag="0GH8">98.27.1</a> let $V$ be a locally Noetherian scheme over $S$. Let $(Z, u', \hat x)$ be a triple satisfying (1), (2), and (3) above. We want to explain a way to think about the compatibility condition (4). It will not be mathematically precise as we are going use a fictitious category $\textit{An}_ S$ of analytic spaces over $S$ and a fictitious analytification functor </p>
+  <div class="equation">
+  \[  \left\{  \begin{matrix}  \text{locally Noetherian formal} 
+
+\\  \text{algebraic spaces over }S 
+
+\end{matrix} \right\}  \longrightarrow \textit{An}_ S, \quad \quad Y \longmapsto Y^{an}  \]
+</div>
+  <p> For example if $Y = \text{Spf}(k[[t]])$ over $S = \mathop{\mathrm{Spec}}(k)$, then $Y^{an}$ should be thought of as an open unit disc. If $Y = \mathop{\mathrm{Spec}}(k)$, then $Y^{an}$ is a single point. The category $\textit{An}_ S$ should have open and closed immersions and we should be able to take the open complement of a closed. Given $Y$ the morphism $Y_{red} \to Y$ should induces a closed immersion $Y_{red}^{an} \to Y^{an}$. We set $Y^{rig} = Y^{an} \setminus Y_{red}^{an}$ equal to its open complement. If $Y$ is an algebraic space and if $Z \subset Y$ is closed, then the morphism $Y_{/Z} \to Y$ should induce an open immersion $Y_{/Z}^{an} \to Y^{an}$ which in turn should induce an open immersion </p>
+  <div class="equation">
+  \[  can : (Y_{/Z})^{rig} \longrightarrow (Y \setminus Z)^{an}  \]
+</div>
+  <p> Also, given a formal modification $g : Y' \to Y$ of locally Noetherian formal algebraic spaces, the induced morphism $g^{rig} : (Y')^{rig} \to Y^{rig}$ should be an isomorphism. Given $\text{An}_ S$ and the analytification functor, we can consider the requirement that </p>
+  <div class="equation">
+  \[  \xymatrix{ (V_{/Z})^{rig} \ar[rr]_{can} \ar[d]_{(g^{rig})^{-1} \circ \hat x^{an}} &  &  (V \setminus Z)^{an} \ar[d]^{(u')^{an}} \\  (X'_{/T'})^{rig} \ar[rr]^{can} &  &  (X' \setminus T')^{an} }  \]
+</div>
+  <p> commutes. This makes sense as $g^{rig} : (X'_{T'})^{rig} \to W^{rig}$ is an isomorphism and $U' = X' \setminus T'$. Finally, under some assumptions of faithfulness of the analytification functor, this requirement will be equivalent to the compatibility condition formulated above. We hope this will motivate the reader to think of the compatibility of $u'$ and $\hat x$ as the requirement that some maps be equal, rather than asking for the existence of a certain commutative diagram. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0GHA">
+  <p><a class="environment-identifier" href="/tag/0GHA">Lemma <span data-tag="0GHA">98.27.4</span>.</a> In Situation <a href="/tag/0GH8" data-tag="0GH8">98.27.1</a> the rule $F$ that sends a locally Noetherian scheme $V$ over $S$ to the set of triples $(Z, u', \hat x)$ satisfying the compatibility condition and which sends a a morphism $\varphi : V_2 \to V_1$ of locally Noetherian schemes over $S$ to the map </p>
+  <div class="equation">
+  \[  F(\varphi ) : F(V_1) \longrightarrow F(V_2)  \]
+</div>
+  <p> sending an element $(Z_1, u'_1, \hat x_1)$ of $F(V_1)$ to $(Z_2, u'_2, \hat x_2)$ in $F(V_2)$ given by </p>
+  <p><ol>
+  <li><p>
+$Z_2 \subset V_2$ is the inverse image of $Z_1$ by $\varphi $, 
+</p>
+</li><li><p>
+$u'_2$ is the composition of $u'_1$ and $\varphi |_{V_2 \setminus Z_2} : V_2 \setminus Z_2 \to V_1 \setminus Z_1$, 
+</p>
+</li><li><p>
+$\hat x_2$ is the composition of $\hat x_1$ and $\varphi _{/Z_2} : V_{2, /Z_2} \to V_{1, /Z_1}$ 
+</p>
+</li>
+</ol></p>
+  <p> is a contravariant functor. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      To see the compatibility condition between $u'_2$ and $\hat x_2$, let $V'_1 \to V_1$, $\hat x'_1$, and $x'_1$ witness the compatibility between $u'_1$ and $\hat x_1$. Set $V'_2 = V_2 \times _{V_1} V'_1$, set $\hat x'_2$ equal to the composition of $\hat x'_1$ and $V'_{2, /Z_2} \to V'_{1, /Z_1}$, and set $x'_2$ equal to the composition of $x'_1$ and $V'_2 \to V'_1$. Then $V'_2 \to V_2$, $\hat x'_2$, and $x'_2$ witness the compatibility between $u'_2$ and $\hat x_2$. We omit the detailed verification. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GHB">
+  <p><a class="environment-identifier" href="/tag/0GHB">Lemma <span data-tag="0GHB">98.27.5</span>.</a> In Situation <a href="/tag/0GH8" data-tag="0GH8">98.27.1</a> if there exists a solution $(f : X' \to X, T, a)$ then there is a functorial bijection $F(V) = \mathop{\mathrm{Mor}}\nolimits _ S(V, X)$ on the category of locally Noetherian schemes $V$ over $S$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $V$ be a locally Noetherian scheme over $S$. Let $x : V \to X$ be a morphism over $S$. Then we get an element $(Z, u', \hat x)$ in $F(V)$ as follows 
+    <p>
+      <ol>
+  <li><p>
+$Z \subset V$ is the inverse image of $T$ by $x$, 
+</p>
+</li><li><p>
+$u' : V \setminus Z \to U' = U$ is the restriction of $x$ to $V \setminus Z$, 
+</p>
+</li><li><p>
+$\hat x : V_{/Z} \to W$ is the composition of $x_{/Z} : V_{/Z} \to X_{/T}$ with the isomorphism $a : X_{/T} \to W$. 
+</p>
+</li>
+</ol>
+    <p>
+       This triple satisfies the compatibility condition because we can take $V' = V \times _{x, X} X'$, we can take $\hat x'$ the completion of the projection $x' : V' \to X'$. 
+    <p>
+      Conversely, suppose given an element $(Z, u', \hat x)$ of $F(V)$. We claim there is a unique morphism $x : V \to X$ compatible with $u'$ and $\hat x$. Namely, let $V' \to V$, $\hat x'$, and $x'$ witness the compatibility between $u'$ and $\hat x$. Then Algebraization of Formal Spaces, Proposition <a href="/tag/0GI3" data-tag="0GI3">88.26.1</a> is exactly the result we need to find a unique morphism $x : V \to X$ agreeing with $\hat x$ over $V_{/Z}$ and with $x'$ over $V'$ (and a fortiori agreeing with $u'$ over $V \setminus Z$). 
+    <p>
+      We omit the verification that the two constructions above define inverse bijections between their respective domains. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GHC">
+  <p><a class="environment-identifier" href="/tag/0GHC">Lemma <span data-tag="0GHC">98.27.6</span>.</a> In Situation <a href="/tag/0GH8" data-tag="0GH8">98.27.1</a> if there exists an algebraic space $X$ locally of finite type over $S$ and a functorial bijection $F(V) = \mathop{\mathrm{Mor}}\nolimits _ S(V, X)$ on the category of locally Noetherian schemes $V$ over $S$, then $X$ is a solution. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We have to construct a proper morphism $f : X' \to X$, a closed subset $T \subset |X|$, and an isomorphism $a : X_{/T} \to W$ with properties (1), (2), (3) listed just below Situation <a href="/tag/0GH8" data-tag="0GH8">98.27.1</a>. 
+    <p>
+      The discussion in this proof is a bit pedantic because we want to carefully match the underlying categories. In this paragraph we explain how the adventurous reader can proceed less timidly. Namely, the reader may extend our definition of the functor $F$ to all locally Noetherian algebraic spaces over $S$. Doing so the reader may then conclude that $F$ and $X$ agree as functors on the category of these algebraic spaces, i.e., $X$ represents $F$. Then one considers the universal object $(T, u', \hat x)$ in $F(X)$. Then the reader will find that for the triple $X'' \to X$, $\hat x'$, $x'$ witnessing the compatibility between $u'$ and $\hat x$ the morphism $x' : X'' \to X'$ is an isomorphism and this will produce $f : X' \to X$ by inverting $x'$. Finally, we already have $T \subset |X|$ and the reader may show that $\hat x$ is an isomorphism which can served as the last ingredient namely $a$. 
+    <p>
+      Denote $h_ X(-) = \mathop{\mathrm{Mor}}\nolimits _ S(-, X)$ the functor of points of $X$ restricted to the category $(\textit{Noetherian}/S)_{\acute{e}tale}$ of Section <a href="/tag/0GE1" data-tag="0GE1">98.25</a>. By Limits of Spaces, Remark <a href="/tag/05N0" data-tag="05N0">70.3.11</a> the algebraic spaces $X$ and $X'$ are limit preserving. Hence so are the restrictions $h_ X$ and $h_{X'}$. To construct $f$ it therefore suffices to construct a transformation $h_{X'} \to h_ X = F$, see Lemma <a href="/tag/0GE3" data-tag="0GE3">98.25.2</a>. Thus let $V \to S$ be an object of $(\textit{Noetherian}/S)_{\acute{e}tale}$ and let $\tilde x : V \to X'$ be in $h_{X'}(V)$. Then we get an element $(Z, u', \hat x)$ in $F(V)$ as follows 
+    <p>
+      <ol>
+  <li><p>
+$Z \subset V$ is the inverse image of $T'$ by $\tilde x$, 
+</p>
+</li><li><p>
+$u' : V \setminus Z \to U'$ is the restriction of $\tilde x$ to $V \setminus Z$, 
+</p>
+</li><li><p>
+$\hat x : V_{/Z} \to W$ is the composition of $x_{/Z} : V_{/Z} \to X'_{/T'}$ with $g : X'_{/T'} \to W$. 
+</p>
+</li>
+</ol>
+    <p>
+       This triple satisfies the compatibility condition: first we always obtain $V' \to V$ and $\hat x' : V'_{/Z'} \to X'_{/T'}$ for free (see discussion preceding Lemma <a href="/tag/0GHA" data-tag="0GHA">98.27.4</a>). Then we just define $x' : V' \to X'$ to be the composition of $V' \to V$ and the morphism $\tilde x : V \to X'$. We omit the verification that this works. 
+    <p>
+      If $\xi : V \to X$ is an étale morphism where $V$ is a scheme, then we obtain $\xi = (Z, u', \hat x) \in F(V) = h_ X(V) = X(V)$. Of course, if $\varphi : V' \to V$ is a further étale morphism of schemes, then $(Z, u', \hat x)$ pulled back to $F(V')$ corresponds to $\xi \circ \varphi $. The closed subset $T \subset |X|$ is just defined as the closed subset such that $\xi : V \to X$ for $\xi = (Z, u', \hat x)$ pulls $T$ back to $Z$ 
+    <p>
+      Consider Noetherian schemes $V$ over $S$ and a morphism $\xi : V \to X$ corresponding to $(Z, u', \hat x)$ as above. Then we see that $\xi (V)$ is set theoretically contained in $T$ if and only if $V = Z$ (as topological spaces). Hence we see that $X_{/T}$ agrees with $W$ as a functor. This produces the isomorphism $a : X_{/T} \to W$. (We've omitted a small detail here which is that for the locally Noetherian formal algebraic spaces $X_{/T}$ and $W$ it suffices to check one gets an isomorphism after evaluating on locally Noetherian schemes over $S$.) 
+    <p>
+      We omit the proof of conditions (1), (2), and (3). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0GHD">
+  <p><a class="environment-identifier" href="/tag/0GHD">Remark <span data-tag="0GHD">98.27.7</span>.</a> In Situation <a href="/tag/0GH8" data-tag="0GH8">98.27.1</a>. Let $V$ be a locally Noetherian scheme over $S$. Let $(Z_ i, u'_ i, \hat x_ i) \in F(V)$ for $i = 1, 2$. Let $V'_ i \to V$, $\hat x'_ i$ and $x'_ i$ witness the compatibility between $u'_ i$ and $\hat x_ i$ for $i = 1, 2$. </p>
+  <p>Set $V' = V'_1 \times _ V V'_2$. Let $E' \to V'$ denote the equalizer of the morphisms </p>
+  <div class="equation">
+  \[  V' \to V'_1 \xrightarrow {x'_1} X' \quad \text{and}\quad V' \to V'_2 \xrightarrow {x'_2} X'  \]
+</div>
+  <p> Set $Z = Z_1 \cap Z_2$. Let $E_ W \to V_{/Z}$ be the equalizer of the morphisms </p>
+  <div class="equation">
+  \[  V_{/Z} \to V_{/Z_1} \xrightarrow {\hat x_1} W \quad \text{and}\quad V_{/Z} \to V_{/Z_2} \xrightarrow {\hat x_2} W  \]
+</div>
+  <p> Observe that $E' \to V$ is separated and locally of finite type and that $E_ W$ is a locally Noetherian formal algebraic space separated over $V$. The compatibilities between the various morphisms involved show that </p>
+  <p><ol>
+  <li><p>
+$\mathop{\mathrm{Im}}(E' \to V) \cap (Z_1 \cup Z_2)$ is contained in $Z = Z_1 \cap Z_2$, 
+</p>
+</li><li><p>
+the morphism $E' \times _ V (V \setminus Z) \to V \setminus Z$ is a monomorphism and is equal to the equalizer of the restrictions of $u'_1$ and $u'_2$ to $V \setminus (Z_1 \cup Z_2)$, 
+</p>
+</li><li><p>
+the morphism $E'_{/Z} \to V_{/Z}$ factors through $E_ W$ and the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ E'_{/Z} \ar[r] \ar[d] &  X'_{/T'} \ar[d]^ g \\  E_ W \ar[r] &  W }  \]
+</div>
+<p>
+ is cartesian. In particular, the morphism $E'_{/Z} \to E_ W$ is a formal modification as the base change of $g$, 
+</p>
+</li><li><p>
+$E'$, $(E' \to V)^{-1}Z$, and $E'_{/Z} \to E_ W$ is a triple as in Situation <a href="/tag/0GH8" data-tag="0GH8">98.27.1</a> with base scheme the locally Noetherian scheme $V$, 
+</p>
+</li><li><p>
+given a morphism $\varphi : A \to V$ of locally Noetherian schemes, the following are equivalent 
+</p>
+<ol>
+  <li><p>
+$(Z_1, u'_1, \hat x_1)$ and $(Z_2, u'_2, \hat x_2)$ restrict to the same element of $F(A)$, 
+</p>
+</li><li><p>
+$A \setminus \varphi ^{-1}(Z) \to V \setminus Z$ factors through $E' \times _ V (V \setminus Z)$ and $A_{/\varphi ^{-1}(Z)} \to V_{/Z}$ factors through $E_ W$. 
+</p>
+</li>
+</ol>
+</li>
+</ol></p>
+  <p> We conclude, using Lemmas <a href="/tag/0GHB" data-tag="0GHB">98.27.5</a> and <a href="/tag/0GHC" data-tag="0GHC">98.27.6</a>, that if there is a solution $E \to V$ for the triple in (4), then $E$ represents $F \times _{\Delta , F \times F} V$ on the category of locally Noetherian schemes over $V$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0GHE">
+  <p><a class="environment-identifier" href="/tag/0GHE">Lemma <span data-tag="0GHE">98.27.8</span>.</a> In Situation <a href="/tag/0GH8" data-tag="0GH8">98.27.1</a> assume given a closed subset $Z \subset S$ such that </p>
+  <p><ol>
+  <li><p>
+the inverse image of $Z$ in $X'$ is $T'$, 
+</p>
+</li><li><p>
+$U' \to S \setminus Z$ is a closed immersion, 
+</p>
+</li><li><p>
+$W \to S_{/Z}$ is a closed immersion. 
+</p>
+</li>
+</ol></p>
+  <p> Then there exists a solution $(f : X' \to X, T, a)$ and moreover $X \to S$ is a closed immersion. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose we have a closed subscheme $X \subset S$ such that $X \cap (S \setminus Z) = U'$ and $X_{/Z} = W$. Then $X$ represents the functor $F$ (some details omitted) and hence is a solution. To find $X$ is clearly a local question on $S$. In this way we reduce to the case discussed in the next paragraph. 
+    <p>
+      Assume $S = \mathop{\mathrm{Spec}}(A)$ is affine. Let $I \subset A$ be the radical ideal cutting out $Z$. Write $I = (f_1, \ldots , f_ r)$. By assumption we are given 
+    <p>
+      <ol>
+  <li><p>
+the closed immersion $U' \to S \setminus Z$ determines ideals $J_ i \subset A[1/f_ i]$ such that $J_ i$ and $J_ j$ generate the same ideal in $A[1/f_ if_ j]$, 
+</p>
+</li><li><p>
+the closed immersion $W \to S_{/Z}$ is the map $\text{Spf}(A^\wedge /J') \to \text{Spf}(A^\wedge )$ for some ideal $J' \subset A^\wedge $ in the $I$-adic completion $A^\wedge $ of $A$. 
+</p>
+</li>
+</ol>
+    <p>
+       To finish the proof we need to find an ideal $J \subset A$ such that $J_ i = J[1/f_ i]$ and $J' = JA^\wedge $. By More on Algebra, Proposition <a href="/tag/05ER" data-tag="05ER">15.91.16</a> it suffices to show that $J_ i$ and $J'$ generate the same ideal in $A^\wedge [1/f_ i]$ for all $i$. 
+    <p>
+      Recall that $A' = H^0(X', \mathcal{O})$ is a finite $A$-algebra whose formation commutes with flat base change (Cohomology of Spaces, Lemmas <a href="/tag/08AS" data-tag="08AS">69.20.3</a> and <a href="/tag/073K" data-tag="073K">69.11.2</a>). Denote $J'' = \mathop{\mathrm{Ker}}(A \to A')$<a class="footnotemark" href="#a0001695409" id="a0001695409-mark"><sup>1</sup></a>. We have $J_ i = J''A[1/f_ i]$ as follows from base change to the spectrum of $A[1/f_ i]$. Observe that we have a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X' \ar[d] &  X'_{/T'} \times _{S_{/Z}} \text{Spf}(A^\wedge ) \ar[l] \ar[d] &  X'_{/T'} \times _ W \text{Spf}(A^\wedge /J') \ar@{=}[l] \ar[d] \\  \mathop{\mathrm{Spec}}(A) &  \text{Spf}(A^\wedge ) \ar[l] &  \text{Spf}(A^\wedge /J') \ar[l] }  \]
+</div>
+    <p>
+       The middle vertical arrow is the completion of the left vertical arrow along the obvious closed subsets. By the theorem on formal functions we have 
+    <p>
+      <div class="equation">
+  \[  (A')^\wedge = \Gamma (X' \times _ S \mathop{\mathrm{Spec}}(A^\wedge ), \mathcal{O}) = \mathop{\mathrm{lim}}\nolimits H^0(X' \times _ S \mathop{\mathrm{Spec}}(A/I^ n), \mathcal{O})  \]
+</div>
+    <p>
+       See Cohomology of Spaces, Theorem <a href="/tag/08AZ" data-tag="08AZ">69.22.5</a>. From the diagram we conclude that $J'$ maps to zero in $(A')^\wedge $. Hence $J' \subset J'' A^\wedge $. Consider the arrows 
+    <p>
+      <div class="equation">
+  \[  X'_{/T'} \to \text{Spf}(A^\wedge /J''A^\wedge ) \to \text{Spf}(A^\wedge /J') = W  \]
+</div>
+    <p>
+       We know the composition $g$ is a formal modification (in particular rig-étale and rig-surjective) and the second arrow is a closed immersion (in particular an adic monomorphism). Hence $X'_{/T'} \to \text{Spf}(A^\wedge /J''A^\wedge )$ is rig-surjective and rig-étale, see Algebraization of Formal Spaces, Lemmas <a href="/tag/0GH5" data-tag="0GH5">88.21.5</a> and <a href="/tag/0GH4" data-tag="0GH4">88.20.8</a>. Applying Algebraization of Formal Spaces, Lemmas <a href="/tag/0GH6" data-tag="0GH6">88.21.14</a> and <a href="/tag/0AQT" data-tag="0AQT">88.21.6</a> we conclude that $\text{Spf}(A^\wedge /J''A^\wedge ) \to W$ is rig-étale and rig-surjective. By Algebraization of Formal Spaces, Lemma <a href="/tag/0GD6" data-tag="0GD6">88.21.13</a> we conclude that $I^ n J'' A^\wedge \subset J'$ for some $n > 0$. It follows that $J'' A^\wedge [1/f_ i] = J' A^\wedge [1/f_ i]$ and we deduce $J_ i A^\wedge [1/f_ i] = J' A^\wedge [1/f_ i]$ for all $i$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GHF">
+  <p><a class="environment-identifier" href="/tag/0GHF">Lemma <span data-tag="0GHF">98.27.9</span>.</a> In Situation <a href="/tag/0GH8" data-tag="0GH8">98.27.1</a> assume $X' \to S$ and $W \to S$ are separated. Then the diagonal $\Delta : F \to F \times F$ is representable by closed immersions. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Combine Lemma <a href="/tag/0GHE" data-tag="0GHE">98.27.8</a> with the discussion in Remark <a href="/tag/0GHD" data-tag="0GHD">98.27.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GHG">
+  <p><a class="environment-identifier" href="/tag/0GHG">Lemma <span data-tag="0GHG">98.27.10</span>.</a> In Situation <a href="/tag/0GH8" data-tag="0GH8">98.27.1</a> the functor $F$ satisfies the sheaf property for all étale coverings of locally Noetherian schemes over $S$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. Hint: morphisms may be defined étale locally. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GI5">
+  <p><a class="environment-identifier" href="/tag/0GI5">Lemma <span data-tag="0GI5">98.27.11</span>.</a> In Situation <a href="/tag/0GH8" data-tag="0GH8">98.27.1</a> the functor $F$ is limit preserving: for any directed limit $V = \mathop{\mathrm{lim}}\nolimits V_\lambda $ of Noetherian affine schemes over $S$ we have $F(V) = \mathop{\mathrm{colim}}\nolimits F(V_\lambda )$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is an absurdly long proof. Much of it consists of standard arguments on limits and étale localization. We urge the reader to skip ahead to the last part of the proof where something interesting happens. 
+    <p>
+      Let $V = \mathop{\mathrm{lim}}\nolimits _{\lambda \in \Lambda } V_ i$ be a directed limit of schemes over $S$ with $V$ and $V_\lambda $ Noetherian and with affine transition morphisms. See Limits, Section <a href="/tag/01YV" data-tag="01YV">32.2</a> for material on limits of schemes. We will prove that $\mathop{\mathrm{colim}}\nolimits F(V_\lambda ) \to F(V)$ is bijective. 
+    <p>
+      Proof of injectivity: notation. Let $\lambda \in \Lambda $ and $\xi _{\lambda , 1}, \xi _{\lambda , 2} \in F(V_\lambda )$ be elements which restrict to the same element of $F(V)$. Write $\xi _{\lambda , 1} = (Z_{\lambda , 1}, u'_{\lambda , 1}, \hat x_{\lambda , 1})$ and $\xi _{\lambda , 2} = (Z_{\lambda , 2}, u'_{\lambda , 2}, \hat x_{\lambda , 2})$. 
+    <p>
+      Proof of injectivity: agreement of $Z_{\lambda , i}$. Since $Z_{\lambda , 1}$ and $Z_{\lambda , 2}$ restrict to the same closed subset of $V$, we may after increasing $i$ assume $Z_{\lambda , 1} = Z_{\lambda , 2}$, see Limits, Lemma <a href="/tag/0CUF" data-tag="0CUF">32.4.2</a> and Topology, Lemma <a href="/tag/0A2P" data-tag="0A2P">5.14.2</a>. Let us denote the common value $Z_\lambda \subset V_\lambda $, for $\mu \geq \lambda $ denote $Z_\mu \subset V_\mu $ the inverse image in $V_\mu $ and and denote $Z$ the inverse image in $V$. We will use below that $Z = \mathop{\mathrm{lim}}\nolimits _{\mu \geq \lambda } Z_\mu $ as schemes if we view $Z$ and $Z_\mu $ as reduced closed subschemes. 
+    <p>
+      Proof of injectivity: agreement of $u'_{\lambda , i}$. Since $U'$ is locally of finite type over $S$ and since the restrictions of $u'_{\lambda , 1}$ and $u'_{\lambda , 2}$ to $V \setminus Z$ are the same, we may after increasing $\lambda $ assume $u'_{\lambda , 1} = u'_{\lambda , 2}$, see Limits, Proposition <a href="/tag/01ZC" data-tag="01ZC">32.6.1</a>. Let us denote the common value $u'_\lambda $ and denote $u'$ the restriction to $V \setminus Z$. 
+    <p>
+      Proof of injectivity: restatement. At this point we have $\xi _{\lambda , 1} = (Z_\lambda , u'_\lambda , \hat x_{\lambda , 1})$ and $\xi _{\lambda , 2} = (Z_\lambda , u'_\lambda , \hat x_{\lambda , 2})$. The main problem we face in this part of the proof is to show that the morphisms $\hat x_{\lambda , 1}$ and $\hat x_{\lambda , 2}$ become the same after increasing $\lambda $. 
+    <p>
+      Proof of injectivity: agreement of $\hat x_{\lambda , i}|_{Z_\lambda }$. Consider the morpisms $\hat x_{\lambda , 1}|_{Z_\lambda }, \hat x_{\lambda , 2}|_{Z_\lambda } : Z_\lambda \to W_{red}$. These morphisms restrict to the same morphism $Z \to W_{red}$. Since $W_{red}$ is a scheme locally of finite type over $S$ we see using Limits, Proposition <a href="/tag/01ZC" data-tag="01ZC">32.6.1</a> that after replacing $\lambda $ by a bigger index we may assume $\hat x_{\lambda , 1}|_{Z_\lambda } = \hat x_{\lambda , 2}|_{Z_\lambda } : Z_\lambda \to W_{red}$. 
+    <p>
+      Proof of injectivity: end. Next, we are going to apply the discussion in Remark <a href="/tag/0GHD" data-tag="0GHD">98.27.7</a> to $V_\lambda $ and the two elements $\xi _{\lambda , 1}, \xi _{\lambda , 2} \in F(V_\lambda )$. This gives us 
+    <p>
+      <ol>
+  <li><p>
+$e_\lambda : E_\lambda ' \to V_\lambda $ separated and locally of finite type, 
+</p>
+</li><li><p>
+$e_\lambda ^{-1}(V_\lambda \setminus Z_\lambda ) \to V_\lambda \setminus Z_\lambda $ is an isomorphism, 
+</p>
+</li><li><p>
+a monomorphism $E_{W, \lambda } \to V_{\lambda , /Z_\lambda }$ which is the equalizer of $\hat x_{\lambda , 1}$ and $\hat x_{\lambda , 2}$, 
+</p>
+</li><li><p>
+a formal modification $E'_{\lambda , /Z_\lambda } \to E_{W, \lambda }$ 
+</p>
+</li>
+</ol>
+    <p>
+       Assertion (2) holds by assertion (2) in Remark <a href="/tag/0GHD" data-tag="0GHD">98.27.7</a> and the preparatory work we did above getting $u'_{\lambda , 1} = u'_{\lambda , 2} = u'_\lambda $. Since $Z_\lambda = (V_{\lambda , /Z_\lambda })_{red}$ factors through $E_{W, \lambda }$ because $\hat x_{\lambda , 1}|_{Z_\lambda } = \hat x_{\lambda , 2}|_{Z_\lambda }$ we see from Formal Spaces, Lemma <a href="/tag/0GHZ" data-tag="0GHZ">87.27.7</a> that $E_{W, \lambda } \to V_{\lambda , /Z_\lambda }$ is a closed immersion. Then we see from assertion (4) in Remark <a href="/tag/0GHD" data-tag="0GHD">98.27.7</a> and Lemma <a href="/tag/0GHE" data-tag="0GHE">98.27.8</a> applied to the triple $E_\lambda '$, $e_\lambda ^{-1}(Z_\lambda )$, $E'_{\lambda , /Z_\lambda } \to E_{W, \lambda }$ over $V_\lambda $ that there exists a closed immersion $E_\lambda \to V_\lambda $ which is a solution for this triple. Next we use assertion (5) in Remark <a href="/tag/0GHD" data-tag="0GHD">98.27.7</a> which combined with Lemma <a href="/tag/0GHB" data-tag="0GHB">98.27.5</a> says that $E_\lambda $ is the “equalizer” of $\xi _{\lambda , 1}$ and $\xi _{\lambda , 2}$. In particular, we see that $V \to V_\lambda $ factors through $E_\lambda $. Then using Limits, Proposition <a href="/tag/01ZC" data-tag="01ZC">32.6.1</a> once more we find $\mu \geq \lambda $ such that $V_\mu \to V_\lambda $ factors through $E_\lambda $ and hence the pullbacks of $\xi _{\lambda , 1}$ and $\xi _{\lambda , 2}$ to $V_\mu $ are the same as desired. 
+    <p>
+      Proof of surjectivity: statement. Let $\xi = (Z, u', \hat x)$ be an element of $F(V)$. We have to find a $\lambda \in \Lambda $ and an element $\xi _\lambda \in F(V_\lambda )$ restricting to $\xi $. 
+    <p>
+      Proof of surjectivity: the question is étale local. By the unicity proved in the previous part of the proof and by the sheaf property of $F$ in Lemma <a href="/tag/0GHG" data-tag="0GHG">98.27.10</a>, the problem is local on $V$ in the étale topology. More precisely, let $v \in V$. We claim it suffices to find an étale morphism $(\tilde V, \tilde v) \to (V, v)$ and some $\lambda $, some an étale morphism $\tilde V_\lambda \to V_\lambda $, and some element $\tilde\xi _\lambda \in F(\tilde V_\lambda )$ such that $\tilde V = \tilde V_\lambda \times _{V_\lambda } V$ and $\xi |_ U = \tilde\xi _\lambda |_ U$. We omit a detailed proof of this claim<a class="footnotemark" href="#a0001696062" id="a0001696062-mark"><sup>2</sup></a>. 
+    <p>
+      Proof of surjectivity: rephrasing the problem. Recall that any étale morphism $(\tilde V, \tilde v) \to (V, v)$ with $\tilde V$ affine is the base change of an étale morphism $\tilde V_\lambda \to V_\lambda $ with $\tilde V_\lambda $ affine for some $\lambda $, see for example Topologies, Lemma <a href="/tag/049N" data-tag="049N">34.13.2</a>. Given $\tilde V_\lambda $ we have $\tilde V = \mathop{\mathrm{lim}}\nolimits _{\mu \geq \lambda } \tilde V_\lambda \times _{V_\lambda } V_\mu $. Hence given $(\tilde V, \tilde v) \to (V, v)$ étale with $\tilde V$ affine, we may replace $(V, v)$ by $(\tilde V, \tilde v)$ and $\xi $ by the restriction of $\xi $ to $\tilde V$. 
+    <p>
+      Proof of surjectivity: reduce to base being affine. In particular, suppose $\tilde S \subset S$ is an affine open subscheme such that $v \in V$ maps to a point of $\tilde S$. Then we may according to the previous paragraph, replace $V$ by $\tilde V = \tilde S \times _ S V$. Of course, if we do this, it suffices to solve the problem for the functor $F$ restricted to the category of locally Noetherian schemes over $\tilde S$. This functor is of course the functor associated to the whole situation base changed to $\tilde S$. Thus we may and do assume $S = \mathop{\mathrm{Spec}}(R)$ is a Noetherian affine scheme for the rest of the proof. 
+    <p>
+      Proof of surjectivity: easy case. If $v \in V \setminus Z$, then we can take $\tilde V = V \setminus Z$. This descends to an open subscheme $\tilde V_\lambda \subset V_\lambda $ for some $\lambda $ by Limits, Lemma <a href="/tag/01Z4" data-tag="01Z4">32.4.11</a>. Next, after increasing $\lambda $ we may assume there is a morphism $u'_\lambda : \tilde V_\lambda \to U'$ restricting to $u'$. Taking $\tilde\xi _\lambda = (\emptyset , u'_\lambda , \emptyset )$ gives the desired element of $F(\tilde V_\lambda )$. 
+    <p>
+      Proof of surjectivity: hard case and reduction to affine $W$. The most difficult case comes from considering $v \in Z \subset V$. We claim that we can reduce this to the case where $W$ is an affine formal scheme; we urge the reader to skip this argument<a class="footnotemark" href="#a0001696226" id="a0001696226-mark"><sup>3</sup></a>. Namely, we can choose an étale morphism $\tilde W \to W$ where $\tilde W$ is an affine formal algebraic space such that the image of $v$ by $\hat x : V_{/Z} \to W$ is in the image of $\tilde W \to W$ (on reductions). Then the morphisms 
+    <p>
+      <div class="equation">
+  \[  p : \tilde W \times _{W, g} X'_{/T'} \longrightarrow X'_{/T'}  \]
+</div>
+    <p>
+       and 
+    <p>
+      <div class="equation">
+  \[  q : \tilde W \times _{W, \hat x} V_{/Z} \to V_{/Z}  \]
+</div>
+    <p>
+       are étale morphisms of locally Noetherian formal algebraic spaces. By (an easy case of) Algebraization of Formal Spaces, Theorem <a href="/tag/0ARB" data-tag="0ARB">88.27.4</a> there exists a morphism $\tilde X' \to X'$ of algebraic spaces which is locally of finite type, is an isomorphism over $U'$, and such that $\tilde X'_{/T'} \to X'_{/T'}$ is isomorphic to $p$. By Algebraization of Formal Spaces, Lemma <a href="/tag/0GI4" data-tag="0GI4">88.28.5</a> the morphism $\tilde X' \to X'$ is étale. Denote $\tilde T' \subset |\tilde X'|$ the inverse image of $T'$. Denote $\tilde U' \subset \tilde X'$ the complementary open subspace. Denote $\tilde g' : \tilde X'_{/\tilde T'} \to \tilde W$ the formal modification which is the base change of $g$ by $\tilde W \to W$. Then we see that 
+    <p>
+      <div class="equation">
+  \[  \tilde X',\  \tilde T',\  \tilde U',\  \tilde W, \  \tilde g : \tilde X'_{/\tilde T'} \to \tilde W  \]
+</div>
+    <p>
+       is another example of Situation <a href="/tag/0GH8" data-tag="0GH8">98.27.1</a>. Denote $\tilde F$ the functor constructed from this triple. There is a transformation of functors 
+    <p>
+      <div class="equation">
+  \[  \tilde F \longrightarrow F  \]
+</div>
+    <p>
+       constructed using the morphisms $\tilde X' \to X'$ and $\tilde W \to W$ in the obvious manner; details omitted. 
+    <p>
+      Proof of surjectivity: hard case and reduction to affine $W$, part 2. By the same theorem as used above, there exists a morphism $\tilde V \to V$ of algebraic spaces which is locally of finite type, is an isomorphism over $V \setminus Z$ and such that $\tilde V_{/Z} \to V_{/Z}$ is isomorphic to $q$. Denote $\tilde Z \subset \tilde V$ the inverse image of $Z$. By Algebraization of Formal Spaces, Lemmas <a href="/tag/0GI4" data-tag="0GI4">88.28.5</a> and <a href="/tag/0ARW" data-tag="0ARW">88.28.3</a> the morphism $\tilde V \to V$ is étale and separated. In particular $\tilde V$ is a (locally Noetherian) scheme, see for example Morphisms of Spaces, Proposition <a href="/tag/03XX" data-tag="03XX">67.50.2</a>. We have the morphism $u'$ which we may view as a morphism 
+    <p>
+      <div class="equation">
+  \[  \tilde u' : \tilde V \setminus \tilde Z \longrightarrow \tilde U'  \]
+</div>
+    <p>
+       where $\tilde U' \subset \tilde X'$ is the open mapping isomorphically to $U'$. We have a morphism 
+    <p>
+      <div class="equation">
+  \[  \tilde{\hat x} : \tilde V_{/\tilde Z} = \tilde W \times _{W, \hat x} V_{/Z} \longrightarrow \tilde W  \]
+</div>
+    <p>
+       Namely, here we just use the projection. Thus we have the triple 
+    <p>
+      <div class="equation">
+  \[  \tilde\xi = (\tilde Z, \tilde u', \tilde{\hat x}) \in \tilde F(\tilde V)  \]
+</div>
+    <p>
+       We omit proving the compatibility condition; hints: if $V' \to V$, $\hat x'$, and $x'$ witness the compatibility between $u'$ and $\hat x$, then one sets $\tilde V' = V' \times _ V \tilde V$ which comes with morphsms $\tilde{\hat x}'$ and $\tilde x'$ and show this works. The image of $\tilde\xi $ under the transformation $\tilde F \to F$ is the restriction of $\xi $ to $\tilde V$. 
+    <p>
+      Proof of surjectivity: hard case and reduction to affine $W$, part 3. By our choice of $\tilde W \to W$, there is an affine open $\tilde V_{open} \subset \tilde V$ (we're running out of notation) whose image in $V$ contains our chosen point $v \in V$. Now by the case studied in the next paragraph and the remarks made earlier, we can descend $\tilde\xi |_{\tilde V_{open}}$ to some element $\tilde\xi _\lambda $ of $\tilde F$ over $\tilde V_{\lambda , open}$ for some étale morphism $\tilde V_{\lambda , open} \to V_\lambda $ whose base change to $V$ is $\tilde V_{open}$. Applying the transformation of functors $\tilde F \to F$ we obtain the element of $F(\tilde V_{\lambda , open})$ we were looking for. This reduces us to the case discussed in the next paragraph. 
+    <p>
+      Proof of surjectivity: the case of an affine $W$. We have $v \in Z \subset V$ and $W$ is an affine formal algebraic space. Recall that 
+    <p>
+      <div class="equation">
+  \[  \xi = (Z, u', \hat x) \in F(V)  \]
+</div>
+    <p>
+       We may still replace $V$ by an étale neighbourhood of $v$. In particular we may and do assume $V$ and $V_\lambda $ are affine. 
+    <p>
+      Proof of surjectivity: descending $Z$. We can find a $\lambda $ and a closed subscheme $Z_\lambda \subset V_\lambda $ such that $Z$ is the base change of $Z_\lambda $ to $V$. See Limits, Lemma <a href="/tag/01ZM" data-tag="01ZM">32.10.1</a>. Warning: we don't know (and in general it won't be true) that $Z_\lambda $ is a reduced closed subscheme of $V_\lambda $. For $\mu \geq \lambda $ denote $Z_\mu \subset V_\mu $ the scheme theoretic inverse image in $V_\mu $. We will use below that $Z = \mathop{\mathrm{lim}}\nolimits _{\mu \geq \lambda } Z_\mu $ as schemes. 
+    <p>
+      Proof of surjectivity: descending $u'$. Since $U'$ is locally of finite type over $S$ we may assume after increasing $\lambda $ that there exists a morphism $u'_\lambda : V_\lambda \setminus Z_\lambda \to U'$ whose restriction to $V \setminus Z$ is $u'$. See Limits, Proposition <a href="/tag/01ZC" data-tag="01ZC">32.6.1</a>. For $\mu \geq \lambda $ we will denote $u'_\mu $ the restriction of $u'_\lambda $ to $V_\mu \setminus Z_\mu $. 
+    <p>
+      Proof of surjectivity: descending a witness. Let $V' \to V$, $\hat x'$, and $x'$ witness the compatibility between $u'$ and $\hat x$. Using the same references as above we may assume (after increasing $\lambda $) that there exists a morphism $V'_\lambda \to V_\lambda $ of finite type whose base change to $V$ is $V' \to V$. After increasing $\lambda $ we may assume $V'_\lambda \to V_\lambda $ is proper (Limits, Lemma <a href="/tag/081F" data-tag="081F">32.13.1</a>). Next, we may assume $V'_\lambda \to V_\lambda $ is an isomorphism over $V_\lambda \setminus Z_\lambda $ (Limits, Lemma <a href="/tag/081E" data-tag="081E">32.8.11</a>). Next, we may assume there is a morphism $x'_\lambda : V'_\lambda \to X'$ whose restriction to $V'$ is $x'$. Increasing $\lambda $ again we may assume $x'_\lambda $ agrees with $u'_\lambda $ over $V_\lambda \setminus Z_\lambda $. For $\mu \geq \lambda $ we denote $V'_\mu $ and $x'_\mu $ the base change of $V'_\lambda $ and the restriction of $x'_\lambda $. 
+    <p>
+      Proof of surjectivity: algebra. Write $W = \text{Spf}(B)$, $V = \mathop{\mathrm{Spec}}(A)$, and for $\mu \geq \lambda $ write $V_\mu = \mathop{\mathrm{Spec}}(A_\mu )$. Denote $I_\mu \subset A_\mu $ and $I \subset A$ the ideals cutting out $Z_\mu $ and $Z$. Then $I_\lambda A_\mu = I_\mu $ and $I_\lambda A = I$. The morphism $\hat x$ determines and is determined by a continuous ring map 
+    <p>
+      <div class="equation">
+  \[  (\hat x)^\sharp : B \longrightarrow A^\wedge  \]
+</div>
+    <p>
+       where $A^\wedge $ is the $I$-adic completion of $A$. To finish the proof we have to show that this map descends to a map into $A_\mu ^\wedge $ for some sufficiently large $\mu $ where $A_\mu ^\wedge $ is the $I_\mu $-adic completion of $A_\mu $. This is a nontrivial fact; Artin writes in his paper <span class="cite">[<a href="/bibliography/ArtinII">ArtinII</a>]</span>: “Since the data (3.5) involve $I$-adic completions, which do not commute with direct limits, the verification is somewhat delicate. It is an algebraic analogue of a convergence proof in analysis.” 
+    <p>
+      Proof of surjectivity: algebra, more rings. Let us denote 
+    <p>
+      <div class="equation">
+  \[  C_\mu = \Gamma (V'_\mu , \mathcal{O}) \quad \text{and}\quad C = \Gamma (V', \mathcal{O})  \]
+</div>
+    <p>
+       Observe that $A \to C$ and $A_\mu \to C_\mu $ are finite ring maps as $V' \to V$ and $V'_\mu \to V_\mu $ are proper morphisms, see Cohomology of Spaces, Lemma <a href="/tag/08AS" data-tag="08AS">69.20.3</a>. Since $V = \mathop{\mathrm{lim}}\nolimits V_\mu $ and $V' = \mathop{\mathrm{lim}}\nolimits V'_\mu $ we have 
+    <p>
+      <div class="equation">
+  \[  A = \mathop{\mathrm{colim}}\nolimits A_\mu \quad \text{and}\quad C = \mathop{\mathrm{colim}}\nolimits C_\mu  \]
+</div>
+    <p>
+       by Limits, Lemma <a href="/tag/01Z0" data-tag="01Z0">32.4.7</a><a class="footnotemark" href="#a0001696806" id="a0001696806-mark"><sup>4</sup></a>. For an element $a \in I$, resp. $a \in I_\mu $ the maps $A_ a \to C_ a$, resp. $(A_\mu )_ a \to (C_\mu )_ a$ are isomorphisms by flat base change (Cohomology of Spaces, Lemma <a href="/tag/073K" data-tag="073K">69.11.2</a>). Hence the kernel and cokernel of $A \to C$ is supported on $V(I)$ and similarly for $A_\mu \to C_\mu $. We conclude the kernel and cokernel of $A \to C$ are annihilated by a power of $I$ and the kernel and cokernel of $A_\mu \to C_\mu $ are annihilated by a power of $I_\mu $, see Algebra, Lemma <a href="/tag/00L6" data-tag="00L6">10.62.4</a>. 
+    <p>
+      Proof of surjectivity: algebra, more ring maps. Denote $Z_ n \subset V$ the $n$th infinitesimal neighbourhood of $Z$ and denote $Z_{\mu , n} \subset V_\mu $ the $n$th infinitesimal neighbourhood of $Z_\mu $. By the theorem on formal functions (Cohomology of Spaces, Theorem <a href="/tag/08AZ" data-tag="08AZ">69.22.5</a>) we have 
+    <p>
+      <div class="equation">
+  \[  C^\wedge = \mathop{\mathrm{lim}}\nolimits _ n H^0(V' \times _ V Z_ n, \mathcal{O}) \quad \text{and}\quad C_\mu ^\wedge = \mathop{\mathrm{lim}}\nolimits _ n H^0(V'_\mu \times _{V_\mu } Z_{\mu , n}, \mathcal{O})  \]
+</div>
+    <p>
+       where $C^\wedge $ and $C_\mu ^\wedge $ are the completion with respect to $I$ and $I_\mu $. Combining the completion of the morphism $x'_\mu : V'_\mu \to X'$ with the morphism $g : X'_{/T'} \to W$ we obtain 
+    <p>
+      <div class="equation">
+  \[  g \circ x'_{\mu , /Z_\mu } : V'_{\mu , /Z_\mu } = \mathop{\mathrm{colim}}\nolimits V_\mu ' \times _{V_\mu } Z_{\mu , n} \longrightarrow W  \]
+</div>
+    <p>
+       and hence by the description of the completion $C_\mu ^\wedge $ above we obtain a continuous ring homomorphism 
+    <p>
+      <div class="equation">
+  \[  (g \circ x'_{\mu , /Z_\mu })^\sharp : B \longrightarrow C_\mu ^\wedge  \]
+</div>
+    <p>
+       The fact that $V' \to V$, $\hat x'$, $x'$ witnesses the compatibility between $u'$ and $\hat x$ implies the commutativity of the following diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ C_\mu ^\wedge \ar[r] &  C^\wedge \\  B \ar[u]^{(g \circ x'_{\mu , /Z_\mu })^\sharp } \ar[r]^{(\hat x)^\sharp } &  A^\wedge \ar[u] }  \]
+</div>
+    <p>
+      Proof of surjectivity: more algebra arguments. Recall that the finite $A$-modules $\mathop{\mathrm{Ker}}(A \to C)$ and $\mathop{\mathrm{Coker}}(A \to C)$ are annihilated by a power of $I$ and similarly the finite $A_\mu $-modules $\mathop{\mathrm{Ker}}(A_\mu \to C_\mu )$ and $\mathop{\mathrm{Coker}}(A_\mu \to C_\mu )$ are annihilated by a power of $I_\mu $. This implies that these modules are equal to their completions. Since $I$-adic completion on the category of finite $A$-modules is exact (see Algebra, Section <a href="/tag/0BNH" data-tag="0BNH">10.97</a>) it follows that we have 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Coker}}(A^\wedge \to C^\wedge ) = \mathop{\mathrm{Coker}}(A \to C)  \]
+</div>
+    <p>
+       and similarly for kernels and for the maps $A_\mu \to C_\mu $. Of course we also have 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Ker}}(A \to C) = \mathop{\mathrm{colim}}\nolimits \mathop{\mathrm{Ker}}(A_\mu \to C_\mu ) \quad \text{and}\quad \mathop{\mathrm{Coker}}(A \to C) = \mathop{\mathrm{colim}}\nolimits \mathop{\mathrm{Coker}}(A_\mu \to C_\mu )  \]
+</div>
+    <p>
+       Recall that $S = \mathop{\mathrm{Spec}}(R)$ is affine. All of the ring maps above are $R$-algebra homomorphisms as all of the morphisms are morphisms over $S$. By Algebraization of Formal Spaces, Lemma <a href="/tag/0GC6" data-tag="0GC6">88.12.5</a> we see that $B$ is topologically of finite type over $R$. Say $B$ is topologically generated by $b_1, \ldots , b_ n$. Pick some $\mu $ (for example $\lambda $) and consider the elements 
+    <p>
+      <div class="equation">
+  \[  \text{images of } (g \circ x'_{\mu , /Z_\mu })^\sharp (b_1) , \ldots , (g \circ x'_{\mu , /Z_\mu })^\sharp (b_ n) \text{ in }\mathop{\mathrm{Coker}}(A_\mu \to C_\mu )  \]
+</div>
+    <p>
+       The image of these elements in $\mathop{\mathrm{Coker}}(\alpha )$ are zero by the commutativity of the square above. Since $\mathop{\mathrm{Coker}}(A \to C) = \mathop{\mathrm{colim}}\nolimits \mathop{\mathrm{Coker}}(A_\mu \to C_\mu )$ and these cokernels are equal to their completions we see that after increasing $\mu $ we may assume these images are all zero. This means that the continuous homomorphism $(g \circ x'_{\mu , /Z_\mu })^\sharp $ has image contained in $\mathop{\mathrm{Im}}(A_\mu \to C_\mu )$. Choose elements $a_{\mu , j} \in (A_\mu )^\wedge $ mapping to $(g \circ x'_{\mu , /Z_\mu })^\sharp (b_1)$ in $(C_\mu )^\wedge $. Then $a_{\mu , j} \in A_\mu ^\wedge $ and $(\hat x)^\sharp (b_ j) \in A^\wedge $ map to the same element of $C^\wedge $ by the commutativity of the square above. Since $\mathop{\mathrm{Ker}}(A \to C) = \mathop{\mathrm{colim}}\nolimits \mathop{\mathrm{Ker}}(A_\mu \to C_\mu )$ and these kernels are equal to their completions, we may after increasing $\mu $ adjust our choices of $a_{\mu , j}$ such that the image of $a_{\mu , j}$ in $A^\wedge $ is equal to $(\hat x)^\sharp (b_ j)$. 
+    <p>
+      Proof of surjectivity: final algebra arguments. Let $\mathfrak b \subset B$ be the ideal of topologically nilpotent elements. Let $J \subset R[x_1, \ldots , x_ n]$ be the ideal consisting of those $h(x_1, \ldots , x_ n)$ such that $h(b_1, \ldots , b_ n) \in \mathfrak b$. Then we get a continuous surjection of topological $R$-algebras 
+    <p>
+      <div class="equation">
+  \[  \Phi : R[x_1, \ldots , x_ n]^\wedge \longrightarrow B,\quad x_ j \longmapsto b_ j  \]
+</div>
+    <p>
+       where the completion on the left hand side is with respect to $J$. Since $R[x_1, \ldots , x_ n]$ is Noetherian we can choose generators $h_1, \ldots , h_ m$ for $J$. By the commutativity of the square above we see that $h_ j(a_{\mu , 1}, \ldots , a_{\mu , n})$ is an element of $A_\mu ^\wedge $ whose image in $A^\wedge $ is contained in $IA^\wedge $. Namely, the ring map $(\hat x)^\sharp $ is continuous and $IA^\wedge $ is the ideal of topological nilpotent elements of $A^\wedge $ because $A^\wedge /IA^\wedge = A/I$ is reduced. (See Algebra, Section <a href="/tag/0BNH" data-tag="0BNH">10.97</a> for results on completion in Noetherian rings.) Since $A/I = \mathop{\mathrm{colim}}\nolimits A_\mu /I_\mu $ we conclude that after increasing $\mu $ we may assume $h_ j(a_{\mu , 1}, \ldots , a_{\mu , n})$ is in $I_\mu A_\mu ^\wedge $. In particular the elements $h_ j(a_{\mu , 1}, \ldots , a_{\mu , n})$ of $A_\mu ^\wedge $ are topologically nilpotent in $A_\mu ^\wedge $. Thus we obtain a continuous $R$-algebra homomorphism 
+    <p>
+      <div class="equation">
+  \[  \Psi : R[x_1, \ldots , x_ n]^\wedge \longrightarrow A_\mu ^\wedge ,\quad x_ j \longmapsto a_{\mu , j}  \]
+</div>
+    <p>
+       In order to conclude what we want, we need to see if $\mathop{\mathrm{Ker}}(\Phi )$ is annihilated by $\Psi $. This may not be true, but we can achieve this after increasing $\mu $. Indeed, since $R[x_1, \ldots , x_ n]^\wedge $ is Noetherian, we can choose generators $g_1, \ldots , g_ l$ of the ideal $\mathop{\mathrm{Ker}}(\Phi )$. Then we see that 
+    <p>
+      <div class="equation">
+  \[  \Psi (g_1), \ldots , \Psi (g_ l) \in \mathop{\mathrm{Ker}}(A_\mu ^\wedge \to C_\mu ^\wedge ) = \mathop{\mathrm{Ker}}(A_\mu \to C_\mu )  \]
+</div>
+    <p>
+       map to zero in $\mathop{\mathrm{Ker}}(A \to C) = \mathop{\mathrm{colim}}\nolimits \mathop{\mathrm{Ker}}(A_\mu \to C_\mu )$. Hence increasing $\mu $ as before we get the desired result. 
+    <p>
+      Proof of surjectivity: mopping up. The continuous ring homomorphism $B \to (A_\mu )^\wedge $ constructed above determines a morphism $\hat x_\mu : V_{\mu , /Z_\mu } \to W$. The compatibility of $\hat x_\mu $ and $u'_\mu $ follows from the fact that the ring map $B \to (A_\mu )^\wedge $ is by construction compatible with the ring map $A_\mu \to C_\mu $. In fact, the compatibility will be witnessed by the proper morphism $V'_\mu \to V_\mu $ and the morphisms $x'_\mu $ and $\hat x'_\mu = x'_{\mu , /Z_\mu }$ we used in the construction. This finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GI6">
+  <p><a class="environment-identifier" href="/tag/0GI6">Lemma <span data-tag="0GI6">98.27.12</span>.</a> In Situation <a href="/tag/0GH8" data-tag="0GH8">98.27.1</a> the functor $F$ satisfies the Rim-Schlessinger condition (RS). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Recall that the condition only involves the evaluation $F(V)$ of the functor $F$ on schemes $V$ over $S$ which are spectra of Artinian local rings and the restriction maps $F(V_2) \to F(V_1)$ for morphisms $V_1 \to V_2$ of schemes over $S$ which are spectra of Artinian local rings. Thus let $V/S$ be the spetruim of an Artinian local ring. If $\xi = (Z, u', \hat x) \in F(V)$ then either $Z = \emptyset $ or $Z = V$ (set theoretically). In the first case we see that $\hat x$ is a morphism from the empty formal algebraic space into $W$. In the second case we see that $u'$ is a morphism from the empty scheme into $X'$ and we see that $\hat x : V \to W$ is a morphism into $W$. We conclude that 
+    <p>
+      <div class="equation">
+  \[  F(V) = U'(V) \amalg W(V)  \]
+</div>
+    <p>
+       and moreover for $V_1 \to V_2$ as above the induced map $F(V_2) \to F(V_1)$ is compatible with this decomposition. Hence it suffices to prove that both $U'$ and $W$ satisfy the Rim-Schlessinger condition. For $U'$ this follows from Lemma <a href="/tag/07WQ" data-tag="07WQ">98.5.2</a>. To see that it is true for $W$, we write $W = \mathop{\mathrm{colim}}\nolimits W_ n$ as in Formal Spaces, Lemma <a href="/tag/0GHM" data-tag="0GHM">87.20.11</a>. Say $V = \mathop{\mathrm{Spec}}(A)$ with $(A, \mathfrak m)$ an Artinian local ring. Pick $n \geq 1$ such that $\mathfrak m^ n = 0$. Then we have $W(V) = W_ n(V)$. Hence we see that the Rim-Schlessinger condition for $W$ follows from the Rim-Schlessinger condition for $W_ n$ for all $n$ (which in turn follows from Lemma <a href="/tag/07WQ" data-tag="07WQ">98.5.2</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GI7">
+  <p><a class="environment-identifier" href="/tag/0GI7">Lemma <span data-tag="0GI7">98.27.13</span>.</a> In Situation <a href="/tag/0GH8" data-tag="0GH8">98.27.1</a> the tangent spaces of the functor $F$ are finite dimensional. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In the proof of Lemma <a href="/tag/0GI6" data-tag="0GI6">98.27.12</a> we have seen that $F(V) = U'(V) \amalg W(V)$ if $V$ is the spectrum of an Artinian local ring. The tangent spaces are computed entirely from evaluations of $F$ on such schemes over $S$. Hence it suffices to prove that the tangent spaces of the functors $U'$ and $W$ are finite dimensional. For $U'$ this follows from Lemma <a href="/tag/07X1" data-tag="07X1">98.8.1</a>. Write $W = \mathop{\mathrm{colim}}\nolimits W_ n$ as in the proof of Lemma <a href="/tag/0GI6" data-tag="0GI6">98.27.12</a>. Then we see that the tangent spaces of $W$ are equal to the tangent spaces of $W_2$, as to get at the tangent space we only need to evaluate $W$ on spectra of Artinian local rings $(A, \mathfrak m)$ with $\mathfrak m^2 = 0$. Then again we see that the tangent spaces of $W_2$ have finite dimension by Lemma <a href="/tag/07X1" data-tag="07X1">98.8.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GI8">
+  <p><a class="environment-identifier" href="/tag/0GI8">Lemma <span data-tag="0GI8">98.27.14</span>.</a> In Situation <a href="/tag/0GH8" data-tag="0GH8">98.27.1</a> assume $X' \to S$ is separated. Then every formal object for $F$ is effective. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      A formal object $\xi = (R, \xi _ n)$ of $F$ consists of a Noetherian complete local $S$-algebra $R$ whose residue field is of finite type over $S$, together with elements $\xi _ n \in F(\mathop{\mathrm{Spec}}(R/\mathfrak m^ n))$ for all $n$ such that $\xi _{n + 1}|_{\mathop{\mathrm{Spec}}(R/\mathfrak m^ n)} = \xi _ n$. By the discussion in the proof of Lemma <a href="/tag/0GI6" data-tag="0GI6">98.27.12</a> we see that either $\xi $ is a formal object of $U'$ or a formal object of $W$. In the first case we see that $\xi $ is effective by Lemma <a href="/tag/07X8" data-tag="07X8">98.9.5</a>. The second case is the interesting case. Set $V = \mathop{\mathrm{Spec}}(R)$. We will construct an element $(Z, u', \hat x) \in F(V)$ whose image in $F(\mathop{\mathrm{Spec}}(R/\mathfrak m^ n))$ is $\xi _ n$ for all $n \geq 1$. 
+    <p>
+      We may view the collection of elements $\xi _ n$ as a morphism 
+    <p>
+      <div class="equation">
+  \[  \xi : \text{Spf}(R) \longrightarrow W  \]
+</div>
+    <p>
+       of locally Noetherian formal algebraic spaces over $S$. Observe that $\xi $ is <em>not</em> an adic morphism in general. To fix this, let $I \subset R$ be the ideal corresponding to the formal closed subspace 
+    <p>
+      <div class="equation">
+  \[  \text{Spf}(R) \times _{\xi , W} W_{red} \subset \text{Spf}(R)  \]
+</div>
+    <p>
+       Note that $I \subset \mathfrak m_ R$. Set $Z = V(I) \subset V = \mathop{\mathrm{Spec}}(R)$. Since $R$ is $\mathfrak m_ R$-adically complete it is a fortiori $I$-adically complete (Algebra, Lemma <a href="/tag/090T" data-tag="090T">10.96.8</a>). Moreover, we claim that for each $n \geq 1$ the morphism 
+    <p>
+      <div class="equation">
+  \[  \xi |_{\text{Spf}(R/I^ n)} : \text{Spf}(R/I^ n) \longrightarrow W  \]
+</div>
+    <p>
+       actually comes from a morphism 
+    <p>
+      <div class="equation">
+  \[  \xi '_ n : \mathop{\mathrm{Spec}}(R/I^ n) \longrightarrow W  \]
+</div>
+    <p>
+       Namely, this follows from writing $W = \mathop{\mathrm{colim}}\nolimits W_ n$ as in the proof of Lemma <a href="/tag/0GI6" data-tag="0GI6">98.27.12</a>, noticing that $\xi |_{\text{Spf}(R/I^ n)}$ maps into $W_ n$, and applying Formal Spaces, Lemma <a href="/tag/0AQH" data-tag="0AQH">87.33.3</a> to algebraize this to a morphism $\mathop{\mathrm{Spec}}(R/I^ n) \to W_ n$ as desired. Let us denote $\text{Spf}'(R) = V_{/Z}$ the formal spectrum of $R$ endowed with the $I$-adic topology – equivalently the formal completion of $V$ along $Z$. Using the morphisms $\xi '_ n$ we obtain an adic morphism 
+    <p>
+      <div class="equation">
+  \[  \hat x = (\xi '_ n) : \text{Spf}'(R) \longrightarrow W  \]
+</div>
+    <p>
+       of locally Noetherian formal algebraic spaces over $S$. Consider the base change 
+    <p>
+      <div class="equation">
+  \[  \text{Spf}'(R) \times _{\hat x, W, g} X'_{/T'} \longrightarrow \text{Spf}'(R)  \]
+</div>
+    <p>
+       This is a formal modification by Algebraization of Formal Spaces, Lemma <a href="/tag/0GDN" data-tag="0GDN">88.24.4</a>. Hence by the main theorem on dilatations (Algebraization of Formal Spaces, Theorem <a href="/tag/0GDU" data-tag="0GDU">88.29.1</a>) we obtain a proper morphism 
+    <p>
+      <div class="equation">
+  \[  V' \longrightarrow V = \mathop{\mathrm{Spec}}(R)  \]
+</div>
+    <p>
+       which is an isomorphism over $\mathop{\mathrm{Spec}}(R) \setminus V(I)$ and whose completion recovers the formal modification above, in other words 
+    <p>
+      <div class="equation">
+  \[  V' \times _{\mathop{\mathrm{Spec}}(R)} \mathop{\mathrm{Spec}}(R/I^ n) = \mathop{\mathrm{Spec}}(R/I^ n) \times _{\xi '_ n, W, g} X'_{/T'}  \]
+</div>
+    <p>
+       This in particular tells us we have a compatible system of morphisms 
+    <p>
+      <div class="equation">
+  \[  V' \times _{\mathop{\mathrm{Spec}}(R)} \mathop{\mathrm{Spec}}(R/I^ n) \longrightarrow X' \times _ S \mathop{\mathrm{Spec}}(R/I^ n)  \]
+</div>
+    <p>
+       Hence by Grothendieck's algebraization theorem (in the form of More on Morphisms of Spaces, Lemma <a href="/tag/0A4Z" data-tag="0A4Z">76.43.3</a>) we obtain a morphism 
+    <p>
+      <div class="equation">
+  \[  x' : V' \to X'  \]
+</div>
+    <p>
+       over $S$ recovering the morphisms displayed above. Then finally setting $u' : V \setminus Z \to X'$ the restriction of $x'$ to $V \setminus Z \subset V'$ gives the third component of our desired element $(Z, u', \hat x) \in F(V)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GI9">
+  <p><a class="environment-identifier" href="/tag/0GI9">Lemma <span data-tag="0GI9">98.27.15</span>.</a> Let $S$ be a locally Noetherian scheme. Let $V$ be a scheme locally of finite type over $S$. Let $Z \subset V$ be closed. Let $W$ be a locally Noetherian formal algebraic space over $S$ such that $W_{red}$ is locally of finite type over $S$. Let $g : V_{/Z} \to W$ be an adic morphism of formal algebraic spaces over $S$. Let $v \in V$ be a closed point such that $g$ is versal at $v$ (as in Section <a href="/tag/07XZ" data-tag="07XZ">98.15</a>). Then after replacing $V$ by an open neighbourhood of $v$ the morphism $g$ is smooth (see proof). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $g$ is adic it is representable by algebraic spaces (Formal Spaces, Section <a href="/tag/0AQ2" data-tag="0AQ2">87.23</a>). Thus by saying $g$ is smooth we mean that $g$ should be smooth in the sense of Bootstrap, Definition <a href="/tag/03XZ" data-tag="03XZ">80.4.1</a>. 
+    <p>
+      Write $W = \mathop{\mathrm{colim}}\nolimits W_ n$ as in Formal Spaces, Lemma <a href="/tag/0GHM" data-tag="0GHM">87.20.11</a>. Set $V_ n = V_{/Z} \times _{\hat x, W} W_ n$. Then $V_ n$ is a closed subscheme with underlying set $Z$. Smoothness of $V \to W$ is equivalent to the smoothness of all the morphisms $V_ n \to W_ n$ (this holds because any morphism $T \to W$ with $T$ a quasi-compact scheme factors through $W_ n$ for some $n$). We know that the morphism $V_ n \to W_ n$ is smooth at $v$ by Lemma <a href="/tag/0CXM" data-tag="0CXM">98.12.6</a><a class="footnotemark" href="#a0001697913" id="a0001697913-mark"><sup>5</sup></a>. Of course this means that given any $n$ we can shrink $V$ such that $V_ n \to W_ n$ is smooth. The problem is to find an open which works for all $n$ at the same time. 
+    <p>
+      The question is local on $V$, hence we may assume $S = \mathop{\mathrm{Spec}}(R)$ and $V = \mathop{\mathrm{Spec}}(A)$ are affine. 
+    <p>
+      In this paragraph we reduce to the case where $W$ is an affine formal algebraic space. Choose an affine formal scheme $W'$ and an étale morphism $W' \to W$ such that the image of $v$ in $W_{red}$ is in the image of $W'_{red} \to W_{red}$. Then $V_{/Z} \times _{g, W} W' \to V_{/Z}$ is an adic étale morphism of formal algebraic spaces over $S$ and $V_{/Z} \times _{g, W} W'$ is an affine formal algebraic space. By Algebraization of Formal Spaces, Lemma <a href="/tag/0AR4" data-tag="0AR4">88.25.1</a> there exists an étale morphism $\varphi : V' \to V$ of affine schemes such that the completion of $V'$ along $Z' = \varphi ^{-1}(Z)$ is isomorphic to $V_{/Z} \times _{g, W} W'$ over $V_{/Z}$. Observe that $v$ is the image of some $v' \in V'$. Since smoothness is preserved under base change we see that $V'_ n \to W'_ n$ is smooth for all $n$. In the next paragraph we show that after replacing $V'$ by an open neighbourhood of $v'$ the morphisms $V'_ n \to W'_ n$ are smooth for all $n$. Then, after we replace $V$ by the open image of $V' \to V$, we obtain that $V_ n \to W_ n$ is smooth by étale descent of smoothness. Some details omitted. 
+    <p>
+      Assume $S = \mathop{\mathrm{Spec}}(R)$, $V = \mathop{\mathrm{Spec}}(A)$, $Z = V(I)$, and $W = \text{Spf}(B)$. Let $v$ correspond to the maximal ideal $I \subset \mathfrak m \subset A$. We are given an adic continuous $R$-algebra homomorphism 
+    <p>
+      <div class="equation">
+  \[  B \longrightarrow A^\wedge  \]
+</div>
+    <p>
+       Let $\mathfrak b \subset B$ be the ideal of topologically nilpotent elements (this is the maximal ideal of definition of the Noetherian adic topological ring $B$). Observe that $\mathfrak b A^\wedge $ and $IA^\wedge $ are both ideals of definition of the Noetherian adic ring $A^\wedge $. Also, $\mathfrak m A^\wedge $ is a maximal ideal of $A^\wedge $ containing both $\mathfrak b A^\wedge $ and $IA^\wedge $. We are given that 
+    <p>
+      <div class="equation">
+  \[  B_ n = B/\mathfrak b^ n \to A^\wedge /\mathfrak b^ n A^\wedge = A_ n  \]
+</div>
+    <p>
+       is smooth at $\mathfrak m$ for all $n$. By the discussion above we may and do assume that $B_1 \to A_1$ is a smooth ring map. Denote $\mathfrak m_1 \subset A_1$ the maximal ideal corresponding to $\mathfrak m$. Since smoothness implies flatness, we see that: for all $n \geq 1$ the map 
+    <p>
+      <div class="equation">
+  \[  \mathfrak b^ n/\mathfrak b^{n + 1} \otimes _{B_1} (A_1)_{\mathfrak m_1} \longrightarrow \left(\mathfrak b^ nA^\wedge /\mathfrak b^{n + 1}A^\wedge \right)_{\mathfrak m_1}  \]
+</div>
+    <p>
+       is an isomorphism (see Algebra, Lemma <a href="/tag/0AS8" data-tag="0AS8">10.99.9</a>). Consider the Rees algebra 
+    <p>
+      <div class="equation">
+  \[  B' = \bigoplus \nolimits _{n \geq 0} \mathfrak b^ n/\mathfrak b^{n + 1}  \]
+</div>
+    <p>
+       which is a finite type graded algebra over the Noetherian ring $B_1$ and the Rees algebra 
+    <p>
+      <div class="equation">
+  \[  A' = \bigoplus \nolimits _{n \geq 0} \mathfrak b^ nA^\wedge /\mathfrak b^{n + 1}A^\wedge  \]
+</div>
+    <p>
+       which is a a finite type graded algebra over the Noetherian ring $A_1$. Consider the homomorphism of graded $A_1$-algebras 
+    <p>
+      <div class="equation">
+  \[  \Psi : B' \otimes _{B_1} A_1 \longrightarrow A'  \]
+</div>
+    <p>
+       By the above this map is an isomorphism after localizing at the maximal ideal $\mathfrak m_1$ of $A_1$. Hence $\mathop{\mathrm{Ker}}(\Psi )$, resp. $\mathop{\mathrm{Coker}}(\Psi )$ is a finite module over $B' \otimes _{B_1} A_1$, resp. $A'$ whose localization at $\mathfrak m_1$ is zero. It follows that after replacing $A_1$ (and correspondingly $A$) by a principal localization we may assume $\Psi $ is an isomorphism. (This is the key step of the proof.) Then working backwards we see that $B_ n \to A_ n$ is flat, see Algebra, Lemma <a href="/tag/0AS8" data-tag="0AS8">10.99.9</a>. Hence $A_ n \to B_ n$ is smooth (as a flat ring map with smooth fibres, see Algebra, Lemma <a href="/tag/00TF" data-tag="00TF">10.137.16</a>) and the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GIA">
+  <p><a class="environment-identifier" href="/tag/0GIA">Lemma <span data-tag="0GIA">98.27.16</span>.</a> In Situation <a href="/tag/0GH8" data-tag="0GH8">98.27.1</a> the functor $F$ satisfies openness of versality. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We have to show the following. Given a scheme $V$ locally of finite type over $S$, given $\xi \in F(V)$, and given a finite type point $v_0 \in V$ such that $\xi $ is versal at $v_0$, after replacing $V$ by an open neighbourhood of $v_0$ we have that $\xi $ is versal at every finite type point of $V$. Write $\xi = (Z, u', \hat x)$. 
+    <p>
+      First case: $v_0 \not\in Z$. Then we can first replace $V$ by $V \setminus Z$. Hence we see that $\xi = (\emptyset , u', \emptyset )$ and the morphism $u' : V \to X'$ is versal at $v_0$. By More on Morphisms of Spaces, Lemma <a href="/tag/0APN" data-tag="0APN">76.20.1</a> this means that $u' : V \to X'$ is smooth at $v_0$. Since the set of a points where a morphism is smooth is open, we can after shrinking $V$ assume $u'$ is smooth. Then the same lemma tells us that $\xi $ is versal at every point as desired. 
+    <p>
+      Second case: $v_0 \in Z$. Write $W = \mathop{\mathrm{colim}}\nolimits W_ n$ as in Formal Spaces, Lemma <a href="/tag/0GHM" data-tag="0GHM">87.20.11</a>. By Lemma <a href="/tag/0GI9" data-tag="0GI9">98.27.15</a> we may assume $\hat x : V_{/Z} \to W$ is a smooth morphism of formal algebraic spaces. It follows immediately that $\xi = (Z, u', \hat x)$ is versal at all finite type points of $Z$. Let $V' \to V$, $\hat x'$, and $x'$ witness the compatibility between $u'$ and $\hat x$. We see that $\hat x' : V'_{/Z} \to X'_{/T'}$ is smooth as a base change of $\hat x$. Since $\hat x'$ is the completion of $x' : V' \to X'$ this implies that $x' : V' \to X'$ is smooth at all points of $(V' \to V)^{-1}(Z) = |x'|^{-1}(T') \subset |V'|$ by the already used More on Morphisms of Spaces, Lemma <a href="/tag/0APN" data-tag="0APN">76.20.1</a>. Since the set of smooth points of a morphism is open, we see that the closed set of points $B \subset |V'|$ where $x'$ is not smooth does not meet $(V' \to V)^{-1}(Z)$. Since $V' \to V$ is proper and hence closed, we see that $(V' \to V)(B) \subset V$ is a closed subset not meeting $Z$. Hence after shrinking $V$ we may assume $B = \emptyset $, i.e., $x'$ is smooth. By the discussion in the previous paragraph this exactly means that $\xi $ is versal at all finite type points of $V$ not contained in $Z$ and the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Here is the final result. 
+</p>
+<p>
+<article class="env-theorem" id="0GIB">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0GIB">Theorem <span data-tag="0GIB">98.27.17</span>.</a> Let $S$ be a locally Noetherian scheme such that $\mathcal{O}_{S, s}$ is a G-ring for all finite type points $s \in S$. Let $X'$ be an algebraic space locally of finite type over $S$. Let $T' \subset |X'|$ be a closed subset. Let $W$ be a locally Noetherian formal algebraic space over $S$ with $W_{red}$ locally of finite type over $S$. Finally, we let </p>
+  <div class="equation">
+  \[  g : X'_{/T'} \longrightarrow W  \]
+</div>
+  <p> be a formal modification, see Algebraization of Formal Spaces, Definition <a href="/tag/0GDK" data-tag="0GDK">88.24.1</a>. If $X'$ and $W$ are separated<a class="footnotemark" href="#a0001698346" id="a0001698346-mark"><sup>6</sup></a> over $S$, then there exists a proper morphism $f : X' \to X$ of algebraic spaces over $S$, a closed subset $T \subset |X|$, and an isomorphism $a : X_{/T} \to W$ of formal algebraic spaces such that </p>
+  <p><ol>
+  <li><p>
+$T'$ is the inverse image of $T$ by $|f| : |X'| \to |X|$, 
+</p>
+</li><li><p>
+$f : X' \to X$ maps $X' \setminus T'$ isomorphically to $X \setminus T$, and 
+</p>
+</li><li><p>
+$g = a \circ f_{/T}$ where $f_{/T} : X'_{/T'} \to X_{/T}$ is the induced morphism. 
+</p>
+</li>
+</ol></p>
+  <p> In other words, $(f : X' \to X, T, a)$ is a solution as defined earlier in this section. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $F$ be the functor constructed using $X'$, $T'$, $W$, $g$ in this section. By Lemma <a href="/tag/0GHC" data-tag="0GHC">98.27.6</a> it suffices to show that $F$ corresponds to an algebraic space $X$ locally of finite type over $S$. In order to do this, we will apply Proposition <a href="/tag/0GE7" data-tag="0GE7">98.26.1</a>. Namely, by Lemma <a href="/tag/0GHF" data-tag="0GHF">98.27.9</a> the diagonal of $F$ is representable by closed immersions and by Lemmas <a href="/tag/0GHG" data-tag="0GHG">98.27.10</a>, <a href="/tag/0GI5" data-tag="0GI5">98.27.11</a>, <a href="/tag/0GI6" data-tag="0GI6">98.27.12</a>, <a href="/tag/0GI7" data-tag="0GI7">98.27.13</a>, <a href="/tag/0GI8" data-tag="0GI8">98.27.14</a>, and <a href="/tag/0GIA" data-tag="0GIA">98.27.16</a> we have axioms [0], [1], [2], [3], [4], and [5]. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0GIC">
+  <p><a class="environment-identifier" href="/tag/0GIC">Remark <span data-tag="0GIC">98.27.18</span>.</a> The proof of Theorem <a href="/tag/0GIB" data-tag="0GIB">98.27.17</a> uses that $X'$ and $W$ are separated over $S$ in two places. First, the proof uses this in showing $\Delta : F \to F \times F$ is representable by algebraic spaces. This use of the assumption can be entirely avoided by proving that $\Delta $ is representable by applying the theorem in the separated case to the triples $E'$, $(E' \to V)^{-1}Z$, and $E'_{/Z} \to E_ W$ found in Remark <a href="/tag/0GHD" data-tag="0GHD">98.27.7</a> (this is the usual bootstrap procedure for the diagonal). Thus the proof of Lemma <a href="/tag/0GI8" data-tag="0GI8">98.27.14</a> is the only place in our proof of Theorem <a href="/tag/0GIB" data-tag="0GIB">98.27.17</a> where we really need to use that $X' \to S$ is separated. The reader checks that we use the assumption only to obtain the morphism $x' : V' \to X'$. The existence of $x'$ can be shown, using results in the literature, if $X' \to S$ is quasi-separated, see More on Morphisms of Spaces, Remark <a href="/tag/0GHK" data-tag="0GHK">76.43.4</a>. We conclude the theorem holds as stated with “separated” replaced by “quasi-separated”. If we ever need this we will precisely state and carefully prove this here. </p>
+</article> 
+</p>

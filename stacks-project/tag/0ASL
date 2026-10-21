@@ -1,0 +1,362 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-algebra-section-structure-modules" class="tex-section"><span data-tag="0ASL">15.126</span> Structure of modules over a PID</h2>
+
+<p>
+We work a little bit more generally (following the papers <span class="cite">[<a href="/bibliography/Warfield-Purity">Warfield-Purity</a>]</span> and <span class="cite">[<a href="/bibliography/Warfield-Decomposition">Warfield-Decomposition</a>]</span> by Warfield) so that the proofs work over valuation rings. 
+</p>
+<p>
+<article class="env-lemma" id="0ASM">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0ASM">Lemma <span data-tag="0ASM">15.126.1</span>.</a> Let $P$ be a module over a ring $R$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$P$ is a direct summand of a direct sum of modules of the form $R/fR$, for $f \in R$ varying. 
+</p>
+</li><li><p>
+for every short exact sequence $0 \to A \to B \to C \to 0$ of $R$-modules such that $fA = A \cap fB$ for all $f \in R$ the map $\mathop{\mathrm{Hom}}\nolimits _ R(P, B) \to \mathop{\mathrm{Hom}}\nolimits _ R(P, C)$ is surjective. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $0 \to A \to B \to C \to 0$ be an exact sequence as in (2). To prove that (1) implies (2) it suffices to prove that $\mathop{\mathrm{Hom}}\nolimits _ R(R/fR, B) \to \mathop{\mathrm{Hom}}\nolimits _ R(R/fR, C)$ is surjective for every $f \in R$. Let $\psi : R/fR \to C$ be a map. Say $\psi (1)$ is the image of $b \in B$. Then $fb \in A$. Hence there exists an $a \in A$ such that $fa = fb$. Then $f(b - a) = 0$ hence we get a morphism $\varphi : R/fR \to B$ mapping $1$ to $b - a$ which lifts $\psi $. 
+    <p>
+      Conversely, assume that (2) holds. Let $I$ be the set of pairs $(f, \varphi )$ where $f \in R$ and $\varphi : R/fR \to P$. For $i \in I$ denote $(f_ i, \varphi _ i)$ the corresponding pair. Consider the map 
+    <p>
+      <div class="equation">
+  \[  B = \bigoplus \nolimits _{i \in I} R/f_ iR \longrightarrow P  \]
+</div>
+    <p>
+       which sends the element $r$ in the summand $R/f_ iR$ to $\varphi _ i(r)$ in $P$. Let $A = \mathop{\mathrm{Ker}}(B \to P)$. Then we see that (1) is true if the sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to A \to B \to P \to 0  \]
+</div>
+    <p>
+       is an exact sequence as in (2). To see this suppose $f \in R$ and $a \in A$ maps to $f b$ in $B$. Write $b = (r_ i)_{i \in I}$ with almost all $r_ i = 0$. Then we see that 
+    <p>
+      <div class="equation">
+  \[  f\sum \varphi _ i(r_ i) = 0  \]
+</div>
+    <p>
+       in $P$. Hence there is an $i_0 \in I$ such that $f_{i_0} = f$ and $\varphi _{i_0}(1) = \sum \varphi _ i(r_ i)$. Let $x_{i_0} \in R/f_{i_0}R$ be the class of $1$. Then we see that 
+    <p>
+      <div class="equation">
+  \[  a' = (r_ i)_{i \in I} - (0, \ldots , 0, x_{i_0}, 0, \ldots )  \]
+</div>
+    <p>
+       is an element of $A$ and $fa' = a$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0ASN">
+        
+      
+  <p><a class="environment-identifier" href="/tag/0ASN">Lemma <span data-tag="0ASN">15.126.2</span> <span class="named">(Generalized valuation rings)</span>.</a> Let $R$ be a nonzero ring. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+For $a, b \in R$ either $a$ divides $b$ or $b$ divides $a$. 
+</p>
+</li><li><p>
+Every finitely generated ideal is principal and $R$ is local. 
+</p>
+</li><li><p>
+The set of ideals of $R$ is linearly ordered by inclusion. 
+</p>
+</li>
+</ol></p>
+  <p> This holds in particular if $R$ is a valuation ring. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume (2) and let $a, b \in R$. Then $(a, b) = (c)$. If $c = 0$, then $a = b = 0$ and $a$ divides $b$. Assume $c \not= 0$. Write $c = ua + vb$ and $a = wc$ and $b = zc$. Then $c(1 - uw - vz) = 0$. Since $R$ is local, this implies that $1 - uw - vz \in \mathfrak m$. Hence either $w$ or $z$ is a unit, so either $a$ divides $b$ or $b$ divides $a$. Thus (2) implies (1). 
+    <p>
+      Assume (1). If $R$ has two maximal ideals $\mathfrak m_ i$ we can choose $a \in \mathfrak m_1$ with $a \not\in \mathfrak m_2$ and $b \in \mathfrak m_2$ with $b \not\in \mathfrak m_1$. Then $a$ does not divide $b$ and $b$ does not divide $a$. Hence $R$ has a unique maximal ideal and is local. It follows easily from condition (1) and induction that every finitely generated ideal is principal. Thus (1) implies (2). 
+    <p>
+      It is straightforward to prove that (1) and (3) are equivalent. The final statement is Algebra, Lemma <a href="/tag/00IB" data-tag="00IB">10.50.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0ASP">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0ASP">Lemma <span data-tag="0ASP">15.126.3</span>.</a> Let $R$ be a ring satisfying the equivalent conditions of Lemma <a href="/tag/0ASN" data-tag="0ASN">15.126.2</a>. Then every finitely presented $R$-module is isomorphic to a finite direct sum of modules of the form $R/fR$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $M$ be a finitely presented $R$-module. We will use all the equivalent properties of $R$ from Lemma <a href="/tag/0ASN" data-tag="0ASN">15.126.2</a> without further mention. Denote $\mathfrak m \subset R$ the maximal ideal and $\kappa = R/\mathfrak m$ the residue field. Let $I \subset R$ be the annihilator of $M$. Choose a basis $y_1, \ldots , y_ n$ of the finite dimensional $\kappa $-vector space $M/\mathfrak m M$. We will argue by induction on $n$. 
+    <p>
+      By Nakayama's lemma any collection of elements $x_1, \ldots , x_ n \in M$ lifting the elements $y_1, \ldots , y_ n$ in $M/\mathfrak m M$ generate $M$, see Algebra, Lemma <a href="/tag/00DV" data-tag="00DV">10.20.1</a>. This immediately proves the base case $n = 0$ of the induction. 
+    <p>
+      We claim there exists an index $i$ such that for any choice of $x_ i \in M$ mapping to $y_ i$ the annihilator of $x_ i$ is $I$. Namely, if not, then we can choose $x_1, \ldots , x_ n$ such that $I_ i = \text{Ann}(x_ i) \not= I$ for all $i$. But as $I \subset I_ i$ for all $i$, ideals being totally ordered implies $I_ i$ is strictly bigger than $I$ for $i = 1, \ldots , n$, and by total ordering once more we would see that $\text{Ann}(M) = I_1 \cap \ldots \cap I_ n$ is bigger than $I$ which is a contradiction. After renumbering we may assume that $y_1$ has the property: for any $x_1 \in M$ lifting $y_1$ the annihilator of $x_1$ is $I$. 
+    <p>
+      We set $A = Rx_1 \subset M$. Consider the exact sequence $0 \to A \to M \to M/A \to 0$. Since $A$ is finite, we see that $M/A$ is a finitely presented $R$-module (Algebra, Lemma <a href="/tag/0519" data-tag="0519">10.5.3</a>) with fewer generators. Hence $M/A \cong \bigoplus _{j = 1, \ldots , m} R/f_ jR$ by induction. On the other hand, we claim that $A \to M$ satisfies the property: if $f \in R$, then $fA = A \cap fM$. The inclusion $fA \subset A \cap fM$ is trivial. Conversely, if $x \in A \cap fM$, then $x = gx_1 = f y$ for some $g \in R$ and $y \in M$. If $f$ divides $g$, then $x \in fA$ as desired. If not, then we can write $f = hg$ for some $h \in \mathfrak m$. The element $x'_1 = x_1 - hy$ has annihilator $I$ by the previous paragraph. Thus $g \in I$ and we see that $x = 0$ as desired. The claim and Lemma <a href="/tag/0ASM" data-tag="0ASM">15.126.1</a> imply the sequence $0 \to A \to M \to M/A \to 0$ is split and we find $M \cong A \oplus \bigoplus _{j = 1, \ldots , m} R/f_ jR$. Then $A = R/I$ is finitely presented (as a summand of $M$) and hence $I$ is finitely generated, hence principal. This finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0ASQ">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0ASQ">Lemma <span data-tag="0ASQ">15.126.4</span>.</a> Let $R$ be a ring such that every local ring of $R$ at a maximal ideal satisfies the equivalent conditions of Lemma <a href="/tag/0ASN" data-tag="0ASN">15.126.2</a>. Then every finitely presented $R$-module is a summand of a finite direct sum of modules of the form $R/fR$ for $f$ in $R$ varying. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $M$ be a finitely presented $R$-module. We first show that $M$ is a summand of a direct sum of modules of the form $R/fR$ and at the end we argue the direct sum can be taken to be finite. Let 
+    <p>
+      <div class="equation">
+  \[  0 \to A \to B \to C \to 0  \]
+</div>
+    <p>
+       be a short exact sequence of $R$-modules such that $fA = A \cap fB$ for all $f \in R$. By Lemma <a href="/tag/0ASM" data-tag="0ASM">15.126.1</a> we have to show that $\mathop{\mathrm{Hom}}\nolimits _ R(M, B) \to \mathop{\mathrm{Hom}}\nolimits _ R(M, C)$ is surjective. It suffices to prove this after localization at maximal ideals $\mathfrak m$, see Algebra, Lemma <a href="/tag/00HN" data-tag="00HN">10.23.1</a>. Note that the localized sequences $0 \to A_\mathfrak m \to B_\mathfrak m \to C_\mathfrak m \to 0$ satisfy the condition that $fA_\mathfrak m = A_\mathfrak m \cap fB_\mathfrak m$ for all $f \in R_\mathfrak m$ (because we can write $f = uf'$ with $u \in R_\mathfrak m$ a unit and $f' \in R$ and because localization is exact). Since $M$ is finitely presented, we see that 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _ R(M, B)_\mathfrak m = \mathop{\mathrm{Hom}}\nolimits _{R_\mathfrak m}(M_\mathfrak m, B_\mathfrak m) \quad \text{and}\quad \mathop{\mathrm{Hom}}\nolimits _ R(M, C)_\mathfrak m = \mathop{\mathrm{Hom}}\nolimits _{R_\mathfrak m}(M_\mathfrak m, C_\mathfrak m)  \]
+</div>
+    <p>
+       by Algebra, Lemma <a href="/tag/0583" data-tag="0583">10.10.2</a>. The module $M_\mathfrak m$ is a finitely presented $R_\mathfrak m$-module. By Lemma <a href="/tag/0ASP" data-tag="0ASP">15.126.3</a> we see that $M_\mathfrak m$ is a direct sum of modules of the form $R_\mathfrak m/fR_\mathfrak m$. Thus we conclude by Lemma <a href="/tag/0ASM" data-tag="0ASM">15.126.1</a> that the map on localizations is surjective. 
+    <p>
+      At this point we know that $M$ is a summand of $\bigoplus _{i \in I} R/f_ i R$. Consider the map $M \to \bigoplus _{i \in I} R/f_ i R$. Since $M$ is a finite $R$-module, the image is contained in $\bigoplus _{i \in I'} R/f_ i R$ for some finite subset $I' \subset I$. This finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="0ASR">
+  <p><a class="environment-identifier" href="/tag/0ASR">Definition <span data-tag="0ASR">15.126.5</span>.</a> Let $R$ be a domain. </p>
+  <p><ol>
+  <li><p>
+We say $R$ is a <em>Bézout domain</em> if every finitely generated ideal of $R$ is principal. 
+</p>
+</li><li><p>
+We say $R$ is an <em>elementary divisor domain</em> if for all $n , m \geq 1$ and every $n \times m$ matrix $A$, there exist invertible matrices $U, V$ of size $n \times n, m \times m$ such that 
+</p>
+<div class="equation">
+  \[  U A V = \left( \begin{matrix}  f_1 
+
+&  0 
+
+&  0 
+
+&  \ldots 
+
+\\  0 
+
+&  f_2 
+
+&  0 
+
+&  \ldots 
+
+\\  0 
+
+&  0 
+
+&  f_3 
+
+&  \ldots 
+
+\\  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+\end{matrix} \right)  \]
+</div>
+<p>
+ with $f_1, \ldots , f_{\min (n, m)} \in R$ and $f_1 | f_2 | \ldots $. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+It is apparently still an open question as to whether every Bézout domain $R$ is an elementary divisor domain (or not). This is equivalent to the question of whether every finitely presented module over $R$ is a direct sum of cyclic modules. The converse implication is true. 
+</p>
+<p>
+<article class="env-lemma" id="0ASS">
+  <p><a class="environment-identifier" href="/tag/0ASS">Lemma <span data-tag="0ASS">15.126.6</span>.</a> An elementary divisor domain is Bézout. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $a, b \in R$ be nonzero. Consider the $1 \times 2$ matrix $A = (a\  b)$. Then we see that $u(a\  b)V = (f\  0)$ with $u \in R$ invertible and $V = (g_{ij})$ an invertible $2 \times 2$ matrix. Then $f = u a g_{11} + u b g_{2 1}$ and $(g_{11}, g_{2 1}) = R$. It follows that $(a, b) = (f)$. An induction argument (omitted) then shows any finitely generated ideal in $R$ is generated by one element. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AST">
+  <p><a class="environment-identifier" href="/tag/0AST">Lemma <span data-tag="0AST">15.126.7</span>.</a> The localization of a Bézout domain is Bézout. Every local ring of a Bézout domain is a valuation ring. A local domain is Bézout if and only if it is a valuation ring. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We omit the proof of the statement on localizations. The final statement is Algebra, Lemma <a href="/tag/090Q" data-tag="090Q">10.50.15</a>. The second statement follows from the other two. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0ASU">
+  <p><a class="environment-identifier" href="/tag/0ASU">Lemma <span data-tag="0ASU">15.126.8</span>.</a> Let $R$ be a Bézout domain. </p>
+  <p><ol>
+  <li><p>
+Every finite submodule of a free module is finite free. 
+</p>
+</li><li><p>
+Every finitely presented $R$-module $M$ is a direct sum of a finite free module and a torsion module $M_{tors}$ which is a summand of a module of the form $\bigoplus _{i = 1, \ldots , n} R/f_ iR$ with $f_1, \ldots , f_ n \in R$ nonzero. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Proof of (1). Let $M \subset F$ be a finite submodule of a free module $F$. Since $M$ is finite, we may assume $F$ is a finite free module (details omitted). Say $F = R^{\oplus n}$. We argue by induction on $n$. If $n = 1$, then $M$ is a finitely generated ideal, hence principal by our assumption that $R$ is Bézout. If $n > 1$, then we consider the image $I$ of $M$ under the projection $R^{\oplus n} \to R$ onto the last summand. If $I = (0)$, then $M \subset R^{\oplus n - 1}$ and we are done by induction. If $I \not= 0$, then $I = (f) \cong R$. Hence $M \cong R \oplus \mathop{\mathrm{Ker}}(M \to I)$ and we are done by induction as well. 
+    <p>
+      Let $M$ be a finitely presented $R$-module. Since the localizations of $R$ are maximal ideals are valuation rings (Lemma <a href="/tag/0AST" data-tag="0AST">15.126.7</a>) we may apply Lemma <a href="/tag/0ASQ" data-tag="0ASQ">15.126.4</a>. Thus $M$ is a summand of a module of the form $R^{\oplus r} \oplus \bigoplus _{i = 1, \ldots , n} R/f_ iR$ with $f_ i \not= 0$. Since taking the torsion submodule is a functor we see that $M_{tors}$ is a summand of the module $\bigoplus _{i = 1, \ldots , n} R/f_ iR$ and $M/M_{tors}$ is a summand of $R^{\oplus r}$. By the first part of the proof we see that $M/M_{tors}$ is finite free. Hence $M \cong M_{tors} \oplus M/M_{tors}$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0ASV">
+  <p><a class="environment-identifier" href="/tag/0ASV">Lemma <span data-tag="0ASV">15.126.9</span>.</a> Let $R$ be a PID. Every finite $R$-module $M$ is of isomorphic to a module of the form </p>
+  <div class="equation">
+  \[  R^{\oplus r} \oplus \bigoplus \nolimits _{i = 1, \ldots , n} R/f_ iR  \]
+</div>
+  <p> for some $r, n \geq 0$ and $f_1, \ldots , f_ n \in R$ nonzero. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      A PID is a Noetherian Bézout ring. By Lemma <a href="/tag/0ASU" data-tag="0ASU">15.126.8</a> it suffices to prove the result if $M$ is torsion. Since $M$ is finite, this means that the annihilator of $M$ is nonzero. Say $fM = 0$ for some $f \in R$ nonzero. Then we can think of $M$ as a module over $R/fR$. Since $R/fR$ is Noetherian of dimension $0$ (small detail omitted) we see that $R/fR = \prod R_ j$ is a finite product of Artinian local rings $R_ i$ (Algebra, Proposition <a href="/tag/00KJ" data-tag="00KJ">10.60.7</a>). Each $R_ i$, being a local ring and a quotient of a PID, is a generalized valuation ring in the sense of Lemma <a href="/tag/0ASN" data-tag="0ASN">15.126.2</a> (small detail omitted). Write $M = \prod M_ j$ with $M_ j = e_ j M$ where $e_ j \in R/fR$ is the idempotent corresponding to the factor $R_ j$. By Lemma <a href="/tag/0ASP" data-tag="0ASP">15.126.3</a> we see that $M_ j = \bigoplus _{i = 1, \ldots , n_ j} R_ j/\overline{f}_{ji}R_ j$ for some $\overline{f}_{ji} \in R_ j$. Choose lifts $f_{ji} \in R$ and choose $g_{ji} \in R$ with $(g_{ji}) = (f_ j, f_{ji})$. Then we conclude that 
+    <p>
+      <div class="equation">
+  \[  M \cong \bigoplus R/g_{ji}R  \]
+</div>
+    <p>
+       as an $R$-module which finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+One can also prove that a PID is a elementary divisor domain (insert future reference here), by proving lemmas similar to the following. 
+</p>
+<p>
+<article class="env-lemma" id="0ASW">
+  <p><a class="environment-identifier" href="/tag/0ASW">Lemma <span data-tag="0ASW">15.126.10</span>.</a> Let $R$ be a Bézout domain. Let $n \geq 1$ and $f_1, \ldots , f_ n \in R$ generate the unit ideal. There exists an invertible $n \times n$ matrix in $R$ whose first row is $f_1 \ldots f_ n$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from Lemma <a href="/tag/0ASU" data-tag="0ASU">15.126.8</a> but we can also prove it directly as follows. By induction on $n$. The result holds for $n = 1$. Assume $n > 1$. We may assume $f_1 \not= 0$ after renumbering. Choose $f \in R$ such that $(f) = (f_1, \ldots , f_{n - 1})$. Let $A$ be an $(n - 1) \times (n - 1)$ matrix whose first row is $f_1/f, \ldots , f_{n - 1}/f$. Choose $a, b \in R$ such that $af - bf_ n = 1$ which is possible because $1 \in (f_1, \ldots , f_ n) = (f, f_ n)$. Then a solution is the matrix 
+    <p>
+      <div class="equation">
+  \[  \left( \begin{matrix}  f 
+
+&  0 
+
+&  \ldots 
+
+&  0 
+
+&  f_ n 
+
+\\  0 
+
+&  1 
+
+&  \ldots 
+
+&  0 
+
+&  0 
+
+\\ & &  \ldots 
+
+\\  0 
+
+&  0 
+
+&  \ldots 
+
+&  1 
+
+&  0 
+
+\\  b 
+
+&  0 
+
+&  \ldots 
+
+&  0 
+
+&  a 
+
+\end{matrix} \right) \left( \begin{matrix} & & &  0 
+
+\\ &  A 
+
+\\ & & &  0 
+
+\\  0 
+
+&  \ldots 
+
+&  0 
+
+&  1 
+
+\end{matrix} \right)  \]
+</div>
+    <p>
+       Observe that the left matrix is invertible because it has determinant $1$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

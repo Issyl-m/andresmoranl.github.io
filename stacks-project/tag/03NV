@@ -1,0 +1,239 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="etale-cohomology-section-fpqc" class="tex-section"><span data-tag="03NV">59.15</span> The fpqc topology</h2>
+
+<p>
+Before doing étale cohomology we study a bit the fpqc topology, since it works well for quasi-coherent sheaves. 
+</p>
+<p>
+<article class="env-definition" id="03NW">
+  <p><a class="environment-identifier" href="/tag/03NW">Definition <span data-tag="03NW">59.15.1</span>.</a> Let $T$ be a scheme. An <em>fpqc covering</em> of $T$ is a family $\{  \varphi _ i : T_ i \to T\} _{i \in I}$ such that </p>
+  <p><ol>
+  <li><p>
+each $\varphi _ i$ is a flat morphism and $\bigcup _{i\in I} \varphi _ i(T_ i) = T$, and 
+</p>
+</li><li><p>
+for each affine open $U \subset T$ there exists a finite set $K$, a map $\mathbf{i} : K \to I$ and affine opens $U_{\mathbf{i}(k)} \subset T_{\mathbf{i}(k)}$ such that $U = \bigcup _{k \in K} \varphi _{\mathbf{i}(k)}(U_{\mathbf{i}(k)})$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="03NX">
+  <p><a class="environment-identifier" href="/tag/03NX">Remark <span data-tag="03NX">59.15.2</span>.</a> The first condition corresponds to fp, which stands for <em>fidèlement plat</em>, faithfully flat in french, and the second to qc, <em>quasi-compact</em>. The second part of the first condition is unnecessary when the second condition holds. </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="03NY">
+  <p><a class="environment-identifier" href="/tag/03NY">Example <span data-tag="03NY">59.15.3</span>.</a> Examples of fpqc coverings. </p>
+  <p><ol>
+  <li><p>
+Any Zariski open covering of $T$ is an fpqc covering. 
+</p>
+</li><li><p>
+A family $\{ \mathop{\mathrm{Spec}}(B) \to \mathop{\mathrm{Spec}}(A)\} $ is an fpqc covering if and only if $A \to B$ is a faithfully flat ring map. 
+</p>
+</li><li><p>
+If $f: X \to Y$ is flat, surjective and quasi-compact, then $\{  f: X\to Y\} $ is an fpqc covering. 
+</p>
+</li><li><p>
+The morphism $\varphi : \coprod _{x \in \mathbf{A}^1_ k} \mathop{\mathrm{Spec}}(\mathcal{O}_{\mathbf{A}^1_ k, x}) \to \mathbf{A}^1_ k$, where $k$ is a field, is flat and surjective. It is not quasi-compact, and in fact the family $\{ \varphi \} $ is not an fpqc covering. 
+</p>
+</li><li><p>
+Write $\mathbf{A}^2_ k = \mathop{\mathrm{Spec}}(k[x, y])$. Denote $i_ x : D(x) \to \mathbf{A}^2_ k$ and $i_ y : D(y) \to \mathbf{A}^2_ k$ the standard opens. Then the families $\{ i_ x, i_ y, \mathop{\mathrm{Spec}}(k[[x, y]]) \to \mathbf{A}^2_ k\} $ and $\{ i_ x, i_ y, \mathop{\mathrm{Spec}}(\mathcal{O}_{\mathbf{A}^2_ k, 0}) \to \mathbf{A}^2_ k\} $ are fpqc coverings. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="03NZ">
+  <p><a class="environment-identifier" href="/tag/03NZ">Lemma <span data-tag="03NZ">59.15.4</span>.</a> The collection of fpqc coverings on the category of schemes satisfies the axioms of site. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See Topologies, Lemma <a href="/tag/022D" data-tag="022D">34.9.8</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+It seems that this lemma allows us to define the fpqc site of the category of schemes. However, there is a set theoretical problem that comes up when considering the fpqc topology, see Topologies, Section <a href="/tag/022A" data-tag="022A">34.9</a>. It comes from our requirement that sites are “small”, but that no small category of schemes can contain a cofinal system of fpqc coverings of a given nonempty scheme. Although this does not strictly speaking prevent us from defining “partial” fpqc sites, it does not seem prudent to do so. The work-around is to allow the notion of a sheaf for the fpqc topology (see below) but to prohibit considering the category of all fpqc sheaves. 
+</p>
+<p>
+<article class="env-definition" id="03X6">
+  <p><a class="environment-identifier" href="/tag/03X6">Definition <span data-tag="03X6">59.15.5</span>.</a> Let $S$ be a scheme. The category of schemes over $S$ is denoted $\mathit{Sch}/S$. Consider a functor $\mathcal{F} : (\mathit{Sch}/S)^{opp} \to \textit{Sets}$, in other words a presheaf of sets. We say $\mathcal{F}$ <em>satisfies the sheaf property for the fpqc topology</em> if for every fpqc covering $\{ U_ i \to U\} _{i \in I}$ of schemes over $S$ the diagram (<a href="/tag/03NL" data-tag="03NL">59.11.1.1</a>) is an equalizer diagram. </p>
+</article> 
+</p>
+<p>
+We similarly say that $\mathcal{F}$ <em>satisfies the sheaf property for the Zariski topology</em> if for every open covering $U = \bigcup _{i \in I} U_ i$ the diagram (<a href="/tag/03NL" data-tag="03NL">59.11.1.1</a>) is an equalizer diagram. See Schemes, Definition <a href="/tag/01JI" data-tag="01JI">26.15.3</a>. Clearly, this is equivalent to saying that for every scheme $T$ over $S$ the restriction of $\mathcal{F}$ to the opens of $T$ is a (usual) sheaf. 
+</p>
+<p>
+<article class="env-lemma" id="03O1">
+  <p><a class="environment-identifier" href="/tag/03O1">Lemma <span data-tag="03O1">59.15.6</span>.</a> Let $\mathcal{F}$ be a presheaf on $\mathit{Sch}/S$. Then $\mathcal{F}$ satisfies the sheaf property for the fpqc topology if and only if </p>
+  <p><ol>
+  <li><p>
+$\mathcal{F}$ satisfies the sheaf property with respect to the Zariski topology, and 
+</p>
+</li><li><p>
+for every faithfully flat morphism $\mathop{\mathrm{Spec}}(B) \to \mathop{\mathrm{Spec}}(A)$ of affine schemes over $S$, the sheaf axiom holds for the covering $\{ \mathop{\mathrm{Spec}}(B) \to \mathop{\mathrm{Spec}}(A)\} $. Namely, this means that 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathcal{F}(\mathop{\mathrm{Spec}}(A)) \ar[r] &  \mathcal{F}(\mathop{\mathrm{Spec}}(B)) \ar@<1ex>[r] \ar@<-1ex>[r] &  \mathcal{F}(\mathop{\mathrm{Spec}}(B \otimes _ A B)) }  \]
+</div>
+<p>
+ is an equalizer diagram. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See Topologies, Lemma <a href="/tag/022H" data-tag="022H">34.9.14</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+An alternative way to think of a presheaf $\mathcal{F}$ on $\mathit{Sch}/S$ which satisfies the sheaf condition for the fpqc topology is as the following data: 
+</p>
+<ol>
+  <li><p>
+for each $T/S$, a usual (i.e., Zariski) sheaf $\mathcal{F}_ T$ on $T_{Zar}$, 
+</p>
+</li><li><p>
+for every map $f : T' \to T$ over $S$, a restriction mapping $f^{-1}\mathcal{F}_ T \to \mathcal{F}_{T'}$ 
+</p>
+</li>
+</ol>
+<p>
+ such that 
+</p>
+<ol>
+  <li class="custom-item" data-marker="(a)"><p>
+the restriction mappings are functorial, 
+</p>
+</li><li class="custom-item" data-marker="(b)"><p>
+if $f : T' \to T$ is an open immersion then the restriction mapping $f^{-1}\mathcal{F}_ T \to \mathcal{F}_{T'}$ is an isomorphism, and 
+</p>
+</li><li class="custom-item" data-marker="(c)"><p>
+for every faithfully flat morphism $\mathop{\mathrm{Spec}}(B) \to \mathop{\mathrm{Spec}}(A)$ over $S$, the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathcal{F}_{\mathop{\mathrm{Spec}}(A)}(\mathop{\mathrm{Spec}}(A)) \ar[r] &  \mathcal{F}_{\mathop{\mathrm{Spec}}(B)}(\mathop{\mathrm{Spec}}(B)) \ar@<1ex>[r] \ar@<-1ex>[r] &  \mathcal{F}_{\mathop{\mathrm{Spec}}(B \otimes _ A B)}(\mathop{\mathrm{Spec}}(B \otimes _ A B)) }  \]
+</div>
+<p>
+ is an equalizer. 
+</p>
+</li>
+</ol>
+<p>
+ Data (1) and (2) and conditions (a), (b) give the data of a presheaf on $\mathit{Sch}/S$ satisfying the sheaf condition for the Zariski topology. By Lemma <a href="/tag/03O1" data-tag="03O1">59.15.6</a> condition (c) then suffices to get the sheaf condition for the fpqc topology. 
+</p>
+<p>
+<article class="env-example" id="03O2">
+  <p><a class="environment-identifier" href="/tag/03O2">Example <span data-tag="03O2">59.15.7</span>.</a> Consider the presheaf </p>
+  <div class="equation">
+  \[  \begin{matrix}  \mathcal{F} : 
+
+&  (\mathit{Sch}/S)^{opp} 
+
+&  \longrightarrow 
+
+&  \textit{Ab} 
+
+\\ &  T/S 
+
+&  \longmapsto 
+
+&  \Gamma (T, \Omega _{T/S}). 
+
+\end{matrix}  \]
+</div>
+  <p> The compatibility of differentials with localization implies that $\mathcal{F}$ is a sheaf on the Zariski site. However, it does not satisfy the sheaf condition for the fpqc topology. Namely, consider the case $S = \mathop{\mathrm{Spec}}(\mathbf{F}_ p)$ and the morphism </p>
+  <div class="equation">
+  \[  \varphi : V = \mathop{\mathrm{Spec}}(\mathbf{F}_ p[v]) \to U = \mathop{\mathrm{Spec}}(\mathbf{F}_ p[u])  \]
+</div>
+  <p> given by mapping $u$ to $v^ p$. The family $\{ \varphi \} $ is an fpqc covering, yet the restriction mapping $\mathcal{F}(U) \to \mathcal{F}(V)$ sends the generator $\text{d}u$ to $\text{d}(v^ p) = 0$, so it is the zero map, and the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{F}(U) \ar[r]^{0} &  \mathcal{F}(V) \ar@<1ex>[r] \ar@<-1ex>[r] &  \mathcal{F}(V \times _ U V) }  \]
+</div>
+  <p> is not an equalizer. We will see later that $\mathcal{F}$ does in fact give rise to a sheaf on the étale and smooth sites. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="03O3">
+  <p><a class="environment-identifier" href="/tag/03O3">Lemma <span data-tag="03O3">59.15.8</span>.</a> Any representable presheaf on $\mathit{Sch}/S$ satisfies the sheaf condition for the fpqc topology. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See Descent, Lemma <a href="/tag/023Q" data-tag="023Q">35.13.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We will return to this later, since the proof of this fact uses descent for quasi-coherent sheaves, which we will discuss in the next section. A fancy way of expressing the lemma is to say that <em>the fpqc topology is weaker than the canonical topology</em>, or that the fpqc topology is <em>subcanonical</em>. In the setting of sites this is discussed in Sites, Section <a href="/tag/00WO" data-tag="00WO">7.12</a>. 
+</p>
+<p>
+<article class="env-remark" id="03O4">
+  <p><a class="environment-identifier" href="/tag/03O4">Remark <span data-tag="03O4">59.15.9</span>.</a> The fpqc is finer than the Zariski, étale, smooth, syntomic, and fppf topologies. Hence any presheaf satisfying the sheaf condition for the fpqc topology will be a sheaf on the Zariski, étale, smooth, syntomic, and fppf sites. In particular representable presheaves will be sheaves on the étale site of a scheme for example. </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="03O5">
+  <p><a class="environment-identifier" href="/tag/03O5">Example <span data-tag="03O5">59.15.10</span>.</a> Let $S$ be a scheme. Consider the additive group scheme $\mathbf{G}_{a, S} = \mathbf{A}^1_ S$ over $S$, see Groupoids, Example <a href="/tag/022V" data-tag="022V">39.5.3</a>. The associated representable presheaf is given by </p>
+  <div class="equation">
+  \[  h_{\mathbf{G}_{a, S}}(T) = \mathop{\mathrm{Mor}}\nolimits _ S(T, \mathbf{G}_{a, S}) = \Gamma (T, \mathcal{O}_ T).  \]
+</div>
+  <p> By the above we now know that this is a presheaf of sets which satisfies the sheaf condition for the fpqc topology. On the other hand, it is clearly a presheaf of rings as well. Hence we can think of this as a functor </p>
+  <div class="equation">
+  \[  \begin{matrix}  \mathcal{O} : 
+
+&  (\mathit{Sch}/S)^{opp} 
+
+&  \longrightarrow 
+
+&  \textit{Rings} 
+
+\\ &  T/S 
+
+&  \longmapsto 
+
+&  \Gamma (T, \mathcal{O}_ T) 
+
+\end{matrix}  \]
+</div>
+  <p> which satisfies the sheaf condition for the fpqc topology. Correspondingly there is a notion of $\mathcal{O}$-module, and so on and so forth. </p>
+</article> 
+</p>

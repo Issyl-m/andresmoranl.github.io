@@ -1,0 +1,127 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="algebraic-section-algebraic-stacks" class="tex-section"><span data-tag="026N">94.12</span> Algebraic stacks</h2>
+
+<p>
+Here is the definition of an algebraic stack. We remark that condition (2) implies we can make sense out of the condition in part (3) that $(\mathit{Sch}/U)_{fppf} \to \mathcal{X}$ is smooth and surjective, see discussion following Lemma <a href="/tag/045G" data-tag="045G">94.10.11</a>. 
+</p>
+<p>
+<article class="env-definition" id="026O">
+  <p><a class="environment-identifier" href="/tag/026O">Definition <span data-tag="026O">94.12.1</span>.</a> Let $S$ be a base scheme contained in $\mathit{Sch}_{fppf}$. An <em>algebraic stack over $S$</em> is a category </p>
+  <div class="equation">
+  \[  p : \mathcal{X} \to (\mathit{Sch}/S)_{fppf}  \]
+</div>
+  <p> over $(\mathit{Sch}/S)_{fppf}$ with the following properties: </p>
+  <p><ol>
+  <li><p>
+The category $\mathcal{X}$ is a stack in groupoids over $(\mathit{Sch}/S)_{fppf}$. 
+</p>
+</li><li><p>
+The diagonal $\Delta : \mathcal{X} \to \mathcal{X} \times \mathcal{X}$ is representable by algebraic spaces. 
+</p>
+</li><li><p>
+There exists a scheme $U \in \mathop{\mathrm{Ob}}\nolimits ((\mathit{Sch}/S)_{fppf})$ and a $1$-morphism $(\mathit{Sch}/U)_{fppf} \to \mathcal{X}$ which is surjective and smooth<a class="footnotemark" href="#a0001654680" id="a0001654680-mark"><sup>1</sup></a>. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+There are some differences with other definitions found in the literature. 
+</p>
+<p>
+The first is that we require $\mathcal{X}$ to be a stack in groupoids in the fppf topology, whereas in many references the étale topology is used. It somehow seems to us that the fppf topology is the natural topology to work with. In the end the resulting $2$-category of algebraic stacks ends up being the same. This is explained in Criteria for Representability, Section <a href="/tag/076U" data-tag="076U">97.19</a>. 
+</p>
+<p>
+The second is that we only require the diagonal map of $\mathcal{X}$ to be representable by algebraic spaces, whereas in most references some other conditions are imposed. Our point of view is to try to prove a certain number of the results that follow only assuming that the diagonal of $\mathcal{X}$ be representable by algebraic spaces, and simply add an additional hypothesis wherever this is necessary. It has the added benefit that any algebraic space (as defined in Spaces, Definition <a href="/tag/025Y" data-tag="025Y">65.6.1</a>) gives rise to an algebraic stack. 
+</p>
+<p>
+The third is that in some papers it is required that there exists a scheme $U$ and a surjective and étale morphism $U \to \mathcal{X}$. In the groundbreaking paper <span class="cite">[<a href="/bibliography/DM">DM</a>]</span> where algebraic stacks were first introduced Deligne and Mumford used this definition and showed that the moduli stack of stable genus $g > 1$ curves is an algebraic stack which has an étale covering by a scheme. Michael Artin, see <span class="cite">[<a href="/bibliography/ArtinVersal">ArtinVersal</a>]</span>, realized that many natural results on algebraic stacks generalize to the case where one only assume a smooth covering by a scheme. Hence our choice above. To distinguish the two cases one sees the terms “Deligne-Mumford stack” and “Artin stack” used in the literature. We will reserve the term “Artin stack” for later use (insert future reference here), and continue to use “algebraic stack”, but we will use “Deligne-Mumford stack” to indicate those algebraic stacks which have an étale covering by a scheme. 
+</p>
+<p>
+<article class="env-definition" id="03YO">
+  <p><a class="environment-identifier" href="/tag/03YO">Definition <span data-tag="03YO">94.12.2</span>.</a> Let $S$ be a scheme contained in $\mathit{Sch}_{fppf}$. Let $\mathcal{X}$ be an algebraic stack over $S$. We say $\mathcal{X}$ is a <em>Deligne-Mumford stack</em> if there exists a scheme $U$ and a surjective étale morphism $(\mathit{Sch}/U)_{fppf} \to \mathcal{X}$. </p>
+</article> 
+</p>
+<p>
+We will compare our notion of a Deligne-Mumford stack with the notion as defined in the paper by Deligne and Mumford later (see insert future reference here). 
+</p>
+<p>
+The category of algebraic stacks over $S$ forms a $2$-category. Here is the precise definition. 
+</p>
+<p>
+<article class="env-definition" id="03YP">
+  <p><a class="environment-identifier" href="/tag/03YP">Definition <span data-tag="03YP">94.12.3</span>.</a> Let $S$ be a scheme contained in $\mathit{Sch}_{fppf}$. The <em>$2$-category of algebraic stacks over $S$</em> is the sub $2$-category of the $2$-category of categories fibred in groupoids over $(\mathit{Sch}/S)_{fppf}$ (see Categories, Definition <a href="/tag/02XS" data-tag="02XS">4.35.6</a>) defined as follows: </p>
+  <p><ol>
+  <li><p>
+Its objects are those categories fibred in groupoids over $(\mathit{Sch}/S)_{fppf}$ which are algebraic stacks over $S$. 
+</p>
+</li><li><p>
+Its $1$-morphisms $f : \mathcal{X} \to \mathcal{Y}$ are any functors of categories over $(\mathit{Sch}/S)_{fppf}$, as in Categories, Definition <a href="/tag/003Y" data-tag="003Y">4.32.1</a>. 
+</p>
+</li><li><p>
+Its $2$-morphisms are transformations between functors over $(\mathit{Sch}/S)_{fppf}$, as in Categories, Definition <a href="/tag/003Y" data-tag="003Y">4.32.1</a>. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+In other words this $2$-category is the full sub $2$-category of $\textit{Cat}/(\mathit{Sch}/S)_{fppf}$ whose objects are algebraic stacks. Note that every $2$-morphism is automatically an isomorphism. Hence this is actually a $(2, 1)$-category and not just a $2$-category. 
+</p>
+<p>
+We will see later (insert future reference here) that this $2$-category has $2$-fibre products. 
+</p>
+<p>
+Similar to the remark above the $2$-category of algebraic stacks over $S$ is a full sub $2$-category of the $2$-category of categories fibred in groupoids over $(\mathit{Sch}/S)_{fppf}$. It turns out that it is closed under equivalences. Here is the precise statement. 
+</p>
+<p>
+<article class="env-lemma" id="03YQ">
+  <p><a class="environment-identifier" href="/tag/03YQ">Lemma <span data-tag="03YQ">94.12.4</span>.</a> Let $S$ be a scheme contained in $\mathit{Sch}_{fppf}$. Let $\mathcal{X}$, $\mathcal{Y}$ be categories over $(\mathit{Sch}/S)_{fppf}$. Assume $\mathcal{X}$, $\mathcal{Y}$ are equivalent as categories over $(\mathit{Sch}/S)_{fppf}$. Then $\mathcal{X}$ is an algebraic stack if and only if $\mathcal{Y}$ is an algebraic stack. Similarly, $\mathcal{X}$ is a Deligne-Mumford stack if and only if $\mathcal{Y}$ is a Deligne-Mumford stack. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume $\mathcal{X}$ is an algebraic stack (resp. a Deligne-Mumford stack). By Stacks, Lemma <a href="/tag/042X" data-tag="042X">8.5.4</a> this implies that $\mathcal{Y}$ is a stack in groupoids over $\mathit{Sch}_{fppf}$. Choose an equivalence $f : \mathcal{X} \to \mathcal{Y}$ over $\mathit{Sch}_{fppf}$. This gives a $2$-commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathcal{X} \ar[r]_ f \ar[d]_{\Delta _\mathcal {X}} &  \mathcal{Y} \ar[d]^{\Delta _\mathcal {Y}} \\  \mathcal{X} \times \mathcal{X} \ar[r]^{f \times f} &  \mathcal{Y} \times \mathcal{Y} }  \]
+</div>
+    <p>
+       whose horizontal arrows are equivalences. This implies that $\Delta _\mathcal {Y}$ is representable by algebraic spaces according to Lemma <a href="/tag/0457" data-tag="0457">94.9.3</a>. Finally, let $U$ be a scheme over $S$, and let $x : (\mathit{Sch}/U)_{fppf} \to \mathcal{X}$ be a $1$-morphism which is surjective and smooth (resp. étale). Considering the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ (\mathit{Sch}/U)_{fppf} \ar[r]_{\text{id}} \ar[d]_ x &  (\mathit{Sch}/U)_{fppf} \ar[d]^{f \circ x} \\  \mathcal{X} \ar[r]^ f &  \mathcal{Y} }  \]
+</div>
+    <p>
+       and applying Lemma <a href="/tag/0459" data-tag="0459">94.10.2</a> we conclude that $f \circ x$ is surjective and smooth (resp. étale) as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

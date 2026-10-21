@@ -1,0 +1,315 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="adequate-section-adequate" class="tex-section"><span data-tag="06VF">46.5</span> Adequate modules</h2>
+
+<p>
+In Descent, Section <a href="/tag/03DR" data-tag="03DR">35.8</a> we have seen that quasi-coherent modules on a scheme $S$ are the same as quasi-coherent modules on any of the big sites $(\mathit{Sch}/S)_\tau $ associated to $S$. We have seen that there are two issues with this identification: 
+</p>
+<ol>
+  <li><p>
+$\mathit{QCoh}(\mathcal{O}_ S) \to \textit{Mod}((\mathit{Sch}/S)_\tau , \mathcal{O})$, $\mathcal{F} \mapsto \mathcal{F}^ a$ is not exact in general (Descent, Lemma <a href="/tag/06VE" data-tag="06VE">35.10.2</a>), and 
+</p>
+</li><li><p>
+given a quasi-compact and quasi-separated morphism $f : X \to S$ the functor $f_*$ does not preserve quasi-coherent sheaves on the big sites in general (Descent, Proposition <a href="/tag/03LC" data-tag="03LC">35.9.4</a>). 
+</p>
+</li>
+</ol>
+<p>
+ Part (1) means that we cannot define a triangulated subcategory of $D(\mathcal{O})$ consisting of complexes whose cohomology sheaves are quasi-coherent. Part (2) means that $Rf_*\mathcal{F}$ isn't a complex with quasi-coherent cohomology sheaves even when $\mathcal{F}$ is quasi-coherent and $f$ is quasi-compact and quasi-separated. Moreover, the examples given in the proofs of Descent, Lemma <a href="/tag/06VE" data-tag="06VE">35.10.2</a> and Descent, Proposition <a href="/tag/03LC" data-tag="03LC">35.9.4</a> are not of a pathological nature. 
+</p>
+<p>
+In this section we discuss a slightly larger category of $\mathcal{O}$-modules on $(\mathit{Sch}/S)_\tau $ with contains the quasi-coherent modules, is abelian, and is preserved under $f_*$ when $f$ is quasi-compact and quasi-separated. To do this, suppose that $S$ is a scheme. Let $\mathcal{F}$ be a presheaf of $\mathcal{O}$-modules on $(\mathit{Sch}/S)_\tau $. For any affine object $U = \mathop{\mathrm{Spec}}(A)$ of $(\mathit{Sch}/S)_\tau $ we can restrict $\mathcal{F}$ to $(\textit{Aff}/U)_\tau $ to get a presheaf of $\mathcal{O}$-modules on this site. The corresponding module-valued functor, see Section <a href="/tag/06US" data-tag="06US">46.3</a>, will be denoted 
+</p>
+<div class="equation">
+  \[  F = F_{\mathcal{F}, A} : \textit{Alg}_ A \longrightarrow \textit{Ab}, \quad B \longmapsto \mathcal{F}(\mathop{\mathrm{Spec}}(B))  \]
+</div>
+<p>
+ The assignment $\mathcal{F} \mapsto F_{\mathcal{F}, A}$ is an exact functor of abelian categories. 
+</p>
+<p>
+<article class="env-definition" id="06VG">
+  <p><a class="environment-identifier" href="/tag/06VG">Definition <span data-tag="06VG">46.5.1</span>.</a> A sheaf of $\mathcal{O}$-modules $\mathcal{F}$ on $(\mathit{Sch}/S)_\tau $ is <em>adequate</em> if there exists a $\tau $-covering $\{ \mathop{\mathrm{Spec}}(A_ i) \to S\} _{i \in I}$ such that $F_{\mathcal{F}, A_ i}$ is adequate for all $i \in I$. </p>
+</article> 
+</p>
+<p>
+We will see below that the category of adequate $\mathcal{O}$-modules is independent of the chosen topology $\tau $. 
+</p>
+<p>
+<article class="env-lemma" id="06VI">
+  <p><a class="environment-identifier" href="/tag/06VI">Lemma <span data-tag="06VI">46.5.2</span>.</a> Let $S$ be a scheme. Let $\mathcal{F}$ be an adequate $\mathcal{O}$-module on $(\mathit{Sch}/S)_\tau $. For any affine scheme $\mathop{\mathrm{Spec}}(A)$ over $S$ the functor $F_{\mathcal{F}, A}$ is adequate. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\{ \mathop{\mathrm{Spec}}(A_ i) \to S\} _{i \in I}$ be a $\tau $-covering such that $F_{\mathcal{F}, A_ i}$ is adequate for all $i \in I$. We can find a standard affine $\tau $-covering $\{ \mathop{\mathrm{Spec}}(A'_ j) \to \mathop{\mathrm{Spec}}(A)\} _{j = 1, \ldots , m}$ such that $\mathop{\mathrm{Spec}}(A'_ j) \to \mathop{\mathrm{Spec}}(A) \to S$ factors through $\mathop{\mathrm{Spec}}(A_{i(j)})$ for some $i(j) \in I$. Then we see that $F_{\mathcal{F}, A'_ j}$ is the restriction of $F_{\mathcal{F}, A_{i(j)}}$ to the category of $A'_ j$-algebras. Hence $F_{\mathcal{F}, A'_ j}$ is adequate by Lemma <a href="/tag/06V9" data-tag="06V9">46.3.17</a>. By Lemma <a href="/tag/06VB" data-tag="06VB">46.3.19</a> the sequence $F_{\mathcal{F}, A'_ j}$ corresponds to an adequate “product” functor $F'$ over $A' = A'_1 \times \ldots \times A'_ m$. As $\mathcal{F}$ is a sheaf (for the Zariski topology) this product functor $F'$ is equal to $F_{\mathcal{F}, A'}$, i.e., is the restriction of $F$ to $A'$-algebras. Finally, $\{ \mathop{\mathrm{Spec}}(A') \to \mathop{\mathrm{Spec}}(A)\} $ is a $\tau $-covering. It follows from Lemma <a href="/tag/06VH" data-tag="06VH">46.3.20</a> that $F_{\mathcal{F}, A}$ is adequate. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06ZJ">
+  <p><a class="environment-identifier" href="/tag/06ZJ">Lemma <span data-tag="06ZJ">46.5.3</span>.</a> Let $S = \mathop{\mathrm{Spec}}(A)$ be an affine scheme. The category of adequate $\mathcal{O}$-modules on $(\mathit{Sch}/S)_\tau $ is equivalent to the category of adequate module-valued functors on $\textit{Alg}_ A$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Given an adequate module $\mathcal{F}$ the functor $F_{\mathcal{F}, A}$ is adequate by Lemma <a href="/tag/06VI" data-tag="06VI">46.5.2</a>. Given an adequate functor $F$ we choose an exact sequence $0 \to F \to \underline{M} \to \underline{N}$ and we consider the $\mathcal{O}$-module $\mathcal{F} = \mathop{\mathrm{Ker}}(M^ a \to N^ a)$ where $M^ a$ denotes the quasi-coherent $\mathcal{O}$-module on $(\mathit{Sch}/S)_\tau $ associated to the quasi-coherent sheaf $\widetilde{M}$ on $S$. Note that $F = F_{\mathcal{F}, A}$, in particular the module $\mathcal{F}$ is adequate by definition. We omit the proof that the constructions define mutually inverse equivalences of categories. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06VJ">
+  <p><a class="environment-identifier" href="/tag/06VJ">Lemma <span data-tag="06VJ">46.5.4</span>.</a> Let $f : T \to S$ be a morphism of schemes. The pullback $f^*\mathcal{F}$ of an adequate $\mathcal{O}$-module $\mathcal{F}$ on $(\mathit{Sch}/S)_\tau $ is an adequate $\mathcal{O}$-module on $(\mathit{Sch}/T)_\tau $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The pullback map $f^* : \textit{Mod}((\mathit{Sch}/S)_\tau , \mathcal{O}) \to \textit{Mod}((\mathit{Sch}/T)_\tau , \mathcal{O})$ is given by restriction, i.e., $f^*\mathcal{F}(V) = \mathcal{F}(V)$ for any scheme $V$ over $T$. Hence this lemma follows immediately from Lemma <a href="/tag/06VI" data-tag="06VI">46.5.2</a> and the definition. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Here is a characterization of the category of adequate $\mathcal{O}$-modules. To understand the significance, consider a map $\mathcal{G} \to \mathcal{H}$ of quasi-coherent $\mathcal{O}_ S$-modules on a scheme $S$. The cokernel of the associated map $\mathcal{G}^ a \to \mathcal{H}^ a$ of $\mathcal{O}$-modules is quasi-coherent because it is equal to $(\mathcal{H}/\mathcal{G})^ a$. But the kernel of $\mathcal{G}^ a \to \mathcal{H}^ a$ in general isn't quasi-coherent. However, it is adequate. 
+</p>
+<p>
+<article class="env-lemma" id="06VK">
+  <p><a class="environment-identifier" href="/tag/06VK">Lemma <span data-tag="06VK">46.5.5</span>.</a> Let $S$ be a scheme. Let $\mathcal{F}$ be an $\mathcal{O}$-module on $(\mathit{Sch}/S)_\tau $. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$\mathcal{F}$ is adequate, 
+</p>
+</li><li><p>
+there exists an affine open covering $S = \bigcup S_ i$ and maps of quasi-coherent $\mathcal{O}_{S_ i}$-modules $\mathcal{G}_ i \to \mathcal{H}_ i$ such that $\mathcal{F}|_{(\mathit{Sch}/S_ i)_\tau }$ is the kernel of $\mathcal{G}_ i^ a \to \mathcal{H}_ i^ a$ 
+</p>
+</li><li><p>
+there exists a $\tau $-covering $\{ S_ i \to S\} _{i \in I}$ and maps of $\mathcal{O}_{S_ i}$-quasi-coherent modules $\mathcal{G}_ i \to \mathcal{H}_ i$ such that $\mathcal{F}|_{(\mathit{Sch}/S_ i)_\tau }$ is the kernel of $\mathcal{G}_ i^ a \to \mathcal{H}_ i^ a$, 
+</p>
+</li><li><p>
+there exists a $\tau $-covering $\{ f_ i : S_ i \to S\} _{i \in I}$ such that each $f_ i^*\mathcal{F}$ is adequate, 
+</p>
+</li><li><p>
+for any affine scheme $U$ over $S$ the restriction $\mathcal{F}|_{(\mathit{Sch}/U)_\tau }$ is the kernel of a map $\mathcal{G}^ a \to \mathcal{H}^ a$ of quasi-coherent $\mathcal{O}_ U$-modules. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $U = \mathop{\mathrm{Spec}}(A)$ be an affine scheme over $S$. Set $F = F_{\mathcal{F}, A}$. By definition, the functor $F$ is adequate if and only if there exists a map of $A$-modules $M \to N$ such that $F = \mathop{\mathrm{Ker}}(\underline{M} \to \underline{N})$. Combining with Lemmas <a href="/tag/06VI" data-tag="06VI">46.5.2</a> and <a href="/tag/06ZJ" data-tag="06ZJ">46.5.3</a> we see that (1) and (5) are equivalent. 
+    <p>
+      It is clear that (5) implies (2) and (2) implies (3). If (3) holds then we can refine the covering $\{ S_ i \to S\} $ such that each $S_ i = \mathop{\mathrm{Spec}}(A_ i)$ is affine. Then we see, by the preliminary remarks of the proof, that $F_{\mathcal{F}, A_ i}$ is adequate. Thus $\mathcal{F}$ is adequate by definition. Hence (3) implies (1). 
+    <p>
+      Finally, (4) is equivalent to (1) using Lemma <a href="/tag/06VJ" data-tag="06VJ">46.5.4</a> for one direction and that a composition of $\tau $-coverings is a $\tau $-covering for the other. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Just like is true for quasi-coherent sheaves the category of adequate modules is independent of the topology. 
+</p>
+<p>
+<article class="env-lemma" id="06VL">
+  <p><a class="environment-identifier" href="/tag/06VL">Lemma <span data-tag="06VL">46.5.6</span>.</a> Let $\mathcal{F}$ be an adequate $\mathcal{O}$-module on $(\mathit{Sch}/S)_\tau $. For any surjective flat morphism $\mathop{\mathrm{Spec}}(B) \to \mathop{\mathrm{Spec}}(A)$ of affines over $S$ the extended Čech complex </p>
+  <div class="equation">
+  \[  0 \to \mathcal{F}(\mathop{\mathrm{Spec}}(A)) \to \mathcal{F}(\mathop{\mathrm{Spec}}(B)) \to \mathcal{F}(\mathop{\mathrm{Spec}}(B \otimes _ A B)) \to \ldots  \]
+</div>
+  <p> is exact. In particular $\mathcal{F}$ satisfies the sheaf condition for fpqc coverings, and is a sheaf of $\mathcal{O}$-modules on $(\mathit{Sch}/S)_{fppf}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      With $A \to B$ as in the lemma let $F = F_{\mathcal{F}, A}$. This functor is adequate by Lemma <a href="/tag/06VI" data-tag="06VI">46.5.2</a>. By Lemma <a href="/tag/06UW" data-tag="06UW">46.3.5</a> since $A \to B$, $A \to B \otimes _ A B$, etc are flat we see that $F(B) = F(A) \otimes _ A B$, $F(B \otimes _ A B) = F(A) \otimes _ A B \otimes _ A B$, etc. Exactness follows from Descent, Lemma <a href="/tag/023M" data-tag="023M">35.3.6</a>. 
+    <p>
+      Thus $\mathcal{F}$ satisfies the sheaf condition for $\tau $-coverings (in particular Zariski coverings) and any faithfully flat covering of an affine by an affine. Arguing as in the proofs of Descent, Lemma <a href="/tag/023S" data-tag="023S">35.5.1</a> and Descent, Proposition <a href="/tag/023T" data-tag="023T">35.5.2</a> we conclude that $\mathcal{F}$ satisfies the sheaf condition for all fpqc coverings (made out of objects of $(\mathit{Sch}/S)_\tau $). Details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Lemma <a href="/tag/06VL" data-tag="06VL">46.5.6</a> shows in particular that for any pair of topologies $\tau , \tau '$ the collection of adequate modules for the $\tau $-topology and the $\tau '$-topology are identical (as presheaves of modules on the underlying category $\mathit{Sch}/S$). 
+</p>
+<p>
+<article class="env-definition" id="07AH">
+  <p><a class="environment-identifier" href="/tag/07AH">Definition <span data-tag="07AH">46.5.7</span>.</a> Let $S$ be a scheme. The category of adequate $\mathcal{O}$-modules on $(\mathit{Sch}/S)_\tau $ is denoted <em>$\textit{Adeq}(\mathcal{O})$</em> or <em>$\textit{Adeq}((\mathit{Sch}/S)_\tau , \mathcal{O})$</em>. If we want to think just about the abelian category of adequate modules without choosing a topology we simply write <em>$\textit{Adeq}(S)$</em>. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="06VM">
+  <p><a class="environment-identifier" href="/tag/06VM">Lemma <span data-tag="06VM">46.5.8</span>.</a> Let $S$ be a scheme. Let $\mathcal{F}$ be an adequate $\mathcal{O}$-module on $(\mathit{Sch}/S)_\tau $. </p>
+  <p><ol>
+  <li><p>
+The restriction $\mathcal{F}|_{S_{Zar}}$ is a quasi-coherent $\mathcal{O}_ S$-module on the scheme $S$. 
+</p>
+</li><li><p>
+The restriction $\mathcal{F}|_{S_{\acute{e}tale}}$ is the quasi-coherent module associated to $\mathcal{F}|_{S_{Zar}}$. 
+</p>
+</li><li><p>
+For any affine scheme $U$ over $S$ we have $H^ q(U, \mathcal{F}) = 0$ for all $q > 0$. 
+</p>
+</li><li><p>
+There is a canonical isomorphism 
+</p>
+<div class="equation">
+  \[  H^ q(S, \mathcal{F}|_{S_{Zar}}) = H^ q((\mathit{Sch}/S)_\tau , \mathcal{F}).  \]
+</div>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/06UW" data-tag="06UW">46.3.5</a> and Lemma <a href="/tag/06VI" data-tag="06VI">46.5.2</a> we see that for any flat morphism of affines $U \to V$ over $S$ we have $\mathcal{F}(U) = \mathcal{F}(V) \otimes _{\mathcal{O}(V)} \mathcal{O}(U)$. This works in particular if $U \subset V \subset S$ are affine opens of $S$, hence $\mathcal{F}|_{S_{Zar}}$ is quasi-coherent. Thus (1) holds. 
+    <p>
+      Let $S' \to S$ be an étale morphism of schemes. Then for $U \subset S'$ affine open mapping into an affine open $V \subset S$ we see that $\mathcal{F}(U) = \mathcal{F}(V) \otimes _{\mathcal{O}(V)} \mathcal{O}(U)$ because $U \to V$ is étale, hence flat. Therefore $\mathcal{F}|_{S'_{Zar}}$ is the pullback of $\mathcal{F}|_{S_{Zar}}$. This proves (2). 
+    <p>
+      We are going to apply Cohomology on Sites, Lemma <a href="/tag/03F9" data-tag="03F9">21.10.9</a> to the site $(\mathit{Sch}/S)_\tau $ with $\mathcal{B}$ the set of affine schemes over $S$ and $\text{Cov}$ the set of standard affine $\tau $-coverings. Assumption (3) of the lemma is satisfied by Descent, Lemma <a href="/tag/03FI" data-tag="03FI">35.9.1</a> and Lemma <a href="/tag/06VL" data-tag="06VL">46.5.6</a> for the case of a covering by a single affine. Hence we conclude that $H^ p(U, \mathcal{F}) = 0$ for every affine scheme $U$ over $S$. This proves (3). In exactly the same way as in the proof of Descent, Proposition <a href="/tag/03DW" data-tag="03DW">35.9.3</a> this implies the equality of cohomologies (4). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="06VN">
+  <p><a class="environment-identifier" href="/tag/06VN">Remark <span data-tag="06VN">46.5.9</span>.</a> Let $S$ be a scheme. We have functors $u : \mathit{QCoh}(\mathcal{O}_ S) \to \textit{Adeq}(\mathcal{O})$ and $v : \textit{Adeq}(\mathcal{O}) \to \mathit{QCoh}(\mathcal{O}_ S)$. Namely, the functor $u : \mathcal{F} \mapsto \mathcal{F}^ a$ comes from taking the associated $\mathcal{O}$-module which is adequate by Lemma <a href="/tag/06VK" data-tag="06VK">46.5.5</a>. Conversely, the functor $v$ comes from restriction $v : \mathcal{G} \mapsto \mathcal{G}|_{S_{Zar}}$, see Lemma <a href="/tag/06VM" data-tag="06VM">46.5.8</a>. Since $\mathcal{F}^ a$ can be described as the pullback of $\mathcal{F}$ under a morphism of ringed topoi $((\mathit{Sch}/S)_\tau , \mathcal{O}) \to (S_{Zar}, \mathcal{O}_ S)$, see Descent, Remark <a href="/tag/03FH" data-tag="03FH">35.8.6</a> and since restriction is the pushforward we see that $u$ and $v$ are adjoint as follows </p>
+  <div class="equation">
+  \[  \mathop{\mathcal{H}\! \mathit{om}}\nolimits _{\mathcal{O}_ S}(\mathcal{F}, v\mathcal{G}) = \mathop{\mathcal{H}\! \mathit{om}}\nolimits _\mathcal {O}(u\mathcal{F}, \mathcal{G})  \]
+</div>
+  <p> where $\mathcal{O}$ denotes the structure sheaf on the big site. It is immediate from the description that the adjunction mapping $\mathcal{F} \to vu\mathcal{F}$ is an isomorphism for all quasi-coherent sheaves. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="06VP">
+  <p><a class="environment-identifier" href="/tag/06VP">Lemma <span data-tag="06VP">46.5.10</span>.</a> Let $S$ be a scheme. Let $\mathcal{F}$ be a presheaf of $\mathcal{O}$-modules on $(\mathit{Sch}/S)_\tau $. If for every affine scheme $\mathop{\mathrm{Spec}}(A)$ over $S$ the functor $F_{\mathcal{F}, A}$ is adequate, then the sheafification of $\mathcal{F}$ is an adequate $\mathcal{O}$-module. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $U = \mathop{\mathrm{Spec}}(A)$ be an affine scheme over $S$. Set $F = F_{\mathcal{F}, A}$. The sheafification $\mathcal{F}^\#  = (\mathcal{F}^+)^+$, see Sites, Section <a href="/tag/00W1" data-tag="00W1">7.10</a>. By construction 
+    <p>
+      <div class="equation">
+  \[  (\mathcal{F})^+(U) = \mathop{\mathrm{colim}}\nolimits _\mathcal {U} \check{H}^0(\mathcal{U}, \mathcal{F})  \]
+</div>
+    <p>
+       where the colimit is over coverings in the site $(\mathit{Sch}/S)_\tau $. Since $U$ is affine it suffices to take the limit over standard affine $\tau $-coverings $\mathcal{U} = \{ U_ i \to U\} _{i \in I} = \{ \mathop{\mathrm{Spec}}(A_ i) \to \mathop{\mathrm{Spec}}(A)\} _{i \in I}$ of $U$. Since each $A \to A_ i$ and $A \to A_ i \otimes _ A A_ j$ is flat we see that 
+    <p>
+      <div class="equation">
+  \[  \check{H}^0(\mathcal{U}, \mathcal{F}) = \mathop{\mathrm{Ker}}(\prod F(A) \otimes _ A A_ i \to \prod F(A) \otimes _ A A_ i \otimes _ A A_ j)  \]
+</div>
+    <p>
+       by Lemma <a href="/tag/06UW" data-tag="06UW">46.3.5</a>. Since $A \to \prod A_ i$ is faithfully flat we see that this always is canonically isomorphic to $F(A)$ by Descent, Lemma <a href="/tag/023M" data-tag="023M">35.3.6</a>. Thus the presheaf $(\mathcal{F})^+$ has the same value as $\mathcal{F}$ on all affine schemes over $S$. Repeating the argument once more we deduce the same thing for $\mathcal{F}^\#  = ((\mathcal{F})^+)^+$. Thus $F_{\mathcal{F}, A} = F_{\mathcal{F}^\# , A}$ and we conclude that $\mathcal{F}^\# $ is adequate. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06VQ">
+  <p><a class="environment-identifier" href="/tag/06VQ">Lemma <span data-tag="06VQ">46.5.11</span>.</a> Let $S$ be a scheme. </p>
+  <p><ol>
+  <li><p>
+The category $\textit{Adeq}(\mathcal{O})$ is abelian. 
+</p>
+</li><li><p>
+The functor $\textit{Adeq}(\mathcal{O}) \to \textit{Mod}((\mathit{Sch}/S)_\tau , \mathcal{O})$ is exact. 
+</p>
+</li><li><p>
+If $0 \to \mathcal{F}_1 \to \mathcal{F}_2 \to \mathcal{F}_3 \to 0$ is a short exact sequence of $\mathcal{O}$-modules and $\mathcal{F}_1$ and $\mathcal{F}_3$ are adequate, then $\mathcal{F}_2$ is adequate. 
+</p>
+</li><li><p>
+The category $\textit{Adeq}(\mathcal{O})$ has colimits and $\textit{Adeq}(\mathcal{O}) \to \textit{Mod}((\mathit{Sch}/S)_\tau , \mathcal{O})$ commutes with them. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\varphi : \mathcal{F} \to \mathcal{G}$ be a map of adequate $\mathcal{O}$-modules. To prove (1) and (2) it suffices to show that $\mathcal{K} = \mathop{\mathrm{Ker}}(\varphi )$ and $\mathcal{Q} = \mathop{\mathrm{Coker}}(\varphi )$ computed in $\textit{Mod}((\mathit{Sch}/S)_\tau , \mathcal{O})$ are adequate. Let $U = \mathop{\mathrm{Spec}}(A)$ be an affine scheme over $S$. Let $F = F_{\mathcal{F}, A}$ and $G = F_{\mathcal{G}, A}$. By Lemmas <a href="/tag/06V3" data-tag="06V3">46.3.11</a> and <a href="/tag/06V2" data-tag="06V2">46.3.10</a> the kernel $K$ and cokernel $Q$ of the induced map $F \to G$ are adequate functors. Because the kernel is computed on the level of presheaves, we see that $K = F_{\mathcal{K}, A}$ and we conclude $\mathcal{K}$ is adequate. To prove the result for the cokernel, denote $\mathcal{Q}'$ the presheaf cokernel of $\varphi $. Then $Q = F_{\mathcal{Q}', A}$ and $\mathcal{Q} = (\mathcal{Q}')^\# $. Hence $\mathcal{Q}$ is adequate by Lemma <a href="/tag/06VP" data-tag="06VP">46.5.10</a>. 
+    <p>
+      Let $0 \to \mathcal{F}_1 \to \mathcal{F}_2 \to \mathcal{F}_3 \to 0$ is a short exact sequence of $\mathcal{O}$-modules and $\mathcal{F}_1$ and $\mathcal{F}_3$ are adequate. Let $U = \mathop{\mathrm{Spec}}(A)$ be an affine scheme over $S$. Let $F_ i = F_{\mathcal{F}_ i, A}$. The sequence of functors 
+    <p>
+      <div class="equation">
+  \[  0 \to F_1 \to F_2 \to F_3 \to 0  \]
+</div>
+    <p>
+       is exact, because for $V = \mathop{\mathrm{Spec}}(B)$ affine over $U$ we have $H^1(V, \mathcal{F}_1) = 0$ by Lemma <a href="/tag/06VM" data-tag="06VM">46.5.8</a>. Since $F_1$ and $F_3$ are adequate functors by Lemma <a href="/tag/06VI" data-tag="06VI">46.5.2</a> we see that $F_2$ is adequate by Lemma <a href="/tag/06V8" data-tag="06V8">46.3.16</a>. Thus $\mathcal{F}_2$ is adequate. 
+    <p>
+      Let $\mathcal{I} \to \textit{Adeq}(\mathcal{O})$, $i \mapsto \mathcal{F}_ i$ be a diagram. Denote $\mathcal{F} = \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i$ the colimit computed in $\textit{Mod}((\mathit{Sch}/S)_\tau , \mathcal{O})$. To prove (4) it suffices to show that $\mathcal{F}$ is adequate. Let $\mathcal{F}' = \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i$ be the colimit computed in presheaves of $\mathcal{O}$-modules. Then $\mathcal{F} = (\mathcal{F}')^\# $. Let $U = \mathop{\mathrm{Spec}}(A)$ be an affine scheme over $S$. Let $F_ i = F_{\mathcal{F}_ i, A}$. By Lemma <a href="/tag/06V4" data-tag="06V4">46.3.12</a> the functor $\mathop{\mathrm{colim}}\nolimits _ i F_ i = F_{\mathcal{F}', A}$ is adequate. Lemma <a href="/tag/06VP" data-tag="06VP">46.5.10</a> shows that $\mathcal{F}$ is adequate. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma tells us that the total direct image $Rf_*\mathcal{F}$ of an adequate module under a quasi-compact and quasi-separated morphism is a complex whose cohomology sheaves are adequate. 
+</p>
+<p>
+<article class="env-lemma" id="06VR">
+  <p><a class="environment-identifier" href="/tag/06VR">Lemma <span data-tag="06VR">46.5.12</span>.</a> Let $f : T \to S$ be a quasi-compact and quasi-separated morphism of schemes. For any adequate $\mathcal{O}_ T$-module on $(\mathit{Sch}/T)_\tau $ the pushforward $f_*\mathcal{F}$ and the higher direct images $R^ if_*\mathcal{F}$ are adequate $\mathcal{O}_ S$-modules on $(\mathit{Sch}/S)_\tau $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      First we explain how to compute the higher direct images. Choose an injective resolution $\mathcal{F} \to \mathcal{I}^\bullet $. Then $R^ if_*\mathcal{F}$ is the $i$th cohomology sheaf of the complex $f_*\mathcal{I}^\bullet $. Hence $R^ if_*\mathcal{F}$ is the sheaf associated to the presheaf which associates to an object $U/S$ of $(\mathit{Sch}/S)_\tau $ the module 
+    <p>
+      <div class="equation">
+  \begin{align*}  \frac{\mathop{\mathrm{Ker}}(f_*\mathcal{I}^ i(U) \to f_*\mathcal{I}^{i + 1}(U))}{\mathop{\mathrm{Im}}(f_*\mathcal{I}^{i - 1}(U) \to f_*\mathcal{I}^ i(U))} &  = \frac{\mathop{\mathrm{Ker}}(\mathcal{I}^ i(U \times _ S T) \to \mathcal{I}^{i + 1}(U \times _ S T))}{\mathop{\mathrm{Im}}(\mathcal{I}^{i - 1}(U \times _ S T) \to \mathcal{I}^ i(U \times _ S T))} \\ &  = H^ i(U \times _ S T, \mathcal{F}) \\ &  = H^ i((\mathit{Sch}/U \times _ S T)_\tau , \mathcal{F}|_{(\mathit{Sch}/U \times _ S T)_\tau }) \\ &  = H^ i(U \times _ S T, \mathcal{F}|_{(U \times _ S T)_{Zar}}) \end{align*}
+</div>
+    <p>
+       The first equality by Topologies, Lemma <a href="/tag/021W" data-tag="021W">34.7.12</a> (and its analogues for other topologies), the second equality by definition of cohomology of $\mathcal{F}$ over an object of $(\mathit{Sch}/T)_\tau $, the third equality by Cohomology on Sites, Lemma <a href="/tag/03F3" data-tag="03F3">21.7.1</a>, and the last equality by Lemma <a href="/tag/06VM" data-tag="06VM">46.5.8</a>. Thus by Lemma <a href="/tag/06VP" data-tag="06VP">46.5.10</a> it suffices to prove the claim stated in the following paragraph. 
+    <p>
+      Let $A$ be a ring. Let $T$ be a scheme quasi-compact and quasi-separated over $A$. Let $\mathcal{F}$ be an adequate $\mathcal{O}_ T$-module on $(\mathit{Sch}/T)_\tau $. For an $A$-algebra $B$ set $T_ B = T \times _{\mathop{\mathrm{Spec}}(A)} \mathop{\mathrm{Spec}}(B)$ and denote $\mathcal{F}_ B = \mathcal{F}|_{(T_ B)_{Zar}}$ the restriction of $\mathcal{F}$ to the small Zariski site of $T_ B$. (Recall that this is a “usual” quasi-coherent sheaf on the scheme $T_ B$, see Lemma <a href="/tag/06VM" data-tag="06VM">46.5.8</a>.) Claim: The functor 
+    <p>
+      <div class="equation">
+  \[  B \longmapsto H^ q(T_ B, \mathcal{F}_ B)  \]
+</div>
+    <p>
+       is adequate. We will prove the lemma by the usual procedure of cutting $T$ into pieces. 
+    <p>
+      Case I: $T$ is affine. In this case the schemes $T_ B$ are all affine and $H^ q(T_ B, \mathcal{F}_ B) = 0$ for all $q \geq 1$. The functor $B \mapsto H^0(T_ B, \mathcal{F}_ B)$ is adequate by Lemma <a href="/tag/06VA" data-tag="06VA">46.3.18</a>. 
+    <p>
+      Case II: $T$ is separated. Let $n$ be the minimal number of affines needed to cover $T$. We argue by induction on $n$. The base case is Case I. Choose an affine open covering $T = V_1 \cup \ldots \cup V_ n$. Set $V = V_1 \cup \ldots \cup V_{n - 1}$ and $U = V_ n$. Observe that 
+    <p>
+      <div class="equation">
+  \[  U \cap V = (V_1 \cap V_ n) \cup \ldots \cup (V_{n - 1} \cap V_ n)  \]
+</div>
+    <p>
+       is also a union of $n - 1$ affine opens as $T$ is separated, see Schemes, Lemma <a href="/tag/01KP" data-tag="01KP">26.21.7</a>. Note that for each $B$ the base changes $U_ B$, $V_ B$ and $(U \cap V)_ B = U_ B \cap V_ B$ behave in the same way. Hence we see that for each $B$ we have a long exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to H^0(T_ B, \mathcal{F}_ B) \to H^0(U_ B, \mathcal{F}_ B) \oplus H^0(V_ B, \mathcal{F}_ B) \to H^0((U \cap V)_ B, \mathcal{F}_ B) \to H^1(T_ B, \mathcal{F}_ B) \to \ldots  \]
+</div>
+    <p>
+       functorial in $B$, see Cohomology, Lemma <a href="/tag/01EB" data-tag="01EB">20.8.2</a>. By induction hypothesis the functors $B \mapsto H^ q(U_ B, \mathcal{F}_ B)$, $B \mapsto H^ q(V_ B, \mathcal{F}_ B)$, and $B \mapsto H^ q((U \cap V)_ B, \mathcal{F}_ B)$ are adequate. Using Lemmas <a href="/tag/06V3" data-tag="06V3">46.3.11</a> and <a href="/tag/06V2" data-tag="06V2">46.3.10</a> we see that our functor $B \mapsto H^ q(T_ B, \mathcal{F}_ B)$ sits in the middle of a short exact sequence whose outer terms are adequate. Thus the claim follows from Lemma <a href="/tag/06V8" data-tag="06V8">46.3.16</a>. 
+    <p>
+      Case III: General quasi-compact and quasi-separated case. The proof is again by induction on the number $n$ of affines needed to cover $T$. The base case $n = 1$ is Case I. Choose an affine open covering $T = V_1 \cup \ldots \cup V_ n$. Set $V = V_1 \cup \ldots \cup V_{n - 1}$ and $U = V_ n$. Note that since $T$ is quasi-separated $U \cap V$ is a quasi-compact open of an affine scheme, hence Case II applies to it. The rest of the argument proceeds in exactly the same manner as in the paragraph above and is omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

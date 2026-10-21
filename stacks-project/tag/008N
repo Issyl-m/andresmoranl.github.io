@@ -1,0 +1,105 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sheaves-section-abelian-presheaves-functorial" class="tex-section"><span data-tag="008N">6.22</span> Continuous maps and abelian sheaves</h2>
+
+<p>
+Let $f : X \to Y$ be a continuous map. We claim there are functors 
+</p>
+<div class="equation">
+  \begin{eqnarray*}  f_* : \textit{PAb}(X) &  \longrightarrow &  \textit{PAb}(Y) \\  f_* : \textit{Ab}(X) &  \longrightarrow &  \textit{Ab}(Y) \\  f_ p : \textit{PAb}(Y) &  \longrightarrow &  \textit{PAb}(X) \\  f^{-1} : \textit{Ab}(Y) &  \longrightarrow &  \textit{Ab}(X) \end{eqnarray*}
+</div>
+<p>
+ with similar properties to their counterparts in Section <a href="/tag/008C" data-tag="008C">6.21</a>. To see this we argue in the following way. 
+</p>
+<p>
+Each of the functors will be constructed in the same way as the corresponding functor in Section <a href="/tag/008C" data-tag="008C">6.21</a>. This works because all the colimits in that section are directed colimits (but we will work through it below). 
+</p>
+<p>
+First off, given an abelian presheaf $\mathcal{F}$ on $X$ and an abelian presheaf $\mathcal{G}$ on $Y$ we define 
+</p>
+<div class="equation">
+  \begin{eqnarray*}  f_*\mathcal{F}(V) &  = &  \mathcal{F}(f^{-1}(V)) \\  f_ p\mathcal{G}(U) &  = &  \mathop{\mathrm{colim}}\nolimits _{f(U) \subset V} \mathcal{G}(V) \end{eqnarray*}
+</div>
+<p>
+ as abelian groups. The restriction mappings are the same as the restriction mappings for presheaves of sets (and they are all homomorphisms of abelian groups). 
+</p>
+<p>
+The assignments $\mathcal{F} \mapsto f_*\mathcal{F}$ and $\mathcal{G} \to f_ p\mathcal{G}$ are functors on the categories of presheaves of abelian groups. This is clear, as (for example) a map of abelian presheaves $\mathcal{G}_1 \to \mathcal{G}_2$ gives rise to a map of directed systems $\{ \mathcal{G}_1(V)\} _{f(U) \subset V} \to \{ \mathcal{G}_2(V)\} _{f(U) \subset V}$ all of whose maps are homomorphisms and hence gives rise to a homomorphism of abelian groups $f_ p\mathcal{G}_1(U) \to f_ p\mathcal{G}_2(U)$. 
+</p>
+<p>
+The functors $f_*$ and $f_ p$ are adjoint on the category of presheaves of abelian groups, i.e., we have 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\textit{PAb}(X)}(f_ p\mathcal{G}, \mathcal{F}) = \mathop{\mathrm{Mor}}\nolimits _{\textit{PAb}(Y)}(\mathcal{G}, f_*\mathcal{F}).  \]
+</div>
+<p>
+ To prove this, note that the map $i_\mathcal {G} : \mathcal{G} \to f_* f_ p\mathcal{G}$ from the proof of Lemma <a href="/tag/008F" data-tag="008F">6.21.3</a> is a map of abelian presheaves. Hence if $\psi : f_ p\mathcal{G} \to \mathcal{F}$ is a map of abelian presheaves, then the corresponding map $\mathcal{G} \to f_*\mathcal{F}$ is the map $f_*\psi \circ i_\mathcal {G} : \mathcal{G} \to f_* f_ p \mathcal{G} \to f_* \mathcal{F}$ is also a map of abelian presheaves. For the other direction we point out that the map $c_\mathcal {F} : f_ p f_* \mathcal{F} \to \mathcal{F}$ from the proof of Lemma <a href="/tag/008F" data-tag="008F">6.21.3</a> is a map of abelian presheaves as well (since it is made out of restriction mappings of $\mathcal{F}$ which are all homomorphisms). Hence given a map of abelian presheaves $\varphi : \mathcal{G} \to f_*\mathcal{F}$ the map $c_\mathcal {F} \circ f_ p\varphi : f_ p\mathcal{G} \to \mathcal{F}$ is a map of abelian presheaves as well. Since these constructions $\psi \mapsto f_*\psi $ and $\varphi \mapsto c_\mathcal {F} \circ f_ p\varphi $ are inverse to each other as constructions on maps of presheaves of sets we see they are also inverse to each other on maps of abelian presheaves. 
+</p>
+<p>
+If $\mathcal{F}$ is an abelian sheaf on $Y$, then $f_*\mathcal{F}$ is an abelian sheaf on $X$. This is true because of the definition of an abelian sheaf and because this is true for sheaves of sets, see Lemma <a href="/tag/008D" data-tag="008D">6.21.1</a>. This defines the functor $f_*$ on the category of abelian sheaves. 
+</p>
+<p>
+We define $f^{-1}\mathcal{G} = (f_ p\mathcal{G})^\# $ as before. Adjointness of $f_*$ and $f^{-1}$ follows formally as in the case of presheaves of sets. Here is the argument: 
+</p>
+<div class="equation">
+  \begin{eqnarray*}  \mathop{\mathrm{Mor}}\nolimits _{\textit{Ab}(X)}(f^{-1}\mathcal{G}, \mathcal{F}) &  = &  \mathop{\mathrm{Mor}}\nolimits _{\textit{PAb}(X)}(f_ p\mathcal{G}, \mathcal{F}) \\ &  = &  \mathop{\mathrm{Mor}}\nolimits _{\textit{PAb}(Y)}(\mathcal{G}, f_*\mathcal{F}) \\ &  = &  \mathop{\mathrm{Mor}}\nolimits _{\textit{Ab}(Y)}(\mathcal{G}, f_*\mathcal{F}) \end{eqnarray*}
+</div>
+<p>
+<article class="env-lemma" id="008O">
+  <p><a class="environment-identifier" href="/tag/008O">Lemma <span data-tag="008O">6.22.1</span>.</a> Let $f : X \to Y$ be a continuous map. </p>
+  <p><ol>
+  <li><p>
+Let $\mathcal{G}$ be an abelian presheaf on $Y$. Let $x \in X$. The bijection $\mathcal{G}_{f(x)} \to (f_ p\mathcal{G})_ x$ of Lemma <a href="/tag/008G" data-tag="008G">6.21.4</a> is an isomorphism of abelian groups. 
+</p>
+</li><li><p>
+Let $\mathcal{G}$ be an abelian sheaf on $Y$. Let $x \in X$. The bijection $\mathcal{G}_{f(x)} \to (f^{-1}\mathcal{G})_ x$ of Lemma <a href="/tag/008H" data-tag="008H">6.21.5</a> is an isomorphism of abelian groups. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Given a continuous map $f : X \to Y$ and sheaves of abelian groups $\mathcal{F}$ on $X$, $\mathcal{G}$ on $Y$, the notion of an <em>$f$-map $\mathcal{G} \to \mathcal{F}$ of sheaves of abelian groups</em> makes sense. We can just define it exactly as in Definition <a href="/tag/008J" data-tag="008J">6.21.7</a> (replacing maps of sets with homomorphisms of abelian groups) or we can simply say that it is the same as a map of abelian sheaves $\mathcal{G} \to f_*\mathcal{F}$. We will use this notion freely in the following. The group of $f$-maps between $\mathcal{G}$ and $\mathcal{F}$ will be in canonical bijection with the groups $\mathop{\mathrm{Mor}}\nolimits _{\textit{Ab}(X)}(f^{-1}\mathcal{G}, \mathcal{F})$ and $\mathop{\mathrm{Mor}}\nolimits _{\textit{Ab}(Y)}(\mathcal{G}, f_*\mathcal{F})$. 
+</p>
+<p>
+Composition of $f$-maps is defined in exactly the same manner as in the case of $f$-maps of sheaves of sets. In addition, given an $f$-map $\mathcal{G} \to \mathcal{F}$ as above, the induced maps on stalks 
+</p>
+<div class="equation">
+  \[  \varphi _ x : \mathcal{G}_{f(x)} \longrightarrow \mathcal{F}_ x  \]
+</div>
+<p>
+ are abelian group homomorphisms. 
+</p>

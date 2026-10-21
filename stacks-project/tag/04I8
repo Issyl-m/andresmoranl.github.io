@@ -1,0 +1,322 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sites-section-localize-morphisms" class="tex-section"><span data-tag="04I8">7.28</span> Localization and morphisms</h2>
+
+<p>
+The following lemma is important in order to understand relation between localization and morphisms of sites and topoi. 
+</p>
+<p>
+<article class="env-lemma" id="03CF">
+  <p><a class="environment-identifier" href="/tag/03CF">Lemma <span data-tag="03CF">7.28.1</span>.</a> Let $f : \mathcal{C} \to \mathcal{D}$ be a morphism of sites corresponding to the continuous functor $u : \mathcal{D} \to \mathcal{C}$. Let $V \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{D})$ and set $U = u(V)$. Then the functor $u' : \mathcal{D}/V \to \mathcal{C}/U$, $V'/V \mapsto u(V')/U$ determines a morphism of sites $f' : \mathcal{C}/U \to \mathcal{D}/V$. The morphism $f'$ fits into a commutative diagram of topoi </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathop{\mathit{Sh}}\nolimits (\mathcal{C}/U) \ar[r]_{j_ U} \ar[d]_{f'} &  \mathop{\mathit{Sh}}\nolimits (\mathcal{C}) \ar[d]^ f \\  \mathop{\mathit{Sh}}\nolimits (\mathcal{D}/V) \ar[r]^{j_ V} &  \mathop{\mathit{Sh}}\nolimits (\mathcal{D}). }  \]
+</div>
+  <p> Using the identifications $\mathop{\mathit{Sh}}\nolimits (\mathcal{C}/U) = \mathop{\mathit{Sh}}\nolimits (\mathcal{C})/h_ U^\# $ and $\mathop{\mathit{Sh}}\nolimits (\mathcal{D}/V) = \mathop{\mathit{Sh}}\nolimits (\mathcal{D})/h_ V^\# $ of Lemma <a href="/tag/00Y1" data-tag="00Y1">7.25.4</a> the functor $(f')^{-1}$ is described by the rule </p>
+  <div class="equation">
+  \[  (f')^{-1}(\mathcal{H} \xrightarrow {\varphi } h_ V^\# ) = (f^{-1}\mathcal{H} \xrightarrow {f^{-1}\varphi } h_ U^\# ).  \]
+</div>
+  <p> Finally, we have $f'_*j_ U^{-1} = j_ V^{-1}f_*$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It is clear that $u'$ is continuous, and hence we get functors $f'_* = (u')^ s = (u')^ p$ (see Sections <a href="/tag/00VC" data-tag="00VC">7.5</a> and <a href="/tag/00WU" data-tag="00WU">7.13</a>) and an adjoint $(f')^{-1} = (u')_ s = ((u')_ p\  )^\# $. The assertion $f'_*j_ U^{-1} = j_ V^{-1}f_*$ follows as 
+    <p>
+      <div class="equation">
+  \[  (j_ V^{-1}f_*\mathcal{F})(V'/V) = f_*\mathcal{F}(V') = \mathcal{F}(u(V')) = (j_ U^{-1}\mathcal{F})(u(V')/U) = (f'_*j_ U^{-1}\mathcal{F})(V'/V)  \]
+</div>
+    <p>
+       which holds even for presheaves. What isn't clear a priori is that $(f')^{-1}$ is exact, that the diagram commutes, and that the description of $(f')^{-1}$ holds. 
+    <p>
+      Let $\mathcal{H}$ be a sheaf on $\mathcal{D}/V$. Let us compute $j_{U!}(f')^{-1}\mathcal{H}$. We have 
+    <p>
+      <div class="equation">
+  \begin{eqnarray*}  j_{U!}(f')^{-1}\mathcal{H} &  = ((j_ U)_ p(u'_ p\mathcal{H})^\# )^\#  \\ &  = ((j_ U)_ pu'_ p\mathcal{H})^\#  \\ &  = (u_ p(j_ V)_ p\mathcal{H})^\#  \\ &  = f^{-1}j_{V!}\mathcal{H} \end{eqnarray*}
+</div>
+    <p>
+       The first equality by unwinding the definitions. The second equality by Lemma <a href="/tag/00WY" data-tag="00WY">7.13.4</a>. The third equality because $u \circ j_ V = j_ U \circ u'$. The fourth equality by Lemma <a href="/tag/00WY" data-tag="00WY">7.13.4</a> again. All of the equalities above are isomorphisms of functors, and hence we may interpret this as saying that the following diagram of categories and functors is commutative 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathop{\mathit{Sh}}\nolimits (\mathcal{C}/U) \ar[r]_{j_{U!}} &  \mathop{\mathit{Sh}}\nolimits (\mathcal{C})/h_ U^\#  \ar[r] &  \mathop{\mathit{Sh}}\nolimits (\mathcal{C}) \\  \mathop{\mathit{Sh}}\nolimits (\mathcal{D}/V) \ar[r]^{j_{V!}} \ar[u]^{(f')^{-1}} &  \mathop{\mathit{Sh}}\nolimits (\mathcal{D})/h_ V^\#  \ar[r] \ar[u]^{f^{-1}} &  \mathop{\mathit{Sh}}\nolimits (\mathcal{D}) \ar[u]^{f^{-1}} }  \]
+</div>
+    <p>
+       The middle arrow makes sense as $f^{-1}h_ V^\#  = (h_{u(V)})^\#  = h_ U^\# $, see Lemma <a href="/tag/04D3" data-tag="04D3">7.13.5</a>. In particular this proves the description of $(f')^{-1}$ given in the statement of the lemma. Since by Lemma <a href="/tag/00Y1" data-tag="00Y1">7.25.4</a> the left horizontal arrows are equivalences and since $f^{-1}$ is exact by assumption we conclude that $(f')^{-1} = u'_ s$ is exact. Namely, because it is a left adjoint it is already right exact (Categories, Lemma <a href="/tag/0038" data-tag="0038">4.24.5</a>). Hence we only need to show that it transforms a final object into a final object and commutes with fibre products (Categories, Lemma <a href="/tag/0035" data-tag="0035">4.23.2</a>). Both are clear for the induced functor $f^{-1} : \mathop{\mathit{Sh}}\nolimits (\mathcal{D})/h_ V^\#  \to \mathop{\mathit{Sh}}\nolimits (\mathcal{C})/h_ U^\# $. This proves that $f'$ is a morphism of sites. 
+    <p>
+      We still have to verify that $(f')^{-1}j_ V^{-1} = j_ U^{-1}f^{-1}$. To see this use the formula above and the description in Lemma <a href="/tag/03EE" data-tag="03EE">7.25.7</a>. Namely, combined these give, for any sheaf $\mathcal{G}$ on $\mathcal{D}$, that 
+    <p>
+      <div class="equation">
+  \[  j_{U!}(f')^{-1}j_ V^{-1}\mathcal{G} = f^{-1}j_{V!}j_ V^{-1}\mathcal{G} = f^{-1}(\mathcal{G} \times h_ V^\# ) = f^{-1}\mathcal{G} \times h_ U^\#  = j_{U!}j_ U^{-1}f^{-1}\mathcal{G}.  \]
+</div>
+    <p>
+       Since the functor $j_{U!}$ induces an equivalence $\mathop{\mathit{Sh}}\nolimits (\mathcal{C}/U) \to \mathop{\mathit{Sh}}\nolimits (\mathcal{C})/h_ U^\# $ we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma is a special case of the more general Lemma <a href="/tag/03CF" data-tag="03CF">7.28.1</a> above. 
+</p>
+<p>
+<article class="env-lemma" id="03EF">
+  <p><a class="environment-identifier" href="/tag/03EF">Lemma <span data-tag="03EF">7.28.2</span>.</a> Let $\mathcal{C}$, $\mathcal{D}$ be sites. Let $u : \mathcal{D} \to \mathcal{C}$ be a functor. Let $V \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{D})$. Set $U = u(V)$. Assume that </p>
+  <p><ol>
+  <li><p>
+$\mathcal{C}$ and $\mathcal{D}$ have all finite limits, 
+</p>
+</li><li><p>
+$u$ is continuous, and 
+</p>
+</li><li><p>
+$u$ commutes with finite limits. 
+</p>
+</li>
+</ol></p>
+  <p> There exists a commutative diagram of morphisms of sites </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{C}/U \ar[r]_{j_ U} \ar[d]_{f'} &  \mathcal{C} \ar[d]^ f \\  \mathcal{D}/V \ar[r]^{j_ V} &  \mathcal{D} }  \]
+</div>
+  <p> where the right vertical arrow corresponds to $u$, the left vertical arrow corresponds to the functor $u' : \mathcal{D}/V \to \mathcal{C}/U$, $V'/V \mapsto u(V')/u(V)$ and the horizontal arrows correspond to the functors $\mathcal{C} \to \mathcal{C}/U$, $X \mapsto X \times U$ and $\mathcal{D} \to \mathcal{D}/V$, $Y \mapsto Y \times V$ as in Lemma <a href="/tag/03CE" data-tag="03CE">7.27.2</a>. Moreover, the associated diagram of morphisms of topoi is equal to the diagram of Lemma <a href="/tag/03CF" data-tag="03CF">7.28.1</a>. In particular we have $f'_*j_ U^{-1} = j_ V^{-1}f_*$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Note that $u$ satisfies the assumptions of Proposition <a href="/tag/00X6" data-tag="00X6">7.14.7</a> and hence induces a morphism of sites $f : \mathcal{C} \to \mathcal{D}$ by that proposition. It is clear that $u$ induces a functor $u'$ as indicated. It is clear that this functor also satisfies the assumptions of Proposition <a href="/tag/00X6" data-tag="00X6">7.14.7</a>. Hence we get a morphism of sites $f' : \mathcal{C}/U \to \mathcal{D}/V$. The diagram commutes by our definition of composition of morphisms of sites (see Definition <a href="/tag/03CC" data-tag="03CC">7.14.5</a>) and because 
+    <p>
+      <div class="equation">
+  \[  u(Y \times V) = u(Y) \times u(V) = u(Y) \times U  \]
+</div>
+    <p>
+       which shows that the diagram of categories and functors opposite to the diagram of the lemma commutes. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+At this point we can localize a site, we know how to relocalize, and we can localize a morphism of sites at an object of the site downstairs. If we combine these then we get the following kind of diagram. 
+</p>
+<p>
+<article class="env-lemma" id="04IN">
+  <p><a class="environment-identifier" href="/tag/04IN">Lemma <span data-tag="04IN">7.28.3</span>.</a> Let $f : \mathcal{C} \to \mathcal{D}$ be a morphism of sites corresponding to the continuous functor $u : \mathcal{D} \to \mathcal{C}$. Let $V \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{D})$, $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and $c : U \to u(V)$ a morphism of $\mathcal{C}$. There exists a commutative diagram of topoi </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathop{\mathit{Sh}}\nolimits (\mathcal{C}/U) \ar[r]_{j_ U} \ar[d]_{f_ c} &  \mathop{\mathit{Sh}}\nolimits (\mathcal{C}) \ar[d]^ f \\  \mathop{\mathit{Sh}}\nolimits (\mathcal{D}/V) \ar[r]^{j_ V} &  \mathop{\mathit{Sh}}\nolimits (\mathcal{D}). }  \]
+</div>
+  <p> We have $f_ c = f' \circ j_{U/u(V)}$ where $f' : \mathop{\mathit{Sh}}\nolimits (\mathcal{C}/u(V)) \to \mathop{\mathit{Sh}}\nolimits (\mathcal{D}/V)$ is as in Lemma <a href="/tag/03CF" data-tag="03CF">7.28.1</a> and $j_{U/u(V)} : \mathop{\mathit{Sh}}\nolimits (\mathcal{C}/U) \to \mathop{\mathit{Sh}}\nolimits (\mathcal{C}/u(V))$ is as in Lemma <a href="/tag/03EH" data-tag="03EH">7.25.8</a>. Using the identifications $\mathop{\mathit{Sh}}\nolimits (\mathcal{C}/U) = \mathop{\mathit{Sh}}\nolimits (\mathcal{C})/h_ U^\# $ and $\mathop{\mathit{Sh}}\nolimits (\mathcal{D}/V) = \mathop{\mathit{Sh}}\nolimits (\mathcal{D})/h_ V^\# $ of Lemma <a href="/tag/00Y1" data-tag="00Y1">7.25.4</a> the functor $(f_ c)^{-1}$ is described by the rule </p>
+  <div class="equation">
+  \[  (f_ c)^{-1}(\mathcal{H} \xrightarrow {\varphi } h_ V^\# ) = (f^{-1}\mathcal{H} \times _{f^{-1}\varphi , h_{u(V)}^\# , c} h_ U^\#  \rightarrow h_ U^\# ).  \]
+</div>
+  <p> Finally, given any morphisms $b : V' \to V$, $a : U' \to U$ and $c' : U' \to u(V')$ such that </p>
+  <div class="equation">
+  \[  \xymatrix{ U' \ar[r]_-{c'} \ar[d]_ a &  u(V') \ar[d]^{u(b)} \\  U \ar[r]^-c &  u(V) }  \]
+</div>
+  <p> commutes, then the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathop{\mathit{Sh}}\nolimits (\mathcal{C}/U') \ar[r]_{j_{U'/U}} \ar[d]_{f_{c'}} &  \mathop{\mathit{Sh}}\nolimits (\mathcal{C}/U) \ar[d]^{f_ c} \\  \mathop{\mathit{Sh}}\nolimits (\mathcal{D}/V') \ar[r]^{j_{V'/V}} &  \mathop{\mathit{Sh}}\nolimits (\mathcal{D}/V). }  \]
+</div>
+  <p> commutes. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This lemma proves itself, and is more a collection of things we know at this stage of the development of theory. For example the commutativity of the first square follows from the commutativity of Diagram (<a href="/tag/04IK" data-tag="04IK">7.25.8.1</a>) and the commutativity of the diagram in Lemma <a href="/tag/03CF" data-tag="03CF">7.28.1</a>. The description of $f_ c^{-1}$ follows on combining Lemma <a href="/tag/04IL" data-tag="04IL">7.25.9</a> with Lemma <a href="/tag/03CF" data-tag="03CF">7.28.1</a>. The commutativity of the last square then follows from the equality 
+    <p>
+      <div class="equation">
+  \[  f^{-1}\mathcal{H} \times _{h_{u(V)}^\# , c} h_ U^\#  \times _{h_ U^\# } h_{U'}^\#  = f^{-1}(\mathcal{H} \times _{h_ V^\# } h_{V'}^\# ) \times _{h_{u(V'), c'}^\# } h_{U'}^\#   \]
+</div>
+    <p>
+       which is formal using that $f^{-1}h_ V^\#  = h_{u(V)}^\# $ and $f^{-1}h_{V'}^\#  = h_{u(V')}^\# $, see Lemma <a href="/tag/04D3" data-tag="04D3">7.13.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In the following lemma we find another kind of functoriality of localization, in case the morphism of topoi comes from a cocontinuous functor. This is a kind of diagram which is different from the diagram in Lemma <a href="/tag/03CF" data-tag="03CF">7.28.1</a>, and in particular, in general the equality $f'_*j_ U^{-1} = j_ V^{-1}f_*$ seen in Lemma <a href="/tag/03CF" data-tag="03CF">7.28.1</a> does not hold in the situation of the following lemma. 
+</p>
+<p>
+<article class="env-lemma" id="03EG">
+  <p><a class="environment-identifier" href="/tag/03EG">Lemma <span data-tag="03EG">7.28.4</span>.</a> Let $\mathcal{C}$, $\mathcal{D}$ be sites. Let $u : \mathcal{C} \to \mathcal{D}$ be a cocontinuous functor. Let $U$ be an object of $\mathcal{C}$, and set $V = u(U)$. We have a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{C}/U \ar[r]_{j_ U} \ar[d]_{u'} &  \mathcal{C} \ar[d]^ u \\  \mathcal{D}/V \ar[r]^-{j_ V} &  \mathcal{D} }  \]
+</div>
+  <p> where the left vertical arrow is $u' : \mathcal{C}/U \to \mathcal{D}/V$, $U'/U \mapsto V'/V$. Then $u'$ is cocontinuous also and we get a commutative diagram of topoi </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathop{\mathit{Sh}}\nolimits (\mathcal{C}/U) \ar[r]_{j_ U} \ar[d]_{f'} &  \mathop{\mathit{Sh}}\nolimits (\mathcal{C}) \ar[d]^ f \\  \mathop{\mathit{Sh}}\nolimits (\mathcal{D}/V) \ar[r]^-{j_ V} &  \mathop{\mathit{Sh}}\nolimits (\mathcal{D}) }  \]
+</div>
+  <p> where $f$ (resp. $f'$) corresponds to $u$ (resp. $u'$). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The commutativity of the first diagram is clear. It implies the commutativity of the second diagram provided we show that $u'$ is cocontinuous. 
+    <p>
+      Let $U'/U$ be an object of $\mathcal{C}/U$. Let $\{ V_ j/V \to u(U')/V\} _{j \in J}$ be a covering of $u(U')/V$ in $\mathcal{D}/V$. Since $u$ is cocontinuous there exists a covering $\{ U_ i' \to U'\} _{i \in I}$ such that the family $\{ u(U_ i') \to u(U')\} $ refines the covering $\{ V_ j \to u(U')\} $ in $\mathcal{D}$. In other words, there exists a map of index sets $\alpha : I \to J$ and morphisms $\phi _ i : u(U_ i') \to V_{\alpha (i)}$ over $U'$. Think of $U_ i'$ as an object over $U$ via the composition $U'_ i \to U' \to U$. Then $\{ U'_ i/U \to U'/U\} $ is a covering of $\mathcal{C}/U$ such that $\{ u(U_ i')/V \to u(U')/V\} $ refines $\{ V_ j/V \to u(U')/V\} $ (use the same $\alpha $ and the same maps $\phi _ i$). Hence $u' : \mathcal{C}/U \to \mathcal{D}/V$ is cocontinuous. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0D5R">
+  <p><a class="environment-identifier" href="/tag/0D5R">Lemma <span data-tag="0D5R">7.28.5</span>.</a> Let $\mathcal{C}$, $\mathcal{D}$ be sites. Let $u : \mathcal{C} \to \mathcal{D}$ be a cocontinuous functor. Let $V$ be an object of $\mathcal{D}$. Let ${}^ u_ V\mathcal{I}$ be the category introduced in Section <a href="/tag/00XF" data-tag="00XF">7.19</a>. We have a commutative diagram </p>
+  <div class="equation">
+  \[  \vcenter { \xymatrix{ \, _ V^ u\mathcal{I} \ar[r]_ j \ar[d]_{u'} &  \mathcal{C} \ar[d]^ u \\  \mathcal{D}/V \ar[r]^-{j_ V} &  \mathcal{D} } } \quad \text{where}\quad \begin{matrix}  j : (U, \psi ) \mapsto U 
+
+\\  u' : (U, \psi ) \mapsto (\psi : u(U) \to V) 
+
+\end{matrix}  \]
+</div>
+  <p> Declare a family of morphisms $\{ (U_ i, \psi _ i) \to (U, \psi )\} $ of ${}^ u_ V\mathcal{I}$ to be a covering if and only if $\{ U_ i \to U\} $ is a covering in $\mathcal{C}$. Then </p>
+  <p><ol>
+  <li><p>
+${}^ u_ V\mathcal{I}$ is a site, 
+</p>
+</li><li><p>
+$j$ is continuous and cocontinuous, 
+</p>
+</li><li><p>
+$u'$ is cocontinuous, 
+</p>
+</li><li><p>
+we get a commutative diagram of topoi 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathop{\mathit{Sh}}\nolimits ({}^ u_ V\mathcal{I}) \ar[r]_ j \ar[d]_{f'} &  \mathop{\mathit{Sh}}\nolimits (\mathcal{C}) \ar[d]^ f \\  \mathop{\mathit{Sh}}\nolimits (\mathcal{D}/V) \ar[r]^-{j_ V} &  \mathop{\mathit{Sh}}\nolimits (\mathcal{D}) }  \]
+</div>
+<p>
+ where $f$ (resp. $f'$) corresponds to $u$ (resp. $u'$), and 
+</p>
+</li><li><p>
+we have $f'_*j^{-1} = j_ V^{-1}f_*$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Parts (1), (2), (3), and (4) are straightforward consequences of the definitions and the fact that the functor $j$ commutes with fibre products. We omit the details. To see (5) recall that $f_*$ is given by ${}_ su = {}_ pu$. Hence the value of $j_ V^{-1}f_*\mathcal{F}$ on $V'/V$ is the value of ${}_ pu\mathcal{F}$ on $V'$ which is the limit of the values of $\mathcal{F}$ on the category ${}^ u_{V'}\mathcal{I}$. Clearly, there is an equivalence of categories 
+    <p>
+      <div class="equation">
+  \[  {}^ u_{V'}\mathcal{I} \to {}^{u'}_{V'/V}\mathcal{I}  \]
+</div>
+    <p>
+       Since the value of $f'_*j^{-1}\mathcal{F}$ on $V'/V$ is given by the limit of the values of $j^{-1}\mathcal{F}$ on the category ${}^{u'}_{V'/V}\mathcal{I}$ and since the values of $j^{-1}\mathcal{F}$ on objects of ${}^ u_ V\mathcal{I}$ are just the values of $\mathcal{F}$ (by Lemma <a href="/tag/00XR" data-tag="00XR">7.21.5</a> as $j$ is continuous and cocontinuous) we see that (5) is true. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following two results are of a slightly different nature. 
+</p>
+<p>
+<article class="env-lemma" id="0FN1">
+  <p><a class="environment-identifier" href="/tag/0FN1">Lemma <span data-tag="0FN1">7.28.6</span>.</a> Assume given sites $\mathcal{C}', \mathcal{C}, \mathcal{D}', \mathcal{D}$ and functors </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{C}' \ar[r]_{v'} \ar[d]_{u'} &  \mathcal{C} \ar[d]^ u \\  \mathcal{D}' \ar[r]^ v &  \mathcal{D} }  \]
+</div>
+  <p> Assume </p>
+  <p><ol>
+  <li><p>
+$u$, $u'$, $v$, and $v'$ are cocontinuous giving rise to morphisms of topoi $f$, $f'$, $g$, and $g'$ by Lemma <a href="/tag/00XO" data-tag="00XO">7.21.1</a>, 
+</p>
+</li><li><p>
+$v \circ u' = u \circ v'$, 
+</p>
+</li><li><p>
+$v$ and $v'$ are continuous as well as cocontinuous, and 
+</p>
+</li><li><p>
+for any object $V'$ of $\mathcal{D}'$ the functor ${}^{u'}_{V'}\mathcal{I} \to {}^{\  \  \  u}_{v(V')}\mathcal{I}$ given by $v$ is cofinal. 
+</p>
+</li>
+</ol></p>
+  <p> Then $f'_* \circ (g')^{-1} = g^{-1} \circ f_*$ and $g'_! \circ (f')^{-1} = f^{-1} \circ g_!$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The categories ${}^{u'}_{V'}\mathcal{I}$ and ${}^{\  \  \  u}_{v(V')}\mathcal{I}$ are defined in Section <a href="/tag/00XF" data-tag="00XF">7.19</a>. The functor in condition (4) sends the object $\psi : u'(U') \to V'$ of ${}^{u'}_{V'}\mathcal{I}$ to the object $v(\psi ) : uv'(U') = vu'(U') \to v(V')$ of ${}^{\  \  \  u}_{v(V')}\mathcal{I}$. Recall that $g^{-1}$ is given by $v^ p$ (Lemma <a href="/tag/00XR" data-tag="00XR">7.21.5</a>) and $f_*$ is given by ${}_ su = {}_ pu$. Hence the value of $g^{-1}f_*\mathcal{F}$ on $V'$ is the value of ${}_ pu\mathcal{F}$ on $v(V')$ which is the limit 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{lim}}\nolimits _{u(U) \to v(V') \in \mathop{\mathrm{Ob}}\nolimits ({}^{\  \  \  u}_{v(V')}\mathcal{I}^{opp})} \mathcal{F}(U)  \]
+</div>
+    <p>
+       By the same reasoning, the value of $f'_*(g')^{-1}\mathcal{F}$ on $V'$ is given by the limit 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{lim}}\nolimits _{u'(U') \to V' \in \mathop{\mathrm{Ob}}\nolimits ({}^{u'}_{V'}\mathcal{I}^{opp})} \mathcal{F}(v'(U'))  \]
+</div>
+    <p>
+       Thus assumption (4) and Categories, Lemma <a href="/tag/002R" data-tag="002R">4.17.4</a> show that these agree and the first equality of the lemma is proved. The second equality follows from the first by uniqueness of adjoints. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FN2">
+  <p><a class="environment-identifier" href="/tag/0FN2">Lemma <span data-tag="0FN2">7.28.7</span>.</a> Assume given sites $\mathcal{C}', \mathcal{C}, \mathcal{D}', \mathcal{D}$ and functors </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{C}' \ar[r]_{v'} &  \mathcal{C} \\  \mathcal{D}' \ar[r]^ v \ar[u]^{u'} &  \mathcal{D} \ar[u]_ u }  \]
+</div>
+  <p> With notation as in Sections <a href="/tag/00X0" data-tag="00X0">7.14</a> and <a href="/tag/00XN" data-tag="00XN">7.21</a> assume </p>
+  <p><ol>
+  <li><p>
+$u$ and $u'$ are continuous giving rise to morphisms of sites $f$ and $f'$, 
+</p>
+</li><li><p>
+$v$ and $v'$ are cocontinuous giving rise to morphisms of topoi $g$ and $g'$, 
+</p>
+</li><li><p>
+$u \circ v = v' \circ u'$, and 
+</p>
+</li><li><p>
+$v$ and $v'$ are continuous as well as cocontinuous. 
+</p>
+</li>
+</ol></p>
+  <p> Then<a class="footnotemark" href="#a0000072894" id="a0000072894-mark"><sup>1</sup></a> $f'_* \circ (g')^{-1} = g^{-1} \circ f_*$ and $g'_! \circ (f')^{-1} = f^{-1} \circ g_!$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Namely, we have 
+    <p>
+      <div class="equation">
+  \[  f'_*(g')^{-1}\mathcal{F} = (u')^ p((v')^ p\mathcal{F})^\#  = (u')^ p(v')^ p\mathcal{F}  \]
+</div>
+    <p>
+       The first equality by definition and the second by Lemma <a href="/tag/00XR" data-tag="00XR">7.21.5</a>. We have 
+    <p>
+      <div class="equation">
+  \[  g^{-1}f_*\mathcal{F} = (v^ pu^ p\mathcal{F})^\#  = ((u')^ p(v')^ p\mathcal{F})^\#  = (u')^ p(v')^ p\mathcal{F}  \]
+</div>
+    <p>
+       The first equality by definition, the second because $u \circ v = v' \circ u'$, the third because we already saw that $(u')^ p(v')^ p\mathcal{F}$ is a sheaf. This proves $f'_* \circ (g')^{-1} = g^{-1} \circ f_*$ and the equality $g'_! \circ (f')^{-1} = f^{-1} \circ g_!$ follows by uniqueness of left adjoints. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

@@ -1,0 +1,329 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="spaces-more-morphisms-section-thickenings" class="tex-section"><span data-tag="05ZJ">76.9</span> Thickenings</h2>
+
+<p>
+The following terminology may not be completely standard, but it is convenient. 
+</p>
+<p>
+<article class="env-definition" id="05ZK">
+  <p><a class="environment-identifier" href="/tag/05ZK">Definition <span data-tag="05ZK">76.9.1</span>.</a> Thickenings. Let $S$ be a scheme. </p>
+  <p><ol>
+  <li><p>
+We say an algebraic space $X'$ is a <em>thickening</em> of an algebraic space $X$ if $X$ is a closed subspace of $X'$ and the associated topological spaces are equal. 
+</p>
+</li><li><p>
+We say $X'$ is a <em>first order thickening</em> of $X$ if $X$ is a closed subspace of $X'$ and the quasi-coherent sheaf of ideals $\mathcal{I} \subset \mathcal{O}_{X'}$ defining $X$ has square zero. 
+</p>
+</li><li><p>
+We say $X'$ is a <em>finite order thickening</em> of $X$ if $X$ is a closed subspace of $X$ and the quasi-coherent sheaf of ideals $\mathcal{I} \subset \mathcal{O}_{X'}$ defining $X$ is nilpotent, i.e., there exists an integer $n \geq 0$ such that $\mathcal{I}^{n + 1} = 0$. 
+</p>
+</li><li><p>
+We say $X'$ is an <em>$n$th order thickening</em> of $X$ if $X$ is a closed subspace of $X$ and $\mathcal{I}^{n + 1} = 0$ where $\mathcal{I} \subset \mathcal{O}_{X'}$ is the quasi-coherent sheaf of ideals defining $X$. 
+</p>
+</li><li><p>
+Given two thickenings $X \subset X'$ and $Y \subset Y'$ a <em>morphism of thickenings</em> is a morphism $f' : X' \to Y'$ such that $f(X) \subset Y$, i.e., such that $f'|_ X$ factors through the closed subspace $Y$. In this situation we set $f = f'|_ X : X \to Y$ and we say that $(f, f') : (X \subset X') \to (Y \subset Y')$ is a morphism of thickenings. 
+</p>
+</li><li><p>
+Let $B$ be an algebraic space. We similarly define <em>thickenings over $B$</em>, and <em>morphisms of thickenings over $B$</em>. This means that the spaces $X, X', Y, Y'$ above are algebraic spaces endowed with a structure morphism to $B$, and that the morphisms $X \to X'$, $Y \to Y'$ and $f' : X' \to Y'$ are morphisms over $B$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+The fundamental equivalence. Note that if $X \subset X'$ is a thickening, then $X \to X'$ is integral and universally bijective. This implies that 
+</p>
+<div class="equation" id="05ZL">
+    <span class="equation-label"><a href="/tag/05ZL" data-tag="05ZL">76.9.1.1</a></span>
+  <div>\begin{equation}  \label{spaces-more-morphisms-equation-equivalence-etale-spaces} X_{spaces, {\acute{e}tale}} = X'_{spaces, {\acute{e}tale}} \end{equation}</div>
+</div>
+<p>
+ via the pullback functor, see Theorem <a href="/tag/05ZH" data-tag="05ZH">76.8.1</a>. Hence we may think of $\mathcal{O}_{X'}$ as a sheaf on $X_{spaces, {\acute{e}tale}}$. Thus a canonical equivalence of locally ringed topoi 
+</p>
+<div class="equation" id="05ZM">
+    <span class="equation-label"><a href="/tag/05ZM" data-tag="05ZM">76.9.1.2</a></span>
+  <div>\begin{equation}  \label{spaces-more-morphisms-equation-fundamental-equivalence} (\mathop{\mathit{Sh}}\nolimits (X'_{spaces, {\acute{e}tale}}), \mathcal{O}_{X'}) \cong (\mathop{\mathit{Sh}}\nolimits (X_{spaces, {\acute{e}tale}}), \mathcal{O}_{X'}) \end{equation}</div>
+</div>
+<p>
+ Below we will frequently combine this with the fully faithfulness result of Properties of Spaces, Theorem <a href="/tag/04KL" data-tag="04KL">66.28.4</a>. For example the closed immersion $i_ X : X \to X'$ corresponds to the surjective map $i_ X^\sharp : \mathcal{O}_{X'} \to \mathcal{O}_ X$. 
+</p>
+<p>
+Let $S$ be a scheme, and let $B$ be an algebraic space over $S$. Let $(f, f') : (X \subset X') \to (Y \subset Y')$ be a morphism of thickenings over $B$. Note that the diagram of continuous functors 
+</p>
+<div class="equation">
+  \[  \xymatrix{ X_{spaces, {\acute{e}tale}} &  Y_{spaces, {\acute{e}tale}} \ar[l] \\  X'_{spaces, {\acute{e}tale}} \ar[u] &  Y'_{spaces, {\acute{e}tale}} \ar[u] \ar[l] }  \]
+</div>
+<p>
+ is commutative and the vertical arrows are equivalences. Hence $f_{spaces, {\acute{e}tale}}$, $f_{small}$, $f'_{spaces, {\acute{e}tale}}$, and $f'_{small}$ all define the same morphism of topoi. Thus we may think of 
+</p>
+<div class="equation">
+  \[  (f')^\sharp : f_{spaces, {\acute{e}tale}}^{-1}\mathcal{O}_{Y'} \longrightarrow \mathcal{O}_{X'}  \]
+</div>
+<p>
+ as a map of sheaves of $\mathcal{O}_ B$-algebras fitting into the commutative diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ f_{spaces, {\acute{e}tale}}^{-1}\mathcal{O}_ Y \ar[r]_-{f^\sharp } \ar[r] &  \mathcal{O}_ X \\  f_{spaces, {\acute{e}tale}}^{-1}\mathcal{O}_{Y'} \ar[r]^-{(f')^\sharp } \ar[u]^{i_ Y^\sharp } &  \mathcal{O}_{X'} \ar[u]_{i_ X^\sharp } }  \]
+</div>
+<p>
+ Here $i_ X : X \to X'$ and $i_ Y : Y \to Y'$ are the names of the given closed immersions. 
+</p>
+<p>
+<article class="env-lemma" id="05ZN">
+  <p><a class="environment-identifier" href="/tag/05ZN">Lemma <span data-tag="05ZN">76.9.2</span>.</a> Let $S$ be a scheme. Let $B$ be an algebraic space over $S$. Let $X \subset X'$ and $Y \subset Y'$ be thickenings of algebraic spaces over $B$. Let $f : X \to Y$ be a morphism of algebraic spaces over $B$. Given any map of $\mathcal{O}_ B$-algebras </p>
+  <div class="equation">
+  \[  \alpha : f_{spaces, {\acute{e}tale}}^{-1}\mathcal{O}_{Y'} \to \mathcal{O}_{X'}  \]
+</div>
+  <p> such that </p>
+  <div class="equation">
+  \[  \xymatrix{ f_{spaces, {\acute{e}tale}}^{-1}\mathcal{O}_ Y \ar[r]_-{f^\sharp } \ar[r] &  \mathcal{O}_ X \\  f_{spaces, {\acute{e}tale}}^{-1}\mathcal{O}_{Y'} \ar[r]^-\alpha \ar[u]^{i_ Y^\sharp } &  \mathcal{O}_{X'} \ar[u]_{i_ X^\sharp } }  \]
+</div>
+  <p> commutes, there exists a unique morphism of $(f, f')$ of thickenings over $B$ such that $\alpha = (f')^\sharp $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      To find $f'$, by Properties of Spaces, Theorem <a href="/tag/04KL" data-tag="04KL">66.28.4</a>, all we have to do is show that the morphism of ringed topoi 
+    <p>
+      <div class="equation">
+  \[  (f_{spaces, {\acute{e}tale}}, \alpha ) : (\mathop{\mathit{Sh}}\nolimits (X_{spaces, {\acute{e}tale}}), \mathcal{O}_{X'}) \longrightarrow (\mathop{\mathit{Sh}}\nolimits (Y_{spaces, {\acute{e}tale}}), \mathcal{O}_{Y'})  \]
+</div>
+    <p>
+       is a morphism of locally ringed topoi. This follows directly from the definition of morphisms of locally ringed topoi (Modules on Sites, Definition <a href="/tag/04HA" data-tag="04HA">18.40.9</a>), the fact that $(f, f^\sharp )$ is a morphism of locally ringed topoi (Properties of Spaces, Lemma <a href="/tag/04KJ" data-tag="04KJ">66.28.1</a>), that $\alpha $ fits into the given commutative diagram, and the fact that the kernels of $i_ X^\sharp $ and $i_ Y^\sharp $ are locally nilpotent. Finally, the fact that $f' \circ i_ X = i_ Y \circ f$ follows from the commutativity of the diagram and another application of Properties of Spaces, Theorem <a href="/tag/04KL" data-tag="04KL">66.28.4</a>. We omit the verification that $f'$ is a morphism over $B$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="05ZP">
+  <p><a class="environment-identifier" href="/tag/05ZP">Lemma <span data-tag="05ZP">76.9.3</span>.</a> Let $S$ be a scheme. Let $X \subset X'$ be a thickening of algebraic spaces over $S$. For any open subspace $U \subset X$ there exists a unique open subspace $U' \subset X'$ such that $U = X \times _{X'} U'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $U' \to X'$ be the object of $X'_{spaces, {\acute{e}tale}}$ corresponding to the object $U \to X$ of $X_{spaces, {\acute{e}tale}}$ via (<a href="/tag/05ZL" data-tag="05ZL">76.9.1.1</a>). The morphism $U' \to X'$ is étale and universally injective, hence an open immersion, see Morphisms of Spaces, Lemma <a href="/tag/05W5" data-tag="05W5">67.51.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $i_ X : X \to X'$ be a thickening of algebraic spaces. Any local section of the kernel $\mathcal{I} = \mathop{\mathrm{Ker}}(i_ X^\sharp ) \subset \mathcal{O}_{X'}$ is locally nilpotent. This gives some control over the structure sheaf of $\mathcal{O}_{X'}$ but technically the class of finite order thickenings $X \subset X'$ is much easier to handle. Namely, if $X'$ is an $n$th order thickening we have a filtration 
+</p>
+<div class="equation">
+  \[  0 \subset \mathcal{I}^ n \subset \mathcal{I}^{n - 1} \subset \ldots \subset \mathcal{I} \subset \mathcal{O}_{X'}  \]
+</div>
+<p>
+ and we see that $X'$ is filtered by closed subspaces 
+</p>
+<div class="equation">
+  \[  X = X_0 \subset X_1 \subset \ldots \subset X_{n - 1} \subset X_{n + 1} = X'  \]
+</div>
+<p>
+ such that each pair $X_ i \subset X_{i + 1}$ is a first order thickening over $B$. Using simple induction arguments many results proved for first order thickenings can be rephrased as results on finite order thickenings. 
+</p>
+<p>
+<article class="env-lemma" id="05ZQ">
+  <p><a class="environment-identifier" href="/tag/05ZQ">Lemma <span data-tag="05ZQ">76.9.4</span>.</a> Let $S$ be a scheme. Let $X \subset X'$ be a thickening of algebraic spaces over $S$. Let $U$ be an affine object of $X_{spaces, {\acute{e}tale}}$. Then </p>
+  <div class="equation">
+  \[  \Gamma (U, \mathcal{O}_{X'}) \to \Gamma (U, \mathcal{O}_ X)  \]
+</div>
+  <p> is surjective where we think of $\mathcal{O}_{X'}$ as a sheaf on $X_{spaces, {\acute{e}tale}}$ via (<a href="/tag/05ZM" data-tag="05ZM">76.9.1.2</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $U' \to X'$ be the étale morphism of algebraic spaces such that $U = X \times _{X'} U'$, see Theorem <a href="/tag/05ZH" data-tag="05ZH">76.8.1</a>. By Limits of Spaces, Lemma <a href="/tag/07VS" data-tag="07VS">70.15.1</a> we see that $U'$ is an affine scheme. Hence $\Gamma (U, \mathcal{O}_{X'}) = \Gamma (U', \mathcal{O}_{U'}) \to \Gamma (U, \mathcal{O}_ U)$ is surjective as $U \to U'$ is a closed immersion of affine schemes. Below we give a direct proof for finite order thickenings which is the case most used in practice. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<article class="env-proof">
+    <p>
+      <strong>Proof for finite order thickenings.</strong>
+       We may assume that $X \subset X'$ is a first order thickening by the principle explained above. Denote $\mathcal{I}$ the kernel of the surjection $\mathcal{O}_{X'} \to \mathcal{O}_ X$. As $\mathcal{I}$ is a quasi-coherent $\mathcal{O}_{X'}$-module and since $\mathcal{I}^2 = 0$ by the definition of a first order thickening we may apply Morphisms of Spaces, Lemma <a href="/tag/04CJ" data-tag="04CJ">67.14.1</a> to see that $\mathcal{I}$ is a quasi-coherent $\mathcal{O}_ X$-module. Hence the lemma follows from the long exact cohomology sequence associated to the short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{I} \to \mathcal{O}_{X'} \to \mathcal{O}_ X \to 0  \]
+</div>
+    <p>
+       and the fact that $H^1_{\acute{e}tale}(U, \mathcal{I}) = 0$ as $\mathcal{I}$ is quasi-coherent, see Descent, Proposition <a href="/tag/03DW" data-tag="03DW">35.9.3</a> and Cohomology of Schemes, Lemma <a href="/tag/01XB" data-tag="01XB">30.2.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="05ZR">
+  <p><a class="environment-identifier" href="/tag/05ZR">Lemma <span data-tag="05ZR">76.9.5</span>.</a> Let $S$ be a scheme. Let $X \subset X'$ be a thickening of algebraic spaces over $S$. If $X$ is (representable by) a scheme, then so is $X'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Note that $X'_{red} = X_{red}$. Hence if $X$ is a scheme, then $X'_{red}$ is a scheme. Thus the result follows from Limits of Spaces, Lemma <a href="/tag/07VU" data-tag="07VU">70.15.3</a>. Below we give a direct proof for finite order thickenings which is the case most often used in practice. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<article class="env-proof">
+    <p>
+      <strong>Proof for finite order thickenings.</strong>
+       It suffices to prove this when $X'$ is a first order thickening of $X$. By Properties of Spaces, Lemma <a href="/tag/03JH" data-tag="03JH">66.13.1</a> there is a largest open subspace of $X'$ which is a scheme. Thus we have to show that every point $x$ of $|X'| = |X|$ is contained in an open subspace of $X'$ which is a scheme. Using Lemma <a href="/tag/05ZP" data-tag="05ZP">76.9.3</a> we may replace $X \subset X'$ by $U \subset U'$ with $x \in U$ and $U$ an affine scheme. Hence we may assume that $X$ is affine. Thus we reduce to the case discussed in the next paragraph. 
+    <p>
+      Assume $X \subset X'$ is a first order thickening where $X$ is an affine scheme. Set $A = \Gamma (X, \mathcal{O}_ X)$ and $A' = \Gamma (X', \mathcal{O}_{X'})$. By Lemma <a href="/tag/05ZQ" data-tag="05ZQ">76.9.4</a> the map $A' \to A$ is surjective. The kernel $I$ is an ideal of square zero. By Properties of Spaces, Lemma <a href="/tag/05Z1" data-tag="05Z1">66.33.1</a> we obtain a canonical morphism $f : X' \to \mathop{\mathrm{Spec}}(A')$ which fits into the following commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X \ar@{=}[d] \ar[r] &  X' \ar[d]^ f \\  \mathop{\mathrm{Spec}}(A) \ar[r] &  \mathop{\mathrm{Spec}}(A') }  \]
+</div>
+    <p>
+       Because the horizontal arrows are thickenings it is clear that $f$ is universally injective and surjective. Hence it suffices to show that $f$ is étale, since then Morphisms of Spaces, Lemma <a href="/tag/05W5" data-tag="05W5">67.51.2</a> will imply that $f$ is an isomorphism. 
+    <p>
+      To prove that $f$ is étale choose an affine scheme $U'$ and an étale morphism $U' \to X'$. It suffices to show that $U' \to X' \to \mathop{\mathrm{Spec}}(A')$ is étale, see Properties of Spaces, Definition <a href="/tag/03FR" data-tag="03FR">66.16.2</a>. Write $U' = \mathop{\mathrm{Spec}}(B')$. Set $U = X \times _{X'} U'$. Since $U$ is a closed subspace of $U'$, it is a closed subscheme, hence $U = \mathop{\mathrm{Spec}}(B)$ with $B' \to B$ surjective. Denote $J = \mathop{\mathrm{Ker}}(B' \to B)$ and note that $J = \Gamma (U, \mathcal{I})$ where $\mathcal{I} = \mathop{\mathrm{Ker}}(\mathcal{O}_{X'} \to \mathcal{O}_ X)$ on $X_{spaces, {\acute{e}tale}}$ as in the proof of Lemma <a href="/tag/05ZQ" data-tag="05ZQ">76.9.4</a>. The morphism $U' \to X' \to \mathop{\mathrm{Spec}}(A')$ induces a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ 0 \ar[r] &  J \ar[r] &  B' \ar[r] &  B \ar[r] &  0 \\  0 \ar[r] &  I \ar[r] \ar[u] &  A' \ar[r] \ar[u] &  A \ar[r] \ar[u] &  0 }  \]
+</div>
+    <p>
+       Now, since $\mathcal{I}$ is a quasi-coherent $\mathcal{O}_ X$-module we have $\mathcal{I} = (\widetilde I)^ a$, see Descent, Definition <a href="/tag/03DU" data-tag="03DU">35.8.2</a> for notation and Descent, Proposition <a href="/tag/03DX" data-tag="03DX">35.8.9</a> for why this is true. Hence we see that $J = I \otimes _ A B$. Finally, note that $A \to B$ is étale as $U \to X$ is étale as the base change of the étale morphism $U' \to X'$. We conclude that $A' \to B'$ is étale by Algebra, Lemma <a href="/tag/05YT" data-tag="05YT">10.143.11</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="05ZS">
+  <p><a class="environment-identifier" href="/tag/05ZS">Lemma <span data-tag="05ZS">76.9.6</span>.</a> Let $S$ be a scheme. Let $X \subset X'$ be a thickening of algebraic spaces over $S$. The functor </p>
+  <div class="equation">
+  \[  V' \longmapsto V = X \times _{X'} V'  \]
+</div>
+  <p> defines an equivalence of categories $X'_{\acute{e}tale}\to X_{\acute{e}tale}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The functor $V' \mapsto V$ defines an equivalence of categories $X'_{spaces, {\acute{e}tale}} \to X_{spaces, {\acute{e}tale}}$, see Theorem <a href="/tag/05ZH" data-tag="05ZH">76.8.1</a>. Thus it suffices to show that $V$ is a scheme if and only if $V'$ is a scheme. This is the content of Lemma <a href="/tag/05ZR" data-tag="05ZR">76.9.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+First order thickening are described as follows. 
+</p>
+<p>
+<article class="env-lemma" id="05ZT">
+  <p><a class="environment-identifier" href="/tag/05ZT">Lemma <span data-tag="05ZT">76.9.7</span>.</a> Let $S$ be a scheme. Let $f : X \to B$ be a morphism of algebraic spaces over $S$. Consider a short exact sequence </p>
+  <div class="equation">
+  \[  0 \to \mathcal{I} \to \mathcal{A} \to \mathcal{O}_ X \to 0  \]
+</div>
+  <p> of sheaves on $X_{\acute{e}tale}$ where $\mathcal{A}$ is a sheaf of $f^{-1}\mathcal{O}_ B$-algebras, $\mathcal{A} \to \mathcal{O}_ X$ is a surjection of sheaves of $f^{-1}\mathcal{O}_ B$-algebras, and $\mathcal{I}$ is its kernel. If </p>
+  <p><ol>
+  <li><p>
+$\mathcal{I}$ is an ideal of square zero in $\mathcal{A}$, and 
+</p>
+</li><li><p>
+$\mathcal{I}$ is quasi-coherent as an $\mathcal{O}_ X$-module 
+</p>
+</li>
+</ol></p>
+  <p> then there exists a first order thickening $X \subset X'$ over $B$ and an isomorphism $\mathcal{O}_{X'} \to \mathcal{A}$ of $f^{-1}\mathcal{O}_ B$-algebras compatible with the surjections to $\mathcal{O}_ X$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In this proof we redo some of the arguments used in the proofs of Lemmas <a href="/tag/05ZQ" data-tag="05ZQ">76.9.4</a> and <a href="/tag/05ZR" data-tag="05ZR">76.9.5</a>. We first handle the case $B = S = \mathop{\mathrm{Spec}}(\mathbf{Z})$. Let $U$ be an affine scheme, and let $U \to X$ be étale. Then 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{I}(U) \to \mathcal{A}(U) \to \mathcal{O}_ X(U) \to 0  \]
+</div>
+    <p>
+       is exact as $H^1(U_{\acute{e}tale}, \mathcal{I}) = 0$ as $\mathcal{I}$ is quasi-coherent, see Descent, Proposition <a href="/tag/03DW" data-tag="03DW">35.9.3</a> and Cohomology of Schemes, Lemma <a href="/tag/01XB" data-tag="01XB">30.2.2</a>. If $V \to U$ is a morphism of affine objects of $X_{spaces, {\acute{e}tale}}$ then 
+    <p>
+      <div class="equation">
+  \[  \mathcal{I}(V) = \mathcal{I}(U) \otimes _{\mathcal{O}_ X(U)} \mathcal{O}_ X(V)  \]
+</div>
+    <p>
+       since $\mathcal{I}$ is a quasi-coherent $\mathcal{O}_ X$-module, see Descent, Proposition <a href="/tag/03DX" data-tag="03DX">35.8.9</a>. Hence $\mathcal{A}(U) \to \mathcal{A}(V)$ is an étale ring map, see Algebra, Lemma <a href="/tag/05YT" data-tag="05YT">10.143.11</a>. Hence we see that 
+    <p>
+      <div class="equation">
+  \[  U \longmapsto U' = \mathop{\mathrm{Spec}}(\mathcal{A}(U))  \]
+</div>
+    <p>
+       is a functor from $X_{affine, {\acute{e}tale}}$ to the category of affine schemes and étale morphisms. In fact, we claim that this functor can be extended to a functor $U \mapsto U'$ on all of $X_{\acute{e}tale}$. To see this, if $U$ is an object of $X_{\acute{e}tale}$, note that 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{I}|_{U_{Zar}} \to \mathcal{A}|_{U_{Zar}} \to \mathcal{O}_ X|_{U_{Zar}} \to 0  \]
+</div>
+    <p>
+       and $\mathcal{I}|_{U_{Zar}}$ is a quasi-coherent sheaf on $U$, see Descent, Proposition <a href="/tag/03LC" data-tag="03LC">35.9.4</a>. Hence by More on Morphisms, Lemma <a href="/tag/05YV" data-tag="05YV">37.2.2</a> we obtain a first order thickening $U \subset U'$ of schemes such that $\mathcal{O}_{U'}$ is isomorphic to $\mathcal{A}|_{U_{Zar}}$. It is clear that this construction is compatible with the construction for affines above. 
+    <p>
+      Choose a presentation $X = U/R$, see Spaces, Definition <a href="/tag/0263" data-tag="0263">65.9.3</a> so that $s, t : R \to U$ define an étale equivalence relation. Applying the functor above we obtain an étale equivalence relation $s', t' : R' \to U'$ in schemes. Consider the algebraic space $X' = U'/R'$ (see Spaces, Theorem <a href="/tag/02WW" data-tag="02WW">65.10.5</a>). The morphism $X = U/R \to U'/R' = X'$ is a first order thickening. Consider $\mathcal{O}_{X'}$ viewed as a sheaf on $X_{\acute{e}tale}$. By construction we have an isomorphism 
+    <p>
+      <div class="equation">
+  \[  \gamma : \mathcal{O}_{X'}|_{U_{\acute{e}tale}} \longrightarrow \mathcal{A}|_{U_{\acute{e}tale}}  \]
+</div>
+    <p>
+       such that $s^{-1}\gamma $ agrees with $t^{-1}\gamma $ on $R_{\acute{e}tale}$. Hence by Properties of Spaces, Lemma <a href="/tag/05YY" data-tag="05YY">66.18.14</a> this implies that $\gamma $ comes from a unique isomorphism $\mathcal{O}_{X'} \to \mathcal{A}$ as desired. 
+    <p>
+      To handle the case of a general base algebraic space $B$, we first construct $X'$ as an algebraic space over $\mathbf{Z}$ as above. Then we use the isomorphism $\mathcal{O}_{X'} \to \mathcal{A}$ to define $f^{-1}\mathcal{O}_ B \to \mathcal{O}_{X'}$. According to Lemma <a href="/tag/05ZN" data-tag="05ZN">76.9.2</a> this defines a morphism $X' \to B$ compatible with the given morphism $X \to B$ and we are done. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09ZX">
+  <p><a class="environment-identifier" href="/tag/09ZX">Lemma <span data-tag="09ZX">76.9.8</span>.</a> Let $S$ be a scheme. Let $Y \subset Y'$ be a thickening of algebraic spaces over $S$. Let $X' \to Y'$ be a morphism and set $X = Y \times _{Y'} X'$. Then $(X \subset X') \to (Y \subset Y')$ is a morphism of thickenings. If $Y \subset Y'$ is a first (resp. finite order) thickening, then $X \subset X'$ is a first (resp. finite order) thickening. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BPH">
+  <p><a class="environment-identifier" href="/tag/0BPH">Lemma <span data-tag="0BPH">76.9.9</span>.</a> Let $S$ be a scheme. If $X \subset X'$ and $X' \subset X''$ are thickenings of algebraic spaces over $S$, then so is $X \subset X''$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BPI">
+  <p><a class="environment-identifier" href="/tag/0BPI">Lemma <span data-tag="0BPI">76.9.10</span>.</a> The property of being a thickening is fpqc local. Similarly for first order thickenings. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The statement means the following: Let $S$ be a scheme and let $X \to X'$ be a morphism of algebraic spaces over $S$. Let $\{ g_ i : X'_ i \to X'\} $ be an fpqc covering of algebraic spaces such that the base change $X_ i \to X'_ i$ is a thickening for all $i$. Then $X \to X'$ is a thickening. Since the morphisms $g_ i$ are jointly surjective we conclude that $X \to X'$ is surjective. By Descent on Spaces, Lemma <a href="/tag/0420" data-tag="0420">74.11.17</a> we conclude that $X \to X'$ is a closed immersion. Thus $X \to X'$ is a thickening. We omit the proof in the case of first order thickenings. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

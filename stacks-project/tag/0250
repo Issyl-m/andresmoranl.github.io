@@ -1,0 +1,142 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="etale-section-flat-morphisms" class="tex-section"><span data-tag="0250">41.9</span> Flat morphisms</h2>
+
+<p>
+This section simply exists to summarize the properties of flatness that will be useful to us. Thus, we will be content with stating the theorems precisely and giving references for the proofs. 
+</p>
+<p>
+After briefly recalling the necessary facts about flat modules over Noetherian rings, we state a theorem of Grothendieck which gives sufficient conditions for “hyperplane sections” of certain modules to be flat. 
+</p>
+<p>
+<article class="env-definition" id="0251">
+  <p><a class="environment-identifier" href="/tag/0251">Definition <span data-tag="0251">41.9.1</span>.</a> Flatness of modules and rings. </p>
+  <p><ol>
+  <li><p>
+A module $N$ over a ring $A$ is said to be <em>flat</em> if the functor $M \mapsto M \otimes _ A N$ is exact. 
+</p>
+</li><li><p>
+If this functor is also faithful, we say that $N$ is <em>faithfully flat</em> over $A$. 
+</p>
+</li><li><p>
+A morphism of rings $f : A \to B$ is said to be <em>flat (resp. faithfully flat)</em> if the functor $M \mapsto M \otimes _ A B$ is exact (resp. faithful and exact). 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+Here is a list of facts with references to the algebra chapter. 
+</p>
+<ol>
+  <li><p>
+Free and projective modules are flat. This is clear for free modules and follows for projective modules as they are direct summands of free modules and $\otimes $ commutes with direct sums. 
+</p>
+</li><li><p>
+Flatness is a local property, that is, $M$ is flat over $A$ if and only if $M_{\mathfrak p}$ is flat over $A_{\mathfrak p}$ for all $\mathfrak p \in \mathop{\mathrm{Spec}}(A)$. See Algebra, Lemma <a href="/tag/00HT" data-tag="00HT">10.39.18</a>. 
+</p>
+</li><li><p>
+If $M$ is a flat $A$-module and $A \to B$ is a ring map, then $M \otimes _ A B$ is a flat $B$-module. See Algebra, Lemma <a href="/tag/00HI" data-tag="00HI">10.39.7</a>. 
+</p>
+</li><li><p>
+Finite flat modules over local rings are free. See Algebra, Lemma <a href="/tag/00NZ" data-tag="00NZ">10.78.5</a>. 
+</p>
+</li><li><p>
+If $f : A \to B$ is a morphism of arbitrary rings, $f$ is flat if and only if the induced maps $A_{f^{-1}(\mathfrak q)} \to B_{\mathfrak q}$ are flat for all $\mathfrak q \in \mathop{\mathrm{Spec}}(B)$. See Algebra, Lemma <a href="/tag/00HT" data-tag="00HT">10.39.18</a> 
+</p>
+</li><li><p>
+If $f : A \to B$ is a local homomorphism of local rings, $f$ is flat if and only if it is faithfully flat. See Algebra, Lemma <a href="/tag/00HR" data-tag="00HR">10.39.17</a>. 
+</p>
+</li><li><p>
+A map $A \to B$ of rings is faithfully flat if and only if it is flat and the induced map on spectra is surjective. See Algebra, Lemma <a href="/tag/00HQ" data-tag="00HQ">10.39.16</a>. 
+</p>
+</li><li><p>
+If $A$ is a Noetherian local ring, the completion $A^\wedge $ is faithfully flat over $A$. See Algebra, Lemma <a href="/tag/00MC" data-tag="00MC">10.97.3</a>. 
+</p>
+</li><li><p>
+Let $A$ be a Noetherian local ring and $M$ an $A$-module. Then $M$ is flat over $A$ if and only if $M \otimes _ A A^\wedge $ is flat over $A^\wedge $. (Combine the previous statement with Algebra, Lemma <a href="/tag/00HJ" data-tag="00HJ">10.39.8</a>.) 
+</p>
+</li>
+</ol>
+<p>
+ Before we move on to the geometric category, we present Grothendieck's theorem, which provides a convenient recipe for producing flat modules. 
+</p>
+<p>
+<article class="env-theorem" id="0252">
+  <p><a class="environment-identifier" href="/tag/0252">Theorem <span data-tag="0252">41.9.2</span>.</a> Let $A$, $B$ be Noetherian local rings. Let $f : A \to B$ be a local homomorphism. If $M$ is a finite $B$-module that is flat as an $A$-module, and $t \in \mathfrak m_ B$ is an element such that multiplication by $t$ is injective on $M/\mathfrak m_ AM$, then $M/tM$ is also $A$-flat. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See Algebra, Lemma <a href="/tag/00ME" data-tag="00ME">10.99.1</a>. See also <span class="cite">[<span class="postnote">Section 20</span>, <a href="/bibliography/MatCA">MatCA</a>]</span>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="0253">
+  <p><a class="environment-identifier" href="/tag/0253">Definition <span data-tag="0253">41.9.3</span>.</a> (See Morphisms, Definition <a href="/tag/01U3" data-tag="01U3">29.26.1</a>). Let $f : X \to Y$ be a morphism of schemes. Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_ X$-module. </p>
+  <p><ol>
+  <li><p>
+Let $x \in X$. We say $\mathcal{F}$ is <em>flat over $Y$ at $x \in X$</em> if $\mathcal{F}_ x$ is a flat $\mathcal{O}_{Y, f(x)}$-module. This uses the map $\mathcal{O}_{Y, f(x)} \to \mathcal{O}_{X, x}$ to think of $\mathcal{F}_ x$ as a $\mathcal{O}_{Y, f(x)}$-module. 
+</p>
+</li><li><p>
+Let $x \in X$. We say $f$ is <em>flat at $x \in X$</em> if $\mathcal{O}_{Y, f(x)} \to \mathcal{O}_{X, x}$ is flat. 
+</p>
+</li><li><p>
+We say $f$ is <em>flat</em> if it is flat at all points of $X$. 
+</p>
+</li><li><p>
+A morphism $f : X \to Y$ that is flat and surjective is sometimes said to be <em>faithfully flat</em>. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+Once again, here is a list of results: 
+</p>
+<ol>
+  <li><p>
+The property (of a morphism) of being flat is, by fiat, local in the Zariski topology on the source and the target. 
+</p>
+</li><li><p>
+Open immersions are flat. (This is clear because it induces isomorphisms on local rings.) 
+</p>
+</li><li><p>
+Flat morphisms are stable under base change and composition. Morphisms, Lemmas <a href="/tag/01U9" data-tag="01U9">29.26.8</a> and <a href="/tag/01U7" data-tag="01U7">29.26.6</a>. 
+</p>
+</li><li><p>
+If $f : X \to Y$ is flat, then the pullback functor $\mathit{QCoh}(\mathcal{O}_ Y) \to \mathit{QCoh}(\mathcal{O}_ X)$ is exact. This is immediate by looking at stalks. 
+</p>
+</li><li><p>
+Let $f : X \to Y$ be a morphism of schemes, and assume $Y$ is quasi-compact and quasi-separated. In this case if the functor $f^*$ is exact then $f$ is flat. (Proof omitted. Hint: Use Properties, Lemma <a href="/tag/01PE" data-tag="01PE">28.23.1</a> to see that $Y$ has “enough” ideal sheaves and use the characterization of flatness in Algebra, Lemma <a href="/tag/00HD" data-tag="00HD">10.39.5</a>.) 
+</p>
+</li>
+</ol>

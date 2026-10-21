@@ -1,0 +1,77 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<article class="env-lemma" id="0AHN">
+  <p><a class="environment-identifier" href="/tag/0AHN">Lemma <span data-tag="0AHN">4.25.1</span>.</a> Let $\mathcal{C}$ be a big<a class="footnotemark" href="#a0000012907" id="a0000012907-mark"><sup>1</sup></a> category which has limits. Let $F : \mathcal{C} \to \textit{Sets}$ be a functor. Assume that </p>
+  <p><ol>
+  <li><p>
+$F$ commutes with limits, 
+</p>
+</li><li><p>
+there exist a family $\{ x_ i\} _{i \in I}$ of objects of $\mathcal{C}$ and for each $i \in I$ an element $f_ i \in F(x_ i)$ such that for $y \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and $g \in F(y)$ there exist an $i$ and a morphism $\varphi : x_ i \to y$ with $F(\varphi )(f_ i) = g$. 
+</p>
+</li>
+</ol></p>
+  <p> Then $F$ is representable, i.e., there exists an object $x$ of $\mathcal{C}$ such that </p>
+  <div class="equation">
+  \[  F(y) = \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(x, y)  \]
+</div>
+  <p> functorially in $y$. </p>
+</article><article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\mathcal{I}$ be the category whose objects are the pairs $(x_ i, f_ i)$ and whose morphisms $(x_ i, f_ i) \to (x_{i'}, f_{i'})$ are maps $\varphi : x_ i \to x_{i'}$ in $\mathcal{C}$ such that $F(\varphi )(f_ i) = f_{i'}$. Set 
+    <p>
+      <div class="equation">
+  \[  x = \mathop{\mathrm{lim}}\nolimits _{(x_ i, f_ i) \in \mathcal{I}} x_ i  \]
+</div>
+    <p>
+       (this will not be the $x$ we are looking for, see below). The limit exists by assumption. As $F$ commutes with limits we have 
+    <p>
+      <div class="equation">
+  \[  F(x) = \mathop{\mathrm{lim}}\nolimits _{(x_ i, f_ i) \in \mathcal{I}} F(x_ i).  \]
+</div>
+    <p>
+       Hence there is a universal element $f \in F(x)$ which maps to $f_ i \in F(x_ i)$ under $F$ applied to the projection map $x \to x_ i$. Using $f$ we obtain a transformation of functors 
+    <p>
+      <div class="equation">
+  \[  \xi : \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(x, - ) \longrightarrow F(-)  \]
+</div>
+    <p>
+       see Section <a href="/tag/001L" data-tag="001L">4.3</a>. Let $y$ be an arbitrary object of $\mathcal{C}$ and let $g \in F(y)$. Choose $x_ i \to y$ such that $f_ i$ maps to $g$ which is possible by assumption. Then $F$ applied to the maps 
+    <p>
+      <div class="equation">
+  \[  x \longrightarrow x_ i \longrightarrow y  \]
+</div>
+    <p>
+       (the first being the projection map of the limit defining $x$) sends $f$ to $g$. Hence the transformation $\xi $ is surjective. 
+    <p>
+      In order to find the object representing $F$ we let $e : x' \to x$ be the equalizer of all self maps $\varphi : x \to x$ with $F(\varphi )(f) = f$. Since $F$ commutes with limits, it commutes with equalizers, and we see there exists an $f' \in F(x')$ mapping to $f$ in $F(x)$. Since $\xi $ is surjective and since $f'$ maps to $f$ we see that also $\xi ' : \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(x', -) \to F(-)$ is surjective. Finally, suppose that $a, b : x' \to y$ are two maps such that $F(a)(f') = F(b)(f')$. We have to show $a = b$. Consider the equalizer $e' : x'' \to x'$. Again we find $f'' \in F(x'')$ mapping to $f'$. Choose a map $\psi : x \to x''$ such that $F(\psi )(f) = f''$. Then we see that $e \circ e' \circ \psi : x \to x$ is a morphism with $F(e \circ e' \circ \psi )(f) = f$. Hence $e \circ e' \circ \psi \circ e = e$. Since $e$ is a monomorphism, this implies that $e'$ is an epimorphism, thus $a = b$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

@@ -1,0 +1,157 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sheaves-section-sheafification" class="tex-section"><span data-tag="007X">6.17</span> Sheafification</h2>
+
+<p>
+In this section we explain how to get the sheafification of a presheaf on a topological space. We will use stalks to describe the sheafification in this case. This is different from the general procedure described in Sites, Section <a href="/tag/00W1" data-tag="00W1">7.10</a>, and perhaps somewhat easier to understand. 
+</p>
+<p>
+The basic construction is the following. Let $\mathcal{F}$ be a presheaf of sets on a topological space $X$. For every open $U \subset X$ we define 
+</p>
+<div class="equation">
+  \[  \mathcal{F}^{\# }(U) = \{  (s_ u) \in \prod \nolimits _{u \in U} \mathcal{F}_ u \text{ such that }(*) \}   \]
+</div>
+<p>
+ where $(*)$ is the property: 
+</p>
+<ul>
+  <li class="custom-item" data-marker="(*)"><p>
+For every $u \in U$, there exists an open neighbourhood $u \in V \subset U$, and a section $\sigma \in \mathcal{F}(V)$ such that for all $v \in V$ we have $s_ v = (V, \sigma )$ in $\mathcal{F}_ v$. 
+</p>
+</li>
+</ul>
+<p>
+ Note that $(*)$ is a condition for each $u \in U$, and that given $u \in U$ the truth of this condition depends only on the values $s_ v$ for $v$ in any open neighbourhood of $u$. Thus it is clear that, if $V \subset U \subset X$ are open, the projection maps 
+</p>
+<div class="equation">
+  \[  \prod \nolimits _{u \in U} \mathcal{F}_ u \longrightarrow \prod \nolimits _{v \in V} \mathcal{F}_ v  \]
+</div>
+<p>
+ maps elements of $\mathcal{F}^{\# }(U)$ into $\mathcal{F}^{\# }(V)$. Using these maps as the restriction mappings, we turn $\mathcal{F}^\# $ into a presheaf of sets on $X$. 
+</p>
+<p>
+Furthermore, the map $\mathcal{F}(U) \to \prod _{u \in U} \mathcal{F}_ u$ described in Section <a href="/tag/0078" data-tag="0078">6.11</a> clearly has image in $\mathcal{F}^{\# }(U)$. In addition, if $V \subset U \subset X$ are open then we have the following commutative diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathcal{F}(U) \ar[r] \ar[d] &  \mathcal{F}^{\# }(U) \ar[r] \ar[d] &  \prod _{u\in U} \mathcal{F}_ u \ar[d] \\  \mathcal{F}(V) \ar[r] &  \mathcal{F}^{\# }(V) \ar[r] &  \prod _{v\in V} \mathcal{F}_ v }  \]
+</div>
+<p>
+ where the vertical maps are induced from the restriction mappings. Thus we see that there is a canonical morphism of presheaves $\mathcal{F} \to \mathcal{F}^{\# }$. 
+</p>
+<p>
+In Example <a href="/tag/006X" data-tag="006X">6.7.5</a> we saw that the rule $\Pi (\mathcal{F}) : U \mapsto \prod _{u\in U} \mathcal{F}_ u$ is a sheaf, with obvious restriction mappings. And by construction $\mathcal{F}^{\# }$ is a subpresheaf of this. In other words, we have morphisms of presheaves 
+</p>
+<div class="equation">
+  \[  \mathcal{F} \to \mathcal{F}^\#  \to \Pi (\mathcal{F}).  \]
+</div>
+<p>
+ In addition the rule that associates to $\mathcal{F}$ the sequence above is clearly functorial in the presheaf $\mathcal{F}$. This notation will be used in the proofs of the lemmas below. 
+</p>
+<p>
+<article class="env-lemma" id="007Y">
+  <p><a class="environment-identifier" href="/tag/007Y">Lemma <span data-tag="007Y">6.17.1</span>.</a> The presheaf $\mathcal{F}^{\# }$ is a sheaf. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It is probably better for the reader to find their own explanation of this than to read the proof here. In fact the lemma is true for the same reason as why the presheaf of continuous function is a sheaf, see Example <a href="/tag/006V" data-tag="006V">6.7.3</a> (and this analogy can be made precise using the “espace étalé”). 
+    <p>
+      Anyway, let $U = \bigcup U_ i$ be an open covering. Suppose that $s_ i = (s_{i, u})_{u \in U_ i} \in \mathcal{F}^{\# }(U_ i)$ such that $s_ i$ and $s_ j$ agree over $U_ i \cap U_ j$. Because $\Pi (\mathcal{F})$ is a sheaf, we find an element $s = (s_ u)_{u\in U}$ in $\prod _{u\in U} \mathcal{F}_ u$ restricting to $s_ i$ on $U_ i$. We have to check property $(*)$. Pick $u \in U$. Then $u \in U_ i$ for some $i$. Hence by $(*)$ for $s_ i$, there exists a $V$ open, $u \in V \subset U_ i$ and a $\sigma \in \mathcal{F}(V)$ such that $s_{i, v} = (V, \sigma )$ in $\mathcal{F}_ v$ for all $v \in V$. Since $s_{i, v} = s_ v$ we get $(*)$ for $s$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="007Z">
+  <p><a class="environment-identifier" href="/tag/007Z">Lemma <span data-tag="007Z">6.17.2</span>.</a> Let $X$ be a topological space. Let $\mathcal{F}$ be a presheaf of sets on $X$. Let $x \in X$. Then $\mathcal{F}_ x = \mathcal{F}^\# _ x$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The map $\mathcal{F}_ x \to \mathcal{F}^\# _ x$ is injective, since already the map $\mathcal{F}_ x \to \Pi (\mathcal{F})_ x$ is injective. Namely, there is a canonical map $\Pi (\mathcal{F})_ x \to \mathcal{F}_ x$ which is a left inverse to the map $\mathcal{F}_ x \to \Pi (\mathcal{F})_ x$, see Example <a href="/tag/007D" data-tag="007D">6.11.5</a>. To show that it is surjective, suppose that $\overline{s} \in \mathcal{F}^\# _ x$. We can find an open neighbourhood $U$ of $x$ such that $\overline{s}$ is the equivalence class of $(U, s)$ with $s \in \mathcal{F}^\# (U)$. By definition, this means there exists an open neighbourhood $V \subset U$ of $x$ and a section $\sigma \in \mathcal{F}(V)$ such that $s|_ V$ is the image of $\sigma $ in $\Pi (\mathcal{F})(V)$. Clearly the class of $(V, \sigma )$ defines an element of $\mathcal{F}_ x$ mapping to $\overline{s}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0080">
+  <p><a class="environment-identifier" href="/tag/0080">Lemma <span data-tag="0080">6.17.3</span>.</a> Let $\mathcal{F}$ be a presheaf of sets on $X$. Any map $\mathcal{F} \to \mathcal{G}$ into a sheaf of sets factors uniquely as $\mathcal{F} \to \mathcal{F}^\#  \to \mathcal{G}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Clearly, there is a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathcal{F} \ar[r] \ar[d] &  \mathcal{F}^\#  \ar[r] \ar[d] &  \Pi (\mathcal{F}) \ar[d] \\  \mathcal{G} \ar[r] &  \mathcal{G}^\#  \ar[r] &  \Pi (\mathcal{G}) \\  }  \]
+</div>
+    <p>
+       So it suffices to prove that $\mathcal{G} = \mathcal{G}^\# $. To see this it suffices to prove, for every point $x \in X$ the map $\mathcal{G}_ x \to \mathcal{G}^\# _ x$ is bijective, by Lemma <a href="/tag/007T" data-tag="007T">6.16.1</a>. And this is Lemma <a href="/tag/007Z" data-tag="007Z">6.17.2</a> above. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+This lemma really says that there is an adjoint pair of functors: $i : \mathop{\mathit{Sh}}\nolimits (X) \to \textit{PSh}(X)$ (inclusion) and $\#  : \textit{PSh}(X) \to \mathop{\mathit{Sh}}\nolimits (X)$ (sheafification). The formula is that 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(X)}(\mathcal{F}, i(\mathcal{G})) = \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (X)}(\mathcal{F}^\# , \mathcal{G})  \]
+</div>
+<p>
+ which says that sheafification is a left adjoint of the inclusion functor. See Categories, Section <a href="/tag/0036" data-tag="0036">4.24</a>. 
+</p>
+<p>
+<article class="env-example" id="0081">
+  <p><a class="environment-identifier" href="/tag/0081">Example <span data-tag="0081">6.17.4</span>.</a> See Example <a href="/tag/007B" data-tag="007B">6.11.3</a> for notation. The map $A_ p \to \underline{A}$ induces a map $A_ p^\#  \to \underline{A}$. It is easy to see that this is an isomorphism. In words: The sheafification of the constant presheaf with value $A$ is the constant sheaf with value $A$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0082">
+  <p><a class="environment-identifier" href="/tag/0082">Lemma <span data-tag="0082">6.17.5</span>.</a> Let $X$ be a topological space. A presheaf $\mathcal{F}$ is separated (see Definition <a href="/tag/007A" data-tag="007A">6.11.2</a>) if and only if the canonical map $\mathcal{F} \to \mathcal{F}^\# $ is injective. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is clear from the construction of $\mathcal{F}^\# $ in this section. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0H7I">
+  <p><a class="environment-identifier" href="/tag/0H7I">Lemma <span data-tag="0H7I">6.17.6</span>.</a> Let $X$ be a topological space. The sheafification of a surjective (resp. injective) morphism of presheaves of sets is surjective (resp. injective). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

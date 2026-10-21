@@ -1,0 +1,318 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="cohomology-section-cup-product" class="tex-section"><span data-tag="0FKU">20.31</span> Cup product</h2>
+
+<p>
+Let $(X, \mathcal{O}_ X)$ be a ringed space. Let $K, M$ be objects of $D(\mathcal{O}_ X)$. Set $A = \Gamma (X, \mathcal{O}_ X)$. The (global) cup product in this setting is a map 
+</p>
+<div class="equation">
+  \[  \mu : R\Gamma (X, K) \otimes _ A^\mathbf {L} R\Gamma (X, M) \longrightarrow R\Gamma (X, K \otimes _{\mathcal{O}_ X}^\mathbf {L} M)  \]
+</div>
+<p>
+ in $D(A)$. We define it as the relative cup product for the morphism of ringed spaces $f : (X, \mathcal{O}_ X) \to (pt, A)$ as in Remark <a href="/tag/0B68" data-tag="0B68">20.28.7</a> via $D(pt, A) = D(A)$. This map in particular defines pairings 
+</p>
+<div class="equation">
+  \[  \cup : H^ i(X, K) \times H^ j(X, M) \longrightarrow H^{i + j}(X, K \otimes _{\mathcal{O}_ X}^\mathbf {L} M)  \]
+</div>
+<p>
+ Namely, given $\xi \in H^ i(X, K) = H^ i(R\Gamma (X, K))$ and $\eta \in H^ j(X, M) = H^ j(R\Gamma (X, M))$ we can first “tensor” them to get an element $\xi \otimes \eta $ in $H^{i + j}(R\Gamma (X, K) \otimes _ A^\mathbf {L} R\Gamma (X, M))$, see More on Algebra, Section <a href="/tag/068G" data-tag="068G">15.64</a>. Then we can apply $\mu $ to get the desired element $\xi \cup \eta = \mu (\xi \otimes \eta )$ of $H^{i + j}(X, K \otimes _{\mathcal{O}_ X}^\mathbf {L} M)$. 
+</p>
+<p>
+Here is another way to think of the cup product of $\xi $ and $\eta $. Namely, we can write 
+</p>
+<div class="equation">
+  \[  H^ i(R\Gamma (X, K)) = \mathop{\mathrm{Hom}}\nolimits _{D(\mathcal{O}_ X)}(\mathcal{O}_ X[-i], K) \quad \text{and}\quad H^ j(R\Gamma (X, M)) = \mathop{\mathrm{Hom}}\nolimits _{D(\mathcal{O}_ X)}(\mathcal{O}_ X[-j], M)  \]
+</div>
+<p>
+ because $\mathop{\mathrm{Hom}}\nolimits (\mathcal{O}_ X, -) = \Gamma (X, -)$. Thus $\xi $ and $\eta $ are the “same” thing as maps 
+</p>
+<div class="equation">
+  \[  \tilde\xi : \mathcal{O}_ X[-i] \to K \quad \text{and}\quad \tilde\eta : \mathcal{O}_ X[-j] \to M  \]
+</div>
+<p>
+ Combining this with the functoriality of the derived tensor product we obtain 
+</p>
+<div class="equation">
+  \[  \mathcal{O}_ X[-i - j] = \mathcal{O}_ X[-i] \otimes _{\mathcal{O}_ X}^\mathbf {L} \mathcal{O}_ X[-j] \xrightarrow {\tilde\xi \otimes \tilde\eta } K \otimes _{\mathcal{O}_ X}^\mathbf {L} M  \]
+</div>
+<p>
+ which by the same token as above is an element of $H^{i + j}(X, K \otimes _{\mathcal{O}_ X}^\mathbf {L} M)$. 
+</p>
+<p>
+<article class="env-lemma" id="0FP2">
+  <p><a class="environment-identifier" href="/tag/0FP2">Lemma <span data-tag="0FP2">20.31.1</span>.</a> This construction gives the cup product. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      With $f : (X, \mathcal{O}_ X) \to (pt, A)$ as above we have $Rf_*(-) = R\Gamma (X, -)$ and our map $\mu $ is adjoint to the map 
+    <p>
+      <div class="equation">
+  \[  Lf^*(Rf_*K \otimes _ A^\mathbf {L} Rf_*M) = Lf^*Rf_*K \otimes _{\mathcal{O}_ X}^\mathbf {L} Lf^*Rf_*M \xrightarrow {\epsilon _ K \otimes \epsilon _ M} K \otimes _{\mathcal{O}_ X}^\mathbf {L} M  \]
+</div>
+    <p>
+       where $\epsilon $ is the counit of the adjunction between $Lf^*$ and $Rf_*$. If we think of $\xi $ and $\eta $ as maps $\xi : A[-i] \to R\Gamma (X, K)$ and $\eta : A[-j] \to R\Gamma (X, M)$, then the tensor $\xi \otimes \eta $ corresponds to the map<a class="footnotemark" href="#a0000483840" id="a0000483840-mark"><sup>1</sup></a> 
+    <p>
+      <div class="equation">
+  \[  A[-i - j] = A[-i] \otimes _ A^\mathbf {L} A[-j] \xrightarrow {\xi \otimes \eta } R\Gamma (X, K) \otimes _ A^\mathbf {L} R\Gamma (X, M)  \]
+</div>
+    <p>
+       By definition the cup product $\xi \cup \eta $ is the map $A[-i - j] \to R\Gamma (X, K \otimes _{\mathcal{O}_ X}^\mathbf {L} M)$ which is adjoint to 
+    <p>
+      <div class="equation">
+  \[  (\epsilon _ K \otimes \epsilon _ M) \circ Lf^*(\xi \otimes \eta ) = (\epsilon _ K \circ Lf^*\xi ) \otimes (\epsilon _ M \circ Lf^*\eta )  \]
+</div>
+    <p>
+       However, it is easy to see that $\epsilon _ K \circ Lf^*\xi = \tilde\xi $ and $\epsilon _ M \circ Lf^*\eta = \tilde\eta $. We conclude that $\widetilde{\xi \cup \eta } = \tilde\xi \otimes \tilde\eta $ which means we have the desired agreement. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0G6W">
+  <p><a class="environment-identifier" href="/tag/0G6W">Remark <span data-tag="0G6W">20.31.2</span>.</a> Let $(X, \mathcal{O}_ X)$ be a ringed space. Let $K, M$ be objects of $D(\mathcal{O}_ X)$. Set $A = \Gamma (X, \mathcal{O}_ X)$. Given $\xi \in H^ i(X, K)$ we get an associated map </p>
+  <div class="equation">
+  \[  \xi = ``\xi \cup -'' : R\Gamma (X, M)[-i] \to R\Gamma (X, K \otimes _{\mathcal{O}_ X}^\mathbf {L} M)  \]
+</div>
+  <p> by representing $\xi $ as a map $\xi : A[-i] \to R\Gamma (X, K)$ as in the proof of Lemma <a href="/tag/0FP2" data-tag="0FP2">20.31.1</a> and then using the composition </p>
+  <div class="equation">
+  \[  R\Gamma (X, M)[-i] = A[-i] \otimes _ A^\mathbf {L} R\Gamma (X, M) \xrightarrow {\xi \otimes 1} R\Gamma (X, K) \otimes _ A^\mathbf {L} R\Gamma (X, M) \to R\Gamma (X, K \otimes _{\mathcal{O}_ X}^\mathbf {L} M)  \]
+</div>
+  <p> where the second arrow is the global cup product $\mu $ above. On cohomology this recovers the cup product by $\xi $ as is clear from Lemma <a href="/tag/0FP2" data-tag="0FP2">20.31.1</a> and its proof. </p>
+</article> 
+</p>
+<p>
+Let us formulate and prove a natural compatibility of the relative cup product. Namely, suppose that we have a morphism $f : (X, \mathcal{O}_ X) \to (Y, \mathcal{O}_ Y)$ of ringed spaces. Let $\mathcal{K}^\bullet $ and $\mathcal{M}^\bullet $ be complexes of $\mathcal{O}_ X$-modules. There is a naive cup product 
+</p>
+<div class="equation">
+  \[  \text{Tot}( f_*\mathcal{K}^\bullet \otimes _{\mathcal{O}_ Y} f_*\mathcal{M}^\bullet ) \longrightarrow f_*\text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet )  \]
+</div>
+<p>
+ We claim that this is related to the relative cup product. 
+</p>
+<p>
+<article class="env-lemma" id="0FP3">
+  <p><a class="environment-identifier" href="/tag/0FP3">Lemma <span data-tag="0FP3">20.31.3</span>.</a> In the situation above the following diagram commutes </p>
+  <div class="equation">
+  \[  \xymatrix{ f_*\mathcal{K}^\bullet \otimes _{\mathcal{O}_ Y}^\mathbf {L} f_*\mathcal{M}^\bullet \ar[r] \ar[d] &  Rf_*\mathcal{K}^\bullet \otimes _{\mathcal{O}_ Y}^\mathbf {L} Rf_*\mathcal{M}^\bullet \ar[d]^{\text{Remark \ref{cohomology-remark-cup-product}}} \\  \text{Tot}( f_*\mathcal{K}^\bullet \otimes _{\mathcal{O}_ Y} f_*\mathcal{M}^\bullet ) \ar[d]_{\text{naive cup product}} &  Rf_*(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X}^\mathbf {L} \mathcal{M}^\bullet ) \ar[d] \\  f_*\text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet ) \ar[r] &  Rf_*\text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet ) }  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By the construction in Remark <a href="/tag/0B68" data-tag="0B68">20.28.7</a> we see that going around the diagram clockwise the map 
+    <p>
+      <div class="equation">
+  \[  f_*\mathcal{K}^\bullet \otimes _{\mathcal{O}_ Y}^\mathbf {L} f_*\mathcal{M}^\bullet \longrightarrow Rf_*\text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet )  \]
+</div>
+    <p>
+       is adjoint to the map 
+    <p>
+      <div class="equation">
+  \begin{align*}  Lf^*(f_*\mathcal{K}^\bullet \otimes _{\mathcal{O}_ Y}^\mathbf {L} f_*\mathcal{M}^\bullet ) &  = Lf^*f_*\mathcal{K}^\bullet \otimes _{\mathcal{O}_ Y}^\mathbf {L} Lf^*f_*\mathcal{M}^\bullet \\ &  \to Lf^*Rf_*\mathcal{K}^\bullet \otimes _{\mathcal{O}_ Y}^\mathbf {L} Lf^*Rf_*\mathcal{M}^\bullet \\ &  \to \mathcal{K}^\bullet \otimes _{\mathcal{O}_ Y}^\mathbf {L} \mathcal{M}^\bullet \\ &  \to \text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet ) \end{align*}
+</div>
+    <p>
+       By Lemma <a href="/tag/0FP1" data-tag="0FP1">20.28.6</a> this is also equal to 
+    <p>
+      <div class="equation">
+  \begin{align*}  Lf^*(f_*\mathcal{K}^\bullet \otimes _{\mathcal{O}_ Y}^\mathbf {L} f_*\mathcal{M}^\bullet ) &  = Lf^*f_*\mathcal{K}^\bullet \otimes _{\mathcal{O}_ Y}^\mathbf {L} Lf^*f_*\mathcal{M}^\bullet \\ &  \to f^*f_*\mathcal{K}^\bullet \otimes _{\mathcal{O}_ Y}^\mathbf {L} f^*f_*\mathcal{M}^\bullet \\ &  \to \mathcal{K}^\bullet \otimes _{\mathcal{O}_ Y}^\mathbf {L} \mathcal{M}^\bullet \\ &  \to \text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet ) \end{align*}
+</div>
+    <p>
+       Going around anti-clockwise we obtain the map adjoint to the map 
+    <p>
+      <div class="equation">
+  \begin{align*}  Lf^*(f_*\mathcal{K}^\bullet \otimes _{\mathcal{O}_ Y}^\mathbf {L} f_*\mathcal{M}^\bullet ) &  \to Lf^*\text{Tot}( f_*\mathcal{K}^\bullet \otimes _{\mathcal{O}_ Y} f_*\mathcal{M}^\bullet ) \\ &  \to Lf^*f_*\text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet ) \\ &  \to Lf^*Rf_*\text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet ) \\ &  \to \text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet ) \end{align*}
+</div>
+    <p>
+       By Lemma <a href="/tag/0FP1" data-tag="0FP1">20.28.6</a> this is also equal to 
+    <p>
+      <div class="equation">
+  \begin{align*}  Lf^*(f_*\mathcal{K}^\bullet \otimes _{\mathcal{O}_ Y}^\mathbf {L} f_*\mathcal{M}^\bullet ) &  \to Lf^*\text{Tot}( f_*\mathcal{K}^\bullet \otimes _{\mathcal{O}_ Y} f_*\mathcal{M}^\bullet ) \\ &  \to Lf^*f_*\text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet ) \\ &  \to f^*f_*\text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet ) \\ &  \to \text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet ) \end{align*}
+</div>
+    <p>
+       Now the proof is finished by a contemplation of the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ Lf^*(f_*\mathcal{K}^\bullet \otimes _{\mathcal{O}_ Y}^\mathbf {L} f_*\mathcal{M}^\bullet ) \ar[d] \ar[rr] &  &  Lf^*f_*\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X}^\mathbf {L} Lf^*f_*\mathcal{M}^\bullet \ar[d] \\  Lf^*\text{Tot}( f_*\mathcal{K}^\bullet \otimes _{\mathcal{O}_ Y} f_*\mathcal{M}^\bullet ) \ar[d]_{naive} \ar[r] &  f^*\text{Tot}( f_*\mathcal{K}^\bullet \otimes _{\mathcal{O}_ Y} f_*\mathcal{M}^\bullet ) \ar[ldd]^{naive} \ar[dd] &  f^*f_*\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X}^\mathbf {L} f^*f_*\mathcal{M}^\bullet \ar[dd] \ar[ldd] \\  Lf^*f_*\text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet ) \ar[d] \\  f^*f_*\text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet ) \ar[rd] &  \text{Tot}(f^*f_*\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} f^*f_*\mathcal{M}^\bullet ) \ar[d] &  \mathcal{K}^\bullet \otimes _{\mathcal{O}_ X}^\mathbf {L} \mathcal{M}^\bullet \ar[ld] \\  &  \text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet ) }  \]
+</div>
+    <p>
+       All of the polygons in this diagram commute. The top one commutes by Lemma <a href="/tag/0FP0" data-tag="0FP0">20.27.5</a>. The square with the two naive cup products commutes because $Lf^* \to f^*$ is functorial in the complex of modules. Similarly with the square involving the two maps $\mathcal{A}^\bullet \otimes ^\mathbf {L} \mathcal{B}^\bullet \to \text{Tot}(\mathcal{A}^\bullet \otimes \mathcal{B}^\bullet )$. Finally, the commutativity of the remaining square is true on the level of complexes and may be viewed as the definition of the naive cup product (by the adjointness of $f^*$ and $f_*$). The proof is finished because going around the diagram on the outside are the two maps given above. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $(X, \mathcal{O}_ X)$ be a ring space. Let $\mathcal{K}^\bullet $ and $\mathcal{M}^\bullet $ be complexes of $\mathcal{O}_ X$-modules. Then we have a “naive” cup product 
+</p>
+<div class="equation">
+  \[  \mu ' : \text{Tot}( \Gamma (X, \mathcal{K}^\bullet ) \otimes _ A \Gamma (X, \mathcal{M}^\bullet )) \longrightarrow \Gamma (X, \text{Tot}( \mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet ))  \]
+</div>
+<p>
+ By Lemma <a href="/tag/0FP3" data-tag="0FP3">20.31.3</a> applied to the morphism $(X, \mathcal{O}_ X) \to (pt, A)$ this naive cup product is related to the cup product $\mu $ defined in the first paragraph of this section by the following commutative diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \Gamma (X, \mathcal{K}^\bullet ) \otimes _ A^\mathbf {L} \Gamma (X, \mathcal{M}^\bullet ) \ar[d] \ar[r] &  R\Gamma (X, \mathcal{K}^\bullet ) \otimes _ A^\mathbf {L} R\Gamma (X, \mathcal{M}^\bullet ) \ar[d]^-\mu \\  \text{Tot}(\Gamma (X, \mathcal{K}^\bullet ) \otimes _ A \Gamma (X, \mathcal{M}^\bullet )) \ar[d]_-{\mu '} &  R\Gamma (X, \mathcal{K}^\bullet \otimes _{\mathcal{O}_ X}^\mathbf {L} \mathcal{M}^\bullet ) \ar[d] \\  \Gamma (X, \text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet )) \ar[r] &  R\Gamma (X, \text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet )) }  \]
+</div>
+<p>
+ in $D(A)$. On cohomology we obtain the commutative diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ H^ i(\Gamma (X, \mathcal{K}^\bullet )) \times H^ j(\Gamma (X, \mathcal{M}^\bullet )) \ar[d] \ar[r] &  H^{i + j}(X, \text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet )) \\  H^ i(X, \mathcal{K}^\bullet ) \times H^ j(X, \mathcal{M}^\bullet ) \ar[r]^\cup &  H^{i + j}(X, \mathcal{K}^\bullet \otimes _{\mathcal{O}_ X}^\mathbf {L} \mathcal{M}^\bullet ) \ar[u] }  \]
+</div>
+<p>
+ relating the naive cup product with the actual cuproduct. 
+</p>
+<p>
+<article class="env-lemma" id="0FKV">
+  <p><a class="environment-identifier" href="/tag/0FKV">Lemma <span data-tag="0FKV">20.31.4</span>.</a> Let $(X, \mathcal{O}_ X)$ be a ringed space. Let $\mathcal{K}^\bullet $ and $\mathcal{M}^\bullet $ be bounded below complexes of $\mathcal{O}_ X$-modules. Let $\mathcal{U} : X = \bigcup _{i \in I} U_ i$ be an open covering Then </p>
+  <div class="equation">
+  \[  \xymatrix{ \text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{K}^\bullet )) \otimes _ A^\mathbf {L} \text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{M}^\bullet )) \ar[d] \ar[r] &  R\Gamma (X, \mathcal{K}^\bullet ) \otimes _ A^\mathbf {L} R\Gamma (X, \mathcal{M}^\bullet ) \ar[d]^\mu \\  \text{Tot}( \text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{K}^\bullet )) \otimes _ A \text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{M}^\bullet ))) \ar[d]^{(\ref{cohomology-equation-needs-signs})} &  R\Gamma (X, \mathcal{K}^\bullet \otimes _{\mathcal{O}_ X}^\mathbf {L} \mathcal{M}^\bullet ) \ar[d] \\  \text{Tot}( \check{\mathcal{C}}^\bullet ({\mathcal U}, \text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet ) )) \ar[r] &  R\Gamma (X, \text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet )) }  \]
+</div>
+  <p> where the horizontal arrows are the ones in Lemma <a href="/tag/08BN" data-tag="08BN">20.25.1</a> commutes in $D(A)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose quasi-isomorphisms of complexes $a : \mathcal{K}^\bullet \to \mathcal{K}_1^\bullet $ and $b : \mathcal{M}^\bullet \to \mathcal{M}_1^\bullet $ as in Lemma <a href="/tag/0FKT" data-tag="0FKT">20.30.2</a>. Since the maps $a$ and $b$ on stalks are homotopy equivalences we see that the induced map 
+    <p>
+      <div class="equation">
+  \[  \text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet ) \to \text{Tot}(\mathcal{K}_1^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}_1^\bullet )  \]
+</div>
+    <p>
+       is a homotopy equivalence on stalks too (More on Algebra, Lemma <a href="/tag/064I" data-tag="064I">15.59.2</a>) and hence a quasi-isomorphism. Thus the targets 
+    <p>
+      <div class="equation">
+  \[  R\Gamma (X, \text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet )) = R\Gamma (X, \text{Tot}(\mathcal{K}_1^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}_1^\bullet ))  \]
+</div>
+    <p>
+       of the two diagrams are the same in $D(A)$. It follows that it suffices to prove the diagram commutes for $\mathcal{K}$ and $\mathcal{M}$ replaced by $\mathcal{K}_1$ and $\mathcal{M}_1$. This reduces us to the case discussed in the next paragraph. 
+    <p>
+      Assume $\mathcal{K}^\bullet $ and $\mathcal{M}^\bullet $ are bounded below complexes of flasque $\mathcal{O}_ X$-modules and consider the diagram relating the cup product with the cup product (<a href="/tag/07MB" data-tag="07MB">20.25.3.2</a>) on Čech complexes. Then we can consider the commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \Gamma (X, \mathcal{K}^\bullet ) \otimes _ A^\mathbf {L} \Gamma (X, \mathcal{M}^\bullet ) \ar[d] \ar[r] &  \text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{K}^\bullet )) \otimes _ A^\mathbf {L} \text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{M}^\bullet )) \ar[d] \\  \text{Tot}(\Gamma (X, \mathcal{K}^\bullet ) \otimes _ A \Gamma (X, \mathcal{M}^\bullet )) \ar[d] \ar[r] &  \text{Tot}( \text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{K}^\bullet )) \otimes _ A \text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{M}^\bullet ))) \ar[d]^{(\ref{cohomology-equation-needs-signs})} \\  \Gamma (X, \text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet )) \ar[r] &  \text{Tot}( \check{\mathcal{C}}^\bullet ({\mathcal U}, \text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{M}^\bullet ) )) }  \]
+</div>
+    <p>
+       In this diagram the horizontal arrows are isomorphisms in $D(A)$ because for a bounded below complex of flasque modules such as $\mathcal{K}^\bullet $ we have 
+    <p>
+      <div class="equation">
+  \[  \Gamma (X, \mathcal{K}^\bullet ) = \text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{K}^\bullet )) = R\Gamma (X, \mathcal{K}^\bullet )  \]
+</div>
+    <p>
+       in $D(A)$. This follows from Lemma <a href="/tag/09SY" data-tag="09SY">20.12.3</a>, Derived Categories, Lemma <a href="/tag/015E" data-tag="015E">13.16.7</a>, and Lemma <a href="/tag/0FLH" data-tag="0FLH">20.25.2</a>. Hence the commutativity of the diagram of the lemma involving (<a href="/tag/07MB" data-tag="07MB">20.25.3.2</a>) follows from the already proven commutativity of Lemma <a href="/tag/0FP3" data-tag="0FP3">20.31.3</a> where $f$ is the morphism to a point (see discussion following Lemma <a href="/tag/0FP3" data-tag="0FP3">20.31.3</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FP4">
+  <p><a class="environment-identifier" href="/tag/0FP4">Lemma <span data-tag="0FP4">20.31.5</span>.</a> Let $f : (X, \mathcal{O}_ X) \to (Y, \mathcal{O}_ Y)$ be a morphism of ringed spaces. The relative cup product of Remark <a href="/tag/0B68" data-tag="0B68">20.28.7</a> is associative in the sense that the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ Rf_*K \otimes _{\mathcal{O}_ Y}^\mathbf {L} Rf_*L \otimes _{\mathcal{O}_ Y}^\mathbf {L} Rf_*M \ar[r] \ar[d] &  Rf_*(K \otimes _{\mathcal{O}_ X}^\mathbf {L} L) \otimes _{\mathcal{O}_ Y}^\mathbf {L} Rf_*M \ar[d] \\  Rf_*K \otimes _{\mathcal{O}_ Y}^\mathbf {L} Rf_*(L \otimes _{\mathcal{O}_ X}^\mathbf {L} M) \ar[r] &  Rf_*(K \otimes _{\mathcal{O}_ X}^\mathbf {L} L \otimes _{\mathcal{O}_ X}^\mathbf {L} M) }  \]
+</div>
+  <p> is commutative in $D(\mathcal{O}_ Y)$ for all $K, L, M$ in $D(\mathcal{O}_ X)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Going around either side we obtain the map adjoint to the obvious map 
+    <p>
+      <div class="equation">
+  \begin{align*}  Lf^*(Rf_*K \otimes _{\mathcal{O}_ Y}^\mathbf {L} Rf_*L \otimes _{\mathcal{O}_ Y}^\mathbf {L} Rf_*M) &  = Lf^*(Rf_*K) \otimes _{\mathcal{O}_ X}^\mathbf {L} Lf^*(Rf_*L) \otimes _{\mathcal{O}_ X}^\mathbf {L} Lf^*(Rf_*M) \\ &  \to K \otimes _{\mathcal{O}_ X}^\mathbf {L} L \otimes _{\mathcal{O}_ X}^\mathbf {L} M \end{align*}
+</div>
+    <p>
+       in $D(\mathcal{O}_ X)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FP5">
+  <p><a class="environment-identifier" href="/tag/0FP5">Lemma <span data-tag="0FP5">20.31.6</span>.</a> Let $f : (X, \mathcal{O}_ X) \to (Y, \mathcal{O}_ Y)$ be a morphism of ringed spaces. The relative cup product of Remark <a href="/tag/0B68" data-tag="0B68">20.28.7</a> is commutative in the sense that the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ Rf_*K \otimes _{\mathcal{O}_ Y}^\mathbf {L} Rf_*L \ar[r] \ar[d]_\psi &  Rf_*(K \otimes _{\mathcal{O}_ X}^\mathbf {L} L) \ar[d]^{Rf_*\psi } \\  Rf_*L \otimes _{\mathcal{O}_ Y}^\mathbf {L} Rf_*K \ar[r] &  Rf_*(L \otimes _{\mathcal{O}_ X}^\mathbf {L} K) }  \]
+</div>
+  <p> is commutative in $D(\mathcal{O}_ Y)$ for all $K, L$ in $D(\mathcal{O}_ X)$. Here $\psi $ is the commutativity constraint on the derived category (Lemma <a href="/tag/0FPB" data-tag="0FPB">20.50.6</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FP6">
+  <p><a class="environment-identifier" href="/tag/0FP6">Lemma <span data-tag="0FP6">20.31.7</span>.</a> Let $f : (X, \mathcal{O}_ X) \to (Y, \mathcal{O}_ Y)$ and $g : (Y, \mathcal{O}_ Y) \to (Z, \mathcal{O}_ Z)$ be morphisms of ringed spaces. The relative cup product of Remark <a href="/tag/0B68" data-tag="0B68">20.28.7</a> is compatible with compositions in the sense that the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ R(g \circ f)_*K \otimes _{\mathcal{O}_ Z}^\mathbf {L} R(g \circ f)_*L \ar@{=}[rr] \ar[d] &  &  Rg_*Rf_*K \otimes _{\mathcal{O}_ Z}^\mathbf {L} Rg_*Rf_*L \ar[d] \\  R(g \circ f)_*(K \otimes _{\mathcal{O}_ X}^\mathbf {L} L) \ar@{=}[r] &  Rg_*Rf_*(K \otimes _{\mathcal{O}_ X}^\mathbf {L} L) &  Rg_*(Rf_*K \otimes _{\mathcal{O}_ Y}^\mathbf {L} Rf_*L) \ar[l] }  \]
+</div>
+  <p> is commutative in $D(\mathcal{O}_ Z)$ for all $K, L$ in $D(\mathcal{O}_ X)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is true because going around the diagram either way we obtain the map adjoint to the map 
+    <p>
+      <div class="equation">
+  \begin{align*} &  L(g \circ f)^*\left(R(g \circ f)_*K \otimes _{\mathcal{O}_ Z}^\mathbf {L} R(g \circ f)_*L\right) \\ &  = L(g \circ f)^*R(g \circ f)_*K \otimes _{\mathcal{O}_ X}^\mathbf {L} L(g \circ f)^*R(g \circ f)_*L) \\ &  \to K \otimes _{\mathcal{O}_ X}^\mathbf {L} L \end{align*}
+</div>
+    <p>
+       in $D(\mathcal{O}_ X)$. To see this one uses that the composition of the counits like so 
+    <p>
+      <div class="equation">
+  \[  L(g \circ f)^*R(g \circ f)_* = Lf^* Lg^* Rg_* Rf_* \to Lf^* Rf_* \to \text{id}  \]
+</div>
+    <p>
+       is the counit for $L(g \circ f)^*$ and $R(g \circ f)_*$. See Categories, Lemma <a href="/tag/0DV0" data-tag="0DV0">4.24.9</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0H99">
+  <p><a class="environment-identifier" href="/tag/0H99">Lemma <span data-tag="0H99">20.31.8</span>.</a> Consider a commutative square </p>
+  <div class="equation">
+  \[  \xymatrix{ (X', \mathcal{O}_{X'}) \ar[r]_{g'} \ar[d]_{f'} &  (X, \mathcal{O}_ X) \ar[d]^ f \\  (Y', \mathcal{O}_{Y'}) \ar[r]^ g &  (Y, \mathcal{O}_ Y) }  \]
+</div>
+  <p> of ringed spaces. Let $K, L$ in $D(\mathcal{O}_ X)$. The relative cup product is compatible with the square in the sense that the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ Lg^*(Rf_*K \otimes _{\mathcal{O}_ Y}^\mathbf {L} Rf_*L) \ar[r] \ar@{=}[d] &  Lg^*(Rf_*(K \otimes _{\mathcal{O}_ X}^\mathbf {L} L)) \ar[d] \\  Lg^*Rf_*K \otimes _{\mathcal{O}_{Y'}}^\mathbf {L} Lg^*Rf_*L \ar[d] &  R(f')_*L(g')^*(K \otimes _{\mathcal{O}_ X}^\mathbf {L} L) \ar@{=}[d] \\  R(f')_*(L(g')^*K \otimes _{\mathcal{O}_{Y'}} R(f')_*(L(g')^*L \ar[r] &  R(f')_*(L(g')^*K \otimes _{\mathcal{O}_{X'}}^\mathbf {L} L(g')^*L) }  \]
+</div>
+  <p> is commutative in $D(\mathcal{O}_{Y'})$. The horizontal arrows are given by the relative cup product (Remark <a href="/tag/0B68" data-tag="0B68">20.28.7</a>) and the vertical arrows are given by the base change map (Remark <a href="/tag/08HY" data-tag="08HY">20.28.3</a>) and Lemma <a href="/tag/079U" data-tag="079U">20.27.3</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

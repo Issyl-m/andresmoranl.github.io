@@ -1,0 +1,231 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="etale-cohomology-section-local-acyclicity" class="tex-section"><span data-tag="0GJM">59.93</span> Local acyclicity</h2>
+
+<p>
+In this section we deduce local acyclicity of smooth morphisms from the smooth base change theorem. In SGA 4 or SGA 4.5 the authors first prove a version of local acyclicity for smooth morphisms and then deduce the smooth base change theorem. 
+</p>
+<p>
+We will use the formulation of local acyclicity given by Deligne <span class="cite">[<span class="postnote">Definition 2.12, page 242</span>, <a href="/bibliography/SGA4.5">SGA4.5</a>]</span>. Let $f : X \to S$ be a morphism of schemes. Let $\overline{x}$ be a geometric point of $X$ with image $\overline{s} = f(\overline{x})$ in $S$. Let $\overline{t}$ be a geometric point of $\mathop{\mathrm{Spec}}(\mathcal{O}^{sh}_{S, \overline{s}})$. We obtain a commutative diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ F_{\overline{x}, \overline{t}} = \overline{t} \times _{\mathop{\mathrm{Spec}}(\mathcal{O}^{sh}_{S, \overline{s}})} \mathop{\mathrm{Spec}}(\mathcal{O}^{sh}_{X, \overline{x}}) \ar[r] \ar[d] &  \mathop{\mathrm{Spec}}(\mathcal{O}^{sh}_{X, \overline{x}}) \ar[r] \ar[d] &  X \ar[d] \\  \overline{t} \ar[r] &  \mathop{\mathrm{Spec}}(\mathcal{O}^{sh}_{S, \overline{s}}) \ar[r] &  S }  \]
+</div>
+<p>
+ The scheme $F_{\overline{x}, \overline{t}}$ is called a <em>variety of vanishing cycles of $f$ at $\overline{x}$</em>. Let $K$ be an object of $D(X_{\acute{e}tale})$. For any morphism of schemes $g : Y\to X$ we write $R\Gamma (Y, K)$ instead of $R\Gamma (Y_{\acute{e}tale}, g_{small}^{-1}K)$. Since $\mathcal{O}^{sh}_{X, \overline{x}}$ is strictly henselian we have $K_{\overline{x}} = R\Gamma (\mathop{\mathrm{Spec}}(\mathcal{O}^{sh}_{X, \overline{x}}), K)$. Thus we obtain a canonical map 
+</p>
+<div class="equation" id="0GJN">
+    <span class="equation-label"><a href="/tag/0GJN" data-tag="0GJN">59.93.0.1</a></span>
+  <div>\begin{equation}  \label{etale-cohomology-equation-alpha-K} \alpha _{K, \overline{x}, \overline{t}} : K_{\overline{x}} \longrightarrow R\Gamma (F_{\overline{x}, \overline{t}}, K) \end{equation}</div>
+</div>
+<p>
+ by pulling back cohomology along $F_{\overline{x}, \overline{t}} \to \mathop{\mathrm{Spec}}(\mathcal{O}^{sh}_{X, \overline{x}})$. 
+</p>
+<p>
+<article class="env-definition" id="0GJP">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0GJP">Definition <span data-tag="0GJP">59.93.1</span>.</a> Let $f : X \to S$ be a morphism of schemes. Let $K$ be an object of $D(X_{\acute{e}tale})$. </p>
+  <p><ol>
+  <li><p>
+Let $\overline{x}$ be a geometric point of $X$ with image $\overline{s} = f(\overline{x})$. We say $f$ is <em>locally acyclic at $\overline{x}$ relative to $K$</em> if for every geometric point $\overline{t}$ of $\mathop{\mathrm{Spec}}(\mathcal{O}^{sh}_{S, \overline{s}})$ the map (<a href="/tag/0GJN" data-tag="0GJN">59.93.0.1</a>) is an isomorphism<a class="footnotemark" href="#a0001256583" id="a0001256583-mark"><sup>1</sup></a>. 
+</p>
+</li><li><p>
+We say $f$ is <em>locally acyclic relative to $K$</em> if $f$ is locally acyclic at $\overline{x}$ relative to $K$ for every geometric point $\overline{x}$ of $X$. 
+</p>
+</li><li><p>
+We say $f$ is <em>universally locally acyclic relative to $K$</em> if for any morphism $S' \to S$ of schemes the base change $f' : X' \to S'$ is locally acyclic relative to the pullback of $K$ to $X'$. 
+</p>
+</li><li><p>
+We say $f$ is <em>locally acyclic</em> if for all geometric points $\overline{x}$ of $X$ and any integer $n$ prime to the characteristic of $\kappa (\overline{x})$, the morphism $f$ is locally acyclic at $\overline{x}$ relative to the constant sheaf with value $\mathbf{Z}/n\mathbf{Z}$. 
+</p>
+</li><li><p>
+We say $f$ is <em>universally locally acyclic</em> if for any morphism $S' \to S$ of schemes the base change $f' : X' \to S'$ is locally acyclic. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+Let $M$ be an abelian group. Then local acyclicity of $f : X \to S$ with respect to the constant sheaf $\underline{M}$ boils down to the requirement that 
+</p>
+<div class="equation">
+  \[  H^ q(F_{\overline{x}, \overline{t}}, \underline{M}) = \left\{  \begin{matrix}  M 
+
+&  \text{if} 
+
+&  q = 0 
+
+\\  0 
+
+&  \text{if} 
+
+&  q \not= 0 
+
+\end{matrix} \right.  \]
+</div>
+<p>
+ for any geometric point $\overline{x}$ of $X$ and any geometric point $\overline{t}$ of $\mathop{\mathrm{Spec}}(\mathcal{O}^{sh}_{S, f(\overline{x})})$. In this way we see that being locally acyclic corresponds to the vanishing of the higher cohomology groups of the geometric fibres $F_{\overline{x}, \overline{t}}$ of the maps between the strict henselizations at $\overline{x}$ and $\overline{s}$. 
+</p>
+<p>
+<article class="env-proposition" id="0GJQ">
+  <p><a class="environment-identifier" href="/tag/0GJQ">Proposition <span data-tag="0GJQ">59.93.2</span>.</a> Let $f : X \to S$ be a smooth morphism of schemes. Then $f$ is universally locally acyclic. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since the base change of a smooth morphism is smooth, it suffices to show that smooth morphisms are locally acyclic. Let $\overline{x}$ be a geometric point of $X$ with image $\overline{s} = f(\overline{x})$. Let $\overline{t}$ be a geometric point of $\mathop{\mathrm{Spec}}(\mathcal{O}^{sh}_{S, f(\overline{x})})$. Since we are trying to prove a property of the ring map $\mathcal{O}^{sh}_{S, \overline{s}} \to \mathcal{O}^{sh}_{X, \overline{x}}$ (see discussion following Definition <a href="/tag/0GJP" data-tag="0GJP">59.93.1</a>) we may and do replace $f : X \to S$ by the base change $X \times _ S \mathop{\mathrm{Spec}}(\mathcal{O}^{sh}_{S, \overline{s}}) \to \mathop{\mathrm{Spec}}(\mathcal{O}^{sh}_{S, \overline{s}})$. Thus we may and do assume that $S$ is the spectrum of a strictly henselian local ring and that $\overline{s}$ lies over the closed point of $S$. 
+    <p>
+      We will apply Lemma <a href="/tag/0EZU" data-tag="0EZU">59.86.5</a> to the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X \ar[d]_ f &  X_{\overline{t}} \ar[l]^ h \ar[d]^ e \\  S &  \overline{t} \ar[l]_ g }  \]
+</div>
+    <p>
+       and the sheaf $\mathcal{F} = \underline{M}$ where $M = \mathbf{Z}/n\mathbf{Z}$ for some integer $n$ prime to the characteristic of the residue field of $\overline{x}$. We know that the map $f^{-1}R^ qg_*\mathcal{F} \to R^ qh_*e^{-1}\mathcal{F}$ is an isomorphism by smooth base change, see Theorem <a href="/tag/0EYU" data-tag="0EYU">59.89.2</a> (the assumption on torsion holds by our choice of $n$). Thus Lemma <a href="/tag/0EZU" data-tag="0EZU">59.86.5</a> gives us the middle equality in 
+    <p>
+      <div class="equation">
+  \[  H^ q(F_{\overline{x}, \overline{t}}, \underline{M}) = H^ q(\mathop{\mathrm{Spec}}(\mathcal{O}^{sh}_{X, \overline{x}}) \times _ S \overline{t}, \underline{M}) = H^ q(\mathop{\mathrm{Spec}}(\mathcal{O}^{sh}_{S, \overline{s}}) \times _ S \overline{t}, \underline{M}) = H^ q(\overline{t}, \underline{M})  \]
+</div>
+    <p>
+       For the outer two equalities we use that $S = \mathop{\mathrm{Spec}}(\mathcal{O}^{sh}_{S, \overline{s}})$. Since $\overline{t}$ is the spectrum of a separably closed field we conclude that 
+    <p>
+      <div class="equation">
+  \[  H^ q(F_{\overline{x}, \overline{t}}, \underline{M}) = \left\{  \begin{matrix}  M 
+
+&  \text{if} 
+
+&  q = 0 
+
+\\  0 
+
+&  \text{if} 
+
+&  q \not= 0 
+
+\end{matrix} \right.  \]
+</div>
+    <p>
+       which is what we had to show (see discussion following Definition <a href="/tag/0GJP" data-tag="0GJP">59.93.1</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GJR">
+  <p><a class="environment-identifier" href="/tag/0GJR">Lemma <span data-tag="0GJR">59.93.3</span>.</a> Let $f : X \to S$ be a morphism of schemes. Let $\mathcal{F}$ be a locally constant abelian sheaf on $X_{\acute{e}tale}$ such that for every geometric point $\overline{x}$ of $X$ the abelian group $\mathcal{F}_{\overline{x}}$ is a torsion group all of whose elements have order prime to the characteristic of the residue field of $\overline{x}$. If $f$ is locally acyclic, then $f$ is locally acyclic relative to $\mathcal{F}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Namely, let $\overline{x}$ be a geometric point of $X$. Since $\mathcal{F}$ is locally constant we see that the restriction of $\mathcal{F}$ to $\mathop{\mathrm{Spec}}(\mathcal{O}^{sh}_{X, \overline{x}})$ is isomorphic to the constant sheaf $\underline{M}$ with $M = \mathcal{F}_{\overline{x}}$. By assumption we can write $M = \mathop{\mathrm{colim}}\nolimits M_ i$ as a filtered colimit of finite abelian groups $M_ i$ of order prime to the characteristic of the residue field of $\overline{x}$. Consider a geometric point $\overline{t}$ of $\mathop{\mathrm{Spec}}(\mathcal{O}^{sh}_{S, f(\overline{x})})$. Since $F_{\overline{x}, \overline{t}}$ is affine, we have 
+    <p>
+      <div class="equation">
+  \[  H^ q(F_{\overline{x}, \overline{t}}, \underline{M}) = \mathop{\mathrm{colim}}\nolimits H^ q(F_{\overline{x}, \overline{t}}, \underline{M_ i})  \]
+</div>
+    <p>
+       by Lemma <a href="/tag/03Q5" data-tag="03Q5">59.51.4</a>. For each $i$ we can write $M_ i = \bigoplus \mathbf{Z}/n_{i, j}\mathbf{Z}$ as a finite direct sum for some integers $n_{i, j}$ prime to the characteristic of the residue field of $\overline{x}$. Since $f$ is locally acyclic we see that 
+    <p>
+      <div class="equation">
+  \[  H^ q(F_{\overline{x}, \overline{t}}, \underline{\mathbf{Z}/n_{i, j}\mathbf{Z}}) = \left\{  \begin{matrix}  \mathbf{Z}/n_{i, j}\mathbf{Z} 
+
+&  \text{if} 
+
+&  q = 0 
+
+\\  0 
+
+&  \text{if} 
+
+&  q \not= 0 
+
+\end{matrix} \right.  \]
+</div>
+    <p>
+       See discussion following Definition <a href="/tag/0GJP" data-tag="0GJP">59.93.1</a>. Taking the direct sums and the colimit we conclude that 
+    <p>
+      <div class="equation">
+  \[  H^ q(F_{\overline{x}, \overline{t}}, \underline{M}) = \left\{  \begin{matrix}  M 
+
+&  \text{if} 
+
+&  q = 0 
+
+\\  0 
+
+&  \text{if} 
+
+&  q \not= 0 
+
+\end{matrix} \right.  \]
+</div>
+    <p>
+       and we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GJS">
+  <p><a class="environment-identifier" href="/tag/0GJS">Lemma <span data-tag="0GJS">59.93.4</span>.</a> Let </p>
+  <div class="equation">
+  \[  \xymatrix{ X' \ar[r]_{g'} \ar[d]_{f'} &  X \ar[d]^ f \\  S' \ar[r]^ g &  S }  \]
+</div>
+  <p> be a cartesian diagram of schemes. Let $K$ be an object of $D(X_{\acute{e}tale})$. Let $\overline{x}'$ be a geometric point of $X'$ with image $\overline{x}$ in $X$. If </p>
+  <p><ol>
+  <li><p>
+$f$ is locally acyclic at $\overline{x}$ relative to $K$ and 
+</p>
+</li><li><p>
+$g$ is locally quasi-finite, or $S' = \mathop{\mathrm{lim}}\nolimits S_ i$ is a directed inverse limit of schemes locally quasi-finite over $S$ with affine transition morphisms, or $g : S' \to S$ is integral, 
+</p>
+</li>
+</ol></p>
+  <p> then $f'$ locally acyclic at $\overline{x}'$ relative to $(g')^{-1}K$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Denote $\overline{s}'$ and $\overline{s}$ the images of $\overline{x}'$ and $\overline{x}$ in $S'$ and $S$. Let $\overline{t}'$ be a geometric point of the spectrum of $\mathop{\mathrm{Spec}}(\mathcal{O}^{sh}_{S', \overline{s}'})$ and denote $\overline{t}$ the image in $\mathop{\mathrm{Spec}}(\mathcal{O}^{sh}_{S, \overline{s}})$. By Algebra, Lemma <a href="/tag/0GIP" data-tag="0GIP">10.156.6</a> and our assumptions on $g$ we have 
+    <p>
+      <div class="equation">
+  \[  \mathcal{O}^{sh}_{X, \overline{x}} \otimes _{\mathcal{O}^{sh}_{S, \overline{s}}} \mathcal{O}^{sh}_{S', \overline{s}'} \longrightarrow \mathcal{O}^{sh}_{X', \overline{x}'}  \]
+</div>
+    <p>
+       is an isomorphism. Since by our conventions $\kappa (\overline{t}) = \kappa (\overline{t}')$ we conclude that 
+    <p>
+      <div class="equation">
+  \[  F_{\overline{x}', \overline{t}'} = \mathop{\mathrm{Spec}}\left( \mathcal{O}^{sh}_{X', \overline{x}'} \otimes _{\mathcal{O}^{sh}_{S', \overline{s}'}} \kappa (\overline{t}')\right) = \mathop{\mathrm{Spec}}\left( \mathcal{O}^{sh}_{X, \overline{x}} \otimes _{\mathcal{O}^{sh}_{S, \overline{s}}} \kappa (\overline{t})\right) = F_{\overline{x}, \overline{t}}  \]
+</div>
+    <p>
+       In other words, the varieties of vanishing cycles of $f'$ at $\overline{x}'$ are examples of varieties of vanishing cycles of $f$ at $\overline{x}$. The lemma follows immediately from this and the definitions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

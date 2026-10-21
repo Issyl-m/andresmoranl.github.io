@@ -1,0 +1,259 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="stacks-morphisms-section-valuative" class="tex-section"><span data-tag="0CL9">101.39</span> Valuative criteria</h2>
+
+<p>
+We need to be careful when stating the valuative criterion. Namely, in the formulation we need to speak about commutative diagrams but we are working in a $2$-category and we need to make sure the $2$-morphisms compose correctly as well! 
+</p>
+<p>
+<article class="env-definition" id="0CLA">
+  <p><a class="environment-identifier" href="/tag/0CLA">Definition <span data-tag="0CLA">101.39.1</span>.</a> Let $f : \mathcal{X} \to \mathcal{Y}$ be a morphism of algebraic stacks. Consider a $2$-commutative solid diagram </p>
+  <div class="equation" id="0CLB">
+    <span class="equation-label"><a href="/tag/0CLB" data-tag="0CLB">101.39.1.1</a></span>
+  <div>\begin{equation}  \label{stacks-morphisms-equation-diagram} \vcenter { \xymatrix{ \mathop{\mathrm{Spec}}(K) \ar[r]_-x \ar[d]_ j &  \mathcal{X} \ar[d]^ f \\  \mathop{\mathrm{Spec}}(A) \ar[r]^-y \ar@{..>}[ru] &  \mathcal{Y} } } \end{equation}</div>
+</div>
+  <p> where $A$ is a valuation ring with field of fractions $K$. Let </p>
+  <div class="equation">
+  \[  \gamma : y \circ j \longrightarrow f \circ x  \]
+</div>
+  <p> be a $2$-morphism witnessing the $2$-commutativity of the diagram. (Notation as in Categories, Sections <a href="/tag/003D" data-tag="003D">4.28</a> and <a href="/tag/003G" data-tag="003G">4.29</a>.) Given (<a href="/tag/0CLB" data-tag="0CLB">101.39.1.1</a>) and $\gamma $ a <em>dotted arrow</em> is a triple $(a, \alpha , \beta )$ consisting of a morphism $a : \mathop{\mathrm{Spec}}(A) \to \mathcal{X}$ and $2$-arrows $\alpha : a \circ j \to x$, $\beta : y \to f \circ a$ such that $\gamma = (\text{id}_ f \star \alpha ) \circ (\beta \star \text{id}_ j)$, in other words such that </p>
+  <div class="equation">
+  \[  \xymatrix{ &  f \circ a \circ j \ar[rd]^{\text{id}_ f \star \alpha } \\  y \circ j \ar[ru]^{\beta \star \text{id}_ j} \ar[rr]^\gamma &  &  f \circ x }  \]
+</div>
+  <p> is commutative. A <em>morphism of dotted arrows</em> $(a, \alpha , \beta ) \to (a', \alpha ', \beta ')$ is a $2$-arrow $\theta : a \to a'$ such that $\alpha = \alpha ' \circ (\theta \star \text{id}_ j)$ and $\beta ' = (\text{id}_ f \star \theta ) \circ \beta $. </p>
+</article> 
+</p>
+<p>
+The preceding definition is a special case of Categories, Definition <a href="/tag/0H18" data-tag="0H18">4.44.1</a>. The category of dotted arrows depends on $\gamma $ in general. If $\mathcal{Y}$ is representable by an algebraic space (or if automorphism groups of objects over fields are trivial), then of course there is at most one $\gamma $ and one does not need to check the commutativity of the triangle. More generally, we have Lemma <a href="/tag/0CLD" data-tag="0CLD">101.39.3</a>. The commutativity of the triangle is important in the proof of compatibility with base change, see proof of Lemma <a href="/tag/0CLE" data-tag="0CLE">101.39.4</a>. 
+</p>
+<p>
+<article class="env-lemma" id="0CLC">
+  <p><a class="environment-identifier" href="/tag/0CLC">Lemma <span data-tag="0CLC">101.39.2</span>.</a> In the situation of Definition <a href="/tag/0CLA" data-tag="0CLA">101.39.1</a> the category of dotted arrows is a groupoid. If $\Delta _ f$ is separated, then it is a setoid. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $2$-arrows are invertible it is clear that the category of dotted arrows is a groupoid. Given a dotted arrow $(a, \alpha , \beta )$ an automorphism of $(a, \alpha , \beta )$ is a $2$-morphism $\theta : a \to a$ satisfying two conditions. The first condition $\beta = (\text{id}_ f \star \theta ) \circ \beta $ signifies that $\theta $ defines a morphism $(a, \theta ) : \mathop{\mathrm{Spec}}(A) \to \mathcal{I}_{\mathcal{X}/\mathcal{Y}}$. The second condition $\alpha = \alpha \circ (\theta \star \text{id}_ j)$ implies that the restriction of $(a, \theta )$ to $\mathop{\mathrm{Spec}}(K)$ is the identity. Picture 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathcal{I}_{\mathcal{X}/\mathcal{Y}} \ar[d] &  &  \mathop{\mathrm{Spec}}(K) \ar[d]^ j \ar[ll]_{(a \circ j, \text{id})} \\  \mathcal{X} &  &  \mathop{\mathrm{Spec}}(A) \ar[ll]_ a \ar[llu]_{(a, \theta )} }  \]
+</div>
+    <p>
+       In other words, if $G \to \mathop{\mathrm{Spec}}(A)$ is the group algebraic space we get by pulling back the relative inertia by $a$, then $\theta $ defines a point $\theta \in G(A)$ whose image in $G(K)$ is trivial. Certainly, if the identity $e : \mathop{\mathrm{Spec}}(A) \to G$ is a closed immersion, then this can happen only if $\theta $ is the identity. Looking at Lemma <a href="/tag/0CL0" data-tag="0CL0">101.6.1</a> we obtain the result we want. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CLD">
+  <p><a class="environment-identifier" href="/tag/0CLD">Lemma <span data-tag="0CLD">101.39.3</span>.</a> In Definition <a href="/tag/0CLA" data-tag="0CLA">101.39.1</a> assume $\mathcal{I}_\mathcal {Y} \to \mathcal{Y}$ is proper (for example if $\mathcal{Y}$ is separated or if $\mathcal{Y}$ is separated over an algebraic space). Then the category of dotted arrows is independent (up to noncanonical equivalence) of the choice of $\gamma $ and the existence of a dotted arrow (for some and hence equivalently all $\gamma $) is equivalent to the existence of a diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{Spec}}(K) \ar[r]_-x \ar[d]_ j &  \mathcal{X} \ar[d]^ f \\  \mathop{\mathrm{Spec}}(A) \ar[r]^-y \ar[ru]_ a &  \mathcal{Y} }  \]
+</div>
+  <p> with $2$-commutative triangles (without checking the $2$-morphisms compose correctly). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\gamma , \gamma ' : y \circ j \longrightarrow f \circ x$ be two $2$-morphisms. Then $\gamma ^{-1} \circ \gamma '$ is an automorphism of $y$ over $\mathop{\mathrm{Spec}}(K)$. Hence if $\mathit{Isom}_\mathcal {Y}(y, y) \to \mathop{\mathrm{Spec}}(A)$ is proper, then by the valuative criterion of properness (Morphisms of Spaces, Lemma <a href="/tag/0A40" data-tag="0A40">67.44.1</a>) we can find $\delta : y \to y$ whose restriction to $\mathop{\mathrm{Spec}}(K)$ is $\gamma ^{-1} \circ \gamma '$. Then we can use $\delta $ to define an equivalence between the category of dotted arrows for $\gamma $ to the category of dotted arrows for $\gamma '$ by sending $(a, \alpha , \beta )$ to $(a, \alpha , \beta \circ \delta )$. The final statement is clear. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CLE">
+  <p><a class="environment-identifier" href="/tag/0CLE">Lemma <span data-tag="0CLE">101.39.4</span>.</a> Assume given a $2$-commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{Spec}}(K) \ar[r]_-{x'} \ar[d]_ j &  \mathcal{X}' \ar[d]^ p \ar[r]_ q &  \mathcal{X} \ar[d]^ f \\  \mathop{\mathrm{Spec}}(A) \ar[r]^-{y'} &  \mathcal{Y}' \ar[r]^ g &  \mathcal{Y} }  \]
+</div>
+  <p> with the right square $2$-cartesian. Choose a $2$-arrow $\gamma ' : y' \circ j \to p \circ x'$. Set $x = q \circ x'$, $y = g \circ y'$ and let $\gamma : y \circ j \to f \circ x$ be the composition of $\gamma '$ with the $2$-arrow implicit in the $2$-commutativity of the right square. Then the category of dotted arrows for the left square and $\gamma '$ is equivalent to the category of dotted arrows for the outer rectangle and $\gamma $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      (We do not know how to prove the analogue of this lemma if instead of the category of dotted arrows we look at the set of isomorphism classes of morphisms producing two $2$-commutative triangles as in Lemma <a href="/tag/0CLD" data-tag="0CLD">101.39.3</a>; in fact this analogue may very well be wrong.) First proof: this lemma is a special case of Categories, Lemma <a href="/tag/0H1A" data-tag="0H1A">4.44.2</a>. Second proof: we are allowed to replace $\mathcal{X}'$ by the $2$-fibre product $\mathcal{Y}' \times _\mathcal {Y} \mathcal{X}$ as described in Categories, Lemma <a href="/tag/0040" data-tag="0040">4.32.3</a>. Then the object $x'$ becomes the triple $(y' \circ j, x, \gamma )$. Then we can go from a dotted arrow $(a, \alpha , \beta )$ for the outer rectangle to a dotted arrow $(a', \alpha ', \beta ')$ for the left square by taking $a' = (y', a, \beta )$ and $\alpha ' = (\text{id}_{y' \circ j}, \alpha )$ and $\beta ' = \text{id}_{y'}$. Details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CLF">
+  <p><a class="environment-identifier" href="/tag/0CLF">Lemma <span data-tag="0CLF">101.39.5</span>.</a> Assume given a $2$-commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{Spec}}(K) \ar[r]_-x \ar[dd]_ j &  \mathcal{X} \ar[d]^ f \\  &  \mathcal{Y} \ar[d]^ g \\  \mathop{\mathrm{Spec}}(A) \ar[r]^-z &  \mathcal{Z} }  \]
+</div>
+  <p> Choose a $2$-arrow $\gamma : z \circ j \to g \circ f \circ x$. Let $\mathcal{C}$ be the category of dotted arrows for the outer rectangle and $\gamma $. Let $\mathcal{C}'$ be the category of dotted arrows for the square </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{Spec}}(K) \ar[r]_-{f \circ x} \ar[d]_ j &  \mathcal{Y} \ar[d]^ g \\  \mathop{\mathrm{Spec}}(A) \ar[r]^-z &  \mathcal{Z} }  \]
+</div>
+  <p> and $\gamma $. Then $\mathcal{C}$ is equivalent to a category $\mathcal{C}''$ which has the following property: there is a functor $\mathcal{C}'' \to \mathcal{C}'$ which turns $\mathcal{C}''$ into a category fibred in groupoids over $\mathcal{C}'$ and whose fibre categories are categories of dotted arrows for certain squares of the form </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{Spec}}(K) \ar[r]_-x \ar[d]_ j &  \mathcal{X} \ar[d]^ f \\  \mathop{\mathrm{Spec}}(A) \ar[r]^-y &  \mathcal{Y} }  \]
+</div>
+  <p> and some choices of $y \circ j \to f \circ x$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This lemma is a special case of Categories, Lemma <a href="/tag/0H1B" data-tag="0H1B">4.44.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="0CLG">
+  <p><a class="environment-identifier" href="/tag/0CLG">Definition <span data-tag="0CLG">101.39.6</span>.</a> Let $f : \mathcal{X} \to \mathcal{Y}$ be a morphism of algebraic stacks. We say $f$ satisfies the <em>uniqueness part of the valuative criterion</em> if for every diagram (<a href="/tag/0CLB" data-tag="0CLB">101.39.1.1</a>) and $\gamma $ as in Definition <a href="/tag/0CLA" data-tag="0CLA">101.39.1</a> the category of dotted arrows is either empty or a setoid with exactly one isomorphism class. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0CLH">
+  <p><a class="environment-identifier" href="/tag/0CLH">Lemma <span data-tag="0CLH">101.39.7</span>.</a> The base change of a morphism of algebraic stacks which satisfies the uniqueness part of the valuative criterion by any morphism of algebraic stacks is a morphism of algebraic stacks which satisfies the uniqueness part of the valuative criterion. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows from Lemma <a href="/tag/0CLE" data-tag="0CLE">101.39.4</a> and the definition. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CLI">
+  <p><a class="environment-identifier" href="/tag/0CLI">Lemma <span data-tag="0CLI">101.39.8</span>.</a> The composition of morphisms of algebraic stacks which satisfy the uniqueness part of the valuative criterion is another morphism of algebraic stacks which satisfies the uniqueness part of the valuative criterion. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows from Lemma <a href="/tag/0CLF" data-tag="0CLF">101.39.5</a> and the definition. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CLJ">
+  <p><a class="environment-identifier" href="/tag/0CLJ">Lemma <span data-tag="0CLJ">101.39.9</span>.</a> Let $f : \mathcal{X} \to \mathcal{Y}$ be a morphism of algebraic stacks which is representable by algebraic spaces. Then the following are equivalent </p>
+  <p><ol>
+  <li><p>
+$f$ satisfies the uniqueness part of the valuative criterion, 
+</p>
+</li><li><p>
+for every scheme $T$ and morphism $T \to \mathcal{Y}$ the morphism $\mathcal{X} \times _\mathcal {Y} T \to T$ satisfies the uniqueness part of the valuative criterion as a morphism of algebraic spaces. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows from Lemma <a href="/tag/0CLE" data-tag="0CLE">101.39.4</a> and the definition. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="0CLK">
+  <p><a class="environment-identifier" href="/tag/0CLK">Definition <span data-tag="0CLK">101.39.10</span>.</a> Let $f : \mathcal{X} \to \mathcal{Y}$ be a morphism of algebraic stacks. We say $f$ satisfies the <em>existence part of the valuative criterion</em> if for every diagram (<a href="/tag/0CLB" data-tag="0CLB">101.39.1.1</a>) and $\gamma $ as in Definition <a href="/tag/0CLA" data-tag="0CLA">101.39.1</a> there exists an extension $K'/K$ of fields, a valuation ring $A' \subset K'$ dominating $A$ such that the category of dotted arrows for the outer rectangle of the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{Spec}}(K') \ar[r] \ar@/^2em/[rr]_{x'} \ar[d]_{j'} &  \mathop{\mathrm{Spec}}(K) \ar[d]_ j \ar[r]_-x &  \mathcal{X} \ar[d]^ f \\  \mathop{\mathrm{Spec}}(A') \ar[r] \ar@/_2em/[rr]^{y'} &  \mathop{\mathrm{Spec}}(A) \ar[r]^-y &  \mathcal{Y} }  \]
+</div>
+  <p> with induced $2$-arrow $\gamma ' : y' \circ j' \to f \circ x'$ is nonempty. </p>
+</article> 
+</p>
+<p>
+We have already seen in the case of morphisms of algebraic spaces, that it is necessary to allow extensions of the fractions fields in order to get the correct notion of the valuative criterion. See Morphisms of Spaces, Example <a href="/tag/03KI" data-tag="03KI">67.41.6</a>. Still, for morphisms between separated algebraic spaces, such an extension is not needed (Morphisms of Spaces, Lemma <a href="/tag/0A3W" data-tag="0A3W">67.41.5</a>). However, for morphisms between algebraic stacks, an extension may be needed even if $\mathcal{X}$ and $\mathcal{Y}$ are both separated. For example consider the morphism of algebraic stacks 
+</p>
+<div class="equation">
+  \[  [\mathop{\mathrm{Spec}}(\mathbf{C})/G] \to \mathop{\mathrm{Spec}}(\mathbf{C})  \]
+</div>
+<p>
+ over the base scheme $\mathop{\mathrm{Spec}}(\mathbf{C})$ where $G$ is a group of order $2$. Both source and target are separated algebraic stacks and the morphism is proper. Whence it satisfies the uniqueness and existence parts of the valuative criterion (see Lemma <a href="/tag/0CLZ" data-tag="0CLZ">101.43.1</a>). But on the other hand, there is a diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{Spec}}(K) \ar[r] \ar[d] &  [\mathop{\mathrm{Spec}}(\mathbf{C})/G] \ar[d] \\  \mathop{\mathrm{Spec}}(A) \ar[r] &  \mathop{\mathrm{Spec}}(\mathbf{C}) }  \]
+</div>
+<p>
+ where no dotted arrow exists with $A = \mathbf{C}[[t]]$ and $K = \mathbf{C}((t))$. Namely, the top horizontal arrow is given by a $G$-torsor over the spectrum of $K = \mathbf{C}((t))$. Since any $G$-torsor over the strictly henselian local ring $A = \mathbf{C}[[t]]$ is trivial, we see that if a dotted arrow always exists, then every $G$-torsor over $K$ is trivial. This is not true because $G = \{ +1, -1\} $ and by Kummer theory $G$-torsors over $K$ are classified by $K^*/(K^*)^2$ which is nontrivial. 
+</p>
+<p>
+<article class="env-lemma" id="0CLL">
+  <p><a class="environment-identifier" href="/tag/0CLL">Lemma <span data-tag="0CLL">101.39.11</span>.</a> The base change of a morphism of algebraic stacks which satisfies the existence part of the valuative criterion by any morphism of algebraic stacks is a morphism of algebraic stacks which satisfies the existence part of the valuative criterion. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows from Lemma <a href="/tag/0CLE" data-tag="0CLE">101.39.4</a> and the definition. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CLM">
+  <p><a class="environment-identifier" href="/tag/0CLM">Lemma <span data-tag="0CLM">101.39.12</span>.</a> The composition of morphisms of algebraic stacks which satisfy the existence part of the valuative criterion is another morphism of algebraic stacks which satisfies the existence part of the valuative criterion. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows from Lemma <a href="/tag/0CLF" data-tag="0CLF">101.39.5</a> and the definition. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CLN">
+  <p><a class="environment-identifier" href="/tag/0CLN">Lemma <span data-tag="0CLN">101.39.13</span>.</a> Let $f : \mathcal{X} \to \mathcal{Y}$ be a morphism of algebraic stacks which is representable by algebraic spaces. Then the following are equivalent </p>
+  <p><ol>
+  <li><p>
+$f$ satisfies the existence part of the valuative criterion, 
+</p>
+</li><li><p>
+for every scheme $T$ and morphism $T \to \mathcal{Y}$ the morphism $\mathcal{X} \times _\mathcal {Y} T \to T$ satisfies the existence part of the valuative criterion as a morphism of algebraic spaces. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows from Lemma <a href="/tag/0CLE" data-tag="0CLE">101.39.4</a> and the definition. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CLP">
+  <p><a class="environment-identifier" href="/tag/0CLP">Lemma <span data-tag="0CLP">101.39.14</span>.</a> A closed immersion of algebraic stacks satisfies both the existence and uniqueness part of the valuative criterion. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. Hint: reduce to the case of a closed immersion of schemes by Lemmas <a href="/tag/0CLJ" data-tag="0CLJ">101.39.9</a> and <a href="/tag/0CLN" data-tag="0CLN">101.39.13</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

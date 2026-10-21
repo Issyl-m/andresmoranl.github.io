@@ -1,0 +1,134 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="simplicial-section-Delta" class="tex-section"><span data-tag="0164">14.2</span> The category of finite ordered sets</h2>
+
+<p>
+The category $\Delta $ is the category with 
+</p>
+<ol>
+  <li><p>
+objects $[0], [1], [2], \ldots $ with $[n] = \{ 0, 1, 2, \ldots , n\} $ and 
+</p>
+</li><li><p>
+a morphism $[n] \to [m]$ is a nondecreasing map $\{ 0, 1, 2, \ldots , n\}  \to \{ 0, 1, 2, \ldots , m\} $ between the corresponding sets. 
+</p>
+</li>
+</ol>
+<p>
+ Here <em>nondecreasing</em> for a map $\varphi : [n] \to [m]$ means by definition that $\varphi (i) \geq \varphi (j)$ if $i \geq j$. In other words, $\Delta $ is a category equivalent to the “big” category of nonempty finite totally ordered sets and nondecreasing maps. There are exactly $n + 1$ morphisms $[0] \to [n]$ and there is exactly $1$ morphism $[n] \to [0]$. There are exactly $(n + 1)(n + 2)/2$ morphisms $[1] \to [n]$ and there are exactly $n + 2$ morphisms $[n] \to [1]$. And so on and so forth. 
+</p>
+<p>
+<article class="env-definition" id="0165">
+  <p><a class="environment-identifier" href="/tag/0165">Definition <span data-tag="0165">14.2.1</span>.</a> For any integer $n\geq 1$, and any $0\leq j \leq n$ we let <em>$\delta ^ n_ j : [n-1] \to [n]$</em> denote the injective order preserving map skipping $j$. For any integer $n\geq 0$, and any $0\leq j \leq n$ we denote <em>$\sigma ^ n_ j : [n + 1] \to [n]$</em> the surjective order preserving map with $(\sigma ^ n_ j)^{-1}(\{ j\} ) = \{ j, j + 1\} $. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0166">
+  <p><a class="environment-identifier" href="/tag/0166">Lemma <span data-tag="0166">14.2.2</span>.</a> Any morphism in $\Delta $ can be written as a composition of the morphisms $\delta ^ n_ j$ and $\sigma ^ n_ j$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\varphi : [n] \to [m]$ be a morphism of $\Delta $. If $j \not\in \mathop{\mathrm{Im}}(\varphi )$, then we can write $\varphi $ as $\delta ^ m_ j \circ \psi $ for some morphism $\psi : [n] \to [m - 1]$. If $\varphi (j) = \varphi (j + 1)$ then we can write $\varphi $ as $\psi \circ \sigma ^{n - 1}_ j$ for some morphism $\psi : [n - 1] \to [m]$. The result follows because each replacement as above lowers $n + m$ and hence at some point $\varphi $ is both injective and surjective, hence an identity morphism. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0167">
+  <p><a class="environment-identifier" href="/tag/0167">Lemma <span data-tag="0167">14.2.3</span>.</a> The morphisms $\delta ^ n_ j$ and $\sigma ^ n_ j$ satisfy the following relations. </p>
+  <p><ol>
+  <li><p>
+If $0 \leq i < j \leq n + 1$, then $\delta ^{n + 1}_ j \circ \delta ^ n_ i = \delta ^{n + 1}_ i \circ \delta ^ n_{j - 1}$. In other words the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ &  [n] \ar[rd]^{\delta ^{n + 1}_ j} &  \\  [n - 1] \ar[ru]^{\delta ^ n_ i} \ar[rd]_{\delta ^ n_{j - 1}} &  &  [n + 1] \\  &  [n] \ar[ru]_{\delta ^{n + 1}_ i} &  }  \]
+</div>
+<p>
+ commutes. 
+</p>
+</li><li><p>
+If $0 \leq i < j \leq n - 1$, then $\sigma ^{n - 1}_ j \circ \delta ^ n_ i = \delta ^{n - 1}_ i \circ \sigma ^{n - 2}_{j - 1}$. In other words the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ &  [n] \ar[rd]^{\sigma ^{n - 1}_ j} &  \\  [n - 1] \ar[ru]^{\delta ^ n_ i} \ar[rd]_{\sigma ^{n - 2}_{j - 1}} &  &  [n - 1] \\  &  [n - 2] \ar[ru]_{\delta ^{n - 1}_ i} &  }  \]
+</div>
+<p>
+ commutes. 
+</p>
+</li><li><p>
+If $0 \leq j \leq n - 1$, then $\sigma ^{n - 1}_ j \circ \delta ^ n_ j = \text{id}_{[n - 1]}$ and $\sigma ^{n - 1}_ j \circ \delta ^ n_{j + 1} = \text{id}_{[n - 1]}$. In other words the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ &  [n] \ar[rd]^{\sigma ^{n - 1}_ j} &  \\  [n - 1] \ar[ru]^{\delta ^ n_ j} \ar[rd]_{\delta ^ n_{j + 1}} \ar[rr]^{\text{id}_{[n - 1]}} &  &  [n - 1] \\  &  [n] \ar[ru]_{\sigma ^{n - 1}_ j} &  }  \]
+</div>
+<p>
+ commutes. 
+</p>
+</li><li><p>
+If $0 < j + 1 < i \leq n$, then $\sigma ^{n - 1}_ j \circ \delta ^ n_ i = \delta ^{n - 1}_{i - 1} \circ \sigma ^{n - 2}_ j$. In other words the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ &  [n] \ar[rd]^{\sigma ^{n - 1}_ j} &  \\  [n - 1] \ar[ru]^{\delta ^ n_ i} \ar[rd]_{\sigma ^{n - 2}_ j} &  &  [n - 1] \\  &  [n - 2] \ar[ru]_{\delta ^{n - 1}_{i - 1}} &  }  \]
+</div>
+<p>
+ commutes. 
+</p>
+</li><li><p>
+If $0 \leq i \leq j \leq n - 1$, then $\sigma ^{n - 1}_ j \circ \sigma ^ n_ i = \sigma ^{n - 1}_ i \circ \sigma ^ n_{j + 1}$. In other words the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ &  [n] \ar[rd]^{\sigma ^{n - 1}_ j} &  \\  [n + 1] \ar[ru]^{\sigma ^ n_ i} \ar[rd]_{\sigma ^ n_{j + 1}} &  &  [n - 1] \\  &  [n] \ar[ru]_{\sigma ^{n - 1}_ i} &  }  \]
+</div>
+<p>
+ commutes. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0168">
+  <p><a class="environment-identifier" href="/tag/0168">Lemma <span data-tag="0168">14.2.4</span>.</a> The category $\Delta $ is the universal category with objects $[n]$, $n \geq 0$ and morphisms $\delta ^ n_ j$ and $\sigma ^ n_ j$ such that (a) every morphism is a composition of these morphisms, (b) the relations listed in Lemma <a href="/tag/0167" data-tag="0167">14.2.3</a> are satisfied, and (c) any relation among the morphisms is a consequence of those relations. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

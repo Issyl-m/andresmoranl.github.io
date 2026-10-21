@@ -1,0 +1,261 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="quot-section-curves" class="tex-section"><span data-tag="0D4Y">99.15</span> The stack of curves</h2>
+
+<p>
+In this section we prove the stack of curves is algebraic. For a further discussion of moduli of curves, we refer the reader to Moduli of Curves, Section <a href="/tag/0DMH" data-tag="0DMH">109.1</a>. 
+</p>
+<p>
+A curve in the Stacks project is a variety of dimension $1$. However, when we speak of families of curves, we often allow the fibres to be reducible and/or nonreduced. In this section, the stack of curves will “parametrize proper schemes of dimension $\leq 1$”. However, it turns out that in order to get the correct notion of a family we need to allow the total space of our family to be an algebraic space. This leads to the following definition. 
+</p>
+<p>
+<article class="env-situation" id="0D4Z">
+  <p><a class="environment-identifier" href="/tag/0D4Z">Situation <span data-tag="0D4Z">99.15.1</span>.</a> We define a category $\mathcal{C}\! \mathit{urves}$ as follows: </p>
+  <p><ol>
+  <li><p>
+Objects are <em>families of curves</em>. More precisely, an object is a morphism $f : X \to S$ where the base $S$ is a scheme, the <em>total space</em> $X$ is an algebraic space, and $f$ is flat, proper, of finite presentation, and has relative dimension $\leq 1$ (Morphisms of Spaces, Definition <a href="/tag/06LR" data-tag="06LR">67.33.2</a>). 
+</p>
+</li><li><p>
+A morphism $(X' \to S') \to (X \to S)$ between objects is given by a pair $(f, g)$ where $f : X' \to X$ is a morphism of algebraic spaces and $g : S' \to S$ is a morphism of schemes which fit into a commutative diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ X' \ar[d] \ar[r]_ f &  X \ar[d] \\  S' \ar[r]^ g &  S }  \]
+</div>
+<p>
+ inducing an isomorphism $X' \to S' \times _ S X$, in other words, the diagram is cartesian. 
+</p>
+</li>
+</ol></p>
+  <p> The forgetful functor </p>
+  <div class="equation">
+  \[  p : \mathcal{C}\! \mathit{urves}\longrightarrow \mathit{Sch}_{fppf},\quad (X \to S) \longmapsto S  \]
+</div>
+  <p> is how we view $\mathcal{C}\! \mathit{urves}$ as a category over $\mathit{Sch}_{fppf}$ (see Section <a href="/tag/05X6" data-tag="05X6">99.2</a> for notation). </p>
+</article> 
+</p>
+<p>
+It follows from Spaces over Fields, Lemma <a href="/tag/0ADD" data-tag="0ADD">72.9.3</a> and more generally More on Morphisms of Spaces, Lemma <a href="/tag/0AE7" data-tag="0AE7">76.43.6</a> that if $S$ is the spectrum of a field, or an Artinian local ring, or a Noetherian complete local ring, then for any family of curves $X \to S$ the total space $X$ is a scheme. On the other hand, there are families of curves over $\mathbf{A}^1_ k$ where the total space is not a scheme, see Examples, Section <a href="/tag/0D5D" data-tag="0D5D">110.69</a>. 
+</p>
+<p>
+It is clear that 
+</p>
+<div class="equation" id="0D50">
+    <span class="equation-label"><a href="/tag/0D50" data-tag="0D50">99.15.1.1</a></span>
+  <div>\begin{equation}  \label{quot-equation-curves-over-proper-spaces} \mathcal{C}\! \mathit{urves}\subset \mathcal{S}\! \mathit{paces}'_{fp, flat, proper} \end{equation}</div>
+</div>
+<p>
+ and that an object $X \to S$ of $\mathcal{S}\! \mathit{paces}'_{fp, flat, proper}$ is in $\mathcal{C}\! \mathit{urves}$ if and only if $X \to S$ has relative dimension $\leq 1$. We will use this to verify Artin's axioms for $\mathcal{C}\! \mathit{urves}$. 
+</p>
+<p>
+<article class="env-lemma" id="0D51">
+  <p><a class="environment-identifier" href="/tag/0D51">Lemma <span data-tag="0D51">99.15.2</span>.</a> The category $\mathcal{C}\! \mathit{urves}$ is fibred in groupoids over $\mathit{Sch}_{fppf}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Using the embedding (<a href="/tag/0D50" data-tag="0D50">99.15.1.1</a>), the description of the image, and the corresponding fact for $\mathcal{S}\! \mathit{paces}'_{fp, flat, proper}$ (Lemma <a href="/tag/0D1E" data-tag="0D1E">99.13.1</a>) this reduces to the following statement: Given a morphism 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X' \ar[r] \ar[d] &  X \ar[d] \\  S' \ar[r] &  S }  \]
+</div>
+    <p>
+       in $\mathcal{S}\! \mathit{paces}'_{fp, flat, proper}$ (recall that this implies in particular the diagram is cartesian) if $X \to S$ has relative dimension $\leq 1$, then $X' \to S'$ has relative dimension $\leq 1$. This follows from Morphisms of Spaces, Lemma <a href="/tag/04NS" data-tag="04NS">67.34.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0D52">
+  <p><a class="environment-identifier" href="/tag/0D52">Lemma <span data-tag="0D52">99.15.3</span>.</a> The category $\mathcal{C}\! \mathit{urves}$ is a stack in groupoids over $\mathit{Sch}_{fppf}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Using the embedding (<a href="/tag/0D50" data-tag="0D50">99.15.1.1</a>), the description of the image, and the corresponding fact for $\mathcal{S}\! \mathit{paces}'_{fp, flat, proper}$ (Lemma <a href="/tag/0D1G" data-tag="0D1G">99.13.3</a>) this reduces to the following statement: Given an object $X \to S$ of $\mathcal{S}\! \mathit{paces}'_{fp, flat, proper}$ and an fppf covering $\{ S_ i \to S\} _{i \in I}$ the following are equivalent: 
+    <p>
+      <ol>
+  <li><p>
+$X \to S$ has relative dimension $\leq 1$, and 
+</p>
+</li><li><p>
+for each $i$ the base change $X_ i \to S_ i$ has relative dimension $\leq 1$. 
+</p>
+</li>
+</ol>
+    <p>
+       This follows from Morphisms of Spaces, Lemma <a href="/tag/04NS" data-tag="04NS">67.34.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0D53">
+  <p><a class="environment-identifier" href="/tag/0D53">Lemma <span data-tag="0D53">99.15.4</span>.</a> The diagonal </p>
+  <div class="equation">
+  \[  \Delta : \mathcal{C}\! \mathit{urves}\longrightarrow \mathcal{C}\! \mathit{urves}\times \mathcal{C}\! \mathit{urves} \]
+</div>
+  <p> is representable by algebraic spaces. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is immediate from the fully faithful embedding (<a href="/tag/0D50" data-tag="0D50">99.15.1.1</a>) and the corresponding fact for $\mathcal{S}\! \mathit{paces}'_{fp, flat, proper}$ (Lemma <a href="/tag/0D1F" data-tag="0D1F">99.13.2</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0D54">
+  <p><a class="environment-identifier" href="/tag/0D54">Remark <span data-tag="0D54">99.15.5</span>.</a> Let $B$ be an algebraic space over $\mathop{\mathrm{Spec}}(\mathbf{Z})$. Let $B\text{-}\mathcal{C}\! \mathit{urves}$ be the category consisting of pairs $(X \to S, h : S \to B)$ where $X \to S$ is an object of $\mathcal{C}\! \mathit{urves}$ and $h : S \to B$ is a morphism. A morphism $(X' \to S', h') \to (X \to S, h)$ in $B\text{-}\mathcal{C}\! \mathit{urves}$ is a morphism $(f, g)$ in $\mathcal{C}\! \mathit{urves}$ such that $h \circ g = h'$. In this situation the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ B\text{-}\mathcal{C}\! \mathit{urves}\ar[r] \ar[d] &  \mathcal{C}\! \mathit{urves}\ar[d] \\  (\mathit{Sch}/B)_{fppf} \ar[r] &  \mathit{Sch}_{fppf} }  \]
+</div>
+  <p> is $2$-fibre product square. This trivial remark will occasionally be useful to deduce results from the absolute case $\mathcal{C}\! \mathit{urves}$ to the case of families of curves over a given base algebraic space. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0D55">
+  <p><a class="environment-identifier" href="/tag/0D55">Lemma <span data-tag="0D55">99.15.6</span>.</a> The stack $\mathcal{C}\! \mathit{urves}\to \mathit{Sch}_{fppf}$ is limit preserving (Artin's Axioms, Definition <a href="/tag/07XL" data-tag="07XL">98.11.1</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Using the embedding (<a href="/tag/0D50" data-tag="0D50">99.15.1.1</a>), the description of the image, and the corresponding fact for $\mathcal{S}\! \mathit{paces}'_{fp, flat, proper}$ (Lemma <a href="/tag/0D1I" data-tag="0D1I">99.13.6</a>) this reduces to the following statement: Let $T = \mathop{\mathrm{lim}}\nolimits T_ i$ be the limits of a directed inverse system of affine schemes. Let $i \in I$ and let $X_ i \to T_ i$ be an object of $\mathcal{S}\! \mathit{paces}'_{fp, flat, proper}$ over $T_ i$. Assume that $T \times _{T_ i} X_ i \to T$ has relative dimension $\leq 1$. Then for some $i' \geq i$ the morphism $T_{i'} \times _{T_ i} X_ i \to T_ i$ has relative dimension $\leq 1$. This follows from Limits of Spaces, Lemma <a href="/tag/0D4K" data-tag="0D4K">70.6.14</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0D56">
+  <p><a class="environment-identifier" href="/tag/0D56">Lemma <span data-tag="0D56">99.15.7</span>.</a> Let </p>
+  <div class="equation">
+  \[  \xymatrix{ T \ar[r] \ar[d] &  T' \ar[d] \\  S \ar[r] &  S' }  \]
+</div>
+  <p> be a pushout in the category of schemes where $T \to T'$ is a thickening and $T \to S$ is affine, see More on Morphisms, Lemma <a href="/tag/07RT" data-tag="07RT">37.14.3</a>. Then the functor on fibre categories </p>
+  <div class="equation">
+  \[  \mathcal{C}\! \mathit{urves}_{S'} \longrightarrow \mathcal{C}\! \mathit{urves}_ S \times _{\mathcal{C}\! \mathit{urves}_ T} \mathcal{C}\! \mathit{urves}_{T'}  \]
+</div>
+  <p> is an equivalence. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Using the embedding (<a href="/tag/0D50" data-tag="0D50">99.15.1.1</a>), the description of the image, and the corresponding fact for $\mathcal{S}\! \mathit{paces}'_{fp, flat, proper}$ (Lemma <a href="/tag/0D1J" data-tag="0D1J">99.13.7</a>) this reduces to the following statement: given a morphism $X' \to S'$ of an algebraic space to $S'$ which is of finite presentation, flat, proper then $X' \to S'$ has relative dimension $\leq 1$ if and only if $S \times _{S'} X' \to S$ and $T' \times _{S'} X' \to T'$ have relative dimension $\leq 1$. One implication follows from the fact that having relative dimension $\leq 1$ is preserved under base change (Morphisms of Spaces, Lemma <a href="/tag/04NS" data-tag="04NS">67.34.3</a>). The other follows from the fact that having relative dimension $\leq 1$ is checked on the fibres and that the fibres of $X' \to S'$ (over points of the scheme $S'$) are the same as the fibres of $S \times _{S'} X' \to S$ since $S \to S'$ is a thickening by More on Morphisms, Lemma <a href="/tag/07RT" data-tag="07RT">37.14.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0D57">
+  <p><a class="environment-identifier" href="/tag/0D57">Lemma <span data-tag="0D57">99.15.8</span>.</a> Let $k$ be a field and let $x = (X \to \mathop{\mathrm{Spec}}(k))$ be an object of $\mathcal{X} = \mathcal{C}\! \mathit{urves}$ over $\mathop{\mathrm{Spec}}(k)$. </p>
+  <p><ol>
+  <li><p>
+If $k$ is of finite type over $\mathbf{Z}$, then the vector spaces $T\mathcal{F}_{\mathcal{X}, k, x}$ and $\text{Inf}(\mathcal{F}_{\mathcal{X}, k, x})$ (see Artin's Axioms, Section <a href="/tag/07WY" data-tag="07WY">98.8</a>) are finite dimensional, and 
+</p>
+</li><li><p>
+in general the vector spaces $T_ x(k)$ and $\text{Inf}_ x(k)$ (see Artin's Axioms, Section <a href="/tag/07Y6" data-tag="07Y6">98.21</a>) are finite dimensional. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is immediate from the fully faithful embedding (<a href="/tag/0D50" data-tag="0D50">99.15.1.1</a>) and the corresponding fact for $\mathcal{S}\! \mathit{paces}'_{fp, flat, proper}$ (Lemma <a href="/tag/0D1K" data-tag="0D1K">99.13.8</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0D58">
+  <p><a class="environment-identifier" href="/tag/0D58">Lemma <span data-tag="0D58">99.15.9</span>.</a> Consider the stack $\mathcal{C}\! \mathit{urves}$ over the base scheme $\mathop{\mathrm{Spec}}(\mathbf{Z})$. Then every formal object is effective. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      For definitions of the notions in the lemma, please see Artin's Axioms, Section <a href="/tag/07X3" data-tag="07X3">98.9</a>. Let $(A, \mathfrak m, \kappa )$ be a Noetherian complete local ring. Let $(X_ n \to \mathop{\mathrm{Spec}}(A/\mathfrak m^ n))$ be a formal object of $\mathcal{C}\! \mathit{urves}$ over $A$. By More on Morphisms of Spaces, Lemma <a href="/tag/0E7R" data-tag="0E7R">76.43.5</a> there exists a projective morphism $X \to \mathop{\mathrm{Spec}}(A)$ and a compatible system of ismomorphisms $X \times _{\mathop{\mathrm{Spec}}(A)} \mathop{\mathrm{Spec}}(A/\mathfrak m^ n) \cong X_ n$. By More on Morphisms, Lemma <a href="/tag/0D4G" data-tag="0D4G">37.12.4</a> we see that $X \to \mathop{\mathrm{Spec}}(A)$ is flat. By More on Morphisms, Lemma <a href="/tag/0D4J" data-tag="0D4J">37.30.6</a> we see that $X \to \mathop{\mathrm{Spec}}(A)$ has relative dimension $\leq 1$. This proves the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0D59">
+  <p><a class="environment-identifier" href="/tag/0D59">Lemma <span data-tag="0D59">99.15.10</span>.</a> The stack in groupoids $\mathcal{X} = \mathcal{C}\! \mathit{urves}$ satisfies openness of versality over $\mathop{\mathrm{Spec}}(\mathbf{Z})$. Similarly, after base change (Remark <a href="/tag/0D54" data-tag="0D54">99.15.5</a>) openness of versality holds over any Noetherian base scheme $S$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is immediate from the fully faithful embedding (<a href="/tag/0D50" data-tag="0D50">99.15.1.1</a>) and the corresponding fact for $\mathcal{S}\! \mathit{paces}'_{fp, flat, proper}$ (Lemma <a href="/tag/0D3X" data-tag="0D3X">99.13.9</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-theorem" id="0D5A">
+        
+      
+  <p><a class="environment-identifier" href="/tag/0D5A">Theorem <span data-tag="0D5A">99.15.11</span> <span class="named">(Algebraicity of the stack of curves)</span>.</a> The stack $\mathcal{C}\! \mathit{urves}$ (Situation <a href="/tag/0D4Z" data-tag="0D4Z">99.15.1</a>) is algebraic. In fact, for any algebraic space $B$ the stack $B\text{-}\mathcal{C}\! \mathit{urves}$ (Remark <a href="/tag/0D54" data-tag="0D54">99.15.5</a>) is algebraic. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The absolute case follows from Artin's Axioms, Lemma <a href="/tag/07Y4" data-tag="07Y4">98.17.1</a> and Lemmas <a href="/tag/0D53" data-tag="0D53">99.15.4</a>, <a href="/tag/0D56" data-tag="0D56">99.15.7</a>, <a href="/tag/0D55" data-tag="0D55">99.15.6</a>, <a href="/tag/0D58" data-tag="0D58">99.15.9</a>, and <a href="/tag/0D59" data-tag="0D59">99.15.10</a>. The case over $B$ follows from this, the description of $B\text{-}\mathcal{C}\! \mathit{urves}$ as a $2$-fibre product in Remark <a href="/tag/0D54" data-tag="0D54">99.15.5</a>, and the fact that algebraic stacks have $2$-fibre products, see Algebraic Stacks, Lemma <a href="/tag/04T2" data-tag="04T2">94.14.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0D5B">
+  <p><a class="environment-identifier" href="/tag/0D5B">Lemma <span data-tag="0D5B">99.15.12</span>.</a> The $1$-morphism (<a href="/tag/0D50" data-tag="0D50">99.15.1.1</a>) </p>
+  <div class="equation">
+  \[  \mathcal{C}\! \mathit{urves}\longrightarrow \mathcal{S}\! \mathit{paces}'_{fp, flat, proper}  \]
+</div>
+  <p> is representable by open and closed immersions. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since (<a href="/tag/0D50" data-tag="0D50">99.15.1.1</a>) is a fully faithful embedding of categories it suffices to show the following: given an object $X \to S$ of $\mathcal{S}\! \mathit{paces}'_{fp, flat, proper}$ there exists an open and closed subscheme $U \subset S$ such that a morphism $S' \to S$ factors through $U$ if and only if the base change $X' \to S'$ of $X \to S$ has relative dimension $\leq 1$. This follows immediately from More on Morphisms of Spaces, Lemma <a href="/tag/0D4R" data-tag="0D4R">76.31.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0D5C">
+  <p><a class="environment-identifier" href="/tag/0D5C">Remark <span data-tag="0D5C">99.15.13</span>.</a> Consider the $2$-fibre product </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{C}\! \mathit{urves}\times _{\mathcal{S}\! \mathit{paces}'_{fp, flat, proper}} \mathcal{P}\! \mathit{olarized}\ar[r] \ar[d] &  \mathcal{P}\! \mathit{olarized}\ar[d] \\  \mathcal{C}\! \mathit{urves}\ar[r] &  \mathcal{S}\! \mathit{paces}'_{fp, flat, proper} }  \]
+</div>
+  <p> This fibre product parametrized polarized curves, i.e., families of curves endowed with a relatively ample invertible sheaf. It turns out that the left vertical arrow </p>
+  <div class="equation">
+  \[  \textit{PolarizedCurves} \longrightarrow \mathcal{C}\! \mathit{urves} \]
+</div>
+  <p> is algebraic, smooth, and surjective. Namely, this $1$-morphism is algebraic (as base change of the arrow in Lemma <a href="/tag/0D41" data-tag="0D41">99.14.6</a>), every point is in the image, and there are no obstructions to deforming invertible sheaves on curves (see proof of Lemma <a href="/tag/0D58" data-tag="0D58">99.15.9</a>). This gives another approach to the algebraicity of $\mathcal{C}\! \mathit{urves}$. Namely, by Lemma <a href="/tag/0D5B" data-tag="0D5B">99.15.12</a> we see that $\textit{PolarizedCurves}$ is an open and closed substack of the algebraic stack $\mathcal{P}\! \mathit{olarized}$ and any stack in groupoids which is the target of a smooth algebraic morphism from an algebraic stack is an algebraic stack. </p>
+</article> 
+</p>

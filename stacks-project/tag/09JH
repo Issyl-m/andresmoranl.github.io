@@ -1,0 +1,127 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="dga-section-modules" class="tex-section"><span data-tag="09JH">22.4</span> Differential graded modules</h2>
+
+<p>
+Our default in this chapter is right modules; we discuss left modules in Section <a href="/tag/0FPZ" data-tag="0FPZ">22.11</a>. 
+</p>
+<p>
+<article class="env-definition" id="09JI">
+  <p><a class="environment-identifier" href="/tag/09JI">Definition <span data-tag="09JI">22.4.1</span>.</a> Let $R$ be a ring. Let $(A, \text{d})$ be a differential graded algebra over $R$. A (right) <em>differential graded module</em> $M$ over $A$ is a right $A$-module $M$ which has a grading $M = \bigoplus M^ n$ and a differential $\text{d}$ such that $M^ n A^ m \subset M^{n + m}$, such that $\text{d}(M^ n) \subset M^{n + 1}$, and such that </p>
+  <div class="equation">
+  \[  \text{d}(ma) = \text{d}(m)a + (-1)^ n m\text{d}(a)  \]
+</div>
+  <p> for $a \in A$ and $m \in M^ n$. A <em>homomorphism of differential graded modules</em> $f : M \to N$ is an $A$-module map compatible with gradings and differentials. The category of (right) differential graded $A$-modules is denoted $\text{Mod}_{(A, \text{d})}$. </p>
+</article> 
+</p>
+<p>
+Note that we can think of $M$ as a cochain complex $M^\bullet $ of (right) $R$-modules. Namely, for $r \in R$ we have $\text{d}(r) = 0$ and $r$ maps to a degree $0$ element of $A$, hence $\text{d}(mr) = \text{d}(m)r$. 
+</p>
+<p>
+The Leibniz rule relating differentials and multiplication on a differential graded $R$-module $M$ over a differential graded $R$-algebra $A$ exactly means that the multiplication map defines a map of cochain complexes 
+</p>
+<div class="equation">
+  \[  \text{Tot}(M^\bullet \otimes _ R A^\bullet ) \to M^\bullet  \]
+</div>
+<p>
+ Here $A^\bullet $ and $M^\bullet $ denote the underlying cochain complexes of $A$ and $M$. 
+</p>
+<p>
+<article class="env-lemma" id="09JJ">
+  <p><a class="environment-identifier" href="/tag/09JJ">Lemma <span data-tag="09JJ">22.4.2</span>.</a> Let $(A, d)$ be a differential graded algebra. The category $\text{Mod}_{(A, \text{d})}$ is abelian and has arbitrary limits and colimits. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Kernels and cokernels commute with taking underlying $A$-modules. Similarly for direct sums and colimits. In other words, these operations in $\text{Mod}_{(A, \text{d})}$ commute with the forgetful functor to the category of $A$-modules. This is not the case for products and limits. Namely, if $N_ i$, $i \in I$ is a family of differential graded $A$-modules, then the product $\prod N_ i$ in $\text{Mod}_{(A, \text{d})}$ is given by setting $(\prod N_ i)^ n = \prod N_ i^ n$ and $\prod N_ i = \bigoplus _ n (\prod N_ i)^ n$. Thus we see that the product does commute with the forgetful functor to the category of graded $A$-modules. A category with products and equalizers has limits, see Categories, Lemma <a href="/tag/002N" data-tag="002N">4.14.11</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Thus, if $(A, \text{d})$ is a differential graded algebra over $R$, then there is an exact functor 
+</p>
+<div class="equation">
+  \[  \text{Mod}_{(A, \text{d})} \longrightarrow \text{Comp}(R)  \]
+</div>
+<p>
+ of abelian categories. For a differential graded module $M$ the cohomology groups $H^ n(M)$ are defined as the cohomology of the corresponding complex of $R$-modules. Therefore, a short exact sequence $0 \to K \to L \to M \to 0$ of differential graded modules gives rise to a long exact sequence 
+</p>
+<div class="equation" id="09JK">
+    <span class="equation-label"><a href="/tag/09JK" data-tag="09JK">22.4.2.1</a></span>
+  <div>\begin{equation}  \label{dga-equation-les} H^ n(K) \to H^ n(L) \to H^ n(M) \to H^{n + 1}(K) \end{equation}</div>
+</div>
+<p>
+ of cohomology modules, see Homology, Lemma <a href="/tag/0117" data-tag="0117">12.13.12</a>. 
+</p>
+<p>
+Moreover, from now on we borrow all the terminology used for complexes of modules. For example, we say that a differential graded $A$-module $M$ is <em>acyclic</em> if $H^ k(M) = 0$ for all $k \in \mathbf{Z}$. We say that a homomorphism $M \to N$ of differential graded $A$-modules is a <em>quasi-isomorphism</em> if it induces isomorphisms $H^ k(M) \to H^ k(N)$ for all $k \in \mathbf{Z}$. And so on and so forth. 
+</p>
+<p>
+<article class="env-definition" id="09JL">
+  <p><a class="environment-identifier" href="/tag/09JL">Definition <span data-tag="09JL">22.4.3</span>.</a> Let $(A, \text{d})$ be a differential graded algebra. Let $M$ be a differential graded module whose underlying complex of $R$-modules is $M^\bullet $. For any $k \in \mathbf{Z}$ we define the <em>$k$-shifted module</em> $M[k]$ as follows </p>
+  <p><ol>
+  <li><p>
+the underlying complex of $R$-modules of $M[k]$ is $M^\bullet [k]$, i.e., we have $M[k]^ n = M^{n + k}$ and $\text{d}_{M[k]} = (-1)^ k\text{d}_ M$ and 
+</p>
+</li><li><p>
+as $A$-module the multiplication 
+</p>
+<div class="equation">
+  \[  (M[k])^ n \times A^ m \longrightarrow (M[k])^{n + m}  \]
+</div>
+<p>
+ is equal to the given multiplication $M^{n + k} \times A^ m \to M^{n + k + m}$. 
+</p>
+</li>
+</ol></p>
+  <p> For a morphism $f : M \to N$ of differential graded $A$-modules we let $f[k] : M[k] \to N[k]$ be the map equal to $f$ on underlying $A$-modules. This defines a functor $[k] : \text{Mod}_{(A, \text{d})} \to \text{Mod}_{(A, \text{d})}$. </p>
+</article> 
+</p>
+<p>
+Let us check that with this choice the Leibniz rule is satisfied. Let $x \in M[k]^ n = M^{n + k}$ and $a \in A^ m$ and denoting $\cdot _{M[k]}$ the product in $M[k]$ then we see 
+</p>
+<div class="equation">
+  \begin{align*}  \text{d}_{M[k]}(x \cdot _{M[k]} a) &  = (-1)^ k \text{d}_ M(xa) \\ &  = (-1)^ k \text{d}_ M(x) a + (-1)^{k + n + k} x \text{d}(a) \\ &  = \text{d}_{M[k]}(x) a + (-1)^ n x \text{d}(a) \\ &  = \text{d}_{M[k]}(x) \cdot _{M[k]} a + (-1)^ n x \cdot _{M[k]} \text{d}(a) \end{align*}
+</div>
+<p>
+ This is what we want as $x$ has degree $n$ as a homogeneous element of $M[k]$. We also observe that with these choices we may think of the multiplication map as the map of complexes 
+</p>
+<div class="equation">
+  \[  \text{Tot}(M^\bullet [k] \otimes _ R A^\bullet ) \to \text{Tot}(M^\bullet \otimes _ R A^\bullet )[k] \to M^\bullet [k]  \]
+</div>
+<p>
+ where the first arrow is More on Algebra, Section <a href="/tag/0FNG" data-tag="0FNG">15.74</a> (<a href="/tag/0FNH" data-tag="0FNH">7</a>) which in this case does not involve a sign. (In fact, we could have deduced that the Liebniz rule holds from this observation.) 
+</p>
+<p>
+The remarks in Homology, Section <a href="/tag/0119" data-tag="0119">12.14</a> apply. In particular, we will identify the cohomology groups of all shifts $M[k]$ without the intervention of signs. 
+</p>
+<p>
+At this point we have enough structure to talk about <em>triangles</em>, see Derived Categories, Definition <a href="/tag/0144" data-tag="0144">13.3.1</a>. In fact, our next goal is to develop enough theory to be able to state and prove that the homotopy category of differential graded modules is a triangulated category. First we define the homotopy category. 
+</p>

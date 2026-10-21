@@ -1,0 +1,584 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="descent-section-descent-modules" class="tex-section"><span data-tag="023F">35.3</span> Descent for modules</h2>
+
+<p>
+Let $R \to A$ be a ring map. By Simplicial, Example <a href="/tag/016N" data-tag="016N">14.5.5</a> this gives rise to a cosimplicial $R$-algebra 
+</p>
+<div class="equation">
+  \[  \xymatrix{ A \ar@<1ex>[r] \ar@<-1ex>[r] &  A \otimes _ R A \ar@<0ex>[l] \ar@<2ex>[r] \ar@<0ex>[r] \ar@<-2ex>[r] &  A \otimes _ R A \otimes _ R A \ar@<1ex>[l] \ar@<-1ex>[l] }  \]
+</div>
+<p>
+ Let us denote this $(A/R)_\bullet $ so that $(A/R)_ n$ is the $(n + 1)$-fold tensor product of $A$ over $R$. Given a map $\varphi : [n] \to [m]$ the $R$-algebra map $(A/R)_\bullet (\varphi )$ is the map 
+</p>
+<div class="equation">
+  \[  a_0 \otimes \ldots \otimes a_ n \longmapsto \prod \nolimits _{\varphi (i) = 0} a_ i \otimes \prod \nolimits _{\varphi (i) = 1} a_ i \otimes \ldots \otimes \prod \nolimits _{\varphi (i) = m} a_ i  \]
+</div>
+<p>
+ where we use the convention that the empty product is $1$. Thus the first few maps, notation as in Simplicial, Section <a href="/tag/016I" data-tag="016I">14.5</a>, are 
+</p>
+<div class="equation">
+  \[  \begin{matrix}  \delta ^1_0 
+
+&  : 
+
+&  a_0 
+
+&  \mapsto 
+
+&  1 \otimes a_0 
+
+\\  \delta ^1_1 
+
+&  : 
+
+&  a_0 
+
+&  \mapsto 
+
+&  a_0 \otimes 1 
+
+\\  \sigma ^0_0 
+
+&  : 
+
+&  a_0 \otimes a_1 
+
+&  \mapsto 
+
+&  a_0a_1 
+
+\\  \delta ^2_0 
+
+&  : 
+
+&  a_0 \otimes a_1 
+
+&  \mapsto 
+
+&  1 \otimes a_0 \otimes a_1 
+
+\\  \delta ^2_1 
+
+&  : 
+
+&  a_0 \otimes a_1 
+
+&  \mapsto 
+
+&  a_0 \otimes 1 \otimes a_1 
+
+\\  \delta ^2_2 
+
+&  : 
+
+&  a_0 \otimes a_1 
+
+&  \mapsto 
+
+&  a_0 \otimes a_1 \otimes 1 
+
+\\  \sigma ^1_0 
+
+&  : 
+
+&  a_0 \otimes a_1 \otimes a_2 
+
+&  \mapsto 
+
+&  a_0a_1 \otimes a_2 
+
+\\  \sigma ^1_1 
+
+&  : 
+
+&  a_0 \otimes a_1 \otimes a_2 
+
+&  \mapsto 
+
+&  a_0 \otimes a_1a_2 
+
+\end{matrix}  \]
+</div>
+<p>
+ and so on. 
+</p>
+<p>
+An $R$-module $M$ gives rise to a cosimplicial $(A/R)_\bullet $-module $(A/R)_\bullet \otimes _ R M$. In other words $M_ n = (A/R)_ n \otimes _ R M$ and using the $R$-algebra maps $(A/R)_ n \to (A/R)_ m$ to define the corresponding maps on $M \otimes _ R (A/R)_\bullet $. 
+</p>
+<p>
+The analogue to a descent datum for quasi-coherent sheaves in the setting of modules is the following. 
+</p>
+<p>
+<article class="env-definition" id="023G">
+  <p><a class="environment-identifier" href="/tag/023G">Definition <span data-tag="023G">35.3.1</span>.</a> Let $R \to A$ be a ring map. </p>
+  <p><ol>
+  <li><p>
+A <em>descent datum $(N, \varphi )$ for modules with respect to $R \to A$</em> is given by an $A$-module $N$ and an isomorphism of $A \otimes _ R A$-modules 
+</p>
+<div class="equation">
+  \[  \varphi : N \otimes _ R A \to A \otimes _ R N  \]
+</div>
+<p>
+ such that the <em>cocycle condition</em> holds: the diagram of $A \otimes _ R A \otimes _ R A$-module maps 
+</p>
+<div class="equation">
+  \[  \xymatrix{ N \otimes _ R A \otimes _ R A \ar[rr]_{\varphi _{02}} \ar[rd]_{\varphi _{01}} &  &  A \otimes _ R A \otimes _ R N \\  &  A \otimes _ R N \otimes _ R A \ar[ru]_{\varphi _{12}} &  }  \]
+</div>
+<p>
+ commutes (see below for notation). 
+</p>
+</li><li><p>
+A <em>morphism $(N, \varphi ) \to (N', \varphi ')$ of descent data</em> is a morphism of $A$-modules $\psi : N \to N'$ such that the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ N \otimes _ R A \ar[r]_\varphi \ar[d]_{\psi \otimes \text{id}_ A} &  A \otimes _ R N \ar[d]^{\text{id}_ A \otimes \psi } \\  N' \otimes _ R A \ar[r]^{\varphi '} &  A \otimes _ R N' }  \]
+</div>
+<p>
+ is commutative. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+In the definition we use the notation that $\varphi _{01} = \varphi \otimes \text{id}_ A$, $\varphi _{12} = \text{id}_ A \otimes \varphi $, and $\varphi _{02}(n \otimes 1 \otimes 1) = \sum a_ i \otimes 1 \otimes n_ i$ if $\varphi (n \otimes 1) = \sum a_ i \otimes n_ i$. All three are $A \otimes _ R A \otimes _ R A$-module homomorphisms. Equivalently we have 
+</p>
+<div class="equation">
+  \[  \varphi _{ij} = \varphi \otimes _{(A/R)_1, \  (A/R)_\bullet (\tau ^2_{ij})} (A/R)_2  \]
+</div>
+<p>
+ where $\tau ^2_{ij} : [1] \to [2]$ is the map $0 \mapsto i$, $1 \mapsto j$. Namely, $(A/R)_{\bullet }(\tau ^2_{02})(a_0 \otimes a_1) = a_0 \otimes 1 \otimes a_1$, and similarly for the others<a class="footnotemark" href="#a0000762224" id="a0000762224-mark"><sup>1</sup></a>. 
+</p>
+<p>
+We need some more notation to be able to state the next lemma. Let $(N, \varphi )$ be a descent datum with respect to a ring map $R \to A$. For $n \geq 0$ and $i \in [n]$ we set 
+</p>
+<div class="equation">
+  \[  N_{n, i} = A \otimes _ R \ldots \otimes _ R A \otimes _ R N \otimes _ R A \otimes _ R \ldots \otimes _ R A  \]
+</div>
+<p>
+ with the factor $N$ in the $i$th spot. It is an $(A/R)_ n$-module. If we introduce the maps $\tau ^ n_ i : [0] \to [n]$, $0 \mapsto i$ then we see that 
+</p>
+<div class="equation">
+  \[  N_{n, i} = N \otimes _{(A/R)_0, \  (A/R)_\bullet (\tau ^ n_ i)} (A/R)_ n  \]
+</div>
+<p>
+ For $0 \leq i \leq j \leq n$ we let $\tau ^ n_{ij} : [1] \to [n]$ be the map such that $0$ maps to $i$ and $1$ to $j$. Similarly to the above the homomorphism $\varphi $ induces isomorphisms 
+</p>
+<div class="equation">
+  \[  \varphi ^ n_{ij} = \varphi \otimes _{(A/R)_1, \  (A/R)_\bullet (\tau ^ n_{ij})} (A/R)_ n : N_{n, i} \longrightarrow N_{n, j}  \]
+</div>
+<p>
+ of $(A/R)_ n$-modules when $i < j$. If $i = j$ we set $\varphi ^ n_{ij} = \text{id}$. Since these are all isomorphisms they allow us to move the factor $N$ to any spot we like. And the cocycle condition exactly means that it does not matter how we do this (e.g., as a composition of two of these or at once). Finally, for any $\beta : [n] \to [m]$ we define the morphism 
+</p>
+<div class="equation">
+  \[  N_{\beta , i} : N_{n, i} \to N_{m, \beta (i)}  \]
+</div>
+<p>
+ as the unique $(A/R)_\bullet (\beta )$-semi linear map such that 
+</p>
+<div class="equation">
+  \[  N_{\beta , i}(1 \otimes \ldots \otimes n \otimes \ldots \otimes 1) = 1 \otimes \ldots \otimes n \otimes \ldots \otimes 1  \]
+</div>
+<p>
+ for all $n \in N$. This hints at the following lemma. 
+</p>
+<p>
+<article class="env-lemma" id="023H">
+  <p><a class="environment-identifier" href="/tag/023H">Lemma <span data-tag="023H">35.3.2</span>.</a> Let $R \to A$ be a ring map. Given a descent datum $(N, \varphi )$ we can associate to it a cosimplicial $(A/R)_\bullet $-module $N_\bullet $<a class="footnotemark" href="#a0000762385" id="a0000762385-mark"><sup>2</sup></a> by the rules $N_ n = N_{n, n}$ and given $\beta : [n] \to [m]$ setting we define </p>
+  <div class="equation">
+  \[  N_\bullet (\beta ) = (\varphi ^ m_{\beta (n)m}) \circ N_{\beta , n} : N_{n, n} \longrightarrow N_{m, m}.  \]
+</div>
+  <p> This procedure is functorial in the descent datum. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Here are the first few maps where $\varphi (n \otimes 1) = \sum \alpha _ i \otimes x_ i$ 
+    <p>
+      <div class="equation">
+  \[  \begin{matrix}  \delta ^1_0 
+
+&  : 
+
+&  N 
+
+&  \to 
+
+&  A \otimes N 
+
+&  n 
+
+&  \mapsto 
+
+&  1 \otimes n 
+
+\\  \delta ^1_1 
+
+&  : 
+
+&  N 
+
+&  \to 
+
+&  A \otimes N 
+
+&  n 
+
+&  \mapsto 
+
+&  \sum \alpha _ i \otimes x_ i
+
+\\  \sigma ^0_0 
+
+&  : 
+
+&  A \otimes N 
+
+&  \to 
+
+&  N 
+
+&  a_0 \otimes n 
+
+&  \mapsto 
+
+&  a_0n 
+
+\\  \delta ^2_0 
+
+&  : 
+
+&  A \otimes N 
+
+&  \to 
+
+&  A \otimes A \otimes N 
+
+&  a_0 \otimes n 
+
+&  \mapsto 
+
+&  1 \otimes a_0 \otimes n 
+
+\\  \delta ^2_1 
+
+&  : 
+
+&  A \otimes N 
+
+&  \to 
+
+&  A \otimes A \otimes N 
+
+&  a_0 \otimes n 
+
+&  \mapsto 
+
+&  a_0 \otimes 1 \otimes n 
+
+\\  \delta ^2_2 
+
+&  : 
+
+&  A \otimes N 
+
+&  \to 
+
+&  A \otimes A \otimes N 
+
+&  a_0 \otimes n 
+
+&  \mapsto 
+
+&  \sum a_0 \otimes \alpha _ i \otimes x_ i 
+
+\\  \sigma ^1_0 
+
+&  : 
+
+&  A \otimes A \otimes N 
+
+&  \to 
+
+&  A \otimes N 
+
+&  a_0 \otimes a_1 \otimes n 
+
+&  \mapsto 
+
+&  a_0a_1 \otimes n 
+
+\\  \sigma ^1_1 
+
+&  : 
+
+&  A \otimes A \otimes N 
+
+&  \to 
+
+&  A \otimes N 
+
+&  a_0 \otimes a_1 \otimes n 
+
+&  \mapsto 
+
+&  a_0 \otimes a_1n 
+
+\end{matrix}  \]
+</div>
+    <p>
+       with notation as in Simplicial, Section <a href="/tag/016I" data-tag="016I">14.5</a>. We first verify the two properties $\sigma ^0_0 \circ \delta ^1_0 = \text{id}$ and $\sigma ^0_0 \circ \delta ^1_1 = \text{id}$. The first one, $\sigma ^0_0 \circ \delta ^1_0 = \text{id}$, is clear from the explicit description of the morphisms above. To prove the second relation we have to use the cocycle condition (because it does not hold for an arbitrary isomorphism $\varphi : N \otimes _ R A \to A \otimes _ R N$). Write $p = \sigma ^0_0 \circ \delta ^1_1 : N \to N$. By the description of the maps above we deduce that $p$ is also equal to 
+    <p>
+      <div class="equation">
+  \[  p = \varphi \otimes \text{id} : N = (N \otimes _ R A) \otimes _{(A \otimes _ R A)} A \longrightarrow (A \otimes _ R N) \otimes _{(A \otimes _ R A)} A = N  \]
+</div>
+    <p>
+       Since $\varphi $ is an isomorphism we see that $p$ is an isomorphism. Write $\varphi (n \otimes 1) = \sum \alpha _ i \otimes x_ i$ for certain $\alpha _ i \in A$ and $x_ i \in N$. Then $p(n) = \sum \alpha _ ix_ i$. Next, write $\varphi (x_ i \otimes 1) = \sum \alpha _{ij} \otimes y_ j$ for certain $\alpha _{ij} \in A$ and $y_ j \in N$. Then the cocycle condition says that 
+    <p>
+      <div class="equation">
+  \[  \sum \alpha _ i \otimes \alpha _{ij} \otimes y_ j = \sum \alpha _ i \otimes 1 \otimes x_ i.  \]
+</div>
+    <p>
+       This means that $p(n) = \sum \alpha _ ix_ i = \sum \alpha _ i\alpha _{ij}y_ j = \sum \alpha _ i p(x_ i) = p(p(n))$. Thus $p$ is a projector, and since it is an isomorphism it is the identity. 
+    <p>
+      To prove fully that $N_\bullet $ is a cosimplicial module we have to check all 5 types of relations of Simplicial, Remark <a href="/tag/016L" data-tag="016L">14.5.3</a>. The relations on composing $\sigma $'s are obvious. The relations on composing $\delta $'s come down to the cocycle condition for $\varphi $. In exactly the same way as above one checks the relations $\sigma _ j \circ \delta _ j = \sigma _ j \circ \delta _{j + 1} = \text{id}$. Finally, the other relations on compositions of $\delta $'s and $\sigma $'s hold for any $\varphi $ whatsoever. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Note that to an $R$-module $M$ we can associate a canonical descent datum, namely $(M \otimes _ R A, can)$ where $can : (M \otimes _ R A) \otimes _ R A \to A \otimes _ R (M \otimes _ R A)$ is the obvious map: $(m \otimes a) \otimes a' \mapsto a \otimes (m \otimes a')$. 
+</p>
+<p>
+<article class="env-lemma" id="023I">
+  <p><a class="environment-identifier" href="/tag/023I">Lemma <span data-tag="023I">35.3.3</span>.</a> Let $R \to A$ be a ring map. Let $M$ be an $R$-module. The cosimplicial $(A/R)_\bullet $-module associated to the canonical descent datum is isomorphic to the cosimplicial module $(A/R)_\bullet \otimes _ R M$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="023J">
+  <p><a class="environment-identifier" href="/tag/023J">Definition <span data-tag="023J">35.3.4</span>.</a> Let $R \to A$ be a ring map. We say a descent datum $(N, \varphi )$ is <em>effective</em> if there exists an $R$-module $M$ and an isomorphism of descent data from $(M \otimes _ R A, can)$ to $(N, \varphi )$. </p>
+</article> 
+</p>
+<p>
+Let $R \to A$ be a ring map. Let $(N, \varphi )$ be a descent datum. We may take the cochain complex $s(N_\bullet )$ associated with $N_\bullet $ (see Simplicial, Section <a href="/tag/019H" data-tag="019H">14.25</a>). It has the following shape: 
+</p>
+<div class="equation">
+  \[  N \to A \otimes _ R N \to A \otimes _ R A \otimes _ R N \to \ldots  \]
+</div>
+<p>
+ We can describe the maps. The first map is the map 
+</p>
+<div class="equation">
+  \[  n \longmapsto 1 \otimes n - \varphi (n \otimes 1).  \]
+</div>
+<p>
+ The second map on pure tensors has the values 
+</p>
+<div class="equation">
+  \[  a \otimes n \longmapsto 1 \otimes a \otimes n - a \otimes 1 \otimes n + a \otimes \varphi (n \otimes 1).  \]
+</div>
+<p>
+ It is clear how the pattern continues. 
+</p>
+<p>
+In the special case where $N = A \otimes _ R M$ we see that for any $m \in M$ the element $1 \otimes m$ is in the kernel of the first map of the cochain complex associated to the cosimplicial module $(A/R)_\bullet \otimes _ R M$. Hence we get an extended cochain complex 
+</p>
+<div class="equation" id="023K">
+    <span class="equation-label"><a href="/tag/023K" data-tag="023K">35.3.4.1</a></span>
+  <div>\begin{equation}  \label{descent-equation-extended-complex} 0 \to M \to A \otimes _ R M \to A \otimes _ R A \otimes _ R M \to \ldots \end{equation}</div>
+</div>
+<p>
+ Here we think of the $0$ as being in degree $-2$, the module $M$ in degree $-1$, the module $A \otimes _ R M$ in degree $0$, etc. Note that this complex has the shape 
+</p>
+<div class="equation">
+  \[  0 \to R \to A \to A \otimes _ R A \to A \otimes _ R A \otimes _ R A \to \ldots  \]
+</div>
+<p>
+ when $M = R$. 
+</p>
+<p>
+<article class="env-lemma" id="023L">
+  <p><a class="environment-identifier" href="/tag/023L">Lemma <span data-tag="023L">35.3.5</span>.</a> Suppose that $R \to A$ has a section. Then for any $R$-module $M$ the extended cochain complex (<a href="/tag/023K" data-tag="023K">35.3.4.1</a>) is exact. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Simplicial, Lemma <a href="/tag/019Z" data-tag="019Z">14.28.5</a> the map $R \to (A/R)_\bullet $ is a homotopy equivalence of cosimplicial $R$-algebras (here $R$ denotes the constant cosimplicial $R$-algebra). Hence $M \to (A/R)_\bullet \otimes _ R M$ is a homotopy equivalence in the category of cosimplicial $R$-modules, because $\otimes _ R M$ is a functor from the category of $R$-algebras to the category of $R$-modules, see Simplicial, Lemma <a href="/tag/019Y" data-tag="019Y">14.28.4</a>. This implies that the induced map of associated complexes is a homotopy equivalence, see Simplicial, Lemma <a href="/tag/01A0" data-tag="01A0">14.28.6</a>. Since the complex associated to the constant cosimplicial $R$-module $M$ is the complex 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ M \ar[r]^0 &  M \ar[r]^1 &  M \ar[r]^0 &  M \ar[r]^1 &  M \ldots }  \]
+</div>
+    <p>
+       we win (since the extended version simply puts an extra $M$ at the beginning). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="023M">
+  <p><a class="environment-identifier" href="/tag/023M">Lemma <span data-tag="023M">35.3.6</span>.</a> Suppose that $R \to A$ is faithfully flat, see Algebra, Definition <a href="/tag/00HB" data-tag="00HB">10.39.1</a>. Then for any $R$-module $M$ the extended cochain complex (<a href="/tag/023K" data-tag="023K">35.3.4.1</a>) is exact. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose we can show there exists a faithfully flat ring map $R \to R'$ such that the result holds for the ring map $R' \to A' = R' \otimes _ R A$. Then the result follows for $R \to A$. Namely, for any $R$-module $M$ the cosimplicial module $(M \otimes _ R R') \otimes _{R'} (A'/R')_\bullet $ is just the cosimplicial module $R' \otimes _ R (M \otimes _ R (A/R)_\bullet )$. Hence the vanishing of cohomology of the complex associated to $(M \otimes _ R R') \otimes _{R'} (A'/R')_\bullet $ implies the vanishing of the cohomology of the complex associated to $M \otimes _ R (A/R)_\bullet $ by faithful flatness of $R \to R'$. Similarly for the vanishing of cohomology groups in degrees $-1$ and $0$ of the extended complex (proof omitted). 
+    <p>
+      But we have such a faithful flat extension. Namely $R' = A$ works because the ring map $R' = A \to A' = A \otimes _ R A$ has a section $a \otimes a' \mapsto aa'$ and Lemma <a href="/tag/023L" data-tag="023L">35.3.5</a> applies. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Here is how the complex relates to the question of effectivity. 
+</p>
+<p>
+<article class="env-lemma" id="039W">
+  <p><a class="environment-identifier" href="/tag/039W">Lemma <span data-tag="039W">35.3.7</span>.</a> Let $R \to A$ be a faithfully flat ring map. Let $(N, \varphi )$ be a descent datum. Then $(N, \varphi )$ is effective if and only if the canonical map </p>
+  <div class="equation">
+  \[  A \otimes _ R H^0(s(N_\bullet )) \longrightarrow N  \]
+</div>
+  <p> is an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $(N, \varphi )$ is effective, then we may write $N = A \otimes _ R M$ with $\varphi = can$. It follows that $H^0(s(N_\bullet )) = M$ by Lemmas <a href="/tag/023I" data-tag="023I">35.3.3</a> and <a href="/tag/023M" data-tag="023M">35.3.6</a>. Conversely, suppose the map of the lemma is an isomorphism. In this case set $M = H^0(s(N_\bullet ))$. This is an $R$-submodule of $N$, namely $M = \{ n \in N \mid 1 \otimes n = \varphi (n \otimes 1)\} $. The only thing to check is that via the isomorphism $A \otimes _ R M \to N$ the canonical descent data agrees with $\varphi $. We omit the verification. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="039X">
+  <p><a class="environment-identifier" href="/tag/039X">Lemma <span data-tag="039X">35.3.8</span>.</a> Let $R \to A$ be a faithfully flat ring map, and let $R \to R'$ be faithfully flat. Set $A' = R' \otimes _ R A$. If all descent data for $R' \to A'$ are effective, then so are all descent data for $R \to A$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $(N, \varphi )$ be a descent datum for $R \to A$. Set $N' = R' \otimes _ R N = A' \otimes _ A N$, and denote $\varphi ' = \text{id}_{R'} \otimes \varphi $ the base change of the descent datum $\varphi $. Then $(N', \varphi ')$ is a descent datum for $R' \to A'$ and $H^0(s(N'_\bullet )) = R' \otimes _ R H^0(s(N_\bullet ))$. Moreover, the map $A' \otimes _{R'} H^0(s(N'_\bullet )) \to N'$ is identified with the base change of the $A$-module map $A \otimes _ R H^0(s(N)) \to N$ via the faithfully flat map $A \to A'$. Hence we conclude by Lemma <a href="/tag/039W" data-tag="039W">35.3.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Here is the main result of this section. Its proof may seem a little clumsy; for a more highbrow approach see Remark <a href="/tag/039Y" data-tag="039Y">35.3.11</a> below. 
+</p>
+<p>
+<article class="env-proposition" id="023N">
+       
+      
+  <p><a class="environment-identifier" href="/tag/023N">Proposition <span data-tag="023N">35.3.9</span>.</a> Let $R \to A$ be a faithfully flat ring map. Then </p>
+  <p><ol>
+  <li><p>
+any descent datum on modules with respect to $R \to A$ is effective, 
+</p>
+</li><li><p>
+the functor $M \mapsto (A \otimes _ R M, can)$ from $R$-modules to the category of descent data is an equivalence, and 
+</p>
+</li><li><p>
+the inverse functor is given by $(N, \varphi ) \mapsto H^0(s(N_\bullet ))$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We only prove (1) and omit the proofs of (2) and (3). As $R \to A$ is faithfully flat, there exists a faithfully flat base change $R \to R'$ such that $R' \to A' = R' \otimes _ R A$ has a section (namely take $R' = A$ as in the proof of Lemma <a href="/tag/023M" data-tag="023M">35.3.6</a>). Hence, using Lemma <a href="/tag/039X" data-tag="039X">35.3.8</a> we may assume that $R \to A$ has a section, say $\sigma : A \to R$. Let $(N, \varphi )$ be a descent datum relative to $R \to A$. Set 
+    <p>
+      <div class="equation">
+  \[  M = H^0(s(N_\bullet )) = \{ n \in N \mid 1 \otimes n = \varphi (n \otimes 1)\}  \subset N  \]
+</div>
+    <p>
+       By Lemma <a href="/tag/039W" data-tag="039W">35.3.7</a> it suffices to show that $A \otimes _ R M \to N$ is an isomorphism. 
+    <p>
+      Take an element $n \in N$. Write $\varphi (n \otimes 1) = \sum a_ i \otimes x_ i$ for certain $a_ i \in A$ and $x_ i \in N$. By Lemma <a href="/tag/023H" data-tag="023H">35.3.2</a> we have $n = \sum a_ i x_ i$ in $N$ (because $\sigma ^0_0 \circ \delta ^1_1 = \text{id}$ in any cosimplicial object). Next, write $\varphi (x_ i \otimes 1) = \sum a_{ij} \otimes y_ j$ for certain $a_{ij} \in A$ and $y_ j \in N$. The cocycle condition means that 
+    <p>
+      <div class="equation">
+  \[  \sum a_ i \otimes a_{ij} \otimes y_ j = \sum a_ i \otimes 1 \otimes x_ i  \]
+</div>
+    <p>
+       in $A \otimes _ R A \otimes _ R N$. We conclude two things from this: 
+    <p>
+      <ol>
+  <li><p>
+applying $\sigma $ to the first $A$ we get $\sum \sigma (a_ i) \varphi (x_ i \otimes 1) = \sum \sigma (a_ i) \otimes x_ i$, 
+</p>
+</li><li><p>
+applying $\sigma $ to the middle $A$ we get $\sum _ i a_ i \otimes \sum _ j \sigma (a_{ij}) y_ j = \sum a_ i \otimes x_ i$. 
+</p>
+</li>
+</ol>
+    <p>
+       Part (1) shows that $\sum \sigma (a_ i) x_ i \in M$. Applying this to $x_ i$ we see that $\sum \sigma (a_{ij})y_ i \in M$ for all $i$. Multiplying out the equation in (2) we conclude that $\sum _ i a_ i (\sum _ j \sigma (a_{ij}) y_ j) = \sum a_ i x_ i = n$. Hence $A \otimes _ R M \to N$ is surjective. Finally, suppose that $m_ i \in M$ and $\sum a_ i m_ i = 0$. Then we see by applying $\varphi $ to $\sum a_ im_ i \otimes 1$ that $\sum a_ i \otimes m_ i = 0$. In other words $A \otimes _ R M \to N$ is injective and we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="023O">
+  <p><a class="environment-identifier" href="/tag/023O">Remark <span data-tag="023O">35.3.10</span>.</a> Let $R$ be a ring. Let $f_1, \ldots , f_ n\in R$ generate the unit ideal. The ring $A = \prod _ i R_{f_ i}$ is a faithfully flat $R$-algebra. We remark that the cosimplicial ring $(A/R)_\bullet $ has the following ring in degree $n$: </p>
+  <div class="equation">
+  \[  \prod \nolimits _{i_0, \ldots , i_ n} R_{f_{i_0}\ldots f_{i_ n}}  \]
+</div>
+  <p> Hence the results above recover Algebra, Lemmas <a href="/tag/00EJ" data-tag="00EJ">10.24.2</a>, <a href="/tag/00EK" data-tag="00EK">10.24.1</a> and <a href="/tag/00EQ" data-tag="00EQ">10.24.5</a>. But the results above actually say more because of exactness in higher degrees. Namely, it implies that Čech cohomology of quasi-coherent sheaves on affines is trivial. Thus we get a second proof of Cohomology of Schemes, Lemma <a href="/tag/01X9" data-tag="01X9">30.2.1</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="039Y">
+  <p><a class="environment-identifier" href="/tag/039Y">Remark <span data-tag="039Y">35.3.11</span>.</a> Let $R$ be a ring. Let $A_\bullet $ be a cosimplicial $R$-algebra. In this setting a descent datum corresponds to an cosimplicial $A_\bullet $-module $M_\bullet $ with the property that for every $n, m \geq 0$ and every $\varphi : [n] \to [m]$ the map $M(\varphi ) : M_ n \to M_ m$ induces an isomorphism </p>
+  <div class="equation">
+  \[  M_ n \otimes _{A_ n, A(\varphi )} A_ m \longrightarrow M_ m.  \]
+</div>
+  <p> Let us call such a cosimplicial module a <em>cartesian module</em>. In this setting, the proof of Proposition <a href="/tag/023N" data-tag="023N">35.3.9</a> can be split in the following steps </p>
+  <p><ol>
+  <li><p>
+If $R \to R'$ and $R \to A$ are faithfully flat, then descent data for $A/R$ are effective if descent data for $(R' \otimes _ R A)/R'$ are effective. 
+</p>
+</li><li><p>
+Let $A$ be an $R$-algebra. Descent data for $A/R$ correspond to cartesian $(A/R)_\bullet $-modules. 
+</p>
+</li><li><p>
+If $R \to A$ has a section then $(A/R)_\bullet $ is homotopy equivalent to $R$, the constant cosimplicial $R$-algebra with value $R$. 
+</p>
+</li><li><p>
+If $A_\bullet \to B_\bullet $ is a homotopy equivalence of cosimplicial $R$-algebras then the functor $M_\bullet \mapsto M_\bullet \otimes _{A_\bullet } B_\bullet $ induces an equivalence of categories between cartesian $A_\bullet $-modules and cartesian $B_\bullet $-modules. 
+</p>
+</li>
+</ol></p>
+  <p> For (1) see Lemma <a href="/tag/039X" data-tag="039X">35.3.8</a>. Part (2) uses Lemma <a href="/tag/023H" data-tag="023H">35.3.2</a>. Part (3) we have seen in the proof of Lemma <a href="/tag/023L" data-tag="023L">35.3.5</a> (it relies on Simplicial, Lemma <a href="/tag/019Z" data-tag="019Z">14.28.5</a>). Moreover, part (4) is a triviality if you think about it right! </p>
+</article> 
+</p>

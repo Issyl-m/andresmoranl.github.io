@@ -1,0 +1,183 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="stacks-sheaves-section-QC" class="tex-section"><span data-tag="0H0G">96.26</span> Quasi-coherent objects in the derived category</h2>
+
+<p>
+Algebraic geometers have contemplated invariants for non-representable functors $X$ (valued in sets or groupoids) on $\mathit{Sch}/S$ for decades. For instance, before the notion of a stack was invented, Mumford defined <span class="cite">[<a href="/bibliography/mumford_picard">mumford_picard</a>]</span> the Picard groupoid $\mathop{\mathrm{Pic}}\nolimits (X)$ for the moduli functor $X$ of elliptic curves as the $2$-limit $Pic(U)$ over the category of all schemes $U$ equipped with a map to $X$ (i.e., with a family of elliptic curves). Similarly, Beilinson-Drinfeld defined <span class="cite">[<a href="/bibliography/BVGD">BVGD</a>]</span> the category $\mathit{QCoh}(X)$ for an ind-scheme $X = \mathop{\mathrm{colim}}\nolimits X_ i$ as the $2$-limit $\mathop{\mathrm{lim}}\nolimits \mathit{QCoh}(X_ i)$. This strategy is sufficient for defining $1$-categorical invariants like $\mathit{QCoh}(-)$, but inadequate for derived categorical ones (such as the quasi-coherent derived category) as $2$-limits of triangulated categories are poorly behaved. With the advent of higher categorical technology and derived algebraic geometry, this problem can be resolved gracefully: one can define the quasi-coherent derived $\infty $-category $\mathcal{D}_{qc}(X)$ of the functor $X$ as the limit $\mathop{\mathrm{lim}}\nolimits \mathcal{D}_{qc}(U)$, where $U$ ranges over all derived affines over X (see <span class="cite">[<a href="/bibliography/lurie-thesis">lurie-thesis</a>]</span>). 
+</p>
+<p>
+The goal of this section is to attach a triangulated category $\mathit{QC}(X)$ to a functor $X$ (valued in sets or groupoids) as above. In fact, the construction works for any category $p : \mathcal{X} \to (\mathit{Sch}/S)_{fppf}$ fibred in groupoids (not just split ones). In good cases, the category $\mathit{QC}(\mathcal{X})$ can be shown to agree with the homotopy category of $\mathcal{D}_{qc}(\mathcal{X})$, though it is outside the scope of this document to explain this comparison. The salient features of the construction are: 
+</p>
+<ol>
+  <li class="custom-item" data-marker="(a)"><p>
+$\mathit{QC}(\mathcal{X})$ is a full subcategory of $D(\mathcal{X}_{affine}, \mathcal{O})$ by construction, 
+</p>
+</li><li class="custom-item" data-marker="(b)"><p>
+$\mathit{QC}(\mathcal{X})$ agrees with $D_\mathit{QCoh}(\mathcal{O}_ X)$ when $\mathcal{X}$ is representable by the algebraic space $X$, 
+</p>
+</li><li class="custom-item" data-marker="(c)"><p>
+$\mathit{QC}(\mathcal{X})$ agrees with $D_\mathit{QCoh}(\mathcal{O}_\mathcal {X})$ when $\mathcal{X}$ is an algebraic stack, 
+</p>
+</li><li class="custom-item" data-marker="(d)"><p>
+when $X = \text{Spf}(A)$ is an affine formal algebraic space attached to a noetherian ring $A$ equipped with the $I$-adic topology for an ideal $I$, the triangulated category $\mathit{QC}(X)$ agrees with the full subcategory $D_{comp}(A, I) \subset D(A)$ of derived complete objects. 
+</p>
+</li>
+</ol>
+<p>
+ These results are proven in Proposition <a href="/tag/0H0K" data-tag="0H0K">96.26.4</a>, Derived Categories of Stacks, Proposition <a href="/tag/0H16" data-tag="0H16">104.8.4</a>, and Proposition <a href="/tag/0H0L" data-tag="0H0L">96.26.5</a>. 
+</p>
+<p>
+As a motivation for the precise definition of $\mathit{QC}(\mathcal{X})$ we point the reader to the characterization, in Lemma <a href="/tag/0H0E" data-tag="0H0E">96.25.1</a>, of quasi-coherent modules on $\mathcal{X}$ as presheaves of $\mathcal{O}$-modules on $\mathcal{X}_{affine}$ which satisfy a kind of base change property. 
+</p>
+<p>
+<article class="env-definition" id="0H0H">
+  <p><a class="environment-identifier" href="/tag/0H0H">Definition <span data-tag="0H0H">96.26.1</span>.</a> Let $p : \mathcal{X} \to (\mathit{Sch}/S)_{fppf}$ be a category fibred in groupoids. Let $\mathcal{O}$ be the sheaf of rings on $\mathcal{X}_{affine}$ introduced in Section <a href="/tag/0H08" data-tag="0H08">96.24</a>. We define the <em>triangulated category of quasi-coherent objects in the derived category</em> by the formula </p>
+  <div class="equation">
+  \[  \mathit{QC}(\mathcal{X}) = \mathit{QC}(\mathcal{X}_{affine}, \mathcal{O})  \]
+</div>
+  <p> where the right hand side is as defined in Cohomology on Sites, Definition <a href="/tag/0GYV" data-tag="0GYV">21.43.1</a>. </p>
+</article> 
+</p>
+<p>
+Note that this makes sense as $\mathcal{X}_{affine}$ is a category and is viewed as a site by endowing it with the chaotic topology and $\mathcal{O}$ is a sheaf of rings on this category, exactly as required in Cohomology on Sites, Definition <a href="/tag/0GYV" data-tag="0GYV">21.43.1</a>. 
+</p>
+<p>
+The relationship of this definition with the category of quasi-coherent modules on $\mathcal{X}$ is not so clear in general! For example, suppose that $M$ is an object of $\mathit{QC}(\mathcal{X})$. Then the cohomology sheaves $H^ i(M)$ of $M$ are (pre)sheaves of $\mathcal{O}$-modules on $\mathcal{X}_{affine}$, but in general they are not quasi-coherent. The last nonvanishing cohomology sheaf is quasi-coherent however. 
+</p>
+<p>
+<article class="env-lemma" id="0H0I">
+  <p><a class="environment-identifier" href="/tag/0H0I">Lemma <span data-tag="0H0I">96.26.2</span>.</a> In the situation of Definition <a href="/tag/0H0H" data-tag="0H0H">96.26.1</a> suppose that $M$ is an object of $\mathit{QC}(\mathcal{X})$ and $b \in \mathbf{Z}$ such that $H^ i(M) = 0$ for all $i > b$. Then $H^ b(M)$ is a quasi-coherent module on $(\mathcal{X}_{affine}, \mathcal{O})$, see Lemma <a href="/tag/0H0E" data-tag="0H0E">96.25.1</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Special case of Cohomology on Sites, Lemma <a href="/tag/0GZQ" data-tag="0GZQ">21.43.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0H0J">
+  <p><a class="environment-identifier" href="/tag/0H0J">Lemma <span data-tag="0H0J">96.26.3</span>.</a> Let $S$ be a scheme. Let $\mathcal{X} \to (\mathit{Sch}/S)_{fppf}$ be a category fibred in groupoids. The comparison morphism $\epsilon : \mathcal{X}_{affine, {\acute{e}tale}} \to \mathcal{X}_{affine}$ satisfies the assumptions and conclusions of Cohomology on Sites, Lemma <a href="/tag/0GZS" data-tag="0GZS">21.43.12</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assumption (1) holds by definition of $\mathcal{X}_{affine}$. For condition (2) we use that for $x \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{X})$ lying over the affine scheme $U = p(x)$ we have an equivalence $\mathcal{X}_{affine, {\acute{e}tale}}/x = (\textit{Aff}/U)_{\acute{e}tale}$ compatible with structure sheaves; see discussion in Section <a href="/tag/075C" data-tag="075C">96.9</a>. Thus it suffices to show: given an affine scheme $U = \mathop{\mathrm{Spec}}(R)$ and a complex of $R$-modules $M^\bullet $ the total cohomology of the complex of modules on $(\textit{Aff}/U)_{\acute{e}tale}$ associated to $M^\bullet $ is quasi-isomorphic to $M^\bullet $. This follows from a combination of: Derived Categories of Schemes, Lemma <a href="/tag/06Z0" data-tag="06Z0">36.3.5</a> (total cohomology of complexes of modules over affines in the Zariski topology), Derived Categories of Spaces, Remark <a href="/tag/08GH" data-tag="08GH">75.6.3</a> (agreement between total cohomology in small Zariski and étale topologies for quasi-coherent complexes of modules), and Étale Cohomology, Lemma <a href="/tag/0DDH" data-tag="0DDH">59.99.3</a> (to see that the étale cohomology of a complex of modules on the big étale site of a scheme may be computed after restricting to the small étale site). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+If we apply the definition in case our category fibred in groupoids $\mathcal{X}$ is representable by an algebraic space $X$, then we recover $D_\mathit{QCoh}(\mathcal{O}_ X)$. We will later state and prove the analogous result for algebraic stacks (insert future reference here). 
+</p>
+<p>
+<article class="env-proposition" id="0H0K">
+  <p><a class="environment-identifier" href="/tag/0H0K">Proposition <span data-tag="0H0K">96.26.4</span>.</a> Let $S$ be a scheme. Let $\mathcal{X} \to (\mathit{Sch}/S)_{fppf}$ be a category fibred in groupoids. Assume $\mathcal{X}$ is representable by an algebraic space $X$. Then $\mathit{QC}(\mathcal{X})$ is canonically equivalent to $D_\mathit{QCoh}(\mathcal{O}_ X)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Denote $X_{affine}$ the category of affine schemes étale over $X$ endowed with the chaotic topology and its structure sheaf $\mathcal{O}_ X$, see Derived Categories of Spaces, Section <a href="/tag/0H05" data-tag="0H05">75.30</a>. The functor $u : X_{\acute{e}tale}\to \mathcal{X}_{\acute{e}tale}$ of Lemma <a href="/tag/073M" data-tag="073M">96.10.1</a> gives rise to a functor $X_{affine} \to \mathcal{X}_{affine}$. This is compatible with structure sheaves and produces a functor 
+    <p>
+      <div class="equation">
+  \[  G : \mathit{QC}(\mathcal{X}) = \mathit{QC}(\mathcal{X}_{affine}, \mathcal{O}) \longrightarrow \mathit{QC}(X_{affine}, \mathcal{O}_ X)  \]
+</div>
+    <p>
+       See Cohomology on Sites, Lemma <a href="/tag/0GZ1" data-tag="0GZ1">21.43.10</a>. By Derived Categories of Spaces, Lemma <a href="/tag/0H06" data-tag="0H06">75.30.1</a> the triangulated category $\mathit{QC}(X_{affine}, \mathcal{O}_ X)$ is equivalent to $D_\mathit{QCoh}(\mathcal{O}_ X)$. Hence it suffices to prove that $G$ is an equivalence. 
+    <p>
+      Consider the flat comparison morphisms $\epsilon _\mathcal {X} : \mathcal{X}_{affine, {\acute{e}tale}} \to \mathcal{X}_{affine}$ and $\epsilon _ X : X_{affine, {\acute{e}tale}} \to X_{affine}$ of ringed sites. Lemma <a href="/tag/0H0J" data-tag="0H0J">96.26.3</a> and (the proof of) Derived Categories of Spaces, Lemma <a href="/tag/0H06" data-tag="0H06">75.30.1</a> show that the functors $\epsilon _\mathcal {X}^*$ and $\epsilon _ X^*$ identify $\mathit{QC}(\mathcal{X}_{affine}, \mathcal{O})$ and $\mathit{QC}(X_{affine}, \mathcal{O}_ X)$ with subcategories $Q_\mathcal {X} \subset D(\mathcal{X}_{affine, {\acute{e}tale}}, \mathcal{O})$ and $Q_ X \subset D(X_{affine, {\acute{e}tale}}, \mathcal{O}_ X)$. With these identifications the functor $G$ in the first paragraph is induced by the functor 
+    <p>
+      <div class="equation">
+  \[  Li_ X^* = R\pi _{X, *}: D(\mathcal{X}_{affine, {\acute{e}tale}}, \mathcal{O}) \longrightarrow D(X_{affine, {\acute{e}tale}}, \mathcal{O}_ X)  \]
+</div>
+    <p>
+       where $i_ X$ and $\pi _ X$ are the morphisms from Lemma <a href="/tag/073M" data-tag="073M">96.10.1</a> but with the étale sites replaced by the corresponding affine ones. The reader can show that this replacement is permissible either by reproving the lemma for the affine sites directly or by using the equivalences of topoi $\mathop{\mathit{Sh}}\nolimits (\mathcal{X}_{affine, {\acute{e}tale}}) = \mathop{\mathit{Sh}}\nolimits (\mathcal{X}_{\acute{e}tale})$ and $\mathop{\mathit{Sh}}\nolimits (X_{affine, {\acute{e}tale}}) = \mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale})$. The lemma also tells us $Li_ X^*$ has a left adjoint 
+    <p>
+      <div class="equation">
+  \[  L\pi _ X^*: D(X_{affine, {\acute{e}tale}}, \mathcal{O}_ X) \longrightarrow D(\mathcal{X}_{affine, {\acute{e}tale}}, \mathcal{O})  \]
+</div>
+    <p>
+       and moreover we have $Li_ X^* \circ L\pi _ X^* = \text{id}$ since $\pi _ X \circ i_ X$ is the identity. Thus it suffices to show that (a) $L\pi _ X^*$ sends $Q_ X$ into $Q_\mathcal {X}$ and (b) the kernel of $Li_ X^*$ is $0$. See Derived Categories, Lemma <a href="/tag/09J1" data-tag="09J1">13.7.2</a>. 
+    <p>
+      Proof of (a). By Derived Categories of Spaces, Lemma <a href="/tag/0H06" data-tag="0H06">75.30.1</a> we have $Q_ X = D_\mathit{QCoh}(X_{affine, {\acute{e}tale}}, \mathcal{O}_ X)$. Let $K$ be an object of $Q_ X$. Let $x$ be an object of $\mathcal{X}_{affine, {\acute{e}tale}}$ lying over the affine scheme $U = p(x)$. Denote $f : U \to X$ the morphism corresponding to $x$. Then we see that 
+    <p>
+      <div class="equation">
+  \[  R\Gamma (x, L\pi _ X^*K) = R\Gamma (U, Lf^*K)  \]
+</div>
+    <p>
+       This follows from transitivity of pullbacks; see discussion in Section <a href="/tag/076P" data-tag="076P">96.10</a>. Next, suppose that $x \to x'$ is a morphism of $\mathcal{X}_{affine, {\acute{e}tale}}$ lying over the morphism $h : U \to U'$ of affine schemes. As before denote $f : U \to X$ and $f' : U' \to X$ the morphisms corresponding to $x$ and $x'$ so that we have $f = f' \circ h$. Then 
+    <p>
+      <div class="equation">
+  \begin{align*}  R\Gamma (x, L\pi _ X^*K) &  = R\Gamma (U, Lf^*K) \\ &  = R\Gamma (U, Lh^*L(f')^*K) \\ &  = R\Gamma (U', L(f')^*K) \otimes _{\mathcal{O}(U')}^\mathbf {L} \mathcal{O}(U) \\ &  = R\Gamma (x', L\pi _ X^*K) \otimes _{\mathcal{O}(x')}^\mathbf {L} \mathcal{O}(x) \end{align*}
+</div>
+    <p>
+       and hence we have (a) by the footnote in the statement of Cohomology on Sites, Lemma <a href="/tag/0GZS" data-tag="0GZS">21.43.12</a>. The third equality is Derived Categories of Schemes, Lemma <a href="/tag/08DW" data-tag="08DW">36.3.8</a>. 
+    <p>
+      Proof of (b). Let $M$ be an object of $Q_\mathcal {X}$ such that $Li_ X^*M = 0$. Let $x'$ be an object of $\mathcal{X}_{affine, {\acute{e}tale}}$ lying over the affine scheme $U' = p(x')$ and assume that the corresponding morphism $f' : U' \to X$ is étale. Then $f' : U' \to X$ is an object of $X_{affine, {\acute{e}tale}}$ and the condition $Li_ X^*M = 0$ implies that $M|_{U'_{\acute{e}tale}} = 0$. In particular, we see that $R\Gamma (x', M) = 0$. However, for an arbitrary object $x$ of the site $\mathcal{X}_{affine, {\acute{e}tale}}$ there exists a covering $\{ x_ i \to x\} $ such that for each $i$ there is a morphism $x_ i \to x'_ i$ with $x'_ i$ corresponding to an object of $X_{affine, {\acute{e}tale}}$. Now since $M$ is in $Q_\mathcal {X}$ we have 
+    <p>
+      <div class="equation">
+  \[  R\Gamma (x_ i, M) = R\Gamma (x_ i', M) \otimes _{\mathcal{O}(x_ i')}^\mathbf {L} \mathcal{O}(x_ i) = 0  \]
+</div>
+    <p>
+       and we conclude that $M$ is zero as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+To show that the construction produces an interesting category in another case, let us state and prove a characterization of $\mathit{QC}(\text{Spf}(A))$ for the formal spectrum of a Noetherian adic ring $A$. 
+</p>
+<p>
+<article class="env-proposition" id="0H0L">
+  <p><a class="environment-identifier" href="/tag/0H0L">Proposition <span data-tag="0H0L">96.26.5</span>.</a> Let $S$ be a scheme. Let $X = \text{Spf}(A)$ where $A$ is an an adic Noetherian topological $S$-algebra with ideal of definition $I$, see More on Algebra, Definition <a href="/tag/07E8" data-tag="07E8">15.37.1</a> and Formal Spaces, Definition <a href="/tag/0AIF" data-tag="0AIF">87.9.9</a>. Let $p : \mathcal{X} \to (\mathit{Sch}/S)_{fppf}$ the be category fibred in sets associated to the functor $X$, see Categories, Example <a href="/tag/04TM" data-tag="04TM">4.38.5</a>. Then $\mathit{QC}(\mathcal{X})$ is canonically equivalent to the category $D_{comp}(A, I)$ of objects of $D(A)$ which are derived complete with respect to $I$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Recall that $X = \mathop{\mathrm{colim}}\nolimits \mathop{\mathrm{Spec}}(A/I^ n)$ as an fppf sheaf. An object of $\mathcal{X}_{affine}$ is the same thing as an affine scheme $U = \mathop{\mathrm{Spec}}(R)$ with a given morphism $f : U \to X$. By Formal Spaces, Lemma <a href="/tag/0AIA" data-tag="0AIA">87.9.4</a> there exists an $n \geq 1$ such that $f$ factors through the monomorphism $\mathop{\mathrm{Spec}}(A/I^ n) \to X$. Consider the full subcategory $\mathcal{C} \subset \mathcal{X}_{affine}$ consisting of the objects $\mathop{\mathrm{Spec}}(A/I^ n) \to X$. By the remarks just made and Differential Graded Sheaves, Lemma <a href="/tag/0GZE" data-tag="0GZE">24.34.1</a> restriction to $\mathcal{C}$ is an exact equivalence $\mathit{QC}(\mathcal{X}) \to \mathit{QC}(\mathcal{C}, \mathcal{O}|_\mathcal {C})$. For simplicity, let us assume that $I^ n \not= I^{n + 1}$ for all $n \geq 1$. Then $(\mathcal{C}, \mathcal{O}|_\mathcal {C})$ is isomorphic as a ringed site to the ringed site $(\mathbf{N}, (A/I^ n))$, see Differential Graded Sheaves, Section <a href="/tag/0GZG" data-tag="0GZG">24.35</a>. Hence we conclude by Differential Graded Sheaves, Proposition <a href="/tag/0GZK" data-tag="0GZK">24.35.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma will be used in comparing $\mathit{QC}(\mathcal{X})$ to $D_\mathit{QCoh}(\mathcal{O}_\mathcal {X})$ when $\mathcal{X}$ is an algebraic stack. 
+</p>
+<p>
+<article class="env-lemma" id="0H0X">
+  <p><a class="environment-identifier" href="/tag/0H0X">Lemma <span data-tag="0H0X">96.26.6</span>.</a> Let $S$ be a scheme. Let $\mathcal{X} \to (\mathit{Sch}/S)_{fppf}$ be a category fibred in groupoids. The comparison morphism $\epsilon : \mathcal{X}_{affine, fppf} \to \mathcal{X}_{affine}$ satisfies the assumptions and conclusions of Cohomology on Sites, Lemma <a href="/tag/0GZS" data-tag="0GZS">21.43.12</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The proof is exactly the same as the proof of Lemma <a href="/tag/0H0J" data-tag="0H0J">96.26.3</a>. Assumption (1) holds by definition of $\mathcal{X}_{affine}$. For condition (2) we use that for $x \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{X})$ lying over the affine scheme $U = p(x)$ we have an equivalence $\mathcal{X}_{affine, {\acute{e}tale}}/x = (\textit{Aff}/U)_{\acute{e}tale}$ compatible with structure sheaves; see discussion in Section <a href="/tag/075C" data-tag="075C">96.9</a>. Thus it suffices to show: given an affine scheme $U = \mathop{\mathrm{Spec}}(R)$ and a complex of $R$-modules $M^\bullet $ the total cohomology of the complex of modules on $(\textit{Aff}/U)_{fppf}$ associated to $M^\bullet $ is quasi-isomorphic to $M^\bullet $. This is Étale Cohomology, Lemma <a href="/tag/0H0U" data-tag="0H0U">59.101.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

@@ -1,0 +1,343 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="injectives-section-additional-Grothendieck" class="tex-section"><span data-tag="07D6">19.13</span> Additional remarks on Grothendieck abelian categories</h2>
+
+<p>
+In this section we put some results on Grothendieck abelian categories which are folklore. 
+</p>
+<p>
+<article class="env-lemma" id="07D7">
+  <p><a class="environment-identifier" href="/tag/07D7">Lemma <span data-tag="07D7">19.13.1</span>.</a> Let $\mathcal{A}$ be a Grothendieck abelian category. Let $F : \mathcal{A}^{opp} \to \textit{Sets}$ be a functor. Then $F$ is representable if and only if $F$ commutes with colimits, i.e., </p>
+  <div class="equation">
+  \[  F(\mathop{\mathrm{colim}}\nolimits _ i N_ i) = \mathop{\mathrm{lim}}\nolimits F(N_ i)  \]
+</div>
+  <p> for any diagram $\mathcal{I} \to \mathcal{A}$, $i \in \mathcal{I}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $F$ is representable, then it commutes with colimits by definition of colimits. 
+    <p>
+      Assume that $F$ commutes with colimits. Then $F(M \oplus N) = F(M) \times F(N)$ and we can use this to define a group structure on $F(M)$. Hence we get $F : \mathcal{A} \to \textit{Ab}$ which is additive and right exact, i.e., transforms a short exact sequence $0 \to K \to L \to M \to 0$ into an exact sequence $F(K) \leftarrow F(L) \leftarrow F(M) \leftarrow 0$ (compare with Homology, Section <a href="/tag/010M" data-tag="010M">12.7</a>). 
+    <p>
+      Let $U$ be a generator for $\mathcal{A}$. Set $A = \bigoplus _{s \in F(U)} U$. Let $s_{univ} = (s)_{s \in F(U)} \in F(A) = \prod _{s \in F(U)} F(U)$. Let $A' \subset A$ be the largest subobject such that $s_{univ}$ restricts to zero on $A'$. This exists because $\mathcal{A}$ is a Grothendieck category and because $F$ commutes with colimits. Because $F$ commutes with colimits there exists a unique element $\overline{s}_{univ} \in F(A/A')$ which maps to $s_{univ}$ in $F(A)$. We claim that $A/A'$ represents $F$, in other words, the Yoneda map 
+    <p>
+      <div class="equation">
+  \[  \overline{s}_{univ} : h_{A/A'} \longrightarrow F  \]
+</div>
+    <p>
+       is an isomorphism. Let $M \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{A})$ and $s \in F(M)$. Consider the surjection 
+    <p>
+      <div class="equation">
+  \[  c_ M : A_ M = \bigoplus \nolimits _{\varphi \in \mathop{\mathrm{Hom}}\nolimits _\mathcal {A}(U, M)} U \longrightarrow M.  \]
+</div>
+    <p>
+       This gives $F(c_ M)(s) = (s_\varphi ) \in \prod _\varphi F(U)$. Consider the map 
+    <p>
+      <div class="equation">
+  \[  \psi : A_ M = \bigoplus \nolimits _{\varphi \in \mathop{\mathrm{Hom}}\nolimits _\mathcal {A}(U, M)} U \longrightarrow \bigoplus \nolimits _{s \in F(U)} U = A  \]
+</div>
+    <p>
+       which maps the summand corresponding to $\varphi $ to the summand corresponding to $s_\varphi $ by the identity map on $U$. Then $s_{univ}$ maps to $(s_\varphi )_\varphi $ by construction. in other words the right square in the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ A' \ar[r] &  A \ar@{..>}[r]_{s_{univ}} &  F \\  K \ar[r] \ar[u]^{?} &  A_ M \ar[u]^\psi \ar[r] &  M \ar@{..>}[u]_ s }  \]
+</div>
+    <p>
+       commutes. Let $K = \mathop{\mathrm{Ker}}(A_ M \to M)$. Since $s$ restricts to zero on $K$ we see that $\psi (K) \subset A'$ by definition of $A'$. Hence there is an induced morphism $M \to A/A'$. This construction gives an inverse to the map $h_{A/A'}(M) \to F(M)$ (details omitted). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="07D8">
+  <p><a class="environment-identifier" href="/tag/07D8">Lemma <span data-tag="07D8">19.13.2</span>.</a> A Grothendieck abelian category has Ab3*. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $M_ i$, $i \in I$ be a family of objects of $\mathcal{A}$ indexed by a set $I$. The functor $F = \prod _{i \in I} h_{M_ i}$ commutes with colimits. Hence Lemma <a href="/tag/07D7" data-tag="07D7">19.13.1</a> applies. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="079Q">
+  <p><a class="environment-identifier" href="/tag/079Q">Remark <span data-tag="079Q">19.13.3</span>.</a> In the chapter on derived categories we consistently work with “small” abelian categories (as is the convention in the Stacks project). For a “big” abelian category $\mathcal{A}$ it isn't clear that the derived category $D(\mathcal{A})$ exists because it isn't clear that morphisms in the derived category are sets. In general this isn't true, see Examples, Lemma <a href="/tag/07JT" data-tag="07JT">110.63.1</a>. However, if $\mathcal{A}$ is a Grothendieck abelian category, and given $K^\bullet , L^\bullet $ in $K(\mathcal{A})$, then by Theorem <a href="/tag/079P" data-tag="079P">19.12.6</a> there exists a quasi-isomorphism $L^\bullet \to I^\bullet $ to a K-injective complex $I^\bullet $ and Derived Categories, Lemma <a href="/tag/070I" data-tag="070I">13.31.2</a> shows that </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _{D(\mathcal{A})}(K^\bullet , L^\bullet ) = \mathop{\mathrm{Hom}}\nolimits _{K(\mathcal{A})}(K^\bullet , I^\bullet )  \]
+</div>
+  <p> which is a set. Some examples of Grothendieck abelian categories are the category of modules over a ring, or more generally the category of sheaves of modules on a ringed site. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="07D9">
+  <p><a class="environment-identifier" href="/tag/07D9">Lemma <span data-tag="07D9">19.13.4</span>.</a> Let $\mathcal{A}$ be a Grothendieck abelian category. Then </p>
+  <p><ol>
+  <li><p>
+$D(\mathcal{A})$ has both direct sums and products, 
+</p>
+</li><li><p>
+direct sums are obtained by taking termwise direct sums of any complexes, 
+</p>
+</li><li><p>
+products are obtained by taking termwise products of K-injective complexes. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $K^\bullet _ i$, $i \in I$ be a family of objects of $D(\mathcal{A})$ indexed by a set $I$. We claim that the termwise direct sum $\bigoplus _{i \in I} K^\bullet _ i$ is a direct sum in $D(\mathcal{A})$. Namely, let $I^\bullet $ be a K-injective complex. Then we have 
+    <p>
+      <div class="equation">
+  \begin{align*}  \mathop{\mathrm{Hom}}\nolimits _{D(\mathcal{A})}(\bigoplus \nolimits _{i \in I} K^\bullet _ i, I^\bullet ) &  = \mathop{\mathrm{Hom}}\nolimits _{K(\mathcal{A})}(\bigoplus \nolimits _{i \in I} K^\bullet _ i, I^\bullet ) \\ &  = \prod \nolimits _{i \in I} \mathop{\mathrm{Hom}}\nolimits _{K(\mathcal{A})}(K^\bullet _ i, I^\bullet ) \\ &  = \prod \nolimits _{i \in I} \mathop{\mathrm{Hom}}\nolimits _{D(\mathcal{A})}(K^\bullet _ i, I^\bullet ) \end{align*}
+</div>
+    <p>
+       as desired. This is sufficient since any complex can be represented by a K-injective complex by Theorem <a href="/tag/079P" data-tag="079P">19.12.6</a>. To construct the product, choose a K-injective resolution $K_ i^\bullet \to I_ i^\bullet $ for each $i$. Then we claim that $\prod _{i \in I} I_ i^\bullet $ is a product in $D(\mathcal{A})$. This follows from Derived Categories, Lemma <a href="/tag/0BK6" data-tag="0BK6">13.31.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="07DA">
+  <p><a class="environment-identifier" href="/tag/07DA">Remark <span data-tag="07DA">19.13.5</span>.</a> Let $R$ be a ring. Suppose that $M_ n$, $n \in \mathbf{Z}$ are $R$-modules. Denote $E_ n = M_ n[-n] \in D(R)$. We claim that $E = \bigoplus M_ n[-n]$ is <em>both</em> the direct sum and the product of the objects $E_ n$ in $D(R)$. To see that it is the direct sum, take a look at the proof of Lemma <a href="/tag/07D9" data-tag="07D9">19.13.4</a>. To see that it is the direct product, take injective resolutions $M_ n \to I_ n^\bullet $. By the proof of Lemma <a href="/tag/07D9" data-tag="07D9">19.13.4</a> we have </p>
+  <div class="equation">
+  \[  \prod E_ n = \prod I_ n^\bullet [-n]  \]
+</div>
+  <p> in $D(R)$. Since products in $\text{Mod}_ R$ are exact, we see that $\prod I_ n^\bullet [-n]$ is quasi-isomorphic to $E$. This works more generally in $D(\mathcal{A})$ where $\mathcal{A}$ is a Grothendieck abelian category with Ab4*. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="08U1">
+  <p><a class="environment-identifier" href="/tag/08U1">Lemma <span data-tag="08U1">19.13.6</span>.</a> Let $F : \mathcal{A} \to \mathcal{B}$ be an additive functor of abelian categories. Assume </p>
+  <p><ol>
+  <li><p>
+$\mathcal{A}$ is a Grothendieck abelian category, 
+</p>
+</li><li><p>
+$\mathcal{B}$ has exact countable products, and 
+</p>
+</li><li><p>
+$F$ commutes with countable products. 
+</p>
+</li>
+</ol></p>
+  <p> Then $RF : D(\mathcal{A}) \to D(\mathcal{B})$ commutes with derived limits. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Observe that $RF$ exists as $\mathcal{A}$ has enough K-injectives (Theorem <a href="/tag/079P" data-tag="079P">19.12.6</a> and Derived Categories, Lemma <a href="/tag/070Y" data-tag="070Y">13.31.6</a>). The statement means that if $K = R\mathop{\mathrm{lim}}\nolimits K_ n$, then $RF(K) = R\mathop{\mathrm{lim}}\nolimits RF(K_ n)$. See Derived Categories, Definition <a href="/tag/08TC" data-tag="08TC">13.34.1</a> for notation. Since $RF$ is an exact functor of triangulated categories it suffices to see that $RF$ commutes with countable products of objects of $D(\mathcal{A})$. In the proof of Lemma <a href="/tag/07D9" data-tag="07D9">19.13.4</a> we have seen that products in $D(\mathcal{A})$ are computed by taking products of K-injective complexes and moreover that a product of K-injective complexes is K-injective. Moreover, in Derived Categories, Lemma <a href="/tag/07KC" data-tag="07KC">13.34.2</a> we have seen that products in $D(\mathcal{B})$ are computed by taking termwise products. Since $RF$ is computed by applying $F$ to a K-injective representative and since we've assumed $F$ commutes with countable products, the lemma follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma is some kind of generalization of the existence of Cartan-Eilenberg resolutions (Derived Categories, Section <a href="/tag/015G" data-tag="015G">13.21</a>). 
+</p>
+<p>
+<article class="env-lemma" id="0BKI">
+  <p><a class="environment-identifier" href="/tag/0BKI">Lemma <span data-tag="0BKI">19.13.7</span>.</a> Let $\mathcal{A}$ be a Grothendieck abelian category. Let $K^\bullet $ be a filtered complex of $\mathcal{A}$, see Homology, Definition <a href="/tag/012L" data-tag="012L">12.24.1</a>. Then there exists a morphism $j : K^\bullet \to J^\bullet $ of filtered complexes of $\mathcal{A}$ such that </p>
+  <p><ol>
+  <li><p>
+$J^ n$, $F^ pJ^ n$, $J^ n/F^ pJ^ n$ and $F^ pJ^ n/F^{p'}J^ n$ are injective objects of $\mathcal{A}$, 
+</p>
+</li><li><p>
+$J^\bullet $, $F^ pJ^\bullet $, $J^\bullet /F^ pJ^\bullet $, and $F^ pJ^\bullet /F^{p'}J^\bullet $ are K-injective complexes, 
+</p>
+</li><li><p>
+$j$ induces quasi-isomorphisms $K^\bullet \to J^\bullet $, $F^ pK^\bullet \to F^ pJ^\bullet $, $K^\bullet /F^ pK^\bullet \to J^\bullet /F^ pJ^\bullet $, and $F^ pK^\bullet /F^{p'}K^\bullet \to F^ pJ^\bullet /F^{p'}J^\bullet $. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Theorem <a href="/tag/079P" data-tag="079P">19.12.6</a> we obtain quasi-isomorphisms $i : K^\bullet \to I^\bullet $ and $i^ p : F^ pK^\bullet \to I^{p, \bullet }$ as well as commutative diagrams 
+    <p>
+      <div class="equation">
+  \[  \vcenter { \xymatrix{ K^\bullet \ar[d]_ i &  F^ pK^\bullet \ar[l] \ar[d]_{i^ p} \\  I^\bullet &  I^{p, \bullet } \ar[l]_{\alpha ^ p} } } \quad \text{and}\quad \vcenter { \xymatrix{ F^{p'}K^\bullet \ar[d]_{i^{p'}} &  F^ pK^\bullet \ar[l] \ar[d]_{i^ p} \\  I^{p', \bullet } &  I^{p, \bullet } \ar[l]_{\alpha ^{p p'}} } } \quad \text{for }p' \leq p  \]
+</div>
+    <p>
+       such that $\alpha ^ p \circ \alpha ^{p' p} = \alpha ^{p'}$ and $\alpha ^{p'p''} \circ \alpha ^{pp'} = \alpha ^{pp''}$. The problem is that the maps $\alpha ^ p : I^{p, \bullet } \to I^\bullet $ need not be injective. For each $p$ we choose an injection $t^ p : I^{p, \bullet } \to J^{p, \bullet }$ into an acyclic K-injective complex $J^{p, \bullet }$ whose terms are injective objects of $\mathcal{A}$ (first map to the cone on the identity and then use the theorem). Choose a map of complexes $s^ p : I^\bullet \to J^{p, \bullet }$ such that the following diagram commutes 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ K^\bullet \ar[d]_ i &  F^ pK^\bullet \ar[l] \ar[d]_{i^ p} \\  I^\bullet \ar[rd]_{s^ p} &  I^{p, \bullet } \ar[d]^{t^ p} \\  &  J^{p, \bullet } }  \]
+</div>
+    <p>
+       This is possible: the composition $F^ pK^\bullet \to J^{p, \bullet }$ is homotopic to zero because $J^{p, \bullet }$ is acyclic and K-injective (Derived Categories, Lemma <a href="/tag/070I" data-tag="070I">13.31.2</a>). Since the objects $J^{p, n - 1}$ are injective and since $F^ pK^ n \to K^ n \to I^ n$ are injective morphisms, we can lift the maps $F^ pK^ n \to J^{p, n - 1}$ giving the homotopy to a map $h^ n : I^ n \to J^{p, n - 1}$. Then we set $s^ p$ equal to $h \circ \text{d} + \text{d} \circ h$. (Warning: It will not be the case that $t^ p = s^ p \circ \alpha ^ p$, so we have to be careful not to use this below.) 
+    <p>
+      Consider 
+    <p>
+      <div class="equation">
+  \[  J^\bullet = I^\bullet \times \prod \nolimits _ p J^{p, \bullet }  \]
+</div>
+    <p>
+       Because products in $D(\mathcal{A})$ are given by taking products of K-injective complexes (Lemma <a href="/tag/07D9" data-tag="07D9">19.13.4</a>) and since $J^{p, \bullet }$ is isomorphic to $0$ in $D(\mathcal{A})$ we see that $J^\bullet \to I^\bullet $ is an isomorphism in $D(\mathcal{A})$. Consider the map 
+    <p>
+      <div class="equation">
+  \[  j = i \times (s^ p \circ i)_{p \in \mathbf{Z}} : K^\bullet \longrightarrow I^\bullet \times \prod \nolimits _ p J^{p, \bullet } = J^\bullet  \]
+</div>
+    <p>
+       By our remarks above this is a quasi-isomorphism. It is also injective. For $p \in \mathbf{Z}$ we let $F^ pJ^\bullet \subset J^\bullet $ be 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Im}}\left( \alpha ^ p \times (t^{p'} \circ \alpha ^{pp'})_{p' \leq p} : I^{p, \bullet } \to I^\bullet \times \prod \nolimits _{p' \leq p} J^{p', \bullet } \right) \times \prod \nolimits _{p' > p} J^{p', \bullet }  \]
+</div>
+    <p>
+       This complex is isomorphic to the complex $I^{p, \bullet } \times \prod _{p' > p} J^{p, \bullet }$ as $\alpha ^{pp} = \text{id}$ and $t^ p$ is injective. Hence $F^ pJ^\bullet $ is quasi-isomorphic to $I^{p, \bullet }$ (argue as above). We have $j(F^ pK^\bullet ) \subset F^ pJ^\bullet $ because of the commutativity of the diagram above. The corresponding map of complexes $F^ pK^\bullet \to F^ pJ^\bullet $ is a quasi-isomorphism by what we just said. Finally, to see that $F^{p + 1}J^\bullet \subset F^ pJ^\bullet $ use that $\alpha ^{p + 1p} \circ \alpha ^{pp'} = \alpha ^{p + 1p'}$ and the commutativity of the first displayed diagram in the first paragraph of the proof. 
+    <p>
+      We claim that $j : K^\bullet \to J^\bullet $ is a solution to the problem posed by the lemma. Namely, $F^ pJ^ n$ is an injective object of $\mathcal{A}$ because it is isomorphic to $I^{p, n} \times \prod _{p' > p} J^{p', n}$ and products of injectives are injective. Then the injective map $F^ pJ^ n \to J^ n$ splits and hence the quotient $J^ n/F^ pJ^ n$ is injective as well as a direct summand of the injective object $J^ n$. Similarly for $F^ pJ^ n/F^{p'}J^ n$. This in particular means that $0 \to F^ pJ^\bullet \to J^\bullet \to J^\bullet /F^ pJ^\bullet \to 0$ is a termwise split short exact sequence of complexes, hence defines a distinguished triangle in $K(\mathcal{A})$ by fiat. Since $J^\bullet $ and $F^ pJ^\bullet $ are K-injective complexes we see that the same is true for $J^\bullet /F^ pJ^\bullet $ by Derived Categories, Lemma <a href="/tag/090X" data-tag="090X">13.31.3</a>. A similar argument shows that $F^ pJ^\bullet /F^{p'}J^\bullet $ is K-injective. By construction $j : K^\bullet \to J^\bullet $ and the induced maps $F^ pK^\bullet \to F^ pJ^\bullet $ are quasi-isomorphisms. Using the long exact cohomology sequences of the complexes in play we find that the same holds for $K^\bullet /F^ pK^\bullet \to J^\bullet /F^ pJ^\bullet $ and $F^ pK^\bullet /F^{p'}K^\bullet \to F^ pJ^\bullet /F^{p'}J^\bullet $. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0G1X">
+  <p><a class="environment-identifier" href="/tag/0G1X">Remark <span data-tag="0G1X">19.13.8</span>.</a> Let $\mathcal{A}$ be a Grothendieck abelian category. Let $K^\bullet $ be a filtered complex of $\mathcal{A}$, see Homology, Definition <a href="/tag/012L" data-tag="012L">12.24.1</a>. For ease of notation denote $K$, $F^ pK$, $\text{gr}^ pK$ the object of $D(\mathcal{A})$ represented by $K^\bullet $, $F^ pK^\bullet $, $\text{gr}^ pK^\bullet $. Let $M \in D(\mathcal{A})$. Using Lemma <a href="/tag/0BKI" data-tag="0BKI">19.13.7</a> we can construct a spectral sequence $(E_ r, d_ r)_{r \geq 1}$ of bigraded objects of $\mathcal{A}$ with $d_ r$ of bidgree $(r, -r + 1)$ and with </p>
+  <div class="equation">
+  \[  E_1^{p, q} = \mathop{\mathrm{Ext}}\nolimits ^{p + q}(M, \text{gr}^ pK)  \]
+</div>
+  <p> If for every $n$ we have </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Ext}}\nolimits ^ n(M, F^ pK) = 0 \text{ for } p \gg 0 \quad \text{and}\quad \mathop{\mathrm{Ext}}\nolimits ^ n(M, F^ pK) = \mathop{\mathrm{Ext}}\nolimits ^ n(M, K) \text{ for } p \ll 0  \]
+</div>
+  <p> then the spectral sequence is bounded and converges to $\mathop{\mathrm{Ext}}\nolimits ^{p + q}(M, K)$. Namely, choose any complex $M^\bullet $ representing $M$, choose $j : K^\bullet \to J^\bullet $ as in the lemma, and consider the complex </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits ^\bullet (M^\bullet , J^\bullet )  \]
+</div>
+  <p> defined exactly as in More on Algebra, Section <a href="/tag/0A8H" data-tag="0A8H">15.73</a>. Setting $F^ p\mathop{\mathrm{Hom}}\nolimits ^\bullet (M^\bullet , J^\bullet ) = \mathop{\mathrm{Hom}}\nolimits ^\bullet (M^\bullet , F^ pJ^\bullet )$ we obtain a filtered complex. The spectral sequence of Homology, Section <a href="/tag/012K" data-tag="012K">12.24</a> has differentials and terms as described above; details omitted. The boundedness and convergence follows from Homology, Lemma <a href="/tag/0BK5" data-tag="0BK5">12.24.13</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="0G1Y">
+  <p><a class="environment-identifier" href="/tag/0G1Y">Remark <span data-tag="0G1Y">19.13.9</span>.</a> Let $\mathcal{A}$ be a Grothendieck abelian category. Let $M, K$ be objects of $D(\mathcal{A})$. For any choice of complex $K^\bullet $ representing $K$ we can use the filtration $F^ pK^\bullet = \tau _{\leq -p}K^\bullet $ and the discussion in Remark <a href="/tag/0G1X" data-tag="0G1X">19.13.8</a> to get a spectral sequence with </p>
+  <div class="equation">
+  \[  E_1^{p, q} = \mathop{\mathrm{Ext}}\nolimits ^{2p + q}(M, H^{-p}(K))  \]
+</div>
+  <p> This spectral sequence is independent of the choice of complex $K^\bullet $ representing $K$. After renumbering $p = -j$ and $q = i + 2j$ we find a spectral sequence $(E'_ r, d'_ r)_{r \geq 2}$ with $d'_ r$ of bidegree $(r, -r + 1)$, with </p>
+  <div class="equation">
+  \[  (E'_2)^{i, j} = \mathop{\mathrm{Ext}}\nolimits ^ i(M, H^ j(K))  \]
+</div>
+  <p> If $M \in D^-(\mathcal{A})$ and $K \in D^+(\mathcal{A})$ then both $E_ r$ and $E'_ r$ are bounded and converge to $\mathop{\mathrm{Ext}}\nolimits ^{p + q}(M, K)$. If we use the filtration $F^ pK^\bullet = \sigma _{\geq p}K^\bullet $ then we get </p>
+  <div class="equation">
+  \[  E_1^{p, q} = \mathop{\mathrm{Ext}}\nolimits ^ q(M, K^ p)  \]
+</div>
+  <p> If $M \in D^-(\mathcal{A})$ and $K^\bullet $ is bounded below, then this spectral sequence is bounded and converges to $\mathop{\mathrm{Ext}}\nolimits ^{p + q}(M, K)$. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="0G1Z">
+  <p><a class="environment-identifier" href="/tag/0G1Z">Remark <span data-tag="0G1Z">19.13.10</span>.</a> Let $\mathcal{A}$ be a Grothendieck abelian category. Let $K \in D(\mathcal{A})$. Let $M^\bullet $ be a filtered complex of $\mathcal{A}$, see Homology, Definition <a href="/tag/012L" data-tag="012L">12.24.1</a>. For ease of notation denote $M$, $M/F^ pM$, $\text{gr}^ pM$ the object of $D(\mathcal{A})$ represented by $M^\bullet $, $M^\bullet /F^ pM^\bullet $, $\text{gr}^ pM^\bullet $. Dually to Remark <a href="/tag/0G1X" data-tag="0G1X">19.13.8</a> we can construct a spectral sequence $(E_ r, d_ r)_{r \geq 1}$ of bigraded objects of $\mathcal{A}$ with $d_ r$ of bidgree $(r, -r + 1)$ and with </p>
+  <div class="equation">
+  \[  E_1^{p, q} = \mathop{\mathrm{Ext}}\nolimits ^{p + q}(\text{gr}^{-p}M, K)  \]
+</div>
+  <p> If for every $n$ we have </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Ext}}\nolimits ^ n(M/F^ pM, K) = 0 \text{ for } p \ll 0 \quad \text{and}\quad \mathop{\mathrm{Ext}}\nolimits ^ n(M/F^ pM, K) = \mathop{\mathrm{Ext}}\nolimits ^ n(M, K) \text{ for } p \gg 0  \]
+</div>
+  <p> then the spectral sequence is bounded and converges to $\mathop{\mathrm{Ext}}\nolimits ^{p + q}(M, K)$. Namely, choose a K-injective complex $I^\bullet $ with injective terms representing $K$, see Theorem <a href="/tag/079P" data-tag="079P">19.12.6</a>. Consider the complex </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits ^\bullet (M^\bullet , I^\bullet )  \]
+</div>
+  <p> defined exactly as in More on Algebra, Section <a href="/tag/0A8H" data-tag="0A8H">15.73</a>. Setting </p>
+  <div class="equation">
+  \[  F^ p\mathop{\mathrm{Hom}}\nolimits ^\bullet (M^\bullet , I^\bullet ) = \mathop{\mathrm{Hom}}\nolimits ^\bullet (M^\bullet /F^{-p + 1}M^\bullet , I^\bullet )  \]
+</div>
+  <p> we obtain a filtered complex (note sign and shift in filtration). The spectral sequence of Homology, Section <a href="/tag/012K" data-tag="012K">12.24</a> has differentials and terms as described above; details omitted. The boundedness and convergence follows from Homology, Lemma <a href="/tag/0BK5" data-tag="0BK5">12.24.13</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="0G20">
+  <p><a class="environment-identifier" href="/tag/0G20">Remark <span data-tag="0G20">19.13.11</span>.</a> Let $\mathcal{A}$ be a Grothendieck abelian category. Let $M, K$ be objects of $D(\mathcal{A})$. For any choice of complex $M^\bullet $ representing $M$ we can use the filtration $F^ pM^\bullet = \tau _{\leq -p}M^\bullet $ and the discussion in Remark <a href="/tag/0G1X" data-tag="0G1X">19.13.8</a> to get a spectral sequence with </p>
+  <div class="equation">
+  \[  E_1^{p, q} = \mathop{\mathrm{Ext}}\nolimits ^{2p + q}(H^ p(M), K)  \]
+</div>
+  <p> This spectral sequence is independent of the choice of complex $M^\bullet $ representing $M$. After renumbering $p = -j$ and $q = i + 2j$ we find a spectral sequence $(E'_ r, d'_ r)_{r \geq 2}$ with $d'_ r$ of bidegree $(r, -r + 1)$, with </p>
+  <div class="equation">
+  \[  (E'_2)^{i, j} = \mathop{\mathrm{Ext}}\nolimits ^ i(H^{-j}(M), K)  \]
+</div>
+  <p> If $M \in D^-(\mathcal{A})$ and $K \in D^+(\mathcal{A})$ then $E_ r$ and $E'_ r$ are bounded and converge to $\mathop{\mathrm{Ext}}\nolimits ^{p + q}(M, K)$. If we use the filtration $F^ pM^\bullet = \sigma _{\geq p}M^\bullet $ then we get </p>
+  <div class="equation">
+  \[  E_1^{p, q} = \mathop{\mathrm{Ext}}\nolimits ^ q(M^{-p}, K)  \]
+</div>
+  <p> If $K \in D^+(\mathcal{A})$ and $M^\bullet $ is bounded above, then this spectral sequence is bounded and converges to $\mathop{\mathrm{Ext}}\nolimits ^{p + q}(M, K)$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0ESJ">
+  <p><a class="environment-identifier" href="/tag/0ESJ">Lemma <span data-tag="0ESJ">19.13.12</span>.</a> Let $\mathcal{A}$ be a Grothendieck abelian category. Suppose given an object $E \in D(\mathcal{A})$ and an inverse system $\{ E^ i\} _{i \in \mathbf{Z}}$ of objects of $D(\mathcal{A})$ over $\mathbf{Z}$ together with a compatible system of maps $E^ i \to E$. Picture: </p>
+  <div class="equation">
+  \[  \ldots \to E^{i + 1} \to E^ i \to E^{i - 1} \to \ldots \to E  \]
+</div>
+  <p> Then there exists a filtered complex $K^\bullet $ of $\mathcal{A}$ (Homology, Definition <a href="/tag/012L" data-tag="012L">12.24.1</a>) such that $K^\bullet $ represents $E$ and $F^ iK^\bullet $ represents $E^ i$ compatibly with the given maps. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Theorem <a href="/tag/079P" data-tag="079P">19.12.6</a> we can choose a K-injective complex $I^\bullet $ representing $E$ all of whose terms $I^ n$ are injective objects of $\mathcal{A}$. Choose a complex $G^{0, \bullet }$ representing $E^0$. Choose a map of complexes $\varphi ^0 : G^{0, \bullet } \to I^\bullet $ representing $E^0 \to E$. For $i > 0$ we inductively represent $E^ i \to E^{i - 1}$ by a map of complexes $\delta : G^{i, \bullet } \to G^{i - 1, \bullet }$ and we set $\varphi ^ i = \delta \circ \varphi ^{i - 1}$. For $i < 0$ we inductively represent $E^{i + 1} \to E^ i$ by a termwise injective map of complexes $\delta : G^{i + 1, \bullet } \to G^{i, \bullet }$ (for example you can use Derived Categories, Lemma <a href="/tag/013N" data-tag="013N">13.9.6</a>). Claim: we can find a map of complexes $\varphi ^ i : G^{i, \bullet } \to I^\bullet $ representing the map $E^ i \to E$ and fitting into the commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ G^{i + 1, \bullet } \ar[r]_\delta \ar[d]_{\varphi ^{i + 1}} &  G^{i, \bullet } \ar[ld]^{\varphi ^ i} \\  I^\bullet }  \]
+</div>
+    <p>
+       Namely, we first choose any map of complexes $\varphi : G^{i, \bullet } \to I^\bullet $ representing the map $E^ i \to E$. Then we see that $\varphi \circ \delta $ and $\varphi ^{i + 1}$ are homotopic by some homotopy $h^ p : G^{i + 1, p} \to I^{p - 1}$. Since the terms of $I^\bullet $ are injective and since $\delta $ is termwise injective, we can lift $h^ p$ to $(h')^ p : G^{i, p} \to I^{p - 1}$. Then we set $\varphi ^ i = \varphi + h' \circ d + d \circ h'$ and we get what we claimed. 
+    <p>
+      Next, we choose for every $i$ a termwise injective map of complexes $a^ i : G^{i, \bullet } \to J^{i, \bullet }$ with $J^{i, \bullet }$ acyclic, K-injective, with $J^{i, p}$ injective objects of $\mathcal{A}$. To do this first map $G^{i, \bullet }$ to the cone on the identity and then apply the theorem cited above. Arguing as above we can find maps of complexes $\delta ' : J^{i, \bullet } \to J^{i - 1, \bullet }$ such that the diagrams 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ G^{i, \bullet } \ar[r]_\delta \ar[d]_{a^ i} &  G^{i - 1, \bullet } \ar[d]^{a^{i - 1}} \\  J^{i, \bullet } \ar[r]^{\delta '} &  J^{i - 1, \bullet } }  \]
+</div>
+    <p>
+       commute. (You could also use the functoriality of cones plus the functoriality in the theorem to get this.) Then we consider the maps 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ G^{i + 1, \bullet } \times \prod \nolimits _{p > i + 1} J^{p, \bullet } \ar[r] \ar[rd] &  G^{i, \bullet } \times \prod \nolimits _{p > i} J^{p, \bullet } \ar[r] \ar[d] &  G^{i - 1, \bullet } \times \prod \nolimits _{p > i - 1} J^{p, \bullet } \ar[ld] \\  &  I^\bullet \times \prod \nolimits _ p J^{p, \bullet } }  \]
+</div>
+    <p>
+       Here the arrows on $J^{p, \bullet }$ are the obvious ones (identity or zero). On the factor $G^{i, \bullet }$ we use $\delta : G^{i, \bullet } \to G^{i - 1, \bullet }$, the map $\varphi ^ i : G^{i, \bullet } \to I^\bullet $, the zero map $0 : G^{i, \bullet } \to J^{p, \bullet }$ for $p > i$, the map $a^ i : G^{i, \bullet } \to J^{p, \bullet }$ for $p = i$, and $(\delta ')^{i - p} \circ a^ i = a^ p \circ \delta ^{i - p} : G^{i, \bullet } \to J^{p, \bullet }$ for $p < i$. We omit the verification that all the arrows in the diagram are termwise injective. Thus we obtain a filtered complex. Because products in $D(\mathcal{A})$ are given by taking products of K-injective complexes (Lemma <a href="/tag/07D9" data-tag="07D9">19.13.4</a>) and because $J^{p, \bullet }$ is zero in $D(\mathcal{A})$ we conclude this diagram represents the given diagram in the derived category. This finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0ESK">
+  <p><a class="environment-identifier" href="/tag/0ESK">Lemma <span data-tag="0ESK">19.13.13</span>.</a> In the situation of Lemma <a href="/tag/0ESJ" data-tag="0ESJ">19.13.12</a> assume we have a second inverse system $\{ (E')^ i\} _{i \in \mathbf{Z}}$ and a compatible system of maps $(E')^ i \to E$. Then there exists a bi-filtered complex $K^\bullet $ of $\mathcal{A}$ such that $K^\bullet $ represents $E$, $F^ iK^\bullet $ represents $E^ i$, and $(F')^ iK^\bullet $ represents $(E')^ i$ compatibly with the given maps. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Using the lemma we can first choose $K^\bullet $ and $F$. Then we can choose $(K')^\bullet $ and $F'$ which work for $\{ (E')^ i\} _{i \in \mathbf{Z}}$ and the maps $(E')^ i \to E$. Using Lemma <a href="/tag/0BKI" data-tag="0BKI">19.13.7</a> we can assume $K^\bullet $ is a K-injective complex. Then we can choose a map of complexes $(K')^\bullet \to K^\bullet $ corresponding to the given identifications $(K')^\bullet \cong E \cong K^\bullet $. We can additionally choose a termwise injective map $(K')^\bullet \to J^\bullet $ with $J^\bullet $ acyclic and K-injective. (To do this first map $(K')^\bullet $ to the cone on the identity and then apply Theorem <a href="/tag/079P" data-tag="079P">19.12.6</a>.) Then $(K')^\bullet \to K^\bullet \times J^\bullet $ and $K^\bullet \to K^\bullet \times J^\bullet $ are both termwise injective and quasi-isomorphisms (as the product represents $E$ by Lemma <a href="/tag/07D9" data-tag="07D9">19.13.4</a>). Then we can simply take the images of the filtrations on $K^\bullet $ and $(K')^\bullet $ under these maps to conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

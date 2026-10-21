@@ -1,0 +1,150 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="etale-cohomology-section-cohomology-quasi-coherent" class="tex-section"><span data-tag="03OY">59.22</span> Cohomology of quasi-coherent sheaves</h2>
+
+<p>
+We start with a simple lemma (which holds in greater generality than stated). It says that the Čech complex of a standard covering is equal to the Čech complex of an fpqc covering of the form $\{ \mathop{\mathrm{Spec}}(B) \to \mathop{\mathrm{Spec}}(A)\} $ with $A \to B$ faithfully flat. 
+</p>
+<p>
+<article class="env-lemma" id="03OZ">
+  <p><a class="environment-identifier" href="/tag/03OZ">Lemma <span data-tag="03OZ">59.22.1</span>.</a> Let $\tau \in \{ fppf, syntomic, smooth, {\acute{e}tale}, Zariski\} $. Let $S$ be a scheme. Let $\mathcal{F}$ be an abelian sheaf on $(\mathit{Sch}/S)_\tau $, or on $S_\tau $ in case $\tau = {\acute{e}tale}$, and let $\mathcal{U} = \{ U_ i \to U\} _{i \in I}$ be a standard $\tau $-covering of this site. Let $V = \coprod _{i \in I} U_ i$. Then </p>
+  <p><ol>
+  <li><p>
+$V$ is an affine scheme, 
+</p>
+</li><li><p>
+$\mathcal{V} = \{ V \to U\} $ is an fpqc covering and also a $\tau $-covering unless $\tau = Zariski$, 
+</p>
+</li><li><p>
+the Čech complexes $\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{F})$ and $\check{\mathcal{C}}^\bullet (\mathcal{V}, \mathcal{F})$ agree. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The definition of a standard $\tau $-covering is given in Topologies, Definition <a href="/tag/020R" data-tag="020R">34.3.4</a>, <a href="/tag/0219" data-tag="0219">34.4.5</a>, <a href="/tag/0223" data-tag="0223">34.5.5</a>, <a href="/tag/0229" data-tag="0229">34.6.5</a>, and <a href="/tag/021Q" data-tag="021Q">34.7.5</a>. By definition each of the schemes $U_ i$ is affine and $I$ is a finite set. Hence $V$ is an affine scheme. It is clear that $V \to U$ is flat and surjective, hence $\mathcal{V}$ is an fpqc covering, see Example <a href="/tag/03NY" data-tag="03NY">59.15.3</a>. Excepting the Zariski case, the covering $\mathcal{V}$ is also a $\tau $-covering, see Topologies, Definition <a href="/tag/0215" data-tag="0215">34.4.1</a>, <a href="/tag/021Z" data-tag="021Z">34.5.1</a>, <a href="/tag/0225" data-tag="0225">34.6.1</a>, and <a href="/tag/021M" data-tag="021M">34.7.1</a>. 
+    <p>
+      Note that $\mathcal{U}$ is a refinement of $\mathcal{V}$ and hence there is a map of Čech complexes $\check{\mathcal{C}}^\bullet (\mathcal{V}, \mathcal{F}) \to \check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{F})$, see Cohomology on Sites, Equation (<a href="/tag/03F4" data-tag="03F4">21.8.2.1</a>). Next, we observe that if $T = \coprod _{j \in J} T_ j$ is a disjoint union of schemes in the site on which $\mathcal{F}$ is defined then the family of morphisms with fixed target $\{ T_ j \to T\} _{j \in J}$ is a Zariski covering, and so 
+    <p>
+      <div class="equation" id="03XC">
+    <span class="equation-label"><a href="/tag/03XC" data-tag="03XC">59.22.1.1</a></span>
+  <div>\begin{equation}  \label{etale-cohomology-equation-sheaf-coprod} \mathcal{F}(T) = \mathcal{F}(\coprod \nolimits _{j \in J} T_ j) = \prod \nolimits _{j \in J} \mathcal{F}(T_ j) \end{equation}</div>
+</div>
+    <p>
+       by the sheaf condition of $\mathcal{F}$. This implies the map of Čech complexes above is an isomorphism in each degree because 
+    <p>
+      <div class="equation">
+  \[  V \times _ U \ldots \times _ U V = \coprod \nolimits _{i_0, \ldots i_ p} U_{i_0} \times _ U \ldots \times _ U U_{i_ p}  \]
+</div>
+    <p>
+       as schemes. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Note that Equality (<a href="/tag/03XC" data-tag="03XC">59.22.1.1</a>) is false for a general presheaf. Even for sheaves it does not hold on any site, since coproducts may not lead to coverings, and may not be disjoint. But it does for all the usual ones (at least all the ones we will study). 
+</p>
+<p>
+<article class="env-remark" id="03P0">
+  <p><a class="environment-identifier" href="/tag/03P0">Remark <span data-tag="03P0">59.22.2</span>.</a> In the statement of Lemma <a href="/tag/03OZ" data-tag="03OZ">59.22.1</a> the covering $\mathcal{U}$ is a refinement of $\mathcal{V}$ but not the other way around. Coverings of the form $\{ V \to U\} $ do not form an initial subcategory of the category of all coverings of $U$. Yet it is still true that we can compute Čech cohomology $\check H^ n(U, \mathcal{F})$ (which is defined as the colimit over the opposite of the category of coverings $\mathcal{U}$ of $U$ of the Čech cohomology groups of $\mathcal{F}$ with respect to $\mathcal{U}$) in terms of the coverings $\{ V \to U\} $. We will formulate a precise lemma (it only works for sheaves) and add it here if we ever need it. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="03P1">
+  <p><a class="environment-identifier" href="/tag/03P1">Lemma <span data-tag="03P1">59.22.3</span> <span class="named">(Locality of cohomology)</span>.</a>  Let $\mathcal{C}$ be a site, $\mathcal{F}$ an abelian sheaf on $\mathcal{C}$, $U$ an object of $\mathcal{C}$, $p > 0$ an integer and $\xi \in H^ p(U, \mathcal{F})$. Then there exists a covering $\mathcal{U} = \{ U_ i \to U\} _{i \in I}$ of $U$ in $\mathcal{C}$ such that $\xi |_{U_ i} = 0$ for all $i \in I$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose an injective resolution $\mathcal{F} \to \mathcal{I}^\bullet $. Then $\xi $ is represented by a cocycle $\tilde{\xi } \in \mathcal{I}^ p(U)$ with $d^ p(\tilde{\xi }) = 0$. By assumption, the sequence $\mathcal{I}^{p - 1} \to \mathcal{I}^ p \to \mathcal{I}^{p + 1}$ in exact in $\textit{Ab}(\mathcal{C})$, which means that there exists a covering $\mathcal{U} = \{ U_ i \to U\} _{i \in I}$ such that $\tilde{\xi }|_{U_ i} = d^{p - 1}(\xi _ i)$ for some $\xi _ i \in \mathcal{I}^{p-1}(U_ i)$. Since the cohomology class $\xi |_{U_ i}$ is represented by the cocycle $\tilde{\xi }|_{U_ i}$ which is a coboundary, it vanishes. For more details see Cohomology on Sites, Lemma <a href="/tag/01FW" data-tag="01FW">21.7.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-theorem" id="03P2">
+  <p><a class="environment-identifier" href="/tag/03P2">Theorem <span data-tag="03P2">59.22.4</span>.</a> Let $S$ be a scheme and $\mathcal{F}$ a quasi-coherent $\mathcal{O}_ S$-module. Let $\mathcal{C}$ be either $(\mathit{Sch}/S)_\tau $ for $\tau \in \{ fppf, syntomic, smooth, {\acute{e}tale}, Zariski\} $ or $S_{\acute{e}tale}$. Then </p>
+  <div class="equation">
+  \[  H^ p(S, \mathcal{F}) = H^ p_\tau (S, \mathcal{F}^ a)  \]
+</div>
+  <p> for all $p \geq 0$ where </p>
+  <p><ol>
+  <li><p>
+the left hand side indicates the usual cohomology of the sheaf $\mathcal{F}$ on the underlying topological space of the scheme $S$, and 
+</p>
+</li><li><p>
+the right hand side indicates cohomology of the abelian sheaf $\mathcal{F}^ a$ (see Proposition <a href="/tag/03OG" data-tag="03OG">59.17.1</a>) on the site $\mathcal{C}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We are going to show that $H^ p(U, f^*\mathcal{F}) = H^ p_\tau (U, \mathcal{F}^ a)$ for any object $f : U \to S$ of the site $\mathcal{C}$. The result is true for $p = 0$ by the sheaf property. 
+    <p>
+      Assume that $U$ is affine. Then we want to prove that $H^ p_\tau (U, \mathcal{F}^ a) = 0$ for all $p > 0$. We use induction on $p$. 
+    <p>
+      <ol>
+  <li class="custom-item" data-marker="p = 1"><p>
+Pick $\xi \in H^1_\tau (U, \mathcal{F}^ a)$. By Lemma <a href="/tag/03P1" data-tag="03P1">59.22.3</a>, there exists an fpqc covering $\mathcal{U} = \{ U_ i \to U\} _{i \in I}$ such that $\xi |_{U_ i} = 0$ for all $i \in I$. Up to refining $\mathcal{U}$, we may assume that $\mathcal{U}$ is a standard $\tau $-covering. Applying the spectral sequence of Theorem <a href="/tag/03OW" data-tag="03OW">59.19.2</a>, we see that $\xi $ comes from a cohomology class $\check\xi \in \check H^1(\mathcal{U}, \mathcal{F}^ a)$. Consider the covering $\mathcal{V} = \{ \coprod _{i\in I} U_ i \to U\} $. By Lemma <a href="/tag/03OZ" data-tag="03OZ">59.22.1</a>, $\check H^\bullet (\mathcal{U}, \mathcal{F}^ a) = \check H^\bullet (\mathcal{V}, \mathcal{F}^ a)$. On the other hand, since $\mathcal{V}$ is a covering of the form $\{ \mathop{\mathrm{Spec}}(B) \to \mathop{\mathrm{Spec}}(A)\} $ and $f^*\mathcal{F} = \widetilde{M}$ for some $A$-module $M$, we see the Čech complex $\check{\mathcal{C}}^\bullet (\mathcal{V}, \mathcal{F})$ is none other than the complex $(B/A)_\bullet \otimes _ A M$. Now by Lemma <a href="/tag/03OA" data-tag="03OA">59.16.4</a>, $H^ p((B/A)_\bullet \otimes _ A M) = 0$ for $p > 0$, hence $\check\xi = 0$ and so $\xi = 0$. 
+</p>
+</li><li class="custom-item" data-marker="p > 1"><p>
+Pick $\xi \in H^ p_\tau (U, \mathcal{F}^ a)$. By Lemma <a href="/tag/03P1" data-tag="03P1">59.22.3</a>, there exists an fpqc covering $\mathcal{U} = \{ U_ i \to U\} _{i \in I}$ such that $\xi |_{U_ i} = 0$ for all $i \in I$. Up to refining $\mathcal{U}$, we may assume that $\mathcal{U}$ is a standard $\tau $-covering. We apply the spectral sequence of Theorem <a href="/tag/03OW" data-tag="03OW">59.19.2</a>. Observe that the intersections $U_{i_0} \times _ U \ldots \times _ U U_{i_ p}$ are affine, so that by induction hypothesis the cohomology groups 
+</p>
+<div class="equation">
+  \[  E_2^{p, q} = \check H^ p(\mathcal{U}, \underline{H}^ q(\mathcal{F}^ a))  \]
+</div>
+<p>
+ vanish for all $0 < q < p$. We see that $\xi $ must come from a $\check\xi \in \check H^ p(\mathcal{U}, \mathcal{F}^ a)$. Replacing $\mathcal{U}$ with the covering $\mathcal{V}$ containing only one morphism and using Lemma <a href="/tag/03OA" data-tag="03OA">59.16.4</a> again, we see that the Čech cohomology class $\check\xi $ must be zero, hence $\xi = 0$. 
+</p>
+</li>
+</ol>
+    <p>
+       Next, assume that $U$ is separated. Choose an affine open covering $U = \bigcup _{i \in I} U_ i$ of $U$. The family $\mathcal{U} = \{ U_ i \to U\} _{i \in I}$ is then an fpqc covering, and all the intersections $U_{i_0} \times _ U \ldots \times _ U U_{i_ p}$ are affine since $U$ is separated. So all rows of the spectral sequence of Theorem <a href="/tag/03OW" data-tag="03OW">59.19.2</a> are zero, except the zeroth row. Therefore 
+    <p>
+      <div class="equation">
+  \[  H^ p_\tau (U, \mathcal{F}^ a) = \check H^ p(\mathcal{U}, \mathcal{F}^ a) = \check H^ p(\mathcal{U}, \mathcal{F}) = H^ p(U, \mathcal{F})  \]
+</div>
+    <p>
+       where the last equality results from standard scheme theory, see Cohomology of Schemes, Lemma <a href="/tag/01XD" data-tag="01XD">30.2.6</a>. 
+    <p>
+      The general case is technical and (to extend the proof as given here) requires a discussion about maps of spectral sequences, so we won't treat it. It follows from Descent, Proposition <a href="/tag/03DW" data-tag="03DW">35.9.3</a> (whose proof takes a slightly different approach) combined with Cohomology on Sites, Lemma <a href="/tag/03F3" data-tag="03F3">21.7.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="03P3">
+  <p><a class="environment-identifier" href="/tag/03P3">Remark <span data-tag="03P3">59.22.5</span>.</a> Comment on Theorem <a href="/tag/03P2" data-tag="03P2">59.22.4</a>. Since $S$ is a final object in the category $\mathcal{C}$, the cohomology groups on the right-hand side are merely the right derived functors of the global sections functor. In fact the proof shows that $H^ p(U, f^*\mathcal{F}) = H^ p_\tau (U, \mathcal{F}^ a)$ for any object $f : U \to S$ of the site $\mathcal{C}$. </p>
+</article> 
+</p>

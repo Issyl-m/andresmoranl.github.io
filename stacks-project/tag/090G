@@ -1,0 +1,331 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sites-section-quasi-compact" class="tex-section"><span data-tag="090G">7.17</span> Quasi-compact objects and colimits</h2>
+
+<p>
+To be able to use the same language as in the case of topological spaces we introduce the following terminology. 
+</p>
+<p>
+<article class="env-definition" id="090H">
+  <p><a class="environment-identifier" href="/tag/090H">Definition <span data-tag="090H">7.17.1</span>.</a> Let $\mathcal{C}$ be a site. An object $U$ of $\mathcal{C}$ is <em>quasi-compact</em> if given a covering $\mathcal{U} = \{ U_ i \to U\} _{i \in I}$ in $\mathcal{C}$ there exists another covering $\mathcal{V} = \{ V_ j \to U\} _{j \in J}$ and a morphism $\mathcal{V} \to \mathcal{U}$ of families of maps with fixed target given by $\text{id} : U \to U$, $\alpha : J \to I$, and $V_ j \to U_{\alpha (j)}$ (see Definition <a href="/tag/00VT" data-tag="00VT">7.8.1</a>) such that the image of $\alpha $ is a finite subset of $I$. </p>
+</article> 
+</p>
+<p>
+Of course the usual notion is sufficient to conclude that $U$ is quasi-compact. 
+</p>
+<p>
+<article class="env-lemma" id="0D05">
+  <p><a class="environment-identifier" href="/tag/0D05">Lemma <span data-tag="0D05">7.17.2</span>.</a> Let $\mathcal{C}$ be a site. Let $U$ be an object of $\mathcal{C}$. Consider the following conditions </p>
+  <p><ol>
+  <li><p>
+$U$ is quasi-compact, 
+</p>
+</li><li><p>
+for every covering $\{ U_ i \to U\} _{i \in I}$ in $\mathcal{C}$ there exists a finite covering $\{ V_ j \to U\} _{j = 1, \ldots , m}$ of $\mathcal{C}$ refining $\mathcal{U}$, and 
+</p>
+</li><li><p>
+for every covering $\{ U_ i \to U\} _{i \in I}$ in $\mathcal{C}$ there exists a finite subset $I' \subset I$ such that $\{ U_ i \to U\} _{i \in I'}$ is a covering in $\mathcal{C}$. 
+</p>
+</li>
+</ol></p>
+  <p> Then we always have (3) $\Rightarrow $ (2) $\Rightarrow $ (1) but the reverse implications do not hold in general. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The implications are immediate from the definitions. Let $X = [0, 1] \subset \mathbf{R}$ as a topological space (with the usual $\epsilon $-$\delta $ topology). Let $\mathcal{C}$ be the category of open subspaces of $X$ with inclusions as morphisms and usual open coverings (compare with Example <a href="/tag/00VJ" data-tag="00VJ">7.6.4</a>). However, then we change the notion of covering in $\mathcal{C}$ to exclude all finite coverings, except for the coverings of the form $\{ U \to U\} $. It is easy to see that this will be a site as in Definition <a href="/tag/00VH" data-tag="00VH">7.6.2</a>. In this site the object $X = U = [0, 1]$ is quasi-compact in the sense of Definition <a href="/tag/090H" data-tag="090H">7.17.1</a> but $U$ does not satisfy (2). We leave it to the reader to make an example where (2) holds but not (3). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Here is the topos theoretic meaning of a quasi-compact object. 
+</p>
+<p>
+<article class="env-lemma" id="0D06">
+  <p><a class="environment-identifier" href="/tag/0D06">Lemma <span data-tag="0D06">7.17.3</span>.</a> Let $\mathcal{C}$ be a site. Let $U$ be an object of $\mathcal{C}$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$U$ is quasi-compact, and 
+</p>
+</li><li><p>
+for every surjection of sheaves $\coprod _{i \in I} \mathcal{F}_ i \to h_ U^\# $ there is a finite subset $J \subset I$ such that $\coprod _{i \in J} \mathcal{F}_ i \to h_ U^\# $ is surjective. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume (1) and let $\coprod _{i \in I} \mathcal{F}_ i \to h_ U^\# $ be a surjection. Then $\text{id}_ U$ is a section of $h_ U^\# $ over $U$. Hence there exists a covering $\{ U_ a \to U\} _{a \in A}$ and for each $a \in A$ a section $s_ a$ of $\coprod _{i \in I} \mathcal{F}_ i$ over $U_ a$ mapping to $\text{id}_ U$. By the construction of coproducts as sheafification of coproducts of presheaves (Lemma <a href="/tag/00WI" data-tag="00WI">7.10.14</a>), for each $a$ there exists a covering $\{ U_{ab} \to U_ a\} _{b \in B_ a}$ and for all $b \in B_ a$ an $\iota (b) \in I$ and a section $s_{b}$ of $\mathcal{F}_{\iota (b)}$ over $U_{ab}$ mapping to $\text{id}_ U|_{U_{ab}}$. Thus after replacing the covering $\{ U_ a \to U\} _{a \in A}$ by $\{ U_{ab} \to U\} _{a \in A, b \in B_ a}$ we may assume we have a map $\iota : A \to I$ and for each $a \in A$ a section $s_ a$ of $\mathcal{F}_{\iota (a)}$ over $U_ a$ mapping to $\text{id}_ U$. Since $U$ is quasi-compact, there is a covering $\{ V_ c \to U\} _{c \in C}$, a map $\alpha : C \to A$ with finite image, and $V_ c \to U_{\alpha (c)}$ over $U$. Then we see that $J = \mathop{\mathrm{Im}}(\iota \circ \alpha ) \subset I$ works because $\coprod _{c \in C} h_{V_ c}^\#  \to h_ U^\# $ is surjective (Lemma <a href="/tag/00WT" data-tag="00WT">7.12.4</a>) and factors through $\coprod _{i \in J} \mathcal{F}_ i \to h_ U^\# $. (Here we use that the composition $h_{V_ c}^\#  \to h_{U_{\alpha (c)}} \xrightarrow {s_{\alpha (c)}} \mathcal{F}_{\iota (\alpha (c))} \to h_ U^\# $ is the map $h_{V_ c}^\#  \to h_ U^\# $ coming from the morphism $V_ c \to U$ because $s_{\alpha (c)}$ maps to $\text{id}_ U|_{U_{\alpha (c)}}$.) 
+    <p>
+      Assume (2). Let $\{ U_ i \to U\} _{i \in I}$ be a covering. By Lemma <a href="/tag/00WT" data-tag="00WT">7.12.4</a> we see that $\coprod _{i \in I} h_{U_ i}^\#  \to h_ U^\# $ is surjective. Thus we find a finite subset $J \subset I$ such that $\coprod _{j \in J} h_{U_ j}^\#  \to h_ U^\# $ is surjective. Then arguing as above we find a covering $\{ V_ c \to U\} _{c \in C}$ of $U$ in $\mathcal{C}$ and a map $\iota : C \to J$ such that $\text{id}_ U$ lifts to a section of $s_ c$ of $h_{U_{\iota (c)}}^\# $ over $V_ c$. Refining the covering even further we may assume $s_ c \in h_{U_{\iota (c)}}(V_ c)$ mapping to $\text{id}_ U$. Then $s_ c : V_ c \to U_{\iota (c)}$ is a morphism over $U$ and we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The lemma above motivates the following definition. 
+</p>
+<p>
+<article class="env-definition" id="0D07">
+  <p><a class="environment-identifier" href="/tag/0D07">Definition <span data-tag="0D07">7.17.4</span>.</a> An object $\mathcal{F}$ of a topos $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})$ is <em>quasi-compact</em> if for any surjective map $\coprod _{i \in I} \mathcal{F}_ i \to \mathcal{F}$ of $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})$ there exists a finite subset $J \subset I$ such that $\coprod _{i \in J} \mathcal{F}_ i \to \mathcal{F}$ is surjective. A topos $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})$ is said to be <em>quasi-compact</em> if its final object $*$ is a quasi-compact object. </p>
+</article> 
+</p>
+<p>
+By Lemma <a href="/tag/0D06" data-tag="0D06">7.17.3</a> if the site $\mathcal{C}$ has a final object $X$, then $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})$ is quasi-compact if and only if $X$ is quasi-compact. 
+</p>
+<p>
+<article class="env-lemma" id="0GMP">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0GMP">Lemma <span data-tag="0GMP">7.17.5</span>.</a> Let $\mathcal{C}$ be a site. </p>
+  <p><ol>
+  <li><p>
+If $U \to V$ is a morphism of $\mathcal{C}$ such that $h_ U^\#  \to h_ V^\# $ is surjective and $U$ is quasi-compact, then $V$ is quasi-compact. 
+</p>
+</li><li><p>
+If $\mathcal{F} \to \mathcal{G}$ is a surjection of sheaves of sets and $\mathcal{F}$ is quasi-compact, then $\mathcal{G}$ is quasi-compact. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GMQ">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0GMQ">Lemma <span data-tag="0GMQ">7.17.6</span>.</a> Let $\mathcal{C}$ be a site. If $n \geq 1$ and $\mathcal{F}_1, \ldots , \mathcal{F}_ n$ are quasi-compact sheaves on $\mathcal{C}$, then $\coprod _{i = 1, \ldots , n} \mathcal{F}_ i$ is quasi-compact. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following two lemmas form the analogue of Sheaves, Lemma <a href="/tag/009F" data-tag="009F">6.29.1</a> for sites. 
+</p>
+<p>
+<article class="env-lemma" id="0738">
+  <p><a class="environment-identifier" href="/tag/0738">Lemma <span data-tag="0738">7.17.7</span>.</a> Let $\mathcal{C}$ be a site. Let $\mathcal{I} \to \mathop{\mathit{Sh}}\nolimits (\mathcal{C})$, $i \mapsto \mathcal{F}_ i$ be a filtered diagram of sheaves of sets. Let $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$. Consider the canonical map </p>
+  <div class="equation">
+  \[  \Psi : \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i(U) \longrightarrow \left(\mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i\right)(U)  \]
+</div>
+  <p> With the terminology introduced above: </p>
+  <p><ol>
+  <li><p>
+If all the transition maps are injective then $\Psi $ is injective for any $U$. 
+</p>
+</li><li><p>
+If $U$ is quasi-compact, then $\Psi $ is injective. 
+</p>
+</li><li><p>
+If $U$ is quasi-compact and all the transition maps are injective then $\Psi $ is an isomorphism. 
+</p>
+</li><li><p>
+If $U$ has a cofinal system of coverings $\{ U_ j \to U\} _{j \in J}$ with $J$ finite and $U_ j \times _ U U_{j'}$ quasi-compact for all $j, j' \in J$, then $\Psi $ is bijective. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume all the transition maps are injective. In this case the presheaf $\mathcal{F}' : V \mapsto \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i(V)$ is separated (see Definition <a href="/tag/00WA" data-tag="00WA">7.10.9</a>). By Lemma <a href="/tag/00WI" data-tag="00WI">7.10.14</a> we have $(\mathcal{F}')^\#  = \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i$. By Theorem <a href="/tag/00WB" data-tag="00WB">7.10.10</a> we see that $\mathcal{F}' \to (\mathcal{F}')^\# $ is injective. This proves (1). 
+    <p>
+      Assume $U$ is quasi-compact. Suppose that $s \in \mathcal{F}_ i(U)$ and $s' \in \mathcal{F}_{i'}(U)$ give rise to elements on the left hand side which have the same image under $\Psi $. This means we can choose a covering $\{ U_ a \to U\} _{a \in A}$ and for each $a \in A$ an index $i_ a \in I$, $i_ a \geq i$, $i_ a \geq i'$ such that $\varphi _{ii_ a}(s) = \varphi _{i'i_ a}(s')$. Because $U$ is quasi-compact we can choose a covering $\{ V_ b \to U\} _{b \in B}$, a map $\alpha : B \to A$ with finite image, and morphisms $V_ b \to U_{\alpha (b)}$ over $U$. Pick $i''\in I$ to be $\geq $ than all of the $i_{\alpha (b)}$ which is possible because the image of $\alpha $ is finite. We conclude that $\varphi _{ii''}(s)$ and $\varphi _{i'i''}(s)$ agree on $V_ b$ for all $b \in B$ and hence that $\varphi _{ii''}(s) = \varphi _{i'i''}(s)$. This proves (2). 
+    <p>
+      Assume $U$ is quasi-compact and all transition maps injective. Let $s$ be an element of the target of $\Psi $. There exists a covering $\{ U_ a \to U\} _{a \in A}$ and for each $a \in A$ an index $i_ a \in I$ and a section $s_ a \in \mathcal{F}_{i_ a}(U_ a)$ such that $s|_{U_ a}$ comes from $s_ a$ for all $a \in A$. Because $U$ is quasi-compact we can choose a covering $\{ V_ b \to U\} _{b \in B}$, a map $\alpha : B \to A$ with finite image, and morphisms $V_ b \to U_{\alpha (b)}$ over $U$. Pick $i \in I$ to be $\geq $ than all of the $i_{\alpha (b)}$ which is possible because the image of $\alpha $ is finite. By (1) the sections $s_ b = \varphi _{i_{\alpha (b)} i}(s_{\alpha (b)})|_{V_ b}$ agree over $V_ b \times _ U V_{b'}$. Hence they glue to a section $s' \in \mathcal{F}_ i(U)$ which maps to $s$ under $\Psi $. This proves (3). 
+    <p>
+      Assume the hypothesis of (4). By Lemma <a href="/tag/0D05" data-tag="0D05">7.17.2</a> the object $U$ is quasi-compact, hence $\Psi $ is injective by (2). To prove surjectivity, let $s$ be an element of the target of $\Psi $. By assumption there exists a finite covering $\{ U_ j \to U\} _{j = 1, \ldots , m}$, with $U_ j \times _ U U_{j'}$ quasi-compact for all $1 \leq j, j' \leq m$ and for each $j$ an index $i_ j \in I$ and $s_ j \in \mathcal{F}_{i_ j}(U_ j)$ such that $s|_{U_ j}$ is the image of $s_ j$ for all $j$. Since $U_ j \times _ U U_{j'}$ is quasi-compact we can apply (2) and we see that there exists an $i_{jj'} \in I$, $i_{jj'} \geq i_ j$, $i_{jj'} \geq i_{j'}$ such that $\varphi _{i_ ji_{jj'}}(s_ j)$ and $\varphi _{i_{j'}i_{jj'}}(s_{j'})$ agree over $U_ j \times _ U U_{j'}$. Choose an index $i \in I$ which is bigger or equal than all the $i_{jj'}$. Then we see that the sections $\varphi _{i_ ji}(s_ j)$ of $\mathcal{F}_ i$ glue to a section of $\mathcal{F}_ i$ over $U$. This section is mapped to the element $s$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GMR">
+  <p><a class="environment-identifier" href="/tag/0GMR">Lemma <span data-tag="0GMR">7.17.8</span>.</a> Let $\mathcal{C}$ be a site. Let $\mathcal{I} \to \mathop{\mathit{Sh}}\nolimits (\mathcal{C})$, $i \mapsto \mathcal{F}_ i$ be a filtered diagram of sheaves of sets. Consider the canonical map </p>
+  <div class="equation">
+  \[  \Psi : \mathop{\mathrm{colim}}\nolimits _ i \Gamma (\mathcal{C}, \mathcal{F}_ i) \longrightarrow \Gamma (\mathcal{C}, \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i)  \]
+</div>
+  <p> We have the following: </p>
+  <p><ol>
+  <li><p>
+If all the transition maps are injective then $\Psi $ is injective. 
+</p>
+</li><li><p>
+If $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})$ is quasi-compact, then $\Psi $ is injective. 
+</p>
+</li><li><p>
+If $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})$ is quasi-compact and all the transition maps are injective then $\Psi $ is an isomorphism. 
+</p>
+</li><li><p>
+Assume there exists a set $S \subset \mathop{\mathrm{Ob}}\nolimits (\mathop{\mathit{Sh}}\nolimits (\mathcal{C}))$ with the following properties: 
+</p>
+<ol>
+  <li><p>
+for every surjection $\mathcal{F} \to *$ there exists a $\mathcal{K} \in S$ and a map $\mathcal{K} \to \mathcal{F}$ such that $\mathcal{K} \to *$ is surjective, 
+</p>
+</li><li><p>
+for $\mathcal{K} \in S$ the product $\mathcal{K} \times \mathcal{K}$ is quasi-compact. 
+</p>
+</li>
+</ol>
+<p>
+ Then $\Psi $ is bijective. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Proof of (1). Assume all the transition maps are injective. In this case the presheaf $\mathcal{F}' : V \mapsto \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i(V)$ is separated (see Definition <a href="/tag/00WA" data-tag="00WA">7.10.9</a>). By Lemma <a href="/tag/00WI" data-tag="00WI">7.10.14</a> we have $(\mathcal{F}')^\#  = \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i$. By Theorem <a href="/tag/00WB" data-tag="00WB">7.10.10</a> we see that $\mathcal{F}' \to (\mathcal{F}')^\# $ is injective. This proves (1). 
+    <p>
+      Proof of (2). Assume $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})$ is quasi-compact. Recall that $\Gamma (\mathcal{C}, \mathcal{F}) = \mathop{\mathrm{Mor}}\nolimits (*, \mathcal{F})$ for all $\mathcal{F}$ in $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})$. Let $a_ i, b_ i : * \to \mathcal{F}_ i$ and for $i' \geq i$ denote $a_{i'}, b_{i'} : * \to \mathcal{F}_{i'}$ the composition with the transition maps of the system. Set $a = \mathop{\mathrm{colim}}\nolimits _{i' \geq i} a_{i'}$ and similarly for $b$. For $i' \geq i$ denote 
+    <p>
+      <div class="equation">
+  \[  E_{i'} = \text{Equalizer}(a_{i'}, b_{i'}) \subset * \quad \text{and}\quad E = \text{Equalizer}(a, b) \subset *  \]
+</div>
+    <p>
+       By Categories, Lemma <a href="/tag/002W" data-tag="002W">4.19.2</a> we have $E = \mathop{\mathrm{colim}}\nolimits _{i' \geq i} E_{i'}$. It follows that $\coprod _{i' \geq i} E_{i'} \to E$ is a surjective map of sheaves. Hence, if $E = *$, i.e., if $a = b$, then because $*$ is quasi-compact, we see that $E_{i'} = *$ for some $i' \geq i$, and we conclude $a_{i'} = b_{i'}$ for some $i' \geq i$. This proves (2). 
+    <p>
+      Proof of (3). Assume $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})$ is quasi-compact and all transition maps are injective. Let $a : * \to \mathop{\mathrm{colim}}\nolimits \mathcal{F}_ i$ be a map. Then $E_ i = a^{-1}(\mathcal{F}_ i) \subset *$ is a subsheaf and we have $\mathop{\mathrm{colim}}\nolimits E_ i = *$ (by the reference above). Hence for some $i$ we have $E_ i = *$ and we see that the image of $a$ is contained in $\mathcal{F}_ i$ as desired. 
+    <p>
+      Proof of (4). Let $S \subset \mathop{\mathrm{Ob}}\nolimits (\mathop{\mathit{Sh}}\nolimits (\mathcal{C}))$ satisfy (4)(a), (b). Applying (4)(a) to $\text{id} : * \to *$ we find there exists a $\mathcal{K} \in S$ such that $\mathcal{K} \to *$ is surjective. The maps $\mathcal{K} \times \mathcal{K} \to \mathcal{K} \to *$ are surjective. By (4)(b) and Lemma <a href="/tag/0GMP" data-tag="0GMP">7.17.5</a> we conclude that $\mathcal{K}$ and $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})$ are quasi-compact. Thus $\Psi $ is injective by (2). Set $\mathcal{F} = \mathop{\mathrm{colim}}\nolimits \mathcal{F}_ i$. Let $s : * \to \mathcal{F}$ be a global section of the colimit. Since $\coprod \mathcal{F}_ i \to \mathcal{F}$ is surjective, we see that the projection 
+    <p>
+      <div class="equation">
+  \[  \coprod \nolimits _{i \in I} * \times _{s, \mathcal{F}} \mathcal{F}_ i \to *  \]
+</div>
+    <p>
+       is surjective. By (4)(a) we obtain $\mathcal{K} \in S$ and a map $\mathcal{K} \to \coprod _{i \in I} * \times _{s, \mathcal{F}} \mathcal{F}_ i$ with $\mathcal{K} \to *$ surjective. Since $\mathcal{K}$ is quasi-compact we obtain a factorization $\mathcal{K} \to \coprod _{i' \in I'} * \times _{s, \mathcal{F}} \mathcal{F}_{i'}$ for some finite subset $I' \subset I$. Let $i \in I$ be an upper bound for the finite subset $I'$. The transition maps define a map $\coprod _{i' \in I'} \mathcal{F}_{i'} \to \mathcal{F}_ i$. This in turn produces a map $\mathcal{K} \to * \times _{s, \mathcal{F}} \mathcal{F}_ i$. In other words, we obtain $\mathcal{K} \in S$ with $\mathcal{K} \to *$ surjective and a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathcal{K} \times \mathcal{K} \ar@<1ex>[r] \ar@<-1ex>[r] &  \mathcal{K} \ar[d] \ar[r] &  {*} \ar[d]^ s \\  &  \mathcal{F}_ i \ar[r] &  \mathcal{F} \ar@{=}[r] &  \mathop{\mathrm{colim}}\nolimits \mathcal{F}_ i }  \]
+</div>
+    <p>
+       Observe that the top row of this diagram is a coequalizer. Hence it suffices to show that after increasing $i$ the two induced maps $a_ i, b_ i : \mathcal{K} \times \mathcal{K} \to \mathcal{F}_ i$ are equal. This is done shown in the next paragraph using the exact same argument as in the proof of (2) and we urge the reader to skip the rest of the proof. 
+    <p>
+      For $i' \geq i$ denote $a_{i'}, b_{i'} : \mathcal{K} \times \mathcal{K} \to \mathcal{F}_{i'}$ the composition of $a_ i, b_ i$ with the transition maps of the system. Set $a = \mathop{\mathrm{colim}}\nolimits _{i' \geq i} a_{i'} : \mathcal{K} \times \mathcal{K} \to \mathcal{F}$ and similarly for $b$. We have $a = b$ by the commutativity of the diagram above. For $i' \geq i$ denote 
+    <p>
+      <div class="equation">
+  \[  E_{i'} = \text{Equalizer}(a_{i'}, b_{i'}) \subset \mathcal{K} \times \mathcal{K} \quad \text{and}\quad E = \text{Equalizer}(a, b) \subset \mathcal{K} \times \mathcal{K}  \]
+</div>
+    <p>
+       By Categories, Lemma <a href="/tag/002W" data-tag="002W">4.19.2</a> we have $E = \mathop{\mathrm{colim}}\nolimits _{i' \geq i} E_{i'}$. It follows that $\coprod _{i' \geq i} E_{i'} \to E$ is a surjective map of sheaves. Since $a = b$ we have $E = \mathcal{K} \times \mathcal{K}$. As $\mathcal{K} \times \mathcal{K}$ is quasi-compact by (4)(b), we see that $E_{i'} = \mathcal{K} \times \mathcal{K}$ for some $i' \geq i$, and we conclude $a_{i'} = b_{i'}$ for some $i' \geq i$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0GMS">
+  <p><a class="environment-identifier" href="/tag/0GMS">Remark <span data-tag="0GMS">7.17.9</span>.</a> Let $\mathcal{C}$ be a site. There are several ways to ensure that the hypotheses of part (4) of Lemma <a href="/tag/0GMR" data-tag="0GMR">7.17.8</a> are satisfied. Here are a few. </p>
+  <p><ol>
+  <li><p>
+Assume there exists a set $\mathcal{B} \subset \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ with the following properties: 
+</p>
+<ol>
+  <li><p>
+for every surjection $\mathcal{F} \to *$ there exist $m \geq 0$ and $U_1, \ldots , U_ m \in \mathcal{B}$ with $\mathcal{F}(U_ j)$ nonempty and $\coprod h_{U_ j}^\#  \to *$ surjective, 
+</p>
+</li><li><p>
+for $U, U' \in \mathcal{B}$ the sheaf $h_ U^\#  \times h_{U'}^\# $ is quasi-compact. 
+</p>
+</li>
+</ol>
+</li><li><p>
+Assume there exists a set $\mathcal{B} \subset \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ with the following properties: 
+</p>
+<ol>
+  <li><p>
+there exist $m \geq 0$ and $U_1, \ldots , U_ m \in \mathcal{B}$ with $\coprod h_{U_ j}^\#  \to *$ surjective, 
+</p>
+</li><li><p>
+for $U \in \mathcal{B}$ any covering of $U$ can be refined by a finite covering $\{ U_ j \to U\} _{j = 1, \ldots , m}$ with $U_ j \in \mathcal{B}$, and 
+</p>
+</li><li><p>
+for $U, U' \in \mathcal{B}$ there exist $m \geq 0$, $U_1, \ldots , U_ m \in \mathcal{B}$, and morphisms $U_ j \to U$ and $U_ j \to U'$ such that $\coprod h_{U_ j}^\#  \to h_ U^\#  \times h_{U'}^\# $ is surjective. 
+</p>
+</li>
+</ol>
+</li><li><p>
+Suppose that 
+</p>
+<ol>
+  <li><p>
+$\mathop{\mathit{Sh}}\nolimits (\mathcal{C})$ is quasi-compact, 
+</p>
+</li><li><p>
+every object of $\mathcal{C}$ has a covering whose members are quasi-compact objects, 
+</p>
+</li><li><p>
+if $U$ and $U'$ are quasi-compact, then the sheaf $h_ U^\#  \times h_{U'}^\# $ is quasi-compact. 
+</p>
+</li>
+</ol>
+</li>
+</ol></p>
+  <p> In cases (1) and (2) we set $S \subset \mathop{\mathrm{Ob}}\nolimits (\mathop{\mathit{Sh}}\nolimits (\mathcal{C}))$ equal to the set of finite coproducts of the sheaves $h_ U^\# $ for $U \in \mathcal{B}$. In case (3) we set $S \subset \mathop{\mathrm{Ob}}\nolimits (\mathop{\mathit{Sh}}\nolimits (\mathcal{C}))$ equal to the set of finite coproducts of the sheaves $h_ U^\# $ for $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ quasi-compact. </p>
+</article> 
+</p>
+<p>
+Later we will need a bound on what can happen with colimits as follows. 
+</p>
+<p>
+<article class="env-lemma" id="0GS0">
+  <p><a class="environment-identifier" href="/tag/0GS0">Lemma <span data-tag="0GS0">7.17.10</span>.</a> Let $\mathcal{C}$ be a site. Let $\beta $ be an ordinal. Let $\beta \to \mathop{\mathit{Sh}}\nolimits (\mathcal{C})$, $\alpha \mapsto \mathcal{F}_\alpha $ be a system of sheaves over $\beta $. For $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ consider the canonical map </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _{\alpha < \beta } \mathcal{F}_\alpha (U) \longrightarrow \left(\mathop{\mathrm{colim}}\nolimits _{\alpha < \beta } \mathcal{F}_\alpha \right)(U)  \]
+</div>
+  <p> If the cofinality of $\beta $ is large enough, then this map is bijective for all $U$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The left hand side is the value on $U$ of the colimit $\mathcal{F}_{\mathop{\mathrm{colim}}\nolimits }$ taken in the category of presheaves, see Section <a href="/tag/00VB" data-tag="00VB">7.4</a>. Recall that $\mathop{\mathrm{colim}}\nolimits _{\alpha < \beta } \mathcal{F}_\alpha $ is the sheafification $\mathcal{F}_{\mathop{\mathrm{colim}}\nolimits }^\# $ of $\mathcal{F}_{\mathop{\mathrm{colim}}\nolimits }$, see Lemma <a href="/tag/00WI" data-tag="00WI">7.10.14</a>. Let $\mathcal{U} = \{ U_ i \to U\} _{i \in I}$ be an element of the set $\text{Cov}(\mathcal{C})$ of coverings of $\mathcal{C}$. If the cofinality of $\beta $ is larger than the cardinality of $I$, then we claim 
+    <p>
+      <div class="equation">
+  \[  H^0(\mathcal{U}, \mathcal{F}_{\mathop{\mathrm{colim}}\nolimits }) = \mathop{\mathrm{colim}}\nolimits H^0(\mathcal{U}, \mathcal{F}_\alpha ) = \mathop{\mathrm{colim}}\nolimits \mathcal{F}_\alpha (U) = \mathcal{F}_{\mathop{\mathrm{colim}}\nolimits }(U)  \]
+</div>
+    <p>
+       The second and third equality signs are clear. For the first, say $s = (s_ i) \in H^0(\mathcal{U}, \mathcal{F}_{\mathop{\mathrm{colim}}\nolimits })$. Then for each $i$ the element $s_ i$ comes from an element $s_{i, \alpha _ i} \in \mathcal{F}_{\alpha _ i}(U_ i)$ for some $\alpha _ i < \beta $. By the assumption on cofinality, we can choose $\alpha _ i = \alpha $ independent of $i$. Then $s_ i$ and $s_ j$ map to the same element of $\mathcal{F}_{\alpha _{i, j}}(U_ i \times _ U U_ j)$ for some $\alpha _{i, j} < \beta $. Since the cardinality if $I \times I$ is also less than the cofinality of $\beta $, we see that we may after increasing $\alpha $ assume $\alpha _{i, j} = \alpha $ for all $i, j$. This proves that the natural map $\mathop{\mathrm{colim}}\nolimits H^0(\mathcal{U}, \mathcal{F}_\alpha ) \to H^0(\mathcal{U}, \mathcal{F}_{\mathop{\mathrm{colim}}\nolimits })$ is surjective. A very similar argument shows that it is injective. In particular, we see that $\mathcal{F}_{\mathop{\mathrm{colim}}\nolimits }$ satisfies the sheaf condition for $\mathcal{U}$. Thus if the cofinality of $\beta $ is larger than the supremum of the cardinalities of the set of index sets $I$ of coverings, then we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

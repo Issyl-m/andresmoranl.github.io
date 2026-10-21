@@ -1,0 +1,159 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="stacks-sheaves-section-presheaves" class="tex-section"><span data-tag="06TI">96.3</span> Presheaves</h2>
+
+<p>
+In this section we define presheaves on categories fibred in groupoids over $(\mathit{Sch}/S)_{fppf}$, but most of the discussion works for categories over any base category. This section also serves to introduce the notation we will use later on. 
+</p>
+<p>
+<article class="env-definition" id="06TJ">
+  <p><a class="environment-identifier" href="/tag/06TJ">Definition <span data-tag="06TJ">96.3.1</span>.</a> Let $p : \mathcal{X} \to (\mathit{Sch}/S)_{fppf}$ be a category fibred in groupoids. </p>
+  <p><ol>
+  <li><p>
+A <em>presheaf on $\mathcal{X}$</em> is a presheaf on the underlying category of $\mathcal{X}$. 
+</p>
+</li><li><p>
+A <em>morphism of presheaves on $\mathcal{X}$</em> is a morphism of presheaves on the underlying category of $\mathcal{X}$. 
+</p>
+</li>
+</ol></p>
+  <p> We denote $\textit{PSh}(\mathcal{X})$ the category of presheaves on $\mathcal{X}$. </p>
+</article> 
+</p>
+<p>
+This defines presheaves of sets. Of course we can also talk about presheaves of pointed sets, abelian groups, groups, monoids, rings, modules over a fixed ring, and lie algebras over a fixed field, etc. The category of <em>abelian presheaves</em>, i.e., presheaves of abelian groups, is denoted $\textit{PAb}(\mathcal{X})$. 
+</p>
+<p>
+Let $f : \mathcal{X} \to \mathcal{Y}$ be a $1$-morphism of categories fibred in groupoids over $(\mathit{Sch}/S)_{fppf}$. Recall that this means just that $f$ is a functor over $(\mathit{Sch}/S)_{fppf}$. The material in Sites, Section <a href="/tag/00XF" data-tag="00XF">7.19</a> provides us with a pair of adjoint functors<a class="footnotemark" href="#a0001661530" id="a0001661530-mark"><sup>1</sup></a> 
+</p>
+<div class="equation" id="06TK">
+    <span class="equation-label"><a href="/tag/06TK" data-tag="06TK">96.3.1.1</a></span>
+  <div>\begin{equation}  \label{stacks-sheaves-equation-pushforward-pullback} f^ p : \textit{PSh}(\mathcal{Y}) \longrightarrow \textit{PSh}(\mathcal{X}) \quad \text{and}\quad {}_ pf : \textit{PSh}(\mathcal{X}) \longrightarrow \textit{PSh}(\mathcal{Y}). \end{equation}</div>
+</div>
+<p>
+ The adjointness is 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{X})}(f^ p\mathcal{G}, \mathcal{F}) = \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{Y})}(\mathcal{G}, {}_ pf\mathcal{F})  \]
+</div>
+<p>
+ where $\mathcal{F} \in \mathop{\mathrm{Ob}}\nolimits (\textit{PSh}(\mathcal{X}))$ and $\mathcal{G} \in \mathop{\mathrm{Ob}}\nolimits (\textit{PSh}(\mathcal{Y}))$. We call $f^ p\mathcal{G}$ the <em>pullback</em> of $\mathcal{G}$. It follows from the definitions that 
+</p>
+<div class="equation">
+  \[  f^ p\mathcal{G}(x) = \mathcal{G}(f(x))  \]
+</div>
+<p>
+ for any $x \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{X})$. The presheaf ${}_ pf\mathcal{F}$ is called the <em>pushforward</em> of $\mathcal{F}$. It is described by the formula 
+</p>
+<div class="equation">
+  \[  ({}_ pf\mathcal{F})(y) = \mathop{\mathrm{lim}}\nolimits _{f(x) \to y} \mathcal{F}(x).  \]
+</div>
+<p>
+ The rest of this section should probably be moved to the chapter on sites and in any case should be skipped on a first reading. 
+</p>
+<p>
+<article class="env-lemma" id="06TL">
+  <p><a class="environment-identifier" href="/tag/06TL">Lemma <span data-tag="06TL">96.3.2</span>.</a> Let $f : \mathcal{X} \to \mathcal{Y}$ and $g : \mathcal{Y} \to \mathcal{Z}$ be $1$-morphisms of categories fibred in groupoids over $(\mathit{Sch}/S)_{fppf}$. Then $(g \circ f)^ p = f^ p \circ g^ p$ and there is a canonical isomorphism ${}_ p(g \circ f) \to {}_ pg \circ {}_ pf$ compatible with adjointness of $(f^ p, {}_ pf)$, $(g^ p, {}_ pg)$, and $((g \circ f)^ p, {}_ p(g \circ f))$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\mathcal{H}$ be a presheaf on $\mathcal{Z}$. Then $(g \circ f)^ p\mathcal{H} = f^ p (g^ p\mathcal{H})$ is given by the equalities 
+    <p>
+      <div class="equation">
+  \[  (g \circ f)^ p\mathcal{H}(x) = \mathcal{H}((g \circ f)(x)) = \mathcal{H}(g(f(x))) = f^ p (g^ p\mathcal{H})(x).  \]
+</div>
+    <p>
+       We omit the verification that this is compatible with restriction maps. 
+    <p>
+      Next, we define the transformation ${}_ p(g \circ f) \to {}_ pg \circ {}_ pf$. Let $\mathcal{F}$ be a presheaf on $\mathcal{X}$. If $z$ is an object of $\mathcal{Z}$ then we get a category $\mathcal{J}$ of quadruples $(x, f(x) \to y, y, g(y) \to z)$ and a category $\mathcal{I}$ of pairs $(x, g(f(x)) \to z)$. There is a canonical functor $\mathcal{J} \to \mathcal{I}$ sending the object $(x, \alpha : f(x) \to y, y, \beta : g(y) \to z)$ to $(x, \beta \circ f(\alpha ) : g(f(x)) \to z)$. This gives the arrow in 
+    <p>
+      <div class="equation">
+  \begin{align*}  ({}_ p(g \circ f)\mathcal{F})(z) &  = \mathop{\mathrm{lim}}\nolimits _{g(f(x)) \to z} \mathcal{F}(x) \\ &  = \mathop{\mathrm{lim}}\nolimits _\mathcal {I} \mathcal{F} \\ &  \to \mathop{\mathrm{lim}}\nolimits _\mathcal {J} \mathcal{F} \\ &  = \mathop{\mathrm{lim}}\nolimits _{g(y) \to z} \Big(\mathop{\mathrm{lim}}\nolimits _{f(x) \to y} \mathcal{F}(x)\Big) \\ &  = ({}_ pg \circ {}_ pf\mathcal{F})(x) \end{align*}
+</div>
+    <p>
+       by Categories, Lemma <a href="/tag/002L" data-tag="002L">4.14.9</a>. We omit the verification that this is compatible with restriction maps. An alternative to this direct construction is to define ${}_ p(g \circ f) \cong {}_ pg \circ {}_ pf$ as the unique map compatible with the adjointness properties. This also has the advantage that one does not need to prove the compatibility. 
+    <p>
+      Compatibility with adjointness of $(f^ p, {}_ pf)$, $(g^ p, {}_ pg)$, and $((g \circ f)^ p, {}_ p(g \circ f))$ means that given presheaves $\mathcal{H}$ and $\mathcal{F}$ as above we have a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{X})}(f^ pg^ p\mathcal{H}, \mathcal{F}) \ar@{=}[r] \ar@{=}[d] &  \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{Y})}(g^ p\mathcal{H}, {}_ pf\mathcal{F}) \ar@{=}[r] &  \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{Y})}(\mathcal{H}, {}_ pg{}_ pf\mathcal{F}) \\  \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{X})}((g \circ f)^ p\mathcal{G}, \mathcal{F}) \ar@{=}[rr] &  &  \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{Y})}(\mathcal{G}, {}_ p(g \circ f)\mathcal{F}) \ar[u] }  \]
+</div>
+    <p>
+       Proof omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06TM">
+  <p><a class="environment-identifier" href="/tag/06TM">Lemma <span data-tag="06TM">96.3.3</span>.</a> Let $f, g : \mathcal{X} \to \mathcal{Y}$ be $1$-morphisms of categories fibred in groupoids over $(\mathit{Sch}/S)_{fppf}$. Let $t : f \to g$ be a $2$-morphism of categories fibred in groupoids over $(\mathit{Sch}/S)_{fppf}$. Assigned to $t$ there are canonical isomorphisms of functors </p>
+  <div class="equation">
+  \[  t^ p : g^ p \longrightarrow f^ p \quad \text{and}\quad {}_ pt : {}_ pf \longrightarrow {}_ pg  \]
+</div>
+  <p> which compatible with adjointness of $(f^ p, {}_ pf)$ and $(g^ p, {}_ pg)$ and with vertical and horizontal composition of $2$-morphisms. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\mathcal{G}$ be a presheaf on $\mathcal{Y}$. Then $t^ p : g^ p\mathcal{G} \to f^ p\mathcal{G}$ is given by the family of maps 
+    <p>
+      <div class="equation">
+  \[  g^ p\mathcal{G}(x) = \mathcal{G}(g(x)) \xrightarrow {\mathcal{G}(t_ x)} \mathcal{G}(f(x)) = f^ p\mathcal{G}(x)  \]
+</div>
+    <p>
+       parametrized by $x \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{X})$. This makes sense as $t_ x : f(x) \to g(x)$ and $\mathcal{G}$ is a contravariant functor. We omit the verification that this is compatible with restriction mappings. 
+    <p>
+      To define the transformation ${}_ pt$ for $y \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{Y})$ define ${}_ y^ f\mathcal{I}$, resp. ${}_ y^ g\mathcal{I}$ to be the category of pairs $(x, \psi : f(x) \to y)$, resp. $(x, \psi : g(x) \to y)$, see Sites, Section <a href="/tag/00XF" data-tag="00XF">7.19</a>. Note that $t$ defines a functor ${}_ yt : {}_ y^ g\mathcal{I} \to {}_ y^ f\mathcal{I}$ given by the rule 
+    <p>
+      <div class="equation">
+  \[  (x, g(x) \to y) \longmapsto (x, f(x) \xrightarrow {t_ x} g(x) \to y).  \]
+</div>
+    <p>
+       Note that for $\mathcal{F}$ a presheaf on $\mathcal{X}$ the composition of ${}_ yt$ with $\mathcal{F} : {}_ y^ f\mathcal{I}^{opp} \to \textit{Sets}$, $(x, f(x) \to y) \mapsto \mathcal{F}(x)$ is equal to $\mathcal{F} : {}_ y^ g\mathcal{I}^{opp} \to \textit{Sets}$. Hence by Categories, Lemma <a href="/tag/002L" data-tag="002L">4.14.9</a> we get for every $y \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{Y})$ a canonical map 
+    <p>
+      <div class="equation">
+  \[  ({}_ pf\mathcal{F})(y) = \mathop{\mathrm{lim}}\nolimits _{{}_ y^ f\mathcal{I}} \mathcal{F} \longrightarrow \mathop{\mathrm{lim}}\nolimits _{{}_ y^ g\mathcal{I}} \mathcal{F} = ({}_ pg\mathcal{F})(y)  \]
+</div>
+    <p>
+       We omit the verification that this is compatible with restriction mappings. An alternative to this direct construction is to define ${}_ pt$ as the unique map compatible with the adjointness properties of the pairs $(f^ p, {}_ pf)$ and $(g^ p, {}_ pg)$ (see below). This also has the advantage that one does not need to prove the compatibility. 
+    <p>
+      Compatibility with adjointness of $(f^ p, {}_ pf)$ and $(g^ p, {}_ pg)$ means that given presheaves $\mathcal{G}$ and $\mathcal{F}$ as above we have a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{X})}(f^ p\mathcal{G}, \mathcal{F}) \ar@{=}[r] \ar[d]_{- \circ t^ p} &  \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{Y})}(\mathcal{G}, {}_ pf\mathcal{F}) \ar[d]^{{}_ pt \circ -} \\  \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{X})}(g^ p\mathcal{G}, \mathcal{F}) \ar@{=}[r] &  \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{Y})}(\mathcal{G}, {}_ pg\mathcal{F}) }  \]
+</div>
+    <p>
+       Proof omitted. Hint: Work through the proof of Sites, Lemma <a href="/tag/00XH" data-tag="00XH">7.19.2</a> and observe the compatibility from the explicit description of the horizontal and vertical maps in the diagram. 
+    <p>
+      We omit the verification that this is compatible with vertical and horizontal compositions. Hint: The proof of this for $t^ p$ is straightforward and one can conclude that this holds for the ${}_ pt$ maps using compatibility with adjointness. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

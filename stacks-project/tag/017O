@@ -1,0 +1,255 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="simplicial-section-splitting" class="tex-section"><span data-tag="017O">14.18</span> Splitting simplicial objects</h2>
+
+<p>
+A subobject $N$ of an object $X$ of the category $\mathcal{C}$ is an object $N$ of $\mathcal{C}$ together with a monomorphism $N \to X$. Of course we say (by abuse of notation) that the subobjects $N$, $N'$ are equal if there exists an isomorphism $N \to N'$ compatible with the morphisms to $X$. The collection of subobjects forms a partially ordered set. (Because of our conventions on categories; not true for category of spaces up to homotopy for example.) 
+</p>
+<p>
+<article class="env-definition" id="017P">
+  <p><a class="environment-identifier" href="/tag/017P">Definition <span data-tag="017P">14.18.1</span>.</a> Let $\mathcal{C}$ be a category which admits finite nonempty coproducts. We say a simplicial object $U$ of $\mathcal{C}$ is <em>split</em> if there exist subobjects $N(U_ m)$ of $U_ m$, $m \geq 0$ with the property that </p>
+  <div class="equation" id="017Q">
+    <span class="equation-label"><a href="/tag/017Q" data-tag="017Q">14.18.1.1</a></span>
+  <div>\begin{equation}  \label{simplicial-equation-splitting} \coprod \nolimits _{\varphi : [n] \to [m]\text{ surjective}} N(U_ m) \longrightarrow U_ n \end{equation}</div>
+</div>
+  <p> is an isomorphism for all $n \geq 0$. If $U$ is an $r$-truncated simplicial object of $\mathcal{C}$ then we say $U$ is <em>split</em> if there exist subobjects $N(U_ m)$ of $U_ m$, $r \geq m \geq 0$ with the property that (<a href="/tag/017Q" data-tag="017Q">14.18.1.1</a>) is an isomorphism for $r \geq n \geq 0$. </p>
+</article> 
+</p>
+<p>
+If this is the case, then $N(U_0) = U_0$. Next, we have $U_1 = U_0 \amalg N(U_1)$. Second we have 
+</p>
+<div class="equation">
+  \[  U_2 = U_0 \amalg N(U_1) \amalg N(U_1) \amalg N(U_2).  \]
+</div>
+<p>
+ It turns out that in many categories $\mathcal{C}$ every simplicial object is split. 
+</p>
+<p>
+<article class="env-lemma" id="017R">
+  <p><a class="environment-identifier" href="/tag/017R">Lemma <span data-tag="017R">14.18.2</span>.</a> Let $U$ be a simplicial set. Then $U$ has a unique splitting with $N(U_ m)$ equal to the set of nondegenerate $m$-simplices. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      From the definition it follows immediately, that if there is a splitting then $N(U_ m)$ has to be the set of nondegenerate simplices. Let $x \in U_ n$. Suppose that there are surjections $\varphi : [n] \to [k]$ and $\psi : [n] \to [l]$ and nondegenerate simplices $y \in U_ k$, $z \in U_ l$ such that $x = U(\varphi )(y)$ and $x = U(\psi )(z)$. Choose a right inverse $\xi : [l] \to [n]$ of $\psi $, i.e., $\psi \circ \xi = \text{id}_{[l]}$. Then $z = U(\xi )(x)$. Hence $z = U(\xi )(x) = U(\varphi \circ \xi )(y)$. Since $z$ is nondegenerate we conclude that $\varphi \circ \xi : [l] \to [k]$ is surjective, and hence $l \geq k$. Similarly $k \geq l$. Hence we see that $\varphi \circ \xi : [l] \to [k]$ has to be the identity map for any choice of right inverse $\xi $ of $\psi $. This easily implies that $\psi = \varphi $. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Of course it can happen that a map of simplicial sets maps a nondegenerate $n$-simplex to a degenerate $n$-simplex. Thus the splitting of Lemma <a href="/tag/017R" data-tag="017R">14.18.2</a> is not functorial. Here is a case where it is functorial. 
+</p>
+<p>
+<article class="env-lemma" id="017S">
+  <p><a class="environment-identifier" href="/tag/017S">Lemma <span data-tag="017S">14.18.3</span>.</a> Let $f : U \to V$ be a morphism of simplicial sets. Suppose that (a) the image of every nondegenerate simplex of $U$ is a nondegenerate simplex of $V$ and (b) the restriction of $f$ to a map from the set of nondegenerate simplices of $U$ to the set of nondegenerate simplices of $V$ is injective. Then $f_ n$ is injective for all $n$. Same holds with “injective” replaced by “surjective” or “bijective”. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Under hypothesis (a) we see that the map $f$ preserves the disjoint union decompositions of the splitting of Lemma <a href="/tag/017R" data-tag="017R">14.18.2</a>, in other words that we get commutative diagrams 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \coprod \nolimits _{\varphi : [n] \to [m]\text{ surjective}} N(U_ m) \ar[r] \ar[d] &  U_ n \ar[d] \\  \coprod \nolimits _{\varphi : [n] \to [m]\text{ surjective}} N(V_ m) \ar[r] &  V_ n. }  \]
+</div>
+    <p>
+       And then (b) clearly shows that the left vertical arrow is injective (resp. surjective, resp. bijective). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="017T">
+  <p><a class="environment-identifier" href="/tag/017T">Lemma <span data-tag="017T">14.18.4</span>.</a> Let $U$ be a simplicial set. Let $n \geq 0$ be an integer. The rule </p>
+  <div class="equation">
+  \[  U'_ m = \bigcup \nolimits _{\varphi : [m] \to [i], \  i\leq n} \mathop{\mathrm{Im}}(U(\varphi ))  \]
+</div>
+  <p> defines a sub simplicial set $U' \subset U$ with $U'_ i = U_ i$ for $i \leq n$. Moreover, all $m$-simplices of $U'$ are degenerate for all $m > n$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $x \in U_ m$ and $x = U(\varphi )(y)$ for some $y \in U_ i$, $i \leq n$ and some $\varphi : [m] \to [i]$ then any image $U(\psi )(x)$ for any $\psi : [m'] \to [m]$ is equal to $U(\varphi \circ \psi )(y)$ and $\varphi \circ \psi : [m'] \to [i]$. Hence $U'$ is a simplicial set. By construction all simplices in dimension $n + 1$ and higher are degenerate. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="017U">
+  <p><a class="environment-identifier" href="/tag/017U">Lemma <span data-tag="017U">14.18.5</span>.</a> Let $U$ be a simplicial abelian group. Then $U$ has a splitting obtained by taking $N(U_0) = U_0$ and for $m \geq 1$ taking </p>
+  <div class="equation">
+  \[  N(U_ m) = \bigcap \nolimits _{i = 0}^{m - 1} \mathop{\mathrm{Ker}}(d^ m_ i).  \]
+</div>
+  <p> Moreover, this splitting is functorial on the category of simplicial abelian groups. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By induction on $n$ we will show that the choice of $N(U_ m)$ in the lemma guarantees that (<a href="/tag/017Q" data-tag="017Q">14.18.1.1</a>) is an isomorphism for $m \leq n$. This is clear for $n = 0$. In the rest of this proof we are going to drop the superscripts from the maps $d_ i$ and $s_ i$ in order to improve readability. We will also repeatedly use the relations from Remark <a href="/tag/016C" data-tag="016C">14.3.3</a>. 
+    <p>
+      First we make a general remark. For $0 \leq i \leq m$ and $z \in U_ m$ we have $d_ i(s_ i(z)) = z$. Hence we can write any $x \in U_{m + 1}$ uniquely as $x = x' + x''$ with $d_ i(x') = 0$ and $x'' \in \mathop{\mathrm{Im}}(s_ i)$ by taking $x' = (x - s_ i(d_ i(x)))$ and $x'' = s_ i(d_ i(x))$. Moreover, the element $z \in U_ m$ such that $x'' = s_ i(z)$ is unique because $s_ i$ is injective. 
+    <p>
+      Here is a procedure for decomposing any $x \in U_{n + 1}$. First, write $x = x_0 + s_0(z_0)$ with $d_0(x_0) = 0$. Next, write $x_0 = x_1 + s_1(z_1)$ with $d_1(x_1) = 0$. Continue like this to get 
+    <p>
+      <div class="equation">
+  \begin{eqnarray*}  x &  = &  x_0 + s_0(z_0), \\  x_0 &  = &  x_1 + s_1(z_1), \\  x_1 &  = &  x_2 + s_2(z_2), \\  \ldots &  \ldots &  \ldots \\  x_{n - 1} &  = &  x_ n + s_ n(z_ n) \end{eqnarray*}
+</div>
+    <p>
+       where $d_ i(x_ i) = 0$ for all $i = n, \ldots , 0$. By our general remark above all of the $x_ i$ and $z_ i$ are determined uniquely by $x$. We claim that $x_ i \in \mathop{\mathrm{Ker}}(d_0) \cap \mathop{\mathrm{Ker}}(d_1) \cap \ldots \cap \mathop{\mathrm{Ker}}(d_ i)$ and $z_ i \in \mathop{\mathrm{Ker}}(d_0) \cap \ldots \cap \mathop{\mathrm{Ker}}(d_{i - 1})$ for $i = n, \ldots , 0$. Here and in the following an empty intersection of kernels indicates the whole space; i.e., the notation $z_0 \in \mathop{\mathrm{Ker}}(d_0) \cap \ldots \cap \mathop{\mathrm{Ker}}(d_{i - 1})$ when $i = 0$ means $z_0 \in U_ n$ with no restriction. 
+    <p>
+      We prove this by ascending induction on $i$. It is clear for $i = 0$ by construction of $x_0$ and $z_0$. Let us prove it for $0 < i \leq n$ assuming the result for $i - 1$. First of all we have $d_ i(x_ i) = 0$ by construction. So pick a $j$ with $0 \leq j < i$. We have $d_ j(x_{i - 1}) = 0$ by induction. Hence 
+    <p>
+      <div class="equation">
+  \[  0 = d_ j(x_{i - 1}) = d_ j(x_ i) + d_ j(s_ i(z_ i)) = d_ j(x_ i) + s_{i - 1}(d_ j(z_ i)).  \]
+</div>
+    <p>
+       The last equality by the relations of Remark <a href="/tag/016C" data-tag="016C">14.3.3</a>. These relations also imply that $d_{i - 1}(d_ j(x_ i)) = d_ j(d_ i(x_ i)) = 0$ because $d_ i(x_ i)= 0$ by construction. Then the uniqueness in the general remark above shows the equality $0 = x' + x'' = d_ j(x_ i) + s_{i - 1}(d_ j(z_ i))$ can only hold if both terms are zero. We conclude that $d_ j(x_ i) = 0$ and by injectivity of $s_{i - 1}$ we also conclude that $d_ j(z_ i) = 0$. This proves the claim. 
+    <p>
+      The claim implies we can uniquely write 
+    <p>
+      <div class="equation">
+  \[  x = s_0(z_0) + s_1(z_1) + \ldots + s_ n(z_ n) + x_ n  \]
+</div>
+    <p>
+       with $x_ n \in N(U_{n + 1})$ and $z_ i \in \mathop{\mathrm{Ker}}(d_0) \cap \ldots \cap \mathop{\mathrm{Ker}}(d_{i - 1})$. We can reformulate this as saying that we have found a direct sum decomposition 
+    <p>
+      <div class="equation">
+  \[  U_{n + 1} = N(U_{n + 1}) \oplus \bigoplus \nolimits _{i = 0}^{i = n} s_ i\Big(\mathop{\mathrm{Ker}}(d_0) \cap \ldots \cap \mathop{\mathrm{Ker}}(d_{i - 1})\Big)  \]
+</div>
+    <p>
+       with the property that 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Ker}}(d_0) \cap \ldots \cap \mathop{\mathrm{Ker}}(d_ j) = N(U_{n + 1}) \oplus \bigoplus \nolimits _{i = j + 1}^{i = n} s_ i\Big(\mathop{\mathrm{Ker}}(d_0) \cap \ldots \cap \mathop{\mathrm{Ker}}(d_{i - 1})\Big)  \]
+</div>
+    <p>
+       for $j = 0, \ldots , n$. The result follows from this statement as follows. Each of the $z_ i$ in the expression for $x$ can be written uniquely as 
+    <p>
+      <div class="equation">
+  \[  z_ i = s_ i(z'_{i, i}) + \ldots + s_{n - 1}(z'_{i, n - 1}) + z_{i, 0}  \]
+</div>
+    <p>
+       with $z_{i, 0} \in N(U_ n)$ and $z'_{i, j} \in \mathop{\mathrm{Ker}}(d_0) \cap \ldots \cap \mathop{\mathrm{Ker}}(d_{j - 1})$. The first few steps in the decomposition of $z_ i$ are zero because $z_ i$ already is in the kernel of $d_0, \ldots , d_ i$. This in turn uniquely gives 
+    <p>
+      <div class="equation">
+  \[  x = x_ n + s_0(z_{0, 0}) + s_1(z_{1, 0}) + \ldots + s_ n(z_{n, 0}) + \sum \nolimits _{0 \leq i \leq j \leq n - 1} s_ i(s_ j(z'_{i, j})).  \]
+</div>
+    <p>
+       Continuing in this fashion we see that we in the end obtain a decomposition of $x$ as a sum of terms of the form 
+    <p>
+      <div class="equation">
+  \[  s_{i_1} s_{i_2} \ldots s_{i_ k} (z)  \]
+</div>
+    <p>
+       with $0 \leq i_1 \leq i_2 \leq \ldots \leq i_ k \leq n - k + 1$ and $z \in N(U_{n + 1 - k})$. This is exactly the required decomposition, because any surjective map $[n + 1] \to [n + 1 - k]$ can be uniquely expressed in the form 
+    <p>
+      <div class="equation">
+  \[  \sigma ^{n - k}_{i_ k} \ldots \sigma ^{n - 1}_{i_2} \sigma ^ n_{i_1}  \]
+</div>
+    <p>
+       with $0 \leq i_1 \leq i_2 \leq \ldots \leq i_ k \leq n - k + 1$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="017V">
+  <p><a class="environment-identifier" href="/tag/017V">Lemma <span data-tag="017V">14.18.6</span>.</a> Let $\mathcal{A}$ be an abelian category. Let $U$ be a simplicial object in $\mathcal{A}$. Then $U$ has a splitting obtained by taking $N(U_0) = U_0$ and for $m \geq 1$ taking </p>
+  <div class="equation">
+  \[  N(U_ m) = \bigcap \nolimits _{i = 0}^{m - 1} \mathop{\mathrm{Ker}}(d^ m_ i).  \]
+</div>
+  <p> Moreover, this splitting is functorial on the category of simplicial objects of $\mathcal{A}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      For any object $A$ of $\mathcal{A}$ we obtain a simplicial abelian group $\mathop{\mathrm{Mor}}\nolimits _\mathcal {A}(A, U)$. Each of these are canonically split by Lemma <a href="/tag/017U" data-tag="017U">14.18.5</a>. Moreover, 
+    <p>
+      <div class="equation">
+  \[  N(\mathop{\mathrm{Mor}}\nolimits _\mathcal {A}(A, U_ m)) = \bigcap \nolimits _{i = 0}^{m - 1} \mathop{\mathrm{Ker}}(d^ m_ i) = \mathop{\mathrm{Mor}}\nolimits _\mathcal {A}(A, N(U_ m)).  \]
+</div>
+    <p>
+       Hence we see that the morphism (<a href="/tag/017Q" data-tag="017Q">14.18.1.1</a>) becomes an isomorphism after applying the functor $\mathop{\mathrm{Mor}}\nolimits _\mathcal {A}(A, -)$ for any object of $\mathcal{A}$. Hence it is an isomorphism by the Yoneda lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="017W">
+       
+      
+  <p><a class="environment-identifier" href="/tag/017W">Lemma <span data-tag="017W">14.18.7</span>.</a> Let $\mathcal{A}$ be an abelian category. Let $f : U \to V$ be a morphism of simplicial objects of $\mathcal{A}$. If the induced morphisms $N(f)_ i : N(U)_ i \to N(V)_ i$ are injective for all $i$, then $f_ i$ is injective for all $i$. Same holds with “injective” replaced with “surjective”, or “isomorphism”. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is clear from Lemma <a href="/tag/017V" data-tag="017V">14.18.6</a> and the definition of a splitting. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="017X">
+  <p><a class="environment-identifier" href="/tag/017X">Lemma <span data-tag="017X">14.18.8</span>.</a> Let $\mathcal{A}$ be an abelian category. Let $U$ be a simplicial object in $\mathcal{A}$. Let $N(U_ m)$ as in Lemma <a href="/tag/017V" data-tag="017V">14.18.6</a> above. Then $d^ m_ m(N(U_ m)) \subset N(U_{m - 1})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      For $j = 0, \ldots , m - 2$ we have $d^{m - 1}_ j d^ m_ m = d^{m - 1}_{m - 1} d^ m_ j$ by the relations in Remark <a href="/tag/016C" data-tag="016C">14.3.3</a>. The result follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="017Y">
+  <p><a class="environment-identifier" href="/tag/017Y">Lemma <span data-tag="017Y">14.18.9</span>.</a> Let $\mathcal{A}$ be an abelian category. Let $U$ be a simplicial object of $\mathcal{A}$. Let $n \geq 0$ be an integer. The rule </p>
+  <div class="equation">
+  \[  U'_ m = \sum \nolimits _{\varphi : [m] \to [i], \  i\leq n} \mathop{\mathrm{Im}}(U(\varphi ))  \]
+</div>
+  <p> defines a sub simplicial object $U' \subset U$ with $U'_ i = U_ i$ for $i \leq n$. Moreover, $N(U'_ m) = 0$ for all $m > n$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Pick $m$, $i \leq n$ and some $\varphi : [m] \to [i]$. The image under $U(\psi )$ of $\mathop{\mathrm{Im}}(U(\varphi ))$ for any $\psi : [m'] \to [m]$ is equal to the image of $U(\varphi \circ \psi )$ and $\varphi \circ \psi : [m'] \to [i]$. Hence $U'$ is a simplicial object. Pick $m > n$. We have to show $N(U'_ m) = 0$. By definition of $N(U_ m)$ and $N(U'_ m)$ we have $N(U'_ m) = U'_ m \cap N(U_ m)$ (intersection of subobjects). Since $U$ is split by Lemma <a href="/tag/017V" data-tag="017V">14.18.6</a>, it suffices to show that $U'_ m$ is contained in the sum 
+    <p>
+      <div class="equation">
+  \[  \sum \nolimits _{\varphi : [m] \to [m']\text{ surjective}, \  m' < m} \mathop{\mathrm{Im}}(U(\varphi )|_{N(U_{m'})}).  \]
+</div>
+    <p>
+       By the splitting each $U_{m'}$ is the sum of images of $N(U_{m''})$ via $U(\psi )$ for surjective maps $\psi : [m'] \to [m'']$. Hence the displayed sum above is the same as 
+    <p>
+      <div class="equation">
+  \[  \sum \nolimits _{\varphi : [m] \to [m']\text{ surjective}, \  m' < m} \mathop{\mathrm{Im}}(U(\varphi )).  \]
+</div>
+    <p>
+       Clearly $U'_ m$ is contained in this by the simple fact that any $\varphi : [m] \to [i]$, $i \leq n$ occurring in the definition of $U'_ m$ may be factored as $[m] \to [m'] \to [i]$ with $[m] \to [m']$ surjective and $m' < m$ as in the last displayed sum above. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

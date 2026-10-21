@@ -1,0 +1,329 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="simplicial-section-standard-pre" class="tex-section"><span data-tag="0G5L">14.33</span> Preparation for standard resolutions</h2>
+
+<p>
+The material in this section can be found in <span class="cite">[<span class="postnote">Appendix 1</span>, <a href="/bibliography/Godement">Godement</a>]</span> 
+</p>
+<p>
+<article class="env-example" id="0G5M">
+  <p><a class="environment-identifier" href="/tag/0G5M">Example <span data-tag="0G5M">14.33.1</span>.</a> Let $Y : \mathcal{C} \to \mathcal{C}$ be a functor from a category to itself and suppose given transformations of functors </p>
+  <div class="equation">
+  \[  d : Y \longrightarrow \text{id}_\mathcal {C} \quad \text{and}\quad s : Y \longrightarrow Y \circ Y  \]
+</div>
+  <p> Using these transformations we can construct something that looks like a simplicial object. Namely, for $n \geq 0$ we define </p>
+  <div class="equation">
+  \[  X_ n = Y \circ \ldots \circ Y \quad (n + 1\text{ compositions})  \]
+</div>
+  <p> Observe that $X_{n + m + 1} = X_ n \circ X_ m$ for $n, m \geq 0$. Next, for $n \geq 0$ and $0 \leq j \leq n$ we define using notation as in Categories, Section <a href="/tag/003D" data-tag="003D">4.28</a> </p>
+  <div class="equation">
+  \[  d^ n_ j = 1_{X_{j - 1}} \star d \star 1_{X_{n - j - 1}} : X_ n \to X_{n - 1} \quad \text{and}\quad s^ n_ j = 1_{X_{j - 1}} \star s \star 1_{X_{n - j - 1}} : X_ n \to X_{n + 1}  \]
+</div>
+  <p> So $d^ n_ j$, resp. $s^ n_ j$ is the natural transformation using $d$, resp. $s$ on the $j$th $Y$ (counted from the left) in the composition defining $X_ n$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0G5N">
+  <p><a class="environment-identifier" href="/tag/0G5N">Lemma <span data-tag="0G5N">14.33.2</span>.</a> In Example <a href="/tag/0G5M" data-tag="0G5M">14.33.1</a> if </p>
+  <div class="equation">
+  \[  1_ Y = (d \star 1_ Y) \circ s = (1_ Y \star d) \circ s \quad \text{and}\quad (s \star 1) \circ s = (1 \star s) \circ s  \]
+</div>
+  <p> then $X = (X_ n, d^ n_ j, s^ n_ j)$ is a simplicial object in the category of endofunctors of $\mathcal{C}$ and $d : X_0 = Y \to \text{id}_\mathcal {C}$ defines an augmentation. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      To see that we obtain a simplicial object we have to check that the relations (1)(a) – (e) of Lemma <a href="/tag/016B" data-tag="016B">14.3.2</a> are satisfied. We will use the short hand notation 
+    <p>
+      <div class="equation">
+  \[  1_ a = 1_{X_{a - 1}} = 1_ Y \star \ldots \star 1_ Y \quad (a\text{ factors})  \]
+</div>
+    <p>
+       for $a \geq 0$. With this notation we have 
+    <p>
+      <div class="equation">
+  \[  d^ n_ j = 1_ j \star d \star 1_{n - j} \quad \text{and}\quad s^ n_ j = 1_ j \star s \star 1_{n - j}  \]
+</div>
+    <p>
+       We are repeatedly going to use the rule that for transformations of funtors $a, a', b, b'$ we have $(a' \circ a) \star (b' \circ b) = (a' \star b') \circ (a \star b)$ provided that the $\star $ and $\circ $ compositions in this formula make sense, see Categories, Lemma <a href="/tag/003F" data-tag="003F">4.28.2</a>. 
+    <p>
+      Condition (1)(a) always holds (no conditions needed on $d$ and $s$). Namely, let $0 \leq i < j \leq n + 1$. We have to show that $d^ n_ i \circ d^{n + 1}_ j = d^ n_{j - 1} \circ d^{n + 1}_ i$, i.e., 
+    <p>
+      <div class="equation">
+  \[  (1_ i \star d \star 1_{n - i}) \circ (1_ j \star d \star 1_{n + 1 - j}) = (1_{j - 1} \star d \star 1_{n + 1 - j}) \circ (1_ i \star d \star 1_{n + 1 - i})  \]
+</div>
+    <p>
+       We can rewrite the left hand side as 
+    <p>
+      <div class="equation">
+  \begin{align*} &  (1_ i \star d \star 1_{j - i - 1} \star 1_{n + 1 - j}) \circ (1_ i \star 1_1 \star 1_{j - i - 1} \star d \star 1_{n + 1 - j}) \\ &  = 1_ i \star \left((d \star 1_{j - i - 1}) \circ (1_1 \star 1_{j - i - 1} \star d)\right) \star 1_{n + 1 - j} \\ &  = 1_ i \star d \star 1_{j - i - 1} \star d \star 1_{n + 1 - j} \end{align*}
+</div>
+    <p>
+       The second equality is true because $d \circ 1_1 = d$ and $1_{j - i} \circ (1_{j - i - 1} \star d) = 1_{j - i - 1} \star d$. A similar computation gives the same result for the right hand side. 
+    <p>
+      We check condition (1)(b). Let $0 \leq i < j \leq n - 1$. We have to show that $d^ n_ i \circ s^{n - 1}_ j = s^{n - 2}_{j - 1} \circ d^{n - 1}_ i$, i.e., 
+    <p>
+      <div class="equation">
+  \[  (1_ i \star d \star 1_{n - i}) \circ (1_ j \star s \star 1_{n - 1 - j}) = (1_{j - 1} \star s \star 1_{n - 1 - j}) \circ (1_ i \star d \star 1_{n - 1 - i})  \]
+</div>
+    <p>
+       By the same kind of calculus as in case (1)(a) both sides simplify to $1_ i \star d \star 1_{j - i - 1} \star s \star 1_{n - j - 1}$. 
+    <p>
+      We check condition (1)(c). Let $0 \leq j \leq n - 1$. We have to show $\text{id} = d^ n_ j \circ s^{n - 1}_ j = d^ n_{j + 1} \circ s^{n - 1}_ j$, i.e., 
+    <p>
+      <div class="equation">
+  \[  1_ n = (1_ j \star d \star 1_{n - j}) \circ (1_ j \star s \star 1_{n - 1 - j}) = (1_{j + 1} \star d \star 1_{n - j - 1}) \circ (1_ j \star s \star 1_{n - 1 - j})  \]
+</div>
+    <p>
+       This is easily seen to be implied by the first assumption of the lemma. 
+    <p>
+      We check condition (1)(d). Let $0 < j + 1 < i \leq n$. We have to show $d^ n_ i \circ s^{n - 1}_ j = s^{n - 2}_ j \circ d^{n - 1}_{i - 1}$, i.e., 
+    <p>
+      <div class="equation">
+  \[  (1_ i \star d \star 1_{n - i}) \circ (1_ j \star s \star 1_{n - 1 - j}) = (1_ j \star s \star 1_{n - 2 - j}) \circ (1_{i - 1} \star d \star 1_{n - i})  \]
+</div>
+    <p>
+       By the same kind of calculus as in case (1)(a) both sides simplify to $1_ j \star s \star 1_{i - j - 2} \star d \star 1_{n - i}$. 
+    <p>
+      We check condition (1)(e). Let $0 \leq i \leq j \leq n - 1$. We have to show that $s^ n_ i \circ s^{n - 1}_ j = s^ n_{j + 1} \circ s^{n - 1}_ i$, i.e., 
+    <p>
+      <div class="equation">
+  \[  (1_ i \star s \star 1_{n - i}) \circ (1_ j \star s \star 1_{n - 1 - j}) = (1_{j + 1} \star s \star 1_{n - 1 - j}) \circ (1_ i \star s \star 1_{n - 1 - i})  \]
+</div>
+    <p>
+       By the same kind of calculus as in case (1)(a) this reduces to 
+    <p>
+      <div class="equation">
+  \[  (s \star 1_{j - i + 1}) \circ (1_{j - i} \star s) = (1_{j - i + 1} \star s) \circ (s \star 1_{j - i})  \]
+</div>
+    <p>
+       If $j = i$ this is exactly one of the two assumptions of the lemma. For $j > i$ left and right hand side both reduce to the equality $s \star 1_{j - i - 1} \star s$ by calculations similar to those we did in case (1)(a). 
+    <p>
+      Finally, in order to show that $d$ defines an augmentation we have to show that $d \circ (1_1 \star d) = d \circ (d \star 1_1)$ which is true because both sides are equal to $d \star d$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-example" id="0G5P">
+  <p><a class="environment-identifier" href="/tag/0G5P">Example <span data-tag="0G5P">14.33.3</span>.</a> Let $\mathcal{C}$, $Y$, $d$, $s$ be as in Example <a href="/tag/0G5M" data-tag="0G5M">14.33.1</a> satisfying the equations of Lemma <a href="/tag/0G5N" data-tag="0G5N">14.33.2</a>. Given functors $F : \mathcal{A} \to \mathcal{C}$ and $G : \mathcal{C} \to \mathcal{B}$ we obtain a simplicial object $G \circ X \circ F$ in the category of functors from $\mathcal{A}$ to $\mathcal{B}$ which comes with an augmentation to $G \circ F$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0G5Q">
+  <p><a class="environment-identifier" href="/tag/0G5Q">Lemma <span data-tag="0G5Q">14.33.4</span>.</a> Let $\mathcal{A}$, $\mathcal{B}$, $\mathcal{C}$, $Y$, $d$, $s$, $F$, $G$ be as in Example <a href="/tag/0G5P" data-tag="0G5P">14.33.3</a>. Given a transformation of functors $h_0 : G \circ F \to G \circ Y \circ F$ such that </p>
+  <div class="equation">
+  \[  1_{G \circ F} = (1_ G \star d \star 1_ F) \circ h_0  \]
+</div>
+  <p> Then there is a morphism $h : G \circ F \to G \circ X \circ F$ of simplicial objects such that $\epsilon \circ h = \text{id}$ where $\epsilon : G \circ X \circ F \to G \circ F$ is the augmentation. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Denote $u_ n : Y = X_0 \to X_ n$ the map of the simplicial object $X$ corresponding to the unique morphism $[n] \to [0]$ in $\Delta $. Set $h_ n : G \circ F \to G \circ X_ n \circ F$ equal to $(1_ G \star u_ n \star 1_ F) \circ h_0$. 
+    <p>
+      For any simplicial object $X = (X_ n)$ in any category $u =(u_ n) : X_0 \to X$ is a morphism from the constant simplicial object on $X_0$ to $X$. Hence $h$ is a morphism of simplicial objects because it is the composition of $1_ G \star u \star 1_ F$ and $h_0$. 
+    <p>
+      Let us check that $\epsilon \circ h = \text{id}$. We compute 
+    <p>
+      <div class="equation">
+  \[  \epsilon _ n \circ (1_ G \star u_ n \star 1_ F) \circ h_0 = \epsilon _0 \circ h_0 = \text{id}  \]
+</div>
+    <p>
+       The first equality because $\epsilon $ is a morphism of simplicial objects and the second equality because $\epsilon _0 = (1_ G \star d \star 1_ F)$ and we can apply the assumption in the statement of the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0G5R">
+  <p><a class="environment-identifier" href="/tag/0G5R">Lemma <span data-tag="0G5R">14.33.5</span>.</a> Let $\mathcal{A}$, $\mathcal{B}$, $\mathcal{C}$, $Y$, $d$, $s$, $F$, $G$ be as in Example <a href="/tag/0G5P" data-tag="0G5P">14.33.3</a>. Let $F' : \mathcal{A} \to \mathcal{C}$ and $G' : \mathcal{C} \to \mathcal{B}$ be two functors. Let $(a_ n) : G \circ X \to G' \circ X$ be a morphism of simplicial objects compatible via augmentations with $a : G \to G'$. Let $(b_ n) : X \circ F \to X \circ F'$ be a morphism of simplicial objects compatible via augmentations with $b : F \to F'$. Then the two maps </p>
+  <div class="equation">
+  \[  a \star (b_ n), (a_ n) \star b : G \circ X \circ F \to G' \circ X \circ F'  \]
+</div>
+  <p> are homotopic. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      To show the morphisms are homotopic we construct morphisms 
+    <p>
+      <div class="equation">
+  \[  h_{n, i} : G \circ X_ n \circ F \to G' \circ X_ n \circ F'  \]
+</div>
+    <p>
+       for $n \geq 0$ and $0 \leq i \leq n + 1$ satisfying the relations described in Lemma <a href="/tag/019L" data-tag="019L">14.26.2</a>. See also Remark <a href="/tag/019M" data-tag="019M">14.26.4</a>. To satisfy condition (1) of Lemma <a href="/tag/019L" data-tag="019L">14.26.2</a> we are forced to set $h_{n, 0} = a \star b_ n$ and $h_{n , n + 1} = a_ n \star b$. Thus a logical choice is 
+    <p>
+      <div class="equation">
+  \[  h_{n , i} = a_{i - 1} \star b_{n - i}  \]
+</div>
+    <p>
+       for $1 \leq i \leq n$. Setting $a = a_{-1}$ and $b = b_{-1}$ we see the displayed formular holds for $0 \leq i \leq n + 1$. 
+    <p>
+      Recall that 
+    <p>
+      <div class="equation">
+  \[  d^ n_ j = 1_ G \star 1_ j \star d \star 1_{n - j} \star 1_ F  \]
+</div>
+    <p>
+       on $G \circ X \circ F$ where we use the notation $1_ a = 1_{Y \circ \ldots \circ Y}$ introduced in the proof of Lemma <a href="/tag/0G5N" data-tag="0G5N">14.33.2</a>. We are going to use below that we can rewrite this as 
+    <p>
+      <div class="equation">
+  \begin{align*}  d^ n_ j &  = d^ j_ j \star 1_{n - j} = d^{j + 1}_ j \star 1_{n - j} = \ldots = d^{n - 1}_ j \star 1_1 \\ &  = 1_ j \star d^{n - j}_0 = 1_{j - 1} \star d^{n - j + 1}_1 = \ldots = 1_1 \star d^{n - 1}_{j - 1} \end{align*}
+</div>
+    <p>
+       Of course we have the analogous formulae for $d^ n_ j$ on $G' \circ X \circ F'$. 
+    <p>
+      We check condition (2) of Lemma <a href="/tag/019L" data-tag="019L">14.26.2</a>. Let $i > j$. We have to show 
+    <p>
+      <div class="equation">
+  \[  d^ n_ j \circ (a_{i - 1} \star b_{n - i}) = (a_{i - 2} \star b_{n - i}) \circ d^ n_ j  \]
+</div>
+    <p>
+       Since $i - 1 \geq j$ we can use one of the possible descriptions of $d^ n_ j$ to rewrite the left hand side as 
+    <p>
+      <div class="equation">
+  \[  (d^{i - 1}_ j \star 1_{n - i + 1}) \circ (a_{i - 1} \star b_{n - i}) = (d^{i - 1}_ j \circ a_{i - 1}) \star b_{n - i} = (a_{i - 2} \circ d^{i - 1}_ j) \star b_{n - i}  \]
+</div>
+    <p>
+       Similarly the right hand side becomes 
+    <p>
+      <div class="equation">
+  \[  (a_{i - 2} \star b_{n - i}) \circ (d^{i - 1}_ j \star 1_{n - i + 1}) = (a_{i - 2} \circ d^{i - 1}_ j) \star b_{n - i}  \]
+</div>
+    <p>
+       Thus we obtain the same result and (2) is checked. 
+    <p>
+      We check condition (3) of Lemma <a href="/tag/019L" data-tag="019L">14.26.2</a>. Let $i \leq j$. We have to show 
+    <p>
+      <div class="equation">
+  \[  d^ n_ j \circ (a_{i - 1} \star b_{n - i}) = (a_{i - 1} \star b_{n - 1 - i}) \circ d^ n_ j  \]
+</div>
+    <p>
+       Since $j \geq i$ we may rewrite the left hand side as 
+    <p>
+      <div class="equation">
+  \[  (1_ i \star d^{n - i}_{j - i}) \circ (a_{i - 1} \star b_{n - i}) = a_{i - 1} \star (b_{n - 1 - i} \circ d^{n - i}_{j - i})  \]
+</div>
+    <p>
+       A similar manipulation shows this agrees with the right hand side. 
+    <p>
+      Recall that 
+    <p>
+      <div class="equation">
+  \[  s^ n_ j = 1_ G \star 1_ j \star s \star 1_{n - j} \star 1_ F  \]
+</div>
+    <p>
+       on $G \circ X \circ F$. We are going to use below that we can rewrite this as 
+    <p>
+      <div class="equation">
+  \begin{align*}  s^ n_ j &  = s^ j_ j \star 1_{n - j} = s^{j + 1}_ j \star 1_{n - j - 1} = \ldots = s^{n - 1}_ j \star 1_1 \\ &  = 1_ j \star s^{n - j}_0 = 1_{j - 1} \star s^{n - j + 1}_1 = \ldots = 1_1 \star s^{n - 1}_{j - 1} \end{align*}
+</div>
+    <p>
+       Of course we have the analogous formulae for $s^ n_ j$ on $G' \circ X \circ F'$. 
+    <p>
+      We check condition (4) of Lemma <a href="/tag/019L" data-tag="019L">14.26.2</a>. Let $i > j$. We have to show 
+    <p>
+      <div class="equation">
+  \[  s^ n_ j \circ (a_{i - 1} \star b_{n - i}) = (a_ i \star b_{n - i}) \circ s^ n_ j  \]
+</div>
+    <p>
+       Since $i - 1 \geq j$ we can rewrite the left hand side as 
+    <p>
+      <div class="equation">
+  \[  (s^{i - 1}_ j \star 1_{n - i + 1}) \circ (a_{i - 1} \star b_{n - i}) = (s^{i - 1}_ j \circ a_{i - 1}) \star b_{n - i} = (a_ i \circ s^{i - 1}_ j) \star b_{n - i}  \]
+</div>
+    <p>
+       Similarly the right hand side becomes 
+    <p>
+      <div class="equation">
+  \[  (a_ i \star b_{n - i}) \circ (s^{i - 1}_ j \star 1_{n - i + 1}) = (a_ i \circ s^{i - 1}_ j) \star b_{n - i}  \]
+</div>
+    <p>
+       as desired. 
+    <p>
+      We check condition (5) of Lemma <a href="/tag/019L" data-tag="019L">14.26.2</a>. Let $i \leq j$. We have to show 
+    <p>
+      <div class="equation">
+  \[  s^ n_ j \circ (a_{i - 1} \star b_{n - i}) = (a_{i - 1} \star b_{n + 1 - i}) \circ s^ n_ j  \]
+</div>
+    <p>
+       This equality holds because both sides evaluate to $a_{i - 1} \star (s^{n - i}_{j - i} \circ b_{n - i}) = a_{i - 1} \star (b_{n + 1 - i} \circ s^{n - i}_{j - i})$ by exactly the same arguments as above. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0G5S">
+  <p><a class="environment-identifier" href="/tag/0G5S">Lemma <span data-tag="0G5S">14.33.6</span>.</a> Let $\mathcal{C}$, $Y$, $d$, $s$ be as in Example <a href="/tag/0G5M" data-tag="0G5M">14.33.1</a> satisfying the equations of Lemma <a href="/tag/0G5N" data-tag="0G5N">14.33.2</a>. Let $f : \text{id}_\mathcal {C} \to \text{id}_\mathcal {C}$ be an endomorphism of the identity functor. Then $f \star 1_ X, 1_ X \star f : X \to X$ are maps of simplicial objects compatible with $f$ via the augmentation $\epsilon : X \to \text{id}_\mathcal {C}$. Moreover, $f \star 1_ X$ and $1_ X \star f$ are homotopic. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The map $f \star 1_ X$ is the map with components 
+    <p>
+      <div class="equation">
+  \[  X_ n = \text{id}_\mathcal {C} \circ X_ n \xrightarrow {f \star 1_{X_ n}} \text{id}_\mathcal {C} \circ X_ n = X_ n  \]
+</div>
+    <p>
+       For a transformation $a : F \to G$ of endofunctors of $\mathcal{C}$ we have $a \circ (f \star 1_ F) = f \star a = (f \star 1_ G) \circ a$. Thus $f \star 1_ X$ is indeed a morphism of simplicial objects. Similarly for $1_ X \star f$. 
+    <p>
+      To show the morphisms are homotopic we construct morphisms $h_{n, i} : X_ n \to X_ n$ for $n \geq 0$ and $0 \leq i \leq n + 1$ satisfying the relations described in Lemma <a href="/tag/019L" data-tag="019L">14.26.2</a>. See also Remark <a href="/tag/019M" data-tag="019M">14.26.4</a>. It turns out we can take 
+    <p>
+      <div class="equation">
+  \[  h_{n, i} = 1_ i \star f \star 1_{n + 1 - i}  \]
+</div>
+    <p>
+       where $1_ i$ is the identity transformation on $Y \circ \ldots \circ Y$ as in the proof of Lemma <a href="/tag/0G5N" data-tag="0G5N">14.33.2</a>. We have $h_{n, 0} = f \star 1_{X_ n}$ and $h_{n, n + 1} = 1_{X_ n} \star f$ which checks the first condition. In checking the other conditions we use the comments made in the proof of Lemma <a href="/tag/0G5R" data-tag="0G5R">14.33.5</a> about the maps $d^ n_ j$ and $s^ n_ j$. 
+    <p>
+      We check condition (2) of Lemma <a href="/tag/019L" data-tag="019L">14.26.2</a>. Let $i > j$. We have to show 
+    <p>
+      <div class="equation">
+  \[  d^ n_ j \circ (1_ i \star f \star 1_{n + 1 - i}) = (1_{i - 1} \star f \star 1_{n + 1 - i}) \circ d^ n_ j  \]
+</div>
+    <p>
+       Since $i - 1 \geq j$ we can use one of the possible descriptions of $d^ n_ j$ to rewrite the left hand side as 
+    <p>
+      <div class="equation">
+  \[  (d^{i - 1}_ j \star 1_{n - i + 1}) \circ (1_ i \star f \star 1_{n + 1 - i}) = d^{i - 1}_ j \star f \star 1_{n + 1 - i}  \]
+</div>
+    <p>
+       Similarly the right hand side becomes 
+    <p>
+      <div class="equation">
+  \[  (1_{i - 1} \star f \star 1_{n + 1 - i}) \circ (d^{i - 1}_ j \star 1_{n - i + 1}) = d^{i - 1}_ j \star f \star 1_{n + 1 - i}  \]
+</div>
+    <p>
+       Thus we obtain the same result and (2) is checked. 
+    <p>
+      The conditions (3), (4), and (5) of Lemma <a href="/tag/019L" data-tag="019L">14.26.2</a> are checked in exactly the same manner using the strategy of the proof of Lemma <a href="/tag/0G5R" data-tag="0G5R">14.33.5</a>. We omit the details<a class="footnotemark" href="#a0000298913" id="a0000298913-mark"><sup>1</sup></a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

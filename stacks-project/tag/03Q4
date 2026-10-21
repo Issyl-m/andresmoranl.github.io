@@ -1,0 +1,304 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="etale-cohomology-section-colimit" class="tex-section"><span data-tag="03Q4">59.51</span> Colimits</h2>
+
+<p>
+We recall that if $(\mathcal{F}_ i, \varphi _{ii'})$ is a diagram of sheaves on a site $\mathcal{C}$ its colimit (in the category of sheaves) is the sheafification of the presheaf $U \mapsto \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i(U)$. See Sites, Lemma <a href="/tag/00WI" data-tag="00WI">7.10.14</a>. If the system is directed, $U$ is a quasi-compact object of $\mathcal{C}$ which has a cofinal system of coverings by quasi-compact objects, then $\mathcal{F}(U) = \mathop{\mathrm{colim}}\nolimits \mathcal{F}_ i(U)$, see Sites, Lemma <a href="/tag/0738" data-tag="0738">7.17.7</a>. See Cohomology on Sites, Lemma <a href="/tag/0739" data-tag="0739">21.16.1</a> for a result dealing with higher cohomology groups of colimits of abelian sheaves. 
+</p>
+<p>
+In Cohomology on Sites, Lemma <a href="/tag/09YP" data-tag="09YP">21.16.6</a> we generalize this result to a system of sheaves on an inverse system of sites. Here is the corresponding notion in the case of a system of étale sheaves living on an inverse system of schemes. 
+</p>
+<p>
+<article class="env-definition" id="0EZL">
+  <p><a class="environment-identifier" href="/tag/0EZL">Definition <span data-tag="0EZL">59.51.1</span>.</a> Let $I$ be a preordered set. Let $(X_ i, f_{i'i})$ be an inverse system of schemes over $I$. A <em>system $(\mathcal{F}_ i, \varphi _{i'i})$ of sheaves on $(X_ i, f_{i'i})$</em> is given by </p>
+  <p><ol>
+  <li><p>
+a sheaf $\mathcal{F}_ i$ on $(X_ i)_{\acute{e}tale}$ for all $i \in I$, 
+</p>
+</li><li><p>
+for $i' \geq i$ a map $\varphi _{i'i} : f_{i'i}^{-1}\mathcal{F}_ i \to \mathcal{F}_{i'}$ of sheaves on $(X_{i'})_{\acute{e}tale}$ 
+</p>
+</li>
+</ol></p>
+  <p> such that $\varphi _{i''i} = \varphi _{i''i'} \circ f_{i'' i'}^{-1}\varphi _{i'i}$ whenever $i'' \geq i' \geq i$. </p>
+</article> 
+</p>
+<p>
+In the situation of Definition <a href="/tag/0EZL" data-tag="0EZL">59.51.1</a>, assume $I$ is a directed set and the transition morphisms $f_{i'i}$ affine. Let $X = \mathop{\mathrm{lim}}\nolimits X_ i$ be the limit in the category of schemes, see Limits, Section <a href="/tag/01YV" data-tag="01YV">32.2</a>. Denote $f_ i : X \to X_ i$ the projection morphisms and consider the maps 
+</p>
+<div class="equation">
+  \[  f_ i^{-1}\mathcal{F}_ i = f_{i'}^{-1}f_{i'i}^{-1}\mathcal{F}_ i \xrightarrow {f_{i'}^{-1}\varphi _{i'i}} f_{i'}^{-1}\mathcal{F}_{i'}  \]
+</div>
+<p>
+ This turns $f_ i^{-1}\mathcal{F}_ i$ into a system of sheaves on $X_{\acute{e}tale}$ over $I$ (it is a good exercise to check this). We often want to know whether there is an isomorphism 
+</p>
+<div class="equation">
+  \[  H^ q_{\acute{e}tale}(X, \mathop{\mathrm{colim}}\nolimits f_ i^{-1}\mathcal{F}_ i) = \mathop{\mathrm{colim}}\nolimits H^ q_{\acute{e}tale}(X_ i, \mathcal{F}_ i)  \]
+</div>
+<p>
+ It will turn out this is true if $X_ i$ is quasi-compact and quasi-separated for all $i$, see Theorem <a href="/tag/09YQ" data-tag="09YQ">59.51.3</a>. 
+</p>
+<p>
+<article class="env-lemma" id="0EYL">
+  <p><a class="environment-identifier" href="/tag/0EYL">Lemma <span data-tag="0EYL">59.51.2</span>.</a> Let $I$ be a directed set. Let $(X_ i, f_{i'i})$ be an inverse system of schemes over $I$ with affine transition morphisms. Let $X = \mathop{\mathrm{lim}}\nolimits _{i \in I} X_ i$. With notation as in Topologies, Lemma <a href="/tag/04HR" data-tag="04HR">34.4.12</a> we have </p>
+  <div class="equation">
+  \[  X_{affine, {\acute{e}tale}} = \mathop{\mathrm{colim}}\nolimits (X_ i)_{affine, {\acute{e}tale}}  \]
+</div>
+  <p> as sites in the sense of Sites, Lemma <a href="/tag/09YL" data-tag="09YL">7.18.2</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let us first prove this when $X$ and $X_ i$ are quasi-compact and quasi-separated for all $i$ (as this is true in all cases of interest). In this case any object of $X_{affine, {\acute{e}tale}}$, resp. $(X_ i)_{affine, {\acute{e}tale}}$ is of finite presentation over $X$. Moreover, the category of schemes of finite presentation over $X$ is the colimit of the categories of schemes of finite presentation over $X_ i$, see Limits, Lemma <a href="/tag/01ZM" data-tag="01ZM">32.10.1</a>. The same holds for the subcategories of affine objects étale over $X$ by Limits, Lemmas <a href="/tag/01Z6" data-tag="01Z6">32.4.13</a> and <a href="/tag/07RP" data-tag="07RP">32.8.10</a>. Finally, if $\{ U^ j \to U\} $ is a covering of $X_{affine, {\acute{e}tale}}$ and if $U_ i^ j \to U_ i$ is morphism of affine schemes étale over $X_ i$ whose base change to $X$ is $U^ j \to U$, then we see that the base change of $\{ U^ j_ i \to U_ i\} $ to some $X_{i'}$ is a covering for $i'$ large enough, see Limits, Lemma <a href="/tag/07RR" data-tag="07RR">32.8.15</a>. 
+    <p>
+      In the general case, let $U$ be an object of $X_{affine, {\acute{e}tale}}$. Then $U \to X$ is étale and separated (as $U$ is separated) but in general not quasi-compact. Still, $U \to X$ is locally of finite presentation and hence by Limits, Lemma <a href="/tag/0EY1" data-tag="0EY1">32.10.5</a> there exists an $i$, a quasi-compact and quasi-separated scheme $U_ i$, and a morphism $U_ i \to X_ i$ which is locally of finite presentation whose base change to $X$ is $U \to X$. Then $U = \mathop{\mathrm{lim}}\nolimits _{i' \geq i} U_{i'}$ where $U_{i'} = U_ i \times _{X_ i} X_{i'}$. After increasing $i$ we may assume $U_ i$ is affine, see Limits, Lemma <a href="/tag/01Z6" data-tag="01Z6">32.4.13</a>. To check that $U_ i \to X_ i$ is étale for $i$ sufficiently large, choose a finite affine open covering $U_ i = U_{i, 1} \cup \ldots \cup U_{i, m}$ such that $U_{i, j} \to U_ i \to X_ i$ maps into an affine open $W_{i, j} \subset X_ i$. Then we can apply Limits, Lemma <a href="/tag/07RP" data-tag="07RP">32.8.10</a> to see that $U_{i, j} \to W_{i, j}$ is étale after possibly increasing $i$. In this way we see that the functor $\mathop{\mathrm{colim}}\nolimits (X_ i)_{affine, {\acute{e}tale}} \to X_{affine, {\acute{e}tale}}$ is essentially surjective. Fully faithfulness follows directly from the already used Limits, Lemma <a href="/tag/0EY1" data-tag="0EY1">32.10.5</a>. The statement on coverings is proved in exactly the same manner as done in the first paragraph of the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Using the above we get the following general result on colimits and cohomology. 
+</p>
+<p>
+<article class="env-theorem" id="09YQ">
+  <p><a class="environment-identifier" href="/tag/09YQ">Theorem <span data-tag="09YQ">59.51.3</span>.</a> Let $X = \mathop{\mathrm{lim}}\nolimits _{i \in I} X_ i$ be a limit of a directed system of schemes with affine transition morphisms $f_{i'i} : X_{i'} \to X_ i$. We assume that $X_ i$ is quasi-compact and quasi-separated for all $i \in I$. Let $(\mathcal{F}_ i, \varphi _{i'i})$ be a system of abelian sheaves on $(X_ i, f_{i'i})$. Denote $f_ i : X \to X_ i$ the projection and set $\mathcal{F} = \mathop{\mathrm{colim}}\nolimits f_ i^{-1}\mathcal{F}_ i$. Then </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _{i\in I} H_{\acute{e}tale}^ p(X_ i, \mathcal{F}_ i) = H_{\acute{e}tale}^ p(X, \mathcal{F}).  \]
+</div>
+  <p> for all $p \geq 0$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Topologies, Lemma <a href="/tag/04HR" data-tag="04HR">34.4.12</a> we can compute the cohomology of $\mathcal{F}$ on $X_{affine, {\acute{e}tale}}$. Thus the result by a combination of Lemma <a href="/tag/0EYL" data-tag="0EYL">59.51.2</a> and Cohomology on Sites, Lemma <a href="/tag/09YP" data-tag="09YP">21.16.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following two results are special cases of the theorem above. 
+</p>
+<p>
+<article class="env-lemma" id="03Q5">
+  <p><a class="environment-identifier" href="/tag/03Q5">Lemma <span data-tag="03Q5">59.51.4</span>.</a> Let $X$ be a quasi-compact and quasi-separated scheme. Let $I$ be a directed set. Let $(\mathcal{F}_ i, \varphi _{ij})$ be a system of abelian sheaves on $X_{\acute{e}tale}$ over $I$. Then </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _{i\in I} H_{\acute{e}tale}^ p(X, \mathcal{F}_ i) = H_{\acute{e}tale}^ p(X, \mathop{\mathrm{colim}}\nolimits _{i\in I} \mathcal{F}_ i).  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a special case of Theorem <a href="/tag/09YQ" data-tag="09YQ">59.51.3</a>. We also sketch a direct proof. We prove it for all $X$ at the same time, by induction on $p$. 
+    <p>
+      <ol>
+  <li><p>
+For any quasi-compact and quasi-separated scheme $X$ and any étale covering $\mathcal{U}$ of $X$, show that there exists a refinement $\mathcal{V} = \{ V_ j \to X\} _{j\in J}$ with $J$ finite and each $V_ j$ quasi-compact and quasi-separated such that all $V_{j_0} \times _ X \ldots \times _ X V_{j_ p}$ are also quasi-compact and quasi-separated. 
+</p>
+</li><li><p>
+Using the previous step and the definition of colimits in the category of sheaves, show that the theorem holds for $p = 0$ and all $X$. 
+</p>
+</li><li><p>
+Using the locality of cohomology (Lemma <a href="/tag/03P1" data-tag="03P1">59.22.3</a>), the Čech-to-cohomology spectral sequence (Theorem <a href="/tag/03OW" data-tag="03OW">59.19.2</a>) and the fact that the induction hypothesis applies to all $V_{j_0} \times _ X \ldots \times _ X V_{j_ p}$ in the above situation, prove the induction step $p \to p + 1$. 
+</p>
+</li>
+</ol>
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03Q6">
+  <p><a class="environment-identifier" href="/tag/03Q6">Lemma <span data-tag="03Q6">59.51.5</span>.</a> Let $A$ be a ring, $(I, \leq )$ a directed set and $(B_ i, \varphi _{ij})$ a system of $A$-algebras. Set $B = \mathop{\mathrm{colim}}\nolimits _{i\in I} B_ i$. Let $X \to \mathop{\mathrm{Spec}}(A)$ be a quasi-compact and quasi-separated morphism of schemes. Let $\mathcal{F}$ an abelian sheaf on $X_{\acute{e}tale}$. Denote $Y_ i = X \times _{\mathop{\mathrm{Spec}}(A)} \mathop{\mathrm{Spec}}(B_ i)$, $Y = X \times _{\mathop{\mathrm{Spec}}(A)} \mathop{\mathrm{Spec}}(B)$, $\mathcal{G}_ i = (Y_ i \to X)^{-1}\mathcal{F}$ and $\mathcal{G} = (Y \to X)^{-1}\mathcal{F}$. Then </p>
+  <div class="equation">
+  \[  H_{\acute{e}tale}^ p(Y, \mathcal{G}) = \mathop{\mathrm{colim}}\nolimits _{i\in I} H_{\acute{e}tale}^ p (Y_ i, \mathcal{G}_ i).  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a special case of Theorem <a href="/tag/09YQ" data-tag="09YQ">59.51.3</a>. We also outline a direct proof as follows. 
+    <p>
+      <ol>
+  <li><p>
+Given $V \to Y$ étale with $V$ quasi-compact and quasi-separated, there exist $i\in I$ and $V_ i \to Y_ i$ such that $V = V_ i \times _{Y_ i} Y$. If all the schemes considered were affine, this would correspond to the following algebra statement: if $B = \mathop{\mathrm{colim}}\nolimits B_ i$ and $B \to C$ is étale, then there exist $i \in I$ and $B_ i \to C_ i$ étale such that $C \cong B \otimes _{B_ i} C_ i$. This is proved in Algebra, Lemma <a href="/tag/00U2" data-tag="00U2">10.143.3</a>. 
+</p>
+</li><li><p>
+In the situation of (1) show that $\mathcal{G}(V) = \mathop{\mathrm{colim}}\nolimits _{i' \geq i} \mathcal{G}_{i'}(V_{i'})$ where $V_{i'}$ is the base change of $V_ i$ to $Y_{i'}$. 
+</p>
+</li><li><p>
+By (1), we see that for every étale covering $\mathcal{V} = \{ V_ j \to Y\} _{j\in J}$ with $J$ finite and the $V_ j$s quasi-compact and quasi-separated, there exists $i \in I$ and an étale covering $\mathcal{V}_ i = \{ V_{ij} \to Y_ i\} _{j \in J}$ such that $\mathcal{V} \cong \mathcal{V}_ i \times _{Y_ i} Y$. 
+</p>
+</li><li><p>
+Show that (2) and (3) imply 
+</p>
+<div class="equation">
+  \[  \check H^*(\mathcal{V}, \mathcal{G})= \mathop{\mathrm{colim}}\nolimits _{i\in I} \check H^*(\mathcal{V}_ i, \mathcal{G}_ i).  \]
+</div>
+</li><li><p>
+Cleverly use the Čech-to-cohomology spectral sequence (Theorem <a href="/tag/03OW" data-tag="03OW">59.19.2</a>). 
+</p>
+</li>
+</ol>
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03Q8">
+  <p><a class="environment-identifier" href="/tag/03Q8">Lemma <span data-tag="03Q8">59.51.6</span>.</a> Let $f: X\to Y$ be a morphism of schemes and $\mathcal{F}\in \textit{Ab}(X_{\acute{e}tale})$. Then $R^ pf_*\mathcal{F}$ is the sheaf associated to the presheaf </p>
+  <div class="equation">
+  \[  (V \to Y) \longmapsto H_{\acute{e}tale}^ p(X \times _ Y V, \mathcal{F}|_{X \times _ Y V}).  \]
+</div>
+  <p> More generally, for $K \in D(X_{\acute{e}tale})$ we have that $R^ pf_*K$ is the sheaf associated to the presheaf </p>
+  <div class="equation">
+  \[  (V \to Y) \longmapsto H_{\acute{e}tale}^ p(X \times _ Y V, K|_{X \times _ Y V}).  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This lemma is valid for topological spaces, and the proof in this case is the same. See Cohomology on Sites, Lemma <a href="/tag/072W" data-tag="072W">21.7.4</a> for the case of a sheaf and see Cohomology on Sites, Lemma <a href="/tag/0BKV" data-tag="0BKV">21.20.3</a> for the case of a complex of abelian sheaves. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09Z1">
+  <p><a class="environment-identifier" href="/tag/09Z1">Lemma <span data-tag="09Z1">59.51.7</span>.</a> Let $S$ be a scheme. Let $X = \mathop{\mathrm{lim}}\nolimits _{i \in I} X_ i$ be a limit of a directed system of schemes over $S$ with affine transition morphisms $f_{i'i} : X_{i'} \to X_ i$. We assume the structure morphisms $g_ i : X_ i \to S$ and $g : X \to S$ are quasi-compact and quasi-separated. Let $(\mathcal{F}_ i, \varphi _{i'i})$ be a system of abelian sheaves on $(X_ i, f_{i'i})$. Denote $f_ i : X \to X_ i$ the projection and set $\mathcal{F} = \mathop{\mathrm{colim}}\nolimits f_ i^{-1}\mathcal{F}_ i$. Then </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _{i\in I} R^ p g_{i, *} \mathcal{F}_ i = R^ p g_* \mathcal{F}  \]
+</div>
+  <p> for all $p \geq 0$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Recall (Lemma <a href="/tag/03Q8" data-tag="03Q8">59.51.6</a>) that $R^ p g_{i, *} \mathcal{F}_ i$ is the sheaf associated to the presheaf $U \mapsto H^ p_{\acute{e}tale}(U \times _ S X_ i, \mathcal{F}_ i)$ and similarly for $R^ pg_*\mathcal{F}$. Moreover, the colimit of a system of sheaves is the sheafification of the colimit on the level of presheaves. Note that every object of $S_{\acute{e}tale}$ has a covering by quasi-compact and quasi-separated objects (e.g., affine schemes). Moreover, if $U$ is a quasi-compact and quasi-separated object, then we have 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits H^ p_{\acute{e}tale}(U \times _ S X_ i, \mathcal{F}_ i) = H^ p_{\acute{e}tale}(U \times _ S X, \mathcal{F})  \]
+</div>
+    <p>
+       by Theorem <a href="/tag/09YQ" data-tag="09YQ">59.51.3</a>. Thus the lemma follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0EYM">
+  <p><a class="environment-identifier" href="/tag/0EYM">Lemma <span data-tag="0EYM">59.51.8</span>.</a> Let $I$ be a directed set. Let $g_ i : X_ i \to S_ i$ be an inverse system of morphisms of schemes over $I$. Assume $g_ i$ is quasi-compact and quasi-separated and for $i' \geq i$ the transition morphisms $f_{i'i} : X_{i'} \to X_ i$ and $h_{i'i} : S_{i'} \to S_ i$ are affine. Let $g : X \to S$ be the limit of the morphisms $g_ i$, see Limits, Section <a href="/tag/01YV" data-tag="01YV">32.2</a>. Denote $f_ i : X \to X_ i$ and $h_ i : S \to S_ i$ the projections. Let $(\mathcal{F}_ i, \varphi _{i'i})$ be a system of sheaves on $(X_ i, f_{i'i})$. Set $\mathcal{F} = \mathop{\mathrm{colim}}\nolimits f_ i^{-1}\mathcal{F}_ i$. Then </p>
+  <div class="equation">
+  \[  R^ p g_* \mathcal{F} = \mathop{\mathrm{colim}}\nolimits _{i \in I} h_ i^{-1}R^ p g_{i, *} \mathcal{F}_ i  \]
+</div>
+  <p> for all $p \geq 0$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      How is the map of the lemma constructed? For $i' \geq i$ we have a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X \ar[r]_{f_{i'}} \ar[d]_ g &  X_{i'} \ar[r]_{f_{i'i}} \ar[d]_{g_{i'}} &  X_ i \ar[d]^{g_ i} \\  S \ar[r]^{h_{i'}} &  S_{i'} \ar[r]^{h_{i'i}} &  S_ i }  \]
+</div>
+    <p>
+       If we combine the base change map $h_{i'i}^{-1}Rg_{i, *}\mathcal{F}_ i \to Rg_{i', *}f_{i'i}^{-1}\mathcal{F}_ i$ (Cohomology on Sites, Lemma <a href="/tag/0736" data-tag="0736">21.15.1</a> or Remark <a href="/tag/07A7" data-tag="07A7">21.19.3</a>) with the map $Rg_{i', *}\varphi _{i'i}$, then we obtain $\psi _{i'i} : h_{i' i}^{-1} R^ p g_{i, *} \mathcal{F}_ i \to R^ pg_{i', *} \mathcal{F}_{i'}$. Similarly, using the left square in the diagram we obtain maps $\psi _ i : h_ i^{-1}R^ pg_{i, *}\mathcal{F}_ i \to R^ pg_*\mathcal{F}$. The maps $h_{i'}^{-1}\psi _{i'i}$ and $\psi _ i$ are the maps used in the statement of the lemma. For this to make sense, we have to check that $\psi _{i''i} = \psi _{i''i'} \circ h_{i''i'}^{-1}\psi _{i'i}$ and $\psi _{i'} \circ h_{i'}^{-1}\psi _{i'i} = \psi _ i$; this follows from Cohomology on Sites, Remark <a href="/tag/0E47" data-tag="0E47">21.19.5</a>. 
+    <p>
+      Proof of the equality. First proof using dimension shifting<a class="footnotemark" href="#a0001226158" id="a0001226158-mark"><sup>1</sup></a>. For any $U$ affine and étale over $X$ by Theorem <a href="/tag/09YQ" data-tag="09YQ">59.51.3</a> we have 
+    <p>
+      <div class="equation">
+  \[  g_*\mathcal{F}(U) = H^0(U \times _ S X, \mathcal{F}) = \mathop{\mathrm{colim}}\nolimits H^0(U_ i \times _{S_ i} X_ i, \mathcal{F}_ i) = \mathop{\mathrm{colim}}\nolimits g_{i, *}\mathcal{F}_ i(U_ i)  \]
+</div>
+    <p>
+       where the colimit is over $i$ large enough such that there exists an $i$ and $U_ i$ affine étale over $S_ i$ whose base change is $U$ over $S$ (see Lemma <a href="/tag/0EYL" data-tag="0EYL">59.51.2</a>). The right hand side is equal to $(\mathop{\mathrm{colim}}\nolimits h_ i^{-1}g_{i, *}\mathcal{F}_ i)(U)$ by Sites, Lemma <a href="/tag/09YN" data-tag="09YN">7.18.4</a>. This proves the lemma for $p = 0$. If $(\mathcal{G}_ i, \varphi _{i'i})$ is a system with $\mathcal{G} = \mathop{\mathrm{colim}}\nolimits f_ i^{-1}\mathcal{G}_ i$ such that $\mathcal{G}_ i$ is an injective abelian sheaf on $X_ i$ for all $i$, then for any $U$ affine and étale over $X$ by Theorem <a href="/tag/09YQ" data-tag="09YQ">59.51.3</a> we have 
+    <p>
+      <div class="equation">
+  \[  H^ p(U \times _ S X, \mathcal{G}) = \mathop{\mathrm{colim}}\nolimits H^ p(U_ i \times _{S_ i} X_ i, \mathcal{G}_ i) = 0  \]
+</div>
+    <p>
+       for $p > 0$ (same colimit as before). Hence $R^ pg_*\mathcal{G} = 0$ and we get the result for $p > 0$ for such a system. In general we may choose a short exact sequence of systems 
+    <p>
+      <div class="equation">
+  \[  0 \to (\mathcal{F}_ i, \varphi _{i'i}) \to (\mathcal{G}_ i, \varphi _{i'i}) \to (\mathcal{Q}_ i, \varphi _{i'i}) \to 0  \]
+</div>
+    <p>
+       where $(\mathcal{G}_ i, \varphi _{i'i})$ is as above, see Cohomology on Sites, Lemma <a href="/tag/0EXZ" data-tag="0EXZ">21.16.5</a>. By induction the lemma holds for $p - 1$ and by the above we have vanishing for $p$ and $(\mathcal{G}_ i, \varphi _{i'i})$. Hence the result for $p$ and $(\mathcal{F}_ i, \varphi _{i'i})$ by the long exact sequence of cohomology. 
+    <p>
+      Second proof. Recall that $S_{affine, {\acute{e}tale}} = \mathop{\mathrm{colim}}\nolimits (S_ i)_{affine, {\acute{e}tale}}$, see Lemma <a href="/tag/0EYL" data-tag="0EYL">59.51.2</a>. Thus if $U$ is an object of $S_{affine, {\acute{e}tale}}$, then we can write $U = U_ i \times _{S_ i} S$ for some $i$ and some $U_ i$ in $(S_ i)_{affine, {\acute{e}tale}}$ and 
+    <p>
+      <div class="equation">
+  \[  (\mathop{\mathrm{colim}}\nolimits _{i \in I} h_ i^{-1}R^ p g_{i, *} \mathcal{F}_ i)(U) = \mathop{\mathrm{colim}}\nolimits _{i' \geq i} (R^ p g_{i', *}\mathcal{F}_{i'})(U_ i \times _{S_ i} S_{i'})  \]
+</div>
+    <p>
+       by Sites, Lemma <a href="/tag/09YN" data-tag="09YN">7.18.4</a> and the construction of the transition maps in the system described above. Since $R^ pg_{i', *}\mathcal{F}_{i'}$ is the sheaf associated to the presheaf $U_{i'} \mapsto H^ p(U_{i'} \times _{S_{i'}} X_{i'}, \mathcal{F}_{i'})$ and since $R^ pg_*\mathcal{F}$ is the sheaf associated to the presheaf $U \mapsto H^ p(U \times _ S X, \mathcal{F})$ (Lemma <a href="/tag/03Q8" data-tag="03Q8">59.51.6</a>) we obtain a canonical commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{colim}}\nolimits _{i' \geq i} H^ p(U_ i \times _{S_ i} X_{i'}, \mathcal{F}_{i'}) \ar[r] \ar[d] &  \mathop{\mathrm{colim}}\nolimits _{i' \geq i} (R^ p g_{i', *}\mathcal{F}_{i'})(U_ i \times _{S_ i} S_{i'}) \ar[d] \\  H^ p(U \times _ S X, \mathcal{F}) \ar[r] &  R^ pg_*\mathcal{F}(U) }  \]
+</div>
+    <p>
+       Observe that the left hand vertical arrow is an isomorphism by Theorem <a href="/tag/09YQ" data-tag="09YQ">59.51.3</a>. We're trying to show that the right hand vertical arrow is an isomorphism. However, we already know that the source and target of this arrow are sheaves on $S_{affine, {\acute{e}tale}}$. Hence it suffices to show: (1) an element in the target, locally comes from an element in the source and (2) an element in the source which maps to zero in the target locally vanishes. Part (1) follows immediately from the above and the fact that the lower horizontal arrow comes from a map of presheaves which becomes an isomorphism after sheafification. For part (2), say $\xi \in \mathop{\mathrm{colim}}\nolimits _{i' \geq i} (R^ p g_{i', *}\mathcal{F}_{i'})(U_ i \times _{S_ i} S_{i'})$ is in the kernel. Choose an $i' \geq i$ and $\xi _{i'} \in (R^ p g_{i', *}\mathcal{F}_{i'})(U_ i \times _{S_ i} S_{i'})$ representing $\xi $. Choose a standard étale covering $\{ U_{i', k} \to U_ i \times _{S_ i} S_{i'}\} _{k = 1, \ldots , m}$ such that $\xi _{i'}|_{U_{i', k}}$ comes from $\xi _{i', k} \in H^ p(U_{i', k} \times _{S_{i'}} X_{i'}, \mathcal{F}_{i'})$. Since it is enough to prove that $\xi $ dies locally, we may replace $U$ by the members of the étale covering $\{ U_{i', k} \times _{S_{i'}} S \to U = U_ i \times _{S_ i} S\} $. After this replacement we see that $\xi $ is the image of an element $\xi '$ of the group $\mathop{\mathrm{colim}}\nolimits _{i' \geq i} H^ p(U_ i \times _{S_ i} X_{i'}, \mathcal{F}_{i'})$ in the diagram above. Since $\xi '$ maps to zero in $R^ pg_*\mathcal{F}(U)$ we can do another replacement and assume that $\xi '$ maps to zero in $H^ p(U \times _ S X, \mathcal{F})$. However, since the left vertical arrow is an isomorphism we then conclude $\xi ' = 0$ hence $\xi = 0$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0EYN">
+  <p><a class="environment-identifier" href="/tag/0EYN">Lemma <span data-tag="0EYN">59.51.9</span>.</a> Let $X = \mathop{\mathrm{lim}}\nolimits _{i \in I} X_ i$ be a directed limit of schemes with affine transition morphisms $f_{i'i}$ and projection morphisms $f_ i : X \to X_ i$. Let $\mathcal{F}$ be a sheaf on $X_{\acute{e}tale}$. Then </p>
+  <p><ol>
+  <li><p>
+there are canonical maps $\varphi _{i'i} : f_{i'i}^{-1}f_{i, *}\mathcal{F} \to f_{i', *}\mathcal{F}$ such that $(f_{i, *}\mathcal{F}, \varphi _{i'i})$ is a system of sheaves on $(X_ i, f_{i'i})$ as in Definition <a href="/tag/0EZL" data-tag="0EZL">59.51.1</a>, and 
+</p>
+</li><li><p>
+$\mathcal{F} = \mathop{\mathrm{colim}}\nolimits f_ i^{-1}f_{i, *}\mathcal{F}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Via Topologies, Lemma <a href="/tag/04HR" data-tag="04HR">34.4.12</a> and Lemma <a href="/tag/0EYL" data-tag="0EYL">59.51.2</a> this is a special case of Sites, Lemma <a href="/tag/0EXJ" data-tag="0EXJ">7.18.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DV2">
+  <p><a class="environment-identifier" href="/tag/0DV2">Lemma <span data-tag="0DV2">59.51.10</span>.</a> Let $I$ be a directed set. Let $g_ i : X_ i \to S_ i$ be an inverse system of morphisms of schemes over $I$. Assume $g_ i$ is quasi-compact and quasi-separated and for $i' \geq i$ the transition morphisms $X_{i'} \to X_ i$ and $S_{i'} \to S_ i$ are affine. Let $g : X \to S$ be the limit of the morphisms $g_ i$, see Limits, Section <a href="/tag/01YV" data-tag="01YV">32.2</a>. Denote $f_ i : X \to X_ i$ and $h_ i : S \to S_ i$ the projections. Let $\mathcal{F}$ be an abelian sheaf on $X$. Then we have </p>
+  <div class="equation">
+  \[  R^ pg_*\mathcal{F} = \mathop{\mathrm{colim}}\nolimits _{i \in I} h_ i^{-1}R^ pg_{i, *}(f_{i, *}\mathcal{F})  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Formal combination of Lemmas <a href="/tag/0EYM" data-tag="0EYM">59.51.8</a> and <a href="/tag/0EYN" data-tag="0EYN">59.51.9</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

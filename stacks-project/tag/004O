@@ -1,0 +1,130 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="topology-section-bases" class="tex-section"><span data-tag="004O">5.5</span> Bases</h2>
+
+<p>
+Basic material on bases for topological spaces. 
+</p>
+<p>
+<article class="env-definition" id="004P">
+  <p><a class="environment-identifier" href="/tag/004P">Definition <span data-tag="004P">5.5.1</span>.</a> Let $X$ be a topological space. A collection of subsets $\mathcal{B}$ of $X$ is called a <em>base for the topology on $X$</em> or a <em>basis for the topology on $X$</em> if the following conditions hold: </p>
+  <p><ol>
+  <li><p>
+Every element $B \in \mathcal{B}$ is open in $X$. 
+</p>
+</li><li><p>
+For every open $U \subset X$ and every $x \in U$, there exists an element $B \in \mathcal{B}$ such that $x \in B \subset U$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+The following lemma is sometimes used to define a topology. 
+</p>
+<p>
+<article class="env-lemma" id="0D5P">
+  <p><a class="environment-identifier" href="/tag/0D5P">Lemma <span data-tag="0D5P">5.5.2</span>.</a> Let $X$ be a set and let $\mathcal{B}$ be a collection of subsets. Assume that $X = \bigcup _{B \in \mathcal{B}} B$ and that given $x \in B_1 \cap B_2$ with $B_1, B_2 \in \mathcal{B}$ there is a $B_3 \in \mathcal{B}$ with $x \in B_3 \subset B_1 \cap B_2$. Then there is a unique topology on $X$ such that $\mathcal{B}$ is a basis for this topology. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\sigma (\mathcal B)$ be the set of subsets of $X$ which can be written as unions of elements of $\mathcal B$. We claim $\sigma (\mathcal{B})$ is a topology. Namely, the empty set is an element of $\sigma (\mathcal{B})$ (as an empty union) and $X$ is an element of $\sigma (\mathcal{B})$ (as the union of all elements of $\mathcal{B}$). It is clear that $\sigma (\mathcal{B})$ is preserved under unions. Finally, if $U, V \in \sigma (\mathcal{B})$ then write $U = \bigcup _{i \in I} U_ i$ and $V = \bigcup _{j \in J} V_ j$ with $U_ i, V_ j \in \mathcal{B}$ for all $i \in I$ and $j \in J$. Then 
+    <p>
+      <div class="equation">
+  \[  U \cap V = \bigcup \nolimits _{i \in I, j \in J} U_ i \cap V_ j  \]
+</div>
+    <p>
+       The assumption in the lemma tells us that $U_ i \cap V_ j \in \sigma (\mathcal{B})$ hence we see that $U \cap V$ is too. Thus $\sigma (\mathcal{B})$ is a topology. Properties (1) and (2) of Definition <a href="/tag/004P" data-tag="004P">5.5.1</a> are immediate for this topology. To prove the uniqueness of this topology let $\mathcal T$ be a topology on $X$ such that $\mathcal B$ is a base for it. Then of course every element of $\mathcal{B}$ is in $\mathcal{T}$ by (1) of Definition <a href="/tag/004P" data-tag="004P">5.5.1</a> and hence $\sigma (\mathcal{B}) \subset \mathcal{T}$. Conversely, part (2) of Definition <a href="/tag/004P" data-tag="004P">5.5.1</a> tells us that every element of $\mathcal{T}$ is a union of elements of $\mathcal{B}$, i.e., $\mathcal{T} \subset \sigma (\mathcal{B})$. This finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="004Q">
+  <p><a class="environment-identifier" href="/tag/004Q">Lemma <span data-tag="004Q">5.5.3</span>.</a> Let $X$ be a topological space. Let $\mathcal{B}$ be a basis for the topology on $X$. Let $\mathcal{U} : U = \bigcup _ i U_ i$ be an open covering of $U \subset X$. There exists an open covering $U = \bigcup V_ j$ which is a refinement of $\mathcal{U}$ such that each $V_ j$ is an element of the basis $\mathcal{B}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $ x \in U = \bigcup _{i\in I} U_ i $, there is an $ i_ x \in I $ such that $ x \in U_{i_ x} $. Thus we have a $ B_{i_ x} \in \mathcal{B}$ verifying $ x \in B_{i_ x} \subset U_{i_ x}$. Set $J = \{ i_ x | x \in U\} $ and for $j = i_ x \in J$ set $V_ j = B_{i_ x}$. This gives the desired open covering of $U$ by $\{ V_ j\} _{j \in J}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="08ZI">
+  <p><a class="environment-identifier" href="/tag/08ZI">Definition <span data-tag="08ZI">5.5.4</span>.</a> Let $X$ be a topological space. A collection of subsets $\mathcal{B}$ of $X$ is called a <em>subbase for the topology on $X$</em> or a <em>subbasis for the topology on $X$</em> if the finite intersections of elements of $\mathcal{B}$ form a basis for the topology on $X$. </p>
+</article> 
+</p>
+<p>
+In particular every element of $\mathcal{B}$ is open. 
+</p>
+<p>
+<article class="env-lemma" id="08ZJ">
+  <p><a class="environment-identifier" href="/tag/08ZJ">Lemma <span data-tag="08ZJ">5.5.5</span>.</a> Let $X$ be a set. Given any collection $\mathcal{B}$ of subsets of $X$ there is a unique topology on $X$ such that $\mathcal{B}$ is a subbase for this topology. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By convention $\bigcap _\emptyset B = X $. Thus we can apply Lemma <a href="/tag/0D5P" data-tag="0D5P">5.5.2</a> to the set of finite intersections of elements from $\mathcal B$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0D5Q">
+  <p><a class="environment-identifier" href="/tag/0D5Q">Lemma <span data-tag="0D5Q">5.5.6</span>.</a> Let $X$ be a topological space. Let $\mathcal{B}$ be a collection of opens of $X$. Assume $X = \bigcup _{U \in \mathcal{B}} U$ and for $U, V \in \mathcal{B}$ we have $U \cap V = \bigcup _{W \in \mathcal{B}, W \subset U \cap V} W$. Then there is a continuous map $f : X \to Y$ of topological spaces such that </p>
+  <p><ol>
+  <li><p>
+for $U \in \mathcal{B}$ the image $f(U)$ is open, 
+</p>
+</li><li><p>
+for $U \in \mathcal{B}$ we have $f^{-1}(f(U)) = U$, and 
+</p>
+</li><li><p>
+the opens $f(U)$, $U \in \mathcal{B}$ form a basis for the topology on $Y$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Define an equivalence relation $\sim $ on points of $X$ by the rule 
+    <p>
+      <div class="equation">
+  \[  x \sim y \Leftrightarrow (\forall U \in \mathcal{B} : x \in U \Leftrightarrow y \in U)  \]
+</div>
+    <p>
+       Let $Y$ be the set of equivalence classes and $f : X \to Y$ the natural map. Part (2) holds by construction. The assumptions on $\mathcal{B}$ exactly mirror the assumptions in Lemma <a href="/tag/0D5P" data-tag="0D5P">5.5.2</a> on the set of subsets $f(U)$, $U \in \mathcal{B}$. Hence there is a unique topology on $Y$ such that (3) holds. Then (1) is clear as well. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

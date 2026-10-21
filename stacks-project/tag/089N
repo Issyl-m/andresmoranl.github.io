@@ -1,0 +1,377 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="spaces-more-morphisms-section-existence-proper" class="tex-section"><span data-tag="089N">76.42</span> Grothendieck's existence theorem</h2>
+
+<p>
+In this section we discuss Grothendieck's existence theorem for algebraic spaces. Instead of developing a theory of “formal algebraic spaces” we temporarily develop a bit of language that replaces the notion of a “coherent module on a Noetherian adic formal space”. 
+</p>
+<p>
+Let $S$ be a scheme. Let $X$ be a Noetherian algebraic space over $S$. Let $\mathcal{I} \subset \mathcal{O}_ X$ be a quasi-coherent sheaf of ideals. Below we will consider inverse systems $(\mathcal{F}_ n)$ of coherent $\mathcal{O}_ X$-modules such that 
+</p>
+<ol>
+  <li><p>
+$\mathcal{F}_ n$ is annihilated by $\mathcal{I}^ n$, and 
+</p>
+</li><li><p>
+the transition maps induce isomorphisms $\mathcal{F}_{n + 1}/\mathcal{I}^ n\mathcal{F}_{n + 1} \to \mathcal{F}_ n$. 
+</p>
+</li>
+</ol>
+<p>
+ A morphism $\alpha : (\mathcal{F}_ n) \to (\mathcal{G}_ n)$ of such inverse systems is simply a compatible system of morphisms $\alpha _ n : \mathcal{F}_ n \to \mathcal{G}_ n$. Let us denote the category of these inverse systems with $\textit{Coh}(X, \mathcal{I})$. We will develop some theory regarding these systems that will parallel to the corresponding results in the case of schemes, see Cohomology of Schemes, Sections <a href="/tag/087V" data-tag="087V">30.24</a>, <a href="/tag/0886" data-tag="0886">30.25</a>, <a href="/tag/0CYW" data-tag="0CYW">30.27</a>, and <a href="/tag/0898" data-tag="0898">30.28</a>. 
+</p>
+<p>
+Functoriality. Let $f : X \to Y$ be a morphism of Noetherian algebraic spaces over a scheme $S$, and let $\mathcal{J} \subset \mathcal{O}_ Y$ be a quasi-coherent sheaf of ideals. Set $\mathcal{I} = f^{-1}\mathcal{J}\mathcal{O}_ X$. In this situation there is a functor 
+</p>
+<div class="equation">
+  \[  f^* : \textit{Coh}(Y, \mathcal{J}) \longrightarrow \textit{Coh}(X, \mathcal{I})  \]
+</div>
+<p>
+ which sends $(\mathcal{G}_ n)$ to $(f^*\mathcal{G}_ n)$. Compare with Cohomology of Schemes, Lemma <a href="/tag/0887" data-tag="0887">30.23.9</a>. If $f$ is étale, then we may think of this as simply the restriction of the system to $X$, see Properties of Spaces, Equation <a href="/tag/03LW" data-tag="03LW">66.26.1.1</a>. 
+</p>
+<p>
+Étale descent. Let $S$ be a scheme. Let $U_0 \to X$ be a surjective étale morphism of Noetherian algebraic spaces. Set $U_1 = U_0 \times _ X U_0$ and $U_2 = U_0 \times _ X U_0 \times _ X U_0$. Let $\mathcal{I} \subset \mathcal{O}_{X}$ be a quasi-coherent sheaf of ideals. Set $\mathcal{I}_ i = \mathcal{I}|_{U_ i}$. In this situation we obtain a diagram of categories 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \textit{Coh}(X, \mathcal{I}) \ar[r] &  \textit{Coh}(U_0, \mathcal{I}_0) \ar@<0.5ex>[r] \ar@<-0.5ex>[r] &  \textit{Coh}(U_1, \mathcal{I}_1) \ar@<1ex>[r] \ar[r] \ar@<-1ex>[r] &  \textit{Coh}(U_2, \mathcal{I}_2) }  \]
+</div>
+<p>
+ an the first arrow presents $\textit{Coh}(X, \mathcal{I})$ as the homotopy limit of the right part of the diagram. More precisely, given a <em>descent datum</em>, i.e., a pair $((\mathcal{G}_ n), \varphi )$ where $(\mathcal{G}_ n)$ is an object of $\textit{Coh}(U_0, \mathcal{I}_0)$ and $\varphi : \text{pr}_0^*(\mathcal{G}_ n) \to \text{pr}_1^*(\mathcal{G}_ n)$ is an isomorphism in $\textit{Coh}(U_1, \mathcal{I}_1)$ satisfying the cocycle condition in $\textit{Coh}(U_2, \mathcal{I}_2)$, then there exists a unique object $(\mathcal{F}_ n)$ of $\textit{Coh}(X, \mathcal{I})$ whose associated canonical descent datum is isomorphic to $((\mathcal{G}_ n), \varphi )$. Compare with Descent on Spaces, Definition <a href="/tag/04W5" data-tag="04W5">74.3.3</a>. The proof of this statement follows immediately by applying Descent on Spaces, Proposition <a href="/tag/04W8" data-tag="04W8">74.4.1</a> to the descent data $(\mathcal{G}_ n, \varphi _ n)$ for varying $n$. 
+</p>
+<p>
+<article class="env-lemma" id="089P">
+  <p><a class="environment-identifier" href="/tag/089P">Lemma <span data-tag="089P">76.42.1</span>.</a> Let $S$ be a scheme. Let $X$ be a Noetherian algebraic space over $S$ and let $\mathcal{I} \subset \mathcal{O}_ X$ be a quasi-coherent sheaf of ideals. </p>
+  <p><ol>
+  <li><p>
+The category $\textit{Coh}(X, \mathcal{I})$ is abelian. 
+</p>
+</li><li><p>
+Exactness in $\textit{Coh}(X, \mathcal{I})$ can be checked étale locally. 
+</p>
+</li><li><p>
+For any flat morphism $f : X' \to X$ of Noetherian algebraic spaces the functor $f^* : \textit{Coh}(X, \mathcal{I}) \to \textit{Coh}(X', f^{-1}\mathcal{I}\mathcal{O}_{X'})$ is exact. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Proof of (1). Choose an affine scheme $U_0$ and a surjective étale morphism $U_0 \to X$. Set $U_1 = U_0 \times _ X U_0$ and $U_2 = U_0 \times _ X U_0 \times _ X U_0$ as in our discussion of étale descent above. The categories $\textit{Coh}(U_ i, \mathcal{I}_ i)$ are abelian (Cohomology of Schemes, Lemma <a href="/tag/087X" data-tag="087X">30.23.2</a>) and the pullback functors are exact functors $\textit{Coh}(U_0, \mathcal{I}_0) \to \textit{Coh}(U_1, \mathcal{I}_1)$ and $\textit{Coh}(U_1, \mathcal{I}_1) \to \textit{Coh}(U_2, \mathcal{I}_2)$ (Cohomology of Schemes, Lemma <a href="/tag/0887" data-tag="0887">30.23.9</a>). The lemma then follows formally from the description of $\textit{Coh}(X, \mathcal{I})$ as a category of descent data. Some details omitted; compare with the proof of Groupoids, Lemma <a href="/tag/077S" data-tag="077S">39.14.6</a>. 
+    <p>
+      Part (2) follows immediately from the discussion in the previous paragraph. In the situation of (3) choose a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ U' \ar[d] \ar[r] &  U \ar[d] \\  X' \ar[r] &  X }  \]
+</div>
+    <p>
+       where $U'$ and $U$ are affine schemes and the vertical morphisms are surjective étale. Then $U' \to U$ is a flat morphism of Noetherian schemes (Morphisms of Spaces, Lemma <a href="/tag/03MM" data-tag="03MM">67.30.5</a>) whence the pullback functor $\textit{Coh}(U, \mathcal{I}\mathcal{O}_ U) \to \textit{Coh}(U', \mathcal{I}\mathcal{O}_{U'})$ is exact by Cohomology of Schemes, Lemma <a href="/tag/0887" data-tag="0887">30.23.9</a>. Since we can check exactness in $\textit{Coh}(X, \mathcal{O}_ X)$ on $U$ and similarly for $X', U'$ the assertion follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08B3">
+  <p><a class="environment-identifier" href="/tag/08B3">Lemma <span data-tag="08B3">76.42.2</span>.</a> Let $S$ be a scheme. Let $X$ be a Noetherian algebraic space over $S$ and let $\mathcal{I} \subset \mathcal{O}_ X$ be a quasi-coherent sheaf of ideals. A map $(\mathcal{F}_ n) \to (\mathcal{G}_ n)$ is surjective in $\textit{Coh}(X, \mathcal{I})$ if and only if $\mathcal{F}_1 \to \mathcal{G}_1$ is surjective. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We can check on an affine étale cover of $X$ by Lemma <a href="/tag/089P" data-tag="089P">76.42.1</a>. Thus we reduce to the case of schemes which is Cohomology of Schemes, Lemma <a href="/tag/087Y" data-tag="087Y">30.23.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $S$ be a scheme. Let $X$ be a Noetherian algebraic space over $S$ and let $\mathcal{I} \subset \mathcal{O}_ X$ be a quasi-coherent sheaf of ideals. There is a functor 
+</p>
+<div class="equation" id="08B4">
+    <span class="equation-label"><a href="/tag/08B4" data-tag="08B4">76.42.2.1</a></span>
+  <div>\begin{equation}  \label{spaces-more-morphisms-equation-completion-functor} \textit{Coh}(\mathcal{O}_ X) \longrightarrow \textit{Coh}(X, \mathcal{I}), \quad \mathcal{F} \longmapsto \mathcal{F}^\wedge \end{equation}</div>
+</div>
+<p>
+ which associates to the coherent $\mathcal{O}_ X$-module $\mathcal{F}$ the object $\mathcal{F}^\wedge = (\mathcal{F}/\mathcal{I}^ n\mathcal{F})$ of $\textit{Coh}(X, \mathcal{I})$. 
+</p>
+<p>
+<article class="env-lemma" id="08B5">
+  <p><a class="environment-identifier" href="/tag/08B5">Lemma <span data-tag="08B5">76.42.3</span>.</a> The functor (<a href="/tag/08B4" data-tag="08B4">76.42.2.1</a>) is exact. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It suffices to check this étale locally on $X$, see Lemma <a href="/tag/089P" data-tag="089P">76.42.1</a>. Thus we reduce to the case of schemes which is Cohomology of Schemes, Lemma <a href="/tag/0881" data-tag="0881">30.23.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08B6">
+  <p><a class="environment-identifier" href="/tag/08B6">Lemma <span data-tag="08B6">76.42.4</span>.</a> Let $S$ be a scheme. Let $X$ be a Noetherian algebraic space over $S$ and let $\mathcal{I} \subset \mathcal{O}_ X$ be a quasi-coherent sheaf of ideals. Let $\mathcal{F}$, $\mathcal{G}$ be coherent $\mathcal{O}_ X$-modules. Set $\mathcal{H} = \mathop{\mathcal{H}\! \mathit{om}}\nolimits _{\mathcal{O}_ X}(\mathcal{F}, \mathcal{G})$. Then </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{lim}}\nolimits H^0(X, \mathcal{H}/\mathcal{I}^ n\mathcal{H}) = \mathop{\mathrm{Mor}}\nolimits _{\textit{Coh}(X, \mathcal{I})} (\mathcal{F}^\wedge , \mathcal{G}^\wedge ).  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $\mathcal{H}$ is a sheaf on $X_{\acute{e}tale}$ and since we have étale descent for objects of $\textit{Coh}(X, \mathcal{I})$ it suffices to prove this étale locally. Thus we reduce to the case of schemes which is Cohomology of Schemes, Lemma <a href="/tag/0882" data-tag="0882">30.23.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We introduce the setting that we will focus on throughout the rest of this section. 
+</p>
+<p>
+<article class="env-situation" id="08B7">
+  <p><a class="environment-identifier" href="/tag/08B7">Situation <span data-tag="08B7">76.42.5</span>.</a> Here $A$ is a Noetherian ring complete with respect to an ideal $I$. Also $f : X \to \mathop{\mathrm{Spec}}(A)$ is a finite type separated morphism of algebraic spaces and $\mathcal{I} = I\mathcal{O}_ X$. </p>
+</article> 
+</p>
+<p>
+In this situation we denote 
+</p>
+<div class="equation">
+  \[  \textit{Coh}_{\text{support proper over } A}(\mathcal{O}_ X)  \]
+</div>
+<p>
+ be the full subcategory of $\textit{Coh}(\mathcal{O}_ X)$ consisting of those coherent $\mathcal{O}_ X$-modules whose support is proper over $\mathop{\mathrm{Spec}}(A)$, or equivalently whose scheme theoretic support is proper over $\mathop{\mathrm{Spec}}(A)$, see Derived Categories of Spaces, Lemma <a href="/tag/0CZI" data-tag="0CZI">75.7.7</a>. Similarly, we let 
+</p>
+<div class="equation">
+  \[  \textit{Coh}_{\text{support proper over } A}(X, \mathcal{I})  \]
+</div>
+<p>
+ be the full subcategory of $\textit{Coh}(X, \mathcal{I})$ consisting of those objects $(\mathcal{F}_ n)$ such that the support of $\mathcal{F}_1$ is proper over $\mathop{\mathrm{Spec}}(A)$. Since the support of a quotient module is contained in the support of the module, it follows that (<a href="/tag/08B4" data-tag="08B4">76.42.2.1</a>) induces a functor 
+</p>
+<div class="equation" id="08B8">
+    <span class="equation-label"><a href="/tag/08B8" data-tag="08B8">76.42.5.1</a></span>
+  <div>\begin{equation}  \label{spaces-more-morphisms-equation-completion-functor-proper-over-A} \textit{Coh}_{\text{support proper over }A}(\mathcal{O}_ X) \longrightarrow \textit{Coh}_{\text{support proper over }A}(X, \mathcal{I}) \end{equation}</div>
+</div>
+<p>
+ Our first result is that this functor is fully faithful. 
+</p>
+<p>
+<article class="env-lemma" id="08B9">
+  <p><a class="environment-identifier" href="/tag/08B9">Lemma <span data-tag="08B9">76.42.6</span>.</a> In Situation <a href="/tag/08B7" data-tag="08B7">76.42.5</a>. Let $\mathcal{F}$, $\mathcal{G}$ be coherent $\mathcal{O}_ X$-modules. Assume that the intersection of the supports of $\mathcal{F}$ and $\mathcal{G}$ is proper over $\mathop{\mathrm{Spec}}(A)$. Then the map </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\textit{Coh}(\mathcal{O}_ X)}(\mathcal{F}, \mathcal{G}) \longrightarrow \mathop{\mathrm{Mor}}\nolimits _{\textit{Coh}(X, \mathcal{I})} (\mathcal{F}^\wedge , \mathcal{G}^\wedge )  \]
+</div>
+  <p> coming from (<a href="/tag/08B4" data-tag="08B4">76.42.2.1</a>) is a bijection. In particular, (<a href="/tag/08B8" data-tag="08B8">76.42.5.1</a>) is fully faithful. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\mathcal{H} = \mathop{\mathcal{H}\! \mathit{om}}\nolimits _{\mathcal{O}_ X}(\mathcal{G}, \mathcal{F})$. This is a coherent $\mathcal{O}_ X$-module because its restriction of schemes étale over $X$ is coherent by Modules, Lemma <a href="/tag/01CQ" data-tag="01CQ">17.22.6</a>. By Lemma <a href="/tag/08B6" data-tag="08B6">76.42.4</a> the map 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{lim}}\nolimits _ n H^0(X, \mathcal{H}/\mathcal{I}^ n\mathcal{H}) \to \mathop{\mathrm{Mor}}\nolimits _{\textit{Coh}(X, \mathcal{I})} (\mathcal{G}^\wedge , \mathcal{F}^\wedge )  \]
+</div>
+    <p>
+       is bijective. Let $i : Z \to X$ be the scheme theoretic support of $\mathcal{H}$. It is clear that $Z$ is a closed subspace such that $|Z|$ is contained in the intersection of the supports of $\mathcal{F}$ and $\mathcal{G}$. Hence $Z \to \mathop{\mathrm{Spec}}(A)$ is proper by assumption (see Derived Categories of Spaces, Section <a href="/tag/0CZB" data-tag="0CZB">75.7</a>). Write $\mathcal{H} = i_*\mathcal{H}'$ for some coherent $\mathcal{O}_ Z$-module $\mathcal{H}'$. We have $i_*(\mathcal{H}'/I^ n\mathcal{H}') = \mathcal{H}/I^ n\mathcal{H}$. Hence we obtain 
+    <p>
+      <div class="equation">
+  \begin{align*}  \mathop{\mathrm{lim}}\nolimits _ n H^0(X, \mathcal{H}/\mathcal{I}^ n\mathcal{H}) &  = \mathop{\mathrm{lim}}\nolimits _ n H^0(Z, \mathcal{H}'/\mathcal{I}^ n\mathcal{H}') \\ &  = H^0(Z, \mathcal{H}') \\ &  = H^0(X, \mathcal{H}) \\ &  = \mathop{\mathrm{Mor}}\nolimits _{\textit{Coh}(\mathcal{O}_ X)}(\mathcal{F}, \mathcal{G}) \end{align*}
+</div>
+    <p>
+       the second equality by the theorem on formal functions (Cohomology of Spaces, Lemma <a href="/tag/08B0" data-tag="08B0">69.22.6</a>). This proves the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="08BA">
+  <p><a class="environment-identifier" href="/tag/08BA">Remark <span data-tag="08BA">76.42.7</span>.</a> Let $S$ be a scheme. Let $X$ be a Noetherian algebraic space over $S$ and let $\mathcal{I}, \mathcal{K} \subset \mathcal{O}_ X$ be quasi-coherent sheaves of ideals. Let $\alpha : (\mathcal{F}_ n) \to (\mathcal{G}_ n)$ be a morphism of $\textit{Coh}(X, \mathcal{I})$. Given an affine scheme $U = \mathop{\mathrm{Spec}}(A)$ and a surjective étale morphism $U \to X$ denote $I, K \subset A$ the ideals corresponding to the restrictions $\mathcal{I}|_ U, \mathcal{K}|_ U$. Denote $\alpha _ U : M \to N$ of finite $A^\wedge $-modules which corresponds to $\alpha |_ U$ via Cohomology of Schemes, Lemma <a href="/tag/087W" data-tag="087W">30.23.1</a>. We claim the following are equivalent </p>
+  <p><ol>
+  <li><p>
+there exists an integer $t \geq 1$ such that $\mathop{\mathrm{Ker}}(\alpha _ n)$ and $\mathop{\mathrm{Coker}}(\alpha _ n)$ are annihilated by $\mathcal{K}^ t$ for all $n \geq 1$, 
+</p>
+</li><li><p>
+for any (or some) affine open $\mathop{\mathrm{Spec}}(A) = U \subset X$ as above the modules $\mathop{\mathrm{Ker}}(\alpha _ U)$ and $\mathop{\mathrm{Coker}}(\alpha _ U)$ are annihilated by $K^ t$ for some integer $t \geq 1$. 
+</p>
+</li>
+</ol></p>
+  <p> If these equivalent conditions hold we will say that $\alpha $ is a <em>map whose kernel and cokernel are annihilated by a power of $\mathcal{K}$</em>. To see the equivalence we refer to Cohomology of Schemes, Remark <a href="/tag/0888" data-tag="0888">30.25.1</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="08BB">
+  <p><a class="environment-identifier" href="/tag/08BB">Lemma <span data-tag="08BB">76.42.8</span>.</a> Let $S$ be a scheme. Let $X$ be a Noetherian algebraic space over $S$ and let $\mathcal{I} \subset \mathcal{O}_ X$ be a quasi-coherent sheaf of ideals. Let $\mathcal{G}$ be a coherent $\mathcal{O}_ X$-module, $(\mathcal{F}_ n)$ an object of $\textit{Coh}(X, \mathcal{I})$, and $\alpha : (\mathcal{F}_ n) \to \mathcal{G}^\wedge $ a map whose kernel and cokernel are annihilated by a power of $\mathcal{I}$. Then there exists a unique (up to unique isomorphism) triple $(\mathcal{F}, a, \beta )$ where </p>
+  <p><ol>
+  <li><p>
+$\mathcal{F}$ is a coherent $\mathcal{O}_ X$-module, 
+</p>
+</li><li><p>
+$a : \mathcal{F} \to \mathcal{G}$ is an $\mathcal{O}_ X$-module map whose kernel and cokernel are annihilated by a power of $\mathcal{I}$, 
+</p>
+</li><li><p>
+$\beta : (\mathcal{F}_ n) \to \mathcal{F}^\wedge $ is an isomorphism, and 
+</p>
+</li><li><p>
+$\alpha = a^\wedge \circ \beta $. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The uniqueness and étale descent for objects of $\textit{Coh}(X, \mathcal{I})$ and $\textit{Coh}(\mathcal{O}_ X)$ implies it suffices to construct $(\mathcal{F}, a, \beta )$ étale locally on $X$. Thus we reduce to the case of schemes which is Cohomology of Schemes, Lemma <a href="/tag/0889" data-tag="0889">30.23.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08BC">
+  <p><a class="environment-identifier" href="/tag/08BC">Lemma <span data-tag="08BC">76.42.9</span>.</a> In Situation <a href="/tag/08B7" data-tag="08B7">76.42.5</a>. Let $\mathcal{K} \subset \mathcal{O}_ X$ be a quasi-coherent sheaf of ideals. Let $X_ e \subset X$ be the closed subspace cut out by $\mathcal{K}^ e$. Let $\mathcal{I}_ e = \mathcal{I}\mathcal{O}_{X_ e}$. Let $(\mathcal{F}_ n)$ be an object of $\textit{Coh}_{\text{support proper over } A}(X, \mathcal{I})$. Assume </p>
+  <p><ol>
+  <li><p>
+the functor $\textit{Coh}_{\text{support proper over } A}(\mathcal{O}_{X_ e}) \to \textit{Coh}_{\text{support proper over } A}(X_ e, \mathcal{I}_ e)$ is an equivalence for all $e \geq 1$, and 
+</p>
+</li><li><p>
+there exists an object $\mathcal{H}$ of $\textit{Coh}_{\text{support proper over } A}(\mathcal{O}_ X)$ and a map $\alpha : (\mathcal{F}_ n) \to \mathcal{H}^\wedge $ whose kernel and cokernel are annihilated by a power of $\mathcal{K}$. 
+</p>
+</li>
+</ol></p>
+  <p> Then $(\mathcal{F}_ n)$ is in the essential image of (<a href="/tag/08B8" data-tag="08B8">76.42.5.1</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      During this proof we will use without further mention that for a closed immersion $i : Z \to X$ the functor $i_*$ gives an equivalence between the category of coherent modules on $Z$ and coherent modules on $X$ annihilated by the ideal sheaf of $Z$, see Cohomology of Spaces, Lemma <a href="/tag/08AM" data-tag="08AM">69.12.8</a>. In particular we think of 
+    <p>
+      <div class="equation">
+  \[  \textit{Coh}_{\text{support proper over } A}(\mathcal{O}_{X_ e}) \subset \textit{Coh}_{\text{support proper over } A}(\mathcal{O}_ X)  \]
+</div>
+    <p>
+       as the full subcategory of consisting of modules annihilated by $\mathcal{K}^ e$ and 
+    <p>
+      <div class="equation">
+  \[  \textit{Coh}_{\text{support proper over } A}(X_ e, \mathcal{I}_ e) \subset \textit{Coh}_{\text{support proper over } A}(X, \mathcal{I})  \]
+</div>
+    <p>
+       as the full subcategory of objects annihilated by $\mathcal{K}^ e$. Moreover (1) tells us these two categories are equivalent under the completion functor (<a href="/tag/08B8" data-tag="08B8">76.42.5.1</a>). 
+    <p>
+      Applying this equivalence we get a coherent $\mathcal{O}_ X$-module $\mathcal{G}_ e$ annihilated by $\mathcal{K}^ e$ corresponding to the system $(\mathcal{F}_ n/\mathcal{K}^ e\mathcal{F}_ n)$ of $\textit{Coh}_{\text{support proper over } A}(X, \mathcal{I})$. The maps $\mathcal{F}_ n/\mathcal{K}^{e + 1}\mathcal{F}_ n \to \mathcal{F}_ n/\mathcal{K}^ e\mathcal{F}_ n$ correspond to canonical maps $\mathcal{G}_{e + 1} \to \mathcal{G}_ e$ which induce isomorphisms $\mathcal{G}_{e + 1}/\mathcal{K}^ e\mathcal{G}_{e + 1} \to \mathcal{G}_ e$. We obtain an object $(\mathcal{G}_ e)$ of the category $\textit{Coh}_{\text{support proper over } A}(X, \mathcal{K})$. The map $\alpha $ induces a system of maps 
+    <p>
+      <div class="equation">
+  \[  \mathcal{F}_ n/\mathcal{K}^ e\mathcal{F}_ n \longrightarrow \mathcal{H}/(\mathcal{I}^ n + \mathcal{K}^ e)\mathcal{H}  \]
+</div>
+    <p>
+       whence maps $\mathcal{G}_ e \to \mathcal{H}/\mathcal{K}^ e\mathcal{H}$ (by the equivalence of categories again). Let $t \geq 1$ be an integer, which exists by assumption (2), such that $\mathcal{K}^ t$ annihilates the kernel and cokernel of all the maps $\mathcal{F}_ n \to \mathcal{H}/\mathcal{I}^ n\mathcal{H}$. Then $\mathcal{K}^{2t}$ annihilates the kernel and cokernel of the maps $\mathcal{F}_ n/\mathcal{K}^ e\mathcal{F}_ n \to \mathcal{H}/(\mathcal{I}^ n + \mathcal{K}^ e)\mathcal{H}$ (details omitted; see Cohomology of Schemes, Remark <a href="/tag/0888" data-tag="0888">30.25.1</a>). Whereupon we conclude that $\mathcal{K}^{4t}$ annihilates the kernel and the cokernel of the maps 
+    <p>
+      <div class="equation">
+  \[  \mathcal{G}_ e \longrightarrow \mathcal{H}/\mathcal{K}^ e\mathcal{H},  \]
+</div>
+    <p>
+       (details omitted; see Cohomology of Schemes, Remark <a href="/tag/0888" data-tag="0888">30.25.1</a>). We apply Lemma <a href="/tag/08BB" data-tag="08BB">76.42.8</a> to obtain a coherent $\mathcal{O}_ X$-module $\mathcal{F}$, a map $a : \mathcal{F} \to \mathcal{H}$ and an isomorphism $\beta : (\mathcal{G}_ e) \to (\mathcal{F}/\mathcal{K}^ e\mathcal{F})$ in $\textit{Coh}(X, \mathcal{K})$. Working backwards, for a given $n$ the triple $(\mathcal{F}/\mathcal{I}^ n\mathcal{F}, a \bmod \mathcal{I}^ n, \beta \bmod \mathcal{I}^ n)$ is a triple as in the lemma for the morphism $\alpha _ n \bmod \mathcal{K}^ e : (\mathcal{F}_ n/\mathcal{K}^ e\mathcal{F}_ n) \to (\mathcal{H}/(\mathcal{I}^ n + \mathcal{K}^ e)\mathcal{H})$ of $\textit{Coh}(X, \mathcal{K})$. Thus the uniqueness in Lemma <a href="/tag/08BB" data-tag="08BB">76.42.8</a> gives a canonical isomorphism $\mathcal{F}/\mathcal{I}^ n\mathcal{F} \to \mathcal{F}_ n$ compatible with all the morphisms in sight. 
+    <p>
+      To finish the proof of the lemma we still have to show that the support of $\mathcal{F}$ is proper over $A$. By construction the kernel of $a : \mathcal{F} \to \mathcal{H}$ is annihilated by a power of $\mathcal{K}$. Hence the support of this kernel is contained in the support of $\mathcal{G}_1$. Since $\mathcal{G}_1$ is an object of $\textit{Coh}_{\text{support proper over } A}(\mathcal{O}_{X_1})$ we see this is proper over $A$. Combined with the fact that the support of $\mathcal{H}$ is proper over $A$ we conclude that the support of $\mathcal{F}$ is proper over $A$ by Derived Categories of Spaces, Lemma <a href="/tag/0CZH" data-tag="0CZH">75.7.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08BD">
+  <p><a class="environment-identifier" href="/tag/08BD">Lemma <span data-tag="08BD">76.42.10</span>.</a> Let $S$ be a scheme. Let $f : X \to Y$ be a representable proper morphism of Noetherian algebraic spaces over $S$. Let $\mathcal{J}, \mathcal{K} \subset \mathcal{O}_ Y$ be quasi-coherent sheaves of ideals. Assume $f$ is an isomorphism over $V = Y \setminus V(\mathcal{K})$. Set $\mathcal{I} = f^{-1}\mathcal{J} \mathcal{O}_ X$. Let $(\mathcal{G}_ n)$ be an object of $\textit{Coh}(Y, \mathcal{J})$, let $\mathcal{F}$ be a coherent $\mathcal{O}_ X$-module, and let $\beta : (f^*\mathcal{G}_ n) \to \mathcal{F}^\wedge $ be an isomorphism in $\textit{Coh}(X, \mathcal{I})$. Then there exists a map </p>
+  <div class="equation">
+  \[  \alpha : (\mathcal{G}_ n) \longrightarrow (f_*\mathcal{F})^\wedge  \]
+</div>
+  <p> in $\textit{Coh}(Y, \mathcal{J})$ whose kernel and cokernel are annihilated by a power of $\mathcal{K}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $f$ is a proper morphism we see that $f_*\mathcal{F}$ is a coherent $\mathcal{O}_ Y$-module (Cohomology of Spaces, Lemma <a href="/tag/08AR" data-tag="08AR">69.20.2</a>). Thus the statement of the lemma makes sense. Consider the compositions 
+    <p>
+      <div class="equation">
+  \[  \gamma _ n : \mathcal{G}_ n \to f_*f^*\mathcal{G}_ n \to f_*(\mathcal{F}/\mathcal{I}^ n\mathcal{F}).  \]
+</div>
+    <p>
+       Here the first map is the adjunction map and the second is $f_*\beta _ n$. We claim that there exists a unique $\alpha $ as in the lemma such that the compositions 
+    <p>
+      <div class="equation">
+  \[  \mathcal{G}_ n \xrightarrow {\alpha _ n} f_*\mathcal{F}/\mathcal{J}^ nf_*\mathcal{F} \to f_*(\mathcal{F}/\mathcal{I}^ n\mathcal{F})  \]
+</div>
+    <p>
+       equal $\gamma _ n$ for all $n$. Because of the uniqueness and étale descent for $\textit{Coh}(Y, \mathcal{J})$ it suffices to prove this étale locally on $Y$. Thus we may assume $Y$ is the spectrum of a Noetherian ring. As $f$ is representable we see that $X$ is a scheme as well. Thus we reduce to the case of schemes, see proof of Cohomology of Schemes, Lemma <a href="/tag/088B" data-tag="088B">30.25.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-theorem" id="08BE">
+  <p><a class="environment-identifier" href="/tag/08BE">Theorem <span data-tag="08BE">76.42.11</span> <span class="named">(Grothendieck's existence theorem)</span>.</a>  In Situation <a href="/tag/08B7" data-tag="08B7">76.42.5</a> the functor (<a href="/tag/08B8" data-tag="08B8">76.42.5.1</a>) is an equivalence. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use the equivalence of categories of Cohomology of Spaces, Lemma <a href="/tag/08AM" data-tag="08AM">69.12.8</a> without further mention in the proof of the theorem. By Lemma <a href="/tag/08B9" data-tag="08B9">76.42.6</a> the functor is fully faithful. Thus we need to prove the functor is essentially surjective. 
+    <p>
+      Consider the collection $\Xi $ of quasi-coherent sheaves of ideals $\mathcal{K} \subset \mathcal{O}_ X$ such that the statement holds for every object $(\mathcal{F}_ n)$ of $\textit{Coh}_{\text{support proper over }A}(X, \mathcal{I})$ annihilated by $\mathcal{K}$. We want to show $(0)$ is in $\Xi $. If not, then since $X$ is Noetherian there exists a maximal quasi-coherent sheaf of ideals $\mathcal{K}$ not in $\Xi $, see Cohomology of Spaces, Lemma <a href="/tag/07UJ" data-tag="07UJ">69.13.1</a>. After replacing $X$ by the closed subscheme of $X$ corresponding to $\mathcal{K}$ we may assume that every nonzero $\mathcal{K}$ is in $\Xi $. Let $(\mathcal{F}_ n)$ be an object of $\textit{Coh}_{\text{support proper over }A}(X, \mathcal{I})$. We will show that this object is in the essential image, thereby completing the proof of the theorem. 
+    <p>
+      Apply Chow's lemma (Lemma <a href="/tag/088U" data-tag="088U">76.40.5</a>) to find a proper surjective morphism $f : Y \to X$ which is an isomorphism over a dense open $U \subset X$ such that $Y$ is H-quasi-projective over $A$. Note that $Y$ is a scheme and $f$ representable. Choose an open immersion $j : Y \to Y'$ with $Y'$ projective over $A$, see Morphisms, Lemma <a href="/tag/01WA" data-tag="01WA">29.44.11</a>. Let $T_ n$ be the scheme theoretic support of $\mathcal{F}_ n$. Note that $|T_ n| = |T_1|$, hence $T_ n$ is proper over $A$ for all $n$ (Morphisms of Spaces, Lemma <a href="/tag/08AJ" data-tag="08AJ">67.40.7</a>). Then $f^*\mathcal{F}_ n$ is supported on the closed subscheme $f^{-1}T_ n$ which is proper over $A$ (by Morphisms of Spaces, Lemma <a href="/tag/04XY" data-tag="04XY">67.40.4</a> and properness of $f$). In particular, the composition $f^{-1}T_ n \to Y \to Y'$ is closed (Morphisms, Lemma <a href="/tag/01W6" data-tag="01W6">29.42.7</a>). Let $T'_ n \subset Y'$ be the corresponding closed subscheme; it is contained in the open subscheme $Y$ and equal to $f^{-1}T_ n$ as a closed subscheme of $Y$. Let $\mathcal{F}_ n'$ be the coherent $\mathcal{O}_{Y'}$-module corresponding to $f^*\mathcal{F}_ n$ viewed as a coherent module on $Y'$ via the closed immersion $f^{-1}T_ n = T'_ n \subset Y'$. Then $(\mathcal{F}_ n')$ is an object of $\textit{Coh}(Y', I\mathcal{O}_{Y'})$. By the projective case of Grothendieck's existence theorem (Cohomology of Schemes, Lemma <a href="/tag/0885" data-tag="0885">30.24.3</a>) there exists a coherent $\mathcal{O}_{Y'}$-module $\mathcal{F}'$ and an isomorphism $(\mathcal{F}')^\wedge \cong (\mathcal{F}'_ n)$ in $\textit{Coh}(Y', I\mathcal{O}_{Y'})$. Let $Z' \subset Y'$ be the scheme theoretic support of $\mathcal{F}'$. Since $\mathcal{F}'/I\mathcal{F}' = \mathcal{F}'_1$ we see that $Z' \cap V(I\mathcal{O}_{Y'}) = T'_1$ set-theoretically. The structure morphism $p' : Y' \to \mathop{\mathrm{Spec}}(A)$ is proper, hence $p'(Z' \cap (Y' \setminus Y))$ is closed in $\mathop{\mathrm{Spec}}(A)$. If nonempty, then it would contain a point of $V(I)$ as $I$ is contained in the Jacobson radical of $A$ (Algebra, Lemma <a href="/tag/05GI" data-tag="05GI">10.96.6</a>). But we've seen above that $Z' \cap (p')^{-1}V(I) = T'_1 \subset Y$ hence we conclude that $Z' \subset Y$. Thus $\mathcal{F}'|_ Y$ is supported on a closed subscheme of $Y$ proper over $A$. 
+    <p>
+      Let $\mathcal{K}$ be the quasi-coherent sheaf of ideals cutting out the reduced complement $X \setminus U$. By Cohomology of Spaces, Lemma <a href="/tag/08AR" data-tag="08AR">69.20.2</a> the $\mathcal{O}_ X$-module $\mathcal{H} = f_*\mathcal{F}'$ is coherent and by Lemma <a href="/tag/08BD" data-tag="08BD">76.42.10</a> there exists a morphism $\alpha : (\mathcal{F}_ n) \to \mathcal{H}^\wedge $ in the category $\textit{Coh}_{\text{support proper over } A}(X, \mathcal{I})$ whose kernel and cokernel are annihilated by a power of $\mathcal{K}$. Let $Z_0 \subset X$ be the scheme theoretic support of $\mathcal{H}$. It is clear that $|Z_0| \subset f(|Z'|)$. Hence $Z_0 \to \mathop{\mathrm{Spec}}(A)$ is proper (Morphisms of Spaces, Lemma <a href="/tag/08AJ" data-tag="08AJ">67.40.7</a>). Thus $\mathcal{H}$ is an object of $\textit{Coh}_{\text{support proper over } A}(\mathcal{O}_ X)$. Since each of the sheaves of ideals $\mathcal{K}^ e$ is an element of $\Xi $ we see that the assumptions of Lemma <a href="/tag/08BC" data-tag="08BC">76.42.9</a> are satisfied and we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="08BF">
+  <p><a class="environment-identifier" href="/tag/08BF">Remark <span data-tag="08BF">76.42.12</span> <span class="named">(Unwinding Grothendieck's existence theorem)</span>.</a>  Let $A$ be a Noetherian ring complete with respect to an ideal $I$. Write $S = \mathop{\mathrm{Spec}}(A)$ and $S_ n = \mathop{\mathrm{Spec}}(A/I^ n)$. Let $X \to S$ be a morphism of algebraic spaces that is separated and of finite type. For $n \geq 1$ we set $X_ n = X \times _ S S_ n$. Picture: </p>
+  <div class="equation">
+  \[  \xymatrix{ X_1 \ar[r]_{i_1} \ar[d] &  X_2 \ar[r]_{i_2} \ar[d] &  X_3 \ar[r] \ar[d] &  \ldots &  X \ar[d] \\  S_1 \ar[r] &  S_2 \ar[r] &  S_3 \ar[r] &  \ldots &  S }  \]
+</div>
+  <p> In this situation we consider systems $(\mathcal{F}_ n, \varphi _ n)$ where </p>
+  <p><ol>
+  <li><p>
+$\mathcal{F}_ n$ is a coherent $\mathcal{O}_{X_ n}$-module, 
+</p>
+</li><li><p>
+$\varphi _ n : i_ n^*\mathcal{F}_{n + 1} \to \mathcal{F}_ n$ is an isomorphism, and 
+</p>
+</li><li><p>
+$\text{Supp}(\mathcal{F}_1)$ is proper over $S_1$. 
+</p>
+</li>
+</ol></p>
+  <p> Theorem <a href="/tag/08BE" data-tag="08BE">76.42.11</a> says that the completion functor </p>
+  <div class="equation">
+  \[  \begin{matrix}  \text{coherent }\mathcal{O}_ X\text{-modules }\mathcal{F} 
+
+\\  \text{with support proper over }A 
+
+\end{matrix} \quad \longrightarrow \quad \begin{matrix}  \text{systems }(\mathcal{F}_ n) 
+
+\\  \text{as above} 
+
+\end{matrix}  \]
+</div>
+  <p> is an equivalence of categories. In the special case that $X$ is proper over $A$ we can omit the conditions on the supports. </p>
+</article> 
+</p>

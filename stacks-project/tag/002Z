@@ -1,0 +1,183 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="categories-section-posets-limits" class="tex-section"><span data-tag="002Z">4.21</span> Limits and colimits over preordered sets</h2>
+
+<p>
+A special case of diagrams is given by systems over preordered sets. 
+</p>
+<p>
+<article class="env-definition" id="00D3">
+  <p><a class="environment-identifier" href="/tag/00D3">Definition <span data-tag="00D3">4.21.1</span>.</a> Let $I$ be a set and let $\leq $ be a binary relation on $I$. </p>
+  <p><ol>
+  <li><p>
+We say $\leq $ is a <em>preorder</em> if it is transitive (if $i \leq j$ and $j \leq k$ then $i \leq k$) and reflexive ($i \leq i$ for all $i \in I$). 
+</p>
+</li><li><p>
+A <em>preordered set</em> is a set endowed with a preorder. 
+</p>
+</li><li><p>
+A <em>directed set</em> is a preordered set $(I, \leq )$ such that $I$ is not empty and such that $\forall i, j \in I$, there exists $k \in I$ with $i \leq k, j \leq k$. 
+</p>
+</li><li><p>
+We say $\leq $ is a <em>partial order</em> if it is a preorder which is antisymmetric (if $i \leq j$ and $j \leq i$, then $i = j$). 
+</p>
+</li><li><p>
+A <em>partially ordered set</em> is a set endowed with a partial order. 
+</p>
+</li><li><p>
+A <em>directed partially ordered set</em> is a directed set whose ordering is a partial order. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+It is customary to drop the $\leq $ from the notation when talking about preordered sets, that is, one speaks of the preordered set $I$ rather than of the preordered set $(I, \leq )$. Given a preordered set $I$ the symbol $\geq $ is defined by the rule $i \geq j \Leftrightarrow j \leq i$ for all $i, j \in I$. The phrase “partially ordered set” is sometimes abbreviated to “poset”. 
+</p>
+<p>
+Given a preordered set $I$ we can construct a category: the objects are the elements of $I$, there is exactly one morphism $i \to i'$ if $i \leq i'$, and otherwise none. Conversely, given a category $\mathcal{C}$ with at most one arrow between any two objects, the set $\mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ is endowed with a preorder defined by the rule $x \leq y \Leftrightarrow \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(x, y) \not= \emptyset $. 
+</p>
+<p>
+<article class="env-definition" id="0030">
+  <p><a class="environment-identifier" href="/tag/0030">Definition <span data-tag="0030">4.21.2</span>.</a> Let $(I, \leq )$ be a preordered set. Let $\mathcal{C}$ be a category. </p>
+  <p><ol>
+  <li><p>
+A <em>system over $I$ in $\mathcal{C}$</em>, sometimes called a <em>inductive system over $I$ in $\mathcal{C}$</em> is given by objects $M_ i$ of $\mathcal{C}$ and for every $i \leq i'$ a morphism $f_{ii'} : M_ i \to M_{i'}$ such that $f_{ii} = \text{id}$ and such that $f_{ii''} = f_{i'i''} \circ f_{i i'}$ whenever $i \leq i' \leq i''$. 
+</p>
+</li><li><p>
+An <em>inverse system over $I$ in $\mathcal{C}$</em>, sometimes called a <em>projective system over $I$ in $\mathcal{C}$</em> is given by objects $M_ i$ of $\mathcal{C}$ and for every $i' \leq i$ a morphism $f_{ii'} : M_ i \to M_{i'}$ such that $f_{ii} = \text{id}$ and such that $f_{ii''} = f_{i'i''} \circ f_{i i'}$ whenever $i'' \leq i' \leq i$. (Note reversal of inequalities.) 
+</p>
+</li>
+</ol></p>
+  <p> We will say $(M_ i, f_{ii'})$ is a (inverse) system over $I$ to denote this. The maps $f_{ii'}$ are sometimes called the <em>transition maps</em>. </p>
+</article> 
+</p>
+<p>
+In other words a system over $I$ is just a diagram $M : \mathcal{I} \to \mathcal{C}$ where $\mathcal{I}$ is the category we associated to $I$ above: objects are elements of $I$ and there is a unique arrow $i \to i'$ in $\mathcal{I}$ if and only if $i \leq i'$. An inverse system is a diagram $M : \mathcal{I}^{opp} \to \mathcal{C}$. From this point of view we could take (co)limits of any (inverse) system over $I$. However, it is customary to take <em>only colimits of systems over $I$</em> and <em>only limits of inverse systems over $I$</em>. More precisely: Given a system $(M_ i, f_{ii'})$ over $I$ the colimit of the system $(M_ i, f_{ii'})$ is defined as 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _{i \in I} M_ i = \mathop{\mathrm{colim}}\nolimits _\mathcal {I} M,  \]
+</div>
+<p>
+ i.e., as the colimit of the corresponding diagram. Given an inverse system $(M_ i, f_{ii'})$ over $I$ the limit of the inverse system $(M_ i, f_{ii'})$ is defined as 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{lim}}\nolimits _{i \in I} M_ i = \mathop{\mathrm{lim}}\nolimits _{\mathcal{I}^{opp}} M,  \]
+</div>
+<p>
+ i.e., as the limit of the corresponding diagram. 
+</p>
+<p>
+<article class="env-remark" id="0CN1">
+  <p><a class="environment-identifier" href="/tag/0CN1">Remark <span data-tag="0CN1">4.21.3</span>.</a> Let $I$ be a preordered set. From $I$ we can construct a canonical partially ordered set $\overline{I}$ and an order preserving map $\pi : I \to \overline{I}$. Namely, we can define an equivalence relation $\sim $ on $I$ by the rule </p>
+  <div class="equation">
+  \[  i \sim j \Leftrightarrow (i \leq j\text{ and }j \leq i).  \]
+</div>
+  <p> We set $\overline{I} = I/\sim $ and we let $\pi : I \to \overline{I}$ be the quotient map. Finally, $\overline{I}$ comes with a unique partial ordering such that $\pi (i) \leq \pi (j) \Leftrightarrow i \leq j$. Observe that if $I$ is a directed set, then $\overline{I}$ is a directed partially ordered set. Given an (inverse) system $N$ over $\overline{I}$ we obtain an (inverse) system $M$ over $I$ by setting $M_ i = N_{\pi (i)}$. This construction defines a functor between the category of inverse systems over $I$ and $\overline{I}$. In fact, this is an equivalence. The reason is that if $i \sim j$, then for any system $M$ over $I$ the maps $M_ i \to M_ j$ and $M_ j \to M_ i$ are mutually inverse isomorphisms. More precisely, choosing a section $s : \overline{I} \to I$ of $\pi $ a quasi-inverse of the functor above sends $M$ to $N$ with $N_{\overline{i}} = M_{s(\overline{i})}$. Finally, this correspondence is compatible with colimits of systems: if $M$ and $N$ are related as above and if either $\mathop{\mathrm{colim}}\nolimits _{\overline{I}} N$ or $\mathop{\mathrm{colim}}\nolimits _ I M$ exists then so does the other and $\mathop{\mathrm{colim}}\nolimits _{\overline{I}} N = \mathop{\mathrm{colim}}\nolimits _ I M$. Similar results hold for inverse systems and limits of inverse systems. </p>
+</article> 
+</p>
+<p>
+The upshot of Remark <a href="/tag/0CN1" data-tag="0CN1">4.21.3</a> is that while computing a colimit of a system or a limit of an inverse system, we may always assume the preorder is a partial order. 
+</p>
+<p>
+<article class="env-definition" id="0031">
+  <p><a class="environment-identifier" href="/tag/0031">Definition <span data-tag="0031">4.21.4</span>.</a> Let $I$ be a preordered set. We say a system (resp. inverse system) $(M_ i, f_{ii'})$ is a <em>directed system</em> (resp. <em>directed inverse system</em>) if $I$ is a directed set (Definition <a href="/tag/00D3" data-tag="00D3">4.21.1</a>): $I$ is nonempty and for all $i_1, i_2 \in I$ there exists $i\in I$ such that $i_1 \leq i$ and $i_2 \leq i$. </p>
+</article> 
+</p>
+<p>
+In this case the colimit is sometimes (unfortunately) called the “direct limit”. We will not use this last terminology. It turns out that diagrams over a filtered category are no more general than directed systems in the following sense. 
+</p>
+<p>
+<article class="env-lemma" id="0032">
+  <p><a class="environment-identifier" href="/tag/0032">Lemma <span data-tag="0032">4.21.5</span>.</a> Let $\mathcal{I}$ be a filtered index category. There exist a directed set $I$ and a system $(x_ i, \varphi _{ii'})$ over $I$ in $\mathcal{I}$ with the following properties: </p>
+  <p><ol>
+  <li><p>
+For every category $\mathcal{C}$ and every diagram $M : \mathcal{I} \to \mathcal{C}$ with values in $\mathcal{C}$, denote $(M(x_ i), M(\varphi _{ii'}))$ the corresponding system over $I$. If $\mathop{\mathrm{colim}}\nolimits _{i \in I} M(x_ i)$ exists then so does $\mathop{\mathrm{colim}}\nolimits _\mathcal {I} M$ and the transformation 
+</p>
+<div class="equation">
+  \[  \theta : \mathop{\mathrm{colim}}\nolimits _{i \in I} M(x_ i) \longrightarrow \mathop{\mathrm{colim}}\nolimits _\mathcal {I} M  \]
+</div>
+<p>
+ of Lemma <a href="/tag/002K" data-tag="002K">4.14.8</a> is an isomorphism. 
+</p>
+</li><li><p>
+For every category $\mathcal{C}$ and every diagram $M : \mathcal{I}^{opp} \to \mathcal{C}$ in $\mathcal{C}$, denote $(M(x_ i), M(\varphi _{ii'}))$ the corresponding inverse system over $I$. If $\mathop{\mathrm{lim}}\nolimits _{i \in I} M(x_ i)$ exists then so does $\mathop{\mathrm{lim}}\nolimits _{\mathcal{I}^{opp}} M$ and the transformation 
+</p>
+<div class="equation">
+  \[  \theta : \mathop{\mathrm{lim}}\nolimits _{\mathcal{I}^{opp}} M \longrightarrow \mathop{\mathrm{lim}}\nolimits _{i \in I} M(x_ i)  \]
+</div>
+<p>
+ of Lemma <a href="/tag/002L" data-tag="002L">4.14.9</a> is an isomorphism. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      As explained in the text following Definition <a href="/tag/0030" data-tag="0030">4.21.2</a>, we may view preordered sets as categories and systems as functors. Throughout the proof, we will freely shift between these two points of view. We prove the first statement by constructing a category $\mathcal{I}_0$, corresponding to a directed set<a class="footnotemark" href="#a0000010420" id="a0000010420-mark"><sup>1</sup></a>, and a cofinal functor $M_0 : \mathcal{I}_0 \to \mathcal{I}$. Then, by Lemma <a href="/tag/04E7" data-tag="04E7">4.17.2</a>, the colimit of a diagram $M : \mathcal{I} \to \mathcal{C}$ coincides with the colimit of the diagram $M \circ M_0 : \mathcal{I}_0 \to \mathcal{C}$, from which the statement follows. The second statement is dual to the first and may be proved by interpreting a limit in $\mathcal{C}$ as a colimit in $\mathcal{C}^{opp}$. We omit the details. 
+    <p>
+      A category $\mathcal{F}$ is called <em>finitely generated</em> if there exists a finite set $F$ of arrows in $\mathcal{F}$, such that each arrow in $\mathcal{F}$ may be obtained by composing arrows from $F$. In particular, this implies that $\mathcal{F}$ has finitely many objects. We start the proof by reducing to the case when $\mathcal{I}$ has the property that every finitely generated subcategory of $\mathcal{I}$ may be extended to a finitely generated subcategory with a unique final object. 
+    <p>
+      Let $\omega $ denote the directed set of finite ordinals, which we view as a filtered category. It is easy to verify that the product category $\mathcal{I}\times \omega $ is also filtered, and the projection $\Pi : \mathcal{I} \times \omega \to \mathcal{I}$ is cofinal. 
+    <p>
+      Now let $\mathcal{F}$ be any finitely generated subcategory of $\mathcal{I}\times \omega $. By using the axioms of a filtered category and a simple induction argument on a finite set of generators of $\mathcal{F}$, we may construct a cocone $(\{ f_ i\} , i_\infty )$ in $\mathcal{I} \times \omega $ for the diagram $\mathcal{F} \to \mathcal{I} \times \omega $. That is, a morphism $f_ i : i \to i_\infty $ for every object $i$ in $\mathcal{F}$ such that for each arrow $f : i \to i'$ in $\mathcal{F}$ we have $f_ i = f_{i'} \circ f$. We can also choose $i_\infty $ such that there are no arrows from $i_\infty $ to an object in $\mathcal{F}$. This is possible since we may always post-compose the arrows $f_ i$ with an arrow which is the identity on the $\mathcal{I}$-component and strictly increasing on the $\omega $-component. Now let $\mathcal{F}^+$ denote the category consisting of all objects and arrows in $\mathcal{F}$ together with the object $i_\infty $, the identity arrow $\text{id}_{i_\infty }$ and the arrows $f_ i$. Since there are no arrows from $i_\infty $ in $\mathcal{F}^+$ to any object of $\mathcal{F}$, the arrow set in $\mathcal{F}^+$ is closed under composition, so $\mathcal{F}^+$ is indeed a category. By construction, it is a finitely generated subcategory of $\mathcal{I}$ which has $i_\infty $ as unique final object. Since, by Lemma <a href="/tag/04E7" data-tag="04E7">4.17.2</a>, the colimit of any diagram $M : \mathcal{I} \to \mathcal{C}$ coincides with the colimit of $M\circ \Pi $ , this gives the desired reduction. 
+    <p>
+      The set of all finitely generated subcategories of $\mathcal{I}$ with a unique final object is naturally ordered by inclusion. We take $\mathcal{I}_0$ to be the category corresponding to this set. We also have a functor $M_0 : \mathcal{I}_0 \to \mathcal{I}$, which takes an arrow $\mathcal{F} \subset \mathcal{F'}$ in $\mathcal{I}_0$ to the unique map from the final object of $\mathcal{F}$ to the final object of $\mathcal{F}'$. Given any two finitely generated subcategories of $\mathcal{I}$, the category generated by these two categories is also finitely generated. By our assumption on $\mathcal{I}$, it is also contained in a finitely generated subcategory of $\mathcal{I}$ with a unique final object. This shows that $\mathcal{I}_0$ is directed. 
+    <p>
+      Finally, we verify that $M_0$ is cofinal. Since any object of $\mathcal{I}$ is the final object in the subcategory consisting of only that object and its identity arrow, the functor $M_0$ is surjective on objects. In particular, Condition (1) of Definition <a href="/tag/04E6" data-tag="04E6">4.17.1</a> is satisfied. Given an object $i$ of $\mathcal{I}$, objects $\mathcal{F}_1, \mathcal{F}_2$ in $\mathcal{I}_0$ and maps $\varphi _1 : i \to M_0(\mathcal{F}_1)$ and $\varphi _2 : i \to M_0(\mathcal{F}_2)$ in $\mathcal{I}$, we can take $\mathcal{F}_{12}$ to be a finitely generated category with a unique final object containing $\mathcal{F}_1$, $\mathcal{F}_2$ and the morphisms $\varphi _1, \varphi _2$. The resulting diagram commutes 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ &  M_0(\mathcal{F}_{12}) &  \\  M_0(\mathcal{F}_{1}) \ar[ru] &  &  M_0(\mathcal{F}_{2}) \ar[lu] \\  &  i \ar[lu] \ar[ru] }  \]
+</div>
+    <p>
+       since it lives in the category $\mathcal{F}_{12}$ and $M_0(\mathcal{F}_{12})$ is final in this category. Hence also Condition (2) is satisfied, which concludes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="09P8">
+  <p><a class="environment-identifier" href="/tag/09P8">Remark <span data-tag="09P8">4.21.6</span>.</a> Note that a finite directed set $(I, \geq )$ always has a greatest object $i_\infty $. Hence any colimit of a system $(M_ i, f_{ii'})$ over such a set is trivial in the sense that the colimit equals $M_{i_\infty }$. In contrast, a colimit indexed by a finite filtered category need not be trivial. For instance, let $\mathcal{I}$ be the category with a single object $i$ and a single non-trivial morphism $e$ satisfying $e = e \circ e$. The colimit of a diagram $M : \mathcal{I} \to Sets$ is the image of the idempotent $M(e)$. This illustrates that something like the trick of passing to $\mathcal{I}\times \omega $ in the proof of Lemma <a href="/tag/0032" data-tag="0032">4.21.5</a> is essential. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="086J">
+  <p><a class="environment-identifier" href="/tag/086J">Lemma <span data-tag="086J">4.21.7</span>.</a> If $S : \mathcal{I} \to \textit{Sets}$ is a cofiltered diagram of sets and all the $S_ i$ are finite nonempty, then $\mathop{\mathrm{lim}}\nolimits _ i S_ i$ is nonempty. In other words, the limit of a directed inverse system of finite nonempty sets is nonempty. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The two statements are equivalent by Lemma <a href="/tag/0032" data-tag="0032">4.21.5</a>. Let $I$ be a directed set and let $(S_ i)_{i \in I}$ be an inverse system of finite nonempty sets over $I$. Let us say that a <em>subsystem</em> $T$ is a family $T = (T_ i)_{i \in I}$ of nonempty subsets $T_ i \subset S_ i$ such that $T_{i'}$ is mapped into $T_ i$ by the transition map $S_{i'} \to S_ i$ for all $i' \geq i$. Denote $\mathcal{T}$ the set of subsystems. We order $\mathcal{T}$ by inclusion. Suppose $T_\alpha $, $\alpha \in A$ is a totally ordered family of elements of $\mathcal{T}$. Say $T_\alpha = (T_{\alpha , i})_{i \in I}$. Then we can find a lower bound $T = (T_ i)_{i \in I}$ by setting $T_ i = \bigcap _{\alpha \in A} T_{\alpha , i}$ which is manifestly a finite nonempty subset of $S_ i$ as all the $T_{\alpha , i}$ are nonempty and as the $T_\alpha $ form a totally ordered family. Thus we may apply Zorn's lemma to see that $\mathcal{T}$ has minimal elements. 
+    <p>
+      Let's analyze what a minimal element $T \in \mathcal{T}$ looks like. First observe that the maps $T_{i'} \to T_ i$ are all surjective. Namely, as $I$ is a directed set and $T_ i$ is finite, the intersection $T'_ i = \bigcap _{i' \geq i} \mathop{\mathrm{Im}}(T_{i'} \to T_ i)$ is nonempty. Thus $T' = (T'_ i)$ is a subsystem contained in $T$ and by minimality $T' = T$. Finally, we claim that $T_ i$ is a singleton for each $i$. Namely, if $x \in T_ i$, then we can define $T'_{i'} = (T_{i'} \to T_ i)^{-1}(\{ x\} )$ for $i' \geq i$ and $T'_ j = T_ j$ if $j \not\geq i$. This is another subsystem as we've seen above that the transition maps of the subsystem $T$ are surjective. By minimality we see that $T = T'$ which indeed implies that $T_ i$ is a singleton. This holds for every $i \in I$, hence we see that $T_ i = \{ x_ i\} $ for some $x_ i \in S_ i$ with $x_{i'} \mapsto x_ i$ under the map $S_{i'} \to S_ i$ for every $i' \geq i$. In other words, $(x_ i) \in \mathop{\mathrm{lim}}\nolimits S_ i$ and the lemma is proved. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

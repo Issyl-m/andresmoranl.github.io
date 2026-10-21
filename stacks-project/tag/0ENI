@@ -1,0 +1,221 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="spaces-over-fields-section-Weil-divisors" class="tex-section"><span data-tag="0ENI">72.6</span> Weil divisors</h2>
+
+<p>
+This section is the analogue of Divisors, Section <a href="/tag/0BE0" data-tag="0BE0">31.27</a>. 
+</p>
+<p>
+We will introduce Weil divisors and rational equivalence of Weil divisors for locally Noetherian integral algebraic spaces. Since we are not assuming our algebraic spaces are quasi-compact we have to be a little careful when defining Weil divisors. We have to allow infinite sums of prime divisors because a rational function may have infinitely many poles for example. In the quasi-compact case our Weil divisors are finite sums as usual. Here is a basic lemma we will often use to prove collections of closed subspaces are locally finite. 
+</p>
+<p>
+<article class="env-lemma" id="0EE5">
+  <p><a class="environment-identifier" href="/tag/0EE5">Lemma <span data-tag="0EE5">72.6.1</span>.</a> Let $S$ be a scheme and let $X$ be a locally Noetherian algebraic space over $S$. If $T \subset |X|$ is a closed subset, then the collection of irreducible components of $T$ is locally finite. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The topological space $|X|$ is locally Noetherian (Properties of Spaces, Lemma <a href="/tag/04ZF" data-tag="04ZF">66.24.2</a>). A Noetherian topological space has a finite number of irreducible components and a subspace of a Noetherian space is Noetherian (Topology, Lemma <a href="/tag/0052" data-tag="0052">5.9.2</a>). Thus the lemma follows from the definition of locally finite (Topology, Definition <a href="/tag/0BDS" data-tag="0BDS">5.28.4</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $S$ be a scheme. Let $X$ be a decent algebraic space over $S$. Let $Z$ be an integral closed subspace of $X$ and let $\xi \in |Z|$ be the generic point. Then the codimension of $|Z|$ in $|X|$ is equal to the dimension of the local ring of $X$ at $\xi $ by Decent Spaces, Lemma <a href="/tag/0ED1" data-tag="0ED1">68.20.2</a>. Recall that we also indicate this by saying that <em>$\xi $ is a point of codimension $1$ on $X$</em>, see Properties of Spaces, Definition <a href="/tag/04NA" data-tag="04NA">66.10.2</a>. 
+</p>
+<p>
+<article class="env-definition" id="0ENJ">
+  <p><a class="environment-identifier" href="/tag/0ENJ">Definition <span data-tag="0ENJ">72.6.2</span>.</a> Let $S$ be a scheme. Let $X$ be a locally Noetherian integral algebraic space over $S$. </p>
+  <p><ol>
+  <li><p>
+A <em>prime divisor</em> is an integral closed subspace $Z \subset X$ of codimension $1$, i.e., the generic point of $|Z|$ is a point of codimension $1$ on $X$. 
+</p>
+</li><li><p>
+A <em>Weil divisor</em> is a formal sum $D = \sum n_ Z Z$ where the sum is over prime divisors of $X$ and the collection $\{ |Z| : n_ Z \not= 0\} $ is locally finite in $|X|$ (Topology, Definition <a href="/tag/0BDS" data-tag="0BDS">5.28.4</a>). 
+</p>
+</li>
+</ol></p>
+  <p> The group of all Weil divisors on $X$ is denoted $\text{Div}(X)$. </p>
+</article> 
+</p>
+<p>
+Our next task is to define the Weil divisor associated to a rational function. In order to do this we need to define the order of vanishing of a rational function on a locally Noetherian integral algebraic space $X$ along a prime divisor $Z$. Let $\xi \in |Z|$ be the generic point. Here we run into the problem that the local ring $\mathcal{O}_{X, \xi }$ doesn't exist and the henselian local ring $\mathcal{O}_{X, \xi }^ h$ may not be a domain, see Example <a href="/tag/0ENU" data-tag="0ENU">72.6.11</a>. To get around this we use the following lemma. 
+</p>
+<p>
+<article class="env-lemma" id="0ENK">
+  <p><a class="environment-identifier" href="/tag/0ENK">Lemma <span data-tag="0ENK">72.6.3</span>.</a> Let $S$ be a scheme. Let $X$ be a locally Noetherian integral algebraic space over $S$. Let $Z \subset X$ be a prime divisor and let $\xi \in |Z|$ be the generic point. Then the henselian local ring $\mathcal{O}_{X, \xi }^ h$ is a reduced $1$-dimensional Noetherian local ring and there is a canonical injective map </p>
+  <div class="equation">
+  \[  R(X) \longrightarrow Q(\mathcal{O}_{X, \xi }^ h)  \]
+</div>
+  <p> from the function field $R(X)$ of $X$ into the total ring of fractions. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use the results of Decent Spaces, Section <a href="/tag/0EMV" data-tag="0EMV">68.11</a>. Let $(U, u) \to (X, \xi )$ be an elementary étale neighbourhood. Observe that $U$ is locally Noetherian and reduced. Thus $\mathcal{O}_{U, u}$ is a $1$-dimensional (by our definition of prime divisors) reduced Noetherian ring. After replacing $U$ by an affine open neighbourhood of $u$ we may assume $U$ is Noetherian and affine. After replacing $U$ by a smaller open, we may assume every irreducible component of $U$ passes through $u$. Since $U \to X$ is open and $X$ irreducible, $U \to X$ is dominant. Hence we obtain a ring map $R(X) \to R(U)$ by composing rational maps, see Morphisms of Spaces, Section <a href="/tag/0EML" data-tag="0EML">67.47</a>. Since $R(X)$ is a field, this map is injective. By our choice of $U$ we see that $R(U)$ is the total quotient ring $Q(\mathcal{O}_{U, u})$, see Morphisms, Lemma <a href="/tag/01RV" data-tag="01RV">29.50.5</a> and Algebra, Lemma <a href="/tag/02LX" data-tag="02LX">10.25.4</a>. 
+    <p>
+      At this point we have proved all the statements in the lemma with $\mathcal{O}_{U, u}$ in stead of $\mathcal{O}_{X, \xi }^ h$. However, $\mathcal{O}_{X, \xi }^ h$ is the henselization of $\mathcal{O}_{U, u}$. Thus $\mathcal{O}_{X, \xi }^ h$ is a $1$-dimensional reduced Noetherian ring, see More on Algebra, Lemmas <a href="/tag/06DH" data-tag="06DH">15.46.4</a>, <a href="/tag/06LK" data-tag="06LK">15.46.7</a>, and <a href="/tag/06LJ" data-tag="06LJ">15.46.3</a>. Since $\mathcal{O}_{U, u} \to \mathcal{O}_{X, \xi }^ h$ is faithfully flat by More on Algebra, Lemma <a href="/tag/07QM" data-tag="07QM">15.46.1</a> it sends nonzerodivisors to nonzerodivisors. Therefore we obtain a canonical map $Q(\mathcal{O}_{U, u}) \to Q(\mathcal{O}_{X, \xi }^ h)$ and we obtain our map. We omit the verification that the map is independent of the choice of $(U, u) \to (X, x)$; a slightly better approach would be to first observe that $\mathop{\mathrm{colim}}\nolimits Q(\mathcal{O}_{U, u}) = Q(\mathcal{O}_{X, \xi }^ h)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="0ENL">
+  <p><a class="environment-identifier" href="/tag/0ENL">Definition <span data-tag="0ENL">72.6.4</span>.</a> Let $S$ be a scheme. Let $X$ be a locally Noetherian integral algebraic space over $S$. Let $f \in R(X)^*$. For every prime divisor $Z \subset X$ we define the <em>order of vanishing of $f$ along $Z$</em> as the integer </p>
+  <div class="equation">
+  \[  \text{ord}_ Z(f) = \text{length}_{\mathcal{O}_{X, \xi }^ h} (\mathcal{O}_{X, \xi }^ h/a \mathcal{O}_{X, \xi }^ h) - \text{length}_{\mathcal{O}_{X, \xi }^ h} (\mathcal{O}_{X, \xi }^ h/b \mathcal{O}_{X, \xi }^ h)  \]
+</div>
+  <p> where $a, b \in \mathcal{O}_{X, \xi }^ h$ are nonzerodivisors such that the image of $f$ in $Q(\mathcal{O}_{X, \xi }^ h)$ (Lemma <a href="/tag/0ENK" data-tag="0ENK">72.6.3</a>) is equal to $a/b$. This is well defined by Algebra, Lemma <a href="/tag/02MC" data-tag="02MC">10.121.1</a>. </p>
+</article> 
+</p>
+<p>
+If $\mathcal{O}_{X, \xi }^ h$ happens to be a domain, then we obtain 
+</p>
+<div class="equation">
+  \[  \text{ord}_ Z(f) = \text{ord}_{\mathcal{O}_{X, \xi }^ h}(f)  \]
+</div>
+<p>
+ where the right hand side is the notion of Algebra, Definition <a href="/tag/02MD" data-tag="02MD">10.121.2</a>. Note that for $f, g \in R(X)^*$ we have 
+</p>
+<div class="equation">
+  \[  \text{ord}_ Z(fg) = \text{ord}_ Z(f) + \text{ord}_ Z(g).  \]
+</div>
+<p>
+ Of course it can happen that $\text{ord}_ Z(f) < 0$. In this case we say that $f$ has a <em>pole</em> along $Z$ and that $-\text{ord}_ Z(f) > 0$ is the <em>order of pole of $f$ along $Z$</em>. It is important to note that the condition $\text{ord}_ Z(f) \geq 0$ is <strong>not</strong> equivalent to the condition $f \in \mathcal{O}_{X, \xi }^ h$ unless the local ring $\mathcal{O}_{X, \xi }$ is a discrete valuation ring. 
+</p>
+<p>
+<article class="env-lemma" id="0ENM">
+  <p><a class="environment-identifier" href="/tag/0ENM">Lemma <span data-tag="0ENM">72.6.5</span>.</a> Let $S$ be a scheme. Let $X$ be a locally Noetherian integral algebraic space over $S$. Let $f \in R(X)^*$. If the prime divisor $Z \subset X$ meets the schematic locus of $X$, then the order of vanishing $\text{ord}_ Z(f)$ of Definition <a href="/tag/0ENL" data-tag="0ENL">72.6.4</a> agrees with the order of vanishing of Divisors, Definition <a href="/tag/02RJ" data-tag="02RJ">31.27.3</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      After shrinking $X$ we may assume $X$ is an integral Noetherian scheme. If $\xi \in Z$ denotes the generic point, then we find that $\mathcal{O}_{X, \xi }^ h$ is the henselization of $\mathcal{O}_{X, \xi }$ (Decent Spaces, Lemma <a href="/tag/0EMY" data-tag="0EMY">68.11.8</a>). To prove the lemma it suffices and is necessary to show that 
+    <p>
+      <div class="equation">
+  \[  \text{length}_{\mathcal{O}_{X, \xi }} (\mathcal{O}_{X, \xi }/a \mathcal{O}_{X, \xi }) = \text{length}_{\mathcal{O}_{X, \xi }^ h} (\mathcal{O}_{X, \xi }^ h/a \mathcal{O}_{X, \xi }^ h)  \]
+</div>
+    <p>
+       This follows immediately from Algebra, Lemma <a href="/tag/02M1" data-tag="02M1">10.52.13</a> (and the fact that $\mathcal{O}_{X, \xi } \to \mathcal{O}_{X, \xi }^ h$ is a flat local ring homomorphism of local Noetherian rings). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0ENN">
+  <p><a class="environment-identifier" href="/tag/0ENN">Lemma <span data-tag="0ENN">72.6.6</span>.</a> Let $S$ be a scheme. Let $X$ be a locally Noetherian integral algebraic space over $S$. Let $f \in R(X)^*$. Then the collections </p>
+  <div class="equation">
+  \[  \{ Z \subset X \mid Z\text{ a prime divisor with generic point }\xi \text{ and }f\text{ not in }\mathcal{O}_{X, \xi }\}   \]
+</div>
+  <p> and </p>
+  <div class="equation">
+  \[  \{ Z \subset X \mid Z \text{ a prime divisor and }\text{ord}_ Z(f) \not= 0\}   \]
+</div>
+  <p> are locally finite in $X$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      There exists a nonempty open subspace $U \subset X$ such that $f$ corresponds to a section of $\Gamma (U, \mathcal{O}_ X^*)$. Hence the prime divisors which can occur in the sets of the lemma all correspond to irreducible components of $|X| \setminus |U|$. Hence Lemma <a href="/tag/0EE5" data-tag="0EE5">72.6.1</a> gives the desired result. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+This lemma allows us to make the following definition. 
+</p>
+<p>
+<article class="env-definition" id="0ENP">
+  <p><a class="environment-identifier" href="/tag/0ENP">Definition <span data-tag="0ENP">72.6.7</span>.</a> Let $S$ be a scheme. Let $X$ be a locally Noetherian integral algebraic space over $S$. Let $f \in R(X)^*$. The <em>principal Weil divisor associated to $f$</em> is the Weil divisor </p>
+  <div class="equation">
+  \[  \text{div}(f) = \text{div}_ X(f) = \sum \text{ord}_ Z(f) [Z]  \]
+</div>
+  <p> where the sum is over prime divisors and $\text{ord}_ Z(f)$ is as in Definition <a href="/tag/0ENL" data-tag="0ENL">72.6.4</a>. This makes sense by Lemma <a href="/tag/0ENN" data-tag="0ENN">72.6.6</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0ENQ">
+  <p><a class="environment-identifier" href="/tag/0ENQ">Lemma <span data-tag="0ENQ">72.6.8</span>.</a> Let $S$ be a scheme. Let $X$ be a locally Noetherian integral algebraic space over $S$. Let $f, g \in R(X)^*$. Then </p>
+  <div class="equation">
+  \[  \text{div}_ X(fg) = \text{div}_ X(f) + \text{div}_ X(g)  \]
+</div>
+  <p> as Weil divisors on $X$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is clear from the additivity of the $\text{ord}$ functions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We see from the lemma above that the collection of principal Weil divisors form a subgroup of the group of all Weil divisors. This leads to the following definition. 
+</p>
+<p>
+<article class="env-definition" id="0ENR">
+  <p><a class="environment-identifier" href="/tag/0ENR">Definition <span data-tag="0ENR">72.6.9</span>.</a> Let $S$ be a scheme. Let $X$ be a locally Noetherian integral algebraic space over $S$. The <em>Weil divisor class group</em> of $X$ is the quotient of the group of Weil divisors by the subgroup of principal Weil divisors. Notation: $\text{Cl}(X)$. </p>
+</article> 
+</p>
+<p>
+By construction we obtain an exact complex 
+</p>
+<div class="equation" id="0ENS">
+    <span class="equation-label"><a href="/tag/0ENS" data-tag="0ENS">72.6.9.1</a></span>
+  <div>\begin{equation}  \label{spaces-over-fields-equation-Weil-divisor-class} R(X)^* \xrightarrow {\text{div}} \text{Div}(X) \to \text{Cl}(X) \to 0 \end{equation}</div>
+</div>
+<p>
+ which we can think of as a presentation of $\text{Cl}(X)$. Our next task is to relate the Weil divisor class group to the Picard group. 
+</p>
+<p>
+<article class="env-example" id="0ENT">
+  <p><a class="environment-identifier" href="/tag/0ENT">Example <span data-tag="0ENT">72.6.10</span>.</a> This is a continuation of Morphisms of Spaces, Example <a href="/tag/05Z6" data-tag="05Z6">67.53.3</a>. Consider the algebraic space $X = \mathbf{A}^1_ k/\{ t \sim -t \mid t \not= 0\} $. This is a smooth algebraic space over the field $k$. There is a universal homeomorphism </p>
+  <div class="equation">
+  \[  X \longrightarrow \mathbf{A}^1_ k = \mathop{\mathrm{Spec}}(k[t])  \]
+</div>
+  <p> which is an isomorphism over $\mathbf{A}^1_ k \setminus \{ 0\} $. We conclude that $X$ is Noetherian and integral. Since $\dim (X) = 1$, we see that the prime divisors of $X$ are the closed points of $X$. Consider the unique closed point $x \in |X|$ lying over $0 \in \mathbf{A}^1_ k$. Since $X \setminus \{ x\} $ maps isomorphically to $\mathbf{A}^1 \setminus \{ 0\} $ we see that the classes in $\text{Cl}(X)$ of closed points different from $x$ are zero. However, the divisor of $t$ on $X$ is $2[x]$. We conclude that $\text{Cl}(X) = \mathbf{Z}/2\mathbf{Z}$. </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="0ENU">
+  <p><a class="environment-identifier" href="/tag/0ENU">Example <span data-tag="0ENU">72.6.11</span>.</a> Let $k$ be a field. Let </p>
+  <div class="equation">
+  \[  U = \mathop{\mathrm{Spec}}(k[x, y]/(xy))  \]
+</div>
+  <p> be the union of the coordinate axes in $\mathbf{A}^2_ k$. Denote $\Delta : U \to U \times _ k U$ the diagonal and $\Delta ' : U \to U \times _ k U$ the map $u \mapsto (u, \sigma (u))$ where $\sigma : U \to U$, $(x, y) \mapsto (y, x)$ is the automorphism flipping the coordinate axes. Set </p>
+  <div class="equation">
+  \[  R = \Delta (U) \amalg \Delta '(U \setminus \{ 0_ U\} )  \]
+</div>
+  <p> where $0_ U \in U$ is the origin. It is easy to see that $R$ is an étale equivalence relation on $U$. The quotient $X = U/R$ is an algebraic space. The morphism $U \to \mathbf{A}^1_ k$, $(x, y) \mapsto x + y$ is $R$-invariant and hence defines a morphism </p>
+  <div class="equation">
+  \[  X \longrightarrow \mathbf{A}^1_ k  \]
+</div>
+  <p> This morphism is a universal homeomorphism and an isomorphism over $\mathbf{A}^1_ k \setminus \{ 0\} $. It follows that $X$ is integral and Noetherian. Exactly as in Example <a href="/tag/0ENT" data-tag="0ENT">72.6.10</a> the reader shows that $\text{Cl}(X) = \mathbf{Z}/2\mathbf{Z}$ with generator corresponding to the unique closed point $x \in |X|$ mapping to $0 \in \mathbf{A}^1_ k$. However, in this case the henselian local ring of $X$ at $x$ isn't a domain, as it is the henselization of $\mathcal{O}_{U, 0_ U}$. </p>
+</article> 
+</p>

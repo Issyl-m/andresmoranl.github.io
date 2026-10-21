@@ -1,0 +1,428 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sites-cohomology-section-modules-cohomology" class="tex-section"><span data-tag="0GYU">21.43</span> Modules on a category</h2>
+
+<p>
+The material in this section will be used to define a variant of the derived category of quasi-coherent modules on a stack in groupoids over the category of schemes. See Sheaves on Stacks, Section <a href="/tag/0H0G" data-tag="0H0G">96.26</a>. 
+</p>
+<p>
+Let $\mathcal{C}$ be a category. We think of $\mathcal{C}$ as a site with the chaotic topology. As in Example <a href="/tag/08S0" data-tag="08S0">21.42.2</a> we let $\mathcal{O}$ be a sheaf of rings on $\mathcal{C}$. In other words, $\mathcal{O}$ is a presheaf of rings on the category $\mathcal{C}$, see Categories, Definition <a href="/tag/02X6" data-tag="02X6">4.3.3</a>. 
+</p>
+<p>
+<article class="env-definition" id="0GYV">
+  <p><a class="environment-identifier" href="/tag/0GYV">Definition <span data-tag="0GYV">21.43.1</span>.</a> In the situation above, we denote $\mathit{QC}(\mathcal{C}, \mathcal{O})$ or simply <em>$\mathit{QC}(\mathcal{O})$</em> the full subcategory of $D(\mathcal{O}) = D(\mathcal{C}, \mathcal{O})$ consisting of objects $K$ such that for all $U \to V$ in $\mathcal{C}$ the canonical map </p>
+  <div class="equation">
+  \[  R\Gamma (V, K) \otimes _{\mathcal{O}(V)}^\mathbf {L} \mathcal{O}(U) \longrightarrow R\Gamma (U, K)  \]
+</div>
+  <p> is an isomorphism in $D(\mathcal{O}(U))$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0GYW">
+  <p><a class="environment-identifier" href="/tag/0GYW">Lemma <span data-tag="0GYW">21.43.2</span>.</a> In the situation above, the subcategory $\mathit{QC}(\mathcal{O})$ is a strictly full, saturated, triangulated subcategory of $D(\mathcal{O})$ preserved by arbitrary direct sums. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $U$ be an object of $\mathcal{C}$. Since the topology on $\mathcal{C}$ is chaotic, the functor $\mathcal{F} \mapsto \mathcal{F}(U)$ is exact and commutes with direct sums. Hence the exact functor $K \mapsto R\Gamma (U, K)$ is computed by representing $K$ by any complex $\mathcal{F}^\bullet $ of $\mathcal{O}$-modules and taking $\mathcal{F}^\bullet (U)$. Thus $R\Gamma (U, -)$ commutes with direct sums, see Injectives, Lemma <a href="/tag/07D9" data-tag="07D9">19.13.4</a>. Similarly, given a morphism $U \to V$ of $\mathcal{C}$ the derived tensor product functor $- \otimes _{\mathcal{O}(V)}^\mathbf {L} \mathcal{O}(U) : D(\mathcal{O}(V)) \to D(\mathcal{O}(U))$ is exact and commutes with direct sums. The lemma follows from these observations in a straightforward manner; details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GZQ">
+  <p><a class="environment-identifier" href="/tag/0GZQ">Lemma <span data-tag="0GZQ">21.43.3</span>.</a> In the situation above, suppose that $M$ is an object of $\mathit{QC}(\mathcal{O})$ and $b \in \mathbf{Z}$ such that $H^ i(M) = 0$ for all $i > b$. Then $H^ b(M)$ is a quasi-coherent module on $(\mathcal{C}, \mathcal{O})$ in the sense of Modules on Sites, Definition <a href="/tag/03DL" data-tag="03DL">18.23.1</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Modules on Sites, Lemma <a href="/tag/0GZN" data-tag="0GZN">18.24.3</a> it suffices to show that for every morphism $U \to V$ of $\mathcal{C}$ the map 
+    <p>
+      <div class="equation">
+  \[  H^ p(M)(V) \otimes _{\mathcal{O}(V)} \mathcal{O}(U) \to H^ b(M)(U)  \]
+</div>
+    <p>
+       is an isomorphism. We are given that the map 
+    <p>
+      <div class="equation">
+  \[  R\Gamma (V, M) \otimes _{\mathcal{O}(V)}^\mathbf {L} \mathcal{O}(U) \to R\Gamma (U, M)  \]
+</div>
+    <p>
+       is an isomorphism. Thus the result by the Tor spectral sequence for example. Details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0H0R">
+  <p><a class="environment-identifier" href="/tag/0H0R">Lemma <span data-tag="0H0R">21.43.4</span>.</a> In the situation above, suppose that $\mathcal{C}$ has a final object $X$. Set $R = \mathcal{O}(X)$ and denote $f : (\mathcal{C}, \mathcal{O}) \to (pt, R)$ the obvious morphism of sites. Then $\mathit{QC}(\mathcal{O}) = D(R)$ given by $Lf^*$ and $Rf_*$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0H0S">
+  <p><a class="environment-identifier" href="/tag/0H0S">Lemma <span data-tag="0H0S">21.43.5</span>.</a> In the situation above, suppose that $K$ is an object of $\mathit{QC}(\mathcal{O})$ and $M$ arbitrary in $D(\mathcal{O})$. For every object $U$ of $\mathcal{C}$ we have </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _{D(\mathcal{O}_ U)}(K|_ U, M|_ U) = R\mathop{\mathrm{Hom}}\nolimits _{\mathcal{O}(U)}(R\Gamma (U, K), R\Gamma (U, M))  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We may replace $\mathcal{C}$ by $\mathcal{C}/U$. Thus we may assume $U = X$ is a final object of $\mathcal{C}$. By Lemma <a href="/tag/0H0R" data-tag="0H0R">21.43.4</a> we see that $K = Lf^*P$ where $P = R\Gamma (U, K) = R\Gamma (X, K) = Rf_*K$. Thus the result because $Lf^*$ is the left adjoint to $Rf_*(-) = R\Gamma (U, -)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $(\mathcal{C}, \mathcal{O})$ be as above. For a complex $\mathcal{F}^\bullet $ of $\mathcal{O}$-modules we define the <em>size</em> $|\mathcal{F}^\bullet |$ of $\mathcal{F}^\bullet $ as 
+</p>
+<div class="equation">
+  \[  |\mathcal{F}^\bullet | = \left| \coprod \nolimits _{i \in \mathbf{Z},\  U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})} \mathcal{F}^ i(U) \right|  \]
+</div>
+<p>
+ For an object $K$ of $D(\mathcal{O})$ we define the <em>size</em> $|K|$ of $K$ to be the cardinal 
+</p>
+<div class="equation">
+  \[  |K| = \min \left\{  \left| \mathcal{F}^\bullet \right| \text{ where }\mathcal{F}^\bullet \text{ represents }K \right\}   \]
+</div>
+<p>
+ By properties of cardinals the minimum exists. 
+</p>
+<p>
+<article class="env-lemma" id="0GYX">
+  <p><a class="environment-identifier" href="/tag/0GYX">Lemma <span data-tag="0GYX">21.43.6</span>.</a> In the situation above, there exists a cardinal $\kappa $ with the following property: given a complex $\mathcal{F}^\bullet $ of $\mathcal{O}$-modules and subsets $\Omega ^ i_ U \subset \mathcal{F}^ i(U)$ there exists a subcomplex $\mathcal{H}^\bullet \subset \mathcal{F}^\bullet $ with $\Omega ^ i_ U \subset \mathcal{H}^ i(U)$ and $|\mathcal{H}^\bullet | \leq \max (\kappa , |\bigcup \Omega ^ i_ U|)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Define $\mathcal{H}^ i(U)$ to be the $\mathcal{O}(U)$-submodule of $\mathcal{F}^ i(U)$ generated by the images of $\Omega ^ i_ V$ and $\text{d}(\Omega ^{i - 1}_ U)$ by restriction along any morphism $f : U \to V$. The cardinality of $\mathcal{H}^ i(U)$ is bounded by the maximum of $\aleph _0$, the cardinality of the $\mathcal{O}(U)$, the cardinality of $\text{Arrows}(\mathcal{C})$, and $|\bigcup \Omega ^ i_ U|$. Details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GYY">
+  <p><a class="environment-identifier" href="/tag/0GYY">Lemma <span data-tag="0GYY">21.43.7</span>.</a> In the situation above, there exists a cardinal $\kappa $ with the following property: given a complex $\mathcal{F}^\bullet $ of $\mathcal{O}$-modules representing an object $K$ of $D(\mathcal{O})$ there exists a subcomplex $\mathcal{H}^\bullet \subset \mathcal{F}^\bullet $ such that $\mathcal{H}^\bullet $ represents $K$ and such that $|\mathcal{H}^\bullet | \leq \max (\kappa , |K|)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      First, for every $i$ and $U$ we choose a subset $\Omega ^ i_ U \subset \mathop{\mathrm{Ker}}(\text{d} : \mathcal{F}^ i(U) \to \mathcal{F}^{i + 1}(U))$ mapping bijectively onto $H^ i(K)(U) = H^ i(\mathcal{F}^\bullet (U))$. Hence $|\Omega ^ i_ U| \leq |K|$ as we may represent $K$ by a complex whose size is $|K|$. Applying Lemma <a href="/tag/0GYX" data-tag="0GYX">21.43.6</a> we find a subcomplex $\mathcal{S}^\bullet \subset \mathcal{F}^\bullet $ of size at most $\max (\kappa , |K|)$ containing $\Omega ^ i_ U$ and hence such that $H^ i(\mathcal{S}^\bullet ) \to H^ i(\mathcal{F}^\bullet )$ is a surjection of sheaves. 
+    <p>
+      We are going to inductively construct subcomplexes 
+    <p>
+      <div class="equation">
+  \[  \mathcal{S}^\bullet = \mathcal{S}_0^\bullet \subset \mathcal{S}_1^\bullet \subset \mathcal{S}_2^\bullet \subset \ldots \subset \mathcal{F}^\bullet  \]
+</div>
+    <p>
+       of size $\leq \max (\kappa , |K|)$ such that the kernel of $H^ i(\mathcal{S}_ n^\bullet ) \to H^ i(\mathcal{F}^\bullet )$ is the same as the kernel of $H^ i(\mathcal{S}_ n^\bullet ) \to H^ i(\mathcal{S}_{n + 1}^\bullet )$. Once this is done we can take $\mathcal{H}^\bullet = \bigcup \mathcal{S}_ n^\bullet $ as our solution. 
+    <p>
+      Construction of $\mathcal{S}_{n + 1}^\bullet $ given $\mathcal{S}_ n^\bullet $. For ever $U$ and $i$ let $\Omega ^{i - 1}_ U \subset \mathcal{F}^{i - 1}(U)$ be a subset such that $\text{d} : \mathcal{F}^{i - 1}(U) \to \mathcal{F}^ i(U)$ maps $\Omega ^{i - 1}_ U$ bijectively onto 
+    <p>
+      <div class="equation">
+  \[  \mathcal{S}_ n^ i(U) \cap \text{Im}(\text{d} : \mathcal{F}^{i - 1}(U)\to \mathcal{F}^ i(U))  \]
+</div>
+    <p>
+       Observe that $|\Omega ^ i_ U| \leq |K|$ because $\mathcal{S}_ n^ i(U)$ is so bounded. Then we get $\mathcal{S}_{n + 1}^\bullet $ by an application of Lemma <a href="/tag/0GYX" data-tag="0GYX">21.43.6</a> to the subsets 
+    <p>
+      <div class="equation">
+  \[  \mathcal{S}^ i(U) \cup \Omega ^ i_ U \subset \mathcal{F}^ i(U)  \]
+</div>
+    <p>
+       and everything is clear. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GYZ">
+  <p><a class="environment-identifier" href="/tag/0GYZ">Lemma <span data-tag="0GYZ">21.43.8</span>.</a> In the situation above, there exists a cardinal $\kappa $ with the following properties: </p>
+  <p><ol>
+  <li><p>
+for every nonzero object $K$ of $\mathit{QC}(\mathcal{O})$ there exists a nonzero morphism $E \to K$ of $\mathit{QC}(\mathcal{O})$ such that $|E| \leq \kappa $, 
+</p>
+</li><li><p>
+for every morphism $\alpha : E \to \bigoplus _ n K_ n$ of $\mathit{QC}(\mathcal{O})$ such that $|E| \leq \kappa $, there exist morphisms $E_ n \to K_ n$ in $\mathit{QC}(\mathcal{O})$ with $|E_ n| \leq \kappa $ such that $\alpha $ factors through $\bigoplus E_ n \to \bigoplus K_ n$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\kappa $ be an upper bound for the following set of cardinals: 
+    <p>
+      <ol>
+  <li><p>
+$|\coprod _ V j_{U!}\mathcal{O}_ U(V)|$ for all $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$, 
+</p>
+</li><li><p>
+the cardinals $\kappa (\mathcal{O}(V) \to \mathcal{O}(U))$ found in More on Algebra, Lemma <a href="/tag/0GYI" data-tag="0GYI">15.104.5</a> for all morphisms $U \to V$ in $\mathcal{C}$, 
+</p>
+</li><li><p>
+the cardinal found in Lemma <a href="/tag/0GYY" data-tag="0GYY">21.43.7</a>. 
+</p>
+</li>
+</ol>
+    <p>
+       We claim that for any complex $\mathcal{F}^\bullet $ representing an object of $\mathit{QC}(\mathcal{O})$ and any subcomplex $\mathcal{S}^\bullet \subset \mathcal{F}^\bullet $ with $|\mathcal{S}^\bullet | \leq \kappa $ there exists a subcomplex $\mathcal{H}^\bullet $ of $\mathcal{F}^\bullet $ containing $\mathcal{S}^\bullet $ such that $\mathcal{H}^\bullet $ represents an object of $\mathit{QC}(\mathcal{O})$ and such that $|\mathcal{H}^\bullet | \leq \kappa $. In the next two paragraphs we show that the claim implies the lemma. 
+    <p>
+      As in (1) let $K$ be a nonzero object of $\mathit{QC}(\mathcal{O})$. Say $K$ is represented by the complex of $\mathcal{O}$-modules $\mathcal{F}^\bullet $. Then $H^ i(\mathcal{F}^\bullet )$ is nonzero for some $i$. Hence there exists an object $U$ of $\mathcal{C}$ and a section $s \in \mathcal{F}^ i(U)$ with $d(s) = 0$ which determines a nonzero section of $H^ i(\mathcal{F}^\bullet )$ over $U$. Then the image of $s : j_{U!}\mathcal{O}_ U[-i] \to \mathcal{F}^\bullet $ is a subcomplex $\mathcal{S}^\bullet \subset \mathcal{F}^\bullet $ with $|\mathcal{S}^\bullet | \leq \kappa $. Applying the claim we get $\mathcal{H}^\bullet \to \mathcal{F}^\bullet $ in $\mathit{QC}(\mathcal{O})$ nonzero with $|\mathcal{H}^\bullet | \leq \kappa $. Thus (1) holds. 
+    <p>
+      Let $\alpha : E \to \bigoplus K_ n$ be as in (2). Choose any complexes $\mathcal{K}_ n^\bullet $ representing $K_ n$. Then $\bigoplus \mathcal{K}_ n^\bullet $ represents $\bigoplus K_ n$. By the construction of the derived category we can represent $E$ by a complex $\mathcal{E}^\bullet $ such that $\alpha $ is represented by a morphism $a : \mathcal{E}^\bullet \to \bigoplus \mathcal{K}_ n^\bullet $ of complexes. By Lemma <a href="/tag/0GYY" data-tag="0GYY">21.43.7</a> and our choice of $\kappa $ above we may assume $|\mathcal{E}^\bullet | \leq \kappa $. By the claim we get subcomplexes $\mathcal{E}_ n^\bullet \subset \mathcal{K}_ n^\bullet $ representing objects $E_ n$ of $\mathit{QC}(\mathcal{O})$ with $|E_ n| \leq \kappa $ containing the image of $a_ n : \mathcal{E}^\bullet \to \mathcal{K}_ n^\bullet $ as desired. 
+    <p>
+      Proof of the claim. Let $\mathcal{F}^\bullet $ be a complex representing an object of $\mathit{QC}(\mathcal{O})$ and let $\mathcal{S}^\bullet \subset \mathcal{F}^\bullet $ be a subcomplex of size $\leq \kappa $. We are going to inductively construct subcomplexes 
+    <p>
+      <div class="equation">
+  \[  \mathcal{S}^\bullet = \mathcal{S}_0^\bullet \subset \mathcal{S}_1^\bullet \subset \mathcal{S}_2^\bullet \subset \ldots \subset \mathcal{F}^\bullet  \]
+</div>
+    <p>
+       of size $\leq \kappa $ such that for every morphism $f : U \to V$ of $\mathcal{C}$ and every $i \in \mathbf{Z}$ 
+    <p>
+      <ol>
+  <li><p>
+the kernel of the arrow $H^ i(\mathcal{S}_ n^\bullet (V) \otimes _{\mathcal{O}(V)}^\mathbf {L} \mathcal{O}(U)) \to H^ i(\mathcal{S}_ n^\bullet (U))$ maps to zero in $H^ i(\mathcal{S}_{n + 1}^\bullet (V) \otimes _{\mathcal{O}(V)}^\mathbf {L} \mathcal{O}(U))$, 
+</p>
+</li><li><p>
+the image of the arrow $H^ i(\mathcal{S}_ n^\bullet (U)) \to H^ i(\mathcal{S}_{n + 1}^\bullet (U))$ is contained in the image of $H^ i(\mathcal{S}_{n + 1}^\bullet (V) \otimes _{\mathcal{O}(V)}^\mathbf {L} \mathcal{O}(U)) \to H^ i(\mathcal{S}_{n + 1}^\bullet (U))$, 
+</p>
+</li>
+</ol>
+    <p>
+       Once this is done we can set $\mathcal{H}^\bullet = \bigcup \mathcal{S}_ n^\bullet $. Namely, since derived tensor product and taking cohomology of complexes of modules over rings commute with filtered colimits, the conditions (1) and (2) together will guarantee that 
+    <p>
+      <div class="equation">
+  \[  \mathcal{H}^\bullet (V) \otimes _{\mathcal{O}(V)}^\mathbf {L} \mathcal{O}(U) \longrightarrow \mathcal{H}^\bullet (U)  \]
+</div>
+    <p>
+       is an isomorphism on cohomology in all degrees and hence an isomorphism in $D(\mathcal{O}(U))$ for all $f : U \to V$ in $\mathcal{C}$. Hence $\mathcal{H}^\bullet $ represents an object of $\mathit{QC}(\mathcal{O})$ as desired. 
+    <p>
+      Construction of $\mathcal{S}_{n + 1}$ given $\mathcal{S}_ n$. For every morphism $f : U \to V$ of $\mathcal{C}$ we consider the commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathcal{S}_ n^\bullet (V) \ar[r] \ar[d] &  \mathcal{S}_ n^\bullet (U) \ar[d] \\  \mathcal{F}^\bullet (V) \ar[r] &  \mathcal{F}^\bullet (U) }  \]
+</div>
+    <p>
+       This is a diagram as in More on Algebra, Lemma <a href="/tag/0GYI" data-tag="0GYI">15.104.5</a> for the ring map $\mathcal{O}(V) \to \mathcal{O}(U)$, i.e., the bottom row induces an isomorphism 
+    <p>
+      <div class="equation">
+  \[  \mathcal{F}^\bullet (V) \otimes _{\mathcal{O}(V)}^\mathbf {L} \mathcal{O}(U) \longrightarrow \mathcal{F}^\bullet (U)  \]
+</div>
+    <p>
+       in $D(\mathcal{O}(U))$. Thus we may choose subcomplexes 
+    <p>
+      <div class="equation">
+  \[  \mathcal{S}_ n^\bullet (V) \subset M^\bullet _ f \subset \mathcal{F}^\bullet (V) \quad \text{and}\quad \mathcal{S}_ n^\bullet (U) \subset N^\bullet _ f \subset \mathcal{F}^\bullet (U)  \]
+</div>
+    <p>
+       as in More on Algebra, Lemma <a href="/tag/0GYI" data-tag="0GYI">15.104.5</a> and in particular we see that $|N^ i_ f|, |M^ i_ f| \leq \kappa $. Next, we apply Lemma <a href="/tag/0GYX" data-tag="0GYX">21.43.6</a> using the subsets 
+    <p>
+      <div class="equation">
+  \[  \mathcal{S}_ n^ i(U) \amalg \coprod \nolimits _{f : U \to V} N^ i_ f \amalg \coprod \nolimits _{g : W \to U} M^ i_ g \subset \mathcal{F}^ i(U)  \]
+</div>
+    <p>
+       to find a subcomplex 
+    <p>
+      <div class="equation">
+  \[  \mathcal{S}_ n^\bullet \subset \mathcal{S}_{n + 1}^\bullet \subset \mathcal{F}^\bullet  \]
+</div>
+    <p>
+       with containing those subsets and such that $|\mathcal{S}_{n + 1}^\bullet | \leq \kappa $. Conditions (1) and (2) hold because the corresponding statements hold for $\mathcal{S}_ n^\bullet (V) \subset M^\bullet _ f$ and $\mathcal{S}_ n^\bullet (U) \subset N^\bullet _ f$ by the construction in More on Algebra, Lemma <a href="/tag/0GYI" data-tag="0GYI">15.104.5</a>. Thus the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="0GZ0">
+  <p><a class="environment-identifier" href="/tag/0GZ0">Proposition <span data-tag="0GZ0">21.43.9</span>.</a> Let $\mathcal{C}$ be a category viewed as a site with the chaotic topology. Let $\mathcal{O}$ be a sheaf of rings on $\mathcal{C}$. With $\mathit{QC}(\mathcal{O})$ as in Definition <a href="/tag/0GYV" data-tag="0GYV">21.43.1</a> we have </p>
+  <p><ol>
+  <li><p>
+$\mathit{QC}(\mathcal{O})$ is a strictly full, saturated, triangulated subcategory of $D(\mathcal{O})$ preserved by arbitrary direct sums, 
+</p>
+</li><li><p>
+any contravariant cohomological functor $H : \mathit{QC}(\mathcal{O}) \to \textit{Ab}$ which transforms direct sums into products is representable, 
+</p>
+</li><li><p>
+any exact functor $F : \mathit{QC}(\mathcal{O}) \to \mathcal{D}$ of triangulated categories which transforms direct sums into direct sums has an exact right adjoint, and 
+</p>
+</li><li><p>
+the inclusion functor $\mathit{QC}(\mathcal{O}) \to D(\mathcal{O})$ has an exact right adjoint. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Part (1) is Lemma <a href="/tag/0GYW" data-tag="0GYW">21.43.2</a>. Part (2) follows from Lemma <a href="/tag/0GYZ" data-tag="0GYZ">21.43.8</a> and Derived Categories, Lemma <a href="/tag/0GYG" data-tag="0GYG">13.39.1</a>. Part (3) follows from Lemma <a href="/tag/0GYZ" data-tag="0GYZ">21.43.8</a> and Derived Categories, Proposition <a href="/tag/0GYH" data-tag="0GYH">13.39.2</a>. Part (4) is a special case of (3). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $u : \mathcal{C}' \to \mathcal{C}$ be a functor between categories. If we view $\mathcal{C}$ and $\mathcal{C}'$ as sites with the chaotic topology, then $u$ is a continuous and cocontinuous functor. Hence we obtain a morphism $g : \mathop{\mathit{Sh}}\nolimits (\mathcal{C}') \to \mathop{\mathit{Sh}}\nolimits (\mathcal{C})$ of topoi, see Sites, Lemma <a href="/tag/00XO" data-tag="00XO">7.21.1</a>. Additionally, suppose given sheaves of rings $\mathcal{O}$ on $\mathcal{C}$ and $\mathcal{O}'$ on $\mathcal{C}'$ and a map $g^\sharp : g^{-1}\mathcal{O} \to \mathcal{O}'$. We denote the corresponding morphism of ringed topoi simply $g : (\mathop{\mathit{Sh}}\nolimits (\mathcal{C}'), \mathcal{O}') \to (\mathop{\mathit{Sh}}\nolimits (\mathcal{C}), \mathcal{O})$, see Modules on Sites, Section <a href="/tag/01D2" data-tag="01D2">18.7</a>. 
+</p>
+<p>
+<article class="env-lemma" id="0GZ1">
+  <p><a class="environment-identifier" href="/tag/0GZ1">Lemma <span data-tag="0GZ1">21.43.10</span>.</a> Let $g : (\mathop{\mathit{Sh}}\nolimits (\mathcal{C}'), \mathcal{O}') \to (\mathop{\mathit{Sh}}\nolimits (\mathcal{C}), \mathcal{O})$ be as above. Then the functor $Lg^* : D(\mathcal{O}) \to D(\mathcal{O}')$ maps $\mathit{QC}(\mathcal{O})$ into $\mathit{QC}(\mathcal{O}')$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $U' \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C}')$ with image $U = u(U')$ in $\mathcal{C}$. Let $pt$ denote the category with a single object and a single morphism. Denote $(\mathop{\mathit{Sh}}\nolimits (pt), \mathcal{O}'(U'))$ and $(\mathop{\mathit{Sh}}\nolimits (pt), \mathcal{O}(U))$ the ringed topoi as indicated. Of course we identify the derived category of modules on these ringed topoi with $D(\mathcal{O}'(U'))$ and $D(\mathcal{O}(U))$. Then we have a commutative diagram of ringed topoi 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ (\mathop{\mathit{Sh}}\nolimits (pt), \mathcal{O}'(U')) \ar[rr]_{U'} \ar[d] &  &  (\mathop{\mathit{Sh}}\nolimits (\mathcal{C}'), \mathcal{O}') \ar[d]^ g \\  (\mathop{\mathit{Sh}}\nolimits (pt), \mathcal{O}(U)) \ar[rr]^ U &  &  (\mathop{\mathit{Sh}}\nolimits (\mathcal{C}), \mathcal{O}) }  \]
+</div>
+    <p>
+       Pullback along the lower horizontal morphism sends $K$ in $D(\mathcal{O})$ to $R\Gamma (U, K)$. Pullback by the left vertical arrow sends $M$ to $M \otimes _{\mathcal{O}(U)}^\mathbf {L} \mathcal{O}'(U')$. Going around the diagram either direction produces the same result (Lemma <a href="/tag/0D6D" data-tag="0D6D">21.18.3</a>) and hence we conclude 
+    <p>
+      <div class="equation">
+  \[  R\Gamma (U', Lg^*K) = R\Gamma (U, K) \otimes _{\mathcal{O}(U)}^\mathbf {L} \mathcal{O}'(U')  \]
+</div>
+    <p>
+       Finally, let $f' : U' \to V'$ be a morphism in $\mathcal{C}'$ and denote $f = u(f') : U = u(U') \to V = u(V')$ the image in $\mathcal{C}$. If $K$ is in $\mathit{QC}(\mathcal{O})$ then we have 
+    <p>
+      <div class="equation">
+  \begin{align*}  R\Gamma (V', Lg^*K) \otimes _{\mathcal{O}'(V')}^\mathbf {L} \mathcal{O}'(U') &  = R\Gamma (V, K) \otimes _{\mathcal{O}(V)}^\mathbf {L} \mathcal{O}'(V') \otimes _{\mathcal{O}'(V')}^\mathbf {L} \mathcal{O}'(U') \\ &  = R\Gamma (V, K) \otimes _{\mathcal{O}(V)}^\mathbf {L} \mathcal{O}'(U') \\ &  = R\Gamma (V, K) \otimes _{\mathcal{O}(V)}^\mathbf {L} \mathcal{O}(U) \otimes _{\mathcal{O}(U)}^\mathbf {L} \mathcal{O}'(U') \\ &  = R\Gamma (U, K) \otimes _{\mathcal{O}(U)}^\mathbf {L} \mathcal{O}'(U') \\ &  = R\Gamma (U', Lg^*K) \end{align*}
+</div>
+    <p>
+       as desired. Here we have used the observation above both for $U'$ and $V'$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GZR">
+  <p><a class="environment-identifier" href="/tag/0GZR">Lemma <span data-tag="0GZR">21.43.11</span>.</a> Let $\mathcal{C}$ be a category viewed as a site with the chaotic topology. Let $\mathcal{O}$ be a sheaf of rings on $\mathcal{C}$. Assume for all $U \to V$ in $\mathcal{C}$ the restriction map $\mathcal{O}(V) \to \mathcal{O}(U)$ is a flat ring map. Then $\mathit{QC}(\mathcal{O})$ agrees with the subcategory $D_\mathit{QCoh}(\mathcal{O}) \subset D(\mathcal{O})$ of complexes whose cohomology sheaves are quasi-coherent. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Recall that $\mathit{QCoh}(\mathcal{O}) \subset \textit{Mod}(\mathcal{O})$ is a weak Serre subcategory under our assumptions, see Modules on Sites, Lemma <a href="/tag/0GZP" data-tag="0GZP">18.24.4</a>. Thus taking the full subcategory 
+    <p>
+      <div class="equation">
+  \[  D_\mathit{QCoh}(\mathcal{O}) = D_{\mathit{QCoh}(\mathcal{O})}(\textit{Mod}(\mathcal{O}))  \]
+</div>
+    <p>
+       of $D(\mathcal{O})$ makes sense, see Derived Categories, Section <a href="/tag/06UP" data-tag="06UP">13.17</a>. (Strictly speaking we don't need this in the proof of the lemma.) 
+    <p>
+      Let $M$ be an object of $\mathit{QC}(\mathcal{O})$. Since for every morphism $U \to V$ in $\mathcal{C}$ the restriction map $\mathcal{O}(V) \to \mathcal{O}(U)$ is flat, we see that 
+    <p>
+      <div class="equation">
+  \begin{align*}  H^ i(M)(U) &  = H^ i(R\Gamma (U, M)) \\ &  = H^ i(R\Gamma (V, M) \otimes _{\mathcal{O}(V)}^\mathbf {L} \mathcal{O}(U)) \\ &  = H^ i(R\Gamma (V, M)) \otimes _{\mathcal{O}(V)} \mathcal{O}(U) \\ &  = H^ i(M)(V) \otimes _{\mathcal{O}(V)} \mathcal{O}(U) \end{align*}
+</div>
+    <p>
+       and hence $H^ i(M)$ is quasi-coherent by Modules on Sites, Lemma <a href="/tag/0GZN" data-tag="0GZN">18.24.3</a>. The first and last equality above follow from the fact that taking sections over an object of $\mathcal{C}$ is an exact functor due to the fact that the topology on $\mathcal{C}$ is chaotic. 
+    <p>
+      Conversely, if $M$ is an object of $D_\mathit{QCoh}(\mathcal{O})$, then due to Modules on Sites, Lemma <a href="/tag/0GZN" data-tag="0GZN">18.24.3</a> we see that the map $R\Gamma (V, M) \to R\Gamma (U, M)$ induces isomorphisms $H^ i(M)(U) \to H^ i(M)(V) \otimes _{\mathcal{O}(V)} \mathcal{O}(U)$. Whence $R\Gamma (V, K) \otimes _{\mathcal{O}(V)}^\mathbf {L} \mathcal{O}(U) \to R\Gamma (U, K)$ is an isomorphism in $D(\mathcal{O}(U))$ by the flatness of $\mathcal{O}(V) \to \mathcal{O}(U)$ and we conclude that $M$ is in $\mathit{QC}(\mathcal{O})$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GZS">
+  <p><a class="environment-identifier" href="/tag/0GZS">Lemma <span data-tag="0GZS">21.43.12</span>.</a> Let $\epsilon : (\mathcal{C}_\tau , \mathcal{O}_\tau ) \to (\mathcal{C}_{\tau '}, \mathcal{O}_{\tau '})$ be as in Section <a href="/tag/0EWK" data-tag="0EWK">21.27</a>. Assume </p>
+  <p><ol>
+  <li><p>
+$\tau '$ is the chaotic topology on the category $\mathcal{C}$, 
+</p>
+</li><li><p>
+for all $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and all K-flat complexes of $\mathcal{O}(U)$-modules $M^\bullet $ the map 
+</p>
+<div class="equation">
+  \[  M^\bullet \longrightarrow R\Gamma ((\mathcal{C}/U)_\tau , (M^\bullet \otimes _{\mathcal{O}(U)} \mathcal{O}_ U)^\# )  \]
+</div>
+<p>
+ is a quasi-isomorphism (see proof for an explanation). 
+</p>
+</li>
+</ol></p>
+  <p> Then $\epsilon ^*$ and $R\epsilon _*$ define mutually quasi-inverse equivalences between $\mathit{QC}(\mathcal{O})$ and the full subcategory of $D(\mathcal{C}_\tau , \mathcal{O}_\tau )$ consisting of objects $K$ such that $R\epsilon _*K$ is in $\mathit{QC}(\mathcal{O})$<a class="footnotemark" href="#a0000538185" id="a0000538185-mark"><sup>1</sup></a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use the observations made in Section <a href="/tag/0EWK" data-tag="0EWK">21.27</a> without further mention. Since $R\epsilon _*$ is fully faithful and $\epsilon ^* \circ R\epsilon _* = \text{id}$, to prove the lemma it suffices to show that for $M$ in $\mathit{QC}(\mathcal{O})$ we have $R\epsilon _*(\epsilon ^*M) = M$. Condition (2) is exactly the condition needed to see this. Namely, we choose a K-flat complex $\mathcal{M}^\bullet $ of $\mathcal{O}$-modules with flat terms representing $M$. Then we see that $\epsilon ^*M$ is represented by the $\tau $-sheafification $(\mathcal{M}^\bullet )^\# $ of $\mathcal{M}^\bullet $. Let $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$. By Leray we get 
+    <p>
+      <div class="equation">
+  \[  R\Gamma (U, R\epsilon _*(\epsilon ^*M)) = R\Gamma ((\mathcal{C}/U)_\tau , (\mathcal{M}^\bullet )^\# |_{\mathcal{C}/U}) = R\Gamma ((\mathcal{C}/U)_\tau , (\mathcal{M}^\bullet |_{\mathcal{C}/U})^\# )  \]
+</div>
+    <p>
+       The last equality since sheafification commutes with restriction to $\mathcal{C}/U$. As usual, denote $\mathcal{O}_ U$ the restriction of $\mathcal{O}$ to $\mathcal{C}/U$. Consider the map 
+    <p>
+      <div class="equation">
+  \[  \mathcal{M}^\bullet (U) \otimes _{\mathcal{O}(U)} \mathcal{O}_ U \longrightarrow \mathcal{M}^\bullet |_{\mathcal{C}/U}  \]
+</div>
+    <p>
+       of complexes of $\mathcal{O}_ U$-modules (in $\tau '$-topology). By our choice of $\mathcal{M}^\bullet $ the complex $\mathcal{M}^\bullet (U)$ is a K-flat complex of $\mathcal{O}(U)$-modules; see Lemma <a href="/tag/0G7E" data-tag="0G7E">21.18.1</a> and use that the inclusion of $U$ into $\mathcal{C}$ defines a morphism of ringed topoi $(\mathop{\mathit{Sh}}\nolimits (pt), \mathcal{O}(U)) \to (\mathop{\mathit{Sh}}\nolimits (\mathcal{C}_{\tau '}), \mathcal{O})$. Since $M$ is in $\mathit{QC}(\mathcal{O})$ we conclude that the displayed arrow is a quasi-isomorphism. Since sheafification is exact, we see that the same remains true after sheafification. Hence 
+    <p>
+      <div class="equation">
+  \[  R\Gamma (U, R\epsilon _*(\epsilon ^*M)) = R\Gamma ((\mathcal{C}/U)_\tau , (M^\bullet \otimes _{\mathcal{O}(U)} \mathcal{O}_ U)^\# )  \]
+</div>
+    <p>
+       and assumption (2) tells us this is equal to $R\Gamma (U, M) = \mathcal{M}^\bullet (U)$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0H0T">
+  <p><a class="environment-identifier" href="/tag/0H0T">Lemma <span data-tag="0H0T">21.43.13</span>.</a> Notation and assumptions as in Lemma <a href="/tag/0GZS" data-tag="0GZS">21.43.12</a>. Suppose that $K$ is an object of $\mathit{QC}(\mathcal{O})$ and $M$ arbitrary in $D(\mathcal{O}_\tau )$. For every object $U$ of $\mathcal{C}$ we have </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _{D((\mathcal{O}_ U)_\tau )}(\epsilon ^*K|_ U, M|_ U) = R\mathop{\mathrm{Hom}}\nolimits _{\mathcal{O}(U)}(R\Gamma (U, K), R\Gamma (U, M))  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We have 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _{D((\mathcal{O}_ U)_\tau )}(\epsilon ^*K|_ U, M|_ U) = \mathop{\mathrm{Hom}}\nolimits _{D((\mathcal{O}_ U)_{\tau '})}(K|_ U, R\epsilon _*M|_ U)  \]
+</div>
+    <p>
+       by adjunction. Hence the result by Lemma <a href="/tag/0H0S" data-tag="0H0S">21.43.5</a> and the fact that 
+    <p>
+      <div class="equation">
+  \[  R\Gamma (U, M) = R\Gamma (U, R\epsilon _*M)  \]
+</div>
+    <p>
+       by Leray. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

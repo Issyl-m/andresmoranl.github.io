@@ -1,0 +1,395 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="spaces-properties-section-etale-site" class="tex-section"><span data-tag="03EB">66.18</span> The étale site of an algebraic space</h2>
+
+<p>
+In this section we define the small étale site of an algebraic space. This is the analogue of the small étale site $S_{\acute{e}tale}$ of a scheme. Lemma <a href="/tag/03EC" data-tag="03EC">66.16.1</a> implies that in the definition below any morphism between objects of the étale site of $X$ is étale, and that any scheme étale over an object of $X_{\acute{e}tale}$ is also an object of $X_{\acute{e}tale}$. 
+</p>
+<p>
+<article class="env-definition" id="03ED">
+  <p><a class="environment-identifier" href="/tag/03ED">Definition <span data-tag="03ED">66.18.1</span>.</a> Let $S$ be a scheme. Let $\mathit{Sch}_{fppf}$ be a big fppf site containing $S$, and let $\mathit{Sch}_{\acute{e}tale}$ be the corresponding big étale site (i.e., having the same underlying category). Let $X$ be an algebraic space over $S$. The <em>small étale site $X_{\acute{e}tale}$</em> of $X$ is defined as follows: </p>
+  <p><ol>
+  <li><p>
+An object of $X_{\acute{e}tale}$ is a morphism $\varphi : U \to X$ where $U \in \mathop{\mathrm{Ob}}\nolimits ((\mathit{Sch}/S)_{\acute{e}tale})$ is a scheme and $\varphi $ is an étale morphism, 
+</p>
+</li><li><p>
+a morphism $(\varphi : U \to X) \to (\varphi ' : U' \to X)$ is given by a morphism of schemes $\chi : U \to U'$ such that $\varphi = \varphi ' \circ \chi $, and 
+</p>
+</li><li><p>
+a family of morphisms $\{ (U_ i \to X) \to (U \to X)\} _{i \in I}$ of $X_{\acute{e}tale}$ is a covering if and only if $\{ U_ i \to U\} _{i \in I}$ is a covering of $(\mathit{Sch}/S)_{\acute{e}tale}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+A consequence of our choice is that the étale site of an algebraic space in general does not have a final object! On the other hand, if $X$ happens to be a scheme, then the definition above agrees with Topologies, Definition <a href="/tag/021B" data-tag="021B">34.4.8</a>. 
+</p>
+<p>
+The above is our default site, but there are a couple of variants which we will also use. Namely, we can consider all <em>algebraic spaces</em> $U$ which are étale over $X$ and this produces the site $X_{spaces, {\acute{e}tale}}$ we define below or we can consider all <em>affine schemes</em> $U$ which are étale over $X$ and this produces the site $X_{affine, {\acute{e}tale}}$ we define below. The first of these two notions is used when discussing functoriality of the small étale site, see Lemma <a href="/tag/03G2" data-tag="03G2">66.18.8</a>. 
+</p>
+<p>
+<article class="env-definition" id="03G0">
+  <p><a class="environment-identifier" href="/tag/03G0">Definition <span data-tag="03G0">66.18.2</span>.</a> Let $S$ be a scheme. Let $\mathit{Sch}_{fppf}$ be a big fppf site containing $S$, and let $\mathit{Sch}_{\acute{e}tale}$ be the corresponding big étale site (i.e., having the same underlying category). Let $X$ be an algebraic space over $S$. The site <em>$X_{spaces, {\acute{e}tale}}$</em> of $X$ is defined as follows: </p>
+  <p><ol>
+  <li><p>
+An object of $X_{spaces, {\acute{e}tale}}$ is a morphism $\varphi : U \to X$ where $U$ is an algebraic space over $S$ and $\varphi $ is an étale morphism of algebraic spaces over $S$, 
+</p>
+</li><li><p>
+a morphism $(\varphi : U \to X) \to (\varphi ' : U' \to X)$ of $X_{spaces, {\acute{e}tale}}$ is given by a morphism of algebraic spaces $\chi : U \to U'$ such that $\varphi = \varphi ' \circ \chi $, and 
+</p>
+</li><li><p>
+a family of morphisms $\{ \varphi _ i : (U_ i \to X) \to (U \to X)\} _{i \in I}$ of $X_{spaces, {\acute{e}tale}}$ is a covering if and only if $|U| = \bigcup \varphi _ i(|U_ i|)$. 
+</p>
+</li>
+</ol></p>
+  <p> As usual we choose a set of coverings of this type, including at least the coverings in $X_{\acute{e}tale}$, as in Sets, Lemma <a href="/tag/000X" data-tag="000X">3.11.1</a> to turn $X_{spaces, {\acute{e}tale}}$ into a site. </p>
+</article> 
+</p>
+<p>
+Since the identity morphism of $X$ is étale it is clear that $X_{spaces, {\acute{e}tale}}$ does have a final object. Let us show right away that the corresponding topos equals the small étale topos of $X$. 
+</p>
+<p>
+<article class="env-lemma" id="03G1">
+  <p><a class="environment-identifier" href="/tag/03G1">Lemma <span data-tag="03G1">66.18.3</span>.</a> The functor </p>
+  <div class="equation">
+  \[  X_{\acute{e}tale}\longrightarrow X_{spaces, {\acute{e}tale}}, \quad U/X \longmapsto U/X  \]
+</div>
+  <p> is a special cocontinuous functor (Sites, Definition <a href="/tag/03CG" data-tag="03CG">7.29.2</a>) and hence induces an equivalence of topoi $\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale}) \to \mathop{\mathit{Sh}}\nolimits (X_{spaces, {\acute{e}tale}})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We have to show that the functor satisfies the assumptions (1) – (5) of Sites, Lemma <a href="/tag/03A0" data-tag="03A0">7.29.1</a>. It is clear that the functor is continuous and cocontinuous, which proves assumptions (1) and (2). Assumptions (3) and (4) hold simply because the functor is fully faithful. Assumption (5) holds, because an algebraic space by definition has a covering by a scheme. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="03H7">
+  <p><a class="environment-identifier" href="/tag/03H7">Remark <span data-tag="03H7">66.18.4</span>.</a> Let us explain the meaning of Lemma <a href="/tag/03G1" data-tag="03G1">66.18.3</a>. Let $S$ be a scheme, and let $X$ be an algebraic space over $S$. Let $\mathcal{F}$ be a sheaf on the small étale site $X_{\acute{e}tale}$ of $X$. The lemma says that there exists a unique sheaf $\mathcal{F}'$ on $X_{spaces, {\acute{e}tale}}$ which restricts back to $\mathcal{F}$ on the subcategory $X_{\acute{e}tale}$. If $U \to X$ is an étale morphism of algebraic spaces, then how do we compute $\mathcal{F}'(U)$? Well, by definition of an algebraic space there exists a scheme $U'$ and a surjective étale morphism $U' \to U$. Then $\{ U' \to U\} $ is a covering in $X_{spaces, {\acute{e}tale}}$ and hence we get an equalizer diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{F}'(U) \ar[r] &  \mathcal{F}(U') \ar@<1ex>[r] \ar@<-1ex>[r] &  \mathcal{F}(U' \times _ U U'). }  \]
+</div>
+  <p> Note that $U' \times _ U U'$ is a scheme, and hence we may write $\mathcal{F}$ and not $\mathcal{F}'$. Thus we see how to compute $\mathcal{F}'$ when given the sheaf $\mathcal{F}$. </p>
+</article> 
+</p>
+<p>
+<article class="env-definition" id="0H01">
+  <p><a class="environment-identifier" href="/tag/0H01">Definition <span data-tag="0H01">66.18.5</span>.</a> Let $S$ be a scheme. Let $\mathit{Sch}_{fppf}$ be a big fppf site containing $S$, and let $\mathit{Sch}_{\acute{e}tale}$ be the corresponding big étale site (i.e., having the same underlying category). Let $X$ be an algebraic space over $S$. The site <em>$X_{affine, {\acute{e}tale}}$</em> of $X$ is defined as follows: </p>
+  <p><ol>
+  <li><p>
+An object of $X_{affine, {\acute{e}tale}}$ is a morphism $\varphi : U \to X$ where $U \in \mathop{\mathrm{Ob}}\nolimits ((\mathit{Sch}/S)_{\acute{e}tale})$ is an affine scheme and $\varphi $ is an étale morphism, 
+</p>
+</li><li><p>
+a morphism $(\varphi : U \to X) \to (\varphi ' : U' \to X)$ of $X_{affine, {\acute{e}tale}}$ is given by a morphism of schemes $\chi : U \to U'$ such that $\varphi = \varphi ' \circ \chi $, and 
+</p>
+</li><li><p>
+a family of morphisms $\{ \varphi _ i : (U_ i \to X) \to (U \to X)\} _{i \in I}$ of $X_{affine, {\acute{e}tale}}$ is a covering if and only if $\{ U_ i \to U\} $ is a standard étale covering, see Topologies, Definition <a href="/tag/0219" data-tag="0219">34.4.5</a>. 
+</p>
+</li>
+</ol></p>
+  <p> As usual we choose a set of coverings of this type, as in Sets, Lemma <a href="/tag/000X" data-tag="000X">3.11.1</a> to turn $X_{affine, {\acute{e}tale}}$ into a site. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="04JS">
+  <p><a class="environment-identifier" href="/tag/04JS">Lemma <span data-tag="04JS">66.18.6</span>.</a> Let $S$ be a scheme. Let $X$ be an algebraic space over $S$. The functor $X_{affine, {\acute{e}tale}} \to X_{\acute{e}tale}$ is special cocontinuous and induces an equivalence of topoi from $\mathop{\mathit{Sh}}\nolimits (X_{affine, {\acute{e}tale}})$ to $\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. Hint: compare with the proof of Topologies, Lemma <a href="/tag/021E" data-tag="021E">34.4.11</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="04JT">
+  <p><a class="environment-identifier" href="/tag/04JT">Definition <span data-tag="04JT">66.18.7</span>.</a> Let $S$ be a scheme. Let $X$ be an algebraic space over $S$. The <em>étale topos</em> of $X$, or more precisely the <em>small étale topos</em> of $X$ is the category $\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale})$ of sheaves of sets on $X_{\acute{e}tale}$. </p>
+</article> 
+</p>
+<p>
+By Lemma <a href="/tag/03G1" data-tag="03G1">66.18.3</a> we have $\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale}) = \mathop{\mathit{Sh}}\nolimits (X_{spaces, {\acute{e}tale}})$, so we can also think of this as the category of sheaves of sets on $X_{spaces, {\acute{e}tale}}$. Similarly, by Lemma <a href="/tag/04JS" data-tag="04JS">66.18.6</a> we see that $\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale}) = \mathop{\mathit{Sh}}\nolimits (X_{affine, {\acute{e}tale}})$. It turns out that the topos is functorial with respect to morphisms of algebraic spaces. Here is a precise statement. 
+</p>
+<p>
+<article class="env-lemma" id="03G2">
+  <p><a class="environment-identifier" href="/tag/03G2">Lemma <span data-tag="03G2">66.18.8</span>.</a> Let $S$ be a scheme. Let $f : X \to Y$ be a morphism of algebraic spaces over $S$. </p>
+  <p><ol>
+  <li><p>
+The continuous functor 
+</p>
+<div class="equation">
+  \[  Y_{spaces, {\acute{e}tale}} \longrightarrow X_{spaces, {\acute{e}tale}}, \quad V \longmapsto X \times _ Y V  \]
+</div>
+<p>
+ induces a morphism of sites 
+</p>
+<div class="equation">
+  \[  f_{spaces, {\acute{e}tale}} : X_{spaces, {\acute{e}tale}} \to Y_{spaces, {\acute{e}tale}}.  \]
+</div>
+</li><li><p>
+The rule $f \mapsto f_{spaces, {\acute{e}tale}}$ is compatible with compositions, in other words $(f \circ g)_{spaces, {\acute{e}tale}} = f_{spaces, {\acute{e}tale}} \circ g_{spaces, {\acute{e}tale}}$ (see Sites, Definition <a href="/tag/03CC" data-tag="03CC">7.14.5</a>). 
+</p>
+</li><li><p>
+The morphism of topoi associated to $f_{spaces, {\acute{e}tale}}$ induces, via Lemma <a href="/tag/03G1" data-tag="03G1">66.18.3</a>, a morphism of topoi $f_{small} : \mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale}) \to \mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale})$ whose construction is compatible with compositions. 
+</p>
+</li><li><p>
+If $f$ is a representable morphism of algebraic spaces, then $f_{small}$ comes from a morphism of sites $X_{\acute{e}tale}\to Y_{\acute{e}tale}$, corresponding to the continuous functor $V \mapsto X \times _ Y V$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let us show that the functor described in (1) satisfies the assumptions of Sites, Proposition <a href="/tag/00X6" data-tag="00X6">7.14.7</a>. Thus we have to show that $Y_{spaces, {\acute{e}tale}}$ has a final object (namely $Y$) and that the functor transforms this into a final object in $X_{spaces, {\acute{e}tale}}$ (namely $X$). This is clear as $X \times _ Y Y = X$ in any category. Next, we have to show that $Y_{spaces, {\acute{e}tale}}$ has fibre products. This is true since the category of algebraic spaces has fibre products, and since $V \times _ Y V'$ is étale over $Y$ if $V$ and $V'$ are étale over $Y$ (see Lemmas <a href="/tag/03FT" data-tag="03FT">66.16.4</a> and <a href="/tag/03FU" data-tag="03FU">66.16.5</a> above). OK, so the proposition applies and we see that we get a morphism of sites as described in (1). 
+    <p>
+      Part (2) you get by unwinding the definitions. Part (3) is clear by using the equivalences for $X$ and $Y$ from Lemma <a href="/tag/03G1" data-tag="03G1">66.18.3</a> above. Part (4) follows, because if $f$ is representable, then the functors above fit into a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X_{\acute{e}tale}\ar[r] &  X_{spaces, {\acute{e}tale}} \\  Y_{\acute{e}tale}\ar[r] \ar[u] &  Y_{spaces, {\acute{e}tale}} \ar[u] }  \]
+</div>
+    <p>
+       of categories. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We can do a little bit better than the lemma above in describing the relationship between sheaves on $X$ and sheaves on $Y$. Namely, we can formulate this in turns of $f$-maps, compare Sheaves, Definition <a href="/tag/008J" data-tag="008J">6.21.7</a>, as follows. 
+</p>
+<p>
+<article class="env-definition" id="03G3">
+  <p><a class="environment-identifier" href="/tag/03G3">Definition <span data-tag="03G3">66.18.9</span>.</a> Let $S$ be a scheme. Let $f : X \to Y$ be a morphism of algebraic spaces over $S$. Let $\mathcal{F}$ be a sheaf of sets on $X_{\acute{e}tale}$ and let $\mathcal{G}$ be a sheaf of sets on $Y_{\acute{e}tale}$. An <em>$f$-map $\varphi : \mathcal{G} \to \mathcal{F}$</em> is a collection of maps $\varphi _{(U, V, g)} : \mathcal{G}(V) \to \mathcal{F}(U)$ indexed by commutative diagrams </p>
+  <div class="equation">
+  \[  \xymatrix{ U \ar[d]_ g \ar[r] &  X \ar[d]^ f \\  V \ar[r] &  Y }  \]
+</div>
+  <p> where $U \in X_{\acute{e}tale}$, $V \in Y_{\acute{e}tale}$ such that whenever given an extended diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ U' \ar[r] \ar[d]_{g'} &  U \ar[d]_ g \ar[r] &  X \ar[d]^ f \\  V' \ar[r] &  V \ar[r] &  Y }  \]
+</div>
+  <p> with $V' \to V$ and $U' \to U$ étale morphisms of schemes the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{G}(V) \ar[rr]_{\varphi _{(U, V, g)}} \ar[d]_{\text{restriction of }\mathcal{G}} &  &  \mathcal{F}(U) \ar[d]^{\text{restriction of }\mathcal{F}} \\  \mathcal{G}(V') \ar[rr]^{\varphi _{(U', V', g')}} &  &  \mathcal{F}(U') }  \]
+</div>
+  <p> commutes. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="03G4">
+  <p><a class="environment-identifier" href="/tag/03G4">Lemma <span data-tag="03G4">66.18.10</span>.</a> Let $S$ be a scheme. Let $f : X \to Y$ be a morphism of algebraic spaces over $S$. Let $\mathcal{F}$ be a sheaf of sets on $X_{\acute{e}tale}$ and let $\mathcal{G}$ be a sheaf of sets on $Y_{\acute{e}tale}$. There are canonical bijections between the following three sets: </p>
+  <p><ol>
+  <li><p>
+The set of maps $\mathcal{G} \to f_{small, *}\mathcal{F}$. 
+</p>
+</li><li><p>
+The set of maps $f_{small}^{-1}\mathcal{G} \to \mathcal{F}$. 
+</p>
+</li><li><p>
+The set of $f$-maps $\varphi : \mathcal{G} \to \mathcal{F}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Note that (1) and (2) are the same because the functors $f_{small, *}$ and $f_{small}^{-1}$ are a pair of adjoint functors. Suppose that $\alpha : f_{small}^{-1}\mathcal{G} \to \mathcal{F}$ is a map of sheaves on $Y_{\acute{e}tale}$. Let a diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ U \ar[d]_ g \ar[r]_{j_ U} &  X \ar[d]^ f \\  V \ar[r]^{j_ V} &  Y }  \]
+</div>
+    <p>
+       as in Definition <a href="/tag/03G3" data-tag="03G3">66.18.9</a> be given. By the commutativity of the diagram we also get a map $g_{small}^{-1}(j_ V)^{-1}\mathcal{G} \to (j_ U)^{-1}\mathcal{F}$ (compare Sites, Section <a href="/tag/00XZ" data-tag="00XZ">7.25</a> for the description of the localization functors). Hence we certainly get a map $\varphi _{(V, U, g)} : \mathcal{G}(V) = (j_ V)^{-1}\mathcal{G}(V) \to (j_ U)^{-1}\mathcal{F}(U) = \mathcal{F}(U)$. We omit the verification that this rule is compatible with further restrictions and defines an $f$-map from $\mathcal{G}$ to $\mathcal{F}$. 
+    <p>
+      Conversely, suppose that we are given an $f$-map $\varphi = (\varphi _{(U, V, g)})$. Let $\mathcal{G}'$ (resp. $\mathcal{F}'$) denote the extension of $\mathcal{G}$ (resp. $\mathcal{F}$) to $Y_{spaces, {\acute{e}tale}}$ (resp. $X_{spaces, {\acute{e}tale}}$), see Lemma <a href="/tag/03G1" data-tag="03G1">66.18.3</a>. Then we have to construct a map of sheaves 
+    <p>
+      <div class="equation">
+  \[  \mathcal{G}' \longrightarrow (f_{spaces, {\acute{e}tale}})_*\mathcal{F}'  \]
+</div>
+    <p>
+       To do this, let $V \to Y$ be an étale morphism of algebraic spaces. We have to construct a map of sets 
+    <p>
+      <div class="equation">
+  \[  \mathcal{G}'(V) \to \mathcal{F}'(X \times _ Y V)  \]
+</div>
+    <p>
+       Choose an étale surjective morphism $V' \to V$ with $V'$ a scheme, and after that choose an étale surjective morphism $U' \to X \times _ U V'$ with $U'$ a scheme. We get a morphism of schemes $g' : U' \to V'$ and also a morphism of schemes 
+    <p>
+      <div class="equation">
+  \[  g'' : U' \times _{X \times _ Y V} U' \longrightarrow V' \times _ V V'  \]
+</div>
+    <p>
+       Consider the following diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathcal{F}'(X \times _ Y V) \ar[r] &  \mathcal{F}(U') \ar@<1ex>[r] \ar@<-1ex>[r] &  \mathcal{F}(U' \times _{X \times _ Y V} U') \\  \mathcal{G}'(X \times _ Y V) \ar[r] \ar@{..>}[u] &  \mathcal{G}(V') \ar@<1ex>[r] \ar@<-1ex>[r] \ar[u]_{\varphi _{(U', V', g')}} &  \mathcal{G}(V' \times _ V V') \ar[u]_{\varphi _{(U'', V'', g'')}} }  \]
+</div>
+    <p>
+       The compatibility of the maps $\varphi _{...}$ with restriction shows that the two right squares commute. The definition of coverings in $X_{spaces, {\acute{e}tale}}$ shows that the horizontal rows are equalizer diagrams. Hence we get the dotted arrow. We leave it to the reader to show that these arrows are compatible with the restriction mappings. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+If the morphism of algebraic spaces $X \to Y$ is étale, then the morphism of topoi $\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale}) \to \mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale})$ is a localization. Here is a statement. 
+</p>
+<p>
+<article class="env-lemma" id="03LP">
+  <p><a class="environment-identifier" href="/tag/03LP">Lemma <span data-tag="03LP">66.18.11</span>.</a> Let $S$ be a scheme, and let $f : X \to Y$ be a morphism of algebraic spaces over $S$. Assume $f$ is étale. In this case there is a functor </p>
+  <div class="equation">
+  \[  j : X_{\acute{e}tale}\to Y_{\acute{e}tale}, \quad (\varphi : U \to X) \mapsto (f \circ \varphi : U \to Y)  \]
+</div>
+  <p> which is cocontinuous. The morphism of topoi $f_{small}$ is the morphism of topoi associated to $j$, see Sites, Lemma <a href="/tag/00XO" data-tag="00XO">7.21.1</a>. Moreover, $j$ is continuous as well, hence Sites, Lemma <a href="/tag/00XR" data-tag="00XR">7.21.5</a> applies. In particular $f_{small}^{-1}\mathcal{G}(U) = \mathcal{G}(jU)$ for all sheaves $\mathcal{G}$ on $Y_{\acute{e}tale}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Note that by our very definition of an étale morphism of algebraic spaces (Definition <a href="/tag/03FR" data-tag="03FR">66.16.2</a>) it is indeed the case that the rule given defines a functor $j$ as indicated. It is clear that $j$ is cocontinuous and continuous, simply because a covering $\{ U_ i \to U\} $ of $j(\varphi : U \to X)$ in $Y_{\acute{e}tale}$ is the same thing as a covering of $(\varphi : U \to X)$ in $X_{\acute{e}tale}$. It remains to show that $j$ induces the same morphism of topoi as $f_{small}$. To see this we consider the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X_{\acute{e}tale}\ar[r] \ar[d]^ j &  X_{spaces, {\acute{e}tale}} \ar@/_/[d]_{j_{spaces}} \\  Y_{\acute{e}tale}\ar[r] &  Y_{spaces, {\acute{e}tale}} \ar@/_/[u]_{v : V \mapsto X \times _ Y V} }  \]
+</div>
+    <p>
+       of categories. Here the functor $j_{spaces}$ is the obvious extension of $j$ to the category $X_{spaces, {\acute{e}tale}}$. Thus the inner square is commutative. In fact $j_{spaces}$ can be identified with the localization functor $j_ X : Y_{spaces, {\acute{e}tale}}/X \to Y_{spaces, {\acute{e}tale}}$ discussed in Sites, Section <a href="/tag/00XZ" data-tag="00XZ">7.25</a>. Hence, by Sites, Lemma <a href="/tag/03CE" data-tag="03CE">7.27.2</a> the cocontinuous functor $j_{spaces}$ and the functor $v$ of the diagram induce the same morphism of topoi. By Sites, Lemma <a href="/tag/03L5" data-tag="03L5">7.21.2</a> the commutativity of the inner square (consisting of cocontinuous functors between sites) gives a commutative diagram of associated morphisms of topoi. Hence, by the construction of $f_{small}$ in Lemma <a href="/tag/03G2" data-tag="03G2">66.18.8</a> we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The lemma above says that the pullback of $\mathcal{G}$ via an étale morphism $f : X \to Y$ of algebraic spaces is simply the restriction of $\mathcal{G}$ to the category $X_{\acute{e}tale}$. We will often use the short hand 
+</p>
+<div class="equation" id="03LQ">
+    <span class="equation-label"><a href="/tag/03LQ" data-tag="03LQ">66.18.11.1</a></span>
+  <div>\begin{equation}  \label{spaces-properties-equation-restrict} \mathcal{G}|_{X_{\acute{e}tale}} = f_{small}^{-1}\mathcal{G} \end{equation}</div>
+</div>
+<p>
+ to indicate this. Note that the functor $j : X_{\acute{e}tale}\to Y_{\acute{e}tale}$ of the lemma in this situation is faithful, but not fully faithful in general. We will discuss this in a more technical fashion in Section <a href="/tag/04LX" data-tag="04LX">66.27</a>. 
+</p>
+<p>
+<article class="env-lemma" id="03LR">
+  <p><a class="environment-identifier" href="/tag/03LR">Lemma <span data-tag="03LR">66.18.12</span>.</a> Let $S$ be a scheme. Let </p>
+  <div class="equation">
+  \[  \xymatrix{ X' \ar[r] \ar[d]_{f'} &  X \ar[d]^ f \\  Y' \ar[r]^ g &  Y }  \]
+</div>
+  <p> be a cartesian square of algebraic spaces over $S$. Let $\mathcal{F}$ be a sheaf on $X_{\acute{e}tale}$. If $g$ is étale, then </p>
+  <p><ol>
+  <li><p>
+$f'_{small, *}(\mathcal{F}|_{X'}) = (f_{small, *}\mathcal{F})|_{Y'}$ in $\mathop{\mathit{Sh}}\nolimits (Y'_{\acute{e}tale})$<a class="footnotemark" href="#a0001343905" id="a0001343905-mark"><sup>1</sup></a>, and 
+</p>
+</li><li><p>
+if $\mathcal{F}$ is an abelian sheaf, then $R^ if'_{small, *}(\mathcal{F}|_{X'}) = (R^ if_{small, *}\mathcal{F})|_{Y'}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider the following diagram of functors 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X'_{spaces, {\acute{e}tale}} \ar[r]_ j &  X_{spaces, {\acute{e}tale}} \\  Y'_{spaces, {\acute{e}tale}} \ar[r]^ j \ar[u]^{V' \mapsto V' \times _{Y'} X'} &  Y_{spaces, {\acute{e}tale}} \ar[u]_{V \mapsto V \times _ Y X} }  \]
+</div>
+    <p>
+       The horizontal arrows are localizations and the vertical arrows induce morphisms of sites. Hence the last statement of Sites, Lemma <a href="/tag/03CF" data-tag="03CF">7.28.1</a> gives (1). To see (2) apply (1) to an injective resolution of $\mathcal{F}$ and use that restriction is exact and preserves injectives (see Cohomology on Sites, Lemma <a href="/tag/03F3" data-tag="03F3">21.7.1</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma says that you can think of a sheaf on the small étale site of an algebraic space as a compatible collection of sheaves on the small étale sites of schemes étale over the space. Please note that all the comparison mappings $c_ f$ in the lemma are isomorphisms, which is compatible with Topologies, Lemma <a href="/tag/021K" data-tag="021K">34.4.20</a> and the fact that all morphisms between objects of $X_{\acute{e}tale}$ are étale. 
+</p>
+<p>
+<article class="env-lemma" id="03LS">
+  <p><a class="environment-identifier" href="/tag/03LS">Lemma <span data-tag="03LS">66.18.13</span>.</a> Let $S$ be a scheme. Let $X$ be an algebraic space over $S$. A sheaf $\mathcal{F}$ on $X_{\acute{e}tale}$ is given by the following data: </p>
+  <p><ol>
+  <li><p>
+for every $U \in \mathop{\mathrm{Ob}}\nolimits (X_{\acute{e}tale})$ a sheaf $\mathcal{F}_ U$ on $U_{\acute{e}tale}$, 
+</p>
+</li><li><p>
+for every $f : U' \to U$ in $X_{\acute{e}tale}$ an isomorphism $c_ f : f_{small}^{-1}\mathcal{F}_ U \to \mathcal{F}_{U'}$. 
+</p>
+</li>
+</ol></p>
+  <p> These data are subject to the condition that given any $f : U' \to U$ and $g : U'' \to U'$ in $X_{\acute{e}tale}$ the composition $c_ g \circ g_{small}^{-1} c_ f$ is equal to $c_{f \circ g}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We may interpret $g_{small}^{-1}$ as in Lemma <a href="/tag/03LP" data-tag="03LP">66.18.11</a>. Then the lemma follows from a general fact about sites, see Sites, Lemma <a href="/tag/0GWK" data-tag="0GWK">7.26.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $S$ be a scheme. Let $X$ be an algebraic space over $S$. Let $X = U/R$ be a presentation of $X$ coming from any surjective étale morphism $\varphi : U \to X$, see Spaces, Definition <a href="/tag/0263" data-tag="0263">65.9.3</a>. In particular, we obtain a groupoid $(U, R, s, t, c, e, i)$ such that $j = (t, s) : R \to U \times _ S U$, see Groupoids, Lemma <a href="/tag/0233" data-tag="0233">39.13.3</a>. 
+</p>
+<p>
+<article class="env-lemma" id="05YY">
+  <p><a class="environment-identifier" href="/tag/05YY">Lemma <span data-tag="05YY">66.18.14</span>.</a> With $S$, $\varphi : U \to X$, and $(U, R, s, t, c, e, i)$ as above. For any sheaf $\mathcal{F}$ on $X_{\acute{e}tale}$ the sheaf<a class="footnotemark" href="#a0001344059" id="a0001344059-mark"><sup>2</sup></a> $\mathcal{G} = \varphi ^{-1}\mathcal{F}$ comes equipped with a canonical isomorphism </p>
+  <div class="equation">
+  \[  \alpha : t^{-1}\mathcal{G} \longrightarrow s^{-1}\mathcal{G}  \]
+</div>
+  <p> such that the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ &  \text{pr}_1^{-1}t^{-1}\mathcal{G} \ar[r]_-{\text{pr}_1^{-1}\alpha } &  \text{pr}_1^{-1}s^{-1}\mathcal{G} \ar@{=}[rd] &  \\  \text{pr}_0^{-1}s^{-1}\mathcal{G} \ar@{=}[ru] &  &  &  c^{-1}s^{-1}\mathcal{G} \\  &  \text{pr}_0^{-1}t^{-1}\mathcal{G} \ar[lu]^{\text{pr}_0^{-1}\alpha } \ar@{=}[r] &  c^{-1}t^{-1}\mathcal{G} \ar[ru]_{c^{-1}\alpha } }  \]
+</div>
+  <p> is a commutative. The functor $\mathcal{F} \mapsto (\mathcal{G}, \alpha )$ defines an equivalence of categories between sheaves on $X_{\acute{e}tale}$ and pairs $(\mathcal{G}, \alpha )$ as above. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>First proof of Lemma <a href="/tag/05YY" data-tag="05YY">66.18.14</a>.</strong>
+       Let $\mathcal{C} = X_{spaces, {\acute{e}tale}}$. By Lemma <a href="/tag/03LP" data-tag="03LP">66.18.11</a> and its proof we have $U_{spaces, {\acute{e}tale}} = \mathcal{C}/U$ and the pullback functor $\varphi ^{-1}$ is just the restriction functor. Moreover, $\{ U \to X\} $ is a covering of the site $\mathcal{C}$ and $R = U \times _ X U$. The isomorphism $\alpha $ is just the canonical identification 
+    <p>
+      <div class="equation">
+  \[  \left(\mathcal{F}|_{\mathcal{C}/U}\right)|_{\mathcal{C}/U \times _ X U} = \left(\mathcal{F}|_{\mathcal{C}/U}\right)|_{\mathcal{C}/U \times _ X U}  \]
+</div>
+    <p>
+       and the commutativity of the diagram is the cocycle condition for glueing data. Hence this lemma is a special case of glueing of sheaves, see Sites, Section <a href="/tag/04TP" data-tag="04TP">7.26</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<article class="env-proof">
+    <p>
+      <strong>Second proof of Lemma <a href="/tag/05YY" data-tag="05YY">66.18.14</a>.</strong>
+       The existence of $\alpha $ comes from the fact that $\varphi \circ t = \varphi \circ s$ and that pullback is functorial in the morphism, see Lemma <a href="/tag/03G2" data-tag="03G2">66.18.8</a>. In exactly the same way, i.e., by functoriality of pullback, we see that the isomorphism $\alpha $ fits into the commutative diagram. The construction $\mathcal{F} \mapsto (\varphi ^{-1}\mathcal{F}, \alpha )$ is clearly functorial in the sheaf $\mathcal{F}$. Hence we obtain the functor. 
+    <p>
+      Conversely, suppose that $(\mathcal{G}, \alpha )$ is a pair. Let $V \to X$ be an object of $X_{\acute{e}tale}$. In this case the morphism $V' = U \times _ X V \to V$ is a surjective étale morphism of schemes, and hence $\{ V' \to V\} $ is an étale covering of $V$. Set $\mathcal{G}' = (V' \to V)^{-1}\mathcal{G}$. Since $R = U \times _ X U$ with $t = \text{pr}_0$ and $s = \text{pr}_0$ we see that $V' \times _ V V' = R \times _ X V$ with projection maps $s', t' : V' \times _ V V' \to V'$ equal to the pullbacks of $t$ and $s$. Hence $\alpha $ pulls back to an isomorphism $\alpha ' : (t')^{-1}\mathcal{G}' \to (s')^{-1}\mathcal{G}'$. Having said this we simply define 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathcal{F}(V) \ar@{=}[r] &  \text{Equalizer}(\mathcal{G}(V') \ar@<1ex>[r] \ar@<-1ex>[r] &  \mathcal{G}(V' \times _ V V'). }  \]
+</div>
+    <p>
+       We omit the verification that this defines a sheaf. To see that $\mathcal{G}(V) = \mathcal{F}(V)$ if there exists a morphism $V \to U$ note that in this case the equalizer is $H^0(\{ V' \to V\} , \mathcal{G}) = \mathcal{G}(V)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

@@ -1,0 +1,254 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="spaces-simplicial-section-simplicial-sites" class="tex-section"><span data-tag="09WB">85.3</span> Simplicial sites and topoi</h2>
+
+<p>
+It seems natural to define a <em>simplicial site</em> as a simplicial object in the (big) category whose objects are sites and whose morphisms are morphisms of sites. See Sites, Definitions <a href="/tag/00VH" data-tag="00VH">7.6.2</a> and <a href="/tag/00X1" data-tag="00X1">7.14.1</a> with composition of morphisms as in Sites, Lemma <a href="/tag/03CB" data-tag="03CB">7.14.4</a>. But here are some variants one might want to consider: (a) we could work with cocontinuous functors (see Sites, Sections <a href="/tag/00XI" data-tag="00XI">7.20</a> and <a href="/tag/00XN" data-tag="00XN">7.21</a>) between sites instead, (b) we could work in a suitable $2$-category of sites where one introduces the notion of a $2$-morphism between morphisms of sites, (c) we could work in a $2$-category constructed out of cocontinuous functors. Instead of picking one of these variants as a definition we will simply develop theory as needed. 
+</p>
+<p>
+Certainly a <em>simplicial topos</em> should probably be defined as a pseudo-functor from $\Delta ^{opp}$ into the $2$-category of topoi. See Categories, Definition <a href="/tag/003N" data-tag="003N">4.29.5</a> and Sites, Section <a href="/tag/00X9" data-tag="00X9">7.15</a> and <a href="/tag/04I9" data-tag="04I9">7.36</a>. We will try to avoid working with such a beast if possible. 
+</p>
+<p>
+<strong>Case A.</strong> Let $\mathcal{C}$ be a simplicial object in the category whose objects are sites and whose morphisms are morphisms of sites. This means that for every morphism $\varphi : [m] \to [n]$ of $\Delta $ we have a morphism of sites $f_\varphi : \mathcal{C}_ n \to \mathcal{C}_ m$. This morphism is given by a continuous functor in the opposite direction which we will denote $u_\varphi : \mathcal{C}_ m \to \mathcal{C}_ n$. 
+</p>
+<p>
+<article class="env-lemma" id="09WC">
+  <p><a class="environment-identifier" href="/tag/09WC">Lemma <span data-tag="09WC">85.3.1</span>.</a> Let $\mathcal{C}$ be a simplicial object in the category of sites. With notation as above we construct a site $\mathcal{C}_{total}$ as follows. </p>
+  <p><ol>
+  <li><p>
+An object of $\mathcal{C}_{total}$ is an object $U$ of $\mathcal{C}_ n$ for some $n$, 
+</p>
+</li><li><p>
+a morphism $(\varphi , f) : U \to V$ of $\mathcal{C}_{total}$ is given by a map $\varphi : [m] \to [n]$ with $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C}_ n)$, $V \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C}_ m)$ and a morphism $f : U \to u_\varphi (V)$ of $\mathcal{C}_ n$, and 
+</p>
+</li><li><p>
+a covering $\{ (\text{id}, f_ i) : U_ i \to U\} $ in $\mathcal{C}_{total}$ is given by an $n$ and a covering $\{ f_ i : U_ i \to U\} $ of $\mathcal{C}_ n$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Composition of $(\varphi , f) : U \to V$ with $(\psi , g) : V \to W$ is given by $(\varphi \circ \psi , u_\varphi (g) \circ f)$. This uses that $u_\varphi \circ u_\psi = u_{\varphi \circ \psi }$. 
+    <p>
+      Let $\{ (\text{id}, f_ i) : U_ i \to U\} $ be a covering as in (3) and let $(\varphi , g) : W \to U$ be a morphism with $W \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C}_ m)$. We claim that 
+    <p>
+      <div class="equation">
+  \[  W \times _{(\varphi , g), U, (\text{id}, f_ i)} U_ i = W \times _{g, u_\varphi (U), u_\varphi (f_ i)} u_\varphi (U_ i)  \]
+</div>
+    <p>
+       in the category $\mathcal{C}_{total}$. This makes sense as by our definition of morphisms of sites, the required fibre products in $\mathcal{C}_ m$ exist since $u_\varphi $ transforms coverings into coverings. The same reasoning implies the claim (details omitted). Thus we see that the collection of coverings is stable under base change. The other axioms of a site are immediate. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<strong>Case B.</strong> Let $\mathcal{C}$ be a simplicial object in the category whose objects are sites and whose morphisms are cocontinuous functors. This means that for every morphism $\varphi : [m] \to [n]$ of $\Delta $ we have a cocontinuous functor denoted $u_\varphi : \mathcal{C}_ n \to \mathcal{C}_ m$. The associated morphism of topoi is denoted $f_\varphi : \mathop{\mathit{Sh}}\nolimits (\mathcal{C}_ n) \to \mathop{\mathit{Sh}}\nolimits (\mathcal{C}_ m)$. 
+</p>
+<p>
+<article class="env-lemma" id="09WD">
+  <p><a class="environment-identifier" href="/tag/09WD">Lemma <span data-tag="09WD">85.3.2</span>.</a> Let $\mathcal{C}$ be a simplicial object in the category whose objects are sites and whose morphisms are cocontinuous functors. With notation as above, assume the functors $u_\varphi : \mathcal{C}_ n \to \mathcal{C}_ m$ have property $P$ of Sites, Remark <a href="/tag/09W7" data-tag="09W7">7.20.5</a>. Then we can construct a site $\mathcal{C}_{total}$ as follows. </p>
+  <p><ol>
+  <li><p>
+An object of $\mathcal{C}_{total}$ is an object $U$ of $\mathcal{C}_ n$ for some $n$, 
+</p>
+</li><li><p>
+a morphism $(\varphi , f) : U \to V$ of $\mathcal{C}_{total}$ is given by a map $\varphi : [m] \to [n]$ with $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C}_ n)$, $V \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C}_ m)$ and a morphism $f : u_\varphi (U) \to V$ of $\mathcal{C}_ m$, and 
+</p>
+</li><li><p>
+a covering $\{ (\text{id}, f_ i) : U_ i \to U\} $ in $\mathcal{C}_{total}$ is given by an $n$ and a covering $\{ f_ i : U_ i \to U\} $ of $\mathcal{C}_ n$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Composition of $(\varphi , f) : U \to V$ with $(\psi , g) : V \to W$ is given by $(\varphi \circ \psi , g \circ u_\psi (f))$. This uses that $u_\psi \circ u_\varphi = u_{\varphi \circ \psi }$. 
+    <p>
+      Let $\{ (\text{id}, f_ i) : U_ i \to U\} $ be a covering as in (3) and let $(\varphi , g) : W \to U$ be a morphism with $W \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C}_ m)$. We claim that 
+    <p>
+      <div class="equation">
+  \[  W \times _{(\varphi , g), U, (\text{id}, f_ i)} U_ i = W \times _{g, U, f_ i} U_ i  \]
+</div>
+    <p>
+       in the category $\mathcal{C}_{total}$ where the right hand side is the object of $\mathcal{C}_ m$ defined in Sites, Remark <a href="/tag/09W7" data-tag="09W7">7.20.5</a> which exists by property $P$. Compatibility of this type of fibre product with compositions of functors implies the claim (details omitted). Since the family $\{ W \times _{g, U, f_ i} U_ i \to W\} $ is a covering of $\mathcal{C}_ m$ by property $P$ we see that the collection of coverings is stable under base change. The other axioms of a site are immediate. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-situation" id="09WE">
+  <p><a class="environment-identifier" href="/tag/09WE">Situation <span data-tag="09WE">85.3.3</span>.</a> Here we have one of the following two cases: </p>
+  <p><ol>
+  <li class="custom-item" data-marker="(A)"><p>
+$\mathcal{C}$ is a simplicial object in the category whose objects are sites and whose morphisms are morphisms of sites. For every morphism $\varphi : [m] \to [n]$ of $\Delta $ we have a morphism of sites $f_\varphi : \mathcal{C}_ n \to \mathcal{C}_ m$ given by a continuous functor $u_\varphi : \mathcal{C}_ m \to \mathcal{C}_ n$. 
+</p>
+</li><li class="custom-item" data-marker="(B)"><p>
+$\mathcal{C}$ is a simplicial object in the category whose objects are sites and whose morphisms are cocontinuous functors having property $P$ of Sites, Remark <a href="/tag/09W7" data-tag="09W7">7.20.5</a>. For every morphism $\varphi : [m] \to [n]$ of $\Delta $ we have a cocontinuous functor $u_\varphi : \mathcal{C}_ n \to \mathcal{C}_ m$ which induces a morphism of topoi $f_\varphi : \mathop{\mathit{Sh}}\nolimits (\mathcal{C}_ n) \to \mathop{\mathit{Sh}}\nolimits (\mathcal{C}_ m)$. 
+</p>
+</li>
+</ol></p>
+  <p> As usual we will denote $f_\varphi ^{-1}$ and $f_{\varphi , *}$ the pullback and pushforward. We let $\mathcal{C}_{total}$ denote the site defined in Lemma <a href="/tag/09WC" data-tag="09WC">85.3.1</a> (case A) or Lemma <a href="/tag/09WD" data-tag="09WD">85.3.2</a> (case B). </p>
+</article> 
+</p>
+<p>
+Let $\mathcal{C}$ be as in Situation <a href="/tag/09WE" data-tag="09WE">85.3.3</a>. Let $\mathcal{F}$ be a sheaf on $\mathcal{C}_{total}$. It is clear from the definition of coverings, that the restriction of $\mathcal{F}$ to the objects of $\mathcal{C}_ n$ defines a sheaf $\mathcal{F}_ n$ on the site $\mathcal{C}_ n$. For every $\varphi : [m] \to [n]$ the restriction maps of $\mathcal{F}$ along the morphisms $(\varphi , f) : U \to V$ with $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C}_ n)$ and $V \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C}_ m)$ define an element $\mathcal{F}(\varphi )$ of 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C}_ m)}(\mathcal{F}_ m, f_{\varphi , *}\mathcal{F}_ n) = \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C}_ n)}(f_\varphi ^{-1}\mathcal{F}_ m, \mathcal{F}_ n)  \]
+</div>
+<p>
+ Moreover, given $\varphi : [m] \to [n]$ and $\psi : [l] \to [m]$ the diagrams 
+</p>
+<div class="equation">
+  \[  \vcenter { \xymatrix{ \mathcal{F}_ l \ar[rr]_{\mathcal{F}(\varphi \circ \psi )} \ar[rd]_{\mathcal{F}(\psi )} &  &  f_{\varphi \circ \psi , *} \mathcal{F}_ n \\  &  f_{\psi , *}\mathcal{F}_ m \ar[ur]_{f_{\psi , *}\mathcal{F}(\varphi )} } } \quad \text{and}\quad \vcenter { \xymatrix{ f_{\varphi \circ \psi }^{-1}\mathcal{F}_ l \ar[rr]_{\mathcal{F}(\varphi \circ \psi )} \ar[rd]_{f_\varphi ^{-1}\mathcal{F}(\psi )} &  &  \mathcal{F}_ n \\  &  f_\varphi ^{-1}\mathcal{F}_ m \ar[ur]_{\mathcal{F}(\varphi )} } }  \]
+</div>
+<p>
+ commute. Clearly, the converse statement is true as well: if we have a system $(\{ \mathcal{F}_ n\} _{n \geq 0}, \{ \mathcal{F}(\varphi )\} _{\varphi \in \text{Arrows}(\Delta )})$ satisfying the commutativity constraints above, then we obtain a sheaf on $\mathcal{C}_{total}$. 
+</p>
+<p>
+<article class="env-lemma" id="09WF">
+  <p><a class="environment-identifier" href="/tag/09WF">Lemma <span data-tag="09WF">85.3.4</span>.</a> In Situation <a href="/tag/09WE" data-tag="09WE">85.3.3</a> there is an equivalence of categories between </p>
+  <p><ol>
+  <li><p>
+$\mathop{\mathit{Sh}}\nolimits (\mathcal{C}_{total})$, and 
+</p>
+</li><li><p>
+the category of systems $(\mathcal{F}_ n, \mathcal{F}(\varphi ))$ described above. 
+</p>
+</li>
+</ol></p>
+  <p> In particular, the topos $\mathop{\mathit{Sh}}\nolimits (\mathcal{C}_{total})$ only depends on the topoi $\mathop{\mathit{Sh}}\nolimits (\mathcal{C}_ n)$ and the morphisms of topoi $f_\varphi $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See discussion above. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09WG">
+  <p><a class="environment-identifier" href="/tag/09WG">Lemma <span data-tag="09WG">85.3.5</span>.</a> In Situation <a href="/tag/09WE" data-tag="09WE">85.3.3</a> the functor $\mathcal{C}_ n \to \mathcal{C}_{total}$, $U \mapsto U$ is continuous and cocontinuous. The associated morphism of topoi $g_ n : \mathop{\mathit{Sh}}\nolimits (\mathcal{C}_ n) \to \mathop{\mathit{Sh}}\nolimits (\mathcal{C}_{total})$ satisfies </p>
+  <p><ol>
+  <li><p>
+$g_ n^{-1}$ associates to the sheaf $\mathcal{F}$ on $\mathcal{C}_{total}$ the sheaf $\mathcal{F}_ n$ on $\mathcal{C}_ n$, 
+</p>
+</li><li><p>
+$g_ n^{-1} : \mathop{\mathit{Sh}}\nolimits (\mathcal{C}_{total}) \to \mathop{\mathit{Sh}}\nolimits (\mathcal{C}_ n)$ has a left adjoint $g^{Sh}_{n!}$, 
+</p>
+</li><li><p>
+for $\mathcal{G}$ in $\mathop{\mathit{Sh}}\nolimits (\mathcal{C}_ n)$ the restriction of $g_{n!}^{Sh}\mathcal{G}$ to $\mathcal{C}_ m$ is $\coprod \nolimits _{\varphi : [n] \to [m]} f_\varphi ^{-1}\mathcal{G}$, 
+</p>
+</li><li><p>
+$g_{n!}^{Sh}$ commutes with finite connected limits, 
+</p>
+</li><li><p>
+$g_ n^{-1} : \textit{Ab}(\mathcal{C}_{total}) \to \textit{Ab}(\mathcal{C}_ n)$ has a left adjoint $g_{n!}$, 
+</p>
+</li><li><p>
+for $\mathcal{G}$ in $\textit{Ab}(\mathcal{C}_ n)$ the restriction of $g_{n!}\mathcal{G}$ to $\mathcal{C}_ m$ is $\bigoplus \nolimits _{\varphi : [n] \to [m]} f_\varphi ^{-1}\mathcal{G}$, and 
+</p>
+</li><li><p>
+$g_{n!}$ is exact. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Case A. If $\{ U_ i \to U\} _{i \in I}$ is a covering in $\mathcal{C}_ n$ then the image $\{ U_ i \to U\} _{i \in I}$ is a covering in $\mathcal{C}_{total}$ by definition (Lemma <a href="/tag/09WC" data-tag="09WC">85.3.1</a>). For a morphism $V \to U$ of $\mathcal{C}_ n$, the fibre product $V \times _ U U_ i$ in $\mathcal{C}_ n$ is also the fibre product in $\mathcal{C}_{total}$ (by the claim in the proof of Lemma <a href="/tag/09WC" data-tag="09WC">85.3.1</a>). Therefore our functor is continuous. On the other hand, our functor defines a bijection between coverings of $U$ in $\mathcal{C}_ n$ and coverings of $U$ in $\mathcal{C}_{total}$. Therefore it is certainly the case that our functor is cocontinuous. 
+    <p>
+      Case B. If $\{ U_ i \to U\} _{i \in I}$ is a covering in $\mathcal{C}_ n$ then the image $\{ U_ i \to U\} _{i \in I}$ is a covering in $\mathcal{C}_{total}$ by definition (Lemma <a href="/tag/09WD" data-tag="09WD">85.3.2</a>). For a morphism $V \to U$ of $\mathcal{C}_ n$, the fibre product $V \times _ U U_ i$ in $\mathcal{C}_ n$ is also the fibre product in $\mathcal{C}_{total}$ (by the claim in the proof of Lemma <a href="/tag/09WD" data-tag="09WD">85.3.2</a>). Therefore our functor is continuous. On the other hand, our functor defines a bijection between coverings of $U$ in $\mathcal{C}_ n$ and coverings of $U$ in $\mathcal{C}_{total}$. Therefore it is certainly the case that our functor is cocontinuous. 
+    <p>
+      At this point part (1) and the existence of $g^{Sh}_{n!}$ and $g_{n!}$ in cases A and B follows from Sites, Lemmas <a href="/tag/00XO" data-tag="00XO">7.21.1</a> and <a href="/tag/00XR" data-tag="00XR">7.21.5</a> and Modules on Sites, Lemma <a href="/tag/04BG" data-tag="04BG">18.16.2</a>. 
+    <p>
+      Proof of (3). Let $\mathcal{G}$ be a sheaf on $\mathcal{C}_ n$. Consider the sheaf $\mathcal{H}$ on $\mathcal{C}_{total}$ whose degree $m$ part is the sheaf 
+    <p>
+      <div class="equation">
+  \[  \mathcal{H}_ m = \coprod \nolimits _{\varphi : [n] \to [m]} f_\varphi ^{-1}\mathcal{G}  \]
+</div>
+    <p>
+       given in part (3) of the statement of the lemma. Given a map $\psi : [m] \to [m']$ the map $\mathcal{H}(\psi ) : f_\psi ^{-1}\mathcal{H}_ m \to \mathcal{H}_{m'}$ is given on components by the identifications 
+    <p>
+      <div class="equation">
+  \[  f_\psi ^{-1} f_\varphi ^{-1} \mathcal{G} \to f_{\psi \circ \varphi }^{-1}\mathcal{G}  \]
+</div>
+    <p>
+       Observe that given a map $\alpha : \mathcal{H} \to \mathcal{F}$ of sheaves on $\mathcal{C}_{total}$ we obtain a map $\mathcal{G} \to \mathcal{F}_ n$ corresponding to the restriction of $\alpha _ n$ to the component $\mathcal{G}$ in $\mathcal{H}_ n$. Conversely, given a map $\beta : \mathcal{G} \to \mathcal{F}_ n$ of sheaves on $\mathcal{C}_ n$ we can define $\alpha : \mathcal{H} \to \mathcal{F}$ by letting $\alpha _ m$ be the map which on components 
+    <p>
+      <div class="equation">
+  \[  f_\varphi ^{-1}\mathcal{G} \to \mathcal{F}_ m  \]
+</div>
+    <p>
+       uses the maps adjoint to $\mathcal{F}(\varphi ) \circ f_\varphi ^{-1}\beta $. We omit the arguments showing these two constructions give mutually inverse maps 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C}_ n)}(\mathcal{G}, \mathcal{F}_ n) = \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C}_{total})}(\mathcal{H}, \mathcal{F})  \]
+</div>
+    <p>
+       Thus $\mathcal{H} = g^{Sh}_{n!}\mathcal{G}$ as desired. 
+    <p>
+      Proof of (4). If $\mathcal{G}$ is an abelian sheaf on $\mathcal{C}_ n$, then we proceed in exactly the same ammner as above, except that we define $\mathcal{H}$ is the abelian sheaf on $\mathcal{C}_{total}$ whose degree $m$ part is the sheaf 
+    <p>
+      <div class="equation">
+  \[  \bigoplus \nolimits _{\varphi : [n] \to [m]} f_\varphi ^{-1}\mathcal{G}  \]
+</div>
+    <p>
+       with transition maps defined exactly as above. The bijection 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\textit{Ab}(\mathcal{C}_ n)}(\mathcal{G}, \mathcal{F}_ n) = \mathop{\mathrm{Mor}}\nolimits _{\textit{Ab}(\mathcal{C}_{total})}(\mathcal{H}, \mathcal{F})  \]
+</div>
+    <p>
+       is proved exactly as above. Thus $\mathcal{H} = g_{n!}\mathcal{G}$ as desired. 
+    <p>
+      The exactness properties of $g^{Sh}_{n!}$ and $g_{n!}$ follow from formulas given for these functors. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09WH">
+       
+      
+  <p><a class="environment-identifier" href="/tag/09WH">Lemma <span data-tag="09WH">85.3.6</span>.</a> In Situation <a href="/tag/09WE" data-tag="09WE">85.3.3</a>. If $\mathcal{I}$ is injective in $\textit{Ab}(\mathcal{C}_{total})$, then $\mathcal{I}_ n$ is injective in $\textit{Ab}(\mathcal{C}_ n)$. If $\mathcal{I}^\bullet $ is a K-injective complex in $\textit{Ab}(\mathcal{C}_{total})$, then $\mathcal{I}_ n^\bullet $ is K-injective in $\textit{Ab}(\mathcal{C}_ n)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The first statement follows from Homology, Lemma <a href="/tag/015Z" data-tag="015Z">12.29.1</a> and Lemma <a href="/tag/09WG" data-tag="09WG">85.3.5</a>. The second statement from Derived Categories, Lemma <a href="/tag/08BJ" data-tag="08BJ">13.31.9</a> and Lemma <a href="/tag/09WG" data-tag="09WG">85.3.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

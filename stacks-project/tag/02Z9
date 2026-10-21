@@ -1,0 +1,144 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="stacks-section-morphisms" class="tex-section"><span data-tag="02Z9">8.2</span> Presheaves of morphisms associated to fibred categories</h2>
+
+<p>
+Let $\mathcal{C}$ be a category. Let $p : \mathcal{S} \to \mathcal{C}$ be a fibred category, see Categories, Section <a href="/tag/02XJ" data-tag="02XJ">4.33</a>. Suppose that $x, y\in \mathop{\mathrm{Ob}}\nolimits (\mathcal{S}_ U)$ are objects in the fibre category over $U$. We are going to define a functor 
+</p>
+<div class="equation">
+  \[  \mathit{Mor}(x, y) : (\mathcal{C}/U)^{opp} \longrightarrow \textit{Sets}.  \]
+</div>
+<p>
+ In other words this will be a presheaf on $\mathcal{C}/U$, see Sites, Definition <a href="/tag/00V3" data-tag="00V3">7.2.2</a>. Make a choice of pullbacks as in Categories, Definition <a href="/tag/02XN" data-tag="02XN">4.33.6</a>. Then, for $f : V \to U$ we set 
+</p>
+<div class="equation">
+  \[  \mathit{Mor}(x, y)(f : V \to U) = \mathop{\mathrm{Mor}}\nolimits _{\mathcal{S}_ V}(f^\ast x, f^\ast y).  \]
+</div>
+<p>
+ Let $f' : V' \to U$ be a second object of $\mathcal{C}/U$. We also have to define the restriction map corresponding to a morphism $g : V'/U \to V/U$ in $\mathcal{C}/U$, in other words $g : V' \to V$ and $f' = f \circ g$. This will be a map 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\mathcal{S}_ V}(f^\ast x, f^\ast y) \longrightarrow \mathop{\mathrm{Mor}}\nolimits _{\mathcal{S}_{V'}}({f'}^\ast x, {f'}^\ast y), \quad \phi \longmapsto \phi |_{V'}  \]
+</div>
+<p>
+ This map will basically be $g^\ast $, except that this transforms an element $\phi $ of the left hand side into an element $g^\ast \phi $ of $\mathop{\mathrm{Mor}}\nolimits _{\mathcal{S}_{V'}}(g^\ast f^\ast x, g^\ast f^\ast y)$. At this point we use the transformation $\alpha _{g, f}$ of Categories, Lemma <a href="/tag/02XO" data-tag="02XO">4.33.7</a>. In a formula, the restriction map is described by 
+</p>
+<div class="equation">
+  \[  \phi |_{V'} = (\alpha _{g, f})_ y^{-1} \circ g^\ast \phi \circ (\alpha _{g, f})_ x.  \]
+</div>
+<p>
+ Of course, nobody thinks of this restriction map in this way. We will only do this once in order to verify the following lemma. 
+</p>
+<p>
+<article class="env-lemma" id="026A">
+  <p><a class="environment-identifier" href="/tag/026A">Lemma <span data-tag="026A">8.2.1</span>.</a> This actually does give a presheaf. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $g : V'/U \to V/U$ be as above and similarly $g' : V''/U \to V'/U$ be morphisms in $\mathcal{C}/U$. So $f' = f \circ g$ and $f'' = f' \circ g' = f \circ g \circ g'$. Let $\phi \in \mathop{\mathrm{Mor}}\nolimits _{\mathcal{S}_ V}(f^\ast x, f^\ast y)$. Then we have 
+    <p>
+      <div class="equation">
+  \begin{eqnarray*} & &  (\alpha _{g \circ g', f})_ y^{-1} \circ (g \circ g')^\ast \phi \circ (\alpha _{g \circ g', f})_ x \\ &  = &  (\alpha _{g \circ g', f})_ y^{-1} \circ (\alpha _{g', g})_{f^*y}^{-1} \circ (g')^*g^\ast \phi \circ (\alpha _{g', g})_{f^*x} \circ (\alpha _{g \circ g', f})_ x \\ &  = &  (\alpha _{g', f'})_ y^{-1} \circ (g')^*(\alpha _{g, f})_ y^{-1} \circ (g')^* g^\ast \phi \circ (g')^*(\alpha _{g, f})_ x \circ (\alpha _{g', f'})_ x \\ &  = &  (\alpha _{g', f'})_ y^{-1} \circ (g')^*\Big( (\alpha _{g, f})_ y^{-1} \circ g^\ast \phi \circ (\alpha _{g, f})_ x \Big) \circ (\alpha _{g', f'})_ x \end{eqnarray*}
+</div>
+    <p>
+       which is what we want, namely $\phi |_{V''} = (\phi |_{V'})|_{V''}$. The first equality holds because $\alpha _{g', g}$ is a transformation of functors, and hence 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ (g \circ g')^*f^*x \ar[rr]_{(g \circ g')^\ast \phi } \ar[d]_{(\alpha _{g', g})_{f^*x}} &  &  (g \circ g')^*f^*y \ar[d]^{(\alpha _{g', g})_{f^*y}} \\  (g')^*g^*f^*x \ar[rr]^{(g')^*g^\ast \phi } &  &  (g')^*g^*f^*y }  \]
+</div>
+    <p>
+       commutes. The second equality holds because of property (d) of a pseudo functor since $f' = f \circ g$ (see Categories, Definition <a href="/tag/003N" data-tag="003N">4.29.5</a>). The last equality follows from the fact that $(g')^*$ is a functor. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+From now on we often omit mentioning the transformations $\alpha _{g, f}$ and we simply identify the functors $g^* \circ f^*$ and $(f \circ g)^*$. In particular, given $g : V'/U \to V/U$ the restriction mappings for the presheaf $\mathit{Mor}(x, y)$ will sometimes be denoted $\phi \mapsto g^*\phi $. We formalize the construction in a definition. 
+</p>
+<p>
+<article class="env-definition" id="02ZB">
+  <p><a class="environment-identifier" href="/tag/02ZB">Definition <span data-tag="02ZB">8.2.2</span>.</a> Let $\mathcal{C}$ be a category. Let $p : \mathcal{S} \to \mathcal{C}$ be a fibred category, see Categories, Section <a href="/tag/02XJ" data-tag="02XJ">4.33</a>. Given an object $U$ of $\mathcal{C}$ and objects $x$, $y$ of the fibre category, the <em>presheaf of morphisms from $x$ to $y$</em> is the presheaf </p>
+  <div class="equation">
+  \[  (f : V \to U) \longmapsto \mathop{\mathrm{Mor}}\nolimits _{\mathcal{S}_ V}(f^*x, f^*y)  \]
+</div>
+  <p> described above. It is denoted $\mathit{Mor}(x, y)$. The subpresheaf $\mathit{Isom}(x, y)$ whose value over $V$ is the set of isomorphisms $f^*x \to f^*y$ in the fibre category $\mathcal{S}_ V$ is called the <em>presheaf of isomorphisms from $x$ to $y$</em>. </p>
+</article> 
+</p>
+<p>
+If $\mathcal{S}$ is fibred in groupoids then of course $\mathit{Isom}(x, y) = \mathit{Mor}(x, y)$, and it is customary to use the $\mathit{Isom}$ notation. 
+</p>
+<p>
+<article class="env-lemma" id="042V">
+  <p><a class="environment-identifier" href="/tag/042V">Lemma <span data-tag="042V">8.2.3</span>.</a> Let $F : \mathcal{S}_1 \to \mathcal{S}_2$ be a $1$-morphism of fibred categories over the category $\mathcal{C}$. Let $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and $x, y\in \mathop{\mathrm{Ob}}\nolimits ((\mathcal{S}_1)_ U)$. Then $F$ defines a canonical morphism of presheaves </p>
+  <div class="equation">
+  \[  \mathit{Mor}_{\mathcal{S}_1}(x, y) \longrightarrow \mathit{Mor}_{\mathcal{S}_2}(F(x), F(y))  \]
+</div>
+  <p> on $\mathcal{C}/U$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Categories, Definition <a href="/tag/02XP" data-tag="02XP">4.33.9</a> the functor $F$ maps strongly cartesian morphisms to strongly cartesian morphisms. Hence if $f : V \to U$ is a morphism in $\mathcal{C}$, then there are canonical isomorphisms $\alpha _ V : f^*F(x) \to F(f^*x)$, $\beta _ V : f^*F(y) \to F(f^*y)$ such that $f^*F(x) \to F(f^*x) \to F(x)$ is the canonical morphism $f^*F(x) \to F(x)$, and similarly for $\beta _ V$. Thus we may define 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathit{Mor}_{\mathcal{S}_1}(x, y)(f : V \to U) \ar@{=}[r] &  \mathop{\mathrm{Mor}}\nolimits _{\mathcal{S}_{1, V}}(f^\ast x, f^\ast y) \ar[d] \\  \mathit{Mor}_{\mathcal{S}_2}(F(x), F(y))(f : V \to U) \ar@{=}[r] &  \mathop{\mathrm{Mor}}\nolimits _{\mathcal{S}_{2, V}}(f^\ast F(x), f^\ast F(y)) }  \]
+</div>
+    <p>
+       by $\phi \mapsto \beta _ V^{-1} \circ F(\phi ) \circ \alpha _ V$. We omit the verification that this is compatible with the restriction mappings. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="02ZA">
+  <p><a class="environment-identifier" href="/tag/02ZA">Remark <span data-tag="02ZA">8.2.4</span>.</a> Suppose that $p : \mathcal{S} \to \mathcal{C}$ is fibred in groupoids. In this case we can prove Lemma <a href="/tag/026A" data-tag="026A">8.2.1</a> using Categories, Lemma <a href="/tag/004A" data-tag="004A">4.36.4</a> which says that $\mathcal{S} \to \mathcal{C}$ is equivalent to the category associated to a contravariant functor $F : \mathcal{C} \to \textit{Groupoids}$. In the case of the fibred category associated to $F$ we have $g^* \circ f^* = (f \circ g)^*$ on the nose and there is no need to use the maps $\alpha _{g, f}$. In this case the lemma is (even more) trivial. Of course then one uses that the $\mathit{Mor}(x, y)$ presheaf is unchanged when passing to an equivalent fibred category which follows from Lemma <a href="/tag/042V" data-tag="042V">8.2.3</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="04SI">
+  <p><a class="environment-identifier" href="/tag/04SI">Lemma <span data-tag="04SI">8.2.5</span>.</a> Let $\mathcal{C}$ be a category. Let $p : \mathcal{S} \to \mathcal{C}$ be a fibred category, see Categories, Section <a href="/tag/02XJ" data-tag="02XJ">4.33</a>. Let $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and let $x, y \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{S}_ U)$. Denote $x, y : \mathcal{C}/U \to \mathcal{S}$ also the corresponding $1$-morphisms, see Categories, Lemma <a href="/tag/004B" data-tag="004B">4.41.2</a>. Then </p>
+  <p><ol>
+  <li><p>
+the $2$-fibre product $\mathcal{S} \times _{\mathcal{S} \times \mathcal{S}, (x, y)} \mathcal{C}/U$ is fibred in setoids over $\mathcal{C}/U$, and 
+</p>
+</li><li><p>
+$\mathit{Isom}(x, y)$ is the presheaf of sets corresponding to this category fibred in setoids, see Categories, Lemma <a href="/tag/04SC" data-tag="04SC">4.39.6</a>. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. Hint: Objects of the $2$-fibre product are $(a : V \to U, z, (\alpha , \beta ))$ where $\alpha : z \to a^*x$ and $\beta : z \to a^*y$ are isomorphisms in $\mathcal{S}_ V$. Thus the relationship with $\mathit{Isom}(x, y)$ comes by assigning to such an object the isomorphism $\beta \circ \alpha ^{-1}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

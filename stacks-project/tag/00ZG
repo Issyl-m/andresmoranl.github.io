@@ -1,0 +1,180 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sites-section-sheafification-topology" class="tex-section"><span data-tag="00ZG">7.49</span> Sheafification in a topology</h2>
+
+<p>
+In this section we explain the analogue of the sheafification construction in a topology. 
+</p>
+<p>
+Let $\mathcal{C}$ be a category. Let $J$ be a topology on $\mathcal{C}$. Let $\mathcal{F}$ be a presheaf of sets. For every $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ we define 
+</p>
+<div class="equation">
+  \[  L\mathcal{F}(U) = \mathop{\mathrm{colim}}\nolimits _{S \in J(U)^{opp}} \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(S, \mathcal{F})  \]
+</div>
+<p>
+ as a colimit. Here we think of $J(U)$ as a partially ordered set, ordered by inclusion, see Lemma <a href="/tag/00YZ" data-tag="00YZ">7.47.2</a>. The transition maps in the system are defined as follows. If $S \subset S'$ are in $J(U)$, then $S \to S'$ is a morphism of presheaves. Hence there is a natural restriction mapping 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(S', \mathcal{F}) \longrightarrow \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(S, \mathcal{F}).  \]
+</div>
+<p>
+ Thus we see that $S \mapsto \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(S, \mathcal{F})$ is a directed system as in Categories, Definition <a href="/tag/0030" data-tag="0030">4.21.2</a> provided we reverse the ordering on $J(U)$ (which is what the superscript ${}^{opp}$ is supposed to indicate). In particular, since $h_ U \in J(U)$ there is a canonical map 
+</p>
+<div class="equation">
+  \[  \ell : \mathcal{F}(U) \longrightarrow L\mathcal{F}(U)  \]
+</div>
+<p>
+ coming from the identification $\mathcal{F}(U) = \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(h_ U, \mathcal{F})$. In addition, the colimit defining $L\mathcal{F}(U)$ is directed since for any pair of covering sieves $S, S'$ on $U$ the sieve $S \cap S'$ is a covering sieve too, see Lemma <a href="/tag/00YZ" data-tag="00YZ">7.47.2</a>. 
+</p>
+<p>
+Let $f : V \to U$ be a morphism in $\mathcal{C}$. Let $S \in J(U)$. There is a commutative diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ S \times _ U V \ar[r] \ar[d] &  h_ V \ar[d] \\  S \ar[r] &  h_ U }  \]
+</div>
+<p>
+ We can use the left vertical map to get canonical restriction maps 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(S, \mathcal{F}) \to \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(S \times _ U V, \mathcal{F}).  \]
+</div>
+<p>
+ Base change $S \mapsto S \times _ U V$ induces an order preserving map $J(U) \to J(V)$. And the restriction maps define a transformation of functors as in Categories, Lemma categories-lemma-functorial-colimit. Hence we get a natural restriction map 
+</p>
+<div class="equation">
+  \[  L\mathcal{F}(U) \longrightarrow L\mathcal{F}(V).  \]
+</div>
+<p>
+<article class="env-lemma" id="00ZH">
+  <p><a class="environment-identifier" href="/tag/00ZH">Lemma <span data-tag="00ZH">7.49.1</span>.</a> In the situation above. </p>
+  <p><ol>
+  <li><p>
+The assignment $U \mapsto L\mathcal{F}(U)$ combined with the restriction mappings defined above is a presheaf. 
+</p>
+</li><li><p>
+The maps $\ell $ glue to give a morphism of presheaves $\ell : \mathcal{F} \to L\mathcal{F}$. 
+</p>
+</li><li><p>
+The rule $\mathcal{F} \mapsto (\mathcal{F} \xrightarrow {\ell } L\mathcal{F})$ is a functor. 
+</p>
+</li><li><p>
+If $\mathcal{F}$ is a subpresheaf of $\mathcal{G}$, then $L\mathcal{F}$ is a subpresheaf of $L\mathcal{G}$. 
+</p>
+</li><li><p>
+The map $\ell : \mathcal{F} \to L\mathcal{F}$ has the following property: For every section $s \in L\mathcal{F}(U)$ there exists a covering sieve $S$ on $U$ and an element $\varphi \in \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(S, \mathcal{F})$ such that $\ell (\varphi )$ equals the restriction of $s$ to $S$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="00ZI">
+  <p><a class="environment-identifier" href="/tag/00ZI">Definition <span data-tag="00ZI">7.49.2</span>.</a> Let $\mathcal{C}$ be a category. Let $J$ be a topology on $\mathcal{C}$. We say that a presheaf of sets $\mathcal{F}$ is <em>separated</em> if for every object $U$ and every covering sieve $S$ on $U$ the canonical map $\mathcal{F}(U) \to \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(S, \mathcal{F})$ is injective. </p>
+</article> 
+</p>
+<p>
+<article class="env-theorem" id="00ZJ">
+  <p><a class="environment-identifier" href="/tag/00ZJ">Theorem <span data-tag="00ZJ">7.49.3</span>.</a> Let $\mathcal{C}$ be a category. Let $J$ be a topology on $\mathcal{C}$. Let $\mathcal{F}$ be a presheaf of sets. </p>
+  <p><ol>
+  <li><p>
+The presheaf $L\mathcal{F}$ is separated. 
+</p>
+</li><li><p>
+If $\mathcal{F}$ is separated, then $L\mathcal{F}$ is a sheaf and the map of presheaves $\mathcal{F} \to L\mathcal{F}$ is injective. 
+</p>
+</li><li><p>
+If $\mathcal{F}$ is a sheaf, then $\mathcal{F} \to L\mathcal{F}$ is an isomorphism. 
+</p>
+</li><li><p>
+The presheaf $LL\mathcal{F}$ is always a sheaf. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Part (3) is trivial from the definition of $L$ and the definition of a sheaf (Definition <a href="/tag/00Z8" data-tag="00Z8">7.47.10</a>). Part (4) follows formally from the others. 
+    <p>
+      We sketch the proof of (1). Suppose $S$ is a covering sieve of the object $U$. Suppose that $\varphi _ i \in L\mathcal{F}(U)$, $i = 1, 2$ map to the same element in $\mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(S, L\mathcal{F})$. We may find a single covering sieve $S'$ on $U$ such that both $\varphi _ i$ are represented by elements $\varphi _ i \in \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(S', \mathcal{F})$. We may assume that $S' = S$ by replacing both $S$ and $S'$ by $S' \cap S$ which is also a covering sieve, see Lemma <a href="/tag/00YZ" data-tag="00YZ">7.47.2</a>. Suppose $V\in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$, and $\alpha : V \to U$ in $S(V)$. Then we have $S \times _ U V = h_ V$, see Lemma <a href="/tag/00Z3" data-tag="00Z3">7.47.5</a>. Thus the restrictions of $\varphi _ i$ via $V \to U$ correspond to sections $s_{i, V, \alpha }$ of $\mathcal{F}$ over $V$. The assumption is that there exist a covering sieve $S_{V, \alpha }$ of $V$ such that $s_{i, V, \alpha }$ restrict to the same element of $\mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(S_{V, \alpha }, \mathcal{F})$. Consider the sieve $S''$ on $U$ defined by the rule 
+    <p>
+      <div class="equation" id="00ZK">
+    <span class="equation-label"><a href="/tag/00ZK" data-tag="00ZK">7.49.3.1</a></span>
+  <div>\begin{eqnarray}  \label{sites-equation-S-prime-prime} (f : T \to U) \in S''(T) &  \Leftrightarrow &  \exists \  V , \  \alpha : V \to U, \  \alpha \in S(V), \nonumber \\ & &  \exists \  g : T \to V, \  g \in S_{V, \alpha }(T), \\ & &  f = \alpha \circ g \nonumber \end{eqnarray}</div>
+</div>
+    <p>
+       By axiom (2) of a topology we see that $S''$ is a covering sieve on $U$. By construction we see that $\varphi _1$ and $\varphi _2$ restrict to the same element of $\mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(S'', L\mathcal{F})$ as desired. 
+    <p>
+      We sketch the proof of (2). Assume that $\mathcal{F}$ is a separated presheaf of sets on $\mathcal{C}$ with respect to the topology $J$. Let $S$ be a covering sieve of the object $U$ of $\mathcal{C}$. Suppose that $\varphi \in \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(S, L\mathcal{F})$. We have to find an element $s \in L\mathcal{F}(U)$ restricting to $\varphi $. Suppose $V\in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$, and $\alpha : V \to U$ in $S(V)$. The value $\varphi (\alpha ) \in L\mathcal{F}(V)$ is given by a covering sieve $S_{V, \alpha }$ of $V$ and a morphism of presheaves $\varphi _{V, \alpha } : S_{V, \alpha } \to \mathcal{F}$. As in the proof above, define a covering sieve $S''$ on $U$ by Equation (<a href="/tag/00ZK" data-tag="00ZK">7.49.3.1</a>). We define 
+    <p>
+      <div class="equation">
+  \[  \varphi '' : S'' \longrightarrow \mathcal{F}  \]
+</div>
+    <p>
+       by the following simple rule: For every $f : T \to U$, $f \in S''(T)$ choose $V, \alpha , g$ as in Equation (<a href="/tag/00ZK" data-tag="00ZK">7.49.3.1</a>). Then set 
+    <p>
+      <div class="equation">
+  \[  \varphi ''(f) = \varphi _{V, \alpha }(g).  \]
+</div>
+    <p>
+       We claim this is independent of the choice of $V, \alpha , g$. Consider a second such choice$ V', \alpha ', g'$. The restrictions of $\varphi _{V, \alpha }$ and $\varphi _{V', \alpha '}$ to the intersection of the following covering sieves on $T$ 
+    <p>
+      <div class="equation">
+  \[  (S_{V, \alpha } \times _{V, g} T) \cap (S_{V', \alpha '} \times _{V', g'} T)  \]
+</div>
+    <p>
+       agree. Namely, these restrictions both correspond to the restriction of $\varphi $ to $T$ (via $f$) and the desired equality follows because $\mathcal{F}$ is separated. Denote the common restriction $\psi $. The independence of choice follows because $\varphi _{V, \alpha }(g) = \psi (\text{id}_ T) = \varphi _{V', \alpha '}(g')$. OK, so now $\varphi ''$ gives an element $s \in L\mathcal{F}(U)$. We leave it to the reader to check that $s$ restricts to $\varphi $. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="00ZL">
+  <p><a class="environment-identifier" href="/tag/00ZL">Definition <span data-tag="00ZL">7.49.4</span>.</a> Let $\mathcal{C}$ be a category endowed with a topology $J$. Let $\mathcal{F}$ be a presheaf of sets on $\mathcal{C}$. The sheaf $\mathcal{F}^\#  := LL\mathcal{F}$ together with the canonical map $\mathcal{F} \to \mathcal{F}^\# $ is called the <em>sheaf associated to $\mathcal{F}$</em>. </p>
+</article> 
+</p>
+<p>
+<article class="env-proposition" id="00ZM">
+  <p><a class="environment-identifier" href="/tag/00ZM">Proposition <span data-tag="00ZM">7.49.5</span>.</a> Let $\mathcal{C}$ be a category endowed with a topology. Let $\mathcal{F}$ be a presheaf of sets on $\mathcal{C}$. The canonical map $\mathcal{F} \to \mathcal{F}^\# $ has the following universal property: For any map $\mathcal{F} \to \mathcal{G}$, where $\mathcal{G}$ is a sheaf of sets, there is a unique map $\mathcal{F}^\#  \to \mathcal{G}$ such that $\mathcal{F} \to \mathcal{F}^\#  \to \mathcal{G}$ equals the given map. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Same as the proof of Proposition <a href="/tag/00WH" data-tag="00WH">7.10.12</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

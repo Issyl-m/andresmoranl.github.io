@@ -1,0 +1,342 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="algebra-section-henselization" class="tex-section"><span data-tag="0BSK">10.155</span> Henselization and strict henselization</h2>
+
+<p>
+In this section we construct the henselization. We encourage the reader to keep in mind the uniqueness already proved in Lemma <a href="/tag/08HT" data-tag="08HT">10.154.7</a> and the functorial behaviour pointed out in Lemma <a href="/tag/08HR" data-tag="08HR">10.154.6</a> while reading this material. 
+</p>
+<p>
+<article class="env-lemma" id="04GN">
+  <p><a class="environment-identifier" href="/tag/04GN">Lemma <span data-tag="04GN">10.155.1</span>.</a> Let $(R, \mathfrak m, \kappa )$ be a local ring. There exists a local ring map $R \to R^ h$ with the following properties </p>
+  <p><ol>
+  <li><p>
+$R^ h$ is henselian, 
+</p>
+</li><li><p>
+$R^ h$ is a filtered colimit of étale $R$-algebras, 
+</p>
+</li><li><p>
+$\mathfrak m R^ h$ is the maximal ideal of $R^ h$, and 
+</p>
+</li><li><p>
+$\kappa = R^ h/\mathfrak m R^ h$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider the category of pairs $(S, \mathfrak q)$ where $R \to S$ is an étale ring map, and $\mathfrak q$ is a prime of $S$ lying over $\mathfrak m$ with $\kappa = \kappa (\mathfrak q)$. A morphism of pairs $(S, \mathfrak q) \to (S', \mathfrak q')$ is given by an $R$-algebra map $\varphi : S \to S'$ such that $\varphi ^{-1}(\mathfrak q') = \mathfrak q$. We set 
+    <p>
+      <div class="equation">
+  \[  R^ h = \mathop{\mathrm{colim}}\nolimits _{(S, \mathfrak q)} S.  \]
+</div>
+    <p>
+       Let us show that the category of pairs is filtered, see Categories, Definition <a href="/tag/002V" data-tag="002V">4.19.1</a>. The category contains the pair $(R, \mathfrak m)$ and hence is not empty, which proves part (1) of Categories, Definition <a href="/tag/002V" data-tag="002V">4.19.1</a>. For any pair $(S, \mathfrak q)$ the prime ideal $\mathfrak q$ is maximal with residue field $\kappa $ since the composition $\kappa \to S/\mathfrak q \to \kappa (\mathfrak q)$ is an isomorphism. Suppose that $(S, \mathfrak q)$ and $(S', \mathfrak q')$ are two objects. Set $S'' = S \otimes _ R S'$ and $\mathfrak q'' = \mathfrak qS'' + \mathfrak q'S''$. Then $S''/\mathfrak q'' = S/\mathfrak q \otimes _ R S'/\mathfrak q' = \kappa $ by what we said above. Moreover, $R \to S''$ is étale by Lemma <a href="/tag/00U2" data-tag="00U2">10.143.3</a>. This proves part (2) of Categories, Definition <a href="/tag/002V" data-tag="002V">4.19.1</a>. Next, suppose that $\varphi , \psi : (S, \mathfrak q) \to (S', \mathfrak q')$ are two morphisms of pairs. Then $\varphi $, $\psi $, and $S' \otimes _ R S' \to S'$ are étale ring maps by Lemma <a href="/tag/00U7" data-tag="00U7">10.143.8</a>. Consider 
+    <p>
+      <div class="equation">
+  \[  S'' = (S' \otimes _{\varphi , S, \psi } S') \otimes _{S' \otimes _ R S'} S'  \]
+</div>
+    <p>
+       with prime ideal 
+    <p>
+      <div class="equation">
+  \[  \mathfrak q'' = (\mathfrak q' \otimes S' + S' \otimes \mathfrak q') \otimes S' + (S' \otimes _{\varphi , S, \psi } S') \otimes \mathfrak q'  \]
+</div>
+    <p>
+       Arguing as above (base change of étale maps is étale, composition of étale maps is étale) we see that $S''$ is étale over $R$. Moreover, the canonical map $S' \to S''$ (using the right most factor for example) equalizes $\varphi $ and $\psi $. This proves part (3) of Categories, Definition <a href="/tag/002V" data-tag="002V">4.19.1</a>. Hence we conclude that $R^ h$ consists of triples $(S, \mathfrak q, f)$ with $f \in S$, and two such triples $(S, \mathfrak q, f)$, $(S', \mathfrak q', f')$ define the same element of $R^ h$ if and only if there exists a pair $(S'', \mathfrak q'')$ and morphisms of pairs $\varphi : (S, \mathfrak q) \to (S'', \mathfrak q'')$ and $\varphi ' : (S', \mathfrak q') \to (S'', \mathfrak q'')$ such that $\varphi (f) = \varphi '(f')$. 
+    <p>
+      Suppose that $x \in R^ h$. Represent $x$ by a triple $(S, \mathfrak q, f)$. Let $\mathfrak q_1, \ldots , \mathfrak q_ r$ be the other primes of $S$ lying over $\mathfrak m$. Then $\mathfrak q \not\subset \mathfrak q_ i$ as we have seen above that $\mathfrak q$ is maximal. Thus, since $\mathfrak q$ is a prime ideal, we can find a $g \in S$, $g \not\in \mathfrak q$ and $g \in \mathfrak q_ i$ for $i = 1, \ldots , r$. Consider the morphism of pairs $(S, \mathfrak q) \to (S_ g, \mathfrak qS_ g)$. In this way we see that we may always assume that $x$ is given by a triple $(S, \mathfrak q, f)$ where $\mathfrak q$ is the only prime of $S$ lying over $\mathfrak m$, i.e., $\sqrt{\mathfrak mS} = \mathfrak q$. But since $R \to S$ is étale, we have $\mathfrak mS_{\mathfrak q} = \mathfrak qS_{\mathfrak q}$, see Lemma <a href="/tag/00U4" data-tag="00U4">10.143.5</a>. Hence we actually get that $\mathfrak mS = \mathfrak q$. 
+    <p>
+      Suppose that $x \not\in \mathfrak mR^ h$. Represent $x$ by a triple $(S, \mathfrak q, f)$ with $\mathfrak mS = \mathfrak q$. Then $f \not\in \mathfrak mS$, i.e., $f \not\in \mathfrak q$. Hence $(S, \mathfrak q) \to (S_ f, \mathfrak qS_ f)$ is a morphism of pairs such that the image of $f$ becomes invertible. Hence $x$ is invertible with inverse represented by the triple $(S_ f, \mathfrak qS_ f, 1/f)$. We conclude that $R^ h$ is a local ring with maximal ideal $\mathfrak mR^ h$. The residue field is $\kappa $ since we can define $R^ h/\mathfrak mR^ h \to \kappa $ by mapping a triple $(S, \mathfrak q, f)$ to the residue class of $f$ modulo $\mathfrak q$. 
+    <p>
+      We still have to show that $R^ h$ is henselian. Namely, suppose that $P \in R^ h[T]$ is a monic polynomial and $a_0 \in \kappa $ is a simple root of the reduction $\overline{P} \in \kappa [T]$. Then we can find a pair $(S, \mathfrak q)$ such that $P$ is the image of a monic polynomial $Q \in S[T]$. Set $S' = S[T]/(Q)$ and let $\mathfrak q' \subset S'$ be the maximal ideal $\mathfrak q' = \mathfrak qS' + (T - a')S'$ where $a' \in S$ is any element lifting $a_0$. By construction $S \to S'$ is étale at $\mathfrak q'$ and $\kappa = \kappa (\mathfrak q')$. Pick $g \in S'$, $g \not\in \mathfrak q'$ such that $S'' = S'_ g$ is étale over $S$. Then $(S, \mathfrak q) \to (S'', \mathfrak q'S'')$ is a morphism of pairs. Now that triple $(S'', \mathfrak q'S'', \text{class of }T)$ determines an element $a \in R^ h$ with the properties $P(a) = 0$, and $\overline{a} = a_0$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="04GP">
+  <p><a class="environment-identifier" href="/tag/04GP">Lemma <span data-tag="04GP">10.155.2</span>.</a> Let $(R, \mathfrak m, \kappa )$ be a local ring. Let $\kappa \subset \kappa ^{sep}$ be a separable algebraic closure. There exists a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \kappa \ar[r] &  \kappa \ar[r] &  \kappa ^{sep} \\  R \ar[r] \ar[u] &  R^ h \ar[r] \ar[u] &  R^{sh} \ar[u] }  \]
+</div>
+  <p> with the following properties </p>
+  <p><ol>
+  <li><p>
+the map $R^ h \to R^{sh}$ is local 
+</p>
+</li><li><p>
+$R^{sh}$ is strictly henselian, 
+</p>
+</li><li><p>
+$R^{sh}$ is a filtered colimit of étale $R$-algebras, 
+</p>
+</li><li><p>
+$\mathfrak m R^{sh}$ is the maximal ideal of $R^{sh}$, and 
+</p>
+</li><li><p>
+$\kappa ^{sep} = R^{sh}/\mathfrak m R^{sh}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is proved by exactly the same proof as used for Lemma <a href="/tag/04GN" data-tag="04GN">10.155.1</a>. The only difference is that, instead of pairs, one uses triples $(S, \mathfrak q, \alpha )$ where $R \to S$ étale, $\mathfrak q$ is a prime of $S$ lying over $\mathfrak m$, and $\alpha : \kappa (\mathfrak q) \to \kappa ^{sep}$ is an embedding of extensions of $\kappa $. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="04GQ">
+  <p><a class="environment-identifier" href="/tag/04GQ">Definition <span data-tag="04GQ">10.155.3</span>.</a> Let $(R, \mathfrak m, \kappa )$ be a local ring. </p>
+  <p><ol>
+  <li><p>
+The local ring map $R \to R^ h$ constructed in Lemma <a href="/tag/04GN" data-tag="04GN">10.155.1</a> is called the <em>henselization</em> of $R$. 
+</p>
+</li><li><p>
+Given a separable algebraic closure $\kappa \subset \kappa ^{sep}$ the local ring map $R \to R^{sh}$ constructed in Lemma <a href="/tag/04GP" data-tag="04GP">10.155.2</a> is called the <em>strict henselization of $R$ with respect to $\kappa \subset \kappa ^{sep}$</em>. 
+</p>
+</li><li><p>
+A local ring map $R \to R^{sh}$ is called a <em>strict henselization</em> of $R$ if it is isomorphic to one of the local ring maps constructed in Lemma <a href="/tag/04GP" data-tag="04GP">10.155.2</a> 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+The maps $R \to R^ h \to R^{sh}$ are flat local ring homomorphisms. By Lemma <a href="/tag/08HT" data-tag="08HT">10.154.7</a> the $R$-algebras $R^ h$ and $R^{sh}$ are well defined up to unique isomorphism by the conditions that they are henselian local, filtered colimits of étale $R$-algebras with residue field $\kappa $ and $\kappa ^{sep}$. In the rest of this section we mostly just discuss functoriality of the (strict) henselizations. We will discuss more intricate results concerning the relationship between $R$ and its henselization in More on Algebra, Section <a href="/tag/07QL" data-tag="07QL">15.46</a>. 
+</p>
+<p>
+<article class="env-remark" id="0BSL">
+  <p><a class="environment-identifier" href="/tag/0BSL">Remark <span data-tag="0BSL">10.155.4</span>.</a> We can also construct $R^{sh}$ from $R^ h$. Namely, for any finite separable subextension $\kappa ^{sep}/\kappa '/\kappa $ there exists a unique (up to unique isomorphism) finite étale local ring extension $R^ h \subset R^ h(\kappa ')$ whose residue field extension reproduces the given extension, see Lemma <a href="/tag/04GK" data-tag="04GK">10.153.7</a>. Hence we can set </p>
+  <div class="equation">
+  \[  R^{sh} = \bigcup \nolimits _{\kappa \subset \kappa ' \subset \kappa ^{sep}} R^ h(\kappa ')  \]
+</div>
+  <p> The arrows in this system, compatible with the arrows on the level of residue fields, exist by Lemma <a href="/tag/04GK" data-tag="04GK">10.153.7</a>. This will produce a henselian local ring by Lemma <a href="/tag/04GI" data-tag="04GI">10.154.8</a> since each of the rings $R^ h(\kappa ')$ is henselian by Lemma <a href="/tag/04GH" data-tag="04GH">10.153.4</a>. By construction the residue field extension induced by $R^ h \to R^{sh}$ is the field extension $\kappa ^{sep}/\kappa $. Hence $R^{sh}$ so constructed is strictly henselian. By Lemma <a href="/tag/0BSI" data-tag="0BSI">10.154.2</a> the $R$-algebra $R^{sh}$ is a colimit of étale $R$-algebras. Hence the uniqueness of Lemma <a href="/tag/08HT" data-tag="08HT">10.154.7</a> shows that $R^{sh}$ is the strict henselization. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="04GR">
+  <p><a class="environment-identifier" href="/tag/04GR">Lemma <span data-tag="04GR">10.155.5</span>.</a> Let $R \to S$ be a local map of local rings. Let $S \to S^ h$ be the henselization. Let $R \to A$ be an étale ring map and let $\mathfrak q$ be a prime of $A$ lying over $\mathfrak m_ R$ such that $R/\mathfrak m_ R \cong \kappa (\mathfrak q)$. Then there exists a unique morphism of rings $f : A \to S^ h$ fitting into the commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ A \ar[r]_ f &  S^ h \\  R \ar[u] \ar[r] &  S \ar[u] }  \]
+</div>
+  <p> such that $f^{-1}(\mathfrak m_{S^ h}) = \mathfrak q$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a special case of Lemma <a href="/tag/08HQ" data-tag="08HQ">10.153.11</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="04GS">
+  <p><a class="environment-identifier" href="/tag/04GS">Lemma <span data-tag="04GS">10.155.6</span>.</a> Let $R \to S$ be a local map of local rings. Let $R \to R^ h$ and $S \to S^ h$ be the henselizations. There exists a unique local ring map $R^ h \to S^ h$ fitting into the commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ R^ h \ar[r]_ f &  S^ h \\  R \ar[u] \ar[r] &  S \ar[u] }  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows immediately from Lemma <a href="/tag/08HR" data-tag="08HR">10.154.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Here is a slightly different construction of the henselization. 
+</p>
+<p>
+<article class="env-lemma" id="04GV">
+  <p><a class="environment-identifier" href="/tag/04GV">Lemma <span data-tag="04GV">10.155.7</span>.</a> Let $R$ be a ring. Let $\mathfrak p \subset R$ be a prime ideal. Consider the category of pairs $(S, \mathfrak q)$ where $R \to S$ is étale and $\mathfrak q$ is a prime lying over $\mathfrak p$ such that $\kappa (\mathfrak p) = \kappa (\mathfrak q)$. This category is filtered and </p>
+  <div class="equation">
+  \[  (R_{\mathfrak p})^ h = \mathop{\mathrm{colim}}\nolimits _{(S, \mathfrak q)} S = \mathop{\mathrm{colim}}\nolimits _{(S, \mathfrak q)} S_{\mathfrak q}  \]
+</div>
+  <p> canonically. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      A morphism of pairs $(S, \mathfrak q) \to (S', \mathfrak q')$ is given by an $R$-algebra map $\varphi : S \to S'$ such that $\varphi ^{-1}(\mathfrak q') = \mathfrak q$. Let us show that the category of pairs is filtered, see Categories, Definition <a href="/tag/002V" data-tag="002V">4.19.1</a>. The category contains the pair $(R, \mathfrak p)$ and hence is not empty, which proves part (1) of Categories, Definition <a href="/tag/002V" data-tag="002V">4.19.1</a>. Suppose that $(S, \mathfrak q)$ and $(S', \mathfrak q')$ are two pairs. Note that $\mathfrak q$, resp. $\mathfrak q'$ correspond to primes of the fibre rings $S \otimes \kappa (\mathfrak p)$, resp. $S' \otimes \kappa (\mathfrak p)$ with residue fields $\kappa (\mathfrak p)$, hence they correspond to maximal ideals of $S \otimes \kappa (\mathfrak p)$, resp. $S' \otimes \kappa (\mathfrak p)$. Set $S'' = S \otimes _ R S'$. By the above there exists a unique prime $\mathfrak q'' \subset S''$ lying over $\mathfrak q$ and over $\mathfrak q'$ whose residue field is $\kappa (\mathfrak p)$. The ring map $R \to S''$ is étale by Lemma <a href="/tag/00U2" data-tag="00U2">10.143.3</a>. This proves part (2) of Categories, Definition <a href="/tag/002V" data-tag="002V">4.19.1</a>. Next, suppose that $\varphi , \psi : (S, \mathfrak q) \to (S', \mathfrak q')$ are two morphisms of pairs. Then $\varphi $, $\psi $, and $S' \otimes _ R S' \to S'$ are étale ring maps by Lemma <a href="/tag/00U7" data-tag="00U7">10.143.8</a>. Consider 
+    <p>
+      <div class="equation">
+  \[  S'' = (S' \otimes _{\varphi , S, \psi } S') \otimes _{S' \otimes _ R S'} S'  \]
+</div>
+    <p>
+       Arguing as above (base change of étale maps is étale, composition of étale maps is étale) we see that $S''$ is étale over $R$. The fibre ring of $S''$ over $\mathfrak p$ is 
+    <p>
+      <div class="equation">
+  \[  F'' = (F' \otimes _{\varphi , F, \psi } F') \otimes _{F' \otimes _{\kappa (\mathfrak p)} F'} F'  \]
+</div>
+    <p>
+       where $F', F$ are the fibre rings of $S'$ and $S$. Since $\varphi $ and $\psi $ are morphisms of pairs the map $F' \to \kappa (\mathfrak p)$ corresponding to $\mathfrak p'$ extends to a map $F'' \to \kappa (\mathfrak p)$ and in turn corresponds to a prime ideal $\mathfrak q'' \subset S''$ whose residue field is $\kappa (\mathfrak p)$. The canonical map $S' \to S''$ (using the right most factor for example) is a morphism of pairs $(S', \mathfrak q') \to (S'', \mathfrak q'')$ which equalizes $\varphi $ and $\psi $. This proves part (3) of Categories, Definition <a href="/tag/002V" data-tag="002V">4.19.1</a>. Hence we conclude that the category is filtered. 
+    <p>
+      Recall that in the proof of Lemma <a href="/tag/04GN" data-tag="04GN">10.155.1</a> we constructed $(R_{\mathfrak p})^ h$ as the corresponding colimit but starting with $R_{\mathfrak p}$ and its maximal ideal $\mathfrak pR_{\mathfrak p}$. Now, given any pair $(S, \mathfrak q)$ for $(R, \mathfrak p)$ we obtain a pair $(S_{\mathfrak p}, \mathfrak qS_{\mathfrak p})$ for $(R_{\mathfrak p}, \mathfrak pR_{\mathfrak p})$. Moreover, in this situation 
+    <p>
+      <div class="equation">
+  \[  S_{\mathfrak p} = \mathop{\mathrm{colim}}\nolimits _{f \in R, f \not\in \mathfrak p} S_ f.  \]
+</div>
+    <p>
+       Hence in order to show the equalities of the lemma, it suffices to show that any pair $(S_{loc}, \mathfrak q_{loc})$ for $(R_{\mathfrak p}, \mathfrak pR_{\mathfrak p})$ is of the form $(S_{\mathfrak p}, \mathfrak qS_{\mathfrak p})$ for some pair $(S, \mathfrak q)$ over $(R, \mathfrak p)$ (some details omitted). This follows from Lemma <a href="/tag/00U2" data-tag="00U2">10.143.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08HU">
+  <p><a class="environment-identifier" href="/tag/08HU">Lemma <span data-tag="08HU">10.155.8</span>.</a> Let $R \to S$ be a ring map. Let $\mathfrak q \subset S$ be a prime lying over $\mathfrak p \subset R$. Let $R \to R^ h$ and $S \to S^ h$ be the henselizations of $R_\mathfrak p$ and $S_\mathfrak q$. The local ring map $R^ h \to S^ h$ of Lemma <a href="/tag/04GS" data-tag="04GS">10.155.6</a> identifies $S^ h$ with the henselization of $R^ h \otimes _ R S$ at the unique prime lying over $\mathfrak m^ h$ and $\mathfrak q$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/04GV" data-tag="04GV">10.155.7</a> we see that $R^ h$, resp. $S^ h$ are filtered colimits of étale $R$, resp. $S$-algebras. Hence we see that $R^ h \otimes _ R S$ is a filtered colimit of étale $S$-algebras $A_ i$ (Lemma <a href="/tag/00U2" data-tag="00U2">10.143.3</a>). By Lemma <a href="/tag/08HS" data-tag="08HS">10.154.5</a> we see that $S^ h$ is a filtered colimit of étale $R^ h \otimes _ R S$-algebras. Since moreover $S^ h$ is a henselian local ring with residue field equal to $\kappa (\mathfrak q)$, the statement follows from the uniqueness result of Lemma <a href="/tag/08HT" data-tag="08HT">10.154.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="04GT">
+  <p><a class="environment-identifier" href="/tag/04GT">Lemma <span data-tag="04GT">10.155.9</span>.</a> Let $\varphi : R \to S$ be a local map of local rings. Let $S/\mathfrak m_ S \subset \kappa ^{sep}$ be a separable algebraic closure. Let $S \to S^{sh}$ be the strict henselization of $S$ with respect to $S/\mathfrak m_ S \subset \kappa ^{sep}$. Let $R \to A$ be an étale ring map and let $\mathfrak q$ be a prime of $A$ lying over $\mathfrak m_ R$. Given any commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \kappa (\mathfrak q) \ar[r]_{\phi } &  \kappa ^{sep} \\  R/\mathfrak m_ R \ar[r]^{\varphi } \ar[u] &  S/\mathfrak m_ S \ar[u] }  \]
+</div>
+  <p> there exists a unique morphism of rings $f : A \to S^{sh}$ fitting into the commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ A \ar[r]_ f &  S^{sh} \\  R \ar[u] \ar[r]^{\varphi } &  S \ar[u] }  \]
+</div>
+  <p> such that $f^{-1}(\mathfrak m_{S^ h}) = \mathfrak q$ and the induced map $\kappa (\mathfrak q) \to \kappa ^{sep}$ is the given one. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a special case of Lemma <a href="/tag/08HQ" data-tag="08HQ">10.153.11</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="04GU">
+  <p><a class="environment-identifier" href="/tag/04GU">Lemma <span data-tag="04GU">10.155.10</span>.</a> Let $R \to S$ be a local map of local rings. Choose separable algebraic closures $R/\mathfrak m_ R \subset \kappa _1^{sep}$ and $S/\mathfrak m_ S \subset \kappa _2^{sep}$. Let $R \to R^{sh}$ and $S \to S^{sh}$ be the corresponding strict henselizations. Given any commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \kappa _1^{sep} \ar[r]_{\phi } &  \kappa _2^{sep} \\  R/\mathfrak m_ R \ar[r]^{\varphi } \ar[u] &  S/\mathfrak m_ S \ar[u] }  \]
+</div>
+  <p> There exists a unique local ring map $R^{sh} \to S^{sh}$ fitting into the commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ R^{sh} \ar[r]_ f &  S^{sh} \\  R \ar[u] \ar[r] &  S \ar[u] }  \]
+</div>
+  <p> and inducing $\phi $ on the residue fields of $R^{sh}$ and $S^{sh}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows immediately from Lemma <a href="/tag/08HR" data-tag="08HR">10.154.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="04GW">
+  <p><a class="environment-identifier" href="/tag/04GW">Lemma <span data-tag="04GW">10.155.11</span>.</a> Let $R$ be a ring. Let $\mathfrak p \subset R$ be a prime ideal. Let $\kappa (\mathfrak p) \subset \kappa ^{sep}$ be a separable algebraic closure. Consider the category of triples $(S, \mathfrak q, \phi )$ where $R \to S$ is étale, $\mathfrak q$ is a prime lying over $\mathfrak p$, and $\phi : \kappa (\mathfrak q) \to \kappa ^{sep}$ is a $\kappa (\mathfrak p)$-algebra map. This category is filtered and </p>
+  <div class="equation">
+  \[  (R_{\mathfrak p})^{sh} = \mathop{\mathrm{colim}}\nolimits _{(S, \mathfrak q, \phi )} S = \mathop{\mathrm{colim}}\nolimits _{(S, \mathfrak q, \phi )} S_{\mathfrak q}  \]
+</div>
+  <p> canonically. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      A morphism of triples $(S, \mathfrak q, \phi ) \to (S', \mathfrak q', \phi ')$ is given by an $R$-algebra map $\varphi : S \to S'$ such that $\varphi ^{-1}(\mathfrak q') = \mathfrak q$ and such that $\phi ' \circ \varphi = \phi $. Let us show that the category of pairs is filtered, see Categories, Definition <a href="/tag/002V" data-tag="002V">4.19.1</a>. The category contains the triple $(R, \mathfrak p, \kappa (\mathfrak p) \subset \kappa ^{sep})$ and hence is not empty, which proves part (1) of Categories, Definition <a href="/tag/002V" data-tag="002V">4.19.1</a>. Suppose that $(S, \mathfrak q, \phi )$ and $(S', \mathfrak q', \phi ')$ are two triples. Note that $\mathfrak q$, resp. $\mathfrak q'$ correspond to primes of the fibre rings $S \otimes \kappa (\mathfrak p)$, resp. $S' \otimes \kappa (\mathfrak p)$ with residue fields finite separable over $\kappa (\mathfrak p)$ and $\phi $, resp. $\phi '$ correspond to maps into $\kappa ^{sep}$. Hence this data corresponds to $\kappa (\mathfrak p)$-algebra maps 
+    <p>
+      <div class="equation">
+  \[  \phi : S \otimes _ R \kappa (\mathfrak p) \longrightarrow \kappa ^{sep}, \quad \phi ' : S' \otimes _ R \kappa (\mathfrak p) \longrightarrow \kappa ^{sep}.  \]
+</div>
+    <p>
+       Set $S'' = S \otimes _ R S'$. Combining the maps the above we get a unique $\kappa (\mathfrak p)$-algebra map 
+    <p>
+      <div class="equation">
+  \[  \phi '' = \phi \otimes \phi ' : S'' \otimes _ R \kappa (\mathfrak p) \longrightarrow \kappa ^{sep}  \]
+</div>
+    <p>
+       whose kernel corresponds to a prime $\mathfrak q'' \subset S''$ lying over $\mathfrak q$ and over $\mathfrak q'$, and whose residue field maps via $\phi ''$ to the compositum of $\phi (\kappa (\mathfrak q))$ and $\phi '(\kappa (\mathfrak q'))$ in $\kappa ^{sep}$. The ring map $R \to S''$ is étale by Lemma <a href="/tag/00U2" data-tag="00U2">10.143.3</a>. Hence $(S'', \mathfrak q'', \phi '')$ is a triple dominating both $(S, \mathfrak q, \phi )$ and $(S', \mathfrak q', \phi ')$. This proves part (2) of Categories, Definition <a href="/tag/002V" data-tag="002V">4.19.1</a>. Next, suppose that $\varphi , \psi : (S, \mathfrak q, \phi ) \to (S', \mathfrak q', \phi ')$ are two morphisms of pairs. Then $\varphi $, $\psi $, and $S' \otimes _ R S' \to S'$ are étale ring maps by Lemma <a href="/tag/00U7" data-tag="00U7">10.143.8</a>. Consider 
+    <p>
+      <div class="equation">
+  \[  S'' = (S' \otimes _{\varphi , S, \psi } S') \otimes _{S' \otimes _ R S'} S'  \]
+</div>
+    <p>
+       Arguing as above (base change of étale maps is étale, composition of étale maps is étale) we see that $S''$ is étale over $R$. The fibre ring of $S''$ over $\mathfrak p$ is 
+    <p>
+      <div class="equation">
+  \[  F'' = (F' \otimes _{\varphi , F, \psi } F') \otimes _{F' \otimes _{\kappa (\mathfrak p)} F'} F'  \]
+</div>
+    <p>
+       where $F', F$ are the fibre rings of $S'$ and $S$. Since $\varphi $ and $\psi $ are morphisms of triples the map $\phi ' : F' \to \kappa ^{sep}$ extends to a map $\phi '' : F'' \to \kappa ^{sep}$ which in turn corresponds to a prime ideal $\mathfrak q'' \subset S''$. The canonical map $S' \to S''$ (using the right most factor for example) is a morphism of triples $(S', \mathfrak q', \phi ') \to (S'', \mathfrak q'', \phi '')$ which equalizes $\varphi $ and $\psi $. This proves part (3) of Categories, Definition <a href="/tag/002V" data-tag="002V">4.19.1</a>. Hence we conclude that the category is filtered. 
+    <p>
+      We still have to show that the colimit $R_{colim}$ of the system is equal to the strict henselization of $R_{\mathfrak p}$ with respect to $\kappa ^{sep}$. To see this note that the system of triples $(S, \mathfrak q, \phi )$ contains as a subsystem the pairs $(S, \mathfrak q)$ of Lemma <a href="/tag/04GV" data-tag="04GV">10.155.7</a>. Hence $R_{colim}$ contains $R_{\mathfrak p}^ h$ by the result of that lemma. Moreover, it is clear that $R_{\mathfrak p}^ h \subset R_{colim}$ is a directed colimit of étale ring extensions. It follows that $R_{colim}$ is henselian by Lemmas <a href="/tag/04GH" data-tag="04GH">10.153.4</a> and <a href="/tag/04GI" data-tag="04GI">10.154.8</a>. Finally, by Lemma <a href="/tag/00UD" data-tag="00UD">10.144.3</a> we see that the residue field of $R_{colim}$ is equal to $\kappa ^{sep}$. Hence we conclude that $R_{colim}$ is strictly henselian and hence equals the strict henselization of $R_{\mathfrak p}$ as desired. Some details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08HV">
+  <p><a class="environment-identifier" href="/tag/08HV">Lemma <span data-tag="08HV">10.155.12</span>.</a> Let $R \to S$ be a ring map. Let $\mathfrak q \subset S$ be a prime lying over $\mathfrak p \subset R$. Choose separable algebraic closures $\kappa (\mathfrak p) \subset \kappa _1^{sep}$ and $\kappa (\mathfrak q) \subset \kappa _2^{sep}$. Let $R^{sh}$ and $S^{sh}$ be the corresponding strict henselizations of $R_\mathfrak p$ and $S_\mathfrak q$. Given any commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \kappa _1^{sep} \ar[r]_{\phi } &  \kappa _2^{sep} \\  \kappa (\mathfrak p) \ar[r]^{\varphi } \ar[u] &  \kappa (\mathfrak q) \ar[u] }  \]
+</div>
+  <p> The local ring map $R^{sh} \to S^{sh}$ of Lemma <a href="/tag/04GU" data-tag="04GU">10.155.10</a> identifies $S^{sh}$ with the strict henselization of $R^{sh} \otimes _ R S$ at a prime lying over $\mathfrak q$ and the maximal ideal $\mathfrak m^{sh} \subset R^{sh}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The proof is identical to the proof of Lemma <a href="/tag/08HU" data-tag="08HU">10.155.8</a> except that it uses Lemma <a href="/tag/04GW" data-tag="04GW">10.155.11</a> instead of Lemma <a href="/tag/04GV" data-tag="04GV">10.155.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0C2Z">
+  <p><a class="environment-identifier" href="/tag/0C2Z">Lemma <span data-tag="0C2Z">10.155.13</span>.</a> Let $R \to S$ be a ring map. Let $\mathfrak q \subset S$ be a prime lying over $\mathfrak p \subset R$ such that $\kappa (\mathfrak p) \to \kappa (\mathfrak q)$ is an isomorphism. Choose a separable algebraic closure $\kappa ^{sep}$ of $\kappa (\mathfrak p) = \kappa (\mathfrak q)$. Then </p>
+  <div class="equation">
+  \[  (S_\mathfrak q)^{sh} = (S_\mathfrak q)^ h \otimes _{(R_\mathfrak p)^ h} (R_\mathfrak p)^{sh}  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from the alternative construction of the strict henselization of a local ring in Remark <a href="/tag/0BSL" data-tag="0BSL">10.155.4</a> and the fact that the residue fields are equal. Some details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

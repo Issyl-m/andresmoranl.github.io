@@ -1,0 +1,123 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="algebra-section-graded" class="tex-section"><span data-tag="00JL">10.56</span> Graded rings</h2>
+
+<p>
+A <em>graded ring</em> will be for us a ring $S$ endowed with a direct sum decomposition $S = \bigoplus _{d \geq 0} S_ d$ of the underlying abelian group such that $S_ d \cdot S_ e \subset S_{d + e}$. Note that we do not allow nonzero elements in negative degrees. The <em>irrelevant ideal</em> is the ideal $S_{+} = \bigoplus _{d > 0} S_ d$. A <em>graded module</em> will be an $S$-module $M$ endowed with a direct sum decomposition $M = \bigoplus _{n\in \mathbf{Z}} M_ n$ of the underlying abelian group such that $S_ d \cdot M_ e \subset M_{d + e}$. Note that for modules we do allow nonzero elements in negative degrees. We think of $S$ as a graded $S$-module by setting $S_{-k} = (0)$ for $k > 0$. An element $x$ (resp. $f$) of $M$ (resp. $S$) is called <em>homogeneous</em> if $x \in M_ d$ (resp. $f \in S_ d$) for some $d$. A <em>map of graded $S$-modules</em> is a map of $S$-modules $\varphi : M \to M'$ such that $\varphi (M_ d) \subset M'_ d$. We do not allow maps to shift degrees. Let us denote $\text{GrHom}_0(M, N)$ the $S_0$-module of homomorphisms of graded modules from $M$ to $N$. 
+</p>
+<p>
+At this point there are the notions of graded ideal, graded quotient ring, graded submodule, graded quotient module, graded tensor product, etc. We leave it to the reader to find the relevant definitions, and lemmas. For example: A short exact sequence of graded modules is short exact in every degree. 
+</p>
+<p>
+Given a graded ring $S$, a graded $S$-module $M$ and $n \in \mathbf{Z}$ we denote $M(n)$ the graded $S$-module with $M(n)_ d = M_{n + d}$. This is called the <em>twist of $M$ by $n$</em>. In particular we get modules $S(n)$, $n \in \mathbf{Z}$ which will play an important role in the study of projective schemes. There are some obvious functorial isomorphisms such as $(M \oplus N)(n) = M(n) \oplus N(n)$, $(M \otimes _ S N)(n) = M \otimes _ S N(n) = M(n) \otimes _ S N$. In addition we can define a graded $S$-module structure on the $S_0$-module 
+</p>
+<div class="equation">
+  \[  \text{GrHom}(M, N) = \bigoplus \nolimits _{n \in \mathbf{Z}} \text{GrHom}_ n(M, N), \quad \text{GrHom}_ n(M, N) = \text{GrHom}_0(M, N(n)).  \]
+</div>
+<p>
+ We omit the definition of the multiplication. 
+</p>
+<p>
+<article class="env-lemma" id="0EKB">
+  <p><a class="environment-identifier" href="/tag/0EKB">Lemma <span data-tag="0EKB">10.56.1</span>.</a> Let $S$ be a graded ring. Let $M$ be a graded $S$-module. </p>
+  <p><ol>
+  <li><p>
+If $S_+M = M$ and $M$ is finite, then $M = 0$. 
+</p>
+</li><li><p>
+If $N, N' \subset M$ are graded submodules, $M = N + S_+N'$, and $N'$ is finite, then $M = N$. 
+</p>
+</li><li><p>
+If $N \to M$ is a map of graded modules, $N/S_+N \to M/S_+M$ is surjective, and $M$ is finite, then $N \to M$ is surjective. 
+</p>
+</li><li><p>
+If $x_1, \ldots , x_ n \in M$ are homogeneous and generate $M/S_+M$ and $M$ is finite, then $x_1, \ldots , x_ n$ generate $M$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Proof of (1). Choose generators $y_1, \ldots , y_ r$ of $M$ over $S$. We may assume that $y_ i$ is homogeneous of degree $d_ i$. After renumbering we may assume $d_ r = \min (d_ i)$. Then the condition that $S_+M = M$ implies $y_ r = 0$. Hence $M = 0$ by induction on $r$. Part (2) follows by applying (1) to $M/N$. Part (3) follows by applying (2) to the submodules $\mathop{\mathrm{Im}}(N \to M)$ and $M$. Part (4) follows by applying (3) to the module map $\bigoplus S(-d_ i) \to M$, $(s_1, \ldots , s_ n) \mapsto \sum s_ i x_ i$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $S$ be a graded ring. Let $d \geq 1$ be an integer. We set $S^{(d)} = \bigoplus _{n \geq 0} S_{nd}$. We think of $S^{(d)}$ as a graded ring with degree $n$ summand $(S^{(d)})_ n = S_{nd}$. Given a graded $S$-module $M$ we can similarly consider $M^{(d)} = \bigoplus _{n \in \mathbf{Z}} M_{nd}$ which is a graded $S^{(d)}$-module. 
+</p>
+<p>
+<article class="env-lemma" id="0EGH">
+  <p><a class="environment-identifier" href="/tag/0EGH">Lemma <span data-tag="0EGH">10.56.2</span>.</a> Let $S$ be a graded ring, which is finitely generated over $S_0$. Then for all sufficiently divisible $d$ the algebra $S^{(d)}$ is generated in degree $1$ over $S_0$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Say $S$ is generated by $f_1, \ldots , f_ r \in S$ over $S_0$. After replacing $f_ i$ by their homogeneous parts, we may assume $f_ i$ is homogeneous of degree $d_ i > 0$. Then any element of $S_ n$ is a linear combination with coefficients in $S_0$ of monomials $f_1^{e_1} \ldots f_ r^{e_ r}$ with $\sum e_ i d_ i = n$. Let $m$ be a multiple of $\text{lcm}(d_ i)$. For any $N \geq r$ if 
+    <p>
+      <div class="equation">
+  \[  \sum e_ i d_ i = N m  \]
+</div>
+    <p>
+       then for some $i$ we have $e_ i \geq m/d_ i$ by an elementary argument. Hence every monomial of degree $N m$ is a product of a monomial of degree $m$, namely $f_ i^{m/d_ i}$, and a monomial of degree $(N - 1)m$. It follows that any monomial of degree $nrm$ with $n \geq 2$ is a product of monomials of degree $rm$. Thus $S^{(rm)}$ is generated in degree $1$ over $S_0$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="077G">
+       
+      
+  <p><a class="environment-identifier" href="/tag/077G">Lemma <span data-tag="077G">10.56.3</span>.</a> Let $R \to S$ be a homomorphism of graded rings. Let $S' \subset S$ be the integral closure of $R$ in $S$. Then </p>
+  <div class="equation">
+  \[  S' = \bigoplus \nolimits _{d \geq 0} S' \cap S_ d,  \]
+</div>
+  <p> i.e., $S'$ is a graded $R$-subalgebra of $S$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We have to show the following: If $s = s_ n + s_{n + 1} + \ldots + s_ m \in S'$, then each homogeneous part $s_ j \in S'$. We will prove this by induction on $m - n$ over all homomorphisms $R \to S$ of graded rings. First note that it is immediate that $s_0$ is integral over $R_0$ (hence over $R$) as there is a ring map $S \to S_0$ compatible with the ring map $R \to R_0$. Thus, after replacing $s$ by $s - s_0$, we may assume $n > 0$. Consider the extension of graded rings $R[t, t^{-1}] \to S[t, t^{-1}]$ where $t$ has degree $0$. There is a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ S[t, t^{-1}] \ar[rr]_{s \mapsto t^{\deg (s)}s} &  &  S[t, t^{-1}] \\  R[t, t^{-1}] \ar[u] \ar[rr]^{r \mapsto t^{\deg (r)}r} &  &  R[t, t^{-1}] \ar[u] }  \]
+</div>
+    <p>
+       where the horizontal maps are ring automorphisms. Hence the integral closure $C$ of $S[t, t^{-1}]$ over $R[t, t^{-1}]$ maps into itself. Thus we see that 
+    <p>
+      <div class="equation">
+  \[  t^ m(s_ n + s_{n + 1} + \ldots + s_ m) - (t^ ns_ n + t^{n + 1}s_{n + 1} + \ldots + t^ ms_ m) \in C  \]
+</div>
+    <p>
+       which implies by induction hypothesis that each $(t^ m - t^ i)s_ i \in C$ for $i = n, \ldots , m - 1$. Note that for any ring $A$ and $m > i \geq n > 0$ we have $A[t, t^{-1}]/(t^ m - t^ i - 1) \cong A[t]/(t^ m - t^ i - 1) \supset A$ because $t(t^{m - 1} - t^{i - 1}) = 1$ in $A[t]/(t^ m - t^ i - 1)$. Since $t^ m - t^ i$ maps to $1$ we see the image of $s_ i$ in the ring $S[t]/(t^ m - t^ i - 1)$ is integral over $R[t]/(t^ m - t^ i - 1)$ for $i = n, \ldots , m - 1$. Since $R \to R[t]/(t^ m - t^ i - 1)$ is finite we see that $s_ i$ is integral over $R$ by transitivity, see Lemma <a href="/tag/00GN" data-tag="00GN">10.36.6</a>. Finally, we also conclude that $s_ m = s - \sum _{i = n, \ldots , m - 1} s_ i$ is integral over $R$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

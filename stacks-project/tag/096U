@@ -1,0 +1,298 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="proetale-section-construction" class="tex-section"><span data-tag="096U">61.5</span> Constructing w-local affine schemes</h2>
+
+<p>
+An affine scheme $X$ is called <em>w-local</em> if its underlying topological space is w-local (Definition <a href="/tag/096A" data-tag="096A">61.2.3</a>). It turns out given any ring $A$ there is a canonical faithfully flat ind-Zariski ring map $A \to A_ w$ such that $\mathop{\mathrm{Spec}}(A_ w)$ is w-local. The key to constructing $A_ w$ is the following simple lemma. 
+</p>
+<p>
+<article class="env-lemma" id="096V">
+  <p><a class="environment-identifier" href="/tag/096V">Lemma <span data-tag="096V">61.5.1</span>.</a> Let $A$ be a ring. Set $X = \mathop{\mathrm{Spec}}(A)$. Let $Z \subset X$ be a locally closed subscheme which is of the form $D(f) \cap V(I)$ for some $f \in A$ and ideal $I \subset A$. Then </p>
+  <p><ol>
+  <li><p>
+there exists a multiplicative subset $S \subset A$ such that $\mathop{\mathrm{Spec}}(S^{-1}A)$ maps by a homeomorphism to the set of points of $X$ specializing to $Z$, 
+</p>
+</li><li><p>
+the $A$-algebra $A_ Z^\sim = S^{-1}A$ depends only on the underlying locally closed subset $Z \subset X$, 
+</p>
+</li><li><p>
+$Z$ is a closed subscheme of $\mathop{\mathrm{Spec}}(A_ Z^\sim )$, 
+</p>
+</li>
+</ol></p>
+  <p> If $A \to A'$ is a ring map and $Z' \subset X' = \mathop{\mathrm{Spec}}(A')$ is a locally closed subscheme of the same form which maps into $Z$, then there is a unique $A$-algebra map $A_ Z^\sim \to (A')_{Z'}^\sim $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $S \subset A$ be the multiplicative set of elements which map to invertible elements of $\Gamma (Z, \mathcal{O}_ Z) = (A/I)_ f$. If $\mathfrak p$ is a prime of $A$ which does not specialize to $Z$, then $\mathfrak p$ generates the unit ideal in $(A/I)_ f$. Hence we can write $f^ n = g + h$ for some $n \geq 0$, $g \in \mathfrak p$, $h \in I$. Then $g \in S$ and we see that $\mathfrak p$ is not in the spectrum of $S^{-1}A$. Conversely, if $\mathfrak p$ does specialize to $Z$, say $\mathfrak p \subset \mathfrak q \supset I$ with $f \not\in \mathfrak q$, then we see that $S^{-1}A$ maps to $A_\mathfrak q$ and hence $\mathfrak p$ is in the spectrum of $S^{-1}A$. This proves (1). 
+    <p>
+      The isomorphism class of the localization $S^{-1}A$ depends only on the corresponding subset $\mathop{\mathrm{Spec}}(S^{-1}A) \subset \mathop{\mathrm{Spec}}(A)$, whence (2) holds. By construction $S^{-1}A$ maps surjectively onto $(A/I)_ f$, hence (3). The final statement follows as the multiplicative subset $S' \subset A'$ corresponding to $Z'$ contains the image of the multiplicative subset $S$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $A$ be a ring. Let $E \subset A$ be a finite subset. We get a stratification of $X = \mathop{\mathrm{Spec}}(A)$ into locally closed subschemes by looking at the vanishing behaviour of the elements of $E$. More precisely, given a disjoint union decomposition $E = E' \amalg E''$ we set 
+</p>
+<div class="equation" id="096W">
+    <span class="equation-label"><a href="/tag/096W" data-tag="096W">61.5.1.1</a></span>
+  <div>\begin{equation}  \label{proetale-equation-stratum} Z(E', E'') = \bigcap \nolimits _{f \in E'} D(f) \cap \bigcap \nolimits _{f \in E''} V(f) = D(\prod \nolimits _{f \in E'} f) \cap V( \sum \nolimits _{f \in E''} fA) \end{equation}</div>
+</div>
+<p>
+ The points of $Z(E', E'')$ are exactly those $x \in X$ such that $f \in E'$ maps to a nonzero element in $\kappa (x)$ and $f \in E''$ maps to zero in $\kappa (x)$. Thus it is clear that 
+</p>
+<div class="equation" id="096X">
+    <span class="equation-label"><a href="/tag/096X" data-tag="096X">61.5.1.2</a></span>
+  <div>\begin{equation}  \label{proetale-equation-stratify} X = \coprod \nolimits _{E = E' \amalg E''} Z(E', E'') \end{equation}</div>
+</div>
+<p>
+ set theoretically. Observe that each stratum is constructible. 
+</p>
+<p>
+<article class="env-lemma" id="096Y">
+  <p><a class="environment-identifier" href="/tag/096Y">Lemma <span data-tag="096Y">61.5.2</span>.</a> Let $X = \mathop{\mathrm{Spec}}(A)$ as above. Given any finite stratification $X = \coprod T_ i$ by constructible subsets, there exists a finite subset $E \subset A$ such that the stratification (<a href="/tag/096X" data-tag="096X">61.5.1.2</a>) refines $X = \coprod T_ i$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We may write $T_ i = \bigcup _ j U_{i, j} \cap V_{i, j}^ c$ as a finite union for some $U_{i, j}$ and $V_{i, j}$ quasi-compact open in $X$. Then we may write $U_{i, j} = \bigcup D(f_{i, j, k})$ and $V_{i, j} = \bigcup D(g_{i, j, l})$. Then we set $E = \{ f_{i, j, k}\}  \cup \{ g_{i, j, l}\} $. This does the job, because the stratification (<a href="/tag/096X" data-tag="096X">61.5.1.2</a>) is the one whose strata are labeled by the vanishing pattern of the elements of $E$ which clearly refines the given stratification. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We continue the discussion. Given a finite subset $E \subset A$ we set 
+</p>
+<div class="equation" id="096Z">
+    <span class="equation-label"><a href="/tag/096Z" data-tag="096Z">61.5.2.1</a></span>
+  <div>\begin{equation}  \label{proetale-equation-ring} A_ E = \prod \nolimits _{E = E' \amalg E''} A_{Z(E', E'')}^\sim \end{equation}</div>
+</div>
+<p>
+ with notation as in Lemma <a href="/tag/096V" data-tag="096V">61.5.1</a>. This makes sense because (<a href="/tag/096W" data-tag="096W">61.5.1.1</a>) shows that each $Z(E', E'')$ has the correct shape. We take the spectrum of this ring and denote it 
+</p>
+<div class="equation" id="0970">
+    <span class="equation-label"><a href="/tag/0970" data-tag="0970">61.5.2.2</a></span>
+  <div>\begin{equation}  \label{proetale-equation-spectrum} X_ E = \mathop{\mathrm{Spec}}(A_ E) = \coprod \nolimits _{E = E' \amalg E''} X_{E', E''} \end{equation}</div>
+</div>
+<p>
+ with $X_{E', E''} = \mathop{\mathrm{Spec}}(A_{Z(E', E'')}^\sim )$. Note that 
+</p>
+<div class="equation" id="0971">
+    <span class="equation-label"><a href="/tag/0971" data-tag="0971">61.5.2.3</a></span>
+  <div>\begin{equation}  \label{proetale-equation-closed} Z_ E = \coprod \nolimits _{E = E' \amalg E''} Z(E', E'') \longrightarrow X_ E \end{equation}</div>
+</div>
+<p>
+ is a closed subscheme. By construction the closed subscheme $Z_ E$ contains all the closed points of the affine scheme $X_ E$ as every point of $X_{E', E''}$ specializes to a point of $Z(E', E'')$. 
+</p>
+<p>
+Let $I(A)$ be the partially ordered set of all finite subsets of $A$. This is a directed partially ordered set. For $E_1 \subset E_2$ there is a canonical transition map $A_{E_1} \to A_{E_2}$ of $A$-algebras. Namely, given a decomposition $E_2 = E'_2 \amalg E''_2$ we set $E'_1 = E_1 \cap E'_2$ and $E''_1 = E_1 \cap E''_2$. Then observe that $Z(E'_2, E''_2) \subset Z(E'_1, E''_1)$ hence a unique $A$-algebra map $A_{Z(E'_1, E''_1)}^\sim \to A_{Z(E'_2, E''_2)}^\sim $ by Lemma <a href="/tag/096V" data-tag="096V">61.5.1</a>. Using these maps collectively we obtain the desired ring map $A_{E_1} \to A_{E_2}$. Observe that the corresponding map of affine schemes 
+</p>
+<div class="equation" id="0972">
+    <span class="equation-label"><a href="/tag/0972" data-tag="0972">61.5.2.4</a></span>
+  <div>\begin{equation}  \label{proetale-equation-transition} X_{E_2} \longrightarrow X_{E_1} \end{equation}</div>
+</div>
+<p>
+ maps $Z_{E_2}$ into $Z_{E_1}$. By uniqueness we obtain a system of $A$-algebras over $I(A)$ and we set 
+</p>
+<div class="equation" id="0973">
+    <span class="equation-label"><a href="/tag/0973" data-tag="0973">61.5.2.5</a></span>
+  <div>\begin{equation}  \label{proetale-equation-colimit-ring} A_ w = \mathop{\mathrm{colim}}\nolimits _{E \in I(A)} A_ E \end{equation}</div>
+</div>
+<p>
+ This $A$-algebra is ind-Zariski and faithfully flat over $A$. Finally, we set $X_ w = \mathop{\mathrm{Spec}}(A_ w)$ and endow it with the closed subscheme $Z = \mathop{\mathrm{lim}}\nolimits _{E \in I(A)} Z_ E$. In a formula 
+</p>
+<div class="equation" id="0974">
+    <span class="equation-label"><a href="/tag/0974" data-tag="0974">61.5.2.6</a></span>
+  <div>\begin{equation}  \label{proetale-equation-final} X_ w = \mathop{\mathrm{lim}}\nolimits _{E \in I(A)} X_ E \supset Z = \mathop{\mathrm{lim}}\nolimits _{E \in I(A)} Z_ E \end{equation}</div>
+</div>
+<p>
+<article class="env-lemma" id="0975">
+  <p><a class="environment-identifier" href="/tag/0975">Lemma <span data-tag="0975">61.5.3</span>.</a> Let $X = \mathop{\mathrm{Spec}}(A)$ be an affine scheme. With $A \to A_ w$, $X_ w = \mathop{\mathrm{Spec}}(A_ w)$, and $Z \subset X_ w$ as above. </p>
+  <p><ol>
+  <li><p>
+$A \to A_ w$ is ind-Zariski and faithfully flat, 
+</p>
+</li><li><p>
+$X_ w \to X$ induces a bijection $Z \to X$, 
+</p>
+</li><li><p>
+$Z$ is the set of closed points of $X_ w$, 
+</p>
+</li><li><p>
+$Z$ is a reduced scheme, and 
+</p>
+</li><li><p>
+every point of $X_ w$ specializes to a unique point of $Z$. 
+</p>
+</li>
+</ol></p>
+  <p> In particular, $X_ w$ is w-local (Definition <a href="/tag/096A" data-tag="096A">61.2.3</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The map $A \to A_ w$ is ind-Zariski by construction. For every $E$ the morphism $Z_ E \to X$ is a bijection, hence (2). As $Z \subset X_ w$ we conclude $X_ w \to X$ is surjective and $A \to A_ w$ is faithfully flat by Algebra, Lemma <a href="/tag/00HQ" data-tag="00HQ">10.39.16</a>. This proves (1). 
+    <p>
+      Suppose that $y \in X_ w$, $y \not\in Z$. Then there exists an $E$ such that the image of $y$ in $X_ E$ is not contained in $Z_ E$. Then for all $E \subset E'$ also $y$ maps to an element of $X_{E'}$ not contained in $Z_{E'}$. Let $T_{E'} \subset X_{E'}$ be the reduced closed subscheme which is the closure of the image of $y$. It is clear that $T = \mathop{\mathrm{lim}}\nolimits _{E \subset E'} T_{E'}$ is the closure of $y$ in $X_ w$. For every $E \subset E'$ the scheme $T_{E'} \cap Z_{E'}$ is nonempty by construction of $X_{E'}$. Hence $\mathop{\mathrm{lim}}\nolimits T_{E'} \cap Z_{E'}$ is nonempty and we conclude that $T \cap Z$ is nonempty. Thus $y$ is not a closed point. It follows that every closed point of $X_ w$ is in $Z$. 
+    <p>
+      Suppose that $y \in X_ w$ specializes to $z, z' \in Z$. We will show that $z = z'$ which will finish the proof of (3) and will imply (5). Let $x, x' \in X$ be the images of $z$ and $z'$. Since $Z \to X$ is bijective it suffices to show that $x = x'$. If $x \not= x'$, then there exists an $f \in A$ such that $x \in D(f)$ and $x' \in V(f)$ (or vice versa). Set $E = \{ f\} $ so that 
+    <p>
+      <div class="equation">
+  \[  X_ E = \mathop{\mathrm{Spec}}(A_ f) \amalg \mathop{\mathrm{Spec}}(A_{V(f)}^\sim )  \]
+</div>
+    <p>
+       Then we see that $z$ and $z'$ map $x_ E$ and $x'_ E$ which are in different parts of the given decomposition of $X_ E$ above. But then it impossible for $x_ E$ and $x'_ E$ to be specializations of a common point. This is the desired contradiction. 
+    <p>
+      Recall that given a finite subset $E \subset A$ we have $Z_ E$ is a disjoint union of the locally closed subschemes $Z(E', E'')$ each isomorphic to the spectrum of $(A/I)_ f$ where $I$ is the ideal generated by $E''$ and $f$ the product of the elements of $E'$. Any nilpotent element $b$ of $(A/I)_ f$ is the class of $g/f^ n$ for some $g \in A$. Then setting $E' = E \cup \{ g\} $ the reader verifies that $b$ is pulls back to zero under the transition map $Z_{E'} \to Z_ E$ of the system. This proves (4). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0976">
+  <p><a class="environment-identifier" href="/tag/0976">Remark <span data-tag="0976">61.5.4</span>.</a> Let $A$ be a ring. Let $\kappa $ be an infinite cardinal bigger or equal than the cardinality of $A$. Then the cardinality of $A_ w$ (Lemma <a href="/tag/0975" data-tag="0975">61.5.3</a>) is at most $\kappa $. Namely, each $A_ E$ has cardinality at most $\kappa $ and the set of finite subsets of $A$ has cardinality at most $\kappa $ as well. Thus the result follows as $\kappa \otimes \kappa = \kappa $, see Sets, Section <a href="/tag/000D" data-tag="000D">3.6</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0977">
+  <p><a class="environment-identifier" href="/tag/0977">Lemma <span data-tag="0977">61.5.5</span> <span class="named">(Universal property of the construction)</span>.</a>  Let $A$ be a ring. Let $A \to A_ w$ be the ring map constructed in Lemma <a href="/tag/0975" data-tag="0975">61.5.3</a>. For any ring map $A \to B$ such that $\mathop{\mathrm{Spec}}(B)$ is w-local, there is a unique factorization $A \to A_ w \to B$ such that $\mathop{\mathrm{Spec}}(B) \to \mathop{\mathrm{Spec}}(A_ w)$ is w-local. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Denote $Y = \mathop{\mathrm{Spec}}(B)$ and $Y_0 \subset Y$ the set of closed points. Denote $f : Y \to X$ the given morphism. Recall that $Y_0$ is profinite, in particular every constructible subset of $Y_0$ is open and closed. Let $E \subset A$ be a finite subset. Recall that $A_ w = \mathop{\mathrm{colim}}\nolimits A_ E$ and that the set of closed points of $\mathop{\mathrm{Spec}}(A_ w)$ is the limit of the closed subsets $Z_ E \subset X_ E = \mathop{\mathrm{Spec}}(A_ E)$. Thus it suffices to show there is a unique factorization $A \to A_ E \to B$ such that $Y \to X_ E$ maps $Y_0$ into $Z_ E$. Since $Z_ E \to X = \mathop{\mathrm{Spec}}(A)$ is bijective, and since the strata $Z(E', E'')$ are constructible we see that 
+    <p>
+      <div class="equation">
+  \[  Y_0 = \coprod f^{-1}(Z(E', E'')) \cap Y_0  \]
+</div>
+    <p>
+       is a disjoint union decomposition into open and closed subsets. As $Y_0 = \pi _0(Y)$ we obtain a corresponding decomposition of $Y$ into open and closed pieces. Thus it suffices to construct the factorization in case $f(Y_0) \subset Z(E', E'')$ for some decomposition $E = E' \amalg E''$. In this case $f(Y)$ is contained in the set of points of $X$ specializing to $Z(E', E'')$ which is homeomorphic to $X_{E', E''}$. Thus we obtain a unique continuous map $Y \to X_{E', E''}$ over $X$. By Lemma <a href="/tag/096K" data-tag="096K">61.3.7</a> this corresponds to a unique morphism of schemes $Y \to X_{E', E''}$ over $X$. This finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Recall that the spectrum of a ring is profinite if and only if every point is closed. There are in fact a whole slew of equivalent conditions that imply this. See Algebra, Lemma <a href="/tag/04MG" data-tag="04MG">10.26.5</a> or Topology, Lemma <a href="/tag/0905" data-tag="0905">5.23.8</a>. 
+</p>
+<p>
+<article class="env-lemma" id="0978">
+  <p><a class="environment-identifier" href="/tag/0978">Lemma <span data-tag="0978">61.5.6</span>.</a> Let $A$ be a ring such that $\mathop{\mathrm{Spec}}(A)$ is profinite. Let $A \to B$ be a ring map. Then $\mathop{\mathrm{Spec}}(B)$ is profinite in each of the following cases: </p>
+  <p><ol>
+  <li><p>
+if $\mathfrak q,\mathfrak q' \subset B$ lie over the same prime of $A$, then neither $\mathfrak q \subset \mathfrak q'$, nor $\mathfrak q' \subset \mathfrak q$, 
+</p>
+</li><li><p>
+$A \to B$ induces algebraic extensions of residue fields, 
+</p>
+</li><li><p>
+$A \to B$ is a local isomorphism, 
+</p>
+</li><li><p>
+$A \to B$ identifies local rings, 
+</p>
+</li><li><p>
+$A \to B$ is weakly étale, 
+</p>
+</li><li><p>
+$A \to B$ is quasi-finite, 
+</p>
+</li><li><p>
+$A \to B$ is unramified, 
+</p>
+</li><li><p>
+$A \to B$ is étale, 
+</p>
+</li><li><p>
+$B$ is a filtered colimit of $A$-algebras as in (1) – (8), 
+</p>
+</li><li><p>
+etc. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By the references mentioned above (Algebra, Lemma <a href="/tag/04MG" data-tag="04MG">10.26.5</a> or Topology, Lemma <a href="/tag/0905" data-tag="0905">5.23.8</a>) there are no specializations between distinct points of $\mathop{\mathrm{Spec}}(A)$ and $\mathop{\mathrm{Spec}}(B)$ is profinite if and only if there are no specializations between distinct points of $\mathop{\mathrm{Spec}}(B)$. These specializations can only happen in the fibres of $\mathop{\mathrm{Spec}}(B) \to \mathop{\mathrm{Spec}}(A)$. In this way we see that (1) is true. 
+    <p>
+      The assumption in (2) implies all primes of $B$ are maximal by Algebra, Lemma <a href="/tag/00GA" data-tag="00GA">10.35.9</a>. Thus (2) holds. If $A \to B$ is a local isomorphism or identifies local rings, then the residue field extensions are trivial, so (3) and (4) follow from (2). If $A \to B$ is weakly étale, then More on Algebra, Lemma <a href="/tag/092R" data-tag="092R">15.106.17</a> tells us it induces separable algebraic residue field extensions, so (5) follows from (2). If $A \to B$ is quasi-finite, then the fibres are finite discrete topological spaces. Hence (6) follows from (1). Hence (3) follows from (1). Cases (7) and (8) follow from this as unramified and étale ring map are quasi-finite (Algebra, Lemmas <a href="/tag/02UR" data-tag="02UR">10.151.6</a> and <a href="/tag/00U5" data-tag="00U5">10.143.6</a>). If $B = \mathop{\mathrm{colim}}\nolimits B_ i$ is a filtered colimit of $A$-algebras, then $\mathop{\mathrm{Spec}}(B) = \mathop{\mathrm{lim}}\nolimits \mathop{\mathrm{Spec}}(B_ i)$ in the category of topological spaces by Limits, Lemma <a href="/tag/0CUF" data-tag="0CUF">32.4.2</a>. Hence if each $\mathop{\mathrm{Spec}}(B_ i)$ is profinite, so is $\mathop{\mathrm{Spec}}(B)$ by Topology, Lemma <a href="/tag/0ET8" data-tag="0ET8">5.22.3</a>. This proves (9). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0979">
+  <p><a class="environment-identifier" href="/tag/0979">Lemma <span data-tag="0979">61.5.7</span>.</a> Let $A$ be a ring. Let $V(I) \subset \mathop{\mathrm{Spec}}(A)$ be a closed subset which is a profinite topological space. Then there exists an ind-Zariski ring map $A \to B$ such that $\mathop{\mathrm{Spec}}(B)$ is w-local, the set of closed points is $V(IB)$, and $A/I \cong B/IB$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $A \to A_ w$ and $Z \subset Y = \mathop{\mathrm{Spec}}(A_ w)$ as in Lemma <a href="/tag/0975" data-tag="0975">61.5.3</a>. Let $T \subset Z$ be the inverse image of $V(I)$. Then $T \to V(I)$ is a homeomorphism by Topology, Lemma <a href="/tag/08YE" data-tag="08YE">5.17.8</a>. Let $B = (A_ w)_ T^\sim $, see Lemma <a href="/tag/096V" data-tag="096V">61.5.1</a>. It is clear that $B$ is w-local with closed points $V(IB)$. The ring map $A/I \to B/IB$ is ind-Zariski and induces a homeomorphism on underlying topological spaces. Hence it is an isomorphism by Lemma <a href="/tag/096L" data-tag="096L">61.3.8</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="097A">
+  <p><a class="environment-identifier" href="/tag/097A">Lemma <span data-tag="097A">61.5.8</span>.</a> Let $A$ be a ring such that $X = \mathop{\mathrm{Spec}}(A)$ is w-local. Let $I \subset A$ be the radical ideal cutting out the set $X_0$ of closed points in $X$. Let $A \to B$ be a ring map inducing algebraic extensions on residue fields at primes. Then </p>
+  <p><ol>
+  <li><p>
+every point of $Z = V(IB)$ is a closed point of $\mathop{\mathrm{Spec}}(B)$, 
+</p>
+</li><li><p>
+there exists an ind-Zariski ring map $B \to C$ such that 
+</p>
+<ol>
+  <li><p>
+$B/IB \to C/IC$ is an isomorphism, 
+</p>
+</li><li><p>
+the space $Y = \mathop{\mathrm{Spec}}(C)$ is w-local, 
+</p>
+</li><li><p>
+the induced map $p : Y \to X$ is w-local, and 
+</p>
+</li><li><p>
+$p^{-1}(X_0)$ is the set of closed points of $Y$. 
+</p>
+</li>
+</ol>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/0978" data-tag="0978">61.5.6</a> applied to $A/I \to B/IB$ all points of $Z = V(IB) = \mathop{\mathrm{Spec}}(B/IB)$ are closed, in fact $\mathop{\mathrm{Spec}}(B/IB)$ is a profinite space. To finish the proof we apply Lemma <a href="/tag/0979" data-tag="0979">61.5.7</a> to $IB \subset B$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

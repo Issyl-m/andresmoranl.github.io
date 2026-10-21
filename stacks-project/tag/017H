@@ -1,0 +1,208 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="simplicial-section-hom-from-simplicial-sets" class="tex-section"><span data-tag="017H">14.17</span> Hom from simplicial sets into simplicial objects</h2>
+
+<p>
+Motivated by the discussion on internal hom we define what should be the simplicial object classifying morphisms from a simplicial set into a given simplicial object of the category $\mathcal{C}$. 
+</p>
+<p>
+<article class="env-definition" id="017I">
+  <p><a class="environment-identifier" href="/tag/017I">Definition <span data-tag="017I">14.17.1</span>.</a> Let $\mathcal{C}$ be a category such that the coproduct of any two objects exists. Let $U$ be a simplicial set, with $U_ n$ finite nonempty for all $n \geq 0$. Let $V$ be a simplicial object of $\mathcal{C}$. We denote <em>$\mathop{\mathrm{Hom}}\nolimits (U, V)$</em> any simplicial object of $\mathcal{C}$ such that </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\text{Simp}(\mathcal{C})}(W, \mathop{\mathrm{Hom}}\nolimits (U, V)) = \mathop{\mathrm{Mor}}\nolimits _{\text{Simp}(\mathcal{C})}(W \times U, V)  \]
+</div>
+  <p> functorially in the simplicial object $W$ of $\mathcal{C}$. </p>
+</article> 
+</p>
+<p>
+Of course $\mathop{\mathrm{Hom}}\nolimits (U, V)$ need not exist. Also, by the discussion in Section <a href="/tag/017G" data-tag="017G">14.16</a> we expect that if it does exist, then $\mathop{\mathrm{Hom}}\nolimits (U, V)_ n = \mathop{\mathrm{Hom}}\nolimits (U \times \Delta [n], V)_0$. We do not use the italic notation for these Hom objects since $\mathop{\mathrm{Hom}}\nolimits (U, V)$ is not an internal hom. 
+</p>
+<p>
+<article class="env-lemma" id="017J">
+  <p><a class="environment-identifier" href="/tag/017J">Lemma <span data-tag="017J">14.17.2</span>.</a> Assume the category $\mathcal{C}$ has coproducts of any two objects and countable limits. Let $U$ be a simplicial set, with $U_ n$ finite nonempty for all $n \geq 0$. Let $V$ be a simplicial object of $\mathcal{C}$. Then the functor </p>
+  <div class="equation">
+  \begin{eqnarray*}  \mathcal{C}^{opp} &  \longrightarrow &  \textit{Sets} \\  X &  \longmapsto &  \mathop{\mathrm{Mor}}\nolimits _{\text{Simp}(\mathcal{C})}(X \times U, V) \end{eqnarray*}
+</div>
+  <p> is representable. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      A morphism from $X \times U$ into $V$ is given by a collection of morphisms $f_ u : X \to V_ n$ with $n \geq 0$ and $u \in U_ n$. And such a collection actually defines a morphism if and only if for all $\varphi : [m] \to [n]$ all the diagrams 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X \ar[r]^{f_ u} \ar[d]_{\text{id}_ X} &  V_ n \ar[d]^{V(\varphi )} \\  X \ar[r]^{f_{U(\varphi )(u)}} &  V_ m }  \]
+</div>
+    <p>
+       commute. Thus it is natural to introduce a category $\mathcal{U}$ and a functor $\mathcal{V} : \mathcal{U}^{opp} \to \mathcal{C}$ as follows: 
+    <p>
+      <ol>
+  <li><p>
+The set of objects of $\mathcal{U}$ is $\coprod _{n \geq 0} U_ n$, 
+</p>
+</li><li><p>
+a morphism from $u' \in U_ m$ to $u \in U_ n$ is a $\varphi : [m] \to [n]$ such that $U(\varphi )(u) = u'$ 
+</p>
+</li><li><p>
+for $u \in U_ n$ we set $\mathcal{V}(u) = V_ n$, and 
+</p>
+</li><li><p>
+for $\varphi : [m] \to [n]$ such that $U(\varphi )(u) = u'$ we set $\mathcal{V}(\varphi ) = V(\varphi ) : V_ n \to V_ m$. 
+</p>
+</li>
+</ol>
+    <p>
+       At this point it is clear that our functor is nothing but the functor defining 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{lim}}\nolimits _{\mathcal{U}^{opp}} \mathcal{V}  \]
+</div>
+    <p>
+       Thus if $\mathcal{C}$ has countable limits then this limit and hence an object representing the functor of the lemma exist. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="017K">
+  <p><a class="environment-identifier" href="/tag/017K">Lemma <span data-tag="017K">14.17.3</span>.</a> Assume the category $\mathcal{C}$ has coproducts of any two objects and finite limits. Let $U$ be a simplicial set, with $U_ n$ finite nonempty for all $n \geq 0$. Assume that all $n$-simplices of $U$ are degenerate for all $n \gg 0$. Let $V$ be a simplicial object of $\mathcal{C}$. Then the functor </p>
+  <div class="equation">
+  \begin{eqnarray*}  \mathcal{C}^{opp} &  \longrightarrow &  \textit{Sets} \\  X &  \longmapsto &  \mathop{\mathrm{Mor}}\nolimits _{\text{Simp}(\mathcal{C})}(X \times U, V) \end{eqnarray*}
+</div>
+  <p> is representable. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We have to show that the category $\mathcal{U}$ described in the proof of Lemma <a href="/tag/017J" data-tag="017J">14.17.2</a> has a finite subcategory $\mathcal{U}'$ such that the limit of $\mathcal{V}$ over $\mathcal{U}'$ is the same as the limit of $\mathcal{V}$ over $\mathcal{U}$. We will use Categories, Lemma <a href="/tag/002R" data-tag="002R">4.17.4</a>. For $m > 0$ let $\mathcal{U}_{\leq m}$ denote the full subcategory with objects $\coprod _{0 \leq n \leq m} U_ m$. Let $m_0$ be an integer such that every $n$-simplex of the simplicial set $U$ is degenerate if $n > m_0$. For any $m \geq m_0$ large enough, the subcategory $\mathcal{U}_{\leq m}$ satisfies property (1) of Categories, Definition <a href="/tag/09WP" data-tag="09WP">4.17.3</a>. 
+    <p>
+      Suppose that $u \in U_ n$ and $u' \in U_{n'}$ with $n, n' \leq m_0$ and suppose that $\varphi : [k] \to [n]$, $\varphi ' : [k] \to [n']$ are morphisms such that $U(\varphi )(u) = U(\varphi ')(u')$. A simple combinatorial argument shows that if $k > 2m_0$, then there exists an index $0 \leq i \leq 2m_0$ such that $\varphi (i) =\varphi (i + 1)$ and $\varphi '(i) = \varphi '(i + 1)$. (The pigeon hole principle would tell you this works if $k > m_0^2$ which is good enough for the argument below anyways.) Hence, if $k > 2m_0$, we may write $\varphi = \psi \circ \sigma ^{k - 1}_ i$ and $\varphi ' = \psi ' \circ \sigma ^{k - 1}_ i$ for some $\psi : [k - 1] \to [n]$ and some $\psi ' : [k - 1] \to [n']$. Since $s^{k - 1}_ i : U_{k - 1} \to U_ k$ is injective, see Lemma <a href="/tag/016F" data-tag="016F">14.3.6</a>, we conclude that $U(\psi )(u) = U(\psi ')(u')$ also. Continuing in this fashion we conclude that given morphisms $u \to z$ and $u' \to z$ of $\mathcal{U}$ with $u, u' \in \mathcal{U}_{\leq m_0}$, there exists a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ u \ar[rd] \ar[rrd] &  &  \\  &  a \ar[r] &  z \\  u' \ar[ru] \ar[rru] }  \]
+</div>
+    <p>
+       with $a \in \mathcal{U}_{\leq 2m_0}$. 
+    <p>
+      It is easy to deduce from this that the finite subcategory $\mathcal{U}_{\leq 2m_0}$ works. Namely, suppose given $x' \in U_ n$ and $x'' \in U_{n'}$ with $n, n' \leq 2m_0$ as well as morphisms $x' \to x$ and $x'' \to x$ of $\mathcal{U}$ with the same target. By our choice of $m_0$ we can find objects $u, u'$ of $\mathcal{U}_{\leq m_0}$ and morphisms $u \to x'$, $u' \to x''$. By the above we can find $a \in \mathcal{U}_{\leq 2m_0}$ and morphisms $u \to a$, $u' \to a$ such that 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ u \ar[rd] \ar[rrd] \ar[r] &  x' \ar[rd] &  \\  &  a \ar[r] &  x \\  u' \ar[ru] \ar[rru] \ar[r] &  x'' \ar[ru] &  }  \]
+</div>
+    <p>
+       is commutative. Turning this diagram 90 degrees clockwise we get the desired diagram as in (2) of Categories, Definition <a href="/tag/09WP" data-tag="09WP">4.17.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="017L">
+  <p><a class="environment-identifier" href="/tag/017L">Lemma <span data-tag="017L">14.17.4</span>.</a> Assume the category $\mathcal{C}$ has coproducts of any two objects and finite limits. Let $U$ be a simplicial set, with $U_ n$ finite nonempty for all $n \geq 0$. Assume that all $n$-simplices of $U$ are degenerate for all $n \gg 0$. Let $V$ be a simplicial object of $\mathcal{C}$. Then $\mathop{\mathrm{Hom}}\nolimits (U, V)$ exists, moreover we have the expected equalities </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits (U, V)_ n = \mathop{\mathrm{Hom}}\nolimits (U \times \Delta [n], V)_0.  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We construct this simplicial object as follows. For $n \geq 0$ let $\mathop{\mathrm{Hom}}\nolimits (U, V)_ n$ denote the object of $\mathcal{C}$ representing the functor 
+    <p>
+      <div class="equation">
+  \[  X \longmapsto \mathop{\mathrm{Mor}}\nolimits _{\text{Simp}(\mathcal{C})}(X \times U \times \Delta [n], V)  \]
+</div>
+    <p>
+       This exists by Lemma <a href="/tag/017K" data-tag="017K">14.17.3</a> because $U \times \Delta [n]$ is a simplicial set with finite sets of simplices and no nondegenerate simplices in high enough degree, see Lemma <a href="/tag/0179" data-tag="0179">14.11.5</a>. For $\varphi : [m] \to [n]$ we obtain an induced map of simplicial sets $\varphi : \Delta [m] \to \Delta [n]$. Hence we obtain a morphism $X \times U \times \Delta [m] \to X \times U \times \Delta [n]$ functorial in $X$, and hence a transformation of functors, which in turn gives 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits (U, V)(\varphi ) : \mathop{\mathrm{Hom}}\nolimits (U, V)_ n \longrightarrow \mathop{\mathrm{Hom}}\nolimits (U, V)_ m.  \]
+</div>
+    <p>
+       Clearly this defines a contravariant functor $\mathop{\mathrm{Hom}}\nolimits (U, V)$ from $\Delta $ into the category $\mathcal{C}$. In other words, we have a simplicial object of $\mathcal{C}$. 
+    <p>
+      We have to show that $\mathop{\mathrm{Hom}}\nolimits (U, V)$ satisfies the desired universal property 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\text{Simp}(\mathcal{C})}(W, \mathop{\mathrm{Hom}}\nolimits (U, V)) = \mathop{\mathrm{Mor}}\nolimits _{\text{Simp}(\mathcal{C})}(W \times U, V)  \]
+</div>
+    <p>
+       To see this, let $f : W \to \mathop{\mathrm{Hom}}\nolimits (U, V)$ be given. We want to construct the element $f' : W \times U \to V$ of the right hand side. By construction, each $f_ n : W_ n \to \mathop{\mathrm{Hom}}\nolimits (U, V)_ n$ corresponds to a morphism $f_ n : W_ n \times U \times \Delta [n] \to V$. Further, for every morphism $\varphi : [m] \to [n]$ the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ W_ n \times U \times \Delta [m] \ar[rr]_{W(\varphi )\times \text{id} \times \text{id}} \ar[d]_{\text{id} \times \text{id} \times \varphi } &  &  W_ m \times U \times \Delta [m] \ar[d]^{f_ m} \\  W_ n \times U \times \Delta [n] \ar[rr]^{f_ n} &  &  V }  \]
+</div>
+    <p>
+       is commutative. For $\psi : [n] \to [k]$ in $(\Delta [n])_ k$ we denote $(f_ n)_{k, \psi } : W_ n \times U_ k \to V_ k$ the component of $(f_ n)_ k$ corresponding to the element $\psi $. We define $f'_ n : W_ n \times U_ n \to V_ n$ as $f'_ n = (f_ n)_{n, \text{id}}$, in other words, as the restriction of $(f_ n)_ n : W_ n \times U_ n \times (\Delta [n])_ n \to V_ n$ to $W_ n \times U_ n \times \text{id}_{[n]}$. To see that the collection $(f'_ n)$ defines a morphism of simplicial objects, we have to show for any $\varphi : [m] \to [n]$ that $V(\varphi ) \circ f'_ n = f'_ m \circ W(\varphi ) \times U(\varphi )$. The commutative diagram above says that $(f_ n)_{m, \varphi } : W_ n \times U_ m \to V_ m$ is equal to $(f_ m)_{m, \text{id}} \circ W(\varphi ) : W_ n \times U_ m \to V_ m$. But then the fact that $f_ n$ is a morphism of simplicial objects implies that the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ W_ n \times U_ n \times (\Delta [n])_ n \ar[r]_-{(f_ n)_ n} \ar[d]_{\text{id} \times U(\varphi ) \times \varphi } &  V_ n \ar[d]^{V(\varphi )} \\  W_ n \times U_ m \times (\Delta [n])_ m \ar[r]^-{(f_ n)_ m} &  V_ m }  \]
+</div>
+    <p>
+       is commutative. And this implies that $(f_ n)_{m, \varphi } \circ U(\varphi )$ is equal to $V(\varphi ) \circ (f_ n)_{n, \text{id}}$. Altogether we obtain $ V(\varphi ) \circ (f_ n)_{n, \text{id}} = (f_ n)_{m, \varphi } \circ U(\varphi ) = (f_ m)_{m, \text{id}} \circ W(\varphi )\circ U(\varphi ) = (f_ m)_{m, \text{id}} \circ W(\varphi )\times U(\varphi ) $ as desired. 
+    <p>
+      On the other hand, given a morphism $f' : W \times U \to V$ we define a morphism $f : W \to \mathop{\mathrm{Hom}}\nolimits (U, V)$ as follows. By Lemma <a href="/tag/017F" data-tag="017F">14.13.4</a> the morphisms $\text{id} : W_ n \to W_ n$ corresponds to a unique morphism $c_ n : W_ n \times \Delta [n] \to W$. Hence we can consider the composition 
+    <p>
+      <div class="equation">
+  \[  W_ n \times \Delta [n] \times U \xrightarrow {c_ n} W \times U \xrightarrow {f'} V.  \]
+</div>
+    <p>
+       By construction this corresponds to a unique morphism $f_ n : W_ n \to \mathop{\mathrm{Hom}}\nolimits (U, V)_ n$. We leave it to the reader to see that these define a morphism of simplicial sets as desired. 
+    <p>
+      We also leave it to the reader to see that $f \mapsto f'$ and $f' \mapsto f$ are mutually inverse operations. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="017N">
+  <p><a class="environment-identifier" href="/tag/017N">Lemma <span data-tag="017N">14.17.5</span>.</a> Assume the category $\mathcal{C}$ has coproducts of any two objects and finite limits. Let $a : U \to V$, $b : U \to W$ be morphisms of simplicial sets. Assume $U_ n, V_ n, W_ n$ finite nonempty for all $n \geq 0$. Assume that all $n$-simplices of $U, V, W$ are degenerate for all $n \gg 0$. Let $T$ be a simplicial object of $\mathcal{C}$. Then </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits (V, T) \times _{\mathop{\mathrm{Hom}}\nolimits (U, T)} \mathop{\mathrm{Hom}}\nolimits (W, T) = \mathop{\mathrm{Hom}}\nolimits (V \amalg _ U W, T)  \]
+</div>
+  <p> In other words, the fibre product on the left hand side is represented by the Hom object on the right hand side. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/017L" data-tag="017L">14.17.4</a> all the required $\mathop{\mathrm{Hom}}\nolimits $ objects exist and satisfy the correct functorial properties. Now we can identify the $n$th term on the left hand side as the object representing the functor that associates to $X$ the first set of the following sequence of functorial equalities 
+    <p>
+      <div class="equation">
+  \begin{align*} &  \mathop{\mathrm{Mor}}\nolimits (X \times \Delta [n], \mathop{\mathrm{Hom}}\nolimits (V, T) \times _{\mathop{\mathrm{Hom}}\nolimits (U, T)} \mathop{\mathrm{Hom}}\nolimits (W, T)) \\ &  = \mathop{\mathrm{Mor}}\nolimits (X \times \Delta [n], \mathop{\mathrm{Hom}}\nolimits (V, T)) \times _{\mathop{\mathrm{Mor}}\nolimits (X \times \Delta [n], \mathop{\mathrm{Hom}}\nolimits (U, T))} \mathop{\mathrm{Mor}}\nolimits (X \times \Delta [n], \mathop{\mathrm{Hom}}\nolimits (W, T)) \\ &  = \mathop{\mathrm{Mor}}\nolimits (X \times \Delta [n] \times V, T) \times _{\mathop{\mathrm{Mor}}\nolimits (X \times \Delta [n] \times U, T)} \mathop{\mathrm{Mor}}\nolimits (X \times \Delta [n] \times W, T) \\ &  = \mathop{\mathrm{Mor}}\nolimits (X \times \Delta [n] \times (V \amalg _ U W), T)) \end{align*}
+</div>
+    <p>
+       Here we have used the fact that 
+    <p>
+      <div class="equation">
+  \[  (X \times \Delta [n] \times V) \times _{X \times \Delta [n] \times U} (X \times \Delta [n] \times W) = X \times \Delta [n] \times (V \amalg _ U W)  \]
+</div>
+    <p>
+       which is easy to verify term by term. The result of the lemma follows as the last term in the displayed sequence of equalities corresponds to $\mathop{\mathrm{Hom}}\nolimits (V \amalg _ U W, T)_ n$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

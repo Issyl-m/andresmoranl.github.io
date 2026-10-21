@@ -1,0 +1,206 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="algebra-section-CM" class="tex-section"><span data-tag="00N2">10.103</span> Cohen-Macaulay modules</h2>
+
+<p>
+Here we show that Cohen-Macaulay modules have good properties. We postpone using Ext groups to establish the connection with duality and so on. 
+</p>
+<p>
+<article class="env-definition" id="00N3">
+  <p><a class="environment-identifier" href="/tag/00N3">Definition <span data-tag="00N3">10.103.1</span>.</a> Let $R$ be a Noetherian local ring. Let $M$ be a finite $R$-module. We say $M$ is <em>Cohen-Macaulay</em> if $\dim (\text{Supp}(M)) = \text{depth}(M)$. </p>
+</article> 
+</p>
+<p>
+A first goal will be to establish Proposition <a href="/tag/00N6" data-tag="00N6">10.103.4</a>. We do this by a (perhaps nonstandard) sequence of elementary lemmas involving almost none of the earlier results on depth. Let us introduce some notation. 
+</p>
+<p>
+Let $R$ be a local Noetherian ring. Let $M$ be a Cohen-Macaulay module, and let $f_1, \ldots , f_ d$ be an $M$-regular sequence with $d = \dim (\text{Supp}(M))$. We say that $g \in \mathfrak m$ is <em>good with respect to $(M, f_1, \ldots , f_ d)$</em> if for all $i = 0, 1, \ldots , d-1$ we have $\dim (\text{Supp}(M) \cap V(g, f_1, \ldots , f_ i)) = d - i - 1$. This is equivalent to the condition that $\dim (\text{Supp}(M/(f_1, \ldots , f_ i)M) \cap V(g)) = d - i - 1$ for $i = 0, 1, \ldots , d - 1$. 
+</p>
+<p>
+<article class="env-lemma" id="00N4">
+  <p><a class="environment-identifier" href="/tag/00N4">Lemma <span data-tag="00N4">10.103.2</span>.</a> Notation and assumptions as above. If $g$ is good with respect to $(M, f_1, \ldots , f_ d)$, then (a) $g$ is a nonzerodivisor on $M$, and (b) $M/gM$ is Cohen-Macaulay with maximal regular sequence $f_1, \ldots , f_{d - 1}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We prove the lemma by induction on $d$. If $d = 0$, then $M$ is finite and there is no case to which the lemma applies. If $d = 1$, then we have to show that $g : M \to M$ is injective. The kernel $K$ has support $\{ \mathfrak m\} $ because by assumption $\dim \text{Supp}(M) \cap V(g) = 0$. Hence $K$ has finite length. Hence $f_1 : K \to K$ injective implies the length of the image is the length of $K$, and hence $f_1 K = K$, which by Nakayama's Lemma <a href="/tag/00DV" data-tag="00DV">10.20.1</a> implies $K = 0$. Also, $\dim \text{Supp}(M/gM) = 0$ and so $M/gM$ is Cohen-Macaulay of depth $0$. 
+    <p>
+      Assume $d > 1$. Observe that $g$ is good for $(M/f_1M, f_2, \ldots , f_ d)$, as is easily seen from the definition. By induction, we have that (a) $g$ is a nonzerodivisor on $M/f_1M$ and (b) $M/(g, f_1)M$ is Cohen-Macaulay with maximal regular sequence $f_2, \ldots , f_{d - 1}$. By Lemma <a href="/tag/00LJ" data-tag="00LJ">10.68.4</a> we see that $g, f_1$ is an $M$-regular sequence. Hence $g$ is a nonzerodivisor on $M$ and $f_1, \ldots , f_{d - 1}$ is an $M/gM$-regular sequence. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00N5">
+  <p><a class="environment-identifier" href="/tag/00N5">Lemma <span data-tag="00N5">10.103.3</span>.</a> Let $R$ be a Noetherian local ring. Let $M$ be a Cohen-Macaulay module over $R$. Suppose $g \in \mathfrak m$ is such that $\dim (\text{Supp}(M) \cap V(g)) = \dim (\text{Supp}(M)) - 1$. Then (a) $g$ is a nonzerodivisor on $M$, and (b) $M/gM$ is Cohen-Macaulay of depth one less. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a $M$-regular sequence $f_1, \ldots , f_ d$ with $d = \dim (\text{Supp}(M))$. If $g$ is good with respect to $(M, f_1, \ldots , f_ d)$ we win by Lemma <a href="/tag/00N4" data-tag="00N4">10.103.2</a>. In particular the lemma holds if $d = 1$. (The case $d = 0$ does not occur.) Assume $d > 1$. Choose an element $h \in R$ such that (i) $h$ is good with respect to $(M, f_1, \ldots , f_ d)$, and (ii) $\dim (\text{Supp}(M) \cap V(h, g)) = d - 2$. To see $h$ exists, let $\{ \mathfrak q_ j\} $ be the (finite) set of minimal primes of the closed sets $\text{Supp}(M)$, $\text{Supp}(M)\cap V(f_1, \ldots , f_ i)$, $i = 1, \ldots , d - 1$, and $\text{Supp}(M) \cap V(g)$. None of these $\mathfrak q_ j$ is equal to $\mathfrak m$ and hence we may find $h \in \mathfrak m$, $h \not\in \mathfrak q_ j$ by Lemma <a href="/tag/00DS" data-tag="00DS">10.15.2</a>. It is clear that $h$ satisfies (i) and (ii). From Lemma <a href="/tag/00N4" data-tag="00N4">10.103.2</a> we conclude that $M/hM$ is Cohen-Macaulay. By (ii) we see that the pair $(M/hM, g)$ satisfies the induction hypothesis. Hence $M/(h, g)M$ is Cohen-Macaulay and $g : M/hM \to M/hM$ is injective. By Lemma <a href="/tag/00LJ" data-tag="00LJ">10.68.4</a> we see that $g : M \to M$ and $h : M/gM \to M/gM$ are injective. Combined with the fact that $M/(g, h)M$ is Cohen-Macaulay this finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="00N6">
+  <p><a class="environment-identifier" href="/tag/00N6">Proposition <span data-tag="00N6">10.103.4</span>.</a> Let $R$ be a Noetherian local ring, with maximal ideal $\mathfrak m$. Let $M$ be a Cohen-Macaulay module over $R$ whose support has dimension $d$. Suppose that $g_1, \ldots , g_ c$ are elements of $\mathfrak m$ such that $\dim (\text{Supp}(M/(g_1, \ldots , g_ c)M)) = d - c$. Then $g_1, \ldots , g_ c$ is an $M$-regular sequence, and can be extended to a maximal $M$-regular sequence. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $Z = \text{Supp}(M) \subset \mathop{\mathrm{Spec}}(R)$. By Lemma <a href="/tag/00KW" data-tag="00KW">10.60.13</a> in the chain $Z \supset Z \cap V(g_1) \supset \ldots \supset Z \cap V(g_1, \ldots , g_ c)$ each step decreases the dimension at most by $1$. Hence by assumption each step decreases the dimension by exactly $1$ each time. Thus we may successively apply Lemma <a href="/tag/00N5" data-tag="00N5">10.103.3</a> to the modules $M/(g_1, \ldots , g_ i)$ and the element $g_{i + 1}$. 
+    <p>
+      To extend $g_1, \ldots , g_ c$ by one element if $c < d$ we simply choose an element $g_{c + 1} \in \mathfrak m$ which is not in any of the finitely many minimal primes of $Z \cap V(g_1, \ldots , g_ c)$, using Lemma <a href="/tag/00DS" data-tag="00DS">10.15.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Having proved Proposition <a href="/tag/00N6" data-tag="00N6">10.103.4</a> we continue the development of standard theory. 
+</p>
+<p>
+<article class="env-lemma" id="0C6G">
+  <p><a class="environment-identifier" href="/tag/0C6G">Lemma <span data-tag="0C6G">10.103.5</span>.</a> Let $R$ be a Noetherian local ring with maximal ideal $\mathfrak m$. Let $M$ be a finite $R$-module. Let $x \in \mathfrak m$ be a nonzerodivisor on $M$. Then $M$ is Cohen-Macaulay if and only if $M/xM$ is Cohen-Macaulay. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/090R" data-tag="090R">10.72.7</a> we have $\text{depth}(M/xM) = \text{depth}(M)-1$. By Lemma <a href="/tag/0B52" data-tag="0B52">10.63.10</a> we have $\dim (\text{Supp}(M/xM)) = \dim (\text{Supp}(M)) - 1$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AAD">
+  <p><a class="environment-identifier" href="/tag/0AAD">Lemma <span data-tag="0AAD">10.103.6</span>.</a> Let $R \to S$ be a surjective homomorphism of Noetherian local rings. Let $N$ be a finite $S$-module. Then $N$ is Cohen-Macaulay as an $S$-module if and only if $N$ is Cohen-Macaulay as an $R$-module. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BUS">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0BUS">Lemma <span data-tag="0BUS">10.103.7</span>.</a> Let $R$ be a Noetherian local ring. Let $M$ be a finite Cohen-Macaulay $R$-module. If $\mathfrak p \in \text{Ass}(M)$, then $\dim (R/\mathfrak p) = \dim (\text{Supp}(M))$ and $\mathfrak p$ is a minimal prime in the support of $M$. In particular, $M$ has no embedded associated primes. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/0BK4" data-tag="0BK4">10.72.9</a> we have $\text{depth}(M) \leq \dim (R/\mathfrak p)$. Of course $\dim (R/\mathfrak p) \leq \dim (\text{Supp}(M))$ as $\mathfrak p \in \text{Supp}(M)$ (Lemma <a href="/tag/0586" data-tag="0586">10.63.2</a>). Thus we have equality in both inequalities as $M$ is Cohen-Macaulay. Then $\mathfrak p$ must be minimal in $\text{Supp}(M)$ otherwise we would have $\dim (R/\mathfrak p) < \dim (\text{Supp}(M))$. Finally, minimal primes in the support of $M$ are equal to the minimal elements of $\text{Ass}(M)$ (Proposition <a href="/tag/02CE" data-tag="02CE">10.63.6</a>) hence $M$ has no embedded associated primes (Definition <a href="/tag/02M5" data-tag="02M5">10.67.1</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="00NF">
+  <p><a class="environment-identifier" href="/tag/00NF">Definition <span data-tag="00NF">10.103.8</span>.</a> Let $R$ be a Noetherian local ring. A finite module $M$ over $R$ is called a <em>maximal Cohen-Macaulay</em> module if $\text{depth}(M) = \dim (R)$. </p>
+</article> 
+</p>
+<p>
+In other words, a maximal Cohen-Macaulay module over a Noetherian local ring is a finite module with the largest possible depth over that ring. Equivalently, a maximal Cohen-Macaulay module over a Noetherian local ring $R$ is a Cohen-Macaulay module of dimension equal to the dimension of the ring. In particular, if $M$ is a Cohen-Macaulay $R$-module with $\mathop{\mathrm{Spec}}(R) = \text{Supp}(M)$, then $M$ is maximal Cohen-Macaulay. Thus the following two lemmas are on maximal Cohen-Macaulay modules. 
+</p>
+<p>
+<article class="env-lemma" id="0AAE">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0AAE">Lemma <span data-tag="0AAE">10.103.9</span>.</a> Let $R$ be a Noetherian local ring. Assume there exists a Cohen-Macaulay module $M$ with $\mathop{\mathrm{Spec}}(R) = \text{Supp}(M)$. Then any maximal chain of prime ideals $\mathfrak p_0 \subset \mathfrak p_1 \subset \ldots \subset \mathfrak p_ n$ has length $n = \dim (R)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will prove this by induction on $\dim (R)$. If $\dim (R) = 0$, then the statement is clear. Assume $\dim (R) > 0$. Then $n > 0$. Choose an element $x \in \mathfrak p_1$, with $x$ not in any of the minimal primes of $R$, and in particular $x \not\in \mathfrak p_0$. (See Lemma <a href="/tag/00DS" data-tag="00DS">10.15.2</a>.) Then $\dim (R/xR) = \dim (R) - 1$ by Lemma <a href="/tag/00KW" data-tag="00KW">10.60.13</a>. The module $M/xM$ is Cohen-Macaulay over $R/xR$ by Proposition <a href="/tag/00N6" data-tag="00N6">10.103.4</a> and Lemma <a href="/tag/0AAD" data-tag="0AAD">10.103.6</a>. The support of $M/xM$ is $\mathop{\mathrm{Spec}}(R/xR)$ by Lemma <a href="/tag/00L3" data-tag="00L3">10.40.9</a>. After replacing $x$ by $x^ n$ for some $n$, we may assume that $\mathfrak p_1$ is an associated prime of $M/xM$, see Lemma <a href="/tag/0CN5" data-tag="0CN5">10.72.8</a>. By Lemma <a href="/tag/0BUS" data-tag="0BUS">10.103.7</a> we conclude that $\mathfrak p_1/(x)$ is a minimal prime of $R/xR$. It follows that the chain $\mathfrak p_1/(x) \subset \ldots \subset \mathfrak p_ n/(x)$ is a maximal chain of primes in $R/xR$. By induction we find that this chain has length $\dim (R/xR) = \dim (R) - 1$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AAF">
+  <p><a class="environment-identifier" href="/tag/0AAF">Lemma <span data-tag="0AAF">10.103.10</span>.</a> Suppose $R$ is a Noetherian local ring. Assume there exists a Cohen-Macaulay module $M$ with $\mathop{\mathrm{Spec}}(R) = \text{Supp}(M)$. Then for a prime $\mathfrak p \subset R$ we have </p>
+  <div class="equation">
+  \[  \dim (R) = \dim (R_{\mathfrak p}) + \dim (R/\mathfrak p).  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows immediately from Lemma <a href="/tag/0AAE" data-tag="0AAE">10.103.9</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AAG">
+  <p><a class="environment-identifier" href="/tag/0AAG">Lemma <span data-tag="0AAG">10.103.11</span>.</a> Suppose $R$ is a Noetherian local ring. Let $M$ be a Cohen-Macaulay module over $R$. For any prime $\mathfrak p \subset R$ the module $M_{\mathfrak p}$ is Cohen-Macaulay over $R_\mathfrak p$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We may and do assume $\mathfrak p \not= \mathfrak m$ and $M$ not zero. Choose a maximal chain of primes $\mathfrak p = \mathfrak p_ c \subset \mathfrak p_{c - 1} \subset \ldots \subset \mathfrak p_1 \subset \mathfrak m$. If we prove the result for $M_{\mathfrak p_1}$ over $R_{\mathfrak p_1}$, then the lemma will follow by induction on $c$. Thus we may assume that there is no prime strictly between $\mathfrak p$ and $\mathfrak m$. Note that $\dim (\text{Supp}(M_\mathfrak p)) \leq \dim (\text{Supp}(M)) - 1$ because any chain of primes in the support of $M_\mathfrak p$ can be extended by one more prime (namely $\mathfrak m$) in the support of $M$. On the other hand, we have $\text{depth}(M_\mathfrak p) \geq \text{depth}(M) - \dim (R/\mathfrak p) = \text{depth}(M) - 1$ by Lemma <a href="/tag/0FCC" data-tag="0FCC">10.72.10</a> and our choice of $\mathfrak p$. Thus $\text{depth}(M_\mathfrak p) \geq \dim (\text{Supp}(M_\mathfrak p))$ as desired (the other inequality is Lemma <a href="/tag/00LK" data-tag="00LK">10.72.3</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="0AAH">
+  <p><a class="environment-identifier" href="/tag/0AAH">Definition <span data-tag="0AAH">10.103.12</span>.</a> Let $R$ be a Noetherian ring. Let $M$ be a finite $R$-module. We say $M$ is <em>Cohen-Macaulay</em> if $M_\mathfrak p$ is a Cohen-Macaulay module over $R_\mathfrak p$ for all primes $\mathfrak p$ of $R$. </p>
+</article> 
+</p>
+<p>
+By Lemma <a href="/tag/0AAG" data-tag="0AAG">10.103.11</a> it suffices to check this in the maximal ideals of $R$. 
+</p>
+<p>
+<article class="env-lemma" id="0AAI">
+  <p><a class="environment-identifier" href="/tag/0AAI">Lemma <span data-tag="0AAI">10.103.13</span>.</a> Let $R$ be a Noetherian ring. Let $M$ be a Cohen-Macaulay module over $R$. Then $M \otimes _ R R[x_1, \ldots , x_ n]$ is a Cohen-Macaulay module over $R[x_1, \ldots , x_ n]$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By induction on the number of variables it suffices to prove this for $M[x] = M \otimes _ R R[x]$ over $R[x]$. Let $\mathfrak m \subset R[x]$ be a maximal ideal, and let $\mathfrak p = R \cap \mathfrak m$. Let $f_1, \ldots , f_ d$ be a $M_\mathfrak p$-regular sequence in the maximal ideal of $R_{\mathfrak p}$ of length $d = \dim (\text{Supp}(M_{\mathfrak p}))$. Note that since $R[x]$ is flat over $R$ the localization $R[x]_{\mathfrak m}$ is flat over $R_{\mathfrak p}$. Hence, by Lemma <a href="/tag/00LM" data-tag="00LM">10.68.5</a>, the sequence $f_1, \ldots , f_ d$ is a $M[x]_{\mathfrak m}$-regular sequence of length $d$ in $R[x]_{\mathfrak m}$. The quotient 
+    <p>
+      <div class="equation">
+  \[  Q = M[x]_{\mathfrak m}/(f_1, \ldots , f_ d)M[x]_{\mathfrak m} = M_{\mathfrak p}/(f_1, \ldots , f_ d)M_{\mathfrak p} \otimes _{R_\mathfrak p} R[x]_{\mathfrak m}  \]
+</div>
+    <p>
+       has support equal to the primes lying over $\mathfrak p$ because $R_\mathfrak p \to R[x]_\mathfrak m$ is flat and the support of $M_{\mathfrak p}/(f_1, \ldots , f_ d)M_{\mathfrak p}$ is equal to $\{ \mathfrak p\} $ (details omitted; hint: follows from Lemmas <a href="/tag/07T8" data-tag="07T8">10.40.4</a> and <a href="/tag/00L2" data-tag="00L2">10.40.5</a>). Hence the dimension is $1$. To finish the proof it suffices to find an $f \in \mathfrak m$ which is a nonzerodivisor on $Q$. Since $\mathfrak m$ is a maximal ideal, the field extension $\kappa (\mathfrak m)/\kappa (\mathfrak p)$ is finite (Theorem <a href="/tag/00FV" data-tag="00FV">10.34.1</a>). Hence we can find $f \in \mathfrak m$ which viewed as a polynomial in $x$ has leading coefficient not in $\mathfrak p$. Such an $f$ acts as a nonzerodivisor on 
+    <p>
+      <div class="equation">
+  \[  M_{\mathfrak p}/(f_1, \ldots , f_ d)M_{\mathfrak p} \otimes _ R R[x] = \bigoplus \nolimits _{n \geq 0} M_{\mathfrak p}/(f_1, \ldots , f_ d)M_{\mathfrak p} \cdot x^ n  \]
+</div>
+    <p>
+       and hence acts as a nonzerodivisor on $Q$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

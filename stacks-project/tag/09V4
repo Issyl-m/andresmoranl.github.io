@@ -1,0 +1,114 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="cohomology-section-proper-base-change" class="tex-section"><span data-tag="09V4">20.18</span> Proper base change in topology</h2>
+
+<p>
+In this section we prove a very general version of the proper base change theorem in topology. It tells us that the stalks of the higher direct images $R^ pf_*$ can be computed on the fibre. 
+</p>
+<p>
+<article class="env-lemma" id="09V5">
+  <p><a class="environment-identifier" href="/tag/09V5">Lemma <span data-tag="09V5">20.18.1</span>.</a> Let $f : (X, \mathcal{O}_ X) \to (Y, \mathcal{O}_ Y)$ be a morphism of ringed spaces. Let $y \in Y$. Assume that </p>
+  <p><ol>
+  <li><p>
+$f$ is closed, 
+</p>
+</li><li><p>
+$f$ is separated, and 
+</p>
+</li><li><p>
+$f^{-1}(y)$ is quasi-compact. 
+</p>
+</li>
+</ol></p>
+  <p> Then for $E$ in $D^+(\mathcal{O}_ X)$ we have $(Rf_*E)_ y = R\Gamma (f^{-1}(y), E|_{f^{-1}(y)})$ in $D^+(\mathcal{O}_{Y, y})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The base change map of Lemma <a href="/tag/02N7" data-tag="02N7">20.17.1</a> gives a canonical map $(Rf_*E)_ y \to R\Gamma (f^{-1}(y), E|_{f^{-1}(y)})$. To prove this map is an isomorphism, we represent $E$ by a bounded below complex of injectives $\mathcal{I}^\bullet $. Set $Z = f^{-1}(\{ y\} )$. The assumptions of Lemma <a href="/tag/09V3" data-tag="09V3">20.16.3</a> are satisfied, see Topology, Lemma <a href="/tag/0CY2" data-tag="0CY2">5.4.2</a>. Hence the restrictions $\mathcal{I}^ n|_ Z$ are acyclic for $\Gamma (Z, -)$. Thus $R\Gamma (Z, E|_ Z)$ is represented by the complex $\Gamma (Z, \mathcal{I}^\bullet |_ Z)$, see Derived Categories, Lemma <a href="/tag/015E" data-tag="015E">13.16.7</a>. In other words, we have to show the map 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _ V \mathcal{I}^\bullet (f^{-1}(V)) \longrightarrow \Gamma (Z, \mathcal{I}^\bullet |_ Z)  \]
+</div>
+    <p>
+       is an isomorphism. Using Lemma <a href="/tag/09V3" data-tag="09V3">20.16.3</a> we see that it suffices to show that the collection of open neighbourhoods $f^{-1}(V)$ of $Z = f^{-1}(\{ y\} )$ is cofinal in the system of all open neighbourhoods. If $f^{-1}(\{ y\} ) \subset U$ is an open neighbourhood, then as $f$ is closed the set $V = Y \setminus f(X \setminus U)$ is an open neighbourhood of $y$ with $f^{-1}(V) \subset U$. This proves the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-theorem" id="09V6">
+        
+      
+  <p><a class="environment-identifier" href="/tag/09V6">Theorem <span data-tag="09V6">20.18.2</span> <span class="named">(Proper base change)</span>.</a> Consider a cartesian square of topological spaces </p>
+  <div class="equation">
+  \[  \xymatrix{ X' = Y' \times _ Y X \ar[d]_{f'} \ar[r]_-{g'} &  X \ar[d]^ f \\  Y' \ar[r]^ g &  Y }  \]
+</div>
+  <p> Assume that $f$ is proper. Let $E$ be an object of $D^+(X)$. Then the base change map </p>
+  <div class="equation">
+  \[  g^{-1}Rf_*E \longrightarrow Rf'_*(g')^{-1}E  \]
+</div>
+  <p> of Lemma <a href="/tag/02N7" data-tag="02N7">20.17.1</a> is an isomorphism in $D^+(Y')$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $y' \in Y'$ be a point with image $y \in Y$. It suffices to show that the base change map induces an isomorphism on stalks at $y'$. As $f$ is proper it follows that $f'$ is proper, the fibres of $f$ and $f'$ are quasi-compact and $f$ and $f'$ are closed, see Topology, Theorem <a href="/tag/005R" data-tag="005R">5.17.5</a> and Lemma <a href="/tag/0CY4" data-tag="0CY4">5.4.4</a>. Thus we can apply Lemma <a href="/tag/09V5" data-tag="09V5">20.18.1</a> twice to see that 
+    <p>
+      <div class="equation">
+  \[  (Rf'_*(g')^{-1}E)_{y'} = R\Gamma ((f')^{-1}(y'), (g')^{-1}E|_{(f')^{-1}(y')})  \]
+</div>
+    <p>
+       and 
+    <p>
+      <div class="equation">
+  \[  (Rf_*E)_ y = R\Gamma (f^{-1}(y), E|_{f^{-1}(y)})  \]
+</div>
+    <p>
+       The induced map of fibres $(f')^{-1}(y') \to f^{-1}(y)$ is a homeomorphism of topological spaces and the pull back of $E|_{f^{-1}(y)}$ is $(g')^{-1}E|_{(f')^{-1}(y')}$. The desired result follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0D90">
+  <p><a class="environment-identifier" href="/tag/0D90">Lemma <span data-tag="0D90">20.18.3</span> <span class="named">(Proper base change for sheaves of sets)</span>.</a>  Consider a cartesian square of topological spaces </p>
+  <div class="equation">
+  \[  \xymatrix{ X' \ar[d]_{f'} \ar[r]_-{g'} &  X \ar[d]^ f \\  Y' \ar[r]^ g &  Y }  \]
+</div>
+  <p> Assume that $f$ is proper. Then $g^{-1}f_*\mathcal{F} = f'_*(g')^{-1}\mathcal{F}$ for any sheaf of sets $\mathcal{F}$ on $X$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We argue exactly as in the proof of Theorem <a href="/tag/09V6" data-tag="09V6">20.18.2</a> and we find it suffices to show $(f_*\mathcal{F})_ y = \Gamma (X_ y, \mathcal{F}|_{X_ y})$. Then we argue as in Lemma <a href="/tag/09V5" data-tag="09V5">20.18.1</a> to reduce this to the $p = 0$ case of Lemma <a href="/tag/09V3" data-tag="09V3">20.16.3</a> for sheaves of sets. The first part of the proof of Lemma <a href="/tag/09V3" data-tag="09V3">20.16.3</a> works for sheaves of sets and this finishes the proof. Some details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

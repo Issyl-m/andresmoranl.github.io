@@ -1,0 +1,338 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="chow-section-koszul" class="tex-section"><span data-tag="0FEZ">42.59</span> Gysin maps for local complete intersection morphisms</h2>
+
+<p>
+Before reading this section, we suggest the reader read up on regular immersions (Divisors, Section <a href="/tag/0638" data-tag="0638">31.22</a>) and local complete intersection morphisms (More on Morphisms, Section <a href="/tag/068E" data-tag="068E">37.62</a>). 
+</p>
+<p>
+Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $i : X \to Y$ be a regular immersion<a class="footnotemark" href="#a0000962443" id="a0000962443-mark"><sup>1</sup></a> of schemes locally of finite type over $S$. In particular, the conormal sheaf $\mathcal{C}_{X/Y}$ is finite locally free (see Divisors, Lemma <a href="/tag/063M" data-tag="063M">31.22.5</a>). Hence the normal sheaf 
+</p>
+<div class="equation">
+  \[  \mathcal{N}_{X/Y} = \mathop{\mathcal{H}\! \mathit{om}}\nolimits _{\mathcal{O}_ X}(\mathcal{C}_{X/Y}, \mathcal{O}_ X)  \]
+</div>
+<p>
+ is finite locally free as well and we have a surjection $\mathcal{N}_{X/Y}^\vee \to \mathcal{C}_{X/Y}$ (because an isomorphism is also a surjection). The construction in Section <a href="/tag/0FBI" data-tag="0FBI">42.54</a> gives us a canonical bivariant class 
+</p>
+<div class="equation">
+  \[  i^! = c(X \to Y, \mathcal{N}_{X/Y}) \in A^*(X \to Y)^\wedge  \]
+</div>
+<p>
+ We need a couple of lemmas about this notion. 
+</p>
+<p>
+<article class="env-lemma" id="0FF0">
+  <p><a class="environment-identifier" href="/tag/0FF0">Lemma <span data-tag="0FF0">42.59.1</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $i : X \to Y$ and $j : Y \to Z$ be regular immersions of schemes locally of finite type over $S$. Then $j \circ i$ is a regular immersion and $(j \circ i)^! = i^! \circ j^!$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The first statement is Divisors, Lemma <a href="/tag/067Q" data-tag="067Q">31.22.7</a>. By Divisors, Lemma <a href="/tag/063N" data-tag="063N">31.22.6</a> there is a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to i^*(\mathcal{C}_{Y/Z}) \to \mathcal{C}_{X/Z} \to \mathcal{C}_{X/Y} \to 0  \]
+</div>
+    <p>
+       Thus the result by the more general Lemma <a href="/tag/0FEC" data-tag="0FEC">42.54.10</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FF1">
+  <p><a class="environment-identifier" href="/tag/0FF1">Lemma <span data-tag="0FF1">42.59.2</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $p : P \to X$ be a smooth morphism of schemes locally of finite type over $S$ and let $s : X \to P$ be a section. Then $s$ is a regular immersion and $1 = s^! \circ p^*$ in $A^*(X)^\wedge $ where $p^* \in A^*(P \to X)^\wedge $ is the bivariant class of Lemma <a href="/tag/0B78" data-tag="0B78">42.33.2</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The first statement is Divisors, Lemma <a href="/tag/067R" data-tag="067R">31.23.8</a>. It suffices to show that $s^! \cap p^*[Z] = [Z]$ in $\mathop{\mathrm{CH}}\nolimits _*(X)$ for any integral closed subscheme $Z \subset X$ as the assumptions are preserved by base change by $X' \to X$ locally of finite type. After replacing $P$ by an open neighbourhood of $s(Z)$ we may assume $P \to X$ is smooth of fixed relative dimension $r$. Say $\dim _\delta (Z) = n$. Then every irreducible component of $p^{-1}(Z)$ has dimension $r + n$ and $p^*[Z]$ is given by $[p^{-1}(Z)]_{n + r}$. Observe that $s(X) \cap p^{-1}(Z) = s(Z)$ scheme theoretically. Hence by the same reference as used above $s(X) \cap p^{-1}(Z)$ is a closed subscheme regularly embedded in $\overline{p}^{-1}(Z)$ of codimension $r$. We conclude by Lemma <a href="/tag/0FBM" data-tag="0FBM">42.54.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Consider a commutative diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ X \ar[rd]_ f \ar[rr]_ i &  &  P \ar[ld]^ g \\  &  Y }  \]
+</div>
+<p>
+ of schemes locally of finite type over $S$ such that $g$ is smooth and $i$ is a regular immersion. Combining the bivariant class $i^!$ discussed above with the bivariant class $g^* \in A^*(P \to Y)^\wedge $ of Lemma <a href="/tag/0B78" data-tag="0B78">42.33.2</a> we obtain 
+</p>
+<div class="equation">
+  \[  f^! = i^! \circ g^* \in A^*(X \to Y)  \]
+</div>
+<p>
+ Observe that the morphism $f$ is a local complete intersection morphism, see More on Morphisms, Definition <a href="/tag/069F" data-tag="069F">37.62.2</a>. Conversely, if $f : X \to Y$ is a local complete intersection morphism of locally Noetherian schemes and $f = g \circ i$ with $g$ smooth, then $i$ is a regular immersion. We claim that our construction of $f^!$ only depends on the morphism $f$ and not on the choice of factorization $f = g \circ i$. 
+</p>
+<p>
+<article class="env-lemma" id="0FF2">
+  <p><a class="environment-identifier" href="/tag/0FF2">Lemma <span data-tag="0FF2">42.59.3</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $f : X \to Y$ be a local complete intersection morphism of schemes locally of finite type over $S$. The bivariant class $f^!$ is independent of the choice of the factorization $f = g \circ i$ with $g$ smooth (provided one exists). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Given a second such factorization $f = g' \circ i'$ we can consider the smooth morphism $g'' : P \times _ Y P' \to Y$, the immersion $i'' : X \to P \times _ Y P'$ and the factorization $f = g'' \circ i''$. Thus we may assume that we have a diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ &  P' \ar[d]^ p \ar[rd]^{g'} \\  X \ar[r]^ i \ar[ru]^{i'} &  P \ar[r]^ g &  Y }  \]
+</div>
+    <p>
+       where $p$ is a smooth morphism. Then $(g')^* = p^* \circ g^*$ (Lemma <a href="/tag/02RD" data-tag="02RD">42.14.3</a>) and hence it suffices to show that $i^! = (i')^! \circ p^*$ in $A^*(X \to P)$. Consider the commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ &  X \times _ P P' \ar[d]^{\overline{p}} \ar[r]_ j &  P' \ar[d]^ p \\  X \ar[ru]^ s \ar[r]^1 &  X \ar[r]^ i &  P }  \]
+</div>
+    <p>
+       where $s =(1, i')$. Then $s$ and $j$ are regular immersions (by Divisors, Lemma <a href="/tag/067R" data-tag="067R">31.23.8</a> and Divisors, Lemma <a href="/tag/067P" data-tag="067P">31.22.4</a>) and $i' = j \circ s$. By Lemma <a href="/tag/0FF0" data-tag="0FF0">42.59.1</a> we have $(i')^! = s^! \circ j^!$. Since the square is cartesian, the bivariant class $j^!$ is the restriction (Remark <a href="/tag/0F9Z" data-tag="0F9Z">42.33.5</a>) of $i^!$ to $P'$, see Lemma <a href="/tag/0FBK" data-tag="0FBK">42.54.2</a>. Since bivariant classes commute with flat pullbacks we find $j^! \circ p^* = \overline{p}^* \circ i^!$. Thus it suffices to show that $s^! \circ \overline{p}^* = \text{id}$ which is done in Lemma <a href="/tag/0FF1" data-tag="0FF1">42.59.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="0FF3">
+  <p><a class="environment-identifier" href="/tag/0FF3">Definition <span data-tag="0FF3">42.59.4</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $f : X \to Y$ be a local complete intersection morphism of schemes locally of finite type over $S$. We say <em>the Gysin map for $f$ exists</em> if we can write $f = g \circ i$ with $g$ smooth and $i$ an immersion. In this case we define the <em>Gysin map</em> $f^! = i^! \circ g^* \in A^*(X \to Y)$ as above. </p>
+</article> 
+</p>
+<p>
+It follows from the definition that for a regular immersion this agrees with the construction earlier and for a smooth morphism this agrees with flat pullback. In fact, this agreement holds for all syntomic morphisms. 
+</p>
+<p>
+<article class="env-lemma" id="0FF4">
+  <p><a class="environment-identifier" href="/tag/0FF4">Lemma <span data-tag="0FF4">42.59.5</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $f : X \to Y$ be a local complete intersection morphism of schemes locally of finite type over $S$. If the Gysin map exists for $f$ and $f$ is flat, then $f^!$ is equal to the bivariant class of Lemma <a href="/tag/0B78" data-tag="0B78">42.33.2</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a factorization $f = g \circ i$ with $i : X \to P$ an immersion and $g : P \to Y$ smooth. Observe that for any morphism $Y' \to Y$ which is locally of finite type, the base changes of $f'$, $g'$, $i'$ satisfy the same assumptions (see Morphisms, Lemmas <a href="/tag/01VB" data-tag="01VB">29.35.5</a> and <a href="/tag/01UI" data-tag="01UI">29.31.4</a> and More on Morphisms, Lemma <a href="/tag/069K" data-tag="069K">37.62.8</a>). Thus we reduce to proving that $f^*[Y] = i^!(g^*[Y])$ in case $Y$ is integral, see Lemma <a href="/tag/02UC" data-tag="02UC">42.35.3</a>. Set $n = \dim _\delta (Y)$. After decomposing $X$ and $P$ into connected components we may assume $f$ is flat of relative dimension $r$ and $g$ is smooth of relative dimension $t$. Then $f^*[Y] = [X]_{n + s}$ and $g^*[Y] = [P]_{n + t}$. On the other hand $i$ is a regular immersion of codimension $t - s$. Thus $i^![P]_{n + t} = [X]_{n + s}$ (Lemma <a href="/tag/0FBM" data-tag="0FBM">42.54.5</a>) and the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FF5">
+  <p><a class="environment-identifier" href="/tag/0FF5">Lemma <span data-tag="0FF5">42.59.6</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $f : X \to Y$ and $g : Y \to Z$ be local complete intersection morphisms of schemes locally of finite type over $S$. Assume the Gysin map exists for $g \circ f$ and $g$. Then the Gysin map exists for $f$ and $(g \circ f)^! = f^! \circ g^!$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Observe that $g \circ f$ is a local complete intersection morphism by More on Morphisms, Lemma <a href="/tag/069J" data-tag="069J">37.62.7</a> and hence the statement of the lemma makes sense. If $X \to P$ is an immersion of $X$ into a scheme $P$ smooth over $Z$ then $X \to P \times _ Z Y$ is an immersion of $X$ into a scheme smooth over $Y$. This prove the first assertion of the lemma. Let $Y \to P'$ be an immersion of $Y$ into a scheme $P'$ smooth over $Z$. Consider the commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X \ar[r] \ar[d] &  P \times _ Z Y \ar[r]_ a \ar[ld]^ p &  P \times _ Z P' \ar[ld]^ q \\  Y \ar[r]_ b \ar[d] &  P' \ar[ld] \\  Z }  \]
+</div>
+    <p>
+       Here the horizontal arrows are regular immersions, the south-west arrows are smooth, and the square is cartesian. Whence $a^! \circ q^* = p^* \circ b^!$ as bivariant classes commute with flat pullback. Combining this fact with Lemmas <a href="/tag/0FF0" data-tag="0FF0">42.59.1</a> and <a href="/tag/02RD" data-tag="02RD">42.14.3</a> the reader finds the statement of the lemma holds true. Small detail omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FF6">
+  <p><a class="environment-identifier" href="/tag/0FF6">Lemma <span data-tag="0FF6">42.59.7</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Consider a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ X'' \ar[d] \ar[r] &  X' \ar[d] \ar[r] &  X \ar[d]^ f \\  Y'' \ar[r] &  Y' \ar[r] &  Y }  \]
+</div>
+  <p> of schemes locally of finite type over $S$ with both square cartesian. Assume $f : X \to Y$ is a local complete intersection morphism such that the Gysin map exists for $f$. Let $c \in A^*(Y'' \to Y')$. Denote $res(f^!) \in A^*(X' \to Y')$ the restriction of $f^!$ to $Y'$ (Remark <a href="/tag/0F9Z" data-tag="0F9Z">42.33.5</a>). Then $c$ and $res(f^!)$ commute (Remark <a href="/tag/0FA2" data-tag="0FA2">42.33.6</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a factorization $f = g \circ i$ with $g$ smooth and $i$ an immersion. Since $f^! = i^! \circ g^!$ it suffices to prove the lemma for $g^!$ (which is given by flat pullback) and for $i^!$. The result for flat pullback is part of the definition of a bivariant class. The case of $i^!$ follows immediately from Lemma <a href="/tag/0FBP" data-tag="0FBP">42.54.8</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FF7">
+  <p><a class="environment-identifier" href="/tag/0FF7">Lemma <span data-tag="0FF7">42.59.8</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Consider a cartesian diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ X' \ar[d]_{f'} \ar[r] &  X \ar[d]^ f \\  Y' \ar[r] &  Y }  \]
+</div>
+  <p> of schemes locally of finite type over $S$. Assume </p>
+  <p><ol>
+  <li><p>
+$f$ is a local complete intersection morphism and the Gysin map exists for $f$, 
+</p>
+</li><li><p>
+$X$, $X'$, $Y$, $Y'$ satisfy the equivalent conditions of Lemma <a href="/tag/0FE3" data-tag="0FE3">42.42.1</a>, 
+</p>
+</li><li><p>
+for $x' \in X'$ with images $x$, $y'$, and $y$ in $X$, $Y'$, and $Y$ we have $n_{x'} - n_{y'} = n_ x - n_ y$ where $n_{x'}$, $n_ x$, $n_{y'}$, and $n_ y$ are as in the lemma, and 
+</p>
+</li><li><p>
+for every generic point $\xi \in X'$ the local ring $\mathcal{O}_{Y', f'(\xi )}$ is Cohen-Macaulay. 
+</p>
+</li>
+</ol></p>
+  <p> Then $f^![Y'] = [X']$ where $[Y']$ and $[X']$ are as in Remark <a href="/tag/0FE4" data-tag="0FE4">42.42.2</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Recall that $n_{x'}$ is the common value of $\delta (\xi )$ where $\xi $ is the generic point of an irreducible component passing through $x'$. Moreover, the functions $x' \mapsto n_{x'}$, $x \mapsto n_ x$, $y' \mapsto n_{y'}$, and $y \mapsto n_ y$ are locally constant. Let $X'_ n$, $X_ n$, $Y'_ n$, and $Y_ n$ be the open and closed subscheme of $X'$, $X$, $Y'$, and $Y$ where the function has value $n$. Recall that $[X'] = \sum [X'_ n]_ n$ and $[Y'] = \sum [Y'_ n]_ n$. Having said this, it is clear that to prove the lemma we may replace $X'$ by one of its connected components and $X$, $Y'$, $Y$ by the connected component that it maps into. Then we know that $X'$, $X$, $Y'$, and $Y$ are $\delta $-equidimensional in the sense that each irreducible component has the same $\delta $-dimension. Say $n'$, $n$, $m'$, and $m$ is this common value for $X'$, $X$, $Y'$, and $Y$. The last assumption means that $n' - m' = n - m$. 
+    <p>
+      Choose a factorization $f = g \circ i$ where $i : X \to P$ is an immersion and $g : P \to Y$ is smooth. As $X$ is connected, we see that the relative dimension of $P \to Y$ at points of $i(X)$ is constant. Hence after replacing $P$ by an open neighbourhood of $i(X)$, we may assume that $P \to Y$ has constant relative dimension and $i : X \to P$ is a closed immersion. Denote $g' : Y' \times _ Y P \to Y'$ the base change of $g$ and denote $i' : X' \to Y' \times _ Y P$ the base change of $i$. It is clear that $g^*[Y] = [P]$ and $(g')^*[Y'] = [Y' \times _ Y P]$. Finally, if $\xi ' \in X'$ is a generic point, then $\mathcal{O}_{Y' \times _ Y P, i'(\xi )}$ is Cohen-Macaulay. Namely, the local ring map $\mathcal{O}_{Y', f'(\xi )} \to \mathcal{O}_{Y' \times _ Y P, i'(\xi )}$ is flat with regular fibre (see Algebra, Section <a href="/tag/00TZ" data-tag="00TZ">10.142</a>), a regular local ring is Cohen-Macaulay (Algebra, Lemma <a href="/tag/00NQ" data-tag="00NQ">10.106.3</a>), $\mathcal{O}_{Y', f'(\xi )}$ is Cohen-Macaulay by assumption (4) and we get what we want from Algebra, Lemma <a href="/tag/045J" data-tag="045J">10.163.3</a>. Thus we reduce to the case discussed in the next paragraph. 
+    <p>
+      Assume $f$ is a regular closed immersion and $X'$, $X$, $Y'$, and $Y$ are $\delta $-equidimensional of $\delta $-dimensions $n'$, $n$, $m'$, and $m$ and $m' - n' = m - n$. In this case we obtain the result immediately from Lemma <a href="/tag/0FEA" data-tag="0FEA">42.54.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0FF8">
+  <p><a class="environment-identifier" href="/tag/0FF8">Remark <span data-tag="0FF8">42.59.9</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $f : X \to Y$ be a local complete intersection morphism of schemes locally of finite type over $S$. Assume the Gysin map exists for $f$. Then $f^! \circ c_ i(\mathcal{E}) = c_ i(f^*\mathcal{E}) \circ f^!$ and similarly for the Chern character, see Lemma <a href="/tag/0FF6" data-tag="0FF6">42.59.7</a>. If $X$ and $Y$ satisfy the equivalent conditions of Lemma <a href="/tag/0FE3" data-tag="0FE3">42.42.1</a> and $Y$ is Cohen-Macaulay (for example), then $f^![Y] = [X]$ by Lemma <a href="/tag/0FF7" data-tag="0FF7">42.59.8</a>. In this case we also get $f^!(c_ i(\mathcal{E}) \cap [Y]) = c_ i(f^*\mathcal{E}) \cap [X]$ and similarly for the Chern character. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0FV9">
+  <p><a class="environment-identifier" href="/tag/0FV9">Lemma <span data-tag="0FV9">42.59.10</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Consider a cartesian square </p>
+  <div class="equation">
+  \[  \xymatrix{ X' \ar[d]_{f'} \ar[r]_{g'} &  X \ar[d]^ f \\  Y' \ar[r]^ g &  Y }  \]
+</div>
+  <p> of schemes locally of finite type over $S$. Assume </p>
+  <p><ol>
+  <li><p>
+both $f$ and $f'$ are local complete intersection morphisms, and 
+</p>
+</li><li><p>
+the Gysin map exists for $f$ 
+</p>
+</li>
+</ol></p>
+  <p> Then $\mathcal{C} = \mathop{\mathrm{Ker}}(H^{-1}((g')^*\mathop{N\! L}\nolimits _{X/Y}) \to H^{-1}(\mathop{N\! L}\nolimits _{X'/Y'}))$ is a finite locally free $\mathcal{O}_{X'}$-module, the Gysin map exists for $f'$, and we have </p>
+  <div class="equation">
+  \[  res(f^!) = c_{top}(\mathcal{C}^\vee ) \circ (f')^!  \]
+</div>
+  <p> in $A^*(X' \to Y')$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The fact that $\mathcal{C}$ is finite locally free follows immediately from More on Algebra, Lemma <a href="/tag/0FV1" data-tag="0FV1">15.87.5</a>. Choose a factorization $f = h \circ i$ with $h : P \to Y$ smooth and $i$ an immersion. Then we can factor $f' = h' \circ i'$ where $h' : P' \to Y'$ and $i' : X' \to P'$ the base changes. Picture 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X' \ar[r] \ar[d] &  P' \ar[r] \ar[d] &  Y' \ar[d] \\  X \ar[r]^ i &  P \ar[r]^ h &  Y }  \]
+</div>
+    <p>
+       In particular, we see that the Gysin map exists for $f'$. By More on Morphisms, Lemmas <a href="/tag/0FV4" data-tag="0FV4">37.13.13</a> we have 
+    <p>
+      <div class="equation">
+  \[  \mathop{N\! L}\nolimits _{X/Y} = \left( \mathcal{C}_{X/P} \to i^*\Omega _{P/Y} \right)  \]
+</div>
+    <p>
+       where $\mathcal{C}_{X/P}$ is the conormal sheaf of the embedding $i$. Similarly for the primed version. We have $(g')^*i^*\Omega _{P/Y} = (i')^*\Omega _{P'/Y'}$ because $\Omega _{P/Y}$ pulls back to $\Omega _{P'/Y'}$ by Morphisms, Lemma <a href="/tag/01V0" data-tag="01V0">29.33.10</a>. Also, recall that $(g')^*\mathcal{C}_{X/P} \to \mathcal{C}_{X'/P'}$ is surjective, see Morphisms, Lemma <a href="/tag/0473" data-tag="0473">29.32.4</a>. We deduce that the sheaf $\mathcal{C}$ is canonicallly isomorphic to the kernel of the map $(g')^*\mathcal{C}_{X/P} \to \mathcal{C}_{X'/P'}$ of finite locally free modules. Recall that $i^!$ is defined using $\mathcal{N} = \mathcal{C}_{Z/X}^\vee $ and similarly for $(i')^!$. Thus we have 
+    <p>
+      <div class="equation">
+  \[  res(i^!) = c_{top}(\mathcal{C}^\vee ) \circ (i')^!  \]
+</div>
+    <p>
+       in $A^*(X' \to P')$ by an application of Lemma <a href="/tag/0FV7" data-tag="0FV7">42.54.4</a>. Since finally we have $f^! = i^! \circ h^*$, $(f')^! = (i')^! \circ (h')^*$, and $(h')^* = res(h^*)$ we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FVA">
+  <p><a class="environment-identifier" href="/tag/0FVA">Lemma <span data-tag="0FVA">42.59.11</span> <span class="named">(Blow up formula)</span>.</a>  Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $i : Z \to X$ be a regular closed immersion of schemes locally of finite type over $S$. Let $b : X' \to X$ be the blowing up with center $Z$. Picture </p>
+  <div class="equation">
+  \[  \xymatrix{ E \ar[r]_ j \ar[d]_\pi &  X' \ar[d]^ b \\  Z \ar[r]^ i &  X }  \]
+</div>
+  <p> Assume that the Gysin map exists for $b$. Then we have </p>
+  <div class="equation">
+  \[  res(b^!) = c_{top}(\mathcal{F}^\vee ) \circ \pi ^*  \]
+</div>
+  <p> in $A^*(E \to Z)$ where $\mathcal{F}$ is the kernel of the canonical map $\pi ^*\mathcal{C}_{Z/X} \to \mathcal{C}_{E/X'}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Observe that the morphism $b$ is a local complete intersection morphism by More on Algebra, Lemma <a href="/tag/0BIQ" data-tag="0BIQ">15.32.2</a> and hence the statement makes sense. Since $Z \to X$ is a regular immersion (and hence a fortiori quasi-regular) we see that $\mathcal{C}_{Z/X}$ is finite locally free and the map $\text{Sym}^*(\mathcal{C}_{Z/X}) \to \mathcal{C}_{Z/X, *}$ is an isomorphism, see Divisors, Lemma <a href="/tag/063M" data-tag="063M">31.22.5</a>. Since $E = \text{Proj}(\mathcal{C}_{Z/X, *})$ we conclude that $E = \mathbf{P}(\mathcal{C}_{Z/X})$ is a projective space bundle over $Z$. Thus $E \to Z$ is smooth and certainly a local complete intersection morphism. Thus Lemma <a href="/tag/0FV9" data-tag="0FV9">42.59.10</a> applies and we see that 
+    <p>
+      <div class="equation">
+  \[  res(b^!) = c_{top}(\mathcal{C}^\vee ) \circ \pi ^!  \]
+</div>
+    <p>
+       with $\mathcal{C}$ as in the statement there. Of course $\pi ^* = \pi ^!$ by Lemma <a href="/tag/0FF4" data-tag="0FF4">42.59.5</a>. It remains to show that $\mathcal{F}$ is equal to the kernel $\mathcal{C}$ of the map $H^{-1}(j^*\mathop{N\! L}\nolimits _{X'/X}) \to H^{-1}(\mathop{N\! L}\nolimits _{E/Z})$. 
+    <p>
+      Since $E \to Z$ is smooth we have $H^{-1}(\mathop{N\! L}\nolimits _{E/Z}) = 0$, see More on Morphisms, Lemma <a href="/tag/0D0N" data-tag="0D0N">37.13.7</a>. Hence it suffices to show that $\mathcal{F}$ can be identified with $H^{-1}(j^*\mathop{N\! L}\nolimits _{X'/X})$. By More on Morphisms, Lemmas <a href="/tag/0FV3" data-tag="0FV3">37.13.11</a> and <a href="/tag/0FV2" data-tag="0FV2">37.13.9</a> we have an exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to H^{-1}(j^*\mathop{N\! L}\nolimits _{X'/X}) \to H^{-1}(\mathop{N\! L}\nolimits _{E/X}) \to \mathcal{C}_{E/X'} \to \ldots  \]
+</div>
+    <p>
+       By the same lemmas applied to $E \to Z \to X$ we obtain an isomorphism $\pi ^*\mathcal{C}_{Z/X} = H^{-1}(\pi ^*\mathop{N\! L}\nolimits _{Z/X}) \to H^{-1}(\mathop{N\! L}\nolimits _{E/X})$. Thus we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FF9">
+  <p><a class="environment-identifier" href="/tag/0FF9">Lemma <span data-tag="0FF9">42.59.12</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $f : X \to Y$ be a morphism of schemes locally of finite type over $S$ such that both $X$ and $Y$ are quasi-compact, regular, have affine diagonal, and finite dimension. Then $f$ is a local complete intersection morphism. Assume moreover the Gysin map exists for $f$. Then </p>
+  <div class="equation">
+  \[  f^!(\alpha \cdot \beta ) = f^!\alpha \cdot f^!\beta  \]
+</div>
+  <p> in $\mathop{\mathrm{CH}}\nolimits ^*(X) \otimes \mathbf{Q}$ where the intersection product is as in Section <a href="/tag/0FEX" data-tag="0FEX">42.58</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The first statement follows from More on Morphisms, Lemma <a href="/tag/0E9K" data-tag="0E9K">37.62.11</a>. Observe that $f^![Y] = [X]$, see Lemma <a href="/tag/0FF7" data-tag="0FF7">42.59.8</a>. Write $\alpha = ch(\alpha ') \cap [Y]$ and $\beta = ch(\beta ') \cap [Y]$ where $\alpha ', \beta ' \in K_0(\textit{Vect}(X)) \otimes \mathbf{Q}$ as in Section <a href="/tag/0FEX" data-tag="0FEX">42.58</a>. Setting $c = ch(\alpha ')$ and $c' = ch(\beta ')$ we find $\alpha \cdot \beta = c \cap c' \cap [Y]$ by construction. By Lemma <a href="/tag/0FF6" data-tag="0FF6">42.59.7</a> we know that $f^!$ commutes with both $c$ and $c'$. Hence 
+    <p>
+      <div class="equation">
+  \begin{align*}  f^!(\alpha \cdot \beta ) &  = f^!(c \cap c' \cap [Y]) \\ &  = c \cap c' \cap f^![Y] \\ &  = c \cap c' \cap [X] \\ &  = (c \cap [X]) \cdot (c' \cap [X]) \\ &  = (c \cap f^![Y]) \cdot (c' \cap f^![Y]) \\ &  = f^!(\alpha ) \cdot f^!(\beta ) \end{align*}
+</div>
+    <p>
+       as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FFA">
+  <p><a class="environment-identifier" href="/tag/0FFA">Lemma <span data-tag="0FFA">42.59.13</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $f : X \to Y$ be a morphism of schemes locally of finite type over $S$ such that both $X$ and $Y$ are quasi-compact, regular, have affine diagonal, and finite dimension. Then $f$ is a local complete intersection morphism. Assume moreover the Gysin map exists for $f$ and that $f$ is proper. Then </p>
+  <div class="equation">
+  \[  f_*(\alpha \cdot f^!\beta ) = f_*\alpha \cdot \beta  \]
+</div>
+  <p> in $\mathop{\mathrm{CH}}\nolimits ^*(Y) \otimes \mathbf{Q}$ where the intersection product is as in Section <a href="/tag/0FEX" data-tag="0FEX">42.58</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The first statement follows from More on Morphisms, Lemma <a href="/tag/0E9K" data-tag="0E9K">37.62.11</a>. Observe that $f^![Y] = [X]$, see Lemma <a href="/tag/0FF7" data-tag="0FF7">42.59.8</a>. Write $\alpha = ch(\alpha ') \cap [X]$ and $\beta = ch(\beta ') \cap [Y]$ $\alpha ' \in K_0(\textit{Vect}(X)) \otimes \mathbf{Q}$ and $\beta ' \in K_0(\textit{Vect}(Y)) \otimes \mathbf{Q}$ as in Section <a href="/tag/0FEX" data-tag="0FEX">42.58</a>. Set $c = ch(\alpha ')$ and $c' = ch(\beta ')$. We have 
+    <p>
+      <div class="equation">
+  \begin{align*}  f_*(\alpha \cdot f^!\beta ) &  = f_*(c \cap f^!(c' \cap [Y]_ e)) \\ &  = f_*(c \cap c' \cap f^![Y]_ e) \\ &  = f_*(c \cap c' \cap [X]_ d) \\ &  = f_*(c' \cap c \cap [X]_ d) \\ &  = c' \cap f_*(c \cap [X]_ d) \\ &  = \beta \cdot f_*(\alpha ) \end{align*}
+</div>
+    <p>
+       The first equality by the construction of the intersection product. By Lemma <a href="/tag/0FF6" data-tag="0FF6">42.59.7</a> we know that $f^!$ commutes with $c'$. The fact that Chern classes are in the center of the bivariant ring justifies switching the order of capping $[X]$ with $c$ and $c'$. Commuting $c'$ with $f_*$ is allowed as $c'$ is a bivariant class. The final equality is again the construction of the intersection product. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

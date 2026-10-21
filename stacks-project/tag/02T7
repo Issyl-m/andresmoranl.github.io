@@ -1,0 +1,205 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="chow-section-intersecting-effective-Cartier" class="tex-section"><span data-tag="02T7">42.29</span> Gysin homomorphisms</h2>
+
+<p>
+In this section we define the Gysin map for the zero locus $D$ of a section of an invertible sheaf. An interesting case occurs when $D$ is an effective Cartier divisor, but the generalization to arbitrary $D$ allows us a flexibility to formulate various compatibilities, see Remark <a href="/tag/0B6Y" data-tag="0B6Y">42.29.7</a> and Lemmas <a href="/tag/02TA" data-tag="02TA">42.29.8</a>, <a href="/tag/0B71" data-tag="0B71">42.29.9</a>, and <a href="/tag/0B73" data-tag="0B73">42.30.5</a>. These results can be generalized to locally principal closed subschemes endowed with a virtual normal bundle (Remark <a href="/tag/0B70" data-tag="0B70">42.29.2</a>) or to pseudo-divisors (Remark <a href="/tag/0B7D" data-tag="0B7D">42.29.3</a>). 
+</p>
+<p>
+Recall that effective Cartier divisors correspond $1$-to-$1$ to isomorphism classes of pairs $(\mathcal{L}, s)$ where $\mathcal{L}$ is an invertible sheaf and $s$ is a regular global section, see Divisors, Lemma <a href="/tag/01X0" data-tag="01X0">31.15.10</a>. If $D$ corresponds to $(\mathcal{L}, s)$, then $\mathcal{L} = \mathcal{O}_ X(D)$. Please keep this in mind while reading this section. 
+</p>
+<p>
+<article class="env-definition" id="02T8">
+  <p><a class="environment-identifier" href="/tag/02T8">Definition <span data-tag="02T8">42.29.1</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $X$ be locally of finite type over $S$. Let $(\mathcal{L}, s)$ be a pair consisting of an invertible sheaf and a global section $s \in \Gamma (X, \mathcal{L})$. Let $D = Z(s)$ be the zero scheme of $s$, and denote $i : D \to X$ the closed immersion. We define, for every integer $k$, a <em>Gysin homomorphism</em> </p>
+  <div class="equation">
+  \[  i^* : Z_{k + 1}(X) \to \mathop{\mathrm{CH}}\nolimits _ k(D).  \]
+</div>
+  <p> by the following rules: </p>
+  <p><ol>
+  <li><p>
+Given an integral closed subscheme $W \subset X$ with $\dim _\delta (W) = k + 1$ we define 
+</p>
+<ol>
+  <li><p>
+if $W \not\subset D$, then $i^*[W] = [D \cap W]_ k$ as a $k$-cycle on $D$, and 
+</p>
+</li><li><p>
+if $W \subset D$, then $i^*[W] = i'_*(c_1(\mathcal{L}|_ W) \cap [W])$, where $i' : W \to D$ is the induced closed immersion. 
+</p>
+</li>
+</ol>
+</li><li><p>
+For a general $(k + 1)$-cycle $\alpha = \sum n_ j[W_ j]$ we set 
+</p>
+<div class="equation">
+  \[  i^*\alpha = \sum n_ j i^*[W_ j]  \]
+</div>
+</li><li><p>
+If $D$ is an effective Cartier divisor, then we denote $D \cdot \alpha = i_*i^*\alpha $ the pushforward of the class $i^*\alpha $ to a class on $X$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+In fact, as we will see later, this Gysin homomorphism $i^*$ can be viewed as an example of a non-flat pullback. Thus we will sometimes informally call the class $i^*\alpha $ the <em>pullback</em> of the class $\alpha $. 
+</p>
+<p>
+<article class="env-remark" id="0B70">
+  <p><a class="environment-identifier" href="/tag/0B70">Remark <span data-tag="0B70">42.29.2</span>.</a> Let $X$ be a scheme locally of finite type over $S$ as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $(D, \mathcal{N}, \sigma )$ be a triple consisting of a locally principal (Divisors, Definition <a href="/tag/01WR" data-tag="01WR">31.14.1</a>) closed subscheme $i : D \to X$, an invertible $\mathcal{O}_ D$-module $\mathcal{N}$, and a surjection $\sigma : \mathcal{N}^{\otimes -1} \to i^*\mathcal{I}_ D$ of $\mathcal{O}_ D$-modules<a class="footnotemark" href="#a0000938364" id="a0000938364-mark"><sup>1</sup></a>. Here $\mathcal{N}$ should be thought of as a <em>virtual normal bundle of $D$ in $X$</em>. The construction of $i^* : Z_{k + 1}(X) \to \mathop{\mathrm{CH}}\nolimits _ k(D)$ in Definition <a href="/tag/02T8" data-tag="02T8">42.29.1</a> generalizes to such triples, see Section <a href="/tag/0FBI" data-tag="0FBI">42.54</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="0B7D">
+  <p><a class="environment-identifier" href="/tag/0B7D">Remark <span data-tag="0B7D">42.29.3</span>.</a> Let $X$ be a scheme locally of finite type over $S$ as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. In <span class="cite">[<a href="/bibliography/F">F</a>]</span> a <em>pseudo-divisor</em> on $X$ is defined as a triple $D = (\mathcal{L}, Z, s)$ where $\mathcal{L}$ is an invertible $\mathcal{O}_ X$-module, $Z \subset X$ is a closed subset, and $s \in \Gamma (X \setminus Z, \mathcal{L})$ is a nowhere vanishing section. Similarly to the above, one can define for every $\alpha $ in $\mathop{\mathrm{CH}}\nolimits _{k + 1}(X)$ a product $D \cdot \alpha $ in $\mathop{\mathrm{CH}}\nolimits _ k(Z \cap |\alpha |)$ where $|\alpha |$ is the support of $\alpha $. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="02T9">
+  <p><a class="environment-identifier" href="/tag/02T9">Lemma <span data-tag="02T9">42.29.4</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $X$ be locally of finite type over $S$. Let $(\mathcal{L}, s, i : D \to X)$ be as in Definition <a href="/tag/02T8" data-tag="02T8">42.29.1</a>. Let $\alpha $ be a $(k + 1)$-cycle on $X$. Then $i_*i^*\alpha = c_1(\mathcal{L}) \cap \alpha $ in $\mathop{\mathrm{CH}}\nolimits _ k(X)$. In particular, if $D$ is an effective Cartier divisor, then $D \cdot \alpha = c_1(\mathcal{O}_ X(D)) \cap \alpha $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Write $\alpha = \sum n_ j[W_ j]$ where $i_ j : W_ j \to X$ are integral closed subschemes with $\dim _\delta (W_ j) = k$. Since $D$ is the zero scheme of $s$ we see that $D \cap W_ j$ is the zero scheme of the restriction $s|_{W_ j}$. Hence for each $j$ such that $W_ j \not\subset D$ we have $c_1(\mathcal{L}) \cap [W_ j] = [D \cap W_ j]_ k$ by Lemma <a href="/tag/02SQ" data-tag="02SQ">42.25.4</a>. So we have 
+    <p>
+      <div class="equation">
+  \[  c_1(\mathcal{L}) \cap \alpha = \sum \nolimits _{W_ j \not\subset D} n_ j[D \cap W_ j]_ k + \sum \nolimits _{W_ j \subset D} n_ j i_{j, *}(c_1(\mathcal{L})|_{W_ j}) \cap [W_ j])  \]
+</div>
+    <p>
+       in $\mathop{\mathrm{CH}}\nolimits _ k(X)$ by Definition <a href="/tag/02SO" data-tag="02SO">42.25.1</a>. The right hand side matches (termwise) the pushforward of the class $i^*\alpha $ on $D$ from Definition <a href="/tag/02T8" data-tag="02T8">42.29.1</a>. Hence we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02TB">
+  <p><a class="environment-identifier" href="/tag/02TB">Lemma <span data-tag="02TB">42.29.5</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $X$ be locally of finite type over $S$. Let $(\mathcal{L}, s, i : D \to X)$ be as in Definition <a href="/tag/02T8" data-tag="02T8">42.29.1</a>. </p>
+  <p><ol>
+  <li><p>
+Let $Z \subset X$ be a closed subscheme such that $\dim _\delta (Z) \leq k + 1$ and such that $D \cap Z$ is an effective Cartier divisor on $Z$. Then $i^*[Z]_{k + 1} = [D \cap Z]_ k$. 
+</p>
+</li><li><p>
+Let $\mathcal{F}$ be a coherent sheaf on $X$ such that $\dim _\delta (\text{Supp}(\mathcal{F})) \leq k + 1$ and $s : \mathcal{F} \to \mathcal{F} \otimes _{\mathcal{O}_ X} \mathcal{L}$ is injective. Then 
+</p>
+<div class="equation">
+  \[  i^*[\mathcal{F}]_{k + 1} = [i^*\mathcal{F}]_ k  \]
+</div>
+<p>
+ in $\mathop{\mathrm{CH}}\nolimits _ k(D)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume $Z \subset X$ as in (1). Then set $\mathcal{F} = \mathcal{O}_ Z$. The assumption that $D \cap Z$ is an effective Cartier divisor is equivalent to the assumption that $s : \mathcal{F} \to \mathcal{F} \otimes _{\mathcal{O}_ X} \mathcal{L}$ is injective. Moreover $[Z]_{k + 1} = [\mathcal{F}]_{k + 1}]$ and $[D \cap Z]_ k = [\mathcal{O}_{D \cap Z}]_ k = [i^*\mathcal{F}]_ k$. See Lemma <a href="/tag/02QY" data-tag="02QY">42.10.3</a>. Hence part (1) follows from part (2). 
+    <p>
+      Write $[\mathcal{F}]_{k + 1} = \sum m_ j[W_ j]$ with $m_ j > 0$ and pairwise distinct integral closed subschemes $W_ j \subset X$ of $\delta $-dimension $k + 1$. The assumption that $s : \mathcal{F} \to \mathcal{F} \otimes _{\mathcal{O}_ X} \mathcal{L}$ is injective implies that $W_ j \not\subset D$ for all $j$. By definition we see that 
+    <p>
+      <div class="equation">
+  \[  i^*[\mathcal{F}]_{k + 1} = \sum m_ j [D \cap W_ j]_ k.  \]
+</div>
+    <p>
+       We claim that 
+    <p>
+      <div class="equation">
+  \[  \sum [D \cap W_ j]_ k = [i^*\mathcal{F}]_ k  \]
+</div>
+    <p>
+       as cycles. Let $Z \subset D$ be an integral closed subscheme of $\delta $-dimension $k$. Let $\xi \in Z$ be its generic point. Let $A = \mathcal{O}_{X, \xi }$. Let $M = \mathcal{F}_\xi $. Let $f \in A$ be an element generating the ideal of $D$, i.e., such that $\mathcal{O}_{D, \xi } = A/fA$. By assumption $\dim (\text{Supp}(M)) = 1$, the map $f : M \to M$ is injective, and $\text{length}_ A(M/fM) < \infty $. Moreover, $\text{length}_ A(M/fM)$ is the coefficient of $[Z]$ in $[i^*\mathcal{F}]_ k$. On the other hand, let $\mathfrak q_1, \ldots , \mathfrak q_ t$ be the minimal primes in the support of $M$. Then 
+    <p>
+      <div class="equation">
+  \[  \sum \text{length}_{A_{\mathfrak q_ i}}(M_{\mathfrak q_ i}) \text{ord}_{A/\mathfrak q_ i}(f)  \]
+</div>
+    <p>
+       is the coefficient of $[Z]$ in $\sum [D \cap W_ j]_ k$. Hence we see the equality by Lemma <a href="/tag/02QG" data-tag="02QG">42.3.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0B6Z">
+  <p><a class="environment-identifier" href="/tag/0B6Z">Remark <span data-tag="0B6Z">42.29.6</span>.</a> Let $X \to S$, $\mathcal{L}$, $s$, $i : D \to X$ be as in Definition <a href="/tag/02T8" data-tag="02T8">42.29.1</a> and assume that $\mathcal{L}|_ D \cong \mathcal{O}_ D$. In this case we can define a canonical map $i^* : Z_{k + 1}(X) \to Z_ k(D)$ on cycles, by requiring that $i^*[W] = 0$ whenever $W \subset D$ is an integral closed subscheme. The possibility to do this will be useful later on. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="0B6Y">
+  <p><a class="environment-identifier" href="/tag/0B6Y">Remark <span data-tag="0B6Y">42.29.7</span>.</a> Let $f : X' \to X$ be a morphism of schemes locally of finite type over $S$ as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $(\mathcal{L}, s, i : D \to X)$ be a triple as in Definition <a href="/tag/02T8" data-tag="02T8">42.29.1</a>. Then we can set $\mathcal{L}' = f^*\mathcal{L}$, $s' = f^*s$, and $D' = X' \times _ X D = Z(s')$. This gives a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ D' \ar[d]_ g \ar[r]_{i'} &  X' \ar[d]^ f \\  D \ar[r]^ i &  X }  \]
+</div>
+  <p> and we can ask for various compatibilities between $i^*$ and $(i')^*$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="02TA">
+  <p><a class="environment-identifier" href="/tag/02TA">Lemma <span data-tag="02TA">42.29.8</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $f : X' \to X$ be a proper morphism of schemes locally of finite type over $S$. Let $(\mathcal{L}, s, i : D \to X)$ be as in Definition <a href="/tag/02T8" data-tag="02T8">42.29.1</a>. Form the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ D' \ar[d]_ g \ar[r]_{i'} &  X' \ar[d]^ f \\  D \ar[r]^ i &  X }  \]
+</div>
+  <p> as in Remark <a href="/tag/0B6Y" data-tag="0B6Y">42.29.7</a>. For any $(k + 1)$-cycle $\alpha '$ on $X'$ we have $i^*f_*\alpha ' = g_*(i')^*\alpha '$ in $\mathop{\mathrm{CH}}\nolimits _ k(D)$ (this makes sense as $f_*$ is defined on the level of cycles). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose $\alpha = [W']$ for some integral closed subscheme $W' \subset X'$. Let $W = f(W') \subset X$. In case $W' \not\subset D'$, then $W \not\subset D$ and we see that 
+    <p>
+      <div class="equation">
+  \[  [W' \cap D']_ k = \text{div}_{\mathcal{L}'|_{W'}}({s'|_{W'}}) \quad \text{and}\quad [W \cap D]_ k = \text{div}_{\mathcal{L}|_ W}(s|_ W)  \]
+</div>
+    <p>
+       and hence $f_*$ of the first cycle equals the second cycle by Lemma <a href="/tag/02ST" data-tag="02ST">42.26.3</a>. Hence the equality holds as cycles. In case $W' \subset D'$, then $W \subset D$ and $f_*(c_1(\mathcal{L}|_{W'}) \cap [W'])$ is equal to $c_1(\mathcal{L}|_ W) \cap [W]$ in $\mathop{\mathrm{CH}}\nolimits _ k(W)$ by the second assertion of Lemma <a href="/tag/02ST" data-tag="02ST">42.26.3</a>. By Remark <a href="/tag/02RZ" data-tag="02RZ">42.19.6</a> the result follows for general $\alpha '$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0B71">
+  <p><a class="environment-identifier" href="/tag/0B71">Lemma <span data-tag="0B71">42.29.9</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $f : X' \to X$ be a flat morphism of relative dimension $r$ of schemes locally of finite type over $S$. Let $(\mathcal{L}, s, i : D \to X)$ be as in Definition <a href="/tag/02T8" data-tag="02T8">42.29.1</a>. Form the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ D' \ar[d]_ g \ar[r]_{i'} &  X' \ar[d]^ f \\  D \ar[r]^ i &  X }  \]
+</div>
+  <p> as in Remark <a href="/tag/0B6Y" data-tag="0B6Y">42.29.7</a>. For any $(k + 1)$-cycle $\alpha $ on $X$ we have $(i')^*f^*\alpha = g^*i^*\alpha $ in $\mathop{\mathrm{CH}}\nolimits _{k + r}(D')$ (this makes sense as $f^*$ is defined on the level of cycles). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose $\alpha = [W]$ for some integral closed subscheme $W \subset X$. Let $W' = f^{-1}(W) \subset X'$. In case $W \not\subset D$, then $W' \not\subset D'$ and we see that 
+    <p>
+      <div class="equation">
+  \[  W' \cap D' = g^{-1}(W \cap D)  \]
+</div>
+    <p>
+       as closed subschemes of $D'$. Hence the equality holds as cycles, see Lemma <a href="/tag/02RE" data-tag="02RE">42.14.4</a>. In case $W \subset D$, then $W' \subset D'$ and $W' = g^{-1}(W)$ with $[W']_{k + 1 + r} = g^*[W]$ and equality holds in $\mathop{\mathrm{CH}}\nolimits _{k + r}(D')$ by Lemma <a href="/tag/02SS" data-tag="02SS">42.26.2</a>. By Remark <a href="/tag/02RZ" data-tag="02RZ">42.19.6</a> the result follows for general $\alpha '$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

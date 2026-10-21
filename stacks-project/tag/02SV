@@ -1,0 +1,292 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h3 id="chow-subsection-cartier-coherent" class="tex-subsection"><span data-tag="02SV">42.69.4</span> Cartier divisors and K-groups</h3>
+
+<p>
+In this section we describe how the intersection with the first Chern class of an invertible sheaf $\mathcal{L}$ corresponds to tensoring with $\mathcal{L} - \mathcal{O}$ in $K$-groups. 
+</p>
+<p>
+<article class="env-lemma" id="02QH">
+  <p><a class="environment-identifier" href="/tag/02QH">Lemma <span data-tag="02QH">42.69.5</span>.</a> Let $A$ be a Noetherian local ring. Let $M$ be a finite $A$-module. Let $a, b \in A$. Assume </p>
+  <p><ol>
+  <li><p>
+$\dim (A) = 1$, 
+</p>
+</li><li><p>
+both $a$ and $b$ are nonzerodivisors in $A$, 
+</p>
+</li><li><p>
+$A$ has no embedded primes, 
+</p>
+</li><li><p>
+$M$ has no embedded associated primes, 
+</p>
+</li><li><p>
+$\text{Supp}(M) = \mathop{\mathrm{Spec}}(A)$. 
+</p>
+</li>
+</ol></p>
+  <p> Let $I = \{ x \in A \mid x(a/b) \in A\} $. Let $\mathfrak q_1, \ldots , \mathfrak q_ t$ be the minimal primes of $A$. Then $(a/b)IM \subset M$ and </p>
+  <div class="equation">
+  \[  \text{length}_ A(M/(a/b)IM) - \text{length}_ A(M/IM) = \sum \nolimits _ i \text{length}_{A_{\mathfrak q_ i}}(M_{\mathfrak q_ i}) \text{ord}_{A/\mathfrak q_ i}(a/b)  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $M$ has no embedded associated primes, and since the support of $M$ is $\mathop{\mathrm{Spec}}(A)$ we see that $\text{Ass}(M) = \{ \mathfrak q_1, \ldots , \mathfrak q_ t\} $. Hence $a$, $b$ are nonzerodivisors on $M$. Note that 
+    <p>
+      <div class="equation">
+  \begin{align*} &  \text{length}_ A(M/(a/b)IM) \\ &  = \text{length}_ A(bM/aIM) \\ &  = \text{length}_ A(M/aIM) - \text{length}_ A(M/bM) \\ &  = \text{length}_ A(M/aM) + \text{length}_ A(aM/aIM) - \text{length}_ A(M/bM) \\ &  = \text{length}_ A(M/aM) + \text{length}_ A(M/IM) - \text{length}_ A(M/bM) \end{align*}
+</div>
+    <p>
+       as the injective map $b : M \to bM$ maps $(a/b)IM$ to $aIM$ and the injective map $a : M \to aM$ maps $IM$ to $aIM$. Hence the left hand side of the equation of the lemma is equal to 
+    <p>
+      <div class="equation">
+  \[  \text{length}_ A(M/aM) - \text{length}_ A(M/bM).  \]
+</div>
+    <p>
+       Applying the second formula of Lemma <a href="/tag/02QG" data-tag="02QG">42.3.2</a> with $x = a, b$ respectively and using Algebra, Definition <a href="/tag/02MD" data-tag="02MD">10.121.2</a> of the $\text{ord}$-functions we get the result. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02SW">
+  <p><a class="environment-identifier" href="/tag/02SW">Lemma <span data-tag="02SW">42.69.6</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $X$ be locally of finite type over $S$. Let $\mathcal{L}$ be an invertible $\mathcal{O}_ X$-module. Let $\mathcal{F}$ be a coherent $\mathcal{O}_ X$-module. Let $s \in \Gamma (X, \mathcal{K}_ X(\mathcal{L}))$ be a meromorphic section of $\mathcal{L}$. Assume </p>
+  <p><ol>
+  <li><p>
+$\dim _\delta (X) \leq k + 1$, 
+</p>
+</li><li><p>
+$X$ has no embedded points, 
+</p>
+</li><li><p>
+$\mathcal{F}$ has no embedded associated points, 
+</p>
+</li><li><p>
+the support of $\mathcal{F}$ is $X$, and 
+</p>
+</li><li><p>
+the section $s$ is regular meromorphic. 
+</p>
+</li>
+</ol></p>
+  <p> In this situation let $\mathcal{I} \subset \mathcal{O}_ X$ be the ideal of denominators of $s$, see Divisors, Definition <a href="/tag/02P1" data-tag="02P1">31.24.10</a>. Then we have the following: </p>
+  <p><ol>
+  <li><p>
+there are short exact sequences 
+</p>
+<div class="equation">
+  \[  \begin{matrix}  0 
+
+&  \to 
+
+&  \mathcal{I}\mathcal{F} 
+
+&  \xrightarrow {1} 
+
+&  \mathcal{F} 
+
+&  \to 
+
+&  \mathcal{Q}_1 
+
+&  \to 
+
+&  0 
+
+\\  0 
+
+&  \to 
+
+&  \mathcal{I}\mathcal{F} 
+
+&  \xrightarrow {s} 
+
+&  \mathcal{F} \otimes _{\mathcal{O}_ X} \mathcal{L} 
+
+&  \to 
+
+&  \mathcal{Q}_2 
+
+&  \to 
+
+&  0 
+
+\end{matrix}  \]
+</div>
+</li><li><p>
+the coherent sheaves $\mathcal{Q}_1$, $\mathcal{Q}_2$ are supported in $\delta $-dimension $\leq k$, 
+</p>
+</li><li><p>
+the section $s$ restricts to a regular meromorphic section $s_ i$ on every irreducible component $X_ i$ of $X$ of $\delta $-dimension $k + 1$, and 
+</p>
+</li><li><p>
+writing $[\mathcal{F}]_{k + 1} = \sum m_ i[X_ i]$ we have 
+</p>
+<div class="equation">
+  \[  [\mathcal{Q}_2]_ k - [\mathcal{Q}_1]_ k = \sum m_ i(X_ i \to X)_*\text{div}_{\mathcal{L}|_{X_ i}}(s_ i)  \]
+</div>
+<p>
+ in $Z_ k(X)$, in particular 
+</p>
+<div class="equation">
+  \[  [\mathcal{Q}_2]_ k - [\mathcal{Q}_1]_ k = c_1(\mathcal{L}) \cap [\mathcal{F}]_{k + 1}  \]
+</div>
+<p>
+ in $\mathop{\mathrm{CH}}\nolimits _ k(X)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Recall from Divisors, Lemma <a href="/tag/02P2" data-tag="02P2">31.25.5</a> the existence of injective maps $1 : \mathcal{I}\mathcal{F} \to \mathcal{F}$ and $s : \mathcal{I}\mathcal{F} \to \mathcal{F} \otimes _{\mathcal{O}_ X}\mathcal{L}$ whose cokernels are supported on a closed nowhere dense subsets $T$. Denote $\mathcal{Q}_ i$ there cokernels as in the lemma. We conclude that $\dim _\delta (\text{Supp}(\mathcal{Q}_ i)) \leq k$. By Divisors, Lemmas <a href="/tag/02OU" data-tag="02OU">31.24.5</a> and <a href="/tag/02OY" data-tag="02OY">31.24.8</a> the pullbacks $s_ i$ are defined and are regular meromorphic sections for $\mathcal{L}|_{X_ i}$. The equality of cycles in (4) implies the equality of cycle classes in (4). Hence the only remaining thing to show is that 
+    <p>
+      <div class="equation">
+  \[  [\mathcal{Q}_2]_ k - [\mathcal{Q}_1]_ k = \sum m_ i(X_ i \to X)_*\text{div}_{\mathcal{L}|_{X_ i}}(s_ i)  \]
+</div>
+    <p>
+       holds in $Z_ k(X)$. To see this, let $Z \subset X$ be an integral closed subscheme of $\delta $-dimension $k$. Let $\xi \in Z$ be the generic point. Let $A = \mathcal{O}_{X, \xi }$ and $M = \mathcal{F}_\xi $. Moreover, choose a generator $s_\xi \in \mathcal{L}_\xi $. Then we can write $s = (a/b) s_\xi $ where $a, b \in A$ are nonzerodivisors. In this case $I = \mathcal{I}_\xi = \{ x \in A \mid x(a/b) \in A\} $. In this case the coefficient of $[Z]$ in the left hand side is 
+    <p>
+      <div class="equation">
+  \[  \text{length}_ A(M/(a/b)IM) - \text{length}_ A(M/IM)  \]
+</div>
+    <p>
+       and the coefficient of $[Z]$ in the right hand side is 
+    <p>
+      <div class="equation">
+  \[  \sum \text{length}_{A_{\mathfrak q_ i}}(M_{\mathfrak q_ i}) \text{ord}_{A/\mathfrak q_ i}(a/b)  \]
+</div>
+    <p>
+       where $\mathfrak q_1, \ldots , \mathfrak q_ t$ are the minimal primes of the $1$-dimensional local ring $A$. Hence the result follows from Lemma <a href="/tag/02QH" data-tag="02QH">42.69.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02SX">
+  <p><a class="environment-identifier" href="/tag/02SX">Lemma <span data-tag="02SX">42.69.7</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $X$ be locally of finite type over $S$. Let $\mathcal{L}$ be an invertible $\mathcal{O}_ X$-module. Let $\mathcal{F}$ be a coherent $\mathcal{O}_ X$-module. Assume $\dim _\delta (\text{Supp}(\mathcal{F})) \leq k + 1$. Then the element </p>
+  <div class="equation">
+  \[  [\mathcal{F} \otimes _{\mathcal{O}_ X} \mathcal{L}] - [\mathcal{F}] \in K_0(\textit{Coh}_{\leq k + 1}(X)/\textit{Coh}_{\leq k - 1}(X))  \]
+</div>
+  <p> lies in the subgroup $B_ k(X)$ of Lemma <a href="/tag/02SC" data-tag="02SC">42.69.3</a> and maps to the element $c_1(\mathcal{L}) \cap [\mathcal{F}]_{k + 1}$ via the map $B_ k(X) \to \mathop{\mathrm{CH}}\nolimits _ k(X)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{K} \to \mathcal{F} \to \mathcal{F}' \to 0  \]
+</div>
+    <p>
+       be the short exact sequence constructed in Divisors, Lemma <a href="/tag/02OL" data-tag="02OL">31.4.6</a>. This in particular means that $\mathcal{F}'$ has no embedded associated points. Since the support of $\mathcal{K}$ is nowhere dense in the support of $\mathcal{F}$ we see that $\dim _\delta (\text{Supp}(\mathcal{K})) \leq k$. We may re-apply Divisors, Lemma <a href="/tag/02OL" data-tag="02OL">31.4.6</a> starting with $\mathcal{K}$ to get a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{K}'' \to \mathcal{K} \to \mathcal{K}' \to 0  \]
+</div>
+    <p>
+       where now $\dim _\delta (\text{Supp}(\mathcal{K}'')) < k$ and $\mathcal{K}'$ has no embedded associated points. Suppose we can prove the lemma for the coherent sheaves $\mathcal{F}'$ and $\mathcal{K}'$. Then we see from the equations 
+    <p>
+      <div class="equation">
+  \[  [\mathcal{F}]_{k + 1} = [\mathcal{F}']_{k + 1} + [\mathcal{K}']_{k + 1} + [\mathcal{K}'']_{k + 1}  \]
+</div>
+    <p>
+       (use Lemma <a href="/tag/02QZ" data-tag="02QZ">42.10.4</a>), 
+    <p>
+      <div class="equation">
+  \[  [\mathcal{F} \otimes _{\mathcal{O}_ X} \mathcal{L}] - [\mathcal{F}] = [\mathcal{F}' \otimes _{\mathcal{O}_ X} \mathcal{L}] - [\mathcal{F}'] + [\mathcal{K}' \otimes _{\mathcal{O}_ X} \mathcal{L}] - [\mathcal{K}'] + [\mathcal{K}'' \otimes _{\mathcal{O}_ X} \mathcal{L}] - [\mathcal{K}'']  \]
+</div>
+    <p>
+       (use the $\otimes \mathcal{L}$ is exact) and the trivial vanishing of $[\mathcal{K}'']_{k + 1}$ and $[\mathcal{K}'' \otimes _{\mathcal{O}_ X} \mathcal{L}] - [\mathcal{K}'']$ in $K_0(\textit{Coh}_{\leq k + 1}(X)/\textit{Coh}_{\leq k - 1}(X))$ that the result holds for $\mathcal{F}$. What this means is that we may assume that the sheaf $\mathcal{F}$ has no embedded associated points. 
+    <p>
+      Assume $X$, $\mathcal{F}$ as in the lemma, and assume in addition that $\mathcal{F}$ has no embedded associated points. Consider the sheaf of ideals $\mathcal{I} \subset \mathcal{O}_ X$, the corresponding closed subscheme $i : Z \to X$ and the coherent $\mathcal{O}_ Z$-module $\mathcal{G}$ constructed in Divisors, Lemma <a href="/tag/02OM" data-tag="02OM">31.4.7</a>. Recall that $Z$ is a locally Noetherian scheme without embedded points, $\mathcal{G}$ is a coherent sheaf without embedded associated points, with $\text{Supp}(\mathcal{G}) = Z$ and such that $i_*\mathcal{G} = \mathcal{F}$. Moreover, set $\mathcal{N} = \mathcal{L}|_ Z$. 
+    <p>
+      By Divisors, Lemma <a href="/tag/02OZ" data-tag="02OZ">31.26.4</a> the invertible sheaf $\mathcal{N}$ has a regular meromorphic section $s$ over $Z$. Let us denote $\mathcal{J} \subset \mathcal{O}_ Z$ the sheaf of denominators of $s$. By Lemma <a href="/tag/02SW" data-tag="02SW">42.69.6</a> there exist short exact sequences 
+    <p>
+      <div class="equation">
+  \[  \begin{matrix}  0 
+
+&  \to 
+
+&  \mathcal{J}\mathcal{G} 
+
+&  \xrightarrow {1} 
+
+&  \mathcal{G} 
+
+&  \to 
+
+&  \mathcal{Q}_1 
+
+&  \to 
+
+&  0 
+
+\\  0 
+
+&  \to 
+
+&  \mathcal{J}\mathcal{G} 
+
+&  \xrightarrow {s} 
+
+&  \mathcal{G} \otimes _{\mathcal{O}_ Z} \mathcal{N} 
+
+&  \to 
+
+&  \mathcal{Q}_2 
+
+&  \to 
+
+&  0 
+
+\end{matrix}  \]
+</div>
+    <p>
+       such that $\dim _\delta (\text{Supp}(\mathcal{Q}_ i)) \leq k$ and such that the cycle $ [\mathcal{Q}_2]_ k - [\mathcal{Q}_1]_ k $ is a representative of $c_1(\mathcal{N}) \cap [\mathcal{G}]_{k + 1}$. We see (using the fact that $i_*(\mathcal{G} \otimes \mathcal{N}) = \mathcal{F} \otimes \mathcal{L}$ by the projection formula, see Cohomology, Lemma <a href="/tag/01E8" data-tag="01E8">20.54.2</a>) that 
+    <p>
+      <div class="equation">
+  \[  [\mathcal{F} \otimes _{\mathcal{O}_ X} \mathcal{L}] - [\mathcal{F}] = [i_*\mathcal{Q}_2] - [i_*\mathcal{Q}_1]  \]
+</div>
+    <p>
+       in $K_0(\textit{Coh}_{\leq k + 1}(X)/\textit{Coh}_{\leq k - 1}(X))$. This already shows that $[\mathcal{F} \otimes _{\mathcal{O}_ X} \mathcal{L}] - [\mathcal{F}]$ is an element of $B_ k(X)$. Moreover we have 
+    <p>
+      <div class="equation">
+  \begin{eqnarray*}  [i_*\mathcal{Q}_2]_ k - [i_*\mathcal{Q}_1]_ k &  = &  i_*\left( [\mathcal{Q}_2]_ k - [\mathcal{Q}_1]_ k \right) \\ &  = &  i_*\left(c_1(\mathcal{N}) \cap [\mathcal{G}]_{k + 1} \right) \\ &  = &  c_1(\mathcal{L}) \cap i_*[\mathcal{G}]_{k + 1} \\ &  = &  c_1(\mathcal{L}) \cap [\mathcal{F}]_{k + 1} \end{eqnarray*}
+</div>
+    <p>
+       by the above and Lemmas <a href="/tag/02SU" data-tag="02SU">42.26.4</a> and <a href="/tag/02R6" data-tag="02R6">42.12.4</a>. And this agree with the image of the element under $B_ k(X) \to \mathop{\mathrm{CH}}\nolimits _ k(X)$ by definition. Hence the lemma is proved. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

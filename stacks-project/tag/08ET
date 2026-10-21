@@ -1,0 +1,242 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="perfect-section-cohomology-and-base-change-perfect" class="tex-section"><span data-tag="08ET">36.22</span> Cohomology and base change, IV</h2>
+
+<p>
+This section continues the discussion of Cohomology of Schemes, Section <a href="/tag/07VJ" data-tag="07VJ">30.22</a>. First, we have a very general version of the projection formula for quasi-compact and quasi-separated morphisms of schemes and complexes with quasi-coherent cohomology sheaves. 
+</p>
+<p>
+<article class="env-lemma" id="08EU">
+  <p><a class="environment-identifier" href="/tag/08EU">Lemma <span data-tag="08EU">36.22.1</span>.</a> Let $f : X \to Y$ be a quasi-compact and quasi-separated morphism of schemes. For $E$ in $D_\mathit{QCoh}(\mathcal{O}_ X)$ and $K$ in $D_\mathit{QCoh}(\mathcal{O}_ Y)$ the map </p>
+  <div class="equation">
+  \[  Rf_*(E) \otimes _{\mathcal{O}_ Y}^\mathbf {L} K \longrightarrow Rf_*(E \otimes _{\mathcal{O}_ X}^\mathbf {L} Lf^*K)  \]
+</div>
+  <p> defined in Cohomology, Equation (<a href="/tag/0B53" data-tag="0B53">20.54.2.1</a>) is an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      To check the map is an isomorphism we may work locally on $Y$. Hence we reduce to the case that $Y$ is affine. 
+    <p>
+      Suppose that $K = \bigoplus K_ i$ is a direct sum of some complexes $K_ i \in D_\mathit{QCoh}(\mathcal{O}_ Y)$. If the statement holds for each $K_ i$, then it holds for $K$. Namely, the functors $Lf^*$ and $\otimes ^\mathbf {L}$ preserve direct sums by construction and $Rf_*$ commutes with direct sums (for complexes with quasi-coherent cohomology sheaves) by Lemma <a href="/tag/08DZ" data-tag="08DZ">36.4.5</a>. Moreover, suppose that $K \to L \to M \to K[1]$ is a distinguished triangle in $D_\mathit{QCoh}(Y)$. Then if the statement of the lemma holds for two of $K, L, M$, then it holds for the third (as the functors involved are exact functors of triangulated categories). 
+    <p>
+      Assume $Y$ affine, say $Y = \mathop{\mathrm{Spec}}(A)$. The functor $\widetilde{\  } : D(A) \to D_\mathit{QCoh}(\mathcal{O}_ Y)$ is an equivalence (Lemma <a href="/tag/06Z0" data-tag="06Z0">36.3.5</a>). Let $T$ be the property for $K \in D(A)$ that the statement of the lemma holds for $\widetilde{K}$. The discussion above and More on Algebra, Remark <a href="/tag/09PB" data-tag="09PB">15.60.11</a> shows that it suffices to prove $T$ holds for $A[k]$. This finishes the proof, as the statement of the lemma is clear for shifts of the structure sheaf. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="08IA">
+  <p><a class="environment-identifier" href="/tag/08IA">Definition <span data-tag="08IA">36.22.2</span>.</a> Let $S$ be a scheme. Let $X$, $Y$ be schemes over $S$. We say $X$ and $Y$ are <em>Tor independent over $S$</em> if for every $x \in X$ and $y \in Y$ mapping to the same point $s \in S$ the rings $\mathcal{O}_{X, x}$ and $\mathcal{O}_{Y, y}$ are Tor independent over $\mathcal{O}_{S, s}$ (see More on Algebra, Definition <a href="/tag/0660" data-tag="0660">15.62.1</a>). </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0FXV">
+  <p><a class="environment-identifier" href="/tag/0FXV">Lemma <span data-tag="0FXV">36.22.3</span>.</a> Let $f : X \to S$ and $g : Y \to S$ be morphisms of schemes. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$X$ and $Y$ are tor independent over $S$, and 
+</p>
+</li><li><p>
+for every affine opens $U \subset X$, $V \subset Y$, $W \subset S$ with $f(U) \subset W$ and $g(V) \subset W$ the rings $\mathcal{O}_ X(U)$ and $\mathcal{O}_ Y(V)$ are tor independent over $\mathcal{O}_ S(W)$. 
+</p>
+</li><li><p>
+there exists an affine open overing $S = \bigcup W_ i$ and for each $i$ affine open coverings $f^{-1}(W_ i) = \bigcup U_{ij}$ and $g^{-1}(W_ i) = \bigcup V_{ik}$ such that the rings $\mathcal{O}_ X(U_{ij})$ and $\mathcal{O}_ Y(V_{ik})$ are tor independent over $\mathcal{O}_ S(W_ i)$ for all $i, j, k$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. Hint: use More on Algebra, Lemma <a href="/tag/08HX" data-tag="08HX">15.62.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FXW">
+  <p><a class="environment-identifier" href="/tag/0FXW">Lemma <span data-tag="0FXW">36.22.4</span>.</a> Let $X \to S$ and $Y \to S$ be morphisms of schemes. Let $S' \to S$ be a morphism of schemes and denote $X' = X \times _ S S'$ and $Y' = Y \times _ S S'$. If $X$ and $Y$ are tor independent over $S$ and $S' \to S$ is flat, then $X'$ and $Y'$ are tor independent over $S'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. Hint: use Lemma <a href="/tag/0FXV" data-tag="0FXV">36.22.3</a> and on affine opens use More on Algebra, Lemma <a href="/tag/0FXF" data-tag="0FXF">15.62.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08IB">
+  <p><a class="environment-identifier" href="/tag/08IB">Lemma <span data-tag="08IB">36.22.5</span>.</a> Let $g : S' \to S$ be a morphism of schemes. Let $f : X \to S$ be quasi-compact and quasi-separated. Consider the base change diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ X' \ar[r]_{g'} \ar[d]_{f'} &  X \ar[d]^ f \\  S' \ar[r]^ g &  S }  \]
+</div>
+  <p> If $X$ and $S'$ are Tor independent over $S$, then for all $E \in D_\mathit{QCoh}(\mathcal{O}_ X)$ the canonical arrow $Lg^*Rf_*E \to Rf'_*L(g')^*E$ is an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      For any object $E$ of $D(\mathcal{O}_ X)$ we can use Cohomology, Remark <a href="/tag/08HY" data-tag="08HY">20.28.3</a> to get a canonical base change map $Lg^*Rf_*E \to Rf'_*L(g')^*E$. To check this is an isomorphism we may work locally on $S'$. Hence we may assume $g : S' \to S$ is a morphism of affine schemes. In particular, $g$ is affine and it suffices to show that 
+    <p>
+      <div class="equation">
+  \[  Rg_*Lg^*Rf_*E \to Rg_*Rf'_*L(g')^*E = Rf_*(Rg'_* L(g')^* E)  \]
+</div>
+    <p>
+       is an isomorphism, see Lemma <a href="/tag/08I8" data-tag="08I8">36.5.2</a> (and use Lemmas <a href="/tag/08DW" data-tag="08DW">36.3.8</a>, <a href="/tag/08DX" data-tag="08DX">36.3.9</a>, and <a href="/tag/08D5" data-tag="08D5">36.4.1</a> to see that the objects $Rf'_*L(g')^*E$ and $Lg^*Rf_*E$ have quasi-coherent cohomology sheaves). Note that $g'$ is affine as well (Morphisms, Lemma <a href="/tag/01SD" data-tag="01SD">29.11.9</a>). By Lemma <a href="/tag/08I9" data-tag="08I9">36.5.3</a> the map becomes a map 
+    <p>
+      <div class="equation">
+  \[  Rf_*E \otimes _{\mathcal{O}_ S}^\mathbf {L} g_*\mathcal{O}_{S'} \longrightarrow Rf_*(E \otimes _{\mathcal{O}_ X}^\mathbf {L} g'_*\mathcal{O}_{X'})  \]
+</div>
+    <p>
+       Observe that $g'_*\mathcal{O}_{X'} = f^*g_*\mathcal{O}_{S'}$ (by affine base change, see Cohomology of Schemes, Lemma <a href="/tag/02KG" data-tag="02KG">30.5.1</a>). Thus by Lemma <a href="/tag/08EU" data-tag="08EU">36.22.1</a> it suffices to prove that $Lf^*g_*\mathcal{O}_{S'} = f^*g_*\mathcal{O}_{S'}$. This follows from our assumption that $X$ and $S'$ are Tor independent over $S$. Namely, to check it we may work locally on $X$, hence we may also assume $X$ is affine. Say $X = \mathop{\mathrm{Spec}}(A)$, $S = \mathop{\mathrm{Spec}}(R)$ and $S' = \mathop{\mathrm{Spec}}(R')$. Our assumption implies that $A$ and $R'$ are Tor independent over $R$ (More on Algebra, Lemma <a href="/tag/08HX" data-tag="08HX">15.62.6</a>), i.e., $\text{Tor}_ i^ R(A, R') = 0$ for $i > 0$. In other words $A \otimes _ R^\mathbf {L} R' = A \otimes _ R R'$ which exactly means that $Lf^*g_*\mathcal{O}_{S'} = f^*g_*\mathcal{O}_{S'}$ (use Lemma <a href="/tag/08DW" data-tag="08DW">36.3.8</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma will be used in the chapter on dualizing complexes. 
+</p>
+<p>
+<article class="env-lemma" id="0AA7">
+  <p><a class="environment-identifier" href="/tag/0AA7">Lemma <span data-tag="0AA7">36.22.6</span>.</a> Consider a cartesian square </p>
+  <div class="equation">
+  \[  \xymatrix{ X' \ar[r]_{g'} \ar[d]_{f'} &  X \ar[d]^ f \\  S' \ar[r]^ g &  S }  \]
+</div>
+  <p> of quasi-compact and quasi-separated schemes. Assume $g$ and $f$ Tor independent and $S = \mathop{\mathrm{Spec}}(R)$, $S' = \mathop{\mathrm{Spec}}(R')$ affine. For $M, K \in D(\mathcal{O}_ X)$ the canonical map </p>
+  <div class="equation">
+  \[  R\mathop{\mathrm{Hom}}\nolimits _ X(M, K) \otimes ^\mathbf {L}_ R R' \longrightarrow R\mathop{\mathrm{Hom}}\nolimits _{X'}(L(g')^*M, L(g')^*K)  \]
+</div>
+  <p> in $D(R')$ is an isomorphism in the following two cases </p>
+  <p><ol>
+  <li><p>
+$M \in D(\mathcal{O}_ X)$ is perfect and $K \in D_\mathit{QCoh}(X)$, or 
+</p>
+</li><li><p>
+$M \in D(\mathcal{O}_ X)$ is pseudo-coherent, $K \in D_\mathit{QCoh}^+(X)$, and $R'$ has finite tor dimension over $R$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      There is a canonical map $R\mathop{\mathrm{Hom}}\nolimits _ X(M, K) \to R\mathop{\mathrm{Hom}}\nolimits _{X'}(L(g')^*M, L(g')^*K)$ in $D(\Gamma (X, \mathcal{O}_ X))$ of global hom complexes, see Cohomology, Section <a href="/tag/0B6A" data-tag="0B6A">20.44</a>. Restricting scalars we can view this as a map in $D(R)$. Then we can use the adjointness of restriction and $- \otimes _ R^\mathbf {L} R'$ to get the displayed map of the lemma. Having defined the map it suffices to prove it is an isomorphism in the derived category of abelian groups. 
+    <p>
+      The right hand side is equal to 
+    <p>
+      <div class="equation">
+  \[  R\mathop{\mathrm{Hom}}\nolimits _ X(M, R(g')_*L(g')^*K) = R\mathop{\mathrm{Hom}}\nolimits _ X(M, K \otimes _{\mathcal{O}_ X}^\mathbf {L} g'_*\mathcal{O}_{X'})  \]
+</div>
+    <p>
+       by Lemma <a href="/tag/08I9" data-tag="08I9">36.5.3</a>. In both cases the complex $R\mathop{\mathcal{H}\! \mathit{om}}\nolimits (M, K)$ is an object of $D_\mathit{QCoh}(\mathcal{O}_ X)$ by Lemma <a href="/tag/0A6H" data-tag="0A6H">36.10.8</a>. There is a natural map 
+    <p>
+      <div class="equation">
+  \[  R\mathop{\mathcal{H}\! \mathit{om}}\nolimits (M, K) \otimes _{\mathcal{O}_ X}^\mathbf {L} g'_*\mathcal{O}_{X'} \longrightarrow R\mathop{\mathcal{H}\! \mathit{om}}\nolimits (M, K \otimes _{\mathcal{O}_ X}^\mathbf {L} g'_*\mathcal{O}_{X'})  \]
+</div>
+    <p>
+       which is an isomorphism in both cases by Lemma <a href="/tag/0ATN" data-tag="0ATN">36.10.9</a>. To see that this lemma applies in case (2) we note that $g'_*\mathcal{O}_{X'} = Rg'_*\mathcal{O}_{X'} = Lf^*g_*\mathcal{O}_{S'}$ the second equality by Lemma <a href="/tag/08IB" data-tag="08IB">36.22.5</a>. Using Lemma <a href="/tag/08E9" data-tag="08E9">36.10.4</a> and Cohomology, Lemma <a href="/tag/09U8" data-tag="09U8">20.48.4</a> we conclude that $g'_*\mathcal{O}_{X'}$ has finite Tor dimension. Hence, in both cases by replacing $K$ by $R\mathop{\mathcal{H}\! \mathit{om}}\nolimits (M, K)$ we reduce to proving 
+    <p>
+      <div class="equation">
+  \[  R\Gamma (X, K) \otimes ^\mathbf {L}_ A A' \longrightarrow R\Gamma (X, K \otimes ^\mathbf {L}_{\mathcal{O}_ X} g'_*\mathcal{O}_{X'})  \]
+</div>
+    <p>
+       is an isomorphism. Note that the left hand side is equal to $R\Gamma (X', L(g')^*K)$ by Lemma <a href="/tag/08I9" data-tag="08I9">36.5.3</a>. Hence the result follows from Lemma <a href="/tag/08IB" data-tag="08IB">36.22.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0BZA">
+  <p><a class="environment-identifier" href="/tag/0BZA">Remark <span data-tag="0BZA">36.22.7</span>.</a> With notation as in Lemma <a href="/tag/0AA7" data-tag="0AA7">36.22.6</a>. The diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ R\mathop{\mathrm{Hom}}\nolimits _ X(M, Rg'_*L) \otimes _ R^\mathbf {L} R' \ar[r] \ar[d]_\mu &  R\mathop{\mathrm{Hom}}\nolimits _{X'}(L(g')^*M, L(g')^*Rg'_*L) \ar[d]^ a \\  R\mathop{\mathrm{Hom}}\nolimits _ X(M, R(g')_*L) \ar@{=}[r] &  R\mathop{\mathrm{Hom}}\nolimits _{X'}(L(g')^*M, L) }  \]
+</div>
+  <p> is commutative where the top horizontal arrow is the map from the lemma, $\mu $ is the multiplication map, and $a$ comes from the adjunction map $L(g')^*Rg'_*L \to L$. The multiplication map is the adjunction map $K' \otimes _ R^\mathbf {L} R' \to K'$ for any $K' \in D(R')$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0C0V">
+  <p><a class="environment-identifier" href="/tag/0C0V">Lemma <span data-tag="0C0V">36.22.8</span>.</a> Consider a cartesian square of schemes </p>
+  <div class="equation">
+  \[  \xymatrix{ X' \ar[r]_{g'} \ar[d]_{f'} &  X \ar[d]^ f \\  S' \ar[r]^ g &  S }  \]
+</div>
+  <p> Assume $g$ and $f$ Tor independent. </p>
+  <p><ol>
+  <li><p>
+If $E \in D(\mathcal{O}_ X)$ has tor amplitude in $[a, b]$ as a complex of $f^{-1}\mathcal{O}_ S$-modules, then $L(g')^*E$ has tor amplitude in $[a, b]$ as a complex of $f^{-1}\mathcal{O}_{S'}$-modules. 
+</p>
+</li><li><p>
+If $\mathcal{G}$ is an $\mathcal{O}_ X$-module flat over $S$, then $L(g')^*\mathcal{G} = (g')^*\mathcal{G}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We can compute tor dimension at stalks, see Cohomology, Lemma <a href="/tag/09U9" data-tag="09U9">20.48.5</a>. If $x' \in X'$ with image $x \in X$, then 
+    <p>
+      <div class="equation">
+  \[  (L(g')^*E)_{x'} = E_ x \otimes _{\mathcal{O}_{X, x}}^\mathbf {L} \mathcal{O}_{X', x'}  \]
+</div>
+    <p>
+       Let $s' \in S'$ and $s \in S$ be the image of $x'$ and $x$. Since $X$ and $S'$ are tor independent over $S$, we can apply More on Algebra, Lemma <a href="/tag/0661" data-tag="0661">15.62.2</a> to see that the right hand side of the displayed formula is equal to $E_ x \otimes _{\mathcal{O}_{S, s}}^\mathbf {L} \mathcal{O}_{S', s'}$ in $D(\mathcal{O}_{S', s'})$. Thus (1) follows from More on Algebra, Lemma <a href="/tag/066L" data-tag="066L">15.68.13</a>. To see (2) observe that flatness of $\mathcal{G}$ is equivalent to the condition that $\mathcal{G}[0]$ has tor amplitude in $[0, 0]$. Applying (1) we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0E23">
+  <p><a class="environment-identifier" href="/tag/0E23">Lemma <span data-tag="0E23">36.22.9</span>.</a> Consider a cartesian diagram of schemes </p>
+  <div class="equation">
+  \[  \xymatrix{ Z' \ar[r]_{i'} \ar[d]_ g &  X' \ar[d]^ f \\  Z \ar[r]^ i &  X }  \]
+</div>
+  <p> where $i$ is a closed immersion. If $Z$ and $X'$ are tor independent over $X$, then $Ri'_* \circ Lg^* = Lf^* \circ Ri_*$ as functors $D(\mathcal{O}_ Z) \to D(\mathcal{O}_{X'})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Note that the lemma is supposed to hold for all $K \in D(\mathcal{O}_ Z)$. Observe that $i_*$ and $i'_*$ are exact functors and hence $Ri_*$ and $Ri'_*$ are computed by applying $i_*$ and $i'_*$ to any representatives. Thus the base change map 
+    <p>
+      <div class="equation">
+  \[  Lf^*(Ri_*(K)) \longrightarrow Ri'_*(Lg^*(K))  \]
+</div>
+    <p>
+       on stalks at a point $z' \in Z'$ with image $z \in Z$ is given by 
+    <p>
+      <div class="equation">
+  \[  K_ z \otimes _{\mathcal{O}_{X, z}}^\mathbf {L} \mathcal{O}_{X', z'} \longrightarrow K_ z \otimes _{\mathcal{O}_{Z, z}}^\mathbf {L} \mathcal{O}_{Z', z'}  \]
+</div>
+    <p>
+       This map is an isomorphism by More on Algebra, Lemma <a href="/tag/0661" data-tag="0661">15.62.2</a> and the assumed tor independence. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

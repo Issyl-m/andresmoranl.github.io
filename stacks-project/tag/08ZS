@@ -1,0 +1,171 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="topology-section-limits" class="tex-section"><span data-tag="08ZS">5.14</span> Limits of spaces</h2>
+
+<p>
+The category of topological spaces has products. Namely, if $I$ is a set and for $i \in I$ we are given a topological space $X_ i$ then we endow $\prod _{i \in I} X_ i$ with the <em>product topology</em>. As a basis for the topology we use sets of the form $\prod U_ i$ where $U_ i \subset X_ i$ is open and $U_ i = X_ i$ for almost all $i$. 
+</p>
+<p>
+The category of topological spaces has equalizers. Namely, if $a, b : X \to Y$ are morphisms of topological spaces, then the equalizer of $a$ and $b$ is the subset $\{ x \in X \mid a(x) = b(x)\}  \subset X$ endowed with the induced topology. 
+</p>
+<p>
+<article class="env-lemma" id="08ZT">
+  <p><a class="environment-identifier" href="/tag/08ZT">Lemma <span data-tag="08ZT">5.14.1</span>.</a> The category of topological spaces has limits and the forgetful functor to sets commutes with them. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from the discussion above and Categories, Lemma <a href="/tag/002N" data-tag="002N">4.14.11</a>. It follows from the description above that the forgetful functor commutes with limits. Another way to see this is to use Categories, Lemma <a href="/tag/0038" data-tag="0038">4.24.5</a> and use that the forgetful functor has a left adjoint, namely the functor which assigns to a set the corresponding discrete topological space. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0A2P">
+  <p><a class="environment-identifier" href="/tag/0A2P">Lemma <span data-tag="0A2P">5.14.2</span>.</a> Let $\mathcal{I}$ be a cofiltered category. Let $i \mapsto X_ i$ be a diagram of topological spaces over $\mathcal{I}$. Let $X = \mathop{\mathrm{lim}}\nolimits X_ i$ be the limit with projection maps $f_ i : X \to X_ i$. </p>
+  <p><ol>
+  <li><p>
+Any open of $X$ is of the form $\bigcup _{j \in J} f_ j^{-1}(U_ j)$ for some subset $J \subset I$ and opens $U_ j \subset X_ j$. 
+</p>
+</li><li><p>
+Any quasi-compact open of $X$ is of the form $f_ i^{-1}(U_ i)$ for some $i$ and some $U_ i \subset X_ i$ open. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The construction of the limit given above shows that $X \subset \prod X_ i$ with the induced topology. A basis for the topology of $\prod X_ i$ are the opens $\prod U_ i$ where $U_ i \subset X_ i$ is open and $U_ i = X_ i$ for almost all $i$. Say $i_1, \ldots , i_ n \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{I})$ are the objects such that $U_{i_ j} \not= X_{i_ j}$. Then 
+    <p>
+      <div class="equation">
+  \[  X \cap \prod U_ i = f_{i_1}^{-1}(U_{i_1}) \cap \ldots \cap f_{i_ n}^{-1}(U_{i_ n})  \]
+</div>
+    <p>
+       For a general limit of topological spaces these form a basis for the topology on $X$. However, if $\mathcal{I}$ is cofiltered as in the statement of the lemma, then we can pick a $j \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{I})$ and morphisms $j \to i_ l$, $l = 1, \ldots , n$. Let 
+    <p>
+      <div class="equation">
+  \[  U_ j = (X_ j \to X_{i_1})^{-1}(U_{i_1}) \cap \ldots \cap (X_ j \to X_{i_ n})^{-1}(U_{i_ n})  \]
+</div>
+    <p>
+       Then it is clear that $X \cap \prod U_ i = f_ j^{-1}(U_ j)$. Thus for any open $W$ of $X$ there is a set $A$ and a map $\alpha : A \to \mathop{\mathrm{Ob}}\nolimits (\mathcal{I})$ and opens $U_ a \subset X_{\alpha (a)}$ such that $W = \bigcup f_{\alpha (a)}^{-1}(U_ a)$. Set $J = \mathop{\mathrm{Im}}(\alpha )$ and for $j \in J$ set $U_ j = \bigcup _{\alpha (a) = j} U_ a$ to see that $W = \bigcup _{j \in J} f_ j^{-1}(U_ j)$. This proves (1). 
+    <p>
+      To see (2) suppose that $\bigcup _{j \in J} f_ j^{-1}(U_ j)$ is quasi-compact. Then it is equal to $f_{j_1}^{-1}(U_{j_1}) \cup \ldots \cup f_{j_ m}^{-1}(U_{j_ m})$ for some $j_1, \ldots , j_ m \in J$. Since $\mathcal{I}$ is cofiltered, we can pick a $i \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{I})$ and morphisms $i \to j_ l$, $l = 1, \ldots , m$. Let 
+    <p>
+      <div class="equation">
+  \[  U_ i = (X_ i \to X_{j_1})^{-1}(U_{j_1}) \cup \ldots \cup (X_ i \to X_{j_ m})^{-1}(U_{j_ m})  \]
+</div>
+    <p>
+       Then our open equals $f_ i^{-1}(U_ i)$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0A2Q">
+  <p><a class="environment-identifier" href="/tag/0A2Q">Lemma <span data-tag="0A2Q">5.14.3</span>.</a> Let $\mathcal{I}$ be a cofiltered category. Let $i \mapsto X_ i$ be a diagram of topological spaces over $\mathcal{I}$. Let $X$ be a topological space such that </p>
+  <p><ol>
+  <li><p>
+$X = \mathop{\mathrm{lim}}\nolimits X_ i$ as a set (denote $f_ i$ the projection maps), 
+</p>
+</li><li><p>
+the sets $f_ i^{-1}(U_ i)$ for $i \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{I})$ and $U_ i \subset X_ i$ open form a basis for the topology of $X$. 
+</p>
+</li>
+</ol></p>
+  <p> Then $X$ is the limit of the $X_ i$ as a topological space. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows from the description of the limit topology in Lemma <a href="/tag/0A2P" data-tag="0A2P">5.14.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-theorem" id="08ZU">
+  <p><a class="environment-identifier" href="/tag/08ZU">Theorem <span data-tag="08ZU">5.14.4</span> <span class="named">(Tychonov)</span>.</a>  A product of quasi-compact spaces is quasi-compact. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $I$ be a set and for $i \in I$ let $X_ i$ be a quasi-compact topological space. Set $X = \prod X_ i$. Let $\mathcal{B}$ be the set of subsets of $X$ of the form $U_ i \times \prod _{i' \in I, i' \not= i} X_{i'}$ where $U_ i \subset X_ i$ is open. By construction this family is a subbasis for the topology on $X$. By Lemma <a href="/tag/08ZP" data-tag="08ZP">5.12.15</a> it suffices to show that any covering $X = \bigcup _{j \in J} B_ j$ by elements $B_ j$ of $\mathcal{B}$ has a finite refinement. We can decompose $J = \coprod J_ i$ so that if $j \in J_ i$, then $B_ j = U_ j \times \prod _{i' \not= i} X_{i'}$ with $U_ j \subset X_ i$ open. If $X_ i = \bigcup _{j \in J_ i} U_ j$, then there is a finite refinement and we conclude that $X = \bigcup _{j \in J} B_ j$ has a finite refinement. If this is not the case, then for every $i$ we can choose an point $x_ i \in X_ i$ which is not in $\bigcup _{j \in J_ i} U_ j$. But then the point $x = (x_ i)_{i \in I}$ is an element of $X$ not contained in $\bigcup _{j \in J} B_ j$, a contradiction. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma does not hold if one drops the assumption that the spaces $X_ i$ are Hausdorff, see Examples, Section <a href="/tag/09ZJ" data-tag="09ZJ">110.4</a>. 
+</p>
+<p>
+<article class="env-lemma" id="08ZV">
+  <p><a class="environment-identifier" href="/tag/08ZV">Lemma <span data-tag="08ZV">5.14.5</span>.</a> Let $\mathcal{I}$ be a category and let $i \mapsto X_ i$ be a diagram over $\mathcal{I}$ in the category of topological spaces. If each $X_ i$ is quasi-compact and Hausdorff, then $\mathop{\mathrm{lim}}\nolimits X_ i$ is quasi-compact. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Recall that $\mathop{\mathrm{lim}}\nolimits X_ i$ is a subspace of $\prod X_ i$. By Theorem <a href="/tag/08ZU" data-tag="08ZU">5.14.4</a> this product is quasi-compact. Hence it suffices to show that $\mathop{\mathrm{lim}}\nolimits X_ i$ is a closed subspace of $\prod X_ i$ (Lemma <a href="/tag/005C" data-tag="005C">5.12.3</a>). If $\varphi : j \to k$ is a morphism of $\mathcal{I}$, then let $\Gamma _\varphi \subset X_ j \times X_ k$ denote the graph of the corresponding continuous map $X_ j \to X_ k$. By Lemma <a href="/tag/08ZF" data-tag="08ZF">5.3.2</a> this graph is closed. It is clear that $\mathop{\mathrm{lim}}\nolimits X_ i$ is the intersection of the closed subsets 
+    <p>
+      <div class="equation">
+  \[  \Gamma _\varphi \times \prod \nolimits _{l \not= j, k} X_ l \subset \prod X_ i  \]
+</div>
+    <p>
+       Thus the result follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma generalizes Categories, Lemma <a href="/tag/086J" data-tag="086J">4.21.7</a> and partially generalizes Lemma <a href="/tag/005D" data-tag="005D">5.12.6</a>. 
+</p>
+<p>
+<article class="env-lemma" id="0A2R">
+  <p><a class="environment-identifier" href="/tag/0A2R">Lemma <span data-tag="0A2R">5.14.6</span>.</a> Let $\mathcal{I}$ be a cofiltered category and let $i \mapsto X_ i$ be a diagram over $\mathcal{I}$ in the category of topological spaces. If each $X_ i$ is quasi-compact, Hausdorff, and nonempty, then $\mathop{\mathrm{lim}}\nolimits X_ i$ is nonempty. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In the proof of Lemma <a href="/tag/08ZV" data-tag="08ZV">5.14.5</a> we have seen that $X = \mathop{\mathrm{lim}}\nolimits X_ i$ is the intersection of the closed subsets 
+    <p>
+      <div class="equation">
+  \[  Z_\varphi = \Gamma _\varphi \times \prod \nolimits _{l \not= j, k} X_ l  \]
+</div>
+    <p>
+       inside the quasi-compact space $\prod X_ i$ where $\varphi : j \to k$ is a morphism of $\mathcal{I}$ and $\Gamma _\varphi \subset X_ j \times X_ k$ is the graph of the corresponding morphism $X_ j \to X_ k$. Hence by Lemma <a href="/tag/005D" data-tag="005D">5.12.6</a> it suffices to show any finite intersection of these subsets is nonempty. Assume $\varphi _ t : j_ t \to k_ t$, $t = 1, \ldots , n$ is a finite collection of morphisms of $\mathcal{I}$. Since $\mathcal{I}$ is cofiltered, we can pick an object $j$ and a morphism $\psi _ t : j \to j_ t$ for each $t$. For each pair $t, t'$ such that either (a) $j_ t = j_{t'}$, or (b) $j_ t = k_{t'}$, or (c) $k_ t = k_{t'}$ we obtain two morphisms $j \to l$ with $l = j_ t$ in case (a), (b) or $l = k_ t$ in case (c). Because $\mathcal{I}$ is cofiltered and since there are finitely many pairs $(t, t')$ we may choose a map $j' \to j$ which equalizes these two morphisms for all such pairs $(t, t')$. Pick an element $x \in X_{j'}$ and for each $t$ let $x_{j_ t}$, resp. $x_{k_ t}$ be the image of $x$ under the morphism $X_{j'} \to X_ j \to X_{j_ t}$, resp. $X_{j'} \to X_ j \to X_{j_ t} \to X_{k_ t}$. For any index $l \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{I})$ which is not equal to $j_ t$ or $k_ t$ for some $t$ we pick an arbitrary element $x_ l \in X_ l$ (using the axiom of choice). Then $(x_ i)_{i \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{I})}$ is in the intersection 
+    <p>
+      <div class="equation">
+  \[  Z_{\varphi _1} \cap \ldots \cap Z_{\varphi _ n}  \]
+</div>
+    <p>
+       by construction and the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

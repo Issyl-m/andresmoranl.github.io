@@ -1,0 +1,150 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="categories-section-formal-cat-cat" class="tex-section"><span data-tag="003D">4.28</span> Formal properties</h2>
+
+<p>
+In this section we discuss some formal properties of the $2$-category of categories. This will lead us to the definition of a (strict) $2$-category later. 
+</p>
+<p>
+Let us denote $\mathop{\mathrm{Ob}}\nolimits (\textit{Cat})$ the class of all categories. For every pair of categories $\mathcal{A}, \mathcal{B} \in \mathop{\mathrm{Ob}}\nolimits (\textit{Cat})$ we have the “small” category of functors $\text{Fun}(\mathcal{A}, \mathcal{B})$. Composition of transformation of functors such as 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathcal{A} \rruppertwocell ^{F''}{t'} \ar[rr]_(.3){F'} \rrlowertwocell _ F{t} &  &  \mathcal{B} } \text{ composes to } \xymatrix{ \mathcal{A} \rrtwocell ^{F''}_ F{\  \  t \circ t'} &  &  \mathcal{B} }  \]
+</div>
+<p>
+ is called <em>vertical</em> composition. We will use the usual symbol $\circ $ for this. Next, we will define <em>horizontal</em> composition. In order to do this we explain a bit more of the structure at hand. 
+</p>
+<p>
+Namely for every triple of categories $\mathcal{A}$, $\mathcal{B}$, and $\mathcal{C}$ there is a composition law 
+</p>
+<div class="equation">
+  \[  \circ : \mathop{\mathrm{Ob}}\nolimits (\text{Fun}(\mathcal{B}, \mathcal{C})) \times \mathop{\mathrm{Ob}}\nolimits (\text{Fun}(\mathcal{A}, \mathcal{B})) \longrightarrow \mathop{\mathrm{Ob}}\nolimits (\text{Fun}(\mathcal{A}, \mathcal{C}))  \]
+</div>
+<p>
+ coming from composition of functors. This composition law is associative, and identity functors act as units. In other words – forgetting about transformations of functors – we see that $\textit{Cat}$ forms a category. How does this structure interact with the morphisms between functors? 
+</p>
+<p>
+Well, given $t : F \to F'$ a transformation of functors $F, F' : \mathcal{A} \to \mathcal{B}$ and a functor $G : \mathcal{B} \to \mathcal{C}$ we can define a transformation of functors $G\circ F \to G \circ F'$. We will denote this transformation ${}_ Gt$. It is given by the formula $({}_ Gt)_ x = G(t_ x) : G(F(x)) \to G(F'(x))$ for all $x \in \mathcal{A}$. In this way composition with $G$ becomes a functor 
+</p>
+<div class="equation">
+  \[  \text{Fun}(\mathcal{A}, \mathcal{B}) \longrightarrow \text{Fun}(\mathcal{A}, \mathcal{C}).  \]
+</div>
+<p>
+ To see this you just have to check that ${}_ G(\text{id}_ F) = \text{id}_{G \circ F}$ and that ${}_ G(t_1 \circ t_2) = {}_ Gt_1 \circ {}_ Gt_2$. Of course we also have that ${}_{\text{id}_\mathcal {B}}t = t$. 
+</p>
+<p>
+Similarly, given $s : G \to G'$ a transformation of functors $G, G' : \mathcal{B} \to \mathcal{C}$ and $F : \mathcal{A} \to \mathcal{B}$ a functor we can define $s_ F$ to be the transformation of functors $G\circ F \to G' \circ F$ given by $(s_ F)_ x = s_{F(x)} : G(F(x)) \to G'(F(x))$ for all $x \in \mathcal{A}$. In this way composition with $F$ becomes a functor 
+</p>
+<div class="equation">
+  \[  \text{Fun}(\mathcal{B}, \mathcal{C}) \longrightarrow \text{Fun}(\mathcal{A}, \mathcal{C}).  \]
+</div>
+<p>
+ To see this you just have to check that $(\text{id}_ G)_ F = \text{id}_{G\circ F}$ and that $(s_1 \circ s_2)_ F = s_{1, F} \circ s_{2, F}$. Of course we also have that $s_{\text{id}_\mathcal {B}} = s$. 
+</p>
+<p>
+These constructions satisfy the additional properties 
+</p>
+<div class="equation">
+  \[  {}_{G_1}({}_{G_2}t) = {}_{G_1\circ G_2}t, \  (s_{F_1})_{F_2} = s_{F_1 \circ F_2}, \text{ and }{}_ H(s_ F) = ({}_ Hs)_ F  \]
+</div>
+<p>
+ whenever these make sense. Finally, given functors $F, F' : \mathcal{A} \to \mathcal{B}$, and $G, G' : \mathcal{B} \to \mathcal{C}$ and transformations $t : F \to F'$, and $s : G \to G'$ the following diagram is commutative 
+</p>
+<div class="equation">
+  \[  \xymatrix{ G \circ F \ar[r]^{{}_ Gt} \ar[d]_{s_ F} &  G \circ F' \ar[d]^{s_{F'}} \\  G' \circ F \ar[r]_{{}_{G'}t} &  G' \circ F' }  \]
+</div>
+<p>
+ in other words ${}_{G'}t \circ s_ F = s_{F'}\circ {}_ Gt$. To prove this we just consider what happens on any object $x \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{A})$: 
+</p>
+<div class="equation">
+  \[  \xymatrix{ G(F(x)) \ar[r]^{G(t_ x)} \ar[d]_{s_{F(x)}} &  G(F'(x)) \ar[d]^{s_{F'(x)}} \\  G'(F(x)) \ar[r]_{G'(t_ x)} &  G'(F'(x)) }  \]
+</div>
+<p>
+ which is commutative because $s$ is a transformation of functors. This compatibility relation allows us to define horizontal composition. 
+</p>
+<p>
+<article class="env-definition" id="003E">
+  <p><a class="environment-identifier" href="/tag/003E">Definition <span data-tag="003E">4.28.1</span>.</a> Given a diagram as in the left hand side of: </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{A} \rtwocell ^ F_{F'}{t} &  \mathcal{B} \rtwocell ^ G_{G'}{s} &  \mathcal{C} } \text{ gives } \xymatrix{ \mathcal{A} \rrtwocell ^{G \circ F} _{G' \circ F'}{\  \  s \star t} &  &  \mathcal{C} }  \]
+</div>
+  <p> we define the <em>horizontal</em> composition $s \star t$ to be the transformation of functors ${}_{G'}t \circ s_ F = s_{F'}\circ {}_ Gt$. </p>
+</article> 
+</p>
+<p>
+Now we see that we may recover our previously constructed transformations ${}_ Gt$ and $s_ F$ as $ {}_ Gt = \text{id}_ G \star t $ and $ s_ F = s \star \text{id}_ F $. Furthermore, all of the rules we found above are consequences of the properties stated in the lemma that follows. 
+</p>
+<p>
+<article class="env-lemma" id="003F">
+  <p><a class="environment-identifier" href="/tag/003F">Lemma <span data-tag="003F">4.28.2</span>.</a> The horizontal and vertical compositions have the following properties </p>
+  <p><ol>
+  <li><p>
+$\circ $ and $\star $ are associative, 
+</p>
+</li><li><p>
+the identity transformations $\text{id}_ F$ are units for $\circ $, 
+</p>
+</li><li><p>
+the identity transformations of the identity functors $\text{id}_{\text{id}_\mathcal {A}}$ are units for $\star $ and $\circ $, and 
+</p>
+</li><li><p>
+given a diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathcal{A} \rruppertwocell ^ F{t} \ar[rr]_(.3){F'} \rrlowertwocell _{F''}{t'} &  &  \mathcal{B} \rruppertwocell ^ G{s} \ar[rr]_(.3){G'} \rrlowertwocell _{G''}{s'} &  &  \mathcal{C} }  \]
+</div>
+<p>
+ we have $ (s' \circ s) \star (t' \circ t) = (s' \star t') \circ (s \star t)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The last statement turns using our previous notation into the following equation 
+    <p>
+      <div class="equation">
+  \[  s'_{F''} \circ {}_{G'}t' \circ s_{F'} \circ {}_ Gt = (s' \circ s)_{F''} \circ {}_ G(t' \circ t).  \]
+</div>
+    <p>
+       According to our result above applied to the middle composition we may rewrite the left hand side as $ s'_{F''} \circ s_{F''} \circ {}_ Gt' \circ {}_ Gt $ which is easily shown to be equal to the right hand side. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Another way of formulating condition (4) of the lemma is that composition of functors and horizontal composition of transformation of functors gives rise to a functor 
+</p>
+<div class="equation">
+  \[  (\circ , \star ) : \text{Fun}(\mathcal{B}, \mathcal{C}) \times \text{Fun}(\mathcal{A}, \mathcal{B}) \longrightarrow \text{Fun}(\mathcal{A}, \mathcal{C})  \]
+</div>
+<p>
+ whose source is the product category, see Definition <a href="/tag/001K" data-tag="001K">4.2.20</a>. 
+</p>

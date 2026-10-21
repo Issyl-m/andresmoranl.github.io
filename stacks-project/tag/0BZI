@@ -1,0 +1,285 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="dualizing-section-relative-dualizing-complex-algebraic" class="tex-section"><span data-tag="0BZI">47.24</span> Upper shriek algebraically</h2>
+
+<p>
+For a finite type homomorphism $R \to A$ of Noetherian rings we will construct a functor $\varphi ^! : D(R) \to D(A)$ well defined up to nonunique isomorphism which as we will see in Duality for Schemes, Remark <a href="/tag/0BV2" data-tag="0BV2">48.17.5</a> agrees up to isomorphism with the upper shriek functors one encounters in the duality theory for schemes. To motivate the construction we mention two additional properties: 
+</p>
+<ol>
+  <li><p>
+$\varphi ^!$ sends a dualizing complex for $R$ (if it exists) to a dualizing complex for $A$, and 
+</p>
+</li><li><p>
+$\omega _{A/R}^\bullet = \varphi ^!(R)$ is a kind of relative dualizing complex: it lies in $D^ b_{\textit{Coh}}(A)$ and restricts to a dualizing complex on the fibres provided $R \to A$ is flat. 
+</p>
+</li>
+</ol>
+<p>
+ These statements are Lemmas <a href="/tag/0BZL" data-tag="0BZL">47.24.3</a> and <a href="/tag/0BZW" data-tag="0BZW">47.25.2</a>. 
+</p>
+<p>
+Let $\varphi : R \to A$ be a finite type homomorphism of Noetherian rings. We will define a functor $\varphi ^! : D(R) \to D(A)$ in the following way 
+</p>
+<ol>
+  <li><p>
+If $\varphi : R \to A$ is surjective we set $\varphi ^!(K) = R\mathop{\mathrm{Hom}}\nolimits (A, K)$. Here we use the functor $R\mathop{\mathrm{Hom}}\nolimits (A, -) : D(R) \to D(A)$ of Section <a href="/tag/0A6Z" data-tag="0A6Z">47.13</a>, and 
+</p>
+</li><li><p>
+in general we choose a surjection $\psi : P \to A$ with $P = R[x_1, \ldots , x_ n]$ and we set $\varphi ^!(K) = \psi ^!(K \otimes _ R^\mathbf {L} P)[n]$. Here we use the functor $- \otimes _ R^\mathbf {L} P : D(R) \to D(P)$ of More on Algebra, Section <a href="/tag/06Y5" data-tag="06Y5">15.61</a>. 
+</p>
+</li>
+</ol>
+<p>
+ Note the shift $[n]$ by the number of variables in the polynomial ring. This construction is <strong>not</strong> canonical and the functor $\varphi ^!$ will only be well defined up to a (nonunique) isomorphism of functors<a class="footnotemark" href="#a0001024787" id="a0001024787-mark"><sup>1</sup></a>. 
+</p>
+<p>
+<article class="env-lemma" id="0BZJ">
+  <p><a class="environment-identifier" href="/tag/0BZJ">Lemma <span data-tag="0BZJ">47.24.1</span>.</a> Let $\varphi : R \to A$ be a finite type homomorphism of Noetherian rings. The functor $\varphi ^!$ is well defined up to isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose that $\psi _1 : P_1 = R[x_1, \ldots , x_ n] \to A$ and $\psi _2 : P_2 = R[y_1, \ldots , y_ m] \to A$ are two surjections from polynomial rings onto $A$. Then we get a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ R[x_1, \ldots , x_ n, y_1, \ldots , y_ m] \ar[d]^{x_ i \mapsto g_ i} \ar[rr]_-{y_ j \mapsto f_ j} &  &  R[x_1, \ldots , x_ n] \ar[d] \\  R[y_1, \ldots , y_ m] \ar[rr] &  &  A }  \]
+</div>
+    <p>
+       where $f_ j$ and $g_ i$ are chosen such that $\psi _1(f_ j) = \psi _2(y_ j)$ and $\psi _2(g_ i) = \psi _1(x_ i)$. By symmetry it suffices to prove the functors defined using $P \to A$ and $P[y_1, \ldots , y_ m] \to A$ are isomorphic. By induction we may assume $m = 1$. This reduces us to the case discussed in the next paragraph. 
+    <p>
+      Here $\psi : P \to A$ is given and $\chi : P[y] \to A$ induces $\psi $ on $P$. Write $Q = P[y]$. Choose $g \in P$ with $\psi (g) = \chi (y)$. Denote $\pi : Q \to P$ the $P$-algebra map with $\pi (y) = g$. Then $\chi = \psi \circ \pi $ and hence $\chi ^! = \psi ^! \circ \pi ^!$ as both are adjoint to the restriction functor $D(A) \to D(Q)$ by the material in Section <a href="/tag/0A6Z" data-tag="0A6Z">47.13</a>. Thus 
+    <p>
+      <div class="equation">
+  \[  \chi ^!\left(K \otimes _ R^\mathbf {L} Q\right)[n + 1] = \psi ^!\left(\pi ^!\left(K \otimes _ R^\mathbf {L} Q\right)[1]\right)[n]  \]
+</div>
+    <p>
+       Hence it suffices to show that $\pi ^!(K \otimes _ R^\mathbf {L} Q[1]) = K \otimes _ R^\mathbf {L} P$ Thus it suffices to show that the functor $\pi ^!(-) : D(Q) \to D(P)$ is isomorphic to $K \mapsto K \otimes _ Q^\mathbf {L} P[-1]$. This follows from Lemma <a href="/tag/0BZH" data-tag="0BZH">47.13.10</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BZK">
+  <p><a class="environment-identifier" href="/tag/0BZK">Lemma <span data-tag="0BZK">47.24.2</span>.</a> Let $\varphi : R \to A$ be a finite type homomorphism of Noetherian rings. </p>
+  <p><ol>
+  <li><p>
+$\varphi ^!$ maps $D^+(R)$ into $D^+(A)$ and $D^+_{\textit{Coh}}(R)$ into $D^+_{\textit{Coh}}(A)$. 
+</p>
+</li><li><p>
+if $\varphi $ is perfect, then $\varphi ^!$ maps $D^-(R)$ into $D^-(A)$, $D^-_{\textit{Coh}}(R)$ into $D^-_{\textit{Coh}}(A)$, and $D^ b_{\textit{Coh}}(R)$ into $D^ b_{\textit{Coh}}(A)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a factorization $R \to P \to A$ as in the definition of $\varphi ^!$. The functor $- \otimes _ R^\mathbf {L} : D(R) \to D(P)$ preserves the subcategories $D^+, D^+_{\textit{Coh}}, D^-, D^-_{\textit{Coh}}, D^ b_{\textit{Coh}}$. The functor $R\mathop{\mathrm{Hom}}\nolimits (A, -) : D(P) \to D(A)$ preserves $D^+$ and $D^+_{\textit{Coh}}$ by Lemma <a href="/tag/0A72" data-tag="0A72">47.13.4</a>. If $R \to A$ is perfect, then $A$ is perfect as a $P$-module, see More on Algebra, Lemma <a href="/tag/068Y" data-tag="068Y">15.84.2</a>. Recall that the restriction of $R\mathop{\mathrm{Hom}}\nolimits (A, K)$ to $D(P)$ is $R\mathop{\mathrm{Hom}}\nolimits _ P(A, K)$. By More on Algebra, Lemma <a href="/tag/07VI" data-tag="07VI">15.76.15</a> we have $R\mathop{\mathrm{Hom}}\nolimits _ P(A, K) = E \otimes _ P^\mathbf {L} K$ for some perfect $E \in D(P)$. Since we can represent $E$ by a finite complex of finite projective $P$-modules it is clear that $R\mathop{\mathrm{Hom}}\nolimits _ P(A, K)$ is in $D^-(P), D^-_{\textit{Coh}}(P), D^ b_{\textit{Coh}}(P)$ as soon as $K$ is. Since the restriction functor $D(A) \to D(P)$ reflects these subcategories, the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BZL">
+  <p><a class="environment-identifier" href="/tag/0BZL">Lemma <span data-tag="0BZL">47.24.3</span>.</a> Let $\varphi $ be a finite type homomorphism of Noetherian rings. If $\omega _ R^\bullet $ is a dualizing complex for $R$, then $\varphi ^!(\omega _ R^\bullet )$ is a dualizing complex for $A$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows from Lemmas <a href="/tag/0A7J" data-tag="0A7J">47.15.10</a> and <a href="/tag/0A7I" data-tag="0A7I">47.15.9</a>, 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BZN">
+  <p><a class="environment-identifier" href="/tag/0BZN">Lemma <span data-tag="0BZN">47.24.4</span>.</a> Let $R \to R'$ be a flat homomorphism of Noetherian rings. Let $\varphi : R \to A$ be a finite type ring map. Let $\varphi ' : R' \to A' = A \otimes _ R R'$ be the map induced by $\varphi $. Then we have a functorial maps </p>
+  <div class="equation">
+  \[  \varphi ^!(K) \otimes _ A^\mathbf {L} A' \longrightarrow (\varphi ')^!(K \otimes _ R^\mathbf {L} R')  \]
+</div>
+  <p> for $K$ in $D(R)$ which are isomorphisms for $K \in D^+(R)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a factorization $R \to P \to A$ where $P$ is a polynomial ring over $R$. This gives a corresponding factorization $R' \to P' \to A'$ by base change. Since we have $(K \otimes _ R^\mathbf {L} P) \otimes _ P^\mathbf {L} P' = (K \otimes _ R^\mathbf {L} R') \otimes _{R'}^\mathbf {L} P'$ by More on Algebra, Lemma <a href="/tag/08YU" data-tag="08YU">15.61.5</a> it suffices to construct maps 
+    <p>
+      <div class="equation">
+  \[  R\mathop{\mathrm{Hom}}\nolimits (A, K \otimes _ R^\mathbf {L} P[n]) \otimes _ A^\mathbf {L} A' \longrightarrow R\mathop{\mathrm{Hom}}\nolimits (A', (K \otimes _ R^\mathbf {L} P[n]) \otimes _ P^\mathbf {L} P')  \]
+</div>
+    <p>
+       functorial in $K$. For this we use the map (<a href="/tag/0E29" data-tag="0E29">47.14.0.1</a>) constructed in Section <a href="/tag/0E28" data-tag="0E28">47.14</a> for $P, A, P', A'$. The map is an isomorphism for $K \in D^+(R)$ by Lemma <a href="/tag/0BZM" data-tag="0BZM">47.14.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BZR">
+  <p><a class="environment-identifier" href="/tag/0BZR">Lemma <span data-tag="0BZR">47.24.5</span>.</a> Let $R \to R'$ be a homomorphism of Noetherian rings. Let $\varphi : R \to A$ be a perfect ring map (More on Algebra, Definition <a href="/tag/067H" data-tag="067H">15.84.1</a>) such that $R'$ and $A$ are tor independent over $R$. Let $\varphi ' : R' \to A' = A \otimes _ R R'$ be the map induced by $\varphi $. Then we have a functorial isomorphism </p>
+  <div class="equation">
+  \[  \varphi ^!(K) \otimes _ A^\mathbf {L} A' = (\varphi ')^!(K \otimes _ R^\mathbf {L} R')  \]
+</div>
+  <p> for $K$ in $D(R)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We may choose a factorization $R \to P \to A$ where $P$ is a polynomial ring over $R$ such that $A$ is a perfect $P$-module, see More on Algebra, Lemma <a href="/tag/068Y" data-tag="068Y">15.84.2</a>. This gives a corresponding factorization $R' \to P' \to A'$ by base change. Since we have $(K \otimes _ R^\mathbf {L} P) \otimes _ P^\mathbf {L} P' = (K \otimes _ R^\mathbf {L} R') \otimes _{R'}^\mathbf {L} P'$ by More on Algebra, Lemma <a href="/tag/08YU" data-tag="08YU">15.61.5</a> it suffices to construct maps 
+    <p>
+      <div class="equation">
+  \[  R\mathop{\mathrm{Hom}}\nolimits (A, K \otimes _ R^\mathbf {L} P[n]) \otimes _ A^\mathbf {L} A' \longrightarrow R\mathop{\mathrm{Hom}}\nolimits (A', (K \otimes _ R^\mathbf {L} P[n]) \otimes _ P^\mathbf {L} P')  \]
+</div>
+    <p>
+       functorial in $K$. We have 
+    <p>
+      <div class="equation">
+  \[  A \otimes _ P^\mathbf {L} P' = A \otimes _ R^\mathbf {L} R' = A'  \]
+</div>
+    <p>
+       The first equality by More on Algebra, Lemma <a href="/tag/0661" data-tag="0661">15.62.2</a> applied to $R, R', P, P'$. The second equality because $A$ and $R'$ are tor independent over $R$. Hence $A$ and $P'$ are tor independent over $P$ and we can use the map (<a href="/tag/0E29" data-tag="0E29">47.14.0.1</a>) constructed in Section <a href="/tag/0E28" data-tag="0E28">47.14</a> for $P, A, P', A'$ get the desired arrow. By Lemma <a href="/tag/0BZP" data-tag="0BZP">47.14.3</a> to finish the proof it suffices to prove that $A$ is a perfect $P$-module which we saw above. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BZS">
+  <p><a class="environment-identifier" href="/tag/0BZS">Lemma <span data-tag="0BZS">47.24.6</span>.</a> Let $R \to R'$ be a homomorphism of Noetherian rings. Let $\varphi : R \to A$ be flat of finite type. Let $\varphi ' : R' \to A' = A \otimes _ R R'$ be the map induced by $\varphi $. Then we have a functorial isomorphism </p>
+  <div class="equation">
+  \[  \varphi ^!(K) \otimes _ A^\mathbf {L} A' = (\varphi ')^!(K \otimes _ R^\mathbf {L} R')  \]
+</div>
+  <p> for $K$ in $D(R)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Special case of Lemma <a href="/tag/0BZR" data-tag="0BZR">47.24.5</a> by More on Algebra, Lemma <a href="/tag/067J" data-tag="067J">15.84.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BZT">
+  <p><a class="environment-identifier" href="/tag/0BZT">Lemma <span data-tag="0BZT">47.24.7</span>.</a> Let $A \xrightarrow {a} B \xrightarrow {b} C$ be finite type homomorphisms of Noetherian rings. Then there is a transformation of functors $b^! \circ a^! \to (b \circ a)^!$ which is an isomorphism on $D^+(A)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a polynomial ring $P = A[x_1, \ldots , x_ n]$ over $A$ and a surjection $P \to B$. Choose elements $c_1, \ldots , c_ m \in C$ generating $C$ over $B$. Set $Q = P[y_1, \ldots , y_ m]$ and denote $Q' = Q \otimes _ P B = B[y_1, \ldots , y_ m]$. Let $\chi : Q' \to C$ be the surjection sending $y_ j$ to $c_ j$. Picture 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ &  Q \ar[r]_{\psi '} &  Q' \ar[r]_\chi &  C \\  A \ar[r] &  P \ar[r]^\psi \ar[u] &  B \ar[u] }  \]
+</div>
+    <p>
+       By Lemma <a href="/tag/0BZM" data-tag="0BZM">47.14.2</a> for $M \in D(P)$ we have an arrow $\psi ^!(M) \otimes _ B^\mathbf {L} Q' \to (\psi ')^!(M \otimes _ P^\mathbf {L} Q)$ which is an isomorphism whenever $M$ is bounded below. Also we have $\chi ^! \circ (\psi ')^! = (\chi \circ \psi ')^!$ as both functors are adjoint to the restriction functor $D(C) \to D(Q)$ by Section <a href="/tag/0A6Z" data-tag="0A6Z">47.13</a>. Then we see 
+    <p>
+      <div class="equation">
+  \begin{align*}  b^!(a^!(K)) &  = \chi ^!(\psi ^!(K \otimes _ A^\mathbf {L} P)[n] \otimes _ B^\mathbf {L} Q)[m] \\ &  \to \chi ^!((\psi ')^!(K \otimes _ A^\mathbf {L} P \otimes _ P^\mathbf {L} Q))[n + m] \\ &  = (\chi \circ \psi ')^!(K\otimes _ A^\mathbf {L} Q)[n + m] \\ &  = (b \circ a)^!(K) \end{align*}
+</div>
+    <p>
+       where we have used in addition to the above More on Algebra, Lemma <a href="/tag/08YU" data-tag="08YU">15.61.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0C0G">
+  <p><a class="environment-identifier" href="/tag/0C0G">Lemma <span data-tag="0C0G">47.24.8</span>.</a> Let $\varphi : R \to A$ be a finite map of Noetherian rings. Then $\varphi ^!$ is isomorphic to the functor $R\mathop{\mathrm{Hom}}\nolimits (A, -) : D(R) \to D(A)$ from Section <a href="/tag/0A6Z" data-tag="0A6Z">47.13</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose that $A$ is generated by $n > 1$ elements over $R$. Then can factor $R \to A$ as a composition of two finite ring maps where in both steps the number of generators is $< n$. Since we have Lemma <a href="/tag/0BZT" data-tag="0BZT">47.24.7</a> and Lemma <a href="/tag/0C0F" data-tag="0C0F">47.13.2</a> we conclude that it suffices to prove the lemma when $A$ is generated by one element over $R$. Since $A$ is finite over $R$, it follows that $A$ is a quotient of $B = R[x]/(f)$ where $f$ is a monic polynomial in $x$ (Algebra, Lemma <a href="/tag/00GK" data-tag="00GK">10.36.3</a>). Again using the lemmas on composition and the fact that we have agreement for surjections by definition, we conclude that it suffices to prove the lemma for $R \to B = R[x]/(f)$. In this case, the functor $\varphi ^!$ is isomorphic to $K \mapsto K \otimes _ R^\mathbf {L} B$; you prove this by using Lemma <a href="/tag/0BZH" data-tag="0BZH">47.13.10</a> for the map $R[x] \to B$ (note that the shift in the definition of $\varphi ^!$ and in the lemma add up to zero). For the functor $R\mathop{\mathrm{Hom}}\nolimits (B, -) : D(R) \to D(B)$ we can use Lemma <a href="/tag/0BZE" data-tag="0BZE">47.13.9</a> to see that it suffices to show $\mathop{\mathrm{Hom}}\nolimits _ R(B, R) \cong B$ as $B$-modules. Suppose that $f$ has degree $d$. Then an $R$-basis for $B$ is given by $1, x, \ldots , x^{d - 1}$. Let $\delta _ i : B \to R$, $i = 0, \ldots , d - 1$ be the $R$-linear map which picks off the coefficient of $x^ i$ with respect to the given basis. Then $\delta _0, \ldots , \delta _{d - 1}$ is a basis for $\mathop{\mathrm{Hom}}\nolimits _ R(B, R)$. Finally, for $0 \leq i \leq d - 1$ a computation shows that 
+    <p>
+      <div class="equation">
+  \[  x^ i \delta _{d - 1} = \delta _{d - 1 - i} + b_1 \delta _{d - i} + \ldots + b_ i \delta _{d - 1}  \]
+</div>
+    <p>
+       for some $c_1, \ldots , c_ d \in R$<a class="footnotemark" href="#a0001025652" id="a0001025652-mark"><sup>2</sup></a>. Hence $\mathop{\mathrm{Hom}}\nolimits _ R(B, R)$ is a principal $B$-module with generator $\delta _{d - 1}$. By looking at ranks we conclude that it is a rank $1$ free $B$-module. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0C0H">
+  <p><a class="environment-identifier" href="/tag/0C0H">Lemma <span data-tag="0C0H">47.24.9</span>.</a> Let $R$ be a Noetherian ring and let $f \in R$. If $\varphi $ denotes the map $R \to R_ f$, then $\varphi ^!$ is isomorphic to $- \otimes _ R^\mathbf {L} R_ f$. More generally, if $\varphi : R \to R'$ is a map such that $\mathop{\mathrm{Spec}}(R') \to \mathop{\mathrm{Spec}}(R)$ is an open immersion, then $\varphi ^!$ is isomorphic to $- \otimes _ R^\mathbf {L} R'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose the presentation $R \to R[x] \to R[x]/(fx - 1) = R_ f$ and observe that $fx - 1$ is a nonzerodivisor in $R[x]$. Thus we can apply using Lemma <a href="/tag/0BZH" data-tag="0BZH">47.13.10</a> to compute the functor $\varphi ^!$. Details omitted; note that the shift in the definition of $\varphi ^!$ and in the lemma add up to zero. 
+    <p>
+      In the general case note that $R' \otimes _ R R' = R'$. Hence the result follows from the base change results above. Either Lemma <a href="/tag/0BZN" data-tag="0BZN">47.24.4</a> or Lemma <a href="/tag/0BZR" data-tag="0BZR">47.24.5</a> will do. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BZU">
+  <p><a class="environment-identifier" href="/tag/0BZU">Lemma <span data-tag="0BZU">47.24.10</span>.</a> Let $\varphi : R \to A$ be a perfect homomorphism of Noetherian rings (for example $\varphi $ is flat of finite type). Then $\varphi ^!(K) = K \otimes _ R^\mathbf {L} \varphi ^!(R)$ for $K \in D(R)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      (The parenthetical statement follows from More on Algebra, Lemma <a href="/tag/067J" data-tag="067J">15.84.4</a>.) We can choose a factorization $R \to P \to A$ where $P$ is a polynomial ring in $n$ variables over $R$ and then $A$ is a perfect $P$-module, see More on Algebra, Lemma <a href="/tag/068Y" data-tag="068Y">15.84.2</a>. Recall that $\varphi ^!(K) = R\mathop{\mathrm{Hom}}\nolimits (A, K \otimes _ R^\mathbf {L} P[n])$. Thus the result follows from Lemma <a href="/tag/0BZE" data-tag="0BZE">47.13.9</a> and More on Algebra, Lemma <a href="/tag/08YU" data-tag="08YU">15.61.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0E9L">
+  <p><a class="environment-identifier" href="/tag/0E9L">Lemma <span data-tag="0E9L">47.24.11</span>.</a> Let $\varphi : A \to B$ be a finite type homomorphism of Noetherian rings. Let $\omega _ A^\bullet $ be a dualizing complex for $A$. Set $\omega _ B^\bullet = \varphi ^!(\omega _ A^\bullet )$. Denote $D_ A(K) = R\mathop{\mathrm{Hom}}\nolimits _ A(K, \omega _ A^\bullet )$ for $K \in D_{\textit{Coh}}(A)$ and $D_ B(L) = R\mathop{\mathrm{Hom}}\nolimits _ B(L, \omega _ B^\bullet )$ for $L \in D_{\textit{Coh}}(B)$. Then there is a functorial isomorphism </p>
+  <div class="equation">
+  \[  \varphi ^!(K) = D_ B(D_ A(K) \otimes _ A^\mathbf {L} B)  \]
+</div>
+  <p> for $K \in D_{\textit{Coh}}(A)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Observe that $\omega _ B^\bullet $ is a dualizing complex for $B$ by Lemma <a href="/tag/0BZL" data-tag="0BZL">47.24.3</a>. Let $A \to B \to C$ be finite type homomorphisms of Noetherian rings. If the lemma holds for $A \to B$ and $B \to C$, then the lemma holds for $A \to C$. This follows from Lemma <a href="/tag/0BZT" data-tag="0BZT">47.24.7</a> and the fact that $D_ B \circ D_ B \cong \text{id}$ by Lemma <a href="/tag/0A7C" data-tag="0A7C">47.15.3</a>. Thus it suffices to prove the lemma in case $A \to B$ is a surjection and in the case where $B$ is a polynomial ring over $A$. 
+    <p>
+      Assume $B = A[x_1, \ldots , x_ n]$. Since $D_ A \circ D_ A \cong \text{id}$, it suffices to prove $D_ B(K \otimes _ A B) \cong D_ A(K) \otimes _ A B[n]$ for $K$ in $D_{\textit{Coh}}(A)$. Choose a bounded complex $I^\bullet $ of injectives representing $\omega _ A^\bullet $. Choose a quasi-isomorphism $I^\bullet \otimes _ A B \to J^\bullet $ where $J^\bullet $ is a bounded complex of $B$-modules. Given a complex $K^\bullet $ of $A$-modules, consider the obvious map of complexes 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits ^\bullet (K^\bullet , I^\bullet ) \otimes _ A B[n] \longrightarrow \mathop{\mathrm{Hom}}\nolimits ^\bullet (K^\bullet \otimes _ A B, J^\bullet [n])  \]
+</div>
+    <p>
+       The left hand side represents $D_ A(K) \otimes _ A B[n]$ and the right hand side represents $D_ B(K \otimes _ A B)$. Thus it suffices to prove this map is a quasi-isomorphism if the cohomology modules of $K^\bullet $ are finite $A$-modules. Observe that the cohomology of the complex in degree $r$ (on either side) only depends on finitely many of the $K^ i$. Thus we may replace $K^\bullet $ by a truncation, i.e., we may assume $K^\bullet $ represents an object of $D^-_{\textit{Coh}}(A)$. Then $K^\bullet $ is quasi-isomorphic to a bounded above complex of finite free $A$-modules. Therefore we may assume $K^\bullet $ is a bounded above complex of finite free $A$-modules. In this case it is easy to that the displayed map is an isomorphism of complexes which finishes the proof in this case. 
+    <p>
+      Assume that $A \to B$ is surjective. Denote $i_* : D(B) \to D(A)$ the restriction functor and recall that $\varphi ^!(-) = R\mathop{\mathrm{Hom}}\nolimits (A, -)$ is a right adjoint to $i_*$ (Lemma <a href="/tag/0A70" data-tag="0A70">47.13.1</a>). For $F \in D(B)$ we have 
+    <p>
+      <div class="equation">
+  \begin{align*}  \mathop{\mathrm{Hom}}\nolimits _ B(F, D_ B(D_ A(K) \otimes _ A^\mathbf {L} B)) &  = \mathop{\mathrm{Hom}}\nolimits _ B((D_ A(K) \otimes _ A^\mathbf {L} B) \otimes _ B^\mathbf {L} F, \omega _ B^\bullet ) \\ &  = \mathop{\mathrm{Hom}}\nolimits _ A(D_ A(K) \otimes _ A^\mathbf {L} i_*F, \omega _ A^\bullet ) \\ &  = \mathop{\mathrm{Hom}}\nolimits _ A(i_*F, D_ A(D_ A(K))) \\ &  = \mathop{\mathrm{Hom}}\nolimits _ A(i_*F, K) \\ &  = \mathop{\mathrm{Hom}}\nolimits _ B(F, \varphi ^!(K)) \end{align*}
+</div>
+    <p>
+       The first equality follows from More on Algebra, Lemma <a href="/tag/0A65" data-tag="0A65">15.75.1</a> and the definition of $D_ B$. The second equality by the adjointness mentioned above and the equality $i_*((D_ A(K) \otimes _ A^\mathbf {L} B) \otimes _ B^\mathbf {L} F) = D_ A(K) \otimes _ A^\mathbf {L} i_*F$ (More on Algebra, Lemma <a href="/tag/06Y6" data-tag="06Y6">15.61.1</a>). The third equality follows from More on Algebra, Lemma <a href="/tag/0A65" data-tag="0A65">15.75.1</a>. The fourth because $D_ A \circ D_ A = \text{id}$. The final equality by adjointness again. Thus the result holds by the Yoneda lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

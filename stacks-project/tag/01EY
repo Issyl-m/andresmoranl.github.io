@@ -1,0 +1,183 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="cohomology-section-Leray" class="tex-section"><span data-tag="01EY">20.13</span> The Leray spectral sequence</h2>
+
+<p>
+<article class="env-lemma" id="01EZ">
+  <p><a class="environment-identifier" href="/tag/01EZ">Lemma <span data-tag="01EZ">20.13.1</span>.</a> Let $f : X \to Y$ be a morphism of ringed spaces. There is a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ D^{+}(X) \ar[rr]_-{R\Gamma (X, -)} \ar[d]_{Rf_*} &  &  D^{+}(\mathcal{O}_ X(X)) \ar[d]^{\text{restriction}} \\  D^{+}(Y) \ar[rr]^-{R\Gamma (Y, -)} &  &  D^{+}(\mathcal{O}_ Y(Y)) }  \]
+</div>
+  <p> More generally for any $V \subset Y$ open and $U = f^{-1}(V)$ there is a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ D^{+}(X) \ar[rr]_-{R\Gamma (U, -)} \ar[d]_{Rf_*} &  &  D^{+}(\mathcal{O}_ X(U)) \ar[d]^{\text{restriction}} \\  D^{+}(Y) \ar[rr]^-{R\Gamma (V, -)} &  &  D^{+}(\mathcal{O}_ Y(V)) }  \]
+</div>
+  <p> See also Remark <a href="/tag/01F0" data-tag="01F0">20.13.2</a> for more explanation. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\Gamma _{res} : \textit{Mod}(\mathcal{O}_ X) \to \text{Mod}_{\mathcal{O}_ Y(Y)}$ be the functor which associates to an $\mathcal{O}_ X$-module $\mathcal{F}$ the global sections of $\mathcal{F}$ viewed as an $\mathcal{O}_ Y(Y)$-module via the map $f^\sharp : \mathcal{O}_ Y(Y) \to \mathcal{O}_ X(X)$. Let $restriction : \text{Mod}_{\mathcal{O}_ X(X)} \to \text{Mod}_{\mathcal{O}_ Y(Y)}$ be the restriction functor induced by $f^\sharp : \mathcal{O}_ Y(Y) \to \mathcal{O}_ X(X)$. Note that $restriction$ is exact so that its right derived functor is computed by simply applying the restriction functor, see Derived Categories, Lemma <a href="/tag/015F" data-tag="015F">13.16.9</a>. It is clear that 
+    <p>
+      <div class="equation">
+  \[  \Gamma _{res} = restriction \circ \Gamma (X, -) = \Gamma (Y, -) \circ f_*  \]
+</div>
+    <p>
+       We claim that Derived Categories, Lemma <a href="/tag/015M" data-tag="015M">13.22.1</a> applies to both compositions. For the first this is clear by our remarks above. For the second, it follows from Lemma <a href="/tag/01EX" data-tag="01EX">20.11.10</a> which implies that injective $\mathcal{O}_ X$-modules are mapped to $\Gamma (Y, -)$-acyclic sheaves on $Y$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="01F0">
+  <p><a class="environment-identifier" href="/tag/01F0">Remark <span data-tag="01F0">20.13.2</span>.</a> Here is a down-to-earth explanation of the meaning of Lemma <a href="/tag/01EZ" data-tag="01EZ">20.13.1</a>. It says that given $f : X \to Y$ and $\mathcal{F} \in \textit{Mod}(\mathcal{O}_ X)$ and given an injective resolution $\mathcal{F} \to \mathcal{I}^\bullet $ we have </p>
+  <div class="equation">
+  \[  \begin{matrix}  R\Gamma (X, \mathcal{F}) 
+
+&  \text{is represented by} 
+
+&  \Gamma (X, \mathcal{I}^\bullet ) 
+
+\\  Rf_*\mathcal{F} 
+
+&  \text{is represented by} 
+
+&  f_*\mathcal{I}^\bullet 
+
+\\  R\Gamma (Y, Rf_*\mathcal{F}) 
+
+&  \text{is represented by} 
+
+&  \Gamma (Y, f_*\mathcal{I}^\bullet ) 
+
+\end{matrix}  \]
+</div>
+  <p> the last fact coming from Leray's acyclicity lemma (Derived Categories, Lemma <a href="/tag/015E" data-tag="015E">13.16.7</a>) and Lemma <a href="/tag/01EX" data-tag="01EX">20.11.10</a>. Finally, it combines this with the trivial observation that </p>
+  <div class="equation">
+  \[  \Gamma (X, \mathcal{I}^\bullet ) = \Gamma (Y, f_*\mathcal{I}^\bullet ).  \]
+</div>
+  <p> to arrive at the commutativity of the diagram of the lemma. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="01F1">
+  <p><a class="environment-identifier" href="/tag/01F1">Lemma <span data-tag="01F1">20.13.3</span>.</a> Let $X$ be a ringed space. Let $\mathcal{F}$ be an $\mathcal{O}_ X$-module. </p>
+  <p><ol>
+  <li><p>
+The cohomology groups $H^ i(U, \mathcal{F})$ for $U \subset X$ open of $\mathcal{F}$ computed as an $\mathcal{O}_ X$-module, or computed as an abelian sheaf are identical. 
+</p>
+</li><li><p>
+Let $f : X \to Y$ be a morphism of ringed spaces. The higher direct images $R^ if_*\mathcal{F}$ of $\mathcal{F}$ computed as an $\mathcal{O}_ X$-module, or computed as an abelian sheaf are identical. 
+</p>
+</li>
+</ol></p>
+  <p> There are similar statements in the case of bounded below complexes of $\mathcal{O}_ X$-modules. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider the morphism of ringed spaces $(X, \mathcal{O}_ X) \to (X, \underline{\mathbf{Z}}_ X)$ given by the identity on the underlying topological space and by the unique map of sheaves of rings $\underline{\mathbf{Z}}_ X \to \mathcal{O}_ X$. Let $\mathcal{F}$ be an $\mathcal{O}_ X$-module. Denote $\mathcal{F}_{ab}$ the same sheaf seen as an $\underline{\mathbf{Z}}_ X$-module, i.e., seen as a sheaf of abelian groups. Let $\mathcal{F} \to \mathcal{I}^\bullet $ be an injective resolution. By Remark <a href="/tag/01F0" data-tag="01F0">20.13.2</a> we see that $\Gamma (X, \mathcal{I}^\bullet )$ computes both $R\Gamma (X, \mathcal{F})$ and $R\Gamma (X, \mathcal{F}_{ab})$. This proves (1). 
+    <p>
+      To prove (2) we use (1) and Lemma <a href="/tag/01E4" data-tag="01E4">20.7.3</a>. The result follows immediately. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01F2">
+  <p><a class="environment-identifier" href="/tag/01F2">Lemma <span data-tag="01F2">20.13.4</span> <span class="named">(Leray spectral sequence)</span>.</a>  Let $f : X \to Y$ be a morphism of ringed spaces. Let $\mathcal{F}^\bullet $ be a bounded below complex of $\mathcal{O}_ X$-modules. There is a spectral sequence </p>
+  <div class="equation">
+  \[  E_2^{p, q} = H^ p(Y, R^ qf_*(\mathcal{F}^\bullet ))  \]
+</div>
+  <p> converging to $H^{p + q}(X, \mathcal{F}^\bullet )$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is just the Grothendieck spectral sequence Derived Categories, Lemma <a href="/tag/015N" data-tag="015N">13.22.2</a> coming from the composition of functors $\Gamma _{res} = \Gamma (Y, -) \circ f_*$ where $\Gamma _{res}$ is as in the proof of Lemma <a href="/tag/01EZ" data-tag="01EZ">20.13.1</a>. To see that the assumptions of Derived Categories, Lemma <a href="/tag/015N" data-tag="015N">13.22.2</a> are satisfied, see the proof of Lemma <a href="/tag/01EZ" data-tag="01EZ">20.13.1</a> or Remark <a href="/tag/01F0" data-tag="01F0">20.13.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="01F3">
+  <p><a class="environment-identifier" href="/tag/01F3">Remark <span data-tag="01F3">20.13.5</span>.</a> The Leray spectral sequence, the way we proved it in Lemma <a href="/tag/01F2" data-tag="01F2">20.13.4</a> is a spectral sequence of $\Gamma (Y, \mathcal{O}_ Y)$-modules. However, it is quite easy to see that it is in fact a spectral sequence of $\Gamma (X, \mathcal{O}_ X)$-modules. For example $f$ gives rise to a morphism of ringed spaces $f' : (X, \mathcal{O}_ X) \to (Y, f_*\mathcal{O}_ X)$. By Lemma <a href="/tag/01F1" data-tag="01F1">20.13.3</a> the terms $E_ r^{p, q}$ of the Leray spectral sequence for an $\mathcal{O}_ X$-module $\mathcal{F}$ and $f$ are identical with those for $\mathcal{F}$ and $f'$ at least for $r \geq 2$. Namely, they both agree with the terms of the Leray spectral sequence for $\mathcal{F}$ as an abelian sheaf. And since $(f_*\mathcal{O}_ X)(Y) = \mathcal{O}_ X(X)$ we see the result. It is often the case that the Leray spectral sequence carries additional structure. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="01F4">
+  <p><a class="environment-identifier" href="/tag/01F4">Lemma <span data-tag="01F4">20.13.6</span>.</a> Let $f : X \to Y$ be a morphism of ringed spaces. Let $\mathcal{F}$ be an $\mathcal{O}_ X$-module. </p>
+  <p><ol>
+  <li><p>
+If $R^ qf_*\mathcal{F} = 0$ for $q > 0$, then $H^ p(X, \mathcal{F}) = H^ p(Y, f_*\mathcal{F})$ for all $p$. 
+</p>
+</li><li><p>
+If $H^ p(Y, R^ qf_*\mathcal{F}) = 0$ for all $q$ and $p > 0$, then $H^ q(X, \mathcal{F}) = H^0(Y, R^ qf_*\mathcal{F})$ for all $q$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      These are two simple conditions that force the Leray spectral sequence to degenerate at $E_2$. You can also prove these facts directly (without using the spectral sequence) which is a good exercise in cohomology of sheaves. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01F5">
+       
+      
+  <p><a class="environment-identifier" href="/tag/01F5">Lemma <span data-tag="01F5">20.13.7</span>.</a> Let $f : X \to Y$ and $g : Y \to Z$ be morphisms of ringed spaces. In this case $Rg_* \circ Rf_* = R(g \circ f)_*$ as functors from $D^{+}(X) \to D^{+}(Z)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We are going to apply Derived Categories, Lemma <a href="/tag/015M" data-tag="015M">13.22.1</a>. It is clear that $g_* \circ f_* = (g \circ f)_*$, see Sheaves, Lemma <a href="/tag/008E" data-tag="008E">6.21.2</a>. It remains to show that $f_*\mathcal{I}$ is $g_*$-acyclic. This follows from Lemma <a href="/tag/01EX" data-tag="01EX">20.11.10</a> and the description of the higher direct images $R^ ig_*$ in Lemma <a href="/tag/01E4" data-tag="01E4">20.7.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01F6">
+  <p><a class="environment-identifier" href="/tag/01F6">Lemma <span data-tag="01F6">20.13.8</span> <span class="named">(Relative Leray spectral sequence)</span>.</a>  Let $f : X \to Y$ and $g : Y \to Z$ be morphisms of ringed spaces. Let $\mathcal{F}$ be an $\mathcal{O}_ X$-module. There is a spectral sequence with </p>
+  <div class="equation">
+  \[  E_2^{p, q} = R^ pg_*(R^ qf_*\mathcal{F})  \]
+</div>
+  <p> converging to $R^{p + q}(g \circ f)_*\mathcal{F}$. This spectral sequence is functorial in $\mathcal{F}$, and there is a version for bounded below complexes of $\mathcal{O}_ X$-modules. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a Grothendieck spectral sequence for composition of functors and follows from Lemma <a href="/tag/01F5" data-tag="01F5">20.13.7</a> and Derived Categories, Lemma <a href="/tag/015N" data-tag="015N">13.22.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

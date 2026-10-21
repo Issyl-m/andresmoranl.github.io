@@ -1,0 +1,373 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="stacks-more-morphisms-section-lifting-affines" class="tex-section"><span data-tag="0CJN">106.6</span> Lifting affines</h2>
+
+<p>
+Consider a solid diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ W \ar[d] \ar@{..>}[r] &  W' \ar@{..>}[d] \\  \mathcal{X} \ar[r] &  \mathcal{X}' }  \]
+</div>
+<p>
+ where $\mathcal{X} \subset \mathcal{X}'$ is a thickening of algebraic stacks, $W$ is an affine scheme and $W \to \mathcal{X}$ is smooth. The question we address in this section is whether we can find $W'$ and the dotted arrows so that the square is cartesian and $W' \to \mathcal{X}'$ is smooth. We do not know the answer in general, but if $\mathcal{X} \subset \mathcal{X}'$ is a first order thickening we will prove the answer is yes. 
+</p>
+<p>
+To study this problem we introduce the following category. 
+</p>
+<p>
+<article class="env-remark" id="0CJP">
+  <p><a class="environment-identifier" href="/tag/0CJP">Remark <span data-tag="0CJP">106.6.1</span> <span class="named">(Category of lifts)</span>.</a>  Consider a diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ W \ar[d]_ x \\  \mathcal{X} \ar[r] &  \mathcal{X}' }  \]
+</div>
+  <p> where $\mathcal{X} \subset \mathcal{X}'$ is a thickening of algebraic stacks, $W$ is an algebraic space, and $W \to \mathcal{X}$ is smooth. We will construct a category $\mathcal{C}$ and a functor </p>
+  <div class="equation">
+  \[  p : \mathcal{C} \longrightarrow W_{spaces, {\acute{e}tale}}  \]
+</div>
+  <p> (see Properties of Spaces, Definition <a href="/tag/03G0" data-tag="03G0">66.18.2</a> for notation) as follows. An object of $\mathcal{C}$ will be a system $(U, U', a, i, x', \alpha )$ which forms a commutative diagram </p>
+  <div class="equation" id="0CJQ">
+    <span class="equation-label"><a href="/tag/0CJQ" data-tag="0CJQ">106.6.1.1</a></span>
+  <div>\begin{equation}  \label{stacks-more-morphisms-equation-object} \vcenter { \xymatrix{ U \ar[d]_ a \ar[r]_ i &  U' \ar[dd]^{x'} \\  W \ar[d]_ x &  \\  \mathcal{X} \ar[r] &  \mathcal{X}' } } \end{equation}</div>
+</div>
+  <p> with commutativity witnessed by the $2$-morphism $\alpha : x \circ a \to x' \circ i$ such that $U$ and $U'$ are algebraic spaces, $a : U \to W$ is étale, $x' : U' \to \mathcal{X}'$ is smooth, and such that $U = \mathcal{X} \times _{\mathcal{X}'} U'$. In particular $U \subset U'$ is a thickening. A morphism </p>
+  <div class="equation">
+  \[  (U, U', a, i, x', \alpha ) \to (V, V', b, j, y', \beta )  \]
+</div>
+  <p> is given by $(f, f', \gamma )$ where $f : U \to V$ is a morphism over $W$, $f' : U' \to V'$ is a morphism whose restriction to $U$ gives $f$, and $\gamma : x' \circ f' \to y'$ is a $2$-morphism witnessing the commutativity in right triangle of the diagram below </p>
+  <div class="equation" id="0CJR">
+    <span class="equation-label"><a href="/tag/0CJR" data-tag="0CJR">106.6.1.2</a></span>
+  <div>\begin{equation}  \label{stacks-more-morphisms-equation-morphism} \vcenter { \xymatrix{ &  V \ar[ld]_ f \ar[ldd]^ b \ar[rr]_ j &  &  V' \ar[ld]_{f'} \ar[lddd]^{y'} \\  U \ar[d]_ a \ar[rr]_ i &  &  U' \ar[dd]_{x'} \\  W \ar[d]_ x &  \\  \mathcal{X} \ar[rr] &  &  \mathcal{X}' } } \end{equation}</div>
+</div>
+  <p> Finally, we require that $\gamma $ is compatible with $\alpha $ and $\beta $: in the calculus of $2$-categories of Categories, Sections <a href="/tag/003D" data-tag="003D">4.28</a> and <a href="/tag/003G" data-tag="003G">4.29</a> this reads </p>
+  <div class="equation">
+  \[  \beta = (\gamma \star \text{id}_ j) \circ (\alpha \star \text{id}_ f)  \]
+</div>
+  <p> (more succinctly: $\beta = j^*\gamma \circ f^*\alpha $). Another formulation is that objects are commutative diagrams (<a href="/tag/0CJQ" data-tag="0CJQ">106.6.1.1</a>) with some additional properties and morphisms are commutative diagrams (<a href="/tag/0CJR" data-tag="0CJR">106.6.1.2</a>) in the category $\textit{Spaces}/\mathcal{X}'$ introduced in Properties of Stacks, Remark <a href="/tag/04ZQ" data-tag="04ZQ">100.3.7</a>. This makes it clear that $\mathcal{C}$ is a category and that the rule $p : \mathcal{C} \to W_{spaces, {\acute{e}tale}}$ sending $(U, U', a, i, x', \alpha )$ to $a : U \to W$ is a functor. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0CJS">
+  <p><a class="environment-identifier" href="/tag/0CJS">Lemma <span data-tag="0CJS">106.6.2</span>.</a> For any morphism (<a href="/tag/0CJR" data-tag="0CJR">106.6.1.2</a>) the map $f' : V' \to U'$ is étale. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Namely $f : V \to U$ is étale as a morphism in $W_{spaces, {\acute{e}tale}}$ and we can apply Lemma <a href="/tag/0CJC" data-tag="0CJC">106.5.2</a> because $U' \to \mathcal{X}'$ and $V' \to \mathcal{X}'$ are smooth and $U = \mathcal{X} \times _{\mathcal{X}'} U'$ and $V = \mathcal{X} \times _{\mathcal{X}'} V'$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CJT">
+  <p><a class="environment-identifier" href="/tag/0CJT">Lemma <span data-tag="0CJT">106.6.3</span>.</a> The category $p : \mathcal{C} \to W_{spaces, {\acute{e}tale}}$ constructed in Remark <a href="/tag/0CJP" data-tag="0CJP">106.6.1</a> is fibred in groupoids. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We claim the fibre categories of $p$ are groupoids. If $(f, f', \gamma ')$ as in (<a href="/tag/0CJR" data-tag="0CJR">106.6.1.2</a>) is a morphism such that $f : U \to V$ is an isomorphism, then $f'$ is an isomorphism by Lemma <a href="/tag/0CJC" data-tag="0CJC">106.5.2</a> and hence $(f, f', \gamma ')$ is an isomorphism. 
+    <p>
+      Consider a morphism $f : V \to U$ in $W_{spaces, {\acute{e}tale}}$ and an object $\xi = (U, U', a, i, x', \alpha )$ of $\mathcal{C}$ over $U$. We are going to construct the “pullback” $f^*\xi $ over $V$. Namely, set $b = a \circ f$. Let $f' : V' \to U'$ be the étale morphism whose restriction to $V$ is $f$ (More on Morphisms of Spaces, Lemma <a href="/tag/07VW" data-tag="07VW">76.8.2</a>). Denote $j : V \to V'$ the corresponding thickening. Let $y' = x' \circ f'$ and $\gamma = \text{id} : x' \circ f' \to y'$. Set 
+    <p>
+      <div class="equation">
+  \[  \beta = \alpha \star \text{id}_ f : x \circ b = x \circ a \circ f \to x' \circ i \circ f = x' \circ f' \circ j = y' \circ j  \]
+</div>
+    <p>
+       It is clear that $(f, f', \gamma ) : (V, V', b, j, y', \beta ) \to (U, U', a, i, x', \alpha )$ is a morphism as in (<a href="/tag/0CJR" data-tag="0CJR">106.6.1.2</a>). The morphisms $(f, f', \gamma )$ so constructed are strongly cartesian (Categories, Definition <a href="/tag/02XK" data-tag="02XK">4.33.1</a>). We omit the detailed proof, but essentially the reason is that given a morphism $(g, g', \epsilon ) : (Y, Y', c, k, z', \delta ) \to (U, U', a, i, x', \alpha )$ in $\mathcal{C}$ such that $g$ factors as $g = f \circ h$ for some $h : Y \to V$, then we get a unique factorization $g' = f' \circ h'$ from More on Morphisms of Spaces, Lemma <a href="/tag/07VW" data-tag="07VW">76.8.2</a> and after that one can produce the necessary $\zeta $ such that $(h, h', \zeta ) : (Y, Y', c, k, z', \delta ) \to (V, V', b, j, y', \beta )$ is a morphism of $\mathcal{C}$ with $(g, g', \epsilon ) = (f, f', \gamma ) \circ (h, h', \zeta )$. 
+    <p>
+      Therefore $p : \mathcal{C} \to W_{\acute{e}tale}$ is a fibred category (Categories, Definition <a href="/tag/02XM" data-tag="02XM">4.33.5</a>). Combined with the fact that the fibre categories are groupoids seen above we conclude that $p : \mathcal{C} \to W_{\acute{e}tale}$ is fibred in groupoids by Categories, Lemma <a href="/tag/003V" data-tag="003V">4.35.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CJU">
+  <p><a class="environment-identifier" href="/tag/0CJU">Lemma <span data-tag="0CJU">106.6.4</span>.</a> The category $p : \mathcal{C} \to W_{spaces, {\acute{e}tale}}$ constructed in Remark <a href="/tag/0CJP" data-tag="0CJP">106.6.1</a> is a stack in groupoids. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/0CJT" data-tag="0CJT">106.6.3</a> we see the first condition of Stacks, Definition <a href="/tag/02ZI" data-tag="02ZI">8.5.1</a> holds. As is customary we check descent of objects and we leave it to the reader to check descent of morphisms. Thus suppose we have $a : U \to W$ in $W_{spaces, {\acute{e}tale}}$, a covering $\{ U_ k \to U\} _{k \in K}$ in $W_{spaces, {\acute{e}tale}}$, objects $\xi _ k = (U_ k, U'_ k, a_ k, i_ k, x'_ k, \alpha _ k)$ of $\mathcal{C}$ over $U_ k$, and morphisms 
+    <p>
+      <div class="equation">
+  \[  \varphi _{kk'} = (f_{kk'}, f'_{kk'}, \gamma _{kk'}) : \xi _ k|_{U_ k \times _ U U_{k'}} \to \xi _{k'}|_{U_ k \times _ U U_{k'}}  \]
+</div>
+    <p>
+       between restrictions satisfying the cocycle condition. In order to prove effectivity we may first refine the covering. Hence we may assume each $U_ k$ is a scheme (even an affine scheme if you like). Let us write 
+    <p>
+      <div class="equation">
+  \[  \xi _ k|_{U_ k \times _ U U_{k'}} = (U_ k \times _ U U_{k'}, U'_{kk'}, a_{kk'}, x'_{kk'}, \alpha _{kk'})  \]
+</div>
+    <p>
+       Then we get an étale (by Lemma <a href="/tag/0CJS" data-tag="0CJS">106.6.2</a>) morphism $s_{kk'} : U'_{kk'} \to U'_ k$ as the second component of the morphism $\xi _ k|_{U_ k \times _ U U_{k'}} \to \xi _ k$ of $\mathcal{C}$. Similarly we obtain an étale morphism $t_{kk'} : U'_{kk'} \to U'_{k'}$ by looking at the second component of the composition 
+    <p>
+      <div class="equation">
+  \[  \xi _ k|_{U_ k \times _ U U_{k'}} \xrightarrow {\varphi _{kk'}} \xi _{k'}|_{U_ k \times _ U U_{k'}} \to \xi _{k'}  \]
+</div>
+    <p>
+       We claim that 
+    <p>
+      <div class="equation">
+  \[  j : \coprod \nolimits _{(k, k') \in K \times K} U'_{kk'} \xrightarrow {(\coprod s_{kk'}, \coprod t_{kk'})} (\coprod \nolimits _{k \in K} U'_ k) \times (\coprod \nolimits _{k \in K} U'_ k)  \]
+</div>
+    <p>
+       is an étale equivalence relation. First, we have already seen that the components $s, t$ of the displayed morphism are étale. The base change of the morphism $j$ by $(\coprod U_ k) \times (\coprod U_ k) \to (\coprod U'_ k) \times (\coprod U'_ k)$ is a monomorphism because it is the map 
+    <p>
+      <div class="equation">
+  \[  \coprod \nolimits _{(k, k') \in K \times K} U_ k \times _ U U_{k'} \longrightarrow (\coprod \nolimits _{k \in K} U_ k) \times (\coprod \nolimits _{k \in K} U_ k)  \]
+</div>
+    <p>
+       Hence $j$ is a monomorphism by More on Morphisms, Lemma <a href="/tag/0BPG" data-tag="0BPG">37.3.4</a>. Finally, symmetry of the relation $j$ comes from the fact that $\varphi _{kk'}^{-1}$ is the “flip” of $\varphi _{k'k}$ (see Stacks, Remarks <a href="/tag/026C" data-tag="026C">8.3.2</a>) and transitivity comes from the cocycle condition (details omitted). Thus the quotient of $\coprod U'_ k$ by $j$ is an algebraic space $U'$ (Spaces, Theorem <a href="/tag/02WW" data-tag="02WW">65.10.5</a>). Above we have already shown that there is a thickening $i : U \to U'$ as we saw that the restriction of $j$ on $\coprod U_ k$ gives $(\coprod U_ k) \times _ U (\coprod U_ k)$. Finally, if we temporarily view the $1$-morphisms $x'_ k : U'_ k \to \mathcal{X}'$ as objects of the stack $\mathcal{X}'$ over $U'_ k$ then we see that these come endowed with a descent datum with respect to the étale covering $\{ U'_ k \to U'\} $ given by the third component $\gamma _{kk'}$ of the morphisms $\varphi _{kk'}$ in $\mathcal{C}$. Since $\mathcal{X}'$ is a stack this descent datum is effective and translating back we obtain a $1$-morphism $x' : U' \to \mathcal{X}'$ such that the compositions $U'_ k \to U' \to \mathcal{X}'$ come equipped with isomorphisms to $x'_ k$ compatible with $\gamma _{kk'}$. This means that the morphisms $\alpha _ k : x \circ a_ k \to x'_ k \circ i_ k$ glue to a morphism $\alpha : x \circ a \to x' \circ i$. Then $\xi = (U, U', a, i, x', \alpha )$ is the desired object over $U$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CJV">
+  <p><a class="environment-identifier" href="/tag/0CJV">Lemma <span data-tag="0CJV">106.6.5</span>.</a> Let $\mathcal{X} \subset \mathcal{X}'$ be a thickening of algebraic stacks. Let $W$ be an algebraic space and let $W \to \mathcal{X}$ be a smooth morphism. There exists an étale covering $\{ W_ i \to W\} _{i \in I}$ and for each $i$ a cartesian diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ W_ i \ar[r] \ar[d] &  W_ i' \ar[d] \\  \mathcal{X} \ar[r] &  \mathcal{X}' }  \]
+</div>
+  <p> with $W_ i' \to \mathcal{X}'$ smooth. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a scheme $U'$ and a surjective smooth morphism $U' \to \mathcal{X}'$. As usual we set $U = \mathcal{X} \times _{\mathcal{X}'} U'$. Then $U \to \mathcal{X}$ is a surjective smooth morphism. Therefore the base change 
+    <p>
+      <div class="equation">
+  \[  V = W \times _{\mathcal{X}} U \longrightarrow W  \]
+</div>
+    <p>
+       is a surjective smooth morphism of algebraic spaces. By Topologies on Spaces, Lemma <a href="/tag/0CFV" data-tag="0CFV">73.4.4</a> we can find an étale covering $\{ W_ i \to W\} $ such that $W_ i \to W$ factors through $V \to W$. After covering $W_ i$ by affines (Properties of Spaces, Lemma <a href="/tag/03FX" data-tag="03FX">66.6.1</a>) we may assume each $W_ i$ is affine. We may and do replace $W$ by $W_ i$ which reduces us to the situation discussed in the next paragraph. 
+    <p>
+      Assume $W$ is affine and the given morphism $W \to \mathcal{X}$ factors through $U$. Picture 
+    <p>
+      <div class="equation">
+  \[  W \xrightarrow {i} U \to \mathcal{X}  \]
+</div>
+    <p>
+       Since $W$ and $U$ are smooth over $\mathcal{X}$ we see that $i$ is locally of finite type (Morphisms of Stacks, Lemma <a href="/tag/06U9" data-tag="06U9">101.17.8</a>). After replacing $U$ by $\mathbf{A}^ n_ U$ we may assume that $i$ is an immersion, see Morphisms, Lemma <a href="/tag/04II" data-tag="04II">29.40.2</a>. By Morphisms of Stacks, Lemma <a href="/tag/0CJ6" data-tag="0CJ6">101.44.4</a> the morphism $i$ is a local complete intersection. Hence $i$ is a Koszul-regular immersion (as defined in Divisors, Definition <a href="/tag/063J" data-tag="063J">31.22.1</a>) by More on Morphisms, Lemma <a href="/tag/069G" data-tag="069G">37.62.3</a>. 
+    <p>
+      We may still replace $W$ by an affine open covering. For every point $w \in W$ we can choose an affine open $U'_ w \subset U'$ such that if $U_ w \subset U$ is the corresponding affine open, then $w \in i^{-1}(U_ w)$ and $i^{-1}(U_ w) \to U_ w$ is a closed immersion cut out by a Koszul-regular sequence $f_1, \ldots , f_ r \in \Gamma (U_ w, \mathcal{O}_{U_ w})$. This follows from the definition of Koszul-regular immersions and Divisors, Lemma <a href="/tag/063G" data-tag="063G">31.21.7</a>. Set $W_ w = i^{-1}(U_ w)$; this is an affine open neighbourhood of $w \in W$. Choose lifts $f'_1, \ldots , f'_ r \in \Gamma (U'_ w, \mathcal{O}_{U'_ w})$ of $f_1, \ldots , f_ r$. This is possible as $U_ w \to U'_ w$ is a closed immersion of affine schemes. Let $W'_ w \subset U'_ w$ be the closed subscheme cut out by $f'_1, \ldots , f'_ r$. We claim that $W'_ w \to \mathcal{X}'$ is smooth. The claim finishes the proof as $W_ w = \mathcal{X} \times _{\mathcal{X}'} W'_ w$ by construction. 
+    <p>
+      To check the claim it suffices to check that the base change $W'_ w \times _{\mathcal{X}'} X' \to X'$ is smooth for every affine scheme $X'$ smooth over $\mathcal{X}'$. Choose an étale morphism 
+    <p>
+      <div class="equation">
+  \[  Y' \to U'_ w \times _{\mathcal{X}'} X'  \]
+</div>
+    <p>
+       with $Y'$ affine. Because $U'_ w \times _{\mathcal{X}'} X'$ is covered by the images of such morphisms, it is enough to show that the closed subscheme $Z'$ of $Y'$ cut out by $f'_1, \ldots , f'_ r$ is smooth over $X'$. Picture 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ Z' \ar[r] \ar[d] &  Y' \ar[d] \\  W'_ w \times _{\mathcal{X}'} X' \ar[d] \ar[r] &  U'_ w \times _{\mathcal{X}'} X' \ar[d] \ar[r] &  X' \\  W'_ w = V(f'_1, \ldots , f'_ r) \ar[r] &  U'_ w }  \]
+</div>
+    <p>
+       Set $X = \mathcal{X} \times _{\mathcal{X}'} X'$, $Y = X \times _{X'} Y' = \mathcal{X} \times _{\mathcal{X}'} Y'$, and $Z = Y \times _{Y'} Z' = X \times _{X'} Z' = \mathcal{X} \times _{\mathcal{X}'} Z'$. Then $(Z \subset Z') \to (Y \subset Y') \subset (X \subset X')$ are (cartesian) morphisms of thickenings of affine schemes and we are given that $Z \to X$ and $Y' \to X'$ are smooth. Finally, the sequence of functions $f'_1, \ldots , f'_ r$ map to a Koszul-regular sequence in $\Gamma (Y', \mathcal{O}_{Y'})$ by More on Algebra, Lemma <a href="/tag/062H" data-tag="062H">15.31.5</a> because $Y' \to U'_ w$ is smooth and hence flat. By More on Algebra, Lemma <a href="/tag/0CER" data-tag="0CER">15.32.6</a> (and the fact that Koszul-regular sequences are quasi-regular sequences by More on Algebra, Lemmas <a href="/tag/062F" data-tag="062F">15.31.2</a>, <a href="/tag/0CEM" data-tag="0CEM">15.31.3</a>, and <a href="/tag/062I" data-tag="062I">15.31.6</a>) we conclude that $Z' \to X'$ is smooth as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CJW">
+  <p><a class="environment-identifier" href="/tag/0CJW">Lemma <span data-tag="0CJW">106.6.6</span>.</a> Let $\mathcal{X} \subset \mathcal{X}'$ be a thickening of algebraic stacks. Consider a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ W'' \ar[d]_{x''} &  W \ar[l] \ar[r] \ar[d]_ x &  W' \ar[d]^{x'} \\  \mathcal{X}' &  \mathcal{X} \ar[l] \ar[r] &  \mathcal{X}' }  \]
+</div>
+  <p> with cartesian squares where $W', W, W''$ are algebraic spaces and the vertical arrows are smooth. Then there exist </p>
+  <p><ol>
+  <li><p>
+an étale covering $\{ f'_ k : W'_ k \to W'\} _{k \in K}$, 
+</p>
+</li><li><p>
+étale morphisms $f''_ k : W'_ k \to W''$, and 
+</p>
+</li><li><p>
+$2$-morphisms $\gamma _ k : x'' \circ f''_ k \to x' \circ f'_ k$ 
+</p>
+</li>
+</ol></p>
+  <p> such that (a) $(f'_ k)^{-1}(W) = (f''_ k)^{-1}(W)$, (b) $f'_ k|_{(f'_ k)^{-1}(W)} = f''_ k|_{(f''_ k)^{-1}(W)}$, and (c) pulling back $\gamma _ k$ to the closed subscheme of (a) agrees with the $2$-morphism given by the commutativity of the initial diagram over $W$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Denote $i : W \to W'$ and $i'' : W \to W''$ the given thickenings. The commutativity of the diagram in the statement of the lemma means there is a $2$-morphism $\delta : x' \circ i' \to x'' \circ i''$ This is the $2$-morphism referred to in part (c) of the statement. Consider the algebraic space 
+    <p>
+      <div class="equation">
+  \[  I' = W' \times _{x', \mathcal{X}', x''} W''  \]
+</div>
+    <p>
+       with projections $p' : I' \to W'$ and $q' : I' \to W''$. Observe that there is a “universal” $2$-morphism $\gamma : x' \circ p' \to x'' \circ q'$ (we will use this later). The choice of $\delta $ defines a morphism 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ W \ar[rr]_\delta &  &  I' \ar[ld]^{p'} \ar[rd]_{q'} \\  &  W' &  &  W'' }  \]
+</div>
+    <p>
+       such that the compositions $W \to I' \to W'$ and $W \to I' \to W''$ are $i : W \to W'$ and $i' : W \to W''$. Since $x''$ is smooth, the morphism $p' : I' \to W'$ is smooth as a base change of $x''$. 
+    <p>
+      Suppose we can find an étale covering $\{ f'_ k : W'_ k \to W'\} $ and morphisms $\delta _ k : W'_ k \to I'$ such that the restriction of $\delta _ k$ to $W_ k = (f'_ k)^{-1}$ is equal to $\delta \circ f_ k$ where $f_ k = f'_ k|_{W_ k}$. Picture 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ W_ k \ar[r]^{f_ k} \ar[d] &  W \ar[r]^\delta &  I' \ar[d]^{p'} \\  W'_ k \ar[rr]^{f'_ k} \ar[rru]^{\delta _ k} &  &  W' }  \]
+</div>
+    <p>
+       In other words, we want to be able to extend the given section $\delta : W \to I'$ of $p'$ to a section over $W'$ after possibly replacing $W'$ by an étale covering. 
+    <p>
+      If this is true, then we can set $f''_ k = q' \circ \delta _ k$ and $\gamma _ k = \gamma \star \text{id}_{\delta _ k}$ (more succinctly $\gamma _ k = \delta _ k^*\gamma $). Namely, the only thing left to show at this is that the morphism $f''_ k$ is étale. By construction the morphism $x' \circ p'$ is $2$-isomorphic to $x'' \circ q'$. Hence $x'' \circ f''_ k$ is $2$-isomorphic to $x' \circ f'_ k$. We conclude that the composition 
+    <p>
+      <div class="equation">
+  \[  W'_ k \xrightarrow {f''_ k} W'' \xrightarrow {x''} \mathcal{X}'  \]
+</div>
+    <p>
+       is smooth because $x' \circ f'_ k$ is so. As $f_ k$ is étale we conclude $f''_ k$ is étale by Lemma <a href="/tag/0CJC" data-tag="0CJC">106.5.2</a>. 
+    <p>
+      If the thickening is a first order thickening, then we can choose any étale covering $\{ W'_ k \to W'\} $ with $W_ k'$ affine. Namely, since $p'$ is smooth we see that $p'$ is formally smooth by the infinitesimal lifting criterion (More on Morphisms of Spaces, Lemma <a href="/tag/04AM" data-tag="04AM">76.19.6</a>). As $W_ k$ is affine and as $W_ k \to W'_ k$ is a first order thickening (as a base change of $\mathcal{X} \to \mathcal{X}'$, see Lemma <a href="/tag/0BPR" data-tag="0BPR">106.3.4</a>) we get $\delta _ k$ as desired. 
+    <p>
+      In the general case the existence of the covering and the morphisms $\delta _ k$ follows from More on Morphisms of Spaces, Lemma <a href="/tag/0CHJ" data-tag="0CHJ">76.19.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CJX">
+  <p><a class="environment-identifier" href="/tag/0CJX">Lemma <span data-tag="0CJX">106.6.7</span>.</a> The category $p : \mathcal{C} \to W_{spaces, {\acute{e}tale}}$ constructed in Remark <a href="/tag/0CJP" data-tag="0CJP">106.6.1</a> is a gerbe. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In Lemma <a href="/tag/0CJU" data-tag="0CJU">106.6.4</a> we have seen that it is a stack in groupoids. Thus it remains to check conditions (2) and (3) of Stacks, Definition <a href="/tag/06NZ" data-tag="06NZ">8.11.1</a>. Condition (2) follows from Lemma <a href="/tag/0CJV" data-tag="0CJV">106.6.5</a>. Condition (3) follows from Lemma <a href="/tag/0CJW" data-tag="0CJW">106.6.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CKG">
+  <p><a class="environment-identifier" href="/tag/0CKG">Lemma <span data-tag="0CKG">106.6.8</span>.</a> In Remark <a href="/tag/0CJP" data-tag="0CJP">106.6.1</a> assume $\mathcal{X} \subset \mathcal{X}'$ is a first order thickening. Then </p>
+  <p><ol>
+  <li><p>
+the automorphism sheaves of objects of the gerbe $p : \mathcal{C} \to W_{spaces, {\acute{e}tale}}$ constructed in Remark <a href="/tag/0CJP" data-tag="0CJP">106.6.1</a> are abelian, and 
+</p>
+</li><li><p>
+the sheaf of groups $\mathcal{G}$ constructed in Stacks, Lemma <a href="/tag/0CJY" data-tag="0CJY">8.11.8</a> is a quasi-coherent $\mathcal{O}_ W$-module. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will prove both statements at the same time. Namely, given an object $\xi = (U, U', a, i, x', \alpha )$ we will endow $\mathit{Aut}(\xi )$ with the structure of a quasi-coherent $\mathcal{O}_ U$-module on $U_{spaces, {\acute{e}tale}}$ and we will show that this structure is compatible with pullbacks. This will be sufficient by glueing of sheaves (Sites, Section <a href="/tag/04TP" data-tag="04TP">7.26</a>) and the construction of $\mathcal{G}$ in the proof of Stacks, Lemma <a href="/tag/0CJY" data-tag="0CJY">8.11.8</a> as the glueing of the automorphism sheaves $\mathit{Aut}(\xi )$ and the fact that it suffices to check a module is quasi-coherent after going to an étale covering (Properties of Spaces, Lemma <a href="/tag/03M0" data-tag="03M0">66.29.6</a>). 
+    <p>
+      We will describe the sheaf $\mathit{Aut}(\xi )$ using the same method as used in the proof of Lemma <a href="/tag/0CJW" data-tag="0CJW">106.6.6</a>. Consider the algebraic space 
+    <p>
+      <div class="equation">
+  \[  I' = U' \times _{x', \mathcal{X}', x'} U'  \]
+</div>
+    <p>
+       with projections $p' : I' \to U'$ and $q' : I' \to U'$. Over $I'$ there is a universal $2$-morphism $\gamma : x' \circ p' \to x' \circ q'$. The identity $x' \to x'$ defines a diagonal morphism 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ U' \ar[rr]_{\Delta '} &  &  I' \ar[ld]^{p'} \ar[rd]_{q'} \\  &  U' &  &  U' }  \]
+</div>
+    <p>
+       such that the compositions $U' \to I' \to U'$ and $U' \to I' \to U'$ are the identity morphisms. We will denote the base change of $U', I', p', q', \Delta '$ to $\mathcal{X}$ by $U, I, p, q, \Delta $. Since $W' \to \mathcal{X}'$ is smooth, we see that $p' : I' \to U'$ is smooth as a base change. 
+    <p>
+      A section of $\mathit{Aut}(\xi )$ over $U$ is a morphism $\delta ' : U' \to I'$ such that $\delta '|_ U = \Delta $ and such that $p' \circ \delta ' = \text{id}_{U'}$. To be explicit, $(\text{id}_ U, q' \circ \delta ', (\delta ')^*\gamma ) : \xi \to \xi $ is a formula for the corresponding automorphism. More generally, if $f : V \to U$ is an étale morphism, then there is a thickening $j : V \to V'$ and an étale morphism $f' : V' \to U'$ whose restriction to $V$ is $f$ and $f^*\xi $ corresponds to $(V, V', a \circ f, j, x' \circ f', f^*\alpha )$, see proof of Lemma <a href="/tag/0CJT" data-tag="0CJT">106.6.3</a>. a section of $\mathit{Aut}(\xi )$ over $V$ is a morphism $\delta ' : V' \to I'$ such that $\delta '|_ V = \Delta \circ f$ and $p' \circ \delta ' = f'$<a class="footnotemark" href="#a0001759603" id="a0001759603-mark"><sup>1</sup></a>. 
+    <p>
+      We conclude that $\mathit{Aut}(\xi )$ as a sheaf of sets agrees with the sheaf defined in More on Morphisms of Spaces, Remark <a href="/tag/0CK7" data-tag="0CK7">76.17.7</a> for the thickenings $(U \subset U')$ and $(I \subset I')$ over $(U \subset U')$ via $\text{id}_{U'}$ and $p'$. The diagonal $\Delta '$ is a section of this sheaf and by acting on this section using More on Morphisms of Spaces, Lemma <a href="/tag/061C" data-tag="061C">76.17.5</a> we get an isomorphism 
+    <p>
+      <div class="equation" id="0CKH">
+    <span class="equation-label"><a href="/tag/0CKH" data-tag="0CKH">106.6.8.1</a></span>
+  <div>\begin{equation}  \label{stacks-more-morphisms-equation-isomorphism} \mathop{\mathcal{H}\! \mathit{om}}\nolimits _{\mathcal{O}_ U}(\Delta ^*\Omega _{I/U}, \mathcal{C}_{U/U'}) \longrightarrow \mathit{Aut}(\xi ) \end{equation}</div>
+</div>
+    <p>
+       on $U_{spaces, {\acute{e}tale}}$. There three things left to check 
+    <p>
+      <ol>
+  <li><p>
+the construction of (<a href="/tag/0CKH" data-tag="0CKH">106.6.8.1</a>) commutes with étale localization, 
+</p>
+</li><li><p>
+$\mathop{\mathcal{H}\! \mathit{om}}\nolimits _{\mathcal{O}_ U}(\Delta ^*\Omega _{I/U}, \mathcal{C}_{U/U'})$ is a quasi-coherent module on $U$, 
+</p>
+</li><li><p>
+the composition in $\mathit{Aut}(\xi )$ corresponds to addition of sections in this quasi-coherent module. 
+</p>
+</li>
+</ol>
+    <p>
+       We will check these in order. 
+    <p>
+      To see (1) we have to show that if $f : V \to U$ is étale, then (<a href="/tag/0CKH" data-tag="0CKH">106.6.8.1</a>) constructed using $\xi $ over $U$, restricts to the map (<a href="/tag/0CKH" data-tag="0CKH">106.6.8.1</a>) 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathcal{H}\! \mathit{om}}\nolimits _{\mathcal{O}_ V}( \Delta _ V^*\Omega _{V \times _\mathcal {X} V/V}, \mathcal{C}_{V/V'}) \to \mathit{Aut}(\xi |_ V)  \]
+</div>
+    <p>
+       constructed using $\xi |_ V$ over $V$ on $V_{spaces, {\acute{e}tale}}$. This follows from the discussion in the footnote above and More on Morphisms of Spaces, Lemma <a href="/tag/0CK8" data-tag="0CK8">76.17.8</a>. 
+    <p>
+      Proof of (2). Since $p'$ is smooth, the morphism $I \to U$ is smooth, and hence the relative module of differentials $\Omega _{I/U}$ is finite locally free (More on Morphisms of Spaces, Lemma <a href="/tag/0CK5" data-tag="0CK5">76.7.16</a>). On the other hand, $\mathcal{C}_{U/U'}$ is quasi-coherent (More on Morphisms of Spaces, Definition <a href="/tag/04CN" data-tag="04CN">76.5.1</a>). By Properties of Spaces, Lemma <a href="/tag/03M1" data-tag="03M1">66.29.7</a> we conclude. 
+    <p>
+      Proof of (3). There exists a morphism $c' : I' \times _{p', U', q'} I' \to I'$ such that $(U', I', p', q', c')$ is a groupoid in algebraic spaces with identity $\Delta '$. See Algebraic Stacks, Lemma <a href="/tag/04T4" data-tag="04T4">94.16.1</a> for example. Composition in $\mathit{Aut}(\xi )$ is induced by the morphism $c'$ as follows. Suppose we have two morphisms 
+    <p>
+      <div class="equation">
+  \[  \delta '_1, \delta '_2 : U' \longrightarrow I'  \]
+</div>
+    <p>
+       corresponding to sections of $\mathit{Aut}(\xi )$ over $U$ as above, in other words, we have $\delta '_ i|U = \Delta _ U$ and $p' \circ \delta '_ i = \text{id}_{U'}$. Then the composition in $\mathit{Aut}(\xi )$ is 
+    <p>
+      <div class="equation">
+  \[  \delta '_1 \circ \delta '_2 = c'(\delta '_1 \circ q' \circ \delta '_2, \delta '_2)  \]
+</div>
+    <p>
+       We omit the detailed verification<a class="footnotemark" href="#a0001759848" id="a0001759848-mark"><sup>2</sup></a>. Thus we are in the situation described in More on Groupoids in Spaces, Section <a href="/tag/0CKB" data-tag="0CKB">79.5</a> and the desired result follows from More on Groupoids in Spaces, Lemma <a href="/tag/0CKF" data-tag="0CKF">79.5.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="0CKI">
+        
+      
+  <p><a class="environment-identifier" href="/tag/0CKI">Proposition <span data-tag="0CKI">106.6.9</span> <span class="named">(Emerton)</span>.</a> Let $\mathcal{X} \subset \mathcal{X}'$ be a first order thickening of algebraic stacks. Let $W$ be an affine scheme and let $W \to \mathcal{X}$ be a smooth morphism. Then there exists a cartesian diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ W \ar[d] \ar[r] &  W' \ar[d] \\  \mathcal{X} \ar[r] &  \mathcal{X}' }  \]
+</div>
+  <p> with $W' \to \mathcal{X}'$ smooth and $W'$ affine. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider the category $p : \mathcal{C} \to W_{spaces, {\acute{e}tale}}$ introduced in Remark <a href="/tag/0CJP" data-tag="0CJP">106.6.1</a>. The proposition states that there exists an object of $\mathcal{C}$ lying over $W$. Namely, if we have such an object $(W, W', a, i, y', \alpha )$ then $W = \mathcal{X} \times _{\mathcal{X}'} W'$. Hence $W \to W'$ is a thickening of algebraic spaces so $W'$ is affine by More on Morphisms of Spaces, Lemma <a href="/tag/05ZR" data-tag="05ZR">76.9.5</a> and More on Morphisms, Lemma <a href="/tag/06AD" data-tag="06AD">37.2.3</a>. 
+    <p>
+      Lemma <a href="/tag/0CJX" data-tag="0CJX">106.6.7</a> tells us $\mathcal{C}$ is a gerbe over $W_{spaces, {\acute{e}tale}}$. This means we can étale locally find a solution and these local solutions are étale locally isomorphic; this part does not require the assumption that the thickening is first order. By Lemma <a href="/tag/0CKG" data-tag="0CKG">106.6.8</a> the automorphism sheaves of objects of our gerbe are abelian and fit together to form a quasi-coherent module $\mathcal{G}$ on $W_{spaces, {\acute{e}tale}}$. We will verify conditions (1) and (2) of Cohomology on Sites, Lemma <a href="/tag/0CK0" data-tag="0CK0">21.11.1</a> to conclude the existence of an object of $\mathcal{C}$ lying over $W$. Condition (1) is true: the étale coverings $\{ W_ i \to W\} $ with each $W_ i$ affine are cofinal in the collection of all coverings. For such a covering $W_ i$ and $W_ i \times _ W W_ j$ are affine and $H^1(W_ i, \mathcal{G})$ and $H^1(W_ i \times _ W W_ j, \mathcal{G})$ are zero: the cohomology of a quasi-coherent module over an affine algebraic space is zero for example by Cohomology of Spaces, Proposition <a href="/tag/072B" data-tag="072B">69.7.2</a>. Finally, condition (2) is that $H^2(W, \mathcal{G}) = 0$ for our quasi-coherent sheaf $\mathcal{G}$ which again follows from Cohomology of Spaces, Proposition <a href="/tag/072B" data-tag="072B">69.7.2</a>. This finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

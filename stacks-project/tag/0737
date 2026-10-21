@@ -1,0 +1,295 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sites-cohomology-section-limits" class="tex-section"><span data-tag="0737">21.16</span> Cohomology and colimits</h2>
+
+<p>
+Let $(\mathcal{C}, \mathcal{O})$ be a ringed site. Let $\mathcal{I} \to \textit{Mod}(\mathcal{O})$, $i \mapsto \mathcal{F}_ i$ be a diagram over the index category $\mathcal{I}$, see Categories, Section <a href="/tag/002D" data-tag="002D">4.14</a>. For each $i$ there is a canonical map $\mathcal{F}_ i \to \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i$ which induces a map on cohomology. Hence we get a canonical map 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _ i H^ p(U, \mathcal{F}_ i) \longrightarrow H^ p(U, \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i)  \]
+</div>
+<p>
+ for every $p \geq 0$ and every object $U$ of $\mathcal{C}$. These maps are in general not isomorphisms, even for $p = 0$. 
+</p>
+<p>
+The following lemma is the analogue of Sites, Lemma <a href="/tag/0738" data-tag="0738">7.17.7</a> for cohomology. 
+</p>
+<p>
+<article class="env-lemma" id="0739">
+  <p><a class="environment-identifier" href="/tag/0739">Lemma <span data-tag="0739">21.16.1</span>.</a> Let $\mathcal{C}$ be a site. Let $\text{Cov}_\mathcal {C}$ be the set of coverings of $\mathcal{C}$ (see Sites, Definition <a href="/tag/00VH" data-tag="00VH">7.6.2</a>). Let $\mathcal{B} \subset \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$, and $\text{Cov} \subset \text{Cov}_\mathcal {C}$ be subsets. Assume that </p>
+  <p><ol>
+  <li><p>
+For every $\mathcal{U} \in \text{Cov}$ we have $\mathcal{U} = \{ U_ i \to U\} _{i \in I}$ with $I$ finite, $U, U_ i \in \mathcal{B}$ and every $U_{i_0} \times _ U \ldots \times _ U U_{i_ p} \in \mathcal{B}$. 
+</p>
+</li><li><p>
+For every $U \in \mathcal{B}$ the coverings of $U$ occurring in $\text{Cov}$ is a cofinal system of coverings of $U$. 
+</p>
+</li>
+</ol></p>
+  <p> Then the map </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _ i H^ p(U, \mathcal{F}_ i) \longrightarrow H^ p(U, \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i)  \]
+</div>
+  <p> is an isomorphism for every $p \geq 0$, every $U \in \mathcal{B}$, and every filtered diagram $\mathcal{I} \to \textit{Ab}(\mathcal{C})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      To prove the lemma we will argue by induction on $p$. Note that we require in (1) the coverings $\mathcal{U} \in \text{Cov}$ to be finite, so that all the elements of $\mathcal{B}$ are quasi-compact. Hence (2) and (1) imply that any $U \in \mathcal{B}$ satisfies the hypothesis of Sites, Lemma <a href="/tag/0738" data-tag="0738">7.17.7</a> (4). Thus we see that the result holds for $p = 0$. Now we assume the lemma holds for $p$ and prove it for $p + 1$. 
+    <p>
+      Choose a filtered diagram $\mathcal{F} : \mathcal{I} \to \textit{Ab}(\mathcal{C})$, $i \mapsto \mathcal{F}_ i$. Since $\textit{Ab}(\mathcal{C})$ has functorial injective embeddings, see Injectives, Theorem <a href="/tag/01DP" data-tag="01DP">19.7.4</a>, we can find a morphism of filtered diagrams $\mathcal{F} \to \mathcal{I}$ such that each $\mathcal{F}_ i \to \mathcal{I}_ i$ is an injective map of abelian sheaves into an injective abelian sheaf. Denote $\mathcal{Q}_ i$ the cokernel so that we have short exact sequences 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{F}_ i \to \mathcal{I}_ i \to \mathcal{Q}_ i \to 0.  \]
+</div>
+    <p>
+       Since colimits of sheaves are the sheafification of colimits on the level of presheaves, since sheafification is exact, and since filtered colimits of abelian groups are exact (see Algebra, Lemma <a href="/tag/00DB" data-tag="00DB">10.8.8</a>), we see the sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i \to \mathop{\mathrm{colim}}\nolimits _ i \mathcal{I}_ i \to \mathop{\mathrm{colim}}\nolimits _ i \mathcal{Q}_ i \to 0.  \]
+</div>
+    <p>
+       is also a short exact sequence. We claim that $H^ q(U, \mathop{\mathrm{colim}}\nolimits _ i \mathcal{I}_ i) = 0$ for all $U \in \mathcal{B}$ and all $q \geq 1$. Accepting this claim for the moment consider the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{colim}}\nolimits _ i H^ p(U, \mathcal{I}_ i) \ar[d] \ar[r] &  \mathop{\mathrm{colim}}\nolimits _ i H^ p(U, \mathcal{Q}_ i) \ar[d] \ar[r] &  \mathop{\mathrm{colim}}\nolimits _ i H^{p + 1}(U, \mathcal{F}_ i) \ar[d] \ar[r] &  0 \ar[d] \\  H^ p(U, \mathop{\mathrm{colim}}\nolimits _ i \mathcal{I}_ i) \ar[r] &  H^ p(U, \mathop{\mathrm{colim}}\nolimits _ i \mathcal{Q}_ i) \ar[r] &  H^{p + 1}(U, \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i) \ar[r] &  0 }  \]
+</div>
+    <p>
+       The zero at the lower right corner comes from the claim and the zero at the upper right corner comes from the fact that the sheaves $\mathcal{I}_ i$ are injective. The top row is exact by an application of Algebra, Lemma <a href="/tag/00DB" data-tag="00DB">10.8.8</a>. Hence by the snake lemma we deduce the result for $p + 1$. 
+    <p>
+      It remains to show that the claim is true. We will use Lemma <a href="/tag/03F9" data-tag="03F9">21.10.9</a>. By the result for $p = 0$ we see that for $\mathcal{U} \in \text{Cov}$ we have 
+    <p>
+      <div class="equation">
+  \[  \check{\mathcal{C}}^\bullet (\mathcal{U}, \mathop{\mathrm{colim}}\nolimits _ i \mathcal{I}_ i) = \mathop{\mathrm{colim}}\nolimits _ i \check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{I}_ i)  \]
+</div>
+    <p>
+       because all the $U_{j_0} \times _ U \ldots \times _ U U_{j_ p}$ are in $\mathcal{B}$. By Lemma <a href="/tag/03AW" data-tag="03AW">21.10.2</a> each of the complexes in the colimit of Čech complexes is acyclic in degree $\geq 1$. Hence by Algebra, Lemma <a href="/tag/00DB" data-tag="00DB">10.8.8</a> we see that also the Čech complex $\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathop{\mathrm{colim}}\nolimits _ i \mathcal{I}_ i)$ is acyclic in degrees $\geq 1$. In other words we see that $\check{H}^ p(\mathcal{U}, \mathop{\mathrm{colim}}\nolimits _ i \mathcal{I}_ i) = 0$ for all $p \geq 1$. Thus the assumptions of Lemma <a href="/tag/03F9" data-tag="03F9">21.10.9</a>. are satisfied and the claim follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GN3">
+  <p><a class="environment-identifier" href="/tag/0GN3">Lemma <span data-tag="0GN3">21.16.2</span>.</a> Let $\mathcal{C}$ be a site. Let $S \subset \mathop{\mathrm{Ob}}\nolimits (\mathop{\mathit{Sh}}\nolimits (\mathcal{C}))$ be a subset. Denote $*$ the final object of $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})$. Assume </p>
+  <p><ol>
+  <li><p>
+for some $K \in S$ the map $K \to *$ is surjective, 
+</p>
+</li><li><p>
+given a surjective map of sheaves $\mathcal{F} \to K$ with $K \in S$ there exists a $K' \in S$ and a map $K' \to \mathcal{F}$ such that the composition $K' \to K$ is surjective, 
+</p>
+</li><li><p>
+given $K, K' \in S$ there is a surjection $K'' \to K \times K'$ with $K'' \in S$, 
+</p>
+</li><li><p>
+given $a, b : K \to K'$ with $K, K' \in S$ there exists a surjection $K'' \to \text{Equalizer}(a, b)$ with $K'' \in S$, and 
+</p>
+</li><li><p>
+every $K \in S$ is quasi-compact (Sites, Definition <a href="/tag/0D07" data-tag="0D07">7.17.4</a>). 
+</p>
+</li>
+</ol></p>
+  <p> Then for all $p \geq 0$ the map </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _\lambda H^ p(\mathcal{C}, \mathcal{F}_\lambda ) \longrightarrow H^ p(\mathcal{C}, \mathop{\mathrm{colim}}\nolimits _\lambda \mathcal{F}_\lambda )  \]
+</div>
+  <p> is an isomorphism for every filtered diagram $\Lambda \to \textit{Ab}(\mathcal{C})$, $\lambda \mapsto \mathcal{F}_\lambda $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will prove this by induction on $p$. The base case $p = 0$ follows from Sites, Lemma <a href="/tag/0GMR" data-tag="0GMR">7.17.8</a> part (4). We check the assumptions hold, but we urge the reader to skip this part. Suppose $\mathcal{F} \to *$ is surjective. Choose $K \in S$ and $K \to *$ surjective as in (1). Then $\mathcal{F} \times K \to K$ is surjective. Choose $K' \to \mathcal{F} \times K$ with $K' \in S$ and $K' \to K$ surjective as in (2). Then there is a map $K' \to \mathcal{F}$ and $K' \to *$ is surjective. Hence Sites, Lemma <a href="/tag/0GMR" data-tag="0GMR">7.17.8</a> assumption (4)(a) is satisfied. By Sites, Lemma <a href="/tag/0GMP" data-tag="0GMP">7.17.5</a>, assumptions (3) and (5) we see that $K \times K$ is quasi-compact for all $K \in S$. Hence Sites, Lemma <a href="/tag/0GMR" data-tag="0GMR">7.17.8</a> assumption (4)(b) is satisfied. This finishes the proof of the base case. 
+    <p>
+      Induction step. Assume the result holds for $H^ p$ for $p \leq p_0$ and for all topoi $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})$ such that a set $S \subset \mathop{\mathrm{Ob}}\nolimits (\mathop{\mathit{Sh}}\nolimits (\mathcal{C}))$ can be found satisfying (1) – (5). Arguing exactly as in the proof of Lemma <a href="/tag/0739" data-tag="0739">21.16.1</a> we see that it suffices to show: given a filtered colimit $\mathcal{I} = \mathop{\mathrm{colim}}\nolimits \mathcal{I}_\lambda $ with $\mathcal{I}_\lambda $ injective abelian sheaves, we have $H^{p_0 + 1}(\mathcal{C}, \mathcal{I}) = 0$. Choose $K \to *$ surjective with $K \in S$ as in (1). Denote $K^ n$ the $n$-fold self product of $K$. Consider the spectral sequence 
+    <p>
+      <div class="equation">
+  \[  E_1^{p, q} = H^ q(K^{p + 1}, \mathcal{I}) \Rightarrow H^{p + q}(*, \mathcal{I}) = H^{p + q}(\mathcal{C}, \mathcal{I})  \]
+</div>
+    <p>
+       of Lemma <a href="/tag/079Z" data-tag="079Z">21.13.2</a>. Recall that $H^ q(K^{p + 1}, \mathcal{F}) = H^ q(\mathcal{C}/K^{p + 1}, j^{-1}\mathcal{F})$, for any abelian sheaf on $\mathcal{C}$, see Lemma <a href="/tag/07A0" data-tag="07A0">21.13.3</a>. We have $j^{-1}\mathcal{I} = \mathop{\mathrm{colim}}\nolimits j^{-1}\mathcal{I}_\lambda $ as $j^{-1}$ commutes with colimits. The restrictions $j^{-1}\mathcal{I}_\lambda $ are injective abelian sheaves on $\mathcal{C}/K^{p + 1}$ by Lemma <a href="/tag/03F3" data-tag="03F3">21.7.1</a>. Below we will show that the induction hypothesis applies to $\mathcal{C}/K^{p + 1}$ and hence we see that $H^ q(K^{p + 1}, \mathcal{I}) = \mathop{\mathrm{colim}}\nolimits H^ q(K^{p + 1}, \mathcal{I}_\lambda ) = 0$ for $q < p_0 + 1$ (vanishing as $\mathcal{I}_\lambda $ is injective). It follows that 
+    <p>
+      <div class="equation">
+  \[  H^{p_0 + 1}(\mathcal{C}, \mathcal{I}) = H^{p_0 + 1}\left(\ldots \to H^0(K^{p_0}, \mathcal{I}) \to H^0(K^{p_0 + 1}, \mathcal{I}) \to H^0(K^{p_0 + 2}, \mathcal{I}) \to \ldots \right)  \]
+</div>
+    <p>
+       Again using the induction hypothesis, the complex depicted on the right hand side is the colimit over $\Lambda $ of the complexes 
+    <p>
+      <div class="equation">
+  \[  \ldots \to H^0(K^{p_0}, \mathcal{I}_\lambda ) \to H^0(K^{p_0 + 1}, \mathcal{I}_\lambda ) \to H^0(K^{p_0 + 2}, \mathcal{I}_\lambda ) \to \ldots  \]
+</div>
+    <p>
+       These complexes are exact as $\mathcal{I}_\lambda $ is an injective abelian sheaf (follows from the spectral sequence for example). Since filtered colimits are exact in the category of abelian groups we obtain the desired vanishing. 
+    <p>
+      We still have to show that the induction hypothesis applies to the site $\mathcal{C}/K^ n$ for all $n \geq 1$. Recall that $\mathop{\mathit{Sh}}\nolimits (\mathcal{C}/K^ n) = \mathop{\mathit{Sh}}\nolimits (\mathcal{C})/K^ n$, see Sites, Lemma <a href="/tag/0791" data-tag="0791">7.30.3</a>. Thus we may work in $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})/K^ n$. Denote $S_ n \subset \mathop{\mathrm{Ob}}\nolimits (\mathop{\mathit{Sh}}\nolimits (\mathcal{C}/K^ n)$ the set of objects of the form $K' \to K^ n$. We check each property in turn: 
+    <p>
+      <ol>
+  <li><p>
+By (3) and induction there exists a surjection $K' \to K^ n$ with $K' \in S$. Then $(K' \to K^ n) \to (K^ n \to K^ n)$ is a surjection in $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})/K^ n$ and $K^ n \to K^ n$ is the final object of $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})/K^ n$. Hence (1) holds for $S_ n$, 
+</p>
+</li><li><p>
+Property (2) for $S_ n$ is an immediate consequence of (2) for $S$. 
+</p>
+</li><li><p>
+Let $a : K_1 \to K^ n$ and $b : K_2 \to K^ n$ be in $S_ n$. Then $(K_1 \to K^ n) \times (K_2 \to K^ n)$ is the object $K_1 \times _{K^ n} K_2 \to K^ n$ of $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})/K^ n$. The subsheaf $K_1 \times _{K^ n} K_2 \subset K_1 \times K_2$ is the equalizer of $a \circ \text{pr}_1$ and $b \circ \text{pr}_2$. Write $a = (a_1, \ldots , a_ n)$ and $b = (b_1, \ldots , b_ n)$. Pick $K_3 \to K_1 \times K_2$ surjective with $K_3 \in S$; this is possibly by assumption (3) for $\mathcal{C}$. Pick 
+</p>
+<div class="equation">
+  \[  K_4 \longrightarrow \text{Equalizer}(K_3 \to K_1 \times K_2 \xrightarrow {a_1, b_1} K)  \]
+</div>
+<p>
+ surjective with $K_4 \in S$. This is possible by assumption (4) for $\mathcal{C}$. Pick 
+</p>
+<div class="equation">
+  \[  K_5 \longrightarrow \text{Equalizer}(K_4 \to K_1 \times K_2 \xrightarrow {a_2, b_2} K)  \]
+</div>
+<p>
+ surjective with $K_5 \in S$. Again this is possible. Continue in this fashion until we get 
+</p>
+<div class="equation">
+  \[  K_{3 + n} \longrightarrow \text{Equalizer}(K_{2 + n} \to K_1 \times K_2 \xrightarrow {a_ n, b_ n} K)  \]
+</div>
+<p>
+ surjective with $K_{3 + n} \in S$. By construction $K_{3 + n} \to K_1 \times _{K^ n} K_2$ is surjective. Hence $(K_{3 + n} \to K^ n)$ is in $S_ n$ and surjects onto the product $(K_1 \to K^ n) \times (K_2 \to K^ n)$. Thus (3) holds for $S_ n$. 
+</p>
+</li><li><p>
+Property (4) for $S_ n$ is an immediate consequence of property (4) for $S$. 
+</p>
+</li><li><p>
+Property (5) for $S_ n$ is a consequence of property (5) for $S$. Namely, an object $\mathcal{F} \to K^ n$ of $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})/K^ n$ corresponds to a quasi-compact object of $\mathop{\mathit{Sh}}\nolimits (\mathcal{C}/K^ n)$ if and only if $\mathcal{F}$ is a quasi-compact object of $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})$. 
+</p>
+</li>
+</ol>
+    <p>
+       This finishes the proof of the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0GN4">
+  <p><a class="environment-identifier" href="/tag/0GN4">Remark <span data-tag="0GN4">21.16.3</span>.</a> Let $\mathcal{C}$ be a site. Let $\mathcal{B} \subset \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ be a subset. Let $S \subset \mathop{\mathrm{Ob}}\nolimits (\mathop{\mathit{Sh}}\nolimits (\mathcal{C}))$ be the set of sheaves $K$ which have the form </p>
+  <div class="equation">
+  \[  K = \coprod \nolimits _{i = 1, \ldots , n} h_{U_ i}^\#   \]
+</div>
+  <p> with $U_1, \ldots , U_ n \in \mathcal{B}$. Then we can ask: when does this set satisfy the assumptions of Lemma <a href="/tag/0GN3" data-tag="0GN3">21.16.2</a>? One answer is that it suffices if </p>
+  <p><ol>
+  <li><p>
+for some $n \geq 0$, $U_1, \ldots , U_ n \in \mathcal{B}$ the map $\coprod _{i = 1, \ldots , n} h_{U_ i}^\#  \to *$ is surjective, 
+</p>
+</li><li><p>
+every covering of $U \in \mathcal{B}$ can be refined by a covering of the form $\{ U_ i \to U\} _{i = 1, \ldots , n}$ with $U_ i \in \mathcal{B}$, 
+</p>
+</li><li><p>
+given $U, U' \in \mathcal{B}$ there exist $n \geq 0$, $U_1, \ldots , U_ n \in \mathcal{B}$, maps $U_ i \to U$ and $U_ i \to U'$ such that $\coprod _{i = 1, \ldots , n} h_{U_ i}^\#  \to h_ U^\#  \times h_{U'}^\# $ is surjective, 
+</p>
+</li><li><p>
+given morphisms $a, b : U \to U'$ in $\mathcal{C}$ with $U, U' \in \mathcal{B}$, there exist $U_1, \ldots , U_ n \in \mathcal{B}$, maps $U_ i \to U$ equalizing $a, b$ such that $\coprod _{i = 1, \ldots , n} h_{U_ i}^\#  \to \text{Equalizer}(h_ a^\# , h_ b^\#  : h_ U^\#  \to h_{U'}^\# )$ is surjective. 
+</p>
+</li>
+</ol></p>
+  <p> We omit the detailed verification, except to mention that part (2) above insures that every element of $\mathcal{B}$ is quasi-compact and hence every $K \in S$ is quasi-compact as well by Sites, Lemma <a href="/tag/0GMQ" data-tag="0GMQ">7.17.6</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0H7B">
+  <p><a class="environment-identifier" href="/tag/0H7B">Lemma <span data-tag="0H7B">21.16.4</span>.</a> Let $f : \mathcal{C} \to \mathcal{D}$ be a morphism of sites corresponding to the continuous functor $u : \mathcal{D} \to \mathcal{C}$. Let $(\mathcal{F}_ i, \varphi _{ii'})$ be a system of abelian sheaves on $\mathcal{C}$. Set $\mathcal{F} = \mathop{\mathrm{colim}}\nolimits \mathcal{F}_ i$. Let $p \geq 0$ be an integer. Denote $\mathcal{B}$ the set of $V \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{D})$ such that $H^ p(u(V), \mathcal{F}) = \mathop{\mathrm{colim}}\nolimits H^ p(u(V), \mathcal{F}_ i)$. If every object of $\mathcal{D}$ has a covering by elements of $\mathcal{B}$, then $R^ pf_*\mathcal{F} = \mathop{\mathrm{colim}}\nolimits R^ pf_*\mathcal{F}_ i$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Recall that $R^ pf_*\mathcal{F}$ is the sheafification of the presheaf $\mathcal{G}$ sending $V$ to $H^ p(u(V), \mathcal{F})$, see Lemma <a href="/tag/072W" data-tag="072W">21.7.4</a>. Similarly, $R^ pf_*\mathcal{F}_ i$ is the sheafification of the presheaf $\mathcal{G}_ i$ sending $V$ to $H^ p(u(V), \mathcal{F}_ i)$. Recall that sheafification is the left adjoint to the inclusion from sheaves to presheaves, see Sites, Section <a href="/tag/00W1" data-tag="00W1">7.10</a>. Hence sheafification commutes with colimits, see Categories, Lemma <a href="/tag/0038" data-tag="0038">4.24.5</a>. Hence it suffices to show that the map of presheaves (with colimit in the category of presheaves) 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits \mathcal{G}_ i \longrightarrow \mathcal{G}  \]
+</div>
+    <p>
+       induces an isomorphism on sheafifications. This follows from Sites, Lemma <a href="/tag/0H6Y" data-tag="0H6Y">7.10.17</a> and our assumption on $\mathcal{B}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0EXZ">
+  <p><a class="environment-identifier" href="/tag/0EXZ">Lemma <span data-tag="0EXZ">21.16.5</span>.</a> Let $\mathcal{I}$ be a cofiltered index category and let $(\mathcal{C}_ i, f_ a)$ be an inverse system of sites over $\mathcal{I}$ as in Sites, Situation <a href="/tag/0A34" data-tag="0A34">7.18.1</a>. Set $\mathcal{C} = \mathop{\mathrm{colim}}\nolimits \mathcal{C}_ i$ as in Sites, Lemmas <a href="/tag/09YL" data-tag="09YL">7.18.2</a> and <a href="/tag/0A35" data-tag="0A35">7.18.3</a>. Moreover, assume given </p>
+  <p><ol>
+  <li><p>
+an abelian sheaf $\mathcal{F}_ i$ on $\mathcal{C}_ i$ for all $i \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{I})$, 
+</p>
+</li><li><p>
+for $a : j \to i$ a map $\varphi _ a : f_ a^{-1}\mathcal{F}_ i \to \mathcal{F}_ j$ of abelian sheaves on $\mathcal{C}_ j$ 
+</p>
+</li>
+</ol></p>
+  <p> such that $\varphi _ c = \varphi _ b \circ f_ b^{-1}\varphi _ a$ whenever $c = a \circ b$. Then there exists a map of systems $(\mathcal{F}_ i, \varphi _ a) \to (\mathcal{G}_ i, \psi _ a)$ such that $\mathcal{F}_ i \to \mathcal{G}_ i$ is injective and $\mathcal{G}_ i$ is an injective abelian sheaf. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      For each $i$ we pick an injection $\mathcal{F}_ i \to \mathcal{A}_ i$ where $\mathcal{A}_ i$ is an injective abelian sheaf on $\mathcal{C}_ i$. Then we can consider the family of maps 
+    <p>
+      <div class="equation">
+  \[  \gamma _ i : \mathcal{F}_ i \longrightarrow \prod \nolimits _{b : k \to i} f_{b, *}\mathcal{A}_ k = \mathcal{G}_ i  \]
+</div>
+    <p>
+       where the component maps are the maps adjoint to the maps $f_ b^{-1}\mathcal{F}_ i \to \mathcal{F}_ k \to \mathcal{A}_ k$. For $a : j \to i$ in $\mathcal{I}$ there is a canonical map 
+    <p>
+      <div class="equation">
+  \[  \psi _ a : f_ a^{-1}\mathcal{G}_ i \to \mathcal{G}_ j  \]
+</div>
+    <p>
+       whose components are the canonical maps $f_ b^{-1}f_{a \circ b, *}\mathcal{A}_ k \to f_{b, *}\mathcal{A}_ k$ for $b : k \to j$. Thus we find an injection $(\gamma _ i) : (\mathcal{F}_ i, \varphi _ a) \to (\mathcal{G}_ i, \psi _ a)$ of systems of abelian sheaves. Note that $\mathcal{G}_ i$ is an injective sheaf of abelian groups on $\mathcal{C}_ i$, see Lemma <a href="/tag/0730" data-tag="0730">21.14.2</a> and Homology, Lemma <a href="/tag/0137" data-tag="0137">12.27.3</a>. This finishes the construction. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09YP">
+  <p><a class="environment-identifier" href="/tag/09YP">Lemma <span data-tag="09YP">21.16.6</span>.</a> In the situation of Lemma <a href="/tag/0EXZ" data-tag="0EXZ">21.16.5</a> set $\mathcal{F} = \mathop{\mathrm{colim}}\nolimits f_ i^{-1}\mathcal{F}_ i$. Let $i \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{I})$, $X_ i \in \text{Ob}(\mathcal{C}_ i)$. Then </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _{a : j \to i} H^ p(u_ a(X_ i), \mathcal{F}_ j) = H^ p(u_ i(X_ i), \mathcal{F})  \]
+</div>
+  <p> for all $p \geq 0$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The case $p = 0$ is Sites, Lemma <a href="/tag/09YN" data-tag="09YN">7.18.4</a>. 
+    <p>
+      Choose $(\mathcal{F}_ i, \varphi _ a) \to (\mathcal{G}_ i, \psi _ a)$ as in Lemma <a href="/tag/0EXZ" data-tag="0EXZ">21.16.5</a>. Arguing exactly as in the proof of Lemma <a href="/tag/0739" data-tag="0739">21.16.1</a> we see that it suffices to prove that $H^ p(X, \mathop{\mathrm{colim}}\nolimits f_ i^{-1}\mathcal{G}_ i) = 0$ for $p > 0$. 
+    <p>
+      Set $\mathcal{G} = \mathop{\mathrm{colim}}\nolimits f_ i^{-1}\mathcal{G}_ i$. To show vanishing of cohomology of $\mathcal{G}$ on every object of $\mathcal{C}$ we show that the Čech cohomology of $\mathcal{G}$ for any covering $\mathcal{U}$ of $\mathcal{C}$ is zero (Lemma <a href="/tag/03F9" data-tag="03F9">21.10.9</a>). The covering $\mathcal{U}$ comes from a covering $\mathcal{U}_ i$ of $\mathcal{C}_ i$ for some $i$. We have 
+    <p>
+      <div class="equation">
+  \[  \check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{G}) = \mathop{\mathrm{colim}}\nolimits _{a : j \to i} \check{\mathcal{C}}^\bullet (u_ a(\mathcal{U}_ i), \mathcal{G}_ j)  \]
+</div>
+    <p>
+       by the case $p = 0$. The right hand side is acyclic in positive degrees as a filtered colimit of acyclic complexes by Lemma <a href="/tag/03AW" data-tag="03AW">21.10.2</a>. See Algebra, Lemma <a href="/tag/00DB" data-tag="00DB">10.8.8</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

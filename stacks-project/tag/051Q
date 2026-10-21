@@ -1,0 +1,328 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="algebra-section-generic-flatness" class="tex-section"><span data-tag="051Q">10.118</span> Generic flatness</h2>
+
+<p>
+Basically this says that a finite type algebra over a domain becomes flat after inverting a single element of the domain. There are several versions of this result (in increasing order of strength). 
+</p>
+<p>
+<article class="env-lemma" id="051R">
+  <p><a class="environment-identifier" href="/tag/051R">Lemma <span data-tag="051R">10.118.1</span>.</a> Let $R \to S$ be a ring map. Let $M$ be an $S$-module. Assume </p>
+  <p><ol>
+  <li><p>
+$R$ is Noetherian, 
+</p>
+</li><li><p>
+$R$ is a domain, 
+</p>
+</li><li><p>
+$R \to S$ is of finite type, and 
+</p>
+</li><li><p>
+$M$ is a finite type $S$-module. 
+</p>
+</li>
+</ol></p>
+  <p> Then there exists a nonzero $f \in R$ such that $M_ f$ is a free $R_ f$-module. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $K$ be the fraction field of $R$. Set $S_ K = K \otimes _ R S$. This is an algebra of finite type over $K$. We will argue by induction on $d = \dim (S_ K)$ (which is finite for example by Noether normalization, see Section <a href="/tag/00OW" data-tag="00OW">10.115</a>). Fix $d \geq 0$. Assume we know that the lemma holds in all cases where $\dim (S_ K) < d$. 
+    <p>
+      Suppose given $R \to S$ and $M$ as in the lemma with $\dim (S_ K) = d$. By Lemma <a href="/tag/00L0" data-tag="00L0">10.62.1</a> there exists a filtration $0 \subset M_1 \subset M_2 \subset \ldots \subset M_ n = M$ so that $M_ i/M_{i - 1}$ is isomorphic to $S/\mathfrak q$ for some prime $\mathfrak q$ of $S$. Note that $\dim ((S/\mathfrak q)_ K) \leq \dim (S_ K)$. Also, note that an extension of free modules is free (see basic notion <a href="/tag/0516" data-tag="0516">50</a>). Thus we may assume $M = S$ and that $S$ is a domain of finite type over $R$. 
+    <p>
+      If $R \to S$ has a nontrivial kernel, then take a nonzero $f \in R$ in this kernel. In this case $S_ f = 0$ and the lemma holds. (This is really the case $d = -1$ and the start of the induction.) Hence we may assume that $R \to S$ is a finite type extension of Noetherian domains. 
+    <p>
+      Apply Lemma <a href="/tag/07NA" data-tag="07NA">10.115.7</a> and replace $R$ by $R_ f$ (with $f$ as in the lemma) to get a factorization 
+    <p>
+      <div class="equation">
+  \[  R \subset R[y_1, \ldots , y_ d] \subset S  \]
+</div>
+    <p>
+       where the second extension is finite. Choose $z_1, \ldots , z_ r \in S$ which form a basis for the fraction field of $S$ over the fraction field of $R[y_1, \ldots , y_ d]$. This gives a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to R[y_1, \ldots , y_ d]^{\oplus r} \xrightarrow {(z_1, \ldots , z_ r)} S \to N \to 0  \]
+</div>
+    <p>
+       By construction $N$ is a finite $R[y_1, \ldots , y_ d]$-module whose support does not contain the generic point $(0)$ of $\mathop{\mathrm{Spec}}(R[y_1, \ldots , y_ d])$. By Lemma <a href="/tag/00L2" data-tag="00L2">10.40.5</a> there exists a nonzero $g \in R[y_1, \ldots , y_ d]$ such that $g$ annihilates $N$, so we may view $N$ as a finite module over $S' = R[y_1, \ldots , y_ d]/(g)$. Since $\dim (S'_ K) < d$ by induction there exists a nonzero $f \in R$ such that $N_ f$ is a free $R_ f$-module. Since $(R[y_1, \ldots , y_ d])_ f \cong R_ f[y_1, \ldots , y_ d]$ is free also we conclude by the already mentioned fact that an extension of free modules is free. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="051S">
+       
+      
+  <p><a class="environment-identifier" href="/tag/051S">Lemma <span data-tag="051S">10.118.2</span>.</a> Let $R \to S$ be a ring map. Let $M$ be an $S$-module. Assume </p>
+  <p><ol>
+  <li><p>
+$R$ is a domain, 
+</p>
+</li><li><p>
+$R \to S$ is of finite presentation, and 
+</p>
+</li><li><p>
+$M$ is an $S$-module of finite presentation. 
+</p>
+</li>
+</ol></p>
+  <p> Then there exists a nonzero $f \in R$ such that $M_ f$ is a free $R_ f$-module. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Write $S = R[x_1, \ldots , x_ n]/(g_1, \ldots , g_ m)$. For $g \in R[x_1, \ldots , x_ n]$ denote $\overline{g}$ its image in $S$. We may write $M = S^{\oplus t}/\sum Sn_ i$ for some $n_ i \in S^{\oplus t}$. Write $n_ i = (\overline{g}_{i1}, \ldots , \overline{g}_{it})$ for some $g_{ij} \in R[x_1, \ldots , x_ n]$. Let $R_0 \subset R$ be the subring generated by all the coefficients of all the elements $g_ i, g_{ij} \in R[x_1, \ldots , x_ n]$. Define $S_0 = R_0[x_1, \ldots , x_ n]/(g_1, \ldots , g_ m)$. Define $M_0 = S_0^{\oplus t}/\sum S_0n_ i$. Then $R_0$ is a domain of finite type over $\mathbf{Z}$ and hence Noetherian (see Lemma <a href="/tag/00FN" data-tag="00FN">10.31.1</a>). Moreover via the injection $R_0 \to R$ we have $S \cong R \otimes _{R_0} S_0$ and $M \cong R \otimes _{R_0} M_0$. Applying Lemma <a href="/tag/051R" data-tag="051R">10.118.1</a> we obtain a nonzero $f \in R_0$ such that $(M_0)_ f$ is a free $(R_0)_ f$-module. Hence $M_ f = R_ f \otimes _{(R_0)_ f} (M_0)_ f$ is a free $R_ f$-module. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="051T">
+  <p><a class="environment-identifier" href="/tag/051T">Lemma <span data-tag="051T">10.118.3</span>.</a> Let $R \to S$ be a ring map. Let $M$ be an $S$-module. Assume </p>
+  <p><ol>
+  <li><p>
+$R$ is a domain, 
+</p>
+</li><li><p>
+$R \to S$ is of finite type, and 
+</p>
+</li><li><p>
+$M$ is a finite type $S$-module. 
+</p>
+</li>
+</ol></p>
+  <p> Then there exists a nonzero $f \in R$ such that </p>
+  <p><ol>
+  <li class="custom-item" data-marker="(a)"><p>
+$M_ f$ and $S_ f$ are free as $R_ f$-modules, and 
+</p>
+</li><li class="custom-item" data-marker="(b)"><p>
+$S_ f$ is a finitely presented $R_ f$-algebra and $M_ f$ is a finitely presented $S_ f$-module. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We first prove the lemma for $S = R[x_1, \ldots , x_ n]$, and then we deduce the result in general. 
+    <p>
+      Assume $S = R[x_1, \ldots , x_ n]$. Choose elements $m_1, \ldots , m_ t$ which generate $M$. This gives a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to N \to S^{\oplus t} \xrightarrow {(m_1, \ldots , m_ t)} M \to 0.  \]
+</div>
+    <p>
+       Denote $K$ the fraction field of $R$. Denote $S_ K = K \otimes _ R S = K[x_1, \ldots , x_ n]$, and similarly $N_ K = K \otimes _ R N$, $M_ K = K \otimes _ R M$. As $R \to K$ is flat the sequence remains exact after tensoring with $K$. As $S_ K = K[x_1, \ldots , x_ n]$ is a Noetherian ring (see Lemma <a href="/tag/00FN" data-tag="00FN">10.31.1</a>) we can find finitely many elements $n'_1, \ldots , n'_ s \in N_ K$ which generate it. Choose $n_1, \ldots , n_ r \in N$ such that $n'_ i = \sum a_{ij}n_ j$ for some $a_{ij} \in K$. Set 
+    <p>
+      <div class="equation">
+  \[  M' = S^{\oplus t}/\sum \nolimits _{i = 1, \ldots , r} Sn_ i  \]
+</div>
+    <p>
+       By construction $M'$ is a finitely presented $S$-module, and there is a surjection $M' \to M$ which induces an isomorphism $M'_ K \cong M_ K$. We may apply Lemma <a href="/tag/051S" data-tag="051S">10.118.2</a> to $R \to S$ and $M'$ and we find an $f \in R$ such that $M'_ f$ is a free $R_ f$-module. Thus $M'_ f \to M_ f$ is a surjection of modules over the domain $R_ f$ where the source is a free module and which becomes an isomorphism upon tensoring with $K$. Thus it is injective as $M'_ f \subset M'_ K$ because $M'_ f$ is free and $R_ f$ is a domain with fraction field $K$. Hence $M'_ f \to M_ f$ is an isomorphism and the result is proved. 
+    <p>
+      For the general case, choose a surjection $R[x_1, \ldots , x_ n] \to S$. Think of both $S$ and $M$ as finite modules over $R[x_1, \ldots , x_ n]$. By the special case proved above there exists a nonzero $f \in R$ such that both $S_ f$ and $M_ f$ are free as $R_ f$-modules and finitely presented as $R_ f[x_1, \ldots , x_ n]$-modules. Clearly this implies that $S_ f$ is a finitely presented $R_ f$-algebra and that $M_ f$ is a finitely presented $S_ f$-module. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $R \to S$ be a ring map. Let $M$ be an $S$-module. Consider the following condition on an element $f \in R$: 
+</p>
+<div class="equation" id="051U">
+    <span class="equation-label"><a href="/tag/051U" data-tag="051U">10.118.3.1</a></span>
+  <div>\begin{equation}  \label{algebra-equation-flat-and-finitely-presented} \left\{  \begin{matrix}  S_ f 
+
+&  \text{is of finite presentation over }R_ f
+
+\\  M_ f 
+
+&  \text{is of finite presentation as }S_ f\text{-module}
+
+\\  S_ f, M_ f 
+
+&  \text{are free as }R_ f\text{-modules} 
+
+\end{matrix} \right. \end{equation}</div>
+</div>
+<p>
+ We define 
+</p>
+<div class="equation" id="051V">
+    <span class="equation-label"><a href="/tag/051V" data-tag="051V">10.118.3.2</a></span>
+  <div>\begin{equation}  \label{algebra-equation-good-locus} U(R \to S, M) = \bigcup \nolimits _{f \in R\text{ with }(\ref{algebra-equation-flat-and-finitely-presented})} D(f) \end{equation}</div>
+</div>
+<p>
+ which is an open subset of $\mathop{\mathrm{Spec}}(R)$. 
+</p>
+<p>
+<article class="env-lemma" id="051W">
+  <p><a class="environment-identifier" href="/tag/051W">Lemma <span data-tag="051W">10.118.4</span>.</a> Let $R \to S$ be a ring map. Let $0 \to M_1 \to M_2 \to M_3 \to 0$ be a short exact sequence of $S$-modules. Then </p>
+  <div class="equation">
+  \[  U(R \to S, M_1) \cap U(R \to S, M_3) \subset U(R \to S, M_2).  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $u \in U(R \to S, M_1) \cap U(R \to S, M_3)$. Choose $f_1, f_3 \in R$ such that $u \in D(f_1)$, $u \in D(f_3)$ and such that (<a href="/tag/051U" data-tag="051U">10.118.3.1</a>) holds for $f_1$ and $M_1$ and for $f_3$ and $M_3$. Then set $f = f_1f_3$. Then $u \in D(f)$ and (<a href="/tag/051U" data-tag="051U">10.118.3.1</a>) holds for $f$ and both $M_1$ and $M_3$. An extension of free modules is free, and an extension of finitely presented modules is finitely presented (Lemma <a href="/tag/0519" data-tag="0519">10.5.3</a>). Hence we see that (<a href="/tag/051U" data-tag="051U">10.118.3.1</a>) holds for $f$ and $M_2$. Thus $u \in U(R \to S, M_2)$ and we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="051X">
+  <p><a class="environment-identifier" href="/tag/051X">Lemma <span data-tag="051X">10.118.5</span>.</a> Let $R \to S$ be a ring map. Let $M$ be an $S$-module. Let $f \in R$. Using the identification $\mathop{\mathrm{Spec}}(R_ f) = D(f)$ we have $U(R_ f \to S_ f, M_ f) = D(f) \cap U(R \to S, M)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose that $u \in U(R_ f \to S_ f, M_ f)$. Then there exists an element $g \in R_ f$ such that $u \in D(g)$ and such that (<a href="/tag/051U" data-tag="051U">10.118.3.1</a>) holds for the pair $((R_ f)_ g \to (S_ f)_ g, (M_ f)_ g)$. Write $g = a/f^ n$ for some $a \in R$. Set $h = af$. Then $R_ h = (R_ f)_ g$, $S_ h = (S_ f)_ g$, and $M_ h = (M_ f)_ g$. Moreover $u \in D(h)$. Hence $u \in U(R \to S, M)$. Conversely, suppose that $u \in D(f) \cap U(R \to S, M)$. Then there exists an element $g \in R$ such that $u \in D(g)$ and such that (<a href="/tag/051U" data-tag="051U">10.118.3.1</a>) holds for the pair $(R_ g \to S_ g, M_ g)$. Then it is clear that (<a href="/tag/051U" data-tag="051U">10.118.3.1</a>) also holds for the pair $(R_{fg} \to S_{fg}, M_{fg}) = ((R_ f)_ g \to (S_ f)_ g, (M_ f)_ g)$. Hence $u \in U(R_ f \to S_ f, M_ f)$ and we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="051Y">
+  <p><a class="environment-identifier" href="/tag/051Y">Lemma <span data-tag="051Y">10.118.6</span>.</a> Let $R \to S$ be a ring map. Let $M$ be an $S$-module. Let $U \subset \mathop{\mathrm{Spec}}(R)$ be a dense open. Assume there is a covering $U = \bigcup _{i \in I} D(f_ i)$ of opens such that $U(R_{f_ i} \to S_{f_ i}, M_{f_ i})$ is dense in $D(f_ i)$ for each $i \in I$. Then $U(R \to S, M)$ is dense in $\mathop{\mathrm{Spec}}(R)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In view of Lemma <a href="/tag/051X" data-tag="051X">10.118.5</a> this is a purely topological statement. Namely, by that lemma we see that $U(R \to S, M) \cap D(f_ i)$ is dense in $D(f_ i)$ for each $i \in I$. By Topology, Lemma <a href="/tag/03HP" data-tag="03HP">5.21.4</a> we see that $U(R \to S, M) \cap U$ is dense in $U$. Since $U$ is dense in $\mathop{\mathrm{Spec}}(R)$ we conclude that $U(R \to S, M)$ is dense in $\mathop{\mathrm{Spec}}(R)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="051Z">
+  <p><a class="environment-identifier" href="/tag/051Z">Lemma <span data-tag="051Z">10.118.7</span>.</a> Let $R \to S$ be a ring map. Let $M$ be an $S$-module. Assume </p>
+  <p><ol>
+  <li><p>
+$R \to S$ is of finite type, 
+</p>
+</li><li><p>
+$M$ is a finite $S$-module, and 
+</p>
+</li><li><p>
+$R$ is reduced. 
+</p>
+</li>
+</ol></p>
+  <p> Then there exists a subset $U \subset \mathop{\mathrm{Spec}}(R)$ such that </p>
+  <p><ol>
+  <li><p>
+$U$ is open and dense in $\mathop{\mathrm{Spec}}(R)$, 
+</p>
+</li><li><p>
+for every $u \in U$ there exists an $f \in R$ such that $u \in D(f) \subset U$ and such that we have 
+</p>
+<ol>
+  <li><p>
+$M_ f$ and $S_ f$ are free over $R_ f$, 
+</p>
+</li><li><p>
+$S_ f$ is a finitely presented $R_ f$-algebra, and 
+</p>
+</li><li><p>
+$M_ f$ is a finitely presented $S_ f$-module. 
+</p>
+</li>
+</ol>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Note that the lemma is equivalent to the statement that the open $U(R \to S, M)$, see Equation (<a href="/tag/051V" data-tag="051V">10.118.3.2</a>), is dense in $\mathop{\mathrm{Spec}}(R)$. We first prove the lemma for $S = R[x_1, \ldots , x_ n]$, and then we deduce the result in general. 
+    <p>
+      Proof of the case $S = R[x_1, \ldots , x_ n]$ and $M$ any finite module over $S$. Note that in this case $S_ f = R_ f[x_1, \ldots , x_ n]$ is free and of finite presentation over $R_ f$, so we do not have to worry about the conditions regarding $S$, only those that concern $M$. We will use induction on $n$. 
+    <p>
+      There exists a finite filtration 
+    <p>
+      <div class="equation">
+  \[  0 \subset M_1 \subset M_2 \subset \ldots \subset M_ t = M  \]
+</div>
+    <p>
+       such that $M_ i/M_{i - 1} \cong S/J_ i$ for some ideal $J_ i \subset S$, see Lemma <a href="/tag/00KZ" data-tag="00KZ">10.5.4</a>. Since a finite intersection of dense opens is dense open, we see from Lemma <a href="/tag/051W" data-tag="051W">10.118.4</a> that it suffices to prove the lemma for each of the modules $R/J_ i$. Hence we may assume that $M = S/J$ for some ideal $J$ of $S = R[x_1, \ldots , x_ n]$. 
+    <p>
+      Let $I \subset R$ be the ideal generated by the coefficients of elements of $J$. Let $U_1 = \mathop{\mathrm{Spec}}(R) \setminus V(I)$ and let 
+    <p>
+      <div class="equation">
+  \[  U_2 = \mathop{\mathrm{Spec}}(R) \setminus \overline{U_1}.  \]
+</div>
+    <p>
+       Then it is clear that $U = U_1 \cup U_2$ is dense in $\mathop{\mathrm{Spec}}(R)$. Let $f \in R$ be an element such that either (a) $D(f) \subset U_1$ or (b) $D(f) \subset U_2$. If for any such $f$ the lemma holds for the pair $(R_ f \to R_ f[x_1, \ldots , x_ n], M_ f)$ then by Lemma <a href="/tag/051Y" data-tag="051Y">10.118.6</a> we see that $U(R \to S, M)$ is dense in $\mathop{\mathrm{Spec}}(R)$. Hence we may assume either (a) $I = R$, or (b) $V(I) = \mathop{\mathrm{Spec}}(R)$. 
+    <p>
+      In case (b) we actually have $I = 0$ as $R$ is reduced! Hence $J = 0$ and $M = S$ and the lemma holds in this case. 
+    <p>
+      In case (a) we have to do a little bit more work. Note that every element of $I$ is actually the coefficient of a monomial of an element of $J$, because the set of coefficients of elements of $J$ forms an ideal (details omitted). Hence we find an element 
+    <p>
+      <div class="equation">
+  \[  g = \sum \nolimits _{K \in E} a_ K x^ K \in J  \]
+</div>
+    <p>
+       where $E$ is a finite set of multi-indices $K = (k_1, \ldots , k_ n)$ with at least one coefficient $a_{K_0}$ a unit in $R$. Actually we can find one which has a coefficient equal to $1$ as $1 \in I$ in case (a). Let $m = \# \{ K \in E \mid a_ K \text{ is not a unit}\} $. Note that $0 \leq m \leq \#  E - 1$. We will argue by induction on $m$. 
+    <p>
+      The case $m = 0$. In this case all the coefficients $a_ K$, $K \in E$ of $g$ are units and $E \not= \emptyset $. If $E = \{ K_0\} $ is a singleton and $K_0 = (0, \ldots , 0)$, then $g$ is a unit and $J = S$ so the result holds for sure. (This happens in particular when $n = 0$ and it provides the base case of the induction on $n$.) If not $E = \{ (0, \ldots , 0)\} $, then at least one $K$ is not equal to $(0, \ldots , 0)$, i.e., $g \not\in R$. At this point we employ the usual trick of Noether normalization. Namely, we consider 
+    <p>
+      <div class="equation">
+  \[  G(y_1, \ldots , y_ n) = g(y_1 + y_ n^{e_1}, y_2 + y_ n^{e_2}, \ldots , y_{n - 1} + y_ n^{e_{n - 1}}, y_ n)  \]
+</div>
+    <p>
+       with $0 \ll e_{n -1} \ll e_{n - 2} \ll \ldots \ll e_1$. By Lemma <a href="/tag/051N" data-tag="051N">10.115.2</a> it follows that $G(y_1, \ldots , y_ n)$ as a polynomial in $y_ n$ looks like 
+    <p>
+      <div class="equation">
+  \[  a_ K y_ n^{k_ n + \sum _{i = 1, \ldots , n - 1} e_ i k_ i} + \text{lower order terms in }y_ n  \]
+</div>
+    <p>
+       As $a_ K$ is a unit we conclude that $M = R[x_1, \ldots , x_ n]/J$ is finite over $R[y_1, \ldots , y_{n - 1}]$. Hence $U(R \to R[x_1, \ldots , x_ n], M) = U(R \to R[y_1, \ldots , y_{n - 1}], M)$ and we win by induction on $n$. 
+    <p>
+      The case $m > 0$. Pick a multi-index $K \in E$ such that $a_ K$ is not a unit. As before set $U_1 = \mathop{\mathrm{Spec}}(R_{a_ K}) = \mathop{\mathrm{Spec}}(R) \setminus V(a_ K)$ and set 
+    <p>
+      <div class="equation">
+  \[  U_2 = \mathop{\mathrm{Spec}}(R) \setminus \overline{U_1}.  \]
+</div>
+    <p>
+       Then it is clear that $U = U_1 \cup U_2$ is dense in $\mathop{\mathrm{Spec}}(R)$. Let $f \in R$ be an element such that either (a) $D(f) \subset U_1$ or (b) $D(f) \subset U_2$. If for any such $f$ the lemma holds for the pair $(R_ f \to R_ f[x_1, \ldots , x_ n], M_ f)$ then by Lemma <a href="/tag/051Y" data-tag="051Y">10.118.6</a> we see that $U(R \to S, M)$ is dense in $\mathop{\mathrm{Spec}}(R)$. Hence we may assume either (a) $a_ KR = R$, or (b) $V(a_ K) = \mathop{\mathrm{Spec}}(R)$. In case (a) the number $m$ drops, as $a_ K$ has turned into a unit. In case (b), since $R$ is reduced, we conclude that $a_ K = 0$. Hence the set $E$ decreases so the number $m$ drops as well. In both cases we win by induction on $m$. 
+    <p>
+      At this point we have proven the lemma in case $S = R[x_1, \ldots , x_ n]$. Assume that $(R \to S, M)$ is an arbitrary pair satisfying the conditions of the lemma. Choose a surjection $R[x_1, \ldots , x_ n] \to S$. Observe that, with the notation introduced in (<a href="/tag/051V" data-tag="051V">10.118.3.2</a>), we have 
+    <p>
+      <div class="equation">
+  \[  U(R \to S, M) = U(R \to R[x_1, \ldots , x_ n], S) \cap U(R \to R[x_1, \ldots , x_ n], M)  \]
+</div>
+    <p>
+       Hence as we've just finished proving the right two opens are dense also the open on the left is dense. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

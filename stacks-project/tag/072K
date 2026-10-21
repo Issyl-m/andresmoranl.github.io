@@ -1,0 +1,105 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="stacks-introduction-section-moduli-elliptic-curves" class="tex-section"><span data-tag="072K">105.3</span> The moduli stack of elliptic curves</h2>
+
+<p>
+Here is what we are going to do: 
+</p>
+<ol>
+  <li><p>
+Start with your favorite category of schemes $\mathit{Sch}$. 
+</p>
+</li><li><p>
+Add a new symbol $\mathcal{M}_{1, 1}$. 
+</p>
+</li><li><p>
+A morphism $S \to \mathcal{M}_{1, 1}$ <strong>is</strong> an elliptic curve $(E, f, 0)$ over $S$. 
+</p>
+</li><li><p>
+A diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ S \ar[rr]_ a \ar[rd]_{(E, f, 0)} &  &  S' \ar[ld]^{(E', F', 0')} \\  &  \mathcal{M}_{1, 1} }  \]
+</div>
+<p>
+ <strong>is</strong> commutative if and only if there exists a morphism $\alpha : E \to E'$ of elliptic curves over $a : S \to S'$. We say $\alpha $ <em>witnesses</em> the commutativity of the diagram. 
+</p>
+</li><li><p>
+Note that commutative diagrams glue as follows 
+</p>
+<div class="equation">
+  \[  \xymatrix{ S \ar[rrr]_ a \ar[rrrd]_{(E, f, 0)} &  &  &  S' \ar[d]_{(E', F', 0')} \ar[rrr]_{a'} &  &  &  S'' \ar[llld]^{(E'', F'', 0'')} \\  &  &  &  \mathcal{M}_{1, 1} }  \]
+</div>
+<p>
+ because $\alpha ' \circ \alpha $ witnesses the commutativity of the outer triangle if $\alpha $ and $\alpha '$ witness the commutativity of the left and right triangles. 
+</p>
+</li><li><p>
+The composition 
+</p>
+<div class="equation">
+  \[  S \xrightarrow {a} S' \xrightarrow {(E', f', 0')} \mathcal{M}_{1, 1}  \]
+</div>
+<p>
+ is given by $(E' \times _{S'} S, f' \times _{S'} S, 0' \times _{S'} S)$. 
+</p>
+</li>
+</ol>
+<p>
+ At the end of this procedure we have enlarged the category $\mathit{Sch}$ of schemes with exactly one object... 
+</p>
+<p>
+Except that we haven't defined what a morphism from $\mathcal{M}_{1, 1}$ to a scheme $T$ is. The answer is that it is the weakest possible notion such that compositions make sense. Thus a morphism $F : \mathcal{M}_{1, 1} \to T$ is a rule which to every elliptic curve $(E, f, 0)/S$ associates a morphism $F(E, f, 0) : S \to T$ such that given any commutative diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ S \ar[rr]_ a \ar[rd]_{(E, f, 0)} &  &  S' \ar[ld]^{(E', F', 0')} \\  &  \mathcal{M}_{1, 1} }  \]
+</div>
+<p>
+ the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ S \ar[rr]_ a \ar[rd]_{F(E, f, 0)} &  &  S' \ar[ld]^{F(E', F', 0')} \\  &  T }  \]
+</div>
+<p>
+ is commutative also. An example is the $j$-invariant 
+</p>
+<div class="equation">
+  \[  j : \mathcal{M}_{1, 1} \longrightarrow \mathbf{A}^1_{\mathbf{Z}}  \]
+</div>
+<p>
+ which you may have heard of. Aha, so now we're done... 
+</p>
+<p>
+Except, no we're not! We still have to define a notion of morphisms $\mathcal{M}_{1, 1} \to \mathcal{M}_{1, 1}$. This we do in exactly the same way as before, i.e., a morphism $F : \mathcal{M}_{1, 1} \to \mathcal{M}_{1, 1}$ is a rule which to every elliptic curve $(E, f, 0)/S$ associates another elliptic curve $F(E, f, 0)$ preserving commutativity of diagrams as above. However, since I don't know of a nontrivial example of such a functor, I'll just define the set of morphisms from $\mathcal{M}_{1, 1}$ to itself to consist of the identity for now. 
+</p>
+<p>
+I hope you see how to add other objects to this enlarged category. Somehow it seems intuitively clear that given any “well-behaved” moduli problem we can perform the construction above and add an object to our category. In fact, much of modern day algebraic geometry takes place in such a universe where $\mathit{Sch}$ is enlarged with countably many (explicitly constructed) moduli stacks. 
+</p>
+<p>
+You may object that the category we obtain isn't a category because there is a “vagueness” about when diagrams commute and which combinations of diagrams continue to commute as we have to produce a witness to the commutativity. However, it turns out that this, the idea of having witnesses to commutativity, is a valid approach to $2$-categories! Thus we stick with it. 
+</p>

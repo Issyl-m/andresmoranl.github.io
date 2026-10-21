@@ -1,0 +1,344 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sites-section-morphisms-topoi" class="tex-section"><span data-tag="039Z">7.29</span> Morphisms of topoi</h2>
+
+<p>
+In this section we show that any morphism of topoi is equivalent to a morphism of topoi which comes from a morphism of sites. Please compare with <span class="cite">[<span class="postnote">Exposé III, Proposition 4.9.4</span>, <a href="/bibliography/SGA4">SGA4</a>]</span>. 
+</p>
+<p>
+<article class="env-lemma" id="03A0">
+  <p><a class="environment-identifier" href="/tag/03A0">Lemma <span data-tag="03A0">7.29.1</span>.</a> Let $\mathcal{C}$, $\mathcal{D}$ be sites. Let $u : \mathcal{C} \to \mathcal{D}$ be a functor. Assume that </p>
+  <p><ol>
+  <li><p>
+$u$ is cocontinuous, 
+</p>
+</li><li><p>
+$u$ is continuous, 
+</p>
+</li><li><p>
+given $a, b : U' \to U$ in $\mathcal{C}$ such that $u(a) = u(b)$, then there exists a covering $\{ f_ i : U'_ i \to U'\} $ in $\mathcal{C}$ such that $a \circ f_ i = b \circ f_ i$, 
+</p>
+</li><li><p>
+given $U', U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and a morphism $c : u(U') \to u(U)$ in $\mathcal{D}$ there exists a covering $\{ f_ i : U_ i' \to U'\} $ in $\mathcal{C}$ and morphisms $c_ i : U_ i' \to U$ such that $u(c_ i) = c \circ u(f_ i)$, and 
+</p>
+</li><li><p>
+given $V \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{D})$ there exists a covering of $V$ in $\mathcal{D}$ of the form $\{ u(U_ i) \to V\} _{i \in I}$. 
+</p>
+</li>
+</ol></p>
+  <p> Then the morphism of topoi </p>
+  <div class="equation">
+  \[  g : \mathop{\mathit{Sh}}\nolimits (\mathcal{C}) \longrightarrow \mathop{\mathit{Sh}}\nolimits (\mathcal{D})  \]
+</div>
+  <p> associated to the cocontinuous functor $u$ by Lemma <a href="/tag/00XO" data-tag="00XO">7.21.1</a> is an equivalence. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume $u$ satisfies properties (1) – (5). We will show that the adjunction mappings 
+    <p>
+      <div class="equation">
+  \[  \mathcal{G} \longrightarrow g_*g^{-1}\mathcal{G} \quad \text{and}\quad g^{-1}g_*\mathcal{F} \longrightarrow \mathcal{F}  \]
+</div>
+    <p>
+       are isomorphisms. 
+    <p>
+      Note that Lemma <a href="/tag/00XR" data-tag="00XR">7.21.5</a> applies and we have $g^{-1}\mathcal{G}(U) = \mathcal{G}(u(U))$ for any sheaf $\mathcal{G}$ on $\mathcal{D}$. Next, let $\mathcal{F}$ be a sheaf on $\mathcal{C}$, and let $V$ be an object of $\mathcal{D}$. By definition we have $g_*\mathcal{F}(V) = \mathop{\mathrm{lim}}\nolimits _{u(U) \to V} \mathcal{F}(U)$. Hence 
+    <p>
+      <div class="equation">
+  \[  g^{-1}g_*\mathcal{F}(U) = \mathop{\mathrm{lim}}\nolimits _{U', u(U') \to u(U)} \mathcal{F}(U')  \]
+</div>
+    <p>
+       where the morphisms $\psi : u(U') \to u(U)$ need not be of the form $u(\alpha )$. The category of such pairs $(U', \psi )$ has a final object, namely $(U, \text{id})$, which gives rise to the map from the limit into $\mathcal{F}(U)$. Let $(s_{(U', \psi )})$ be an element of the limit. We want to show that $s_{(U', \psi )}$ is uniquely determined by the value $s_{(U, \text{id})} \in \mathcal{F}(U)$. By property (4) given any $(U', \psi )$ there exists a covering $\{ U'_ i \to U'\} $ such that the compositions $u(U'_ i) \to u(U') \to u(U)$ are of the form $u(c_ i)$ for some $c_ i : U'_ i \to U$ in $\mathcal{C}$. Hence 
+    <p>
+      <div class="equation">
+  \[  s_{(U', \psi )}|_{U'_ i} = c_ i^*(s_{(U, \text{id})}).  \]
+</div>
+    <p>
+       Since $\mathcal{F}$ is a sheaf it follows that indeed $s_{(U', \psi )}$ is determined by $s_{(U, \text{id})}$. This proves uniqueness. For existence, assume given any $s \in \mathcal{F}(U)$, $\psi : u(U') \to u(U)$, $\{ f_ i : U_ i' \to U'\} $ and $c_ i : U_ i' \to U$ such that $\psi \circ u(f_ i) = u(c_ i)$ as above. We claim there exists a (unique) element $s_{(U', \psi )} \in \mathcal{F}(U')$ such that 
+    <p>
+      <div class="equation">
+  \[  s_{(U', \psi )}|_{U'_ i} = c_ i^*(s).  \]
+</div>
+    <p>
+       Namely, a priori it is not clear the elements $c_ i^*(s)|_{U_ i' \times _{U'} U_ j'}$ and $c_ j^*(s)|_{U_ i' \times _{U'} U_ j'}$ agree, since the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ U_ i' \times _{U'} U_ j' \ar[r]_-{\text{pr}_2} \ar[d]_{\text{pr}_1} &  U_ j' \ar[d]^{c_ j} \\  U_ i' \ar[r]^{c_ i} &  U}  \]
+</div>
+    <p>
+       need not commute. But condition (3) of the lemma guarantees that there exist coverings $\{ f_{ijk} : U'_{ijk} \to U_ i' \times _{U'} U_ j'\} _{k \in K_{ij}}$ such that $c_ i \circ \text{pr}_1 \circ f_{ijk} = c_ j \circ \text{pr}_2 \circ f_{ijk}$. Hence 
+    <p>
+      <div class="equation">
+  \[  f_{ijk}^* \left(c_ i^*s|_{U_ i' \times _{U'} U_ j'}\right) = f_{ijk}^* \left(c_ j^*s|_{U_ i' \times _{U'} U_ j'}\right)  \]
+</div>
+    <p>
+       Hence $c_ i^*(s)|_{U_ i' \times _{U'} U_ j'} = c_ j^*(s)|_{U_ i' \times _{U'} U_ j'}$ by the sheaf condition for $\mathcal{F}$ and hence the existence of $s_{(U', \psi )}$ also by the sheaf condition for $\mathcal{F}$. The uniqueness guarantees that the collection $(s_{(U', \psi )})$ so obtained is an element of the limit with $s_{(U, \psi )} = s$. This proves that $g^{-1}g_*\mathcal{F} \to \mathcal{F}$ is an isomorphism. 
+    <p>
+      Let $\mathcal{G}$ be a sheaf on $\mathcal{D}$. Let $V$ be an object of $\mathcal{D}$. Then we see that 
+    <p>
+      <div class="equation">
+  \[  g_*g^{-1}\mathcal{G}(V) = \mathop{\mathrm{lim}}\nolimits _{U, \psi : u(U) \to V} \mathcal{G}(u(U))  \]
+</div>
+    <p>
+       By the preceding paragraph we see that the value of the sheaf $g_*g^{-1}\mathcal{G}$ on an object $V$ of the form $V = u(U)$ is equal to $\mathcal{G}(u(U))$. (Formally, this holds because we have $g^{-1}g_*g^{-1} \cong g^{-1}$, and the description of $g^{-1}$ given at the beginning of the proof; informally just by comparing limits here and above.) Hence the adjunction mapping $\mathcal{G} \to g_*g^{-1}\mathcal{G}$ has the property that it is a bijection on sections over any object of the form $u(U)$. Since by axiom (5) there exists a covering of $V$ by objects of the form $u(U)$ we see easily that the adjunction map is an isomorphism. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+It will be convenient to give cocontinuous functors as in Lemma <a href="/tag/03A0" data-tag="03A0">7.29.1</a> a name. 
+</p>
+<p>
+<article class="env-definition" id="03CG">
+  <p><a class="environment-identifier" href="/tag/03CG">Definition <span data-tag="03CG">7.29.2</span>.</a> Let $\mathcal{C}$, $\mathcal{D}$ be sites. A <em>special cocontinuous functor $u$ from $\mathcal{C}$ to $\mathcal{D}$</em> is a cocontinuous functor $u : \mathcal{C} \to \mathcal{D}$ satisfying the assumptions and conclusions of Lemma <a href="/tag/03A0" data-tag="03A0">7.29.1</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="03CH">
+  <p><a class="environment-identifier" href="/tag/03CH">Lemma <span data-tag="03CH">7.29.3</span>.</a> Let $\mathcal{C}$, $\mathcal{D}$ be sites. Let $u : \mathcal{C} \to \mathcal{D}$ be a special cocontinuous functor. For every object $U$ of $\mathcal{C}$ we have a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{C}/U \ar[r]_{j_ U} \ar[d] &  \mathcal{C} \ar[d]^ u \\  \mathcal{D}/u(U) \ar[r]^-{j_{u(U)}} &  \mathcal{D} }  \]
+</div>
+  <p> as in Lemma <a href="/tag/03EG" data-tag="03EG">7.28.4</a>. The left vertical arrow is a special cocontinuous functor. Hence in the commutative diagram of topoi </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathop{\mathit{Sh}}\nolimits (\mathcal{C}/U) \ar[r]_{j_ U} \ar[d] &  \mathop{\mathit{Sh}}\nolimits (\mathcal{C}) \ar[d]^ u \\  \mathop{\mathit{Sh}}\nolimits (\mathcal{D}/u(U)) \ar[r]^-{j_{u(U)}} &  \mathop{\mathit{Sh}}\nolimits (\mathcal{D}) }  \]
+</div>
+  <p> the vertical arrows are equivalences. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We have seen the existence and commutativity of the diagrams in Lemma <a href="/tag/03EG" data-tag="03EG">7.28.4</a>. We have to check hypotheses (1) – (5) of Lemma <a href="/tag/03A0" data-tag="03A0">7.29.1</a> for the induced functor $u : \mathcal{C}/U \to \mathcal{D}/u(U)$. This is completely mechanical. 
+    <p>
+      Property (1). This is Lemma <a href="/tag/03EG" data-tag="03EG">7.28.4</a>. 
+    <p>
+      Property (2). Let $\{ U_ i'/U \to U'/U\} _{i \in I}$ be a covering of $U'/U$ in $\mathcal{C}/U$. Because $u$ is continuous we see that $\{ u(U_ i')/u(U) \to u(U')/u(U)\} _{i \in I}$ is a covering of $u(U')/u(U)$ in $\mathcal{D}/u(U)$. Hence (2) holds for $u : \mathcal{C}/U \to \mathcal{D}/u(U)$. 
+    <p>
+      Property (3). Let $a, b : U''/U \to U'/U$ in $\mathcal{C}/U$ be morphisms such that $u(a) = u(b)$ in $\mathcal{D}/u(U)$. Because $u$ satisfies (3) we see there exists a covering $\{ f_ i : U''_ i \to U''\} $ in $\mathcal{C}$ such that $a \circ f_ i = b \circ f_ i$. This gives a covering $\{ f_ i : U''_ i/U \to U''/U\} $ in $\mathcal{C}/U$ such that $a \circ f_ i = b \circ f_ i$. Hence (3) holds for $u : \mathcal{C}/U \to \mathcal{D}/u(U)$. 
+    <p>
+      Property (4). Let $U''/U, U'/U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C}/U)$ and a morphism $c : u(U'')/u(U) \to u(U')/u(U)$ in $\mathcal{D}/u(U)$ be given. Because $u$ satisfies property (4) there exists a covering $\{ f_ i : U_ i'' \to U''\} $ in $\mathcal{C}$ and morphisms $c_ i : U_ i'' \to U'$ such that $u(c_ i) = c \circ u(f_ i)$. We think of $U_ i''$ as an object over $U$ via the composition $U_ i'' \to U'' \to U$. It may not be true that $c_ i$ is a morphism over $U$! But since $u(c_ i)$ is a morphism over $u(U)$ we may apply property (3) for $u$ and find coverings $\{ f_{ik} : U''_{ik} \to U''_ i\} $ such that $c_{ik} = c_ i \circ f_{ik} : U''_{ik} \to U'$ are morphisms over $U$. Hence $\{ f_ i \circ f_{ik} : U''_{ik}/U \to U''/U\} $ is a covering in $\mathcal{C}/U$ such that $u(c_{ik}) = c \circ u(f_{ik})$. Hence (4) holds for $u : \mathcal{C}/U \to \mathcal{D}/u(U)$. 
+    <p>
+      Property (5). Let $h : V \to u(U)$ be an object of $\mathcal{D}/u(U)$. Because $u$ satisfies property (5) there exists a covering $\{ c_ i : u(U_ i) \to V\} $ in $\mathcal{D}$. By property (4) we can find coverings $\{ f_{ij} : U_{ij} \to U_ i\} $ and morphisms $c_{ij} : U_{ij} \to U$ such that $u(c_{ij}) = h \circ c_ i \circ u(f_{ij})$. Hence $\{ u(U_{ij})/u(U) \to V/u(U)\} $ is a covering in $\mathcal{D}/u(U)$ of the desired shape and we conclude that (5) holds for $u : \mathcal{C}/U \to \mathcal{D}/u(U)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03A1">
+  <p><a class="environment-identifier" href="/tag/03A1">Lemma <span data-tag="03A1">7.29.4</span>.</a> Let $\mathcal{C}$ be a site. Let $\mathcal{C}' \subset \mathop{\mathit{Sh}}\nolimits (\mathcal{C})$ be a full subcategory (with a set of objects) such that </p>
+  <p><ol>
+  <li><p>
+$h_ U^\#  \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C}')$ for all $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$, and 
+</p>
+</li><li><p>
+$\mathcal{C}'$ is preserved under fibre products in $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})$. 
+</p>
+</li>
+</ol></p>
+  <p> Declare a covering of $\mathcal{C}'$ to be any family $\{ \mathcal{F}_ i \to \mathcal{F}\} _{i \in I}$ of maps such that $\coprod _{i \in I} \mathcal{F}_ i \to \mathcal{F}$ is a surjective map of sheaves. Then </p>
+  <p><ol>
+  <li><p>
+$\mathcal{C}'$ is a site (after choosing a set of coverings, see Sets, Lemma <a href="/tag/000X" data-tag="000X">3.11.1</a>), 
+</p>
+</li><li><p>
+representable presheaves on $\mathcal{C}'$ are sheaves (i.e., the topology on $\mathcal{C}'$ is subcanonical, see Definition <a href="/tag/00WQ" data-tag="00WQ">7.12.2</a>), 
+</p>
+</li><li><p>
+the functor $v : \mathcal{C} \to \mathcal{C}'$, $U \mapsto h_ U^\# $ is a special cocontinuous functor, hence induces an equivalence $g : \mathop{\mathit{Sh}}\nolimits (\mathcal{C}) \to \mathop{\mathit{Sh}}\nolimits (\mathcal{C}')$, 
+</p>
+</li><li><p>
+for any $\mathcal{F} \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C}')$ we have $g^{-1}h_\mathcal {F} = \mathcal{F}$, and 
+</p>
+</li><li><p>
+for any $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ we have $g_*h_ U^\#  = h_{v(U)} = h_{h_ U^\# }$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Warning: Some of the statements above may look be a bit confusing at first; this is because objects of $\mathcal{C}'$ can also be viewed as sheaves on $\mathcal{C}$! We omit the proof that the coverings of $\mathcal{C}'$ as described in the lemma satisfy the conditions of Definition <a href="/tag/00VH" data-tag="00VH">7.6.2</a>. 
+    <p>
+      Suppose that $\{ \mathcal{F}_ i \to \mathcal{F}\} $ is a surjective family of morphisms of sheaves. Let $\mathcal{G}$ be another sheaf. Part (2) of the lemma says that the equalizer of 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C})}( \coprod _{i \in I} \mathcal{F}_ i, \mathcal{G}) \ar@<1ex>[r] \ar@<-1ex>[r] &  \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C})}( \coprod _{(i_0, i_1) \in I \times I} \mathcal{F}_{i_0} \times _\mathcal {F} \mathcal{F}_{i_1}, \mathcal{G}) }  \]
+</div>
+    <p>
+       is $\mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C})}(\mathcal{F}, \mathcal{G}).$ This is clear (for example use Lemma <a href="/tag/086K" data-tag="086K">7.11.3</a>). 
+    <p>
+      To prove (3) we have to check conditions (1) – (5) of Lemma <a href="/tag/03A0" data-tag="03A0">7.29.1</a>. The fact that $v$ is cocontinuous is equivalent to the description of surjective maps of sheaves in Lemma <a href="/tag/00WN" data-tag="00WN">7.11.2</a>. The functor $v$ is continuous because $U \mapsto h_ U^\# $ commutes with fibre products, and transforms coverings into coverings (see Lemma <a href="/tag/00WJ" data-tag="00WJ">7.10.15</a>, and Lemma <a href="/tag/00WT" data-tag="00WT">7.12.4</a>). Properties (3), (4) of Lemma <a href="/tag/03A0" data-tag="03A0">7.29.1</a> are statements about morphisms $f : h_{U'}^\#  \to h_ U^\# $. Such a morphism is the same thing as an element of $h_ U^\# (U')$. Hence (3) and (4) are immediate from the construction of the sheafification. Property (5) of Lemma <a href="/tag/03A0" data-tag="03A0">7.29.1</a> is Lemma <a href="/tag/00WS" data-tag="00WS">7.12.5</a>. Denote $g : \mathop{\mathit{Sh}}\nolimits (\mathcal{C}) \to \mathop{\mathit{Sh}}\nolimits (\mathcal{C}')$ the equivalence of topoi associated with $v$ by Lemma <a href="/tag/03A0" data-tag="03A0">7.29.1</a>. 
+    <p>
+      Let $\mathcal{F}$ be as in part (4) of the lemma. For any $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ we have 
+    <p>
+      <div class="equation">
+  \[  g^{-1}h_\mathcal {F}(U) = h_\mathcal {F}(v(U)) = \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C})}(h_ U^\# , \mathcal{F}) = \mathcal{F}(U)  \]
+</div>
+    <p>
+       The first equality by Lemma <a href="/tag/00XR" data-tag="00XR">7.21.5</a>. Thus part (4) holds. 
+    <p>
+      Let $\mathcal{F} \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C}')$. Let $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$. Then 
+    <p>
+      <div class="equation">
+  \begin{align*}  g_*h_ U^\# (\mathcal{F}) &  = \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C}')}(h_\mathcal {F}, g_*h_ U^\# ) \\ &  = \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C})}(g^{-1}h_\mathcal {F}, h_ U^\# ) \\ &  = \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C})}(\mathcal{F}, h_ U^\# ) \\ &  = \mathop{\mathrm{Mor}}\nolimits _{\mathcal{C}'}(\mathcal{F}, h_ U^\# ) \end{align*}
+</div>
+    <p>
+       as desired (where the third equality was shown above). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Using this we can massage any topos to live over a site having all finite limits. 
+</p>
+<p>
+<article class="env-lemma" id="03CI">
+  <p><a class="environment-identifier" href="/tag/03CI">Lemma <span data-tag="03CI">7.29.5</span>.</a> Let $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})$ be a topos. Let $\{ \mathcal{F}_ i\} _{i \in I}$ be a set of sheaves on $\mathcal{C}$. There exists an equivalence of topoi $g : \mathop{\mathit{Sh}}\nolimits (\mathcal{C}) \to \mathop{\mathit{Sh}}\nolimits (\mathcal{C}')$ induced by a special cocontinuous functor $u : \mathcal{C} \to \mathcal{C}'$ of sites such that </p>
+  <p><ol>
+  <li><p>
+$\mathcal{C}'$ has a subcanonical topology, 
+</p>
+</li><li><p>
+a family $\{ V_ j \to V\} $ of morphisms of $\mathcal{C}'$ is (combinatorially equivalent to) a covering of $\mathcal{C}'$ if and only if $\coprod h_{V_ j} \to h_ V$ is surjective, 
+</p>
+</li><li><p>
+$\mathcal{C}'$ has fibre products and a final object (i.e., $\mathcal{C}'$ has all finite limits), 
+</p>
+</li><li><p>
+every subsheaf of a representable sheaf on $\mathcal{C}'$ is representable, and 
+</p>
+</li><li><p>
+each $g_*\mathcal{F}_ i$ is a representable sheaf. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider the full subcategory $\mathcal{C}_1 \subset \mathop{\mathit{Sh}}\nolimits (\mathcal{C})$ consisting of all $h_ U^\# $ for all $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$, the given sheaves $\mathcal{F}_ i$ and the final sheaf $*$ (see Example <a href="/tag/00W3" data-tag="00W3">7.10.2</a>). We are going to inductively define full subcategories 
+    <p>
+      <div class="equation">
+  \[  \mathcal{C}_1 \subset \mathcal{C}_2 \subset \mathcal{C}_2 \subset \ldots \subset \mathop{\mathit{Sh}}\nolimits (\mathcal{C})  \]
+</div>
+    <p>
+       Namely, given $\mathcal{C}_ n$ let $\mathcal{C}_{n + 1}$ be the full subcategory consisting of all fibre products and subsheaves of objects of $\mathcal{C}_ n$. (Note that $\mathcal{C}_{n + 1}$ has a set of objects.) Set $\mathcal{C}' = \bigcup _{n \geq 1} \mathcal{C}_ n$. A covering in $\mathcal{C}'$ is any family $\{ \mathcal{G}_ j \to \mathcal{G}\} _{j \in J}$ of morphisms of objects of $\mathcal{C}'$ such that $\coprod \mathcal{G}_ j \to \mathcal{G}$ is surjective as a map of sheaves on $\mathcal{C}$. The functor $v : \mathcal{C} \to \mathcal{C'}$ is given by $U \mapsto h_ U^\# $. Apply Lemma <a href="/tag/03A1" data-tag="03A1">7.29.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Here is the goal of the current section. 
+</p>
+<p>
+<article class="env-lemma" id="03A2">
+       
+      
+  <p><a class="environment-identifier" href="/tag/03A2">Lemma <span data-tag="03A2">7.29.6</span>.</a> Let $\mathcal{C}$, $\mathcal{D}$ be sites. Let $f : \mathop{\mathit{Sh}}\nolimits (\mathcal{C}) \to \mathop{\mathit{Sh}}\nolimits (\mathcal{D})$ be a morphism of topoi. Then there exists a site $\mathcal{C}'$ and a diagram of functors </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{C} \ar[r]_ v &  \mathcal{C}' &  \mathcal{D} \ar[l]^ u }  \]
+</div>
+  <p> such that </p>
+  <p><ol>
+  <li><p>
+the functor $v$ is a special cocontinuous functor, 
+</p>
+</li><li><p>
+the functor $u$ commutes with fibre products, is continuous and defines a morphism of sites $\mathcal{C}' \to \mathcal{D}$, and 
+</p>
+</li><li><p>
+the morphism of topoi $f$ agrees with the composition of morphisms of topoi 
+</p>
+<div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits (\mathcal{C}) \longrightarrow \mathop{\mathit{Sh}}\nolimits (\mathcal{C}') \longrightarrow \mathop{\mathit{Sh}}\nolimits (\mathcal{D})  \]
+</div>
+<p>
+ where the first arrow comes from $v$ via Lemma <a href="/tag/03A0" data-tag="03A0">7.29.1</a> and the second arrow from $u$ via Lemma <a href="/tag/00XC" data-tag="00XC">7.15.2</a>. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider the full subcategory $\mathcal{C}_1 \subset \mathop{\mathit{Sh}}\nolimits (\mathcal{C})$ consisting of all $h_ U^\# $ and all $f^{-1}h_ V^\# $ for all $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and all $V \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{D})$. Let $\mathcal{C}_{n + 1}$ be a full subcategory consisting of all fibre products of objects of $\mathcal{C}_ n$. Set $\mathcal{C}' = \bigcup _{n \geq 1} \mathcal{C}_ n$. A covering in $\mathcal{C}'$ is any family $\{ \mathcal{F}_ i \to \mathcal{F}\} _{i \in I}$ such that $\coprod _{i \in I} \mathcal{F}_ i \to \mathcal{F}$ is surjective as a map of sheaves on $\mathcal{C}$. The functor $v : \mathcal{C} \to \mathcal{C'}$ is given by $U \mapsto h_ U^\# $. The functor $u : \mathcal{D} \to \mathcal{C'}$ is given by $V \mapsto f^{-1}h_ V^\# $. 
+    <p>
+      Part (1) follows from Lemma <a href="/tag/03A1" data-tag="03A1">7.29.4</a>. 
+    <p>
+      Proof of (2) and (3) of the lemma. The functor $u$ commutes with fibre products as both $V \mapsto h_ V^\# $ and $f^{-1}$ do. Moreover, since $f^{-1}$ is exact and commutes with arbitrary colimits we see that it transforms a covering into a surjective family of morphisms of sheaves. Hence $u$ is continuous. To see that it defines a morphism of sites we still have to see that $u_ s$ is exact. In order to do this we will show that $g^{-1} \circ u_ s = f^{-1}$. Namely, then since $g^{-1}$ is an equivalence and $f^{-1}$ is exact we will conclude. Because $g^{-1}$ is adjoint to $g_*$, and $u_ s$ is adjoint to $u^ s$, and $f^{-1}$ is adjoint to $f_*$ it also suffices to prove that $u^ s \circ g_* = f_*$. Let $\mathcal{F}$ be a sheaf on $\mathcal{C}$ and let $V$ be an object of $\mathcal{D}$. Then 
+    <p>
+      <div class="equation">
+  \begin{align*}  (u^ s g_{\ast }\mathcal{F})(V) &  = (g_{\ast }\mathcal{F})(f^{-1}h_ V^\# ) \\ &  = \mathop{\mathrm{Mor}}\nolimits _{Sh(\mathcal{C}')}(h_{f^{-1}h_ V^\# },g_{\ast }\mathcal{F}) \\ &  = \mathop{\mathrm{Mor}}\nolimits _{Sh(\mathcal{C})}(g^{-1}h_{f^{-1}h_ V^\# },\mathcal{F}) \\ &  = \mathop{\mathrm{Mor}}\nolimits _{Sh(\mathcal{C})}(f^{-1}h_ V^\# ,\mathcal{F}) \\ &  = \mathop{\mathrm{Mor}}\nolimits _{Sh(\mathcal{D})}(h_ V^\# ,f_{\ast }\mathcal{F}) \\ &  = f_{\ast }\mathcal{F}(V) \end{align*}
+</div>
+    <p>
+       The first equality because $u^ s = u^ p$. The second equality is the Yoneda lemma. The third equality by adjointness of $g^{-1}$ and $g_*$. The fourth equality is by Lemma <a href="/tag/03A1" data-tag="03A1">7.29.4</a> (4). The fifth equality by adjointness of $f^{-1}$ and $f_*$. The sixth equality by the Yoneda lemma. Hence $u^ s g_*\mathcal{F} = f_*\mathcal{F}$ and this finishes the proof of the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="03CJ">
+  <p><a class="environment-identifier" href="/tag/03CJ">Remark <span data-tag="03CJ">7.29.7</span>.</a> Notation and assumptions as in Lemma <a href="/tag/03A2" data-tag="03A2">7.29.6</a>. If the site $\mathcal{D}$ has a final object and fibre products then the functor $u : \mathcal{D} \to \mathcal{C}'$ satisfies all the assumptions of Proposition <a href="/tag/00X6" data-tag="00X6">7.14.7</a>. Namely, in addition to the properties mentioned in the lemma $u$ also transforms the final object of $\mathcal{D}$ into the final object of $\mathcal{C}'$. This is clear from the construction of $u$. Hence, if we first apply Lemmas <a href="/tag/03CI" data-tag="03CI">7.29.5</a> to $\mathcal{D}$ and then Lemma <a href="/tag/03A2" data-tag="03A2">7.29.6</a> to the resulting morphism of topoi $\mathop{\mathit{Sh}}\nolimits (\mathcal{C}) \to \mathop{\mathit{Sh}}\nolimits (\mathcal{D}')$ we obtain the following statement: Any morphism of topoi $f : \mathop{\mathit{Sh}}\nolimits (\mathcal{C}) \to \mathop{\mathit{Sh}}\nolimits (\mathcal{D})$ fits into a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathop{\mathit{Sh}}\nolimits (\mathcal{C}) \ar[d]_ g \ar[r]_ f &  \mathop{\mathit{Sh}}\nolimits (\mathcal{D}) \ar[d]^ e \\  \mathop{\mathit{Sh}}\nolimits (\mathcal{C}') \ar[r]^{f'} &  \mathop{\mathit{Sh}}\nolimits (\mathcal{D}') }  \]
+</div>
+  <p> where the following properties hold: </p>
+  <p><ol>
+  <li><p>
+the morphisms $e$ and $g$ are equivalences given by special cocontinuous functors $\mathcal{C} \to \mathcal{C}'$ and $\mathcal{D} \to \mathcal{D}'$, 
+</p>
+</li><li><p>
+the sites $\mathcal{C}'$ and $\mathcal{D}'$ have fibre products, final objects and have subcanonical topologies, 
+</p>
+</li><li><p>
+the morphism $f' : \mathcal{C}' \to \mathcal{D}'$ comes from a morphism of sites corresponding to a functor $u : \mathcal{D}' \to \mathcal{C}'$ to which Proposition <a href="/tag/00X6" data-tag="00X6">7.14.7</a> applies, and 
+</p>
+</li><li><p>
+given any set of sheaves $\mathcal{F}_ i$ (resp. $\mathcal{G}_ j$) on $\mathcal{C}$ (resp. $\mathcal{D}$) we may assume each of these is a representable sheaf on $\mathcal{C}'$ (resp. $\mathcal{D}'$). 
+</p>
+</li>
+</ol></p>
+  <p> It is often useful to replace $\mathcal{C}$ and $\mathcal{D}$ by $\mathcal{C}'$ and $\mathcal{D}'$. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="03CK">
+  <p><a class="environment-identifier" href="/tag/03CK">Remark <span data-tag="03CK">7.29.8</span>.</a> Notation and assumptions as in Lemma <a href="/tag/03A2" data-tag="03A2">7.29.6</a>. Suppose that in addition the original morphism of topoi $\mathop{\mathit{Sh}}\nolimits (\mathcal{C}) \to \mathop{\mathit{Sh}}\nolimits (\mathcal{D})$ is an equivalence. Then the construction in the proof of Lemma <a href="/tag/03A2" data-tag="03A2">7.29.6</a> gives two functors </p>
+  <div class="equation">
+  \[  \mathcal{C} \rightarrow \mathcal{C}' \leftarrow \mathcal{D}  \]
+</div>
+  <p> which are both special cocontinuous functors. Hence in this case we can actually factor the morphism of topoi as a composition </p>
+  <div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits (\mathcal{C}) \rightarrow \mathop{\mathit{Sh}}\nolimits (\mathcal{C}') = \mathop{\mathit{Sh}}\nolimits (\mathcal{D}') \leftarrow \mathop{\mathit{Sh}}\nolimits (\mathcal{D})  \]
+</div>
+  <p> as in Remark <a href="/tag/03CJ" data-tag="03CJ">7.29.7</a>, but with the middle morphism an identity. </p>
+</article> 
+</p>

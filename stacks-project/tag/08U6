@@ -1,0 +1,315 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="defos-section-deformations-ringed-spaces" class="tex-section"><span data-tag="08U6">91.7</span> Deformations of ringed spaces and the naive cotangent complex</h2>
+
+<p>
+In this section we use the naive cotangent complex to do a little bit of deformation theory. We start with a first order thickening $t : (S, \mathcal{O}_ S) \to (S', \mathcal{O}_{S'})$ of ringed spaces. We denote $\mathcal{J} = \mathop{\mathrm{Ker}}(t^\sharp )$ and we identify the underlying topological spaces of $S$ and $S'$. Moreover we assume given a morphism of ringed spaces $f : (X, \mathcal{O}_ X) \to (S, \mathcal{O}_ S)$, an $\mathcal{O}_ X$-module $\mathcal{G}$, and an $f$-map $c : \mathcal{J} \to \mathcal{G}$ of sheaves of modules (Sheaves, Definition <a href="/tag/008J" data-tag="008J">6.21.7</a> and Section <a href="/tag/0094" data-tag="0094">6.26</a>). In this section we ask ourselves whether we can find the question mark fitting into the following diagram 
+</p>
+<div class="equation" id="08U7">
+    <span class="equation-label"><a href="/tag/08U7" data-tag="08U7">91.7.0.1</a></span>
+  <div>\begin{equation}  \label{defos-equation-to-solve-ringed-spaces} \vcenter { \xymatrix{ 0 \ar[r] &  \mathcal{G} \ar[r] &  {?} \ar[r] &  \mathcal{O}_ X \ar[r] &  0 \\  0 \ar[r] &  \mathcal{J} \ar[u]^ c \ar[r] &  \mathcal{O}_{S'} \ar[u] \ar[r] &  \mathcal{O}_ S \ar[u] \ar[r] &  0 } } \end{equation}</div>
+</div>
+<p>
+ (where the vertical arrows are $f$-maps) and moreover how unique the solution is (if it exists). More precisely, we look for a first order thickening $i : (X, \mathcal{O}_ X) \to (X', \mathcal{O}_{X'})$ and a morphism of thickenings $(f, f')$ as in (<a href="/tag/08L0" data-tag="08L0">91.3.1.1</a>) where $\mathop{\mathrm{Ker}}(i^\sharp )$ is identified with $\mathcal{G}$ such that $(f')^\sharp $ induces the given map $c$. We will say $X'$ is a <em>solution</em> to (<a href="/tag/08U7" data-tag="08U7">91.7.0.1</a>). 
+</p>
+<p>
+<article class="env-lemma" id="08U8">
+  <p><a class="environment-identifier" href="/tag/08U8">Lemma <span data-tag="08U8">91.7.1</span>.</a> Assume given a commutative diagram of morphisms of ringed spaces </p>
+  <div class="equation" id="08U9">
+    <span class="equation-label"><a href="/tag/08U9" data-tag="08U9">91.7.1.1</a></span>
+  <div>\begin{equation}  \label{defos-equation-huge-1} \vcenter { \xymatrix{ &  (X_2, \mathcal{O}_{X_2}) \ar[r]_{i_2} \ar[d]_{f_2} \ar[ddl]_ g &  (X'_2, \mathcal{O}_{X'_2}) \ar[d]^{f'_2} \\  &  (S_2, \mathcal{O}_{S_2}) \ar[r]^{t_2} \ar[ddl]|\hole &  (S'_2, \mathcal{O}_{S'_2}) \ar[ddl] \\  (X_1, \mathcal{O}_{X_1}) \ar[r]_{i_1} \ar[d]_{f_1} &  (X'_1, \mathcal{O}_{X'_1}) \ar[d]^{f'_1} \\  (S_1, \mathcal{O}_{S_1}) \ar[r]^{t_1} &  (S'_1, \mathcal{O}_{S'_1}) } } \end{equation}</div>
+</div>
+  <p> whose horizontal arrows are first order thickenings. Set $\mathcal{G}_ j = \mathop{\mathrm{Ker}}(i_ j^\sharp )$ and assume given a $g$-map $\nu : \mathcal{G}_1 \to \mathcal{G}_2$ of modules giving rise to the commutative diagram </p>
+  <div class="equation" id="08UA">
+    <span class="equation-label"><a href="/tag/08UA" data-tag="08UA">91.7.1.2</a></span>
+  <div>\begin{equation}  \label{defos-equation-huge-2} \vcenter { \xymatrix{ &  0 \ar[r] &  \mathcal{G}_2 \ar[r] &  \mathcal{O}_{X'_2} \ar[r] &  \mathcal{O}_{X_2} \ar[r] &  0 \\  &  0 \ar[r]|\hole &  \mathcal{J}_2 \ar[u]_{c_2} \ar[r] &  \mathcal{O}_{S'_2} \ar[u] \ar[r]|\hole &  \mathcal{O}_{S_2} \ar[u] \ar[r] &  0 \\  0 \ar[r] &  \mathcal{G}_1 \ar[ruu] \ar[r] &  \mathcal{O}_{X'_1} \ar[r] &  \mathcal{O}_{X_1} \ar[ruu] \ar[r] &  0 \\  0 \ar[r] &  \mathcal{J}_1 \ar[ruu]|\hole \ar[u]^{c_1} \ar[r] &  \mathcal{O}_{S'_1} \ar[ruu]|\hole \ar[u] \ar[r] &  \mathcal{O}_{S_1} \ar[ruu]|\hole \ar[u] \ar[r] &  0 } } \end{equation}</div>
+</div>
+  <p> with front and back solutions to (<a href="/tag/08U7" data-tag="08U7">91.7.0.1</a>). </p>
+  <p><ol>
+  <li><p>
+There exist a canonical element in $\mathop{\mathrm{Ext}}\nolimits ^1_{\mathcal{O}_{X_2}}(Lg^*\mathop{N\! L}\nolimits _{X_1/S_1}, \mathcal{G}_2)$ whose vanishing is a necessary and sufficient condition for the existence of a morphism of ringed spaces $X'_2 \to X'_1$ fitting into (<a href="/tag/08U9" data-tag="08U9">91.7.1.1</a>) compatibly with $\nu $. 
+</p>
+</li><li><p>
+If there exists a morphism $X'_2 \to X'_1$ fitting into (<a href="/tag/08U9" data-tag="08U9">91.7.1.1</a>) compatibly with $\nu $ the set of all such morphisms is a principal homogeneous space under 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _{\mathcal{O}_{X_1}}(\Omega _{X_1/S_1}, g_*\mathcal{G}_2) = \mathop{\mathrm{Hom}}\nolimits _{\mathcal{O}_{X_2}}(g^*\Omega _{X_1/S_1}, \mathcal{G}_2) = \mathop{\mathrm{Ext}}\nolimits ^0_{\mathcal{O}_{X_2}}(Lg^*\mathop{N\! L}\nolimits _{X_1/S_1}, \mathcal{G}_2).  \]
+</div>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The naive cotangent complex $\mathop{N\! L}\nolimits _{X_1/S_1}$ is defined in Modules, Definition <a href="/tag/08TN" data-tag="08TN">17.31.6</a>. The equalities in the last statement of the lemma follow from the fact that $g^*$ is adjoint to $g_*$, the fact that $H^0(\mathop{N\! L}\nolimits _{X_1/S_1}) = \Omega _{X_1/S_1}$ (by construction of the naive cotangent complex) and the fact that $Lg^*$ is the left derived functor of $g^*$. Thus we will work with the groups $\mathop{\mathrm{Ext}}\nolimits ^ k_{\mathcal{O}_{X_2}}(Lg^*\mathop{N\! L}\nolimits _{X_1/S_1}, \mathcal{G}_2)$, $k = 0, 1$ in the rest of the proof. We first argue that we can reduce to the case where the underlying topological spaces of all ringed spaces in the lemma is the same. 
+    <p>
+      To do this, observe that $g^{-1}\mathop{N\! L}\nolimits _{X_1/S_1}$ is equal to the naive cotangent complex of the homomorphism of sheaves of rings $g^{-1}f_1^{-1}\mathcal{O}_{S_1} \to g^{-1}\mathcal{O}_{X_1}$, see Modules, Lemma <a href="/tag/08TM" data-tag="08TM">17.31.3</a>. Moreover, the degree $0$ term of $\mathop{N\! L}\nolimits _{X_1/S_1}$ is a flat $\mathcal{O}_{X_1}$-module, hence the canonical map 
+    <p>
+      <div class="equation">
+  \[  Lg^*\mathop{N\! L}\nolimits _{X_1/S_1} \longrightarrow g^{-1}\mathop{N\! L}\nolimits _{X_1/S_1} \otimes _{g^{-1}\mathcal{O}_{X_1}} \mathcal{O}_{X_2}  \]
+</div>
+    <p>
+       induces an isomorphism on cohomology sheaves in degrees $0$ and $-1$. Thus we may replace the Ext groups of the lemma with 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Ext}}\nolimits ^ k_{g^{-1}\mathcal{O}_{X_1}}(g^{-1}\mathop{N\! L}\nolimits _{X_1/S_1}, \mathcal{G}_2) = \mathop{\mathrm{Ext}}\nolimits ^ k_{g^{-1}\mathcal{O}_{X_1}}( \mathop{N\! L}\nolimits _{g^{-1}\mathcal{O}_{X_1}/g^{-1}f_1^{-1}\mathcal{O}_{S_1}}, \mathcal{G}_2)  \]
+</div>
+    <p>
+       The set of morphism of ringed spaces $X'_2 \to X'_1$ fitting into (<a href="/tag/08U9" data-tag="08U9">91.7.1.1</a>) compatibly with $\nu $ is in one-to-one bijection with the set of homomorphisms of $g^{-1}f_1^{-1}\mathcal{O}_{S'_1}$-algebras $g^{-1}\mathcal{O}_{X'_1} \to \mathcal{O}_{X'_2}$ which are compatible with $f^\sharp $ and $\nu $. In this way we see that we may assume we have a diagram (<a href="/tag/08UA" data-tag="08UA">91.7.1.2</a>) of sheaves on $X$ and we are looking to find a homomorphism of sheaves of rings $\mathcal{O}_{X'_1} \to \mathcal{O}_{X'_2}$ fitting into it. 
+    <p>
+      In the rest of the proof of the lemma we assume all underlying topological spaces are the same, i.e., we have a diagram (<a href="/tag/08UA" data-tag="08UA">91.7.1.2</a>) of sheaves on a space $X$ and we are looking for homomorphisms of sheaves of rings $\mathcal{O}_{X'_1} \to \mathcal{O}_{X'_2}$ fitting into it. As ext groups we will use $\mathop{\mathrm{Ext}}\nolimits ^ k_{\mathcal{O}_{X_1}}( \mathop{N\! L}\nolimits _{\mathcal{O}_{X_1}/\mathcal{O}_{S_1}}, \mathcal{G}_2)$, $k = 0, 1$. 
+    <p>
+      Step 1. Construction of the obstruction class. Consider the sheaf of sets 
+    <p>
+      <div class="equation">
+  \[  \mathcal{E} = \mathcal{O}_{X'_1} \times _{\mathcal{O}_{X_2}} \mathcal{O}_{X'_2}  \]
+</div>
+    <p>
+       This comes with a surjective map $\alpha : \mathcal{E} \to \mathcal{O}_{X_1}$ and hence we can use $\mathop{N\! L}\nolimits (\alpha )$ instead of $\mathop{N\! L}\nolimits _{\mathcal{O}_{X_1}/\mathcal{O}_{S_1}}$, see Modules, Lemma <a href="/tag/08TL" data-tag="08TL">17.31.2</a>. Set 
+    <p>
+      <div class="equation">
+  \[  \mathcal{I}' = \mathop{\mathrm{Ker}}(\mathcal{O}_{S'_1}[\mathcal{E}] \to \mathcal{O}_{X_1}) \quad \text{and}\quad \mathcal{I} = \mathop{\mathrm{Ker}}(\mathcal{O}_{S_1}[\mathcal{E}] \to \mathcal{O}_{X_1})  \]
+</div>
+    <p>
+       There is a surjection $\mathcal{I}' \to \mathcal{I}$ whose kernel is $\mathcal{J}_1\mathcal{O}_{S'_1}[\mathcal{E}]$. We obtain two homomorphisms of $\mathcal{O}_{S'_1}$-algebras 
+    <p>
+      <div class="equation">
+  \[  a : \mathcal{O}_{S'_1}[\mathcal{E}] \to \mathcal{O}_{X'_1} \quad \text{and}\quad b : \mathcal{O}_{S'_1}[\mathcal{E}] \to \mathcal{O}_{X'_2}  \]
+</div>
+    <p>
+       which induce maps $a|_{\mathcal{I}'} : \mathcal{I}' \to \mathcal{G}_1$ and $b|_{\mathcal{I}'} : \mathcal{I}' \to \mathcal{G}_2$. Both $a$ and $b$ annihilate $(\mathcal{I}')^2$. Moreover $a$ and $b$ agree on $\mathcal{J}_1\mathcal{O}_{S'_1}[\mathcal{E}]$ as maps into $\mathcal{G}_2$ because the left hand square of (<a href="/tag/08UA" data-tag="08UA">91.7.1.2</a>) is commutative. Thus the difference $b|_{\mathcal{I}'} - \nu \circ a|_{\mathcal{I}'}$ induces a well defined $\mathcal{O}_{X_1}$-linear map 
+    <p>
+      <div class="equation">
+  \[  \xi : \mathcal{I}/\mathcal{I}^2 \longrightarrow \mathcal{G}_2  \]
+</div>
+    <p>
+       which sends the class of a local section $f$ of $\mathcal{I}$ to $\nu (a(f')) - b(f')$ where $f'$ is a lift of $f$ to a local section of $\mathcal{I}'$. We let $[\xi ] \in \mathop{\mathrm{Ext}}\nolimits ^1_{\mathcal{O}_{X_1}}(\mathop{N\! L}\nolimits (\alpha ), \mathcal{G}_2)$ be the image (see below). 
+    <p>
+      Step 2. Vanishing of $[\xi ]$ is necessary. Let us write $\Omega = \Omega _{\mathcal{O}_{S_1}[\mathcal{E}]/\mathcal{O}_{S_1}} \otimes _{\mathcal{O}_{S_1}[\mathcal{E}]} \mathcal{O}_{X_1}$. Observe that $\mathop{N\! L}\nolimits (\alpha ) = (\mathcal{I}/\mathcal{I}^2 \to \Omega )$ fits into a distinguished triangle 
+    <p>
+      <div class="equation">
+  \[  \Omega [0] \to \mathop{N\! L}\nolimits (\alpha ) \to \mathcal{I}/\mathcal{I}^2[1] \to \Omega [1]  \]
+</div>
+    <p>
+       Thus we see that $[\xi ]$ is zero if and only if $\xi $ is a composition $\mathcal{I}/\mathcal{I}^2 \to \Omega \to \mathcal{G}_2$ for some map $\Omega \to \mathcal{G}_2$. Suppose there exists a homomorphisms of sheaves of rings $\varphi : \mathcal{O}_{X'_1} \to \mathcal{O}_{X'_2}$ fitting into (<a href="/tag/08UA" data-tag="08UA">91.7.1.2</a>). In this case consider the map $\mathcal{O}_{S'_1}[\mathcal{E}] \to \mathcal{G}_2$, $f' \mapsto b(f') - \varphi (a(f'))$. A calculation shows this annihilates $\mathcal{J}_1\mathcal{O}_{S'_1}[\mathcal{E}]$ and induces a derivation $\mathcal{O}_{S_1}[\mathcal{E}] \to \mathcal{G}_2$. The resulting linear map $\Omega \to \mathcal{G}_2$ witnesses the fact that $[\xi ] = 0$ in this case. 
+    <p>
+      Step 3. Vanishing of $[\xi ]$ is sufficient. Let $\theta : \Omega \to \mathcal{G}_2$ be a $\mathcal{O}_{X_1}$-linear map such that $\xi $ is equal to $\theta \circ (\mathcal{I}/\mathcal{I}^2 \to \Omega )$. Then a calculation shows that 
+    <p>
+      <div class="equation">
+  \[  b + \theta \circ d : \mathcal{O}_{S'_1}[\mathcal{E}] \to \mathcal{O}_{X'_2}  \]
+</div>
+    <p>
+       restricted to $\mathcal{I}'$ agrees with $\nu \circ a : \mathcal{I}' \to \mathcal{G}_2$. Since $\mathcal{O}_{X'_1}$ is the pushout of $\mathcal{I}' \to \mathcal{O}_{S'_1}[\mathcal{E}]$ and $\mathcal{I}' \to \mathcal{G}_1$ the maps $b + \theta \circ d$ and $a$ define a map $\mathcal{O}_{X'_1} \to \mathcal{O}_{X'_2}$ fitting into (<a href="/tag/08UA" data-tag="08UA">91.7.1.2</a>). 
+    <p>
+      Proof of (2) in the special case above. Omitted. Hint: This is exactly the same as the proof of (2) of Lemma <a href="/tag/08S5" data-tag="08S5">91.2.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08UB">
+  <p><a class="environment-identifier" href="/tag/08UB">Lemma <span data-tag="08UB">91.7.2</span>.</a> Let $X$ be a topological space. Let $\mathcal{A} \to \mathcal{B}$ be a homomorphism of sheaves of rings. Let $\mathcal{G}$ be a $\mathcal{B}$-module. Let $\xi \in \mathop{\mathrm{Ext}}\nolimits ^1_\mathcal {B}(\mathop{N\! L}\nolimits _{\mathcal{B}/\mathcal{A}}, \mathcal{G})$. There exists a map of sheaves of sets $\alpha : \mathcal{E} \to \mathcal{B}$ such that $\xi \in \mathop{\mathrm{Ext}}\nolimits ^1_\mathcal {B}(\mathop{N\! L}\nolimits (\alpha ), \mathcal{G})$ is the class of a map $\mathcal{I}/\mathcal{I}^2 \to \mathcal{G}$ (see proof for notation). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Recall that given $\alpha : \mathcal{E} \to \mathcal{B}$ such that $\mathcal{A}[\mathcal{E}] \to \mathcal{B}$ is surjective with kernel $\mathcal{I}$ the complex $\mathop{N\! L}\nolimits (\alpha ) = (\mathcal{I}/\mathcal{I}^2 \to \Omega _{\mathcal{A}[\mathcal{E}]/\mathcal{A}} \otimes _{\mathcal{A}[\mathcal{E}]} \mathcal{B})$ is canonically isomorphic to $\mathop{N\! L}\nolimits _{\mathcal{B}/\mathcal{A}}$, see Modules, Lemma <a href="/tag/08TL" data-tag="08TL">17.31.2</a>. Observe moreover, that $\Omega = \Omega _{\mathcal{A}[\mathcal{E}]/\mathcal{A}} \otimes _{\mathcal{A}[\mathcal{E}]} \mathcal{B}$ is the sheaf associated to the presheaf $U \mapsto \bigoplus _{e \in \mathcal{E}(U)} \mathcal{B}(U)$. In other words, $\Omega $ is the free $\mathcal{B}$-module on the sheaf of sets $\mathcal{E}$ and in particular there is a canonical map $\mathcal{E} \to \Omega $. 
+    <p>
+      Having said this, pick some $\mathcal{E}$ (for example $\mathcal{E} = \mathcal{B}$ as in the definition of the naive cotangent complex). The obstruction to writing $\xi $ as the class of a map $\mathcal{I}/\mathcal{I}^2 \to \mathcal{G}$ is an element in $\mathop{\mathrm{Ext}}\nolimits ^1_\mathcal {B}(\Omega , \mathcal{G})$. Say this is represented by the extension $0 \to \mathcal{G} \to \mathcal{H} \to \Omega \to 0$ of $\mathcal{B}$-modules. Consider the sheaf of sets $\mathcal{E}' = \mathcal{E} \times _\Omega \mathcal{H}$ which comes with an induced map $\alpha ' : \mathcal{E}' \to \mathcal{B}$. Let $\mathcal{I}' = \mathop{\mathrm{Ker}}(\mathcal{A}[\mathcal{E}'] \to \mathcal{B})$ and $\Omega ' = \Omega _{\mathcal{A}[\mathcal{E}']/\mathcal{A}} \otimes _{\mathcal{A}[\mathcal{E}']} \mathcal{B}$. The pullback of $\xi $ under the quasi-isomorphism $\mathop{N\! L}\nolimits (\alpha ') \to \mathop{N\! L}\nolimits (\alpha )$ maps to zero in $\mathop{\mathrm{Ext}}\nolimits ^1_\mathcal {B}(\Omega ', \mathcal{G})$ because the pullback of the extension $\mathcal{H}$ by the map $\Omega ' \to \Omega $ is split as $\Omega '$ is the free $\mathcal{B}$-module on the sheaf of sets $\mathcal{E}'$ and since by construction there is a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathcal{E}' \ar[r] \ar[d] &  \mathcal{E} \ar[d] \\  \mathcal{H} \ar[r] &  \Omega }  \]
+</div>
+    <p>
+       This finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08UC">
+  <p><a class="environment-identifier" href="/tag/08UC">Lemma <span data-tag="08UC">91.7.3</span>.</a> If there exists a solution to (<a href="/tag/08U7" data-tag="08U7">91.7.0.1</a>), then the set of isomorphism classes of solutions is principal homogeneous under $\mathop{\mathrm{Ext}}\nolimits ^1_{\mathcal{O}_ X}(\mathop{N\! L}\nolimits _{X/S}, \mathcal{G})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We observe right away that given two solutions $X'_1$ and $X'_2$ to (<a href="/tag/08U7" data-tag="08U7">91.7.0.1</a>) we obtain by Lemma <a href="/tag/08U8" data-tag="08U8">91.7.1</a> an obstruction element $o(X'_1, X'_2) \in \mathop{\mathrm{Ext}}\nolimits ^1_{\mathcal{O}_ X}(\mathop{N\! L}\nolimits _{X/S}, \mathcal{G})$ to the existence of a map $X'_1 \to X'_2$. Clearly, this element is the obstruction to the existence of an isomorphism, hence separates the isomorphism classes. To finish the proof it therefore suffices to show that given a solution $X'$ and an element $\xi \in \mathop{\mathrm{Ext}}\nolimits ^1_{\mathcal{O}_ X}(\mathop{N\! L}\nolimits _{X/S}, \mathcal{G})$ we can find a second solution $X'_\xi $ such that $o(X', X'_\xi ) = \xi $. 
+    <p>
+      Pick $\alpha : \mathcal{E} \to \mathcal{O}_ X$ as in Lemma <a href="/tag/08UB" data-tag="08UB">91.7.2</a> for the class $\xi $. Consider the surjection $f^{-1}\mathcal{O}_ S[\mathcal{E}] \to \mathcal{O}_ X$ with kernel $\mathcal{I}$ and corresponding naive cotangent complex $\mathop{N\! L}\nolimits (\alpha ) = (\mathcal{I}/\mathcal{I}^2 \to \Omega _{f^{-1}\mathcal{O}_ S[\mathcal{E}]/f^{-1}\mathcal{O}_ S} \otimes _{f^{-1}\mathcal{O}_ S[\mathcal{E}]} \mathcal{O}_ X)$. By the lemma $\xi $ is the class of a morphism $\delta : \mathcal{I}/\mathcal{I}^2 \to \mathcal{G}$. After replacing $\mathcal{E}$ by $\mathcal{E} \times _{\mathcal{O}_ X} \mathcal{O}_{X'}$ we may also assume that $\alpha $ factors through a map $\alpha ' : \mathcal{E} \to \mathcal{O}_{X'}$. 
+    <p>
+      These choices determine an $f^{-1}\mathcal{O}_{S'}$-algebra map $\varphi : f^{-1}\mathcal{O}_{S'}[\mathcal{E}] \to \mathcal{O}_{X'}$. Let $\mathcal{I}' = \mathop{\mathrm{Ker}}(f^{-1}\mathcal{O}_{S'}[\mathcal{E}] \to \mathcal{O}_ X)$. Observe that $\varphi $ induces a map $\varphi |_{\mathcal{I}'} : \mathcal{I}' \to \mathcal{G}$ and that $\mathcal{O}_{X'}$ is the pushout, as in the following diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ 0 \ar[r] &  \mathcal{G} \ar[r] &  \mathcal{O}_{X'} \ar[r] &  \mathcal{O}_ X \ar[r] &  0 \\  0 \ar[r] &  \mathcal{I}' \ar[u]^{\varphi |_{\mathcal{I}'}} \ar[r] &  f^{-1}\mathcal{O}_{S'}[\mathcal{E}] \ar[u] \ar[r] &  \mathcal{O}_ X \ar[u]_{=} \ar[r] &  0 }  \]
+</div>
+    <p>
+       Let $\psi : \mathcal{I}' \to \mathcal{G}$ be the sum of the map $\varphi |_{\mathcal{I}'}$ and the composition 
+    <p>
+      <div class="equation">
+  \[  \mathcal{I}' \to \mathcal{I}'/(\mathcal{I}')^2 \to \mathcal{I}/\mathcal{I}^2 \xrightarrow {\delta } \mathcal{G}.  \]
+</div>
+    <p>
+       Then the pushout along $\psi $ is an other ring extension $\mathcal{O}_{X'_\xi }$ fitting into a diagram as above. A calculation (omitted) shows that $o(X', X'_\xi ) = \xi $ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GPZ">
+  <p><a class="environment-identifier" href="/tag/0GPZ">Lemma <span data-tag="0GPZ">91.7.4</span>.</a> Let $f : (X, \mathcal{O}_ X) \to (S, \mathcal{O}_ S)$ be a morphism of ringed spaces. Let $\mathcal{G}$ be a $\mathcal{O}_ X$-module. The set of isomorphism classes of extensions of $f^{-1}\mathcal{O}_ S$-algebras </p>
+  <div class="equation">
+  \[  0 \to \mathcal{G} \to \mathcal{O}_{X'} \to \mathcal{O}_ X \to 0  \]
+</div>
+  <p> where $\mathcal{G}$ is an ideal of square zero<a class="footnotemark" href="#a0001620788" id="a0001620788-mark"><sup>1</sup></a> is canonically bijective to $\mathop{\mathrm{Ext}}\nolimits ^1_{\mathcal{O}_ X}(\mathop{N\! L}\nolimits _{X/S}, \mathcal{G})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      To prove this we apply the previous results to the case where (<a href="/tag/08U7" data-tag="08U7">91.7.0.1</a>) is given by the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ 0 \ar[r] &  \mathcal{G} \ar[r] &  {?} \ar[r] &  \mathcal{O}_ X \ar[r] &  0 \\  0 \ar[r] &  0 \ar[u] \ar[r] &  \mathcal{O}_ S \ar[u] \ar[r]^{\text{id}} &  \mathcal{O}_ S \ar[u] \ar[r] &  0 }  \]
+</div>
+    <p>
+       Thus our lemma follows from Lemma <a href="/tag/08UC" data-tag="08UC">91.7.3</a> and the fact that there exists a solution, namely $\mathcal{G} \oplus \mathcal{O}_ X$. (See remark below for a direct construction of the bijection.) 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0GQ0">
+  <p><a class="environment-identifier" href="/tag/0GQ0">Remark <span data-tag="0GQ0">91.7.5</span>.</a> Let $f : (X, \mathcal{O}_ X) \to (S, \mathcal{O}_ S)$ and $\mathcal{G}$ be as in Lemma <a href="/tag/0GPZ" data-tag="0GPZ">91.7.4</a>. Consider an extension $0 \to \mathcal{G} \to \mathcal{O}_{X'} \to \mathcal{O}_ X \to 0$ as in the lemma. We can choose a sheaf of sets $\mathcal{E}$ and a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{E} \ar[d]_{\alpha '} \ar[rd]^\alpha \\  \mathcal{O}_{X'} \ar[r] &  \mathcal{O}_ X }  \]
+</div>
+  <p> such that $f^{-1}\mathcal{O}_ S[\mathcal{E}] \to \mathcal{O}_ X$ is surjective with kernel $\mathcal{J}$. (For example you can take any sheaf of sets surjecting onto $\mathcal{O}_{X'}$.) Then </p>
+  <div class="equation">
+  \[  \mathop{N\! L}\nolimits _{X/S} \cong \mathop{N\! L}\nolimits (\alpha ) = \left( \mathcal{J}/\mathcal{J}^2 \longrightarrow \Omega _{f^{-1}\mathcal{O}_ S[\mathcal{E}]/f^{-1}\mathcal{O}_ S} \otimes _{f^{-1}\mathcal{O}_ S[\mathcal{E}]} \mathcal{O}_ X\right)  \]
+</div>
+  <p> See Modules, Section <a href="/tag/08TG" data-tag="08TG">17.31</a> and in particular Lemma <a href="/tag/08TL" data-tag="08TL">17.31.2</a>. Of course $\alpha '$ determines a map $f^{-1}\mathcal{O}_ S[\mathcal{E}] \to \mathcal{O}_{X'}$ which in turn determines a map </p>
+  <div class="equation">
+  \[  \mathcal{J}/\mathcal{J}^2 \longrightarrow \mathcal{G}  \]
+</div>
+  <p> which in turn determines the element of $\mathop{\mathrm{Ext}}\nolimits ^1_{\mathcal{O}_ X}(\mathop{N\! L}\nolimits (\alpha ), \mathcal{G}) = \mathop{\mathrm{Ext}}\nolimits ^1_{\mathcal{O}_ X}(\mathop{N\! L}\nolimits _{X/S}, \mathcal{G})$ corresponding to $\mathcal{O}_{X'}$ by the bijection of the lemma. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0GQ1">
+  <p><a class="environment-identifier" href="/tag/0GQ1">Lemma <span data-tag="0GQ1">91.7.6</span>.</a> Let $f : (X, \mathcal{O}_ X) \to (S, \mathcal{O}_ S)$ and $g : (Y, \mathcal{O}_ Y) \to (X, \mathcal{O}_ X)$ be morphisms of ringed spaces. Let $\mathcal{F}$ be a $\mathcal{O}_ X$-module. Let $\mathcal{G}$ be a $\mathcal{O}_ Y$-module. Let $c : \mathcal{F} \to \mathcal{G}$ be a $g$-map. Finally, consider </p>
+  <p><ol>
+  <li class="custom-item" data-marker="(a)"><p>
+$0 \to \mathcal{F} \to \mathcal{O}_{X'} \to \mathcal{O}_ X \to 0$ an extension of $f^{-1}\mathcal{O}_ S$-algebras corresponding to $\xi \in \mathop{\mathrm{Ext}}\nolimits ^1_{\mathcal{O}_ X}(\mathop{N\! L}\nolimits _{X/S}, \mathcal{F})$, and 
+</p>
+</li><li class="custom-item" data-marker="(b)"><p>
+$0 \to \mathcal{G} \to \mathcal{O}_{Y'} \to \mathcal{O}_ Y \to 0$ an extension of $g^{-1}f^{-1}\mathcal{O}_ S$-algebras corresponding to $\zeta \in \mathop{\mathrm{Ext}}\nolimits ^1_{\mathcal{O}_ Y}(\mathop{N\! L}\nolimits _{Y/S}, \mathcal{G})$. 
+</p>
+</li>
+</ol></p>
+  <p> See Lemma <a href="/tag/0GPZ" data-tag="0GPZ">91.7.4</a>. Then there is an $S$-morphism $g' : Y' \to X'$ compatible with $g$ and $c$ if and only if $\xi $ and $\zeta $ map to the same element of $\mathop{\mathrm{Ext}}\nolimits ^1_{\mathcal{O}_ Y}(Lg^*\mathop{N\! L}\nolimits _{X/S}, \mathcal{G})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The stament makes sense as we have the maps 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Ext}}\nolimits ^1_{\mathcal{O}_ X}(\mathop{N\! L}\nolimits _{X/S}, \mathcal{F}) \to \mathop{\mathrm{Ext}}\nolimits ^1_{\mathcal{O}_ Y}(Lg^*\mathop{N\! L}\nolimits _{X/S}, Lg^*\mathcal{F}) \to \mathop{\mathrm{Ext}}\nolimits ^1_{\mathcal{O}_ Y}(Lg^*\mathop{N\! L}\nolimits _{X/S}, \mathcal{G})  \]
+</div>
+    <p>
+       using the map $Lg^*\mathcal{F} \to g^*\mathcal{F} \xrightarrow {c} \mathcal{G}$ and 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Ext}}\nolimits ^1_{\mathcal{O}_ Y}(\mathop{N\! L}\nolimits _{Y/S}, \mathcal{G}) \to \mathop{\mathrm{Ext}}\nolimits ^1_{\mathcal{O}_ Y}(Lg^*\mathop{N\! L}\nolimits _{X/S}, \mathcal{G})  \]
+</div>
+    <p>
+       using the map $Lg^*\mathop{N\! L}\nolimits _{X/S} \to \mathop{N\! L}\nolimits _{Y/S}$. The statement of the lemma can be deduced from Lemma <a href="/tag/08U8" data-tag="08U8">91.7.1</a> applied to the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ &  0 \ar[r] &  \mathcal{G} \ar[r] &  \mathcal{O}_{Y'} \ar[r] &  \mathcal{O}_ Y \ar[r] &  0 \\  &  0 \ar[r]|\hole &  0 \ar[u] \ar[r] &  \mathcal{O}_ S \ar[u] \ar[r]|\hole &  \mathcal{O}_ S \ar[u] \ar[r] &  0 \\  0 \ar[r] &  \mathcal{F} \ar[ruu] \ar[r] &  \mathcal{O}_{X'} \ar[r] &  \mathcal{O}_ X \ar[ruu] \ar[r] &  0 \\  0 \ar[r] &  0 \ar[ruu]|\hole \ar[u] \ar[r] &  \mathcal{O}_ S \ar[ruu]|\hole \ar[u] \ar[r] &  \mathcal{O}_ S \ar[ruu]|\hole \ar[u] \ar[r] &  0 }  \]
+</div>
+    <p>
+       and a compatibility between the constructions in the proofs of Lemmas <a href="/tag/0GPZ" data-tag="0GPZ">91.7.4</a> and <a href="/tag/08U8" data-tag="08U8">91.7.1</a> whose statement and proof we omit. (See remark below for a direct argument.) 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0GQ2">
+  <p><a class="environment-identifier" href="/tag/0GQ2">Remark <span data-tag="0GQ2">91.7.7</span>.</a> Let $f : (X, \mathcal{O}_ X) \to (S, \mathcal{O}_ S)$, $g : (Y, \mathcal{O}_ Y) \to (X, \mathcal{O}_ X)$, $\mathcal{F}$, $\mathcal{G}$, $c : \mathcal{F} \to \mathcal{G}$, $0 \to \mathcal{F} \to \mathcal{O}_{X'} \to \mathcal{O}_ X \to 0$, $\xi \in \mathop{\mathrm{Ext}}\nolimits ^1_{\mathcal{O}_ X}(\mathop{N\! L}\nolimits _{X/S}, \mathcal{F})$, $0 \to \mathcal{G} \to \mathcal{O}_{Y'} \to \mathcal{O}_ Y \to 0$, and $\zeta \in \mathop{\mathrm{Ext}}\nolimits ^1_{\mathcal{O}_ Y}(\mathop{N\! L}\nolimits _{Y/S}, \mathcal{G})$ be as in Lemma <a href="/tag/0GQ1" data-tag="0GQ1">91.7.6</a>. Using pushout along $c : g^{-1}\mathcal{F} \to \mathcal{G}$ we can construct an extension </p>
+  <div class="equation">
+  \[  \xymatrix{ 0 \ar[r] &  \mathcal{G} \ar[r] &  \mathcal{O}'_1 \ar[r] &  g^{-1}\mathcal{O}_ X \ar[r] &  0 \\  0 \ar[r] &  g^{-1}\mathcal{F} \ar[u]^ c \ar[r] &  g^{-1}\mathcal{O}_{X'} \ar[u] \ar[r] &  g^{-1}\mathcal{O}_ X \ar@{=}[u] \ar[r] &  0 }  \]
+</div>
+  <p> Using pullback along $g^\sharp : g^{-1}\mathcal{O}_ X \to \mathcal{O}_ Y$ we can construct an extension </p>
+  <div class="equation">
+  \[  \xymatrix{ 0 \ar[r] &  \mathcal{G} \ar[r] &  \mathcal{O}_{Y'} \ar[r] &  \mathcal{O}_ Y \ar[r] &  0 \\  0 \ar[r] &  \mathcal{G} \ar@{=}[u] \ar[r] &  \mathcal{O}'_2 \ar[u] \ar[r] &  g^{-1}\mathcal{O}_ X \ar[u] \ar[r] &  0 }  \]
+</div>
+  <p> A diagram chase tells us that there exists an $S$-morphism $Y' \to X'$ compatible with $g$ and $c$ if and only if $\mathcal{O}'_1$ is isomorphic to $\mathcal{O}'_2$ as $g^{-1}f^{-1}\mathcal{O}_ S$-algebra extensions of $g^{-1}\mathcal{O}_ X$ by $\mathcal{G}$. By Lemma <a href="/tag/0GPZ" data-tag="0GPZ">91.7.4</a> these extensions are classified by the LHS of </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Ext}}\nolimits ^1_{g^{-1}\mathcal{O}_ X}( \mathop{N\! L}\nolimits _{g^{-1}\mathcal{O}_ X/g^{-1}f^{-1}\mathcal{O}_ S}, \mathcal{G}) = \mathop{\mathrm{Ext}}\nolimits ^1_{\mathcal{O}_ Y}(Lg^*\mathop{N\! L}\nolimits _{X/S}, \mathcal{G})  \]
+</div>
+  <p> Here the equality comes from tensor-hom adjunction and the equalities </p>
+  <div class="equation">
+  \[  \mathop{N\! L}\nolimits _{g^{-1}\mathcal{O}_ X/g^{-1}f^{-1}\mathcal{O}_ S} = g^{-1}\mathop{N\! L}\nolimits _{X/S} \quad \text{and}\quad Lg^*\mathop{N\! L}\nolimits _{X/S} = g^{-1}\mathop{N\! L}\nolimits _{X/S} \otimes _{g^{-1}\mathcal{O}_ X}^\mathbf {L} \mathcal{O}_ Y  \]
+</div>
+  <p> For the first of these see Modules, Lemma <a href="/tag/08TM" data-tag="08TM">17.31.3</a>; the second follows from the definition of derived pullback. Thus, in order to see that Lemma <a href="/tag/0GQ1" data-tag="0GQ1">91.7.6</a> is true, it suffices to show that $\mathcal{O}'_1$ corresponds to the image of $\xi $ and that $\mathcal{O}'_2$ correspond to the image of $\zeta $. The correspondence between $\xi $ and $\mathcal{O}'_1$ is immediate from the construction of the class $\xi $ in Remark <a href="/tag/0GQ0" data-tag="0GQ0">91.7.5</a>. For the correspondence between $\zeta $ and $\mathcal{O}'_2$, we first choose a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{E} \ar[d]_{\beta '} \ar[rd]^\beta \\  \mathcal{O}_{Y'} \ar[r] &  \mathcal{O}_ Y }  \]
+</div>
+  <p> such that $g^{-1}f^{-1}\mathcal{O}_ S[\mathcal{E}] \to \mathcal{O}_ Y$ is surjective with kernel $\mathcal{K}$. Next choose a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{E} \ar[d]_{\beta '} &  \mathcal{E}' \ar[l]^\varphi \ar[d]_{\alpha '} \ar[rd]^\alpha \\  \mathcal{O}_{Y'} &  \mathcal{O}'_2 \ar[l] \ar[r] &  g^{-1}\mathcal{O}_ X }  \]
+</div>
+  <p> such that $g^{-1}f^{-1}\mathcal{O}_ S[\mathcal{E}'] \to g^{-1}\mathcal{O}_ X$ is surjective with kernel $\mathcal{J}$. (For example just take $\mathcal{E}' = \mathcal{E} \amalg \mathcal{O}'_2$ as a sheaf of sets.) The map $\varphi $ induces a map of complexes $\mathop{N\! L}\nolimits (\alpha ) \to \mathop{N\! L}\nolimits (\beta )$ (notation as in Modules, Section <a href="/tag/08TG" data-tag="08TG">17.31</a>) and in particular $\bar\varphi : \mathcal{J}/\mathcal{J}^2 \to \mathcal{K}/\mathcal{K}^2$. Then $\mathop{N\! L}\nolimits (\alpha ) \cong \mathop{N\! L}\nolimits _{Y/S}$ and $\mathop{N\! L}\nolimits (\beta ) \cong \mathop{N\! L}\nolimits _{g^{-1}\mathcal{O}_ X/g^{-1}f^{-1}\mathcal{O}_ S}$ and the map of complexes $\mathop{N\! L}\nolimits (\alpha ) \to \mathop{N\! L}\nolimits (\beta )$ represents the map $Lg^*\mathop{N\! L}\nolimits _{X/S} \to \mathop{N\! L}\nolimits _{Y/S}$ used in the statement of Lemma <a href="/tag/0GQ1" data-tag="0GQ1">91.7.6</a> (see first part of its proof). Now $\zeta $ corresponds to the class of the map $\mathcal{K}/\mathcal{K}^2 \to \mathcal{G}$ induced by $\beta '$, see Remark <a href="/tag/0GQ0" data-tag="0GQ0">91.7.5</a>. Similarly, the extension $\mathcal{O}'_2$ corresponds to the map $\mathcal{J}/\mathcal{J}^2 \to \mathcal{G}$ induced by $\alpha '$. The commutative diagram above shows that this map is the composition of the map $\mathcal{K}/\mathcal{K}^2 \to \mathcal{G}$ induced by $\beta '$ with the map $\bar\varphi : \mathcal{J}/\mathcal{J}^2 \to \mathcal{K}/\mathcal{K}^2$. This proves the compatibility we were looking for. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0GQ3">
+  <p><a class="environment-identifier" href="/tag/0GQ3">Lemma <span data-tag="0GQ3">91.7.8</span>.</a> Let $t : (S, \mathcal{O}_ S) \to (S', \mathcal{O}_{S'})$, $\mathcal{J} = \mathop{\mathrm{Ker}}(t^\sharp )$, $f : (X, \mathcal{O}_ X) \to (S, \mathcal{O}_ S)$, $\mathcal{G}$, and $c : \mathcal{J} \to \mathcal{G}$ be as in (<a href="/tag/08U7" data-tag="08U7">91.7.0.1</a>). Denote $\xi \in \mathop{\mathrm{Ext}}\nolimits ^1_{\mathcal{O}_ S}(\mathop{N\! L}\nolimits _{S/S'}, \mathcal{J})$ the element corresponding to the extension $\mathcal{O}_{S'}$ of $\mathcal{O}_ S$ by $\mathcal{J}$ via Lemma <a href="/tag/0GPZ" data-tag="0GPZ">91.7.4</a>. The set of isomorphism classes of solutions is canonically bijective to the fibre of </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Ext}}\nolimits ^1_{\mathcal{O}_ X}(\mathop{N\! L}\nolimits _{X/S'}, \mathcal{G}) \to \mathop{\mathrm{Ext}}\nolimits ^1_{\mathcal{O}_ X}(Lf^*\mathop{N\! L}\nolimits _{S/S'}, \mathcal{G})  \]
+</div>
+  <p> over the image of $\xi $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/0GPZ" data-tag="0GPZ">91.7.4</a> applied to $X \to S'$ and the $\mathcal{O}_ X$-module $\mathcal{G}$ we see that elements $\zeta $ of $\mathop{\mathrm{Ext}}\nolimits ^1_{\mathcal{O}_ X}(\mathop{N\! L}\nolimits _{X/S'}, \mathcal{G})$ parametrize extensions $0 \to \mathcal{G} \to \mathcal{O}_{X'} \to \mathcal{O}_ X \to 0$ of $f^{-1}\mathcal{O}_{S'}$-algebras. By Lemma <a href="/tag/0GQ1" data-tag="0GQ1">91.7.6</a> applied to $X \to S \to S'$ and $c : \mathcal{J} \to \mathcal{G}$ we see that there is an $S'$-morphism $X' \to S'$ compatible with $c$ and $f : X \to S$ if and only if $\zeta $ maps to $\xi $. Of course this is the same thing as saying $\mathcal{O}_{X'}$ is a solution of (<a href="/tag/08U7" data-tag="08U7">91.7.0.1</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0GQ4">
+  <p><a class="environment-identifier" href="/tag/0GQ4">Remark <span data-tag="0GQ4">91.7.9</span>.</a> In the situation of Lemma <a href="/tag/0GQ3" data-tag="0GQ3">91.7.8</a> we have maps of complexes </p>
+  <div class="equation">
+  \[  Lf^*\mathop{N\! L}\nolimits _{S'/S} \to \mathop{N\! L}\nolimits _{X/S'} \to \mathop{N\! L}\nolimits _{X/S}  \]
+</div>
+  <p> These maps are closed to forming a distinguished triangle, see Modules, Lemma <a href="/tag/0E1Z" data-tag="0E1Z">17.31.7</a>. If it were a distinguished triangle we would conclude that the image of $\xi $ in $\mathop{\mathrm{Ext}}\nolimits ^2_{\mathcal{O}_ X}(\mathop{N\! L}\nolimits _{X/S}, \mathcal{G})$ would be the obstruction to the existence of a solution to (<a href="/tag/08U7" data-tag="08U7">91.7.0.1</a>). </p>
+</article> 
+</p>

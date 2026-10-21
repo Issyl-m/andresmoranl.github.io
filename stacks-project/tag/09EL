@@ -1,0 +1,809 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-algebra-section-eliminating-ramification" class="tex-section"><span data-tag="09EL">15.117</span> Eliminating ramification</h2>
+
+<p>
+In this section we discuss a result of Helmut Epp, see <span class="cite">[<a href="/bibliography/Epp">Epp</a>]</span>. We strongly encourage the reader to read the original. Our approach is slightly different as we try to handle the mixed and equicharacteristic cases by the same method. For related results, see also <span class="cite">[<a href="/bibliography/Ponomarev">Ponomarev</a>]</span>, <span class="cite">[<a href="/bibliography/Ponomarev-Abhyankar">Ponomarev-Abhyankar</a>]</span>, <span class="cite">[<a href="/bibliography/Kuhlmann">Kuhlmann</a>]</span>, and <span class="cite">[<a href="/bibliography/ZK">ZK</a>]</span>. 
+</p>
+<p>
+Let $A \subset B$ be an extension of discrete valuation rings with fraction fields $K \subset L$. The goal in this section is to find a finite extension $K_1/K$ such that with 
+</p>
+<div class="equation">
+  \[  \vcenter { \xymatrix{ L \ar[r] &  L_1 \\  K \ar[u] \ar[r] &  K_1 \ar[u] } } \quad \text{and}\quad \vcenter { \xymatrix{ B \ar[r] &  B_1 \ar[r] &  (B_1)_{\mathfrak m_{ij}} \\  A \ar[u] \ar[r] &  A_1 \ar[r] \ar[u] &  (A_1)_{\mathfrak m_ i} \ar[u] } }  \]
+</div>
+<p>
+ as in Remark <a href="/tag/09EM" data-tag="09EM">15.116.1</a> the extensions $(A_1)_{\mathfrak m_ i} \subset (B_1)_{\mathfrak m_{ij}}$ are all weakly unramified or even formally smooth in the relevant adic topologies. The simplest (but nontrivial) example of this is Abhyankar's lemma, see Lemma <a href="/tag/0BRM" data-tag="0BRM">15.116.4</a>. 
+</p>
+<p>
+<article class="env-definition" id="09EN">
+  <p><a class="environment-identifier" href="/tag/09EN">Definition <span data-tag="09EN">15.117.1</span>.</a> Let $A \to B$ be an extension of discrete valuation rings with fraction fields $K \subset L$. </p>
+  <p><ol>
+  <li><p>
+We say a finite field extension $K_1/K$ is a <em>weak solution for $A \subset B$</em> if all the extensions $(A_1)_{\mathfrak m_ i} \subset (B_1)_{\mathfrak m_{ij}}$ of Remark <a href="/tag/09EM" data-tag="09EM">15.116.1</a> are weakly unramified. 
+</p>
+</li><li><p>
+We say a finite field extension $K_1/K$ is a <em>solution for $A \subset B$</em> if each extension $(A_1)_{\mathfrak m_ i} \subset (B_1)_{\mathfrak m_{ij}}$ of Remark <a href="/tag/09EM" data-tag="09EM">15.116.1</a> is formally smooth in the $\mathfrak m_{ij}$-adic topology. 
+</p>
+</li>
+</ol></p>
+  <p> We say a solution $K_1/K$ is a <em>separable solution</em> if $K_1/K$ is separable. </p>
+</article> 
+</p>
+<p>
+In general (weak) solutions do not exist; there is an example in <span class="cite">[<a href="/bibliography/Epp">Epp</a>]</span>. Under a mild hypothesis on the residue field extension, we will prove the existence of weak solutions in Theorem <a href="/tag/09F9" data-tag="09F9">15.117.18</a> following <span class="cite">[<a href="/bibliography/Epp">Epp</a>]</span>. In the next section, we will deduce the existence of solutions and sometimes separable solutions in geometrically meaningful cases, see Proposition <a href="/tag/09II" data-tag="09II">15.118.8</a> and Lemma <a href="/tag/0BRP" data-tag="0BRP">15.118.9</a>. However, the following example shows that in general one needs inseparable extensions to get even a weak solution. 
+</p>
+<p>
+<article class="env-example" id="09EP">
+  <p><a class="environment-identifier" href="/tag/09EP">Example <span data-tag="09EP">15.117.2</span>.</a> Let $k$ be a perfect field of characteristic $p > 0$. Let $A = k[[x]]$ and $K = k((x))$. Let $B = A[x^{1/p}]$. Any weak solution $K_1/K$ for $A \to B$ is inseparable (and any finite inseparable extension of $K$ is a solution). We omit the proof. </p>
+</article> 
+</p>
+<p>
+Solutions are stable under further extensions, see Lemma <a href="/tag/0GLR" data-tag="0GLR">15.118.1</a>. This may not be true for weak solutions. Weak solutions are in some sense stable under totally ramified extensions, see Lemma <a href="/tag/09ER" data-tag="09ER">15.117.3</a>. 
+</p>
+<p>
+<article class="env-lemma" id="09ER">
+  <p><a class="environment-identifier" href="/tag/09ER">Lemma <span data-tag="09ER">15.117.3</span>.</a> Let $A \to B$ be an extension of discrete valuation rings with fraction fields $K \subset L$. Assume that $A \to B$ is weakly unramified. Then for any finite separable extension $K_1/K$ totally ramified with respect to $A$ we have that $L_1 = L \otimes _ K K_1$ is a field, $A_1$ and $B_1 = B \otimes _ A A_1$ are discrete valuation rings, and the extension $A_1 \subset B_1$ (see Remark <a href="/tag/09EM" data-tag="09EM">15.116.1</a>) is weakly unramified. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\pi \in A$ and $\pi _1 \in A_1$ be uniformizers. As $K_1/K$ is totally ramified with respect to $A$ we have $\pi _1^ e = u_1 \pi $ for some unit $u_1$ in $A_1$. Hence $A_1$ is generated by $\pi _1$ over $A$ and the minimal polynomial $P(t)$ of $\pi _1$ over $K$ has the form 
+    <p>
+      <div class="equation">
+  \[  P(t) = t^ e + a_{e - 1} t^{e - 1} + \ldots + a_0  \]
+</div>
+    <p>
+       with $a_ i \in (\pi )$ and $a_0 = u\pi $ for some unit $u$ of $A$. Note that $e = [K_1 : K]$ as well. Since $A \to B$ is weakly unramified we see that $\pi $ is a uniformizer of $B$ and hence $B_1 = B[t]/(P(t))$ is a discrete valuation ring with uniformizer the class of $t$. Thus the lemma is clear. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09ES">
+  <p><a class="environment-identifier" href="/tag/09ES">Lemma <span data-tag="09ES">15.117.4</span>.</a> Let $A \to B \to C$ be extensions of discrete valuation rings with fraction fields $K \subset L \subset M$. Let $K_1/K$ be a finite extension. </p>
+  <p><ol>
+  <li><p>
+If $K_1$ is a (weak) solution for $A \to C$, then $K_1$ is a (weak) solution for $A \to B$. 
+</p>
+</li><li><p>
+If $K_1$ is a (weak) solution for $A \to B$ and $L_1 = (L \otimes _ K K_1)_{red}$ is a product of fields which are (weak) solutions for $B \to C$, then $K_1$ is a (weak) solution for $A \to C$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $L_1 = (L \otimes _ K K_1)_{red}$ and $M_1 = (M \otimes _ K K_1)_{red}$ and let $B_1 \subset L_1$ and $C_1 \subset M_1$ be the integral closure of $B$ and $C$. Note that $M_1 = (M \otimes _ L L_1)_{red}$ and that $L_1$ is a (nonempty) finite product of finite extensions of $L$. Hence the ring map $B_1 \to C_1$ is a finite product of ring maps of the form discussed in Remark <a href="/tag/09EM" data-tag="09EM">15.116.1</a>. In particular, the map $\mathop{\mathrm{Spec}}(C_1) \to \mathop{\mathrm{Spec}}(B_1)$ is surjective. Choose a maximal ideal $\mathfrak m \subset C_1$ and consider the extensions of discrete valuation rings 
+    <p>
+      <div class="equation">
+  \[  (A_1)_{A_1 \cap \mathfrak m} \to (B_1)_{B_1 \cap \mathfrak m} \to (C_1)_\mathfrak m  \]
+</div>
+    <p>
+       If the composition is weakly unramified, so is the map $(A_1)_{A_1 \cap \mathfrak m} \to (B_1)_{B_1 \cap \mathfrak m}$. If the residue field extension $\kappa _{A_1 \cap \mathfrak m} \to \kappa _\mathfrak m$ is separable, so is the subextension $\kappa _{A_1 \cap \mathfrak m} \to \kappa _{B_1 \cap \mathfrak m}$. Taking into account Lemma <a href="/tag/09E7" data-tag="09E7">15.113.5</a> this proves (1). A similar argument works for (2). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09ET">
+  <p><a class="environment-identifier" href="/tag/09ET">Lemma <span data-tag="09ET">15.117.5</span>.</a> Let $A \to B$ be an extension of discrete valuation rings. There exists a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ B \ar[r] &  B' \\  A \ar[r] \ar[u] &  A' \ar[u] }  \]
+</div>
+  <p> of extensions of discrete valuation rings such that </p>
+  <p><ol>
+  <li><p>
+the extensions $K'/K$ and $L'/L$ of fraction fields are separable algebraic, 
+</p>
+</li><li><p>
+the residue fields of $A'$ and $B'$ are separable algebraic closures of the residue fields of $A$ and $B$, and 
+</p>
+</li><li><p>
+if a solution, weak solution, or separable solution exists for $A' \to B'$, then a solution, weak solution, or separable solution exists for $A \to B$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Algebra, Lemma <a href="/tag/09E0" data-tag="09E0">10.159.2</a> there exists an extension $A \subset A'$ which is a filtered colimit of finite étale extensions such that the residue field of $A'$ is a separable algebraic closure of the residue field of $A$. Then $A \subset A'$ is an extension of discrete valuation rings such that the induced extension $K'/K$ of fraction fields is separable algebraic. 
+    <p>
+      Let $B \subset B'$ be a strict henselization of $B$. Then $B \subset B'$ is an extension of discrete valuation rings whose fraction field extension is separable algebraic. By Algebra, Lemma <a href="/tag/04GT" data-tag="04GT">10.155.9</a> there exists a commutative diagram as in the statement of the lemma. Parts (1) and (2) of the lemma are clear. 
+    <p>
+      Let $K'_1/K'$ be a (weak) solution for $A' \to B'$. Since $A'$ is a colimit, we can find a finite étale extension $A \subset A_1'$ and a finite extension $K_1$ of the fraction field $F$ of $A_1'$ such that $K'_1 = K' \otimes _ F K_1$. As $A \subset A_1'$ is finite étale and $B'$ strictly henselian, it follows that $B' \otimes _ A A_1'$ is a finite product of rings isomorphic to $B'$. Hence 
+    <p>
+      <div class="equation">
+  \[  L' \otimes _ K K_1 = L' \otimes _ K F \otimes _ F K_1  \]
+</div>
+    <p>
+       is a finite product of rings isomorphic to $L' \otimes _{K'} K'_1$. Thus we see that $K_1/K$ is a (weak) solution for $A \to B'$. Hence it is also a (weak) solution for $A \to B$ by Lemma <a href="/tag/09ES" data-tag="09ES">15.117.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09EU">
+  <p><a class="environment-identifier" href="/tag/09EU">Lemma <span data-tag="09EU">15.117.6</span>.</a> Let $A \to B$ be an extension of discrete valuation rings with fraction fields $K \subset L$. Let $K_1/K$ be a normal extension. Say $G = \text{Aut}(K_1/K)$. Then $G$ acts on the rings $K_1$, $L_1$, $A_1$ and $B_1$ of Remark <a href="/tag/09EM" data-tag="09EM">15.116.1</a> and acts transitively on the set of maximal ideals of $B_1$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Everything is clear apart from the last assertion. If there are two or more orbits of the action, then we can find an element $b \in B_1$ which vanishes at all the maximal ideals of one orbit and has residue $1$ at all the maximal ideals in another orbit. Then $b' = \prod _{\sigma \in G} \sigma (b)$ is a $G$-invariant element of $B_1 \subset L_1 = (L \otimes _ K K_1)_{red}$ which is in some maximal ideals of $B_1$ but not in all maximal ideals of $B_1$. Lifting it to an element of $L \otimes _ K K_1$ and raising to a high power we obtain a $G$-invariant element $b''$ of $L \otimes _ K K_1$ mapping to $(b')^ N$ for some $N > 0$; in fact, we only need to do this in case the characteristic is $p > 0$ and in this case raising to a suitably large $p$-power $q$ defines a canonical map $(L \otimes _ K K_1)_{red} \to L \otimes _ K K_1$. Since $K = (K_1)^ G$ we conclude that $b'' \in L$. Since $b''$ maps to an element of $B_1$ we see that $b'' \in B$ (as $B$ is normal). Then on the one hand it must be true that $b'' \in \mathfrak m_ B$ as $b'$ is in some maximal ideal of $B_1$ and on the other hand it must be true that $b'' \not\in \mathfrak m_ B$ as $b'$ is not in all maximal ideals of $B_1$. This contradiction finishes the proof of the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09EW">
+  <p><a class="environment-identifier" href="/tag/09EW">Lemma <span data-tag="09EW">15.117.7</span>.</a> Let $A$ be a discrete valuation ring with uniformizer $\pi $. If the residue characteristic of $A$ is $p > 0$, then for every $n > 1$ and $p$-power $q$ there exists a degree $q$ separable extension $L/K$ totally ramified with respect to $A$ such that the integral closure $B$ of $A$ in $L$ has ramification index $q$ and a uniformizer $\pi _ B$ such that $\pi _ B^ q = \pi + \pi ^ n b$ and $\pi _ B^ q = \pi + (\pi _ B)^{nq}b'$ for some $b, b' \in B$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If the characteristic of $K$ is zero, then we can take the extension given by $\pi _ B^ q = \pi $, see Lemma <a href="/tag/09EV" data-tag="09EV">15.116.2</a>. If the characteristic of $K$ is $p > 0$, then we can take the extension of $K$ given by $z^ q - \pi ^ n z = \pi ^{1 - q}$. Namely, then we see that $y^ q - \pi ^{n + q - 1} y = \pi $ where $y = \pi z$. Taking $\pi _ B = y$ we obtain the desired result. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09EX">
+  <p><a class="environment-identifier" href="/tag/09EX">Lemma <span data-tag="09EX">15.117.8</span>.</a> Let $A$ be a discrete valuation ring. Assume the reside field $\kappa _ A$ has characteristic $p > 0$ and that $a \in A$ is an element whose residue class in $\kappa _ A$ is not a $p$th power. Then $a$ is not a $p$th power in $K$ and the integral closure of $A$ in $K[a^{1/p}]$ is the ring $A[a^{1/p}]$ which is a discrete valuation ring weakly unramified over $A$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This lemma proves itself. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09EY">
+  <p><a class="environment-identifier" href="/tag/09EY">Lemma <span data-tag="09EY">15.117.9</span>.</a> Let $A \subset B \subset C$ be extensions of discrete valuation rings with fractions fields $K \subset L \subset M$. Let $\pi \in A$ be a uniformizer. Assume </p>
+  <p><ol>
+  <li><p>
+$B$ is a Nagata ring, 
+</p>
+</li><li><p>
+$A \subset B$ is weakly unramified, 
+</p>
+</li><li><p>
+$M$ is a degree $p$ purely inseparable extension of $L$. 
+</p>
+</li>
+</ol></p>
+  <p> Then either </p>
+  <p><ol>
+  <li><p>
+$A \to C$ is weakly unramified, or 
+</p>
+</li><li><p>
+$C = B[\pi ^{1/p}]$, or 
+</p>
+</li><li><p>
+there exists a degree $p$ separable extension $K_1/K$ totally ramified with respect to $A$ such that $L_1 = L \otimes _ K K_1$ and $M_1 = M \otimes _ K K_1$ are fields and the maps of integral closures $A_1 \to B_1 \to C_1$ are weakly unramified extensions of discrete valuation rings. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $e$ be the ramification index of $C$ over $B$. If $e = 1$, then we are done. If not, then $e = p$ by Lemmas <a href="/tag/09E5" data-tag="09E5">15.113.2</a> and <a href="/tag/09E6" data-tag="09E6">15.113.4</a>. This in turn implies that the residue fields of $B$ and $C$ agree. Choose a uniformizer $\pi _ C$ of $C$. Write $\pi _ C^ p = u \pi $ for some unit $u$ of $C$. Since $\pi _ C^ p \in L$, we see that $u \in B^*$. Also $M = L[\pi _ C]$. 
+    <p>
+      Suppose there exists an integer $m \geq 0$ such that 
+    <p>
+      <div class="equation">
+  \[  u = \sum \nolimits _{0 \leq i < m} b_ i^ p \pi ^ i + b \pi ^ m  \]
+</div>
+    <p>
+       with $b_ i \in B$ and with $b \in B$ an element whose image in $\kappa _ B$ is not a $p$th power. Choose an extension $K_1/K$ as in Lemma <a href="/tag/09EW" data-tag="09EW">15.117.7</a> with $n = m + 2$ and denote $\pi '$ the uniformizer of the integral closure $A_1$ of $A$ in $K_1$ such that $\pi = (\pi ')^ p + (\pi ')^{np} a$ for some $a \in A_1$. Let $B_1$ be the integral closure of $B$ in $L \otimes _ K K_1$. Observe that $A_1 \to B_1$ is weakly unramified by Lemma <a href="/tag/09ER" data-tag="09ER">15.117.3</a>. In $B_1$ we have 
+    <p>
+      <div class="equation">
+  \[  u \pi = \left(\sum \nolimits _{0 \leq i < m} b_ i (\pi ')^{i + 1}\right)^ p + b (\pi ')^{(m + 1)p} + (\pi ')^{np} b_1  \]
+</div>
+    <p>
+       for some $b_1 \in B_1$ (computation omitted). We conclude that $M_1$ is obtained from $L_1$ by adjoining a $p$th root of 
+    <p>
+      <div class="equation">
+  \[  b + (\pi ')^{n - m - 1} b_1  \]
+</div>
+    <p>
+       Since the residue field of $B_1$ equals the residue field of $B$ we see from Lemma <a href="/tag/09EX" data-tag="09EX">15.117.8</a> that $M_1/L_1$ has degree $p$ and the integral closure $C_1$ of $B_1$ is weakly unramified over $B_1$. Thus we conclude in this case. 
+    <p>
+      If there does not exist an integer $m$ as in the preceding paragraph, then $u$ is a $p$th power in the $\pi $-adic completion of $B_1$. Since $B$ is Nagata, this means that $u$ is a $p$th power in $B_1$ by Algebra, Lemma <a href="/tag/09E2" data-tag="09E2">10.162.18</a>. Whence the second case of the statement of the lemma holds. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09EZ">
+  <p><a class="environment-identifier" href="/tag/09EZ">Lemma <span data-tag="09EZ">15.117.10</span>.</a> Let $A$ be a local ring annihilated by a prime $p$ whose maximal ideal is nilpotent. There exists a ring map $\sigma : \kappa _ A \to A$ which is a section to the residue map $A \to \kappa _ A$. If $A \to A'$ is a local homomorphism of local rings, then we can choose a similar ring map $\sigma ' : \kappa _{A'} \to A'$ compatible with $\sigma $ provided that the extension $\kappa _{A'}/\kappa _ A$ is separable. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Separable extensions are formally smooth by Algebra, Proposition <a href="/tag/0322" data-tag="0322">10.158.9</a>. Thus the existence of $\sigma $ follows from the fact that $\mathbf{F}_ p \to \kappa _ A$ is separable. Similarly for the existence of $\sigma '$ compatible with $\sigma $. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09F0">
+  <p><a class="environment-identifier" href="/tag/09F0">Lemma <span data-tag="09F0">15.117.11</span>.</a> Let $A$ be a discrete valuation ring with fraction field $K$ of characteristic $p > 0$. Let $\xi \in K$. Let $L$ be an extension of $K$ obtained by adjoining a root of $z^ p - z = \xi $. Then $L/K$ is Galois and one of the following happens </p>
+  <p><ol>
+  <li><p>
+$L = K$, 
+</p>
+</li><li><p>
+$L/K$ is unramified with respect to $A$ of degree $p$, 
+</p>
+</li><li><p>
+$L/K$ is totally ramified with respect to $A$ with ramification index $p$, and 
+</p>
+</li><li><p>
+the integral closure $B$ of $A$ in $L$ is a discrete valuation ring, $A \subset B$ is weakly unramified, and $A \to B$ induces a purely inseparable residue field extension of degree $p$. 
+</p>
+</li>
+</ol></p>
+  <p> Let $\pi $ be a uniformizer of $A$. We have the following implications: </p>
+  <p><ol>
+  <li class="custom-item" data-marker="(A)"><p>
+If $\xi \in A$, then we are in case (1) or (2). 
+</p>
+</li><li class="custom-item" data-marker="(B)"><p>
+If $\xi = \pi ^{-n}a$ where $n > 0$ is not divisible by $p$ and $a$ is a unit in $A$, then we are in case (3) 
+</p>
+</li><li class="custom-item" data-marker="(C)"><p>
+If $\xi = \pi ^{-n} a$ where $n > 0$ is divisible by $p$ and the image of $a$ in $\kappa _ A$ is not a $p$th power, then we are in case (4). 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The extension is Galois of order dividing $p$ by the discussion in Fields, Section <a href="/tag/09I7" data-tag="09I7">9.25</a>. It immediately follows from the discussion in Section <a href="/tag/09E3" data-tag="09E3">15.114</a> that we are in one of the cases (1) – (4) listed in the lemma. 
+    <p>
+      Case (A). Here we see that $A \to A[x]/(x^ p - x - \xi )$ is a finite étale ring extension. Hence we are in cases (1) or (2). 
+    <p>
+      Case (B). Write $\xi = \pi ^{-n}a$ where $p$ does not divide $n$. Let $B \subset L$ be the integral closure of $A$ in $L$. If $C = B_\mathfrak m$ for some maximal ideal $\mathfrak m$, then it is clear that $p \text{ord}_ C(z) = -n \text{ord}_ C(\pi )$. In particular $A \subset C$ has ramification index divisible by $p$. It follows that it is $p$ and that $B = C$. 
+    <p>
+      Case (C). Set $k = n/p$. Then we can rewrite the equation as 
+    <p>
+      <div class="equation">
+  \[  (\pi ^ kz)^ p - \pi ^{n - k} (\pi ^ kz) = a  \]
+</div>
+    <p>
+       Since $A[y]/(y^ p - \pi ^{n - k}y - a)$ is a discrete valuation ring weakly unramified over $A$, the lemma follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09F1">
+  <p><a class="environment-identifier" href="/tag/09F1">Lemma <span data-tag="09F1">15.117.12</span>.</a> Let $A \subset B \subset C$ be extensions of discrete valuation rings with fractions fields $K \subset L \subset M$. Assume </p>
+  <p><ol>
+  <li><p>
+$A \subset B$ weakly unramified, 
+</p>
+</li><li><p>
+the characteristic of $K$ is $p$, 
+</p>
+</li><li><p>
+$M$ is a degree $p$ Galois extension of $L$, and 
+</p>
+</li><li><p>
+$\kappa _ A = \bigcap _{n \geq 1} \kappa _ B^{p^ n}$. 
+</p>
+</li>
+</ol></p>
+  <p> Then there exists a finite Galois extension $K_1/K$ totally ramified with respect to $A$ which is a weak solution for $A \to C$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since the characteristic of $L$ is $p$ we know that $M$ is an Artin-Schreier extension of $L$ (Fields, Lemma <a href="/tag/09DY" data-tag="09DY">9.25.1</a>). Thus we may pick $z \in M$, $z \not\in L$ such that $\xi = z^ p - z \in L$. Choose $n \geq 0$ such that $\pi ^ n\xi \in B$. We pick $z$ such that $n$ is minimal. If $n = 0$, then $M/L$ is unramified with respect to $B$ (Lemma <a href="/tag/09F0" data-tag="09F0">15.117.11</a>) and we are done. Thus we have $n > 0$. 
+    <p>
+      Assumption (4) implies that $\kappa _ A$ is perfect. Thus we may choose compatible ring maps $\overline{\sigma } : \kappa _ A \to A/\pi ^ n A$ and $\overline{\sigma } : \kappa _ B \to B/\pi ^ n B$ as in Lemma <a href="/tag/09EZ" data-tag="09EZ">15.117.10</a>. We lift the second of these to a map of sets $\sigma : \kappa _ B \to B$<a class="footnotemark" href="#a0000395999" id="a0000395999-mark"><sup>1</sup></a>. Then we can write 
+    <p>
+      <div class="equation">
+  \[  \xi = \sum \nolimits _{i = n, \ldots , 1} \sigma (\lambda _ i) \pi ^{-i} + b  \]
+</div>
+    <p>
+       for some $\lambda _ i \in \kappa _ B$ and $b \in B$. Let 
+    <p>
+      <div class="equation">
+  \[  I = \{ i \in \{ n, \ldots , 1\}  \mid \lambda _ i \in \kappa _ A\}   \]
+</div>
+    <p>
+       and 
+    <p>
+      <div class="equation">
+  \[  J = \{ j \in \{ n, \ldots , 1\}  \mid \lambda _ i \not\in \kappa _ A\}   \]
+</div>
+    <p>
+       We will argue by induction on the size of the finite set $J$. 
+    <p>
+      The case $J = \emptyset $. Here for all $i \in \{ n, \ldots , 1\} $ we have $\sigma (\lambda _ i) = a_ i + \pi ^ n b_ i$ for some $a_ i \in A$ and $b_ i \in B$ by our choice of $\sigma $. Thus $\xi = \pi ^{-n} a + b$ for some $a \in A$ and $b \in B$. If $p | n$, then we write $a = a_0^ p + \pi a_1$ for some $a_0, a_1 \in A$ (as the residue field of $A$ is perfect). We compute 
+    <p>
+      <div class="equation">
+  \[  (z - \pi ^{-n/p}a_0)^ p - (z - \pi ^{-n/p}a_0) = \pi ^{-(n - 1)}(a_1 + \pi ^{n - 1 - n/p}a_0) + b'  \]
+</div>
+    <p>
+       for some $b' \in B$. This would contradict the minimality of $n$. Thus $p$ does not divide $n$. Consider the degree $p$ extension $K_1$ of $K$ given by $w^ p - w = \pi ^{-n}a$. By Lemma <a href="/tag/09F0" data-tag="09F0">15.117.11</a> this extension is Galois and totally ramified with respect to $A$. Thus $L_1 = L \otimes _ K K_1$ is a field and $A_1 \subset B_1$ is weakly unramified (Lemma <a href="/tag/09ER" data-tag="09ER">15.117.3</a>). By Lemma <a href="/tag/09F0" data-tag="09F0">15.117.11</a> the ring $M_1 = M \otimes _ K K_1$ is either a product of $p$ copies of $L_1$ (in which case we are done) or a field extension of $L_1$ of degree $p$. Moreover, in the second case, either $C_1$ is weakly unramified over $B_1$ (in which case we are done) or $M_1/L_1$ is degree $p$, Galois, and totally ramified with respect to $B_1$. In this last case the extension $M_1/L_1$ is generated by the element $z - w$ and 
+    <p>
+      <div class="equation">
+  \[  (z - w)^ p - (z - w) = z^ p - z - (w^ p - w) = b  \]
+</div>
+    <p>
+       with $b \in B$ (see above). Thus by Lemma <a href="/tag/09F0" data-tag="09F0">15.117.11</a> once more the extension $M_1/L_1$ is unramified with respect to $B_1$ and we conclude that $K_1$ is a weak solution for $A \to C$. From now on we assume $J \not= \emptyset $. 
+    <p>
+      Suppose that $j', j \in J$ such that $j' = p^ r j$ for some $r > 0$. Then we change our choice of $z$ into 
+    <p>
+      <div class="equation">
+  \[  z' = z - (\sigma (\lambda _ j) \pi ^{-j} + \sigma (\lambda _ j^ p) \pi ^{-pj} + \ldots + \sigma (\lambda _ j^{p^{r - 1}}) \pi ^{-p^{r - 1}j})  \]
+</div>
+    <p>
+       Then $\xi $ changes into $\xi ' = (z')^ p - (z')$ as follows 
+    <p>
+      <div class="equation">
+  \[  \xi ' = \xi - \sigma (\lambda _ j) \pi ^{-j} + \sigma (\lambda _ j^{p^ r}) \pi ^{-j'} + \text{something in }B  \]
+</div>
+    <p>
+       Writing $\xi ' = \sum \nolimits _{i = n, \ldots , 1} \sigma (\lambda '_ i) \pi ^{-i} + b'$ as before we find that $\lambda '_ i = \lambda _ i$ for $i \not= j, j'$ and $\lambda '_ j = 0$. Thus the set $J$ has gotten smaller. By induction on the size of $J$ we may assume no such pair $j, j'$ exists. (Please observe that in this procedure we may get thrown back into the case that $J = \emptyset $ we treated above.) 
+    <p>
+      For $j \in J$ write $\lambda _ j = \mu _ j^{p^{r_ j}}$ for some $r_ j \geq 0$ and $\mu _ j \in \kappa _ B$ which is not a $p$th power. This is possible by our assumption (4). Let $j \in J$ be the unique index such that $j p^{-r_ j}$ is maximal. (The index is unique by the result of the preceding paragraph.) Choose $r > \max (r_ j + 1)$ and such that $j p^{r - r_ j} > n$ for $j \in J$. Choose a separable extension $K_1/K$ totally ramified with respect to $A$ of degree $p^ r$ such that the corresponding discrete valuation ring $A_1 \subset K_1$ has uniformizer $\pi '$ with $(\pi ')^{p^ r} = \pi + \pi ^{n + 1}a$ for some $a \in A_1$ (Lemma <a href="/tag/09EW" data-tag="09EW">15.117.7</a>). Observe that $L_1 = L \otimes _ K K_1$ is a field and that $L_1/L$ is totally ramified with respect to $B$ (Lemma <a href="/tag/09ER" data-tag="09ER">15.117.3</a>). Computing in the integral closure $B_1$ we get 
+    <p>
+      <div class="equation">
+  \[  \xi = \sum \nolimits _{i \in I} \sigma (\lambda _ i) (\pi ')^{-i p^ r} + \sum \nolimits _{j \in J} \sigma (\mu _ j)^{p^{r_ j}} (\pi ')^{-j p^ r} + b_1  \]
+</div>
+    <p>
+       for some $b_1 \in B_1$. Note that $\sigma (\lambda _ i)$ for $i \in I$ is a $q$th power modulo $\pi ^ n$, i.e., modulo $(\pi ')^{n p^ r}$. Hence we can rewrite the above as 
+    <p>
+      <div class="equation">
+  \[  \xi = \sum \nolimits _{i \in I} x_ i^{p^ r} (\pi ')^{-i p^ r} + \sum \nolimits _{j \in J} \sigma (\mu _ j)^{p^{r_ j}} (\pi ')^{- j p^ r} + b_1  \]
+</div>
+    <p>
+       As in the previous paragraph we change our choice of $z$ into 
+    <p>
+      <div class="equation">
+  \begin{align*}  z' &  = z \\ &  - \sum \nolimits _{i \in I} \left(x_ i (\pi ')^{-i} + \ldots + x_ i^{p^{r - 1}} (\pi ')^{-i p^{r - 1}}\right) \\ &  - \sum \nolimits _{j \in J} \left( \sigma (\mu _ j) (\pi ')^{- j p^{r - r_ j}} + \ldots + \sigma (\mu _ j)^{p^{r_ j - 1}} (\pi ')^{- j p^{r - 1}} \right) \end{align*}
+</div>
+    <p>
+       to obtain 
+    <p>
+      <div class="equation">
+  \[  (z')^ p - z' = \sum \nolimits _{i \in I} x_ i (\pi ')^{-i} + \sum \nolimits _{j \in J} \sigma (\mu _ j) (\pi ')^{- j p^{r - r_ j}} + b_1'  \]
+</div>
+    <p>
+       for some $b'_1 \in B_1$. Since there is a unique $j$ such that $j p^{r - r_ j}$ is maximal and since $j p^{r - r_ j}$ is bigger than $i \in I$ and divisible by $p$, we see that $M_1 / L_1$ falls into case (C) of Lemma <a href="/tag/09F0" data-tag="09F0">15.117.11</a>. This finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09F2">
+  <p><a class="environment-identifier" href="/tag/09F2">Lemma <span data-tag="09F2">15.117.13</span>.</a> Let $A$ be a ring which contains a primitive $p$th root of unity $\zeta $. Set $w = 1 - \zeta $. Then </p>
+  <div class="equation">
+  \[  P(z) = \frac{(1 + wz)^ p - 1}{w^ p} = z^ p - z + \sum \nolimits _{0 < i < p} a_ i z^ i  \]
+</div>
+  <p> is an element of $A[z]$ and in fact $a_ i \in (w)$. Moreover, we have </p>
+  <div class="equation">
+  \[  P(z_1 + z_2 + w z_1 z_2) = P(z_1) + P(z_2) + w^ p P(z_1) P(z_2)  \]
+</div>
+  <p> in the polynomial ring $A[z_1, z_2]$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It suffices to prove this when 
+    <p>
+      <div class="equation">
+  \[  A = \mathbf{Z}[\zeta ] = \mathbf{Z}[x]/(x^{p - 1} + \ldots + x + 1)  \]
+</div>
+    <p>
+       is the ring of integers of the cyclotomic field. The polynomial identity $t^ p - 1 = (t - 1)(t - \zeta ) \ldots (t - \zeta ^{p - 1})$ (which is proved by looking at the roots on both sides) shows that $t^{p - 1} + \ldots + t + 1 = (t - \zeta ) \ldots (t - \zeta ^{p - 1})$. Substituting $t = 1$ we obtain $p = (1 - \zeta )(1 - \zeta ^2) \ldots (1 - \zeta ^{p - 1})$. The maximal ideal $(p, w) = (w)$ is the unique prime ideal of $A$ lying over $p$ (as fields of characteristic $p$ do not have nontrivial $p$th roots of $1$). It follows that $p = u w^{p - 1}$ for some unit $u$. This implies that 
+    <p>
+      <div class="equation">
+  \[  a_ i = \frac{1}{p} {p \choose i} u w^{i - 1}  \]
+</div>
+    <p>
+       for $p > i > 1$ and $- 1 + a_1 = pw/w^ p = u$. Since $P(-1) = 0$ we see that $0 = (-1)^ p - u$ modulo $(w)$. Hence $a_1 \in (w)$ and the proof if the first part is done. The second part follows from a direct computation we omit. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09F3">
+  <p><a class="environment-identifier" href="/tag/09F3">Lemma <span data-tag="09F3">15.117.14</span>.</a> Let $A$ be a discrete valuation ring of mixed characteristic $(0, p)$ which contains a primitive $p$th root of $1$. Let $P(t) \in A[t]$ be the polynomial of Lemma <a href="/tag/09F2" data-tag="09F2">15.117.13</a>. Let $\xi \in K$. Let $L$ be an extension of $K$ obtained by adjoining a root of $P(z) = \xi $. Then $L/K$ is Galois and one of the following happens </p>
+  <p><ol>
+  <li><p>
+$L = K$, 
+</p>
+</li><li><p>
+$L/K$ is unramified with respect to $A$ of degree $p$, 
+</p>
+</li><li><p>
+$L/K$ is totally ramified with respect to $A$ with ramification index $p$, and 
+</p>
+</li><li><p>
+the integral closure $B$ of $A$ in $L$ is a discrete valuation ring, $A \subset B$ is weakly unramified, and $A \to B$ induces a purely inseparable residue field extension of degree $p$. 
+</p>
+</li>
+</ol></p>
+  <p> Let $\pi $ be a uniformizer of $A$. We have the following implications: </p>
+  <p><ol>
+  <li class="custom-item" data-marker="(A)"><p>
+If $\xi \in A$, then we are in case (1) or (2). 
+</p>
+</li><li class="custom-item" data-marker="(B)"><p>
+If $\xi = \pi ^{-n}a$ where $n > 0$ is not divisible by $p$ and $a$ is a unit in $A$, then we are in case (3) 
+</p>
+</li><li class="custom-item" data-marker="(C)"><p>
+If $\xi = \pi ^{-n} a$ where $n > 0$ is divisible by $p$ and the image of $a$ in $\kappa _ A$ is not a $p$th power, then we are in case (4). 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Adjoining a root of $P(z) = \xi $ is the same thing as adjoining a root of $y^ p = w^ p(1 + \xi )$. Since $K$ contains a primitive $p$th root of $1$ the extension is Galois of order dividing $p$ by the discussion in Fields, Section <a href="/tag/09I6" data-tag="09I6">9.24</a>. It immediately follows from the discussion in Section <a href="/tag/09E3" data-tag="09E3">15.114</a> that we are in one of the cases (1) – (4) listed in the lemma. 
+    <p>
+      Case (A). Here we see that $A \to A[x]/(P(x) - \xi )$ is a finite étale ring extension. Hence we are in cases (1) or (2). 
+    <p>
+      Case (B). Write $\xi = \pi ^{-n}a$ where $p$ does not divide $n$. Let $B \subset L$ be the integral closure of $A$ in $L$. If $C = B_\mathfrak m$ for some maximal ideal $\mathfrak m$, then it is clear that $p \text{ord}_ C(z) = -n \text{ord}_ C(\pi )$. In particular $A \subset C$ has ramification index divisible by $p$. It follows that it is $p$ and that $B = C$. 
+    <p>
+      Case (C). Set $k = n/p$. Then we can rewrite the equation as 
+    <p>
+      <div class="equation">
+  \[  (\pi ^ kz)^ p - \pi ^{n - k} (\pi ^ kz) + \sum a_ i \pi ^{n - ik} (\pi ^ kz)^ i = a  \]
+</div>
+    <p>
+       Since $A[y]/(y^ p - \pi ^{n - k}y - \sum a_ i \pi ^{n - ik} y^ i - a)$ is a discrete valuation ring weakly unramified over $A$, the lemma follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $A$ be a discrete valuation ring of mixed characteristic $(0, p)$ containing a primitive $p$th root of $1$. Let $w \in A$ and $P(t) \in A[t]$ be as in Lemma <a href="/tag/09F2" data-tag="09F2">15.117.13</a>. Let $L$ be a finite extension of $K$. We say $L/K$ is a <em>degree $p$ extension of finite level</em> if $L$ is a degree $p$ extension of $K$ obtained by adjoining a root of the equation $P(z) = \xi $ where $\xi \in K$ is an element with $w^ p \xi \in \mathfrak m_ A$. 
+</p>
+<p>
+This definition is relevant to the discussion in this section due to the following straightforward lemma. 
+</p>
+<p>
+<article class="env-lemma" id="09F4">
+  <p><a class="environment-identifier" href="/tag/09F4">Lemma <span data-tag="09F4">15.117.15</span>.</a> Let $A \subset B \subset C$ be extensions of discrete valuation rings with fractions fields $K \subset L \subset M$. Assume that </p>
+  <p><ol>
+  <li><p>
+$A$ has mixed characteristic $(0, p)$, 
+</p>
+</li><li><p>
+$A \subset B$ is weakly unramified, 
+</p>
+</li><li><p>
+$B$ contains a primitive $p$th root of $1$, and 
+</p>
+</li><li><p>
+$M/L$ is Galois of degree $p$. 
+</p>
+</li>
+</ol></p>
+  <p> Then there exists a finite Galois extension $K_1/K$ totally ramified with respect to $A$ which is either a weak solution for $A \to C$ or is such that $M_1/L_1$ is a degree $p$ extension of finite level. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\pi \in A$ be a uniformizer. By Kummer theory (Fields, Lemma <a href="/tag/09DX" data-tag="09DX">9.24.1</a>) $M$ is obtained from $L$ by adjoining the root of $y^ p = b$ for some $b \in L$. 
+    <p>
+      If $\text{ord}_ B(b)$ is prime to $p$, then we choose a degree $p$ separable extension $K_1/K$ totally ramified with respect to $A$ (for example using Lemma <a href="/tag/09EW" data-tag="09EW">15.117.7</a>). Let $A_1$ be the integral closure of $A$ in $K_1$. By Lemma <a href="/tag/09ER" data-tag="09ER">15.117.3</a> the integral closure $B_1$ of $B$ in $L_1 = L \otimes _ K K_1$ is a discrete valuation ring weakly unramified over $A_1$. If $K_1/K$ is not a weak solution for $A \to C$, then the integral closure $C_1$ of $C$ in $M_1 = M \otimes _ K K_1$ is a discrete valuation ring and $B_1 \to C_1$ has ramification index $p$. In this case, the field $M_1$ is obtained from $L_1$ by adjoining the $p$th root of $b$ with $\text{ord}_{B_1}(b)$ divisible by $p$. Replacing $A$ by $A_1$, etc we may assume that $b = \pi ^ n u$ where $u \in B$ is a unit and $n$ is divisible by $p$. Of course, in this case the extension $M$ is obtained from $L$ by adjoining the $p$th root of a unit. 
+    <p>
+      Suppose $M$ is obtained from $L$ by adjoining the root of $y^ p = u$ for some unit $u$ of $B$. If the residue class of $u$ in $\kappa _ B$ is not a $p$th power, then $B \subset C$ is weakly unramified (Lemma <a href="/tag/09EX" data-tag="09EX">15.117.8</a>) and we are done. Otherwise, we can replace our choice of $y$ by $y/v$ where $v^ p$ and $u$ have the same image in $\kappa _ B$. After such a replacement we have 
+    <p>
+      <div class="equation">
+  \[  y^ p = 1 + \pi b  \]
+</div>
+    <p>
+       for some $b \in B$. Then we see that $P(z) = \pi b/ w^ p$ where $z = (y - 1)/w$. Thus we see that the extension is a degree $p$ extension of finite level with $\xi = \pi b / w^ p$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $A$ be a discrete valuation ring of mixed characteristic $(0, p)$ containing a primitive $p$th root of $1$. Let $w \in A$ and $P(t) \in A[t]$ be as in Lemma <a href="/tag/09F2" data-tag="09F2">15.117.13</a>. Let $L$ be a degree $p$ extension of $K$ of finite level. Choose $z \in L$ generating $L$ over $K$ with $\xi = P(z) \in K$. Choose a uniformizer $\pi $ for $A$ and write $w = u \pi ^{e_1}$ for some integer $e_1 = \text{ord}_ A(w)$ and unit $u \in A$. Finally, pick $n \geq 0$ such that 
+</p>
+<div class="equation">
+  \[  \pi ^ n \xi \in A  \]
+</div>
+<p>
+ The <em>level</em> of $L/K$ is the smallest value of the quantity $n/e_1$ taking over all $z$ generating $L/K$ with $\xi = P(z) \in K$. 
+</p>
+<p>
+We make a couple of remarks. Since the extension is of finite level we know that we can choose $z$ such that $n < pe_1$. Thus the level is a rational number contained in $[0, p)$. If the level is zero then $L/K$ is unramified with respect to $A$ by Lemma <a href="/tag/09F3" data-tag="09F3">15.117.14</a>. Our next goal is to lower the level. 
+</p>
+<p>
+<article class="env-lemma" id="09F5">
+  <p><a class="environment-identifier" href="/tag/09F5">Lemma <span data-tag="09F5">15.117.16</span>.</a> Let $A \subset B \subset C$ be extensions of discrete valuation rings with fractions fields $K \subset L \subset M$. Assume </p>
+  <p><ol>
+  <li><p>
+$A$ has mixed characteristic $(0, p)$, 
+</p>
+</li><li><p>
+$A \subset B$ weakly unramified, 
+</p>
+</li><li><p>
+$B$ contains a primitive $p$th root of $1$, 
+</p>
+</li><li><p>
+$M/L$ is a degree $p$ extension of finite level $l > 0$, 
+</p>
+</li><li><p>
+$\kappa _ A = \bigcap _{n \geq 1} \kappa _ B^{p^ n}$. 
+</p>
+</li>
+</ol></p>
+  <p> Then there exists a finite separable extension $K_1$ of $K$ totally ramified with respect to $A$ such that either $K_1$ is a weak solution for $A \to C$, or the extension $M_1/L_1$ is a degree $p$ extension of finite level $\leq \max (0, l - 1, 2l - p)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\pi \in A$ be a uniformizer. Let $w \in B$ and $P \in B[t]$ be as in Lemma <a href="/tag/09F2" data-tag="09F2">15.117.13</a> (for $B$). Set $e_1 = \text{ord}_ B(w)$, so that $w$ and $\pi ^{e_1}$ are associates in $B$. Pick $z \in M$ generating $M$ over $L$ with $\xi = P(z) \in K$ and $n$ such that $\pi ^ n\xi \in B$ as in the definition of the level of $M$ over $L$, i.e., $l = n/e_1$. 
+    <p>
+      The proof of this lemma is completely similar to the proof of Lemma <a href="/tag/09F1" data-tag="09F1">15.117.12</a>. To explain what is going on, observe that 
+    <p>
+      <div class="equation" id="09F6">
+    <span class="equation-label"><a href="/tag/09F6" data-tag="09F6">15.117.16.1</a></span>
+  <div>\begin{equation}  \label{more-algebra-equation-first-congruence} P(z) \equiv z^ p - z \bmod \pi ^{-n + e_1}B \end{equation}</div>
+</div>
+    <p>
+       for any $z \in L$ such that $\pi ^{-n} P(z) \in B$ (use that $z$ has valuation at worst $-n/p$ and the shape of the polynomial $P$). Moreover, we have 
+    <p>
+      <div class="equation" id="09F7">
+    <span class="equation-label"><a href="/tag/09F7" data-tag="09F7">15.117.16.2</a></span>
+  <div>\begin{equation}  \label{more-algebra-equation-second-congruence} \xi _1 + \xi _2 + w^ p \xi _1 \xi _2 \equiv \xi _1 + \xi _2 \bmod \pi ^{-2n + pe_1}B \end{equation}</div>
+</div>
+    <p>
+       for $\xi _1, \xi _2 \in \pi ^{-n}B$. Finally, observe that $n - e_1 = (l - 1)/e_1$ and $-2n + pe_1 = -(2l - p)e_1$. Write $m = n - e_1 \max (0, l - 1, 2l - p)$. The above shows that doing calculations in $\pi ^{-n}B / \pi ^{-n + m}B$ the polynomial $P$ behaves exactly as the polynomial $z^ p - z$. This explains why the lemma is true but we also give the details below. 
+    <p>
+      Assumption (4) implies that $\kappa _ A$ is perfect. Observe that $m \leq e_1$ and hence $A/\pi ^ m$ is annihilated by $w$ and hence $p$. Thus we may choose compatible ring maps $\overline{\sigma } : \kappa _ A \to A/\pi ^ mA$ and $\overline{\sigma } : \kappa _ B \to B/\pi ^ mB$ as in Lemma <a href="/tag/09EZ" data-tag="09EZ">15.117.10</a>. We lift the second of these to a map of sets $\sigma : \kappa _ B \to B$. Then we can write 
+    <p>
+      <div class="equation">
+  \[  \xi = \sum \nolimits _{i = n, \ldots , n - m + 1} \sigma (\lambda _ i) \pi ^{-i} + \pi ^{-n + m)} b  \]
+</div>
+    <p>
+       for some $\lambda _ i \in \kappa _ B$ and $b \in B$. Let 
+    <p>
+      <div class="equation">
+  \[  I = \{ i \in \{ n, \ldots , n - m + 1\}  \mid \lambda _ i \in \kappa _ A\}   \]
+</div>
+    <p>
+       and 
+    <p>
+      <div class="equation">
+  \[  J = \{ j \in \{ n, \ldots , n - m + 1\}  \mid \lambda _ i \not\in \kappa _ A\}   \]
+</div>
+    <p>
+       We will argue by induction on the size of the finite set $J$. 
+    <p>
+      The case $J = \emptyset $. Here for all $i \in \{ n, \ldots , n - m + 1\} $ we have $\sigma (\lambda _ i) = a_ i + \pi ^{n - m}b_ i$ for some $a_ i \in A$ and $b_ i \in B$ by our choice of $\overline{\sigma }$. Thus $\xi = \pi ^{-n} a + \pi ^{-n + m} b$ for some $a \in A$ and $b \in B$. If $p | n$, then we write $a = a_0^ p + \pi a_1$ for some $a_0, a_1 \in A$ (as the residue field of $A$ is perfect). Set $z_1 = - \pi ^{-n/p} a_0$. Note that $P(z_1) \in \pi ^{-n}B$ and that $z + z_1 + w z z_1$ is an element generating $M$ over $L$ (note that $wz_1 \not= -1$ as $n < pe_1$). Moreover, by Lemma <a href="/tag/09F2" data-tag="09F2">15.117.13</a> we have 
+    <p>
+      <div class="equation">
+  \[  P(z + z_1 + w z z_1) = P(z) + P(z_1) + w^ p P(z) P(z_1) \in K  \]
+</div>
+    <p>
+       and by equations (<a href="/tag/09F6" data-tag="09F6">15.117.16.1</a>) and (<a href="/tag/09F7" data-tag="09F7">15.117.16.2</a>) we have 
+    <p>
+      <div class="equation">
+  \[  P(z) + P(z_1) + w^ p P(z) P(z_1) \equiv \xi + z_1^ p - z_1 \bmod \pi ^{-n + m}B  \]
+</div>
+    <p>
+       for some $b' \in B$. This contradict the minimality of $n$! Thus $p$ does not divide $n$. Consider the degree $p$ extension $K_1$ of $K$ given by $P(y) = -\pi ^{-n}a$. By Lemma <a href="/tag/09F3" data-tag="09F3">15.117.14</a> this extension is separable and totally ramified with respect to $A$. Thus $L_1 = L \otimes _ K K_1$ is a field and $A_1 \subset B_1$ is weakly unramified (Lemma <a href="/tag/09ER" data-tag="09ER">15.117.3</a>). By Lemma <a href="/tag/09F3" data-tag="09F3">15.117.14</a> the ring $M_1 = M \otimes _ K K_1$ is either a product of $p$ copies of $L_1$ (in which case we are done) or a field extension of $L_1$ of degree $p$. Moreover, in the second case, either $C_1$ is weakly unramified over $B_1$ (in which case we are done) or $M_1/L_1$ is degree $p$, Galois, totally ramified with respect to $B_1$. In this last case the extension $M_1/L_1$ is generated by the element $z + y + wzy$ and we see that $P(z + y + wzy) \in L_1$ and 
+    <p>
+      <div class="equation">
+  \begin{align*}  P(z + y + wzy) &  = P(z) + P(y) + w^ p P(z) P(y) \\ &  \equiv \xi - \pi ^{-n}a \bmod \pi ^{-n + m}B_1 \\ &  \equiv 0 \bmod \pi ^{-n + m}B_1 \end{align*}
+</div>
+    <p>
+       in exactly the same manner as above. By our choice of $m$ this means exactly that $M_1/L_1$ has level at most $\max (0, l - 1, 2l - p)$. From now on we assume that $J \not= \emptyset $. 
+    <p>
+      Suppose that $j', j \in J$ such that $j' = p^ r j$ for some $r > 0$. Then we set 
+    <p>
+      <div class="equation">
+  \[  z_1 = - \sigma (\lambda _ j) \pi ^{-j} - \sigma (\lambda _ j^ p) \pi ^{-pj} - \ldots - \sigma (\lambda _ j^{p^{r - 1}}) \pi ^{-p^{r - 1}j}  \]
+</div>
+    <p>
+       and we change $z$ into $z' = z + z_1 + wzz_1$. Observe that $z' \in M$ generates $M$ over $L$ and that we have $\xi ' = P(z') = P(z) + P(z_1) + wP(z)P(z_1) \in L$ with 
+    <p>
+      <div class="equation">
+  \[  \xi ' \equiv \xi - \sigma (\lambda _ j) \pi ^{-j} + \sigma (\lambda _ j^{p^ r}) \pi ^{-j'} \bmod \pi ^{-n + m}B  \]
+</div>
+    <p>
+       by using equations (<a href="/tag/09F6" data-tag="09F6">15.117.16.1</a>) and (<a href="/tag/09F7" data-tag="09F7">15.117.16.2</a>) as above. Writing 
+    <p>
+      <div class="equation">
+  \[  \xi ' = \sum \nolimits _{i = n, \ldots , n - m + 1} \sigma (\lambda '_ i) \pi ^{-i} + \pi ^{-n + m}b'  \]
+</div>
+    <p>
+       as before we find that $\lambda '_ i = \lambda _ i$ for $i \not= j, j'$ and $\lambda '_ j = 0$. Thus the set $J$ has gotten smaller. By induction on the size of $J$ we may assume there is no pair $j, j'$ of $J$ such that $j'/j$ is a power of $p$. (Please observe that in this procedure we may get thrown back into the case that $J = \emptyset $ we treated above.) 
+    <p>
+      For $j \in J$ write $\lambda _ j = \mu _ j^{p^{r_ j}}$ for some $r_ j \geq 0$ and $\mu _ j \in \kappa _ B$ which is not a $p$th power. This is possible by our assumption (4). Let $j \in J$ be the unique index such that $j p^{-r_ j}$ is maximal. (The index is unique by the result of the preceding paragraph.) Choose $r > \max (r_ j + 1)$ and such that $j p^{r - r_ j} > n$ for $j \in J$. Let $K_1/K$ be the extension of degree $p^ r$, totally ramified with respect to $A$, defined by $(\pi ')^{p^ r} = \pi $. Observe that $\pi '$ is the uniformizer of the corresponding discrete valuation ring $A_1 \subset K_1$. Observe that $L_1 = L \otimes _ K K_1$ is a field and $L_1/L$ is totally ramified with respect to $B$ (Lemma <a href="/tag/09ER" data-tag="09ER">15.117.3</a>). Computing in the integral closure $B_1$ we get 
+    <p>
+      <div class="equation">
+  \[  \xi = \sum \nolimits _{i \in I} \sigma (\lambda _ i) (\pi ')^{-i p^ r} + \sum \nolimits _{j \in J} \sigma (\mu _ j)^{p^{r_ j}} (\pi ')^{-j p^ r} + \pi ^{-n + m} b_1  \]
+</div>
+    <p>
+       for some $b_1 \in B_1$. Note that $\sigma (\lambda _ i)$ for $i \in I$ is a $q$th power modulo $\pi ^ m$, i.e., modulo $(\pi ')^{m p^ r}$. Hence we can rewrite the above as 
+    <p>
+      <div class="equation">
+  \[  \xi = \sum \nolimits _{i \in I} x_ i^{p^ r} (\pi ')^{-i p^ r} + \sum \nolimits _{j \in J} \sigma (\mu _ j)^{p^{r_ j}} (\pi ')^{- j p^ r} + \pi ^{-n + m}b_1  \]
+</div>
+    <p>
+       Similar to our choice in the previous paragraph we set 
+    <p>
+      <div class="equation">
+  \begin{align*}  z_1 &  - \sum \nolimits _{i \in I} \left(x_ i (\pi ')^{-i} + \ldots + x_ i^{p^{r - 1}} (\pi ')^{-i p^{r - 1}}\right) \\ &  - \sum \nolimits _{j \in J} \left( \sigma (\mu _ j) (\pi ')^{- j p^{r - r_ j}} + \ldots + \sigma (\mu _ j)^{p^{r_ j - 1}} (\pi ')^{- j p^{r - 1}} \right) \end{align*}
+</div>
+    <p>
+       and we change our choice of $z$ into $z' = z + z_1 + wzz_1$. Then $z'$ generates $M_1$ over $L_1$ and $\xi ' = P(z') = P(z) + P(z_1) + w^ p P(z) P(z_1) \in L_1$ and a calculation shows that 
+    <p>
+      <div class="equation">
+  \[  \xi ' \equiv \sum \nolimits _{i \in I} x_ i (\pi ')^{-i} + \sum \nolimits _{j \in J} \sigma (\mu _ j) (\pi ')^{- j p^{r - r_ j}} + (\pi ')^{(-n + m)p^ r}b'_1  \]
+</div>
+    <p>
+       for some $b'_1 \in B_1$. There is a unique $j$ such that $j p^{r - r_ j}$ is maximal and $j p^{r - r_ j}$ is bigger than $i \in I$. If $j p^{r - r_ j} \leq (n - m)p^ r$ then the level of the extension $M_1/L_1$ is less than $\max (0, l - 1, 2l - p)$. If not, then, as $p$ divides $j p^{r - r_ j}$, we see that $M_1 / L_1$ falls into case (C) of Lemma <a href="/tag/09F3" data-tag="09F3">15.117.14</a>. This finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09F8">
+  <p><a class="environment-identifier" href="/tag/09F8">Lemma <span data-tag="09F8">15.117.17</span>.</a> Let $A \subset B \subset C$ be extensions of discrete valuation rings with fraction fields $K \subset L \subset M$. Assume </p>
+  <p><ol>
+  <li><p>
+the residue field $k$ of $A$ is algebraically closed of characteristic $p > 0$, 
+</p>
+</li><li><p>
+$A$ and $B$ are complete, 
+</p>
+</li><li><p>
+$A \to B$ is weakly unramified, 
+</p>
+</li><li><p>
+$M$ is a finite extension of $L$, 
+</p>
+</li><li><p>
+$k = \bigcap \nolimits _{n \geq 1} \kappa _ B^{p^ n}$ 
+</p>
+</li>
+</ol></p>
+  <p> Then there exists a finite extension $K_1/K$ which is a weak solution for $A \to C$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $M'$ be any finite extension of $L$ and consider the integral closure $C'$ of $B$ in $M'$. Then $C'$ is finite over $B$ as $B$ is Nagata by Algebra, Lemma <a href="/tag/032W" data-tag="032W">10.162.8</a>. Moreover, $C'$ is a discrete valuation ring, see discussion in Remark <a href="/tag/09EM" data-tag="09EM">15.116.1</a>. Moreover $C'$ is complete as a $B$-module, hence complete as a discrete valuation ring, see Algebra, Section <a href="/tag/00M9" data-tag="00M9">10.96</a>. It follows in particular that $C$ is the integral closure of $B$ in $M$ (by definition of valuation rings as maximal for the relation of domination). 
+    <p>
+      Let $M \subset M'$ be a finite extension and let $C' \subset M'$ be the integral closure of $B$ as above. By Lemma <a href="/tag/09ES" data-tag="09ES">15.117.4</a> it suffices to prove the result for $A \to B \to C'$. Hence we may assume that $M/L$ is normal, see Fields, Lemma <a href="/tag/09DT" data-tag="09DT">9.16.3</a>. 
+    <p>
+      If $M / L$ is normal, we can find a chain of finite extensions 
+    <p>
+      <div class="equation">
+  \[  L = L^0 \subset L^1 \subset L^2 \subset \ldots \subset L^ r = M  \]
+</div>
+    <p>
+       such that each extension $L^{j + 1}/L^ j$ is either: 
+    <p>
+      <ol>
+  <li class="custom-item" data-marker="(a)"><p>
+purely inseparable of degree $p$, 
+</p>
+</li><li class="custom-item" data-marker="(b)"><p>
+totally ramified with respect to $B^ j$ and Galois of degree $p$, 
+</p>
+</li><li class="custom-item" data-marker="(c)"><p>
+totally ramified with respect to $B^ j$ and Galois cyclic of order prime to $p$, 
+</p>
+</li><li class="custom-item" data-marker="(d)"><p>
+Galois and unramified with respect to $B^ j$. 
+</p>
+</li>
+</ol>
+    <p>
+       Here $B^ j$ is the integral closure of $B$ in $L^ j$. Namely, since $M/L$ is normal we can write it as a compositum of a Galois extension and a purely inseparable extension (Fields, Lemma <a href="/tag/030M" data-tag="030M">9.27.3</a>). For the purely inseparable extension the existence of the filtration is clear. In the Galois case, note that $G$ is “the” decomposition group and let $I \subset G$ be the inertia group. Then on the one hand $I$ is solvable by Lemma <a href="/tag/09EE" data-tag="09EE">15.114.5</a> and on the other hand the extension $M^ I/L$ is unramified with respect to $B$ by Lemma <a href="/tag/09EH" data-tag="09EH">15.114.9</a>. This proves we have a filtration as stated. 
+    <p>
+      We are going to argue by induction on the integer $r$. Suppose that we can find a finite extension $K_1/K$ which is a weak solution for $A \to B^1$ where $B^1$ is the integral closure of $B$ in $L^1$. Let $K'_1$ be the normal closure of $K_1/K$ (Fields, Lemma <a href="/tag/09DT" data-tag="09DT">9.16.3</a>). Since $A$ is complete and the residue field of $A$ is algebraically closed we see that $K'_1/K_1$ is separable and totally ramified with respect to $A_1$ (some details omitted). Hence $K'_1/K$ is a weak solution for $A \to B^1$ as well by Lemma <a href="/tag/09ER" data-tag="09ER">15.117.3</a>. In other words, we may and do assume that $K_1$ is a normal extension of $K$. Having done so we consider the sequence 
+    <p>
+      <div class="equation">
+  \[  L^0_1 = (L^0 \otimes _ K K_1)_{red} \subset L^1_1 = (L^1 \otimes _ K K_1)_{red} \subset \ldots \subset L^ r_1 = (L^ r \otimes _ K K_1)_{red}  \]
+</div>
+    <p>
+       and the corresponding integral closures $B^ i_1$. Note that $C_1 = B^ r_1$ is a product of discrete valuation rings which are transitively permuted by $G = \text{Aut}(K_1/K)$ by Lemma <a href="/tag/09EU" data-tag="09EU">15.117.6</a>. In particular all the extensions of discrete valuation rings $A_1 \to (C_1)_\mathfrak m$ are isomorphic and a weak solution for one will be a weak solution for all of them. We can apply the induction hypothesis to the sequence 
+    <p>
+      <div class="equation">
+  \[  A_1 \to (B^1_1)_{B^1_1 \cap \mathfrak m} \to (B^2_1)_{B^2_1 \cap \mathfrak m} \to \ldots \to (B^ r_1)_{B^ r_1 \cap \mathfrak m} = (C_1)_\mathfrak m  \]
+</div>
+    <p>
+       to get a weak solution $K_2/K_1$ for $A_1 \to (C_1)_\mathfrak m$. The extension $K_2/K$ will then be a weak solution for $A \to C$ by what we said before. Note that the induction hypothesis applies: the ring map $A_1 \to (B^1_1)_{B^1_1 \cap \mathfrak m}$ is weakly unramified by our choice of $K_1$ and the sequence of fraction field extensions each still have one of the properties (a), (b), (c), or (d) listed above. Moreover, observe that for any finite extension $\kappa _ B \subset \kappa $ we still have $k = \bigcap \kappa ^{p^ n}$. 
+    <p>
+      Thus everything boils down to finding a weak solution for $A \subset C$ when the field extension $M/L$ satisfies one of the properties (a), (b), (c), or (d). 
+    <p>
+      Case (d). This case is trivial as here $B \to C$ is unramified already. 
+    <p>
+      Case (c). Say $M/L$ is cyclic of order $n$ prime to $p$. Because $M/L$ is totally ramified with respect to $B$ we see that the ramification index of $B \subset C$ is $n$ and hence the ramification index of $A \subset C$ is $n$ as well. Choose a uniformizer $\pi \in A$ and set $K_1 = K[\pi ^{1/n}]$. Then $K_1/K$ is a solution for $A \subset C$ by Abhyankar's lemma (Lemma <a href="/tag/0BRM" data-tag="0BRM">15.116.4</a>). 
+    <p>
+      Case (b). We divide this case into the mixed characteristic case and the equicharacteristic case. In the equicharacteristic case this is Lemma <a href="/tag/09F1" data-tag="09F1">15.117.12</a>. In the mixed characteristic case, we first replace $K$ by a finite extension to get to the situation where $M/L$ is a degree $p$ extension of finite level using Lemma <a href="/tag/09F4" data-tag="09F4">15.117.15</a>. Then the level is a rational number $l \in [0, p)$, see discussion preceding Lemma <a href="/tag/09F5" data-tag="09F5">15.117.16</a>. If the level is $0$, then $B \to C$ is weakly unramified and we're done. If not, then we can replacing the field $K$ by a finite extension to obtain a new situation with level $l' \leq \max (0, l - 1, 2l - p)$ by Lemma <a href="/tag/09F5" data-tag="09F5">15.117.16</a>. If $l = p - \epsilon $ for $\epsilon < 1$ then we see that $l' \leq p - 2\epsilon $. Hence after a finite number of replacements we obtain a case with level $\leq p - 1$. Then after at most $p - 1$ more such replacements we reach the situation where the level is zero. 
+    <p>
+      Case (a) is Lemma <a href="/tag/09EY" data-tag="09EY">15.117.9</a>. This is the only case where we possibly need a purely inseparable extension of $K$, namely, in case (2) of the statement of the lemma we win by adjoining a $p$th power of the element $\pi $. This finishes the proof of the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+At this point we have collected all the lemmas we need to prove the main result of this section. 
+</p>
+<p>
+<article class="env-theorem" id="09F9">
+  <p><a class="environment-identifier" href="/tag/09F9">Theorem <span data-tag="09F9">15.117.18</span> <span class="named">(Epp)</span>.</a>  Let $A \subset B$ be an extension of discrete valuation rings with fraction fields $K \subset L$. If the characteristic of $\kappa _ A$ is $p > 0$, assume that every element of </p>
+  <div class="equation">
+  \[  \bigcap \nolimits _{n \geq 1} \kappa _ B^{p^ n}  \]
+</div>
+  <p> is separable algebraic over $\kappa _ A$. Then there exists a finite extension $K_1/K$ which is a weak solution for $A \to B$ as defined in Definition <a href="/tag/09EN" data-tag="09EN">15.117.1</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If the characteristic of $\kappa _ A$ is zero or if the residue characteristic is $p$, the ramification index is prime to $p$, and the residue field extension is separable, then this follows from Abhyankar's lemma (Lemma <a href="/tag/0BRM" data-tag="0BRM">15.116.4</a>). Namely, suppose the ramification index is $e$. Choose a uniformizer $\pi \in A$. Let $K_1/K$ be the extension obtained by adjoining an $e$th root of $\pi $. By Lemma <a href="/tag/09EV" data-tag="09EV">15.116.2</a> we see that the integral closure $A_1$ of $A$ in $K_1$ is a discrete valuation ring with ramification index over $A$. Thus $A_1 \to (B_1)_\mathfrak m$ is formally smooth in the $\mathfrak m$-adic topology for all maximal ideals $\mathfrak m$ of $B_1$ by Lemma <a href="/tag/0BRM" data-tag="0BRM">15.116.4</a> and a fortiori these are weakly unramified extensions of discrete valuation rings. 
+    <p>
+      From now on we let $p$ be a prime number and we assume that $\kappa _ A$ has characteristic $p$. We first apply Lemma <a href="/tag/09ET" data-tag="09ET">15.117.5</a> to reduce to the case that $A$ and $B$ have separably closed residue fields. Since $\kappa _ A$ and $\kappa _ B$ are replaced by their separable algebraic closures by this procedure we see that we obtain 
+    <p>
+      <div class="equation">
+  \[  \kappa _ A \supset \bigcap \nolimits _{n \geq 1} \kappa _ B^{p^ n}  \]
+</div>
+    <p>
+       from the condition of the theorem. 
+    <p>
+      Let $\pi \in A$ be a uniformizer. Let $A^\wedge $ and $B^\wedge $ be the completions of $A$ and $B$. We have a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ B \ar[r] &  B^\wedge \\  A \ar[u] \ar[r] &  A^\wedge \ar[u] }  \]
+</div>
+    <p>
+       of extensions of discrete valuation rings. Let $K^\wedge $ be the fraction field of $A^\wedge $. Suppose that we can find a finite extension $M/K^\wedge $ which is (a) a weak solution for $A^\wedge \to B^\wedge $ and (b) a compositum of a separable extension and an extension obtained by adjoining a $p$-power root of $\pi $. Then by Lemma <a href="/tag/09EJ" data-tag="09EJ">15.115.2</a> we can find a finite extension $K_1/K$ such that $K^\wedge \otimes _ K K_1 = M$. Let $A_1$, resp. $A_1^\wedge $ be the integral closure of $A$, resp. $A^\wedge $ in $K_1$, resp. $M$. Since $A \to A^\wedge $ is formally smooth in the $\mathfrak m^\wedge $-adic topology (Lemma <a href="/tag/09E7" data-tag="09E7">15.113.5</a>) we see that $A_1 \to A_1^\wedge $ is formally smooth in the $\mathfrak m_1^\wedge $-adic topology (Lemma <a href="/tag/09EQ" data-tag="09EQ">15.116.3</a> and $A_1$ and $A_1^\wedge $ are discrete valuation rings by discussion in Remark <a href="/tag/09EM" data-tag="09EM">15.116.1</a>). We conclude from Lemma <a href="/tag/09ES" data-tag="09ES">15.117.4</a> part (2) that $K_1/K$ is a weak solution for $A \to B^\wedge $. Applying Lemma <a href="/tag/09ES" data-tag="09ES">15.117.4</a> part (1) we see that $K_1/K$ is a weak solution for $A \to B$. 
+    <p>
+      Thus we may assume $A$ and $B$ are complete discrete valuation rings with separably closed residue fields of characteristic $p$ and with $\kappa _ A \supset \bigcap \nolimits _{n \geq 1} \kappa _ B^{p^ n}$. We are also given a uniformizer $\pi \in A$ and we have to find a weak solution for $A \to B$ which is a compositum of a separable extension and a field obtained by taking $p$-power roots of $\pi $. Note that the second condition is automatic if $A$ has mixed characteristic. 
+    <p>
+      Set $k = \bigcap \nolimits _{n \geq 1} \kappa _ B^{p^ n}$. Observe that $k$ is an algebraically closed field of characteristic $p$. If $A$ has mixed characteristic let $\Lambda $ be a Cohen ring for $k$ and in the equicharacteristic case set $\Lambda = k[[t]]$. We can choose a ring map $\Lambda \to A$ which maps $t$ to $\pi $ in the equicharacteristic case. In the equicharacteristic case this follows from the Cohen structure theorem (Algebra, Theorem <a href="/tag/032A" data-tag="032A">10.160.8</a>) and in the mixed characteristic case this follows as $\mathbf{Z}_ p \to \Lambda $ is formally smooth in the adic topology (Lemmas <a href="/tag/09E7" data-tag="09E7">15.113.5</a> and <a href="/tag/07NJ" data-tag="07NJ">15.38.5</a>). Applying Lemma <a href="/tag/09ES" data-tag="09ES">15.117.4</a> we see that it suffices to prove the existence of a weak solution for $\Lambda \to B$ which in the equicharacteristic $p$ case is a compositum of a separable extension and a field obtained by taking $p$-power roots of $t$. However, since $\Lambda = k[[t]]$ in the equicharacteristic case and any extension of $k((t))$ is such a compositum, we can now drop this requirement! 
+    <p>
+      Thus we arrive at the situation where $A$ and $B$ are complete, the residue field $k$ of $A$ is algebraically closed of characteristic $p > 0$, we have $k = \bigcap \kappa _ B^{p^ n}$, and in the mixed characteristic case $p$ is a uniformizer of $A$ (i.e., $A$ is a Cohen ring for $k$). If $A$ has mixed characteristic choose a Cohen ring $\Lambda $ for $\kappa _ B$ and in the equicharacteristic case set $\Lambda = \kappa _ B[[t]]$. Arguing as above we may choose a ring map $A \to \Lambda $ lifting $k \to \kappa _ B$ and mapping a uniformizer to a uniformizer. Since $k \subset \kappa _ B$ is separable the ring map $A \to \Lambda $ is formally smooth in the adic topology (Lemma <a href="/tag/09E7" data-tag="09E7">15.113.5</a>). Hence we can find a ring map $\Lambda \to B$ such that the composition $A \to \Lambda \to B$ is the given ring map $A \to B$ (see Lemma <a href="/tag/07NJ" data-tag="07NJ">15.38.5</a>). Since $\Lambda $ and $B$ are complete discrete valuation rings with the same residue field, $B$ is finite over $\Lambda $ (Algebra, Lemma <a href="/tag/031D" data-tag="031D">10.96.12</a>). This reduces us to the special case discussed in Lemma <a href="/tag/09F8" data-tag="09F8">15.117.17</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

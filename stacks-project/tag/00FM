@@ -1,0 +1,221 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="algebra-section-Noetherian" class="tex-section"><span data-tag="00FM">10.31</span> Noetherian rings</h2>
+
+<p>
+A ring $R$ is <em>Noetherian</em> if any ideal of $R$ is finitely generated. This is clearly equivalent to the ascending chain condition for ideals of $R$. By Lemma <a href="/tag/05KG" data-tag="05KG">10.28.10</a> it suffices to check that every prime ideal of $R$ is finitely generated. 
+</p>
+<p>
+<article class="env-lemma" id="00FN">
+       
+      
+  <p><a class="environment-identifier" href="/tag/00FN">Lemma <span data-tag="00FN">10.31.1</span>.</a> Any finitely generated ring over a Noetherian ring is Noetherian. Any localization of a Noetherian ring is Noetherian. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The statement on localizations follows from the fact that any ideal $J \subset S^{-1}R$ is of the form $I \cdot S^{-1}R$. Any quotient $R/I$ of a Noetherian ring $R$ is Noetherian because any ideal $\overline{J} \subset R/I$ is of the form $J/I$ for some ideal $I \subset J \subset R$. Thus it suffices to show that if $R$ is Noetherian so is $R[X]$. Suppose $J_1 \subset J_2 \subset \ldots $ is an ascending chain of ideals in $R[X]$. Consider the ideals $I_{i, d}$ defined as the ideal of elements of $R$ which occur as leading coefficients of degree $d$ polynomials in $J_ i$. Clearly $I_{i, d} \subset I_{i', d'}$ whenever $i \leq i'$ and $d \leq d'$. By the ascending chain condition in $R$ there are at most finitely many distinct ideals among all of the $I_{i, d}$. (Hint: Any infinite set of elements of $\mathbf{N} \times \mathbf{N}$ contains an increasing infinite sequence.) Take $i_0$ so large that $I_{i, d} = I_{i_0, d}$ for all $i \geq i_0$ and all $d$. Suppose $f \in J_ i$ for some $i \geq i_0$. By induction on the degree $d = \deg (f)$ we show that $f \in J_{i_0}$. Namely, there exists a $g\in J_{i_0}$ whose degree is $d$ and which has the same leading coefficient as $f$. By induction $f - g \in J_{i_0}$ and we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0306">
+  <p><a class="environment-identifier" href="/tag/0306">Lemma <span data-tag="0306">10.31.2</span>.</a> If $R$ is a Noetherian ring, then so is the formal power series ring $R[[x_1, \ldots , x_ n]]$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $R[[x_1, \ldots , x_{n + 1}]] \cong R[[x_1, \ldots , x_ n]][[x_{n + 1}]]$ it suffices to prove the statement that $R[[x]]$ is Noetherian if $R$ is Noetherian. Let $I \subset R[[x]]$ be an ideal. We have to show that $I$ is a finitely generated ideal. For each integer $d$ denote $I_ d = \{ a \in R \mid ax^ d + \text{h.o.t.} \in I\} $. Then we see that $I_0 \subset I_1 \subset \ldots $ stabilizes as $R$ is Noetherian. Choose $d_0$ such that $I_{d_0} = I_{d_0 + 1} = \ldots $. For each $d \leq d_0$ choose elements $f_{d, j} \in I \cap (x^ d)$, $j = 1, \ldots , n_ d$ such that if we write $f_{d, j} = a_{d, j}x^ d + \text{h.o.t}$ then $I_ d = (a_{d, j})$. Denote $I' = (\{ f_{d, j}\} _{d = 0, \ldots , d_0, j = 1, \ldots , n_ d})$. Then it is clear that $I' \subset I$. Pick $f \in I$. First we may choose $c_{d, i} \in R$ such that 
+    <p>
+      <div class="equation">
+  \[  f - \sum c_{d, i} f_{d, i} \in (x^{d_0 + 1}) \cap I.  \]
+</div>
+    <p>
+       Next, we can choose $c_{i, 1} \in R$, $i = 1, \ldots , n_{d_0}$ such that 
+    <p>
+      <div class="equation">
+  \[  f - \sum c_{d, i} f_{d, i} - \sum c_{i, 1}xf_{d_0, i} \in (x^{d_0 + 2}) \cap I.  \]
+</div>
+    <p>
+       Next, we can choose $c_{i, 2} \in R$, $i = 1, \ldots , n_{d_0}$ such that 
+    <p>
+      <div class="equation">
+  \[  f - \sum c_{d, i} f_{d, i} - \sum c_{i, 1}xf_{d_0, i} - \sum c_{i, 2}x^2f_{d_0, i} \in (x^{d_0 + 3}) \cap I.  \]
+</div>
+    <p>
+       And so on. In the end we see that 
+    <p>
+      <div class="equation">
+  \[  f = \sum c_{d, i} f_{d, i} + \sum \nolimits _ i (\sum \nolimits _ e c_{i, e} x^ e)f_{d_0, i}  \]
+</div>
+    <p>
+       is contained in $I'$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma, although easy, is useful because finite type $\mathbf{Z}$-algebras come up quite often in a technique called “absolute Noetherian reduction”. 
+</p>
+<p>
+<article class="env-lemma" id="00FO">
+  <p><a class="environment-identifier" href="/tag/00FO">Lemma <span data-tag="00FO">10.31.3</span>.</a> Any finite type algebra over a field is Noetherian. Any finite type algebra over $\mathbf{Z}$ is Noetherian. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is immediate from Lemma <a href="/tag/00FN" data-tag="00FN">10.31.1</a> and the fact that fields are Noetherian rings and that $\mathbf{Z}$ is Noetherian ring (because it is a principal ideal domain). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00FP">
+  <p><a class="environment-identifier" href="/tag/00FP">Lemma <span data-tag="00FP">10.31.4</span>.</a> Let $R$ be a Noetherian ring. </p>
+  <p><ol>
+  <li><p>
+Any finite $R$-module is of finite presentation. 
+</p>
+</li><li><p>
+Any submodule of a finite $R$-module is finite. 
+</p>
+</li><li><p>
+Any finite type $R$-algebra is of finite presentation over $R$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $M$ be a finite $R$-module. By Lemma <a href="/tag/00KZ" data-tag="00KZ">10.5.4</a> we can find a finite filtration of $M$ whose successive quotients are of the form $R/I$. Since any ideal is finitely generated, each of the quotients $R/I$ is finitely presented. Hence $M$ is finitely presented by Lemma <a href="/tag/0519" data-tag="0519">10.5.3</a>. This proves (1). 
+    <p>
+      Let $N \subset M$ be a submodule. As $M$ is finite, the quotient $M/N$ is finite. Thus $M/N$ is of finite presentation by part (1). Thus we see that $N$ is finite by Lemma <a href="/tag/0519" data-tag="0519">10.5.3</a> part (5). This proves part (2). 
+    <p>
+      To see (3) note that any ideal of $R[x_1, \ldots , x_ n]$ is finitely generated by Lemma <a href="/tag/00FN" data-tag="00FN">10.31.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00FQ">
+  <p><a class="environment-identifier" href="/tag/00FQ">Lemma <span data-tag="00FQ">10.31.5</span>.</a> If $R$ is a Noetherian ring then $\mathop{\mathrm{Spec}}(R)$ is a Noetherian topological space, see Topology, Definition <a href="/tag/0051" data-tag="0051">5.9.1</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is because any closed subset of $\mathop{\mathrm{Spec}}(R)$ is uniquely of the form $V(I)$ with $I$ a radical ideal, see Lemma <a href="/tag/00E0" data-tag="00E0">10.17.2</a>. And this correspondence is inclusion reversing. Thus the result follows from the definitions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00FR">
+       
+      
+  <p><a class="environment-identifier" href="/tag/00FR">Lemma <span data-tag="00FR">10.31.6</span>.</a> If $R$ is a Noetherian ring then $\mathop{\mathrm{Spec}}(R)$ has finitely many irreducible components. In other words $R$ has finitely many minimal primes. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/00FQ" data-tag="00FQ">10.31.5</a> and Topology, Lemma <a href="/tag/0052" data-tag="0052">5.9.2</a> we see there are finitely many irreducible components. By Lemma <a href="/tag/00ES" data-tag="00ES">10.26.1</a> these correspond to minimal primes of $R$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CY6">
+  <p><a class="environment-identifier" href="/tag/0CY6">Lemma <span data-tag="0CY6">10.31.7</span>.</a> Let $R \to S$ be a ring map. Let $R \to R'$ be of finite type. If $S$ is Noetherian, then the base change $S' = R' \otimes _ R S$ is Noetherian. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/05G5" data-tag="05G5">10.14.2</a> finite type is stable under base change. Thus $S \to S'$ is of finite type. Since $S$ is Noetherian we can apply Lemma <a href="/tag/00FN" data-tag="00FN">10.31.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="045I">
+  <p><a class="environment-identifier" href="/tag/045I">Lemma <span data-tag="045I">10.31.8</span>.</a> Let $k$ be a field and let $R$ be a Noetherian $k$-algebra. If $K/k$ is a finitely generated field extension then $K \otimes _ k R$ is Noetherian. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $K/k$ is a finitely generated field extension, there exists a finitely generated $k$-algebra $B \subset K$ such that $K$ is the fraction field of $B$. In other words, $K = S^{-1}B$ with $S = B \setminus \{ 0\} $. Then $K \otimes _ k R = S^{-1}(B \otimes _ k R)$. Then $B \otimes _ k R$ is Noetherian by Lemma <a href="/tag/0CY6" data-tag="0CY6">10.31.7</a>. Finally, $K \otimes _ k R = S^{-1}(B \otimes _ k R)$ is Noetherian by Lemma <a href="/tag/00FN" data-tag="00FN">10.31.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Here are some fun lemmas that are sometimes useful. 
+</p>
+<p>
+<article class="env-lemma" id="0BX1">
+  <p><a class="environment-identifier" href="/tag/0BX1">Lemma <span data-tag="0BX1">10.31.9</span>.</a> Let $R$ be a ring and $\mathfrak p \subset R$ be a prime. There exists an $f \in R$, $f \not\in \mathfrak p$ such that $R_ f \to R_\mathfrak p$ is injective in each of the following cases </p>
+  <p><ol>
+  <li><p>
+$R$ is a domain, 
+</p>
+</li><li><p>
+$R$ is Noetherian, or 
+</p>
+</li><li><p>
+$R$ is reduced and has finitely many minimal primes. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $R$ is a domain, then $R \subset R_\mathfrak p$, hence $f = 1$ works. If $R$ is Noetherian, then the kernel $I$ of $R \to R_\mathfrak p$ is a finitely generated ideal and we can find $f \in R$, $f \not\in \mathfrak p$ such that $IR_ f = 0$. For this $f$ the map $R_ f \to R_\mathfrak p$ is injective and $f$ works. If $R$ is reduced with finitely many minimal primes $\mathfrak p_1, \ldots , \mathfrak p_ n$, then we can choose $f \in \bigcap _{\mathfrak p_ i \not\subset \mathfrak p} \mathfrak p_ i$, $f \not\in \mathfrak p$. Indeed, if $\mathfrak {p}_ i\not\subset \mathfrak {p}$ then there exist $f_ i \in \mathfrak {p}_ i$, $f_ i \not\in \mathfrak {p}$ and $f = \prod f_ i$ works. For this $f$ we have $R_ f \subset R_\mathfrak p$ because the minimal primes of $R_ f$ correspond to minimal primes of $R_\mathfrak p$ and we can apply Lemma <a href="/tag/00EW" data-tag="00EW">10.25.2</a> (some details omitted). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06RN">
+  <p><a class="environment-identifier" href="/tag/06RN">Lemma <span data-tag="06RN">10.31.10</span>.</a> Any surjective endomorphism of a Noetherian ring is an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $f : R \to R$ were such an endomorphism but not injective, then 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Ker}}(f) \subset \mathop{\mathrm{Ker}}(f \circ f) \subset \mathop{\mathrm{Ker}}(f \circ f \circ f) \subset \ldots  \]
+</div>
+    <p>
+       would be a strictly increasing chain of ideals. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

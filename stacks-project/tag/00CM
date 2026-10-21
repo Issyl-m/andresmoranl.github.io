@@ -1,0 +1,347 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="algebra-section-localization" class="tex-section"><span data-tag="00CM">10.9</span> Localization</h2>
+
+<p>
+<article class="env-definition" id="00CN">
+  <p><a class="environment-identifier" href="/tag/00CN">Definition <span data-tag="00CN">10.9.1</span>.</a> Let $R$ be a ring, $S$ a subset of $R$. We say $S$ is a <em>multiplicative subset of $R$</em> if $1\in S$ and $S$ is closed under multiplication, i.e., $s, s' \in S \Rightarrow ss' \in S$. </p>
+</article> 
+</p>
+<p>
+Given a ring $A$ and a multiplicative subset $S$, we define a relation on $A \times S$ as follows: 
+</p>
+<div class="equation">
+  \[  (x, s) \sim (y, t) \Leftrightarrow \exists u \in S \text{ such that } (xt-ys)u = 0  \]
+</div>
+<p>
+ It is easily checked that this is an equivalence relation. Let $x/s$ (or $\frac{x}{s}$) be the equivalence class of $(x, s)$ and $S^{-1}A$ be the set of all equivalence classes. Define addition and multiplication in $S^{-1}A$ as follows: 
+</p>
+<div class="equation">
+  \[  x/s + y/t = (xt + ys)/st, \quad x/s \cdot y/t = xy/st  \]
+</div>
+<p>
+ One can check that $S^{-1}A$ becomes a ring under these operations. 
+</p>
+<p>
+<article class="env-definition" id="00CO">
+  <p><a class="environment-identifier" href="/tag/00CO">Definition <span data-tag="00CO">10.9.2</span>.</a> This ring is called the <em>localization of $A$ with respect to $S$</em>. </p>
+</article> 
+</p>
+<p>
+We have a natural ring map from $A$ to its localization $S^{-1}A$, 
+</p>
+<div class="equation">
+  \[  A \longrightarrow S^{-1}A, \quad x \longmapsto x/1  \]
+</div>
+<p>
+ which is sometimes called the <em>localization map</em>. In general the localization map is not injective, unless $S$ contains no zerodivisors. For, if $x/1 = 0$, then there is a $u\in S$ such that $xu = 0$ in $A$ and hence $x = 0$ since there are no zerodivisors in $S$. The localization of a ring has the following universal property. 
+</p>
+<p>
+<article class="env-proposition" id="00CP">
+  <p><a class="environment-identifier" href="/tag/00CP">Proposition <span data-tag="00CP">10.9.3</span>.</a> Let $f : A \to B$ be a ring map that sends every element in $S$ to a unit of $B$. Then there is a unique homomorphism $g : S^{-1}A \to B$ such that the following diagram commutes. </p>
+  <div class="equation">
+  \[  \xymatrix{ A \ar[rr]^{f} \ar[dr] &  &  B \\  &  S^{-1}A \ar[ur]_ g }  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Existence. We define a map $g$ as follows. For $x/s\in S^{-1}A$, let $g(x/s) = f(x)f(s)^{-1}\in B$. It is easily checked from the definition that this is a well-defined ring map. And it is also clear that this makes the diagram commutative. 
+    <p>
+      Uniqueness. We now show that if $g' : S^{-1}A \to B$ satisfies $g'(x/1) = f(x)$, then $g = g'$. Hence $f(s) = g'(s/1)$ for $s \in S$ by the commutativity of the diagram. But then $g'(1/s)f(s) = 1$ in $B$, which implies that $g'(1/s) = f(s)^{-1}$ and hence $g'(x/s) = g'(x/1)g'(1/s) = f(x)f(s)^{-1} = g(x/s)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00CQ">
+  <p><a class="environment-identifier" href="/tag/00CQ">Lemma <span data-tag="00CQ">10.9.4</span>.</a> The localization $S^{-1}A$ is the zero ring if and only if $0\in S$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $0\in S$, any pair $(a, s)\sim (0, 1)$ by definition. If $0\not\in S$, then clearly $1/1 \neq 0/1$ in $S^{-1}A$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="07JY">
+  <p><a class="environment-identifier" href="/tag/07JY">Lemma <span data-tag="07JY">10.9.5</span>.</a> Let $R$ be a ring. Let $S \subset R$ be a multiplicative subset. The category of $S^{-1}R$-modules is equivalent to the category of $R$-modules $N$ with the property that every $s \in S$ acts as an automorphism on $N$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The functor which defines the equivalence associates to an $S^{-1}R$-module $M$ the same module but now viewed as an $R$-module via the localization map $R \to S^{-1}R$. Conversely, if $N$ is an $R$-module, such that every $s \in S$ acts via an automorphism $s_ N$, then we can think of $N$ as an $S^{-1}R$-module by letting $x/s$ act via $x_ N \circ s_ N^{-1}$. We omit the verification that these two functors are quasi-inverse to each other. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The notion of localization of a ring can be generalized to the localization of a module. Let $A$ be a ring, $S$ a multiplicative subset of $A$ and $M$ an $A$-module. We define a relation on $M \times S$ as follows 
+</p>
+<div class="equation">
+  \[  (m, s) \sim (n, t) \Leftrightarrow \exists u\in S \text{ such that } (mt-ns)u = 0  \]
+</div>
+<p>
+ This is clearly an equivalence relation. Denote by $m/s$ (or $\frac{m}{s}$) be the equivalence class of $(m, s)$ and $S^{-1}M$ be the set of all equivalence classes. Define the addition and scalar multiplication as follows 
+</p>
+<div class="equation">
+  \[  m/s + n/t = (mt + ns)/st,\quad m/s\cdot n/t = mn/st  \]
+</div>
+<p>
+ It is clear that this makes $S^{-1}M$ an $S^{-1}A$-module. 
+</p>
+<p>
+<article class="env-definition" id="07JZ">
+  <p><a class="environment-identifier" href="/tag/07JZ">Definition <span data-tag="07JZ">10.9.6</span>.</a> The $S^{-1}A$-module $S^{-1}M$ is called the <em>localization</em> of $M$ with respect to $S$. </p>
+</article> 
+</p>
+<p>
+Note that there is an $A$-module map $M \to S^{-1}M$, $m \mapsto m/1$ which is sometimes called the <em>localization map</em>. It satisfies the following universal property. 
+</p>
+<p>
+<article class="env-lemma" id="07K0">
+  <p><a class="environment-identifier" href="/tag/07K0">Lemma <span data-tag="07K0">10.9.7</span>.</a> Let $R$ be a ring. Let $S \subset R$ a multiplicative subset. Let $M$, $N$ be $R$-modules. Assume all the elements of $S$ act as automorphisms on $N$. Then the canonical map </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _ R(S^{-1}M, N) \longrightarrow \mathop{\mathrm{Hom}}\nolimits _ R(M, N)  \]
+</div>
+  <p> induced by the localization map, is an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It is clear that the map is well-defined and $R$-linear. Injectivity: Let $\alpha \in \mathop{\mathrm{Hom}}\nolimits _ R(S^{-1}M, N)$ and take an arbitrary element $m/s \in S^{-1}M$. Then, since $s \cdot \alpha (m/s) = \alpha (m/1)$, we have $ \alpha (m/s) =s^{-1}(\alpha (m/1))$, so $\alpha $ is completely determined by what it does on the image of $M$ in $S^{-1}M$. Surjectivity: Let $\beta : M \rightarrow N$ be a given R-linear map. We need to show that it can be "extended" to $S^{-1}M$. Define a map of sets 
+    <p>
+      <div class="equation">
+  \[  M \times S \rightarrow N,\quad (m,s) \mapsto s^{-1}\beta (m)  \]
+</div>
+    <p>
+       Clearly, this map respects the equivalence relation from above, so it descends to a well-defined map $\alpha : S^{-1}M \rightarrow N$. It remains to show that this map is $R$-linear, so take $r, r' \in R$ as well as $s, s' \in S$ and $m, m' \in M$. Then 
+    <p>
+      <div class="equation">
+  \begin{align*}  \alpha (r \cdot m/s + r' \cdot m' /s') &  = \alpha ((r \cdot s' \cdot m + r' \cdot s \cdot m') /(ss')) \\ &  = (ss')^{-1}\beta (r \cdot s' \cdot m + r' \cdot s \cdot m') \\ &  = (ss')^{-1} (r \cdot s' \beta (m) + r' \cdot s \beta (m')) \\ &  = r \alpha (m/s) + r' \alpha (m' /s') \end{align*}
+</div>
+    <p>
+       and we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-example" id="02C5">
+  <p><a class="environment-identifier" href="/tag/02C5">Example <span data-tag="02C5">10.9.8</span>.</a> Let $A$ be a ring and let $M$ be an $A$-module. Here are some important examples of localizations. </p>
+  <p><ol>
+  <li><p>
+Given $\mathfrak p$ a prime ideal of $A$ consider $S = A\setminus \mathfrak p$. It is immediately checked that $S$ is a multiplicative set. In this case we denote $A_\mathfrak p$ and $M_\mathfrak p$ the localization of $A$ and $M$ with respect to $S$ respectively. These are called the <em>localization of $A$, resp. $M$ at $\mathfrak p$</em>. 
+</p>
+</li><li><p>
+Let $f\in A$. Consider $S = \{ 1, f, f^2, \ldots \} $. This is clearly a multiplicative subset of $A$. In this case we denote $A_ f$ (resp. $M_ f$) the localization $S^{-1}A$ (resp. $S^{-1}M$). This is called the <em>localization of $A$, resp. $M$ with respect to $f$</em>. Note that $A_ f = 0$ if and only if $f$ is nilpotent in $A$. 
+</p>
+</li><li><p>
+Let $S = \{ f \in A \mid f \text{ is not a zerodivisor in }A\} $. This is a multiplicative subset of $A$. In this case the ring $Q(A) = S^{-1}A$ is called either the <em>total quotient ring</em>, or the <em>total ring of fractions</em> of $A$. 
+</p>
+</li><li><p>
+If $A$ is a domain, then the total quotient ring $Q(A)$ is the field of fractions of $A$. Please see Fields, Example <a href="/tag/09FJ" data-tag="09FJ">9.3.4</a>. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="00CR">
+  <p><a class="environment-identifier" href="/tag/00CR">Lemma <span data-tag="00CR">10.9.9</span>.</a> Let $R$ be a ring. Let $S \subset R$ be a multiplicative subset. Let $M$ be an $R$-module. Then </p>
+  <div class="equation">
+  \[  S^{-1}M = \mathop{\mathrm{colim}}\nolimits _{f \in S} M_ f  \]
+</div>
+  <p> where the preorder on $S$ is given by $f \geq f' \Leftrightarrow f = f'f''$ for some $f'' \in R$ in which case the map $M_{f'} \to M_ f$ is given by $m/(f')^ e \mapsto m(f'')^ e/f^ e$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. Hint: Use the universal property of Lemma <a href="/tag/07K0" data-tag="07K0">10.9.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In the following paragraph, let $A$ denote a ring, and $M, N$ denote modules over $A$. 
+</p>
+<p>
+If $S$ and $S'$ are multiplicative sets of $A$, then it is clear that 
+</p>
+<div class="equation">
+  \[  SS' = \{ ss' : s\in S, \  s'\in S'\}   \]
+</div>
+<p>
+ is also a multiplicative set of $A$. Then the following holds. 
+</p>
+<p>
+<article class="env-proposition" id="02C6">
+  <p><a class="environment-identifier" href="/tag/02C6">Proposition <span data-tag="02C6">10.9.10</span>.</a> Let $\overline{S}$ be the image of $S$ in $S'^{-1}A$, then $(SS')^{-1}A$ is isomorphic to $\overline{S}^{-1}(S'^{-1}A)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The map sending $x\in A$ to $x/1\in (SS')^{-1}A$ induces a map sending $x/s\in S'^{-1}A$ to $x/s \in (SS')^{-1}A$, by universal property. The image of the elements in $\overline{S}$ are invertible in $(SS')^{-1}A$. By the universal property we get a map $f : \overline{S}^{-1}(S'^{-1}A) \to (SS')^{-1}A$ which maps $(x/s')/(s/1)$ to $x/ss'$. 
+    <p>
+      On the other hand, the map from $A$ to $\overline{S}^{-1}(S'^{-1}A)$ sending $x\in A$ to $(x/1)/(1/1)$ also induces a map $g : (SS')^{-1}A \to \overline{S}^{-1}(S'^{-1}A)$ which sends $x/ss'$ to $(x/s')/(s/1)$, by the universal property again. It is immediately checked that $f$ and $g$ are inverse to each other, hence they are both isomorphisms. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+For the module $M$ we have 
+</p>
+<p>
+<article class="env-proposition" id="02C7">
+  <p><a class="environment-identifier" href="/tag/02C7">Proposition <span data-tag="02C7">10.9.11</span>.</a> View $S'^{-1}M$ as an $A$-module, then $S^{-1}(S'^{-1}M)$ is isomorphic to $(SS')^{-1}M$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Note that given a $A$-module M, we have not proved any universal property for $S^{-1}M$. Hence we cannot reason as in the preceding proof; we have to construct the isomorphism explicitly. 
+    <p>
+      We define the maps as follows 
+    <p>
+      <div class="equation">
+  \begin{align*} &  f : S^{-1}(S'^{-1}M) \longrightarrow (SS')^{-1}M, \quad \frac{x/s'}{s}\mapsto x/ss'\\ &  g : (SS')^{-1}M \longrightarrow S^{-1}(S'^{-1}M), \quad x/t\mapsto \frac{x/s'}{s}\  \text{for some }s\in S, s'\in S', \text{ and } t = ss' \end{align*}
+</div>
+    <p>
+       We have to check that these homomorphisms are well-defined, that is, independent the choice of the fraction. This is easily checked and it is also straightforward to show that they are inverse to each other. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+If $u : M \to N$ is an $A$ homomorphism, then the localization indeed induces a well-defined $S^{-1}A$ homomorphism $S^{-1}u : S^{-1}M \to S^{-1}N$ which sends $x/s$ to $u(x)/s$. It is immediately checked that this construction is functorial, so that $S^{-1}$ is actually a functor from the category of $A$-modules to the category of $S^{-1}A$-modules. Moreover this functor is exact, as we show in the following proposition. 
+</p>
+<p>
+<article class="env-proposition" id="00CS">
+       
+      
+  <p><a class="environment-identifier" href="/tag/00CS">Proposition <span data-tag="00CS">10.9.12</span>.</a> Let $L\xrightarrow {u} M\xrightarrow {v} N$ be an exact sequence of $R$-modules. Then $S^{-1}L \to S^{-1}M \to S^{-1}N$ is also exact. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      First it is clear that $S^{-1}L \to S^{-1}M \to S^{-1}N$ is a complex since localization is a functor. Next suppose that $x/s$ maps to zero in $S^{-1}N$ for some $x/s \in S^{-1}M$. Then by definition there is a $t\in S$ such that $v(xt) = v(x)t = 0$ in $N$, which means $xt \in \mathop{\mathrm{Ker}}(v)$. By the exactness of $L \to M \to N$ we have $xt = u(y)$ for some $y$ in $L$. Then $x/s$ is the image of $y/st$. This proves the exactness. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02C8">
+  <p><a class="environment-identifier" href="/tag/02C8">Lemma <span data-tag="02C8">10.9.13</span>.</a> Localization respects quotients, i.e. if $N$ is a submodule of $M$, then $S^{-1}(M/N)\simeq (S^{-1}M)/(S^{-1}N)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      From the exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \longrightarrow N \longrightarrow M \longrightarrow M/N \longrightarrow 0  \]
+</div>
+    <p>
+       we have 
+    <p>
+      <div class="equation">
+  \[  0 \longrightarrow S^{-1}N \longrightarrow S^{-1}M \longrightarrow S^{-1}(M/N) \longrightarrow 0  \]
+</div>
+    <p>
+       The corollary then follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+If, in the preceding Corollary, we take $N = I$ and $M = A$ for an ideal $I$ of $A$, we see that $S^{-1}A/S^{-1}I \simeq S^{-1}(A/I)$ as $A$-modules. The next proposition shows that they are isomorphic as rings. 
+</p>
+<p>
+<article class="env-proposition" id="00CT">
+  <p><a class="environment-identifier" href="/tag/00CT">Proposition <span data-tag="00CT">10.9.14</span>.</a> Let $I$ be an ideal of $A$, $S$ a multiplicative set of $A$. Then $S^{-1}I$ is an ideal of $S^{-1}A$ and $\overline{S}^{-1}(A/I)$ is isomorphic to $S^{-1}A/S^{-1}I$, where $\overline{S}$ is the image of $S$ in $A/I$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The fact that $S^{-1}I$ is an ideal is clear since $I$ itself is an ideal. Define 
+    <p>
+      <div class="equation">
+  \[  f : S^{-1}A\longrightarrow \overline{S}^{-1}(A/I), \quad x/s\mapsto \overline{x}/\overline{s}  \]
+</div>
+    <p>
+       where $\overline{x}$ and $\overline{s}$ are the images of $x$ and $s$ in $A/I$. We shall keep similar notations in this proof. This map is well-defined by the universal property of $S^{-1}A$, and $S^{-1}I$ is contained in the kernel of it, therefore it induces a map 
+    <p>
+      <div class="equation">
+  \[  \overline{f} : S^{-1}A/S^{-1}I \longrightarrow \overline{S}^{-1}(A/I), \quad \overline{x/s}\mapsto \overline{x}/\overline{s}  \]
+</div>
+    <p>
+      On the other hand, the map $A \to S^{-1}A/S^{-1}I$ sending $x$ to $\overline{x/1}$ induces a map $A/I \to S^{-1}A/S^{-1}I$ sending $\overline{x}$ to $\overline{x/1}$. The image of $\overline{S}$ is invertible in $S^{-1}A/S^{-1}I$, thus induces a map 
+    <p>
+      <div class="equation">
+  \[  g : \overline{S}^{-1}(A/I) \longrightarrow S^{-1}A/S^{-1}I, \quad \frac{\overline{x}}{\overline{s}}\mapsto \overline{x/s}  \]
+</div>
+    <p>
+       by the universal property. It is then clear that $\overline{f}$ and $g$ are inverse to each other, hence are both isomorphisms. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We now consider how submodules behave in localization. 
+</p>
+<p>
+<article class="env-lemma" id="00CU">
+  <p><a class="environment-identifier" href="/tag/00CU">Lemma <span data-tag="00CU">10.9.15</span>.</a> Any submodule $N'$ of $S^{-1}M$ is of the form $S^{-1}N$ for some $N\subset M$. Indeed one can take $N$ to be the inverse image of $N'$ in $M$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $N$ be the inverse image of $N'$ in $M$. Then one can see that $S^{-1}N\supset N'$. To show they are equal, take $x/s$ in $S^{-1}N$, where $s\in S$ and $x\in N$. This yields that $x/1\in N'$. Since $N'$ is an $S^{-1}R$-submodule we have $x/s = x/1\cdot 1/s\in N'$. This finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Taking $M = A$ and $N = I$ an ideal of $A$, we have the following corollary, which can be viewed as a converse of the first part of Proposition <a href="/tag/00CT" data-tag="00CT">10.9.14</a>. 
+</p>
+<p>
+<article class="env-lemma" id="02C9">
+       
+      
+  <p><a class="environment-identifier" href="/tag/02C9">Lemma <span data-tag="02C9">10.9.16</span>.</a> Each ideal $I'$ of $S^{-1}A$ takes the form $S^{-1}I$, where one can take $I$ to be the inverse image of $I'$ in $A$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Immediate from Lemma <a href="/tag/00CU" data-tag="00CU">10.9.15</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

@@ -1,0 +1,111 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="categories-section-representable" class="tex-section"><span data-tag="0AHM">4.25</span> A criterion for representability</h2>
+
+<p>
+The following lemma is often useful to prove the existence of universal objects in big categories, please see the discussion in Remark <a href="/tag/0AHP" data-tag="0AHP">4.25.2</a>. 
+</p>
+<p>
+<article class="env-lemma" id="0AHN">
+  <p><a class="environment-identifier" href="/tag/0AHN">Lemma <span data-tag="0AHN">4.25.1</span>.</a> Let $\mathcal{C}$ be a big<a class="footnotemark" href="#a0000012907" id="a0000012907-mark"><sup>1</sup></a> category which has limits. Let $F : \mathcal{C} \to \textit{Sets}$ be a functor. Assume that </p>
+  <p><ol>
+  <li><p>
+$F$ commutes with limits, 
+</p>
+</li><li><p>
+there exist a family $\{ x_ i\} _{i \in I}$ of objects of $\mathcal{C}$ and for each $i \in I$ an element $f_ i \in F(x_ i)$ such that for $y \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and $g \in F(y)$ there exist an $i$ and a morphism $\varphi : x_ i \to y$ with $F(\varphi )(f_ i) = g$. 
+</p>
+</li>
+</ol></p>
+  <p> Then $F$ is representable, i.e., there exists an object $x$ of $\mathcal{C}$ such that </p>
+  <div class="equation">
+  \[  F(y) = \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(x, y)  \]
+</div>
+  <p> functorially in $y$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\mathcal{I}$ be the category whose objects are the pairs $(x_ i, f_ i)$ and whose morphisms $(x_ i, f_ i) \to (x_{i'}, f_{i'})$ are maps $\varphi : x_ i \to x_{i'}$ in $\mathcal{C}$ such that $F(\varphi )(f_ i) = f_{i'}$. Set 
+    <p>
+      <div class="equation">
+  \[  x = \mathop{\mathrm{lim}}\nolimits _{(x_ i, f_ i) \in \mathcal{I}} x_ i  \]
+</div>
+    <p>
+       (this will not be the $x$ we are looking for, see below). The limit exists by assumption. As $F$ commutes with limits we have 
+    <p>
+      <div class="equation">
+  \[  F(x) = \mathop{\mathrm{lim}}\nolimits _{(x_ i, f_ i) \in \mathcal{I}} F(x_ i).  \]
+</div>
+    <p>
+       Hence there is a universal element $f \in F(x)$ which maps to $f_ i \in F(x_ i)$ under $F$ applied to the projection map $x \to x_ i$. Using $f$ we obtain a transformation of functors 
+    <p>
+      <div class="equation">
+  \[  \xi : \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(x, - ) \longrightarrow F(-)  \]
+</div>
+    <p>
+       see Section <a href="/tag/001L" data-tag="001L">4.3</a>. Let $y$ be an arbitrary object of $\mathcal{C}$ and let $g \in F(y)$. Choose $x_ i \to y$ such that $f_ i$ maps to $g$ which is possible by assumption. Then $F$ applied to the maps 
+    <p>
+      <div class="equation">
+  \[  x \longrightarrow x_ i \longrightarrow y  \]
+</div>
+    <p>
+       (the first being the projection map of the limit defining $x$) sends $f$ to $g$. Hence the transformation $\xi $ is surjective. 
+    <p>
+      In order to find the object representing $F$ we let $e : x' \to x$ be the equalizer of all self maps $\varphi : x \to x$ with $F(\varphi )(f) = f$. Since $F$ commutes with limits, it commutes with equalizers, and we see there exists an $f' \in F(x')$ mapping to $f$ in $F(x)$. Since $\xi $ is surjective and since $f'$ maps to $f$ we see that also $\xi ' : \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(x', -) \to F(-)$ is surjective. Finally, suppose that $a, b : x' \to y$ are two maps such that $F(a)(f') = F(b)(f')$. We have to show $a = b$. Consider the equalizer $e' : x'' \to x'$. Again we find $f'' \in F(x'')$ mapping to $f'$. Choose a map $\psi : x \to x''$ such that $F(\psi )(f) = f''$. Then we see that $e \circ e' \circ \psi : x \to x$ is a morphism with $F(e \circ e' \circ \psi )(f) = f$. Hence $e \circ e' \circ \psi \circ e = e$. Since $e$ is a monomorphism, this implies that $e'$ is an epimorphism, thus $a = b$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0AHP">
+  <p><a class="environment-identifier" href="/tag/0AHP">Remark <span data-tag="0AHP">4.25.2</span>.</a> The lemma above is often used to construct the free something on something. For example the free abelian group on a set, the free group on a set, etc. The idea, say in the case of the free group on a set $E$ is to consider the functor </p>
+  <div class="equation">
+  \[  F : \textit{Groups} \to \textit{Sets},\quad G \longmapsto \text{Map}(E, G)  \]
+</div>
+  <p> This functor commutes with limits. As our family of objects we can take a family $E \to G_ i$ consisting of groups $G_ i$ of cardinality at most $\max (\aleph _0, |E|)$ and set maps $E \to G_ i$ such that every isomorphism class of such a structure occurs at least once. Namely, if $E \to G$ is a map from $E$ to a group $G$, then the subgroup $G'$ generated by the image has cardinality at most $\max (\aleph _0, |E|)$. The lemma tells us the functor is representable, hence there exists a group $F_ E$ such that $\mathop{\mathrm{Mor}}\nolimits _{\textit{Groups}}(F_ E, G) = \text{Map}(E, G)$. In particular, the identity morphism of $F_ E$ corresponds to a map $E \to F_ E$ and one can show that $F_ E$ is generated by the image without imposing any relations. </p>
+  <p>Another typical application is that we can use the lemma to construct colimits once it is known that limits exist. We illustrate it using the category of topological spaces which has limits by Topology, Lemma <a href="/tag/08ZT" data-tag="08ZT">5.14.1</a>. Namely, suppose that $\mathcal{I} \to \textit{Top}$, $i \mapsto X_ i$ is a functor. Then we can consider </p>
+  <div class="equation">
+  \[  F : \textit{Top} \longrightarrow \textit{Sets},\quad Y \longmapsto \mathop{\mathrm{lim}}\nolimits _\mathcal {I} \mathop{\mathrm{Mor}}\nolimits _{\textit{Top}}(X_ i, Y)  \]
+</div>
+  <p> This functor commutes with limits. Moreover, given any topological space $Y$ and an element $(\varphi _ i : X_ i \to Y)$ of $F(Y)$, there is a subspace $Y' \subset Y$ of cardinality at most $|\coprod X_ i|$ such that the morphisms $\varphi _ i$ map into $Y'$. Namely, we can take the induced topology on the union of the images of the $\varphi _ i$. Thus it is clear that the hypotheses of the lemma are satisfied and we find a topological space $X$ representing the functor $F$, which precisely means that $X$ is the colimit of the diagram $i \mapsto X_ i$. </p>
+</article> 
+</p>
+<p>
+<article class="env-theorem" id="0AHQ">
+  <p><a class="environment-identifier" href="/tag/0AHQ">Theorem <span data-tag="0AHQ">4.25.3</span> <span class="named">(Adjoint functor theorem)</span>.</a>  Let $G : \mathcal{C} \to \mathcal{D}$ be a functor of big categories. Assume $\mathcal{C}$ has limits, $G$ commutes with them, and for every object $y$ of $\mathcal{D}$ there exists a set of pairs $(x_ i, f_ i)_{i \in I}$ with $x_ i \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$, $f_ i \in \mathop{\mathrm{Mor}}\nolimits _\mathcal {D}(y, G(x_ i))$ such that for any pair $(x, f)$ with $x \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$, $f \in \mathop{\mathrm{Mor}}\nolimits _\mathcal {D}(y, G(x))$ there are an $i$ and a morphism $h : x_ i \to x$ such that $f = G(h) \circ f_ i$. Then $G$ has a left adjoint $F$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The assumptions imply that for every object $y$ of $\mathcal{D}$ the functor $x \mapsto \mathop{\mathrm{Mor}}\nolimits _\mathcal {D}(y, G(x))$ satisfies the assumptions of Lemma <a href="/tag/0AHN" data-tag="0AHN">4.25.1</a>. Thus it is representable by an object, let's call it $F(y)$. An application of Yoneda's lemma (Lemma <a href="/tag/001P" data-tag="001P">4.3.5</a>) turns the rule $y \mapsto F(y)$ into a functor which by construction is an adjoint to $G$. We omit the details. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

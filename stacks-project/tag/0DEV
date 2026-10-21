@@ -1,0 +1,182 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="etale-cohomology-section-fppf-etale-modules" class="tex-section"><span data-tag="0DEV">59.101</span> Comparing fppf and étale topologies: modules</h2>
+
+<p>
+We continue the discussion in Section <a href="/tag/0DDK" data-tag="0DDK">59.100</a> but in this section we briefly discuss what happens for sheaves of modules. 
+</p>
+<p>
+Let $S$ be a scheme. The morphisms of sites $\epsilon _ S$, $\pi _ S$, and their composition $a_ S$ introduced in Section <a href="/tag/0DDK" data-tag="0DDK">59.100</a> have natural enhancements to morphisms of ringed sites. The first is written as 
+</p>
+<div class="equation">
+  \[  \epsilon _ S : ((\mathit{Sch}/S)_{fppf}, \mathcal{O}) \longrightarrow ((\mathit{Sch}/S)_{\acute{e}tale}, \mathcal{O})  \]
+</div>
+<p>
+ Note that we can use the same symbol for the structure sheaf as indeed the sheaves have the same underlying presheaf. The second is 
+</p>
+<div class="equation">
+  \[  \pi _ S : ((\mathit{Sch}/S)_{\acute{e}tale}, \mathcal{O}) \longrightarrow (S_{\acute{e}tale}, \mathcal{O}_ S)  \]
+</div>
+<p>
+ The third is the morphism 
+</p>
+<div class="equation">
+  \[  a_ S : ((\mathit{Sch}/S)_{fppf}, \mathcal{O}) \longrightarrow (S_{\acute{e}tale}, \mathcal{O}_ S)  \]
+</div>
+<p>
+ We already know that the category of quasi-coherent modules on the scheme $S$ is the same as the category of quasi-coherent modules on $(S_{\acute{e}tale}, \mathcal{O}_ S)$, see Descent, Proposition <a href="/tag/03DX" data-tag="03DX">35.8.9</a>. Since we are interested in stating a comparison between étale and fppf cohomology, we will in the rest of this section think of quasi-coherent sheaves in terms of the small étale site. Let us review what we already know about quasi-coherent modules on these sites. 
+</p>
+<p>
+<article class="env-lemma" id="0DEW">
+  <p><a class="environment-identifier" href="/tag/0DEW">Lemma <span data-tag="0DEW">59.101.1</span>.</a> Let $S$ be a scheme. Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_ S$-module on $S_{\acute{e}tale}$. </p>
+  <p><ol>
+  <li><p>
+The rule 
+</p>
+<div class="equation">
+  \[  \mathcal{F}^ a : (\mathit{Sch}/S)_{\acute{e}tale}\longrightarrow \textit{Ab},\quad (f : T \to S) \longmapsto \Gamma (T, f_{small}^*\mathcal{F})  \]
+</div>
+<p>
+ satisfies the sheaf condition for fppf and a fortiori étale coverings, 
+</p>
+</li><li><p>
+$\mathcal{F}^ a = \pi _ S^*\mathcal{F}$ on $(\mathit{Sch}/S)_{\acute{e}tale}$, 
+</p>
+</li><li><p>
+$\mathcal{F}^ a = a_ S^*\mathcal{F}$ on $(\mathit{Sch}/S)_{fppf}$, 
+</p>
+</li><li><p>
+the rule $\mathcal{F} \mapsto \mathcal{F}^ a$ defines an equivalence between quasi-coherent $\mathcal{O}_ S$-modules and quasi-coherent modules on $((\mathit{Sch}/S)_{\acute{e}tale}, \mathcal{O})$, 
+</p>
+</li><li><p>
+the rule $\mathcal{F} \mapsto \mathcal{F}^ a$ defines an equivalence between quasi-coherent $\mathcal{O}_ S$-modules and quasi-coherent modules on $((\mathit{Sch}/S)_{fppf}, \mathcal{O})$, 
+</p>
+</li><li><p>
+we have $\epsilon _{S, *}a_ S^*\mathcal{F} = \pi _ S^*\mathcal{F}$ and $a_{S, *}a_ S^*\mathcal{F} = \mathcal{F}$, 
+</p>
+</li><li><p>
+we have $R^ i\epsilon _{S, *}(a_ S^*\mathcal{F}) = 0$ and $R^ ia_{S, *}(a_ S^*\mathcal{F}) = 0$ for $i > 0$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We urge the reader to find their own proof of these results based on the material in Descent, Sections <a href="/tag/03DR" data-tag="03DR">35.8</a>, <a href="/tag/0GN8" data-tag="0GN8">35.9</a>, and <a href="/tag/0GN9" data-tag="0GN9">35.10</a>. 
+    <p>
+      We first explain why the notation in this lemma is consistent with our earlier use of the notation $\mathcal{F}^ a$ in Sections <a href="/tag/03OF" data-tag="03OF">59.17</a> and <a href="/tag/03OY" data-tag="03OY">59.22</a> and in Descent, Section <a href="/tag/03DR" data-tag="03DR">35.8</a>. Namely, we know by Descent, Proposition <a href="/tag/03DX" data-tag="03DX">35.8.9</a> that there exists a quasi-coherent module $\mathcal{F}_0$ on the scheme $S$ (in other words on the small Zariski site) such that $\mathcal{F}$ is the restriction of the rule 
+    <p>
+      <div class="equation">
+  \[  \mathcal{F}_0^ a : (\mathit{Sch}/S)_{\acute{e}tale}\longrightarrow \textit{Ab},\quad (f : T \to S) \longmapsto \Gamma (T, f^*\mathcal{F})  \]
+</div>
+    <p>
+       to the subcategory $S_{\acute{e}tale}\subset (\mathit{Sch}/S)_{\acute{e}tale}$ where here $f^*$ denotes usual pullback of sheaves of modules on schemes. Since $\mathcal{F}_0^ a$ is pullback by the morphism of ringed sites 
+    <p>
+      <div class="equation">
+  \[  ((\mathit{Sch}/S)_{\acute{e}tale}, \mathcal{O}) \longrightarrow (S_{Zar}, \mathcal{O}_{S_{Zar}})  \]
+</div>
+    <p>
+       by Descent, Remark <a href="/tag/03FH" data-tag="03FH">35.8.6</a> it follows immediately (from composition of pullbacks) that $\mathcal{F}^ a = \mathcal{F}_0^ a$. This proves the sheaf property even for fpqc coverings by Descent, Lemma <a href="/tag/03DT" data-tag="03DT">35.8.1</a> (see also Proposition <a href="/tag/03OG" data-tag="03OG">59.17.1</a>). Then (2) and (3) follow again by Descent, Remark <a href="/tag/03FH" data-tag="03FH">35.8.6</a> and (4) and (5) follow from Descent, Proposition <a href="/tag/03DX" data-tag="03DX">35.8.9</a> (see also the meta result Theorem <a href="/tag/03OJ" data-tag="03OJ">59.17.4</a>). 
+    <p>
+      Part (6) is immediate from the description of the sheaf $\mathcal{F}^ a = \pi _ S^*\mathcal{F} = a_ S^*\mathcal{F}$. 
+    <p>
+      For any abelian $\mathcal{H}$ on $(\mathit{Sch}/S)_{fppf}$ the higher direct image $R^ p\epsilon _{S, *}\mathcal{H}$ is the sheaf associated to the presheaf $U \mapsto H^ p_{fppf}(U, \mathcal{H})$ on $(\mathit{Sch}/S)_{\acute{e}tale}$. See Cohomology on Sites, Lemma <a href="/tag/072W" data-tag="072W">21.7.4</a>. Hence to prove $R^ p\epsilon _{S, *}a_ S^*\mathcal{F} = R^ p\epsilon _{S, *}\mathcal{F}^ a = 0$ for $p > 0$ it suffices to show that any scheme $U$ over $S$ has an étale covering $\{ U_ i \to U\} _{i \in I}$ such that $H^ p_{fppf}(U_ i, \mathcal{F}^ a) = 0$ for $p > 0$. If we take an open covering by affines, then the required vanishing follows from comparison with usual cohomology (Descent, Proposition <a href="/tag/03DW" data-tag="03DW">35.9.3</a> or Theorem <a href="/tag/03P2" data-tag="03P2">59.22.4</a>) and the vanishing of cohomology of quasi-coherent sheaves on affine schemes afforded by Cohomology of Schemes, Lemma <a href="/tag/01XB" data-tag="01XB">30.2.2</a>. 
+    <p>
+      To show that $R^ pa_{S, *}a_ S^{-1}\mathcal{F} = R^ pa_{S, *}\mathcal{F}^ a = 0$ for $p > 0$ we argue in exactly the same manner. This finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DEX">
+  <p><a class="environment-identifier" href="/tag/0DEX">Lemma <span data-tag="0DEX">59.101.2</span>.</a> Let $S$ be a scheme. For $\mathcal{F}$ a quasi-coherent $\mathcal{O}_ S$-module on $S_{\acute{e}tale}$ the maps </p>
+  <div class="equation">
+  \[  \pi _ S^*\mathcal{F} \longrightarrow R\epsilon _{S, *}(a_ S^*\mathcal{F}) \quad \text{and}\quad \mathcal{F} \longrightarrow Ra_{S, *}(a_ S^*\mathcal{F})  \]
+</div>
+  <p> are isomorphisms with $a_ S : \mathop{\mathit{Sh}}\nolimits ((\mathit{Sch}/S)_{fppf}) \to \mathop{\mathit{Sh}}\nolimits (S_{\acute{e}tale})$ as above. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is an immediate consequence of parts (6) and (7) of Lemma <a href="/tag/0DEW" data-tag="0DEW">59.101.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0H0U">
+  <p><a class="environment-identifier" href="/tag/0H0U">Lemma <span data-tag="0H0U">59.101.3</span>.</a> Let $S = \mathop{\mathrm{Spec}}(A)$ be an affine scheme. Let $M^\bullet $ be a complex of $A$-modules. Consider the complex $\mathcal{F}^\bullet $ of presheaves of $\mathcal{O}$-modules on $(\textit{Aff}/S)_{fppf}$ given by the rule </p>
+  <div class="equation">
+  \[  (U/S) = (\mathop{\mathrm{Spec}}(B)/\mathop{\mathrm{Spec}}(A)) \longmapsto M^\bullet \otimes _ A B  \]
+</div>
+  <p> Then this is a complex of modules and the canonical map </p>
+  <div class="equation">
+  \[  M^\bullet \longrightarrow R\Gamma ((\textit{Aff}/S)_{fppf}, \mathcal{F}^\bullet )  \]
+</div>
+  <p> is a quasi-isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Each $\mathcal{F}^ n$ is a sheaf of modules as it agrees with the restriction of the module $\mathcal{G}^ n = (\widetilde{M}^ n)^ a$ of Lemma <a href="/tag/0DEW" data-tag="0DEW">59.101.1</a> to $(\textit{Aff}/S)_{fppf} \subset (\mathit{Sch}/S)_{fppf}$. Since this inclusion defines an equivalence of ringed topoi (Topologies, Lemma <a href="/tag/021V" data-tag="021V">34.7.11</a>), we have 
+    <p>
+      <div class="equation">
+  \[  R\Gamma ((\textit{Aff}/S)_{fppf}, \mathcal{F}^\bullet ) = R\Gamma ((\mathit{Sch}/S)_{fppf}, \mathcal{G}^\bullet )  \]
+</div>
+    <p>
+       We observe that $M^\bullet = R\Gamma (S, \widetilde{M}^\bullet )$ for example by Derived Categories of Schemes, Lemma <a href="/tag/06Z0" data-tag="06Z0">36.3.5</a>. Hence we are trying to show the comparison map 
+    <p>
+      <div class="equation">
+  \[  R\Gamma (S, \widetilde{M}^\bullet ) \longrightarrow R\Gamma ((\mathit{Sch}/S)_{fppf}, (\widetilde{M}^\bullet )^ a)  \]
+</div>
+    <p>
+       is an isomorphism. If $M^\bullet $ is bounded below, then this holds by Descent, Proposition <a href="/tag/03DW" data-tag="03DW">35.9.3</a> and the first spectral sequence of Derived Categories, Lemma <a href="/tag/015J" data-tag="015J">13.21.3</a>. For the general case, let us write $M^\bullet = \mathop{\mathrm{lim}}\nolimits M_ n^\bullet $ with $M_ n^\bullet = \tau _{\geq -n}M^\bullet $. Whence the system $M_ n^ p$ is eventually constant with value $M^ p$. We claim that 
+    <p>
+      <div class="equation">
+  \[  (\widetilde{M}^\bullet )^ a = R\mathop{\mathrm{lim}}\nolimits (\widetilde{M}_ n^\bullet )^ a  \]
+</div>
+    <p>
+       Namely, it suffices to show that the natural map from left to right induces an isomorphism on cohomology over any affine object $U = \mathop{\mathrm{Spec}}(B)$ of $(\mathit{Sch}/S)_{fppf}$. For $i \in \mathbf{Z}$ and $n > |i|$ we have 
+    <p>
+      <div class="equation">
+  \[  H^ i(U, (\widetilde{M}_ n^\bullet )^ a) = H^ i(\tau _{\geq -n}M^\bullet \otimes _ A B) = H^ i(M^\bullet \otimes _ A B)  \]
+</div>
+    <p>
+       The first equality holds by the bounded below case treated above. Thus we see from Cohomology on Sites, Lemma <a href="/tag/0D6K" data-tag="0D6K">21.23.2</a> that the claim holds. Then we finally get 
+    <p>
+      <div class="equation">
+  \begin{align*}  R\Gamma ((\mathit{Sch}/S)_{fppf}, (\widetilde{M}^\bullet )^ a) &  = R\Gamma ((\mathit{Sch}/S)_{fppf}, R\mathop{\mathrm{lim}}\nolimits (\widetilde{M}_ n^\bullet )^ a) \\ &  = R\mathop{\mathrm{lim}}\nolimits R\Gamma ((\mathit{Sch}/S)_{fppf}, (\widetilde{M}_ n^\bullet )^ a) \\ &  = R\mathop{\mathrm{lim}}\nolimits M_ n^\bullet \\ &  = M^\bullet \end{align*}
+</div>
+    <p>
+       as desired. The second equality holds because $R\mathop{\mathrm{lim}}\nolimits $ commutes with $R\Gamma $, see Cohomology on Sites, Lemma <a href="/tag/0D6K" data-tag="0D6K">21.23.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

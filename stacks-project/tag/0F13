@@ -1,0 +1,349 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="etale-cohomology-section-kunneth" class="tex-section"><span data-tag="0F13">59.97</span> Künneth in étale cohomology</h2>
+
+<p>
+We first prove a Künneth formula in case one of the factors is proper. Then we use this formula to prove a base change property for open immersions. This then gives a “base change by morphisms towards spectra of fields” (akin to smooth base change). Finally we use this to get a more general Künneth formula. 
+</p>
+<p>
+<article class="env-remark" id="0F1E">
+  <p><a class="environment-identifier" href="/tag/0F1E">Remark <span data-tag="0F1E">59.97.1</span>.</a> Consider a cartesian diagram in the category of schemes: </p>
+  <div class="equation">
+  \[  \xymatrix{ X \times _ S Y \ar[d]_ p \ar[r]_ q \ar[rd]_ c &  Y \ar[d]^ g \\  X \ar[r]^ f &  S }  \]
+</div>
+  <p> Let $\Lambda $ be a ring and let $E \in D(X_{\acute{e}tale}, \Lambda )$ and $K \in D(Y_{\acute{e}tale}, \Lambda )$. Then there is a canonical map </p>
+  <div class="equation">
+  \[  Rf_*E \otimes _\Lambda ^\mathbf {L} Rg_*K \longrightarrow Rc_*(p^{-1}E \otimes _\Lambda ^\mathbf {L} q^{-1}K)  \]
+</div>
+  <p> For example we can define this using the canonical maps $Rf_*E \to Rc_*p^{-1}E$ and $Rg_*K \to Rc_*q^{-1}K$ and the relative cup product defined in Cohomology on Sites, Remark <a href="/tag/0B6C" data-tag="0B6C">21.19.7</a>. Or you can use the adjoint to the map </p>
+  <div class="equation">
+  \[  c^{-1}(Rf_*E \otimes _\Lambda ^\mathbf {L} Rg_*K) = p^{-1}f^{-1}Rf_*E \otimes _\Lambda ^\mathbf {L} q^{-1} g^{-1}Rg_*K \to p^{-1}E \otimes _\Lambda ^\mathbf {L} q^{-1}K  \]
+</div>
+  <p> which uses the adjunction maps $f^{-1}Rf_*E \to E$ and $g^{-1}Rg_*K \to K$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0F14">
+  <p><a class="environment-identifier" href="/tag/0F14">Lemma <span data-tag="0F14">59.97.2</span>.</a> Let $k$ be a separably closed field. Let $X$ be a proper scheme over $k$. Let $Y$ be a quasi-compact and quasi-separated scheme over $k$. </p>
+  <p><ol>
+  <li><p>
+If $E \in D^+(X_{\acute{e}tale})$ has torsion cohomology sheaves and $K \in D^+(Y_{\acute{e}tale})$, then 
+</p>
+<div class="equation">
+  \[  R\Gamma (X \times _{\mathop{\mathrm{Spec}}(k)} Y, \text{pr}_1^{-1}E \otimes _\mathbf {Z}^\mathbf {L} \text{pr}_2^{-1}K ) = R\Gamma (X, E) \otimes _\mathbf {Z}^\mathbf {L} R\Gamma (Y, K)  \]
+</div>
+</li><li><p>
+If $n \geq 1$ is an integer, $Y$ is of finite type over $k$, $E \in D(X_{\acute{e}tale}, \mathbf{Z}/n\mathbf{Z})$, and $K \in D(Y_{\acute{e}tale}, \mathbf{Z}/n\mathbf{Z})$, then 
+</p>
+<div class="equation">
+  \[  R\Gamma (X \times _{\mathop{\mathrm{Spec}}(k)} Y, \text{pr}_1^{-1}E \otimes _{\mathbf{Z}/n\mathbf{Z}}^\mathbf {L} \text{pr}_2^{-1}K ) = R\Gamma (X, E) \otimes _{\mathbf{Z}/n\mathbf{Z}}^\mathbf {L} R\Gamma (Y, K)  \]
+</div>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Proof of (1). By Lemma <a href="/tag/0F0F" data-tag="0F0F">59.92.5</a> we have 
+    <p>
+      <div class="equation">
+  \[  R\text{pr}_{2, *}( \text{pr}_1^{-1}E \otimes _\mathbf {Z}^\mathbf {L} \text{pr}_2^{-1}K) = R\text{pr}_{2, *}(\text{pr}_1^{-1}E) \otimes _\mathbf {Z}^\mathbf {L} K  \]
+</div>
+    <p>
+       By proper base change (in the form of Lemma <a href="/tag/0DDE" data-tag="0DDE">59.91.12</a>) this is equal to the object 
+    <p>
+      <div class="equation">
+  \[  \underline{R\Gamma (X, E)} \otimes _\mathbf {Z}^\mathbf {L} K  \]
+</div>
+    <p>
+       of $D(Y_{\acute{e}tale})$. Taking $R\Gamma (Y, -)$ on this object reproduces the left hand side of the equality in (1) by the Leray spectral sequence for $\text{pr}_2$. Thus we conclude by Lemma <a href="/tag/0F0E" data-tag="0F0E">59.92.4</a>. 
+    <p>
+      Proof of (2). This is exactly the same as the proof of (1) except that we use Lemmas <a href="/tag/0F0G" data-tag="0F0G">59.96.6</a>, <a href="/tag/0F0C" data-tag="0F0C">59.92.3</a>, and <a href="/tag/0F12" data-tag="0F12">59.96.5</a> as well as $\text{cd}(Y) < \infty $ by Lemma <a href="/tag/0F10" data-tag="0F10">59.96.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0F1F">
+  <p><a class="environment-identifier" href="/tag/0F1F">Lemma <span data-tag="0F1F">59.97.3</span>.</a> Let $K$ be a separably closed field. Let $X$ be a scheme of finite type over $K$. Let $\mathcal{F}$ be an abelian sheaf on $X_{\acute{e}tale}$ whose support is contained in the set of closed points of $X$. Then $H^ q(X, \mathcal{F}) = 0$ for $q > 0$ and $\mathcal{F}$ is globally generated. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      (If $\mathcal{F}$ is torsion, then the vanishing follows immediately from Lemma <a href="/tag/0F0W" data-tag="0F0W">59.95.7</a>.) By Lemma <a href="/tag/0F0N" data-tag="0F0N">59.74.5</a> we can write $\mathcal{F}$ as a filtered colimit of constructible sheaves $\mathcal{F}_ i$ of $\mathbf{Z}$-modules whose supports $Z_ i \subset X$ are finite sets of closed points. By Proposition <a href="/tag/04CA" data-tag="04CA">59.46.4</a> such a sheaf is of the form $(Z_ i \to X)_*\mathcal{G}_ i$ where $\mathcal{G}_ i$ is a sheaf on $Z_ i$. As $K$ is separably closed, the scheme $Z_ i$ is a finite disjoint union of spectra of separably closed fields. Recall that $H^ q(Z_ i, \mathcal{G}_ i) = H^ q(X, \mathcal{F}_ i)$ by the Leray spectral sequence for $Z_ i \to X$ and vanising of higher direct images for this morphism (Proposition <a href="/tag/03QP" data-tag="03QP">59.55.2</a>). By Lemmas <a href="/tag/04JQ" data-tag="04JQ">59.59.1</a> and <a href="/tag/03QU" data-tag="03QU">59.59.2</a> we see that $H^ q(Z_ i, \mathcal{G}_ i)$ is zero for $q > 0$ and that $H^0(Z_ i, \mathcal{G}_ i)$ generates $\mathcal{G}_ i$. We conclude the vanishing of $H^ q(X, \mathcal{F}_ i)$ for $q > 0$ and that $\mathcal{F}_ i$ is generated by global sections. By Theorem <a href="/tag/09YQ" data-tag="09YQ">59.51.3</a> we see that $H^ q(X, \mathcal{F}) = 0$ for $q > 0$. The proof is now done because a filtered colimit of globally generated sheaves of abelian groups is globally generated (details omitted). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0F1G">
+  <p><a class="environment-identifier" href="/tag/0F1G">Lemma <span data-tag="0F1G">59.97.4</span>.</a> Let $K$ be a separably closed field. Let $X$ be a scheme of finite type over $K$. Let $Q \in D(X_{\acute{e}tale})$. Assume that $Q_{\overline{x}}$ is nonzero only if $x$ is a closed point of $X$. Then </p>
+  <div class="equation">
+  \[  Q = 0 \Leftrightarrow H^ i(X, Q) = 0 \text{ for all }i  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The implication from left to right is trivial. Thus we need to prove the reverse implication. 
+    <p>
+      Assume $Q$ is bounded below; this cases suffices for almost all applications. If $Q$ is not zero, then we can look at the smallest $i$ such that the cohomology sheaf $H^ i(Q)$ is nonzero. By Lemma <a href="/tag/0F1F" data-tag="0F1F">59.97.3</a> we have $H^ i(X, Q) = H^0(X, H^ i(Q)) \not= 0$ and we conclude. 
+    <p>
+      General case. Let $\mathcal{B} \subset \mathop{\mathrm{Ob}}\nolimits (X_{\acute{e}tale})$ be the quasi-compact objects. By Lemma <a href="/tag/0F1F" data-tag="0F1F">59.97.3</a> the assumptions of Cohomology on Sites, Lemma <a href="/tag/0BKZ" data-tag="0BKZ">21.23.11</a> are satisfied. We conclude that $H^ q(U, Q) = H^0(U, H^ q(Q))$ for all $U \in \mathcal{B}$. In particular, this holds for $U = X$. Thus the conclusion by Lemma <a href="/tag/0F1F" data-tag="0F1F">59.97.3</a> as $Q$ is zero in $D(X_{\acute{e}tale})$ if and only if $H^ q(Q)$ is zero for all $q$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0F1H">
+  <p><a class="environment-identifier" href="/tag/0F1H">Lemma <span data-tag="0F1H">59.97.5</span>.</a> Let $K$ be a field. Let $j : U \to X$ be an open immersion of schemes of finite type over $K$. Let $Y$ be a scheme of finite type over $K$. Consider the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ Y \times _{\mathop{\mathrm{Spec}}(K)} X \ar[d]_ q &  Y \times _{\mathop{\mathrm{Spec}}(K)} U \ar[l]^ h \ar[d]^ p \\  X &  U \ar[l]_ j }  \]
+</div>
+  <p> Then the base change map $q^{-1}Rj_*\mathcal{F} \to Rh_*p^{-1}\mathcal{F}$ is an isomorphism for $\mathcal{F}$ an abelian sheaf on $U_{\acute{e}tale}$ whose stalks are torsion of orders invertible in $K$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Write $\mathcal{F} = \mathop{\mathrm{colim}}\nolimits \mathcal{F}[n]$ where the colimit is over the multiplicative system of integers invertible in $K$. Since cohomology commutes with filtered colimits in our situation (for a precise reference see Lemma <a href="/tag/0EZT" data-tag="0EZT">59.86.3</a>), it suffices to prove the lemma for $\mathcal{F}[n]$. Thus we may assume $\mathcal{F}$ is a sheaf of $\mathbf{Z}/n\mathbf{Z}$-modules for some $n$ invertible in $K$ (we will use this at the very end of the proof). In the proof we use the short hand $X \times _ K Y$ for the fibre product over $\mathop{\mathrm{Spec}}(K)$. We will prove the lemma by induction on $\dim (X) + \dim (Y)$. The lemma is trivial if $\dim (X) \leq 0$, since in this case $U$ is an open and closed subscheme of $X$. Choose a point $z \in X \times _ K Y$. We will show the stalk at $\overline{z}$ is an isomorphism. 
+    <p>
+      Suppose that $z \mapsto x \in X$ and assume $\text{trdeg}_ K(\kappa (x)) > 0$. Set $X' = \mathop{\mathrm{Spec}}(\mathcal{O}_{X, x}^{sh})$ and denote $U' \subset X'$ the inverse image of $U$. Consider the base change 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ Y \times _ K X' \ar[d]_{q'} &  Y \times _ K U' \ar[l]^{h'} \ar[d]^{p'} \\  X' &  U' \ar[l]_{j'} }  \]
+</div>
+    <p>
+       of our diagram by $X' \to X$. Observe that $X' \to X$ is a filtered colimit of étale morphisms. By smooth base change in the form of Lemma <a href="/tag/0F09" data-tag="0F09">59.89.3</a> the pullback of $q^{-1}Rj_*\mathcal{F} \to Rh_*p^{-1}\mathcal{F}$ to $X'$ to $Y \times _ K X'$ is the map $(q')^{-1}Rj'_*\mathcal{F}' \to Rj'_*(p')^{-1}\mathcal{F}'$ where $\mathcal{F}'$ is the pullback of $\mathcal{F}$ to $U'$. (In this step it would suffice to use étale base change which is an essentially trivial result.) So it suffices to show that $(q')^{-1}Rj'_*\mathcal{F}' \to Rj'_*(p')^{-1}\mathcal{F}'$ is an isomorphism in order to prove that our original map is an isomorphism on stalks at $\overline{z}$. By Lemma <a href="/tag/0F0U" data-tag="0F0U">59.95.5</a> there is a separably closed field $L/K$ such that $X' = \mathop{\mathrm{lim}}\nolimits X_ i$ with $X_ i$ affine of finite type over $L$ and $\dim (X_ i) < \dim (X)$. For $i$ large enough there exists an open $U_ i \subset X_ i$ restricting to $U'$ in $X'$. We may apply the induction hypothesis to the diagram 
+    <p>
+      <div class="equation">
+  \[  \vcenter { \xymatrix{ Y \times _ K X_ i \ar[d]_{q_ i} &  Y \times _ K U_ i \ar[l]^{h_ i} \ar[d]^{p_ i} \\  X_ i &  U_ i \ar[l]_{j_ i} } } \quad \text{equal to}\quad \vcenter { \xymatrix{ Y_ L \times _ L X_ i \ar[d]_{q_ i} &  Y_ L \times _ L U_ i \ar[l]^{h_ i} \ar[d]^{p_ i} \\  X_ i &  U_ i \ar[l]_{j_ i} } }  \]
+</div>
+    <p>
+       over the field $L$ and the pullback of $\mathcal{F}$ to these diagrams. By Lemma <a href="/tag/0EZT" data-tag="0EZT">59.86.3</a> we conclude that the map $(q')^{-1}Rj'_*\mathcal{F}' \to Rj'_*(p')^{-1}\mathcal{F}$ is an isomorphism. 
+    <p>
+      Suppose that $z \mapsto y \in Y$ and assume $\text{trdeg}_ K(\kappa (y)) > 0$. Let $Y' = \mathop{\mathrm{Spec}}(\mathcal{O}_{X, x}^{sh})$. By Lemma <a href="/tag/0F0U" data-tag="0F0U">59.95.5</a> there is a separably closed field $L/K$ such that $Y' = \mathop{\mathrm{lim}}\nolimits Y_ i$ with $Y_ i$ affine of finite type over $L$ and $\dim (Y_ i) < \dim (Y)$. In particular $Y'$ is a scheme over $L$. Denote with a subscript $L$ the base change from schemes over $K$ to schemes over $L$. Consider the commutative diagrams 
+    <p>
+      <div class="equation">
+  \[  \vcenter { \xymatrix{ Y' \times _ K X \ar[d]_ f &  Y' \times _ K U \ar[l]^{h'} \ar[d]^{f'} \\  Y \times _ K X \ar[d]_ q &  Y \times _ K U \ar[l]^ h \ar[d]^ p \\  X &  U \ar[l]_ j } } \quad \text{and}\quad \vcenter { \xymatrix{ Y' \times _ L X_ L \ar[d]_{q'} &  Y' \times _ L U_ L \ar[l]^{h'} \ar[d]^{p'} \\  X_ L \ar[d] &  U_ L \ar[l]^{j_ L} \ar[d] \\  X &  U \ar[l]_ j } }  \]
+</div>
+    <p>
+       and observe the top and bottom rows are the same on the left and the right. By smooth base change we see that $f^{-1}Rh_*p^{-1}\mathcal{F} = Rh'_*(f')^{-1}p^{-1}\mathcal{F}$ (similarly to the previous paragraph). By smooth base change for $\mathop{\mathrm{Spec}}(L) \to \mathop{\mathrm{Spec}}(K)$ (Lemma <a href="/tag/0F1C" data-tag="0F1C">59.90.1</a>) we see that $Rj_{L, *}\mathcal{F}_ L$ is the pullback of $Rj_*\mathcal{F}$ to $X_ L$. Combining these two observations, we conclude that it suffices to prove the base change map for the upper square in the diagram on the right is an isomorphism in order to prove that our original map is an isomorphism on stalks at $\overline{z}$<a class="footnotemark" href="#a0001260177" id="a0001260177-mark"><sup>1</sup></a>. Then using that $Y' = \mathop{\mathrm{lim}}\nolimits Y_ i$ and argueing exactly as in the previous paragraph we see that the induction hypothesis forces our map over $Y' \times _ K X$ to be an isomorphism. 
+    <p>
+      Thus any counter example with $\dim (X) + \dim (Y)$ minimal would only have nonisomorphisms $q^{-1}Rj_*\mathcal{F} \to Rh_*p^{-1}\mathcal{F}$ on stalks at closed points of $X \times _ K Y$ (because a point $z$ of $X \times _ K Y$ is a closed point if and only if both the image of $z$ in $X$ and in $Y$ are closed). Since it is enough to prove the isomorphism locally, we may assume $X$ and $Y$ are affine. However, then we can choose an open dense immersion $Y \to Y'$ with $Y'$ projective. (Choose a closed immersion $Y \to \mathbf{A}^ n_ K$ and let $Y'$ be the scheme theoretic closure of $Y$ in $\mathbf{P}^ n_ K$.) Then $\dim (Y') = \dim (Y)$ and hence we get a “minimal” counter example with $Y$ projective over $K$. In the next paragraph we show that this can't happen. 
+    <p>
+      Consider a diagram as in the statement of the lemma such that $q^{-1}Rj_*\mathcal{F} \to Rh_*p^{-1}\mathcal{F}$ is an isomorphism at all non-closed points of $X \times _ K Y$ and such that $Y$ is projective. The restriction of the map to $(X \times _ K Y)_{K^{sep}}$ is the corresponding map for the diagram of the lemma base changed to $K^{sep}$. Thus we may and do assume $K$ is separably algebraically closed. Choose a distinguished triangle 
+    <p>
+      <div class="equation">
+  \[  q^{-1}Rj_*\mathcal{F} \to Rh_*p^{-1}\mathcal{F} \to Q \to (q^{-1}Rj_*\mathcal{F})[1]  \]
+</div>
+    <p>
+       in $D((X \times _ K Y)_{\acute{e}tale})$. Since $Q$ is supported in closed points we see that it suffices to prove $H^ i(X \times _ K Y, Q) = 0$ for all $i$, see Lemma <a href="/tag/0F1G" data-tag="0F1G">59.97.4</a>. Thus it suffices to prove that $q^{-1}Rj_*\mathcal{F} \to Rh_*p^{-1}\mathcal{F}$ induces an isomorphism on cohomology. Recall that $\mathcal{F}$ is annihilated by $n$ invertible in $K$. By the Künneth formula of Lemma <a href="/tag/0F14" data-tag="0F14">59.97.2</a> we have 
+    <p>
+      <div class="equation">
+  \begin{align*}  R\Gamma (X \times _ K Y, q^{-1}Rj_*\mathcal{F}) & = R\Gamma (X, Rj_*\mathcal{F}) \otimes _{\mathbf{Z}/n\mathbf{Z}}^\mathbf {L} R\Gamma (Y, \mathbf{Z}/n\mathbf{Z}) \\ &  = R\Gamma (U, \mathcal{F}) \otimes _{\mathbf{Z}/n\mathbf{Z}}^\mathbf {L} R\Gamma (Y, \mathbf{Z}/n\mathbf{Z}) \end{align*}
+</div>
+    <p>
+       and 
+    <p>
+      <div class="equation">
+  \[  R\Gamma (X \times _ K Y, Rh_*p^{-1}\mathcal{F}) = R\Gamma (U \times _ K Y, p^{-1}\mathcal{F}) = R\Gamma (U, \mathcal{F}) \otimes _{\mathbf{Z}/n\mathbf{Z}}^\mathbf {L} R\Gamma (Y, \mathbf{Z}/n\mathbf{Z})  \]
+</div>
+    <p>
+       This finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0F1I">
+  <p><a class="environment-identifier" href="/tag/0F1I">Lemma <span data-tag="0F1I">59.97.6</span>.</a> Let $K$ be a field. For any commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ X \ar[d] &  X' \ar[l] \ar[d]_{f'} &  Y \ar[l]^ h \ar[d]^ e \\  \mathop{\mathrm{Spec}}(K) &  S' \ar[l] &  T \ar[l]_ g }  \]
+</div>
+  <p> of schemes over $K$ with $X' = X \times _{\mathop{\mathrm{Spec}}(K)} S'$ and $Y = X' \times _{S'} T$ and $g$ quasi-compact and quasi-separated, and every abelian sheaf $\mathcal{F}$ on $T_{\acute{e}tale}$ whose stalks are torsion of orders invertible in $K$ the base change map </p>
+  <div class="equation">
+  \[  (f')^{-1}Rg_*\mathcal{F} \longrightarrow Rh_*e^{-1}\mathcal{F}  \]
+</div>
+  <p> is an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The question is local on $X$, hence we may assume $X$ is affine. By Limits, Lemma <a href="/tag/09MV" data-tag="09MV">32.7.2</a> we can write $X = \mathop{\mathrm{lim}}\nolimits X_ i$ as a cofiltered limit with affine transition morphisms of schemes $X_ i$ of finite type over $K$. Denote $X'_ i = X_ i \times _{\mathop{\mathrm{Spec}}(K)} S'$ and $Y_ i = X'_ i \times _{S'} T$. By Lemma <a href="/tag/0EZT" data-tag="0EZT">59.86.3</a> it suffices to prove the statement for the squares with corners $X_ i, Y_ i, S_ i, T_ i$. Thus we may assume $X$ is of finite type over $K$. Similarly, we may write $\mathcal{F} = \mathop{\mathrm{colim}}\nolimits \mathcal{F}[n]$ where the colimit is over the multiplicative system of integers invertible in $K$. The same lemma used above reduces us to the case where $\mathcal{F}$ is a sheaf of $\mathbf{Z}/n\mathbf{Z}$-modules for some $n$ invertible in $K$. 
+    <p>
+      We may replace $K$ by its algebraic closure $\overline{K}$. Namely, formation of direct image commutes with base change to $\overline{K}$ according to Lemma <a href="/tag/0F1C" data-tag="0F1C">59.90.1</a> (works for both $g$ and $h$). And it suffices to prove the agreement after restriction to $X'_{\overline{K}}$. Next, we may replace $X$ by its reduction as we have the topological invariance of étale cohomology, see Proposition <a href="/tag/03SI" data-tag="03SI">59.45.4</a>. After this replacement the morphism $X \to \mathop{\mathrm{Spec}}(K)$ is flat, finite presentation, with geometrically reduced fibres and the same is true for any base change, in particular for $X' \to S'$. Hence $(f')^{-1}g_*\mathcal{F} \to Rh_*e^{-1}\mathcal{F}$ is an isomorphism by Lemma <a href="/tag/0EYS" data-tag="0EYS">59.87.2</a>. 
+    <p>
+      At this point we may apply Lemma <a href="/tag/0F1D" data-tag="0F1D">59.90.3</a> to see that it suffices to prove: given a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X \ar[d]_ f &  X' \ar[d] \ar[l] &  Y \ar[l]^ h \ar[d] \\  \mathop{\mathrm{Spec}}(K) &  S' \ar[l] &  \mathop{\mathrm{Spec}}(L) \ar[l] }  \]
+</div>
+    <p>
+       with both squares cartesian, where $S'$ is affine, integral, and normal with algebraically closed function field $K$, then $R^ qh_*(\mathbf{Z}/d\mathbf{Z})$ is zero for $q > 0$ and $d | n$. Observe that this vanishing is equivalent to the statement that 
+    <p>
+      <div class="equation">
+  \[  (f')^{-1}R^ q(\mathop{\mathrm{Spec}}(L) \to S')_*\mathbf{Z}/d\mathbf{Z} \longrightarrow R^ qh_*\mathbf{Z}/d\mathbf{Z}  \]
+</div>
+    <p>
+       is an isomorphism, because the left hand side is zero for example by Lemma <a href="/tag/0EZP" data-tag="0EZP">59.80.5</a>. 
+    <p>
+      Write $S' = \mathop{\mathrm{Spec}}(B)$ so that $L$ is the fraction field of $B$. Write $B = \bigcup _{i \in I} B_ i$ as the union of its finite type $K$-subalgebras $B_ i$. Let $J$ be the set of pairs $(i, g)$ where $i \in I$ and $g \in B_ i$ nonzero with ordering $(i', g') \geq (i, g)$ if and only if $i' \geq i$ and $g$ maps to an invertible element of $(B_{i'})_{g'}$. Then $L = \mathop{\mathrm{colim}}\nolimits _{(i, g) \in J} (B_ i)_ g$. For $j = (i, g) \in J$ set $S_ j = \mathop{\mathrm{Spec}}(B_ i)$ and $U_ j = \mathop{\mathrm{Spec}}((B_ i)_ g)$. Then 
+    <p>
+      <div class="equation">
+  \[  \vcenter { \xymatrix{ X' \ar[d] &  Y \ar[l]^ h \ar[d] \\  S' &  \mathop{\mathrm{Spec}}(L) \ar[l] } } \quad \text{is the colimit of}\quad \vcenter { \xymatrix{ X \times _ K S_ j \ar[d] &  X \times _ K U_ j \ar[l]^{h_ j} \ar[d] \\  S_ j &  U_ j \ar[l] } }  \]
+</div>
+    <p>
+       Thus we may apply Lemma <a href="/tag/0EZT" data-tag="0EZT">59.86.3</a> to see that it suffices to prove base change holds in the diagrams on the right which is what we proved in Lemma <a href="/tag/0F1H" data-tag="0F1H">59.97.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0F1J">
+  <p><a class="environment-identifier" href="/tag/0F1J">Lemma <span data-tag="0F1J">59.97.7</span>.</a> Let $K$ be a field. Let $n \geq 1$ be invertible in $K$. Consider a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ X \ar[d] &  X' \ar[l]^ p \ar[d]_{f'} &  Y \ar[l]^ h \ar[d]^ e \\  \mathop{\mathrm{Spec}}(K) &  S' \ar[l] &  T \ar[l]_ g }  \]
+</div>
+  <p> of schemes with $X' = X \times _{\mathop{\mathrm{Spec}}(K)} S'$ and $Y = X' \times _{S'} T$ and $g$ quasi-compact and quasi-separated. The canonical map </p>
+  <div class="equation">
+  \[  p^{-1}E \otimes _{\mathbf{Z}/n\mathbf{Z}}^\mathbf {L} (f')^{-1}Rg_*F \longrightarrow Rh_*(h^{-1}p^{-1}E \otimes _{\mathbf{Z}/n\mathbf{Z}}^\mathbf {L} e^{-1}F)  \]
+</div>
+  <p> is an isomorphism if $E$ in $D^+(X_{\acute{e}tale}, \mathbf{Z}/n\mathbf{Z})$ has tor amplitude in $[a, \infty ]$ for some $a \in \mathbf{Z}$ and $F$ in $D^+(T_{\acute{e}tale}, \mathbf{Z}/n\mathbf{Z})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This lemma is a generalization of Lemma <a href="/tag/0F1I" data-tag="0F1I">59.97.6</a> to objects of the derived category; the assertion of our lemma is true because in Lemma <a href="/tag/0F1I" data-tag="0F1I">59.97.6</a> the scheme $X$ over $K$ is arbitrary. We strongly urge the reader to skip the laborious proof (alternative: read only the last paragraph). 
+    <p>
+      We may represent $E$ by a bounded below K-flat complex $\mathcal{E}^\bullet $ consisting of flat $\mathbf{Z}/n\mathbf{Z}$-modules. See Cohomology on Sites, Lemma <a href="/tag/0F1M" data-tag="0F1M">21.46.4</a>. Choose an integer $b$ such that $H^ i(F) = 0$ for $i < b$. Choose a large integer $N$ and consider the short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \sigma _{\geq N + 1}\mathcal{E}^\bullet \to \mathcal{E}^\bullet \to \sigma _{\leq N}\mathcal{E}^\bullet \to 0  \]
+</div>
+    <p>
+       of stupid truncations. This produces a distinguished triangle $E'' \to E \to E' \to E''[1]$ in $D(X_{\acute{e}tale}, \mathbf{Z}/n\mathbf{Z})$. For fixed $F$ both sides of the arrow in the statement of the lemma are exact functors in $E$. Observe that 
+    <p>
+      <div class="equation">
+  \[  p^{-1}E'' \otimes _{\mathbf{Z}/n\mathbf{Z}}^\mathbf {L} (f')^{-1}Rg_*F \quad \text{and}\quad Rh_*(h^{-1}p^{-1}E'' \otimes _{\mathbf{Z}/n\mathbf{Z}}^\mathbf {L} e^{-1}F)  \]
+</div>
+    <p>
+       are sitting in degrees $\geq N + b$. Hence, if we can prove the lemma for the object $E'$, then we see that the lemma holds in degrees $\leq N + b$ and we will conclude. Some details omitted. Thus we may assume $E$ is represented by a bounded complex of flat $\mathbf{Z}/n\mathbf{Z}$-modules. Doing another argument of the same nature, we may assume $E$ is given by a single flat $\mathbf{Z}/n\mathbf{Z}$-module $\mathcal{E}$. 
+    <p>
+      Next, we use the same arguments for the variable $F$ to reduce to the case where $F$ is given by a single sheaf of $\mathbf{Z}/n\mathbf{Z}$-modules $\mathcal{F}$. Say $\mathcal{F}$ is annihilated by an integer $m | n$. If $\ell $ is a prime number dividing $m$ and $m > \ell $, then we can look at the short exact sequence $0 \to \mathcal{F}[\ell ] \to \mathcal{F} \to \mathcal{F}/\mathcal{F}[\ell ] \to 0$ and reduce to smaller $m$. This finally reduces us to the case where $\mathcal{F}$ is annihilated by a prime number $\ell $ dividing $n$. In this case observe that 
+    <p>
+      <div class="equation">
+  \[  p^{-1}\mathcal{E} \otimes _{\mathbf{Z}/n\mathbf{Z}}^\mathbf {L} (f')^{-1}Rg_*\mathcal{F} = p^{-1}(\mathcal{E}/\ell \mathcal{E}) \otimes _{\mathbf{F}_\ell }^\mathbf {L} (f')^{-1}Rg_*\mathcal{F}  \]
+</div>
+    <p>
+       by the flatness of $\mathcal{E}$. Similarly for the other term. This reduces us to the case where we are working with sheaves of $\mathbf{F}_\ell $-vector spaces which is discussed 
+    <p>
+      Assume $\ell $ is a prime number invertible in $K$. Assume $\mathcal{E}$, $\mathcal{F}$ are sheaves of $\mathbf{F}_\ell $-vector spaces on $X_{\acute{e}tale}$ and $T_{\acute{e}tale}$. We want to show that 
+    <p>
+      <div class="equation">
+  \[  p^{-1}\mathcal{E} \otimes _{\mathbf{F}_\ell } (f')^{-1}R^ qg_*\mathcal{F} \longrightarrow R^ qh_*(h^{-1}p^{-1}\mathcal{E} \otimes _{\mathbf{F}_\ell } e^{-1}\mathcal{F})  \]
+</div>
+    <p>
+       is an isomorphism for every $q \geq 0$. This question is local on $X$ hence we may assume $X$ is affine. We can write $\mathcal{E}$ as a filtered colimit of constructible sheaves of $\mathbf{F}_\ell $-vector spaces on $X_{\acute{e}tale}$, see Lemma <a href="/tag/03SA" data-tag="03SA">59.73.2</a>. Since tensor products commute with filtered colimits and since higher direct images do too (Lemma <a href="/tag/09Z1" data-tag="09Z1">59.51.7</a>) we may assume $\mathcal{E}$ is a constructible sheaf of $\mathbf{F}_\ell $-vector spaces on $X_{\acute{e}tale}$. Then we can choose an integer $m$ and finite and finitely presented morphisms $\pi _ i : X_ i \to X$, $i = 1, \ldots , m$ such that there is an injective map 
+    <p>
+      <div class="equation">
+  \[  \mathcal{E} \to \bigoplus \nolimits _{i = 1, \ldots , m} \pi _{i, *}\mathbf{F}_\ell  \]
+</div>
+    <p>
+       See Lemma <a href="/tag/09Z7" data-tag="09Z7">59.74.4</a>. Observe that the direct sum is a constructible sheaf as well (Lemma <a href="/tag/095R" data-tag="095R">59.73.9</a>). Thus the cokernel is constructible too (Lemma <a href="/tag/03RZ" data-tag="03RZ">59.71.6</a>). By dimension shifting, i.e., induction on $q$, on the category of constructible sheaves of $\mathbf{F}_\ell $-vector spaces on $X_{\acute{e}tale}$, it suffices to prove the result for the sheaves $\pi _{i, *}\mathbf{F}_\ell $ (details omitted; hint: start with proving injectivity for $q = 0$ for all constructible $\mathcal{E}$). To prove this case we extend the diagram of the lemma to 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X_ i \ar[d]^{\pi _ i} &  X'_ i \ar[l]^{p_ i} \ar[d]^{\pi '_ i} &  Y_ i \ar[l]^{h_ i} \ar[d]^{\rho _ i} \\  X \ar[d] &  X' \ar[l]^ p \ar[d]_{f'} &  Y \ar[l]^ h \ar[d]^ e \\  \mathop{\mathrm{Spec}}(K) &  S' \ar[l] &  T \ar[l]_ g }  \]
+</div>
+    <p>
+       with all squares cartesian. In the equations below we are going to use that $R\pi _{i, *} = \pi _{i, *}$ and similarly for $\pi '_ i$, $\rho _ i$, we are going to use the Leray spectral sequence, we are going to use Lemma <a href="/tag/0959" data-tag="0959">59.55.3</a>, and we are going to use Lemma <a href="/tag/0F0G" data-tag="0F0G">59.96.6</a> (although this lemma is almost trivial for finite morphisms) for $\pi _ i$, $\pi '_ i$, $\rho _ i$. Doing so we see that 
+    <p>
+      <div class="equation">
+  \begin{align*}  p^{-1}\pi _{i, *}\mathbf{F}_\ell \otimes _{\mathbf{F}_\ell } (f')^{-1}R^ qg_*\mathcal{F} &  = \pi '_{i, *}\mathbf{F}_\ell \otimes _{\mathbf{F}_\ell } (f')^{-1}R^ qg_*\mathcal{F} \\ &  = \pi '_{i, *}((\pi '_ i)^{-1} (f')^{-1}R^ qg_*\mathcal{F}) \end{align*}
+</div>
+    <p>
+       Similarly, we have 
+    <p>
+      <div class="equation">
+  \begin{align*}  R^ qh_*(h^{-1}p^{-1} \pi _{i, *}\mathbf{F}_\ell \otimes _{\mathbf{F}_\ell } e^{-1}\mathcal{F}) &  = R^ qh_*(\rho _{i, *}\mathbf{F}_\ell \otimes _{\mathbf{F}_\ell } e^{-1}\mathcal{F}) \\ &  = R^ qh_*(\rho _ i^{-1}e^{-1}\mathcal{F}) \\ &  = \pi '_{i, *}R^ qh_{i, *} \rho _ i^{-1}e^{-1}\mathcal{F}) \end{align*}
+</div>
+    <p>
+       Simce $R^ qh_{i, *} \rho _ i^{-1}e^{-1}\mathcal{F} = (\pi '_ i)^{-1} (f')^{-1}R^ qg_*\mathcal{F}$ by Lemma <a href="/tag/0F1I" data-tag="0F1I">59.97.6</a> we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0F1N">
+  <p><a class="environment-identifier" href="/tag/0F1N">Lemma <span data-tag="0F1N">59.97.8</span>.</a> Let $K$ be a field. Let $n \geq 1$ be invertible in $K$. Consider a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ X \ar[d] &  X' \ar[l]^ p \ar[d]_{f'} &  Y \ar[l]^ h \ar[d]^ e \\  \mathop{\mathrm{Spec}}(K) &  S' \ar[l] &  T \ar[l]_ g }  \]
+</div>
+  <p> of schemes of finite type over $K$ with $X' = X \times _{\mathop{\mathrm{Spec}}(K)} S'$ and $Y = X' \times _{S'} T$. The canonical map </p>
+  <div class="equation">
+  \[  p^{-1}E \otimes _{\mathbf{Z}/n\mathbf{Z}}^\mathbf {L} (f')^{-1}Rg_*F \longrightarrow Rh_*(h^{-1}p^{-1}E \otimes _{\mathbf{Z}/n\mathbf{Z}}^\mathbf {L} e^{-1}F)  \]
+</div>
+  <p> is an isomorphism for $E$ in $D(X_{\acute{e}tale}, \mathbf{Z}/n\mathbf{Z})$ and $F$ in $D(T_{\acute{e}tale}, \mathbf{Z}/n\mathbf{Z})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will reduce this to Lemma <a href="/tag/0F1J" data-tag="0F1J">59.97.7</a> using that our functors commute with direct sums. We suggest the reader skip the proof. Recall that derived tensor product commutes with direct sums. Recall that (derived) pullback commutes with direct sums. Recall that $Rh_*$ and $Rg_*$ commute with direct sums, see Lemmas <a href="/tag/0F10" data-tag="0F10">59.96.2</a> and <a href="/tag/0F11" data-tag="0F11">59.96.3</a> (this is where we use our schemes are of finite type over $K$). 
+    <p>
+      To finish the proof we can argue as follows. First we write $E = \text{hocolim} \tau _{\leq N} E$. Since our functors commute with direct sums, they commute with homotopy colimits. Hence it suffices to prove the lemma for $E$ bounded above. Similarly for $F$ we may assume $F$ is bounded above. Then we can represent $E$ by a bounded above complex $\mathcal{E}^\bullet $ of sheaves of $\mathbf{Z}/n\mathbf{Z}$-modules. Then 
+    <p>
+      <div class="equation">
+  \[  \mathcal{E}^\bullet = \mathop{\mathrm{colim}}\nolimits \sigma _{\geq -N}\mathcal{E}^\bullet  \]
+</div>
+    <p>
+       (stupid truncations). Thus we may assume $\mathcal{E}^\bullet $ is a bounded complex of sheaves of $\mathbf{Z}/n\mathbf{Z}$-modules. For $F$ we choose a bounded above complex of flat(!) sheaves of $\mathbf{Z}/n\mathbf{Z}$-modules. Then we reduce to the case where $F$ is represented by a bounded complex of flat sheaves of $\mathbf{Z}/n\mathbf{Z}$-modules. At this point Lemma <a href="/tag/0F1J" data-tag="0F1J">59.97.7</a> kicks in and we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0F1P">
+  <p><a class="environment-identifier" href="/tag/0F1P">Lemma <span data-tag="0F1P">59.97.9</span>.</a> Let $k$ be a separably closed field. Let $X$ and $Y$ be finite type schemes over $k$. Let $n \geq 1$ be an integer invertible in $k$. Then for $E \in D(X_{\acute{e}tale}, \mathbf{Z}/n\mathbf{Z})$ and $K \in D(Y_{\acute{e}tale}, \mathbf{Z}/n\mathbf{Z})$ we have </p>
+  <div class="equation">
+  \[  R\Gamma (X \times _{\mathop{\mathrm{Spec}}(k)} Y, \text{pr}_1^{-1}E \otimes _{\mathbf{Z}/n\mathbf{Z}}^\mathbf {L} \text{pr}_2^{-1}K ) = R\Gamma (X, E) \otimes _{\mathbf{Z}/n\mathbf{Z}}^\mathbf {L} R\Gamma (Y, K)  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/0F1N" data-tag="0F1N">59.97.8</a> we have 
+    <p>
+      <div class="equation">
+  \[  R\text{pr}_{1, *}( \text{pr}_1^{-1}E \otimes _{\mathbf{Z}/n\mathbf{Z}}^\mathbf {L} \text{pr}_2^{-1}K) = E \otimes _{\mathbf{Z}/n\mathbf{Z}}^\mathbf {L} \underline{R\Gamma (Y, K)}  \]
+</div>
+    <p>
+       We conclude by Lemma <a href="/tag/0F12" data-tag="0F12">59.96.5</a> which we may use because $\text{cd}(X) < \infty $ by Lemma <a href="/tag/0F10" data-tag="0F10">59.96.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

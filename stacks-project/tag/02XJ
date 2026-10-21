@@ -1,0 +1,367 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="categories-section-fibred-categories" class="tex-section"><span data-tag="02XJ">4.33</span> Fibred categories</h2>
+
+<p>
+A very brief discussion of fibred categories is warranted. 
+</p>
+<p>
+Let $p : \mathcal{S} \to \mathcal{C}$ be a category over $\mathcal{C}$. Given an object $x \in \mathcal{S}$ with $p(x) = U$, and given a morphism $f : V \to U$, we can try to take some kind of “fibre product $V \times _ U x$” (or a <em>base change</em> of $x$ via $V \to U$). Namely, a morphism from an object $z \in \mathcal{S}$ into “$V \times _ U x$” should be given by a pair $(\varphi , g)$, where $\varphi : z \to x$, $g : p(z) \to V$ such that $p(\varphi ) = f \circ g$. Pictorially: 
+</p>
+<div class="equation">
+  \[  \xymatrix{ z \ar@{~>}[d]^ p \ar@{-}[r] &  ? \ar[r] \ar@{~>}[d]^ p &  x \ar@{~>}[d]^ p \\  p(z) \ar[r] &  V \ar[r]^ f &  U }  \]
+</div>
+<p>
+ If such a morphism $V \times _ U x \to x$ exists then it is called a strongly cartesian morphism. 
+</p>
+<p>
+<article class="env-definition" id="02XK">
+  <p><a class="environment-identifier" href="/tag/02XK">Definition <span data-tag="02XK">4.33.1</span>.</a> Let $\mathcal{C}$ be a category. Let $p : \mathcal{S} \to \mathcal{C}$ be a category over $\mathcal{C}$. A <em>strongly cartesian morphism</em>, or more precisely a <em>strongly $\mathcal{C}$-cartesian morphism</em> is a morphism $\varphi : y \to x$ of $\mathcal{S}$ such that for every $z \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{S})$ the map </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(z, y) \longrightarrow \mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(z, x) \times _{\mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(z), p(x))} \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(z), p(y)),  \]
+</div>
+  <p> given by $\psi \longmapsto (\varphi \circ \psi , p(\psi ))$ is bijective. </p>
+</article> 
+</p>
+<p>
+Note that by the Yoneda Lemma <a href="/tag/001P" data-tag="001P">4.3.5</a>, given $x \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{S})$ lying over $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and the morphism $f : V \to U$ of $\mathcal{C}$, if there is a strongly cartesian morphism $\varphi : y \to x$ with $p(\varphi ) = f$, then $(y, \varphi )$ is unique up to unique isomorphism. This is clear from the definition above, as the functor 
+</p>
+<div class="equation">
+  \[  z \longmapsto \mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(z, x) \times _{\mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(z), U)} \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(z), V)  \]
+</div>
+<p>
+ only depends on the data $(x, U, f : V \to U)$. Hence we will sometimes use $V \times _ U x \to x$ or $f^*x \to x$ to denote a strongly cartesian morphism which is a lift of $f$. 
+</p>
+<p>
+<article class="env-lemma" id="02XL">
+  <p><a class="environment-identifier" href="/tag/02XL">Lemma <span data-tag="02XL">4.33.2</span>.</a> Let $\mathcal{C}$ be a category. Let $p : \mathcal{S} \to \mathcal{C}$ be a category over $\mathcal{C}$. </p>
+  <p><ol>
+  <li><p>
+The composition of two strongly cartesian morphisms is strongly cartesian. 
+</p>
+</li><li><p>
+Any isomorphism of $\mathcal{S}$ is strongly cartesian. 
+</p>
+</li><li><p>
+Any strongly cartesian morphism $\varphi $ such that $p(\varphi )$ is an isomorphism, is an isomorphism. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Proof of (1). Let $\varphi : y \to x$ and $\psi : z \to y$ be strongly cartesian. Let $t$ be an arbitrary object of $\mathcal{S}$. Then we have 
+    <p>
+      <div class="equation">
+  \begin{align*} &  \mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(t, z) \\ &  = \mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(t, y) \times _{\mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(t), p(y))} \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(t), p(z)) \\ &  = \mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(t, x) \times _{\mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(t), p(x))} \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(t), p(y)) \times _{\mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(t), p(y))} \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(t), p(z)) \\ &  = \mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(t, x) \times _{\mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(t), p(x))} \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(t), p(z)) \end{align*}
+</div>
+    <p>
+       hence $z \to x$ is strongly cartesian. 
+    <p>
+      Proof of (2). Let $y \to x$ be an isomorphism. Then $p(y) \to p(x)$ is an isomorphism too. Hence $\mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(z), p(y)) \to \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(z), p(x))$ is a bijection. Hence $\mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(z, x) \times _{\mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(z), p(x))} \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(z), p(y))$ is bijective to $\mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(z, x)$. Hence the displayed map of Definition <a href="/tag/02XK" data-tag="02XK">4.33.1</a> is a bijection as $y \to x$ is an isomorphism, and we conclude that $y \to x$ is strongly cartesian. 
+    <p>
+      Proof of (3). Assume $\varphi : y \to x$ is strongly cartesian with $p(\varphi ) : p(y) \to p(x)$ an isomorphism. Applying the definition with $z = x$ shows that $(\text{id}_ x, p(\varphi )^{-1})$ comes from a unique morphism $\chi : x \to y$. We omit the verification that $\chi $ is the inverse of $\varphi $. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09WU">
+  <p><a class="environment-identifier" href="/tag/09WU">Lemma <span data-tag="09WU">4.33.3</span>.</a> Let $F : \mathcal{A} \to \mathcal{B}$ and $G : \mathcal{B} \to \mathcal{C}$ be composable functors between categories. Let $x \to y$ be a morphism of $\mathcal{A}$. If $x \to y$ is strongly $\mathcal{B}$-cartesian and $F(x) \to F(y)$ is strongly $\mathcal{C}$-cartesian, then $x \to y$ is strongly $\mathcal{C}$-cartesian. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows directly from the definition. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06N4">
+  <p><a class="environment-identifier" href="/tag/06N4">Lemma <span data-tag="06N4">4.33.4</span>.</a> Let $\mathcal{C}$ be a category. Let $p : \mathcal{S} \to \mathcal{C}$ be a category over $\mathcal{C}$. Let $x \to y$ and $z \to y$ be morphisms of $\mathcal{S}$. Assume </p>
+  <p><ol>
+  <li><p>
+$x \to y$ is strongly cartesian, 
+</p>
+</li><li><p>
+$p(x) \times _{p(y)} p(z)$ exists, and 
+</p>
+</li><li><p>
+there exists a strongly cartesian morphism $a : w \to z$ in $\mathcal{S}$ with $p(w) = p(x) \times _{p(y)} p(z)$ and $p(a) = \text{pr}_2 : p(x) \times _{p(y)} p(z) \to p(z)$. 
+</p>
+</li>
+</ol></p>
+  <p> Then the fibre product $x \times _ y z$ exists and is isomorphic to $w$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $x \to y$ is strongly cartesian there exists a unique morphism $b : w \to x$ such that $p(b) = \text{pr}_1$. To see that $w$ is the fibre product we compute 
+    <p>
+      <div class="equation">
+  \begin{align*} &  \mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(t, w) \\ &  = \mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(t, z) \times _{\mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(t), p(z))} \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(t), p(w)) \\ &  = \mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(t, z) \times _{\mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(t), p(z))} (\mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(t), p(x)) \times _{\mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(t), p(y))} \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(t), p(z))) \\ &  = \mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(t, z) \times _{\mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(t), p(y))} \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(t), p(x)) \\ &  = \mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(t, z) \times _{\mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(t, y)} \mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(t, y) \times _{\mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(t), p(y))} \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(p(t), p(x)) \\ &  = \mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(t, z) \times _{\mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(t, y)} \mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(t, x) \end{align*}
+</div>
+    <p>
+       as desired. The first equality holds because $a : w \to z$ is strongly cartesian and the last equality holds because $x \to y$ is strongly cartesian. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="02XM">
+  <p><a class="environment-identifier" href="/tag/02XM">Definition <span data-tag="02XM">4.33.5</span>.</a> Let $\mathcal{C}$ be a category. Let $p : \mathcal{S} \to \mathcal{C}$ be a category over $\mathcal{C}$. We say $\mathcal{S}$ is a <em>fibred category over $\mathcal{C}$</em> if given any $x \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{S})$ lying over $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and any morphism $f : V \to U$ of $\mathcal{C}$, there exists a strongly cartesian morphism $f^*x \to x$ lying over $f$. </p>
+</article> 
+</p>
+<p>
+Assume $p : \mathcal{S} \to \mathcal{C}$ is a fibred category. For every $f : V \to U$ and $x\in \mathop{\mathrm{Ob}}\nolimits (\mathcal{S}_ U)$ as in the definition we may choose a strongly cartesian morphism $f^\ast x \to x$ lying over $f$. By the axiom of choice we may choose $f^*x \to x$ for all $f: V \to U = p(x)$ simultaneously. We claim that for every morphism $\phi : x \to x'$ in $\mathcal{S}_ U$ and $f : V \to U$ there is a unique morphism $f^\ast \phi : f^\ast x \to f^\ast x'$ in $\mathcal{S}_ V$ such that 
+</p>
+<div class="equation">
+  \[  \xymatrix{ f^\ast x \ar[r]_{f^\ast \phi } \ar[d] &  f^\ast x' \ar[d] \\  x \ar[r]^{\phi } &  x' }  \]
+</div>
+<p>
+ commutes. Namely, the arrow exists and is unique because $f^*x' \to x'$ is strongly cartesian. The uniqueness of this arrow guarantees that $f^\ast $ (now also defined on morphisms) is a functor $ f^\ast : \mathcal{S}_ U \to \mathcal{S}_ V$. 
+</p>
+<p>
+<article class="env-definition" id="02XN">
+  <p><a class="environment-identifier" href="/tag/02XN">Definition <span data-tag="02XN">4.33.6</span>.</a> Assume $p : \mathcal{S} \to \mathcal{C}$ is a fibred category. </p>
+  <p><ol>
+  <li><p>
+A <em>choice of pullbacks</em><a class="footnotemark" href="#a0000019196" id="a0000019196-mark"><sup>1</sup></a> for $p : \mathcal{S} \to \mathcal{C}$ is given by a choice of a strongly cartesian morphism $f^\ast x \to x$ lying over $f$ for any morphism $f: V \to U$ of $\mathcal{C}$ and any $x \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{S}_ U)$. 
+</p>
+</li><li><p>
+Given a choice of pullbacks, for any morphism $f : V \to U$ of $\mathcal{C}$ the functor $f^* : \mathcal{S}_ U \to \mathcal{S}_ V$ described above is called a <em>pullback functor</em> (associated to the choices $f^*x \to x$ made above). 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+Of course we may always assume our choice of pullbacks has the property that $\text{id}_ U^*x = x$, although in practice this is a useless property without imposing further assumptions on the pullbacks. 
+</p>
+<p>
+<article class="env-lemma" id="02XO">
+  <p><a class="environment-identifier" href="/tag/02XO">Lemma <span data-tag="02XO">4.33.7</span>.</a> Assume $p : \mathcal{S} \to \mathcal{C}$ is a fibred category. Assume given a choice of pullbacks for $p : \mathcal{S} \to \mathcal{C}$. </p>
+  <p><ol>
+  <li><p>
+For any pair of composable morphisms $f : V \to U$, $g : W \to V$ there is a unique isomorphism 
+</p>
+<div class="equation">
+  \[  \alpha _{g, f} : (f \circ g)^\ast \longrightarrow g^\ast \circ f^\ast  \]
+</div>
+<p>
+ as functors $\mathcal{S}_ U \to \mathcal{S}_ W$ such that for every $y\in \mathop{\mathrm{Ob}}\nolimits (\mathcal{S}_ U)$ the following diagram commutes 
+</p>
+<div class="equation">
+  \[  \xymatrix{ g^\ast f^\ast y \ar[r] &  f^\ast y \ar[d] \\  (f \circ g)^\ast y \ar[r] \ar[u]^{(\alpha _{g, f})_ y} &  y }  \]
+</div>
+</li><li><p>
+If $f = \text{id}_ U$, then there is a canonical isomorphism $\alpha _ U : \text{id} \to (\text{id}_ U)^*$ as functors $\mathcal{S}_ U \to \mathcal{S}_ U$. 
+</p>
+</li><li><p>
+The quadruple $(U \mapsto \mathcal{S}_ U, f \mapsto f^*, \alpha _{g, f}, \alpha _ U)$ defines a pseudo functor from $\mathcal{C}^{opp}$ to the $(2, 1)$-category of categories, see Definition <a href="/tag/003N" data-tag="003N">4.29.5</a>. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In fact, it is clear that the commutative diagram of part (1) uniquely determines the morphism $(\alpha _{g, f})_ y$ in the fibre category $\mathcal{S}_ W$. It is an isomorphism since both the morphism $(f \circ g)^*y \to y$ and the composition $g^*f^*y \to f^*y \to y$ are strongly cartesian morphisms lifting $f \circ g$ (see discussion following Definition <a href="/tag/02XK" data-tag="02XK">4.33.1</a> and Lemma <a href="/tag/02XL" data-tag="02XL">4.33.2</a>). In the same way, since $\text{id}_ x : x \to x$ is clearly strongly cartesian over $\text{id}_ U$ (with $U = p(x)$) we see that there exists an isomorphism $(\alpha _ U)_ x : x \to (\text{id}_ U)^*x$. (Of course we could have assumed beforehand that $f^*x = x$ whenever $f$ is an identity morphism, but it is better for the sake of generality not to assume this.) We omit the verification that $\alpha _{g, f}$ and $\alpha _ U$ so obtained are transformations of functors. We also omit the verification of (3). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="042G">
+  <p><a class="environment-identifier" href="/tag/042G">Lemma <span data-tag="042G">4.33.8</span>.</a> Let $\mathcal{C}$ be a category. Let $\mathcal{S}_1$, $\mathcal{S}_2$ be categories over $\mathcal{C}$. Suppose that $\mathcal{S}_1$ and $\mathcal{S}_2$ are equivalent as categories over $\mathcal{C}$. Then $\mathcal{S}_1$ is fibred over $\mathcal{C}$ if and only if $\mathcal{S}_2$ is fibred over $\mathcal{C}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Denote $p_ i : \mathcal{S}_ i \to \mathcal{C}$ the given functors. Let $F : \mathcal{S}_1 \to \mathcal{S}_2$, $G : \mathcal{S}_2 \to \mathcal{S}_1$ be functors over $\mathcal{C}$, and let $i : F \circ G \to \text{id}_{\mathcal{S}_2}$, $j : G \circ F \to \text{id}_{\mathcal{S}_1}$ be isomorphisms of functors over $\mathcal{C}$. We claim that in this case $F$ maps strongly cartesian morphisms to strongly cartesian morphisms. Namely, suppose that $\varphi : y \to x$ is strongly cartesian in $\mathcal{S}_1$. Set $f : V \to U$ equal to $p_1(\varphi )$. Suppose that $z' \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{S}_2)$, with $W = p_2(z')$, and we are given $g : W \to V$ and $\psi ' : z' \to F(x)$ such that $p_2(\psi ') = f \circ g$. Then 
+    <p>
+      <div class="equation">
+  \[  \psi = j \circ G(\psi ') : G(z') \to G(F(x)) \to x  \]
+</div>
+    <p>
+       is a morphism in $\mathcal{S}_1$ with $p_1(\psi ) = f \circ g$. Hence by assumption there exists a unique morphism $\xi : G(z') \to y$ lying over $g$ such that $\psi = \varphi \circ \xi $. This in turn gives a morphism 
+    <p>
+      <div class="equation">
+  \[  \xi ' = F(\xi ) \circ i^{-1} : z' \to F(G(z')) \to F(y)  \]
+</div>
+    <p>
+       lying over $g$ with $\psi ' = F(\varphi ) \circ \xi '$. We omit the verification that $\xi '$ is unique. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The conclusion from Lemma <a href="/tag/042G" data-tag="042G">4.33.8</a> is that equivalences map strongly cartesian morphisms to strongly cartesian morphisms. But this may not be the case for an arbitrary functor between fibred categories over $\mathcal{C}$. Hence we define the $2$-category of fibred categories as follows. 
+</p>
+<p>
+<article class="env-definition" id="02XP">
+  <p><a class="environment-identifier" href="/tag/02XP">Definition <span data-tag="02XP">4.33.9</span>.</a> Let $\mathcal{C}$ be a category. The <em>$2$-category of fibred categories over $\mathcal{C}$</em> is the sub $2$-category of the $2$-category of categories over $\mathcal{C}$ (see Definition <a href="/tag/003Y" data-tag="003Y">4.32.1</a>) defined as follows: </p>
+  <p><ol>
+  <li><p>
+Its objects will be fibred categories $p : \mathcal{S} \to \mathcal{C}$. 
+</p>
+</li><li><p>
+Its $1$-morphisms $(\mathcal{S}, p) \to (\mathcal{S}', p')$ will be functors $G : \mathcal{S} \to \mathcal{S}'$ such that $p' \circ G = p$ and such that $G$ maps strongly cartesian morphisms to strongly cartesian morphisms. 
+</p>
+</li><li><p>
+Its $2$-morphisms $t : G \to H$ for $G, H : (\mathcal{S}, p) \to (\mathcal{S}', p')$ will be morphisms of functors such that $p'(t_ x) = \text{id}_{p(x)}$ for all $x \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{S})$. 
+</p>
+</li>
+</ol></p>
+  <p> In this situation we will denote </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\textit{Fib}/\mathcal{C}}(\mathcal{S}, \mathcal{S}')  \]
+</div>
+  <p> the category of $1$-morphisms between $(\mathcal{S}, p)$ and $(\mathcal{S}', p')$ </p>
+</article> 
+</p>
+<p>
+Note the condition on $1$-morphisms. Note also that this is a true $2$-category and not a $(2, 1)$-category. Hence when taking $2$-fibre products we first pass to the associated $(2, 1)$-category. 
+</p>
+<p>
+<article class="env-lemma" id="02XQ">
+  <p><a class="environment-identifier" href="/tag/02XQ">Lemma <span data-tag="02XQ">4.33.10</span>.</a> Let $\mathcal{C}$ be a category. The $(2, 1)$-category of fibred categories over $\mathcal{C}$ has 2-fibre products, and they are described as in Lemma <a href="/tag/0040" data-tag="0040">4.32.3</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Basically what one has to show here is that given $F : \mathcal{X} \to \mathcal{S}$ and $G : \mathcal{Y} \to \mathcal{S}$ morphisms of fibred categories over $\mathcal{C}$, then the category $\mathcal{X} \times _\mathcal {S} \mathcal{Y}$ described in Lemma <a href="/tag/0040" data-tag="0040">4.32.3</a> is fibred. Let us show that $\mathcal{X} \times _\mathcal {S} \mathcal{Y}$ has plenty of strongly cartesian morphisms. Namely, suppose we have $(U, x, y, \phi )$ an object of $\mathcal{X} \times _\mathcal {S} \mathcal{Y}$. And suppose $f : V \to U$ is a morphism in $\mathcal{C}$. Choose strongly cartesian morphisms $a : f^*x \to x$ in $\mathcal{X}$ lying over $f$ and $b : f^*y \to y$ in $\mathcal{Y}$ lying over $f$. By assumption $F(a)$ and $G(b)$ are strongly cartesian. Since $\phi : F(x) \to G(y)$ is an isomorphism, by the uniqueness of strongly cartesian morphisms we find a unique isomorphism $f^*\phi : F(f^*x) \to G(f^*y)$ such that $G(b) \circ f^*\phi = \phi \circ F(a)$. In other words $(a, b) : (V, f^*x, f^*y, f^*\phi ) \to (U, x, y, \phi )$ is a morphism in $\mathcal{X} \times _\mathcal {S} \mathcal{Y}$. We omit the verification that this is a strongly cartesian morphism (and that these are in fact the only strongly cartesian morphisms). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02XR">
+  <p><a class="environment-identifier" href="/tag/02XR">Lemma <span data-tag="02XR">4.33.11</span>.</a> Let $\mathcal{C}$ be a category. Let $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$. If $p : \mathcal{S} \to \mathcal{C}$ is a fibred category and $p$ factors through $p' : \mathcal{S} \to \mathcal{C}/U$ then $p' : \mathcal{S} \to \mathcal{C}/U$ is a fibred category. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose that $\varphi : x' \to x$ is strongly cartesian with respect to $p$. We claim that $\varphi $ is strongly cartesian with respect to $p'$ also. Set $g = p'(\varphi )$, so that $g : V'/U \to V/U$ for some morphisms $f : V \to U$ and $f' : V' \to U$. Let $z \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{S})$. Set $p'(z) = (W \to U)$. To show that $\varphi $ is strongly cartesian for $p'$ we have to show 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(z, x') \longrightarrow \mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(z, x) \times _{\mathop{\mathrm{Mor}}\nolimits _{\mathcal{C}/U}(W/U, V/U)} \mathop{\mathrm{Mor}}\nolimits _{\mathcal{C}/U}(W/U, V'/U),  \]
+</div>
+    <p>
+       given by $\psi ' \longmapsto (\varphi \circ \psi ', p'(\psi '))$ is bijective. Suppose given an element $(\psi , h)$ of the right hand side, then in particular $g \circ h = p(\psi )$, and by the condition that $\varphi $ is strongly cartesian we get a unique morphism $\psi ' : z \to x'$ with $\psi = \varphi \circ \psi '$ and $p(\psi ') = h$. OK, and now $p'(\psi ') : W/U \to V/U$ is a morphism whose corresponding map $W \to V$ is $h$, hence equal to $h$ as a morphism in $\mathcal{C}/U$. Thus $\psi '$ is a unique morphism $z \to x'$ which maps to the given pair $(\psi , h)$. This proves the claim. 
+    <p>
+      Finally, suppose given $g : V'/U \to V/U$ and $x$ with $p'(x) = V/U$. Since $p : \mathcal{S} \to \mathcal{C}$ is a fibred category we see there exists a strongly cartesian morphism $\varphi : x' \to x$ with $p(\varphi ) = g$. By the same argument as above it follows that $p'(\varphi ) = g : V'/U \to V/U$. And as seen above the morphism $\varphi $ is strongly cartesian. Thus the conditions of Definition <a href="/tag/02XM" data-tag="02XM">4.33.5</a> are satisfied and we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09WV">
+  <p><a class="environment-identifier" href="/tag/09WV">Lemma <span data-tag="09WV">4.33.12</span>.</a> Let $\mathcal{A} \to \mathcal{B} \to \mathcal{C}$ be functors between categories. If $\mathcal{A}$ is fibred over $\mathcal{B}$ and $\mathcal{B}$ is fibred over $\mathcal{C}$, then $\mathcal{A}$ is fibred over $\mathcal{C}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from the definitions and Lemma <a href="/tag/09WU" data-tag="09WU">4.33.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06N5">
+  <p><a class="environment-identifier" href="/tag/06N5">Lemma <span data-tag="06N5">4.33.13</span>.</a> Let $p : \mathcal{S} \to \mathcal{C}$ be a fibred category. Let $x \to y$ and $z \to y$ be morphisms of $\mathcal{S}$ with $x \to y$ strongly cartesian. If $p(x) \times _{p(y)} p(z)$ exists, then $x \times _ y z$ exists, $p(x \times _ y z) = p(x) \times _{p(y)} p(z)$, and $x \times _ y z \to z$ is strongly cartesian. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Pick a strongly cartesian morphism $\text{pr}_2^*z \to z$ lying over $\text{pr}_2 : p(x) \times _{p(y)} p(z) \to p(z)$. Then $\text{pr}_2^*z = x \times _ y z$ by Lemma <a href="/tag/06N4" data-tag="06N4">4.33.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08NF">
+  <p><a class="environment-identifier" href="/tag/08NF">Lemma <span data-tag="08NF">4.33.14</span>.</a> Let $\mathcal{C}$ be a category. Let $F : \mathcal{X} \to \mathcal{Y}$ be a $1$-morphism of fibred categories over $\mathcal{C}$. There exist $1$-morphisms of fibred categories over $\mathcal{C}$ </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{X} \ar@<1ex>[r]^ u &  \mathcal{X}' \ar[r]^ v \ar@<1ex>[l]^ w &  \mathcal{Y} }  \]
+</div>
+  <p> such that $F = v \circ u$ and such that </p>
+  <p><ol>
+  <li><p>
+$u : \mathcal{X} \to \mathcal{X}'$ is fully faithful, 
+</p>
+</li><li><p>
+$w$ is left adjoint to $u$, and 
+</p>
+</li><li><p>
+$v : \mathcal{X}' \to \mathcal{Y}$ is a fibred category. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Denote $p : \mathcal{X} \to \mathcal{C}$ and $q : \mathcal{Y} \to \mathcal{C}$ the structure functors. We construct $\mathcal{X}'$ explicitly as follows. An object of $\mathcal{X}'$ is a quadruple $(U, x, y, f)$ where $x \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{X}_ U)$, $y \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{Y}_ U)$ and $f : y \to F(x)$ is a morphism in $\mathcal{Y}_ U$. A morphism $(a, b) : (U, x, y, f) \to (U', x', y', f')$ is given by $a : x \to x'$ and $b : y \to y'$ with $p(a) = q(b) : U \to U'$ and such that $f' \circ b = F(a) \circ f$. 
+    <p>
+      Let us make a choice of pullbacks for both $p$ and $q$ and let us use the same notation to indicate them. Let $(U, x, y, f)$ be an object and let $h : V \to U$ be a morphism. Consider the morphism $c : (V, h^*x, h^*y, h^*f) \to (U, x, y, f)$ coming from the given strongly cartesian maps $h^*x \to x$ and $h^*y \to y$. We claim $c$ is strongly cartesian in $\mathcal{X}'$ over $\mathcal{C}$. Namely, suppose we are given an object $(W, x', y', f')$ of $\mathcal{X}'$, a morphism $(a, b) : (W, x', y', f') \to (U, x, y, f)$ lying over $W \to U$, and a factorization $W \to V \to U$ of $W \to U$ through $h$. As $h^*x \to x$ and $h^*y \to y$ are strongly cartesian we obtain morphisms $a' : x' \to h^*x$ and $b' : y' \to h^*y$ lying over the given morphism $W \to V$. Consider the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ y' \ar[d]_{f'} \ar[r] &  h^*y \ar[r] \ar[d]_{h^*f} &  y \ar[d]_ f \\  F(x') \ar[r] &  F(h^*x) \ar[r] &  F(x) }  \]
+</div>
+    <p>
+       The outer rectangle and the right square commute. Since $F$ is a $1$-morphism of fibred categories the morphism $F(h^*x) \to F(x)$ is strongly cartesian. Hence the left square commutes by the universal property of strongly cartesian morphisms. This proves that $\mathcal{X}'$ is fibred over $\mathcal{C}$. 
+    <p>
+      The functor $u : \mathcal{X} \to \mathcal{X}'$ is given by $x \mapsto (p(x), x, F(x), \text{id})$. This is fully faithful. The functor $\mathcal{X}' \to \mathcal{Y}$ is given by $(U, x, y, f) \mapsto y$. The functor $w : \mathcal{X}' \to \mathcal{X}$ is given by $(U, x, y, f) \mapsto x$. Each of these functors is a $1$-morphism of fibred categories over $\mathcal{C}$ by our description of strongly cartesian morphisms of $\mathcal{X}'$ over $\mathcal{C}$. Adjointness of $w$ and $u$ means that 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _\mathcal {X}(x, x') = \mathop{\mathrm{Mor}}\nolimits _{\mathcal{X}'}((U, x, y, f), (p(x'), x', F(x'), \text{id})),  \]
+</div>
+    <p>
+       which follows immediately from the definitions. 
+    <p>
+      Finally, we have to show that $\mathcal{X}' \to \mathcal{Y}$ is a fibred category. Let $c : y' \to y$ be a morphism in $\mathcal{Y}$ and let $(U, x, y, f)$ be an object of $\mathcal{X}'$ lying over $y$. Set $V = q(y')$ and let $h = q(c) : V \to U$. Let $a : h^*x \to x$ and $b : h^*y \to y$ be the strongly cartesian morphisms covering $h$. Since $F$ is a $1$-morphism of fibred categories we may identify $h^*F(x) = F(h^*x)$ with strongly cartesian morphism $F(a) : F(h^*x) \to F(x)$. By the universal property of $b : h^*y \to y$ there is a morphism $c' : y' \to h^*y$ in $\mathcal{Y}_ V$ such that $c = b \circ c'$. We claim that 
+    <p>
+      <div class="equation">
+  \[  (a, c) : (V, h^*x, y', h^*f \circ c') \longrightarrow (U, x, y, f)  \]
+</div>
+    <p>
+       is strongly cartesian in $\mathcal{X}'$ over $\mathcal{Y}$. To see this let $(W, x_1, y_1, f_1)$ be an object of $\mathcal{X}'$, let $(a_1, b_1) : (W, x_1, y_1, f_1) \to (U, x, y, f)$ be a morphism and let $b_1 = c \circ b_1'$ for some morphism $b_1' : y_1 \to y'$. Then 
+    <p>
+      <div class="equation">
+  \[  (a_1', b_1') : (W, x_1, y_1, f_1) \longrightarrow (V, h^*x, y', h^*f \circ c')  \]
+</div>
+    <p>
+       (where $a_1' : x_1 \to h^*x$ is the unique morphism lying over the given morphism $q(b_1') : W \to V$ such that $a_1 = a \circ a_1'$) is the desired morphism. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

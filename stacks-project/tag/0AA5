@@ -1,0 +1,252 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="duality-section-base-change-map" class="tex-section"><span data-tag="0AA5">48.5</span> Right adjoint of pushforward and base change, I</h2>
+
+<p>
+The map (<a href="/tag/0A9L" data-tag="0A9L">48.4.1.1</a>) is a special case of a base change map. Namely, suppose that we have a cartesian diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ X' \ar[r]_{g'} \ar[d]_{f'} &  X \ar[d]^ f \\  Y' \ar[r]^ g &  Y }  \]
+</div>
+<p>
+ of quasi-compact and quasi-separated schemes, i.e., a diagram as in (<a href="/tag/0A9J" data-tag="0A9J">48.4.0.1</a>). Assume $f$ and $g$ are <strong>Tor independent</strong>. Then we can consider the morphism of functors $D_\mathit{QCoh}(\mathcal{O}_ Y) \to D_\mathit{QCoh}(\mathcal{O}_{X'})$ given by the composition 
+</p>
+<div class="equation" id="0AA6">
+    <span class="equation-label"><a href="/tag/0AA6" data-tag="0AA6">48.5.0.1</a></span>
+  <div>\begin{equation}  \label{duality-equation-base-change-map} L(g')^* \circ a \to L(g')^* \circ a \circ Rg_* \circ Lg^* \leftarrow L(g')^* \circ Rg'_* \circ a' \circ Lg^* \to a' \circ Lg^* \end{equation}</div>
+</div>
+<p>
+ The first arrow comes from the adjunction map $\text{id} \to Rg_* Lg^*$ and the last arrow from the adjunction map $L(g')^*Rg'_* \to \text{id}$. We need the assumption on Tor independence to invert the arrow in the middle, see Lemma <a href="/tag/0A9K" data-tag="0A9K">48.4.1</a>. Alternatively, we can think of (<a href="/tag/0AA6" data-tag="0AA6">48.5.0.1</a>) by adjointness of $L(g')^*$ and $R(g')_*$ as a natural transformation 
+</p>
+<div class="equation">
+  \[  a \to a \circ Rg_* \circ Lg^* \leftarrow Rg'_* \circ a' \circ Lg^*  \]
+</div>
+<p>
+ were again the second arrow is invertible. If $M \in D_\mathit{QCoh}(\mathcal{O}_ X)$ and $K \in D_\mathit{QCoh}(\mathcal{O}_ Y)$ then on Yoneda functors this map is given by 
+</p>
+<div class="equation">
+  \begin{align*}  \mathop{\mathrm{Hom}}\nolimits _ X(M, a(K)) &  = \mathop{\mathrm{Hom}}\nolimits _ Y(Rf_*M, K) \\ &  \to \mathop{\mathrm{Hom}}\nolimits _ Y(Rf_*M, Rg_* Lg^*K) \\ &  = \mathop{\mathrm{Hom}}\nolimits _{Y'}(Lg^*Rf_*M, Lg^*K) \\ &  \leftarrow \mathop{\mathrm{Hom}}\nolimits _{Y'}(Rf'_* L(g')^*M, Lg^*K) \\ &  = \mathop{\mathrm{Hom}}\nolimits _{X'}(L(g')^*M, a'(Lg^*K)) \\ &  = \mathop{\mathrm{Hom}}\nolimits _ X(M, Rg'_*a'(Lg^*K)) \end{align*}
+</div>
+<p>
+ (were the arrow pointing left is invertible by the base change theorem given in Derived Categories of Schemes, Lemma <a href="/tag/08IB" data-tag="08IB">36.22.5</a>) which makes things a little bit more explicit. 
+</p>
+<p>
+In this section we first prove that the base change map satisfies some natural compatibilities with regards to stacking squares as in Cohomology, Remarks <a href="/tag/0ATL" data-tag="0ATL">20.28.4</a> and <a href="/tag/0ATM" data-tag="0ATM">20.28.5</a> for the usual base change map. We suggest the reader skip the rest of this section on a first reading. 
+</p>
+<p>
+<article class="env-lemma" id="0ATQ">
+  <p><a class="environment-identifier" href="/tag/0ATQ">Lemma <span data-tag="0ATQ">48.5.1</span>.</a> Consider a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ X' \ar[r]_ k \ar[d]_{f'} &  X \ar[d]^ f \\  Y' \ar[r]^ l \ar[d]_{g'} &  Y \ar[d]^ g \\  Z' \ar[r]^ m &  Z }  \]
+</div>
+  <p> of quasi-compact and quasi-separated schemes where both diagrams are cartesian and where $f$ and $l$ as well as $g$ and $m$ are Tor independent. Then the maps (<a href="/tag/0AA6" data-tag="0AA6">48.5.0.1</a>) for the two squares compose to give the base change map for the outer rectangle (see proof for a precise statement). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It follows from the assumptions that $g \circ f$ and $m$ are Tor independent (details omitted), hence the statement makes sense. In this proof we write $k^*$ in place of $Lk^*$ and $f_*$ instead of $Rf_*$. Let $a$, $b$, and $c$ be the right adjoints of Lemma <a href="/tag/0A9E" data-tag="0A9E">48.3.1</a> for $f$, $g$, and $g \circ f$ and similarly for the primed versions. The arrow corresponding to the top square is the composition 
+    <p>
+      <div class="equation">
+  \[  \gamma _{top} : k^* \circ a \to k^* \circ a \circ l_* \circ l^* \xleftarrow {\xi _{top}} k^* \circ k_* \circ a' \circ l^* \to a' \circ l^*  \]
+</div>
+    <p>
+       where $\xi _{top} : k_* \circ a' \to a \circ l_*$ is an isomorphism (hence can be inverted) and is the arrow “dual” to the base change map $l^* \circ f_* \to f'_* \circ k^*$. The outer arrows come from the canonical maps $1 \to l_* \circ l^*$ and $k^* \circ k_* \to 1$. Similarly for the second square we have 
+    <p>
+      <div class="equation">
+  \[  \gamma _{bot} : l^* \circ b \to l^* \circ b \circ m_* \circ m^* \xleftarrow {\xi _{bot}} l^* \circ l_* \circ b' \circ m^* \to b' \circ m^*  \]
+</div>
+    <p>
+       For the outer rectangle we get 
+    <p>
+      <div class="equation">
+  \[  \gamma _{rect} : k^* \circ c \to k^* \circ c \circ m_* \circ m^* \xleftarrow {\xi _{rect}} k^* \circ k_* \circ c' \circ m^* \to c' \circ m^*  \]
+</div>
+    <p>
+       We have $(g \circ f)_* = g_* \circ f_*$ and hence $c = a \circ b$ and similarly $c' = a' \circ b'$. The statement of the lemma is that $\gamma _{rect}$ is equal to the composition 
+    <p>
+      <div class="equation">
+  \[  k^* \circ c = k^* \circ a \circ b \xrightarrow {\gamma _{top}} a' \circ l^* \circ b \xrightarrow {\gamma _{bot}} a' \circ b' \circ m^* = c' \circ m^*  \]
+</div>
+    <p>
+       To see this we contemplate the following diagram: 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ &  &  k^* \circ a \circ b \ar[d] \ar[lldd] \\  &  &  k^* \circ a \circ l_* \circ l^* \circ b \ar[ld] \\  k^* \circ a \circ b \circ m_* \circ m^* \ar[r] &  k^* \circ a \circ l_* \circ l^* \circ b \circ m_* \circ m^* &  k^* \circ k_* \circ a' \circ l^* \circ b \ar[u]_{\xi _{top}} \ar[d] \ar[ld] \\  &  k^*\circ k_* \circ a' \circ l^* \circ b \circ m_* \circ m^* \ar[u]_{\xi _{top}} \ar[rd] &  a' \circ l^* \circ b \ar[d] \\  k^* \circ k_* \circ a' \circ b' \circ m^* \ar[uu]_{\xi _{rect}} \ar[ddrr] &  k^*\circ k_* \circ a' \circ l^* \circ l_* \circ b' \circ m^* \ar[u]_{\xi _{bot}} \ar[l] \ar[dr] &  a' \circ l^* \circ b \circ m_* \circ m^* \\  &  &  a' \circ l^* \circ l_* \circ b' \circ m^* \ar[u]_{\xi _{bot}} \ar[d] \\  &  &  a' \circ b' \circ m^* }  \]
+</div>
+    <p>
+       Going down the right hand side we have the composition and going down the left hand side we have $\gamma _{rect}$. All the quadrilaterals on the right hand side of this diagram commute by Categories, Lemma <a href="/tag/003F" data-tag="003F">4.28.2</a> or more simply the discussion preceding Categories, Definition <a href="/tag/003E" data-tag="003E">4.28.1</a>. Hence we see that it suffices to show the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ a \circ l_* \circ l^* \circ b \circ m_* &  a \circ b \circ m_* \ar[l] \\  k_* \circ a' \circ l^* \circ b \circ m_* \ar[u]_{\xi _{top}} &  \\  k_* \circ a' \circ l^* \circ l_* \circ b' \ar[u]_{\xi _{bot}} \ar[r] &  k_* \circ a' \circ b' \ar[uu]_{\xi _{rect}} }  \]
+</div>
+    <p>
+       becomes commutative if we invert the arrows $\xi _{top}$, $\xi _{bot}$, and $\xi _{rect}$ (note that this is different from asking the diagram to be commutative). However, the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ &  a \circ l_* \circ l^* \circ b \circ m_* \\  a \circ l_* \circ l^* \circ l_* \circ b' \ar[ru]^{\xi _{bot}} &  &  k_* \circ a' \circ l^* \circ b \circ m_* \ar[ul]_{\xi _{top}} \\  &  k_* \circ a' \circ l^* \circ l_* \circ b' \ar[ul]^{\xi _{top}} \ar[ur]_{\xi _{bot}} }  \]
+</div>
+    <p>
+       commutes by Categories, Lemma <a href="/tag/003F" data-tag="003F">4.28.2</a>. Since the diagrams 
+    <p>
+      <div class="equation">
+  \[  \vcenter { \xymatrix{ a \circ l_* \circ l^* \circ b \circ m_* &  a \circ b \circ m \ar[l] \\  a \circ l_* \circ l^* \circ l_* \circ b' \ar[u] &  a \circ l_* \circ b' \ar[l] \ar[u] } } \quad \text{and}\quad \vcenter { \xymatrix{ a \circ l_* \circ l^* \circ l_* \circ b' \ar[r] &  a \circ l_* \circ b' \\  k_* \circ a' \circ l^* \circ l_* \circ b' \ar[u] \ar[r] &  k_* \circ a' \circ b' \ar[u] } }  \]
+</div>
+    <p>
+       commute (see references cited) and since the composition of $l_* \to l_* \circ l^* \circ l_* \to l_*$ is the identity, we find that it suffices to prove that 
+    <p>
+      <div class="equation">
+  \[  k \circ a' \circ b' \xrightarrow {\xi _{bot}} a \circ l_* \circ b \xrightarrow {\xi _{top}} a \circ b \circ m_*  \]
+</div>
+    <p>
+       is equal to $\xi _{rect}$ (via the identifications $a \circ b = c$ and $a' \circ b' = c'$). This is the statement dual to Cohomology, Remark <a href="/tag/0ATL" data-tag="0ATL">20.28.4</a> and the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0ATR">
+  <p><a class="environment-identifier" href="/tag/0ATR">Lemma <span data-tag="0ATR">48.5.2</span>.</a> Consider a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ X'' \ar[r]_{g'} \ar[d]_{f''} &  X' \ar[r]_ g \ar[d]_{f'} &  X \ar[d]^ f \\  Y'' \ar[r]^{h'} &  Y' \ar[r]^ h &  Y }  \]
+</div>
+  <p> of quasi-compact and quasi-separated schemes where both diagrams are cartesian and where $f$ and $h$ as well as $f'$ and $h'$ are Tor independent. Then the maps (<a href="/tag/0AA6" data-tag="0AA6">48.5.0.1</a>) for the two squares compose to give the base change map for the outer rectangle (see proof for a precise statement). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It follows from the assumptions that $f$ and $h \circ h'$ are Tor independent (details omitted), hence the statement makes sense. In this proof we write $g^*$ in place of $Lg^*$ and $f_*$ instead of $Rf_*$. Let $a$, $a'$, and $a''$ be the right adjoints of Lemma <a href="/tag/0A9E" data-tag="0A9E">48.3.1</a> for $f$, $f'$, and $f''$. The arrow corresponding to the right square is the composition 
+    <p>
+      <div class="equation">
+  \[  \gamma _{right} : g^* \circ a \to g^* \circ a \circ h_* \circ h^* \xleftarrow {\xi _{right}} g^* \circ g_* \circ a' \circ h^* \to a' \circ h^*  \]
+</div>
+    <p>
+       where $\xi _{right} : g_* \circ a' \to a \circ h_*$ is an isomorphism (hence can be inverted) and is the arrow “dual” to the base change map $h^* \circ f_* \to f'_* \circ g^*$. The outer arrows come from the canonical maps $1 \to h_* \circ h^*$ and $g^* \circ g_* \to 1$. Similarly for the left square we have 
+    <p>
+      <div class="equation">
+  \[  \gamma _{left} : (g')^* \circ a' \to (g')^* \circ a' \circ (h')_* \circ (h')^* \xleftarrow {\xi _{left}} (g')^* \circ (g')_* \circ a'' \circ (h')^* \to a'' \circ (h')^*  \]
+</div>
+    <p>
+       For the outer rectangle we get 
+    <p>
+      <div class="equation">
+  \[  \gamma _{rect} : k^* \circ a \to k^* \circ a \circ m_* \circ m^* \xleftarrow {\xi _{rect}} k^* \circ k_* \circ a'' \circ m^* \to a'' \circ m^*  \]
+</div>
+    <p>
+       where $k = g \circ g'$ and $m = h \circ h'$. We have $k^* = (g')^* \circ g^*$ and $m^* = (h')^* \circ h^*$. The statement of the lemma is that $\gamma _{rect}$ is equal to the composition 
+    <p>
+      <div class="equation">
+  \[  k^* \circ a = (g')^* \circ g^* \circ a \xrightarrow {\gamma _{right}} (g')^* \circ a' \circ h^* \xrightarrow {\gamma _{left}} a'' \circ (h')^* \circ h^* = a'' \circ m^*  \]
+</div>
+    <p>
+       To see this we contemplate the following diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ &  (g')^* \circ g^* \circ a \ar[d] \ar[ddl] \\  &  (g')^* \circ g^* \circ a \circ h_* \circ h^* \ar[ld] \\  (g')^* \circ g^* \circ a \circ h_* \circ (h')_* \circ (h')^* \circ h^* &  (g')^* \circ g^* \circ g_* \circ a' \circ h^* \ar[u]_{\xi _{right}} \ar[d] \ar[ld] \\  (g')^* \circ g^* \circ g_* \circ a' \circ (h')_* \circ (h')^* \circ h^* \ar[u]_{\xi _{right}} \ar[dr] &  (g')^* \circ a' \circ h^* \ar[d] \\  (g')^* \circ g^* \circ g_* \circ (g')_* \circ a'' \circ (h')^* \circ h^* \ar[u]_{\xi _{left}} \ar[ddr] \ar[dr] &  (g')^* \circ a' \circ (h')_* \circ (h')^* \circ h^* \\  &  (g')^*\circ (g')_* \circ a'' \circ (h')^* \circ h^* \ar[u]_{\xi _{left}} \ar[d] \\  &  a'' \circ (h')^* \circ h^* }  \]
+</div>
+    <p>
+       Going down the right hand side we have the composition and going down the left hand side we have $\gamma _{rect}$. All the quadrilaterals on the right hand side of this diagram commute by Categories, Lemma <a href="/tag/003F" data-tag="003F">4.28.2</a> or more simply the discussion preceding Categories, Definition <a href="/tag/003E" data-tag="003E">4.28.1</a>. Hence we see that it suffices to show that 
+    <p>
+      <div class="equation">
+  \[  g_* \circ (g')_* \circ a'' \xrightarrow {\xi _{left}} g_* \circ a' \circ (h')_* \xrightarrow {\xi _{right}} a \circ h_* \circ (h')_*  \]
+</div>
+    <p>
+       is equal to $\xi _{rect}$. This is the statement dual to Cohomology, Remark <a href="/tag/0ATM" data-tag="0ATM">20.28.5</a> and the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0ATS">
+  <p><a class="environment-identifier" href="/tag/0ATS">Remark <span data-tag="0ATS">48.5.3</span>.</a> Consider a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ X'' \ar[r]_{k'} \ar[d]_{f''} &  X' \ar[r]_ k \ar[d]_{f'} &  X \ar[d]^ f \\  Y'' \ar[r]^{l'} \ar[d]_{g''} &  Y' \ar[r]^ l \ar[d]_{g'} &  Y \ar[d]^ g \\  Z'' \ar[r]^{m'} &  Z' \ar[r]^ m &  Z }  \]
+</div>
+  <p> of quasi-compact and quasi-separated schemes where all squares are cartesian and where $(f, l)$, $(g, m)$, $(f', l')$, $(g', m')$ are Tor independent pairs of maps. Let $a$, $a'$, $a''$, $b$, $b'$, $b''$ be the right adjoints of Lemma <a href="/tag/0A9E" data-tag="0A9E">48.3.1</a> for $f$, $f'$, $f''$, $g$, $g'$, $g''$. Let us label the squares of the diagram $A$, $B$, $C$, $D$ as follows </p>
+  <div class="equation">
+  \[  \begin{matrix}  A 
+
+&  B 
+
+\\  C 
+
+&  D 
+
+\end{matrix}  \]
+</div>
+  <p> Then the maps (<a href="/tag/0AA6" data-tag="0AA6">48.5.0.1</a>) for the squares are (where we use $k^* = Lk^*$, etc) </p>
+  <div class="equation">
+  \[  \begin{matrix}  \gamma _ A : (k')^* \circ a' \to a'' \circ (l')^* 
+
+&  \gamma _ B : k^* \circ a \to a' \circ l^* 
+
+\\  \gamma _ C : (l')^* \circ b' \to b'' \circ (m')^* 
+
+&  \gamma _ D : l^* \circ b \to b' \circ m^* 
+
+\end{matrix}  \]
+</div>
+  <p> For the $2 \times 1$ and $1 \times 2$ rectangles we have four further base change maps </p>
+  <div class="equation">
+  \[  \begin{matrix}  \gamma _{A + B} : (k \circ k')^* \circ a \to a'' \circ (l \circ l')^* 
+
+\\  \gamma _{C + D} : (l \circ l')^* \circ b \to b'' \circ (m \circ m')^* 
+
+\\  \gamma _{A + C} : (k')^* \circ (a' \circ b') \to (a'' \circ b'') \circ (m')^* 
+
+\\  \gamma _{B + D} : k^* \circ (a \circ b) \to (a' \circ b') \circ m^* 
+
+\end{matrix}  \]
+</div>
+  <p> By Lemma <a href="/tag/0ATR" data-tag="0ATR">48.5.2</a> we have </p>
+  <div class="equation">
+  \[  \gamma _{A + B} = \gamma _ A \circ \gamma _ B, \quad \gamma _{C + D} = \gamma _ C \circ \gamma _ D  \]
+</div>
+  <p> and by Lemma <a href="/tag/0ATQ" data-tag="0ATQ">48.5.1</a> we have </p>
+  <div class="equation">
+  \[  \gamma _{A + C} = \gamma _ C \circ \gamma _ A, \quad \gamma _{B + D} = \gamma _ D \circ \gamma _ B  \]
+</div>
+  <p> Here it would be more correct to write $\gamma _{A + B} = (\gamma _ A \star \text{id}_{l^*}) \circ (\text{id}_{(k')^*} \star \gamma _ B)$ with notation as in Categories, Section <a href="/tag/003D" data-tag="003D">4.28</a> and similarly for the others. However, we continue the abuse of notation used in the proofs of Lemmas <a href="/tag/0ATQ" data-tag="0ATQ">48.5.1</a> and <a href="/tag/0ATR" data-tag="0ATR">48.5.2</a> of dropping $\star $ products with identities as one can figure out which ones to add as long as the source and target of the transformation is known. Having said all of this we find (a priori) two transformations </p>
+  <div class="equation">
+  \[  (k')^* \circ k^* \circ a \circ b \longrightarrow a'' \circ b'' \circ (m')^* \circ m^*  \]
+</div>
+  <p> namely </p>
+  <div class="equation">
+  \[  \gamma _ C \circ \gamma _ A \circ \gamma _ D \circ \gamma _ B = \gamma _{A + C} \circ \gamma _{B + D}  \]
+</div>
+  <p> and </p>
+  <div class="equation">
+  \[  \gamma _ C \circ \gamma _ D \circ \gamma _ A \circ \gamma _ B = \gamma _{C + D} \circ \gamma _{A + B}  \]
+</div>
+  <p> The point of this remark is to point out that these transformations are equal. Namely, to see this it suffices to show that </p>
+  <div class="equation">
+  \[  \xymatrix{ (k')^* \circ a' \circ l^* \circ b \ar[r]_{\gamma _ D} \ar[d]_{\gamma _ A} &  (k')^* \circ a' \circ b' \circ m^* \ar[d]^{\gamma _ A} \\  a'' \circ (l')^* \circ l^* \circ b \ar[r]^{\gamma _ D} &  a'' \circ (l')^* \circ b' \circ m^* }  \]
+</div>
+  <p> commutes. This is true by Categories, Lemma <a href="/tag/003F" data-tag="003F">4.28.2</a> or more simply the discussion preceding Categories, Definition <a href="/tag/003E" data-tag="003E">4.28.1</a>. </p>
+</article> 
+</p>

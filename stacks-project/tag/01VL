@@ -1,0 +1,182 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="morphisms-section-very-ample" class="tex-section"><span data-tag="01VL">29.39</span> Very ample sheaves</h2>
+
+<p>
+Recall that given a quasi-coherent sheaf $\mathcal{E}$ on a scheme $S$ the <em>projective bundle</em> associated to $\mathcal{E}$ is the morphism $\mathbf{P}(\mathcal{E}) \to S$, where $\mathbf{P}(\mathcal{E}) = \underline{\text{Proj}}_ S(\text{Sym}(\mathcal{E}))$, see Constructions, Definition <a href="/tag/01OB" data-tag="01OB">27.21.1</a>. 
+</p>
+<p>
+<article class="env-definition" id="01VM">
+  <p><a class="environment-identifier" href="/tag/01VM">Definition <span data-tag="01VM">29.39.1</span>.</a> Let $f : X \to S$ be a morphism of schemes. Let $\mathcal{L}$ be an invertible $\mathcal{O}_ X$-module. We say $\mathcal{L}$ is <em>relatively very ample</em> or more precisely <em>$f$-relatively very ample</em>, or <em>very ample on $X/S$</em>, or <em>$f$-very ample</em> if there exist a quasi-coherent $\mathcal{O}_ S$-module $\mathcal{E}$ and an immersion $i : X \to \mathbf{P}(\mathcal{E})$ over $S$ such that $\mathcal{L} \cong i^*\mathcal{O}_{\mathbf{P}(\mathcal{E})}(1)$. </p>
+</article> 
+</p>
+<p>
+Since there is no assumption of quasi-compactness in this definition it is not true in general that a relatively very ample invertible sheaf is a relatively ample invertible sheaf. 
+</p>
+<p>
+<article class="env-lemma" id="01VN">
+       
+      
+  <p><a class="environment-identifier" href="/tag/01VN">Lemma <span data-tag="01VN">29.39.2</span>.</a> Let $f : X \to S$ be a morphism of schemes. Let $\mathcal{L}$ be an invertible $\mathcal{O}_ X$-module. If $f$ is quasi-compact and $\mathcal{L}$ is a relatively very ample invertible sheaf, then $\mathcal{L}$ is a relatively ample invertible sheaf. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By definition there exists quasi-coherent $\mathcal{O}_ S$-module $\mathcal{E}$ and an immersion $i : X \to \mathbf{P}(\mathcal{E})$ over $S$ such that $\mathcal{L} \cong i^*\mathcal{O}_{\mathbf{P}(\mathcal{E})}(1)$. Set $\mathcal{A} = \text{Sym}(\mathcal{E})$, so $\mathbf{P}(\mathcal{E}) = \underline{\text{Proj}}_ S(\mathcal{A})$ by definition. The graded $\mathcal{O}_ S$-algebra $\mathcal{A}$ comes equipped with a map 
+    <p>
+      <div class="equation">
+  \[  \psi : \mathcal{A} \to \bigoplus \nolimits _{n \geq 0} \pi _*\mathcal{O}_{\mathbf{P}(\mathcal{E})}(n) \to \bigoplus \nolimits _{n \geq 0} f_*\mathcal{L}^{\otimes n}  \]
+</div>
+    <p>
+       where the second arrow uses the identification $\mathcal{L} \cong i^*\mathcal{O}_{\mathbf{P}(\mathcal{E})}(1)$. By adjointness of $f_*$ and $f^*$ we get a morphism $\psi : f^*\mathcal{A} \to \bigoplus _{n \geq 0}\mathcal{L}^{\otimes n}$. We omit the verification that the morphism $r_{\mathcal{L}, \psi }$ associated to this map is exactly the immersion $i$. Hence the result follows from part (6) of Lemma <a href="/tag/01VJ" data-tag="01VJ">29.38.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+To arrive at the correct converse of this lemma we ask whether given a relatively ample invertible sheaf $\mathcal{L}$ there exists an integer $n \geq 1$ such that $\mathcal{L}^{\otimes n}$ is relatively very ample? In general this is false. There are several things that prevent this from being true: 
+</p>
+<ol>
+  <li><p>
+Even if $S$ is affine, it can happen that no finite integer $n$ works because $X \to S$ is not of finite type, see Example <a href="/tag/01VO" data-tag="01VO">29.39.4</a>. 
+</p>
+</li><li><p>
+The base not being quasi-compact means the result can be prevented from being true even with $f$ finite type. Namely, given a field $k$ there exists a scheme $X_ d$ of finite type over $k$ with an ample invertible sheaf $\mathcal{O}_{X_ d}(1)$ so that the smallest tensor power of $\mathcal{O}_{X_ d}(1)$ which is very ample is the $d$th power. See Example <a href="/tag/01VP" data-tag="01VP">29.39.5</a>. Taking $f$ to be the disjoint union of the schemes $X_ d$ mapping to the disjoint union of copies of $\mathop{\mathrm{Spec}}(k)$ gives an example. 
+</p>
+</li>
+</ol>
+<p>
+ To see our version of the converse take a look at Lemma <a href="/tag/01VU" data-tag="01VU">29.40.5</a> below. We will do some preliminary work before proving it. 
+</p>
+<p>
+<article class="env-example" id="07ZR">
+  <p><a class="environment-identifier" href="/tag/07ZR">Example <span data-tag="07ZR">29.39.3</span>.</a> Let $S$ be a scheme. Let $\mathcal{A}$ be a quasi-coherent graded $\mathcal{O}_ S$-algebra generated by $\mathcal{A}_1$ over $\mathcal{A}_0$. Set $X = \underline{\text{Proj}}_ S(\mathcal{A})$. In this case $\mathcal{O}_ X(1)$ is invertible and very ample on $X/S$. Namely, the morphism associated to the graded $\mathcal{O}_ S$-algebra map </p>
+  <div class="equation">
+  \[  \text{Sym}_{\mathcal{O}_ X}^*(\mathcal{A}_1) \longrightarrow \mathcal{A}  \]
+</div>
+  <p> is a closed immersion $X \to \mathbf{P}(\mathcal{A}_1)$ which pulls back $\mathcal{O}_{\mathbf{P}(\mathcal{A}_1)}(1)$ to $\mathcal{O}_ X(1)$, see Constructions, Lemma <a href="/tag/07ZK" data-tag="07ZK">27.18.5</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="01VO">
+  <p><a class="environment-identifier" href="/tag/01VO">Example <span data-tag="01VO">29.39.4</span>.</a> Let $k$ be a field. Consider the graded $k$-algebra </p>
+  <div class="equation">
+  \[  A = k[U, V, Z_1, Z_2, Z_3, \ldots ]/I \quad \text{with} \quad I = (U^2 - Z_1^2, U^4 - Z_2^2, U^6 - Z_3^2, \ldots )  \]
+</div>
+  <p> with grading given by $\deg (U) = \deg (V) = \deg (Z_1) = 1$ and $\deg (Z_ d) = d$. Note that $X = \text{Proj}(A)$ is covered by $D_{+}(U)$ and $D_{+}(V)$. Hence the sheaves $\mathcal{O}_ X(n)$ are all invertible and isomorphic to $\mathcal{O}_ X(1)^{\otimes n}$. In particular $\mathcal{O}_ X(1)$ is ample and $f$-ample for the morphism $f : X \to \mathop{\mathrm{Spec}}(k)$. We claim that no power of $\mathcal{O}_ X(1)$ is $f$-relatively very ample. Namely, it is easy to see that $\Gamma (X, \mathcal{O}_ X(n))$ is the degree $n$ summand of the algebra $A$. Hence if $\mathcal{O}_ X(n)$ were very ample, then $X$ would be a closed subscheme of a projective space over $k$ and hence of finite type over $k$. On the other hand $D_{+}(V)$ is the spectrum of $k[t, t_1, t_2, \ldots ]/(t^2 - t_1^2, t^4 - t_2^2, t^6 - t_3^2, \ldots )$ which is not of finite type over $k$. </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="01VP">
+  <p><a class="environment-identifier" href="/tag/01VP">Example <span data-tag="01VP">29.39.5</span>.</a> Let $k$ be an infinite field. Let $\lambda _1, \lambda _2, \lambda _3, \ldots $ be pairwise distinct elements of $k^*$. (This is not strictly necessary, and in fact the example works perfectly well even if all $\lambda _ i$ are equal to $1$.) Consider the graded $k$-algebra </p>
+  <div class="equation">
+  \[  A_ d = k[U, V, Z]/I_ d \quad \text{with} \quad I_ d = (Z^2 - \prod \nolimits _{i = 1}^{2d} (U - \lambda _ i V)).  \]
+</div>
+  <p> with grading given by $\deg (U) = \deg (V) = 1$ and $\deg (Z) = d$. Then $X_ d = \text{Proj}(A_ d)$ has ample invertible sheaf $\mathcal{O}_{X_ d}(1)$. We claim that if $\mathcal{O}_{X_ d}(n)$ is very ample, then $n \geq d$. The reason for this is that $Z$ has degree $d$, and hence $\Gamma (X_ d, \mathcal{O}_{X_ d}(n)) = k[U, V]_ n$ for $n < d$. Details omitted. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="01VQ">
+  <p><a class="environment-identifier" href="/tag/01VQ">Lemma <span data-tag="01VQ">29.39.6</span>.</a> Let $f : X \to S$ be a morphism of schemes. Let $\mathcal{L}$ be an invertible sheaf on $X$. If $\mathcal{L}$ is relatively very ample on $X/S$ then $f$ is separated. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Being separated is local on the base (see Schemes, Section <a href="/tag/01KH" data-tag="01KH">26.21</a>). An immersion is separated (see Schemes, Lemma <a href="/tag/01L7" data-tag="01L7">26.23.8</a>). Hence the lemma follows since locally $X$ has an immersion into the homogeneous spectrum of a graded ring which is separated, see Constructions, Lemma <a href="/tag/01MC" data-tag="01MC">27.8.8</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01VR">
+  <p><a class="environment-identifier" href="/tag/01VR">Lemma <span data-tag="01VR">29.39.7</span>.</a> Let $f : X \to S$ be a morphism of schemes. Let $\mathcal{L}$ be an invertible sheaf on $X$. Assume $f$ is quasi-compact. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$\mathcal{L}$ is relatively very ample on $X/S$, 
+</p>
+</li><li><p>
+there exists an open covering $S = \bigcup V_ j$ such that $\mathcal{L}|_{f^{-1}(V_ j)}$ is relatively very ample on $f^{-1}(V_ j)/V_ j$ for all $j$, 
+</p>
+</li><li><p>
+there exists a quasi-coherent sheaf of graded $\mathcal{O}_ S$-algebras $\mathcal{A}$ generated in degree $1$ over $\mathcal{O}_ S$ and a map of graded $\mathcal{O}_ X$-algebras $\psi : f^*\mathcal{A} \to \bigoplus _{n \geq 0} \mathcal{L}^{\otimes n}$ such that $f^*\mathcal{A}_1 \to \mathcal{L}$ is surjective and the associated morphism $r_{\mathcal{L}, \psi } : X \to \underline{\text{Proj}}_ S(\mathcal{A})$ is an immersion, and 
+</p>
+</li><li><p>
+$f$ is quasi-separated, the canonical map $\psi : f^*f_*\mathcal{L} \to \mathcal{L}$ is surjective, and the associated map $r_{\mathcal{L}, \psi } : X \to \mathbf{P}(f_*\mathcal{L})$ is an immersion. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It is clear that (1) implies (2). It is also clear that (4) implies (1); the hypothesis of quasi-separation in (4) is used to guarantee that $f_*\mathcal{L}$ is quasi-coherent via Schemes, Lemma <a href="/tag/01LC" data-tag="01LC">26.24.1</a>. 
+    <p>
+      Assume (2). We will prove (4). Let $S = \bigcup V_ j$ be an open covering as in (2). Set $X_ j = f^{-1}(V_ j)$ and $f_ j : X_ j \to V_ j$ the restriction of $f$. We see that $f$ is separated by Lemma <a href="/tag/01VQ" data-tag="01VQ">29.39.6</a> (as being separated is local on the base). By assumption there exists a quasi-coherent $\mathcal{O}_{V_ j}$-module $\mathcal{E}_ j$ and an immersion $i_ j : X_ j \to \mathbf{P}(\mathcal{E}_ j)$ with $\mathcal{L}|_{X_ j} \cong i_ j^*\mathcal{O}_{\mathbf{P}(\mathcal{E}_ j)}(1)$. The morphism $i_ j$ corresponds to a surjection $f_ j^*\mathcal{E}_ j \to \mathcal{L}|_{X_ j}$, see Constructions, Section <a href="/tag/01OA" data-tag="01OA">27.21</a>. This map is adjoint to a map $\mathcal{E}_ j \to f_*\mathcal{L}|_{V_ j}$ such that the composition 
+    <p>
+      <div class="equation">
+  \[  f_ j^*\mathcal{E}_ j \to (f^*f_*\mathcal{L})|_{X_ j} \to \mathcal{L}|_{X_ j}  \]
+</div>
+    <p>
+       is surjective. We conclude that $\psi : f^*f_*\mathcal{L} \to \mathcal{L}$ is surjective. Let $r_{\mathcal{L}, \psi } : X \to \mathbf{P}(f_*\mathcal{L})$ be the associated morphism. We still have to show that $r_{\mathcal{L}, \psi }$ is an immersion; we urge the reader to prove this for themselves. The $\mathcal{O}_{V_ j}$-module map $\mathcal{E}_ j \to f_*\mathcal{L}|_{V_ j}$ determines a homomorphism on symmetric algebras, which in turn defines a morphism 
+    <p>
+      <div class="equation">
+  \[  \mathbf{P}(f_*\mathcal{L}|_{V_ j}) \supset U_ j \longrightarrow \mathbf{P}(\mathcal{E}_ j)  \]
+</div>
+    <p>
+       where $U_ j$ is the open subscheme of Constructions, Lemma <a href="/tag/07ZG" data-tag="07ZG">27.18.1</a>. The compatibility of $\psi $ with $\mathcal{E}_ j \to f_*\mathcal{L}|_{V_ j}$ shows that $r_{\mathcal{L}, \psi }(X_ j) \subset U_ j$ and that there is a factorization 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X_ j \ar[r]^-{r_{\mathcal{L}, \psi }} &  U_ j \ar[r] &  \mathbf{P}(\mathcal{E}_ j) }  \]
+</div>
+    <p>
+       We omit the verification. This shows that $r_{\mathcal{L}, \psi }$ is an immersion. 
+    <p>
+      At this point we see that (1), (2) and (4) are equivalent. Clearly (4) implies (3). Assume (3). We will prove (1). Let $\mathcal{A}$ be a quasi-coherent sheaf of graded $\mathcal{O}_ S$-algebras generated in degree $1$ over $\mathcal{O}_ S$. Consider the map of graded $\mathcal{O}_ S$-algebras $\text{Sym}(\mathcal{A}_1) \to \mathcal{A}$. This is surjective by hypothesis and hence induces a closed immersion 
+    <p>
+      <div class="equation">
+  \[  \underline{\text{Proj}}_ S(\mathcal{A}) \longrightarrow \mathbf{P}(\mathcal{A}_1)  \]
+</div>
+    <p>
+       which pulls back $\mathcal{O}(1)$ to $\mathcal{O}(1)$, see Constructions, Lemma <a href="/tag/07ZK" data-tag="07ZK">27.18.5</a>. Hence it is clear that (3) implies (1). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0B3F">
+  <p><a class="environment-identifier" href="/tag/0B3F">Lemma <span data-tag="0B3F">29.39.8</span>.</a> Let $f : X \to S$ be a morphism of schemes. Let $\mathcal{L}$ be an invertible $\mathcal{O}_ X$-module. Let $S' \to S$ be a morphism of schemes. Let $f' : X' \to S'$ be the base change of $f$ and denote $\mathcal{L}'$ the pullback of $\mathcal{L}$ to $X'$. If $\mathcal{L}$ is $f$-very ample, then $\mathcal{L}'$ is $f'$-very ample. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Definition <a href="/tag/01VM" data-tag="01VM">29.39.1</a> there exists there exist a quasi-coherent $\mathcal{O}_ S$-module $\mathcal{E}$ and an immersion $i : X \to \mathbf{P}(\mathcal{E})$ over $S$ such that $\mathcal{L} \cong i^*\mathcal{O}_{\mathbf{P}(\mathcal{E})}(1)$. The base change of $\mathbf{P}(\mathcal{E})$ to $S'$ is the projective bundle associated to the pullback $\mathcal{E}'$ of $\mathcal{E}$ and the pullback of $\mathcal{O}_{\mathbf{P}(\mathcal{E})}(1)$ is $\mathcal{O}_{\mathbf{P}(\mathcal{E}')}(1)$, see Constructions, Lemma <a href="/tag/01O3" data-tag="01O3">27.16.10</a>. Finally, the base change of an immersion is an immersion (Schemes, Lemma <a href="/tag/01JY" data-tag="01JY">26.18.2</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

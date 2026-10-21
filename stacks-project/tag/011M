@@ -1,0 +1,101 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="homology-section-spectral-sequence" class="tex-section"><span data-tag="011M">12.20</span> Spectral sequences</h2>
+
+<p>
+A nice discussion of spectral sequences may be found in <span class="cite">[<a href="/bibliography/Eisenbud">Eisenbud</a>]</span>. See also <span class="cite">[<a href="/bibliography/McCleary">McCleary</a>]</span>, <span class="cite">[<a href="/bibliography/Lang">Lang</a>]</span>, etc. 
+</p>
+<p>
+<article class="env-definition" id="011N">
+  <p><a class="environment-identifier" href="/tag/011N">Definition <span data-tag="011N">12.20.1</span>.</a> Let $\mathcal{A}$ be an abelian category. </p>
+  <p><ol>
+  <li><p>
+A <em>spectral sequence in $\mathcal{A}$</em> is given by a system $(E_ r, d_ r)_{r \geq 1}$ where each $E_ r$ is an object of $\mathcal{A}$, each $d_ r : E_ r \to E_ r$ is a morphism such that $d_ r \circ d_ r = 0$ and $E_{r + 1} = \mathop{\mathrm{Ker}}(d_ r)/\mathop{\mathrm{Im}}(d_ r)$ for $r \geq 1$. 
+</p>
+</li><li><p>
+A <em>morphism of spectral sequences</em> $f : (E_ r, d_ r)_{r \geq 1} \to (E'_ r, d'_ r)_{r \geq 1}$ is given by a family of morphisms $f_ r : E_ r \to E'_ r$ such that $f_ r \circ d_ r = d'_ r \circ f_ r$ and such that $f_{r + 1}$ is the morphism induced by $f_ r$ via the identifications $E_{r + 1} = \mathop{\mathrm{Ker}}(d_ r)/\mathop{\mathrm{Im}}(d_ r)$ and $E'_{r + 1} = \mathop{\mathrm{Ker}}(d'_ r)/\mathop{\mathrm{Im}}(d'_ r)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+We will sometimes loosen this definition somewhat and allow $E_{r + 1}$ to be an object with a given isomorphism $E_{r + 1} \to \mathop{\mathrm{Ker}}(d_ r)/\mathop{\mathrm{Im}}(d_ r)$. In addition we sometimes have a system $(E_ r, d_ r)_{r \geq r_0}$ for some $r_0 \in \mathbf{Z}$ satisfying the properties of the definition above for indices $\geq r_0$. We will also call this a spectral sequence since by a simple renumbering it falls under the definition anyway. In fact, the cases $r_0 = 0$ and $r_0 = -1$ can be found in the literature. 
+</p>
+<p>
+Given a spectral sequence $(E_ r, d_ r)_{r \geq 1}$ we define 
+</p>
+<div class="equation">
+  \[  0 = B_1 \subset B_2 \subset \ldots \subset B_ r \subset \ldots \subset Z_ r \subset \ldots \subset Z_2 \subset Z_1 = E_1  \]
+</div>
+<p>
+ by the following simple procedure. Set $B_2 = \mathop{\mathrm{Im}}(d_1)$ and $Z_2 = \mathop{\mathrm{Ker}}(d_1)$. Then it is clear that $d_2 : Z_2/B_2 \to Z_2/B_2$. Hence we can define $B_3$ as the unique subobject of $E_1$ containing $B_2$ such that $B_3/B_2$ is the image of $d_2$. Similarly we can define $Z_3$ as the unique subobject of $E_1$ containing $B_2$ such that $Z_3/B_2$ is the kernel of $d_2$. And so on and so forth. In particular we have 
+</p>
+<div class="equation">
+  \[  E_ r = Z_ r/B_ r  \]
+</div>
+<p>
+ for all $r \geq 1$. In case the spectral sequence starts at $r = r_0$ then we can similarly construct $B_ i$, $Z_ i$ as subobjects in $E_{r_0}$. In fact, in the literature one sometimes finds the notation 
+</p>
+<div class="equation">
+  \[  0 = B_ r(E_ r) \subset B_{r + 1}(E_ r) \subset B_{r + 2}(E_ r) \subset \ldots \subset Z_{r + 2}(E_ r) \subset Z_{r + 1}(E_ r) \subset Z_ r(E_ r) = E_ r  \]
+</div>
+<p>
+ to denote the filtration described above but starting with $E_ r$. 
+</p>
+<p>
+<article class="env-definition" id="011O">
+  <p><a class="environment-identifier" href="/tag/011O">Definition <span data-tag="011O">12.20.2</span>.</a> Let $\mathcal{A}$ be an abelian category. Let $(E_ r, d_ r)_{r \geq 1}$ be a spectral sequence. </p>
+  <p><ol>
+  <li><p>
+If the subobjects $Z_{\infty } = \bigcap Z_ r$ and $B_{\infty } = \bigcup B_ r$ of $E_1$ exist then we define the <em>limit</em><a class="footnotemark" href="#a0000242988" id="a0000242988-mark"><sup>1</sup></a> of the spectral sequence to be the object $E_{\infty } = Z_{\infty }/B_{\infty }$. 
+</p>
+</li><li><p>
+We say that the spectral sequence <em>degenerates at $E_ r$</em> if the differentials $d_ r, d_{r + 1}, \ldots $ are all zero. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+Note that if the spectral sequence degenerates at $E_ r$, then we have $E_ r = E_{r + 1} = \ldots = E_{\infty }$ (and the limit exists of course). Also, almost any abelian category we will encounter has countable sums and intersections. 
+</p>
+<p>
+<article class="env-remark" id="0AMI">
+  <p><a class="environment-identifier" href="/tag/0AMI">Remark <span data-tag="0AMI">12.20.3</span> <span class="named">(Variant)</span>.</a>  It is often the case that the terms of a spectral sequence have additional structure, for example a grading or a bigrading. To accommodate this (and to get around certain technical issues) we introduce the following notion. Let $\mathcal{A}$ be an abelian category. Let $(T_ r)_{r \geq 1}$ be a sequence of <em>translation</em> or <em>shift</em> functors, i.e., $T_ r : \mathcal{A} \to \mathcal{A}$ is an isomorphism of categories. In this setting a <em>spectral sequence</em> is given by a system $(E_ r, d_ r)_{r \geq 1}$ where each $E_ r$ is an object of $\mathcal{A}$, each $d_ r : E_ r \to T_ rE_ r$ is a morphism such that $T_ rd_ r \circ d_ r = 0$ so that </p>
+  <div class="equation">
+  \[  \xymatrix{ \ldots \ar[r] &  T_ r^{-1}E_ r \ar[r]^-{T_ r^{-1}d_ r} &  E_ r \ar[r]^-{d_ r} &  T_ rE_ r \ar[r]^{T_ r d_ r} &  T_ r^2E_ r \ar[r] &  \ldots }  \]
+</div>
+  <p> is a complex and $E_{r + 1} = \mathop{\mathrm{Ker}}(d_ r)/\mathop{\mathrm{Im}}(T_ r^{-1}d_ r)$ for $r \geq 1$. It is clear what a <em>morphism of spectral sequences</em> means in this setting. In this setting we can still define </p>
+  <div class="equation">
+  \[  0 = B_1 \subset B_2 \subset \ldots \subset B_ r \subset \ldots \subset Z_ r \subset \ldots \subset Z_2 \subset Z_1 = E_1  \]
+</div>
+  <p> and $Z_\infty $ and $B_\infty $ (if they exist) as above. </p>
+</article> 
+</p>

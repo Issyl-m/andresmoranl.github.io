@@ -1,0 +1,264 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="homology-section-inverse-systems" class="tex-section"><span data-tag="02MY">12.31</span> Inverse systems</h2>
+
+<p>
+Let $\mathcal{C}$ be a category. In Categories, Section <a href="/tag/002Z" data-tag="002Z">4.21</a> we defined the notion of an inverse system over a preordered set (with values in the category $\mathcal{C}$). If the preordered set is $\mathbf{N} = \{ 1, 2, 3, \ldots \} $ with the usual ordering such an inverse system over $\mathbf{N}$ is often simply called an <em>inverse system</em>. It consists quite simply of a pair $(M_ i, f_{ii'})$ where each $M_ i$, $i \in \mathbf{N}$ is an object of $\mathcal{C}$, and for each $i > i'$, $i, i' \in \mathbf{N}$ a morphism $f_{ii'} : M_ i \to M_{i'}$ such that moreover $f_{i'i''} \circ f_{ii'} = f_{ii''}$ whenever this makes sense. It is clear that in fact it suffices to give the morphisms $M_2 \to M_1$, $M_3 \to M_2$, and so on. Hence an inverse system is frequently pictured as follows 
+</p>
+<div class="equation">
+  \[  M_1 \xleftarrow {\varphi _2} M_2 \xleftarrow {\varphi _3} M_3 \leftarrow \ldots  \]
+</div>
+<p>
+ Moreover, we often omit the transition maps $\varphi _ i$ from the notation and we simply say “let $(M_ i)$ be an inverse system”. 
+</p>
+<p>
+The collection of all inverse systems with values in $\mathcal{C}$ forms a category with the obvious notion of morphism. 
+</p>
+<p>
+<article class="env-lemma" id="02MZ">
+  <p><a class="environment-identifier" href="/tag/02MZ">Lemma <span data-tag="02MZ">12.31.1</span>.</a> Let $\mathcal{C}$ be a category. </p>
+  <p><ol>
+  <li><p>
+If $\mathcal{C}$ is an additive category, then the category of inverse systems with values in $\mathcal{C}$ is an additive category. 
+</p>
+</li><li><p>
+If $\mathcal{C}$ is an abelian category, then the category of inverse systems with values in $\mathcal{C}$ is an abelian category. A sequence $(K_ i) \to (L_ i) \to (M_ i)$ of inverse systems is exact if and only if each $K_ i \to L_ i \to N_ i$ is exact. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The limit (see Categories, Section <a href="/tag/002Z" data-tag="002Z">4.21</a>) of such an inverse system is denoted $\mathop{\mathrm{lim}}\nolimits M_ i$, or $\mathop{\mathrm{lim}}\nolimits _ i M_ i$. If $\mathcal{C}$ is the category of abelian groups (or sets), then the limit always exists and in fact can be described as follows 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{lim}}\nolimits _ i M_ i = \{ (x_ i) \in \prod M_ i \mid \varphi _ i(x_ i) = x_{i - 1}, \  i = 2, 3, \ldots \}   \]
+</div>
+<p>
+ see Categories, Section <a href="/tag/002U" data-tag="002U">4.15</a>. However, given a short exact sequence 
+</p>
+<div class="equation">
+  \[  0 \to (A_ i) \to (B_ i) \to (C_ i) \to 0  \]
+</div>
+<p>
+ of inverse systems of abelian groups it is not always the case that the associated system of limits is exact. In order to discuss this further we introduce the following notion. 
+</p>
+<p>
+<article class="env-definition" id="02N0">
+  <p><a class="environment-identifier" href="/tag/02N0">Definition <span data-tag="02N0">12.31.2</span>.</a> Let $\mathcal{C}$ be an abelian category. We say the inverse system $(A_ i)$ satisfies the <em>Mittag-Leffler condition</em>, or for short is <em>ML</em>, if for every $i$ there exists a $c = c(i) \geq i$ such that </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Im}}(A_ k \to A_ i) = \mathop{\mathrm{Im}}(A_ c \to A_ i)  \]
+</div>
+  <p> for all $k \geq c$. </p>
+</article> 
+</p>
+<p>
+It turns out that the Mittag-Leffler condition is good enough to ensure that the $\mathop{\mathrm{lim}}\nolimits $-functor is exact, provided one works within the abelian category of abelian groups, modules over a ring, etc. It is shown in a paper by A. Neeman (see <span class="cite">[<a href="/bibliography/Neeman-Counterexample">Neeman-Counterexample</a>]</span>) that this condition is not strong enough in an abelian category having AB4* (having exact products). 
+</p>
+<p>
+<article class="env-lemma" id="02N1">
+  <p><a class="environment-identifier" href="/tag/02N1">Lemma <span data-tag="02N1">12.31.3</span>.</a> Let </p>
+  <div class="equation">
+  \[  0 \to (A_ i) \to (B_ i) \to (C_ i) \to 0  \]
+</div>
+  <p> be a short exact sequence of inverse systems of abelian groups. </p>
+  <p><ol>
+  <li><p>
+In any case the sequence 
+</p>
+<div class="equation">
+  \[  0 \to \mathop{\mathrm{lim}}\nolimits _ i A_ i \to \mathop{\mathrm{lim}}\nolimits _ i B_ i \to \mathop{\mathrm{lim}}\nolimits _ i C_ i  \]
+</div>
+<p>
+ is exact. 
+</p>
+</li><li><p>
+If $(B_ i)$ is ML, then also $(C_ i)$ is ML. 
+</p>
+</li><li><p>
+If $(A_ i)$ is ML, then 
+</p>
+<div class="equation">
+  \[  0 \to \mathop{\mathrm{lim}}\nolimits _ i A_ i \to \mathop{\mathrm{lim}}\nolimits _ i B_ i \to \mathop{\mathrm{lim}}\nolimits _ i C_ i \to 0  \]
+</div>
+<p>
+ is exact. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Nice exercise. See Algebra, Lemma <a href="/tag/03CA" data-tag="03CA">10.87.1</a> for part (3). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="070B">
+  <p><a class="environment-identifier" href="/tag/070B">Lemma <span data-tag="070B">12.31.4</span>.</a> Let </p>
+  <div class="equation">
+  \[  (A_ i) \to (B_ i) \to (C_ i) \to (D_ i)  \]
+</div>
+  <p> be an exact sequence of inverse systems of abelian groups. If the system $(A_ i)$ is ML, then the sequence </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{lim}}\nolimits _ i B_ i \to \mathop{\mathrm{lim}}\nolimits _ i C_ i \to \mathop{\mathrm{lim}}\nolimits _ i D_ i  \]
+</div>
+  <p> is exact. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $Z_ i = \mathop{\mathrm{Ker}}(C_ i \to D_ i)$ and $I_ i = \mathop{\mathrm{Im}}(A_ i \to B_ i)$. Then $\mathop{\mathrm{lim}}\nolimits Z_ i = \mathop{\mathrm{Ker}}(\mathop{\mathrm{lim}}\nolimits C_ i \to \mathop{\mathrm{lim}}\nolimits D_ i)$ and we get a short exact sequence of systems 
+    <p>
+      <div class="equation">
+  \[  0 \to (I_ i) \to (B_ i) \to (Z_ i) \to 0  \]
+</div>
+    <p>
+       Moreover, by Lemma <a href="/tag/02N1" data-tag="02N1">12.31.3</a> we see that $(I_ i)$ has (ML), thus another application of Lemma <a href="/tag/02N1" data-tag="02N1">12.31.3</a> shows that $\mathop{\mathrm{lim}}\nolimits B_ i \to \mathop{\mathrm{lim}}\nolimits Z_ i$ is surjective which proves the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following characterization of essentially constant inverse systems shows in particular that they have ML. 
+</p>
+<p>
+<article class="env-lemma" id="070C">
+  <p><a class="environment-identifier" href="/tag/070C">Lemma <span data-tag="070C">12.31.5</span>.</a> Let $\mathcal{A}$ be an abelian category. Let $(A_ i)$ be an inverse system in $\mathcal{A}$ with limit $A = \mathop{\mathrm{lim}}\nolimits A_ i$. Then $(A_ i)$ is essentially constant (see Categories, Definition <a href="/tag/05PU" data-tag="05PU">4.22.1</a>) if and only if there exists an $i$ and for all $j \geq i$ a direct sum decomposition $A_ j = A \oplus Z_ j$ such that (a) the maps $A_{j'} \to A_ j$ are compatible with the direct sum decompositions, (b) for all $j$ there exists some $j' \geq j$ such that $Z_{j'} \to Z_ j$ is zero. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume $(A_ i)$ is essentially constant. Then there exists an $i$ and a morphism $A_ i \to A$ such that $A \to A_ i \to A$ is the identity and for all $j \geq i$ there exists a $j' \geq j$ such that $A_{j'} \to A_ j$ factors as $A_{j'} \to A_ i \to A \to A_ j$ (the last map comes from $A = \mathop{\mathrm{lim}}\nolimits A_ i$). Hence setting $Z_ j = \mathop{\mathrm{Ker}}(A_ j \to A)$ for all $j \geq i$ works. Proof of the converse is omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We will improve on the following lemma in More on Algebra, Lemma <a href="/tag/0CQB" data-tag="0CQB">15.88.15</a>. 
+</p>
+<p>
+<article class="env-lemma" id="070D">
+  <p><a class="environment-identifier" href="/tag/070D">Lemma <span data-tag="070D">12.31.6</span>.</a> Let </p>
+  <div class="equation">
+  \[  0 \to (A_ i) \to (B_ i) \to (C_ i) \to 0  \]
+</div>
+  <p> be an exact sequence of inverse systems of abelian groups. If $(C_ i)$ is essentially constant, then $(A_ i)$ has ML if and only if $(B_ i)$ has ML. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      After renumbering we may assume that $C_ i = C \oplus Z_ i$ compatible with transition maps and that for all $i$ there exists an $i' \geq i$ such that $Z_{i'} \to Z_ i$ is zero, see Lemma <a href="/tag/070C" data-tag="070C">12.31.5</a>. 
+    <p>
+      First, assume $C = 0$, i.e., we have $C_ i = Z_ i$. In this case choose $1 = n_1 < n_2 < n_3 < \ldots $ such that $Z_{n_{i + 1}} \to Z_{n_ i}$ is zero. Then $B_{n_{i + 1}} \to B_{n_ i}$ factors through $A_{n_ i} \subset B_{n_ i}$. It follows that for $j \geq i + 1$ we have 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Im}}(A_{n_ j} \to A_{n_ i}) \subset \mathop{\mathrm{Im}}(B_{n_ j} \to B_{n_ i}) \subset \mathop{\mathrm{Im}}(A_{n_{j - 1}} \to A_{n_ i})  \]
+</div>
+    <p>
+       as subsets of $A_{n_ i}$. Thus the images $\mathop{\mathrm{Im}}(A_{n_ j} \to A_{n_ i})$ stabilize for $j \geq i + 1$ if and only if the same is true for the images $\mathop{\mathrm{Im}}(B_{n_ j} \to B_{n_ i})$. The equivalence follows from this (small detail omitted). 
+    <p>
+      If $C \not= 0$, denote $B'_ i \subset B_ i$ the inverse image of $C$ by the map $B_ i \to C \oplus Z_ i$. Then by the previous paragraph we see that $(B'_ i)$ has ML if and only if $(B_ i)$ has ML. Thus we may replace $(B_ i)$ by $(B'_ i)$. In this case we have exact sequences $0 \to A_ i \to B_ i \to C \to 0$ for all $i$. It follows that $0 \to \mathop{\mathrm{Im}}(A_ j \to A_ i) \to \mathop{\mathrm{Im}}(B_ j \to B_ i) \to C \to 0$ is short exact for all $j \geq i$. Hence the images $\mathop{\mathrm{Im}}(A_ j \to A_ i)$ stabilize for $j \geq i$ if and only if the same is true for $\mathop{\mathrm{Im}}(B_ j \to B_ i)$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The “correct” version of the following lemma is More on Algebra, Lemma <a href="/tag/0918" data-tag="0918">15.88.3</a>. 
+</p>
+<p>
+<article class="env-lemma" id="070E">
+  <p><a class="environment-identifier" href="/tag/070E">Lemma <span data-tag="070E">12.31.7</span>.</a> Let </p>
+  <div class="equation">
+  \[  (A^{-2}_ i \to A^{-1}_ i \to A^0_ i \to A^1_ i)  \]
+</div>
+  <p> be an inverse system of complexes of abelian groups and denote $A^{-2} \to A^{-1} \to A^0 \to A^1$ its limit. Denote $(H_ i^{-1})$, $(H_ i^0)$ the inverse systems of cohomologies, and denote $H^{-1}$, $H^0$ the cohomologies of $A^{-2} \to A^{-1} \to A^0 \to A^1$. If $(A^{-2}_ i)$ and $(A^{-1}_ i)$ are ML and $(H^{-1}_ i)$ is essentially constant, then $H^0 = \mathop{\mathrm{lim}}\nolimits H_ i^0$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $Z^ j_ i = \mathop{\mathrm{Ker}}(A^ j_ i \to A^{j + 1}_ i)$ and $I^ j_ i = \mathop{\mathrm{Im}}(A^{j - 1}_ i \to A^ j_ i)$. Note that $\mathop{\mathrm{lim}}\nolimits Z^0_ i = \mathop{\mathrm{Ker}}(\mathop{\mathrm{lim}}\nolimits A^0_ i \to \mathop{\mathrm{lim}}\nolimits A^1_ i)$ as taking kernels commutes with limits. The systems $(I^{-1}_ i)$ and $(I^0_ i)$ have ML as quotients of the systems $(A^{-2}_ i)$ and $(A^{-1}_ i)$, see Lemma <a href="/tag/02N1" data-tag="02N1">12.31.3</a>. Thus an exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to (I^{-1}_ i) \to (Z^{-1}_ i) \to (H^{-1}_ i) \to 0  \]
+</div>
+    <p>
+       of inverse systems where $(I^{-1}_ i)$ has ML and where $(H^{-1}_ i)$ is essentially constant by assumption. Hence $(Z^{-1}_ i)$ has ML by Lemma <a href="/tag/070D" data-tag="070D">12.31.6</a>. The exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to (Z^{-1}_ i) \to (A^{-1}_ i) \to (I^0_ i) \to 0  \]
+</div>
+    <p>
+       and an application of Lemma <a href="/tag/02N1" data-tag="02N1">12.31.3</a> shows that $\mathop{\mathrm{lim}}\nolimits A^{-1}_ i \to \mathop{\mathrm{lim}}\nolimits I^0_ i$ is surjective. Finally, the exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to (I^0_ i) \to (Z^0_ i) \to (H^0_ i) \to 0  \]
+</div>
+    <p>
+       and Lemma <a href="/tag/02N1" data-tag="02N1">12.31.3</a> show that $\mathop{\mathrm{lim}}\nolimits I^0_ i \to \mathop{\mathrm{lim}}\nolimits Z^0_ i \to \mathop{\mathrm{lim}}\nolimits H^0_ i \to 0$ is exact. Putting everything together we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Sometimes we need a version of the lemma above where we take limits over big ordinals. 
+</p>
+<p>
+<article class="env-lemma" id="0AAT">
+  <p><a class="environment-identifier" href="/tag/0AAT">Lemma <span data-tag="0AAT">12.31.8</span>.</a> Let $\alpha $ be an ordinal. Let $K_\beta ^\bullet $, $\beta < \alpha $ be an inverse system of complexes of abelian groups over $\alpha $. If for all $\beta < \alpha $ the complex $K_\beta ^\bullet $ is acyclic and the map </p>
+  <div class="equation">
+  \[  K^ n_\beta \longrightarrow \mathop{\mathrm{lim}}\nolimits _{\gamma < \beta } K^ n_\gamma  \]
+</div>
+  <p> is surjective, then the complex $\mathop{\mathrm{lim}}\nolimits _{\beta < \alpha } K_\beta ^\bullet $ is acyclic. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By transfinite induction we prove this holds for every ordinal $\alpha $ and every system as in the lemma. In particular, whilst proving the result for $\alpha $ we may assume the complexes $\mathop{\mathrm{lim}}\nolimits _{\gamma < \beta } K^ n_\gamma $ are acyclic. 
+    <p>
+      Let $x \in \mathop{\mathrm{lim}}\nolimits _{\beta < \alpha } K^0_\beta $ with $\text{d}(x) = 0$. We will find a $y \in \mathop{\mathrm{lim}}\nolimits _{\beta < \alpha } K^{-1}_\beta $ with $\text{d}(y) = x$. Write $x = (x_\beta )$ where $x_\beta \in K_\beta ^0$ is the image of $x$ for $\beta < \alpha $. We will construct $y = (y_\beta )$ by transfinite recursion. 
+    <p>
+      For $\beta = 0$ let $y_0 \in K_0^{-1}$ be any element with $\text{d}(y_0) = x_0$. 
+    <p>
+      For $\beta = \gamma + 1$ a successor, we have to find an element $y_\beta $ which maps both to $y_\gamma $ by the transition map $f : K^\bullet _\beta \to K^\bullet _\gamma $ and to $x_\beta $ under the differential. As a first approximation we choose $y'_\beta $ with $\text{d}(y'_\beta ) = x_\beta $. Then the difference $y_\gamma - f(y'_\beta )$ is in the kernel of the differential, hence equal to $\text{d}(z_\gamma )$ for some $z_\gamma \in K^{-2}_\gamma $. By assumption, the map $f^{-2} : K^{-2}_\beta \to K^{-2}_\gamma $ is surjective. Hence we write $z_\gamma = f(z_\beta )$ and change $y'_\beta $ into $y_\beta = y'_\beta + \text{d}(z_\beta )$ which works. 
+    <p>
+      If $\beta $ is a limit ordinal, then we have the element $(y_\gamma )_{\gamma < \beta }$ in $\mathop{\mathrm{lim}}\nolimits _{\gamma < \beta } K^{-1}_\gamma $ whose differential is the image of $x_\beta $. Thus we can argue in exactly the same manner as above using the termwise surjective map of complexes $f : K_\beta ^\bullet \to \mathop{\mathrm{lim}}\nolimits _{\gamma < \beta } K_\gamma ^\bullet $ and the fact (see first paragraph of proof) that we may assume $\mathop{\mathrm{lim}}\nolimits _{\gamma < \beta } K_\gamma ^\bullet $ is acyclic by induction. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

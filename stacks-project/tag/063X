@@ -1,0 +1,513 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-morphisms-section-deform" class="tex-section"><span data-tag="063X">37.10</span> Infinitesimal deformations of schemes</h2>
+
+<p>
+The following simple lemma is often a convenient tool to check whether an infinitesimal deformation of a map is flat. 
+</p>
+<p>
+<article class="env-lemma" id="063Y">
+  <p><a class="environment-identifier" href="/tag/063Y">Lemma <span data-tag="063Y">37.10.1</span>.</a> Let $(f, f') : (X \subset X') \to (S \subset S')$ be a morphism of first order thickenings. Assume that $f$ is flat. Then the following are equivalent </p>
+  <p><ol>
+  <li><p>
+$f'$ is flat and $X = S \times _{S'} X'$, and 
+</p>
+</li><li><p>
+the canonical map $f^*\mathcal{C}_{S/S'} \to \mathcal{C}_{X/X'}$ is an isomorphism. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      As the problem is local on $X'$ we may assume that $X, X', S, S'$ are affine schemes. Say $S' = \mathop{\mathrm{Spec}}(A')$, $X' = \mathop{\mathrm{Spec}}(B')$, $S = \mathop{\mathrm{Spec}}(A)$, $X = \mathop{\mathrm{Spec}}(B)$ with $A = A'/I$ and $B = B'/J$ for some square zero ideals. Then we obtain the following commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ 0 \ar[r] &  J \ar[r] &  B' \ar[r] &  B \ar[r] &  0 \\  0 \ar[r] &  I \ar[r] \ar[u] &  A' \ar[r] \ar[u] &  A \ar[r] \ar[u] &  0 }  \]
+</div>
+    <p>
+       with exact rows. The canonical map of the lemma is the map 
+    <p>
+      <div class="equation">
+  \[  I \otimes _ A B = I \otimes _{A'} B' \longrightarrow J.  \]
+</div>
+    <p>
+       The assumption that $f$ is flat signifies that $A \to B$ is flat. 
+    <p>
+      Assume (1). Then $A' \to B'$ is flat and $J = IB'$. Flatness implies $\text{Tor}_1^{A'}(B', A) = 0$ (see Algebra, Lemma <a href="/tag/00M5" data-tag="00M5">10.75.8</a>). This means $I \otimes _{A'} B' \to B'$ is injective (see Algebra, Remark <a href="/tag/00M6" data-tag="00M6">10.75.9</a>). Hence we see that $I \otimes _ A B \to J$ is an isomorphism. 
+    <p>
+      Assume (2). Then it follows that $J = IB'$, so that $X = S \times _{S'} X'$. Moreover, we get $\text{Tor}_1^{A'}(B', A'/I) = 0$ by reversing the implications in the previous paragraph. Hence $B'$ is flat over $A'$ by Algebra, Lemma <a href="/tag/051C" data-tag="051C">10.99.8</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma is the “nilpotent” version of the “critère de platitude par fibres”, see Section <a href="/tag/039A" data-tag="039A">37.16</a>. 
+</p>
+<p>
+<article class="env-lemma" id="06AF">
+  <p><a class="environment-identifier" href="/tag/06AF">Lemma <span data-tag="06AF">37.10.2</span>.</a> Consider a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ (X \subset X') \ar[rr]_{(f, f')} \ar[rd] &  &  (Y \subset Y') \ar[ld] \\  &  (S \subset S') }  \]
+</div>
+  <p> of thickenings. Assume </p>
+  <p><ol>
+  <li><p>
+$X'$ is flat over $S'$, 
+</p>
+</li><li><p>
+$f$ is flat, 
+</p>
+</li><li><p>
+$S \subset S'$ is a finite order thickening, and 
+</p>
+</li><li><p>
+$X = S \times _{S'} X'$ and $Y = S \times _{S'} Y'$. 
+</p>
+</li>
+</ol></p>
+  <p> Then $f'$ is flat and $Y'$ is flat over $S'$ at all points in the image of $f'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Immediate consequence of Algebra, Lemma <a href="/tag/06A5" data-tag="06A5">10.101.8</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Many properties of morphisms of schemes are preserved under flat deformations. 
+</p>
+<p>
+<article class="env-lemma" id="06AG">
+  <p><a class="environment-identifier" href="/tag/06AG">Lemma <span data-tag="06AG">37.10.3</span>.</a> Consider a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ (X \subset X') \ar[rr]_{(f, f')} \ar[rd] &  &  (Y \subset Y') \ar[ld] \\  &  (S \subset S') }  \]
+</div>
+  <p> of thickenings. Assume $S \subset S'$ is a finite order thickening, $X'$ flat over $S'$, $X = S \times _{S'} X'$, and $Y = S \times _{S'} Y'$. Then </p>
+  <p><ol>
+  <li class="custom-item" id="06AH"><p>
+$f$ is flat if and only if $f'$ is flat,  
+</p>
+</li><li class="custom-item" id="06AI"><p>
+$f$ is an isomorphism if and only if $f'$ is an isomorphism,  
+</p>
+</li><li class="custom-item" id="06AJ"><p>
+$f$ is an open immersion if and only if $f'$ is an open immersion,  
+</p>
+</li><li class="custom-item" id="06AK"><p>
+$f$ is quasi-compact if and only if $f'$ is quasi-compact,  
+</p>
+</li><li class="custom-item" id="06AL"><p>
+$f$ is universally closed if and only if $f'$ is universally closed,  
+</p>
+</li><li class="custom-item" id="06AM"><p>
+$f$ is (quasi-)separated if and only if $f'$ is (quasi-)separated,  
+</p>
+</li><li class="custom-item" id="06AN"><p>
+$f$ is a monomorphism if and only if $f'$ is a monomorphism,  
+</p>
+</li><li class="custom-item" id="06AP"><p>
+$f$ is surjective if and only if $f'$ is surjective,  
+</p>
+</li><li class="custom-item" id="06AQ"><p>
+$f$ is universally injective if and only if $f'$ is universally injective,  
+</p>
+</li><li class="custom-item" id="06AR"><p>
+$f$ is affine if and only if $f'$ is affine,  
+</p>
+</li><li class="custom-item" id="06AS"><p>
+ $f$ is locally of finite type if and only if $f'$ is locally of finite type, 
+</p>
+</li><li class="custom-item" id="06AT"><p>
+$f$ is locally quasi-finite if and only if $f'$ is locally quasi-finite,  
+</p>
+</li><li class="custom-item" id="06AU"><p>
+ $f$ is locally of finite presentation if and only if $f'$ is locally of finite presentation, 
+</p>
+</li><li class="custom-item" id="06AV"><p>
+ $f$ is locally of finite type of relative dimension $d$ if and only if $f'$ is locally of finite type of relative dimension $d$, 
+</p>
+</li><li class="custom-item" id="06AW"><p>
+$f$ is universally open if and only if $f'$ is universally open,  
+</p>
+</li><li class="custom-item" id="06AX"><p>
+$f$ is syntomic if and only if $f'$ is syntomic,  
+</p>
+</li><li class="custom-item" id="06AY"><p>
+$f$ is smooth if and only if $f'$ is smooth,  
+</p>
+</li><li class="custom-item" id="06AZ"><p>
+$f$ is unramified if and only if $f'$ is unramified,  
+</p>
+</li><li class="custom-item" id="06B0"><p>
+$f$ is étale if and only if $f'$ is étale,  
+</p>
+</li><li class="custom-item" id="06B1"><p>
+$f$ is proper if and only if $f'$ is proper,  
+</p>
+</li><li class="custom-item" id="06B2"><p>
+$f$ is integral if and only if $f'$ is integral,  
+</p>
+</li><li class="custom-item" id="06B3"><p>
+$f$ is finite if and only if $f'$ is finite,  
+</p>
+</li><li class="custom-item" id="06B4"><p>
+ $f$ is finite locally free (of rank $d$) if and only if $f'$ is finite locally free (of rank $d$), and 
+</p>
+</li><li><p>
+add more here. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The assumptions on $X$ and $Y$ mean that $f$ is the base change of $f'$ by $X \to X'$. The properties $\mathcal{P}$ listed in (1) – (23) above are all stable under base change, hence if $f'$ has property $\mathcal{P}$, then so does $f$. See Schemes, Lemmas <a href="/tag/01JY" data-tag="01JY">26.18.2</a>, <a href="/tag/01K5" data-tag="01K5">26.19.3</a>, <a href="/tag/01KU" data-tag="01KU">26.21.12</a>, and <a href="/tag/02YC" data-tag="02YC">26.23.5</a> and Morphisms, Lemmas <a href="/tag/01S1" data-tag="01S1">29.9.4</a>, <a href="/tag/0472" data-tag="0472">29.10.4</a>, <a href="/tag/01SD" data-tag="01SD">29.11.9</a>, <a href="/tag/01T4" data-tag="01T4">29.15.4</a>, <a href="/tag/01TM" data-tag="01TM">29.21.13</a>, <a href="/tag/01TS" data-tag="01TS">29.22.4</a>, <a href="/tag/02NK" data-tag="02NK">29.30.2</a>, <a href="/tag/01UI" data-tag="01UI">29.31.4</a>, <a href="/tag/01VB" data-tag="01VB">29.35.5</a>, <a href="/tag/02GA" data-tag="02GA">29.36.5</a>, <a href="/tag/02GO" data-tag="02GO">29.37.4</a>, <a href="/tag/01W4" data-tag="01W4">29.42.5</a>, <a href="/tag/01WL" data-tag="01WL">29.45.6</a>, and <a href="/tag/02KD" data-tag="02KD">29.49.4</a>. 
+    <p>
+      The interesting direction in each case is therefore to assume that $f$ has the property and deduce that $f'$ has it too. By induction on the order of the thickening we may assume that $S \subset S'$ is a first order thickening, see discussion immediately following Definition <a href="/tag/04EX" data-tag="04EX">37.2.1</a>. We make a couple of general remarks which we will use without further mention in the arguments below. (I) Let $W' \subset S'$ be an affine open and let $U' \subset X'$ and $V' \subset Y'$ be affine opens lying over $W'$ with $f'(U') \subset V'$. Let $W' = \mathop{\mathrm{Spec}}(R')$ and denote $I \subset R'$ be the ideal defining the closed subscheme $W' \cap S$. Say $U' = \mathop{\mathrm{Spec}}(B')$ and $V' = \mathop{\mathrm{Spec}}(A')$. Then we get a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ 0 \ar[r] &  IB' \ar[r] &  B' \ar[r] &  B \ar[r] &  0 \\  0 \ar[r] &  IA' \ar[r] \ar[u] &  A' \ar[r] \ar[u] &  A \ar[r] \ar[u] &  0 }  \]
+</div>
+    <p>
+       with exact rows. Moreover $IB' \cong I \otimes _ R B$, see proof of Lemma <a href="/tag/063Y" data-tag="063Y">37.10.1</a>. (II) The morphisms $X \to X'$ and $Y \to Y'$ are universal homeomorphisms. Hence the topology of the maps $f$ and $f'$ (after any base change) is identical. (III) If $f$ is flat, then $f'$ is flat and $Y' \to S'$ is flat at every point in the image of $f'$, see Lemma <a href="/tag/06AF" data-tag="06AF">37.10.2</a>. 
+    <p>
+      Ad (<a href="/tag/06AH" data-tag="06AH">1</a>). This is general remark (III). 
+    <p>
+      Ad (<a href="/tag/06AI" data-tag="06AI">2</a>). Assume $f$ is an isomorphism. By (III) we see that $Y' \to S'$ is flat. Choose an affine open $V' \subset Y'$ and set $U' = (f')^{-1}(V')$. Then $V = Y \cap V'$ is affine which implies that $V \cong f^{-1}(V) = U = Y \times _{Y'} U'$ is affine. By Lemma <a href="/tag/06AD" data-tag="06AD">37.2.3</a> we see that $U'$ is affine. Thus we have a diagram as in the general remark (I) and moreover $IA \cong I \otimes _ R A$ because $R' \to A'$ is flat. Then $IB' \cong I \otimes _ R B \cong I \otimes _ R A \cong IA'$ and $A \cong B$. By the exactness of the rows in the diagram above we see that $A' \cong B'$, i.e., $U' \cong V'$. Thus $f'$ is an isomorphism. 
+    <p>
+      Ad (<a href="/tag/06AJ" data-tag="06AJ">3</a>). Assume $f$ is an open immersion. Then $f$ is an isomorphism of $X$ with an open subscheme $V \subset Y$. Let $V' \subset Y'$ be the open subscheme whose underlying topological space is $V$. Then $f'$ is a map from $X'$ to $V'$ which is an isomorphism by (<a href="/tag/06AI" data-tag="06AI">2</a>). Hence $f'$ is an open immersion. 
+    <p>
+      Ad (<a href="/tag/06AK" data-tag="06AK">4</a>). Immediate from remark (II). See also Lemma <a href="/tag/09ZV" data-tag="09ZV">37.3.1</a> for a more general statement. 
+    <p>
+      Ad (<a href="/tag/06AL" data-tag="06AL">5</a>). Immediate from remark (II). See also Lemma <a href="/tag/09ZV" data-tag="09ZV">37.3.1</a> for a more general statement. 
+    <p>
+      Ad (<a href="/tag/06AM" data-tag="06AM">6</a>). Note that $X \times _ Y X = Y \times _{Y'} (X' \times _{Y'} X')$ so that $X' \times _{Y'} X'$ is a thickening of $X \times _ Y X$. Hence the topology of the maps $\Delta _{X/Y}$ and $\Delta _{X'/Y'}$ matches and we win. See also Lemma <a href="/tag/09ZV" data-tag="09ZV">37.3.1</a> for a more general statement. 
+    <p>
+      Ad (<a href="/tag/06AN" data-tag="06AN">7</a>). Assume $f$ is a monomorphism. Consider the diagonal morphism $\Delta _{X'/Y'} : X' \to X' \times _{Y'} X'$. The base change of $\Delta _{X'/Y'}$ by $S \to S'$ is $\Delta _{X/Y}$ which is an isomorphism by assumption. By (<a href="/tag/06AI" data-tag="06AI">2</a>) we conclude that $\Delta _{X'/Y'}$ is an isomorphism. 
+    <p>
+      Ad (<a href="/tag/06AP" data-tag="06AP">8</a>). This is clear. See also Lemma <a href="/tag/09ZV" data-tag="09ZV">37.3.1</a> for a more general statement. 
+    <p>
+      Ad (<a href="/tag/06AQ" data-tag="06AQ">9</a>). Immediate from remark (II). See also Lemma <a href="/tag/09ZV" data-tag="09ZV">37.3.1</a> for a more general statement. 
+    <p>
+      Ad (<a href="/tag/06AR" data-tag="06AR">10</a>). Assume $f$ is affine. Choose an affine open $V' \subset Y'$ and set $U' = (f')^{-1}(V')$. Then $V = Y \cap V'$ is affine which implies that $U = Y \times _{Y'} U'$ is affine. By Lemma <a href="/tag/06AD" data-tag="06AD">37.2.3</a> we see that $U'$ is affine. Hence $f'$ is affine. See also Lemma <a href="/tag/09ZV" data-tag="09ZV">37.3.1</a> for a more general statement. 
+    <p>
+      Ad (<a href="/tag/06AS" data-tag="06AS">11</a>). Via remark (I) comes down to proving $A' \to B'$ is of finite type if $A \to B$ is of finite type. Suppose that $x_1, \ldots , x_ n \in B'$ are elements whose images in $B$ generate $B$ as an $A$-algebra. Then $A'[x_1, \ldots , x_ n] \to B$ is surjective as both $A'[x_1, \ldots , x_ n] \to B$ is surjective and $I \otimes _ R A[x_1, \ldots , x_ n] \to I \otimes _ R B$ is surjective. See also Lemma <a href="/tag/09ZW" data-tag="09ZW">37.3.3</a> for a more general statement. 
+    <p>
+      Ad (<a href="/tag/06AT" data-tag="06AT">12</a>). Follows from (<a href="/tag/06AS" data-tag="06AS">11</a>) and that quasi-finiteness of a morphism of finite type can be checked on fibres, see Morphisms, Lemma <a href="/tag/01TH" data-tag="01TH">29.21.6</a>. See also Lemma <a href="/tag/09ZW" data-tag="09ZW">37.3.3</a> for a more general statement. 
+    <p>
+      Ad (<a href="/tag/06AU" data-tag="06AU">13</a>). Via remark (I) comes down to proving $A' \to B'$ is of finite presentation if $A \to B$ is of finite presentation. We may assume that $B' = A'[x_1, \ldots , x_ n]/K'$ for some ideal $K'$ by (<a href="/tag/06AS" data-tag="06AS">11</a>). We get a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to K' \to A'[x_1, \ldots , x_ n] \to B' \to 0  \]
+</div>
+    <p>
+       As $B'$ is flat over $R'$ we see that $K' \otimes _{R'} R$ is the kernel of the surjection $A[x_1, \ldots , x_ n] \to B$. By assumption on $A \to B$ there exist finitely many $f'_1, \ldots , f'_ m \in K'$ whose images in $A[x_1, \ldots , x_ n]$ generate this kernel. Since $I$ is nilpotent we see that $f'_1, \ldots , f'_ m$ generate $K'$ by Nakayama's lemma, see Algebra, Lemma <a href="/tag/00DV" data-tag="00DV">10.20.1</a>. 
+    <p>
+      Ad (<a href="/tag/06AV" data-tag="06AV">14</a>). Follows from (<a href="/tag/06AS" data-tag="06AS">11</a>) and general remark (II). See also Lemma <a href="/tag/09ZW" data-tag="09ZW">37.3.3</a> for a more general statement. 
+    <p>
+      Ad (<a href="/tag/06AW" data-tag="06AW">15</a>). Immediate from general remark (II). See also Lemma <a href="/tag/09ZV" data-tag="09ZV">37.3.1</a> for a more general statement. 
+    <p>
+      Ad (<a href="/tag/06AX" data-tag="06AX">16</a>). Assume $f$ is syntomic. By (<a href="/tag/06AU" data-tag="06AU">13</a>) $f'$ is locally of finite presentation, by general remark (III) $f'$ is flat and the fibres of $f'$ are the fibres of $f$. Hence $f'$ is syntomic by Morphisms, Lemma <a href="/tag/01UF" data-tag="01UF">29.31.11</a>. 
+    <p>
+      Ad (<a href="/tag/06AY" data-tag="06AY">17</a>). Assume $f$ is smooth. By (<a href="/tag/06AU" data-tag="06AU">13</a>) $f'$ is locally of finite presentation, by general remark (III) $f'$ is flat, and the fibres of $f'$ are the fibres of $f$. Hence $f'$ is smooth by Morphisms, Lemma <a href="/tag/01V8" data-tag="01V8">29.35.3</a>. 
+    <p>
+      Ad (<a href="/tag/06AZ" data-tag="06AZ">18</a>). Assume $f$ unramified. By (<a href="/tag/06AS" data-tag="06AS">11</a>) $f'$ is locally of finite type and the fibres of $f'$ are the fibres of $f$. Hence $f'$ is unramified by Morphisms, Lemma <a href="/tag/02G8" data-tag="02G8">29.36.12</a>. See also Lemma <a href="/tag/09ZW" data-tag="09ZW">37.3.3</a> for a more general statement. 
+    <p>
+      Ad (<a href="/tag/06B0" data-tag="06B0">19</a>). Assume $f$ étale. By (<a href="/tag/06AU" data-tag="06AU">13</a>) $f'$ is locally of finite presentation, by general remark (III) $f'$ is flat, and the fibres of $f'$ are the fibres of $f$. Hence $f'$ is étale by Morphisms, Lemma <a href="/tag/02GM" data-tag="02GM">29.37.8</a>. 
+    <p>
+      Ad (<a href="/tag/06B1" data-tag="06B1">20</a>). This follows from a combination of (<a href="/tag/06AM" data-tag="06AM">6</a>), (<a href="/tag/06AS" data-tag="06AS">11</a>), (<a href="/tag/06AK" data-tag="06AK">4</a>), and (<a href="/tag/06AL" data-tag="06AL">5</a>). See also Lemma <a href="/tag/09ZW" data-tag="09ZW">37.3.3</a> for a more general statement. 
+    <p>
+      Ad (<a href="/tag/06B2" data-tag="06B2">21</a>). Combine (<a href="/tag/06AL" data-tag="06AL">5</a>) and (<a href="/tag/06AR" data-tag="06AR">10</a>) with Morphisms, Lemma <a href="/tag/01WM" data-tag="01WM">29.45.7</a>. See also Lemma <a href="/tag/09ZV" data-tag="09ZV">37.3.1</a> for a more general statement. 
+    <p>
+      Ad (<a href="/tag/06B3" data-tag="06B3">22</a>). Combine (<a href="/tag/06B2" data-tag="06B2">21</a>), and (<a href="/tag/06AS" data-tag="06AS">11</a>) with Morphisms, Lemma <a href="/tag/01WJ" data-tag="01WJ">29.45.4</a>. See also Lemma <a href="/tag/09ZW" data-tag="09ZW">37.3.3</a> for a more general statement. 
+    <p>
+      Ad (<a href="/tag/06B4" data-tag="06B4">23</a>). Assume $f$ finite locally free. By (<a href="/tag/06B3" data-tag="06B3">22</a>) we see that $f'$ is finite, by general remark (III) $f'$ is flat, and by (<a href="/tag/06AU" data-tag="06AU">13</a>) $f'$ is locally of finite presentation. Hence $f'$ is finite locally free by Morphisms, Lemma <a href="/tag/02KB" data-tag="02KB">29.49.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma is the “locally nilpotent” version of the “critère de platitude par fibres”, see Section <a href="/tag/039A" data-tag="039A">37.16</a>. 
+</p>
+<p>
+<article class="env-lemma" id="0CF3">
+  <p><a class="environment-identifier" href="/tag/0CF3">Lemma <span data-tag="0CF3">37.10.4</span>.</a> Consider a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ (X \subset X') \ar[rr]_{(f, f')} \ar[rd] &  &  (Y \subset Y') \ar[ld] \\  &  (S \subset S') }  \]
+</div>
+  <p> of thickenings. Assume </p>
+  <p><ol>
+  <li><p>
+$Y' \to S'$ is locally of finite type, 
+</p>
+</li><li><p>
+$X' \to S'$ is flat and locally of finite presentation, 
+</p>
+</li><li><p>
+$f$ is flat, and 
+</p>
+</li><li><p>
+$X = S \times _{S'} X'$ and $Y = S \times _{S'} Y'$. 
+</p>
+</li>
+</ol></p>
+  <p> Then $f'$ is flat and for all $y' \in Y'$ in the image of $f'$ the local ring $\mathcal{O}_{Y', y'}$ is flat and essentially of finite presentation over $\mathcal{O}_{S', s'}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Immediate consequence of Algebra, Lemma <a href="/tag/0CEL" data-tag="0CEL">10.128.10</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Many properties of morphisms of schemes are preserved under flat deformations as in the lemma above. 
+</p>
+<p>
+<article class="env-lemma" id="0CF4">
+  <p><a class="environment-identifier" href="/tag/0CF4">Lemma <span data-tag="0CF4">37.10.5</span>.</a> Consider a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ (X \subset X') \ar[rr]_{(f, f')} \ar[rd] &  &  (Y \subset Y') \ar[ld] \\  &  (S \subset S') }  \]
+</div>
+  <p> of thickenings. Assume $Y' \to S'$ locally of finite type, $X' \to S'$ flat and locally of finite presentation, $X = S \times _{S'} X'$, and $Y = S \times _{S'} Y'$. Then </p>
+  <p><ol>
+  <li class="custom-item" id="0CF5"><p>
+$f$ is flat if and only if $f'$ is flat,  
+</p>
+</li><li class="custom-item" id="0CF6"><p>
+$f$ is an isomorphism if and only if $f'$ is an isomorphism,  
+</p>
+</li><li class="custom-item" id="0CF7"><p>
+$f$ is an open immersion if and only if $f'$ is an open immersion,  
+</p>
+</li><li class="custom-item" id="0CF8"><p>
+$f$ is quasi-compact if and only if $f'$ is quasi-compact,  
+</p>
+</li><li class="custom-item" id="0CF9"><p>
+$f$ is universally closed if and only if $f'$ is universally closed,  
+</p>
+</li><li class="custom-item" id="0CFA"><p>
+$f$ is (quasi-)separated if and only if $f'$ is (quasi-)separated,  
+</p>
+</li><li class="custom-item" id="0CFB"><p>
+$f$ is a monomorphism if and only if $f'$ is a monomorphism,  
+</p>
+</li><li class="custom-item" id="0CFC"><p>
+$f$ is surjective if and only if $f'$ is surjective,  
+</p>
+</li><li class="custom-item" id="0CFD"><p>
+$f$ is universally injective if and only if $f'$ is universally injective,  
+</p>
+</li><li class="custom-item" id="0CFE"><p>
+$f$ is affine if and only if $f'$ is affine,  
+</p>
+</li><li class="custom-item" id="0CFF"><p>
+$f$ is locally quasi-finite if and only if $f'$ is locally quasi-finite,  
+</p>
+</li><li class="custom-item" id="0CFG"><p>
+ $f$ is locally of finite type of relative dimension $d$ if and only if $f'$ is locally of finite type of relative dimension $d$, 
+</p>
+</li><li class="custom-item" id="0CFH"><p>
+$f$ is universally open if and only if $f'$ is universally open,  
+</p>
+</li><li class="custom-item" id="0CFI"><p>
+$f$ is syntomic if and only if $f'$ is syntomic,  
+</p>
+</li><li class="custom-item" id="0CFJ"><p>
+$f$ is smooth if and only if $f'$ is smooth,  
+</p>
+</li><li class="custom-item" id="0CFK"><p>
+$f$ is unramified if and only if $f'$ is unramified,  
+</p>
+</li><li class="custom-item" id="0CFL"><p>
+$f$ is étale if and only if $f'$ is étale,  
+</p>
+</li><li class="custom-item" id="0CFM"><p>
+$f$ is proper if and only if $f'$ is proper,  
+</p>
+</li><li class="custom-item" id="0CFN"><p>
+$f$ is finite if and only if $f'$ is finite,  
+</p>
+</li><li class="custom-item" id="0CFP"><p>
+ $f$ is finite locally free (of rank $d$) if and only if $f'$ is finite locally free (of rank $d$), and 
+</p>
+</li><li><p>
+add more here. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The assumptions on $X$ and $Y$ mean that $f$ is the base change of $f'$ by $X \to X'$. The properties $\mathcal{P}$ listed in (1) – (20) above are all stable under base change, hence if $f'$ has property $\mathcal{P}$, then so does $f$. See Schemes, Lemmas <a href="/tag/01JY" data-tag="01JY">26.18.2</a>, <a href="/tag/01K5" data-tag="01K5">26.19.3</a>, <a href="/tag/01KU" data-tag="01KU">26.21.12</a>, and <a href="/tag/02YC" data-tag="02YC">26.23.5</a> and Morphisms, Lemmas <a href="/tag/01S1" data-tag="01S1">29.9.4</a>, <a href="/tag/0472" data-tag="0472">29.10.4</a>, <a href="/tag/01SD" data-tag="01SD">29.11.9</a>, <a href="/tag/01TM" data-tag="01TM">29.21.13</a>, <a href="/tag/02NK" data-tag="02NK">29.30.2</a>, <a href="/tag/01UI" data-tag="01UI">29.31.4</a>, <a href="/tag/01VB" data-tag="01VB">29.35.5</a>, <a href="/tag/02GA" data-tag="02GA">29.36.5</a>, <a href="/tag/02GO" data-tag="02GO">29.37.4</a>, <a href="/tag/01W4" data-tag="01W4">29.42.5</a>, <a href="/tag/01WL" data-tag="01WL">29.45.6</a>, and <a href="/tag/02KD" data-tag="02KD">29.49.4</a>. 
+    <p>
+      The interesting direction in each case is therefore to assume that $f$ has the property and deduce that $f'$ has it too. We make a couple of general remarks which we will use without further mention in the arguments below. (I) Let $W' \subset S'$ be an affine open and let $U' \subset X'$ and $V' \subset Y'$ be affine opens lying over $W'$ with $f'(U') \subset V'$. Let $W' = \mathop{\mathrm{Spec}}(R')$ and denote $I \subset R'$ be the ideal defining the closed subscheme $W' \cap S$. Say $U' = \mathop{\mathrm{Spec}}(B')$ and $V' = \mathop{\mathrm{Spec}}(A')$. Then we get a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ 0 \ar[r] &  IB' \ar[r] &  B' \ar[r] &  B \ar[r] &  0 \\  0 \ar[r] &  IA' \ar[r] \ar[u] &  A' \ar[r] \ar[u] &  A \ar[r] \ar[u] &  0 }  \]
+</div>
+    <p>
+       with exact rows. (II) The morphisms $X \to X'$ and $Y \to Y'$ are universal homeomorphisms. Hence the topology of the maps $f$ and $f'$ (after any base change) is identical. (III) If $f$ is flat, then $f'$ is flat and $Y' \to S'$ is flat at every point in the image of $f'$, see Lemma <a href="/tag/06AF" data-tag="06AF">37.10.2</a>. 
+    <p>
+      Ad (<a href="/tag/0CF5" data-tag="0CF5">1</a>). This is general remark (III). 
+    <p>
+      Ad (<a href="/tag/0CF6" data-tag="0CF6">2</a>). Assume $f$ is an isomorphism. Choose an affine open $V' \subset Y'$ and set $U' = (f')^{-1}(V')$. Then $V = Y \cap V'$ is affine which implies that $V \cong f^{-1}(V) = U = Y \times _{Y'} U'$ is affine. By Lemma <a href="/tag/06AD" data-tag="06AD">37.2.3</a> we see that $U'$ is affine. Thus we have a diagram as in the general remark (I). By Algebra, Lemma <a href="/tag/07RE" data-tag="07RE">10.126.11</a> we see that $A' \to B'$ is an isomorphism, i.e., $U' \cong V'$. Thus $f'$ is an isomorphism. 
+    <p>
+      Ad (<a href="/tag/0CF7" data-tag="0CF7">3</a>). Assume $f$ is an open immersion. Then $f$ is an isomorphism of $X$ with an open subscheme $V \subset Y$. Let $V' \subset Y'$ be the open subscheme whose underlying topological space is $V$. Then $f'$ is a map from $X'$ to $V'$ which is an isomorphism by (<a href="/tag/0CF6" data-tag="0CF6">2</a>). Hence $f'$ is an open immersion. 
+    <p>
+      Ad (<a href="/tag/0CF8" data-tag="0CF8">4</a>). Immediate from remark (II). See also Lemma <a href="/tag/09ZV" data-tag="09ZV">37.3.1</a> for a more general statement. 
+    <p>
+      Ad (<a href="/tag/0CF9" data-tag="0CF9">5</a>). Immediate from remark (II). See also Lemma <a href="/tag/09ZV" data-tag="09ZV">37.3.1</a> for a more general statement. 
+    <p>
+      Ad (<a href="/tag/0CFA" data-tag="0CFA">6</a>). Note that $X \times _ Y X = Y \times _{Y'} (X' \times _{Y'} X')$ so that $X' \times _{Y'} X'$ is a thickening of $X \times _ Y X$. Hence the topology of the maps $\Delta _{X/Y}$ and $\Delta _{X'/Y'}$ matches and we win. See also Lemma <a href="/tag/09ZV" data-tag="09ZV">37.3.1</a> for a more general statement. 
+    <p>
+      Ad (<a href="/tag/0CFB" data-tag="0CFB">7</a>). Assume $f$ is a monomorphism. Consider the diagonal morphism $\Delta _{X'/Y'} : X' \to X' \times _{Y'} X'$. Observe that $X' \times _{Y'} X' \to S'$ is locally of finite type. The base change of $\Delta _{X'/Y'}$ by $S \to S'$ is $\Delta _{X/Y}$ which is an isomorphism by assumption. By (<a href="/tag/0CF6" data-tag="0CF6">2</a>) we conclude that $\Delta _{X'/Y'}$ is an isomorphism. 
+    <p>
+      Ad (<a href="/tag/0CFC" data-tag="0CFC">8</a>). This is clear. See also Lemma <a href="/tag/09ZV" data-tag="09ZV">37.3.1</a> for a more general statement. 
+    <p>
+      Ad (<a href="/tag/0CFD" data-tag="0CFD">9</a>). Immediate from remark (II). See also Lemma <a href="/tag/09ZV" data-tag="09ZV">37.3.1</a> for a more general statement. 
+    <p>
+      Ad (<a href="/tag/0CFE" data-tag="0CFE">10</a>). Assume $f$ is affine. Choose an affine open $V' \subset Y'$ and set $U' = (f')^{-1}(V')$. Then $V = Y \cap V'$ is affine which implies that $U = Y \times _{Y'} U'$ is affine. By Lemma <a href="/tag/06AD" data-tag="06AD">37.2.3</a> we see that $U'$ is affine. Hence $f'$ is affine. See also Lemma <a href="/tag/09ZV" data-tag="09ZV">37.3.1</a> for a more general statement. 
+    <p>
+      Ad (<a href="/tag/0CFF" data-tag="0CFF">11</a>). Follows from the fact that $f'$ is locally of finite type (by Morphisms, Lemma <a href="/tag/01T8" data-tag="01T8">29.15.8</a>) and that quasi-finiteness of a morphism of finite type can be checked on fibres, see Morphisms, Lemma <a href="/tag/01TH" data-tag="01TH">29.21.6</a>. 
+    <p>
+      Ad (<a href="/tag/0CFG" data-tag="0CFG">12</a>). Follows from general remark (II) and the fact that $f'$ is locally of finite type (Morphisms, Lemma <a href="/tag/01T8" data-tag="01T8">29.15.8</a>). 
+    <p>
+      Ad (<a href="/tag/0CFH" data-tag="0CFH">13</a>). Immediate from general remark (II). See also Lemma <a href="/tag/09ZV" data-tag="09ZV">37.3.1</a> for a more general statement. 
+    <p>
+      Ad (<a href="/tag/0CFI" data-tag="0CFI">14</a>). Assume $f$ is syntomic. By Morphisms, Lemma <a href="/tag/02FV" data-tag="02FV">29.22.11</a> $f'$ is locally of finite presentation. By general remark (III) $f'$ is flat. The fibres of $f'$ are the fibres of $f$. Hence $f'$ is syntomic by Morphisms, Lemma <a href="/tag/01UF" data-tag="01UF">29.31.11</a>. 
+    <p>
+      Ad (<a href="/tag/0CFJ" data-tag="0CFJ">15</a>). Assume $f$ is smooth. By Morphisms, Lemma <a href="/tag/02FV" data-tag="02FV">29.22.11</a> $f'$ is locally of finite presentation. By general remark (III) $f'$ is flat. The fibres of $f'$ are the fibres of $f$. Hence $f'$ is smooth by Morphisms, Lemma <a href="/tag/01V8" data-tag="01V8">29.35.3</a>. 
+    <p>
+      Ad (<a href="/tag/0CFK" data-tag="0CFK">16</a>). Assume $f$ unramified. By Morphisms, Lemma <a href="/tag/01T8" data-tag="01T8">29.15.8</a> $f'$ is locally of finite type. The fibres of $f'$ are the fibres of $f$. Hence $f'$ is unramified by Morphisms, Lemma <a href="/tag/02G8" data-tag="02G8">29.36.12</a>. 
+    <p>
+      Ad (<a href="/tag/0CFL" data-tag="0CFL">17</a>). Assume $f$ étale. By Morphisms, Lemma <a href="/tag/02FV" data-tag="02FV">29.22.11</a> $f'$ is locally of finite presentation. By general remark (III) $f'$ is flat. The fibres of $f'$ are the fibres of $f$. Hence $f'$ is étale by Morphisms, Lemma <a href="/tag/02GM" data-tag="02GM">29.37.8</a>. 
+    <p>
+      Ad (<a href="/tag/0CFM" data-tag="0CFM">18</a>). This follows from a combination of (<a href="/tag/0CFA" data-tag="0CFA">6</a>), the fact that $f$ is locally of finite type (Morphisms, Lemma <a href="/tag/01T8" data-tag="01T8">29.15.8</a>), (<a href="/tag/0CF8" data-tag="0CF8">4</a>), and (<a href="/tag/0CF9" data-tag="0CF9">5</a>). 
+    <p>
+      Ad (<a href="/tag/0CFN" data-tag="0CFN">19</a>). Combine (<a href="/tag/0CF9" data-tag="0CF9">5</a>), (<a href="/tag/0CFE" data-tag="0CFE">10</a>), Morphisms, Lemma <a href="/tag/01WM" data-tag="01WM">29.45.7</a>, the fact that $f$ is locally of finite type (Morphisms, Lemma <a href="/tag/01T8" data-tag="01T8">29.15.8</a>), and Morphisms, Lemma <a href="/tag/01WJ" data-tag="01WJ">29.45.4</a>. 
+    <p>
+      Ad (<a href="/tag/0CFP" data-tag="0CFP">20</a>). Assume $f$ finite locally free. By (<a href="/tag/0CFN" data-tag="0CFN">19</a>) we see that $f'$ is finite. By general remark (III) $f'$ is flat. By Morphisms, Lemma <a href="/tag/02FV" data-tag="02FV">29.22.11</a> $f'$ is locally of finite presentation. Hence $f'$ is finite locally free by Morphisms, Lemma <a href="/tag/02KB" data-tag="02KB">29.49.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0D4F">
+  <p><a class="environment-identifier" href="/tag/0D4F">Lemma <span data-tag="0D4F">37.10.6</span> <span class="named">(Deformations of projective schemes)</span>.</a>  Let $f : X \to S$ be a morphism of schemes which is proper, flat, and of finite presentation. Let $\mathcal{L}$ be $f$-ample. Assume $S$ is quasi-compact. There exists a $d_0 \geq 0$ such that for every cartesian diagram </p>
+  <div class="equation">
+  \[  \vcenter { \xymatrix{ X \ar[r]_{i'} \ar[d]_ f &  X' \ar[d]^{f'} \\  S \ar[r]^ i &  S' } } \quad \text{and}\quad \begin{matrix}  \text{invertible }\mathcal{O}_{X'}\text{-module}
+
+\\  \mathcal{L}'\text{ with }\mathcal{L} \cong (i')^*\mathcal{L}' 
+
+\end{matrix}  \]
+</div>
+  <p> where $S \subset S'$ is a thickening and $f'$ is proper, flat, of finite presentation we have </p>
+  <p><ol>
+  <li><p>
+$R^ p(f')_*(\mathcal{L}')^{\otimes d} = 0$ for all $p > 0$ and $d \geq d_0$, 
+</p>
+</li><li><p>
+$\mathcal{A}'_ d = (f')_*(\mathcal{L}')^{\otimes d}$ is finite locally free for $d \geq d_0$, 
+</p>
+</li><li><p>
+$\mathcal{A}' = \mathcal{O}_{S'} \oplus \bigoplus _{d \geq d_0} \mathcal{A}'_ d$ is a quasi-coherent $\mathcal{O}_{S'}$-algebra of finite presentation, 
+</p>
+</li><li><p>
+there is a canonical isomorphism $r' : X' \to \underline{\text{Proj}}_{S'}(\mathcal{A}')$, and 
+</p>
+</li><li><p>
+there is a canonical isomorphism $\theta ' : (r')^*\mathcal{O}_{\underline{\text{Proj}}_{S'}(\mathcal{A}')}(1) \to \mathcal{L}'$. 
+</p>
+</li>
+</ol></p>
+  <p> The construction of $\mathcal{A}'$, $r'$, $\theta '$ is functorial in the data $(X', S', i, i', f', \mathcal{L}')$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We first describe the maps $r'$ and $\theta '$. Observe that $\mathcal{L}'$ is $f'$-ample, see Lemma <a href="/tag/0D2R" data-tag="0D2R">37.3.2</a>. There is a canonical map of quasi-coherent graded $\mathcal{O}_{S'}$-algebras $\mathcal{A}' \to \bigoplus _{d \geq 0} (f')_*(\mathcal{L}')^{\otimes d}$ which is an isomorphism in degrees $\geq d_0$. Hence this induces an isomorphism on relative Proj compatible with the Serre twists of the structure sheaf, see Constructions, Lemma <a href="/tag/07ZJ" data-tag="07ZJ">27.18.4</a>. Hence we get the morphism $r'$ by Morphisms, Lemma <a href="/tag/01VJ" data-tag="01VJ">29.38.4</a> (which in turn appeals to the construction given in Constructions, Lemma <a href="/tag/01O9" data-tag="01O9">27.19.1</a>) and it is an isomorphism by Morphisms, Lemma <a href="/tag/0C6J" data-tag="0C6J">29.44.17</a>. We get the map $\theta '$ from Constructions, Lemma <a href="/tag/01O9" data-tag="01O9">27.19.1</a>. By Properties, Lemma <a href="/tag/01QI" data-tag="01QI">28.29.2</a> we find that $\theta '$ is an isomorphism (this also uses that the morphism $r'$ over affine opens of $S'$ is the same as the morphism from Properties, Lemma <a href="/tag/01PZ" data-tag="01PZ">28.27.9</a> as is explained in the proof of Morphisms, Lemma <a href="/tag/0C6J" data-tag="0C6J">29.44.17</a>). 
+    <p>
+      Assuming the vanishing and local freeness stated in parts (1) and (2), the functoriality of the construction can be seen as follows. Suppose that $h : T \to S'$ is a morphism of schemes, denote $f_ T : X'_ T \to T$ the base change of $f'$ and $\mathcal{L}_ T$ the pullback of $\mathcal{L}$ to $X'_ T$. By cohomology and base change (as formulated in Derived Categories of Schemes, Lemma <a href="/tag/08IB" data-tag="08IB">36.22.5</a> for example) we have the corresponding vanishing over $T$ and moreover $h^*\mathcal{A}'_ d = f_{T, *}\mathcal{L}_ T^{\otimes d}$ (and thus the local freeness of pushforwards as well as the finite generation of the corresponding graded $\mathcal{O}_ T$-algebra $\mathcal{A}_ T$). Hence the morphism $r_ T : X_ T \to \underline{\text{Proj}}_ T(\bigoplus f_{T, *}\mathcal{L}_ T^{\otimes d})$ is simply the base change of $r'$ to $T$ and the pullback of $\theta '$ is the map $\theta _ T$. 
+    <p>
+      Having said all of the above, we see that it suffices to prove (1), (2), and (3). Pick $d_0$ such that $R^ pf_*\mathcal{L}^{\otimes d} = 0$ for all $d \geq d_0$ and $p > 0$, see Cohomology of Schemes, Lemma <a href="/tag/0B5T" data-tag="0B5T">30.16.1</a>. We claim that $d_0$ works. 
+    <p>
+      By cohomology and base change (Derived Categories of Schemes, Lemma <a href="/tag/0B91" data-tag="0B91">36.30.4</a>) we see that $E'_ d = Rf'_*(\mathcal{L}')^{\otimes d}$ is a perfect object of $D(\mathcal{O}_{S'})$ and its formation commutes with arbitrary base change. In particular, $E_ d = Li^*E'_ d = Rf_*\mathcal{L}^{\otimes d}$. By Derived Categories of Schemes, Lemma <a href="/tag/0D4E" data-tag="0D4E">36.32.4</a> we see that for $d \geq d_0$ the complex $E_ d$ is isomorphic to the finite locally free $\mathcal{O}_ S$-module $f_*\mathcal{L}^{\otimes d}$ placed in cohomological degree $0$. Then by Derived Categories of Schemes, Lemma <a href="/tag/0BDK" data-tag="0BDK">36.31.3</a> we conclude that $E'_ d$ is isomorphic to a finite locally free module placed in cohomological degree $0$. Of course this means that $E'_ d = \mathcal{A}'_ d[0]$, that $R^ pf'_*(\mathcal{L}')^{\otimes d} = 0$ for $p > 0$, and that $\mathcal{A}'_ d$ is finite locally free. This proves (1) and (2). 
+    <p>
+      The last thing we have to show is finite presentation of $\mathcal{A}'$ as a sheaf of $\mathcal{O}_{S'}$-algebras (this notion was introduced in Properties, Section <a href="/tag/01PD" data-tag="01PD">28.23</a>). Let $U' = \mathop{\mathrm{Spec}}(R') \subset S'$ be an affine open. Then $A' = \mathcal{A}'(U')$ is a graded $R'$-algebra whose graded parts are finite projective $R'$-modules. We have to show that $A'$ is a finitely presented $R'$-algebra. We will prove this by reduction to the Noetherian case. Namely, we can find a finite type $\mathbf{Z}$-subalgebra $R'_0 \subset R'$ and a pair<a class="footnotemark" href="#a0000817440" id="a0000817440-mark"><sup>1</sup></a> $(X'_0, \mathcal{L}'_0)$ over $R'_0$ whose base change is $(X'_{U'}, \mathcal{L}'|_{X'_{U'}})$, see Limits, Lemmas <a href="/tag/01ZR" data-tag="01ZR">32.10.2</a>, <a href="/tag/0B8W" data-tag="0B8W">32.10.3</a>, <a href="/tag/081F" data-tag="081F">32.13.1</a>, <a href="/tag/04AI" data-tag="04AI">32.8.7</a>, and <a href="/tag/09MT" data-tag="09MT">32.4.15</a>. Cohomology of Schemes, Lemma <a href="/tag/0B5T" data-tag="0B5T">30.16.1</a> implies $A'_0 = \bigoplus _{d \geq 0} H^0(X'_0, (\mathcal{L}'_0)^{\otimes d})$ is a finitely generated graded $R'_0$-algebra and implies there exists a $d'_0$ such that $H^ p(X'_0, (\mathcal{L}'_0)^{\otimes d}) = 0$, $p > 0$ for $d \geq d'_0$. By the arguments given above applied to $X'_0 \to \mathop{\mathrm{Spec}}(R'_0)$ and $\mathcal{L}'_0$ we see that $(A'_0)_ d$ is a finite projective $R'_0$-module and that 
+    <p>
+      <div class="equation">
+  \[  A'_ d = \mathcal{A}'_ d(U') = H^0(X'_{U'}, (\mathcal{L}')^{\otimes d}|_{X'_{U'}}) = H^0(X'_0, (\mathcal{L}'_0)^{\otimes d}) \otimes _{R'_0} R' = (A'_0)_ d \otimes _{R'_0} R'  \]
+</div>
+    <p>
+       for $d \geq d'_0$. Now a small twist in the argument is that we don't know that we can choose $d'_0$ equal to $d_0$<a class="footnotemark" href="#a0000817545" id="a0000817545-mark"><sup>2</sup></a>. To get around this we use the following sequence of arguments to finish the proof: 
+    <p>
+      <ol>
+  <li class="custom-item" data-marker="(a)"><p>
+The algebra $B = R'_0 \oplus \bigoplus _{d \geq \max (d_0, d'_0)} (A'_0)_ d$ is an $R'_0$-algebra of finite type: apply the Artin-Tate lemma to $B \subset A'_0$, see Algebra, Lemma <a href="/tag/00IS" data-tag="00IS">10.51.7</a>. 
+</p>
+</li><li class="custom-item" data-marker="(b)"><p>
+As $R'_0$ is Noetherian we see that $B$ is an $R'_0$-algebra of finite presentation. 
+</p>
+</li><li class="custom-item" data-marker="(c)"><p>
+By right exactness of tensor product we see that $B \otimes _{R'_0} R'$ is an $R'$-algebra of finite presentation. 
+</p>
+</li><li class="custom-item" data-marker="(d)"><p>
+By the displayed equalities this exactly says that $C = R' \oplus \bigoplus _{d \geq \max (d_0, d'_0)} A'_ d$ is an $R'$-algebra of finite presentation. 
+</p>
+</li><li class="custom-item" data-marker="(e)"><p>
+The quotient $A'/C$ is the direct sum of the finite projective $R'$-modules $A'_ d$, $d_0 \leq d \leq \max (d_0, d'_0)$, hence finitely presented as $R'$-module. 
+</p>
+</li><li class="custom-item" data-marker="(f)"><p>
+The quotient $A'/C$ is finitely presented as a $C$-module by Algebra, Lemma <a href="/tag/0561" data-tag="0561">10.6.4</a>. 
+</p>
+</li><li class="custom-item" data-marker="(g)"><p>
+Thus $A'$ is finitely presented as a $C$-module by Algebra, Lemma <a href="/tag/0519" data-tag="0519">10.5.3</a>. 
+</p>
+</li><li class="custom-item" data-marker="(h)"><p>
+By Algebra, Lemma <a href="/tag/0D46" data-tag="0D46">10.7.4</a> this implies $A'$ is finitely presented as a $C$-algebra. 
+</p>
+</li><li class="custom-item" data-marker="(i)"><p>
+Finally, by Algebra, Lemma <a href="/tag/00F4" data-tag="00F4">10.6.2</a> applied to $R' \to C \to A'$ this implies $A'$ is finitely presented as an $R'$-algebra. 
+</p>
+</li>
+</ol>
+    <p>
+       This finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

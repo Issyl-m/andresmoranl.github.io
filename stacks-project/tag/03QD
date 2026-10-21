@@ -1,0 +1,177 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="etale-cohomology-section-henselian-ring" class="tex-section"><span data-tag="03QD">59.32</span> Henselian rings</h2>
+
+<p>
+We begin by stating a theorem which has already been used many times in the Stacks project. There are many versions of this result; here we just state the algebraic version. 
+</p>
+<p>
+<article class="env-theorem" id="03QE">
+  <p><a class="environment-identifier" href="/tag/03QE">Theorem <span data-tag="03QE">59.32.1</span>.</a> Let $A\to B$ be finite type ring map and $\mathfrak p \subset A$ a prime ideal. Then there exist an étale ring map $A \to A'$ and a prime $\mathfrak p' \subset A'$ lying over $\mathfrak p$ such that </p>
+  <p><ol>
+  <li><p>
+$\kappa (\mathfrak p) = \kappa (\mathfrak p')$, 
+</p>
+</li><li><p>
+$ B \otimes _ A A' = B_1\times \ldots \times B_ r \times C$, 
+</p>
+</li><li><p>
+$ A'\to B_ i$ is finite and there exists a unique prime $q_ i\subset B_ i$ lying over $\mathfrak p'$, and 
+</p>
+</li><li><p>
+all irreducible components of the fibre $\mathop{\mathrm{Spec}}(C \otimes _{A'} \kappa (\mathfrak p'))$ of $C$ over $\mathfrak p'$ have dimension at least 1. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See Algebra, Lemma <a href="/tag/00UK" data-tag="00UK">10.145.3</a>, or see <span class="cite">[<span class="postnote">Théorème 18.12.1</span>, <a href="/bibliography/EGA4">EGA4</a>]</span>. For a slew of versions in terms of morphisms of schemes, see More on Morphisms, Section <a href="/tag/04HF" data-tag="04HF">37.41</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Recall Hensel's lemma. There are many versions of this lemma. Here are two: 
+</p>
+<ol>
+  <li class="custom-item" data-marker="(f)"><p>
+if $f\in \mathbf{Z}_ p[T]$ monic and $f \bmod p = g_0 h_0$ with $gcd(g_0, h_0) = 1$ then $f$ factors as $f = gh$ with $\bar g = g_0$ and $\bar h = h_0$, 
+</p>
+</li><li class="custom-item" data-marker="(r)"><p>
+if $f \in \mathbf{Z}_ p[T]$, monic $a_0 \in \mathbf{F}_ p$, $\bar f(a_0) =0$ but $\bar f'(a_0) \neq 0$ then there exists $a \in \mathbf{Z}_ p$ with $f(a) = 0$ and $\bar a = a_0$. 
+</p>
+</li>
+</ol>
+<p>
+ Both versions are true (we will see this later). The first version asks for lifts of factorizations into coprime parts, and the second version asks for lifts of simple roots modulo the maximal ideal. It turns out that requiring these conditions for a general local ring are equivalent, and are equivalent to many other conditions. We use the root lifting property as the definition of a henselian local ring as it is often the easiest one to check. 
+</p>
+<p>
+<article class="env-definition" id="03QF">
+  <p><a class="environment-identifier" href="/tag/03QF">Definition <span data-tag="03QF">59.32.2</span>.</a> (See Algebra, Definition <a href="/tag/04GF" data-tag="04GF">10.153.1</a>.) A local ring $(R, \mathfrak m, \kappa )$ is called <em>henselian</em> if for all $f \in R[T]$ monic, for all $a_0 \in \kappa $ such that $\bar f(a_0) = 0$ and $\bar f'(a_0) \neq 0$, there exists an $a \in R$ such that $f(a) = 0$ and $a \bmod \mathfrak m = a_0$. </p>
+</article> 
+</p>
+<p>
+A good example of henselian local rings to keep in mind is complete local rings. Recall (Algebra, Definition <a href="/tag/0324" data-tag="0324">10.160.1</a>) that a complete local ring is a local ring $(R, \mathfrak m)$ such that $R \cong \mathop{\mathrm{lim}}\nolimits _ n R/\mathfrak m^ n$, i.e., it is complete and separated for the $\mathfrak m$-adic topology. 
+</p>
+<p>
+<article class="env-theorem" id="03QG">
+  <p><a class="environment-identifier" href="/tag/03QG">Theorem <span data-tag="03QG">59.32.3</span>.</a> Complete local rings are henselian. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Newton's method. See Algebra, Lemma <a href="/tag/04GM" data-tag="04GM">10.153.9</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-theorem" id="03QH">
+  <p><a class="environment-identifier" href="/tag/03QH">Theorem <span data-tag="03QH">59.32.4</span>.</a> Let $(R, \mathfrak m, \kappa )$ be a local ring. The following are equivalent: </p>
+  <p><ol>
+  <li><p>
+$R$ is henselian, 
+</p>
+</li><li><p>
+for any $f\in R[T]$ and any factorization $\bar f = g_0 h_0$ in $\kappa [T]$ with $\gcd (g_0, h_0)=1$, there exists a factorization $f = gh$ in $R[T]$ with $\bar g = g_0$ and $\bar h = h_0$, 
+</p>
+</li><li><p>
+any finite $R$-algebra $S$ is isomorphic to a finite product of local rings finite over $R$, 
+</p>
+</li><li><p>
+any finite type $R$-algebra $A$ is isomorphic to a product $A \cong A' \times C$ where $A' \cong A_1 \times \ldots \times A_ r$ is a product of finite local $R$-algebras and all the irreducible components of $C \otimes _ R \kappa $ have dimension at least 1, 
+</p>
+</li><li><p>
+if $A$ is an étale $R$-algebra and $\mathfrak n$ is a maximal ideal of $A$ lying over $\mathfrak m$ such that $\kappa \cong A/\mathfrak n$, then there exists an isomorphism $\varphi : A \cong R \times A'$ such that $\varphi (\mathfrak n) = \mathfrak m \times A' \subset R \times A'$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is just a subset of the results from Algebra, Lemma <a href="/tag/04GG" data-tag="04GG">10.153.3</a>. Note that part (5) above corresponds to part (8) of Algebra, Lemma <a href="/tag/04GG" data-tag="04GG">10.153.3</a> but is formulated slightly differently. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03QJ">
+  <p><a class="environment-identifier" href="/tag/03QJ">Lemma <span data-tag="03QJ">59.32.5</span>.</a> If $R$ is henselian and $A$ is a finite $R$-algebra, then $A$ is a finite product of henselian local rings. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See Algebra, Lemma <a href="/tag/04GH" data-tag="04GH">10.153.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="03QK">
+  <p><a class="environment-identifier" href="/tag/03QK">Definition <span data-tag="03QK">59.32.6</span>.</a> A local ring $R$ is called <em>strictly henselian</em> if it is henselian and its residue field is separably closed. </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="03QI">
+  <p><a class="environment-identifier" href="/tag/03QI">Example <span data-tag="03QI">59.32.7</span>.</a> In the case $R = \mathbf{C}[[t]]$, the étale $R$-algebras are finite products of the trivial extension $R \to R$ and the extensions $R \to R[X, X^{-1}]/(X^ n-t)$. The latter ones factor through the open $D(t) \subset \mathop{\mathrm{Spec}}(R)$, so any étale covering can be refined by the covering $\{ \text{id} : \mathop{\mathrm{Spec}}(R) \to \mathop{\mathrm{Spec}}(R)\} $. We will see below that this is a somewhat general fact on étale coverings of spectra of henselian rings. This will show that higher étale cohomology of the spectrum of a strictly henselian ring is zero. </p>
+</article> 
+</p>
+<p>
+<article class="env-theorem" id="03QL">
+  <p><a class="environment-identifier" href="/tag/03QL">Theorem <span data-tag="03QL">59.32.8</span>.</a> Let $(R, \mathfrak m, \kappa )$ be a local ring and $\kappa \subset \kappa ^{sep}$ a separable algebraic closure. There exist canonical flat local ring maps $R \to R^ h \to R^{sh}$ where </p>
+  <p><ol>
+  <li><p>
+$R^ h$, $R^{sh}$ are filtered colimits of étale $R$-algebras, 
+</p>
+</li><li><p>
+$R^ h$ is henselian, $R^{sh}$ is strictly henselian, 
+</p>
+</li><li><p>
+$\mathfrak m R^ h$ (resp. $\mathfrak m R^{sh}$) is the maximal ideal of $R^ h$ (resp. $R^{sh}$), and 
+</p>
+</li><li><p>
+$\kappa = R^ h/\mathfrak m R^ h$, and $\kappa ^{sep} = R^{sh}/\mathfrak m R^{sh}$ as extensions of $\kappa $. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The structure of $R^ h$ and $R^{sh}$ is described in Algebra, Lemmas <a href="/tag/04GN" data-tag="04GN">10.155.1</a> and <a href="/tag/04GP" data-tag="04GP">10.155.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The rings constructed in Theorem <a href="/tag/03QL" data-tag="03QL">59.32.8</a> are called respectively the <em>henselization</em> and the <em>strict henselization</em> of the local ring $R$, see Algebra, Definition <a href="/tag/04GQ" data-tag="04GQ">10.155.3</a>. Many of the properties of $R$ are reflected in its (strict) henselization, see More on Algebra, Section <a href="/tag/07QL" data-tag="07QL">15.46</a>. 
+</p>

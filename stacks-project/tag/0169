@@ -1,0 +1,165 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="simplicial-section-simplicial-object" class="tex-section"><span data-tag="0169">14.3</span> Simplicial objects</h2>
+
+<p>
+<article class="env-definition" id="016A">
+  <p><a class="environment-identifier" href="/tag/016A">Definition <span data-tag="016A">14.3.1</span>.</a> Let $\mathcal{C}$ be a category. </p>
+  <p><ol>
+  <li><p>
+A <em>simplicial object $U$ of $\mathcal{C}$</em> is a contravariant functor $U$ from $\Delta $ to $\mathcal{C}$, in a formula: 
+</p>
+<div class="equation">
+  \[  U : \Delta ^{opp} \longrightarrow \mathcal{C}  \]
+</div>
+</li><li><p>
+If $\mathcal{C}$ is the category of sets, then we call $U$ a <em>simplicial set</em>. 
+</p>
+</li><li><p>
+If $\mathcal{C}$ is the category of abelian groups, then we call $U$ a <em>simplicial abelian group</em>. 
+</p>
+</li><li><p>
+A <em>morphism of simplicial objects $U \to U'$</em> is a transformation of functors. 
+</p>
+</li><li><p>
+The <em>category of simplicial objects of $\mathcal{C}$</em> is denoted $\text{Simp}(\mathcal{C})$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+This means there are objects $U([0]), U([1]), U([2]), \ldots $ and for $\varphi $ any nondecreasing map $\varphi : [m] \to [n]$ a morphism $U(\varphi ) : U([n]) \to U([m])$, satisfying $U(\varphi \circ \psi ) = U(\psi ) \circ U(\varphi )$. 
+</p>
+<p>
+In particular there is a unique morphism $U([0]) \to U([n])$ and there are exactly $n + 1$ morphisms $U([n]) \to U([0])$ corresponding to the $n + 1$ maps $[0] \to [n]$. Obviously we need some more notation to be able to talk intelligently about these simplicial objects. We do this by considering the morphisms we singled out in Section <a href="/tag/0164" data-tag="0164">14.2</a> above. 
+</p>
+<p>
+<article class="env-lemma" id="016B">
+  <p><a class="environment-identifier" href="/tag/016B">Lemma <span data-tag="016B">14.3.2</span>.</a> Let $\mathcal{C}$ be a category. </p>
+  <p><ol>
+  <li><p>
+Given a simplicial object $U$ in $\mathcal{C}$ we obtain a sequence of objects $U_ n = U([n])$ endowed with the morphisms $d^ n_ j = U(\delta ^ n_ j) : U_ n \to U_{n-1}$ and $s^ n_ j = U(\sigma ^ n_ j) : U_ n \to U_{n + 1}$. These morphisms satisfy the opposites of the relations displayed in Lemma <a href="/tag/0167" data-tag="0167">14.2.3</a>, namely 
+</p>
+<ol>
+  <li><p>
+If $0 \leq i < j \leq n + 1$, then $d^ n_ i \circ d^{n + 1}_ j = d^ n_{j - 1} \circ d^{n + 1}_ i$. 
+</p>
+</li><li><p>
+If $0 \leq i < j \leq n - 1$, then $d^ n_ i \circ s^{n - 1}_ j = s^{n - 2}_{j - 1} \circ d^{n - 1}_ i$. 
+</p>
+</li><li><p>
+If $0 \leq j \leq n - 1$, then $\text{id} = d^ n_ j \circ s^{n - 1}_ j = d^ n_{j + 1} \circ s^{n - 1}_ j$. 
+</p>
+</li><li><p>
+If $0 < j + 1 < i \leq n$, then $d^ n_ i \circ s^{n - 1}_ j = s^{n - 2}_ j \circ d^{n - 1}_{i - 1}$. 
+</p>
+</li><li><p>
+If $0 \leq i \leq j \leq n - 1$, then $s^ n_ i \circ s^{n - 1}_ j = s^ n_{j + 1} \circ s^{n - 1}_ i$. 
+</p>
+</li>
+</ol>
+</li><li><p>
+Conversely, given a sequence of objects $U_ n$ and morphisms $d^ n_ j$, $s^ n_ j$ satisfying (1)(a) – (e) there exists a unique simplicial object $U$ in $\mathcal{C}$ such that $U_ n = U([n])$, $d^ n_ j = U(\delta ^ n_ j)$, and $s^ n_ j = U(\sigma ^ n_ j)$. 
+</p>
+</li><li><p>
+A morphism between simplicial objects $U$ and $U'$ is given by a family of morphisms $U_ n \to U'_ n$ commuting with the morphisms $d^ n_ j$ and $s^ n_ j$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from Lemma <a href="/tag/0168" data-tag="0168">14.2.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="016C">
+  <p><a class="environment-identifier" href="/tag/016C">Remark <span data-tag="016C">14.3.3</span>.</a> By abuse of notation we sometimes write $d_ i : U_ n \to U_{n - 1}$ instead of $d^ n_ i$, and similarly for $s_ i : U_ n \to U_{n + 1}$. The relations among the morphisms $d^ n_ i$ and $s^ n_ i$ may be expressed as follows: </p>
+  <p><ol>
+  <li><p>
+If $i < j$, then $d_ i \circ d_ j = d_{j - 1} \circ d_ i$. 
+</p>
+</li><li><p>
+If $i < j$, then $d_ i \circ s_ j = s_{j - 1} \circ d_ i$. 
+</p>
+</li><li><p>
+We have $\text{id} = d_ j \circ s_ j = d_{j + 1} \circ s_ j$. 
+</p>
+</li><li><p>
+If $i > j + 1$, then $d_ i \circ s_ j = s_ j \circ d_{i - 1}$. 
+</p>
+</li><li><p>
+If $i \leq j$, then $s_ i \circ s_ j = s_{j + 1} \circ s_ i$. 
+</p>
+</li>
+</ol></p>
+  <p> This means that whenever the compositions on both the left and the right are defined then the corresponding equality should hold. </p>
+</article> 
+</p>
+<p>
+We get a unique morphism $s^0_0 = U(\sigma ^0_0) : U_0 \to U_1$ and two morphisms $d^1_0 = U(\delta ^1_0)$, and $d^1_1 = U(\delta ^1_1)$ which are morphisms $U_1 \to U_0$. There are two morphisms $s^1_0 = U(\sigma ^1_0)$, $s^1_1 = U(\sigma ^1_1)$ which are morphisms $U_1 \to U_2$. Three morphisms $d^2_0 = U(\delta ^2_0)$, $d^2_1 = U(\delta ^2_1)$, $d^2_2 = U(\delta ^2_2)$ which are morphisms $U_3 \to U_2$. And so on. 
+</p>
+<p>
+Pictorially we think of $U$ as follows: 
+</p>
+<div class="equation">
+  \[  \xymatrix{ U_2 \ar@<2ex>[r] \ar@<0ex>[r] \ar@<-2ex>[r] &  U_1 \ar@<1ex>[r] \ar@<-1ex>[r] \ar@<1ex>[l] \ar@<-1ex>[l] &  U_0 \ar@<0ex>[l] }  \]
+</div>
+<p>
+ Here the $d$-morphisms are the arrows pointing right and the $s$-morphisms are the arrows pointing left. 
+</p>
+<p>
+<article class="env-example" id="016D">
+  <p><a class="environment-identifier" href="/tag/016D">Example <span data-tag="016D">14.3.4</span>.</a> The simplest example is the <em>constant</em> simplicial object with value $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$. In other words, $U_ n = X$ and all maps are $\text{id}_ X$. </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="016E">
+  <p><a class="environment-identifier" href="/tag/016E">Example <span data-tag="016E">14.3.5</span>.</a> Suppose that $Y\to X$ is a morphism of $\mathcal{C}$ such that all the fibred products $Y \times _ X Y \times _ X \ldots \times _ X Y$ exist. Then we set $U_ n$ equal to the $(n + 1)$-fold fibre product, and we let $\varphi : [n] \to [m]$ correspond to the map (on “coordinates”) $(y_0, \ldots , y_ m) \mapsto (y_{\varphi (0)}, \ldots , y_{\varphi (n)})$. In other words, the map $U_0 = Y \to U_1 = Y \times _ X Y$ is the diagonal map. The two maps $U_1 = Y \times _ X Y \to U_0 = Y$ are the projection maps. </p>
+</article> 
+</p>
+<p>
+Geometrically Example <a href="/tag/016E" data-tag="016E">14.3.5</a> above is an important example. It tells us that it is a good idea to think of the maps $d^ n_ j : U_ n \to U_{n - 1}$ as projection maps (forgetting the $j$th component), and to think of the maps $s^ n_ j : U_ n \to U_{n + 1}$ as diagonal maps (repeating the $j$th coordinate). We will return to this in the sections below. 
+</p>
+<p>
+<article class="env-lemma" id="016F">
+  <p><a class="environment-identifier" href="/tag/016F">Lemma <span data-tag="016F">14.3.6</span>.</a> Let $\mathcal{C}$ be a category. Let $U$ be a simplicial object of $\mathcal{C}$. Each of the morphisms $s^ n_ i : U_ n \to U_{n + 1}$ has a left inverse. In particular $s^ n_ i$ is a monomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is true because $d_ i^{n + 1} \circ s^ n_ i = \text{id}_{U_ n}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

@@ -1,0 +1,190 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sheaves-section-glueing-sheaves" class="tex-section"><span data-tag="00AK">6.33</span> Glueing sheaves</h2>
+
+<p>
+In this section we glue sheaves defined on the members of a covering of $X$. We first deal with maps. 
+</p>
+<p>
+<article class="env-lemma" id="04TN">
+  <p><a class="environment-identifier" href="/tag/04TN">Lemma <span data-tag="04TN">6.33.1</span>.</a> Let $X$ be a topological space. Let $X = \bigcup U_ i$ be an open covering. Let $\mathcal{F}$, $\mathcal{G}$ be sheaves of sets on $X$. Given a collection </p>
+  <div class="equation">
+  \[  \varphi _ i : \mathcal{F}|_{U_ i} \longrightarrow \mathcal{G}|_{U_ i}  \]
+</div>
+  <p> of maps of sheaves such that for all $i, j \in I$ the maps $\varphi _ i, \varphi _ j$ restrict to the same map $\mathcal{F}|_{U_ i \cap U_ j} \to \mathcal{G}|_{U_ i \cap U_ j}$ then there exists a unique map of sheaves </p>
+  <div class="equation">
+  \[  \varphi : \mathcal{F} \longrightarrow \mathcal{G}  \]
+</div>
+  <p> whose restriction to each $U_ i$ agrees with $\varphi _ i$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      For each open subset $U \subset X$ define 
+    <p>
+      <div class="equation">
+  \[  \varphi _ U : \mathcal{F}(U) \to \mathcal{G}(U), \quad s \mapsto \varphi _ U(s)  \]
+</div>
+    <p>
+       where $\varphi _ U(s)$ is the unique section verifying 
+    <p>
+      <div class="equation">
+  \[  (\varphi _ U(s))|_{U \cap U_ i} = (\varphi _ i)_{U \cap U_ i}(s|_{U \cap U_ i}).  \]
+</div>
+    <p>
+       Existence and uniqueness of such a section follows from the sheaf axioms due to the fact that 
+    <p>
+      <div class="equation">
+  \begin{align*}  ((\varphi _ i)_{U \cap U_ i}(s|_{U \cap U_ i}))|_{U \cap U_ i \cap U_ j} & = (\varphi _ i)_{U \cap U_ i \cap U_ j}(s|_{U \cap U_ i \cap U_ j})\\ & = (\varphi _ j)_{U \cap U_ i \cap U_ j}(s|_{U \cap U_ i \cap U_ j})\\ & = ((\varphi _ j)_{U \cap U_ j}(s|_{U \cap U_ j}))|_{U \cap U_ i \cap U_ j}. \end{align*}
+</div>
+    <p>
+       This family of maps gives us indeed a map of sheaves: Let $V \subset U \subset X$ be open subsets then 
+    <p>
+      <div class="equation">
+  \[  (\varphi _ U(s))|_ V = \varphi _ V(s|_ V)  \]
+</div>
+    <p>
+       since for each $i \in I$ the following holds 
+    <p>
+      <div class="equation">
+  \begin{align*}  (\varphi _ U(s))|_{V \cap U_ i} & = ((\varphi _ U(s))|_{U \cap U_ i})|_{V \cap U_ i}\\ & = ((\varphi _ i)_{U \cap U_ i}(s|_{U \cap U_ i}))|_{V \cap U_ i}\\ & = (\varphi _ i)_{V \cap U_ i}(s|_{V \cap U_ i})\\ & = \varphi _ V(s_{V})|_{V \cap U_ i}. \end{align*}
+</div>
+    <p>
+       Furthermore, its restriction to each $U_ i$ agrees with $\varphi _ i$ since given $U \subset X$ open subset and $s \in \mathcal{F}(U \cap U_ i)$ then 
+    <p>
+      <div class="equation">
+  \begin{align*}  \varphi _{U \cap U_ i}(s) & = \varphi _{U \cap U_ i}(s)|_{U \cap U_ i}\\ & = (\varphi _ i)_{U \cap U_ i}(s|_{U \cap U_ i})\\ & = (\varphi _ i)_{U \cap U_ i}(s). \end{align*}
+</div>
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The previous lemma implies that given two sheaves $\mathcal{F}$, $\mathcal{G}$ on the topological space $X$ the rule 
+</p>
+<div class="equation">
+  \[  U \longmapsto \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (U)}( \mathcal{F}|_ U, \mathcal{G}|_ U)  \]
+</div>
+<p>
+ defines a sheaf. This is a kind of <em>internal hom sheaf</em>. It is seldom used in the setting of sheaves of sets, and more usually in the setting of sheaves of modules, see Modules, Section <a href="/tag/01CM" data-tag="01CM">17.22</a>. 
+</p>
+<p>
+Let $X$ be a topological space. Let $X = \bigcup _{i\in I} U_ i$ be an open covering. For each $i \in I$ let $\mathcal{F}_ i$ be a sheaf of sets on $U_ i$. For each pair $i, j \in I$, let 
+</p>
+<div class="equation">
+  \[  \varphi _{ij} : \mathcal{F}_ i|_{U_ i \cap U_ j} \longrightarrow \mathcal{F}_ j|_{U_ i \cap U_ j}  \]
+</div>
+<p>
+ be an isomorphism of sheaves of sets. Assume in addition that for every triple of indices $i, j, k \in I$ the following diagram is commutative 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathcal{F}_ i|_{U_ i \cap U_ j \cap U_ k} \ar[rr]_{\varphi _{ik}} \ar[rd]_{\varphi _{ij}} &  &  \mathcal{F}_ k|_{U_ i \cap U_ j \cap U_ k} \\  &  \mathcal{F}_ j|_{U_ i \cap U_ j \cap U_ k} \ar[ru]_{\varphi _{jk}} }  \]
+</div>
+<p>
+ We will call such a collection of data $(\mathcal{F}_ i, \varphi _{ij})$ a <em>glueing data for sheaves of sets with respect to the covering $X = \bigcup U_ i$</em>. 
+</p>
+<p>
+<article class="env-lemma" id="00AL">
+  <p><a class="environment-identifier" href="/tag/00AL">Lemma <span data-tag="00AL">6.33.2</span>.</a> Let $X$ be a topological space. Let $X = \bigcup _{i\in I} U_ i$ be an open covering. Given any glueing data $(\mathcal{F}_ i, \varphi _{ij})$ for sheaves of sets with respect to the covering $X = \bigcup U_ i$ there exists a sheaf of sets $\mathcal{F}$ on $X$ together with isomorphisms </p>
+  <div class="equation">
+  \[  \varphi _ i : \mathcal{F}|_{U_ i} \to \mathcal{F}_ i  \]
+</div>
+  <p> such that the diagrams </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{F}|_{U_ i \cap U_ j} \ar[r]_{\varphi _ i} \ar[d]_{\text{id}} &  \mathcal{F}_ i|_{U_ i \cap U_ j} \ar[d]^{\varphi _{ij}} \\  \mathcal{F}|_{U_ i \cap U_ j} \ar[r]^{\varphi _ j} &  \mathcal{F}_ j|_{U_ i \cap U_ j} }  \]
+</div>
+  <p> are commutative. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      First proof. In this proof we give a formula for the set of sections of $\mathcal{F}$ over an open $W \subset X$. Namely, we define 
+    <p>
+      <div class="equation">
+  \[  \mathcal{F}(W) = \{  (s_ i)_{i \in I} \mid s_ i \in \mathcal{F}_ i(W \cap U_ i), \varphi _{ij}(s_ i|_{W \cap U_ i \cap U_ j}) = s_ j|_{W \cap U_ i \cap U_ j} \} .  \]
+</div>
+    <p>
+       Restriction mappings for $W' \subset W$ are defined by the restricting each of the $s_ i$ to $W' \cap U_ i$. The sheaf condition for $\mathcal{F}$ follows immediately from the sheaf condition for each of the $\mathcal{F}_ i$. 
+    <p>
+      We still have to prove that $\mathcal{F}|_{U_ i}$ maps isomorphically to $\mathcal{F}_ i$. Let $W \subset U_ i$. In this case the condition in the definition of $\mathcal{F}(W)$ implies that $s_ j = \varphi _{ij}(s_ i|_{W \cap U_ j})$. And the commutativity of the diagrams in the definition of a glueing data assures that we may start with <em>any</em> section $s \in \mathcal{F}_ i(W)$ and obtain a compatible collection by setting $s_ i = s$ and $s_ j = \varphi _{ij}(s_ i|_{W \cap U_ j})$. 
+    <p>
+      Second proof (sketch). Let $\mathcal{B}$ be the set of opens $U \subset X$ such that $U \subset U_ i$ for some $i \in I$. Then $\mathcal{B}$ is a base for the topology on $X$. For $U \in \mathcal{B}$ we pick $i \in I$ with $U \subset U_ i$ and we set $\mathcal{F}(U) = \mathcal{F}_ i(U)$. Using the isomorphisms $\varphi _{ij}$ we see that this prescription is “independent of the choice of $i$”. Using the restriction mappings of $\mathcal{F}_ i$ we find that $\mathcal{F}$ is a sheaf on $\mathcal{B}$. Finally, use Lemma <a href="/tag/009N" data-tag="009N">6.30.6</a> to extend $\mathcal{F}$ to a unique sheaf $\mathcal{F}$ on $X$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00AM">
+  <p><a class="environment-identifier" href="/tag/00AM">Lemma <span data-tag="00AM">6.33.3</span>.</a> Let $X$ be a topological space. Let $X = \bigcup U_ i$ be an open covering. Let $(\mathcal{F}_ i, \varphi _{ij})$ be a glueing data of sheaves of abelian groups, resp. sheaves of algebraic structures, resp. sheaves of $\mathcal{O}$-modules for some sheaf of rings $\mathcal{O}$ on $X$. Then the construction in the proof of Lemma <a href="/tag/00AL" data-tag="00AL">6.33.2</a> above leads to a sheaf of abelian groups, resp. sheaf of algebraic structures, resp. sheaf of $\mathcal{O}$-modules. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is true because in the construction the set of sections $\mathcal{F}(W)$ over an open $W$ is given as the equalizer of the maps 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \prod _{i \in I} \mathcal{F}_ i(W \cap U_ i) \ar@<1ex>[r] \ar@<-1ex>[r] &  \prod _{i, j\in I} \mathcal{F}_ i(W \cap U_ i \cap U_ j) }  \]
+</div>
+    <p>
+       And in each of the cases envisioned this equalizer gives an object in the relevant category whose underlying set is the object considered in the cited lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00AN">
+  <p><a class="environment-identifier" href="/tag/00AN">Lemma <span data-tag="00AN">6.33.4</span>.</a> Let $X$ be a topological space. Let $X = \bigcup _{i\in I} U_ i$ be an open covering. The functor which associates to a sheaf of sets $\mathcal{F}$ the following collection of glueing data </p>
+  <div class="equation">
+  \[  (\mathcal{F}|_{U_ i}, (\mathcal{F}|_{U_ i})|_{U_ i \cap U_ j} \to (\mathcal{F}|_{U_ j})|_{U_ i \cap U_ j} )  \]
+</div>
+  <p> with respect to the covering $X = \bigcup U_ i$ defines an equivalence of categories between $\mathop{\mathit{Sh}}\nolimits (X)$ and the category of glueing data. A similar statement holds for abelian sheaves, resp. sheaves of algebraic structures, resp. sheaves of $\mathcal{O}$-modules. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The functor is fully faithful by Lemma <a href="/tag/04TN" data-tag="04TN">6.33.1</a> and essentially surjective (via an explicitly given quasi-inverse functor) by Lemma <a href="/tag/00AL" data-tag="00AL">6.33.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+This lemma means that if the sheaf $\mathcal{F}$ was constructed from the glueing data $(\mathcal{F}_ i, \varphi _{ij})$ and if $\mathcal{G}$ is a sheaf on $X$, then a morphism $f : \mathcal{F} \to \mathcal{G}$ is given by a collection of morphisms of sheaves 
+</p>
+<div class="equation">
+  \[  f_ i : \mathcal{F}_ i \longrightarrow \mathcal{G}|_{U_ i}  \]
+</div>
+<p>
+ compatible with the glueing maps $\varphi _{ij}$. Similarly, to give a morphism of sheaves $g : \mathcal{G} \to \mathcal{F}$ is the same as giving a collection of morphisms of sheaves 
+</p>
+<div class="equation">
+  \[  g_ i : \mathcal{G}|_{U_ i} \longrightarrow \mathcal{F}_ i  \]
+</div>
+<p>
+ compatible with the glueing maps $\varphi _{ij}$. 
+</p>

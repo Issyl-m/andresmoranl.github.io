@@ -1,0 +1,161 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="dualizing-section-bad-local-cohomology" class="tex-section"><span data-tag="0BJA">47.8</span> Deriving torsion</h2>
+
+<p>
+Let $A$ be a ring and let $I \subset A$ be a finitely generated ideal (if $I$ is not finitely generated perhaps a different definition should be used). Let $Z = V(I) \subset \mathop{\mathrm{Spec}}(A)$. Recall that the category $I^\infty \text{-torsion}$ of $I$-power torsion modules only depends on the closed subset $Z$ and not on the choice of the finitely generated ideal $I$ such that $Z = V(I)$, see More on Algebra, Lemma <a href="/tag/0953" data-tag="0953">15.90.6</a>. In this section we will consider the functor 
+</p>
+<div class="equation">
+  \[  H^0_{I} : \text{Mod}_ A \longrightarrow I^\infty \text{-torsion},\quad M \longmapsto M[I^\infty ] = \bigcup M[I^ n]  \]
+</div>
+<p>
+ which sends $M$ to the submodule of $I$-power torsion. 
+</p>
+<p>
+Let $A$ be a ring and let $I$ be a finitely generated ideal. Note that $I^\infty \text{-torsion}$ is a Grothendieck abelian category (direct sums exist, filtered colimits are exact, and $\bigoplus A/I^ n$ is a generator by More on Algebra, Lemma <a href="/tag/05E8" data-tag="05E8">15.90.2</a>). Hence the derived category $D(I^\infty \text{-torsion})$ exists, see Injectives, Remark <a href="/tag/079Q" data-tag="079Q">19.13.3</a>. Our functor $H^0_ I$ is left exact and has a derived extension which we will denote 
+</p>
+<div class="equation">
+  \[  R\Gamma _ I : D(A) \longrightarrow D(I^\infty \text{-torsion}).  \]
+</div>
+<p>
+ <strong>Warning:</strong> this functor does not deserve the name local cohomology unless the ring $A$ is Noetherian. The functors $H^0_ I$, $R\Gamma _ I$, and the satellites $H^ p_ I$ only depend on the closed subset $Z \subset \mathop{\mathrm{Spec}}(A)$ and not on the choice of the finitely generated ideal $I$ such that $V(I) = Z$. However, we insist on using the subscript $I$ for the functors above as the notation $R\Gamma _ Z$ is going to be used for a different functor, see (<a href="/tag/0A6Q" data-tag="0A6Q">47.9.0.1</a>), which agrees with the functor $R\Gamma _ I$ only (as far as we know) in case $A$ is Noetherian (see Lemma <a href="/tag/0955" data-tag="0955">47.10.1</a>). 
+</p>
+<p>
+<article class="env-lemma" id="0A6L">
+  <p><a class="environment-identifier" href="/tag/0A6L">Lemma <span data-tag="0A6L">47.8.1</span>.</a> Let $A$ be a ring and let $I \subset A$ be a finitely generated ideal. The functor $R\Gamma _ I$ is right adjoint to the functor $D(I^\infty \text{-torsion}) \to D(A)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from the fact that taking $I$-power torsion submodules is the right adjoint to the inclusion functor $I^\infty \text{-torsion} \to \text{Mod}_ A$. See Derived Categories, Lemma <a href="/tag/09T5" data-tag="09T5">13.30.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0954">
+  <p><a class="environment-identifier" href="/tag/0954">Lemma <span data-tag="0954">47.8.2</span>.</a> Let $A$ be a ring and let $I \subset A$ be a finitely generated ideal. For any object $K$ of $D(A)$ we have </p>
+  <div class="equation">
+  \[  R\Gamma _ I(K) = \text{hocolim}\  R\mathop{\mathrm{Hom}}\nolimits _ A(A/I^ n, K)  \]
+</div>
+  <p> in $D(A)$ and </p>
+  <div class="equation">
+  \[  R^ q\Gamma _ I(K) = \mathop{\mathrm{colim}}\nolimits _ n \mathop{\mathrm{Ext}}\nolimits _ A^ q(A/I^ n, K)  \]
+</div>
+  <p> as modules for all $q \in \mathbf{Z}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $J^\bullet $ be a K-injective complex representing $K$. Then 
+    <p>
+      <div class="equation">
+  \[  R\Gamma _ I(K) = J^\bullet [I^\infty ] = \mathop{\mathrm{colim}}\nolimits J^\bullet [I^ n] = \mathop{\mathrm{colim}}\nolimits \mathop{\mathrm{Hom}}\nolimits _ A(A/I^ n, J^\bullet )  \]
+</div>
+    <p>
+       where the first equality is the definition of $R\Gamma _ I(K)$. By Derived Categories, Lemma <a href="/tag/0949" data-tag="0949">13.33.7</a> we obtain the first displayed equality in the statement of the lemma. The second displayed equality in the statement of the lemma then follows because $H^ q(\mathop{\mathrm{Hom}}\nolimits _ A(A/I^ n, J^\bullet )) = \mathop{\mathrm{Ext}}\nolimits ^ q_ A(A/I^ n, K)$ and because filtered colimits are exact in the category of abelian groups. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0A6M">
+  <p><a class="environment-identifier" href="/tag/0A6M">Lemma <span data-tag="0A6M">47.8.3</span>.</a> Let $A$ be a ring and let $I \subset A$ be a finitely generated ideal. Let $K^\bullet $ be a complex of $A$-modules such that $f : K^\bullet \to K^\bullet $ is an isomorphism for some $f \in I$, i.e., $K^\bullet $ is a complex of $A_ f$-modules. Then $R\Gamma _ I(K^\bullet ) = 0$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Namely, in this case the cohomology modules of $R\Gamma _ I(K^\bullet )$ are both $f$-power torsion and $f$ acts by automorphisms. Hence the cohomology modules are zero and hence the object is zero. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $A$ be a ring and $I \subset A$ a finitely generated ideal. By More on Algebra, Lemma <a href="/tag/0A6K" data-tag="0A6K">15.90.5</a> the category of $I$-power torsion modules is a Serre subcategory of the category of all $A$-modules. Hence there is a functor 
+</p>
+<div class="equation" id="0A6N">
+    <span class="equation-label"><a href="/tag/0A6N" data-tag="0A6N">47.8.3.1</a></span>
+  <div>\begin{equation}  \label{dualizing-equation-compare-torsion} D(I^\infty \text{-torsion}) \longrightarrow D_{I^\infty \text{-torsion}}(A) \end{equation}</div>
+</div>
+<p>
+ where the right hand side is the full subcategory of $D(A)$ consising of objects whose cohomologies are $I$-power torsion modules. Both the functor and the category are discussed in Derived Categories, Section <a href="/tag/06UP" data-tag="06UP">13.17</a>. 
+</p>
+<p>
+<article class="env-lemma" id="0A6P">
+  <p><a class="environment-identifier" href="/tag/0A6P">Lemma <span data-tag="0A6P">47.8.4</span>.</a> Let $A$ be a ring and let $I$ be a finitely generated ideal. Let $M$ and $N$ be $I$-power torsion modules. </p>
+  <p><ol>
+  <li><p>
+$\mathop{\mathrm{Hom}}\nolimits _{D(A)}(M, N) = \mathop{\mathrm{Hom}}\nolimits _{D({I^\infty \text{-torsion}})}(M, N)$, 
+</p>
+</li><li><p>
+$\mathop{\mathrm{Ext}}\nolimits ^1_{D(A)}(M, N) = \mathop{\mathrm{Ext}}\nolimits ^1_{D({I^\infty \text{-torsion}})}(M, N)$, 
+</p>
+</li><li><p>
+$\mathop{\mathrm{Ext}}\nolimits ^2_{D({I^\infty \text{-torsion}})}(M, N) \to \mathop{\mathrm{Ext}}\nolimits ^2_{D(A)}(M, N)$ is not surjective in general, 
+</p>
+</li><li><p>
+(<a href="/tag/0A6N" data-tag="0A6N">47.8.3.1</a>) is not an equivalence in general. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Parts (1) and (2) follow immediately from the fact that $I$-power torsion forms a Serre subcategory of $\text{Mod}_ A$. Part (4) follows from part (3). 
+    <p>
+      For part (3) let $A$ be a ring with an element $f \in A$ such that $A[f]$ contains a nonzero element $x$ annihilated by $f$ and $A$ contains elements $x_ n$ with $f^ nx_ n = x$. Such a ring $A$ exists because we can take 
+    <p>
+      <div class="equation">
+  \[  A = \mathbf{Z}[f, x, x_ n]/(fx, f^ nx_ n - x)  \]
+</div>
+    <p>
+       Given $A$ set $I = (f)$. Then the exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to A[f] \to A \xrightarrow {f} A \to A/fA \to 0  \]
+</div>
+    <p>
+       defines an element in $\mathop{\mathrm{Ext}}\nolimits ^2_ A(A/fA, A[f])$. We claim this element does not come from an element of $\mathop{\mathrm{Ext}}\nolimits ^2_{D(f^\infty \text{-torsion})}(A/fA, A[f])$. Namely, if it did, then there would be an exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to A[f] \to M \to N \to A/fA \to 0  \]
+</div>
+    <p>
+       where $M$ and $N$ are $f$-power torsion modules defining the same $2$ extension class. Since $A \to A$ is a complex of free modules and since the $2$ extension classes are the same we would be able to find a map 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ 0 \ar[r] &  A[f] \ar[r] \ar[d] &  A \ar[r] \ar[d]_\varphi &  A \ar[r] \ar[d]_\psi &  A/fA \ar[r] \ar[d] &  0 \\  0 \ar[r] &  A[f] \ar[r] &  M \ar[r] &  N \ar[r] &  A/fA \ar[r] &  0 }  \]
+</div>
+    <p>
+       (some details omitted). Then we could replace $M$ by the image of $\varphi $ and $N$ by the image of $\psi $. Then $M$ would be a cyclic module, hence $f^ n M = 0$ for some $n$. Considering $\varphi (x_{n + 1})$ we get a contradiction with the fact that $f^{n + 1}x_ n = x$ is nonzero in $A[f]$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

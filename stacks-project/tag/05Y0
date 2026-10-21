@@ -1,0 +1,162 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="criteria-section-relative-morphisms" class="tex-section"><span data-tag="05Y0">97.10</span> Relative morphisms</h2>
+
+<p>
+We continue the discussion started in More on Morphisms, Section <a href="/tag/0BL0" data-tag="0BL0">37.68</a>. 
+</p>
+<p>
+Let $S$ be a scheme. Let $Z \to B$ and $X \to B$ be morphisms of algebraic spaces over $S$. Given a scheme $T$ we can consider pairs $(a, b)$ where $a : T \to B$ is a morphism and $b : T \times _{a, B} Z \to T \times _{a, B} X$ is a morphism over $T$. Picture 
+</p>
+<div class="equation" id="05Y1">
+    <span class="equation-label"><a href="/tag/05Y1" data-tag="05Y1">97.10.0.1</a></span>
+  <div>\begin{equation}  \label{criteria-equation-hom} \vcenter { \xymatrix{ T \times _{a, B} Z \ar[rd] \ar[rr]_ b &  &  T \times _{a, B} X \ar[ld] &  Z \ar[rd] &  &  X \ar[ld] \\  &  T \ar[rrr]^ a &  &  &  B } } \end{equation}</div>
+</div>
+<p>
+ Of course, we can also think of $b$ as a morphism $b : T \times _{a, B} Z \to X$ such that 
+</p>
+<div class="equation">
+  \[  \xymatrix{ T \times _{a, B} Z \ar[r] \ar[d] \ar@/^1pc/[rrr]_-b &  Z \ar[rd] &  &  X \ar[ld] \\  T \ar[rr]^ a &  &  B }  \]
+</div>
+<p>
+ commutes. In this situation we can define a functor 
+</p>
+<div class="equation" id="05Y2">
+    <span class="equation-label"><a href="/tag/05Y2" data-tag="05Y2">97.10.0.2</a></span>
+  <div>\begin{equation}  \label{criteria-equation-hom-functor} \mathit{Mor}_ B(Z, X) : (\mathit{Sch}/S)^{opp} \longrightarrow \textit{Sets}, \quad T \longmapsto \{ (a, b)\text{ as above}\}  \end{equation}</div>
+</div>
+<p>
+ Sometimes we think of this as a functor defined on the category of schemes over $B$, in which case we drop $a$ from the notation. 
+</p>
+<p>
+<article class="env-lemma" id="05Y3">
+  <p><a class="environment-identifier" href="/tag/05Y3">Lemma <span data-tag="05Y3">97.10.1</span>.</a> Let $S$ be a scheme. Let $Z \to B$ and $X \to B$ be morphisms of algebraic spaces over $S$. Then </p>
+  <p><ol>
+  <li><p>
+$\mathit{Mor}_ B(Z, X)$ is a sheaf on $(\mathit{Sch}/S)_{fppf}$. 
+</p>
+</li><li><p>
+If $T$ is an algebraic space over $S$, then there is a canonical bijection 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits ((\mathit{Sch}/S)_{fppf})}(T, \mathit{Mor}_ B(Z, X)) = \{ (a, b)\text{ as in }(\ref{criteria-equation-hom})\}   \]
+</div>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $T$ be an algebraic space over $S$. Let $\{ T_ i \to T\} $ be an fppf covering of $T$ (as in Topologies on Spaces, Section <a href="/tag/03Y7" data-tag="03Y7">73.7</a>). Suppose that $(a_ i, b_ i) \in \mathit{Mor}_ B(Z, X)(T_ i)$ such that $(a_ i, b_ i)|_{T_ i \times _ T T_ j} = (a_ j, b_ j)|_{T_ i \times _ T T_ j}$ for all $i, j$. Then by Descent on Spaces, Lemma <a href="/tag/04P2" data-tag="04P2">74.7.2</a> there exists a unique morphism $a : T \to B$ such that $a_ i$ is the composition of $T_ i \to T$ and $a$. Then $\{ T_ i \times _{a_ i, B} Z \to T \times _{a, B} Z\} $ is an fppf covering too and the same lemma implies there exists a unique morphism $b : T \times _{a, B} Z \to T \times _{a, B} X$ such that $b_ i$ is the composition of $T_ i \times _{a_ i, B} Z \to T \times _{a, B} Z$ and $b$. Hence $(a, b) \in \mathit{Mor}_ B(Z, X)(T)$ restricts to $(a_ i, b_ i)$ over $T_ i$ for all $i$. 
+    <p>
+      Note that the result of the preceding paragraph in particular implies (1). 
+    <p>
+      Let $T$ be an algebraic space over $S$. In order to prove (2) we will construct mutually inverse maps between the displayed sets. In the following when we say “pair” we mean a pair $(a, b)$ fitting into (<a href="/tag/05Y1" data-tag="05Y1">97.10.0.1</a>). 
+    <p>
+      Let $v : T \to \mathit{Mor}_ B(Z, X)$ be a natural transformation. Choose a scheme $U$ and a surjective étale morphism $p : U \to T$. Then $v(p) \in \mathit{Mor}_ B(Z, X)(U)$ corresponds to a pair $(a_ U, b_ U)$ over $U$. Let $R = U \times _ T U$ with projections $t, s : R \to U$. As $v$ is a transformation of functors we see that the pullbacks of $(a_ U, b_ U)$ by $s$ and $t$ agree. Hence, since $\{ U \to T\} $ is an fppf covering, we may apply the result of the first paragraph that deduce that there exists a unique pair $(a, b)$ over $T$. 
+    <p>
+      Conversely, let $(a, b)$ be a pair over $T$. Let $U \to T$, $R = U \times _ T U$, and $t, s : R \to U$ be as above. Then the restriction $(a, b)|_ U$ gives rise to a transformation of functors $v : h_ U \to \mathit{Mor}_ B(Z, X)$ by the Yoneda lemma (Categories, Lemma <a href="/tag/001P" data-tag="001P">4.3.5</a>). As the two pullbacks $s^*(a, b)|_ U$ and $t^*(a, b)|_ U$ are equal, we see that $v$ coequalizes the two maps $h_ t, h_ s : h_ R \to h_ U$. Since $T = U/R$ is the fppf quotient sheaf by Spaces, Lemma <a href="/tag/0262" data-tag="0262">65.9.1</a> and since $\mathit{Mor}_ B(Z, X)$ is an fppf sheaf by (1) we conclude that $v$ factors through a map $T \to \mathit{Mor}_ B(Z, X)$. 
+    <p>
+      We omit the verification that the two constructions above are mutually inverse. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="05Y4">
+  <p><a class="environment-identifier" href="/tag/05Y4">Lemma <span data-tag="05Y4">97.10.2</span>.</a> Let $S$ be a scheme. Let $Z \to B$, $X \to B$, and $B' \to B$ be morphisms of algebraic spaces over $S$. Set $Z' = B' \times _ B Z$ and $X' = B' \times _ B X$. Then </p>
+  <div class="equation">
+  \[  \mathit{Mor}_{B'}(Z', X') = B' \times _ B \mathit{Mor}_ B(Z, X)  \]
+</div>
+  <p> in $\mathop{\mathit{Sh}}\nolimits ((\mathit{Sch}/S)_{fppf})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The equality as functors follows immediately from the definitions. The equality as sheaves follows from this because both sides are sheaves according to Lemma <a href="/tag/05Y3" data-tag="05Y3">97.10.1</a> and the fact that a fibre product of sheaves is the same as the corresponding fibre product of pre-sheaves (i.e., functors). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="05Y5">
+  <p><a class="environment-identifier" href="/tag/05Y5">Lemma <span data-tag="05Y5">97.10.3</span>.</a> Let $S$ be a scheme. Let $Z \to B$ and $X' \to X \to B$ be morphisms of algebraic spaces over $S$. Assume </p>
+  <p><ol>
+  <li><p>
+$X' \to X$ is étale, and 
+</p>
+</li><li><p>
+$Z \to B$ is finite locally free. 
+</p>
+</li>
+</ol></p>
+  <p> Then $\mathit{Mor}_ B(Z, X') \to \mathit{Mor}_ B(Z, X)$ is representable by algebraic spaces and étale. If $X' \to X$ is also surjective, then $\mathit{Mor}_ B(Z, X') \to \mathit{Mor}_ B(Z, X)$ is surjective. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $U$ be a scheme and let $\xi = (a, b)$ be an element of $\mathit{Mor}_ B(Z, X)(U)$. We have to prove that the functor 
+    <p>
+      <div class="equation">
+  \[  h_ U \times _{\xi , \mathit{Mor}_ B(Z, X)} \mathit{Mor}_ B(Z, X')  \]
+</div>
+    <p>
+       is representable by an algebraic space étale over $U$. Set $Z_ U = U \times _{a, B} Z$ and $W = Z_ U \times _{b, X} X'$. Then $W \to Z_ U \to U$ is as in Lemma <a href="/tag/05XR" data-tag="05XR">97.9.2</a> and the sheaf $F$ defined there is identified with the fibre product displayed above. Hence the first assertion of the lemma. The second assertion follows from this and Lemma <a href="/tag/05XQ" data-tag="05XQ">97.9.1</a> which guarantees that $F \to U$ is surjective in the situation above. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="05Y7">
+  <p><a class="environment-identifier" href="/tag/05Y7">Proposition <span data-tag="05Y7">97.10.4</span>.</a> Let $S$ be a scheme. Let $Z \to B$ and $X \to B$ be morphisms of algebraic spaces over $S$. If $Z \to B$ is finite locally free then $\mathit{Mor}_ B(Z, X)$ is an algebraic space. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a scheme $B' = \coprod B'_ i$ which is a disjoint union of affine schemes $B'_ i$ and an étale surjective morphism $B' \to B$. We may also assume that $B'_ i \times _ B Z$ is the spectrum of a ring which is finite free as a $\Gamma (B'_ i, \mathcal{O}_{B'_ i})$-module. By Lemma <a href="/tag/05Y4" data-tag="05Y4">97.10.2</a> and Spaces, Lemma <a href="/tag/02WL" data-tag="02WL">65.5.5</a> the morphism $\mathit{Mor}_{B'}(Z', X') \to \mathit{Mor}_ B(Z, X)$ is surjective étale. Hence by Bootstrap, Theorem <a href="/tag/04S6" data-tag="04S6">80.10.1</a> it suffices to prove the proposition when $B = B'$ is a disjoint union of affine schemes $B'_ i$ so that each $B'_ i \times _ B Z$ is finite free over $B'_ i$. Then it actually suffices to prove the result for the restriction to each $B'_ i$. Thus we may assume that $B$ is affine and that $\Gamma (Z, \mathcal{O}_ Z)$ is a finite free $\Gamma (B, \mathcal{O}_ B)$-module. 
+    <p>
+      Choose a scheme $X'$ which is a disjoint union of affine schemes and a surjective étale morphism $X' \to X$. By Lemma <a href="/tag/05Y5" data-tag="05Y5">97.10.3</a> the morphism $\mathit{Mor}_ B(Z, X') \to \mathit{Mor}_ B(Z, X)$ is representable by algebraic spaces, étale, and surjective. Hence by Bootstrap, Theorem <a href="/tag/04S6" data-tag="04S6">80.10.1</a> it suffices to prove the proposition when $X$ is a disjoint union of affine schemes. This reduces us to the case discussed in the next paragraph. 
+    <p>
+      Assume $X = \coprod _{i \in I} X_ i$ is a disjoint union of affine schemes, $B$ is affine, and that $\Gamma (Z, \mathcal{O}_ Z)$ is a finite free $\Gamma (B, \mathcal{O}_ B)$-module. For any finite subset $E \subset I$ set 
+    <p>
+      <div class="equation">
+  \[  F_ E = \mathit{Mor}_ B(Z, \coprod \nolimits _{i \in E} X_ i).  \]
+</div>
+    <p>
+       By More on Morphisms, Lemma <a href="/tag/05Y6" data-tag="05Y6">37.68.1</a> we see that $F_ E$ is an algebraic space. Consider the morphism 
+    <p>
+      <div class="equation">
+  \[  \coprod \nolimits _{E \subset I\text{ finite}} F_ E \longrightarrow \mathit{Mor}_ B(Z, X)  \]
+</div>
+    <p>
+       Each of the morphisms $F_ E \to \mathit{Mor}_ B(Z, X)$ is an open immersion, because it is simply the locus parametrizing pairs $(a, b)$ where $b$ maps into the open subscheme $\coprod \nolimits _{i \in E} X_ i$ of $X$. Moreover, if $T$ is quasi-compact, then for any pair $(a, b)$ the image of $b$ is contained in $\coprod \nolimits _{i \in E} X_ i$ for some $E \subset I$ finite. Hence the displayed arrow is in fact an open covering and we win<a class="footnotemark" href="#a0001677909" id="a0001677909-mark"><sup>1</sup></a> by Spaces, Lemma <a href="/tag/02WR" data-tag="02WR">65.8.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

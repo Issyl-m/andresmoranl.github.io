@@ -1,0 +1,166 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="morphisms-section-scheme-theoretic-closure" class="tex-section"><span data-tag="01RA">29.7</span> Scheme theoretic closure and density</h2>
+
+<p>
+We take the following definition from <span class="cite">[<span class="postnote">IV, Definition 11.10.2</span>, <a href="/bibliography/EGA">EGA</a>]</span>. 
+</p>
+<p>
+<article class="env-definition" id="01RB">
+  <p><a class="environment-identifier" href="/tag/01RB">Definition <span data-tag="01RB">29.7.1</span>.</a> Let $X$ be a scheme. Let $U \subset X$ be an open subscheme. </p>
+  <p><ol>
+  <li><p>
+The scheme theoretic image of the morphism $U \to X$ is called the <em>scheme theoretic closure of $U$ in $X$</em>. 
+</p>
+</li><li><p>
+We say $U$ is <em>scheme theoretically dense in $X$</em> if for every open $V \subset X$ the scheme theoretic closure of $U \cap V$ in $V$ is equal to $V$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+With this definition it is <strong>not</strong> the case that $U$ is scheme theoretically dense in $X$ if and only if the scheme theoretic closure of $U$ is $X$, see Example <a href="/tag/01RC" data-tag="01RC">29.7.2</a>. This is somewhat inelegant; but see Lemmas <a href="/tag/01RD" data-tag="01RD">29.7.3</a> and <a href="/tag/056D" data-tag="056D">29.7.8</a> below. On the other hand, with this definition $U$ is scheme theoretically dense in $X$ if and only if for every $V \subset X$ open the ring map $\mathcal{O}_ X(V) \to \mathcal{O}_ X(U \cap V)$ is injective, see Lemma <a href="/tag/01RE" data-tag="01RE">29.7.5</a> below. In particular we see that scheme theoretically dense implies dense which is pleasing. 
+</p>
+<p>
+<article class="env-example" id="01RC">
+  <p><a class="environment-identifier" href="/tag/01RC">Example <span data-tag="01RC">29.7.2</span>.</a> Here is an example where scheme theoretic closure being $X$ does not imply dense for the underlying topological spaces. Let $k$ be a field. Set $A = k[x, z_1, z_2, \ldots ]/(x^ n z_ n)$ Set $I = (z_1, z_2, \ldots ) \subset A$. Consider the affine scheme $X = \mathop{\mathrm{Spec}}(A)$ and the open subscheme $U = X \setminus V(I)$. Since $A \to \prod _ n A_{z_ n}$ is injective we see that the scheme theoretic closure of $U$ is $X$. Consider the morphism $X \to \mathop{\mathrm{Spec}}(k[x])$. This morphism is surjective (set all $z_ n = 0$ to see this). But the restriction of this morphism to $U$ is not surjective because it maps to the point $x = 0$. Hence $U$ cannot be topologically dense in $X$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="01RD">
+  <p><a class="environment-identifier" href="/tag/01RD">Lemma <span data-tag="01RD">29.7.3</span>.</a> Let $X$ be a scheme. Let $U \subset X$ be an open subscheme. If the inclusion morphism $U \to X$ is quasi-compact, then $U$ is scheme theoretically dense in $X$ if and only if the scheme theoretic closure of $U$ in $X$ is $X$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows from Lemma <a href="/tag/01R8" data-tag="01R8">29.6.3</a> part (3). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-example" id="056C">
+  <p><a class="environment-identifier" href="/tag/056C">Example <span data-tag="056C">29.7.4</span>.</a> Let $A$ be a ring and $X = \mathop{\mathrm{Spec}}(A)$. Let $f_1, \ldots , f_ n \in A$ and let $U = D(f_1) \cup \ldots \cup D(f_ n)$. Let $I = \mathop{\mathrm{Ker}}(A \to \prod A_{f_ i})$. Then the scheme theoretic closure of $U$ in $X$ is the closed subscheme $\mathop{\mathrm{Spec}}(A/I)$ of $X$. Note that $U \to X$ is quasi-compact. Hence by Lemma <a href="/tag/01RD" data-tag="01RD">29.7.3</a> we see $U$ is scheme theoretically dense in $X$ if and only if $I = 0$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="01RE">
+  <p><a class="environment-identifier" href="/tag/01RE">Lemma <span data-tag="01RE">29.7.5</span>.</a> Let $j : U \to X$ be an open immersion of schemes. Then $U$ is scheme theoretically dense in $X$ if and only if $\mathcal{O}_ X \to j_*\mathcal{O}_ U$ is injective. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $\mathcal{O}_ X \to j_*\mathcal{O}_ U$ is injective, then the same is true when restricted to any open $V$ of $X$. Hence the scheme theoretic closure of $U \cap V$ in $V$ is equal to $V$, see proof of Lemma <a href="/tag/01R6" data-tag="01R6">29.6.1</a>. Conversely, suppose that the scheme theoretic closure of $U \cap V$ is equal to $V$ for all opens $V$. Suppose that $\mathcal{O}_ X \to j_*\mathcal{O}_ U$ is not injective. Then we can find an affine open, say $\mathop{\mathrm{Spec}}(A) = V \subset X$ and a nonzero element $f \in A$ such that $f$ maps to zero in $\Gamma (V \cap U, \mathcal{O}_ X)$. In this case the scheme theoretic closure of $V \cap U$ in $V$ is clearly contained in $\mathop{\mathrm{Spec}}(A/(f))$ a contradiction. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01RF">
+  <p><a class="environment-identifier" href="/tag/01RF">Lemma <span data-tag="01RF">29.7.6</span>.</a> Let $X$ be a scheme. If $U$, $V$ are scheme theoretically dense open subschemes of $X$, then so is $U \cap V$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $W \subset X$ be any open. Consider the map $\mathcal{O}_ X(W) \to \mathcal{O}_ X(W \cap V) \to \mathcal{O}_ X(W \cap V \cap U)$. By Lemma <a href="/tag/01RE" data-tag="01RE">29.7.5</a> both maps are injective. Hence the composite is injective. Hence by Lemma <a href="/tag/01RE" data-tag="01RE">29.7.5</a> $U \cap V$ is scheme theoretically dense in $X$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01RG">
+  <p><a class="environment-identifier" href="/tag/01RG">Lemma <span data-tag="01RG">29.7.7</span>.</a> Let $h : Z \to X$ be an immersion. Assume either $h$ is quasi-compact or $Z$ is reduced. Let $\overline{Z} \subset X$ be the scheme theoretic image of $h$. Then the morphism $Z \to \overline{Z}$ is an open immersion which identifies $Z$ with a scheme theoretically dense open subscheme of $\overline{Z}$. Moreover, $Z$ is topologically dense in $\overline{Z}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/01QV" data-tag="01QV">29.3.2</a> or Lemma <a href="/tag/03DQ" data-tag="03DQ">29.3.3</a> we can factor $Z \to X$ as $Z \to \overline{Z}_1 \to X$ with $Z \to \overline{Z}_1$ open and $\overline{Z}_1 \to X$ closed. On the other hand, let $Z \to \overline{Z} \subset X$ be the scheme theoretic image of $Z \to X$. We conclude that $\overline{Z} \subset \overline{Z}_1$. Since $Z$ is an open subscheme of $\overline{Z}_1$ it follows that $Z$ is an open subscheme of $\overline{Z}$ as well. In the case that $Z$ is reduced we know that $Z \subset \overline{Z}_1$ is topologically dense by the construction of $\overline{Z}_1$ in the proof of Lemma <a href="/tag/03DQ" data-tag="03DQ">29.3.3</a>. Hence $\overline{Z}_1$ and $\overline{Z}$ have the same underlying topological spaces. Thus $\overline{Z} \subset \overline{Z}_1$ is a closed immersion into a reduced scheme which induces a bijection on underlying topological spaces, and hence it is an isomorphism. In the case that $Z \to X$ is quasi-compact we argue as follows: The assertion that $Z$ is scheme theoretically dense in $\overline{Z}$ follows from Lemma <a href="/tag/01R8" data-tag="01R8">29.6.3</a> part (3). The last assertion follows from Lemma <a href="/tag/01R8" data-tag="01R8">29.6.3</a> part (4). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="056D">
+  <p><a class="environment-identifier" href="/tag/056D">Lemma <span data-tag="056D">29.7.8</span>.</a> Let $X$ be a reduced scheme and let $U \subset X$ be an open subscheme. Then the following are equivalent </p>
+  <p><ol>
+  <li><p>
+$U$ is topologically dense in $X$, 
+</p>
+</li><li><p>
+the scheme theoretic closure of $U$ in $X$ is $X$, and 
+</p>
+</li><li><p>
+$U$ is scheme theoretically dense in $X$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from Lemma <a href="/tag/01RG" data-tag="01RG">29.7.7</a> and the fact that a closed subscheme $Z$ of $X$ whose underlying topological space equals $X$ must be equal to $X$ as a scheme. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="056E">
+  <p><a class="environment-identifier" href="/tag/056E">Lemma <span data-tag="056E">29.7.9</span>.</a> Let $X$ be a scheme and let $U \subset X$ be a reduced open subscheme. Then the following are equivalent </p>
+  <p><ol>
+  <li><p>
+the scheme theoretic closure of $U$ in $X$ is $X$, and 
+</p>
+</li><li><p>
+$U$ is scheme theoretically dense in $X$. 
+</p>
+</li>
+</ol></p>
+  <p> If this holds then $X$ is a reduced scheme. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from Lemma <a href="/tag/01RG" data-tag="01RG">29.7.7</a> and the fact that the scheme theoretic closure of $U$ in $X$ is reduced by Lemma <a href="/tag/056B" data-tag="056B">29.6.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01RH">
+  <p><a class="environment-identifier" href="/tag/01RH">Lemma <span data-tag="01RH">29.7.10</span>.</a> Let $S$ be a scheme. Let $X$, $Y$ be schemes over $S$. Let $f, g : X \to Y$ be morphisms of schemes over $S$. Let $U \subset X$ be an open subscheme such that $f|_ U = g|_ U$. If the scheme theoretic closure of $U$ in $X$ is $X$ and $Y \to S$ is separated, then $f = g$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows from the definitions and Schemes, Lemma <a href="/tag/01KM" data-tag="01KM">26.21.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

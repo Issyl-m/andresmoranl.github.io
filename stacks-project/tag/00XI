@@ -1,0 +1,140 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sites-section-cocontinuous-functors" class="tex-section"><span data-tag="00XI">7.20</span> Cocontinuous functors</h2>
+
+<p>
+There is another way to construct morphisms of topoi. This involves using cocontinuous functors between sites defined as follows. 
+</p>
+<p>
+<article class="env-definition" id="00XJ">
+  <p><a class="environment-identifier" href="/tag/00XJ">Definition <span data-tag="00XJ">7.20.1</span>.</a> Let $\mathcal{C}$ and $\mathcal{D}$ be sites. Let $u : \mathcal{C} \to \mathcal{D}$ be a functor. The functor $u$ is called <em>cocontinuous</em> if for every $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and every covering $\{ V_ j \to u(U)\} _{j \in J}$ of $\mathcal{D}$ there exists a covering $\{ U_ i \to U\} _{i\in I}$ of $\mathcal{C}$ such that the family of maps $\{ u(U_ i) \to u(U)\} _{i \in I}$ refines the covering $\{ V_ j \to u(U)\} _{j \in J}$. </p>
+</article> 
+</p>
+<p>
+Note that $\{ u(U_ i) \to u(U)\} _{i \in I}$ is in general <em>not</em> a covering of the site $\mathcal{D}$. 
+</p>
+<p>
+<article class="env-lemma" id="00XK">
+  <p><a class="environment-identifier" href="/tag/00XK">Lemma <span data-tag="00XK">7.20.2</span>.</a> Let $\mathcal{C}$ and $\mathcal{D}$ be sites. Let $u : \mathcal{C} \to \mathcal{D}$ be cocontinuous. Let $\mathcal{F}$ be a sheaf on $\mathcal{C}$. Then ${}_ pu\mathcal{F}$ is a sheaf on $\mathcal{D}$, which we will denote ${}_ su\mathcal{F}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\{ V_ j \to V\} _{j \in J}$ be a covering of the site $\mathcal{D}$. We have to show that 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ & \  \phantom{}_ pu\mathcal{F}(V) \ar[r] &  \prod {}_ pu\mathcal{F}(V_ j) \ar@<1ex>[r] \ar@<-1ex>[r] &  \prod {}_ pu\mathcal{F}(V_ j \times _ V V_{j'}) &  }  \]
+</div>
+    <p>
+       is an equalizer diagram. Since ${}_ pu$ is right adjoint to $u^ p$ we have 
+    <p>
+      <div class="equation">
+  \[  {}_ pu\mathcal{F}(V) = \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{D})}(h_ V, {}_ pu\mathcal{F}) = \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(u^ ph_ V, \mathcal{F}) = \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C})}((u^ ph_ V)^\# , \mathcal{F})  \]
+</div>
+    <p>
+       Hence it suffices to show that 
+    <p>
+      <div class="equation" id="07GF">
+    <span class="equation-label"><a href="/tag/07GF" data-tag="07GF">7.20.2.1</a></span>
+  <div>\begin{equation}  \label{sites-equation-coequalizer} \xymatrix{ \coprod u^ p h_{V_ j \times _ V V_{j'}} \ar@<1ex>[r] \ar@<-1ex>[r] &  \coprod u^ p h_{V_ j} \ar[r] &  u^ p h_ V } \end{equation}</div>
+</div>
+    <p>
+       becomes a coequalizer diagram after sheafification. (Recall that a coproduct in the category of sheaves is the sheafification of the coproduct in the category of presheaves, see Lemma <a href="/tag/00WI" data-tag="00WI">7.10.14</a>.) 
+    <p>
+      We first show that the second arrow of (<a href="/tag/07GF" data-tag="07GF">7.20.2.1</a>) becomes surjective after sheafification. To do this we use Lemma <a href="/tag/00WN" data-tag="00WN">7.11.2</a>. Thus it suffices to show a section $s$ of $u^ ph_ V$ over $U$ lifts to a section of $\coprod u^ p h_{V_ j}$ on the members of a covering of $U$. Note that $s$ is a morphism $s : u(U) \to V$. Then $\{ V_ j \times _{V, s} u(U) \to u(U)\} $ is a covering of $\mathcal{D}$. Hence, as $u$ is cocontinuous, there is a covering $\{ U_ i \to U\} $ such that $\{ u(U_ i) \to u(U)\} $ refines $\{ V_ j \times _{V, s} u(U) \to u(U)\} $. This means that each restriction $s|_{U_ i} : u(U_ i) \to V$ factors through a morphism $s_ i : u(U_ i) \to V_ j$ for some $j$, i.e., $s|_{U_ i}$ is in the image of $u^ ph_{V_ j}(U_ i) \to u^ ph_ V(U_ i)$ as desired. 
+    <p>
+      Let $s, s' \in (\coprod u^ ph_{V_ j})^\# (U)$ map to the same element of $(u^ ph_ V)^\# (U)$. To finish the proof of the lemma we show that after replacing $U$ by the members of a covering that $s, s'$ are the image of the same section of $\coprod u^ p h_{V_ j \times _ V V_{j'}}$ by the two maps of (<a href="/tag/07GF" data-tag="07GF">7.20.2.1</a>). We may first replace $U$ by the members of a covering and assume that $s \in u^ ph_{V_ j}(U)$ and $s' \in u^ ph_{V_{j'}}(U)$. A second such replacement guarantees that $s$ and $s'$ have the same image in $u^ ph_ V(U)$ instead of in the sheafification. Hence $s : u(U) \to V_ j$ and $s' : u(U) \to V_{j'}$ are morphisms of $\mathcal{D}$ such that 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ u(U) \ar[r]_{s'} \ar[d]_ s &  V_{j'} \ar[d] \\  V_ j \ar[r] &  V }  \]
+</div>
+    <p>
+       is commutative. Thus we obtain $t = (s, s') : u(U) \to V_ j \times _ V V_{j'}$, i.e., a section $t \in u^ ph_{V_ j \times _ V V_{j'}}(U)$ which maps to $s, s'$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00XL">
+  <p><a class="environment-identifier" href="/tag/00XL">Lemma <span data-tag="00XL">7.20.3</span>.</a> Let $\mathcal{C}$ and $\mathcal{D}$ be sites. Let $u : \mathcal{C} \to \mathcal{D}$ be cocontinuous. The functor $\mathop{\mathit{Sh}}\nolimits (\mathcal{D}) \to \mathop{\mathit{Sh}}\nolimits (\mathcal{C})$, $\mathcal{G} \mapsto (u^ p\mathcal{G})^\# $ is a left adjoint to the functor ${}_ su$ introduced in Lemma <a href="/tag/00XK" data-tag="00XK">7.20.2</a> above. Moreover, it is exact. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let us prove the adjointness property as follows 
+    <p>
+      <div class="equation">
+  \begin{eqnarray*}  \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C})} ((u^ p\mathcal{G})^\# , \mathcal{F}) &  = &  \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})} (u^ p\mathcal{G}, \mathcal{F}) \\ &  = &  \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{D})} (\mathcal{G}, {}_ pu\mathcal{F}) \\ &  = &  \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{D})} (\mathcal{G}, {}_ su\mathcal{F}). \end{eqnarray*}
+</div>
+    <p>
+       Thus it is a left adjoint and hence right exact, see Categories, Lemma <a href="/tag/0039" data-tag="0039">4.24.6</a>. We have seen that sheafification is left exact, see Lemma <a href="/tag/00WJ" data-tag="00WJ">7.10.15</a>. Moreover, the inclusion $i : \mathop{\mathit{Sh}}\nolimits (\mathcal{D}) \to \textit{PSh}(\mathcal{D})$ is left exact by Lemma <a href="/tag/00W2" data-tag="00W2">7.10.1</a>. Finally, the functor $u^ p$ is left exact because it is a right adjoint (namely to $u_ p$). Thus the functor is the composition ${}^\#  \circ u^ p \circ i$ of left exact functors, hence left exact. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We finish this section with a technical lemma. 
+</p>
+<p>
+<article class="env-lemma" id="00XM">
+  <p><a class="environment-identifier" href="/tag/00XM">Lemma <span data-tag="00XM">7.20.4</span>.</a> In the situation of Lemma <a href="/tag/00XL" data-tag="00XL">7.20.3</a>. For any presheaf $\mathcal{G}$ on $\mathcal{D}$ we have $(u^ p\mathcal{G})^\#  = (u^ p(\mathcal{G}^\# ))^\# $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      For any sheaf $\mathcal{F}$ on $\mathcal{C}$ we have 
+    <p>
+      <div class="equation">
+  \begin{eqnarray*}  \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C})}((u^ p(\mathcal{G}^\# ))^\# , \mathcal{F}) &  = &  \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{D})}(\mathcal{G}^\# , {}_ su\mathcal{F}) \\ &  = &  \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{D})}(\mathcal{G}^\# , {}_ pu\mathcal{F}) \\ &  = &  \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{D})}(\mathcal{G}, {}_ pu\mathcal{F}) \\ &  = &  \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(u^ p\mathcal{G}, \mathcal{F}) \\ &  = &  \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C})}((u^ p\mathcal{G})^\# , \mathcal{F}) \end{eqnarray*}
+</div>
+    <p>
+       and the result follows from the Yoneda lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="09W7">
+  <p><a class="environment-identifier" href="/tag/09W7">Remark <span data-tag="09W7">7.20.5</span>.</a> Let $u : \mathcal{C} \to \mathcal{D}$ be a functor between categories. Given morphisms $g : u(U) \to V$ and $f : W \to V$ in $\mathcal{D}$ we can consider the functor </p>
+  <div class="equation">
+  \[  \mathcal{C}^{opp} \longrightarrow \textit{Sets},\quad T \longmapsto \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(T, U) \times _{\mathop{\mathrm{Mor}}\nolimits _\mathcal {D}(u(T), V)} \mathop{\mathrm{Mor}}\nolimits _\mathcal {D}(u(T), W)  \]
+</div>
+  <p> If this functor is representable, denote $U \times _{g, V, f} W$ the corresponding object of $\mathcal{C}$. Assume that $\mathcal{C}$ and $\mathcal{D}$ are sites. Consider the property $P$: for every covering $\{ f_ j : V_ j \to V\} $ of $\mathcal{D}$ and any morphism $g : u(U) \to V$ we have </p>
+  <p><ol>
+  <li><p>
+$U \times _{g, V, f_ i} V_ i$ exists for all $i$, and 
+</p>
+</li><li><p>
+$\{ U \times _{g, V, f_ i} V_ i \to U\} $ is a covering of $\mathcal{C}$. 
+</p>
+</li>
+</ol></p>
+  <p> Please note the similarity with the definition of continuous functors. If $u$ has $P$ then $u$ is cocontinuous (details omitted). Many of the cocontinuous functors we will encounter satisfy $P$. </p>
+</article> 
+</p>

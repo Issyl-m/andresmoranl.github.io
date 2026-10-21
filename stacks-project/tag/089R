@@ -1,0 +1,143 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="constructions-section-grassmannian" class="tex-section"><span data-tag="089R">27.22</span> Grassmannians</h2>
+
+<p>
+In this section we introduce the standard Grassmannian functors and we show that they are represented by schemes. Pick integers $k$, $n$ with $0 < k < n$. We will construct a functor 
+</p>
+<div class="equation" id="089S">
+    <span class="equation-label"><a href="/tag/089S" data-tag="089S">27.22.0.1</a></span>
+  <div>\begin{equation}  \label{constructions-equation-gkn} G(k, n) : \mathit{Sch}\longrightarrow \textit{Sets} \end{equation}</div>
+</div>
+<p>
+ which will loosely speaking parametrize $k$-dimensional subspaces of $n$-space. However, for technical reasons it is more convenient to parametrize $(n - k)$-dimensional quotients and this is what we will do. 
+</p>
+<p>
+More precisely, $G(k, n)$ associates to a scheme $S$ the set $G(k, n)(S)$ of isomorphism classes of surjections 
+</p>
+<div class="equation">
+  \[  q : \mathcal{O}_ S^{\oplus n} \longrightarrow \mathcal{Q}  \]
+</div>
+<p>
+ where $\mathcal{Q}$ is a finite locally free $\mathcal{O}_ S$-module of rank $n - k$. Note that this is indeed a set, for example by Modules, Lemma <a href="/tag/01BC" data-tag="01BC">17.9.8</a> or by the observation that the isomorphism class of the surjection $q$ is determined by the kernel of $q$ (and given a sheaf there is a set of subsheaves). Given a morphism of schemes $f : T \to S$ we let $G(k, n)(f) : G(k, n)(S) \to G(k, n)(T)$ which sends the isomorphism class of $q : \mathcal{O}_ S^{\oplus n} \longrightarrow \mathcal{Q}$ to the isomorphism class of $f^*q : \mathcal{O}_ T^{\oplus n} \longrightarrow f^*\mathcal{Q}$. This makes sense since (1) $f^*\mathcal{O}_ S = \mathcal{O}_ T$, (2) $f^*$ is additive, (3) $f^*$ preserves locally free modules (Modules, Lemma <a href="/tag/01C8" data-tag="01C8">17.14.3</a>), and (4) $f^*$ is right exact (Modules, Lemma <a href="/tag/01AJ" data-tag="01AJ">17.3.3</a>). 
+</p>
+<p>
+<article class="env-lemma" id="089T">
+  <p><a class="environment-identifier" href="/tag/089T">Lemma <span data-tag="089T">27.22.1</span>.</a> Let $0 < k < n$. The functor $G(k, n)$ of (<a href="/tag/089S" data-tag="089S">27.22.0.1</a>) is representable by a scheme. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Set $F = G(k, n)$. To prove the lemma we will use the criterion of Schemes, Lemma <a href="/tag/01JJ" data-tag="01JJ">26.15.4</a>. The reason $F$ satisfies the sheaf property for the Zariski topology is that we can glue sheaves, see Sheaves, Section <a href="/tag/00AK" data-tag="00AK">6.33</a> (some details omitted). 
+    <p>
+      The family of subfunctors $F_ i$. Let $I$ be the set of subsets of $\{ 1, \ldots , n\} $ of cardinality $n - k$. Given a scheme $S$ and $j \in \{ 1, \ldots , n\} $ we denote $e_ j$ the global section 
+    <p>
+      <div class="equation">
+  \[  e_ j = (0, \ldots , 0, 1, 0, \ldots , 0)\quad (1\text{ in }j\text{th spot})  \]
+</div>
+    <p>
+       of $\mathcal{O}_ S^{\oplus n}$. Of course these sections freely generate $\mathcal{O}_ S^{\oplus n}$. Similarly, for $j \in \{ 1, \ldots , n - k\} $ we denote $f_ j$ the global section of $\mathcal{O}_ S^{\oplus n - k}$ which is zero in all summands except the $j$th where we put a $1$. For $i \in I$ we let 
+    <p>
+      <div class="equation">
+  \[  s_ i : \mathcal{O}_ S^{\oplus n - k} \longrightarrow \mathcal{O}_ S^{\oplus n}  \]
+</div>
+    <p>
+       which is the direct sum of the coprojections $\mathcal{O}_ S \to \mathcal{O}_ S^{\oplus n}$ corresponding to elements of $I$. More precisely, if $i = \{ i_1, \ldots , i_{n - k}\} $ with $i_1 < i_2 < \ldots < i_{n - k}$ then $s_ i$ maps $f_ j$ to $e_{i_ j}$ for $j \in \{ 1, \ldots , n - k\} $. With this notation we can set 
+    <p>
+      <div class="equation">
+  \[  F_ i(S) = \{ q : \mathcal{O}_ S^{\oplus n} \to \mathcal{Q} \in F(S) \mid q \circ s_ i \text{ is surjective}\}  \subset F(S)  \]
+</div>
+    <p>
+       Given a morphism $f : T \to S$ of schemes the pullback $f^*s_ i$ is the corresponding map over $T$. Since $f^*$ is right exact (Modules, Lemma <a href="/tag/01AJ" data-tag="01AJ">17.3.3</a>) we conclude that $F_ i$ is a subfunctor of $F$. 
+    <p>
+      Representability of $F_ i$. To prove this we may assume (after renumbering) that $i = \{ 1, \ldots , n - k\} $. This means $s_ i$ is the inclusion of the first $n - k$ summands. Observe that if $q \circ s_ i$ is surjective, then $q \circ s_ i$ is an isomorphism as a surjective map between finite locally free modules of the same rank (Modules, Lemma <a href="/tag/089Q" data-tag="089Q">17.14.5</a>). Thus if $q : \mathcal{O}_ S^{\oplus n} \to \mathcal{Q}$ is an element of $F_ i(S)$, then we can use $q \circ s_ i$ to identify $\mathcal{Q}$ with $\mathcal{O}_ S^{\oplus n - k}$. After doing so we obtain 
+    <p>
+      <div class="equation">
+  \[  q : \mathcal{O}_ S^{\oplus n} \longrightarrow \mathcal{O}_ S^{\oplus n - k}  \]
+</div>
+    <p>
+       mapping $e_ j$ to $f_ j$ (notation as above) for $j = 1, \ldots , n - k$. To determine $q$ completely we have to fix the images $q(e_{n - k + 1}), \ldots , q(e_ n)$ in $\Gamma (S, \mathcal{O}_ S^{\oplus n - k})$. It follows that $F_ i$ is isomorphic to the functor 
+    <p>
+      <div class="equation">
+  \[  S \longmapsto \prod \nolimits _{j = n - k + 1, \ldots , n} \Gamma (S, \mathcal{O}_ S^{\oplus n - k})  \]
+</div>
+    <p>
+       This functor is isomorphic to the $k(n - k)$-fold self product of the functor $S \mapsto \Gamma (S, \mathcal{O}_ S)$. By Schemes, Example <a href="/tag/01JH" data-tag="01JH">26.15.2</a> the latter is representable by $\mathbf{A}^1_\mathbf {Z}$. It follows $F_ i$ is representable by $\mathbf{A}^{k(n - k)}_\mathbf {Z}$ since fibred product over $\mathop{\mathrm{Spec}}(\mathbf{Z})$ is the product in the category of schemes. 
+    <p>
+      The inclusion $F_ i \subset F$ is representable by open immersions. Let $S$ be a scheme and let $q : \mathcal{O}_ S^{\oplus n} \to \mathcal{Q}$ be an element of $F(S)$. By Modules, Lemma <a href="/tag/01B8" data-tag="01B8">17.9.4</a>. the set $U_ i = \{ s \in S \mid (q \circ s_ i)_ s\text{ surjective}\} $ is open in $S$. Since $\mathcal{O}_{S, s}$ is a local ring and $\mathcal{Q}_ s$ a finite $\mathcal{O}_{S, s}$-module by Nakayama's lemma (Algebra, Lemma <a href="/tag/00DV" data-tag="00DV">10.20.1</a>) we have 
+    <p>
+      <div class="equation">
+  \[  s \in U_ i \Leftrightarrow \left( \text{the map } \kappa (s)^{\oplus n - k} \to \mathcal{Q}_ s/\mathfrak m_ s\mathcal{Q}_ s \text{ induced by } (q \circ s_ i)_ s \text{ is surjective} \right)  \]
+</div>
+    <p>
+       Let $f : T \to S$ be a morphism of schemes and let $t \in T$ be a point mapping to $s \in S$. We have $(f^*\mathcal{Q})_ t = \mathcal{Q}_ s \otimes _{\mathcal{O}_{S, s}} \mathcal{O}_{T, t}$ (Sheaves, Lemma <a href="/tag/0098" data-tag="0098">6.26.4</a>) and so on. Thus the map 
+    <p>
+      <div class="equation">
+  \[  \kappa (t)^{\oplus n - k} \to (f^*\mathcal{Q})_ t/\mathfrak m_ t(f^*\mathcal{Q})_ t  \]
+</div>
+    <p>
+       induced by $(f^*q \circ f^*s_ i)_ t$ is the base change of the map $\kappa (s)^{\oplus n - k} \to \mathcal{Q}_ s/\mathfrak m_ s\mathcal{Q}_ s$ above by the field extension $\kappa (t)/\kappa (s)$. It follows that $s \in U_ i$ if and only if $t$ is in the corresponding open for $f^*q$. In particular $T \to S$ factors through $U_ i$ if and only if $f^*q \in F_ i(T)$ as desired. 
+    <p>
+      The collection $F_ i$, $i \in I$ covers $F$. Let $q : \mathcal{O}_ S^{\oplus n} \to \mathcal{Q}$ be an element of $F(S)$. We have to show that for every point $s$ of $S$ there exists an $i \in I$ such that $s_ i$ is surjective in a neighbourhood of $s$. Thus we have to show that one of the compositions 
+    <p>
+      <div class="equation">
+  \[  \kappa (s)^{\oplus n - k} \xrightarrow {s_ i} \kappa (s)^{\oplus n} \rightarrow \mathcal{Q}_ s/\mathfrak m_ s\mathcal{Q}_ s  \]
+</div>
+    <p>
+       is surjective (see previous paragraph). As $\mathcal{Q}_ s/\mathfrak m_ s\mathcal{Q}_ s$ is a vector space of dimension $n - k$ this follows from the theory of vector spaces. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="089U">
+  <p><a class="environment-identifier" href="/tag/089U">Definition <span data-tag="089U">27.22.2</span>.</a> Let $0 < k < n$. The scheme $\mathbf{G}(k, n)$ representing the functor $G(k, n)$ is called <em>Grassmannian over $\mathbf{Z}$</em>. Its base change $\mathbf{G}(k, n)_ S$ to a scheme $S$ is called <em>Grassmannian over $S$</em>. If $R$ is a ring the base change to $\mathop{\mathrm{Spec}}(R)$ is denoted $\mathbf{G}(k, n)_ R$ and called <em>Grassmannian over $R$</em>. </p>
+</article> 
+</p>
+<p>
+The definition makes sense as we've shown in Lemma <a href="/tag/089T" data-tag="089T">27.22.1</a> that these functors are indeed representable. 
+</p>
+<p>
+<article class="env-lemma" id="089V">
+  <p><a class="environment-identifier" href="/tag/089V">Lemma <span data-tag="089V">27.22.3</span>.</a> Let $n \geq 1$. There is a canonical isomorphism $\mathbf{G}(n, n + 1) = \mathbf{P}^ n_\mathbf {Z}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      According to Lemma <a href="/tag/01NE" data-tag="01NE">27.13.1</a> the scheme $\mathbf{P}^ n_\mathbf {Z}$ represents the functor which assigns to a scheme $S$ the set of isomorphisms classes of pairs $(\mathcal{L}, (s_0, \ldots , s_ n))$ consisting of an invertible module $\mathcal{L}$ and an $(n + 1)$-tuple of global sections generating $\mathcal{L}$. Given such a pair we obtain a quotient 
+    <p>
+      <div class="equation">
+  \[  \mathcal{O}_ S^{\oplus n + 1} \longrightarrow \mathcal{L},\quad (h_0, \ldots , h_ n) \longmapsto \sum h_ i s_ i.  \]
+</div>
+    <p>
+       Conversely, given an element $q : \mathcal{O}_ S^{\oplus n + 1} \to \mathcal{Q}$ of $G(n, n + 1)(S)$ we obtain such a pair, namely $(\mathcal{Q}, (q(e_1), \ldots , q(e_{n + 1})))$. Here $e_ i$, $i = 1, \ldots , n + 1$ are the standard generating sections of the free module $\mathcal{O}_ S^{\oplus n + 1}$. We omit the verification that these constructions define mutually inverse transformations of functors. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

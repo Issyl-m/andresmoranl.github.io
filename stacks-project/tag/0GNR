@@ -1,0 +1,233 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="functors-section-functors" class="tex-section"><span data-tag="0GNR">56.3</span> Functors between categories of modules</h2>
+
+<p>
+The following lemma is archetypical of the results in this chapter. 
+</p>
+<p>
+<article class="env-lemma" id="0GNS">
+  <p><a class="environment-identifier" href="/tag/0GNS">Lemma <span data-tag="0GNS">56.3.1</span>.</a> Let $A$ and $B$ be rings. Let $F : \text{Mod}_ A \to \text{Mod}_ B$ be a functor. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$F$ is isomorphic to the functor $M \mapsto M \otimes _ A K$ for some $A \otimes _\mathbf {Z} B$-module $K$, 
+</p>
+</li><li><p>
+$F$ is right exact and commutes with all direct sums, 
+</p>
+</li><li><p>
+$F$ commutes with all colimits, 
+</p>
+</li><li><p>
+$F$ has a right adjoint $G$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If (1), then (4) as a right adjoint for $M \mapsto M \otimes _ A K$ is $N \mapsto \mathop{\mathrm{Hom}}\nolimits _ B(K, N)$, see Differential Graded Algebra, Lemma <a href="/tag/09LN" data-tag="09LN">22.30.3</a>. If (4), then (3) by Categories, Lemma <a href="/tag/0038" data-tag="0038">4.24.5</a>. The implication (3) $\Rightarrow $ (2) is immediate from the definitions. 
+    <p>
+      Assume (2). We will prove (1). By the discussion in Homology, Section <a href="/tag/010M" data-tag="010M">12.7</a> the functor $F$ is additive. Hence $F$ induces a ring map $A \to \text{End}_ B(F(M))$, $a \mapsto F(a \cdot \text{id}_ M)$ for every $A$-module $M$. We conclude that $F(M)$ is an $A \otimes _\mathbf {Z} B$-module functorially in $M$. Set $K = F(A)$. Define 
+    <p>
+      <div class="equation">
+  \[  M \otimes _ A K = M \otimes _ A F(A) \longrightarrow F(M), \quad m \otimes k \longmapsto F(\varphi _ m)(k)  \]
+</div>
+    <p>
+       Here $\varphi _ m : A \to M$ sends $a \to am$. The rule $(m, k) \mapsto F(\varphi _ m)(k)$ is $A$-bilinear (and $B$-linear on the right) as required to obtain the displayed $A \otimes _\mathbf {Z} B$-linear map. This construction is functorial in $M$, hence defines a transformation of functors $- \otimes _ A K \to F(-)$ which is an isomorphism when evaluated on $A$. For every $A$-module $M$ we can choose an exact sequence 
+    <p>
+      <div class="equation">
+  \[  \bigoplus \nolimits _{j \in J} A \to \bigoplus \nolimits _{i \in I} A \to M \to 0  \]
+</div>
+    <p>
+       Using the maps constructed above we find a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ (\bigoplus \nolimits _{j \in J} A) \otimes _ A K \ar[r] \ar[d] &  (\bigoplus \nolimits _{i \in I} A) \otimes _ A K \ar[r] \ar[d] &  M \otimes _ A K \ar[r] \ar[d] &  0 \\  F(\bigoplus \nolimits _{j \in J} A) \ar[r] &  F(\bigoplus \nolimits _{i \in I} A) \ar[r] &  F(M) \ar[r] &  0 }  \]
+</div>
+    <p>
+       The lower row is exact as $F$ is right exact. The upper row is exact as tensor product with $K$ is right exact. Since $F$ commutes with direct sums the left two vertical arrows are bijections. Hence we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-example" id="0GNT">
+  <p><a class="environment-identifier" href="/tag/0GNT">Example <span data-tag="0GNT">56.3.2</span>.</a> Let $R$ be a ring. Let $A$ and $B$ be $R$-algebras. Let $K$ be a $A \otimes _ R B$-module. Then we can consider the functor </p>
+  <div class="equation" id="0GNU">
+    <span class="equation-label"><a href="/tag/0GNU" data-tag="0GNU">56.3.2.1</a></span>
+  <div>\begin{equation}  \label{functors-equation-FM-modules} F : \text{Mod}_ A \longrightarrow \text{Mod}_ B,\quad M \longmapsto M \otimes _ A K \end{equation}</div>
+</div>
+  <p> This functor is $R$-linear, right exact, commutes with arbitrary direct sums, commutes with all colimits, has a right adjoint (Lemma <a href="/tag/0GNS" data-tag="0GNS">56.3.1</a>). </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0GNV">
+  <p><a class="environment-identifier" href="/tag/0GNV">Lemma <span data-tag="0GNV">56.3.3</span>.</a> Let $R$ be a ring. Let $A$ and $B$ be $R$-algebras. There is an equivalence of categories between </p>
+  <p><ol>
+  <li><p>
+the category of $R$-linear functors $F : \text{Mod}_ A \to \text{Mod}_ B$ which are right exact and commute with arbitrary direct sums, and 
+</p>
+</li><li><p>
+the category $\text{Mod}_{A \otimes _ R B}$. 
+</p>
+</li>
+</ol></p>
+  <p> given by sending $K$ to the functor $F$ in (<a href="/tag/0GNU" data-tag="0GNU">56.3.2.1</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $F$ be an object of the first category. By Lemma <a href="/tag/0GNS" data-tag="0GNS">56.3.1</a> we may assume $F(M) = M \otimes _ A K$ functorially in $M$ for some $A \otimes _\mathbf {Z} B$-module $K$. The $R$-linearity of $F$ immediately implies that the $A \otimes _\mathbf {Z} B$-module structure on $K$ comes from a (unique) $A \otimes _ R B$-module structure on $K$. Thus we see that sending $K$ to $F$ as in (<a href="/tag/0GNU" data-tag="0GNU">56.3.2.1</a>) is essentially surjective. 
+    <p>
+      To prove that our functor is fully faithful, we have to show that given $A \otimes _ R B$-modules $K$ and $K'$ any transformation $t : F \to F'$ between the corresponding functors, comes from a unique $\varphi : K \to K'$. Since $K = F(A)$ and $K' = F'(A)$ we can take $\varphi $ to be the value $t_ A : F(A) \to F'(A)$ of $t$ at $A$. This maps is $A \otimes _ R B$-linear by the definition of the $A \otimes B$-module structure on $F(A)$ and $F'(A)$ given in the proof of Lemma <a href="/tag/0GNS" data-tag="0GNS">56.3.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0GNW">
+  <p><a class="environment-identifier" href="/tag/0GNW">Remark <span data-tag="0GNW">56.3.4</span>.</a> Let $R$ be a ring. Let $A$, $B$, $C$ be $R$-algebras. Let $F : \text{Mod}_ A \to \text{Mod}_ B$ and $F' : \text{Mod}_ B \to \text{Mod}_ C$ be $R$-linear, right exact functors which commute with arbitrary direct sums. If by the equivalence of Lemma <a href="/tag/0GNV" data-tag="0GNV">56.3.3</a> the object $K$ in $\text{Mod}_{A \otimes _ R B}$ corresponds to $F$ and the object $K'$ in $\text{Mod}_{B \otimes _ R C}$ corresponds to $F'$, then $K \otimes _ B K'$ viewed as an object of $\text{Mod}_{A \otimes _ R C}$ corresponds to $F' \circ F$. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="0GNX">
+  <p><a class="environment-identifier" href="/tag/0GNX">Remark <span data-tag="0GNX">56.3.5</span>.</a> In the situation of Lemma <a href="/tag/0GNV" data-tag="0GNV">56.3.3</a> suppose that $F$ corresponds to $K$. Then $F$ is exact $\Leftrightarrow $ $K$ is flat over $A$. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="0GNY">
+  <p><a class="environment-identifier" href="/tag/0GNY">Remark <span data-tag="0GNY">56.3.6</span>.</a> In the situation of Lemma <a href="/tag/0GNV" data-tag="0GNV">56.3.3</a> suppose that $F$ corresponds to $K$. Then $F$ sends finite $A$-modules to finite $B$-modules $\Leftrightarrow $ $K$ is finite as a $B$-module. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="0GNZ">
+  <p><a class="environment-identifier" href="/tag/0GNZ">Remark <span data-tag="0GNZ">56.3.7</span>.</a> In the situation of Lemma <a href="/tag/0GNV" data-tag="0GNV">56.3.3</a> suppose that $F$ corresponds to $K$. Then $F$ sends finitely presented $A$-modules to finitely presented $B$-modules $\Leftrightarrow $ $K$ is finitely presented as a $B$-module. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0GP0">
+  <p><a class="environment-identifier" href="/tag/0GP0">Lemma <span data-tag="0GP0">56.3.8</span>.</a> Let $A$ and $B$ be rings. If </p>
+  <div class="equation">
+  \[  F : \text{Mod}_ A \longrightarrow \text{Mod}_ B  \]
+</div>
+  <p> is an equivalence of categories, then there exists an isomorphism $A \to B$ of rings and an invertible $B$-module $L$ such that $F$ is isomorphic to the functor $M \mapsto (M \otimes _ A B) \otimes _ B L$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since an equivalence commutes with all colimits, we see that Lemmas <a href="/tag/0GNS" data-tag="0GNS">56.3.1</a> applies. Let $K$ be the $A \otimes _\mathbf {Z} B$-module such that $F$ is isomorphic to the functor $M \mapsto M \otimes _ A K$. Let $K'$ be the $B \otimes _\mathbf {Z} A$-module such that a quasi-inverse of $F$ is isomorphic to the functor $N \mapsto N \otimes _ B K'$. By Remark <a href="/tag/0GNW" data-tag="0GNW">56.3.4</a> and Lemma <a href="/tag/0GNV" data-tag="0GNV">56.3.3</a> we have an isomorphism 
+    <p>
+      <div class="equation">
+  \[  \psi : K \otimes _ B K' \longrightarrow A  \]
+</div>
+    <p>
+       of $A \otimes _\mathbf {Z} A$-modules. Similarly, we have an isomorphism 
+    <p>
+      <div class="equation">
+  \[  \psi ' : K' \otimes _ A K \longrightarrow B  \]
+</div>
+    <p>
+       of $B \otimes _\mathbf {Z} B$-modules. Choose an element $\xi = \sum _{i = 1, \ldots , n} x_ i \otimes y_ i \in K \otimes _ B K'$ such that $\psi (\xi ) = 1$. Consider the isomorphisms 
+    <p>
+      <div class="equation">
+  \[  K \xrightarrow {\psi ^{-1} \otimes \text{id}_ K} K \otimes _ B K' \otimes _ A K \xrightarrow {\text{id}_ K \otimes \psi '} K  \]
+</div>
+    <p>
+       The composition is an isomorphism and given by 
+    <p>
+      <div class="equation">
+  \[  k \longmapsto \sum x_ i \psi '(y_ i \otimes k)  \]
+</div>
+    <p>
+       We conclude this automorphism factors as 
+    <p>
+      <div class="equation">
+  \[  K \to B^{\oplus n} \to K  \]
+</div>
+    <p>
+       as a map of $B$-modules. It follows that $K$ is finite projective as a $B$-module. 
+    <p>
+      We claim that $K$ is invertible as a $B$-module. This is equivalent to asking the rank of $K$ as a $B$-module to have the constant value $1$, see More on Algebra, Lemma <a href="/tag/0B8I" data-tag="0B8I">15.119.2</a> and Algebra, Lemma <a href="/tag/00NX" data-tag="00NX">10.78.2</a>. If not, then there exists a maximal ideal $\mathfrak m \subset B$ such that either (a) $K \otimes _ B B/\mathfrak m = 0$ or (b) there is a surjection $K \to (B/\mathfrak m)^{\oplus 2}$ of $B$-modules. Case (a) is absurd as $K' \otimes _ A K \otimes _ B N = N$ for all $B$-modules $N$. Case (b) would imply we get a surjection 
+    <p>
+      <div class="equation">
+  \[  A = K \otimes _ B K' \longrightarrow (B/\mathfrak m \otimes _ B K')^{\oplus 2}  \]
+</div>
+    <p>
+       of (right) $A$-modules. This is impossible as the target is an $A$-module which needs at least two generators: $B/\mathfrak m \otimes _ B K'$ is nonzero as the image of the nonzero module $B/\mathfrak m$ under the quasi-inverse of $F$. 
+    <p>
+      Since $K$ is invertible as a $B$-module we see that $\mathop{\mathrm{Hom}}\nolimits _ B(K, K) = B$. Since $K = F(A)$ the action of $A$ on $K$ defines a ring isomorphism $A \to B$. The lemma follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GP1">
+  <p><a class="environment-identifier" href="/tag/0GP1">Lemma <span data-tag="0GP1">56.3.9</span>.</a> Let $R$ be a ring. Let $A$ and $B$ be $R$-algebras. If </p>
+  <div class="equation">
+  \[  F : \text{Mod}_ A \longrightarrow \text{Mod}_ B  \]
+</div>
+  <p> is an $R$-linear equivalence of categories, then there exists an isomorphism $A \to B$ of $R$-algebras and an invertible $B$-module $L$ such that $F$ is isomorphic to the functor $M \mapsto (M \otimes _ A B) \otimes _ B L$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We get $A \to B$ and $L$ from Lemma <a href="/tag/0GP0" data-tag="0GP0">56.3.8</a>. To finish the proof, we need to show that the $R$-linearity of $F$ forces $A \to B$ to be an $R$-algebra map. We omit the details. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0GP2">
+  <p><a class="environment-identifier" href="/tag/0GP2">Remark <span data-tag="0GP2">56.3.10</span>.</a> Let $A$ and $B$ be rings. Let us endow $\text{Mod}_ A$ and $\text{Mod}_ B$ with the usual monoidal structure given by tensor products of modules. Let $F : \text{Mod}_ A \to \text{Mod}_ B$ be a functor of monoidal categories, see Categories, Definition <a href="/tag/0FFL" data-tag="0FFL">4.43.5</a>. Here are some comments: </p>
+  <p><ol>
+  <li><p>
+Since $F(A)$ is a unit (by our definitions) we have $F(A) = B$. 
+</p>
+</li><li><p>
+We obtain a multiplicative map $\varphi : A \to B$ by sending $a \in A$ to its action on $F(A) = B$. 
+</p>
+</li><li><p>
+Take $A = B$ and $F(M) = M \otimes _ A M$. In this case $\varphi (a) = a^2$. 
+</p>
+</li><li><p>
+If $F$ is additive, then $\varphi $ is a ring map. 
+</p>
+</li><li><p>
+Take $A = B = \mathbf{Z}$ and $F(M) = M/\text{torsion}$. Then $\varphi = \text{id}_\mathbf {Z}$ but $F$ is not the identity functor. 
+</p>
+</li><li><p>
+If $F$ is right exact and commutes with direct sums, then $F(M) = M \otimes _{A, \varphi } B$ by Lemma <a href="/tag/0GNS" data-tag="0GNS">56.3.1</a>. 
+</p>
+</li>
+</ol></p>
+  <p> In other words, ring maps $A \to B$ are in bijection with isomorphism classes of functors of monoidal categories $\text{Mod}_ A \to \text{Mod}_ B$ which commute with all colimits. </p>
+</article> 
+</p>

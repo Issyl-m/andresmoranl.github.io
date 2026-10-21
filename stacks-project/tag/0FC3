@@ -1,0 +1,188 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="chow-section-exterior-product-dim-1" class="tex-section"><span data-tag="0FC3">42.63</span> Exterior product over Dedekind domains</h2>
+
+<p>
+Let $S$ be a locally Noetherian scheme which has an open covering by spectra of Dedekind domains. Set $\delta (s) = 0$ for $s \in S$ closed and $\delta (s) = 1$ otherwise. Then $(S, \delta )$ is a special case of our general Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>; see Example <a href="/tag/02QN" data-tag="02QN">42.7.3</a>. Observe that $S$ is normal (Algebra, Lemma <a href="/tag/034X" data-tag="034X">10.120.17</a>) and hence a disjoint union of normal integral schemes (Properties, Lemma <a href="/tag/033N" data-tag="033N">28.7.7</a>). Thus all of the arguments below reduce to the case where $S$ is irreducible. On the other hand, we allow $S$ to be nonseparated (so $S$ could be the affine line with $0$ doubled for example). 
+</p>
+<p>
+Consider a cartesian square 
+</p>
+<div class="equation">
+  \[  \xymatrix{ X \times _ S Y \ar[r] \ar[d] &  Y \ar[d] \\  X \ar[r] &  S }  \]
+</div>
+<p>
+ of schemes locally of finite type over $S$. We claim there is a canonical map 
+</p>
+<div class="equation">
+  \[  \times : \mathop{\mathrm{CH}}\nolimits _ n(X) \otimes _{\mathbf{Z}} \mathop{\mathrm{CH}}\nolimits _ m(Y) \longrightarrow \mathop{\mathrm{CH}}\nolimits _{n + m - 1}(X \times _ S Y)  \]
+</div>
+<p>
+ which is uniquely determined by the following rule: given integral closed subschemes $X' \subset X$ and $Y' \subset Y$ of $\delta $-dimensions $n$ and $m$ we set 
+</p>
+<ol>
+  <li><p>
+$[X'] \times [Y'] = [X' \times _ S Y']_{n + m - 1}$ if $X'$ or $Y'$ dominates an irreducible component of $S$, 
+</p>
+</li><li><p>
+$[X'] \times [Y'] = 0$ if neither $X'$ nor $Y'$ dominates an irreducible component of $S$. 
+</p>
+</li>
+</ol>
+<p>
+<article class="env-lemma" id="0FC4">
+  <p><a class="environment-identifier" href="/tag/0FC4">Lemma <span data-tag="0FC4">42.63.1</span>.</a> The map $\times : \mathop{\mathrm{CH}}\nolimits _ n(X) \otimes _{\mathbf{Z}} \mathop{\mathrm{CH}}\nolimits _ m(Y) \to \mathop{\mathrm{CH}}\nolimits _{n + m - 1}(X \times _ S Y)$ is well defined. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider $n$ and $m$ cycles $\alpha = \sum _{i \in I} n_ i[X_ i]$ and $\beta = \sum _{j \in J} m_ j[Y_ j]$ with $X_ i \subset X$ and $Y_ j \subset Y$ locally finite families of integral closed subschemes of $\delta $-dimensions $n$ and $m$. Let $K \subset I \times J$ be the set of pairs $(i, j) \in I \times J$ such that $X_ i$ or $Y_ j$ dominates an irreducible component of $S$. Then $\{ X_ i \times _ S Y_ j\} _{(i, j) \in K}$ is a locally finite collection of closed subschemes of $X \times _ S Y$ of $\delta $-dimension $n + m - 1$. This means we can indeed consider 
+    <p>
+      <div class="equation">
+  \[  \alpha \times \beta = \sum \nolimits _{(i, j) \in K} n_ i m_ j [X_ i \times _ S Y_ j]_{n + m - 1}  \]
+</div>
+    <p>
+       as a $(n + m - 1)$-cycle on $X \times _ S Y$. In this way we obtain an additive map $\times : Z_ n(X) \otimes _{\mathbf{Z}} Z_ m(Y) \to Z_{n + m}(X \times _ S Y)$. The problem is to show that this procedure is compatible with rational equivalence. 
+    <p>
+      Let $i : X' \to X$ be the inclusion morphism of an integral closed subscheme of $\delta $-dimension $n$ which dominates an irreducible component of $S$. Then $p' : X' \to S$ is flat of relative dimension $n - 1$, see More on Algebra, Lemma <a href="/tag/0AUW" data-tag="0AUW">15.22.11</a>. Hence flat pullback along $p'$ is an element $(p')^* \in A^{-n + 1}(X' \to S)$ by Lemma <a href="/tag/0B78" data-tag="0B78">42.33.2</a> and hence $c' = i_* \circ (p')^* \in A^{-n + 1}(X \to S)$ by Lemma <a href="/tag/0EPK" data-tag="0EPK">42.33.4</a>. This produces maps 
+    <p>
+      <div class="equation">
+  \[  c' \cap - : \mathop{\mathrm{CH}}\nolimits _ m(Y) \longrightarrow \mathop{\mathrm{CH}}\nolimits _{m + n - 1}(X \times _ S Y)  \]
+</div>
+    <p>
+       which sends $[Y']$ to $[X' \times _ S Y']_{n + m - 1}$ for any integral closed subscheme $Y' \subset Y$ of $\delta $-dimension $m$. 
+    <p>
+      Let $i : X' \to X$ be the inclusion morphism of an integral closed subscheme of $\delta $-dimension $n$ such that the composition $X' \to X \to S$ factors through a closed point $s \in S$. Since $s$ is a closed point of the spectrum of a Dedekind domain, we see that $s$ is an effective Cartier divisor on $S$ whose normal bundle is trivial. Denote $c \in A^1(s \to S)$ the Gysin homomorphism, see Lemma <a href="/tag/0B79" data-tag="0B79">42.33.3</a>. The morphism $p' : X' \to s$ is flat of relative dimension $n$. Hence flat pullback along $p'$ is an element $(p')^* \in A^{-n}(X' \to S)$ by Lemma <a href="/tag/0B78" data-tag="0B78">42.33.2</a>. Thus 
+    <p>
+      <div class="equation">
+  \[  c' = i_* \circ (p')^* \circ c \in A^{-n}(X \to S)  \]
+</div>
+    <p>
+       by Lemma <a href="/tag/0EPK" data-tag="0EPK">42.33.4</a>. This produces maps 
+    <p>
+      <div class="equation">
+  \[  c' \cap - : \mathop{\mathrm{CH}}\nolimits _ m(Y) \longrightarrow \mathop{\mathrm{CH}}\nolimits _{m + n - 1}(X \times _ S Y)  \]
+</div>
+    <p>
+       which for any integral closed subscheme $Y' \subset Y$ of $\delta $-dimension $m$ sends $[Y']$ to either $[X' \times _ S Y']_{n + m - 1}$ if $Y'$ dominates an irreducible component of $S$ or to $0$ if not. 
+    <p>
+      From the previous two paragraphs we conclude the construction $([X'], [Y']) \mapsto [X' \times _ S Y']_{n + m - 1}$ factors through rational equivalence in the second variable, i.e., gives a well defined map $Z_ n(X) \otimes _{\mathbf{Z}} \mathop{\mathrm{CH}}\nolimits _ m(Y) \to \mathop{\mathrm{CH}}\nolimits _{n + m - 1}(X \times _ S Y)$. By symmetry the same is true for the other variable and we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FC5">
+  <p><a class="environment-identifier" href="/tag/0FC5">Lemma <span data-tag="0FC5">42.63.2</span>.</a> Let $(S, \delta )$ be as above. Let $X$ be a scheme locally of finite type over $S$. Then we have a canonical identification </p>
+  <div class="equation">
+  \[  A^ p(X \to S) = \mathop{\mathrm{CH}}\nolimits _{1 - p}(X)  \]
+</div>
+  <p> for all $p \in \mathbf{Z}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider the element $[S]_1 \in \mathop{\mathrm{CH}}\nolimits _1(S)$. We get a map $A^ p(X \to S) \to \mathop{\mathrm{CH}}\nolimits _{1 - p}(X)$ by sending $c$ to $c \cap [S]_1$. 
+    <p>
+      Conversely, suppose we have $\alpha \in \mathop{\mathrm{CH}}\nolimits _{1 - p}(X)$. Then we can define $c_\alpha \in A^ p(X \to S)$ as follows: given $X' \to S$ and $\alpha ' \in \mathop{\mathrm{CH}}\nolimits _ n(X')$ we let 
+    <p>
+      <div class="equation">
+  \[  c_\alpha \cap \alpha ' = \alpha \times \alpha '  \]
+</div>
+    <p>
+       in $\mathop{\mathrm{CH}}\nolimits _{n - p}(X \times _ S X')$. To show that this is a bivariant class we write $\alpha = \sum _{i \in I} n_ i[X_ i]$ as in Definition <a href="/tag/02QR" data-tag="02QR">42.8.1</a>. In particular the morphism 
+    <p>
+      <div class="equation">
+  \[  g : \coprod \nolimits _{i \in I} X_ i \longrightarrow X  \]
+</div>
+    <p>
+       is proper. Pick $i \in I$. If $X_ i$ dominates an irreducible component of $S$, then the structure morphism $p_ i : X_ i \to S$ is flat and we have $\xi _ i = p_ i^* \in A^ p(X_ i \to S)$. On the other hand, if $p_ i$ factors as $p'_ i : X_ i \to s_ i$ followed by the inclusion $s_ i \to S$ of a closed point, then we have $\xi _ i = (p'_ i)^* \circ c_ i \in A^ p(X_ i \to S)$ where $c_ i \in A^1(s_ i \to S)$ is the Gysin homomorphism and $(p'_ i)^*$ is flat pullback. Observe that 
+    <p>
+      <div class="equation">
+  \[  A^ p(\coprod \nolimits _{i \in I} X_ i \to S) = \prod \nolimits _{i \in I} A^ p(X_ i \to S)  \]
+</div>
+    <p>
+       Thus we have 
+    <p>
+      <div class="equation">
+  \[  \xi = \sum n_ i \xi _ i \in A^ p(\coprod \nolimits _{i \in I} X_ i \to S)  \]
+</div>
+    <p>
+       Finally, since $g$ is proper we have a bivariant class 
+    <p>
+      <div class="equation">
+  \[  g_* \circ \xi \in A^ p(X \to S)  \]
+</div>
+    <p>
+       by Lemma <a href="/tag/0EPK" data-tag="0EPK">42.33.4</a>. The reader easily verifies that $c_\alpha $ is equal to this class (please compare with the proof of Lemma <a href="/tag/0FC4" data-tag="0FC4">42.63.1</a>) and hence is itself a bivariant class. 
+    <p>
+      To finish the proof we have to show that the two constructions are mutually inverse. Since $c_\alpha \cap [S]_1 = \alpha $ this is clear for one of the two directions. For the other, let $c \in A^ p(X \to S)$ and set $\alpha = c \cap [S]_1$. It suffices to prove that 
+    <p>
+      <div class="equation">
+  \[  c \cap [X'] = c_\alpha \cap [X']  \]
+</div>
+    <p>
+       when $X'$ is an integral scheme locally of finite type over $S$, see Lemma <a href="/tag/02UC" data-tag="02UC">42.35.3</a>. However, either $p' : X' \to S$ is flat of relative dimension $\dim _\delta (X') - 1$ and hence $[X'] = (p')^*[S]_1$ or $X' \to S$ factors as $X' \to s \to S$ and hence $[X'] = (p')^*(s \to S)^*[S]_1$. Thus the fact that the bivariant classes $c$ and $c_\alpha $ agree on $[S]_1$ implies they agree when capped against $[X']$ (since bivariant classes commute with flat pullback and Gysin maps) and the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FC6">
+  <p><a class="environment-identifier" href="/tag/0FC6">Lemma <span data-tag="0FC6">42.63.3</span>.</a> Let $(S, \delta )$ be as above. Let $X$ be a scheme locally of finite type over $S$. Let $c \in A^ p(X \to S)$. Let $Y \to Z$ be a morphism of schemes locally of finite type over $S$. Let $c' \in A^ q(Y \to Z)$. Then $c \circ c' = c' \circ c$ in $A^{p + q}(X \times _ S Y \to X \times _ S Z)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In the proof of Lemma <a href="/tag/0FC5" data-tag="0FC5">42.63.2</a> we have seen that $c$ is given by a combination of proper pushforward, multiplying by integers over connected components, flat pullback, and Gysin maps. Since $c'$ commutes with each of these operations by definition of bivariant classes, we conclude. Some details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0FC7">
+  <p><a class="environment-identifier" href="/tag/0FC7">Remark <span data-tag="0FC7">42.63.4</span>.</a> The upshot of Lemmas <a href="/tag/0FC5" data-tag="0FC5">42.63.2</a> and <a href="/tag/0FC6" data-tag="0FC6">42.63.3</a> is the following. Let $(S, \delta )$ be as above. Let $X$ be a scheme locally of finite type over $S$. Let $\alpha \in \mathop{\mathrm{CH}}\nolimits _*(X)$. Let $Y \to Z$ be a morphism of schemes locally of finite type over $S$. Let $c' \in A^ q(Y \to Z)$. Then </p>
+  <div class="equation">
+  \[  \alpha \times (c' \cap \beta ) = c' \cap (\alpha \times \beta )  \]
+</div>
+  <p> in $\mathop{\mathrm{CH}}\nolimits _*(X \times _ S Y)$ for any $\beta \in \mathop{\mathrm{CH}}\nolimits _*(Z)$. Namely, this follows by taking $c = c_\alpha \in A^*(X \to S)$ the bivariant class corresponding to $\alpha $, see proof of Lemma <a href="/tag/0FC5" data-tag="0FC5">42.63.2</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0FC8">
+  <p><a class="environment-identifier" href="/tag/0FC8">Lemma <span data-tag="0FC8">42.63.5</span>.</a> Exterior product is associative. More precisely, let $(S, \delta )$ be as above, let $X, Y, Z$ be schemes locally of finite type over $S$, let $\alpha \in \mathop{\mathrm{CH}}\nolimits _*(X)$, $\beta \in \mathop{\mathrm{CH}}\nolimits _*(Y)$, $\gamma \in \mathop{\mathrm{CH}}\nolimits _*(Z)$. Then $(\alpha \times \beta ) \times \gamma = \alpha \times (\beta \times \gamma )$ in $\mathop{\mathrm{CH}}\nolimits _*(X \times _ S Y \times _ S Z)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. Hint: associativity of fibre product of schemes. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

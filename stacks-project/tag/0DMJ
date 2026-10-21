@@ -1,0 +1,72 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="moduli-curves-section-stack-curves" class="tex-section"><span data-tag="0DMJ">109.3</span> The stack of curves</h2>
+
+<p>
+This section is the continuation of Quot, Section <a href="/tag/0D4Y" data-tag="0D4Y">99.15</a>. Let $\mathcal{C}\! \mathit{urves}$ be the stack whose category of sections over a scheme $S$ is the category of families of curves over $S$. It is somewhat important to keep in mind that a <em>family of curves</em> is a morphism $f : X \to S$ where $X$ is an algebraic space (!) and $f$ is flat, proper, of finite presentation and of relative dimension $\leq 1$. We already know that $\mathcal{C}\! \mathit{urves}$ is an algebraic stack over $\mathbf{Z}$, see Quot, Theorem <a href="/tag/0D5A" data-tag="0D5A">99.15.11</a>. If we did not allow algebraic spaces in the definition of our stack, then this theorem would be false. 
+</p>
+<p>
+Often base change is denoted by a subscript, but we cannot use this notation for $\mathcal{C}\! \mathit{urves}$ because $\mathcal{C}\! \mathit{urves}_ S$ is our notation for the fibre category over $S$. This is why in Quot, Remark <a href="/tag/0D54" data-tag="0D54">99.15.5</a> we used $B\text{-}\mathcal{C}\! \mathit{urves}$ for the base change 
+</p>
+<div class="equation">
+  \[  B\text{-}\mathcal{C}\! \mathit{urves}= \mathcal{C}\! \mathit{urves}\times B  \]
+</div>
+<p>
+ to the algebraic space $B$. The product on the right is over the final object, i.e., over $\mathop{\mathrm{Spec}}(\mathbf{Z})$. The object on the left is the stack classifying families of curves on the category of schemes over $B$. In particular, if $k$ is a field, then 
+</p>
+<div class="equation">
+  \[  k\text{-}\mathcal{C}\! \mathit{urves}= \mathcal{C}\! \mathit{urves}\times \mathop{\mathrm{Spec}}(k)  \]
+</div>
+<p>
+ is the moduli stack classifying families of curves on the category of schemes over $k$. Before we continue, here is a sanity check. 
+</p>
+<p>
+<article class="env-lemma" id="0DMK">
+  <p><a class="environment-identifier" href="/tag/0DMK">Lemma <span data-tag="0DMK">109.3.1</span>.</a> Let $T \to B$ be a morphism of algebraic spaces. The category </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _ B(T, B\text{-}\mathcal{C}\! \mathit{urves}) = \mathop{\mathrm{Mor}}\nolimits (T, \mathcal{C}\! \mathit{urves})  \]
+</div>
+  <p> is the category of families of curves over $T$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      A family of curves over $T$ is a morphism $f : X \to T$ of algebraic spaces, which is flat, proper, of finite presentation, and has relative dimension $\leq 1$ (Morphisms of Spaces, Definition <a href="/tag/06LR" data-tag="06LR">67.33.2</a>). This is exactly the same as the definition in Quot, Situation <a href="/tag/0D4Z" data-tag="0D4Z">99.15.1</a> except that $T$ the base is allowed to be an algebraic space. Our default base category for algebraic stacks/spaces is the category of schemes, hence the lemma does not follow immediately from the definitions. Having said this, we encourage the reader to skip the proof. 
+    <p>
+      By the product description of $B\text{-}\mathcal{C}\! \mathit{urves}$ given above, it suffices to prove the lemma in the absolute case. Choose a scheme $U$ and a surjective étale morphism $p : U \to T$. Let $R = U \times _ T U$ with projections $s, t : R \to U$. 
+    <p>
+      Let $v : T \to \mathcal{C}\! \mathit{urves}$ be a morphism. Then $v \circ p$ corresponds to a family of curves $X_ U \to U$. The canonical $2$-morphism $v \circ p \circ t \to v \circ p \circ s$ is an isomorphism $\varphi : X_ U \times _{U, s} R \to X_ U \times _{U, t} R$. This isomorphism satisfies the cocycle condition on $R \times _{s, t} R$. By Bootstrap, Lemma <a href="/tag/0ADV" data-tag="0ADV">80.11.3</a> we obtain a morphism of algebraic spaces $X \to T$ whose pullback to $U$ is equal to $X_ U$ compatible with $\varphi $. Since $\{ U \to T\} $ is an étale covering, we see that $X \to T$ is flat, proper, of finite presentation by Descent on Spaces, Lemmas <a href="/tag/041W" data-tag="041W">74.11.13</a>, <a href="/tag/0422" data-tag="0422">74.11.19</a>, and <a href="/tag/041V" data-tag="041V">74.11.12</a>. Also $X \to T$ has relative dimension $\leq 1$ because this is an étale local property. Hence $X \to T$ is a family of curves over $T$. 
+    <p>
+      Conversely, let $X \to T$ be a family of curves. Then the base change $X_ U$ determines a morphism $w : U \to \mathcal{C}\! \mathit{urves}$ and the canonical isomorphism $X_ U \times _{U, s} R \to X_ U \times _{U, t} R$ determines a $2$-arrow $w \circ s \to w \circ t$ satisfying the cocycle condition. Thus a morphism $v : T = [U/R] \to \mathcal{C}\! \mathit{urves}$ by the universal property of the quotient $[U/R]$, see Groupoids in Spaces, Lemma <a href="/tag/044U" data-tag="044U">78.23.2</a>. (Actually, it is much easier in this case to go back to before we introduced our abuse of language and direct construct the functor $\mathit{Sch}/T \to \mathcal{C}\! \mathit{urves}$ which “is” the morphism $T \to \mathcal{C}\! \mathit{urves}$.) 
+    <p>
+      We omit the verification that the constructions given above extend to morphisms between objects and are mutually quasi-inverse. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

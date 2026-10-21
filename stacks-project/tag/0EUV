@@ -1,0 +1,211 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="topologies-section-extending-functors" class="tex-section"><span data-tag="0EUV">34.13</span> Extending functors</h2>
+
+<p>
+Let us start with a simple example which explains what we are doing. Let $R$ be a ring. Suppose $F$ is a functor defined on the category $\mathcal{C}$ of $R$-algebras of the form 
+</p>
+<div class="equation">
+  \[  A = R[x_1, \ldots , x_ n]/(f_1, \ldots , f_ m)  \]
+</div>
+<p>
+ for $n, m \geq 0$ integers and $f_1, \ldots , f_ m \in R[x_1, \ldots , x_ n]$ elements. Then for any $R$-algebra $B$ we can define 
+</p>
+<div class="equation">
+  \[  F'(B) = \mathop{\mathrm{colim}}\nolimits _{A \to B,\  A \in \mathcal{C}} F(A)  \]
+</div>
+<p>
+ It turns out $F'$ is the unique functor on the category of all $R$-algebras which extends $F$ and commutes with filtered colimits. The same procedure works in the category of schemes if we impose that our functor is a Zariski sheaf. 
+</p>
+<p>
+<article class="env-lemma" id="0EUW">
+  <p><a class="environment-identifier" href="/tag/0EUW">Lemma <span data-tag="0EUW">34.13.1</span>.</a> Let $S$ be a scheme. Let $\mathcal{C}$ be a full subcategory of the category $\mathit{Sch}/S$ of all schemes over $S$. Assume </p>
+  <p><ol>
+  <li><p>
+if $X \to S$ is an object of $\mathcal{C}$ and $U \subset X$ is an affine open, then $U \to S$ is isomorphic to an object of $\mathcal{C}$, 
+</p>
+</li><li><p>
+if $V$ is an affine scheme lying over an affine open $U \subset S$ such that $V \to U$ is of finite presentation, then $V \to S$ is isomorphic to an object of $\mathcal{C}$. 
+</p>
+</li>
+</ol></p>
+  <p> Let $F : \mathcal{C}^{opp} \to \textit{Sets}$ be a functor. Assume </p>
+  <p><ol>
+  <li class="custom-item" data-marker="(a)"><p>
+for any Zariski covering $\{ f_ i : X_ i \to X\} _{i \in I}$ with $X, X_ i$ objects of $\mathcal{C}$ we have the sheaf condition for $F$ and this family<a class="footnotemark" href="#a0000760274" id="a0000760274-mark"><sup>1</sup></a>, 
+</p>
+</li><li class="custom-item" data-marker="(b)"><p>
+if $X = \mathop{\mathrm{lim}}\nolimits X_ i$ is a directed limit of affine schemes over $S$ with $X, X_ i$ objects of $\mathcal{C}$, then $F(X) = \mathop{\mathrm{colim}}\nolimits F(X_ i)$. 
+</p>
+</li>
+</ol></p>
+  <p> Then there is a unique way to extend $F$ to a functor $F' : (\mathit{Sch}/S)^{opp} \to \textit{Sets}$ satisfying the analogues of (a) and (b), i.e., $F'$ satisfies the sheaf condition for any Zariski covering and $F'(X) = \mathop{\mathrm{colim}}\nolimits F'(X_ i)$ whenever $X = \mathop{\mathrm{lim}}\nolimits X_ i$ is a directed limit of affine schemes over $S$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The idea will be to first extend $F$ to a sufficiently large collection of affine schemes over $S$ and then use the Zariski sheaf property to extend to all schemes. 
+    <p>
+      Suppose that $V$ is an affine scheme over $S$ whose structure morphism $V \to S$ factors through some affine open $U \subset S$. In this case we can write 
+    <p>
+      <div class="equation">
+  \[  V = \mathop{\mathrm{lim}}\nolimits V_ i  \]
+</div>
+    <p>
+       as a cofiltered limit with $V_ i \to U$ of finite presentation and $V_ i$ affine. See Algebra, Lemma <a href="/tag/00QN" data-tag="00QN">10.127.2</a>. By conditions (1) and (2) we may replace our $V_ i$ by objects of $\mathcal{C}$. Observe that $V_ i \to S$ is locally of finite presentation (if $S$ is quasi-separated, then these morphisms are actually of finite presentation). Then we set 
+    <p>
+      <div class="equation">
+  \[  F'(V) = \mathop{\mathrm{colim}}\nolimits F(V_ i)  \]
+</div>
+    <p>
+       Actually, we can give a more canonical expression, namely 
+    <p>
+      <div class="equation">
+  \[  F'(V) = \mathop{\mathrm{colim}}\nolimits _{V \to V'} F(V')  \]
+</div>
+    <p>
+       where the colimit is over the category of morphisms $V \to V'$ over $S$ where $V'$ is an object of $\mathcal{C}$ whose structure morphism $V' \to S$ is locally of finite presentation. The reason this is the same as the first formula is that by Limits, Proposition <a href="/tag/01ZC" data-tag="01ZC">32.6.1</a> our inverse system $V_ i$ is cofinal in this category! Finally, note that if $V$ were an object of $\mathcal{C}$, then $F'(V) = F(V)$ by assumption (b). 
+    <p>
+      The second formula turns $F'$ into a contravariant functor on the category formed by affine schemes $V$ over $S$ whose structure morphism factors through an affine open of $S$. Let $V$ be such an affine scheme over $S$ and suppose that $V = \bigcup _{k = 1, \ldots , n} V_ k$ is a finite open covering by affines. Then it makes sense to ask if the sheaf condition holds for $F'$ and this open covering. This is true and easy to show: write $V = \mathop{\mathrm{lim}}\nolimits V_ i$ as in the previous paragraph. By Limits, Lemma <a href="/tag/01Z4" data-tag="01Z4">32.4.11</a> for all sufficiently large $i$ we can find affine opens $V_{i, k} \subset V_ i$ compatible with transition maps pulling back to $V_ k$ in $V$. Thus 
+    <p>
+      <div class="equation">
+  \[  F'(V_ k) = \mathop{\mathrm{colim}}\nolimits F(V_{i, k}) \quad \text{and}\quad F'(V_ k \cap V_ l) = \mathop{\mathrm{colim}}\nolimits F(V_{i, k} \cap V_{i, l})  \]
+</div>
+    <p>
+       Strictly speaking in these formulas we need to replace $V_{i, k}$ and $V_{i, k} \cap V_{i, l}$ by isomorphic affine objects of $\mathcal{C}$ before applying the functor $F$. Since $I$ is directed the colimits pass through equalizers. Hence the sheaf condition (b) for $F$ and the Zariski coverings $\{ V_{i, k} \to V_ i\} $ implies the sheaf condition for $F'$ and this covering. 
+    <p>
+      Let $X$ be a general scheme over $S$. Let $\mathcal{B}_ X$ denote the collection of affine opens of $X$ whose structure morphism to $S$ maps into an affine open of $S$. It is clear that $\mathcal{B}_ X$ is a basis for the topology of $X$. By the result of the previous paragraph and Sheaves, Lemma <a href="/tag/009L" data-tag="009L">6.30.4</a> we see that $F'$ is a sheaf on $\mathcal{B}_ X$. Hence $F'$ restricted to $\mathcal{B}_ X$ extends uniquely to a sheaf $F'_ X$ on $X$, see Sheaves, Lemma <a href="/tag/009N" data-tag="009N">6.30.6</a>. If $X$ is an object of $\mathcal{C}$ then we have a canonical identification $F'_ X(X) = F(X)$ by the agreement of $F'$ and $F$ on the objects for which they are both defined and the fact that $F$ satisfies the sheaf condition for Zariski coverings. 
+    <p>
+      Let $f : X \to Y$ be a morphism of schemes over $S$. We get a unique $f$-map from $F'_ Y$ to $F'_ X$ compatible with the maps $F'(V) \to F'(U)$ for all $U \in \mathcal{B}_ X$ and $V \in \mathcal{B}_ Y$ with $f(U) \subset V$, see Sheaves, Lemma <a href="/tag/009X" data-tag="009X">6.30.16</a>. We omit the verification that these maps compose correctly given morphisms $X \to Y \to Z$ of schemes over $S$. We also omit the verification that if $f$ is a morphism of $\mathcal{C}$, then the induced map $F'_ Y(Y) \to F'_ X(X)$ is the same as the map $F(Y) \to F(X)$ via the identifications $F'_ X(X) = F(X)$ and $F'_ Y(Y) = F(Y)$ above. In this way we see that the desired extension of $F$ is the functor which sends $X/S$ to $F'_ X(X)$. 
+    <p>
+      Property (a) for the functor $X \mapsto F'_ X(X)$ is almost immediate from the construction; we omit the details. Suppose that $X = \mathop{\mathrm{lim}}\nolimits _{i \in I} X_ i$ is a directed limit of affine schemes over $S$. We have to show that 
+    <p>
+      <div class="equation">
+  \[  F'_ X(X) = \mathop{\mathrm{colim}}\nolimits _{i \in I} F'_{X_ i}(X_ i)  \]
+</div>
+    <p>
+       First assume that there is some $i \in I$ such that $X_ i \to S$ factors through an affine open $U \subset S$. Then $F'$ is defined on $X$ and on $X_{i'}$ for $i' \geq i$ and we see that $F'_{X_{i'}}(X_{i'}) = F'(X_{i'})$ for $i' \geq i$ and $F'_ X(X) = F'(X)$. In this case every arrow $X \to V$ with $V$ locally of finite presentation over $S$ factors as $X \to X_{i'} \to V$ for some $i' \geq i$, see Limits, Proposition <a href="/tag/01ZC" data-tag="01ZC">32.6.1</a>. Thus we have 
+    <p>
+      <div class="equation">
+  \begin{align*}  F'_ X(X) &  = F'(X) \\ &  = \mathop{\mathrm{colim}}\nolimits _{X \to V} F(V) \\ &  = \mathop{\mathrm{colim}}\nolimits _{i' \geq i} \mathop{\mathrm{colim}}\nolimits _{X_{i'} \to V} F(V) \\ &  = \mathop{\mathrm{colim}}\nolimits _{i' \geq i} F'(X_{i'}) \\ &  = \mathop{\mathrm{colim}}\nolimits _{i' \geq i} F'_{X_{i'}}(X_{i'}) \\ &  = \mathop{\mathrm{colim}}\nolimits _{i' \in I} F'_{X_{i'}}(X_{i'}) \end{align*}
+</div>
+    <p>
+       as desired. Finally, in general we pick any $i \in I$ and we choose a finite affine open covering $V_ i = V_{i, 1} \cup \ldots \cup V_{i, n}$ such that $V_{i, k} \to S$ factors through an affine open of $S$. Let $V_ k \subset V$ and $V_{i', k}$ for $i' \geq i$ be the inverse images of $V_{i, k}$. By the previous case we see that 
+    <p>
+      <div class="equation">
+  \[  F'_{V_ k}(V_ k) = \mathop{\mathrm{colim}}\nolimits _{i' \geq i} F'_{V_{i', k}}(V_{i', k})  \]
+</div>
+    <p>
+       and 
+    <p>
+      <div class="equation">
+  \[  F'_{V_ k \cap V_ l}(V_ k \cap V_ l) = \mathop{\mathrm{colim}}\nolimits _{i' \geq i} F'_{V_{i', k} \cap V_{i', l}}(V_{i', k} \cap V_{i', l})  \]
+</div>
+    <p>
+       By the sheaf property and exactness of filtered colimits we find that $F'_ X(X) = \mathop{\mathrm{colim}}\nolimits _{i \in I} F'_{X_ i}(X_ i)$ also in this case. This finishes the proof of property (b) and hence finishes the proof of the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="049N">
+  <p><a class="environment-identifier" href="/tag/049N">Lemma <span data-tag="049N">34.13.2</span>.</a> Let $\tau \in \{ Zariski, {\acute{e}tale}, smooth, syntomic, fppf\} $. Let $T$ be an affine scheme which is written as a limit $T = \mathop{\mathrm{lim}}\nolimits _{i \in I} T_ i$ of a directed inverse system of affine schemes. </p>
+  <p><ol>
+  <li><p>
+Let $\mathcal{V} = \{ V_ j \to T\} _{j = 1, \ldots , m}$ be a standard $\tau $-covering of $T$, see Definitions <a href="/tag/020R" data-tag="020R">34.3.4</a>, <a href="/tag/0219" data-tag="0219">34.4.5</a>, <a href="/tag/0223" data-tag="0223">34.5.5</a>, <a href="/tag/0229" data-tag="0229">34.6.5</a>, and <a href="/tag/021Q" data-tag="021Q">34.7.5</a>. Then there exists an index $i$ and a standard $\tau $-covering $\mathcal{V}_ i = \{ V_{i, j} \to T_ i\} _{j = 1, \ldots , m}$ whose base change $T \times _{T_ i} \mathcal{V}_ i$ to $T$ is isomorphic to $\mathcal{V}$. 
+</p>
+</li><li><p>
+Let $\mathcal{V}_ i$, $\mathcal{V}'_ i$ be a pair of standard $\tau $-coverings of $T_ i$. If $f : T \times _{T_ i} \mathcal{V}_ i \to T \times _{T_ i} \mathcal{V}'_ i$ is a morphism of coverings of $T$, then there exists an index $i' \geq i$ and a morphism $f_{i'} : T_{i'} \times _{T_ i} \mathcal{V} \to T_{i'} \times _{T_ i} \mathcal{V}'_ i$ whose base change to $T$ is $f$. 
+</p>
+</li><li><p>
+If $f, g : \mathcal{V} \to \mathcal{V}'_ i$ are morphisms of standard $\tau $-coverings of $T_ i$ whose base changes $f_ T, g_ T$ to $T$ are equal then there exists an index $i' \geq i$ such that $f_{T_{i'}} = g_{T_{i'}}$. 
+</p>
+</li>
+</ol></p>
+  <p> In other words, the category of standard $\tau $-coverings of $T$ is the colimit over $I$ of the categories of standard $\tau $-coverings of $T_ i$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let us prove this for $\tau = fppf$. By Limits, Lemma <a href="/tag/01ZM" data-tag="01ZM">32.10.1</a> the category of schemes of finite presentation over $T$ is the colimit over $I$ of the categories of finite presentation over $T_ i$. By Limits, Lemmas <a href="/tag/01ZN" data-tag="01ZN">32.8.2</a> and <a href="/tag/04AI" data-tag="04AI">32.8.7</a> the same is true for category of schemes which are affine, flat and of finite presentation over $T$. To finish the proof of the lemma it suffices to show that if $\{ V_{j, i} \to T_ i\} _{j = 1, \ldots , m}$ is a finite family of flat finitely presented morphisms with $V_{j, i}$ affine, and the base change $\coprod _ j T \times _{T_ i} V_{j, i} \to T$ is surjective, then for some $i' \geq i$ the morphism $\coprod T_{i'} \times _{T_ i} V_{j, i} \to T_{i'}$ is surjective. Denote $W_{i'} \subset T_{i'}$, resp. $W \subset T$ the image. Of course $W = T$ by assumption. Since the morphisms are flat and of finite presentation we see that $W_ i$ is a quasi-compact open of $T_ i$, see Morphisms, Lemma <a href="/tag/01UA" data-tag="01UA">29.26.10</a>. Moreover, $W = T \times _{T_ i} W_ i$ (formation of image commutes with base change). Hence by Limits, Lemma <a href="/tag/01Z4" data-tag="01Z4">32.4.11</a> we conclude that $W_{i'} = T_{i'}$ for some large enough $i'$ and we win. 
+    <p>
+      For $\tau \in \{ Zariski, {\acute{e}tale}, smooth, syntomic\} $ a standard $\tau $-covering is a standard fppf covering. Hence the fully faithfulness of the functor holds. The only issue is to show that given a standard fppf covering $\mathcal{V}_ i$ for some $i$ such that $\mathcal{V}_ i \times _{T_ i} T$ is a standard $\tau $-covering, then $\mathcal{V}_ i \times _{T_ i} T_{i'}$ is a standard $\tau $-covering for all $i' \gg i$. This follows immediately from Limits, Lemmas <a href="/tag/0EUU" data-tag="0EUU">32.8.12</a>, <a href="/tag/07RP" data-tag="07RP">32.8.10</a>, <a href="/tag/0C0C" data-tag="0C0C">32.8.9</a>, and <a href="/tag/0C3L" data-tag="0C3L">32.8.16</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GDW">
+  <p><a class="environment-identifier" href="/tag/0GDW">Lemma <span data-tag="0GDW">34.13.3</span>.</a> Let $S$, $\mathcal{C}$, $F$ satisfy conditions (1), (2), (a), and (b) of Lemma <a href="/tag/0EUW" data-tag="0EUW">34.13.1</a> and denote $F' : (\mathit{Sch}/S)^{opp} \to \textit{Sets}$ the unique extension constructed in the lemma. Let $\tau \in \{ Zariski, {\acute{e}tale}, smooth, syntomic, fppf\} $. Assume </p>
+  <p><ol>
+  <li class="custom-item" data-marker="(c)"><p>
+for any standard $\tau $-covering $\{ V_ i \to V\} _{i = 1, \ldots , n}$ of affines in $\mathit{Sch}/S$ such that $V \to S$ factors through an affine open $U \subset S$ and $V \to U$ is of finite presentation, the sheaf condition hold for $F$ and $\{ V_ i \to V\} _{i = 1, \ldots , n}$<a class="footnotemark" href="#a0000761035" id="a0000761035-mark"><sup>2</sup></a>. 
+</p>
+</li>
+</ol></p>
+  <p> Then $F'$ satisfies the sheaf condition for all $\tau $-coverings. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $X$ be a scheme over $S$ and let $\{ X_ i \to X\} _{i \in I}$ be a $\tau $-covering. Let $s_ i \in F'(X_ i)$ be elements such that $s_ i$ and $s_ j$ map to the same element of $F'(X_ i \times _ X X_ j)$ for all $i, j \in I$. We have to show that there is a unique element $s \in F'(X)$ restricting to $s_ i \in F'(X_ i)$ for all $i \in I$. 
+    <p>
+      Special case: $X$ is an affine such that the structure morphism maps into an affine open $U$ of $S$ and the covering $\{ X_ i \to X\} _{i \in I}$ is a standard $\tau $-covering. In this case we can write 
+    <p>
+      <div class="equation">
+  \[  X = \mathop{\mathrm{lim}}\nolimits V_ k  \]
+</div>
+    <p>
+       as a cofiltered limit with $V_ k \to U$ of finite presentation and $V_ k$ affine. See Algebra, Lemma <a href="/tag/00QN" data-tag="00QN">10.127.2</a>. By Lemma <a href="/tag/049N" data-tag="049N">34.13.2</a> there exists a $k$ and a standard $\tau $-covering $\{ V_{k, i} \to V_ k\} _{i \in I}$ whose base change to $X$ is the given covering. For $k' \geq k$ denote $\{ V_{k', i} \to V_{k'}\} _{i \in I}$ the base change to $V_{k'}$ of our covering. Then we see that 
+    <p>
+      <div class="equation">
+  \begin{align*}  F'(X) &  = \mathop{\mathrm{colim}}\nolimits _{k' \geq k} F(V_ k) \\ &  = \mathop{\mathrm{colim}}\nolimits _{k' \geq k} \text{Equalizer}( \xymatrix{ \prod F(V_{k', i}) \ar@<1ex>[r] \ar@<-1ex>[r] &  \prod F(V_{k', i} \times _{V_{k'}} V_{k', j}) } \\ &  = \text{Equalizer}( \xymatrix{ \mathop{\mathrm{colim}}\nolimits _{k' \geq k} \prod F(V_{k', i}) \ar@<1ex>[r] \ar@<-1ex>[r] &  \mathop{\mathrm{colim}}\nolimits _{k' \geq k} \prod F(V_{k', i} \times _{V_{k'}} V_{k', j}) } \\ &  = \text{Equalizer}( \xymatrix{ \prod F'(X_ i) \ar@<1ex>[r] \ar@<-1ex>[r] &  \prod F'(X_ i \times _ X X_ j) } \end{align*}
+</div>
+    <p>
+       The first equality holds by construction of $F'$. The second holds by assumption (c). The third holds because filtered colimits are exact. The fourth again holds by construction of $F'$. In this way we find that the sheaf property holds for $F'$ with respect to $\{ X_ i \to X\} _{i \in I}$. 
+    <p>
+      General case. Choose an affine open covering $X = \bigcup U_ k$ such that each $U_ k$ maps into an affine open of $S$. For every $k$ we may choose a standard $\tau $-covering $\{ V_{k, j} \to U_ k\} _{j = 1, \ldots , m_ k}$ which refines $\{ X_ i \times _ X U_ k \to U_ k\} _{i \in I}$. For each $j \in \{ 1, \ldots , m_ k\} $ choose an index $i_{k, j} \in I$ and a morphism $g_{k, j} : V_{k, j} \to X_{i_{k, j}}$ over $X$. Let $s_{k, j}$ be the element of $F'(V_{k, j})$ we get by restricting $s_{i_{k, j}}$ via $g_{k, j}$. Observe that $s_{k, j}$ and $s_{k', j'}$ restrict to the same element of $F'(V_{k, j} \times _ X V_{k', j'})$ for all $k$ and $k'$ and all $j \in \{ 1, \ldots , m_ k\} $ and $j' \in \{ 1, \ldots , m_{k'}\} $; verification omitted. In particular, by the result of the previous paragraph there is a unique element $s_ k \in F'(U_ k)$ restricting to $s_{k, j}$ for all $j$. With this notation we are ready to finish the proof. 
+    <p>
+      Proof of uniqueness of $s$: this is true because $F'$ satisfies the sheaf property for Zariski coverings and $s|_{U_ k}$ must be equal to $s_ k$ because both restrict to $s_{k, j}$ for all $j$. This uniqueness then shows that $s_ k$ and $s_{k'}$ must restrict to the same section of $F'$ over (the non-affine scheme) $U_ k \cap U_{k'}$ because these sections restrict to the same section over the $\tau $-covering $\{ V_{k, j} \times _ X V_{k', j'} \to U_ k \cap U_{k'}\} $. Thus by the sheaf property for Zariski coverings, there is a unique section $s$ of $F'$ over $X$ whose restriction to $U_ k$ is $s_ k$. We omit the verification (similar to the above) that $s$ restricts to $s_ i$ over $X_ i$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0EUX">
+  <p><a class="environment-identifier" href="/tag/0EUX">Lemma <span data-tag="0EUX">34.13.4</span>.</a> Let $\tau \in \{ Zariski, {\acute{e}tale}, smooth, syntomic, fppf\} $. Let $S$ be a scheme contained in a big site $\mathit{Sch}_\tau $. Let $F : (\mathit{Sch}/S)_\tau ^{opp} \to \textit{Sets}$ be a $\tau $-sheaf satisfying property (b) of Lemma <a href="/tag/0EUW" data-tag="0EUW">34.13.1</a> with $\mathcal{C} = (\mathit{Sch}/S)_\tau $. Then the extension $F'$ of $F$ to the category of all schemes over $S$ satisfies the sheaf condition for all $\tau $-coverings. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from Lemma <a href="/tag/0GDW" data-tag="0GDW">34.13.3</a> applied with $\mathcal{C} = (\mathit{Sch}/S)_\tau $. Conditions (1), (2), (a), and (b) of Lemma <a href="/tag/0EUW" data-tag="0EUW">34.13.1</a> hold; we omit the details. Thus we get our unique extension $F'$ to the category of all schemes over $S$. Finally, observe that any standard $\tau $-covering is tautologically equivalent to a covering in $(\mathit{Sch}/S)_\tau $, see Sets, Lemma <a href="/tag/000R" data-tag="000R">3.9.9</a> as well as Lemmas <a href="/tag/03WV" data-tag="03WV">34.3.6</a>, <a href="/tag/03WW" data-tag="03WW">34.4.7</a>, <a href="/tag/03WZ" data-tag="03WZ">34.5.7</a>, <a href="/tag/03X2" data-tag="03X2">34.6.7</a>, and <a href="/tag/03WX" data-tag="03WX">34.7.7</a>. By Sites, Lemma <a href="/tag/00VW" data-tag="00VW">7.8.4</a> the sheaf property passes through tautological equivalence of coverings. Hence the fact that $F$ is a $\tau $-sheaf implies that property (c) of Lemma <a href="/tag/0GDW" data-tag="0GDW">34.13.3</a> holds and we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

@@ -1,0 +1,469 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sheaves-section-bases" class="tex-section"><span data-tag="009H">6.30</span> Bases and sheaves</h2>
+
+<p>
+Sometimes there exists a basis for the topology consisting of opens that are easier to work with than general opens. For convenience we give here some definitions and simple lemmas in order to facilitate working with (pre)sheaves in such a situation. 
+</p>
+<p>
+<article class="env-definition" id="009I">
+  <p><a class="environment-identifier" href="/tag/009I">Definition <span data-tag="009I">6.30.1</span>.</a> Let $X$ be a topological space. Let $\mathcal{B}$ be a basis for the topology on $X$. </p>
+  <p><ol>
+  <li><p>
+A <em>presheaf $\mathcal{F}$ of sets on $\mathcal{B}$</em> is a rule which assigns to each $U \in \mathcal{B}$ a set $\mathcal{F}(U)$ and to each inclusion $V \subset U$ of elements of $\mathcal{B}$ a map $\rho ^ U_ V : \mathcal{F}(U) \to \mathcal{F}(V)$ such that $\rho ^ U_ U = \text{id}_{\mathcal{F}(U)}$ for all $U \in \mathcal{B}$ whenever $W \subset V \subset U$ in $\mathcal{B}$ we have $\rho ^ U_ W = \rho ^ V_ W \circ \rho ^ U_ V$. 
+</p>
+</li><li><p>
+A <em>morphism $\varphi : \mathcal{F} \to \mathcal{G}$ of presheaves of sets on $\mathcal{B}$</em> is a rule which assigns to each element $U \in \mathcal{B}$ a map of sets $\varphi : \mathcal{F}(U) \to \mathcal{G}(U)$ compatible with restriction maps. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+As in the case of usual presheaves we use the terminology of sections, restrictions of sections, etc. In particular, we may define the <em>stalk</em> of $\mathcal{F}$ at a point $x \in X$ by the colimit 
+</p>
+<div class="equation">
+  \[  \mathcal{F}_ x = \mathop{\mathrm{colim}}\nolimits _{U\in \mathcal{B}, x\in U} \mathcal{F}(U).  \]
+</div>
+<p>
+ As in the case of the stalk of a presheaf on $X$ this limit is directed. The reason is that the collection of $U\in \mathcal{B}$, $x \in U$ is a fundamental system of open neighbourhoods of $x$. 
+</p>
+<p>
+It is easy to make examples to show that the notion of a presheaf on $X$ is very different from the notion of a presheaf on a basis for the topology on $X$. This does not happen in the case of sheaves. A much more useful notion therefore, is the following. 
+</p>
+<p>
+<article class="env-definition" id="009J">
+  <p><a class="environment-identifier" href="/tag/009J">Definition <span data-tag="009J">6.30.2</span>.</a> Let $X$ be a topological space. Let $\mathcal{B}$ be a basis for the topology on $X$. </p>
+  <p><ol>
+  <li><p>
+A <em>sheaf $\mathcal{F}$ of sets on $\mathcal{B}$</em> is a presheaf of sets on $\mathcal{B}$ which satisfies the following additional property: Given any $U \in \mathcal{B}$, and any covering $U = \bigcup _{i \in I} U_ i$ with $U_ i \in \mathcal{B}$, and any coverings $U_ i \cap U_ j = \bigcup _{k \in I_{ij}} U_{ijk}$ with $U_{ijk} \in \mathcal{B}$ the sheaf condition holds: 
+</p>
+<ul>
+  <li class="custom-item" data-marker="(**)"><p>
+For any collection of sections $s_ i \in \mathcal{F}(U_ i)$, $i \in I$ such that $\forall i, j\in I$, $\forall k\in I_{ij}$ 
+</p>
+<div class="equation">
+  \[  s_ i|_{U_{ijk}} = s_ j|_{U_{ijk}}  \]
+</div>
+<p>
+ there exists a unique section $s \in \mathcal{F}(U)$ such that $s_ i = s|_{U_ i}$ for all $i \in I$. 
+</p>
+</li>
+</ul>
+</li><li><p>
+A <em>morphism of sheaves of sets on $\mathcal{B}$</em> is simply a morphism of presheaves of sets. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+First we explain that it suffices to check the sheaf condition $(**)$ on a cofinal system of coverings. In the situation of the definition, suppose $U \in \mathcal{B}$. Let us temporarily denote $\text{Cov}_\mathcal {B}(U)$ the set of all coverings of $U$ by elements of $\mathcal{B}$. Note that $\text{Cov}_\mathcal {B}(U)$ is preordered by refinement. A subset $C \subset \text{Cov}_\mathcal {B}(U)$ is a cofinal system, if for every $\mathcal{U} \in \text{Cov}_\mathcal {B}(U)$ there exists a covering $\mathcal{V} \in C$ which refines $\mathcal{U}$. 
+</p>
+<p>
+<article class="env-lemma" id="009K">
+  <p><a class="environment-identifier" href="/tag/009K">Lemma <span data-tag="009K">6.30.3</span>.</a> With notation as above. For each $U \in \mathcal{B}$, let $C(U) \subset \text{Cov}_\mathcal {B}(U)$ be a cofinal system. For each $U \in \mathcal{B}$, and each $\mathcal{U} : U = \bigcup U_ i$ in $C(U)$, let coverings $\mathcal{U}_{ij} : U_ i \cap U_ j = \bigcup U_{ijk}$, $U_{ijk} \in \mathcal{B}$ be given. Let $\mathcal{F}$ be a presheaf of sets on $\mathcal{B}$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+The presheaf $\mathcal{F}$ is a sheaf on $\mathcal{B}$. 
+</p>
+</li><li><p>
+For every $U \in \mathcal{B}$ and every covering $\mathcal{U} : U = \bigcup U_ i$ in $C(U)$ the sheaf condition $(**)$ holds (for the given coverings $\mathcal{U}_{ij}$). 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We have to show that (2) implies (1). Suppose that $U \in \mathcal{B}$, and that $\mathcal{U} : U = \bigcup _{i\in I} U_ i$ is an arbitrary covering by elements of $\mathcal{B}$. Because the system $C(U)$ is cofinal we can find an element $\mathcal{V} : U = \bigcup _{j \in J} V_ j$ in $C(U)$ which refines $\mathcal{U}$. This means there exists a map $\alpha : J \to I$ such that $V_ j \subset U_{\alpha (j)}$. 
+    <p>
+      Note that if $s, s' \in \mathcal{F}(U)$ are sections such that $s|_{U_ i} = s'|_{U_ i}$, then 
+    <p>
+      <div class="equation">
+  \[  s|_{V_ j} = (s|_{U_{\alpha (j)}})|_{V_ j} = (s'|_{U_{\alpha (j)}})|_{V_ j} = s'|_{V_ j}  \]
+</div>
+    <p>
+       for all $j$. Hence by the uniqueness in $(**)$ for the covering $\mathcal{V}$ we conclude that $s = s'$. Thus we have proved the uniqueness part of $(**)$ for our arbitrary covering $\mathcal{U}$. 
+    <p>
+      Suppose furthermore that $U_ i \cap U_{i'} = \bigcup _{k \in I_{ii'}} U_{ii'k}$ are arbitrary coverings by $U_{ii'k} \in \mathcal{B}$. Let us try to prove the existence part of $(**)$ for the system $(\mathcal{U}, \mathcal{U}_{ij})$. Thus let $s_ i \in \mathcal{F}(U_ i)$ and suppose we have 
+    <p>
+      <div class="equation">
+  \[  s_ i|_{U_{ii'k}} = s_{i'}|_{U_{ii'k}}  \]
+</div>
+    <p>
+       for all $i, i', k$. Set $t_ j = s_{\alpha (j)}|_{V_ j}$, where $\mathcal{V}$ and $\alpha $ are as above. 
+    <p>
+      There is one small kink in the argument here. Namely, let $\mathcal{V}_{jj'} : V_ j \cap V_{j'} = \bigcup _{l \in J_{jj'}} V_{jj'l}$ be the covering given to us by the statement of the lemma. It is not a priori clear that 
+    <p>
+      <div class="equation">
+  \[  t_ j|_{V_{jj'l}} = t_{j'}|_{V_{jj'l}}  \]
+</div>
+    <p>
+       for all $j, j', l$. To see this, note that we do have 
+    <p>
+      <div class="equation">
+  \[  t_ j|_ W = t_{j'}|_ W \text{ for all } W \in \mathcal{B}, W \subset V_{jj'l} \cap U_{\alpha (j)\alpha (j')k}  \]
+</div>
+    <p>
+       for all $k \in I_{\alpha (j)\alpha (j')}$, by our assumption on the family of elements $s_ i$. And since $V_ j \cap V_{j'} \subset U_{\alpha (j)} \cap U_{\alpha (j')}$ we see that $t_ j|_{V_{jj'l}}$ and $t_{j'}|_{V_{jj'l}}$ agree on the members of a covering of $V_{jj'l}$ by elements of $\mathcal{B}$. Hence by the uniqueness part proved above we finally deduce the desired equality of $t_ j|_{V_{jj'l}}$ and $t_{j'}|_{V_{jj'l}}$. Then we get the existence of an element $t \in \mathcal{F}(U)$ by property $(**)$ for $(\mathcal{V}, \mathcal{V}_{jj'})$. 
+    <p>
+      Again there is a small snag. We know that $t$ restricts to $t_ j$ on $V_ j$ but we do not yet know that $t$ restricts to $s_ i$ on $U_ i$. To conclude this note that the sets $U_ i \cap V_ j$, $j \in J$ cover $U_ i$. Hence also the sets $U_{i \alpha (j) k} \cap V_ j$, $j\in J$, $k \in I_{i\alpha (j)}$ cover $U_ i$. We leave it to the reader to see that $t$ and $s_ i$ restrict to the same section of $\mathcal{F}$ on any $W \in \mathcal{B}$ which is contained in one of the open sets $U_{i \alpha (j) k} \cap V_ j$, $j\in J$, $k \in I_{i\alpha (j)}$. Hence by the uniqueness part seen above we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="009L">
+  <p><a class="environment-identifier" href="/tag/009L">Lemma <span data-tag="009L">6.30.4</span>.</a> Let $X$ be a topological space. Let $\mathcal{B}$ be a basis for the topology on $X$. Assume that for every triple $U, U', U'' \in \mathcal{B}$ with $U' \subset U$ and $U'' \subset U$ we have $U' \cap U'' \in \mathcal{B}$. For each $U \in \mathcal{B}$, let $C(U) \subset \text{Cov}_\mathcal {B}(U)$ be a cofinal system. Let $\mathcal{F}$ be a presheaf of sets on $\mathcal{B}$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+The presheaf $\mathcal{F}$ is a sheaf on $\mathcal{B}$. 
+</p>
+</li><li><p>
+For every $U \in \mathcal{B}$ and every covering $\mathcal{U} : U = \bigcup U_ i$ in $C(U)$ and for every family of sections $s_ i \in \mathcal{F}(U_ i)$ such that $s_ i|_{U_ i \cap U_ j} = s_ j|_{U_ i \cap U_ j}$ there exists a unique section $s \in \mathcal{F}(U)$ which restricts to $s_ i$ on $U_ i$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a reformulation of Lemma <a href="/tag/009K" data-tag="009K">6.30.3</a> above in the special case where the coverings $\mathcal{U}_{ij}$ each consist of a single element. But also this case is much easier and is an easy exercise to do directly. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="009M">
+  <p><a class="environment-identifier" href="/tag/009M">Lemma <span data-tag="009M">6.30.5</span>.</a> Let $X$ be a topological space. Let $\mathcal{B}$ be a basis for the topology on $X$. Let $U \in \mathcal{B}$. Let $\mathcal{F}$ be a sheaf of sets on $\mathcal{B}$. The map </p>
+  <div class="equation">
+  \[  \mathcal{F}(U) \to \prod \nolimits _{x \in U} \mathcal{F}_ x  \]
+</div>
+  <p> identifies $\mathcal{F}(U)$ with the elements $(s_ x)_{x\in U}$ with the property </p>
+  <p><ul>
+  <li class="custom-item" data-marker="(*)"><p>
+For any $x \in U$ there exists a $V \in \mathcal{B}$, with $x \in V \subset U$ and a section $\sigma \in \mathcal{F}(V)$ such that for all $y \in V$ we have $s_ y = (V, \sigma )$ in $\mathcal{F}_ y$. 
+</p>
+</li>
+</ul></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      First note that the map $\mathcal{F}(U) \to \prod \nolimits _{x \in U} \mathcal{F}_ x$ is injective by the uniqueness in the sheaf condition of Definition <a href="/tag/009J" data-tag="009J">6.30.2</a>. Let $(s_ x)$ be any element on the right hand side which satisfies $(*)$. Clearly this means we can find a covering $U = \bigcup U_ i$, $U_ i \in \mathcal{B}$ such that $(s_ x)_{x \in U_ i}$ comes from certain $\sigma _ i \in \mathcal{F}(U_ i)$. For every $y \in U_ i \cap U_ j$ the sections $\sigma _ i$ and $\sigma _ j$ agree in the stalk $\mathcal{F}_ y$. Hence there exists an element $V_{ijy} \in \mathcal{B}$, $y \in V_{ijy}$ such that $\sigma _ i|_{V_{ijy}} = \sigma _ j|_{V_{ijy}}$. Thus the sheaf condition $(**)$ of Definition <a href="/tag/009J" data-tag="009J">6.30.2</a> applies to the system of $\sigma _ i$ and we obtain a section $s \in \mathcal{F}(U)$ with the desired property. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $X$ be a topological space. Let $\mathcal{B}$ be a basis for the topology on $X$. There is a natural restriction functor from the category of sheaves of sets on $X$ to the category of sheaves of sets on $\mathcal{B}$. It turns out that this is an equivalence of categories. In down to earth terms this means the following. 
+</p>
+<p>
+<article class="env-lemma" id="009N">
+  <p><a class="environment-identifier" href="/tag/009N">Lemma <span data-tag="009N">6.30.6</span>.</a> Let $X$ be a topological space. Let $\mathcal{B}$ be a basis for the topology on $X$. Let $\mathcal{F}$ be a sheaf of sets on $\mathcal{B}$. There exists a unique sheaf of sets $\mathcal{F}^{ext}$ on $X$ such that $\mathcal{F}^{ext}(U) = \mathcal{F}(U)$ for all $U \in \mathcal{B}$ compatibly with the restriction mappings. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We first construct a presheaf $\mathcal{F}^{ext}$ with the desired property. Namely, for an arbitrary open $U \subset X$ we define $\mathcal{F}^{ext}(U)$ as the set of elements $(s_ x)_{x \in U}$ such that $(*)$ of Lemma <a href="/tag/009M" data-tag="009M">6.30.5</a> holds. It is clear that there are restriction mappings that turn $\mathcal{F}^{ext}$ into a presheaf of sets. Also, by Lemma <a href="/tag/009M" data-tag="009M">6.30.5</a> we see that $\mathcal{F}(U) = \mathcal{F}^{ext}(U)$ whenever $U$ is an element of the basis $\mathcal{B}$. To see $\mathcal{F}^{ext}$ is a sheaf one may argue as in the proof of Lemma <a href="/tag/007Y" data-tag="007Y">6.17.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Note that we have 
+</p>
+<div class="equation">
+  \[  \mathcal{F}_ x = \mathcal{F}_ x^{ext}  \]
+</div>
+<p>
+ in the situation of the lemma. This is so because the collection of elements of $\mathcal{B}$ containing $x$ forms a fundamental system of open neighbourhoods of $x$. 
+</p>
+<p>
+<article class="env-lemma" id="009O">
+  <p><a class="environment-identifier" href="/tag/009O">Lemma <span data-tag="009O">6.30.7</span>.</a> Let $X$ be a topological space. Let $\mathcal{B}$ be a basis for the topology on $X$. Denote $\mathop{\mathit{Sh}}\nolimits (\mathcal{B})$ the category of sheaves on $\mathcal{B}$. There is an equivalence of categories </p>
+  <div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits (X) \longrightarrow \mathop{\mathit{Sh}}\nolimits (\mathcal{B})  \]
+</div>
+  <p> which assigns to a sheaf on $X$ its restriction to the members of $\mathcal{B}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The inverse functor in given in Lemma <a href="/tag/009N" data-tag="009N">6.30.6</a> above. Checking the obvious functorialities is left to the reader. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+This ends the discussion of sheaves of sets on a basis $\mathcal{B}$. Let $(\mathcal{C}, F)$ be a type of algebraic structure. At the end of this section we would like to point out that the constructions above work for sheaves with values in $\mathcal{C}$. Let us briefly define the relevant notions. 
+</p>
+<p>
+<article class="env-definition" id="009P">
+  <p><a class="environment-identifier" href="/tag/009P">Definition <span data-tag="009P">6.30.8</span>.</a> Let $X$ be a topological space. Let $\mathcal{B}$ be a basis for the topology on $X$. Let $(\mathcal{C}, F)$ be a type of algebraic structure. </p>
+  <p><ol>
+  <li><p>
+A <em>presheaf $\mathcal{F}$ with values in $\mathcal{C}$ on $\mathcal{B}$</em> is a rule which assigns to each $U \in \mathcal{B}$ an object $\mathcal{F}(U)$ of $\mathcal{C}$ and to each inclusion $V \subset U$ of elements of $\mathcal{B}$ a morphism $\rho ^ U_ V : \mathcal{F}(U) \to \mathcal{F}(V)$ in $\mathcal{C}$ such that $\rho ^ U_ U = \text{id}_{\mathcal{F}(U)}$ for all $U \in \mathcal{B}$ and whenever $W \subset V \subset U$ in $\mathcal{B}$ we have $\rho ^ U_ W = \rho ^ V_ W \circ \rho ^ U_ V$. 
+</p>
+</li><li><p>
+A <em>morphism $\varphi : \mathcal{F} \to \mathcal{G}$ of presheaves with values in $\mathcal{C}$ on $\mathcal{B}$</em> is a rule which assigns to each element $U \in \mathcal{B}$ a morphism of algebraic structures $\varphi : \mathcal{F}(U) \to \mathcal{G}(U)$ compatible with restriction maps. 
+</p>
+</li><li><p>
+Given a presheaf $\mathcal{F}$ with values in $\mathcal{C}$ on $\mathcal{B}$ we say that $U \mapsto F(\mathcal{F}(U))$ is the underlying presheaf of sets. 
+</p>
+</li><li><p>
+A <em>sheaf $\mathcal{F}$ with values in $\mathcal{C}$ on $\mathcal{B}$</em> is a presheaf with values in $\mathcal{C}$ on $\mathcal{B}$ whose underlying presheaf of sets is a sheaf. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+At this point we can define the <em>stalk</em> at $x \in X$ of a presheaf with values in $\mathcal{C}$ on $\mathcal{B}$ as the directed colimit 
+</p>
+<div class="equation">
+  \[  \mathcal{F}_ x = \mathop{\mathrm{colim}}\nolimits _{U\in \mathcal{B}, x\in U} \mathcal{F}(U).  \]
+</div>
+<p>
+ It exists as an object of $\mathcal{C}$ because of our assumptions on $\mathcal{C}$. Also, we see that the underlying set of $\mathcal{F}_ x$ is the stalk of the underlying presheaf of sets on $\mathcal{B}$. 
+</p>
+<p>
+Note that Lemmas <a href="/tag/009K" data-tag="009K">6.30.3</a>, <a href="/tag/009L" data-tag="009L">6.30.4</a> and <a href="/tag/009M" data-tag="009M">6.30.5</a> refer to the sheaf property which we have defined in terms of the associated presheaf of sets. Hence they generalize without change to the notion of a presheaf with values in $\mathcal{C}$. The analogue of Lemma <a href="/tag/009N" data-tag="009N">6.30.6</a> need some care. Here it is. 
+</p>
+<p>
+<article class="env-lemma" id="009Q">
+  <p><a class="environment-identifier" href="/tag/009Q">Lemma <span data-tag="009Q">6.30.9</span>.</a> Let $X$ be a topological space. Let $(\mathcal{C}, F)$ be a type of algebraic structure. Let $\mathcal{B}$ be a basis for the topology on $X$. Let $\mathcal{F}$ be a sheaf with values in $\mathcal{C}$ on $\mathcal{B}$. There exists a unique sheaf $\mathcal{F}^{ext}$ with values in $\mathcal{C}$ on $X$ such that $\mathcal{F}^{ext}(U) = \mathcal{F}(U)$ for all $U \in \mathcal{B}$ compatibly with the restriction mappings. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By the conditions imposed on the pair $(\mathcal{C}, F)$ it suffices to come up with a presheaf $\mathcal{F}^{ext}$ which does the correct thing on the level of underlying presheaves of sets. Thus our first task is to construct a suitable object $\mathcal{F}^{ext}(U)$ for all open $U \subset X$. We could do this by imitating Lemma <a href="/tag/0084" data-tag="0084">6.18.1</a> in the setting of presheaves on $\mathcal{B}$. However, a slightly different method (but basically equivalent) is the following: Define it as the directed colimit 
+    <p>
+      <div class="equation">
+  \[  \mathcal{F}^{ext}(U) := \mathop{\mathrm{colim}}\nolimits _\mathcal {U} FIB(\mathcal{U})  \]
+</div>
+    <p>
+       over all coverings $\mathcal{U} : U = \bigcup _{i\in I} U_ i$ by $U_ i \in \mathcal{B}$ of the fibre product 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ FIB(\mathcal{U}) \ar[r] \ar[d] &  \prod \nolimits _{x\in U} \mathcal{F}_ x \ar[d] \\  \prod \nolimits _{i\in I} \mathcal{F}(U_ i) \ar[r] &  \prod \nolimits _{i \in I} \prod \nolimits _{x\in U_ i} \mathcal{F}_ x }  \]
+</div>
+    <p>
+       By the usual arguments, see Lemma <a href="/tag/007P" data-tag="007P">6.15.4</a> and Example <a href="/tag/007Q" data-tag="007Q">6.15.5</a> it suffices to show that this construction on underlying sets is the same as the definition using $(**)$ above. Details left to the reader. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Note that we have 
+</p>
+<div class="equation">
+  \[  \mathcal{F}_ x = \mathcal{F}_ x^{ext}  \]
+</div>
+<p>
+ as objects in $\mathcal{C}$ in the situation of the lemma. This is so because the collection of elements of $\mathcal{B}$ containing $x$ forms a fundamental system of open neighbourhoods of $x$. 
+</p>
+<p>
+<article class="env-lemma" id="009R">
+  <p><a class="environment-identifier" href="/tag/009R">Lemma <span data-tag="009R">6.30.10</span>.</a> Let $X$ be a topological space. Let $\mathcal{B}$ be a basis for the topology on $X$. Let $(\mathcal{C}, F)$ be a type of algebraic structure. Denote $\mathop{\mathit{Sh}}\nolimits (\mathcal{B}, \mathcal{C})$ the category of sheaves with values in $\mathcal{C}$ on $\mathcal{B}$. There is an equivalence of categories </p>
+  <div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits (X, \mathcal{C}) \longrightarrow \mathop{\mathit{Sh}}\nolimits (\mathcal{B}, \mathcal{C})  \]
+</div>
+  <p> which assigns to a sheaf on $X$ its restriction to the members of $\mathcal{B}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The inverse functor in given in Lemma <a href="/tag/009Q" data-tag="009Q">6.30.9</a> above. Checking the obvious functorialities is left to the reader. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Finally we come to the case of (pre)sheaves of modules on a basis. We will use the easy fact that the category of presheaves of sets on a basis has products and that they are described by taking products of values on elements of the bases. 
+</p>
+<p>
+<article class="env-definition" id="009S">
+  <p><a class="environment-identifier" href="/tag/009S">Definition <span data-tag="009S">6.30.11</span>.</a> Let $X$ be a topological space. Let $\mathcal{B}$ be a basis for the topology on $X$. Let $\mathcal{O}$ be a presheaf of rings on $\mathcal{B}$. </p>
+  <p><ol>
+  <li><p>
+A <em>presheaf of $\mathcal{O}$-modules $\mathcal{F}$ on $\mathcal{B}$</em> is a presheaf of abelian groups on $\mathcal{B}$ together with a morphism of presheaves of sets $\mathcal{O} \times \mathcal{F} \to \mathcal{F}$ such that for all $U \in \mathcal{B}$ the map $\mathcal{O}(U) \times \mathcal{F}(U) \to \mathcal{F}(U)$ turns the group $\mathcal{F}(U)$ into an $\mathcal{O}(U)$-module. 
+</p>
+</li><li><p>
+A <em>morphism $\varphi : \mathcal{F} \to \mathcal{G}$ of presheaves of $\mathcal{O}$-modules on $\mathcal{B}$</em> is a morphism of abelian presheaves on $\mathcal{B}$ which induces an $\mathcal{O}(U)$-module homomorphism $\mathcal{F}(U) \to \mathcal{G}(U)$ for every $U \in \mathcal{B}$. 
+</p>
+</li><li><p>
+Suppose that $\mathcal{O}$ is a sheaf of rings on $\mathcal{B}$. A <em>sheaf $\mathcal{F}$ of $\mathcal{O}$-modules on $\mathcal{B}$</em> is a presheaf of $\mathcal{O}$-modules on $\mathcal{B}$ whose underlying presheaf of abelian groups is a sheaf. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+We can define the <em>stalk</em> at $x \in X$ of a presheaf of $\mathcal{O}$-modules on $\mathcal{B}$ as the directed colimit 
+</p>
+<div class="equation">
+  \[  \mathcal{F}_ x = \mathop{\mathrm{colim}}\nolimits _{U\in \mathcal{B}, x\in U} \mathcal{F}(U).  \]
+</div>
+<p>
+ It is a $\mathcal{O}_ x$-module. 
+</p>
+<p>
+Note that Lemmas <a href="/tag/009K" data-tag="009K">6.30.3</a>, <a href="/tag/009L" data-tag="009L">6.30.4</a> and <a href="/tag/009M" data-tag="009M">6.30.5</a> refer to the sheaf property which we have defined in terms of the associated presheaf of sets. Hence they generalize without change to the notion of a presheaf of $\mathcal{O}$-modules. The analogue of Lemma <a href="/tag/009N" data-tag="009N">6.30.6</a> is as follows. 
+</p>
+<p>
+<article class="env-lemma" id="009T">
+  <p><a class="environment-identifier" href="/tag/009T">Lemma <span data-tag="009T">6.30.12</span>.</a> Let $X$ be a topological space. Let $\mathcal{B}$ be a basis for the topology on $X$. Let $\mathcal{O}$ be a sheaf of rings on $\mathcal{B}$. Let $\mathcal{F}$ be a sheaf of $\mathcal{O}$-modules on $\mathcal{B}$. Let $\mathcal{O}^{ext}$ be the sheaf of rings on $X$ extending $\mathcal{O}$ and let $\mathcal{F}^{ext}$ be the abelian sheaf on $X$ extending $\mathcal{F}$, see Lemma <a href="/tag/009Q" data-tag="009Q">6.30.9</a>. There exists a canonical map </p>
+  <div class="equation">
+  \[  \mathcal{O}^{ext} \times \mathcal{F}^{ext} \longrightarrow \mathcal{F}^{ext}  \]
+</div>
+  <p> which agrees with the given map over elements of $\mathcal{B}$ and which endows $\mathcal{F}^{ext}$ with the structure of an $\mathcal{O}^{ext}$-module. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It suffices to construct the multiplication map on the level of presheaves of sets. Perhaps the easiest way to see this is to prove directly that if $(f_ x)_{x \in U}$, $f_ x \in \mathcal{O}_ x$ and $(m_ x)_{x \in U}$, $m_ x \in \mathcal{F}_ x$ satisfy $(*)$, then the element $(f_ xm_ x)_{x \in U}$ also satisfies $(*)$. Then we get the desired result, because in the proof of Lemma <a href="/tag/009N" data-tag="009N">6.30.6</a> we construct the extension in terms of families of elements of stalks satisfying $(*)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Note that we have 
+</p>
+<div class="equation">
+  \[  \mathcal{F}_ x = \mathcal{F}_ x^{ext}  \]
+</div>
+<p>
+ as $\mathcal{O}_ x$-modules in the situation of the lemma. This is so because the collection of elements of $\mathcal{B}$ containing $x$ forms a fundamental system of open neighbourhoods of $x$, or simply because it is true on the underlying sets. 
+</p>
+<p>
+<article class="env-lemma" id="009U">
+  <p><a class="environment-identifier" href="/tag/009U">Lemma <span data-tag="009U">6.30.13</span>.</a> Let $X$ be a topological space. Let $\mathcal{B}$ be a basis for the topology on $X$. Let $\mathcal{O}$ be a sheaf of rings on $X$. Denote $\textit{Mod}(\mathcal{O}|_\mathcal {B})$ the category of sheaves of $\mathcal{O}|_\mathcal {B}$-modules on $\mathcal{B}$. There is an equivalence of categories </p>
+  <div class="equation">
+  \[  \textit{Mod}(\mathcal{O}) \longrightarrow \textit{Mod}(\mathcal{O}|_\mathcal {B})  \]
+</div>
+  <p> which assigns to a sheaf of $\mathcal{O}$-modules on $X$ its restriction to the members of $\mathcal{B}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The inverse functor in given in Lemma <a href="/tag/009T" data-tag="009T">6.30.12</a> above. Checking the obvious functorialities is left to the reader. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Finally, we address the question of the relationship of this with continuous maps. This is now very easy thanks to the work above. First we do the case where there is a basis on the target given. 
+</p>
+<p>
+<article class="env-lemma" id="009V">
+  <p><a class="environment-identifier" href="/tag/009V">Lemma <span data-tag="009V">6.30.14</span>.</a> Let $f : X \to Y$ be a continuous map of topological spaces. Let $(\mathcal{C}, F)$ be a type of algebraic structures. Let $\mathcal{F}$ be a sheaf with values in $\mathcal{C}$ on $X$. Let $\mathcal{G}$ be a sheaf with values in $\mathcal{C}$ on $Y$. Let $\mathcal{B}$ be a basis for the topology on $Y$. Suppose given for every $V \in \mathcal{B}$ a morphism </p>
+  <div class="equation">
+  \[  \varphi _ V : \mathcal{G}(V) \longrightarrow \mathcal{F}(f^{-1}V)  \]
+</div>
+  <p> of $\mathcal{C}$ compatible with restriction mappings. Then there is a unique $f$-map (see Definition <a href="/tag/008J" data-tag="008J">6.21.7</a> and discussion of $f$-maps in Section <a href="/tag/008P" data-tag="008P">6.23</a>) $\varphi : \mathcal{G} \to \mathcal{F}$ recovering $\varphi _ V$ for $V \in \mathcal{B}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is trivial because the collection of maps amounts to a morphism between the restrictions of $\mathcal{G}$ and $f_*\mathcal{F}$ to $\mathcal{B}$. By Lemma <a href="/tag/009R" data-tag="009R">6.30.10</a> this is the same as giving a morphism from $\mathcal{G}$ to $f_*\mathcal{F}$, which by Lemma <a href="/tag/008K" data-tag="008K">6.21.8</a> is the same as an $f$-map. See also Lemma <a href="/tag/008Q" data-tag="008Q">6.23.1</a> and the discussion preceding it for how to deal with the case of sheaves of algebraic structures. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Here is the analogue for ringed spaces. 
+</p>
+<p>
+<article class="env-lemma" id="009W">
+  <p><a class="environment-identifier" href="/tag/009W">Lemma <span data-tag="009W">6.30.15</span>.</a> Let $(f, f^\sharp ) : (X, \mathcal{O}_ X) \to (Y, \mathcal{O}_ Y)$ be a morphism of ringed spaces. Let $\mathcal{F}$ be a sheaf of $\mathcal{O}_ X$-modules. Let $\mathcal{G}$ be a sheaf of $\mathcal{O}_ Y$-modules. Let $\mathcal{B}$ be a basis for the topology on $Y$. Suppose given for every $V \in \mathcal{B}$ a $\mathcal{O}_ Y(V)$-module map </p>
+  <div class="equation">
+  \[  \varphi _ V : \mathcal{G}(V) \longrightarrow \mathcal{F}(f^{-1}V)  \]
+</div>
+  <p> (where $\mathcal{F}(f^{-1}V)$ has a module structure using $f^\sharp _ V : \mathcal{O}_ Y(V) \to \mathcal{O}_ X(f^{-1}V)$) compatible with restriction mappings. Then there is a unique $f$-map (see discussion of $f$-maps in Section <a href="/tag/0094" data-tag="0094">6.26</a>) $\varphi : \mathcal{G} \to \mathcal{F}$ recovering $\varphi _ V$ for $V \in \mathcal{B}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Same as the proof of the corresponding lemma for sheaves of algebraic structures above. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="009X">
+  <p><a class="environment-identifier" href="/tag/009X">Lemma <span data-tag="009X">6.30.16</span>.</a> Let $f : X \to Y$ be a continuous map of topological spaces. Let $(\mathcal{C}, F)$ be a type of algebraic structures. Let $\mathcal{F}$ be a sheaf with values in $\mathcal{C}$ on $X$. Let $\mathcal{G}$ be a sheaf with values in $\mathcal{C}$ on $Y$. Let $\mathcal{B}_ Y$ be a basis for the topology on $Y$. Let $\mathcal{B}_ X$ be a basis for the topology on $X$. Suppose given for every $V \in \mathcal{B}_ Y$, and $U \in \mathcal{B}_ X$ such that $f(U) \subset V$ a morphism </p>
+  <div class="equation">
+  \[  \varphi _ V^ U : \mathcal{G}(V) \longrightarrow \mathcal{F}(U)  \]
+</div>
+  <p> of $\mathcal{C}$ compatible with restriction mappings. Then there is a unique $f$-map (see Definition <a href="/tag/008J" data-tag="008J">6.21.7</a> and the discussion of $f$-maps in Section <a href="/tag/008P" data-tag="008P">6.23</a>) $\varphi : \mathcal{G} \to \mathcal{F}$ recovering $\varphi _ V^ U$ as the composition </p>
+  <div class="equation">
+  \[  \mathcal{G}(V) \xrightarrow {\varphi _ V} \mathcal{F}(f^{-1}(V)) \xrightarrow {\text{restr.}} \mathcal{F}(U)  \]
+</div>
+  <p> for every pair $(U, V)$ as above. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let us first proves this for sheaves of sets. Fix $V \subset Y$ open. Pick $s \in \mathcal{G}(V)$. We are going to construct an element $\varphi _ V(s) \in \mathcal{F}(f^{-1}V)$. We can define a value $\varphi (s)_ x$ in the stalk $\mathcal{F}_ x$ for every $x \in f^{-1}V$ by picking a $U \in \mathcal{B}_ X$ with $x \in U \subset f^{-1}V$ and setting $\varphi (s)_ x$ equal to the equivalence class of $(U, \varphi _ V^ U(s))$ in the stalk. Clearly, the family $(\varphi (s)_ x)_{x \in f^{-1}V}$ satisfies condition $(*)$ because the maps $\varphi _ V^ U$ for varying $U$ are compatible with restrictions in the sheaf $\mathcal{F}$. Thus, by the proof of Lemma <a href="/tag/009N" data-tag="009N">6.30.6</a> we see that $(\varphi (s)_ x)_{x \in f^{-1}V}$ corresponds to a unique element $\varphi _ V(s)$ of $\mathcal{F}(f^{-1}V)$. Thus we have defined a set map $\varphi _ V : \mathcal{G}(V) \to \mathcal{F}(f^{-1}V)$. The compatibility between $\varphi _ V$ and $\varphi _ V^ U$ follows from Lemma <a href="/tag/009M" data-tag="009M">6.30.5</a>. 
+    <p>
+      We leave it to the reader to show that the construction of $\varphi _ V$ is compatible with restriction mappings as we vary $V \in \mathcal{B}_ Y$. Thus we may apply Lemma <a href="/tag/009V" data-tag="009V">6.30.14</a> above to “glue” them to the desired $f$-map. 
+    <p>
+      Finally, we note that the map of sheaves of sets so constructed satisfies the property that the map on stalks 
+    <p>
+      <div class="equation">
+  \[  \mathcal{G}_{f(x)} \longrightarrow \mathcal{F}_ x  \]
+</div>
+    <p>
+       is the colimit of the system of maps $\varphi _ V^ U$ as $V \in \mathcal{B}_ Y$ varies over those elements that contain $f(x)$ and $U \in \mathcal{B}_ X$ varies over those elements that contain $x$. In particular, if $\mathcal{G}$ and $\mathcal{F}$ are the underlying sheaves of sets of sheaves of algebraic structures, then we see that the maps on stalks is a morphism of algebraic structures. Hence we conclude that the associated map of sheaves of underlying sets $f^{-1}\mathcal{G} \to \mathcal{F}$ satisfies the assumptions of Lemma <a href="/tag/008Q" data-tag="008Q">6.23.1</a>. We conclude that $f^{-1}\mathcal{G} \to \mathcal{F}$ is a morphism of sheaves with values in $\mathcal{C}$. And by adjointness this means that $\varphi $ is an $f$-map of sheaves of algebraic structures. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="009Y">
+  <p><a class="environment-identifier" href="/tag/009Y">Lemma <span data-tag="009Y">6.30.17</span>.</a> Let $(f, f^\sharp ) : (X, \mathcal{O}_ X) \to (Y, \mathcal{O}_ Y)$ be a morphism of ringed spaces. Let $\mathcal{F}$ be a sheaf of $\mathcal{O}_ X$-modules. Let $\mathcal{G}$ be a sheaf of $\mathcal{O}_ Y$-modules. Let $\mathcal{B}_ Y$ be a basis for the topology on $Y$. Let $\mathcal{B}_ X$ be a basis for the topology on $X$. Suppose given for every $V \in \mathcal{B}_ Y$, and $U \in \mathcal{B}_ X$ such that $f(U) \subset V$ a $\mathcal{O}_ Y(V)$-module map </p>
+  <div class="equation">
+  \[  \varphi _ V^ U : \mathcal{G}(V) \longrightarrow \mathcal{F}(U)  \]
+</div>
+  <p> compatible with restriction mappings. Here the $\mathcal{O}_ Y(V)$-module structure on $\mathcal{F}(U)$ comes from the $\mathcal{O}_ X(U)$-module structure via the map $f^\sharp _ V : \mathcal{O}_ Y(V) \to \mathcal{O}_ X(f^{-1}V) \to \mathcal{O}_ X(U)$. Then there is a unique $f$-map of sheaves of modules (see Definition <a href="/tag/008J" data-tag="008J">6.21.7</a> and the discussion of $f$-maps in Section <a href="/tag/0094" data-tag="0094">6.26</a>) $\varphi : \mathcal{G} \to \mathcal{F}$ recovering $\varphi _ V^ U$ as the composition </p>
+  <div class="equation">
+  \[  \mathcal{G}(V) \xrightarrow {\varphi _ V} \mathcal{F}(f^{-1}(V)) \xrightarrow {\text{restr.}} \mathcal{F}(U)  \]
+</div>
+  <p> for every pair $(U, V)$ as above. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Similar to the above and omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

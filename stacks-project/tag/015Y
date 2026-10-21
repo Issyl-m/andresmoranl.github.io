@@ -1,0 +1,187 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="homology-section-adjoint" class="tex-section"><span data-tag="015Y">12.29</span> Injectives and adjoint functors</h2>
+
+<p>
+Here are some lemmas on adjoint functors and their relationship with injectives. See also Lemma <a href="/tag/03A3" data-tag="03A3">12.7.4</a>. 
+</p>
+<p>
+<article class="env-lemma" id="015Z">
+       
+      
+  <p><a class="environment-identifier" href="/tag/015Z">Lemma <span data-tag="015Z">12.29.1</span>.</a> Let $\mathcal{A}$ and $\mathcal{B}$ be abelian categories. Let $u : \mathcal{A} \to \mathcal{B}$ and $v : \mathcal{B} \to \mathcal{A}$ be additive functors with $u$ right adjoint to $v$. Consider the following conditions: </p>
+  <p><ol>
+  <li class="custom-item" data-marker="(a)"><p>
+$v$ transforms injective maps into injective maps, 
+</p>
+</li><li class="custom-item" data-marker="(b)"><p>
+$v$ is exact, and 
+</p>
+</li><li class="custom-item" data-marker="(c)"><p>
+$u$ transforms injectives into injectives. 
+</p>
+</li>
+</ol></p>
+  <p> Then (a) $\Leftrightarrow $ (b) $\Rightarrow $ (c). If $\mathcal{A}$ has enough injectives, then all three conditions are equivalent. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Observe that $v$ is right exact as a left adjoint (Categories, Lemma <a href="/tag/0039" data-tag="0039">4.24.6</a>). Combined with Lemma <a href="/tag/010N" data-tag="010N">12.7.2</a> this explains why (a) $\Leftrightarrow $ (b). 
+    <p>
+      Assume (a). Let $I$ be an injective object of $\mathcal{A}$. Let $\varphi : N \to M$ be an injective map in $\mathcal{B}$ and let $\alpha : N \to uI$ be a morphism. By adjointness we get a morphism $\alpha : vN \to I$ and by assumption $v\varphi : vN \to vM$ is injective. Hence as $I$ is an injective object we get a morphism $\beta : vM \to I$ extending $\alpha $. By adjointness again this corresponds to a morphism $\beta : M \to uI$ extending $\alpha $. Hence (c) is true. 
+    <p>
+      Assume $\mathcal{A}$ has enough injectives and (c) holds. Let $f : B \to B'$ be a monomorphism in $\mathcal{B}$, and let $A = \mathop{\mathrm{Ker}}(v(f))$. Choose a monomorphism $g : A \to I$ with $I$ injective (it exists by assumption). Then $g$ extends to $g' : v(B) \to I$, whence by adjunction a morphism $B \to u(I)$. Since $u(I)$ is injective, this morphism extends to $h : B' \to u(I)$, hence by adjunction a morphism $k : v(B') \to I$ extending $g'$. But then $k$ "extends” $g$, which forces $A = 0$ since $g$ was a monomorphism. Thus (a) is true. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="03B8">
+  <p><a class="environment-identifier" href="/tag/03B8">Remark <span data-tag="03B8">12.29.2</span>.</a> Let $R \to S$ be a ring map. Let $u : \text{Mod}_ S \to \text{Mod}_ R$ be $u(N) = N_ R$ and let $v : \text{Mod}_ R \to \text{Mod}_ S$ be $v(M) = M \otimes _ R S$. Then $u$ is right adjoint to $v$, and $u$ is exact and $v$ is right exact. But conditions (a), (b), (c) of Lemma <a href="/tag/015Z" data-tag="015Z">12.29.1</a> do not hold in general. For example, if $R = \mathbf{Z}$ and $S = \mathbf{Z}/p\mathbf{Z}$, then the injective $S$-module $\mathbf{Z}/p\mathbf{Z}$ is not an injective $\mathbf{Z}$-module. In fact, the lemma shows all injective $S$-modules are injective as $R$-modules if and only if $R \to S$ is a flat ring map. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0160">
+  <p><a class="environment-identifier" href="/tag/0160">Lemma <span data-tag="0160">12.29.3</span>.</a> Let $\mathcal{A}$ and $\mathcal{B}$ be abelian categories. Let $u : \mathcal{A} \to \mathcal{B}$ and $v : \mathcal{B} \to \mathcal{A}$ be additive functors. Assume </p>
+  <p><ol>
+  <li><p>
+$u$ is right adjoint to $v$, 
+</p>
+</li><li><p>
+$v$ transforms injective maps into injective maps, 
+</p>
+</li><li><p>
+$\mathcal{A}$ has enough injectives, and 
+</p>
+</li><li><p>
+$vB = 0$ implies $B = 0$ for any $B \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{B})$. 
+</p>
+</li>
+</ol></p>
+  <p> Then $\mathcal{B}$ has enough injectives. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Pick $B \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{B})$. Pick an injection $vB \to I$ for $I$ an injective object of $\mathcal{A}$. According to Lemma <a href="/tag/015Z" data-tag="015Z">12.29.1</a> and the assumptions the corresponding map $B \to uI$ is the injection of $B$ into an injective object. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="03B9">
+  <p><a class="environment-identifier" href="/tag/03B9">Remark <span data-tag="03B9">12.29.4</span>.</a> Let $\mathcal{A}$, $\mathcal{B}$, $u : \mathcal{A} \to \mathcal{B}$ and $v : \mathcal{B} \to \mathcal{A}$ be as In Lemma <a href="/tag/0160" data-tag="0160">12.29.3</a>. In the presence of conditions (1) and (2) condition (4) is equivalent to $v$ being faithful. Moreover, condition (4) is needed. An example is to consider the case where the functors $u$ and $v$ are both the zero functor. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0161">
+  <p><a class="environment-identifier" href="/tag/0161">Lemma <span data-tag="0161">12.29.5</span>.</a> Let $\mathcal{A}$ and $\mathcal{B}$ be abelian categories. Let $u : \mathcal{A} \to \mathcal{B}$ and $v : \mathcal{B} \to \mathcal{A}$ be additive functors. Assume </p>
+  <p><ol>
+  <li><p>
+$u$ is right adjoint to $v$, 
+</p>
+</li><li><p>
+$v$ transforms injective maps into injective maps, 
+</p>
+</li><li><p>
+$\mathcal{A}$ has enough injectives, 
+</p>
+</li><li><p>
+$vB = 0$ implies $B = 0$ for any $B \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{B})$, and 
+</p>
+</li><li><p>
+$\mathcal{A}$ has functorial injective embeddings. 
+</p>
+</li>
+</ol></p>
+  <p> Then $\mathcal{B}$ has functorial injective embeddings. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $A \mapsto (A \to J(A))$ be a functorial injective embedding on $\mathcal{A}$. Then $B \mapsto (B \to uJ(vB))$ is a functorial injective embedding on $\mathcal{B}$. Compare with the proof of Lemma <a href="/tag/0160" data-tag="0160">12.29.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0793">
+  <p><a class="environment-identifier" href="/tag/0793">Lemma <span data-tag="0793">12.29.6</span>.</a> Let $\mathcal{A}$ and $\mathcal{B}$ be abelian categories. Let $u : \mathcal{A} \to \mathcal{B}$ be a functor. If there exists a subset $\mathcal{P} \subset \mathop{\mathrm{Ob}}\nolimits (\mathcal{B})$ such that </p>
+  <p><ol>
+  <li><p>
+every object of $\mathcal{B}$ is a quotient of an element of $\mathcal{P}$, and 
+</p>
+</li><li><p>
+for every $P \in \mathcal{P}$ there exists an object $Q$ of $\mathcal{A}$ such that $\mathop{\mathrm{Hom}}\nolimits _\mathcal {A}(Q, A) = \mathop{\mathrm{Hom}}\nolimits _\mathcal {B}(P, u(A))$ functorially in $A$, 
+</p>
+</li>
+</ol></p>
+  <p> then there exists a left adjoint $v$ of $u$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By the Yoneda lemma (Categories, Lemma <a href="/tag/001P" data-tag="001P">4.3.5</a>) the object $Q$ of $\mathcal{A}$ corresponding to $P$ is defined up to unique isomorphism by the formula $\mathop{\mathrm{Hom}}\nolimits _\mathcal {A}(Q, A) = \mathop{\mathrm{Hom}}\nolimits _\mathcal {B}(P, u(A))$. Let us write $Q = v(P)$. Denote $i_ P : P \to u(v(P))$ the map corresponding to $\text{id}_{v(P)}$ in $\mathop{\mathrm{Hom}}\nolimits _\mathcal {A}(v(P), v(P))$. Functoriality in (2) implies that the bijection is given by 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _\mathcal {A}(v(P), A) \to \mathop{\mathrm{Hom}}\nolimits _\mathcal {B}(P, u(A)),\quad \varphi \mapsto u(\varphi ) \circ i_ P  \]
+</div>
+    <p>
+       For any pair of elements $P_1, P_2 \in \mathcal{P}$ there is a canonical map 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _\mathcal {B}(P_2, P_1) \to \mathop{\mathrm{Hom}}\nolimits _\mathcal {A}(v(P_2), v(P_1)),\quad \varphi \mapsto v(\varphi )  \]
+</div>
+    <p>
+       which is characterized by the rule $u(v(\varphi )) \circ i_{P_2} = i_{P_1} \circ \varphi $ in $\mathop{\mathrm{Hom}}\nolimits _\mathcal {B}(P_2, u(v(P_1)))$. Note that $\varphi \mapsto v(\varphi )$ is compatible with composition; this can be seen directly from the characterization. Hence $P \mapsto v(P)$ is a functor from the full subcategory of $\mathcal{B}$ whose objects are the elements of $\mathcal{P}$. 
+    <p>
+      Given an arbitrary object $B$ of $\mathcal{B}$ choose an exact sequence 
+    <p>
+      <div class="equation">
+  \[  P_2 \to P_1 \to B \to 0  \]
+</div>
+    <p>
+       which is possible by assumption (1). Define $v(B)$ to be the object of $\mathcal{A}$ fitting into the exact sequence 
+    <p>
+      <div class="equation">
+  \[  v(P_2) \to v(P_1) \to v(B) \to 0  \]
+</div>
+    <p>
+       Then 
+    <p>
+      <div class="equation">
+  \begin{align*}  \mathop{\mathrm{Hom}}\nolimits _\mathcal {A}(v(B), A) &  = \mathop{\mathrm{Ker}}(\mathop{\mathrm{Hom}}\nolimits _\mathcal {A}(v(P_1), A) \to \mathop{\mathrm{Hom}}\nolimits _\mathcal {A}(v(P_2), A)) \\ &  = \mathop{\mathrm{Ker}}(\mathop{\mathrm{Hom}}\nolimits _\mathcal {B}(P_1, u(A)) \to \mathop{\mathrm{Hom}}\nolimits _\mathcal {B}(P_2, u(A))) \\ &  = \mathop{\mathrm{Hom}}\nolimits _\mathcal {B}(B, u(A)) \end{align*}
+</div>
+    <p>
+       Hence we see that we may take $\mathcal{P} = \mathop{\mathrm{Ob}}\nolimits (\mathcal{B})$, i.e., we see that $v$ is everywhere defined. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

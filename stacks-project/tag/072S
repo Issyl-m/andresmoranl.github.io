@@ -1,0 +1,111 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="stacks-introduction-section-smooth" class="tex-section"><span data-tag="072S">105.6</span> A smooth cover</h2>
+
+<p>
+The last thing we have to do is find a smooth cover of $\mathcal{M}_{1, 1}$. In fact, in some sense the existence of a smooth cover <em>implies</em><a class="footnotemark" href="#a0001756606" id="a0001756606-mark"><sup>1</sup></a> the key fact! In the case of elliptic curves we use the Weierstrass equation to construct one. 
+</p>
+<p>
+Set 
+</p>
+<div class="equation">
+  \[  W = \mathop{\mathrm{Spec}}(\mathbf{Z}[a_1, a_2, a_3, a_4, a_6, 1/\Delta ])  \]
+</div>
+<p>
+ where $\Delta \in \mathbf{Z}[a_1, a_2, a_3, a_4, a_6]$ is a certain polynomial (see below). Set 
+</p>
+<div class="equation">
+  \[  \mathbf{P}_ W^2 \supset E_ W : zy^2 + a_1 xyz + a_3 yz^2 = x^3 + a_2x^2z + a_4xz^2 + a_6z^3.  \]
+</div>
+<p>
+ Denote $f_ W : E_ W \to W$ the projection. Finally, denote $0_ W : W \to E_ W$ the section of $f_ W$ given by $(0 : 1 : 0)$. It turns out that there is a degree $12$ homogeneous polynomial $\Delta $ in $a_ i$ where $\deg (a_ i) = i$ such that $E_ W \to W$ is smooth. You can find it explicitly by computing partials of the Weierstrass equation – of course you can also look it up. You can also use pari/gp to compute it for you. Here it is 
+</p>
+<div class="equation">
+  \begin{align*}  \Delta &  = -a_6a_1^6 + a_4a_3a_1^5 + ((-a_3^2 - 12a_6)a_2 + a_4^2)a_1^4 + \\ &  (8a_4a_3a_2 + (a_3^3 + 36a_6a_3))a_1^3 + \\ &  ((-8a_3^2 - 48a_6)a_2^2 + 8a_4^2a_2 + (-30a_4a_3^2 + 72a_6a_4))a_1^2 + \\ &  (16a_4a_3a_2^2 + (36a_3^3 + 144a_6a_3)a_2 - 96a_4^2a_3)a_1 + \\ &  (-16a_3^2 - 64a_6)a_2^3 + 16a_4^2a_2^2 + (72a_4a_3^2 + 288a_6a_4)a_2 + \\ &  -27a_3^4 - 216a_6a_3^2 -64a_4^3 - 432a_6^2 \end{align*}
+</div>
+<p>
+ You may recognize the last two terms from the case $y^2 = x^3 + Ax + B$ having discriminant $-64A^3 - 432B^2 = -16(4A^3 + 27B^2)$. 
+</p>
+<p>
+<article class="env-lemma" id="072T">
+  <p><a class="environment-identifier" href="/tag/072T">Lemma <span data-tag="072T">105.6.1</span>.</a> The morphism $W \xrightarrow {(E_ W, f_ W, 0_ W)} \mathcal{M}_{1, 1}$ is smooth and surjective. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Surjectivity follows from the fact that every elliptic curve over a field has a Weierstrass equation. We give a rough sketch of one way to prove smoothness. Consider the sub group scheme 
+    <p>
+      <div class="equation">
+  \[  H = \left\{  \left( \begin{matrix}  u^2 
+
+&  s 
+
+&  0 
+
+\\  0 
+
+&  u^3 
+
+&  0 
+
+\\  r 
+
+&  t 
+
+&  1 
+
+\end{matrix} \right) \middle | \begin{matrix}  u\text{ unit} 
+
+\\  s, r, t\text{ arbitrary} 
+
+\end{matrix} \right\}  \subset \text{GL}_{3, \mathbf{Z}}  \]
+</div>
+    <p>
+       There is an action $H \times W \to W$ of $H$ on the Weierstrass scheme $W$. To find the equations for this action write out what a coordinate change given by a matrix in $H$ does to the general Weierstrass equation. Then it turns out the following statements hold 
+    <p>
+      <ol>
+  <li><p>
+any elliptic curve $(E, f, 0)/S$ has Zariski locally on $S$ a Weierstrass equation, 
+</p>
+</li><li><p>
+any two Weierstrass equations for $(E, f, 0)$ differ (Zariski locally) by an element of $H$. 
+</p>
+</li>
+</ol>
+    <p>
+       Considering the fibre product $S \times _{\mathcal{M}_{1, 1}} W = \mathit{Isom}_{S \times W}(E \times W, S \times E_ W)$ we conclude that this means that the morphism $W \to \mathcal{M}_{1, 1}$ is an $H$-torsor. Since $H \to \mathop{\mathrm{Spec}}(\mathbf{Z})$ is smooth, and since torsors over smooth group schemes are smooth we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="072U">
+  <p><a class="environment-identifier" href="/tag/072U">Remark <span data-tag="072U">105.6.2</span>.</a> The argument sketched above actually shows that $\mathcal{M}_{1, 1} = [W/H]$ is a global quotient stack. It is true about 50% of the time that an argument proving a moduli stack is algebraic will show that it is a global quotient stack. </p>
+</article> 
+</p>

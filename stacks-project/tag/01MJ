@@ -1,0 +1,82 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="constructions-section-quasi-coherent-proj" class="tex-section"><span data-tag="01MJ">27.9</span> Quasi-coherent sheaves on Proj</h2>
+
+<p>
+Let $S$ be a graded ring. Let $M$ be a graded $S$-module. We saw in Lemma <a href="/tag/01M7" data-tag="01M7">27.8.4</a> how to construct a quasi-coherent sheaf of modules $\widetilde{M}$ on $\text{Proj}(S)$ and a map 
+</p>
+<div class="equation" id="0AG1">
+    <span class="equation-label"><a href="/tag/0AG1" data-tag="0AG1">27.9.0.1</a></span>
+  <div>\begin{equation}  \label{constructions-equation-map-global-sections} M_0 \longrightarrow \Gamma (\text{Proj}(S), \widetilde{M}) \end{equation}</div>
+</div>
+<p>
+ of the degree $0$ part of $M$ to the global sections of $\widetilde{M}$. The degree $0$ part of the $n$th twist $M(n)$ of the graded module $M$ (see Algebra, Section <a href="/tag/00JL" data-tag="00JL">10.56</a>) is equal to $M_ n$. Hence we can get maps 
+</p>
+<div class="equation" id="0AG2">
+    <span class="equation-label"><a href="/tag/0AG2" data-tag="0AG2">27.9.0.2</a></span>
+  <div>\begin{equation}  \label{constructions-equation-map-global-sections-degree-n} M_ n \longrightarrow \Gamma (\text{Proj}(S), \widetilde{M(n)}). \end{equation}</div>
+</div>
+<p>
+ We would like to be able to perform this operation for any quasi-coherent sheaf $\mathcal{F}$ on $\text{Proj}(S)$. We will do this by tensoring with the $n$th twist of the structure sheaf, see Definition <a href="/tag/01MN" data-tag="01MN">27.10.1</a>. In order to relate the two notions we will use the following lemma. 
+</p>
+<p>
+<article class="env-lemma" id="01MK">
+  <p><a class="environment-identifier" href="/tag/01MK">Lemma <span data-tag="01MK">27.9.1</span>.</a> Let $S$ be a graded ring. Let $(X, \mathcal{O}_ X) = (\text{Proj}(S), \mathcal{O}_{\text{Proj}(S)})$ be the scheme of Lemma <a href="/tag/01MB" data-tag="01MB">27.8.7</a>. Let $f \in S_{+}$ be homogeneous. Let $x \in X$ be a point corresponding to the homogeneous prime $\mathfrak p \subset S$. Let $M$, $N$ be graded $S$-modules. There is a canonical map of $\mathcal{O}_{\text{Proj}(S)}$-modules </p>
+  <div class="equation">
+  \[  \widetilde M \otimes _{\mathcal{O}_ X} \widetilde N \longrightarrow \widetilde{M \otimes _ S N}  \]
+</div>
+  <p> which induces the canonical map $ M_{(f)} \otimes _{S_{(f)}} N_{(f)} \to (M \otimes _ S N)_{(f)} $ on sections over $D_{+}(f)$ and the canonical map $ M_{(\mathfrak p)} \otimes _{S_{(\mathfrak p)}} N_{(\mathfrak p)} \to (M \otimes _ S N)_{(\mathfrak p)} $ on stalks at $x$. Moreover, the following diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ M_0 \otimes _{S_0} N_0 \ar[r] \ar[d] &  (M \otimes _ S N)_0 \ar[d] \\  \Gamma (X, \widetilde M \otimes _{\mathcal{O}_ X} \widetilde N) \ar[r] &  \Gamma (X, \widetilde{M \otimes _ S N}) }  \]
+</div>
+  <p> is commutative where the vertical maps are given by (<a href="/tag/0AG1" data-tag="0AG1">27.9.0.1</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      To construct a morphism as displayed is the same as constructing a $\mathcal{O}_ X$-bilinear map 
+    <p>
+      <div class="equation">
+  \[  \widetilde M \times \widetilde N \longrightarrow \widetilde{M \otimes _ S N}  \]
+</div>
+    <p>
+       see Modules, Section <a href="/tag/01CA" data-tag="01CA">17.16</a>. It suffices to define this on sections over the opens $D_{+}(f)$ compatible with restriction mappings. On $D_{+}(f)$ we use the $S_{(f)}$-bilinear map $M_{(f)} \times N_{(f)} \to (M \otimes _ S N)_{(f)}$, $(x/f^ n, y/f^ m) \mapsto (x \otimes y)/f^{n + m}$. Details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="01ML">
+  <p><a class="environment-identifier" href="/tag/01ML">Remark <span data-tag="01ML">27.9.2</span>.</a> In general the map constructed in Lemma <a href="/tag/01MK" data-tag="01MK">27.9.1</a> above is not an isomorphism. Here is an example. Let $k$ be a field. Let $S = k[x, y, z]$ with $k$ in degree $0$ and $\deg (x) = 1$, $\deg (y) = 2$, $\deg (z) = 3$. Let $M = S(1)$ and $N = S(2)$, see Algebra, Section <a href="/tag/00JL" data-tag="00JL">10.56</a> for notation. Then $M \otimes _ S N = S(3)$. Note that </p>
+  <div class="equation">
+  \begin{eqnarray*}  S_ z &  = &  k[x, y, z, 1/z] \\  S_{(z)} &  = &  k[x^3/z, xy/z, y^3/z^2] \cong k[u, v, w]/(uw - v^3) \\  M_{(z)} &  = &  S_{(z)} \cdot x + S_{(z)} \cdot y^2/z \subset S_ z \\  N_{(z)} &  = &  S_{(z)} \cdot y + S_{(z)} \cdot x^2 \subset S_ z \\  S(3)_{(z)} &  = &  S_{(z)} \cdot z \subset S_ z \end{eqnarray*}
+</div>
+  <p> Consider the maximal ideal $\mathfrak m = (u, v, w) \subset S_{(z)}$. It is not hard to see that both $M_{(z)}/\mathfrak mM_{(z)}$ and $N_{(z)}/\mathfrak mN_{(z)}$ have dimension $2$ over $\kappa (\mathfrak m)$. But $S(3)_{(z)}/\mathfrak mS(3)_{(z)}$ has dimension $1$. Thus the map $M_{(z)} \otimes N_{(z)} \to S(3)_{(z)}$ is not an isomorphism. </p>
+</article> 
+</p>

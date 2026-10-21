@@ -1,0 +1,103 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="schemes-section-locally-ringed-spaces" class="tex-section"><span data-tag="01HA">26.2</span> Locally ringed spaces</h2>
+
+<p>
+Recall that we defined ringed spaces in Sheaves, Section <a href="/tag/0090" data-tag="0090">6.25</a>. Briefly, a ringed space is a pair $(X, \mathcal{O}_ X)$ consisting of a topological space $X$ and a sheaf of rings $\mathcal{O}_ X$. A morphism of ringed spaces $f : (X, \mathcal{O}_ X) \to (Y, \mathcal{O}_ Y)$ is given by a continuous map $f : X \to Y$ and an $f$-map of sheaves of rings $f^\sharp : \mathcal{O}_ Y \to \mathcal{O}_ X$. You can think of $f^\sharp $ as a map $\mathcal{O}_ Y \to f_*\mathcal{O}_ X$, see Sheaves, Definition <a href="/tag/008J" data-tag="008J">6.21.7</a> and Lemma <a href="/tag/008K" data-tag="008K">6.21.8</a>. 
+</p>
+<p>
+A good geometric example of this to keep in mind is $\mathcal{C}^\infty $-manifolds and morphisms of $\mathcal{C}^\infty $-manifolds. Namely, if $M$ is a $\mathcal{C}^\infty $-manifold, then the sheaf $\mathcal{C}^\infty _ M$ of smooth functions is a sheaf of rings on $M$. And any map $f : M \to N$ of manifolds is smooth if and only if for every local section $h$ of $\mathcal{C}^\infty _ N$ the composition $h \circ f$ is a local section of $\mathcal{C}^\infty _ M$. Thus a smooth map $f$ gives rise in a natural way to a morphism of ringed spaces 
+</p>
+<div class="equation">
+  \[  f : (M , \mathcal{C}^\infty _ M) \longrightarrow (N, \mathcal{C}^\infty _ N)  \]
+</div>
+<p>
+ see Sheaves, Example <a href="/tag/0092" data-tag="0092">6.25.2</a>. It is instructive to consider what happens to stalks. Namely, let $m \in M$ with image $f(m) = n \in N$. Recall that the stalk $\mathcal{C}^\infty _{M, m}$ is the ring of germs of smooth functions at $m$, see Sheaves, Example <a href="/tag/007C" data-tag="007C">6.11.4</a>. The algebra of germs of functions on $(M, m)$ is a local ring with maximal ideal the functions which vanish at $m$. Similarly for $\mathcal{C}^\infty _{N, n}$. The map on stalks $f^\sharp : \mathcal{C}^\infty _{N, n} \to \mathcal{C}^\infty _{M, m}$ maps the maximal ideal into the maximal ideal, simply because $f(m) = n$. 
+</p>
+<p>
+In algebraic geometry we study schemes. On a scheme the sheaf of rings is not determined by an intrinsic property of the space. The spectrum of a ring $R$ (see Algebra, Section <a href="/tag/00DY" data-tag="00DY">10.17</a>) endowed with a sheaf of rings constructed out of $R$ (see below), will be our basic building block. It will turn out that the stalks of $\mathcal{O}$ on $\mathop{\mathrm{Spec}}(R)$ are the local rings of $R$ at its primes. There are two reasons to introduce locally ringed spaces in this setting: (1) There is in general no mechanism that assigns to a continuous map of spectra a map of the corresponding rings. This is why we add as an extra datum the map $f^\sharp $. (2) If we consider morphisms of these spectra in the category of ringed spaces, then the maps on stalks may not be local homomorphisms. Since our geometric intuition says it should we introduce locally ringed spaces as follows. 
+</p>
+<p>
+<article class="env-definition" id="01HB">
+  <p><a class="environment-identifier" href="/tag/01HB">Definition <span data-tag="01HB">26.2.1</span>.</a> Locally ringed spaces. </p>
+  <p><ol>
+  <li><p>
+A <em>locally ringed space $(X, \mathcal{O}_ X)$</em> is a pair consisting of a topological space $X$ and a sheaf of rings $\mathcal{O}_ X$ all of whose stalks are local rings. 
+</p>
+</li><li><p>
+Given a locally ringed space $(X, \mathcal{O}_ X)$ we say that $\mathcal{O}_{X, x}$ is the <em>local ring of $X$ at $x$</em>. We denote $\mathfrak {m}_{X, x}$ or simply $\mathfrak {m}_ x$ the maximal ideal of $\mathcal{O}_{X, x}$. Moreover, the <em>residue field of $X$ at $x$</em> is the residue field $\kappa (x) = \mathcal{O}_{X, x}/\mathfrak {m}_ x$. 
+</p>
+</li><li><p>
+A <em>morphism of locally ringed spaces</em> $(f, f^\sharp ) : (X, \mathcal{O}_ X) \to (Y, \mathcal{O}_ Y)$ is a morphism of ringed spaces such that for all $x \in X$ the induced ring map $\mathcal{O}_{Y, f(x)} \to \mathcal{O}_{X, x}$ is a local ring map. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+We will usually suppress the sheaf of rings $\mathcal{O}_ X$ in the notation when discussing locally ringed spaces. We will simply refer to “the locally ringed space $X$”. We will by abuse of notation think of $X$ also as the underlying topological space. Finally we will denote the corresponding sheaf of rings $\mathcal{O}_ X$ as the <em>structure sheaf of $X$</em>. In addition, it is customary to denote the maximal ideal of the local ring $\mathcal{O}_{X, x}$ by $\mathfrak {m}_{X, x}$ or simply $\mathfrak {m}_ x$. We will say “let $f : X \to Y$ be a morphism of locally ringed spaces” thereby suppressing the structure sheaves even further. In this case, we will by abuse of notation think of $f : X\to Y$ also as the underlying continuous map of topological spaces. The $f$-map corresponding to $f$ will customarily be denoted $f^\sharp $. The condition that $f$ is a morphism of locally ringed spaces can then be expressed by saying that for every $x\in X$ the map on stalks 
+</p>
+<div class="equation">
+  \[  f^\sharp _ x : \mathcal{O}_{Y, f(x)} \longrightarrow \mathcal{O}_{X, x}  \]
+</div>
+<p>
+ maps the maximal ideal $\mathfrak m_{Y, f(x)}$ into $\mathfrak m_{X, x}$. 
+</p>
+<p>
+Let us use these notational conventions to show that the collection of locally ringed spaces and morphisms of locally ringed spaces forms a category. In order to see this we have to show that the composition of morphisms of locally ringed spaces is a morphism of locally ringed spaces. OK, so let $f : X \to Y$ and $g : Y \to Z$ be morphism of locally ringed spaces. The composition of $f$ and $g$ is defined in Sheaves, Definition <a href="/tag/0093" data-tag="0093">6.25.3</a>. Let $x \in X$. By Sheaves, Lemma <a href="/tag/008M" data-tag="008M">6.21.10</a> the composition 
+</p>
+<div class="equation">
+  \[  \mathcal{O}_{Z, g(f(x))} \xrightarrow {g^\sharp } \mathcal{O}_{Y, f(x)} \xrightarrow {f^\sharp } \mathcal{O}_{X, x}  \]
+</div>
+<p>
+ is the associated map on stalks for the morphism $g \circ f$. The result follows since a composition of local ring homomorphisms is a local ring homomorphism. 
+</p>
+<p>
+A pleasing feature of the definition is the fact that the functor 
+</p>
+<div class="equation">
+  \[  \textit{Locally ringed spaces} \longrightarrow \textit{Ringed spaces}  \]
+</div>
+<p>
+ reflects isomorphisms (plus more). Here is a less abstract statement. 
+</p>
+<p>
+<article class="env-lemma" id="01HC">
+       
+      
+  <p><a class="environment-identifier" href="/tag/01HC">Lemma <span data-tag="01HC">26.2.2</span>.</a> Let $X$, $Y$ be locally ringed spaces. If $f : X \to Y$ is an isomorphism of ringed spaces, then $f$ is an isomorphism of locally ringed spaces. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows trivially from the corresponding fact in algebra: Suppose $A$, $B$ are local rings. Any isomorphism of rings $A \to B$ is a local ring isomorphism. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

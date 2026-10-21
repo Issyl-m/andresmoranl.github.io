@@ -1,0 +1,329 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="varieties-section-num" class="tex-section"><span data-tag="0BEL">33.45</span> Numerical intersections</h2>
+
+<p>
+In this section we play around with the Euler characteristic of coherent sheaves on proper schemes to obtain numerical intersection numbers for invertible modules. Our main tool will be the following lemma. 
+</p>
+<p>
+<article class="env-lemma" id="0BEM">
+  <p><a class="environment-identifier" href="/tag/0BEM">Lemma <span data-tag="0BEM">33.45.1</span>.</a> Let $k$ be a field. Let $X$ be a proper scheme over $k$. Let $\mathcal{F}$ be a coherent $\mathcal{O}_ X$-module. Let $\mathcal{L}_1, \ldots , \mathcal{L}_ r$ be invertible $\mathcal{O}_ X$-modules. The map </p>
+  <div class="equation">
+  \[  (n_1, \ldots , n_ r) \longmapsto \chi (X, \mathcal{F} \otimes \mathcal{L}_1^{\otimes n_1} \otimes \ldots \otimes \mathcal{L}_ r^{\otimes n_ r})  \]
+</div>
+  <p> is a numerical polynomial in $n_1, \ldots , n_ r$ of total degree at most the dimension of the support of $\mathcal{F}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We prove this by induction on $\dim (\text{Supp}(\mathcal{F}))$. If this number is zero, then the function is constant with value $\dim _ k \Gamma (X, \mathcal{F})$ by Lemma <a href="/tag/0AYT" data-tag="0AYT">33.33.3</a>. Assume $\dim (\text{Supp}(\mathcal{F})) > 0$. 
+    <p>
+      If $\mathcal{F}$ has embedded associated points, then we can consider the short exact sequence $0 \to \mathcal{K} \to \mathcal{F} \to \mathcal{F}' \to 0$ constructed in Divisors, Lemma <a href="/tag/02OL" data-tag="02OL">31.4.6</a>. Since the dimension of the support of $\mathcal{K}$ is strictly less, the result holds for $\mathcal{K}$ by induction hypothesis and with strictly smaller total degree. By additivity of the Euler characteristic (Lemma <a href="/tag/08AA" data-tag="08AA">33.33.2</a>) it suffices to prove the result for $\mathcal{F}'$. Thus we may assume $\mathcal{F}$ does not have embedded associated points. 
+    <p>
+      If $i : Z \to X$ is a closed immersion and $\mathcal{F} = i_*\mathcal{G}$, then we see that the result for $X$, $\mathcal{F}$, $\mathcal{L}_1, \ldots , \mathcal{L}_ r$ is equivalent to the result for $Z$, $\mathcal{G}$, $i^*\mathcal{L}_1, \ldots , i^*\mathcal{L}_ r$ (since the cohomologies agree, see Cohomology of Schemes, Lemma <a href="/tag/089W" data-tag="089W">30.2.4</a>). Applying Divisors, Lemma <a href="/tag/02OM" data-tag="02OM">31.4.7</a> we may assume that $X$ has no embedded components and $X = \text{Supp}(\mathcal{F})$. 
+    <p>
+      Pick a regular meromorphic section $s$ of $\mathcal{L}_1$, see Divisors, Lemma <a href="/tag/02OZ" data-tag="02OZ">31.26.4</a>. Let $\mathcal{I} \subset \mathcal{O}_ X$ be the ideal of denominators of $s$ and consider the maps 
+    <p>
+      <div class="equation">
+  \[  \mathcal{I}\mathcal{F} \to \mathcal{F},\quad \mathcal{I}\mathcal{F} \to \mathcal{F} \otimes \mathcal{L}_1  \]
+</div>
+    <p>
+       of Divisors, Lemma <a href="/tag/02P2" data-tag="02P2">31.25.5</a>. These are injective and have cokernels $\mathcal{Q}$, $\mathcal{Q}'$ supported on nowhere dense closed subschemes of $X = \text{Supp}(\mathcal{F})$. Tensoring with the invertible module $\mathcal{L}_1^{\otimes n_1} \otimes \ldots \otimes \mathcal{L}_ r^{\otimes n_ r}$ is exact, hence using additivity again we see that 
+    <p>
+      <div class="equation">
+  \begin{align*} & \chi (X, \mathcal{F} \otimes \mathcal{L}_1^{\otimes n_1} \otimes \ldots \otimes \mathcal{L}_ r^{\otimes n_ r}) - \chi (X, \mathcal{F} \otimes \mathcal{L}_1^{\otimes n_1 + 1} \otimes \ldots \otimes \mathcal{L}_ r^{\otimes n_ r}) \\ &  = \chi (\mathcal{Q} \otimes \mathcal{L}_1^{\otimes n_1} \otimes \ldots \otimes \mathcal{L}_ r^{\otimes n_ r}) - \chi (\mathcal{Q}' \otimes \mathcal{L}_1^{\otimes n_1} \otimes \ldots \otimes \mathcal{L}_ r^{\otimes n_ r}) \end{align*}
+</div>
+    <p>
+       Thus we see that the function $P(n_1, \ldots , n_ r)$ of the lemma has the property that 
+    <p>
+      <div class="equation">
+  \[  P(n_1 + 1, n_2, \ldots , n_ r) - P(n_1, \ldots , n_ r)  \]
+</div>
+    <p>
+       is a numerical polynomial of total degree $<$ the dimension of the support of $\mathcal{F}$. Of course by symmetry the same thing is true for 
+    <p>
+      <div class="equation">
+  \[  P(n_1, \ldots , n_{i - 1}, n_ i + 1, n_{i + 1}, \ldots , n_ r) - P(n_1, \ldots , n_ r)  \]
+</div>
+    <p>
+       for any $i \in \{ 1, \ldots , r\} $. A simple arithmetic argument shows that $P$ is a numerical polynomial of total degree at most $\dim (\text{Supp}(\mathcal{F}))$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma roughly shows that the leading coefficient only depends on the length of the coherent module in the generic points of its support. 
+</p>
+<p>
+<article class="env-lemma" id="0BEN">
+  <p><a class="environment-identifier" href="/tag/0BEN">Lemma <span data-tag="0BEN">33.45.2</span>.</a> Let $k$ be a field. Let $X$ be a proper scheme over $k$. Let $\mathcal{F}$ be a coherent $\mathcal{O}_ X$-module. Let $\mathcal{L}_1, \ldots , \mathcal{L}_ r$ be invertible $\mathcal{O}_ X$-modules. Let $d = \dim (\text{Supp}(\mathcal{F}))$. Let $Z_ i \subset X$ be the irreducible components of $\text{Supp}(\mathcal{F})$ of dimension $d$. Let $\xi _ i \in Z_ i$ be the generic point and set $m_ i = \text{length}_{\mathcal{O}_{X, \xi _ i}}(\mathcal{F}_{\xi _ i})$. Then </p>
+  <div class="equation">
+  \[  \chi (X, \mathcal{F} \otimes \mathcal{L}_1^{\otimes n_1} \otimes \ldots \otimes \mathcal{L}_ r^{\otimes n_ r}) - \sum \nolimits _ i m_ i\  \chi (Z_ i, \mathcal{L}_1^{\otimes n_1} \otimes \ldots \otimes \mathcal{L}_ r^{\otimes n_ r}|_{Z_ i})  \]
+</div>
+  <p> is a numerical polynomial in $n_1, \ldots , n_ r$ of total degree $< d$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider pairs $(\xi , Z)$ where $Z \subset X$ is an integral closed subscheme of dimension $d$ and $\xi $ is its generic point. Then the finite $\mathcal{O}_{X, \xi }$-module $\mathcal{F}_\xi $ has support contained in $\{ \xi \} $ hence the length $m_ Z = \text{length}_{\mathcal{O}_{X, \xi }}(\mathcal{F}_\xi )$ is finite (Algebra, Lemma <a href="/tag/00L5" data-tag="00L5">10.62.3</a>) and zero unless $Z = Z_ i$ for some $i$. Thus the expression of the lemma can be written as 
+    <p>
+      <div class="equation">
+  \[  E(\mathcal{F}) = \chi (X, \mathcal{F} \otimes \mathcal{L}_1^{\otimes n_1} \otimes \ldots \otimes \mathcal{L}_ r^{\otimes n_ r}) - \sum \nolimits m_ Z\  \chi (Z, \mathcal{L}_1^{\otimes n_1} \otimes \ldots \otimes \mathcal{L}_ r^{\otimes n_ r}|_ Z)  \]
+</div>
+    <p>
+       where the sum is over integral closed subschemes $Z \subset X$ of dimension $d$. The assignment $\mathcal{F} \mapsto E(\mathcal{F})$ is additive in short exact sequences $0 \to \mathcal{F} \to \mathcal{F}' \to \mathcal{F}'' \to 0$ of coherent $\mathcal{O}_ X$-modules whose support has dimension $\leq d$. This follows from additivity of Euler characteristics (Lemma <a href="/tag/08AA" data-tag="08AA">33.33.2</a>) and additivity of lengths (Algebra, Lemma <a href="/tag/00IV" data-tag="00IV">10.52.3</a>). Let us apply Cohomology of Schemes, Lemma <a href="/tag/01YF" data-tag="01YF">30.12.3</a> to find a filtration 
+    <p>
+      <div class="equation">
+  \[  0 = \mathcal{F}_0 \subset \mathcal{F}_1 \subset \ldots \subset \mathcal{F}_ m = \mathcal{F}  \]
+</div>
+    <p>
+       by coherent subsheaves such that for each $j = 1, \ldots , m$ there exists an integral closed subscheme $V_ j \subset X$ and a nonzero sheaf of ideals $\mathcal{I}_ j \subset \mathcal{O}_{V_ j}$ such that 
+    <p>
+      <div class="equation">
+  \[  \mathcal{F}_ j/\mathcal{F}_{j - 1} \cong (V_ j \to X)_* \mathcal{I}_ j  \]
+</div>
+    <p>
+       It follows that $V_ j \subset \text{Supp}(\mathcal{F})$ and hence $\dim (V_ j) \leq d$. By the additivity we remarked upon above it suffices to prove the result for each of the subquotients $\mathcal{F}_ j/\mathcal{F}_{j - 1}$. Thus it suffices to prove the result when $\mathcal{F} = (V \to X)_*\mathcal{I}$ where $V \subset X$ is an integral closed subscheme of dimension $\leq d$ and $\mathcal{I} \subset \mathcal{O}_ V$ is a nonzero coherent sheaf of ideals. If $\dim (V) < d$ and more generally for $\mathcal{F}$ whose support has dimension $< d$, then the first term in $E(\mathcal{F})$ has total degree $< d$ by Lemma <a href="/tag/0BEM" data-tag="0BEM">33.45.1</a> and the second term is zero. If $\dim (V) = d$, then we can use the short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to (V \to X)_*\mathcal{I} \to (V \to X)_*\mathcal{O}_ V \to (V \to X)_*(\mathcal{O}_ V/\mathcal{I}) \to 0  \]
+</div>
+    <p>
+       The result holds for the middle sheaf because the only $Z$ occurring in the sum is $Z = V$ with $m_ Z = 1$ and because 
+    <p>
+      <div class="equation">
+  \[  H^ i(X, ((V \to X)_*\mathcal{O}_ V) \otimes \mathcal{L}_1^{\otimes n_1} \otimes \ldots \otimes \mathcal{L}_ r^{\otimes n_ r}) = H^ i(V, \mathcal{L}_1^{\otimes n_1} \otimes \ldots \otimes \mathcal{L}_ r^{\otimes n_ r}|_ V)  \]
+</div>
+    <p>
+       by the projection formula (Cohomology, Section <a href="/tag/01E6" data-tag="01E6">20.54</a>) and Cohomology of Schemes, Lemma <a href="/tag/089W" data-tag="089W">30.2.4</a>; so in this case we actually have $E(\mathcal{F}) = 0$. The result holds for the sheaf on the right because its support has dimension $< d$. Thus the result holds for the sheaf on the left and the lemma is proved. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="0BEP">
+  <p><a class="environment-identifier" href="/tag/0BEP">Definition <span data-tag="0BEP">33.45.3</span>.</a> Let $k$ be a field. Let $X$ be a proper scheme over $k$. Let $i : Z \to X$ be a closed subscheme of dimension $d$. Let $\mathcal{L}_1, \ldots , \mathcal{L}_ d$ be invertible $\mathcal{O}_ X$-modules. We define the <em>intersection number</em> $(\mathcal{L}_1 \cdots \mathcal{L}_ d \cdot Z)$ as the coefficient of $n_1 \ldots n_ d$ in the numerical polynomial </p>
+  <div class="equation">
+  \[  \chi (X, i_*\mathcal{O}_ Z \otimes \mathcal{L}_1^{\otimes n_1} \otimes \ldots \otimes \mathcal{L}_ d^{\otimes n_ d}) = \chi (Z, \mathcal{L}_1^{\otimes n_1} \otimes \ldots \otimes \mathcal{L}_ d^{\otimes n_ d}|_ Z)  \]
+</div>
+  <p> In the special case that $\mathcal{L}_1 = \ldots = \mathcal{L}_ d = \mathcal{L}$ we write $(\mathcal{L}^ d \cdot Z)$. </p>
+</article> 
+</p>
+<p>
+The displayed equality in the definition follows from the projection formula (Cohomology, Section <a href="/tag/01E6" data-tag="01E6">20.54</a>) and Cohomology of Schemes, Lemma <a href="/tag/089W" data-tag="089W">30.2.4</a>. We prove a few lemmas for these intersection numbers. 
+</p>
+<p>
+<article class="env-lemma" id="0BEQ">
+  <p><a class="environment-identifier" href="/tag/0BEQ">Lemma <span data-tag="0BEQ">33.45.4</span>.</a> In the situation of Definition <a href="/tag/0BEP" data-tag="0BEP">33.45.3</a> the intersection number $(\mathcal{L}_1 \cdots \mathcal{L}_ d \cdot Z)$ is an integer. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Any numerical polynomial of degree $e$ in $n_1, \ldots , n_ d$ can be written uniquely as a $\mathbf{Z}$-linear combination of the functions ${n_1 \choose k_1}{n_2 \choose k_2} \ldots {n_ d \choose k_ d}$ with $k_1 + \ldots + k_ d \leq e$. Apply this with $e = d$. Left as an exercise. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BER">
+  <p><a class="environment-identifier" href="/tag/0BER">Lemma <span data-tag="0BER">33.45.5</span>.</a> In the situation of Definition <a href="/tag/0BEP" data-tag="0BEP">33.45.3</a> the intersection number $(\mathcal{L}_1 \cdots \mathcal{L}_ d \cdot Z)$ is additive: if $\mathcal{L}_ i = \mathcal{L}_ i' \otimes \mathcal{L}_ i''$, then we have </p>
+  <div class="equation">
+  \[  (\mathcal{L}_1 \cdots \mathcal{L}_ i \cdots \mathcal{L}_ d \cdot Z) = (\mathcal{L}_1 \cdots \mathcal{L}_ i' \cdots \mathcal{L}_ d \cdot Z) + (\mathcal{L}_1 \cdots \mathcal{L}_ i'' \cdots \mathcal{L}_ d \cdot Z)  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is true because by Lemma <a href="/tag/0BEM" data-tag="0BEM">33.45.1</a> the function 
+    <p>
+      <div class="equation">
+  \[  (n_1, \ldots , n_{i - 1}, n_ i', n_ i'', n_{i + 1}, \ldots , n_ d) \mapsto \chi (Z, \mathcal{L}_1^{\otimes n_1} \otimes \ldots \otimes (\mathcal{L}_ i')^{\otimes n_ i'} \otimes (\mathcal{L}_ i'')^{\otimes n_ i''} \otimes \ldots \otimes \mathcal{L}_ d^{\otimes n_ d}|_ Z)  \]
+</div>
+    <p>
+       is a numerical polynomial of total degree at most $d$ in $d + 1$ variables. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BES">
+  <p><a class="environment-identifier" href="/tag/0BES">Lemma <span data-tag="0BES">33.45.6</span>.</a> In the situation of Definition <a href="/tag/0BEP" data-tag="0BEP">33.45.3</a> let $Z_ i \subset Z$ be the irreducible components of dimension $d$. Let $m_ i = \text{length}_{\mathcal{O}_{X, \xi _ i}}(\mathcal{O}_{Z, \xi _ i})$ where $\xi _ i \in Z_ i$ is the generic point. Then </p>
+  <div class="equation">
+  \[  (\mathcal{L}_1 \cdots \mathcal{L}_ d \cdot Z) = \sum m_ i(\mathcal{L}_1 \cdots \mathcal{L}_ d \cdot Z_ i)  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Immediate from Lemma <a href="/tag/0BEN" data-tag="0BEN">33.45.2</a> and the definitions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BET">
+  <p><a class="environment-identifier" href="/tag/0BET">Lemma <span data-tag="0BET">33.45.7</span>.</a> Let $k$ be a field. Let $f : Y \to X$ be a morphism of proper schemes over $k$. Let $Z \subset Y$ be an integral closed subscheme of dimension $d$ and let $\mathcal{L}_1, \ldots , \mathcal{L}_ d$ be invertible $\mathcal{O}_ X$-modules. Then </p>
+  <div class="equation">
+  \[  (f^*\mathcal{L}_1 \cdots f^*\mathcal{L}_ d \cdot Z) = \deg (f|_ Z : Z \to f(Z)) (\mathcal{L}_1 \cdots \mathcal{L}_ d \cdot f(Z))  \]
+</div>
+  <p> where $\deg (Z \to f(Z))$ is as in Morphisms, Definition <a href="/tag/02NY" data-tag="02NY">29.52.8</a> or $0$ if $\dim (f(Z)) < d$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The left hand side is computed using the coefficient of $n_1 \ldots n_ d$ in the function 
+    <p>
+      <div class="equation">
+  \[  \chi (Y, \mathcal{O}_ Z \otimes f^*\mathcal{L}_1^{\otimes n_1} \otimes \ldots \otimes f^*\mathcal{L}_ d^{\otimes n_ d}) = \sum (-1)^ i \chi (X, R^ if_*\mathcal{O}_ Z \otimes \mathcal{L}_1^{\otimes n_1} \otimes \ldots \otimes \mathcal{L}_ d^{\otimes n_ d})  \]
+</div>
+    <p>
+       The equality follows from Lemma <a href="/tag/0BEK" data-tag="0BEK">33.33.5</a> and the projection formula (Cohomology, Lemma <a href="/tag/01E8" data-tag="01E8">20.54.2</a>). If $f(Z)$ has dimension $< d$, then the right hand side is a polynomial of total degree $< d$ by Lemma <a href="/tag/0BEM" data-tag="0BEM">33.45.1</a> and the result is true. Assume $\dim (f(Z)) = d$. Let $\xi \in f(Z)$ be the generic point. By dimension theory (see Lemmas <a href="/tag/0A21" data-tag="0A21">33.20.3</a> and <a href="/tag/0B2L" data-tag="0B2L">33.20.4</a>) the generic point of $Z$ is the unique point of $Z$ mapping to $\xi $. Then $f : Z \to f(Z)$ is finite over a nonempty open of $f(Z)$, see Morphisms, Lemma <a href="/tag/02NW" data-tag="02NW">29.52.1</a>. Thus $\deg (f : Z \to f(Z))$ is defined and in fact it is equal to the length of the stalk of $f_*\mathcal{O}_ Z$ at $\xi $ over $\mathcal{O}_{X, \xi }$. Moreover, the stalk of $R^ if_*\mathcal{O}_ X$ at $\xi $ is zero for $i > 0$ because we just saw that $f|_ Z$ is finite in a neighbourhood of $\xi $ (so that Cohomology of Schemes, Lemma <a href="/tag/01Y6" data-tag="01Y6">30.9.9</a> gives the vanishing). Thus the terms $\chi (X, R^ if_*\mathcal{O}_ Z \otimes \mathcal{L}_1^{\otimes n_1} \otimes \ldots \otimes \mathcal{L}_ d^{\otimes n_ d})$ with $i > 0$ have total degree $< d$ and 
+    <p>
+      <div class="equation">
+  \[  \chi (X, f_*\mathcal{O}_ Z \otimes \mathcal{L}_1^{\otimes n_1} \otimes \ldots \otimes \mathcal{L}_ d^{\otimes n_ d}) = \deg (f : Z \to f(Z)) \chi (f(Z), \mathcal{L}_1^{\otimes n_1} \otimes \ldots \otimes \mathcal{L}_ d^{\otimes n_ d}|_{f(Z)})  \]
+</div>
+    <p>
+       modulo a polynomial of total degree $< d$ by Lemma <a href="/tag/0BEN" data-tag="0BEN">33.45.2</a>. The desired result follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BEU">
+  <p><a class="environment-identifier" href="/tag/0BEU">Lemma <span data-tag="0BEU">33.45.8</span>.</a> Let $k$ be a field. Let $X$ be proper over $k$. Let $Z \subset X$ be a closed subscheme of dimension $d$. Let $\mathcal{L}_1, \ldots , \mathcal{L}_ d$ be invertible $\mathcal{O}_ X$-modules. Assume there exists an effective Cartier divisor $D \subset Z$ such that $\mathcal{L}_1|_ Z \cong \mathcal{O}_ Z(D)$. Then </p>
+  <div class="equation">
+  \[  (\mathcal{L}_1 \cdots \mathcal{L}_ d \cdot Z) = (\mathcal{L}_2 \cdots \mathcal{L}_ d \cdot D)  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We may replace $X$ by $Z$ and $\mathcal{L}_ i$ by $\mathcal{L}_ i|_ Z$. Thus we may assume $X = Z$ and $\mathcal{L}_1 = \mathcal{O}_ X(D)$. Then $\mathcal{L}_1^{-1}$ is the ideal sheaf of $D$ and we can consider the short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{L}_1^{\otimes -1} \to \mathcal{O}_ X \to \mathcal{O}_ D \to 0  \]
+</div>
+    <p>
+       Set $P(n_1, \ldots , n_ d) = \chi (X, \mathcal{L}_1^{\otimes n_1} \otimes \ldots \otimes \mathcal{L}_ d^{\otimes n_ d})$ and $Q(n_1, \ldots , n_ d) = \chi (D, \mathcal{L}_1^{\otimes n_1} \otimes \ldots \otimes \mathcal{L}_ d^{\otimes n_ d}|_ D)$. We conclude from additivity that 
+    <p>
+      <div class="equation">
+  \[  P(n_1, \ldots , n_ d) - P(n_1 - 1, n_2, \ldots , n_ d) = Q(n_1, \ldots , n_ d)  \]
+</div>
+    <p>
+       Because the total degree of $P$ is at most $d$, we see that the coefficient of $n_1 \ldots n_ d$ in $P$ is equal to the coefficient of $n_2 \ldots n_ d$ in $Q$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BEV">
+  <p><a class="environment-identifier" href="/tag/0BEV">Lemma <span data-tag="0BEV">33.45.9</span>.</a> Let $k$ be a field. Let $X$ be proper over $k$. Let $Z \subset X$ be a closed subscheme of dimension $d$. If $\mathcal{L}_1, \ldots , \mathcal{L}_ d$ are ample, then $(\mathcal{L}_1 \cdots \mathcal{L}_ d \cdot Z)$ is positive. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will prove this by induction on $d$. The case $d = 0$ follows from Lemma <a href="/tag/0AYT" data-tag="0AYT">33.33.3</a>. Assume $d > 0$. By Lemma <a href="/tag/0BES" data-tag="0BES">33.45.6</a> we may assume that $Z$ is an integral closed subscheme. In fact, we may replace $X$ by $Z$ and $\mathcal{L}_ i$ by $\mathcal{L}_ i|_ Z$ to reduce to the case $Z = X$ is a proper variety of dimension $d$. By Lemma <a href="/tag/0BER" data-tag="0BER">33.45.5</a> we may replace $\mathcal{L}_1$ by a positive tensor power. Thus we may assume there exists a nonzero section $s \in \Gamma (X, \mathcal{L}_1)$ such that $X_ s$ is affine (here we use the definition of ample invertible sheaf, see Properties, Definition <a href="/tag/01PS" data-tag="01PS">28.27.1</a>). Observe that $X$ is not affine because proper and affine implies finite (Morphisms, Lemma <a href="/tag/01WN" data-tag="01WN">29.45.11</a>) which contradicts $d > 0$. It follows that $s$ has a nonempty vanishing scheme $Z(s) \subset X$. Since $X$ is a variety, $s$ is a regular section of $\mathcal{L}_1$, so $Z(s)$ is an effective Cartier divisor, thus $Z(s)$ has codimension $1$ in $X$, and hence $Z(s)$ has dimension $d - 1$ (here we use material from Divisors, Sections <a href="/tag/01WQ" data-tag="01WQ">31.14</a>, <a href="/tag/0C4S" data-tag="0C4S">31.15</a>, and <a href="/tag/0B3Q" data-tag="0B3Q">31.16</a> and from dimension theory as in Lemma <a href="/tag/0A21" data-tag="0A21">33.20.3</a>). By Lemma <a href="/tag/0BEU" data-tag="0BEU">33.45.8</a> we have 
+    <p>
+      <div class="equation">
+  \[  (\mathcal{L}_1 \cdots \mathcal{L}_ d \cdot X) = (\mathcal{L}_2 \cdots \mathcal{L}_ d \cdot Z(s))  \]
+</div>
+    <p>
+       By induction the right hand side is positive and the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="0BEW">
+  <p><a class="environment-identifier" href="/tag/0BEW">Definition <span data-tag="0BEW">33.45.10</span>.</a> Let $k$ be a field. Let $X$ be a proper scheme over $k$. Let $\mathcal{L}$ be an ample invertible $\mathcal{O}_ X$-module. For any closed subscheme the <em>degree of $Z$ with respect to $\mathcal{L}$</em>, denoted $\deg _\mathcal {L}(Z)$, is the intersection number $(\mathcal{L}^ d \cdot Z)$ where $d = \dim (Z)$. </p>
+</article> 
+</p>
+<p>
+By Lemma <a href="/tag/0BEV" data-tag="0BEV">33.45.9</a> the degree of a subscheme is always a positive integer. We note that $\deg _\mathcal {L}(Z) = d$ if and only if 
+</p>
+<div class="equation">
+  \[  \chi (Z, \mathcal{L}^{\otimes n}|_ Z) = \frac{d}{\dim (Z)!} n^{\dim (Z)} + l.o.t  \]
+</div>
+<p>
+ as can be seen using that 
+</p>
+<div class="equation">
+  \[  (n_1 + \ldots + n_{\dim (Z)})^{\dim (Z)} = \dim (Z)!\  n_1 \ldots n_{\dim (Z)} + \text{other terms}  \]
+</div>
+<p>
+<article class="env-lemma" id="0BEX">
+  <p><a class="environment-identifier" href="/tag/0BEX">Lemma <span data-tag="0BEX">33.45.11</span>.</a> Let $k$ be a field. Let $f : Y \to X$ be a finite dominant morphism of proper varieties over $k$. Let $\mathcal{L}$ be an ample invertible $\mathcal{O}_ X$-module. Then </p>
+  <div class="equation">
+  \[  \deg _{f^*\mathcal{L}}(Y) = \deg (f) \deg _\mathcal {L}(X)  \]
+</div>
+  <p> where $\deg (f)$ is as in Morphisms, Definition <a href="/tag/02NY" data-tag="02NY">29.52.8</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The statement makes sense because $f^*\mathcal{L}$ is ample by Morphisms, Lemma <a href="/tag/0892" data-tag="0892">29.38.7</a>. Having said this the result is a special case of Lemma <a href="/tag/0BET" data-tag="0BET">33.45.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Finally we relate the intersection number with a curve to the notion of degrees of invertible modules on curves introduced in Section <a href="/tag/0AYQ" data-tag="0AYQ">33.44</a>. 
+</p>
+<p>
+<article class="env-lemma" id="0BEY">
+  <p><a class="environment-identifier" href="/tag/0BEY">Lemma <span data-tag="0BEY">33.45.12</span>.</a> Let $k$ be a field. Let $X$ be a proper scheme over $k$. Let $Z \subset X$ be a closed subscheme of dimension $\leq 1$. Let $\mathcal{L}$ be an invertible $\mathcal{O}_ X$-module. Then </p>
+  <div class="equation">
+  \[  (\mathcal{L} \cdot Z) = \deg (\mathcal{L}|_ Z)  \]
+</div>
+  <p> where $\deg (\mathcal{L}|_ Z)$ is as in Definition <a href="/tag/0AYR" data-tag="0AYR">33.44.1</a>. If $\mathcal{L}$ is ample, then $\deg _\mathcal {L}(Z) = \deg (\mathcal{L}|_ Z)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from the fact that the function $n \mapsto \chi (Z, \mathcal{L}|_ Z^{\otimes n})$ has degree $1$ and hence the leading coefficient is the difference of consecutive values. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="0BJ8">
+  <p><a class="environment-identifier" href="/tag/0BJ8">Proposition <span data-tag="0BJ8">33.45.13</span> <span class="named">(Asymptotic Riemann-Roch)</span>.</a>  Let $k$ be a field. Let $X$ be a proper scheme over $k$ of dimension $d$. Let $\mathcal{L}$ be an ample invertible $\mathcal{O}_ X$-module. Then </p>
+  <div class="equation">
+  \[  \dim _ k \Gamma (X, \mathcal{L}^{\otimes n}) \sim c n^ d + l.o.t.  \]
+</div>
+  <p> where $c = \deg _\mathcal {L}(X)/d!$ is a positive constant. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from the definitions, Lemma <a href="/tag/0BEV" data-tag="0BEV">33.45.9</a>, and the vanishing of higher cohomology in Cohomology of Schemes, Lemma <a href="/tag/0B5U" data-tag="0B5U">30.17.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

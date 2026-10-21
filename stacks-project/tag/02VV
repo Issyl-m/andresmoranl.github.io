@@ -1,0 +1,285 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="descent-section-fully-faithful" class="tex-section"><span data-tag="02VV">35.35</span> Fully faithfulness of the pullback functors</h2>
+
+<p>
+It turns out that the pullback functor between descent data for fpqc-coverings is fully faithful. In other words, morphisms of schemes satisfy fpqc descent. The goal of this section is to prove this. The reader is encouraged instead to prove this him/herself. The key is to use Lemma <a href="/tag/023Q" data-tag="023Q">35.13.7</a>. 
+</p>
+<p>
+<article class="env-lemma" id="02VW">
+  <p><a class="environment-identifier" href="/tag/02VW">Lemma <span data-tag="02VW">35.35.1</span>.</a> A surjective and flat morphism is an epimorphism in the category of schemes. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose we have $h : X' \to X$ surjective and flat and $a, b : X \to Y$ morphisms such that $a \circ h = b \circ h$. As $h$ is surjective we see that $a$ and $b$ agree on underlying topological spaces. Pick $x' \in X'$ and set $x = h(x')$ and $y = a(x) = b(x)$. Consider the local ring maps 
+    <p>
+      <div class="equation">
+  \[  a^\sharp _ x, b^\sharp _ x : \mathcal{O}_{Y, y} \to \mathcal{O}_{X, x}  \]
+</div>
+    <p>
+       These become equal when composed with the flat local homomorphism $h^\sharp _{x'} : \mathcal{O}_{X, x} \to \mathcal{O}_{X', x'}$. Since a flat local homomorphism is faithfully flat (Algebra, Lemma <a href="/tag/00HR" data-tag="00HR">10.39.17</a>) we conclude that $h^\sharp _{x'}$ is injective. Hence $a^\sharp _ x = b^\sharp _ x$ which implies $a = b$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02VX">
+  <p><a class="environment-identifier" href="/tag/02VX">Lemma <span data-tag="02VX">35.35.2</span>.</a> Let $h : S' \to S$ be a surjective, flat morphism of schemes. The base change functor </p>
+  <div class="equation">
+  \[  \mathit{Sch}/S \longrightarrow \mathit{Sch}/S', \quad X \longmapsto S' \times _ S X  \]
+</div>
+  <p> is faithful. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $X_1$, $X_2$ be schemes over $S$. Let $\alpha , \beta : X_2 \to X_1$ be morphisms over $S$. If $\alpha $, $\beta $ base change to the same morphism then we get a commutative diagram as follows 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X_2 \ar[d]^\alpha &  S' \times _ S X_2 \ar[l] \ar[d] \ar[r] &  X_2 \ar[d]^\beta \\  X_1 &  S' \times _ S X_1 \ar[l] \ar[r] &  X_1 }  \]
+</div>
+    <p>
+       Hence it suffices to show that $S' \times _ S X_2 \to X_2$ is an epimorphism. As the base change of a surjective and flat morphism it is surjective and flat (see Morphisms, Lemmas <a href="/tag/01S1" data-tag="01S1">29.9.4</a> and <a href="/tag/01U9" data-tag="01U9">29.26.8</a>). Hence the lemma follows from Lemma <a href="/tag/02VW" data-tag="02VW">35.35.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0240">
+  <p><a class="environment-identifier" href="/tag/0240">Lemma <span data-tag="0240">35.35.3</span>.</a> In the situation of Lemma <a href="/tag/023Y" data-tag="023Y">35.34.6</a> assume that $f : X' \to X$ is surjective and flat. Then the pullback functor is faithful. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $(V_ i, \varphi _ i)$, $i = 1, 2$ be descent data for $X \to S$. Let $\alpha , \beta : V_1 \to V_2$ be morphisms of descent data. Suppose that $f^*\alpha = f^*\beta $. Our task is to show that $\alpha = \beta $. Note that $\alpha $, $\beta $ are morphisms of schemes over $X$, and that $f^*\alpha $, $f^*\beta $ are simply the base changes of $\alpha $, $\beta $ to morphisms over $X'$. Hence the lemma follows from Lemma <a href="/tag/02VX" data-tag="02VX">35.35.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Here is the key lemma of this section. 
+</p>
+<p>
+<article class="env-lemma" id="0241">
+  <p><a class="environment-identifier" href="/tag/0241">Lemma <span data-tag="0241">35.35.4</span>.</a> In the situation of Lemma <a href="/tag/023Y" data-tag="023Y">35.34.6</a> assume </p>
+  <p><ol>
+  <li><p>
+$\{ f : X' \to X\} $ is an fpqc covering (for example if $f$ is surjective, flat, and quasi-compact), and 
+</p>
+</li><li><p>
+$S = S'$. 
+</p>
+</li>
+</ol></p>
+  <p> Then the pullback functor is fully faithful. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assumption (1) implies that $f$ is surjective and flat. Hence the pullback functor is faithful by Lemma <a href="/tag/0240" data-tag="0240">35.35.3</a>. Let $(V, \varphi )$ and $(W, \psi )$ be two descent data relative to $X \to S$. Set $(V', \varphi ') = f^*(V, \varphi )$ and $(W', \psi ') = f^*(W, \psi )$. Let $\alpha ' : V' \to W'$ be a morphism of descent data for $X'$ over $S$. We have to show there exists a morphism $\alpha : V \to W$ of descent data for $X$ over $S$ whose pullback is $\alpha '$. 
+    <p>
+      Recall that $V'$ is the base change of $V$ by $f$ and that $\varphi '$ is the base change of $\varphi $ by $f \times f$ (see Remark <a href="/tag/02VP" data-tag="02VP">35.34.2</a>). By assumption the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ V' \times _ S X' \ar[r]_{\varphi '} \ar[d]_{\alpha ' \times \text{id}} &  X' \times _ S V' \ar[d]^{\text{id} \times \alpha '} \\  W' \times _ S X' \ar[r]^{\psi '} &  X' \times _ S W' }  \]
+</div>
+    <p>
+       commutes. We claim the two compositions 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ V' \times _ V V' \ar[r]^-{\text{pr}_ i} &  V' \ar[r]^{\alpha '} &  W' \ar[r] &  W } , \quad i = 0, 1  \]
+</div>
+    <p>
+       are the same. The reader is advised to prove this themselves rather than read the rest of this paragraph. (Please email if you find a nice clean argument.) Let $v_0, v_1$ be points of $V'$ which map to the same point $v \in V$. Let $x_ i \in X'$ be the image of $v_ i$, and let $x$ be the point of $X$ which is the image of $v$ in $X$. In other words, $v_ i = (x_ i, v)$ in $V' = X' \times _ X V$. Write $\varphi (v, x) = (x, v')$ for some point $v'$ of $V$. This is possible because $\varphi $ is a morphism over $X \times _ S X$. Denote $v_ i' = (x_ i, v')$ which is a point of $V'$. Then a calculation (using the definition of $\varphi '$) shows that $\varphi '(v_ i, x_ j) = (x_ i, v'_ j)$. Denote $w_ i = \alpha '(v_ i)$ and $w'_ i = \alpha '(v_ i')$. Now we may write $w_ i = (x_ i, u_ i)$ for some point $u_ i$ of $W$, and $w_ i' = (x_ i, u'_ i)$ for some point $u_ i'$ of $W$. The claim is equivalent to the assertion: $u_0 = u_1$. A formal calculation using the definition of $\psi '$ (see Lemma <a href="/tag/023Y" data-tag="023Y">35.34.6</a>) shows that the commutativity of the diagram displayed above says that 
+    <p>
+      <div class="equation">
+  \[  ((x_ i, x_ j), \psi (u_ i, x)) = ((x_ i, x_ j), (x, u'_ j))  \]
+</div>
+    <p>
+       as points of $(X' \times _ S X') \times _{X \times _ S X} (X \times _ S W)$ for all $i, j \in \{ 0, 1\} $. This shows that $\psi (u_0, x) = \psi (u_1, x)$ and hence $u_0 = u_1$ by taking $\psi ^{-1}$. This proves the claim because the argument above was formal and we can take scheme points (in other words, we may take $(v_0, v_1) = \text{id}_{V' \times _ V V'}$). 
+    <p>
+      At this point we can use Lemma <a href="/tag/023Q" data-tag="023Q">35.13.7</a>. Namely, $\{ V' \to V\} $ is a fpqc covering as the base change of the morphism $f : X' \to X$. Hence, by Lemma <a href="/tag/023Q" data-tag="023Q">35.13.7</a> the morphism $\alpha ' : V' \to W' \to W$ factors through a unique morphism $\alpha : V \to W$ whose base change is necessarily $\alpha '$. Finally, we see the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ V \times _ S X \ar[r]_{\varphi } \ar[d]_{\alpha \times \text{id}} &  X \times _ S V \ar[d]^{\text{id} \times \alpha } \\  W \times _ S X \ar[r]^{\psi } &  X \times _ S W }  \]
+</div>
+    <p>
+       commutes because its base change to $X' \times _ S X'$ commutes and the morphism $X' \times _ S X' \to X \times _ S X$ is surjective and flat (use Lemma <a href="/tag/02VX" data-tag="02VX">35.35.2</a>). Hence $\alpha $ is a morphism of descent data $(V, \varphi ) \to (W, \psi )$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following two lemmas have been obsoleted by the improved exposition of the previous material. But they are still true! 
+</p>
+<p>
+<article class="env-lemma" id="0242">
+  <p><a class="environment-identifier" href="/tag/0242">Lemma <span data-tag="0242">35.35.5</span>.</a> Let $X \to S$ be a morphism of schemes. Let $f : X \to X$ be a selfmap of $X$ over $S$. In this case pullback by $f$ is isomorphic to the identity functor on the category of descent data relative to $X \to S$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is clear from Lemma <a href="/tag/023Y" data-tag="023Y">35.34.6</a> since it tells us that $f^* \cong \text{id}^*$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0243">
+  <p><a class="environment-identifier" href="/tag/0243">Lemma <span data-tag="0243">35.35.6</span>.</a> Let $f : X' \to X$ be a morphism of schemes over a base scheme $S$. Assume there exists a morphism $g : X \to X'$ over $S$, for example if $f$ has a section. Then the pullback functor of Lemma <a href="/tag/023Y" data-tag="023Y">35.34.6</a> defines an equivalence of categories between the category of descent data relative to $X/S$ and $X'/S$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $g : X \to X'$ be a morphism over $S$. Lemma <a href="/tag/0242" data-tag="0242">35.35.5</a> above shows that the functors $f^* \circ g^* = (g \circ f)^*$ and $g^* \circ f^* = (f \circ g)^*$ are isomorphic to the respective identity functors as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="040J">
+  <p><a class="environment-identifier" href="/tag/040J">Lemma <span data-tag="040J">35.35.7</span>.</a> Let $f : X \to X'$ be a morphism of schemes over a base scheme $S$. Assume $X \to S$ is surjective and flat. Then the pullback functor of Lemma <a href="/tag/023Y" data-tag="023Y">35.34.6</a> is a faithful functor from the category of descent data relative to $X'/S$ to the category of descent data relative to $X/S$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We may factor $X \to X'$ as $X \to X \times _ S X' \to X'$. The first morphism has a section, hence induces an equivalence of categories of descent data by Lemma <a href="/tag/0243" data-tag="0243">35.35.6</a>. The second morphism is surjective and flat, hence induces a faithful functor by Lemma <a href="/tag/0240" data-tag="0240">35.35.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="040K">
+  <p><a class="environment-identifier" href="/tag/040K">Lemma <span data-tag="040K">35.35.8</span>.</a> Let $f : X \to X'$ be a morphism of schemes over a base scheme $S$. Assume $\{ X \to S\} $ is an fpqc covering (for example if $f$ is surjective, flat and quasi-compact). Then the pullback functor of Lemma <a href="/tag/023Y" data-tag="023Y">35.34.6</a> is a fully faithful functor from the category of descent data relative to $X'/S$ to the category of descent data relative to $X/S$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We may factor $X \to X'$ as $X \to X \times _ S X' \to X'$. The first morphism has a section, hence induces an equivalence of categories of descent data by Lemma <a href="/tag/0243" data-tag="0243">35.35.6</a>. The second morphism is an fpqc covering hence induces a fully faithful functor by Lemma <a href="/tag/0241" data-tag="0241">35.35.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02VZ">
+  <p><a class="environment-identifier" href="/tag/02VZ">Lemma <span data-tag="02VZ">35.35.9</span>.</a> Let $S$ be a scheme. Let $\mathcal{U} = \{ U_ i \to S\} _{i \in I}$, and $\mathcal{V} = \{ V_ j \to S\} _{j \in J}$, be families of morphisms with target $S$. Let $\alpha : I \to J$, $\text{id} : S \to S$ and $g_ i : U_ i \to V_{\alpha (i)}$ be a morphism of families of maps with fixed target, see Sites, Definition <a href="/tag/00VT" data-tag="00VT">7.8.1</a>. Assume that for each $j \in J$ the family $\{ g_ i : U_ i \to V_ j\} _{\alpha (i) = j}$ is an fpqc covering of $V_ j$. Then the pullback functor </p>
+  <div class="equation">
+  \[  \text{descent data relative to } \mathcal{V} \longrightarrow \text{descent data relative to } \mathcal{U}  \]
+</div>
+  <p> of Lemma <a href="/tag/02VS" data-tag="02VS">35.34.8</a> is fully faithful. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider the morphism of schemes 
+    <p>
+      <div class="equation">
+  \[  g : X = \coprod \nolimits _{i \in I} U_ i \longrightarrow Y = \coprod \nolimits _{j \in J} V_ j  \]
+</div>
+    <p>
+       over $S$ which on the $i$th component maps into the $\alpha (i)$th component via the morphism $g_{\alpha (i)}$. We claim that $\{ g : X \to Y\} $ is an fpqc covering of schemes. Namely, by Topologies, Lemma <a href="/tag/040I" data-tag="040I">34.9.4</a> for each $j$ the morphism $\{ \coprod _{\alpha (i) = j} U_ i \to V_ j\} $ is an fpqc covering. Thus for every affine open $V \subset V_ j$ (which we may think of as an affine open of $Y$) we can find finitely many affine opens $W_1, \ldots , W_ n \subset \coprod _{\alpha (i) = j} U_ i$ (which we may think of as affine opens of $X$) such that $V = \bigcup _{i = 1, \ldots , n} g(W_ i)$. This provides enough affine opens of $Y$ which can be covered by finitely many affine opens of $X$ so that Topologies, Lemma <a href="/tag/03L7" data-tag="03L7">34.9.2</a> part (3) applies, and the claim follows. Let us write $DD(X/S)$, resp. $DD(\mathcal{U})$ for the category of descent data with respect to $X/S$, resp. $\mathcal{U}$, and similarly for $Y/S$ and $\mathcal{V}$. Consider the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ DD(Y/S) \ar[r] &  DD(X/S) \\  DD(\mathcal{V}) \ar[u]^{\text{Lemma }\ref{descent-lemma-family-is-one}} \ar[r] &  DD(\mathcal{U}) \ar[u]_{\text{Lemma }\ref{descent-lemma-family-is-one}} }  \]
+</div>
+    <p>
+       This diagram is commutative, see the proof of Lemma <a href="/tag/02VS" data-tag="02VS">35.34.8</a>. The vertical arrows are equivalences. Hence the lemma follows from Lemma <a href="/tag/0241" data-tag="0241">35.35.4</a> which shows the top horizontal arrow of the diagram is fully faithful. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The next lemma shows that, in order to check effectiveness, we may always Zariski refine the given family of morphisms with target $S$. 
+</p>
+<p>
+<article class="env-lemma" id="02VY">
+  <p><a class="environment-identifier" href="/tag/02VY">Lemma <span data-tag="02VY">35.35.10</span>.</a> Let $S$ be a scheme. Let $\mathcal{U} = \{ U_ i \to S\} _{i \in I}$, and $\mathcal{V} = \{ V_ j \to S\} _{j \in J}$, be families of morphisms with target $S$. Let $\alpha : I \to J$, $\text{id} : S \to S$ and $g_ i : U_ i \to V_{\alpha (i)}$ be a morphism of families of maps with fixed target, see Sites, Definition <a href="/tag/00VT" data-tag="00VT">7.8.1</a>. Assume that for each $j \in J$ the family $\{ g_ i : U_ i \to V_ j\} _{\alpha (i) = j}$ is a Zariski covering (see Topologies, Definition <a href="/tag/020O" data-tag="020O">34.3.1</a>) of $V_ j$. Then the pullback functor </p>
+  <div class="equation">
+  \[  \text{descent data relative to } \mathcal{V} \longrightarrow \text{descent data relative to } \mathcal{U}  \]
+</div>
+  <p> of Lemma <a href="/tag/02VS" data-tag="02VS">35.34.8</a> is an equivalence of categories. In particular, the category of schemes over $S$ is equivalent to the category of descent data relative to any Zariski covering of $S$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The functor is faithful and fully faithful by Lemma <a href="/tag/02VZ" data-tag="02VZ">35.35.9</a>. Let us indicate how to prove that it is essentially surjective. Let $(X_ i, \varphi _{ii'})$ be a descent datum relative to $\mathcal{U}$. Fix $j \in J$ and set $I_ j = \{ i \in I \mid \alpha (i) = j\} $. For $i, i' \in I_ j$ note that there is a canonical morphism 
+    <p>
+      <div class="equation">
+  \[  c_{ii'} : U_ i \times _{g_ i, V_ j, g_{i'}} U_{i'} \to U_ i \times _ S U_{i'}.  \]
+</div>
+    <p>
+       Hence we can pullback $\varphi _{ii'}$ by this morphism and set $\psi _{ii'} = c_{ii'}^*\varphi _{ii'}$ for $i, i' \in I_ j$. In this way we obtain a descent datum $(X_ i, \psi _{ii'})$ relative to the Zariski covering $\{ g_ i : U_ i \to V_ j\} _{i \in I_ j}$. Note that $\psi _{ii'}$ is an isomorphism from the open $X_{i, U_ i \times _{V_ j} U_{i'}}$ of $X_ i$ to the corresponding open of $X_{i'}$. It follows from Schemes, Section <a href="/tag/01JA" data-tag="01JA">26.14</a> that we may glue $(X_ i, \psi _{ii'})$ into a scheme $Y_ j$ over $V_ j$. Moreover, the morphisms $\varphi _{ii'}$ for $i \in I_ j$ and $i' \in I_{j'}$ glue to a morphism $\varphi _{jj'} : Y_ j \times _ S V_{j'} \to V_ j \times _ S Y_{j'}$ satisfying the cocycle condition (details omitted). Hence we obtain the desired descent datum $(Y_ j, \varphi _{jj'})$ relative to $\mathcal{V}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02W0">
+  <p><a class="environment-identifier" href="/tag/02W0">Lemma <span data-tag="02W0">35.35.11</span>.</a> Let $S$ be a scheme. Let $\mathcal{U} = \{ U_ i \to S\} _{i \in I}$, and $\mathcal{V} = \{ V_ j \to S\} _{j \in J}$, be fpqc-coverings of $S$. If $\mathcal{U}$ is a refinement of $\mathcal{V}$, then the pullback functor </p>
+  <div class="equation">
+  \[  \text{descent data relative to } \mathcal{V} \longrightarrow \text{descent data relative to } \mathcal{U}  \]
+</div>
+  <p> is fully faithful. In particular, the category of schemes over $S$ is identified with a full subcategory of the category of descent data relative to any fpqc-covering of $S$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider the fpqc-covering $\mathcal{W} = \{ U_ i \times _ S V_ j \to S\} _{(i, j) \in I \times J}$ of $S$. It is a refinement of both $\mathcal{U}$ and $\mathcal{V}$. Hence we have a $2$-commutative diagram of functors and categories 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ DD(\mathcal{V}) \ar[rd] \ar[rr] &  &  DD(\mathcal{U}) \ar[ld] \\  &  DD(\mathcal{W}) &  }  \]
+</div>
+    <p>
+       Notation as in the proof of Lemma <a href="/tag/02VZ" data-tag="02VZ">35.35.9</a> and commutativity by Lemma <a href="/tag/02VS" data-tag="02VS">35.34.8</a> part (3). Hence clearly it suffices to prove the functors $DD(\mathcal{V}) \to DD(\mathcal{W})$ and $DD(\mathcal{U}) \to DD(\mathcal{W})$ are fully faithful. This follows from Lemma <a href="/tag/02VZ" data-tag="02VZ">35.35.9</a> as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="040L">
+  <p><a class="environment-identifier" href="/tag/040L">Remark <span data-tag="040L">35.35.12</span>.</a> Lemma <a href="/tag/02W0" data-tag="02W0">35.35.11</a> says that morphisms of schemes satisfy fpqc descent. In other words, given a scheme $S$ and schemes $X$, $Y$ over $S$ the functor </p>
+  <div class="equation">
+  \[  (\mathit{Sch}/S)^{opp} \longrightarrow \textit{Sets}, \quad T \longmapsto \mathop{\mathrm{Mor}}\nolimits _ T(X_ T, Y_ T)  \]
+</div>
+  <p> satisfies the sheaf condition for the fpqc topology. The simplest case of this is the following. Suppose that $T \to S$ is a surjective flat morphism of affines. Let $\psi _0 : X_ T \to Y_ T$ be a morphism of schemes over $T$ which is compatible with the canonical descent data. Then there exists a unique morphism $\psi : X \to Y$ whose base change to $T$ is $\psi _0$. In fact this special case follows in a straightforward manner from Lemma <a href="/tag/0241" data-tag="0241">35.35.4</a>. And, in turn, that lemma is a formal consequence of the following two facts: (a) the base change functor by a faithfully flat morphism is faithful, see Lemma <a href="/tag/02VX" data-tag="02VX">35.35.2</a> and (b) a scheme satisfies the sheaf condition for the fpqc topology, see Lemma <a href="/tag/023Q" data-tag="023Q">35.13.7</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0AP4">
+  <p><a class="environment-identifier" href="/tag/0AP4">Lemma <span data-tag="0AP4">35.35.13</span>.</a> Let $X \to S$ be a surjective, quasi-compact, flat morphism of schemes. Let $(V, \varphi )$ be a descent datum relative to $X/S$. Suppose that for all $v \in V$ there exists an open subscheme $v \in W \subset V$ such that $\varphi (W \times _ S X) \subset X \times _ S W$ and such that the descent datum $(W, \varphi |_{W \times _ S X})$ is effective. Then $(V, \varphi )$ is effective. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $V = \bigcup W_ i$ be an open covering with $\varphi (W_ i \times _ S X) \subset X \times _ S W_ i$ and such that the descent datum $(W_ i, \varphi |_{W_ i \times _ S X})$ is effective. Let $U_ i \to S$ be a scheme and let $\alpha _ i : (X \times _ S U_ i, can) \to (W_ i, \varphi |_{W_ i \times _ S X})$ be an isomorphism of descent data. For each pair of indices $(i, j)$ consider the open $\alpha _ i^{-1}(W_ i \cap W_ j) \subset X \times _ S U_ i$. Because everything is compatible with descent data and since $\{ X \to S\} $ is an fpqc covering, we may apply Lemma <a href="/tag/03N0" data-tag="03N0">35.13.6</a> to find an open $U_{ij} \subset U_ i$ such that $\alpha _ i^{-1}(W_ i \cap W_ j) = X \times _ S U_{ij}$. Now the identity morphism on $W_ i \cap W_ j$ is compatible with descent data, hence comes from a unique morphism $\varphi _{ij} : U_{ij} \to U_{ji}$ over $S$ (see Remark <a href="/tag/040L" data-tag="040L">35.35.12</a>). Then $(U_ i, U_{ij}, \varphi _{ij})$ is a glueing data as in Schemes, Section <a href="/tag/01JA" data-tag="01JA">26.14</a> (proof omitted). Thus we may assume there is a scheme $U$ over $S$ such that $U_ i \subset U$ is open, $U_{ij} = U_ i \cap U_ j$ and $\varphi _{ij} = \text{id}_{U_ i \cap U_ j}$, see Schemes, Lemma <a href="/tag/01JB" data-tag="01JB">26.14.1</a>. Pulling back to $X$ we can use the $\alpha _ i$ to get the desired isomorphism $\alpha : X \times _ S U \to V$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

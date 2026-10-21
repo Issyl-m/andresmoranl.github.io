@@ -1,0 +1,196 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="stacks-section-descent-data" class="tex-section"><span data-tag="02ZC">8.3</span> Descent data in fibred categories</h2>
+
+<p>
+In this section we define the notion of a descent datum in the abstract setting of a fibred category. Before we do so we point out that this is completely analogous to descent data for quasi-coherent sheaves (Descent, Section <a href="/tag/023A" data-tag="023A">35.2</a>) and descent data for schemes over schemes (Descent, Section <a href="/tag/023U" data-tag="023U">35.34</a>). 
+</p>
+<p>
+We will use the convention where the projection maps $\text{pr}_ i : X \times \ldots \times X \to X$ are labeled starting with $i = 0$. Hence we have $\text{pr}_0, \text{pr}_1 : X \times X \to X$, $\text{pr}_0, \text{pr}_1, \text{pr}_2 : X \times X \times X \to X$, etc. 
+</p>
+<p>
+<article class="env-definition" id="026B">
+  <p><a class="environment-identifier" href="/tag/026B">Definition <span data-tag="026B">8.3.1</span>.</a> Let $\mathcal{C}$ be a category. Let $p : \mathcal{S} \to \mathcal{C}$ be a fibred category. Make a choice of pullbacks as in Categories, Definition <a href="/tag/02XN" data-tag="02XN">4.33.6</a>. Let $\mathcal{U} = \{ f_ i : U_ i \to U\} _{i \in I}$ be a family of morphisms of $\mathcal{C}$. Assume all the fibre products $U_ i \times _ U U_ j$, and $U_ i \times _ U U_ j \times _ U U_ k$ exist. </p>
+  <p><ol>
+  <li><p>
+A <em>descent datum $(X_ i, \varphi _{ij})$ in $\mathcal{S}$ relative to the family $\{ f_ i : U_ i \to U\} $</em> is given by an object $X_ i$ of $\mathcal{S}_{U_ i}$ for each $i \in I$, an isomorphism $\varphi _{ij} : \text{pr}_0^*X_ i \to \text{pr}_1^*X_ j$ in $\mathcal{S}_{U_ i \times _ U U_ j}$ for each pair $(i, j) \in I^2$ such that for every triple of indices $(i, j, k) \in I^3$ the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \text{pr}_0^*X_ i \ar[rd]_{\text{pr}_{01}^*\varphi _{ij}} \ar[rr]_{\text{pr}_{02}^*\varphi _{ik}} &  &  \text{pr}_2^*X_ k \\  &  \text{pr}_1^*X_ j \ar[ru]_{\text{pr}_{12}^*\varphi _{jk}} &  }  \]
+</div>
+<p>
+ in the category $\mathcal{S}_{U_ i \times _ U U_ j \times _ U U_ k}$ commutes. This is called the <em>cocycle condition</em>. 
+</p>
+</li><li><p>
+A <em>morphism $\psi : (X_ i, \varphi _{ij}) \to (X'_ i, \varphi '_{ij})$ of descent data</em> is given by a family $\psi = (\psi _ i)_{i\in I}$ of morphisms $\psi _ i : X_ i \to X'_ i$ in $\mathcal{S}_{U_ i}$ such that all the diagrams 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \text{pr}_0^*X_ i \ar[r]_{\varphi _{ij}} \ar[d]_{\text{pr}_0^*\psi _ i} &  \text{pr}_1^*X_ j \ar[d]^{\text{pr}_1^*\psi _ j} \\  \text{pr}_0^*X'_ i \ar[r]^{\varphi '_{ij}} &  \text{pr}_1^*X'_ j \\  }  \]
+</div>
+<p>
+ in the categories $\mathcal{S}_{U_ i \times _ U U_ j}$ commute. 
+</p>
+</li><li><p>
+The category of descent data relative to $\mathcal{U}$ is denoted $DD(\mathcal{U})$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+The fibre products $U_ i \times _ U U_ j$ and $U_ i \times _ U U_ j \times _ U U_ k$ will exist if each of the morphisms $f_ i : U_ i \to U$ is <em>representable</em>, see Categories, Definition <a href="/tag/001X" data-tag="001X">4.6.4</a>. Recall that in a site one of the conditions for a covering $\{ U_ i \to U\} $ is that each of the morphisms is representable, see Sites, Definition <a href="/tag/00VH" data-tag="00VH">7.6.2</a> part (3). In fact the main interest in the definition above is where $\mathcal{C}$ is a site and $\{ U_ i \to U\} $ is a covering of $\mathcal{C}$. However, a descent datum is just an abstract gadget that can be defined as above. This is useful: for example, given a fibred category over $\mathcal{C}$ one can look at the collection of families with respect to which descent data are effective, and try to use these as the family of coverings for a site. 
+</p>
+<p>
+<article class="env-remarks" id="026C">
+  <p><a class="environment-identifier" href="/tag/026C">Remarks <span data-tag="026C">8.3.2</span>.</a> Two remarks on Definition <a href="/tag/026B" data-tag="026B">8.3.1</a> are in order. Let $p : \mathcal{S} \to \mathcal{C}$ be a fibred category. Let $\{ f_ i : U_ i \to U\} _{i \in I}$, and $(X_ i, \varphi _{ij})$ be as in Definition <a href="/tag/026B" data-tag="026B">8.3.1</a>. </p>
+  <p><ol>
+  <li><p>
+There is a diagonal morphism $\Delta : U_ i \to U_ i \times _ U U_ i$. We can pull back $\varphi _{ii}$ via this morphism to get an automorphism $\Delta ^\ast \varphi _{ii} \in \text{Aut}_{U_ i}(X_ i)$. On pulling back the cocycle condition for the triple $(i, i, i)$ by $\Delta _{123} : U_ i \to U_ i \times _ U U_ i \times _ U U_ i$ we deduce that $\Delta ^\ast \varphi _{ii} \circ \Delta ^\ast \varphi _{ii} = \Delta ^\ast \varphi _{ii}$; thus $\Delta ^\ast \varphi _{ii} = \text{id}_{X_ i}$. 
+</p>
+</li><li><p>
+There is a morphism $\Delta _{13}: U_ i \times _ U U_ j \to U_ i \times _ U U_ j \times _ U U_ i$ and we can pull back the cocycle condition for the triple $(i, j, i)$ to get the identity $(\sigma ^\ast \varphi _{ji}) \circ \varphi _{ij} = \text{id}_{\text{pr}_0^\ast X_ i}$, where $\sigma : U_ i \times _ U U_ j \to U_ j \times _ U U_ i$ is the switching morphism. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="02ZD">
+  <p><a class="environment-identifier" href="/tag/02ZD">Lemma <span data-tag="02ZD">8.3.3</span>.</a> (Pullback of descent data.) Let $\mathcal{C}$ be a category. Let $p : \mathcal{S} \to \mathcal{C}$ be a fibred category. Make a choice pullbacks as in Categories, Definition <a href="/tag/02XN" data-tag="02XN">4.33.6</a>. Let $\mathcal{U} = \{ f_ i : U_ i \to U\} _{i \in I}$, and $\mathcal{V} = \{ V_ j \to V\} _{j \in J}$ be a families of morphisms of $\mathcal{C}$ with fixed target. Assume all the fibre products $U_ i \times _ U U_{i'}$, $U_ i \times _ U U_{i'} \times _ U U_{i''}$, $V_ j \times _ V V_{j'}$, and $V_ j \times _ V V_{j'} \times _ V V_{j''}$ exist. Let $\alpha : I \to J$, $h : U \to V$ and $g_ i : U_ i \to V_{\alpha (i)}$ be a morphism of families of maps with fixed target, see Sites, Definition <a href="/tag/00VT" data-tag="00VT">7.8.1</a>. </p>
+  <p><ol>
+  <li><p>
+Let $(Y_ j, \varphi _{jj'})$ be a descent datum relative to the family $\{ V_ j \to V\} $. The system 
+</p>
+<div class="equation">
+  \[  \left( g_ i^*Y_{\alpha (i)}, (g_ i \times g_{i'})^*\varphi _{\alpha (i)\alpha (i')} \right)  \]
+</div>
+<p>
+ is a descent datum relative to $\mathcal{U}$. 
+</p>
+</li><li><p>
+This construction defines a functor between descent data relative to $\mathcal{V}$ and descent data relative to $\mathcal{U}$. 
+</p>
+</li><li><p>
+Given a second $\alpha ' : I \to J$, $h' : U \to V$ and $g'_ i : U_ i \to V_{\alpha '(i)}$ morphism of families of maps with fixed target, then if $h = h'$ the two resulting functors between descent data are canonically isomorphic. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="02ZE">
+  <p><a class="environment-identifier" href="/tag/02ZE">Definition <span data-tag="02ZE">8.3.4</span>.</a> With $\mathcal{U} = \{ U_ i \to U\} _{i \in I}$, $\mathcal{V} = \{ V_ j \to V\} _{j \in J}$, $\alpha : I \to J$, $h : U \to V$, and $g_ i : U_ i \to V_{\alpha (i)}$ as in Lemma <a href="/tag/02ZD" data-tag="02ZD">8.3.3</a> the functor </p>
+  <div class="equation">
+  \[  (Y_ j, \varphi _{jj'}) \longmapsto (g_ i^*Y_{\alpha (i)}, (g_ i \times g_{i'})^*\varphi _{\alpha (i)\alpha (i')})  \]
+</div>
+  <p> constructed in that lemma is called the <em>pullback functor</em> on descent data. </p>
+</article> 
+</p>
+<p>
+Given $h : U \to V$, if there exists a morphism $\tilde h : \mathcal{U} \to \mathcal{V}$ covering $h$ then $\tilde h^*$ is independent of the choice of $\tilde h$ as we saw in Lemma <a href="/tag/02ZD" data-tag="02ZD">8.3.3</a>. Hence we will sometimes simply write $h^*$ to indicate the pullback functor. 
+</p>
+<p>
+<article class="env-definition" id="026E">
+  <p><a class="environment-identifier" href="/tag/026E">Definition <span data-tag="026E">8.3.5</span>.</a> Let $\mathcal{C}$ be a category. Let $p : \mathcal{S} \to \mathcal{C}$ be a fibred category. Make a choice of pullbacks as in Categories, Definition <a href="/tag/02XN" data-tag="02XN">4.33.6</a>. Let $\mathcal{U} = \{ f_ i : U_ i \to U\} _{i \in I}$ be a family of morphisms with target $U$. Assume all the fibre products $U_ i \times _ U U_ j$ and $U_ i \times _ U U_ j \times _ U U_ k$ exist. </p>
+  <p><ol>
+  <li><p>
+Given an object $X$ of $\mathcal{S}_ U$ the <em>trivial descent datum</em> is the descent datum $(X, \text{id}_ X)$ with respect to the family $\{ \text{id}_ U : U \to U\} $. 
+</p>
+</li><li><p>
+Given an object $X$ of $\mathcal{S}_ U$ we have a <em>canonical descent datum</em> on the family of objects $f_ i^*X$ by pulling back the trivial descent datum $(X, \text{id}_ X)$ via the obvious map $\{ f_ i : U_ i \to U\}  \to \{ \text{id}_ U : U \to U\} $. We denote this descent datum $(f_ i^*X, can)$. 
+</p>
+</li><li><p>
+A descent datum $(X_ i, \varphi _{ij})$ relative to $\{ f_ i : U_ i \to U\} $ is called <em>effective</em> if there exists an object $X$ of $\mathcal{S}_ U$ such that $(X_ i, \varphi _{ij})$ is isomorphic to $(f_ i^*X, can)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+Note that the rule that associates to $X \in \mathcal{S}_ U$ its canonical descent datum relative to $\mathcal{U}$ defines a functor 
+</p>
+<div class="equation">
+  \[  \mathcal{S}_ U \longrightarrow DD(\mathcal{U}).  \]
+</div>
+<p>
+ A descent datum is effective if and only if it is in the essential image of this functor. Let us make explicit the canonical descent datum as follows. 
+</p>
+<p>
+<article class="env-lemma" id="026D">
+  <p><a class="environment-identifier" href="/tag/026D">Lemma <span data-tag="026D">8.3.6</span>.</a> In the situation of Definition <a href="/tag/026E" data-tag="026E">8.3.5</a> part (2) the maps $can_{ij} : \text{pr}_0^*f_ i^*X \to \text{pr}_1^*f_ j^*X$ are equal to $(\alpha _{\text{pr}_1, f_ j})_ X \circ (\alpha _{\text{pr}_0, f_ i})_ X^{-1}$ where $\alpha _{\cdot , \cdot }$ is as in Categories, Lemma <a href="/tag/02XO" data-tag="02XO">4.33.7</a> and where we use the equality $f_ i \circ \text{pr}_0 = f_ j \circ \text{pr}_1$ as maps $U_ i \times _ U U_ j \to U$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GEA">
+  <p><a class="environment-identifier" href="/tag/0GEA">Lemma <span data-tag="0GEA">8.3.7</span>.</a> Let $\mathcal{C}$ be a category. Let $\mathcal{V} = \{ V_ j \to U\} _{j \in J} \to \mathcal{U} = \{ U_ i \to U\} _{i \in I}$ be a morphism of families of maps with fixed target of $\mathcal{C}$ given by $\text{id} : U \to U$, $\alpha : J \to I$ and $f_ j : V_ j \to U_{\alpha (j)}$. Let $p : \mathcal{S} \to \mathcal{C}$ be a fibred category. If </p>
+  <p><ol>
+  <li><p>
+for $0 \leq p \leq 3$ and $0 \leq q \leq 3$ with $p + q \geq 2$ and $i_1, \ldots , i_ p \in I$ and $j_1, \ldots , j_ q \in J$ the fibre products $U_{i_1} \times _ U \ldots \times _ U U_{i_ p} \times _ U V_{j_1} \times _ U \ldots \times _ U V_{j_ q}$ exist, 
+</p>
+</li><li><p>
+the functor $\mathcal{S}_ U \to DD(\mathcal{V})$ is an equivalence, 
+</p>
+</li><li><p>
+for every $i \in I$ the functor $\mathcal{S}_{U_ i} \to DD(\mathcal{V}_ i)$ is fully faithful, and 
+</p>
+</li><li><p>
+for every $i, i' \in I$ the functor $\mathcal{S}_{U_ i \times _ U U_{i'}} \to DD(\mathcal{V}_{ii'})$ is faithful. 
+</p>
+</li>
+</ol></p>
+  <p> Here $\mathcal{V}_ i = \{ U_ i \times _ U V_ j \to U_ i\} _{j \in J}$ and $\mathcal{V}_{ii'} = \{ U_ i \times _ U U_{i'} \times _ U V_ j \to U_ i \times _ U U_{i'}\} _{j \in J}$. Then $\mathcal{S}_ U \to DD(\mathcal{U})$ is an equivalence. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Condition (1) guarantees we have enough fibre products so that the statement makes sense. We will show that the functor $\mathcal{S}_ U \to DD(\mathcal{U})$ is essentially surjective. Suppose given a descent datum $(X_ i, \varphi _{ii'})$ relative to $\mathcal{U}$. By Lemma <a href="/tag/02ZD" data-tag="02ZD">8.3.3</a> we can pull this back to a descent datum $(X_ j, \varphi _{jj'})$ for $\mathcal{V}$. By assumption (2) this descent datum is effective, hence we get an object $X$ of $\mathcal{S}_ U$ such that the pullback of the trivial descent datum $(X, \text{id}_ X)$ by the morphism $\mathcal{V} \to \{ U \to U\} $ is isomorphic to $(X_ j, \varphi _{jj'})$. Next, observe that we have a diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathcal{V}_ i \ar[r] \ar[d] &  \mathcal{V} \ar[r] &  \mathcal{U} \ar[d] \\  \{ U_ i \to U_ i\}  \ar[rr] \ar[rru] &  &  \{ U \to U\}  }  \]
+</div>
+    <p>
+       of morphisms of families of maps with fixed target of $\mathcal{C}$. This diagram does not commute, but by Lemma <a href="/tag/02ZD" data-tag="02ZD">8.3.3</a> the pullback functors on descent data one gets are canonically isomorphic. Hence $(X, \text{id}_ X)$ and $(X_ i, \text{id}_{X_ i})$ pull back to isomorphic objects in $DD(\mathcal{V}_ i)$. Hence by assumption (3) we obtain an isomorphism $(U_ i \to U)^*X \to X_ i$ in the category $\mathcal{S}_{U_ i}$. We omit the verification that these arrows are compatible with the morphisms $\varphi _{ii'}$; hint: use the faithfulness of the functors in condition (4). We also omit the verification that the functor $\mathcal{S}_ U \to DD(\mathcal{U})$ is fully faithful. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

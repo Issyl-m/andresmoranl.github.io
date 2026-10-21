@@ -1,0 +1,138 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="spaces-more-groupoids-section-groupoid-sections" class="tex-section"><span data-tag="0CKB">79.5</span> Groupoid of sections</h2>
+
+<p>
+Suppose we have a groupoid $(\text{Ob}, \text{Arrows}, s, t, c, e, i)$. Then we can construct a monoid $\Gamma $ whose elements are maps $\delta : \text{Ob} \to \text{Arrows}$ with $s \circ \delta = \text{id}_{\text{Ob}}$ and composition given by 
+</p>
+<div class="equation">
+  \[  \delta _1 \circ \delta _2 = c(\delta _1 \circ t \circ \delta _2, \delta _2)  \]
+</div>
+<p>
+ In other words, an element of $\Gamma $ is a rule $\delta $ which prescribes an arrow emanating from every object and composition is the natural thing. For example 
+</p>
+<div class="equation">
+  \[  \vcenter { \xymatrix{ &  \bullet \ar[dl] \\  \bullet \ar@(ul, dl)[] &  \bullet \ar[d] \\  &  \bullet \ar[lu] } } \quad \circ \quad \vcenter { \xymatrix{ &  \bullet \ar[d] \\  \bullet \ar[ru] &  \bullet \ar[d] \\  &  \bullet \ar[lu] } } \quad = \quad \quad \vcenter { \xymatrix{ &  \bullet \ar@/^/[dd] \\  \bullet \ar@(ul, dl)[] &  \bullet \ar[l] \\  &  \bullet \ar[lu] } }  \]
+</div>
+<p>
+ with obvious notation 
+</p>
+<p>
+The same procedure can be applied to a groupoid in algebraic spaces $(U, R, s, t, c, e, i)$ over a scheme $S$. Namely, as elements of $\Gamma $ we take the set 
+</p>
+<div class="equation">
+  \[  \Gamma = \{ \delta : U \to R \mid s \circ \delta = \text{id}_ U\}   \]
+</div>
+<p>
+ and composition $\circ : \Gamma \times \Gamma \to \Gamma $ is given by the rule above 
+</p>
+<div class="equation" id="0CKC">
+    <span class="equation-label"><a href="/tag/0CKC" data-tag="0CKC">79.5.0.1</a></span>
+  <div>\begin{equation}  \label{spaces-more-groupoids-equation-composition} \delta _1 \circ \delta _2 = c(\delta _1 \circ t \circ \delta _2, \delta _2) \end{equation}</div>
+</div>
+<p>
+ The identity is given by $e \in \Gamma $. The groupoid $\Gamma $ is not a group in general because there may be elements $\delta \in \Gamma $ which do not have an inverse. Namely, it is clear that $\delta \in \Gamma $ will have an inverse if and only if $t \circ \delta $ is an automorphism of $U$ and in this case $\delta ^{-1} = i \circ \delta \circ (t \circ \delta )^{-1}$. 
+</p>
+<p>
+For later use we discuss what happens with the subgroupoid $\Gamma _0$ of $\Gamma $ of sections which are infinitesimally close to the identity $e$. More precisely, suppose given an $R$-invariant closed subspace $U_0 \subset U$ such that $U$ is a first order thickening of $U_0$. Denote $R_0 = s^{-1}(U_0) = t^{-1}(U_0)$ and let $(U_0, R_0, s_0, t_0, c_0, e_0, i_0)$ be the corresponding groupoid in algebraic spaces. Set 
+</p>
+<div class="equation">
+  \[  \Gamma _0 = \{ \delta \in \Gamma \mid \delta |_{U_0} = e_0\}   \]
+</div>
+<p>
+ If $s$ and $t$ are flat, then every element in $\Gamma _0$ is invertible. This follows because $t \circ \delta $ will be a morphism $U \to U$ inducing the identity on $\mathcal{O}_{U_0}$ and on $\mathcal{C}_{U_0/U}$ (Lemma <a href="/tag/0CKD" data-tag="0CKD">79.5.1</a>) and we conclude because we have a short exact sequence $0 \to \mathcal{C}_{U_0/U} \to \mathcal{O}_ U \to \mathcal{O}_{U_0} \to 0$. 
+</p>
+<p>
+<article class="env-lemma" id="0CKD">
+  <p><a class="environment-identifier" href="/tag/0CKD">Lemma <span data-tag="0CKD">79.5.1</span>.</a> In the situation discussed in this section, let $\delta \in \Gamma _0$ and $f = t \circ \delta : U \to U$. If $s, t$ are flat, then the canonical map $\mathcal{C}_{U_0/U} \to \mathcal{C}_{U_0/U}$ induced by $f$ (More on Morphisms of Spaces, Lemma <a href="/tag/04CP" data-tag="04CP">76.5.3</a>) is the identity map. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      To see this we extend the bottom of the diagram (<a href="/tag/0451" data-tag="0451">79.3.0.2</a>) as follows 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ Y \ar[r] \ar[d] &  R \times _{s, U, t} R \ar@<1ex>[r]^-c \ar@<-1ex>[r]_-{\text{pr}_0} \ar[d]_{\text{pr}_1} &  R \ar[r]^ t \ar[d]^ s &  U \\  U \ar[r]_\delta &  R \ar@<1ex>[r]^ s \ar@<-1ex>[r]_ t &  U }  \]
+</div>
+    <p>
+       where the left square is cartesian and this is our definition of $Y$; we will not need to know more about $Y$. There is a similar diagram with similar properties obtained by base change to $U_0$ everywhere. We are trying to show that $\text{id}_ U = s \circ \delta $ and $f = t \circ \delta $ induce the same maps on conormal sheaves. Since $s$ is flat and surjective, it suffices to prove the same thing for the two compositions $a, b : Y \to R$ along the top row. Observe that $a_0 = b_0$ and that one of $a$ and $b$ is an isomorphism as we know that $s \circ \delta $ is an isomorphism. Therefore the two morphisms $a, b : Y \to R$ are morphisms between algebraic spaces flat over $U$ (via the morphism $t : R \to U$ and the morphism $t \circ a = t \circ b : Y \to U$). This implies what we want. Namely, by the compatibility with compositions in More on Morphisms of Spaces, Lemma <a href="/tag/04G2" data-tag="04G2">76.5.4</a> we conclude that both maps $a_0^*\mathcal{C}_{R_0/R} \to \mathcal{C}_{Y_0/Y}$ fit into a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ a_0^*\mathcal{C}_{R_0/R} \ar[rr] &  &  \mathcal{C}_{Y_0/Y} \\  a_0^*t_0^*\mathcal{C}_{U_0/U} \ar[u] \ar@{=}[rr] &  &  (t_0 \circ a_0)^*\mathcal{C}_{U_0/U} \ar[u] }  \]
+</div>
+    <p>
+       whose vertical arrows are isomorphisms by More on Morphisms of Spaces, Lemma <a href="/tag/06BH" data-tag="06BH">76.18.1</a>. Thus the lemma holds. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let us identify the group $\Gamma _0$. Applying the discussion in More on Morphisms of Spaces, Remarks <a href="/tag/0CK6" data-tag="0CK6">76.17.3</a> and <a href="/tag/0CK7" data-tag="0CK7">76.17.7</a> to the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ (U_0 \subset U) \ar@{..>}[rr]_{(e_0, \delta )} \ar[rd]_{(\text{id}_{U_0}, \text{id}_ U)} &  &  (R_0 \subset R) \ar[ld]^{(s_0, s)} \\  &  (U_0 \subset U) }  \]
+</div>
+<p>
+ we see that $\delta = \theta \cdot e$ for a unique $\mathcal{O}_{U_0}$-linear map $\theta : e_0^*\Omega _{R_0/U_0} \to \mathcal{C}_{U_0/U}$. Thus we get a bijection 
+</p>
+<div class="equation" id="0CKE">
+    <span class="equation-label"><a href="/tag/0CKE" data-tag="0CKE">79.5.1.1</a></span>
+  <div>\begin{equation}  \label{spaces-more-groupoids-equation-isomorphism} \mathop{\mathrm{Hom}}\nolimits _{\mathcal{O}_{U_0}}(e_0^*\Omega _{R_0/U_0}, \mathcal{C}_{U_0/U}) \longrightarrow \Gamma _0 \end{equation}</div>
+</div>
+<p>
+ by applying More on Morphisms of Spaces, Lemma <a href="/tag/061C" data-tag="061C">76.17.5</a>. 
+</p>
+<p>
+<article class="env-lemma" id="0CKF">
+  <p><a class="environment-identifier" href="/tag/0CKF">Lemma <span data-tag="0CKF">79.5.2</span>.</a> The bijection (<a href="/tag/0CKE" data-tag="0CKE">79.5.1.1</a>) is an isomorphism of groups. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\delta _1, \delta _2 \in \Gamma _0$ correspond to $\theta _1, \theta _2$ as above and the composition $\delta = \delta _1 \circ \delta _2$ in $\Gamma _0$ correspond to $\theta $. We have to show that $\theta = \theta _1 + \theta _2$. Recall (More on Morphisms of Spaces, Lemma <a href="/tag/04D0" data-tag="04D0">76.17.2</a>) that $\theta _1, \theta _2, \theta $ correspond to derivations $D_1, D_2, D : e_0^{-1}\mathcal{O}_{R_0} \to \mathcal{C}_{U_0/U}$ given by $D_1 = \theta _1 \circ \text{d}_{R_0/U_0}$ and so on. It suffices to check that $D = D_1 + D_2$. 
+    <p>
+      We may check equality on stalks. Let $\overline{u}$ be a geometric point of $U$ and let us use the local rings $A, B, C$ introduced in Section <a href="/tag/0CK9" data-tag="0CK9">79.4</a>. The morphisms $\delta _ i$ correspond to ring maps $\delta _ i : B \to A$. Let $K \subset A$ be the ideal of square zero such that $A/K = \mathcal{O}_{U_0, \overline{u}}$. In other words, $K$ is the stalk of $\mathcal{C}_{U_0/U}$ at $\overline{u}$. The fact that $\delta _ i \in \Gamma _0$ means exactly that $\delta _ i(I) \subset K$. The derivation $D_ i$ is just the map $\delta _ i - e : B \to A$. Since $B = s(A) \oplus I$ we see that $D_ i$ is determined by its restriction to $I$ and that this is just given by $\delta _ i|_ I$. Moreover $D_ i$ and hence $\delta _ i$ annihilates $I^2$ because $I = \mathop{\mathrm{Ker}}(I)$. 
+    <p>
+      To finish the proof we observe that $\delta $ corresponds to the composition 
+    <p>
+      <div class="equation">
+  \[  B \to C = (B \otimes _{s, A, t} B)^ h_{\mathfrak m_ B \otimes B + B \otimes \mathfrak m_ B} \to A  \]
+</div>
+    <p>
+       where the first arrow is $c$ and the second arrow is determined by the rule $b_1 \otimes b_2 \mapsto \delta _2(t(\delta _1(b_1))) \delta _2(b_2)$ as follows from (<a href="/tag/0CKC" data-tag="0CKC">79.5.0.1</a>). By Lemma <a href="/tag/0CKA" data-tag="0CKA">79.4.1</a> we see that an element $\zeta $ of $I$ maps to $\zeta \otimes 1 + 1 \otimes \zeta $ plus higher order terms. Hence we conclude that 
+    <p>
+      <div class="equation">
+  \[  D(\zeta ) = (\delta _2 \circ t)\left(D_1(\zeta )\right) + D_2(\zeta )  \]
+</div>
+    <p>
+       However, by Lemma <a href="/tag/0CKD" data-tag="0CKD">79.5.1</a> the action of $\delta _2 \circ t$ on $K = \mathcal{C}_{U_0/U, \overline{u}}$ is the identity and we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

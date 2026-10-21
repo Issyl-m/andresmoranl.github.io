@@ -1,0 +1,264 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="simplicial-section-adjoint-left" class="tex-section"><span data-tag="018K">14.21</span> Left adjoints to the skeleton functors</h2>
+
+<p>
+In this section we construct a left adjoint $i_{m!}$ of the skeleton functor $\text{sk}_ m$ in certain cases. The adjointness formula is 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\text{Simp}_ m(\mathcal{C})}(U, \text{sk}_ mV) = \mathop{\mathrm{Mor}}\nolimits _{\text{Simp}(\mathcal{C})}(i_{m!}U, V).  \]
+</div>
+<p>
+ It turns out that this left adjoint exists when the category $\mathcal{C}$ has finite colimits. 
+</p>
+<p>
+We use a similar construction as in Section <a href="/tag/017Z" data-tag="017Z">14.12</a>. Recall the category $[n]/\Delta $ of objects under $[n]$, see Categories, Example <a href="/tag/001H" data-tag="001H">4.2.14</a>. Its objects are morphisms $\alpha : [n] \to [k]$ and its morphisms are commutative triangles. We let $([n]/\Delta )_{\leq m}$ denote the full subcategory of $[n]/\Delta $ consisting of objects $[n] \to [k]$ with $k \leq m$. Given a $m$-truncated simplicial object $U$ of $\mathcal{C}$ we define a functor 
+</p>
+<div class="equation">
+  \[  U(n) : ([n]/\Delta )_{\leq m}^{opp} \longrightarrow \mathcal{C}  \]
+</div>
+<p>
+ by the rules 
+</p>
+<div class="equation">
+  \begin{eqnarray*}  ([n] \to [k]) &  \longmapsto &  U_ k \\  \psi : ([n] \to [k']) \to ([n] \to [k]) &  \longmapsto &  U(\psi ) : U_ k \to U_{k'} \end{eqnarray*}
+</div>
+<p>
+ For a given morphism $\varphi : [n] \to [n']$ of $\Delta $ we have an associated functor 
+</p>
+<div class="equation">
+  \[  \underline{\varphi } : ([n']/\Delta )_{\leq m} \longrightarrow ([n]/\Delta )_{\leq m}  \]
+</div>
+<p>
+ which maps $\alpha : [n'] \to [k]$ to $\varphi \circ \alpha : [n] \to [k]$. The composition $U(n) \circ \underline{\varphi }$ is equal to the functor $U(n')$. 
+</p>
+<p>
+<article class="env-lemma" id="018L">
+  <p><a class="environment-identifier" href="/tag/018L">Lemma <span data-tag="018L">14.21.1</span>.</a> Let $\mathcal{C}$ be a category which has finite colimits. The functors $i_{m!}$ exist for all $m$. Let $U$ be an $m$-truncated simplicial object of $\mathcal{C}$. The simplicial object $i_{m!}U$ is described by the formula </p>
+  <div class="equation">
+  \[  (i_{m!}U)_ n = \mathop{\mathrm{colim}}\nolimits _{([n]/\Delta )_{\leq m}^{opp}} U(n)  \]
+</div>
+  <p> and for $\varphi : [n] \to [n']$ the map $i_{m!}U(\varphi )$ comes from the identification $U(n) \circ \underline{\varphi } = U(n')$ above via Categories, Lemma <a href="/tag/002K" data-tag="002K">4.14.8</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In this proof we denote $i_{m!}U$ the simplicial object whose $n$th term is given by the displayed formula of the lemma. We will show it satisfies the adjointness property. 
+    <p>
+      Let $V$ be a simplicial object of $\mathcal{C}$. Let $\gamma : U \to \text{sk}_ mV$ be given. A morphism 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _{([n]/\Delta )_{\leq m}^{opp}} U(n) \to T  \]
+</div>
+    <p>
+       is given by a compatible system of morphisms $f_\alpha : U_ k \to T$ where $\alpha : [n] \to [k]$ with $k \leq m$. Certainly, we have such a system of morphisms by taking the compositions 
+    <p>
+      <div class="equation">
+  \[  U_ k \xrightarrow {\gamma _ k} V_ k \xrightarrow {V(\alpha )} V_ n.  \]
+</div>
+    <p>
+       Hence we get an induced morphism $(i_{m!}U)_ n \to V_ n$. We leave it to the reader to see that these form a morphism of simplicial objects $\gamma ' : i_{m!}U \to V$. 
+    <p>
+      Conversely, given a morphism $\gamma ' : i_{m!}U \to V$ we obtain a morphism $\gamma : U \to \text{sk}_ m V$ by setting $\gamma _ i : U_ i \to V_ i$ equal to the composition 
+    <p>
+      <div class="equation">
+  \[  U_ i \xrightarrow {\text{id}_{[i]}} \mathop{\mathrm{colim}}\nolimits _{([i]/\Delta )_{\leq m}^{opp}} U(i) \xrightarrow {\gamma '_ i} V_ i  \]
+</div>
+    <p>
+       for $0 \leq i \leq n$. We leave it to the reader to see that this is the inverse of the construction above. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="018M">
+  <p><a class="environment-identifier" href="/tag/018M">Lemma <span data-tag="018M">14.21.2</span>.</a> Let $\mathcal{C}$ be a category. Let $U$ be an $m$-truncated simplicial object of $\mathcal{C}$. For any $n \leq m$ the colimit </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _{([n]/\Delta )_{\leq m}^{opp}} U(n)  \]
+</div>
+  <p> exists and is equal to $U_ n$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is so because the category $([n]/\Delta )_{\leq m}$ has an initial object, namely $\text{id} : [n] \to [n]$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="018N">
+  <p><a class="environment-identifier" href="/tag/018N">Lemma <span data-tag="018N">14.21.3</span>.</a> Let $\mathcal{C}$ be a category which has finite colimits. Let $U$ be an $m$-truncated simplicial object of $\mathcal{C}$. The map $U \to \text{sk}_ m i_{m!}U$ is an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Combine Lemmas <a href="/tag/018L" data-tag="018L">14.21.1</a> and <a href="/tag/018M" data-tag="018M">14.21.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="018O">
+  <p><a class="environment-identifier" href="/tag/018O">Lemma <span data-tag="018O">14.21.4</span>.</a> If $U$ is an $m$-truncated simplicial set and $n > m$ then all $n$-simplices of $i_{m!}U$ are degenerate. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This can be seen from the construction of $i_{m!}U$ in Lemma <a href="/tag/018L" data-tag="018L">14.21.1</a>, but we can also argue directly as follows. Write $V = i_{m!}U$. Let $V' \subset V$ be the simplicial subset with $V'_ i = V_ i$ for $i \leq m$ and all $i$ simplices degenerate for $i > m$, see Lemma <a href="/tag/017T" data-tag="017T">14.18.4</a>. By the adjunction formula, since $\text{sk}_ m V' = U$, there is an inverse to the injection $V' \to V$. Hence $V' = V$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="018P">
+  <p><a class="environment-identifier" href="/tag/018P">Lemma <span data-tag="018P">14.21.5</span>.</a> Let $U$ be a simplicial set. Let $n \geq 0$ be an integer. The morphism $i_{n!} \text{sk}_ n U \to U$ identifies $i_{n!} \text{sk}_ n U$ with the simplicial set $U' \subset U$ defined in Lemma <a href="/tag/017T" data-tag="017T">14.18.4</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/018O" data-tag="018O">14.21.4</a> the only nondegenerate simplices of $i_{n!} \text{sk}_ n U$ are in degrees $\leq n$. The map $i_{n!} \text{sk}_ n U \to U$ is an isomorphism in degrees $\leq n$. Combined we conclude that the map $i_{n!} \text{sk}_ n U \to U$ maps nondegenerate simplices to nondegenerate simplices and no two nondegenerate simplices have the same image. Hence Lemma <a href="/tag/017S" data-tag="017S">14.18.3</a> applies. Thus $i_{n!} \text{sk}_ n U \to U$ is injective. The result follows easily from this. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="018Q">
+  <p><a class="environment-identifier" href="/tag/018Q">Remark <span data-tag="018Q">14.21.6</span>.</a> In some texts the composite functor </p>
+  <div class="equation">
+  \[  \text{Simp}(\mathcal{C}) \xrightarrow {\text{sk}_ m} \text{Simp}_ m(\mathcal{C}) \xrightarrow {i_{m!}} \text{Simp}(\mathcal{C})  \]
+</div>
+  <p> is denoted $\text{sk}_ m$. This makes sense for simplicial sets, because then Lemma <a href="/tag/018P" data-tag="018P">14.21.5</a> says that $i_{m!} \text{sk}_ m V$ is just the sub simplicial set of $V$ consisting of all $i$-simplices of $V$, $i \leq m$ and their degeneracies. In those texts it is also customary to denote the composition </p>
+  <div class="equation">
+  \[  \text{Simp}(\mathcal{C}) \xrightarrow {\text{sk}_ m} \text{Simp}_ m(\mathcal{C}) \xrightarrow {\text{cosk}_ m} \text{Simp}(\mathcal{C})  \]
+</div>
+  <p> by $\text{cosk}_ m$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="018R">
+  <p><a class="environment-identifier" href="/tag/018R">Lemma <span data-tag="018R">14.21.7</span>.</a> Let $U \subset V$ be simplicial sets. Suppose $n \geq 0$ and $x \in V_ n$, $x \not\in U_ n$ are such that </p>
+  <p><ol>
+  <li><p>
+$V_ i = U_ i$ for $i < n$, 
+</p>
+</li><li><p>
+$V_ n = U_ n \cup \{ x\} $, 
+</p>
+</li><li><p>
+any $z \in V_ j$, $z \not\in U_ j$ for $j > n$ is degenerate. 
+</p>
+</li>
+</ol></p>
+  <p> Let $\Delta [n] \to V$ be the unique morphism mapping the nondegenerate $n$-simplex of $\Delta [n]$ to $x$. In this case the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \Delta [n] \ar[r] &  V \\  i_{(n - 1)!} \text{sk}_{n - 1} \Delta [n] \ar[r] \ar[u] &  U \ar[u] }  \]
+</div>
+  <p> is a pushout diagram. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let us denote $\partial \Delta [n] = i_{(n - 1)!} \text{sk}_{n - 1} \Delta [n]$ for convenience. There is a natural map $U \amalg _{\partial \Delta [n]} \Delta [n] \to V$. We have to show that it is bijective in degree $j$ for all $j$. This is clear for $j \leq n$. Let $j > n$. The third condition means that any $z \in V_ j$, $z \not\in U_ j$ is a degenerate simplex, say $z = s^{j - 1}_ i(z')$. Of course $z' \not\in U_{j - 1}$. By induction it follows that $z'$ is a degeneracy of $x$. Thus we conclude that all $j$-simplices of $V$ are either in $U$ or degeneracies of $x$. This implies that the map $U \amalg _{\partial \Delta [n]} \Delta [n] \to V$ is surjective. Note that a nondegenerate simplex of $U \amalg _{\partial \Delta [n]} \Delta [n]$ is either the image of a nondegenerate simplex of $U$, or the image of the (unique) nondegenerate $n$-simplex of $\Delta [n]$. Since clearly $x$ is nondegenerate we deduce that $U \amalg _{\partial \Delta [n]} \Delta [n] \to V$ maps nondegenerate simplices to nondegenerate simplices and is injective on nondegenerate simplices. Hence it is injective, by Lemma <a href="/tag/017S" data-tag="017S">14.18.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="018S">
+  <p><a class="environment-identifier" href="/tag/018S">Lemma <span data-tag="018S">14.21.8</span>.</a> Let $U \subset V$ be simplicial sets, with $U_ n, V_ n$ finite nonempty for all $n$. Assume that $U$ and $V$ have finitely many nondegenerate simplices. Then there exists a sequence of sub simplicial sets </p>
+  <div class="equation">
+  \[  U = W^0 \subset W^1 \subset W^2 \subset \ldots W^ r = V  \]
+</div>
+  <p> such that Lemma <a href="/tag/018R" data-tag="018R">14.21.7</a> applies to each of the inclusions $W^ i \subset W^{i + 1}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $n$ be the smallest integer such that $V$ has a nondegenerate simplex that does not belong to $U$. Let $x \in V_ n$, $x\not\in U_ n$ be such a nondegenerate simplex. Let $W \subset V$ be the set of elements which are either in $U$, or are a (repeated) degeneracy of $x$ (in other words, are of the form $V(\varphi )(x)$ with $\varphi : [m] \to [n]$ surjective). It is easy to see that $W$ is a simplicial set. The inclusion $U \subset W$ satisfies the conditions of Lemma <a href="/tag/018R" data-tag="018R">14.21.7</a>. Moreover the number of nondegenerate simplices of $V$ which are not contained in $W$ is exactly one less than the number of nondegenerate simplices of $V$ which are not contained in $U$. Hence we win by induction on this number. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="018T">
+  <p><a class="environment-identifier" href="/tag/018T">Lemma <span data-tag="018T">14.21.9</span>.</a> Let $\mathcal{A}$ be an abelian category Let $U$ be an $m$-truncated simplicial object of $\mathcal{A}$. For $n > m$ we have $N(i_{m!}U)_ n = 0$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Write $V = i_{m!}U$. Let $V' \subset V$ be the simplicial subobject of $V$ with $V'_ i = V_ i$ for $i \leq m$ and $N(V'_ i) = 0$ for $i > m$, see Lemma <a href="/tag/017Y" data-tag="017Y">14.18.9</a>. By the adjunction formula, since $\text{sk}_ m V' = U$, there is an inverse to the injection $V' \to V$. Hence $V' = V$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="018U">
+  <p><a class="environment-identifier" href="/tag/018U">Lemma <span data-tag="018U">14.21.10</span>.</a> Let $\mathcal{A}$ be an abelian category. Let $U$ be a simplicial object of $\mathcal{A}$. Let $n \geq 0$ be an integer. The morphism $i_{n!} \text{sk}_ n U \to U$ identifies $i_{n!} \text{sk}_ n U$ with the simplicial subobject $U' \subset U$ defined in Lemma <a href="/tag/017Y" data-tag="017Y">14.18.9</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/018T" data-tag="018T">14.21.9</a> we have $N(i_{n!} \text{sk}_ n U)_ i = 0$ for $i > n$. The map $i_{n!} \text{sk}_ n U \to U$ is an isomorphism in degrees $\leq n$, see Lemma <a href="/tag/018N" data-tag="018N">14.21.3</a>. Combined we conclude that the map $i_{n!} \text{sk}_ n U \to U$ induces injective maps $N(i_{n!} \text{sk}_ n U)_ i \to N(U)_ i$ for all $i$. Hence Lemma <a href="/tag/017W" data-tag="017W">14.18.7</a> applies. Thus $i_{n!} \text{sk}_ n U \to U$ is injective. The result follows easily from this. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Here is another way to think about the coskeleton functor using the material above. 
+</p>
+<p>
+<article class="env-lemma" id="018V">
+  <p><a class="environment-identifier" href="/tag/018V">Lemma <span data-tag="018V">14.21.11</span>.</a> Let $\mathcal{C}$ be a category with finite coproducts and finite limits. Let $V$ be a simplicial object of $\mathcal{C}$. In this case </p>
+  <div class="equation">
+  \[  (\text{cosk}_ n \text{sk}_ n V)_{n + 1} = \mathop{\mathrm{Hom}}\nolimits (i_{n !}\text{sk}_ n \Delta [n + 1], V)_0.  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/017F" data-tag="017F">14.13.4</a> the object on the left represents the functor which assigns to $X$ the first set of the following equalities 
+    <p>
+      <div class="equation">
+  \begin{eqnarray*}  \mathop{\mathrm{Mor}}\nolimits (X \times \Delta [n + 1], \text{cosk}_ n \text{sk}_ n V) &  = &  \mathop{\mathrm{Mor}}\nolimits (X \times \text{sk}_ n \Delta [n + 1], \text{sk}_ n V) \\ &  = &  \mathop{\mathrm{Mor}}\nolimits (X \times i_{n !} \text{sk}_ n \Delta [n + 1], V). \end{eqnarray*}
+</div>
+    <p>
+       The object on the right in the formula of the lemma is represented by the functor which assigns to $X$ the last set in the sequence of equalities. This proves the result. 
+    <p>
+      In the sequence of equalities we have used that $\text{sk}_ n (X \times \Delta [n + 1]) = X \times \text{sk}_ n \Delta [n + 1]$ and that $i_{n!}(X \times \text{sk}_ n \Delta [n + 1]) = X \times i_{n !} \text{sk}_ n \Delta [n + 1]$. The first equality is obvious. For any (possibly truncated) simplicial object $W$ of $\mathcal{C}$ and any object $X$ of $\mathcal{C}$ denote temporarily $\mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(X, W)$ the (possibly truncated) simplicial set $[n] \mapsto \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(X, W_ n)$. From the definitions it follows that $\mathop{\mathrm{Mor}}\nolimits (U \times X, W) = \mathop{\mathrm{Mor}}\nolimits (U, \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(X, W))$ for any (possibly truncated) simplicial set $U$. Hence 
+    <p>
+      <div class="equation">
+  \begin{eqnarray*}  \mathop{\mathrm{Mor}}\nolimits (X \times i_{n !} \text{sk}_ n \Delta [n + 1], W) &  = &  \mathop{\mathrm{Mor}}\nolimits (i_{n !} \text{sk}_ n \Delta [n + 1], \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(X, W)) \\ &  = &  \mathop{\mathrm{Mor}}\nolimits (\text{sk}_ n \Delta [n + 1], \text{sk}_ n\mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(X, W)) \\ &  = &  \mathop{\mathrm{Mor}}\nolimits (X \times \text{sk}_ n \Delta [n + 1], \text{sk}_ nW) \\ &  = &  \mathop{\mathrm{Mor}}\nolimits (i_{n!}(X \times \text{sk}_ n \Delta [n + 1]), W). \end{eqnarray*}
+</div>
+    <p>
+       This proves the second equality used, and ends the proof of the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

@@ -1,0 +1,174 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="homology-section-truncations" class="tex-section"><span data-tag="0118">12.15</span> Truncation of complexes</h2>
+
+<p>
+Let $\mathcal{A}$ be an abelian category. Let $A_\bullet $ be a chain complex. There are several ways to <em>truncate</em> the complex $A_\bullet $. 
+</p>
+<ol>
+  <li><p>
+The <em>“stupid” truncation $\sigma _{\leq n}$</em> is the subcomplex $\sigma _{\leq n} A_\bullet $ defined by the rule $(\sigma _{\leq n} A_\bullet )_ i = 0$ if $i > n$ and $(\sigma _{\leq n} A_\bullet )_ i = A_ i$ if $i \leq n$. In a picture 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \sigma _{\leq n}A_\bullet \ar[d] &  \ldots \ar[r] &  0 \ar[r] \ar[d] &  A_ n \ar[r] \ar[d] &  A_{n - 1} \ar[r] \ar[d] &  \ldots \\  A_\bullet &  \ldots \ar[r] &  A_{n + 1} \ar[r] &  A_ n \ar[r] &  A_{n - 1} \ar[r] &  \ldots }  \]
+</div>
+<p>
+ Note the property $\sigma _{\leq n}A_\bullet / \sigma _{\leq n - 1}A_\bullet = A_ n[-n]$. 
+</p>
+</li><li><p>
+The <em>“stupid” truncation $\sigma _{\geq n}$</em> is the quotient complex $\sigma _{\geq n} A_\bullet $ defined by the rule $(\sigma _{\geq n} A_\bullet )_ i = A_ i$ if $i \geq n$ and $(\sigma _{\geq n} A_\bullet )_ i = 0$ if $i < n$. In a picture 
+</p>
+<div class="equation">
+  \[  \xymatrix{ A_\bullet \ar[d] &  \ldots \ar[r] &  A_{n + 1} \ar[r] \ar[d] &  A_ n \ar[r] \ar[d] &  A_{n - 1} \ar[r] \ar[d] &  \ldots \\  \sigma _{\geq n}A_\bullet &  \ldots \ar[r] &  A_{n + 1} \ar[r] &  A_ n \ar[r] &  0 \ar[r] &  \ldots }  \]
+</div>
+<p>
+ The map of complexes $\sigma _{\geq n}A_\bullet \to \sigma _{\geq n + 1}A_\bullet $ is surjective with kernel $A_ n[-n]$. 
+</p>
+</li><li><p>
+The <em>canonical truncation</em> $\tau _{\geq n}A_\bullet $ is defined by the picture 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \tau _{\geq n}A_\bullet \ar[d] &  \ldots \ar[r] &  A_{n + 1} \ar[r] \ar[d] &  \mathop{\mathrm{Ker}}(d_ n) \ar[r] \ar[d] &  0 \ar[r] \ar[d] &  \ldots \\  A_\bullet &  \ldots \ar[r] &  A_{n + 1} \ar[r] &  A_ n \ar[r] &  A_{n - 1} \ar[r] &  \ldots }  \]
+</div>
+<p>
+ Note that these complexes have the property that 
+</p>
+<div class="equation">
+  \[  H_ i(\tau _{\geq n}A_\bullet ) = \left\{  \begin{matrix}  H_ i(A_\bullet ) 
+
+&  \text{if} 
+
+&  i \geq n 
+
+\\  0 
+
+&  \text{if} 
+
+&  i < n 
+
+\end{matrix} \right.  \]
+</div>
+</li><li><p>
+The <em>canonical truncation</em> $\tau _{\leq n}A_\bullet $ is defined by the picture 
+</p>
+<div class="equation">
+  \[  \xymatrix{ A_\bullet \ar[d] &  \ldots \ar[r] &  A_{n + 1} \ar[r] \ar[d] &  A_ n \ar[r] \ar[d] &  A_{n - 1} \ar[r] \ar[d] &  \ldots \\  \tau _{\leq n}A_\bullet &  \ldots \ar[r] &  0 \ar[r] &  \mathop{\mathrm{Coker}}(d_{n + 1}) \ar[r] &  A_{n - 1} \ar[r] &  \ldots }  \]
+</div>
+<p>
+ Note that these complexes have the property that 
+</p>
+<div class="equation">
+  \[  H_ i(\tau _{\leq n}A_\bullet ) = \left\{  \begin{matrix}  H_ i(A_\bullet ) 
+
+&  \text{if} 
+
+&  i \leq n 
+
+\\  0 
+
+&  \text{if} 
+
+&  i > n 
+
+\end{matrix} \right.  \]
+</div>
+</li>
+</ol>
+<p>
+Let $\mathcal{A}$ be an abelian category. Let $A^\bullet $ be a cochain complex. There are four ways to truncate the complex $A^\bullet $. 
+</p>
+<ol>
+  <li><p>
+The <em>“stupid” truncation $\sigma _{\geq n}$</em> is the subcomplex $\sigma _{\geq n} A^\bullet $ defined by the rule $(\sigma _{\geq n} A^\bullet )^ i = 0$ if $i < n$ and $(\sigma _{\geq n} A^\bullet )^ i = A^ i$ if $i \geq n$. In a picture 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \sigma _{\geq n}A^\bullet \ar[d] &  \ldots \ar[r] &  0 \ar[r] \ar[d] &  A^ n \ar[r] \ar[d] &  A^{n + 1} \ar[r] \ar[d] &  \ldots \\  A^\bullet &  \ldots \ar[r] &  A^{n - 1} \ar[r] &  A^ n \ar[r] &  A^{n + 1} \ar[r] &  \ldots }  \]
+</div>
+<p>
+ Note the property $\sigma _{\geq n}A^\bullet / \sigma _{\geq n + 1}A^\bullet = A^ n[-n]$. 
+</p>
+</li><li><p>
+The <em>“stupid” truncation $\sigma _{\leq n}$</em> is the quotient complex $\sigma _{\leq n} A^\bullet $ defined by the rule $(\sigma _{\leq n} A^\bullet )^ i = 0$ if $i > n$ and $(\sigma _{\leq n} A^\bullet )^ i = A^ i$ if $i \leq n$. In a picture 
+</p>
+<div class="equation">
+  \[  \xymatrix{ A^\bullet \ar[d] &  \ldots \ar[r] &  A^{n - 1} \ar[r] \ar[d] &  A^ n \ar[r] \ar[d] &  A^{n + 1} \ar[r] \ar[d] &  \ldots \\  \sigma _{\leq n}A^\bullet &  \ldots \ar[r] &  A^{n - 1} \ar[r] &  A^ n \ar[r] &  0 \ar[r] &  \ldots \\  }  \]
+</div>
+<p>
+ The map of complexes $\sigma _{\leq n}A^\bullet \to \sigma _{\leq n - 1}A^\bullet $ is surjective with kernel $A^ n[-n]$. 
+</p>
+</li><li><p>
+The <em>canonical truncation</em> $\tau _{\leq n}A^\bullet $ is defined by the picture 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \tau _{\leq n}A^\bullet \ar[d] &  \ldots \ar[r] &  A^{n - 1} \ar[r] \ar[d] &  \mathop{\mathrm{Ker}}(d^ n) \ar[r] \ar[d] &  0 \ar[r] \ar[d] &  \ldots \\  A^\bullet &  \ldots \ar[r] &  A^{n - 1} \ar[r] &  A^ n \ar[r] &  A^{n + 1} \ar[r] &  \ldots }  \]
+</div>
+<p>
+ Note that these complexes have the property that 
+</p>
+<div class="equation">
+  \[  H^ i(\tau _{\leq n}A^\bullet ) = \left\{  \begin{matrix}  H^ i(A^\bullet ) 
+
+&  \text{if} 
+
+&  i \leq n 
+
+\\  0 
+
+&  \text{if} 
+
+&  i > n 
+
+\end{matrix} \right.  \]
+</div>
+</li><li><p>
+The <em>canonical truncation</em> $\tau _{\geq n}A^\bullet $ is defined by the picture 
+</p>
+<div class="equation">
+  \[  \xymatrix{ A^\bullet \ar[d] &  \ldots \ar[r] &  A^{n - 1} \ar[r] \ar[d] &  A^ n \ar[r] \ar[d] &  A^{n + 1} \ar[r] \ar[d] &  \ldots \\  \tau _{\geq n}A^\bullet &  \ldots \ar[r] &  0 \ar[r] &  \mathop{\mathrm{Coker}}(d^{n - 1}) \ar[r] &  A^{n + 1} \ar[r] &  \ldots }  \]
+</div>
+<p>
+ Note that these complexes have the property that 
+</p>
+<div class="equation">
+  \[  H^ i(\tau _{\geq n}A^\bullet ) = \left\{  \begin{matrix}  0 
+
+&  \text{if} 
+
+&  i < n 
+
+\\  H^ i(A^\bullet ) 
+
+&  \text{if} 
+
+&  i \geq n 
+
+\end{matrix} \right.  \]
+</div>
+</li>
+</ol>

@@ -1,0 +1,353 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="weil-section-chow-motives" class="tex-section"><span data-tag="0FG9">45.4</span> Chow motives</h2>
+
+<p>
+We fix a base field $k$. In this section we construct an additive Karoubian $\mathbf{Q}$-linear category $M_ k$ endowed with a symmetric monoidal structure and a contravariant functor 
+</p>
+<div class="equation">
+  \[  h : \{ \text{smooth projective schemes over }k\}  \longrightarrow M_ k  \]
+</div>
+<p>
+ which maps products to tensor products and disjoint unions to direct sums. Our construction will be characterized by the fact that $h$ factors through the symmetric monoidal category whose objects are smooth projective varieties and whose morphisms are correspondences of degree $0$ such that the image of the projector $c_2$ on $h(\mathbf{P}^1_ k)$ from Example <a href="/tag/0FG6" data-tag="0FG6">45.3.7</a> is invertible in $M_ k$, see Lemma <a href="/tag/0FGH" data-tag="0FGH">45.4.8</a>. At the end of the section we will show that every motive, i.e., every object of $M_ k$ to has a (left) dual, see Lemma <a href="/tag/0FGJ" data-tag="0FGJ">45.4.10</a>. 
+</p>
+<p>
+A <em>motive</em> or a <em>Chow motive</em> over $k$ will be a triple $(X, p, m)$ where 
+</p>
+<ol>
+  <li><p>
+$X$ is a smooth projective scheme over $k$, 
+</p>
+</li><li><p>
+$p \in \text{Corr}^0(X, X)$ satisfies $p \circ p = p$, 
+</p>
+</li><li><p>
+$m \in \mathbf{Z}$. 
+</p>
+</li>
+</ol>
+<p>
+ Given a second motive $(Y, q, n)$ we define a <em>morphism of motives</em> or a <em>morphism of Chow motives</em> to be an element of 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits ((X, p, m), (Y, q, n)) = q \circ \text{Corr}^{n - m}(X, Y) \circ p \subset \text{Corr}^{n - m}(X, Y)  \]
+</div>
+<p>
+ Composition of morphisms of motives is defined using the composition of correspondences defined above. 
+</p>
+<p>
+<article class="env-lemma" id="0FGA">
+  <p><a class="environment-identifier" href="/tag/0FGA">Lemma <span data-tag="0FGA">45.4.1</span>.</a> The category $M_ k$ whose objects are motives over $k$ and morphisms are morphisms of motives over $k$ is a $\mathbf{Q}$-linear category. There is a contravariant functor </p>
+  <div class="equation">
+  \[  h : \{ \text{smooth projective schemes over }k\}  \longrightarrow M_ k  \]
+</div>
+  <p> defined by $h(X) = (X, 1, 0)$ and $h(f) = [\Gamma _ f]$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows immediately from Lemma <a href="/tag/0FG3" data-tag="0FG3">45.3.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FGB">
+  <p><a class="environment-identifier" href="/tag/0FGB">Lemma <span data-tag="0FGB">45.4.2</span>.</a> The category $M_ k$ is Karoubian. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $M = (X, p, m)$ be a motive and let $a \in \mathop{\mathrm{Mor}}\nolimits (M, M)$ be a projector. Then $a = a \circ a$ both in $\mathop{\mathrm{Mor}}\nolimits (M, M)$ as well as in $\text{Corr}^0(X, X)$. Set $N = (X, a, m)$. Since we have $a = p \circ a \circ a$ in $\text{Corr}^0(X, X)$ we see that $a : N \to M$ is a morphism of $M_ k$. Next, suppose that $b : (Y, q, n) \to M$ is a morphism such that $(1 - a) \circ b = 0$. Then $b = a \circ b$ as well as $b = b \circ q$. Hence $b$ is a morphism $b : (Y, q, n) \to N$. Thus we see that the projector $1 - a$ has a kernel, namely $N$ and we find that $M_ k$ is Karoubian, see Homology, Definition <a href="/tag/09SG" data-tag="09SG">12.4.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We define a functor 
+</p>
+<div class="equation">
+  \[  \otimes : M_ k \times M_ k \longrightarrow M_ k  \]
+</div>
+<p>
+ On objects we use the formula 
+</p>
+<div class="equation">
+  \[  (X, p, m) \otimes (Y, q, n) = (X \times Y, p \otimes q, m + n)  \]
+</div>
+<p>
+ On morphisms, we use 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{Mor}}\nolimits ((X, p, m), (Y, q, n)) \times \mathop{\mathrm{Mor}}\nolimits ((X', p', m'), (Y', q', n')) \ar[d] \\  \mathop{\mathrm{Mor}}\nolimits ( (X \times X', p \otimes p', m + m'), (Y \times Y', q \otimes q', n + n')) }  \]
+</div>
+<p>
+ given by the rule $(a, a') \longmapsto a \otimes a'$ where $\otimes $ on correspondences is as in Section <a href="/tag/0FFZ" data-tag="0FFZ">45.3</a>. This makes sense: by definition of morphisms of motives we can write $a = q \circ c \circ p$ and $a' = q' \circ c' \circ p'$ with $c \in \text{Corr}^{n - m}(X, Y)$ and $c' \in \text{Corr}^{n' - m'}(X', Y')$ and then we obtain 
+</p>
+<div class="equation">
+  \[  a \otimes a' = (q \circ c \circ p) \otimes (q' \circ c' \circ p') = (q \otimes q') \circ (c \otimes c') \circ (p \otimes p')  \]
+</div>
+<p>
+ which is indeed a morphism of motives from $(X \times X', p \otimes p', m + m')$ to $(Y \times Y', q \otimes q', n + n')$. 
+</p>
+<p>
+<article class="env-lemma" id="0FGC">
+  <p><a class="environment-identifier" href="/tag/0FGC">Lemma <span data-tag="0FGC">45.4.3</span>.</a> The category $M_ k$ with tensor product defined as above is symmetric monoidal with the obvious associativity and commutativity constraints and with unit $\mathbf{1} = (\mathop{\mathrm{Spec}}(k), 1, 0)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows readily from Lemma <a href="/tag/0FG7" data-tag="0FG7">45.3.8</a>. Details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The motives $\mathbf{1}(n) = (\mathop{\mathrm{Spec}}(k), 1, n)$ are useful. Observe that 
+</p>
+<div class="equation">
+  \[  \mathbf{1} = \mathbf{1}(0) \quad \text{and}\quad \mathbf{1}(n + m) = \mathbf{1}(n) \otimes \mathbf{1}(m)  \]
+</div>
+<p>
+ Thus tensoring with $\mathbf{1}(1)$ is an autoequivalence of the category of motives. Given a motive $M$ we sometimes write $M(n) = M \otimes \mathbf{1}(n)$. Observe that if $M = (X, p, m)$, then $M(n) = (X, p, m + n)$. 
+</p>
+<p>
+<article class="env-lemma" id="0FGD">
+  <p><a class="environment-identifier" href="/tag/0FGD">Lemma <span data-tag="0FGD">45.4.4</span>.</a> With notation as in Example <a href="/tag/0FG6" data-tag="0FG6">45.3.7</a> </p>
+  <p><ol>
+  <li><p>
+the motive $(X, c_0, 0)$ is isomorphic to the motive $\mathbf{1} = (\mathop{\mathrm{Spec}}(k), 1, 0)$. 
+</p>
+</li><li><p>
+the motive $(X, c_2, 0)$ is isomorphic to the motive $\mathbf{1}(-1) = (\mathop{\mathrm{Spec}}(k), 1, -1)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use Lemma <a href="/tag/0FG3" data-tag="0FG3">45.3.4</a> without further mention. The structure morphism $X \to \mathop{\mathrm{Spec}}(k)$ gives a correspondence $a \in \text{Corr}^0(\mathop{\mathrm{Spec}}(k), X)$. On the other hand, the rational point $x$ is a morphism $\mathop{\mathrm{Spec}}(k) \to X$ which gives a correspondence $b \in \text{Corr}^0(X, \mathop{\mathrm{Spec}}(k))$. We have $b \circ a = 1$ as a correspondence on $\mathop{\mathrm{Spec}}(k)$. The composition $a \circ b$ corresponds to the graph of the composition $X \to x \to X$ which is $c_0 = [x \times X]$. Thus $a = a \circ b \circ a = c_0 \circ a$ and $b = b \circ a \circ b = b \circ c_0$. Hence, unwinding the definitions, we see that $a$ and $b$ are mutually inverse morphisms $a : (\mathop{\mathrm{Spec}}(k), 1, 0) \to (X, c_0, 0)$ and $b : (X, c_0, 0) \to (\mathop{\mathrm{Spec}}(k), 1, 0)$. 
+    <p>
+      We will proceed exactly as above to prove the second statement. Denote 
+    <p>
+      <div class="equation">
+  \[  a' \in \text{Corr}^1(\mathop{\mathrm{Spec}}(k), X) = \mathop{\mathrm{CH}}\nolimits ^1(X)  \]
+</div>
+    <p>
+       the class of the point $x$. Denote 
+    <p>
+      <div class="equation">
+  \[  b' \in \text{Corr}^{-1}(X, \mathop{\mathrm{Spec}}(k)) = \mathop{\mathrm{CH}}\nolimits _1(X)  \]
+</div>
+    <p>
+       the class of $[X]$. We have $b' \circ a' = 1$ as a correspondence on $\mathop{\mathrm{Spec}}(k)$ because $[x] \cdot [X] = [x]$ on $X = \mathop{\mathrm{Spec}}(k) \times X \times \mathop{\mathrm{Spec}}(k)$. Computing the intersection product $\text{pr}_{12}^*b' \cdot \text{pr}_{23}^*a'$ on $X \times \mathop{\mathrm{Spec}}(k) \times X$ gives the cycle $X \times \mathop{\mathrm{Spec}}(k) \times x$. Hence the composition $a' \circ b'$ is equal to $c_2$ as a correspondence on $X$. Thus $a' = a' \circ b \circ a' = c_2 \circ a'$ and $b' = b' \circ a' \circ b' = b' \circ c_2$. Recall that 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits ((\mathop{\mathrm{Spec}}(k), 1, -1), (X, c_2, 0)) = c_2 \circ \text{Corr}^1(\mathop{\mathrm{Spec}}(k), X) \subset \text{Corr}^1(\mathop{\mathrm{Spec}}(k), X)  \]
+</div>
+    <p>
+       and 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits ((X, c_2, 0), (\mathop{\mathrm{Spec}}(k), 1, -1)) = \text{Corr}^{-1}(X, \mathop{\mathrm{Spec}}(k)) \circ c_2 \subset \text{Corr}^{-1}(X, \mathop{\mathrm{Spec}}(k))  \]
+</div>
+    <p>
+       Hence, we see that $a'$ and $b'$ are mutually inverse morphisms $a' : (\mathop{\mathrm{Spec}}(k), 1, -1) \to (X, c_2, 0)$ and $b' : (X, c_2, 0) \to (\mathop{\mathrm{Spec}}(k), 1, -1)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0FGE">
+  <p><a class="environment-identifier" href="/tag/0FGE">Remark <span data-tag="0FGE">45.4.5</span> <span class="named">(Lefschetz and Tate motive)</span>.</a>  Let $X = \mathbf{P}^1_ k$ and $c_2$ be as in Example <a href="/tag/0FG6" data-tag="0FG6">45.3.7</a>. In the literature the motive $(X, c_2, 0)$ is sometimes called the <em>Lefschetz motive</em> and depending on the reference the notation $L$, $\mathbf{L}$, $\mathbf{Q}(-1)$, or $h^2(\mathbf{P}^1_ k)$ may be used to denote it. By Lemma <a href="/tag/0FGD" data-tag="0FGD">45.4.4</a> the Lefschetz motive is isomorphic to $\mathbf{1}(-1)$. Hence the Lefschetz motive is invertible (Categories, Definition <a href="/tag/0FFN" data-tag="0FFN">4.43.7</a>) with inverse $\mathbf{1}(1)$. The motive $\mathbf{1}(1)$ is sometimes called the <em>Tate motive</em> and depending on the reference the notation $L^{-1}$, $\mathbf{L}^{-1}$, $\mathbf{T}$, or $\mathbf{Q}(1)$ may be used to denote it. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0FGF">
+  <p><a class="environment-identifier" href="/tag/0FGF">Lemma <span data-tag="0FGF">45.4.6</span>.</a> The category $M_ k$ is additive. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $(Y, p, m)$ and $(Z, q, n)$ be motives. If $n = m$, then a direct sum is given by $(Y \amalg Z, p + q, m)$, with obvious notation. Details omitted. 
+    <p>
+      Suppose that $n < m$. Let $X$, $c_2$ be as in Example <a href="/tag/0FG6" data-tag="0FG6">45.3.7</a>. Then we consider 
+    <p>
+      <div class="equation">
+  \begin{align*}  (Z, q, n) &  = (Z, q, m) \otimes (\mathop{\mathrm{Spec}}(k), 1, -1) \otimes \ldots \otimes (\mathop{\mathrm{Spec}}(k), 1, -1) \\ &  \cong (Z, q, m) \otimes (X, c_2, 0) \otimes \ldots \otimes (X, c_2, 0) \\ &  \cong (Z \times X^{m - n}, q \otimes c_2 \otimes \ldots \otimes c_2, m) \end{align*}
+</div>
+    <p>
+       where we have used Lemma <a href="/tag/0FGD" data-tag="0FGD">45.4.4</a>. This reduces us to the case discussed in the first paragraph. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FGG">
+  <p><a class="environment-identifier" href="/tag/0FGG">Lemma <span data-tag="0FGG">45.4.7</span>.</a> In $M_ k$ we have $h(\mathbf{P}^1_ k) \cong \mathbf{1} \oplus \mathbf{1}(-1)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from Example <a href="/tag/0FG6" data-tag="0FG6">45.3.7</a> and Lemma <a href="/tag/0FGD" data-tag="0FGD">45.4.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FGH">
+  <p><a class="environment-identifier" href="/tag/0FGH">Lemma <span data-tag="0FGH">45.4.8</span>.</a> Let $X$, $c_2$ be as in Example <a href="/tag/0FG6" data-tag="0FG6">45.3.7</a>. Let $\mathcal{C}$ be a $\mathbf{Q}$-linear Karoubian symmetric monoidal category. Any $\mathbf{Q}$-linear functor </p>
+  <div class="equation">
+  \[  F : \left\{  \begin{matrix}  \text{smooth projective schemes over }k
+
+\\  \text{morphisms are correspondences of degree }0 
+
+\end{matrix} \right\}  \longrightarrow \mathcal{C}  \]
+</div>
+  <p> of symmetric monoidal categories such that the image of $F(c_2)$ on $F(X)$ is an invertible object, factors uniquely through a functor $F : M_ k \to \mathcal{C}$ of symmetric monoidal categories. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Denote $U$ in $\mathcal{C}$ the invertible object which is assumed to exist in the statement of the lemma. We extend $F$ to motives by setting 
+    <p>
+      <div class="equation">
+  \[  F(X, p, m) = \left(\text{the image of the projector }F(p)\text{ in }F(X)\right) \otimes U^{\otimes -m}  \]
+</div>
+    <p>
+       which makes sense because $U$ is invertible and because $\mathcal{C}$ is Karoubian. An important feature of this choice is that $F(X, c_2, 0) = U$. Observe that 
+    <p>
+      <div class="equation">
+  \begin{align*}  F((X, p, m) \otimes (Y, q, n)) &  = F(X \times Y, p \otimes q, m + n) \\ &  = \left(\text{the image of }F(p \otimes q)\text{ in }F(X \times Y)\right) \otimes U^{\otimes -m - n} \\ &  = F(X, p, m) \otimes F(Y, q, n) \end{align*}
+</div>
+    <p>
+       Thus we see that our rule is compatible with tensor products on the level of objects (details omitted). 
+    <p>
+      Next, we extend $F$ to morphisms of motives. Suppose that 
+    <p>
+      <div class="equation">
+  \[  a \in \mathop{\mathrm{Hom}}\nolimits ((Y, p, m), (Z, q, n)) = q \circ \text{Corr}^{n - m}(Y, Z) \circ p \subset \text{Corr}^{n - m}(Y, Z)  \]
+</div>
+    <p>
+       is a morphism. If $n = m$, then $a$ is a correspondence of degree $0$ and we can use $F(a) : F(Y) \to F(Z)$ to get the desired map $F(Y, p, m) \to F(Z, q, n)$. If $n < m$ we get canonical identifications 
+    <p>
+      <div class="equation">
+  \begin{align*}  s : F((Z, q, n)) &  \to F(Z, q, m) \otimes U^{m - n} \\ &  \to F(Z, q, m) \otimes F(X, c_2, 0) \otimes \ldots \otimes F(X, c_2, 0) \\ &  \to F((Z, q, m) \otimes (X, c_2, 0) \otimes \ldots \otimes (X, c_2, 0)) \\ &  \to F((Z \times X^{m - n}, q \otimes c_2 \otimes \ldots \otimes c_2, m)) \end{align*}
+</div>
+    <p>
+       Namely, for the first isomorphism we use the definition of $F$ on motives above. For the second, we use the choice of $U$. For the third we use the compatibility of $F$ on tensor products of motives. The fourth is the definition of tensor products on motives. On the other hand, since we similarly have an isomorphism 
+    <p>
+      <div class="equation">
+  \[  \sigma : (Z, q, n) \to (Z \times X^{m - n}, q \otimes c_2 \otimes \ldots \otimes c_2, m)  \]
+</div>
+    <p>
+       (see proof of Lemma <a href="/tag/0FGF" data-tag="0FGF">45.4.6</a>). Composing $a$ with this isomorphism gives 
+    <p>
+      <div class="equation">
+  \[  \sigma \circ a \in \mathop{\mathrm{Hom}}\nolimits ((Y, p, m), (Z \times X^{m - n}, q \otimes c_2 \otimes \ldots \otimes c_2, m))  \]
+</div>
+    <p>
+       Putting everything together we obtain 
+    <p>
+      <div class="equation">
+  \[  s^{-1} \circ F(\sigma \circ a) : F(Y, p, m) \to F(Z, q, n)  \]
+</div>
+    <p>
+       If $n > m$ we similarly define isomorphisms 
+    <p>
+      <div class="equation">
+  \[  t : F((Y, p, m)) \to F((Y \times X^{n - m}, p \otimes c_2 \otimes \ldots \otimes c_2, n))  \]
+</div>
+    <p>
+       and 
+    <p>
+      <div class="equation">
+  \[  \tau : (Y, p, m)) \to (Y \times X^{n - m}, p \otimes c_2 \otimes \ldots \otimes c_2, n)  \]
+</div>
+    <p>
+       and we set $F(a) = F(a \circ \tau ^{-1}) \circ t$. We omit the verification that this construction defines a functor of symmetric monoidal categories. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FGI">
+  <p><a class="environment-identifier" href="/tag/0FGI">Lemma <span data-tag="0FGI">45.4.9</span>.</a> Let $X$ be a smooth projective scheme over $k$ which is equidimensional of dimension $d$. Then $h(X)(d)$ is a left dual to $h(X)$ in $M_ k$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use Lemma <a href="/tag/0FG0" data-tag="0FG0">45.3.1</a> without further mention. We compute 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits (\mathbf{1}, h(X) \otimes h(X)(d)) = \text{Corr}^ d(\mathop{\mathrm{Spec}}(k), X \times X) = \mathop{\mathrm{CH}}\nolimits ^ d(X \times X)  \]
+</div>
+    <p>
+       Here we have $\eta = [\Delta ]$. On the other hand, we have 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits (h(X)(d) \otimes h(X), \mathbf{1}) = \text{Corr}^{-d}(X \times X, \mathop{\mathrm{Spec}}(k)) = \mathop{\mathrm{CH}}\nolimits _ d(X \times X)  \]
+</div>
+    <p>
+       and here we have the class $\epsilon = [\Delta ]$ of the diagonal as well. The composition of the correspondence $[\Delta ] \otimes 1$ with $1 \otimes [\Delta ]$ either way is the correspondence $[\Delta ] = 1$ in $\text{Corr}^0(X, X)$ which proves the required diagrams of Categories, Definition <a href="/tag/0FFP" data-tag="0FFP">4.43.8</a> commute. Namely, observe that 
+    <p>
+      <div class="equation">
+  \[  [\Delta ] \otimes 1 \in \text{Corr}^ d(X, X \times X \times X) = \mathop{\mathrm{CH}}\nolimits ^{2d}(X \times X \times X \times X)  \]
+</div>
+    <p>
+       is given by the class of the cycle $\text{pr}^{1234, -1}_{23}(\Delta ) \cap \text{pr}^{1234, -1}_{14}(\Delta )$ with obvious notation. Similarly, the class 
+    <p>
+      <div class="equation">
+  \[  1 \otimes [\Delta ] \in \text{Corr}^{-d}(X \times X \times X, X) = \mathop{\mathrm{CH}}\nolimits ^{2d}(X \times X \times X \times X)  \]
+</div>
+    <p>
+       is given by the class of the cycle $\text{pr}^{1234, -1}_{23}(\Delta ) \cap \text{pr}^{1234, -1}_{14}(\Delta )$. The composition $(1 \otimes [\Delta ]) \circ ([\Delta ] \otimes 1)$ is by definition the pushforward $\text{pr}^{12345}_{15, *}$ of the intersection product 
+    <p>
+      <div class="equation">
+  \[  [\text{pr}^{12345, -1}_{23}(\Delta ) \cap \text{pr}^{12345, -1}_{14}(\Delta )] \cdot [\text{pr}^{12345, -1}_{34}(\Delta ) \cap \text{pr}^{12345, -1}_{15}(\Delta )] = [\text{small diagonal in } X^5]  \]
+</div>
+    <p>
+       which is equal to $\Delta $ as desired. We omit the proof of the formula for the composition in the other order. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FGJ">
+  <p><a class="environment-identifier" href="/tag/0FGJ">Lemma <span data-tag="0FGJ">45.4.10</span>.</a> Every object of $M_ k$ has a left dual. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $M = (X, p, m)$ be an object of $M_ k$. Then $M$ is a summand of $(X, 1, m) = h(X)(m)$. By Homology, Lemma <a href="/tag/0FFU" data-tag="0FFU">12.17.3</a> it suffices to show that $h(X)(m) = h(X) \otimes \mathbf{1}(m)$ has a dual. By construction $\mathbf{1}(-m)$ is a left dual of $\mathbf{1}(m)$. Hence it suffices to show that $h(X)$ has a left dual, see Categories, Lemma <a href="/tag/0FFS" data-tag="0FFS">4.43.11</a>. Let $X = \coprod X_ i$ be the decomposition of $X$ into irreducible components. Then $h(X) = \bigoplus h(X_ i)$ and it suffices to show that $h(X_ i)$ has a left dual, see Homology, Lemma <a href="/tag/0FFT" data-tag="0FFT">12.17.2</a>. This follows from Lemma <a href="/tag/0FGI" data-tag="0FGI">45.4.9</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

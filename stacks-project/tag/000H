@@ -1,0 +1,340 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sets-section-categories-schemes" class="tex-section"><span data-tag="000H">3.9</span> Constructing categories of schemes</h2>
+
+<p>
+We will discuss how to apply this to produce, given an initial set of schemes, a “small” category of schemes closed under a list of natural operations. Before we do so, we introduce the size of a scheme. Given a scheme $S$ we define 
+</p>
+<div class="equation">
+  \[  \text{size}(S) = \max (\aleph _0, \kappa _1, \kappa _2),  \]
+</div>
+<p>
+ where we define the cardinal numbers $\kappa _1$ and $\kappa _2$ as follows: 
+</p>
+<ol>
+  <li><p>
+We let $\kappa _1$ be the cardinality of the set of affine opens of $S$. 
+</p>
+</li><li><p>
+We let $\kappa _2$ be the supremum of all the cardinalities of all $\Gamma (U, \mathcal{O}_ S)$ for all $U \subset S$ affine open. 
+</p>
+</li>
+</ol>
+<p>
+<article class="env-lemma" id="000I">
+  <p><a class="environment-identifier" href="/tag/000I">Lemma <span data-tag="000I">3.9.1</span>.</a> For every cardinal $\kappa $, there exists a set $A$ such that every element of $A$ is a scheme and such that for every scheme $S$ with $\text{size}(S) \leq \kappa $, there is an element $X \in A$ such that $X \cong S$ (isomorphism of schemes). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. Hint: think about how any scheme is isomorphic to a scheme obtained by glueing affines. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We denote $Bound$ the function which to each cardinal $\kappa $ associates 
+</p>
+<div class="equation" id="046U">
+    <span class="equation-label"><a href="/tag/046U" data-tag="046U">3.9.1.1</a></span>
+  <div>\begin{equation}  \label{sets-equation-bound} Bound(\kappa ) = \max \{ \kappa ^{\aleph _0}, \kappa ^+\} . \end{equation}</div>
+</div>
+<p>
+ We could make this function grow much more rapidly, e.g., we could set $Bound(\kappa ) = \kappa ^\kappa $, and the result below would still hold. For any ordinal $\alpha $, we denote $\mathit{Sch}_\alpha $ the full subcategory of category of schemes whose objects are elements of $V_\alpha $. Here is the result we are going to prove. 
+</p>
+<p>
+<article class="env-lemma" id="000J">
+  <p><a class="environment-identifier" href="/tag/000J">Lemma <span data-tag="000J">3.9.2</span>.</a> With notations $\text{size}$, $Bound$ and $\mathit{Sch}_\alpha $ as above. Let $S_0$ be a set of schemes. There exists a limit ordinal $\alpha $ with the following properties: </p>
+  <p><ol>
+  <li class="custom-item" id="000K"><p>
+ We have $S_0 \subset V_\alpha $; in other words, $S_0 \subset \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_\alpha )$. 
+</p>
+</li><li class="custom-item" id="000L"><p>
+ For any $S \in \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_\alpha )$ and any scheme $T$ with $\text{size}(T) \leq Bound(\text{size}(S))$, there exists a scheme $S' \in \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_\alpha )$ such that $T \cong S'$. 
+</p>
+</li><li class="custom-item" id="000M"><p>
+ For any countable<a class="footnotemark" href="#a0000001193" id="a0000001193-mark"><sup>1</sup></a> diagram category $\mathcal{I}$ and any functor $F : \mathcal{I} \to \mathit{Sch}_\alpha $, the limit $\mathop{\mathrm{lim}}\nolimits _\mathcal {I} F$ exists in $\mathit{Sch}_\alpha $ if and only if it exists in $\mathit{Sch}$ and moreover, in this case, the natural morphism between them is an isomorphism. 
+</p>
+</li><li class="custom-item" id="000N"><p>
+ For any countable index category $\mathcal{I}$ and any functor $F : \mathcal{I} \to \mathit{Sch}_\alpha $, the colimit $\mathop{\mathrm{colim}}\nolimits _\mathcal {I} F$ exists in $\mathit{Sch}_\alpha $ if and only if it exists in $\mathit{Sch}$ and moreover, in this case, the natural morphism between them is an isomorphism. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We define, by transfinite induction, a function $f$ which associates to every ordinal an ordinal as follows. Let $f(0) = 0$. Given $f(\alpha )$, we define $f(\alpha + 1)$ to be the least ordinal $\beta $ such that the following hold: 
+    <p>
+      <ol>
+  <li><p>
+We have $\alpha + 1 \leq \beta $ and $f(\alpha ) \leq \beta $. 
+</p>
+</li><li><p>
+For any $S \in \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_{f(\alpha )})$ and any scheme $T$ with $\text{size}(T) \leq Bound(\text{size}(S))$, there exists a scheme $S' \in \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_\beta )$ such that $T \cong S'$. 
+</p>
+</li><li><p>
+For any countable index category $\mathcal{I}$ and any functor $F : \mathcal{I} \to \mathit{Sch}_{f(\alpha )}$, if the limit $\mathop{\mathrm{lim}}\nolimits _\mathcal {I} F$ or the colimit $\mathop{\mathrm{colim}}\nolimits _\mathcal {I} F$ exists in $\mathit{Sch}$, then it is isomorphic to a scheme in $\mathit{Sch}_\beta $. 
+</p>
+</li>
+</ol>
+    <p>
+       To see $\beta $ exists, we argue as follows. Since $\mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_{f(\alpha )})$ is a set, we see that $\kappa = \sup _{S \in \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_{f(\alpha )})} Bound(\text{size}(S))$ exists and is a cardinal. Let $A$ be a set of schemes obtained starting with $\kappa $ as in Lemma <a href="/tag/000I" data-tag="000I">3.9.1</a>. There is a set $CountCat$ of countable categories such that any countable category is isomorphic to an element of $CountCat$. Hence in (3) above we may assume that $\mathcal{I}$ is an element in $CountCat$. This means that the pairs $(\mathcal{I}, F)$ in (3) range over a set. Thus, there exists a set $B$ whose elements are schemes such that for every $(\mathcal{I}, F)$ as in (3), if the limit or colimit exists, then it is isomorphic to an element in $B$. Hence, if we pick any $\beta $ such that $A \cup B \subset V_\beta $ and $\beta > \max \{ \alpha + 1, f(\alpha )\} $, then (1)–(3) hold. Since every nonempty collection of ordinals has a least element, we see that $f(\alpha + 1)$ is well defined. Finally, if $\alpha $ is a limit ordinal, then we set $f(\alpha ) = \sup _{\alpha ' < \alpha } f(\alpha ')$. 
+    <p>
+      Pick $\beta _0$ such that $S_0 \subset V_{\beta _0}$. By construction $f(\beta ) \geq \beta $ and we see that also $S_0 \subset V_{f(\beta _0)}$. Moreover, as $f$ is nondecreasing, we see $S_0 \subset V_{f(\beta )}$ is true for any $\beta \geq \beta _0$. Next, choose any ordinal $\beta _1 > \beta _0$ with cofinality $\text{cf}(\beta _1) > \omega = \aleph _0$. This is possible since the cofinality of ordinals gets arbitrarily large, see Proposition <a href="/tag/05N3" data-tag="05N3">3.7.2</a>. We claim that $\alpha = f(\beta _1)$ is a solution to the problem posed in the lemma. 
+    <p>
+      The first property of the lemma holds by our choice of $\beta _1 > \beta _0$ above. 
+    <p>
+      Since $\beta _1$ is a limit ordinal (as its cofinality is infinite), we get $f(\beta _1) = \sup _{\beta < \beta _1} f(\beta )$. Hence $\{ f(\beta ) \mid \beta < \beta _1\}  \subset f(\beta _1)$ is a cofinal subset. Hence we see that 
+    <p>
+      <div class="equation">
+  \[  V_\alpha = V_{f(\beta _1)} = \bigcup \nolimits _{\beta < \beta _1} V_{f(\beta )}.  \]
+</div>
+    <p>
+       Now, let $S \in \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_\alpha )$. We define $\beta (S)$ to be the least ordinal $\beta $ such that $S \in \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_{f(\beta )})$. By the above we see that always $\beta (S) < \beta _1$. Since $\mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_{f(\beta + 1)}) \subset \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_\alpha )$, we see by construction of $f$ above that the second property of the lemma is satisfied. 
+    <p>
+      Suppose that $\{ S_1, S_2, \ldots \}  \subset \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_\alpha )$ is a countable collection. Consider the function $\omega \to \beta _1$, $n \mapsto \beta (S_ n)$. Since the cofinality of $\beta _1$ is $> \omega $, the image of this function cannot be a cofinal subset. Hence there exists a $\beta < \beta _1$ such that $\{ S_1, S_2, \ldots \}  \subset \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_{f(\beta )})$. It follows that any functor $F : \mathcal{I} \to \mathit{Sch}_\alpha $ factors through one of the subcategories $\mathit{Sch}_{f(\beta )}$. Thus, if there exists a scheme $X$ that is the colimit or limit of the diagram $F$, then, by construction of $f$, we see $X$ is isomorphic to an object of $\mathit{Sch}_{f(\beta + 1)}$ which is a subcategory of $\mathit{Sch}_\alpha $. This proves the last two assertions of the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="000O">
+  <p><a class="environment-identifier" href="/tag/000O">Remark <span data-tag="000O">3.9.3</span>.</a> The lemma above can also be proved using the reflection principle. However, one has to be careful. Namely, suppose the sentence $\phi _{scheme}(X)$ expresses the property “$X$ is a scheme”, then what does the formula $\phi _{scheme}^{V_\alpha }(X)$ mean? It is true that the reflection principle says we can find $\alpha $ such that for all $X \in V_\alpha $ we have $\phi _{scheme}(X) \leftrightarrow \phi _{scheme}^{V_\alpha }(X)$ but this is entirely useless. It is only by combining two such statements that something interesting happens. For example suppose $\phi _{red}(X, Y)$ expresses the property “$X$, $Y$ are schemes, and $Y$ is the reduction of $X$” (see Schemes, Definition <a href="/tag/01J4" data-tag="01J4">26.12.5</a>). Suppose we apply the reflection principle to the pair of formulas $\phi _1(X, Y) = \phi _{red}(X, Y)$, $\phi _2(X) = \exists Y, \phi _1(X, Y)$. Then it is easy to see that any $\alpha $ produced by the reflection principle has the property that given $X \in \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_\alpha )$ the reduction of $X$ is also an object of $\mathit{Sch}_\alpha $ (left as an exercise). </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="000P">
+  <p><a class="environment-identifier" href="/tag/000P">Lemma <span data-tag="000P">3.9.4</span>.</a> Let $S$ be an affine scheme. Let $R = \Gamma (S, \mathcal{O}_ S)$. Then the size of $S$ is equal to $\max \{  \aleph _0, |R|\} $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      There are at most $\max \{ |R|, \aleph _0\} $ affine opens of $\mathop{\mathrm{Spec}}(R)$. This is clear since any affine open $U \subset \mathop{\mathrm{Spec}}(R)$ is a finite union of principal opens $D(f_1) \cup \ldots \cup D(f_ n)$ and hence the number of affine opens is at most $\sup _ n |R|^ n = \max \{ |R|, \aleph _0\} $, see <span class="cite">[<span class="postnote">Ch. I, 10.13</span>, <a href="/bibliography/Kunen">Kunen</a>]</span>. On the other hand, we see that $\Gamma (U, \mathcal{O}) \subset R_{f_1} \times \ldots \times R_{f_ n}$ and hence $|\Gamma (U, \mathcal{O})| \leq \max \{ \aleph _0, |R_{f_1}|, \ldots , |R_{f_ n}|\} $. Thus it suffices to prove that $|R_ f| \leq \max \{ \aleph _0, |R|\} $ which is omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="000Q">
+  <p><a class="environment-identifier" href="/tag/000Q">Lemma <span data-tag="000Q">3.9.5</span>.</a> Let $S$ be a scheme. Let $S = \bigcup _{i \in I} S_ i$ be an open covering. Then $\text{size}(S) \leq \max \{ |I|, \sup _ i\{ \text{size}(S_ i)\} \} $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $U \subset S$ be any affine open. Since $U$ is quasi-compact there exist finitely many elements $i_1, \ldots , i_ n \in I$ and affine opens $U_ i \subset U \cap S_ i$ such that $U = U_1 \cup U_2 \cup \ldots \cup U_ n$. Thus 
+    <p>
+      <div class="equation">
+  \[  |\Gamma (U, \mathcal{O}_ U)| \leq |\Gamma (U_1, \mathcal{O})| \otimes \ldots \otimes |\Gamma (U_ n, \mathcal{O})| \leq \sup \nolimits _ i\{ \text{size}(S_ i)\}   \]
+</div>
+    <p>
+       Moreover, it shows that the set of affine opens of $S$ has cardinality less than or equal to the cardinality of the set 
+    <p>
+      <div class="equation">
+  \[  \coprod _{n \in \omega } \coprod _{i_1, \ldots , i_ n \in I} \{ \text{affine opens of }S_{i_1}\}  \times \ldots \times \{ \text{affine opens of }S_{i_ n}\} .  \]
+</div>
+    <p>
+       Each of the sets inside the disjoint union has cardinality at most $\sup _ i\{ \text{size}(S_ i)\} $. The index set has cardinality at most $\max \{ |I|, \aleph _0\} $, see <span class="cite">[<span class="postnote">Ch. I, 10.13</span>, <a href="/bibliography/Kunen">Kunen</a>]</span>. Hence by <span class="cite">[<span class="postnote">Lemma 5.8</span>, <a href="/bibliography/Jech">Jech</a>]</span> the cardinality of the coproduct is at most $\max \{ \aleph _0, |I|\}  \otimes \sup _ i\{ \text{size}(S_ i)\} $. The lemma follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="04T6">
+  <p><a class="environment-identifier" href="/tag/04T6">Lemma <span data-tag="04T6">3.9.6</span>.</a> Let $f : X \to S$, $g : Y \to S$ be morphisms of schemes. Then we have $\text{size}(X \times _ S Y) \leq \max \{ \text{size}(X), \text{size}(Y)\} $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $S = \bigcup _{k \in K} S_ k$ be an affine open covering. Let $X = \bigcup _{i \in I} U_ i$, $Y = \bigcup _{j \in J} V_ j$ be affine open coverings with $I$, $J$ of cardinality $\leq \text{size}(X), \text{size}(Y)$. For each $i \in I$ there exists a finite set $K_ i$ of $k \in K$ such that $f(U_ i) \subset \bigcup _{k \in K_ i} S_ k$. For each $j \in J$ there exists a finite set $K_ j$ of $k \in K$ such that $g(V_ j) \subset \bigcup _{k \in K_ j} S_ k$. Hence $f(X), g(Y)$ are contained in $S' = \bigcup _{k \in K'} S_ k$ with $K' = \bigcup _{i \in I} K_ i \cup \bigcup _{j \in J} K_ j$. Note that the cardinality of $K'$ is at most $\max \{ \aleph _0, |I|, |J|\} $. Applying Lemma <a href="/tag/000Q" data-tag="000Q">3.9.5</a> we see that it suffices to prove that $\text{size}(f^{-1}(S_ k) \times _{S_ k} g^{-1}(S_ k)) \leq \max \{ \text{size}(X), \text{size}(Y)\} $ for $k \in K'$. In other words, we may assume that $S$ is affine. 
+    <p>
+      Assume $S$ affine. Let $X = \bigcup _{i \in I} U_ i$, $Y = \bigcup _{j \in J} V_ j$ be affine open coverings with $I$, $J$ of cardinality $\leq \text{size}(X), \text{size}(Y)$. Again by Lemma <a href="/tag/000Q" data-tag="000Q">3.9.5</a> it suffices to prove the lemma for the products $U_ i \times _ S V_ j$. By Lemma <a href="/tag/000P" data-tag="000P">3.9.4</a> we see that it suffices to show that 
+    <p>
+      <div class="equation">
+  \[  |A \otimes _ C B| \leq \max \{ \aleph _0, |A|, |B|\} .  \]
+</div>
+    <p>
+       We omit the proof of this inequality. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="04T7">
+  <p><a class="environment-identifier" href="/tag/04T7">Lemma <span data-tag="04T7">3.9.7</span>.</a> Let $S$ be a scheme. Let $f : X \to S$ be locally of finite type with $X$ quasi-compact. Then $\text{size}(X) \leq \text{size}(S)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We can find a finite affine open covering $X = \bigcup _{i = 1, \ldots n} U_ i$ such that each $U_ i$ maps into an affine open $S_ i$ of $S$. Thus by Lemma <a href="/tag/000Q" data-tag="000Q">3.9.5</a> we reduce to the case where both $S$ and $X$ are affine. In this case by Lemma <a href="/tag/000P" data-tag="000P">3.9.4</a> we see that it suffices to show 
+    <p>
+      <div class="equation">
+  \[  |A[x_1, \ldots , x_ n]| \leq \max \{ \aleph _0, |A|\} .  \]
+</div>
+    <p>
+       We omit the proof of this inequality. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In Algebra, Lemma <a href="/tag/04W0" data-tag="04W0">10.107.13</a> we will show that if $A \to B$ is an epimorphism of rings, then $|B| \leq \max (|A|, \aleph _0)$. The analogue for schemes is the following lemma. 
+</p>
+<p>
+<article class="env-lemma" id="04VA">
+  <p><a class="environment-identifier" href="/tag/04VA">Lemma <span data-tag="04VA">3.9.8</span>.</a> Let $f : X \to Y$ be a monomorphism of schemes. If at least one of the following properties holds, then $\text{size}(X) \leq \text{size}(Y)$: </p>
+  <p><ol>
+  <li><p>
+$f$ is quasi-compact, 
+</p>
+</li><li><p>
+$f$ is locally of finite presentation, 
+</p>
+</li><li><p>
+add more here as needed. 
+</p>
+</li>
+</ol></p>
+  <p> But the bound does not hold for monomorphisms which are locally of finite type. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $Y = \bigcup _{j \in J} V_ j$ be an affine open covering of $Y$ with $|J| \leq \text{size}(Y)$. By Lemma <a href="/tag/000Q" data-tag="000Q">3.9.5</a> it suffices to bound the size of the inverse image of $V_ j$ in $X$. Hence we reduce to the case that $Y$ is affine, say $Y = \mathop{\mathrm{Spec}}(B)$. For any affine open $\mathop{\mathrm{Spec}}(A) \subset X$ we have $|A| \leq \max (|B|, \aleph _0) = \text{size}(Y)$, see remark above and Lemma <a href="/tag/000P" data-tag="000P">3.9.4</a>. Thus it suffices to show that $X$ has at most $\text{size}(Y)$ affine opens. This is clear if $X$ is quasi-compact, whence case (1) holds. In case (2) the number of isomorphism classes of $B$-algebras $A$ that can occur is bounded by $\text{size}(B)$, because each $A$ is of finite type over $B$, hence isomorphic to an algebra $B[x_1, \ldots , x_ n]/(f_1, \ldots , f_ m)$ for some $n, m$, and $f_ j \in B[x_1, \ldots , x_ n]$. However, as $X \to Y$ is a monomorphism, there is a unique morphism $\mathop{\mathrm{Spec}}(A) \to X$ over $Y = \mathop{\mathrm{Spec}}(B)$ if there is one, hence the number of affine opens of $X$ is bounded by the number of these isomorphism classes. 
+    <p>
+      To prove the final statement of the lemma consider the ring $B = \prod _{n \in \mathbf{N}} \mathbf{F}_2$ and set $Y = \mathop{\mathrm{Spec}}(B)$. For every ultrafilter $\mathcal{U}$ on $\mathbf{N}$ we obtain a maximal ideal $\mathfrak m_\mathcal {U}$ with residue field $\mathbf{F}_2$; the map $B \to \mathbf{F}_2$ sends the element $(x_ n)$ to $\mathop{\mathrm{lim}}\nolimits _\mathcal {U} x_ n$. Details omitted. The morphism of schemes $X = \coprod _\mathcal {U} \mathop{\mathrm{Spec}}(\mathbf{F}_2) \to Y$ is a monomorphism as all the points are distinct. However the cardinality of the set of affine open subschemes of $X$ is equal to the cardinality of the set of ultrafilters on $\mathbf{N}$ which is $2^{2^{\aleph _0}}$. We conclude as $|B| = 2^{\aleph _0} < 2^{2^{\aleph _0}}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="000R">
+  <p><a class="environment-identifier" href="/tag/000R">Lemma <span data-tag="000R">3.9.9</span>.</a> Let $\alpha $ be an ordinal as in Lemma <a href="/tag/000J" data-tag="000J">3.9.2</a> above. The category $\mathit{Sch}_\alpha $ satisfies the following properties: </p>
+  <p><ol>
+  <li><p>
+If $X, Y, S \in \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_\alpha )$, then for any morphisms $f : X \to S$, $g : Y \to S$ the fibre product $X \times _ S Y$ in $\mathit{Sch}_\alpha $ exists and is a fibre product in the category of schemes. 
+</p>
+</li><li><p>
+Given any at most countable collection $S_1, S_2, \ldots $ of elements of $\mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_\alpha )$, the coproduct $\coprod _ i S_ i$ exists in $\mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_\alpha )$ and is a coproduct in the category of schemes. 
+</p>
+</li><li><p>
+For any $S \in \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_\alpha )$ and any open immersion $U \to S$, there exists a $V \in \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_\alpha )$ with $V \cong U$. 
+</p>
+</li><li><p>
+For any $S \in \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_\alpha )$ and any closed immersion $T \to S$, there exists an $S' \in \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_\alpha )$ with $S' \cong T$. 
+</p>
+</li><li><p>
+For any $S \in \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_\alpha )$ and any finite type morphism $T \to S$, there exists an $S' \in \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_\alpha )$ with $S' \cong T$. 
+</p>
+</li><li><p>
+Suppose $S$ is a scheme which has an open covering $S = \bigcup _{i \in I} S_ i$ such that there exists a $T \in \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_\alpha )$ with (a) $\text{size}(S_ i) \leq \text{size}(T)^{\aleph _0}$ for all $i \in I$, and (b) $|I| \leq \text{size}(T)^{\aleph _0}$. Then $S$ is isomorphic to an object of $\mathit{Sch}_\alpha $. 
+</p>
+</li><li><p>
+For any $S \in \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_\alpha )$ and any morphism $f : T \to S$ locally of finite type such that $T$ can be covered by at most $\text{size}(S)^{\aleph _0}$ open affines, there exists an $S' \in \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_\alpha )$ with $S' \cong T$. For example this holds if $T$ can be covered by at most $|\mathbf{R}| = 2^{\aleph _0} = \aleph _0^{\aleph _0}$ open affines. 
+</p>
+</li><li><p>
+For any $S \in \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_\alpha )$ and any monomorphism $T \to S$ which is either locally of finite presentation or quasi-compact, there exists an $S' \in \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_\alpha )$ with $S' \cong T$. 
+</p>
+</li><li><p>
+Suppose that $T \in \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_\alpha )$ is affine. Write $R = \Gamma (T, \mathcal{O}_ T)$. Then any of the following schemes is isomorphic to a scheme in $\mathit{Sch}_\alpha $: 
+</p>
+<ol>
+  <li><p>
+For any ideal $I \subset R$ with completion $R^* = \mathop{\mathrm{lim}}\nolimits _ n R/I^ n$, the scheme $\mathop{\mathrm{Spec}}(R^*)$. 
+</p>
+</li><li><p>
+For any finite type $R$-algebra $R'$, the scheme $\mathop{\mathrm{Spec}}(R')$. 
+</p>
+</li><li><p>
+For any localization $S^{-1}R$, the scheme $\mathop{\mathrm{Spec}}(S^{-1}R)$. 
+</p>
+</li><li><p>
+For any prime $\mathfrak p \subset R$, the scheme $\mathop{\mathrm{Spec}}(\overline{\kappa (\mathfrak p)})$. 
+</p>
+</li><li><p>
+For any subring $R' \subset R$, the scheme $\mathop{\mathrm{Spec}}(R')$. 
+</p>
+</li><li><p>
+Any scheme of finite type over a ring of cardinality at most $|R|^{\aleph _0}$. 
+</p>
+</li><li><p>
+And so on. 
+</p>
+</li>
+</ol>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Statements (1) and (2) follow directly from the definitions. Statement (3) follows as the size of an open subscheme $U$ of $S$ is clearly smaller than or equal to the size of $S$. Statement (4) follows from (5). Statement (5) follows from (7). Statement (6) follows as the size of $S$ is $\leq \max \{ |I|, \sup _ i \text{size}(S_ i)\}  \leq \text{size}(T)^{\aleph _0}$ by Lemma <a href="/tag/000Q" data-tag="000Q">3.9.5</a>. Statement (7) follows from (6). Namely, for any affine open $V \subset T$ we have $\text{size}(V) \leq \text{size}(S)$ by Lemma <a href="/tag/04T7" data-tag="04T7">3.9.7</a>. Thus, we see that (6) applies in the situation of (7). Part (8) follows from Lemma <a href="/tag/04VA" data-tag="04VA">3.9.8</a>. 
+    <p>
+      Statement (9) is translated, via Lemma <a href="/tag/000P" data-tag="000P">3.9.4</a>, into an upper bound on the cardinality of the rings $R^*$, $S^{-1}R$, $\overline{\kappa (\mathfrak p)}$, $R'$, etc. Perhaps the most interesting one is the ring $R^*$. As a set, it is the image of a surjective map $R^{\mathbf{N}} \to R^*$. Since $|R^{\mathbf{N}}| = |R|^{\aleph _0}$, we see that it works by our choice of $Bound(\kappa )$ being at least $\kappa ^{\aleph _0}$. Phew! (The cardinality of the algebraic closure of a field is the same as the cardinality of the field, or it is $\aleph _0$.) 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="000S">
+  <p><a class="environment-identifier" href="/tag/000S">Remark <span data-tag="000S">3.9.10</span>.</a> Let $R$ be a ring. Suppose we consider the ring $\prod _{\mathfrak p \in \mathop{\mathrm{Spec}}(R)} \kappa (\mathfrak p)$. The cardinality of this ring is bounded by $|R|^{2^{|R|}}$, but is not bounded by $|R|^{\aleph _0}$ in general. For example if $R = \mathbf{C}[x]$ it is not bounded by $|R|^{\aleph _0}$ and if $R = \prod _{n \in \mathbf{N}} \mathbf{F}_2$ it is not bounded by $|R|^{|R|}$. Thus the “And so on” of Lemma <a href="/tag/000R" data-tag="000R">3.9.9</a> above should be taken with a grain of salt. Of course, if it ever becomes necessary to consider these rings in arguments pertaining to fppf/étale cohomology, then we can change the function $Bound$ above into the function $\kappa \mapsto \kappa ^{2^\kappa }$. </p>
+</article> 
+</p>
+<p>
+In the following lemma we use the notion of an fpqc covering which is introduced in Topologies, Section <a href="/tag/022A" data-tag="022A">34.9</a>. 
+</p>
+<p>
+<article class="env-lemma" id="0AHK">
+  <p><a class="environment-identifier" href="/tag/0AHK">Lemma <span data-tag="0AHK">3.9.11</span>.</a> Let $f : X \to Y$ be a morphism of schemes. Assume there exists an fpqc covering $\{ g_ j : Y_ j \to Y\} _{j \in J}$ such that $g_ j$ factors through $f$. Then $\text{size}(Y) \leq \text{size}(X)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $V \subset Y$ be an affine open. By definition there exist $n \geq 0$ and $a : \{ 1, \ldots , n\}  \to J$ and affine opens $V_ i \subset Y_{a(i)}$ such that $V = g_{a(1)}(V_1) \cup \ldots \cup g_{a(n)}(V_ n)$. Denote $h_ j : Y_ j \to X$ a morphism such that $f \circ h_ j = g_ j$. Then $h_{a(1)}(V_1) \cup \ldots \cup h_{a(n)}(V_ n)$ is a quasi-compact subset of $f^{-1}(V)$. Hence we can find a quasi-compact open $W \subset f^{-1}(V)$ which contains $h_{a(i)}(V_ i)$ for $i = 1, \ldots , n$. In particular $V = f(W)$. 
+    <p>
+      On the one hand this shows that the cardinality of the set of affine opens of $Y$ is at most the cardinality of the set $S$ of quasi-compact opens of $X$. Since every quasi-compact open of $X$ is a finite union of affines, we see that the cardinality of this set is at most $\sup |S|^ n = \max (\aleph _0, |S|)$. On the other hand, we have $\mathcal{O}_ Y(V) \subset \prod _{i = 1, \ldots , n} \mathcal{O}_{Y_{a(i)}}(V_ i)$ because $\{ V_ i \to V\} $ is an fpqc covering. Hence $\mathcal{O}_ Y(V) \subset \mathcal{O}_ X(W)$ because $V_ i \to V$ factors through $W$. Again since $W$ has a finite covering by affine opens of $X$ we conclude that $|\mathcal{O}_ Y(V)|$ is bounded by the size of $X$. The lemma now follows from the definition of the size of a scheme. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In the following lemma we use the notion of an fppf covering which is introduced in Topologies, Section <a href="/tag/021L" data-tag="021L">34.7</a>. 
+</p>
+<p>
+<article class="env-lemma" id="0AHL">
+  <p><a class="environment-identifier" href="/tag/0AHL">Lemma <span data-tag="0AHL">3.9.12</span>.</a> Let $\{ f_ i : X_ i \to X\} _{i \in I}$ be an fppf covering of a scheme. There exists an fppf covering $\{ W_ j \to X\} _{j \in J}$ which is a refinement of $\{ X_ i \to X\} _{i \in I}$ such that $\text{size}(\coprod W_ j) \leq \text{size}(X)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose an affine open covering $X = \bigcup _{a \in A} U_ a$ with $|A| \leq \text{size}(X)$. For each $a$ we can choose a finite subset $I_ a \subset I$ and for $i \in I_ a$ a quasi-compact open $W_{a, i} \subset X_ i$ such that $U_ a = \bigcup _{i \in I_ a} f_ i(W_{a, i})$. Then $\text{size}(W_{a, i}) \leq \text{size}(X)$ by Lemma <a href="/tag/04T7" data-tag="04T7">3.9.7</a>. We conclude that $\text{size}(\coprod _ a \coprod _{i \in I_ a} W_{i, a}) \leq \text{size}(X)$ by Lemma <a href="/tag/000Q" data-tag="000Q">3.9.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

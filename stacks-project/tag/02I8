@@ -1,0 +1,139 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="topology-section-dimension-function" class="tex-section"><span data-tag="02I8">5.20</span> Dimension functions</h2>
+
+<p>
+It scarcely makes sense to consider dimension functions unless the space considered is sober (Definition <a href="/tag/004X" data-tag="004X">5.8.6</a>). Thus the definition below can be improved by considering the sober topological space associated to $X$. Since the underlying topological space of a scheme is sober we do not bother with this improvement. 
+</p>
+<p>
+<article class="env-definition" id="02I9">
+  <p><a class="environment-identifier" href="/tag/02I9">Definition <span data-tag="02I9">5.20.1</span>.</a> Let $X$ be a topological space. </p>
+  <p><ol>
+  <li><p>
+Let $x, y \in X$, $x \not= y$. Suppose $x \leadsto y$, that is $y$ is a specialization of $x$. We say $y$ is an <em>immediate specialization</em> of $x$ if there is no $z \in X \setminus \{ x, y\} $ with $x \leadsto z$ and $z \leadsto y$. 
+</p>
+</li><li><p>
+A map $\delta : X \to \mathbf{Z}$ is called a <em>dimension function</em><a class="footnotemark" href="#a0000037538" id="a0000037538-mark"><sup>1</sup></a> if 
+</p>
+<ol>
+  <li><p>
+whenever $x \leadsto y$ and $x \not= y$ we have $\delta (x) > \delta (y)$, and 
+</p>
+</li><li><p>
+for every immediate specialization $x \leadsto y$ in $X$ we have $\delta (x) = \delta (y) + 1$. 
+</p>
+</li>
+</ol>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+It is clear that if $\delta $ is a dimension function, then so is $\delta + t$ for any $t \in \mathbf{Z}$. Here is a fun lemma. 
+</p>
+<p>
+<article class="env-lemma" id="02IA">
+  <p><a class="environment-identifier" href="/tag/02IA">Lemma <span data-tag="02IA">5.20.2</span>.</a> Let $X$ be a topological space. If $X$ is sober and has a dimension function, then $X$ is catenary. Moreover, for any $x \leadsto y$ we have </p>
+  <div class="equation">
+  \[  \delta (x) - \delta (y) = \text{codim}\left(\overline{\{ y\} }, \  \overline{\{ x\} }\right).  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose $Y \subset Y' \subset X$ are irreducible closed subsets. Let $\xi \in Y$, $\xi ' \in Y'$ be their generic points. Then we see immediately from the definitions that $\text{codim}(Y, Y') \leq \delta (\xi ) - \delta (\xi ') < \infty $. In fact the first inequality is an equality. Namely, suppose 
+    <p>
+      <div class="equation">
+  \[  Y = Y_0 \subset Y_1 \subset \ldots \subset Y_ e = Y'  \]
+</div>
+    <p>
+       is any maximal chain of irreducible closed subsets. Let $\xi _ i \in Y_ i$ denote the generic point. Then we see that $\xi _ i \leadsto \xi _{i + 1}$ is an immediate specialization. Hence we see that $e = \delta (\xi ) - \delta (\xi ')$ as desired. This also proves the last statement of the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02IB">
+  <p><a class="environment-identifier" href="/tag/02IB">Lemma <span data-tag="02IB">5.20.3</span>.</a> Let $X$ be a topological space. Let $\delta $, $\delta '$ be two dimension functions on $X$. If $X$ is locally Noetherian and sober then $\delta - \delta '$ is locally constant on $X$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $x \in X$ be a point. We will show that $\delta - \delta '$ is constant in a neighbourhood of $x$. We may replace $X$ by an open neighbourhood of $x$ in $X$ which is Noetherian. Hence we may assume $X$ is Noetherian and sober. Let $Z_1, \ldots , Z_ r$ be the irreducible components of $X$ passing through $x$. (There are finitely many as $X$ is Noetherian, see Lemma <a href="/tag/0052" data-tag="0052">5.9.2</a>.) Let $\xi _ i \in Z_ i$ be the generic point. Note $Z_1 \cup \ldots \cup Z_ r$ is a neighbourhood of $x$ in $X$ (not necessarily closed). We claim that $\delta - \delta '$ is constant on $Z_1 \cup \ldots \cup Z_ r$. Namely, if $y \in Z_ i$, then 
+    <p>
+      <div class="equation">
+  \[  \delta (x) - \delta (y) = \delta (x) - \delta (\xi _ i) + \delta (\xi _ i) - \delta (y) = - \text{codim}(\overline{\{ x\} }, Z_ i) + \text{codim}(\overline{\{ y\} }, Z_ i)  \]
+</div>
+    <p>
+       by Lemma <a href="/tag/02IA" data-tag="02IA">5.20.2</a>. Similarly for $\delta '$. Whence the result. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02IC">
+  <p><a class="environment-identifier" href="/tag/02IC">Lemma <span data-tag="02IC">5.20.4</span>.</a> Let $X$ be locally Noetherian, sober and catenary. Then any point has an open neighbourhood $U \subset X$ which has a dimension function. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use repeatedly that an open subspace of a catenary space is catenary, see Lemma <a href="/tag/02I2" data-tag="02I2">5.11.5</a> and that a Noetherian topological space has finitely many irreducible components, see Lemma <a href="/tag/0052" data-tag="0052">5.9.2</a>. In the proof of Lemma <a href="/tag/02IB" data-tag="02IB">5.20.3</a> we saw how to construct such a function. Namely, we first replace $X$ by a Noetherian open neighbourhood of $x$. Next, we let $Z_1, \ldots , Z_ r \subset X$ be the irreducible components of $X$. Let 
+    <p>
+      <div class="equation">
+  \[  Z_ i \cap Z_ j = \bigcup Z_{ijk}  \]
+</div>
+    <p>
+       be the decomposition into irreducible components. We replace $X$ by 
+    <p>
+      <div class="equation">
+  \[  X \setminus \left( \bigcup \nolimits _{x \not\in Z_ i} Z_ i \cup \bigcup \nolimits _{x \not\in Z_{ijk}} Z_{ijk} \right)  \]
+</div>
+    <p>
+       so that we may assume $x \in Z_ i$ for all $i$ and $x \in Z_{ijk}$ for all $i, j, k$. For $y \in X$ choose any $i$ such that $y \in Z_ i$ and set 
+    <p>
+      <div class="equation">
+  \[  \delta (y) = - \text{codim}(\overline{\{ y\} }, Z_ i) + \text{codim}(\overline{\{ x\} }, Z_ i).  \]
+</div>
+    <p>
+       We claim this is a dimension function. First we show that it is well defined, i.e., independent of the choice of $i$. Namely, suppose that $y \in Z_{ijk}$ for some $i, j, k$. Then we have (using Lemma <a href="/tag/02I6" data-tag="02I6">5.11.6</a>) 
+    <p>
+      <div class="equation">
+  \begin{align*}  \delta (y) &  = - \text{codim}(\overline{\{ y\} }, Z_ i) + \text{codim}(\overline{\{ x\} }, Z_ i) \\ &  = - \text{codim}(\overline{\{ y\} }, Z_{ijk}) - \text{codim}(Z_{ijk}, Z_ i) + \text{codim}(\overline{\{ x\} }, Z_{ijk}) + \text{codim}(Z_{ijk}, Z_ i) \\ &  = - \text{codim}(\overline{\{ y\} }, Z_{ijk}) + \text{codim}(\overline{\{ x\} }, Z_{ijk}) \end{align*}
+</div>
+    <p>
+       which is symmetric in $i$ and $j$. We omit the proof that it is a dimension function. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="02ID">
+  <p><a class="environment-identifier" href="/tag/02ID">Remark <span data-tag="02ID">5.20.5</span>.</a> Combining Lemmas <a href="/tag/02IB" data-tag="02IB">5.20.3</a> and <a href="/tag/02IC" data-tag="02IC">5.20.4</a> we see that on a catenary, locally Noetherian, sober topological space the obstruction to having a dimension function is an element of $H^1(X, \mathbf{Z})$. </p>
+</article> 
+</p>

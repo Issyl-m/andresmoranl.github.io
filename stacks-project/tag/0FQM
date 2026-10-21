@@ -1,0 +1,101 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="dga-section-bimodules-tensor" class="tex-section"><span data-tag="0FQM">22.29</span> Bimodules and tensor product</h2>
+
+<p>
+Let $R$ be a ring. Let $A$ and $B$ be $R$-algebras. Let $M$ be a right $A$-module. Let $N$ be a $(A, B)$-bimodule. Then $M \otimes _ A N$ is a right $B$-module. 
+</p>
+<p>
+If in the situation of the previous paragraph $A$ and $B$ are $\mathbf{Z}$-graded algebras, $M$ is a graded $A$-module, and $N$ is a graded $(A, B)$-bimodule, then $M \otimes _ A N$ is a right graded $B$-module. The construction is functorial in $M$ and defines a functor 
+</p>
+<div class="equation">
+  \[  - \otimes _ A N : \text{Mod}^{gr}_ A \longrightarrow \text{Mod}^{gr}_ B  \]
+</div>
+<p>
+ of graded categories as in Example <a href="/tag/09MN" data-tag="09MN">22.25.6</a>. Namely, if $M$ and $M'$ are graded $A$-modules and $f : M \to M'$ is an $A$-module homomorphism homogeneous of degree $n$, then $f \otimes \text{id}_ N : M \otimes _ A N \to M' \otimes _ A N$ is a $B$-module homomorphism homogeneous of degree $n$. 
+</p>
+<p>
+If in the situation of the previous paragraph $(A, \text{d})$ and $(B, \text{d})$ are differential graded algebras, $M$ is a differential graded $A$-module, and $N$ is a differential graded $(A, B)$-bimodule, then $M \otimes _ A N$ is a right differential graded $B$-module. 
+</p>
+<p>
+<article class="env-lemma" id="09LM">
+  <p><a class="environment-identifier" href="/tag/09LM">Lemma <span data-tag="09LM">22.29.1</span>.</a> Let $R$ be a ring. Let $(A, \text{d})$ and $(B, \text{d})$ be differential graded algebras over $R$. Let $N$ be a differential graded $(A, B)$-bimodule. Then $M \mapsto M \otimes _ A N$ defines a functor </p>
+  <div class="equation">
+  \[  - \otimes _ A N : \text{Mod}^{dg}_{(A, \text{d})} \longrightarrow \text{Mod}^{dg}_{(B, \text{d})}  \]
+</div>
+  <p> of differential graded categories. This functor induces functors </p>
+  <div class="equation">
+  \[  \text{Mod}_{(A, \text{d})} \to \text{Mod}_{(B, \text{d})} \quad \text{and}\quad K(\text{Mod}_{(A, \text{d})}) \to K(\text{Mod}_{(B, \text{d})})  \]
+</div>
+  <p> by an application of Lemma <a href="/tag/09L8" data-tag="09L8">22.26.5</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Above we have seen how the construction defines a functor of underlying graded categories. Thus it suffices to show that the construction is compatible with differentials. Let $M$ and $M'$ be differential graded $A$-modules and let $f : M \to M'$ be an $A$-module homomorphism which is homogeneous of degree $n$. Then we have 
+    <p>
+      <div class="equation">
+  \[  \text{d}(f) = \text{d}_{M'} \circ f - (-1)^ n f \circ \text{d}_ M  \]
+</div>
+    <p>
+       On the other hand, we have 
+    <p>
+      <div class="equation">
+  \[  \text{d}(f \otimes \text{id}_ N) = \text{d}_{M' \otimes _ A N} \circ (f \otimes \text{id}_ N) - (-1)^ n (f \otimes \text{id}_ N) \circ \text{d}_{M \otimes _ A N}  \]
+</div>
+    <p>
+       Applying this to an element $x \otimes y$ with $x \in M$ and $y \in N$ homogeneous we get 
+    <p>
+      <div class="equation">
+  \begin{align*}  \text{d}(f \otimes \text{id}_ N)(x \otimes y) = &  \text{d}_{M'}(f(x)) \otimes y + (-1)^{n + \deg (x)}f(x) \otimes \text{d}_ N(y) \\ &  - (-1)^ n f(\text{d}_ M(x)) \otimes y - (-1)^{n + \deg (x)}f(x) \otimes \text{d}_ N(y) \\  = &  \text{d}(f) (x \otimes y) \end{align*}
+</div>
+    <p>
+       Thus we see that $\text{d}(f) \otimes \text{id}_ N = \text{d}(f \otimes \text{id}_ N)$ and the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0FQN">
+  <p><a class="environment-identifier" href="/tag/0FQN">Remark <span data-tag="0FQN">22.29.2</span>.</a> Let $R$ be a ring. Let $(A, \text{d})$ and $(B, \text{d})$ be differential graded algebras over $R$. Let $N$ be a differential graded $(A, B)$-bimodule. Let $M$ be a right differential graded $A$-module. Then for every $k \in \mathbf{Z}$ there is an isomorphism </p>
+  <div class="equation">
+  \[  (M \otimes _ A N)[k] \longrightarrow M[k] \otimes _ A N  \]
+</div>
+  <p> of right differential graded $B$-modules defined without the intervention of signs, see More on Algebra, Section <a href="/tag/0FNG" data-tag="0FNG">15.74</a>. </p>
+</article> 
+</p>
+<p>
+If we have a ring $R$ and $R$-algebras $A$, $B$, and $C$, a right $A$-module $M$, an $(A, B)$-bimodule $N$, and a $(B, C)$-bimodule $N'$, then $N \otimes _ B N'$ is a $(A, C)$-bimodule and we have 
+</p>
+<div class="equation">
+  \[  (M \otimes _ A N) \otimes _ B N' = M \otimes _ A (N \otimes _ B N')  \]
+</div>
+<p>
+ This equality continuous to hold in the graded and in the differential graded case. See More on Algebra, Section <a href="/tag/0FNG" data-tag="0FNG">15.74</a> for sign rules. 
+</p>

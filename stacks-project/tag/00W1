@@ -1,0 +1,340 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sites-section-sheafification" class="tex-section"><span data-tag="00W1">7.10</span> Sheafification</h2>
+
+<p>
+In order to define the sheafification we study the zeroth Čech cohomology group of a covering and its functoriality properties. 
+</p>
+<p>
+Let $\mathcal{F}$ be a presheaf of sets on $\mathcal{C}$, and let $\mathcal{U} = \{ U_ i \to U\} _{i \in I}$ be a covering of $\mathcal{C}$. Let us use the notation $\mathcal{F}(\mathcal{U})$ to indicate the equalizer 
+</p>
+<div class="equation">
+  \[  H^0(\mathcal{U}, \mathcal{F}) = \{  (s_ i)_{i\in I} \in \prod \nolimits _ i \mathcal{F}(U_ i) \mid s_ i|_{U_ i \times _ U U_ j} = s_ j|_{U_ i \times _ U U_ j} \  \forall i, j \in I \} .  \]
+</div>
+<p>
+ As we will see later, this is the zeroth Čech cohomology of $\mathcal{F}$ over $U$ with respect to the covering $\mathcal{U}$. A small remark is that we can define $H^0(\mathcal{U}, \mathcal{F})$ as soon as all the morphisms $U_ i \to U$ are representable, i.e., $\mathcal{U}$ need not be a covering of the site. There is a canonical map $\mathcal{F}(U) \to H^0(\mathcal{U}, \mathcal{F})$. It is clear that a morphism of coverings $\mathcal{U} \to \mathcal{V}$ induces commutative diagrams 
+</p>
+<div class="equation">
+  \[  \xymatrix{ &  U_ i \ar[rr] &  &  V_{\alpha (i)} \\  U_ i \times _ U U_ j \ar[rr] \ar[ur] \ar[dr] &  &  V_{\alpha (i)} \times _ V V_{\alpha (j)} \ar[ur] \ar[dr] &  \\  &  U_ j \ar[rr] &  &  V_{\alpha (j)} }.  \]
+</div>
+<p>
+ This in turn produces a map $H^0(\mathcal{V}, \mathcal{F}) \to H^0(\mathcal{U}, \mathcal{F})$, compatible with the map $\mathcal{F}(V) \to \mathcal{F}(U)$. 
+</p>
+<p>
+By construction, a presheaf $\mathcal{F}$ is a sheaf if and only if for every covering $\mathcal{U}$ of $\mathcal{C}$ the natural map $\mathcal{F}(U) \to H^0(\mathcal{U}, \mathcal{F})$ is bijective. We will use this notion to prove the following simple lemma about limits of sheaves. 
+</p>
+<p>
+<article class="env-lemma" id="00W2">
+       
+      
+  <p><a class="environment-identifier" href="/tag/00W2">Lemma <span data-tag="00W2">7.10.1</span>.</a> Let $\mathcal{F} : \mathcal{I} \to \mathop{\mathit{Sh}}\nolimits (\mathcal{C})$ be a diagram. Then $\mathop{\mathrm{lim}}\nolimits _\mathcal {I} \mathcal{F}$ exists and is equal to the limit in the category of presheaves. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\mathop{\mathrm{lim}}\nolimits _ i \mathcal{F}_ i$ be the limit as a presheaf. We will show that this is a sheaf and then it will trivially follow that it is a limit in the category of sheaves. To prove the sheaf property, let $\mathcal{V} = \{ V_ j \to V\} _{j\in J}$ be a covering. Let $(s_ j)_{j\in J}$ be an element of $H^0(\mathcal{V}, \mathop{\mathrm{lim}}\nolimits _ i \mathcal{F}_ i)$. Using the projection maps we get elements $(s_{j, i})_{j\in J}$ in $H^0(\mathcal{V}, \mathcal{F}_ i)$. By the sheaf property for $\mathcal{F}_ i$ we see that there is a unique $s_ i \in \mathcal{F}_ i(V)$ such that $s_{j, i} = s_ i|_{V_ j}$. Let $\phi : i \to i'$ be a morphism of the index category. We would like to show that $\mathcal{F}(\phi ) : \mathcal{F}_ i \to \mathcal{F}_{i'}$ maps $s_ i$ to $s_{i'}$. We know this is true for the sections $s_{i, j}$ and $s_{i', j}$ for all $j$ and hence by the sheaf property for $\mathcal{F}_{i'}$ this is true. At this point we have an element $s = (s_ i)_{i \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{I})}$ of $(\mathop{\mathrm{lim}}\nolimits _ i \mathcal{F}_ i)(V)$. We leave it to the reader to see this element has the required property that $s_ j = s|_{V_ j}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-example" id="00W3">
+  <p><a class="environment-identifier" href="/tag/00W3">Example <span data-tag="00W3">7.10.2</span>.</a> A particular example is the limit over the empty diagram. This gives the final object in the category of (pre)sheaves. It is the presheaf that associates to each object $U$ of $\mathcal{C}$ a singleton set, with unique restriction mappings and moreover this presheaf is a sheaf. We often denote this sheaf by $*$. </p>
+</article> 
+</p>
+<p>
+Let $\mathcal{J}_ U$ be the category of all coverings of $U$. In other words, the objects of $\mathcal{J}_ U$ are the coverings of $U$ in $\mathcal{C}$, and the morphisms are the refinements. By our conventions on sites this is indeed a category, i.e., the collection of objects and morphisms forms a set. Note that $\mathop{\mathrm{Ob}}\nolimits (\mathcal{J}_ U)$ is not empty since $\{ \text{id}_ U\} $ is an object of it. According to the remarks above the construction $\mathcal{U} \mapsto H^0(\mathcal{U}, \mathcal{F})$ is a contravariant functor on $\mathcal{J}_ U$. We define 
+</p>
+<div class="equation">
+  \[  \mathcal{F}^{+}(U) = \mathop{\mathrm{colim}}\nolimits _{\mathcal{J}_ U^{opp}} H^0(\mathcal{U}, \mathcal{F})  \]
+</div>
+<p>
+ See Categories, Section <a href="/tag/002D" data-tag="002D">4.14</a> for a discussion of limits and colimits. We point out that later we will see that $\mathcal{F}^{+}(U)$ is the zeroth Čech cohomology of $\mathcal{F}$ over $U$. 
+</p>
+<p>
+Before we say more about the structure of the colimit, we turn the collection of sets $\mathcal{F}^{+}(U)$, $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ into a presheaf. Namely, let $V \to U$ be a morphism of $\mathcal{C}$. By the axioms of a site there is a functor<a class="footnotemark" href="#a0000059034" id="a0000059034-mark"><sup>1</sup></a> 
+</p>
+<div class="equation">
+  \[  \mathcal{J}_ U \longrightarrow \mathcal{J}_ V, \quad \{ U_ i \to U\}  \longmapsto \{ U_ i \times _ U V \to V\} .  \]
+</div>
+<p>
+ Note that the projection maps furnish a functorial morphism of coverings $\{ U_ i \times _ U V \to V\}  \to \{ U_ i \to U\} $ and hence, by the construction above, a functorial map of sets $H^0(\{ U_ i \to U\} , \mathcal{F}) \to H^0(\{ U_ i \times _ U V \to V\} , \mathcal{F})$. In other words, there is a transformation of functors from $H^0(-, \mathcal{F}) : \mathcal{J}_ U^{opp} \to \textit{Sets}$ to the composition $\mathcal{J}_ U^{opp} \to \mathcal{J}_ V^{opp} \xrightarrow {H^0(-, \mathcal{F})} \textit{Sets}$. Hence by generalities of colimits we obtain a canonical map $\mathcal{F}^+(U) \to \mathcal{F}^+(V)$. In terms of the description of the set $\mathcal{F}^+(U)$ above, it just takes the element associated with $s = (s_ i) \in H^0(\{ U_ i \to U\} , \mathcal{F})$ to the element associated with $(s_ i|_{V \times _ U U_ i}) \in H^0(\{ U_ i \times _ U V \to V\} , \mathcal{F})$. 
+</p>
+<p>
+<article class="env-lemma" id="00W4">
+  <p><a class="environment-identifier" href="/tag/00W4">Lemma <span data-tag="00W4">7.10.3</span>.</a> The constructions above define a presheaf $\mathcal{F}^+$ together with a canonical map of presheaves $\mathcal{F} \to \mathcal{F}^+$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      All we have to do is to show that given morphisms $W \to V \to U$ the composition $\mathcal{F}^+(U) \to \mathcal{F}^+(V) \to \mathcal{F}^+(W)$ equals the map $\mathcal{F}^+(U) \to \mathcal{F}^+(W)$. This can be shown directly by verifying that, given a covering $\{ U_ i \to U\} $ and $s = (s_ i) \in H^0(\{ U_ i \to U\} , \mathcal{F})$, we have canonically $W \times _ U U_ i \cong W \times _ V (V \times _ U U_ i)$, and $s_ i|_{W \times _ U U_ i}$ corresponds to $(s_ i|_{V \times _ U U_ i})|_{W \times _ V (V \times _ U U_ i)}$ via this isomorphism. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+More indirectly, the result of Lemma <a href="/tag/00W7" data-tag="00W7">7.10.6</a> shows that we may pullback an element $s$ as above via any morphism from any covering of $W$ to $\{ U_ i \to U\} $ and we will always end up with the same element in $\mathcal{F}^+(W)$. 
+</p>
+<p>
+<article class="env-lemma" id="00W5">
+  <p><a class="environment-identifier" href="/tag/00W5">Lemma <span data-tag="00W5">7.10.4</span>.</a> The association $\mathcal{F} \mapsto (\mathcal{F} \to \mathcal{F}^+)$ is a functor. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Instead of proving this we state exactly what needs to be proven. Let $\mathcal{F} \to \mathcal{G}$ be a map of presheaves. Prove the commutativity of: 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathcal{F} \ar[r] \ar[d] &  \mathcal{F}^{+} \ar[d] \\  \mathcal{G} \ar[r] &  \mathcal{G}^{+} }  \]
+</div>
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The next two lemmas imply that the colimits above are colimits over a directed set. 
+</p>
+<p>
+<article class="env-lemma" id="00W6">
+  <p><a class="environment-identifier" href="/tag/00W6">Lemma <span data-tag="00W6">7.10.5</span>.</a> Given a pair of coverings $\{ U_ i \to U\} $ and $\{ V_ j \to U\} $ of a given object $U$ of the site $\mathcal{C}$, there exists a covering which is a common refinement. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $\mathcal{C}$ is a site we have that for every $i$ the family $\{ V_ j \times _ U U_ i \to U_ i\} _ j$ is a covering. And, then another axiom implies that $\{ V_ j \times _ U U_ i \to U\} _{i, j}$ is a covering of $U$. Clearly this covering refines both given coverings. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00W7">
+  <p><a class="environment-identifier" href="/tag/00W7">Lemma <span data-tag="00W7">7.10.6</span>.</a> Any two morphisms $f, g: \mathcal{U} \to \mathcal{V}$ of coverings inducing the same morphism $U \to V$ induce the same map $H^0(\mathcal{V}, \mathcal{F}) \to H^0(\mathcal{U}, \mathcal{F})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\mathcal{U} = \{ U_ i \to U\} _{i\in I}$ and $\mathcal{V} = \{ V_ j \to V\} _{j\in J}$. The morphism $f$ consists of a map $U\to V$, a map $\alpha : I \to J$ and maps $f_ i : U_ i \to V_{\alpha (i)}$. Likewise, $g$&#160;determines a map $\beta : I \to J$ and maps $g_ i : U_ i \to V_{\beta (i)}$. As $f$ and $g$ induce the same map $U\to V$, the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ &  V_{\alpha (i)} \ar[dr] \\  U_ i \ar[ur]^{f_ i} \ar[dr]_{g_ i} &  &  V \\  &  V_{\beta (i)} \ar[ur] }  \]
+</div>
+    <p>
+       is commutative for every $i\in I$. Hence $f$ and $g$ factor through the fibre product 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ &  V_{\alpha (i)} \\  U_ i \ar[r]^-\varphi \ar[ur]^{f_ i} \ar[dr]_{g_ i} &  V_{\alpha (i)} \times _ V V_{\beta (i)} \ar[u]_{\text{pr}_1} \ar[d]^{\text{pr}_2} \\  &  V_{\beta (i)}. }  \]
+</div>
+    <p>
+       Now let $s = (s_ j)_ j \in H^0(\mathcal{V}, \mathcal{F})$. Then for all $i\in I$: 
+    <p>
+      <div class="equation">
+  \[  (f^*s)_ i = f_ i^*(s_{\alpha (i)}) = \varphi ^*\text{pr}_1^*(s_{\alpha (i)}) = \varphi ^*\text{pr}_2^*(s_{\beta (i)}) = g_ i^*(s_{\beta (i)}) = (g^*s)_ i,  \]
+</div>
+    <p>
+       where the middle equality is given by the definition of $H^0(\mathcal{V}, \mathcal{F})$. This shows that the maps $H^0(\mathcal{V}, \mathcal{F}) \to H^0(\mathcal{U}, \mathcal{F})$ induced by $f$ and $g$ are equal. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="00W8">
+  <p><a class="environment-identifier" href="/tag/00W8">Remark <span data-tag="00W8">7.10.7</span>.</a> In particular this lemma shows that if $\mathcal{U}$ is a refinement of $\mathcal{V}$, and if $\mathcal{V}$ is a refinement of $\mathcal{U}$, then there is a canonical identification $H^0(\mathcal{U}, \mathcal{F}) = H^0(\mathcal{V}, \mathcal{F})$. </p>
+</article> 
+</p>
+<p>
+From these two lemmas, and the fact that $\mathcal{J}_ U$ is nonempty, it follows that the diagram $H^0(-, \mathcal{F}) : \mathcal{J}_ U^{opp} \to \textit{Sets}$ is filtered, see Categories, Definition <a href="/tag/002V" data-tag="002V">4.19.1</a>. Hence, by Categories, Section <a href="/tag/04AX" data-tag="04AX">4.19</a> the colimit $\mathcal{F}^{+}(U)$ may be described in the following straightforward manner. Namely, every element in the set $\mathcal{F}^{+}(U)$ arises from an element $s \in H^0(\mathcal{U}, \mathcal{F})$ for some covering $\mathcal{U}$ of $U$. Given a second element $s' \in H^0(\mathcal{U}', \mathcal{F})$ then $s$ and $s'$ determine the same element of the colimit if and only if there exists a covering $\mathcal{V}$ of $U$ and refinements $f : \mathcal{V} \to \mathcal{U}$ and $f' : \mathcal{V} \to \mathcal{U}'$ such that $f^*s = (f')^*s'$ in $H^0(\mathcal{V}, \mathcal{F})$. Since the trivial covering $\{ \text{id}_ U\} $ is an object of $\mathcal{J}_ U$ we get a canonical map $\mathcal{F}(U) \to \mathcal{F}^+(U)$. 
+</p>
+<p>
+<article class="env-lemma" id="00W9">
+  <p><a class="environment-identifier" href="/tag/00W9">Lemma <span data-tag="00W9">7.10.8</span>.</a> The map $\theta : \mathcal{F} \to \mathcal{F}^+$ has the following property: For every object $U$ of $\mathcal{C}$ and every section $s \in \mathcal{F}^+(U)$ there exists a covering $\{ U_ i \to U\} $ such that $s|_{U_ i}$ is in the image of $\theta : \mathcal{F}(U_ i) \to \mathcal{F}^{+}(U_ i)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Namely, let $\{ U_ i \to U\} $ be a covering such that $s$ arises from the element $(s_ i) \in H^0(\{ U_ i \to U\} , \mathcal{F})$. According to Lemma <a href="/tag/00W7" data-tag="00W7">7.10.6</a> we may consider the covering $\{ U_ i \to U_ i\} $ and the (obvious) morphism of coverings $\{ U_ i \to U_ i\}  \to \{ U_ i \to U\} $ to compute the pullback of $s$ to an element of $\mathcal{F}^+(U_ i)$. And indeed, using this covering we get exactly $\theta (s_ i)$ for the restriction of $s$ to $U_ i$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="00WA">
+  <p><a class="environment-identifier" href="/tag/00WA">Definition <span data-tag="00WA">7.10.9</span>.</a> We say that a presheaf of sets $\mathcal{F}$ on a site $\mathcal{C}$ is <em>separated</em> if, for all coverings of $\{ U_ i \rightarrow U\} $, the map $\mathcal{F}(U) \to \prod \mathcal{F}(U_ i)$ is injective. </p>
+</article> 
+</p>
+<p>
+<article class="env-theorem" id="00WB">
+  <p><a class="environment-identifier" href="/tag/00WB">Theorem <span data-tag="00WB">7.10.10</span>.</a> With $\mathcal{F}$ as above </p>
+  <p><ol>
+  <li class="custom-item" id="00WC"><p>
+ The presheaf $\mathcal{F}^+$ is separated. 
+</p>
+</li><li class="custom-item" id="00WD"><p>
+ If $\mathcal{F}$ is separated, then $\mathcal{F}^+$ is a sheaf and the map of presheaves $\mathcal{F} \to \mathcal{F}^+$ is injective. 
+</p>
+</li><li class="custom-item" id="00WE"><p>
+ If $\mathcal{F}$ is a sheaf, then $\mathcal{F} \to \mathcal{F}^+$ is an isomorphism. 
+</p>
+</li><li class="custom-item" id="00WF"><p>
+ The presheaf $\mathcal{F}^{++}$ is always a sheaf. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Proof of (<a href="/tag/00WC" data-tag="00WC">1</a>). Suppose that $s, s' \in \mathcal{F}^+(U)$ and suppose that there exists some covering $\{ U_ i \to U\} $ such that $s|_{U_ i} = s'|_{U_ i}$ for all $i$. We now have three coverings of $U$: the covering $\{ U_ i \to U\} $ above, a covering $\mathcal{U}$ for $s$ as in Lemma <a href="/tag/00W9" data-tag="00W9">7.10.8</a>, and a similar covering $\mathcal{U}'$ for $s'$. By Lemma <a href="/tag/00W6" data-tag="00W6">7.10.5</a>, we can find a common refinement, say $\{ W_ j \to U\} $. This means we have $s_ j, s'_ j \in \mathcal{F}(W_ j)$ such that $s|_{W_ j} = \theta (s_ j)$, similarly for $s'|_{W_ j}$, and such that $\theta (s_ j) = \theta (s'_ j)$. This last equality means that there exists some covering $\{ W_{jk} \to W_ j\} $ such that $s_ j|_{W_{jk}} = s'_ j|_{W_{jk}}$. Then since $\{ W_{jk} \to U\} $ is a covering we see that $s, s'$ map to the same element of $H^0(\{ W_{jk} \to U\} , \mathcal{F})$ as desired. 
+    <p>
+      Proof of (<a href="/tag/00WD" data-tag="00WD">2</a>). It is clear that $\mathcal{F} \to \mathcal{F}^+$ is injective because all the maps $\mathcal{F}(U) \to H^0(\mathcal{U}, \mathcal{F})$ are injective. It is also clear that, if $\mathcal{U} \to \mathcal{U}'$ is a refinement, then $H^0(\mathcal{U}', \mathcal{F}) \to H^0(\mathcal{U}, \mathcal{F})$ is injective. Now, suppose that $\{ U_ i \to U\} $ is a covering, and let $(s_ i)$ be a family of elements of $\mathcal{F}^+(U_ i)$ satisfying the sheaf condition $s_ i|_{U_ i \times _ U U_{i'}} = s_{i'}|_{U_ i \times _ U U_{i'}}$ for all $i, i' \in I$. Choose coverings (as in Lemma <a href="/tag/00W9" data-tag="00W9">7.10.8</a>) $\{ U_{ij} \to U_ i\} $ such that $s_ i|_{U_{ij}}$ is the image of the (unique) element $s_{ij} \in \mathcal{F}(U_{ij})$. The sheaf condition implies that $s_{ij}$ and $s_{i'j'}$ agree over $U_{ij} \times _ U U_{i'j'}$ because it maps to $U_ i \times _ U U_{i'}$ and we have the equality there. Hence $(s_{ij}) \in H^0(\{ U_{ij} \to U\} , \mathcal{F})$ gives rise to an element $s \in \mathcal{F}^+(U)$. We leave it to the reader to verify that $s|_{U_ i} = s_ i$. 
+    <p>
+      Proof of (<a href="/tag/00WE" data-tag="00WE">3</a>). This is immediate from the definitions because the sheaf property says exactly that every map $\mathcal{F} \to H^0(\mathcal{U}, \mathcal{F})$ is bijective (for every covering $\mathcal{U}$ of $U$). 
+    <p>
+      Statement (<a href="/tag/00WF" data-tag="00WF">4</a>) is now obvious. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="00WG">
+  <p><a class="environment-identifier" href="/tag/00WG">Definition <span data-tag="00WG">7.10.11</span>.</a> Let $\mathcal{C}$ be a site and let $\mathcal{F}$ be a presheaf of sets on $\mathcal{C}$. The sheaf $\mathcal{F}^\#  := \mathcal{F}^{++}$ together with the canonical map $\mathcal{F} \to \mathcal{F}^\# $ is called the <em>sheaf associated to $\mathcal{F}$</em>. </p>
+</article> 
+</p>
+<p>
+<article class="env-proposition" id="00WH">
+  <p><a class="environment-identifier" href="/tag/00WH">Proposition <span data-tag="00WH">7.10.12</span>.</a> The canonical map $\mathcal{F} \to \mathcal{F}^\# $ has the following universal property: For any map $\mathcal{F} \to \mathcal{G}$, where $\mathcal{G}$ is a sheaf of sets, there is a unique map $\mathcal{F}^\#  \to \mathcal{G}$ such that $\mathcal{F} \to \mathcal{F}^\#  \to \mathcal{G}$ equals the given map. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/00W5" data-tag="00W5">7.10.4</a> we get a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathcal{F} \ar[r] \ar[d] &  \mathcal{F}^{+} \ar[r] \ar[d] &  \mathcal{F}^{++} \ar[d] \\  \mathcal{G} \ar[r] &  \mathcal{G}^{+} \ar[r] &  \mathcal{G}^{++} }  \]
+</div>
+    <p>
+       and by Theorem <a href="/tag/00WB" data-tag="00WB">7.10.10</a> the lower horizontal maps are isomorphisms. The uniqueness follows from Lemma <a href="/tag/00W9" data-tag="00W9">7.10.8</a> which says that every section of $\mathcal{F}^\# $ locally comes from sections of $\mathcal{F}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+It is clear from this result that the functor $\mathcal{F} \mapsto (\mathcal{F} \to \mathcal{F}^\# )$ is unique up to unique isomorphism of functors. Actually, let us temporarily denote $i : \mathop{\mathit{Sh}}\nolimits (\mathcal{C}) \to \textit{PSh}(\mathcal{C})$ the functor of inclusion. The result above actually says that 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(\mathcal{F}, i(\mathcal{G})) = \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C})}(\mathcal{F}^\# , \mathcal{G}).  \]
+</div>
+<p>
+ In other words, the functor of sheafification is the left adjoint to the inclusion functor $i$. 
+</p>
+<p>
+<article class="env-example" id="0H7J">
+  <p><a class="environment-identifier" href="/tag/0H7J">Example <span data-tag="0H7J">7.10.13</span>.</a> Let $\mathcal{C}$ be a site. Let $E$ be a set. The <em>constant sheaf $\underline{E}$ with value $E$</em> is the sheafification of the presheaf given by the constant functor with value $E$. It is characterized by the rule $\mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C})}(\underline{E}, \mathcal{F}) = \mathop{\mathrm{Mor}}\nolimits _{\textit{Sets}}(E, \Gamma (\mathcal{C}, \mathcal{F}))$ for every sheaf $\mathcal{F}$ on $\mathcal{C}$ where the notation is from Definition <a href="/tag/06UN" data-tag="06UN">7.45.1</a>. </p>
+</article> 
+</p>
+<p>
+We finish this section with a couple of lemmas. 
+</p>
+<p>
+<article class="env-lemma" id="00WI">
+       
+      
+  <p><a class="environment-identifier" href="/tag/00WI">Lemma <span data-tag="00WI">7.10.14</span>.</a> Let $\mathcal{F} : \mathcal{I} \to \mathop{\mathit{Sh}}\nolimits (\mathcal{C})$ be a diagram. Then $\mathop{\mathrm{colim}}\nolimits _\mathcal {I} \mathcal{F}$ exists and is the sheafification of the colimit in the category of presheaves. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since the sheafification functor is a left adjoint it commutes with all colimits, see Categories, Lemma <a href="/tag/0038" data-tag="0038">4.24.5</a>. Hence, since $\textit{PSh}(\mathcal{C})$ has colimits, we deduce that $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})$ has colimits (which are the sheafifications of the colimits in presheaves). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00WJ">
+  <p><a class="environment-identifier" href="/tag/00WJ">Lemma <span data-tag="00WJ">7.10.15</span>.</a> The functor $\textit{PSh}(\mathcal{C}) \to \mathop{\mathit{Sh}}\nolimits (\mathcal{C})$, $\mathcal{F} \mapsto \mathcal{F}^\# $ is exact. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since it is a left adjoint it is right exact, see Categories, Lemma <a href="/tag/0039" data-tag="0039">4.24.6</a>. On the other hand, by Lemmas <a href="/tag/00W6" data-tag="00W6">7.10.5</a> and Lemma <a href="/tag/00W7" data-tag="00W7">7.10.6</a> the colimits in the construction of $\mathcal{F}^+$ are really over the directed set $\mathop{\mathrm{Ob}}\nolimits (\mathcal{J}_ U)$ where $\mathcal{U} \geq \mathcal{U}'$ if and only if $\mathcal{U}$ is a refinement of $\mathcal{U}'$. Hence by Categories, Lemma <a href="/tag/002W" data-tag="002W">4.19.2</a> we see that $\mathcal{F} \to \mathcal{F}^+$ commutes with finite limits (as a functor from presheaves to presheaves). Then we conclude using Lemma <a href="/tag/00W2" data-tag="00W2">7.10.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00WK">
+  <p><a class="environment-identifier" href="/tag/00WK">Lemma <span data-tag="00WK">7.10.16</span>.</a> Let $\mathcal{C}$ be a site. Let $\mathcal{F}$ be a presheaf of sets on $\mathcal{C}$. Denote $\theta ^2 : \mathcal{F} \to \mathcal{F}^\# $ the canonical map of $\mathcal{F}$ into its sheafification. Let $U$ be an object of $\mathcal{C}$. Let $s \in \mathcal{F}^\# (U)$. There exists a covering $\{ U_ i \to U\} $ and sections $s_ i \in \mathcal{F}(U_ i)$ such that </p>
+  <p><ol>
+  <li><p>
+$s|_{U_ i} = \theta ^2(s_ i)$, and 
+</p>
+</li><li><p>
+for every $i, j$ there exists a covering $\{ U_{ijk} \to U_ i \times _ U U_ j\} $ of $\mathcal{C}$ such that the pullbacks of $s_ i$ and $s_ j$ to each $U_{ijk}$ agree. 
+</p>
+</li>
+</ol></p>
+  <p> Conversely, given any covering $\{ U_ i \to U\} $, elements $s_ i \in \mathcal{F}(U_ i)$ such that (2) holds, then there exists a unique section $s \in \mathcal{F}^\# (U)$ such that (1) holds. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0H6Y">
+  <p><a class="environment-identifier" href="/tag/0H6Y">Lemma <span data-tag="0H6Y">7.10.17</span>.</a> Let $\mathcal{C}$ be a site. Let $\mathcal{F} \to \mathcal{G}$ be a map of presheaves of sets on $\mathcal{C}$. Denote $\mathcal{B}$ the set of $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ such that $\mathcal{F}(U) \to \mathcal{G}(U)$ is bijective. If every object of $\mathcal{C}$ has a covering by elements of $\mathcal{B}$, then $\mathcal{F}^\#  \to \mathcal{G}^\# $ is an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$. Let us prove that $\mathcal{F}^\# (U) \to \mathcal{G}^\# (U)$ is surjective. To do this we will use Lemma <a href="/tag/00WK" data-tag="00WK">7.10.16</a> without further mention. For any $s \in \mathcal{G}^\# (U)$ there exists a covering $\{ U_ i \to U\} $ and sections $s_ i \in \mathcal{G}(U_ i)$ such that 
+    <p>
+      <ol>
+  <li><p>
+$s|_{U_ i}$ is the image of $s_ i$ via $\mathcal{G} \to \mathcal{G}^\# $, and 
+</p>
+</li><li><p>
+for every $i, j$ there exists a covering $\{ U_{ijk} \to U_ i \times _ U U_ j\} $ of $\mathcal{D}$ such that the pullbacks of $s_ i$ and $s_ j$ to each $U_{ijk}$ agree. 
+</p>
+</li>
+</ol>
+    <p>
+       By assumption, for each $i$ we may choose a covering $\{ U_{i, a} \to U_ i\} $ with $U_{i, a} \in \mathcal{B}$. Then $\{ U_{i, a} \to U\} $ is a covering. Denoting $s_{i, a}$ the image of $s_ i$ in $\mathcal{G}(U_{i, a})$ we see that the pullbacks of $s_{i, a}$ and $s_{j, b}$ to the members of the covering 
+    <p>
+      <div class="equation">
+  \[  \{ (U_{i, a} \times _ U U_{j, b}) \times _{U_ i \times _ U U_ j} U_{ijk} \to U_{i, a} \times _ U U_{j, b}\}   \]
+</div>
+    <p>
+       agree. Hence we may assume that $U_ i \in \mathcal{B}$. Repeating the argument, we may also assume $U_{ijk} \in \mathcal{B}$ for all $i, j, k$ (details omitted). Then since $\mathcal{F}(U_ i) \to \mathcal{G}(U_ i)$ is bijective by our definition of $\mathcal{B}$ in the statement of the lemma, we get unique $t_ i \in \mathcal{F}(U_ i)$ mapping to $s_ i$. The pullbacks of $t_ i$ and $t_ j$ to each $U_{ijk}$ agree in $\mathcal{F}(U_{ijk})$ because $U_{ijk} \in \mathcal{B}$ and because we have the agreement for $t_ i$ and $t_ j$. Then the lemma tells us there exists a unique $t \in \mathcal{F}^\# (U)$ such that $t|_{U_ i}$ is the image of $t_ i$. It follows that $t$ maps to $s$. We omit the proof that $\mathcal{F}^\# (U) \to \mathcal{G}^\# (U)$ is injective. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

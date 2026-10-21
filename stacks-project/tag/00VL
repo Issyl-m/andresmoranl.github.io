@@ -1,0 +1,131 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sites-section-sheaves" class="tex-section"><span data-tag="00VL">7.7</span> Sheaves</h2>
+
+<p>
+Let $\mathcal{C}$ be a site. Before we introduce the notion of a sheaf with values in a category we explain what it means for a presheaf of sets to be a sheaf. Let $\mathcal{F}$ be a presheaf of sets on $\mathcal{C}$ and let $\{ U_ i \to U\} _{i\in I}$ be an element of $\text{Cov}(\mathcal{C})$. By assumption all the fibre products $U_ i \times _ U U_ j$ exist in $\mathcal{C}$. There are two natural maps 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \prod \nolimits _{i\in I} \mathcal{F}(U_ i) \ar@<1ex>[r]^-{\text{pr}_0^*} \ar@<-1ex>[r]_-{\text{pr}_1^*} &  \prod \nolimits _{(i_0, i_1) \in I \times I} \mathcal{F}(U_{i_0} \times _ U U_{i_1}) }  \]
+</div>
+<p>
+ which we will denote $\text{pr}^*_ i$, $i = 0, 1$ as indicated in the displayed equation. Namely, an element of the left hand side corresponds to a family $(s_ i)_{i\in I}$, where each $s_ i$ is a section of $\mathcal{F}$ over $U_ i$. For each pair $(i_0, i_1) \in I \times I$ we have the projection morphisms 
+</p>
+<div class="equation">
+  \[  \text{pr}^{(i_0, i_1)}_{i_0} : U_{i_0} \times _ U U_{i_1} \longrightarrow U_{i_0} \text{ and } \text{pr}^{(i_0, i_1)}_{i_1} : U_{i_0} \times _ U U_{i_1} \longrightarrow U_{i_1}.  \]
+</div>
+<p>
+ Thus we may pull back either the section $s_{i_0}$ via the first of these maps or the section $s_{i_1}$ via the second. Explicitly the maps we referred to above are 
+</p>
+<div class="equation">
+  \[  \text{pr}_0^* : (s_ i)_{i\in I} \longmapsto \Big( \text{pr}^{(i_0, i_1), *}_{i_0}(s_{i_0}) \Big)_{(i_0, i_1) \in I \times I}  \]
+</div>
+<p>
+ and 
+</p>
+<div class="equation">
+  \[  \text{pr}_1^* : (s_ i)_{i\in I} \longmapsto \Big( \text{pr}^{(i_0, i_1), *}_{i_1}(s_{i_1}) \Big)_{(i_0, i_1) \in I \times I}.  \]
+</div>
+<p>
+ Finally consider the natural map 
+</p>
+<div class="equation">
+  \[  \mathcal{F}(U) \longrightarrow \prod \nolimits _{i\in I} \mathcal{F}(U_ i), \quad s \longmapsto (s|_{U_ i})_{i \in I}  \]
+</div>
+<p>
+ where we have used the notation $s|_{U_ i}$ to indicate the pullback of $s$ via the map $U_ i \to U$. It is clear from the functorial nature of $\mathcal{F}$ and the commutativity of the fibre product diagrams that $\text{pr}_0^*( (s|_{U_ i})_{i \in I} ) = \text{pr}_1^*( (s|_{U_ i})_{i \in I} )$. 
+</p>
+<p>
+<article class="env-definition" id="00VM">
+  <p><a class="environment-identifier" href="/tag/00VM">Definition <span data-tag="00VM">7.7.1</span>.</a> Let $\mathcal{C}$ be a site, and let $\mathcal{F}$ be a presheaf of sets on $\mathcal{C}$. We say $\mathcal{F}$ is a <em>sheaf</em> if for every covering $\{ U_ i \to U\} _{i \in I} \in \text{Cov}(\mathcal{C})$ the diagram </p>
+  <div class="equation" id="00VN">
+    <span class="equation-label"><a href="/tag/00VN" data-tag="00VN">7.7.1.1</a></span>
+  <div>\begin{equation}  \label{sites-equation-sheaf-condition} \xymatrix{ \mathcal{F}(U) \ar[r] &  \prod \nolimits _{i\in I} \mathcal{F}(U_ i) \ar@<1ex>[r]^-{\text{pr}_0^*} \ar@<-1ex>[r]_-{\text{pr}_1^*} &  \prod \nolimits _{(i_0, i_1) \in I \times I} \mathcal{F}(U_{i_0} \times _ U U_{i_1}) } \end{equation}</div>
+</div>
+  <p> represents the first arrow as the equalizer of $\text{pr}_0^*$ and $\text{pr}_1^*$. </p>
+</article> 
+</p>
+<p>
+Loosely speaking this means that given sections $s_ i \in \mathcal{F}(U_ i)$ such that 
+</p>
+<div class="equation">
+  \[  s_ i|_{U_ i \times _ U U_ j} = s_ j|_{U_ i \times _ U U_ j}  \]
+</div>
+<p>
+ in $\mathcal{F}(U_ i \times _ U U_ j)$ for all pairs $(i, j) \in I \times I$ then there exists a unique $s \in \mathcal{F}(U)$ such that $s_ i = s|_{U_ i}$. 
+</p>
+<p>
+<article class="env-remark" id="04B3">
+  <p><a class="environment-identifier" href="/tag/04B3">Remark <span data-tag="04B3">7.7.2</span>.</a> If the covering $\{ U_ i \to U\} _{i \in I}$ is the empty family (this means that $I = \emptyset $), then the sheaf condition signifies that $\mathcal{F}(U) = \{ *\} $ is a singleton set. This is because in (<a href="/tag/00VN" data-tag="00VN">7.7.1.1</a>) the second and third sets are empty products in the category of sets, which are final objects in the category of sets, hence singletons. </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="00VO">
+  <p><a class="environment-identifier" href="/tag/00VO">Example <span data-tag="00VO">7.7.3</span>.</a> Let $X$ be a topological space. Let $X_{Zar}$ be the site constructed in Example <a href="/tag/00VJ" data-tag="00VJ">7.6.4</a>. The notion of a sheaf on $X_{Zar}$ coincides with the notion of a sheaf on $X$ introduced in Sheaves, Definition <a href="/tag/006T" data-tag="006T">6.7.1</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="00VP">
+  <p><a class="environment-identifier" href="/tag/00VP">Example <span data-tag="00VP">7.7.4</span>.</a> Let $X$ be a topological space. Let us consider the site $X'_{Zar}$ which is the same as the site $X_{Zar}$ of Example <a href="/tag/00VJ" data-tag="00VJ">7.6.4</a> except that we disallow the empty covering of the empty set. In other words, we do allow the covering $\{ \emptyset \to \emptyset \} $ but we do not allow the covering whose index set is empty. It is easy to show that this still defines a site. However, we claim that the sheaves on $X'_{Zar}$ are different from the sheaves on $X_{Zar}$. For example, as an extreme case consider the situation where $X = \{ p\} $ is a singleton. Then the objects of $X'_{Zar}$ are $\emptyset , X$ and every covering of $\emptyset $ can be refined by $\{ \emptyset \to \emptyset \} $ and every covering of $X$ by $\{ X \to X\} $. Clearly, a sheaf on this is given by any choice of a set $\mathcal{F}(\emptyset )$ and any choice of a set $\mathcal{F}(X)$, together with any restriction map $\mathcal{F}(X) \to \mathcal{F}(\emptyset )$. Thus sheaves on $X'_{Zar}$ are the same as usual sheaves on the two point space $\{ \eta , p\} $ with open sets $\{ \emptyset , \{ \eta \} , \{ p, \eta \} \} $. In general sheaves on $X'_{Zar}$ are the same as sheaves on the space $X \amalg \{ \eta \} $, with opens given by the empty set and any set of the form $U \cup \{ \eta \} $ for $U \subset X$ open. </p>
+</article> 
+</p>
+<p>
+<article class="env-definition" id="00VQ">
+  <p><a class="environment-identifier" href="/tag/00VQ">Definition <span data-tag="00VQ">7.7.5</span>.</a> The category <em>$\mathop{\mathit{Sh}}\nolimits (\mathcal{C})$</em> of sheaves of sets is the full subcategory of the category $\textit{PSh}(\mathcal{C})$ whose objects are the sheaves of sets. </p>
+</article> 
+</p>
+<p>
+Let $\mathcal{A}$ be a category. If products indexed by $I$, and $I \times I$ exist in $\mathcal{A}$ for any $I$ that occurs as an index set for covering families then Definition <a href="/tag/00VM" data-tag="00VM">7.7.1</a> above makes sense, and defines a notion of a sheaf on $\mathcal{C}$ with values in $\mathcal{A}$. Note that the diagram in $\mathcal{A}$ 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathcal{F}(U) \ar[r] &  \prod \nolimits _{i\in I} \mathcal{F}(U_ i) \ar@<1ex>[r]^-{\text{pr}_0^*} \ar@<-1ex>[r]_-{\text{pr}_1^*} &  \prod \nolimits _{(i_0, i_1) \in I \times I} \mathcal{F}(U_{i_0} \times _ U U_{i_1}) }  \]
+</div>
+<p>
+ is an equalizer diagram if and only if for every object $X$ of $\mathcal{A}$ the diagram of sets 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{Mor}}\nolimits _\mathcal {A}(X, \mathcal{F}(U)) \ar[r] &  \prod \mathop{\mathrm{Mor}}\nolimits _\mathcal {A}(X, \mathcal{F}(U_ i)) \ar@<1ex>[r]^-{\text{pr}_0^*} \ar@<-1ex>[r]_-{\text{pr}_1^*} &  \prod \mathop{\mathrm{Mor}}\nolimits _\mathcal {A}(X, \mathcal{F}(U_{i_0} \times _ U U_{i_1})) }  \]
+</div>
+<p>
+ is an equalizer diagram. 
+</p>
+<p>
+Suppose $\mathcal{A}$ is arbitrary. Let $\mathcal{F}$ be a presheaf with values in $\mathcal{A}$. Choose any object $X\in \mathop{\mathrm{Ob}}\nolimits (\mathcal{A})$. Then we get a presheaf of sets $\mathcal{F}_ X$ defined by the rule 
+</p>
+<div class="equation">
+  \[  \mathcal{F}_ X(U) = \mathop{\mathrm{Mor}}\nolimits _\mathcal {A}(X, \mathcal{F}(U)).  \]
+</div>
+<p>
+ From the above it follows that a good definition is obtained by requiring all the presheaves $\mathcal{F}_ X$ to be sheaves of sets. 
+</p>
+<p>
+<article class="env-definition" id="00VR">
+  <p><a class="environment-identifier" href="/tag/00VR">Definition <span data-tag="00VR">7.7.6</span>.</a> Let $\mathcal{C}$ be a site, let $\mathcal{A}$ be a category and let $\mathcal{F}$ be a presheaf on $\mathcal{C}$ with values in $\mathcal{A}$. We say that $\mathcal{F}$ is a <em>sheaf</em> if for all objects $X$ of $\mathcal{A}$ the presheaf of sets $\mathcal{F}_ X$ (defined above) is a sheaf. </p>
+</article> 
+</p>

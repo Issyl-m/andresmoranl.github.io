@@ -1,0 +1,153 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="stacks-sheaves-section-cech" class="tex-section"><span data-tag="06X3">96.18</span> The Čech complex</h2>
+
+<p>
+To compute the cohomology of a sheaf on an algebraic stack we compare it to the cohomology of the sheaf restricted to coverings of the given algebraic stack. 
+</p>
+<p>
+Throughout this section the situation will be as follows. We are given a $1$-morphism of categories fibred in groupoids 
+</p>
+<div class="equation" id="06X4">
+    <span class="equation-label"><a href="/tag/06X4" data-tag="06X4">96.18.0.1</a></span>
+  <div>\begin{equation}  \label{stacks-sheaves-equation-covering} \vcenter { \xymatrix{ \mathcal{U} \ar[rr]_ f \ar[rd]_ q &  &  \mathcal{X} \ar[ld]^ p \\  &  (\mathit{Sch}/S)_{fppf} } } \end{equation}</div>
+</div>
+<p>
+ We are going to think about $\mathcal{U}$ as a “covering” of $\mathcal{X}$. Hence we want to consider the simplicial object 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathcal{U} \times _\mathcal {X} \mathcal{U} \times _\mathcal {X} \mathcal{U} \ar@<1ex>[r] \ar@<0ex>[r] \ar@<-1ex>[r] &  \mathcal{U} \times _\mathcal {X} \mathcal{U} \ar@<0.5ex>[r] \ar@<-0.5ex>[r] &  \mathcal{U} }  \]
+</div>
+<p>
+ in the category of categories fibred in groupoids over $(\mathit{Sch}/S)_{fppf}$. However, since this is a $(2, 1)$-category and not a category, we should say explicitly what we mean. Namely, we let $\mathcal{U}_ n$ be the category with objects $(u_0, \ldots , u_ n, x, \alpha _0, \ldots , \alpha _ n)$ where $\alpha _ i : f(u_ i) \to x$ is an isomorphism in $\mathcal{X}$. We denote $f_ n : \mathcal{U}_ n \to \mathcal{X}$ the $1$-morphism which assigns to $(u_0, \ldots , u_ n, x, \alpha _0, \ldots , \alpha _ n)$ the object $x$. Note that $\mathcal{U}_0 = \mathcal{U}$ and $f_0 = f$. Given a map $\varphi : [m] \to [n]$ we consider the $1$-morphism $\mathcal{U}_\varphi : \mathcal{U}_ n \longrightarrow \mathcal{U}_ n$ given by 
+</p>
+<div class="equation">
+  \[  (u_0, \ldots , u_ n, x, \alpha _0, \ldots , \alpha _ n) \longmapsto (u_{\varphi (0)}, \ldots , u_{\varphi (m)}, x, \alpha _{\varphi (0)}, \ldots , \alpha _{\varphi (m)})  \]
+</div>
+<p>
+ on objects. All of these $1$-morphisms compose correctly on the nose (no $2$-morphisms required) and all of these $1$-morphisms are $1$-morphisms over $\mathcal{X}$. We denote $\mathcal{U}_\bullet $ this simplicial object. If $\mathcal{F}$ is a presheaf of sets on $\mathcal{X}$, then we obtain a cosimplicial set 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \Gamma (\mathcal{U}_0, f_0^{-1}\mathcal{F}) \ar@<0.5ex>[r] \ar@<-0.5ex>[r] &  \Gamma (\mathcal{U}_1, f_1^{-1}\mathcal{F}) \ar@<1ex>[r] \ar@<0ex>[r] \ar@<-1ex>[r] &  \Gamma (\mathcal{U}_2, f_2^{-1}\mathcal{F}) }  \]
+</div>
+<p>
+ Here the arrows are the pullback maps along the given morphisms of the simplicial object. If $\mathcal{F}$ is a presheaf of abelian groups, this is a cosimplicial abelian group. 
+</p>
+<p>
+Let $\mathcal{U} \to \mathcal{X}$ be as above and let $\mathcal{F}$ be an abelian presheaf on $\mathcal{X}$. The <em>Čech complex</em> associated to the situation is denoted $\check{\mathcal{C}}^\bullet (\mathcal{U} \to \mathcal{X}, \mathcal{F})$. It is the cochain complex associated to the cosimplicial abelian group above, see Simplicial, Section <a href="/tag/019H" data-tag="019H">14.25</a>. It has terms 
+</p>
+<div class="equation">
+  \[  \check{\mathcal{C}}^ n(\mathcal{U} \to \mathcal{X}, \mathcal{F}) = \Gamma (\mathcal{U}_ n, f_ n^{-1}\mathcal{F}).  \]
+</div>
+<p>
+ The boundary maps are the maps 
+</p>
+<div class="equation">
+  \[  d^ n = \sum \nolimits _{i = 0}^{n + 1} (-1)^ i \delta ^{n + 1}_ i : \Gamma (\mathcal{U}_ n, f_ n^{-1}\mathcal{F}) \longrightarrow \Gamma (\mathcal{U}_{n + 1}, f_{n + 1}^{-1}\mathcal{F})  \]
+</div>
+<p>
+ where $\delta ^{n + 1}_ i$ corresponds to the map $[n] \to [n + 1]$ omitting the index $i$. Note that the map $\Gamma (\mathcal{X}, \mathcal{F}) \to \Gamma (\mathcal{U}_0, f_0^{-1}\mathcal{F}_0)$ is in the kernel of the differential $d^0$. Hence we define the <em>extended Čech complex</em> to be the complex 
+</p>
+<div class="equation">
+  \[  \ldots \to 0 \to \Gamma (\mathcal{X}, \mathcal{F}) \to \Gamma (\mathcal{U}_0, f_0^{-1}\mathcal{F}_0) \to \Gamma (\mathcal{U}_1, f_1^{-1}\mathcal{F}_1) \to \ldots  \]
+</div>
+<p>
+ with $\Gamma (\mathcal{X}, \mathcal{F})$ placed in degree $-1$. The extended Čech complex is acyclic if and only if the canonical map 
+</p>
+<div class="equation">
+  \[  \Gamma (\mathcal{X}, \mathcal{F})[0] \longrightarrow \check{\mathcal{C}}^\bullet (\mathcal{U} \to \mathcal{X}, \mathcal{F})  \]
+</div>
+<p>
+ is a quasi-isomorphism of complexes. 
+</p>
+<p>
+<article class="env-lemma" id="06X5">
+  <p><a class="environment-identifier" href="/tag/06X5">Lemma <span data-tag="06X5">96.18.1</span>.</a> Generalities on Čech complexes. </p>
+  <p><ol>
+  <li><p>
+If 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathcal{V} \ar[d]_ g \ar[r]_ h &  \mathcal{U} \ar[d]^ f \\  \mathcal{Y} \ar[r]^ e &  \mathcal{X} }  \]
+</div>
+<p>
+ is $2$-commutative diagram of categories fibred in groupoids over $(\mathit{Sch}/S)_{fppf}$, then there is a morphism of Čech complexes 
+</p>
+<div class="equation">
+  \[  \check{\mathcal{C}}^\bullet (\mathcal{U} \to \mathcal{X}, \mathcal{F}) \longrightarrow \check{\mathcal{C}}^\bullet (\mathcal{V} \to \mathcal{Y}, e^{-1}\mathcal{F})  \]
+</div>
+</li><li><p>
+if $h$ and $e$ are equivalences, then the map of (1) is an isomorphism, 
+</p>
+</li><li><p>
+if $f, f' : \mathcal{U} \to \mathcal{X}$ are $2$-isomorphic, then the associated Čech complexes are isomorphic. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In the situation of (1) let $t : f \circ h \to e \circ g$ be a $2$-morphism. The map on complexes is given in degree $n$ by pullback along the $1$-morphisms $\mathcal{V}_ n \to \mathcal{U}_ n$ given by the rule 
+    <p>
+      <div class="equation">
+  \[  (v_0, \ldots , v_ n, y, \beta _0, \ldots , \beta _ n) \longmapsto (h(v_0), \ldots , h(v_ n), e(y), e(\beta _0) \circ t_{v_0}, \ldots , e(\beta _ n) \circ t_{v_ n}).  \]
+</div>
+    <p>
+       For (2), note that pullback on global sections is an isomorphism for any presheaf of sets when the pullback is along an equivalence of categories. Part (3) follows on combining (1) and (2). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06X6">
+  <p><a class="environment-identifier" href="/tag/06X6">Lemma <span data-tag="06X6">96.18.2</span>.</a> If there exists a $1$-morphism $s : \mathcal{X} \to \mathcal{U}$ such that $f \circ s$ is $2$-isomorphic to $\text{id}_\mathcal {X}$ then the extended Čech complex is homotopic to zero. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Set $\mathcal{U}' = \mathcal{U} \times _\mathcal {X} \mathcal{X}$ equal to the fibre product as described in Categories, Lemma <a href="/tag/0040" data-tag="0040">4.32.3</a>. Set $f' : \mathcal{U}' \to \mathcal{X}$ equal to the second projection. Then $\mathcal{U} \to \mathcal{U}'$, $u \mapsto (u, f(x), 1)$ is an equivalence over $\mathcal{X}$, hence we may replace $(\mathcal{U}, f)$ by $(\mathcal{U}', f')$ by Lemma <a href="/tag/06X5" data-tag="06X5">96.18.1</a>. The advantage of this is that now $f'$ has a section $s'$ such that $f' \circ s' = \text{id}_\mathcal {X}$ on the nose. Namely, if $t : s \circ f \to \text{id}_\mathcal {X}$ is a $2$-isomorphism then we can set $s'(x) = (s(x), x, t_ x)$. Thus we may assume that $f \circ s = \text{id}_\mathcal {X}$. 
+    <p>
+      In the case that $f \circ s = \text{id}_\mathcal {X}$ the result follows from general principles. We give the homotopy explicitly. Namely, for $n \geq 0$ define $s_ n : \mathcal{U}_ n \to \mathcal{U}_{n + 1}$ to be the $1$-morphism defined by the rule on objects 
+    <p>
+      <div class="equation">
+  \[  (u_0, \ldots , u_ n, x, \alpha _0, \ldots , \alpha _ n) \longmapsto (u_0, \ldots , u_ n, s(x), x, \alpha _0, \ldots , \alpha _ n, \text{id}_ x).  \]
+</div>
+    <p>
+       Define 
+    <p>
+      <div class="equation">
+  \[  h^{n + 1} : \Gamma (\mathcal{U}_{n + 1}, f_{n + 1}^{-1}\mathcal{F}) \longrightarrow \Gamma (\mathcal{U}_ n, f_ n^{-1}\mathcal{F})  \]
+</div>
+    <p>
+       as pullback along $s_ n$. We also set $s_{-1} = s$ and $h^0 : \Gamma (\mathcal{U}_0, f_0^{-1}\mathcal{F}) \to \Gamma (\mathcal{X}, \mathcal{F})$ equal to pullback along $s_{-1}$. Then the family of maps $\{ h^ n\} _{n \geq 0}$ is a homotopy between $1$ and $0$ on the extended Čech complex. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

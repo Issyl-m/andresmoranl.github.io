@@ -1,0 +1,399 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="coherent-section-devissage" class="tex-section"><span data-tag="01YC">30.12</span> Devissage of coherent sheaves</h2>
+
+<p>
+Let $X$ be a Noetherian scheme. Consider an integral closed subscheme $i : Z \to X$. It is often convenient to consider coherent sheaves of the form $i_*\mathcal{G}$ where $\mathcal{G}$ is a coherent sheaf on $Z$. In particular we are interested in these sheaves when $\mathcal{G}$ is a torsion free rank $1$ sheaf. For example $\mathcal{G}$ could be a nonzero sheaf of ideals on $Z$, or even more specifically $\mathcal{G} = \mathcal{O}_ Z$. 
+</p>
+<p>
+Throughout this section we will use that a coherent sheaf is the same thing as a finite type quasi-coherent sheaf and that a quasi-coherent subquotient of a coherent sheaf is coherent, see Section <a href="/tag/01XY" data-tag="01XY">30.9</a>. The support of a coherent sheaf is closed, see Modules, Lemma <a href="/tag/01BA" data-tag="01BA">17.9.6</a>. 
+</p>
+<p>
+<article class="env-lemma" id="01YD">
+  <p><a class="environment-identifier" href="/tag/01YD">Lemma <span data-tag="01YD">30.12.1</span>.</a> Let $X$ be a Noetherian scheme. Let $\mathcal{F}$ be a coherent sheaf on $X$. Suppose that $\text{Supp}(\mathcal{F}) = Z \cup Z'$ with $Z$, $Z'$ closed. Then there exists a short exact sequence of coherent sheaves </p>
+  <div class="equation">
+  \[  0 \to \mathcal{G}' \to \mathcal{F} \to \mathcal{G} \to 0  \]
+</div>
+  <p> with $\text{Supp}(\mathcal{G}') \subset Z'$ and $\text{Supp}(\mathcal{G}) \subset Z$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\mathcal{I} \subset \mathcal{O}_ X$ be the sheaf of ideals defining the reduced induced closed subscheme structure on $Z$, see Schemes, Lemma <a href="/tag/01J3" data-tag="01J3">26.12.4</a>. Consider the subsheaves $\mathcal{G}'_ n = \mathcal{I}^ n\mathcal{F}$ and the quotients $\mathcal{G}_ n = \mathcal{F}/\mathcal{I}^ n\mathcal{F}$. For each $n$ we have a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{G}'_ n \to \mathcal{F} \to \mathcal{G}_ n \to 0  \]
+</div>
+    <p>
+       For every point $x$ of $Z' \setminus Z$ we have $\mathcal{I}_ x = \mathcal{O}_{X, x}$ and hence $\mathcal{G}_{n, x} = 0$. Thus we see that $\text{Supp}(\mathcal{G}_ n) \subset Z$. Note that $X \setminus Z'$ is a Noetherian scheme. Hence by Lemma <a href="/tag/01Y9" data-tag="01Y9">30.10.2</a> there exists an $n$ such that $\mathcal{G}'_ n|_{X \setminus Z'} = \mathcal{I}^ n\mathcal{F}|_{X \setminus Z'} = 0$. For such an $n$ we see that $\text{Supp}(\mathcal{G}'_ n) \subset Z'$. Thus setting $\mathcal{G}' = \mathcal{G}'_ n$ and $\mathcal{G} = \mathcal{G}_ n$ works. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01YE">
+  <p><a class="environment-identifier" href="/tag/01YE">Lemma <span data-tag="01YE">30.12.2</span>.</a> Let $X$ be a Noetherian scheme. Let $i : Z \to X$ be an integral closed subscheme. Let $\xi \in Z$ be the generic point. Let $\mathcal{F}$ be a coherent sheaf on $X$. Assume that $\mathcal{F}_\xi $ is annihilated by $\mathfrak m_\xi $. Then there exist an integer $r \geq 0$ and a coherent sheaf of ideals $\mathcal{I} \subset \mathcal{O}_ Z$ and an injective map of coherent sheaves </p>
+  <div class="equation">
+  \[  i_*\left(\mathcal{I}^{\oplus r}\right) \to \mathcal{F}  \]
+</div>
+  <p> which is an isomorphism in a neighbourhood of $\xi $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\mathcal{J} \subset \mathcal{O}_ X$ be the ideal sheaf of $Z$. Let $\mathcal{F}' \subset \mathcal{F}$ be the subsheaf of local sections of $\mathcal{F}$ which are annihilated by $\mathcal{J}$. It is a quasi-coherent sheaf by Properties, Lemma <a href="/tag/01PO" data-tag="01PO">28.25.2</a>. Moreover, $\mathcal{F}'_\xi = \mathcal{F}_\xi $ because $\mathcal{J}_\xi = \mathfrak m_\xi $ and part (3) of Properties, Lemma <a href="/tag/01PO" data-tag="01PO">28.25.2</a>. By Lemma <a href="/tag/01Y3" data-tag="01Y3">30.9.5</a> we see that $\mathcal{F}' \to \mathcal{F}$ induces an isomorphism in a neighbourhood of $\xi $. Hence we may replace $\mathcal{F}$ by $\mathcal{F}'$ and assume that $\mathcal{F}$ is annihilated by $\mathcal{J}$. 
+    <p>
+      Assume $\mathcal{J}\mathcal{F} = 0$. By Lemma <a href="/tag/087T" data-tag="087T">30.9.8</a> we can write $\mathcal{F} = i_*\mathcal{G}$ for some coherent sheaf $\mathcal{G}$ on $Z$. Suppose we can find a morphism $\mathcal{I}^{\oplus r} \to \mathcal{G}$ which is an isomorphism in a neighbourhood of the generic point $\xi $ of $Z$. Then applying $i_*$ (which is left exact) we get the result of the lemma. Hence we have reduced to the case $X = Z$. 
+    <p>
+      Suppose $Z = X$ is an integral Noetherian scheme with generic point $\xi $. Note that $\mathcal{O}_{X, \xi } = \kappa (\xi )$ is the function field of $X$ in this case. Since $\mathcal{F}_\xi $ is a finite $\mathcal{O}_\xi $-module we see that $r = \dim _{\kappa (\xi )} \mathcal{F}_\xi $ is finite. Hence the sheaves $\mathcal{O}_ X^{\oplus r}$ and $\mathcal{F}$ have isomorphic stalks at $\xi $. By Lemma <a href="/tag/01Y4" data-tag="01Y4">30.9.6</a> there exists a nonempty open $U \subset X$ and a morphism $\psi : \mathcal{O}_ X^{\oplus r}|_ U \to \mathcal{F}|_ U$ which is an isomorphism at $\xi $, and hence an isomorphism in a neighbourhood of $\xi $ by Lemma <a href="/tag/01Y3" data-tag="01Y3">30.9.5</a>. By Schemes, Lemma <a href="/tag/01J3" data-tag="01J3">26.12.4</a> there exists a quasi-coherent sheaf of ideals $\mathcal{I} \subset \mathcal{O}_ X$ whose associated closed subscheme $Y \subset X$ is the complement of $U$. By Lemma <a href="/tag/01YB" data-tag="01YB">30.10.5</a> there exists an $n \geq 0$ and a morphism $\mathcal{I}^ n(\mathcal{O}_ X^{\oplus r}) \to \mathcal{F}$ which recovers our $\psi $ over $U$. Since $\mathcal{I}^ n(\mathcal{O}_ X^{\oplus r}) = (\mathcal{I}^ n)^{\oplus r}$ we get a map as in the lemma. It is injective because $X$ is integral and it is injective at the generic point of $X$ (easy proof omitted). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01YF">
+  <p><a class="environment-identifier" href="/tag/01YF">Lemma <span data-tag="01YF">30.12.3</span>.</a> Let $X$ be a Noetherian scheme. Let $\mathcal{F}$ be a coherent sheaf on $X$. There exists a filtration </p>
+  <div class="equation">
+  \[  0 = \mathcal{F}_0 \subset \mathcal{F}_1 \subset \ldots \subset \mathcal{F}_ m = \mathcal{F}  \]
+</div>
+  <p> by coherent subsheaves such that for each $j = 1, \ldots , m$ there exist an integral closed subscheme $Z_ j \subset X$ and a nonzero coherent sheaf of ideals $\mathcal{I}_ j \subset \mathcal{O}_{Z_ j}$ such that </p>
+  <div class="equation">
+  \[  \mathcal{F}_ j/\mathcal{F}_{j - 1} \cong (Z_ j \to X)_* \mathcal{I}_ j  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider the collection 
+    <p>
+      <div class="equation">
+  \[  \mathcal{T} = \left\{  \begin{matrix}  Z \subset X \text{ closed such that there exists a coherent sheaf } \mathcal{F} 
+
+\\  \text{ with } \text{Supp}(\mathcal{F}) = Z \text{ for which the lemma is wrong} 
+
+\end{matrix} \right\}   \]
+</div>
+    <p>
+       We are trying to show that $\mathcal{T}$ is empty. If not, then because $X$ is Noetherian we can choose a minimal element $Z \in \mathcal{T}$. This means that there exists a coherent sheaf $\mathcal{F}$ on $X$ whose support is $Z$ and for which the lemma does not hold. Clearly $Z \not= \emptyset $ since the only sheaf whose support is empty is the zero sheaf for which the lemma does hold (with $m = 0$). 
+    <p>
+      If $Z$ is not irreducible, then we can write $Z = Z_1 \cup Z_2$ with $Z_1, Z_2$ closed and strictly smaller than $Z$. Then we can apply Lemma <a href="/tag/01YD" data-tag="01YD">30.12.1</a> to get a short exact sequence of coherent sheaves 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{G}_1 \to \mathcal{F} \to \mathcal{G}_2 \to 0  \]
+</div>
+    <p>
+       with $\text{Supp}(\mathcal{G}_ i) \subset Z_ i$. By minimality of $Z$ each of $\mathcal{G}_ i$ has a filtration as in the statement of the lemma. By considering the induced filtration on $\mathcal{F}$ we arrive at a contradiction. Hence we conclude that $Z$ is irreducible. 
+    <p>
+      Suppose $Z$ is irreducible. Let $\mathcal{J}$ be the sheaf of ideals cutting out the reduced induced closed subscheme structure of $Z$, see Schemes, Lemma <a href="/tag/01J3" data-tag="01J3">26.12.4</a>. By Lemma <a href="/tag/01Y9" data-tag="01Y9">30.10.2</a> we see there exists an $n \geq 0$ such that $\mathcal{J}^ n\mathcal{F} = 0$. Hence we obtain a filtration 
+    <p>
+      <div class="equation">
+  \[  0 = \mathcal{J}^ n\mathcal{F} \subset \mathcal{J}^{n - 1}\mathcal{F} \subset \ldots \subset \mathcal{J}\mathcal{F} \subset \mathcal{F}  \]
+</div>
+    <p>
+       each of whose successive subquotients is annihilated by $\mathcal{J}$. Hence if each of these subquotients has a filtration as in the statement of the lemma then also $\mathcal{F}$ does. In other words we may assume that $\mathcal{J}$ does annihilate $\mathcal{F}$. 
+    <p>
+      In the case where $Z$ is irreducible and $\mathcal{J}\mathcal{F} = 0$ we can apply Lemma <a href="/tag/01YE" data-tag="01YE">30.12.2</a>. This gives a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to i_*(\mathcal{I}^{\oplus r}) \to \mathcal{F} \to \mathcal{Q} \to 0  \]
+</div>
+    <p>
+       where $\mathcal{Q}$ is defined as the quotient. Since $\mathcal{Q}$ is zero in a neighbourhood of $\xi $ by the lemma just cited we see that the support of $\mathcal{Q}$ is strictly smaller than $Z$. Hence we see that $\mathcal{Q}$ has a filtration of the desired type by minimality of $Z$. But then clearly $\mathcal{F}$ does too, which is our final contradiction. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01YG">
+  <p><a class="environment-identifier" href="/tag/01YG">Lemma <span data-tag="01YG">30.12.4</span>.</a> Let $X$ be a Noetherian scheme. Let $\mathcal{P}$ be a property of coherent sheaves on $X$. Assume </p>
+  <p><ol>
+  <li><p>
+For any short exact sequence of coherent sheaves 
+</p>
+<div class="equation">
+  \[  0 \to \mathcal{F}_1 \to \mathcal{F} \to \mathcal{F}_2 \to 0  \]
+</div>
+<p>
+ if $\mathcal{F}_ i$, $i = 1, 2$ have property $\mathcal{P}$ then so does $\mathcal{F}$. 
+</p>
+</li><li><p>
+For every integral closed subscheme $Z \subset X$ and every quasi-coherent sheaf of ideals $\mathcal{I} \subset \mathcal{O}_ Z$ we have $\mathcal{P}$ for $i_*\mathcal{I}$. 
+</p>
+</li>
+</ol></p>
+  <p> Then property $\mathcal{P}$ holds for every coherent sheaf on $X$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      First note that if $\mathcal{F}$ is a coherent sheaf with a filtration 
+    <p>
+      <div class="equation">
+  \[  0 = \mathcal{F}_0 \subset \mathcal{F}_1 \subset \ldots \subset \mathcal{F}_ m = \mathcal{F}  \]
+</div>
+    <p>
+       by coherent subsheaves such that each of $\mathcal{F}_ i/\mathcal{F}_{i - 1}$ has property $\mathcal{P}$, then so does $\mathcal{F}$. This follows from the property (1) for $\mathcal{P}$. On the other hand, by Lemma <a href="/tag/01YF" data-tag="01YF">30.12.3</a> we can filter any $\mathcal{F}$ with successive subquotients as in (2). Hence the lemma follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01YH">
+  <p><a class="environment-identifier" href="/tag/01YH">Lemma <span data-tag="01YH">30.12.5</span>.</a> Let $X$ be a Noetherian scheme. Let $Z_0 \subset X$ be an irreducible closed subset with generic point $\xi $. Let $\mathcal{P}$ be a property of coherent sheaves on $X$ with support contained in $Z_0$ such that </p>
+  <p><ol>
+  <li><p>
+For any short exact sequence of coherent sheaves if two out of three of them have property $\mathcal{P}$ then so does the third. 
+</p>
+</li><li><p>
+For every integral closed subscheme $Z \subset Z_0 \subset X$, $Z \not= Z_0$ and every quasi-coherent sheaf of ideals $\mathcal{I} \subset \mathcal{O}_ Z$ we have $\mathcal{P}$ for $(Z \to X)_*\mathcal{I}$. 
+</p>
+</li><li><p>
+There exists some coherent sheaf $\mathcal{G}$ on $X$ such that 
+</p>
+<ol>
+  <li><p>
+$\text{Supp}(\mathcal{G}) = Z_0$, 
+</p>
+</li><li><p>
+$\mathcal{G}_\xi $ is annihilated by $\mathfrak m_\xi $, 
+</p>
+</li><li><p>
+$\dim _{\kappa (\xi )} \mathcal{G}_\xi = 1$, and 
+</p>
+</li><li><p>
+property $\mathcal{P}$ holds for $\mathcal{G}$. 
+</p>
+</li>
+</ol>
+</li>
+</ol></p>
+  <p> Then property $\mathcal{P}$ holds for every coherent sheaf $\mathcal{F}$ on $X$ whose support is contained in $Z_0$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      First note that if $\mathcal{F}$ is a coherent sheaf with support contained in $Z_0$ with a filtration 
+    <p>
+      <div class="equation">
+  \[  0 = \mathcal{F}_0 \subset \mathcal{F}_1 \subset \ldots \subset \mathcal{F}_ m = \mathcal{F}  \]
+</div>
+    <p>
+       by coherent subsheaves such that each of $\mathcal{F}_ i/\mathcal{F}_{i - 1}$ has property $\mathcal{P}$, then so does $\mathcal{F}$. Or, if $\mathcal{F}$ has property $\mathcal{P}$ and all but one of the $\mathcal{F}_ i/\mathcal{F}_{i - 1}$ has property $\mathcal{P}$ then so does the last one. This follows from assumption (1). 
+    <p>
+      As a first application we conclude that any coherent sheaf whose support is strictly contained in $Z_0$ has property $\mathcal{P}$. Namely, such a sheaf has a filtration (see Lemma <a href="/tag/01YF" data-tag="01YF">30.12.3</a>) whose subquotients have property $\mathcal{P}$ according to (2). 
+    <p>
+      Let $\mathcal{G}$ be as in (3). By Lemma <a href="/tag/01YE" data-tag="01YE">30.12.2</a> there exist a sheaf of ideals $\mathcal{I}$ on $Z_0$, an integer $r \geq 1$, and a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \left((Z_0 \to X)_*\mathcal{I}\right)^{\oplus r} \to \mathcal{G} \to \mathcal{Q} \to 0  \]
+</div>
+    <p>
+       where the support of $\mathcal{Q}$ is strictly contained in $Z_0$. By (3)(c) we see that $r = 1$. Since $\mathcal{Q}$ has property $\mathcal{P}$ too we conclude that $(Z_0 \to X)_*\mathcal{I}$ has property $\mathcal{P}$. 
+    <p>
+      Next, suppose that $\mathcal{I}' \not= 0$ is another quasi-coherent sheaf of ideals on $Z_0$. Then we can consider the intersection $\mathcal{I}'' = \mathcal{I}' \cap \mathcal{I}$ and we get two short exact sequences 
+    <p>
+      <div class="equation">
+  \[  0 \to (Z_0 \to X)_*\mathcal{I}'' \to (Z_0 \to X)_*\mathcal{I} \to \mathcal{Q} \to 0  \]
+</div>
+    <p>
+       and 
+    <p>
+      <div class="equation">
+  \[  0 \to (Z_0 \to X)_*\mathcal{I}'' \to (Z_0 \to X)_*\mathcal{I}' \to \mathcal{Q}' \to 0.  \]
+</div>
+    <p>
+       Note that the support of the coherent sheaves $\mathcal{Q}$ and $\mathcal{Q}'$ are strictly contained in $Z_0$. Hence $\mathcal{Q}$ and $\mathcal{Q}'$ have property $\mathcal{P}$ (see above). Hence we conclude using (1) that $(Z_0 \to X)_*\mathcal{I}''$ and $(Z_0 \to X)_*\mathcal{I}'$ both have $\mathcal{P}$ as well. 
+    <p>
+      The final step of the proof is to note that any coherent sheaf $\mathcal{F}$ on $X$ whose support is contained in $Z_0$ has a filtration (see Lemma <a href="/tag/01YF" data-tag="01YF">30.12.3</a> again) whose subquotients all have property $\mathcal{P}$ by what we just said. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01YI">
+  <p><a class="environment-identifier" href="/tag/01YI">Lemma <span data-tag="01YI">30.12.6</span>.</a> Let $X$ be a Noetherian scheme. Let $\mathcal{P}$ be a property of coherent sheaves on $X$ such that </p>
+  <p><ol>
+  <li><p>
+For any short exact sequence of coherent sheaves if two out of three of them have property $\mathcal{P}$ then so does the third. 
+</p>
+</li><li><p>
+For every integral closed subscheme $Z \subset X$ with generic point $\xi $ there exists some coherent sheaf $\mathcal{G}$ such that 
+</p>
+<ol>
+  <li><p>
+$\text{Supp}(\mathcal{G}) = Z$, 
+</p>
+</li><li><p>
+$\mathcal{G}_\xi $ is annihilated by $\mathfrak m_\xi $, 
+</p>
+</li><li><p>
+$\dim _{\kappa (\xi )} \mathcal{G}_\xi = 1$, and 
+</p>
+</li><li><p>
+property $\mathcal{P}$ holds for $\mathcal{G}$. 
+</p>
+</li>
+</ol>
+</li>
+</ol></p>
+  <p> Then property $\mathcal{P}$ holds for every coherent sheaf on $X$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      According to Lemma <a href="/tag/01YG" data-tag="01YG">30.12.4</a> it suffices to show that for all integral closed subschemes $Z \subset X$ and all quasi-coherent ideal sheaves $\mathcal{I} \subset \mathcal{O}_ Z$ we have $\mathcal{P}$ for $(Z \to X)_*\mathcal{I}$. If this fails, then since $X$ is Noetherian there is a minimal integral closed subscheme $Z_0 \subset X$ such that $\mathcal{P}$ fails for $(Z_0 \to X)_*\mathcal{I}_0$ for some quasi-coherent sheaf of ideals $\mathcal{I}_0 \subset \mathcal{O}_{Z_0}$, but $\mathcal{P}$ does hold for $(Z \to X)_*\mathcal{I}$ for all integral closed subschemes $Z \subset Z_0$, $Z \not= Z_0$ and quasi-coherent ideal sheaves $\mathcal{I} \subset \mathcal{O}_ Z$. Since we have the existence of $\mathcal{G}$ for $Z_0$ by part (2), according to Lemma <a href="/tag/01YH" data-tag="01YH">30.12.5</a> this cannot happen. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01YL">
+  <p><a class="environment-identifier" href="/tag/01YL">Lemma <span data-tag="01YL">30.12.7</span>.</a> Let $X$ be a Noetherian scheme. Let $Z_0 \subset X$ be an irreducible closed subset with generic point $\xi $. Let $\mathcal{P}$ be a property of coherent sheaves on $X$ such that </p>
+  <p><ol>
+  <li><p>
+For any short exact sequence of coherent sheaves 
+</p>
+<div class="equation">
+  \[  0 \to \mathcal{F}_1 \to \mathcal{F} \to \mathcal{F}_2 \to 0  \]
+</div>
+<p>
+ if $\mathcal{F}_ i$, $i = 1, 2$ have property $\mathcal{P}$ then so does $\mathcal{F}$. 
+</p>
+</li><li><p>
+If $\mathcal{P}$ holds for $\mathcal{F}^{\oplus r}$ for some $r \geq 1$, then it holds for $\mathcal{F}$. 
+</p>
+</li><li><p>
+For every integral closed subscheme $Z \subset Z_0 \subset X$, $Z \not= Z_0$ and every quasi-coherent sheaf of ideals $\mathcal{I} \subset \mathcal{O}_ Z$ we have $\mathcal{P}$ for $(Z \to X)_*\mathcal{I}$. 
+</p>
+</li><li><p>
+There exists some coherent sheaf $\mathcal{G}$ such that 
+</p>
+<ol>
+  <li><p>
+$\text{Supp}(\mathcal{G}) = Z_0$, 
+</p>
+</li><li><p>
+$\mathcal{G}_\xi $ is annihilated by $\mathfrak m_\xi $, and 
+</p>
+</li><li><p>
+for every quasi-coherent sheaf of ideals $\mathcal{J} \subset \mathcal{O}_ X$ such that $\mathcal{J}_\xi = \mathcal{O}_{X, \xi }$ there exists a quasi-coherent subsheaf $\mathcal{G}' \subset \mathcal{J}\mathcal{G}$ with $\mathcal{G}'_\xi = \mathcal{G}_\xi $ and such that $\mathcal{P}$ holds for $\mathcal{G}'$. 
+</p>
+</li>
+</ol>
+</li>
+</ol></p>
+  <p> Then property $\mathcal{P}$ holds for every coherent sheaf $\mathcal{F}$ on $X$ whose support is contained in $Z_0$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Note that if $\mathcal{F}$ is a coherent sheaf with a filtration 
+    <p>
+      <div class="equation">
+  \[  0 = \mathcal{F}_0 \subset \mathcal{F}_1 \subset \ldots \subset \mathcal{F}_ m = \mathcal{F}  \]
+</div>
+    <p>
+       by coherent subsheaves such that each of $\mathcal{F}_ i/\mathcal{F}_{i - 1}$ has property $\mathcal{P}$, then so does $\mathcal{F}$. This follows from assumption (1). 
+    <p>
+      As a first application we conclude that any coherent sheaf whose support is strictly contained in $Z_0$ has property $\mathcal{P}$. Namely, such a sheaf has a filtration (see Lemma <a href="/tag/01YF" data-tag="01YF">30.12.3</a>) whose subquotients have property $\mathcal{P}$ according to (3). 
+    <p>
+      Let us denote $i : Z_0 \to X$ the closed immersion. Consider a coherent sheaf $\mathcal{G}$ as in (4). By Lemma <a href="/tag/01YE" data-tag="01YE">30.12.2</a> there exists a sheaf of ideals $\mathcal{I}$ on $Z_0$ and a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to i_*\mathcal{I}^{\oplus r} \to \mathcal{G} \to \mathcal{Q} \to 0  \]
+</div>
+    <p>
+       where the support of $\mathcal{Q}$ is strictly contained in $Z_0$. In particular $r > 0$ and $\mathcal{I}$ is nonzero because the support of $\mathcal{G}$ is equal to $Z_0$. Let $\mathcal{I}' \subset \mathcal{I}$ be any nonzero quasi-coherent sheaf of ideals on $Z_0$ contained in $\mathcal{I}$. Then we also get a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to i_*(\mathcal{I}')^{\oplus r} \to \mathcal{G} \to \mathcal{Q}' \to 0  \]
+</div>
+    <p>
+       where $\mathcal{Q}'$ has support properly contained in $Z_0$. Let $\mathcal{J} \subset \mathcal{O}_ X$ be a quasi-coherent sheaf of ideals cutting out the support of $\mathcal{Q}'$ (for example the ideal corresponding to the reduced induced closed subscheme structure on the support of $\mathcal{Q}'$). Then $\mathcal{J}_\xi = \mathcal{O}_{X, \xi }$. By Lemma <a href="/tag/01Y9" data-tag="01Y9">30.10.2</a> we see that $\mathcal{J}^ n\mathcal{Q}' = 0$ for some $n$. Hence $\mathcal{J}^ n\mathcal{G} \subset i_*(\mathcal{I}')^{\oplus r}$. By assumption (4)(c) of the lemma we see there exists a quasi-coherent subsheaf $\mathcal{G}' \subset \mathcal{J}^ n\mathcal{G}$ with $\mathcal{G}'_\xi = \mathcal{G}_\xi $ for which property $\mathcal{P}$ holds. Hence we get a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{G}' \to i_*(\mathcal{I}')^{\oplus r} \to \mathcal{Q}'' \to 0  \]
+</div>
+    <p>
+       where $\mathcal{Q}''$ has support properly contained in $Z_0$. Thus by our initial remarks and property (1) of the lemma we conclude that $i_*(\mathcal{I}')^{\oplus r}$ satisfies $\mathcal{P}$. Hence we see that $i_*\mathcal{I}'$ satisfies $\mathcal{P}$ by (2). Finally, for an arbitrary quasi-coherent sheaf of ideals $\mathcal{I}'' \subset \mathcal{O}_{Z_0}$ we can set $\mathcal{I}' = \mathcal{I}'' \cap \mathcal{I}$ and we get a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to i_*(\mathcal{I}') \to i_*(\mathcal{I}'') \to \mathcal{Q}''' \to 0  \]
+</div>
+    <p>
+       where $\mathcal{Q}'''$ has support properly contained in $Z_0$. Hence we conclude that property $\mathcal{P}$ holds for $i_*\mathcal{I}''$ as well. 
+    <p>
+      The final step of the proof is to note that any coherent sheaf $\mathcal{F}$ on $X$ whose support is contained in $Z_0$ has a filtration (see Lemma <a href="/tag/01YF" data-tag="01YF">30.12.3</a> again) whose subquotients all have property $\mathcal{P}$ by what we just said. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01YM">
+  <p><a class="environment-identifier" href="/tag/01YM">Lemma <span data-tag="01YM">30.12.8</span>.</a> Let $X$ be a Noetherian scheme. Let $\mathcal{P}$ be a property of coherent sheaves on $X$ such that </p>
+  <p><ol>
+  <li><p>
+For any short exact sequence of coherent sheaves 
+</p>
+<div class="equation">
+  \[  0 \to \mathcal{F}_1 \to \mathcal{F} \to \mathcal{F}_2 \to 0  \]
+</div>
+<p>
+ if $\mathcal{F}_ i$, $i = 1, 2$ have property $\mathcal{P}$ then so does $\mathcal{F}$. 
+</p>
+</li><li><p>
+If $\mathcal{P}$ holds for $\mathcal{F}^{\oplus r}$ for some $r \geq 1$, then it holds for $\mathcal{F}$. 
+</p>
+</li><li><p>
+For every integral closed subscheme $Z \subset X$ with generic point $\xi $ there exists some coherent sheaf $\mathcal{G}$ such that 
+</p>
+<ol>
+  <li><p>
+$\text{Supp}(\mathcal{G}) = Z$, 
+</p>
+</li><li><p>
+$\mathcal{G}_\xi $ is annihilated by $\mathfrak m_\xi $, and 
+</p>
+</li><li><p>
+for every quasi-coherent sheaf of ideals $\mathcal{J} \subset \mathcal{O}_ X$ such that $\mathcal{J}_\xi = \mathcal{O}_{X, \xi }$ there exists a quasi-coherent subsheaf $\mathcal{G}' \subset \mathcal{J}\mathcal{G}$ with $\mathcal{G}'_\xi = \mathcal{G}_\xi $ and such that $\mathcal{P}$ holds for $\mathcal{G}'$. 
+</p>
+</li>
+</ol>
+</li>
+</ol></p>
+  <p> Then property $\mathcal{P}$ holds for every coherent sheaf on $X$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows from Lemma <a href="/tag/01YL" data-tag="01YL">30.12.7</a> in exactly the same way that Lemma <a href="/tag/01YI" data-tag="01YI">30.12.6</a> follows from Lemma <a href="/tag/01YH" data-tag="01YH">30.12.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

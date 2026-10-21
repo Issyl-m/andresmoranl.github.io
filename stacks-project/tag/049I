@@ -1,0 +1,351 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="spaces-limits-section-finite-presentation" class="tex-section"><span data-tag="049I">70.3</span> Morphisms of finite presentation</h2>
+
+<p>
+In this section we generalize Limits, Proposition <a href="/tag/01ZC" data-tag="01ZC">32.6.1</a> to morphisms of algebraic spaces. The motivation for the following definition comes from the proposition just cited. 
+</p>
+<p>
+<article class="env-definition" id="049J">
+  <p><a class="environment-identifier" href="/tag/049J">Definition <span data-tag="049J">70.3.1</span>.</a> Let $S$ be a scheme. </p>
+  <p><ol>
+  <li><p>
+A functor $F : (\mathit{Sch}/S)_{fppf}^{opp} \to \textit{Sets}$ is said to be <em>limit preserving</em> or <em>locally of finite presentation</em> if for every affine scheme $T$ over $S$ which is a limit $T = \mathop{\mathrm{lim}}\nolimits T_ i$ of a directed inverse system of affine schemes $T_ i$ over $S$, we have 
+</p>
+<div class="equation">
+  \[  F(T) = \mathop{\mathrm{colim}}\nolimits F(T_ i).  \]
+</div>
+<p>
+ We sometimes say that $F$ is <em>locally of finite presentation over $S$</em>. 
+</p>
+</li><li><p>
+Let $F, G : (\mathit{Sch}/S)_{fppf}^{opp} \to \textit{Sets}$. A transformation of functors $a : F \to G$ is <em>limit preserving</em> or <em>locally of finite presentation</em> if for every scheme $T$ over $S$ and every $y \in G(T)$ the functor 
+</p>
+<div class="equation">
+  \[  F_ y : (\mathit{Sch}/T)_{fppf}^{opp} \longrightarrow \textit{Sets}, \quad T'/T \longmapsto \{ x \in F(T') \mid a(x) = y|_{T'}\}   \]
+</div>
+<p>
+ is locally of finite presentation over $T$<a class="footnotemark" href="#a0001392241" id="a0001392241-mark"><sup>1</sup></a>. We sometimes say that $F$ is <em>relatively limit preserving</em> over $G$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+The functor $F_ y$ is in some sense the fiber of $a : F \to G$ over $y$, except that it is a presheaf on the big fppf site of $T$. A formula for this functor is: 
+</p>
+<div class="equation" id="049K">
+    <span class="equation-label"><a href="/tag/049K" data-tag="049K">70.3.1.1</a></span>
+  <div>\begin{equation}  \label{spaces-limits-equation-fibre-map-functors} F_ y = F|_{(\mathit{Sch}/T)_{fppf}} {\times }_{G|_{(\mathit{Sch}/T)_{fppf}}} * \end{equation}</div>
+</div>
+<p>
+ Here $*$ is the final object in the category of (pre)sheaves on $(\mathit{Sch}/T)_{fppf}$ (see Sites, Example <a href="/tag/00W3" data-tag="00W3">7.10.2</a>) and the map $* \to G|_{(\mathit{Sch}/T)_{fppf}}$ is given by $y$. Note that if $j : (\mathit{Sch}/T)_{fppf} \to (\mathit{Sch}/S)_{fppf}$ is the localization functor, then the formula above becomes $F_ y = j^{-1}F \times _{j^{-1}G} *$ and $j_!F_ y$ is just the fiber product $F \times _{G, y} T$. (See Sites, Section <a href="/tag/00XZ" data-tag="00XZ">7.25</a>, for information on localization, and especially Sites, Remark <a href="/tag/0494" data-tag="0494">7.25.10</a> for information on $j_!$ for presheaves.) 
+</p>
+<p>
+At this point we temporarily have two definitions of what it means for a morphism $X \to Y$ of algebraic spaces over $S$ to be locally of finite presentation. Namely, one by Morphisms of Spaces, Definition <a href="/tag/03XP" data-tag="03XP">67.28.1</a> and one using that $X \to Y$ is a transformation of functors so that Definition <a href="/tag/049J" data-tag="049J">70.3.1</a> applies (we will use the terminology “limit preserving” for this notion as much as possible). We will show in Proposition <a href="/tag/04AK" data-tag="04AK">70.3.10</a> that these two definitions agree. 
+</p>
+<p>
+<article class="env-lemma" id="06BC">
+  <p><a class="environment-identifier" href="/tag/06BC">Lemma <span data-tag="06BC">70.3.2</span>.</a> Let $S$ be a scheme. Let $a : F \to G$ be a transformation of functors $(\mathit{Sch}/S)_{fppf}^{opp} \to \textit{Sets}$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$a : F \to G$ is limit preserving, and 
+</p>
+</li><li><p>
+for every affine scheme $T$ over $S$ which is a limit $T = \mathop{\mathrm{lim}}\nolimits T_ i$ of a directed inverse system of affine schemes $T_ i$ over $S$ the diagram of sets 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{colim}}\nolimits _ i F(T_ i) \ar[r] \ar[d]_ a &  F(T) \ar[d]^ a \\  \mathop{\mathrm{colim}}\nolimits _ i G(T_ i) \ar[r] &  G(T) }  \]
+</div>
+<p>
+ is a fibre product diagram. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume (1). Consider $T = \mathop{\mathrm{lim}}\nolimits _{i \in I} T_ i$ as in (2). Let $(y, x_ T)$ be an element of the fibre product $\mathop{\mathrm{colim}}\nolimits _ i G(T_ i) \times _{G(T)} F(T)$. Then $y$ comes from $y_ i \in G(T_ i)$ for some $i$. Consider the functor $F_{y_ i}$ on $(\mathit{Sch}/T_ i)_{fppf}$ as in Definition <a href="/tag/049J" data-tag="049J">70.3.1</a>. We see that $x_ T \in F_{y_ i}(T)$. Moreover $T = \mathop{\mathrm{lim}}\nolimits _{i' \geq i} T_{i'}$ is a directed system of affine schemes over $T_ i$. Hence (1) implies that $x_ T$ the image of a unique element $x$ of $\mathop{\mathrm{colim}}\nolimits _{i' \geq i} F_{y_ i}(T_{i'})$. Thus $x$ is the unique element of $\mathop{\mathrm{colim}}\nolimits F(T_ i)$ which maps to the pair $(y, x_ T)$. This proves that (2) holds. 
+    <p>
+      Assume (2). Let $T$ be a scheme and $y_ T \in G(T)$. We have to show that $F_{y_ T}$ is limit preserving. Let $T' = \mathop{\mathrm{lim}}\nolimits _{i \in I} T'_ i$ be an affine scheme over $T$ which is the directed limit of affine scheme $T'_ i$ over $T$. Let $x_{T'} \in F_{y_ T}$. Pick $i \in I$ which is possible as $I$ is a directed set. Denote $y_ i \in F(T'_ i)$ the image of $y_{T'}$. Then we see that $(y_ i, x_{T'})$ is an element of the fibre product $\mathop{\mathrm{colim}}\nolimits _ i G(T'_ i) \times _{G(T')} F(T')$. Hence by (2) we get a unique element $x$ of $\mathop{\mathrm{colim}}\nolimits _ i F(T'_ i)$ mapping to $(y_ i, x_{T'})$. It is clear that $x$ defines an element of $\mathop{\mathrm{colim}}\nolimits _ i F_ y(T'_ i)$ mapping to $x_{T'}$ and we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="049L">
+  <p><a class="environment-identifier" href="/tag/049L">Lemma <span data-tag="049L">70.3.3</span>.</a> Let $S$ be a scheme contained in $\mathit{Sch}_{fppf}$. Let $F, G, H : (\mathit{Sch}/S)_{fppf}^{opp} \to \textit{Sets}$. Let $a : F \to G$, $b : G \to H$ be transformations of functors. If $a$ and $b$ are limit preserving, then </p>
+  <div class="equation">
+  \[  b \circ a : F \longrightarrow H  \]
+</div>
+  <p> is limit preserving. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $T = \mathop{\mathrm{lim}}\nolimits _{i \in I} T_ i$ as in characterization (2) of Lemma <a href="/tag/06BC" data-tag="06BC">70.3.2</a>. Consider the diagram of sets 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{colim}}\nolimits _ i F(T_ i) \ar[r] \ar[d]_ a &  F(T) \ar[d]^ a \\  \mathop{\mathrm{colim}}\nolimits _ i G(T_ i) \ar[r] \ar[d]_ b &  G(T) \ar[d]^ b \\  \mathop{\mathrm{colim}}\nolimits _ i H(T_ i) \ar[r] &  H(T) }  \]
+</div>
+    <p>
+       By assumption the two squares are fibre product squares. Hence the outer rectangle is a fibre product diagram too which proves the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GDY">
+  <p><a class="environment-identifier" href="/tag/0GDY">Lemma <span data-tag="0GDY">70.3.4</span>.</a> Let $S$ be a scheme contained in $\mathit{Sch}_{fppf}$. Let $F, G, H : (\mathit{Sch}/S)_{fppf}^{opp} \to \textit{Sets}$. Let $a : F \to G$, $b : G \to H$ be transformations of functors. If $b \circ a$ and $b$ are limit preserving, then $a$ is limit preserving. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $T = \mathop{\mathrm{lim}}\nolimits _{i \in I} T_ i$ as in characterization (2) of Lemma <a href="/tag/06BC" data-tag="06BC">70.3.2</a>. Consider the diagram of sets 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{colim}}\nolimits _ i F(T_ i) \ar[r] \ar[d]_ a &  F(T) \ar[d]^ a \\  \mathop{\mathrm{colim}}\nolimits _ i G(T_ i) \ar[r] \ar[d]_ b &  G(T) \ar[d]^ b \\  \mathop{\mathrm{colim}}\nolimits _ i H(T_ i) \ar[r] &  H(T) }  \]
+</div>
+    <p>
+       By assumption the lower square and the outer rectangle are fibre products of sets. Hence the upper square is a fibre product square too which proves the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="049M">
+  <p><a class="environment-identifier" href="/tag/049M">Lemma <span data-tag="049M">70.3.5</span>.</a> Let $S$ be a scheme contained in $\mathit{Sch}_{fppf}$. Let $F, G, H : (\mathit{Sch}/S)_{fppf}^{opp} \to \textit{Sets}$. Let $a : F \to G$, $b : H \to G$ be transformations of functors. Consider the fibre product diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ H \times _{b, G, a} F \ar[r]_-{b'} \ar[d]_{a'} &  F \ar[d]^ a \\  H \ar[r]^ b &  G }  \]
+</div>
+  <p> If $a$ is limit preserving, then the base change $a'$ is limit preserving. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. Hint: This is formal. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GDZ">
+  <p><a class="environment-identifier" href="/tag/0GDZ">Lemma <span data-tag="0GDZ">70.3.6</span>.</a> Let $S$ be a scheme contained in $\mathit{Sch}_{fppf}$. Let $E, F, G, H : (\mathit{Sch}/S)_{fppf}^{opp} \to \textit{Sets}$. Let $a : F \to G$, $b : H \to G$, and $c : G \to E$ be transformations of functors. If $c$, $c \circ a$, and $c \circ b$ are limit preserving, then $F \times _ G H \to E$ is too. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $T = \mathop{\mathrm{lim}}\nolimits _{i \in I} T_ i$ as in characterization (2) of Lemma <a href="/tag/06BC" data-tag="06BC">70.3.2</a>. Then we have 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits (F \times _ G H)(T_ i) = \mathop{\mathrm{colim}}\nolimits F(T_ i) \times _{\mathop{\mathrm{colim}}\nolimits G(T_ i)} \mathop{\mathrm{colim}}\nolimits H(T_ i)  \]
+</div>
+    <p>
+       as filtered colimits commute with finite products. Our goal is thus to show that 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{colim}}\nolimits F(T_ i) \times _{\mathop{\mathrm{colim}}\nolimits G(T_ i)} \mathop{\mathrm{colim}}\nolimits H(T_ i) \ar[r] \ar[d] &  F(T) \times _{G(T)} H(T) \ar[d] \\  \mathop{\mathrm{colim}}\nolimits _ i E(T_ i) \ar[r] &  E(T) }  \]
+</div>
+    <p>
+       is a fibre product diagram. This follows from the observation that given maps of sets $E' \to E$, $F \to G$, $H \to G$, and $G \to E$ we have 
+    <p>
+      <div class="equation">
+  \[  E' \times _ E (F \times _ G H) = (E' \times _ E F) \times _{(E' \times _ E G)} (E' \times _ E H)  \]
+</div>
+    <p>
+       Some details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="049O">
+  <p><a class="environment-identifier" href="/tag/049O">Lemma <span data-tag="049O">70.3.7</span>.</a> Let $S$ be a scheme contained in $\mathit{Sch}_{fppf}$. Let $F : (\mathit{Sch}/S)_{fppf}^{opp} \to \textit{Sets}$ be a functor. If $F$ is limit preserving then its sheafification $F^\# $ is limit preserving. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume $F$ is limit preserving. It suffices to show that $F^+$ is limit preserving, since $F^\#  = (F^+)^+$, see Sites, Theorem <a href="/tag/00WB" data-tag="00WB">7.10.10</a>. Let $T$ be an affine scheme over $S$, and let $T = \mathop{\mathrm{lim}}\nolimits T_ i$ be written as the directed limit of an inverse system of affine $S$ schemes. Recall that $F^+(T)$ is the colimit of $\check H^0(\mathcal{V}, F)$ where the limit is over all coverings of $T$ in $(\mathit{Sch}/S)_{fppf}$. Any fppf covering of an affine scheme can be refined by a standard fppf covering, see Topologies, Lemma <a href="/tag/021P" data-tag="021P">34.7.4</a>. Hence we can write 
+    <p>
+      <div class="equation">
+  \[  F^+(T) = \mathop{\mathrm{colim}}\nolimits _{\mathcal{V}\text{ standard covering }T} \check H^0(\mathcal{V}, F).  \]
+</div>
+    <p>
+       Any $\mathcal{V} = \{ T_ k \to T\} _{k = 1, \ldots , n}$ in the colimit may be written as $\mathcal{V}_ i \times _{T_ i} T$ for some $i$ and some standard fppf covering $\mathcal{V}_ i = \{ T_{i, k} \to T_ i\} _{k = 1, \ldots , n}$ of $T_ i$. Denote $\mathcal{V}_{i'} = \{ T_{i', k} \to T_{i'}\} _{k = 1, \ldots , n}$ the base change for $i' \geq i$. Then we see that 
+    <p>
+      <div class="equation">
+  \begin{align*}  \mathop{\mathrm{colim}}\nolimits _{i' \geq i} \check H^0(\mathcal{V}_ i, F) &  = \mathop{\mathrm{colim}}\nolimits _{i' \geq i} \text{Equalizer} \left( \xymatrix{ \prod F(T_{i', k}) \ar@<1ex>[r] \ar@<-1ex>[r] &  \prod F(T_{i', k} \times _{T_{i'}} T_{i', l}) } \right) \\ &  = \text{Equalizer} \left( \xymatrix{ \mathop{\mathrm{colim}}\nolimits _{i' \geq i} \prod F(T_{i', k}) \ar@<1ex>[r] \ar@<-1ex>[r] &  \mathop{\mathrm{colim}}\nolimits _{k' \geq k} \prod F(T_{i', k} \times _{T_{i'}} T_{i', l}) } \right) \\ &  = \text{Equalizer} \left( \xymatrix{ \prod F(T_ k) \ar@<1ex>[r] \ar@<-1ex>[r] &  \prod F(T_ k \times _ T T_ l) } \right) \\ &  = \check H^0(\mathcal{V}, F) \end{align*}
+</div>
+    <p>
+       Here the second equality holds because filtered colimits are exact. The third equality holds because $F$ is limit preserving and because $\mathop{\mathrm{lim}}\nolimits _{i' \geq i} T_{i', k} = T_ k$ and $\mathop{\mathrm{lim}}\nolimits _{i' \geq i} T_{i', k} \times _{T_{i'}} T_{i', l} = T_ k \times _ T T_ l$ by Limits, Lemma <a href="/tag/01YZ" data-tag="01YZ">32.2.3</a>. If we use this for all coverings at the same time we obtain 
+    <p>
+      <div class="equation">
+  \begin{align*}  F^+(T) &  = \mathop{\mathrm{colim}}\nolimits _{\mathcal{V}\text{ standard covering }T} \check H^0(\mathcal{V}, F) \\ &  = \mathop{\mathrm{colim}}\nolimits _{i \in I} \mathop{\mathrm{colim}}\nolimits _{\mathcal{V}_ i\text{ standard covering }T_ i} \check H^0(T \times _{T_ i}\mathcal{V}_ i, F) \\ &  = \mathop{\mathrm{colim}}\nolimits _{i \in I} F^+(T_ i) \end{align*}
+</div>
+    <p>
+       The switch of the order of the colimits is allowed by Categories, Lemma <a href="/tag/002M" data-tag="002M">4.14.10</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="049P">
+  <p><a class="environment-identifier" href="/tag/049P">Lemma <span data-tag="049P">70.3.8</span>.</a> Let $S$ be a scheme. Let $F : (\mathit{Sch}/S)_{fppf}^{opp} \to \textit{Sets}$ be a functor. Assume that </p>
+  <p><ol>
+  <li><p>
+$F$ is a sheaf, and 
+</p>
+</li><li><p>
+there exists an fppf covering $\{ U_ j \to S\} _{j \in J}$ such that $F|_{(\mathit{Sch}/U_ j)_{fppf}}$ is limit preserving. 
+</p>
+</li>
+</ol></p>
+  <p> Then $F$ is limit preserving. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $T$ be an affine scheme over $S$. Let $I$ be a directed set, and let $T_ i$ be an inverse system of affine schemes over $S$ such that $T = \mathop{\mathrm{lim}}\nolimits T_ i$. We have to show that the canonical map $\mathop{\mathrm{colim}}\nolimits F(T_ i) \to F(T)$ is bijective. 
+    <p>
+      Choose some $0 \in I$ and choose a standard fppf covering $\{ V_{0, k} \to T_{0}\} _{k = 1, \ldots , m}$ which refines the pullback $\{ U_ j \times _ S T_0 \to T_0\} $ of the given fppf covering of $S$. For each $i \geq 0$ we set $V_{i, k} = T_ i \times _{T_0} V_{0, k}$, and we set $V_ k = T \times _{T_0} V_{0, k}$. Note that $V_ k = \mathop{\mathrm{lim}}\nolimits _{i \geq 0} V_{i, k}$, see Limits, Lemma <a href="/tag/01YZ" data-tag="01YZ">32.2.3</a>. 
+    <p>
+      Suppose that $x, x' \in \mathop{\mathrm{colim}}\nolimits F(T_ i)$ map to the same element of $F(T)$. Say $x, x'$ are given by elements $x_ i, x'_ i \in F(T_ i)$ for some $i \in I$ (we may choose the same $i$ for both as $I$ is directed). By assumption (2) and the fact that $x_ i, x'_ i$ map to the same element of $F(T)$ this implies that 
+    <p>
+      <div class="equation">
+  \[  x_ i|_{V_{i', k}} = x'_ i|_{V_{i', k}}  \]
+</div>
+    <p>
+       for some suitably large $i' \in I$. We can choose the same $i'$ for each $k$ as $k \in \{ 1, \ldots , m\} $ ranges over a finite set. Since $\{ V_{i', k} \to T_{i'}\} $ is an fppf covering and $F$ is a sheaf this implies that $x_ i|_{T_{i'}} = x'_ i|_{T_{i'}}$ as desired. This proves that the map $\mathop{\mathrm{colim}}\nolimits F(T_ i) \to F(T)$ is injective. 
+    <p>
+      To show surjectivity we argue in a similar fashion. Let $x \in F(T)$. By assumption (2) for each $k$ we can choose a $i$ such that $x|_{V_ k}$ comes from an element $x_{i, k} \in F(V_{i, k})$. As before we may choose a single $i$ which works for all $k$. By the injectivity proved above we see that 
+    <p>
+      <div class="equation">
+  \[  x_{i, k}|_{V_{i', k} \times _{T_{i'}} V_{i', l}} = x_{i, l}|_{V_{i', k} \times _{T_{i'}} V_{i', l}}  \]
+</div>
+    <p>
+       for some large enough $i'$. Hence by the sheaf condition of $F$ the elements $x_{i, k}|_{V_{i', k}}$ glue to an element $x_{i'} \in F(T_{i'})$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="049Q">
+  <p><a class="environment-identifier" href="/tag/049Q">Lemma <span data-tag="049Q">70.3.9</span>.</a> Let $S$ be a scheme contained in $\mathit{Sch}_{fppf}$. Let $F, G : (\mathit{Sch}/S)_{fppf}^{opp} \to \textit{Sets}$ be functors. If $a : F \to G$ is a transformation which is limit preserving, then the induced transformation of sheaves $F^\#  \to G^\# $ is limit preserving. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose that $T$ is a scheme and $y \in G^\# (T)$. We have to show the functor $F^\# _ y : (\mathit{Sch}/T)_{fppf}^{opp} \to \textit{Sets}$ constructed from $F^\#  \to G^\# $ and $y$ as in Definition <a href="/tag/049J" data-tag="049J">70.3.1</a> is limit preserving. By Equation (<a href="/tag/049K" data-tag="049K">70.3.1.1</a>) we see that $F^\# _ y$ is a sheaf. Choose an fppf covering $\{ V_ j \to T\} _{j \in J}$ such that $y|_{V_ j}$ comes from an element $y_ j \in F(V_ j)$. Note that the restriction of $F^\# $ to $(\mathit{Sch}/V_ j)_{fppf}$ is just $F^\# _{y_ j}$. If we can show that $F^\# _{y_ j}$ is limit preserving then Lemma <a href="/tag/049P" data-tag="049P">70.3.8</a> guarantees that $F^\# _ y$ is limit preserving and we win. This reduces us to the case $y \in G(T)$. 
+    <p>
+      Let $y \in G(T)$. In this case we claim that $F^\# _ y = (F_ y)^\# $. This follows from Equation (<a href="/tag/049K" data-tag="049K">70.3.1.1</a>). Thus this case follows from Lemma <a href="/tag/049O" data-tag="049O">70.3.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="04AK">
+  <p><a class="environment-identifier" href="/tag/04AK">Proposition <span data-tag="04AK">70.3.10</span>.</a> Let $S$ be a scheme. Let $f : X \to Y$ be a morphism of algebraic spaces over $S$. The following are equivalent: </p>
+  <p><ol>
+  <li><p>
+The morphism $f$ is a morphism of algebraic spaces which is locally of finite presentation, see Morphisms of Spaces, Definition <a href="/tag/03XP" data-tag="03XP">67.28.1</a>. 
+</p>
+</li><li><p>
+The morphism $f : X \to Y$ is limit preserving as a transformation of functors, see Definition <a href="/tag/049J" data-tag="049J">70.3.1</a>. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume (1). Let $T$ be a scheme and let $y \in Y(T)$. We have to show that $T \times _ Y X$ is limit preserving over $T$ in the sense of Definition <a href="/tag/049J" data-tag="049J">70.3.1</a>. Hence we are reduced to proving that if $X$ is an algebraic space which is locally of finite presentation over $S$ as an algebraic space, then it is limit preserving as a functor $X : (\mathit{Sch}/S)_{fppf}^{opp} \to \textit{Sets}$. To see this choose a presentation $X = U/R$, see Spaces, Definition <a href="/tag/0263" data-tag="0263">65.9.3</a>. It follows from Morphisms of Spaces, Definition <a href="/tag/03XP" data-tag="03XP">67.28.1</a> that both $U$ and $R$ are schemes which are locally of finite presentation over $S$. Hence by Limits, Proposition <a href="/tag/01ZC" data-tag="01ZC">32.6.1</a> we have 
+    <p>
+      <div class="equation">
+  \[  U(T) = \mathop{\mathrm{colim}}\nolimits U(T_ i), \quad R(T) = \mathop{\mathrm{colim}}\nolimits R(T_ i)  \]
+</div>
+    <p>
+       whenever $T = \mathop{\mathrm{lim}}\nolimits _ i T_ i$ in $(\mathit{Sch}/S)_{fppf}$. It follows that the presheaf 
+    <p>
+      <div class="equation">
+  \[  (\mathit{Sch}/S)_{fppf}^{opp} \longrightarrow \textit{Sets}, \quad W \longmapsto U(W)/R(W)  \]
+</div>
+    <p>
+       is limit preserving. Hence by Lemma <a href="/tag/049O" data-tag="049O">70.3.7</a> its sheafification $X = U/R$ is limit preserving too. 
+    <p>
+      Assume (2). Choose a scheme $V$ and a surjective étale morphism $V \to Y$. Next, choose a scheme $U$ and a surjective étale morphism $U \to V \times _ Y X$. By Lemma <a href="/tag/049M" data-tag="049M">70.3.5</a> the transformation of functors $V \times _ Y X \to V$ is limit preserving. By Morphisms of Spaces, Lemma <a href="/tag/0468" data-tag="0468">67.39.8</a> the morphism of algebraic spaces $U \to V \times _ Y X$ is locally of finite presentation, hence limit preserving as a transformation of functors by the first part of the proof. By Lemma <a href="/tag/049L" data-tag="049L">70.3.3</a> the composition $U \to V \times _ Y X \to V$ is limit preserving as a transformation of functors. Hence the morphism of schemes $U \to V$ is locally of finite presentation by Limits, Proposition <a href="/tag/01ZC" data-tag="01ZC">32.6.1</a> (modulo a set theoretic remark, see last paragraph of the proof). This means, by definition, that (1) holds. 
+    <p>
+      Set theoretic remark. Let $U \to V$ be a morphism of $(\mathit{Sch}/S)_{fppf}$. In the statement of Limits, Proposition <a href="/tag/01ZC" data-tag="01ZC">32.6.1</a> we characterize $U \to V$ as being locally of finite presentation if for <em>all</em> directed inverse systems $(T_ i, f_{ii'})$ of affine schemes over $V$ we have $U(T) = \mathop{\mathrm{colim}}\nolimits V(T_ i)$, but in the current setting we may only consider affine schemes $T_ i$ over $V$ which are (isomorphic to) an object of $(\mathit{Sch}/S)_{fppf}$. So we have to make sure that there are enough affines in $(\mathit{Sch}/S)_{fppf}$ to make the proof work. Inspecting the proof of (2) $\Rightarrow $ (1) of Limits, Proposition <a href="/tag/01ZC" data-tag="01ZC">32.6.1</a> we see that the question reduces to the case that $U$ and $V$ are affine. Say $U = \mathop{\mathrm{Spec}}(A)$ and $V = \mathop{\mathrm{Spec}}(B)$. By construction of $(\mathit{Sch}/S)_{fppf}$ the spectrum of any ring of cardinality $\leq |B|$ is isomorphic to an object of $(\mathit{Sch}/S)_{fppf}$. Hence it suffices to observe that in the "only if" part of the proof of Algebra, Lemma <a href="/tag/00QO" data-tag="00QO">10.127.3</a> only $A$-algebras of cardinality $\leq |B|$ are used. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="05N0">
+  <p><a class="environment-identifier" href="/tag/05N0">Remark <span data-tag="05N0">70.3.11</span>.</a> Here is an important special case of Proposition <a href="/tag/04AK" data-tag="04AK">70.3.10</a>. Let $S$ be a scheme. Let $X$ be an algebraic space over $S$. Then $X$ is locally of finite presentation over $S$ if and only if $X$, as a functor $(\mathit{Sch}/S)^{opp} \to \textit{Sets}$, is limit preserving. Compare with Limits, Remark <a href="/tag/05LX" data-tag="05LX">32.6.2</a>. In fact, we will see in Lemma <a href="/tag/0CM6" data-tag="0CM6">70.3.12</a> below that it suffices if the map </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits X(T_ i) \longrightarrow X(T)  \]
+</div>
+  <p> is surjective whenever $T = \mathop{\mathrm{lim}}\nolimits T_ i$ is a directed limit of affine schemes over $S$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0CM6">
+  <p><a class="environment-identifier" href="/tag/0CM6">Lemma <span data-tag="0CM6">70.3.12</span>.</a> Let $S$ be a scheme. Let $f : X \to Y$ be a morphism of algebraic spaces over $S$. If for every directed limit $T = \mathop{\mathrm{lim}}\nolimits _{i \in I} T_ i$ of affine schemes over $S$ the map </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits X(T_ i) \longrightarrow X(T) \times _{Y(T)} \mathop{\mathrm{colim}}\nolimits Y(T_ i)  \]
+</div>
+  <p> is surjective, then $f$ is locally of finite presentation. In other words, in Proposition <a href="/tag/04AK" data-tag="04AK">70.3.10</a> part (2) it suffices to check surjectivity in the criterion of Lemma <a href="/tag/06BC" data-tag="06BC">70.3.2</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a scheme $V$ and a surjective étale morphism $g : V \to Y$. Next, choose a scheme $U$ and a surjective étale morphism $h : U \to V \times _ Y X$. It suffices to show for $T = \mathop{\mathrm{lim}}\nolimits T_ i$ as in the lemma that the map 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits U(T_ i) \longrightarrow U(T) \times _{V(T)} \mathop{\mathrm{colim}}\nolimits V(T_ i)  \]
+</div>
+    <p>
+       is surjective, because then $U \to V$ will be locally of finite presentation by Limits, Lemma <a href="/tag/0CM0" data-tag="0CM0">32.6.3</a> (modulo a set theoretic remark exactly as in the proof of Proposition <a href="/tag/04AK" data-tag="04AK">70.3.10</a>). Thus we take $a : T \to U$ and $b_ i : T_ i \to V$ which determine the same morphism $T \to V$. Picture 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ T \ar[d]_ a \ar[rr]_{p_ i} &  &  T_ i \ar[d]^{b_ i} \ar@{..>}[ld] \\  U \ar[r]^-h &  X \times _ Y V \ar[d] \ar[r] &  V \ar[d]^ g \\  &  X \ar[r]^ f &  Y }  \]
+</div>
+    <p>
+       By the assumption of the lemma after increasing $i$ we can find a morphism $c_ i : T_ i \to X$ such that $h \circ a = (b_ i, c_ i) \circ p_ i : T_ i \to V \times _ Y X$ and such that $f \circ c_ i = g \circ b_ i$. Since $h$ is an étale morphism of algebraic spaces (and hence locally of finite presentation), we have the surjectivity of 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits U(T_ i) \longrightarrow U(T) \times _{(X \times _ Y V)(T)} \mathop{\mathrm{colim}}\nolimits (X \times _ Y V)(T_ i)  \]
+</div>
+    <p>
+       by Proposition <a href="/tag/04AK" data-tag="04AK">70.3.10</a>. Hence after increasing $i$ again we can find the desired morphism $a_ i : T_ i \to U$ with $a = a_ i \circ p_ i$ and $b_ i = (U \to V) \circ a_ i$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

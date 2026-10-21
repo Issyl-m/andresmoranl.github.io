@@ -1,0 +1,263 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="formal-spaces-section-formal-schemes-EGA" class="tex-section"><span data-tag="0AHY">87.2</span> Formal schemes à la EGA</h2>
+
+<p>
+In this section we review the construction of formal schemes in <span class="cite">[<a href="/bibliography/EGA">EGA</a>]</span>. This notion, although very useful in algebraic geometry, may not always be the correct one to consider. Perhaps it is better to say that in the setup of the theory a number of choices are made, where for different purposes others might work better. And indeed in the literature one can find many different closely related theories adapted to the problem the authors may want to consider. Still, one of the major advantages of the theory as sketched here is that one gets to work with definite geometric objects. 
+</p>
+<p>
+Before we start we should point out an issue with the sheaf condition for sheaves of topological rings or more generally sheaves of topological spaces. Namely, the big categories 
+</p>
+<ol>
+  <li><p>
+category of topological spaces, 
+</p>
+</li><li><p>
+category of topological groups, 
+</p>
+</li><li><p>
+category of topological rings, 
+</p>
+</li><li><p>
+category of topological modules over a given topological ring, 
+</p>
+</li>
+</ol>
+<p>
+ endowed with their natural forgetful functors to $\textit{Sets}$ are not examples of types of algebraic structures as defined in Sheaves, Section <a href="/tag/007L" data-tag="007L">6.15</a>. Thus we cannot blithely apply to them the machinery developed in that chapter. On the other hand, each of the categories listed above has limits and equalizers and the forgetful functor to sets, groups, rings, modules commutes with them (see Topology, Lemmas <a href="/tag/08ZT" data-tag="08ZT">5.14.1</a>, <a href="/tag/0B20" data-tag="0B20">5.30.3</a>, <a href="/tag/0B23" data-tag="0B23">5.30.8</a>, and <a href="/tag/0B26" data-tag="0B26">5.30.11</a>). Thus we can define the notion of a sheaf as in Sheaves, Definition <a href="/tag/0072" data-tag="0072">6.9.1</a> and the underlying presheaf of sets, groups, rings, or modules is a sheaf. The key difference is that for an open covering $U = \bigcup _{i \in I} U_ i$ the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathcal{F}(U) \ar[r] &  \prod \nolimits _{i\in I} \mathcal{F}(U_ i) \ar@<1ex>[r] \ar@<-1ex>[r] &  \prod \nolimits _{(i_0, i_1) \in I \times I} \mathcal{F}(U_{i_0} \cap U_{i_1}) }  \]
+</div>
+<p>
+ has to be an equalizer diagram in the category of topological spaces, topological groups, topological rings, topological modules, i.e., that the first map identifies $\mathcal{F}(U)$ with a subspace of $\prod _{i \in I} \mathcal{F}(U_ i)$ which is endowed with the product topology. 
+</p>
+<p>
+The stalk $\mathcal{F}_ x$ of a sheaf $\mathcal{F}$ of topological spaces, topological groups, topological rings, or topological modules at a point $x \in X$ is defined as the colimit over open neighbourhoods 
+</p>
+<div class="equation">
+  \[  \mathcal{F}_ x = \mathop{\mathrm{colim}}\nolimits _{x\in U} \mathcal{F}(U)  \]
+</div>
+<p>
+ in the corresponding category. This is the same as taking the colimit on the level of sets, groups, rings, or modules (see Topology, Lemmas <a href="/tag/0B1X" data-tag="0B1X">5.29.1</a>, <a href="/tag/0B21" data-tag="0B21">5.30.6</a>, <a href="/tag/0B24" data-tag="0B24">5.30.9</a>, and <a href="/tag/0B27" data-tag="0B27">5.30.12</a>) but comes equipped with a topology. Warning: the topology one gets depends on which category one is working with, see Examples, Section <a href="/tag/0B2Y" data-tag="0B2Y">110.80</a>. One can sheafify presheaves of topological spaces, topological groups, topological rings, or topological modules and taking stalks commutes with this operation, see Remark <a href="/tag/0AI4" data-tag="0AI4">87.2.4</a>. 
+</p>
+<p>
+Let $f : X \to Y$ be a continuous map of topological spaces. There is a functor $f_*$ from the category of sheaves of topological spaces, topological groups, topological rings, topological modules, to the corresponding category of sheaves on $Y$ which is defined by setting $f_*\mathcal{F}(V) = \mathcal{F}(f^{-1}V)$ as usual. (We delay discussing the pullback in this setting till later.) We define the notion of an $f$-map $\xi : \mathcal{G} \to \mathcal{F}$ between a sheaf of topological spaces $\mathcal{G}$ on $Y$ and a sheaf of topological spaces $\mathcal{F}$ on $X$ in exactly the same manner as in Sheaves, Definition <a href="/tag/008J" data-tag="008J">6.21.7</a> with the additional constraint that $\xi _ V : \mathcal{G}(V) \to \mathcal{F}(f^{-1}V)$ be continuous for every open $V \subset Y$. We have 
+</p>
+<div class="equation">
+  \[  \{ f\text{-maps from }\mathcal{G}\text{ to }\mathcal{F}\}  = \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (Y, \textit{Top})}(\mathcal{G}, f_*\mathcal{F})  \]
+</div>
+<p>
+ as in Sheaves, Lemma <a href="/tag/008K" data-tag="008K">6.21.8</a>. Similarly for sheaves of topological groups, topological rings, topological modules. Finally, let $\xi : \mathcal{G} \to \mathcal{F}$ be an $f$-map as above. Then given $x \in X$ with image $y = f(x)$ there is a continuous map 
+</p>
+<div class="equation">
+  \[  \xi _ x : \mathcal{G}_ y \longrightarrow \mathcal{F}_ x  \]
+</div>
+<p>
+ of stalks defined in exactly the same manner as in the discussion following Sheaves, Definition <a href="/tag/008L" data-tag="008L">6.21.9</a>. 
+</p>
+<p>
+Using the discussion above, we can define a category $LTRS$ of “locally topologically ringed spaces”. An object is a pair $(X, \mathcal{O}_ X)$ consisting of a topological space $X$ and a sheaf of topological rings $\mathcal{O}_ X$ whose stalks $\mathcal{O}_{X, x}$ are local rings (if one forgets about the topology). A morphism $(X, \mathcal{O}_ X) \to (Y, \mathcal{O}_ Y)$ of $LTRS$ is a pair $(f, f^\sharp )$ where $f : X \to Y$ is a continuous map of topological spaces and $f^\sharp : \mathcal{O}_ Y \to \mathcal{O}_ X$ is an $f$-map such that for every $x \in X$ the induced map 
+</p>
+<div class="equation">
+  \[  f^\sharp _ x : \mathcal{O}_{Y, f(x)} \longrightarrow \mathcal{O}_{X, x}  \]
+</div>
+<p>
+ is a local homomorphism of local rings (forgetting about the topologies). The composition works in exactly the same manner as composition of morphisms of locally ringed spaces. 
+</p>
+<p>
+Assume now that the topological space $X$ has a basis consisting of quasi-compact opens. Given a sheaf $\mathcal{F}$ of sets, groups, rings, modules over a ring, one can endow $\mathcal{F}$ with the structure of a sheaf of topological spaces, topological groups, topological rings, topological modules. Namely, if $U \subset X$ is quasi-compact open, we endow $\mathcal{F}(U)$ with the discrete topology. If $U \subset X$ is arbitrary, then we choose an open covering $U = \bigcup _{i \in I} U_ i$ by quasi-compact opens and we endow $\mathcal{F}(U)$ with the induced topology from $\prod _{i \in I} \mathcal{F}(U_ i)$ (as we should do according to our discussion above). The reader may verify (omitted) that we obtain a sheaf of topological spaces, topological groups, topological rings, topological modules in this fashion. Let us say that a sheaf of topological spaces, topological groups, topological rings, topological modules is <em>pseudo-discrete</em> if the topology on $\mathcal{F}(U)$ is discrete for every quasi-compact open $U \subset X$. Then the construction given above is an adjoint to the forgetful functor and induces an equivalence between the category of sheaves of sets and the category of pseudo-discrete sheaves of topological spaces (similarly for groups, rings, modules). 
+</p>
+<p>
+Grothendieck and Dieudonné first define formal affine schemes. These correspond to admissible topological rings $A$, see More on Algebra, Definition <a href="/tag/07E8" data-tag="07E8">15.37.1</a>. Namely, given $A$ one considers a fundamental system $I_\lambda $ of ideals of definition for the ring $A$. (In any admissible topological ring the family of all ideals of definition forms a fundamental system.) For each $\lambda $ we can consider the scheme $\mathop{\mathrm{Spec}}(A/I_\lambda )$. For $I_\lambda \subset I_\mu $ the induced morphism 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Spec}}(A/I_\mu ) \to \mathop{\mathrm{Spec}}(A/I_\lambda )  \]
+</div>
+<p>
+ is a thickening because $I_\mu ^ n \subset I_\lambda $ for some $n$. Another way to see this, is to notice that the image of each of the maps 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Spec}}(A/I_\lambda ) \to \mathop{\mathrm{Spec}}(A)  \]
+</div>
+<p>
+ is a homeomorphism onto the set of open prime ideals of $A$. This motivates the definition 
+</p>
+<div class="equation">
+  \[  \text{Spf}(A) = \{ \text{open prime ideals }\mathfrak p \subset A\}   \]
+</div>
+<p>
+ endowed with the topology coming from $\mathop{\mathrm{Spec}}(A)$. For each $\lambda $ we can consider the structure sheaf $\mathcal{O}_{\mathop{\mathrm{Spec}}(A/I_\lambda )}$ as a sheaf on $\text{Spf}(A)$. Let $\mathcal{O}_\lambda $ be the corresponding pseudo-discrete sheaf of topological rings, see above. Then we set 
+</p>
+<div class="equation">
+  \[  \mathcal{O}_{\text{Spf}(A)} = \mathop{\mathrm{lim}}\nolimits \mathcal{O}_\lambda  \]
+</div>
+<p>
+ where the limit is taken in the category of sheaves of topological rings. The pair $(\text{Spf}(A), \mathcal{O}_{\text{Spf}(A)})$ is called the <em>formal spectrum</em> of $A$. 
+</p>
+<p>
+At this point one should check several things. The first is that the stalks $\mathcal{O}_{\text{Spf}(A), x}$ are local rings (forgetting about the topology). The second is that given $f \in A$, for the corresponding open $D(f) \cap \text{Spf}(A)$ we have 
+</p>
+<div class="equation">
+  \[  \Gamma (D(f) \cap \text{Spf}(A), \mathcal{O}_{\text{Spf}(A)}) = A_{\{ f\} } = \mathop{\mathrm{lim}}\nolimits (A/I_\lambda )_ f  \]
+</div>
+<p>
+ as topological rings where $I_\lambda $ is a fundamental system of ideals of definition as above. Moreover, the ring $A_{\{ f\} }$ is admissible too and $(\text{Spf}(A_ f), \mathcal{O}_{\text{Spf}(A_{\{ f\} })})$ is isomorphic to $(D(f) \cap \text{Spf}(A), \mathcal{O}_{\text{Spf}(A)}|_{D(f) \cap \text{Spf}(A)})$. Finally, given a pair of admissible topological rings $A, B$ we have 
+</p>
+<div class="equation" id="0AHZ">
+    <span class="equation-label"><a href="/tag/0AHZ" data-tag="0AHZ">87.2.0.1</a></span>
+  <div>\begin{equation}  \label{formal-spaces-equation-morphisms-affine-formal-schemes} \mathop{\mathrm{Mor}}\nolimits _{LTRS}((\text{Spf}(B), \mathcal{O}_{\text{Spf}(B)}), (\text{Spf}(A), \mathcal{O}_{\text{Spf}(A)})) = \mathop{\mathrm{Hom}}\nolimits _{cont}(A, B) \end{equation}</div>
+</div>
+<p>
+ where $LTRS$ is the category of “locally topologically ringed spaces” as defined above. 
+</p>
+<p>
+Having said this, in <span class="cite">[<a href="/bibliography/EGA">EGA</a>]</span> a <em>formal scheme</em> is defined as a pair $(\mathfrak X, \mathcal{O}_\mathfrak X)$ where $\mathfrak X$ is a topological space and $\mathcal{O}_\mathfrak X$ is a sheaf of topological rings such that every point has an open neighbourhood isomorphic (in $LTRS$) to an affine formal scheme. A <em>morphism of formal schemes</em> $f : (\mathfrak X, \mathcal{O}_\mathfrak X) \to (\mathfrak Y, \mathcal{O}_\mathfrak Y)$ is a morphism in the category $LTRS$. 
+</p>
+<p>
+Let $A$ be a ring endowed with the discrete topology. Then $A$ is admissible and the formal scheme $\text{Spf}(A)$ is equal to $\mathop{\mathrm{Spec}}(A)$. The structure sheaf $\mathcal{O}_{\text{Spf}(A)}$ is the pseudo-discrete sheaf of topological rings associated to $\mathcal{O}_{\mathop{\mathrm{Spec}}(A)}$, in other words, its underlying sheaf of rings is equal to $\mathcal{O}_{\mathop{\mathrm{Spec}}(A)}$ and the ring $\mathcal{O}_{\text{Spf}(A)}(U) = \mathcal{O}_{\mathop{\mathrm{Spec}}(A)}(U)$ over a quasi-compact open $U$ has the discrete topology, but not in general. Thus we can associate to every affine scheme a formal affine scheme. In exactly the same manner we can start with a general scheme $(X, \mathcal{O}_ X)$ and associate to it $(X, \mathcal{O}'_ X)$ where $\mathcal{O}'_ X$ is the pseudo-discrete sheaf of topological rings whose underlying sheaf of rings is $\mathcal{O}_ X$. This construction is compatible with morphisms and defines a functor 
+</p>
+<div class="equation" id="0AI0">
+    <span class="equation-label"><a href="/tag/0AI0" data-tag="0AI0">87.2.0.2</a></span>
+  <div>\begin{equation}  \label{formal-spaces-equation-compare-schemes-formal-schemes} \textit{Schemes} \longrightarrow \textit{Formal Schemes} \end{equation}</div>
+</div>
+<p>
+ It follows in a straightforward manner from (<a href="/tag/0AHZ" data-tag="0AHZ">87.2.0.1</a>) that this functor is fully faithful. 
+</p>
+<p>
+Let $\mathfrak X$ be a formal scheme. Let us define the <em>size</em> of the formal scheme by the formula $\text{size}(\mathfrak X) = \max (\aleph _0, \kappa _1, \kappa _2)$ where $\kappa _1$ is the cardinality of the formal affine opens of $\mathfrak X$ and $\kappa _2$ is the supremum of the cardinalities of $\mathcal{O}_\mathfrak X(\mathfrak U)$ where $\mathfrak U \subset \mathfrak X$ is such a formal affine open. 
+</p>
+<p>
+<article class="env-lemma" id="0AI1">
+  <p><a class="environment-identifier" href="/tag/0AI1">Lemma <span data-tag="0AI1">87.2.1</span>.</a> Choose a category of schemes $\mathit{Sch}_\alpha $ as in Sets, Lemma <a href="/tag/000J" data-tag="000J">3.9.2</a>. Given a formal scheme $\mathfrak X$ let </p>
+  <div class="equation">
+  \[  h_\mathfrak X : (\mathit{Sch}_\alpha )^{opp} \longrightarrow \textit{Sets},\quad h_\mathfrak X(S) = \mathop{\mathrm{Mor}}\nolimits _{\textit{Formal Schemes}}(S, \mathfrak X)  \]
+</div>
+  <p> be its functor of points. Then we have </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\textit{Formal Schemes}}(\mathfrak X, \mathfrak Y) = \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathit{Sch}_\alpha )}(h_\mathfrak X, h_\mathfrak Y)  \]
+</div>
+  <p> provided the size of $\mathfrak X$ is not too large. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      First we observe that $h_\mathfrak X$ satisfies the sheaf property for the Zariski topology for any formal scheme $\mathfrak X$ (see Schemes, Definition <a href="/tag/01JI" data-tag="01JI">26.15.3</a>). This follows from the local nature of morphisms in the category of formal schemes. Also, for an open immersion $\mathfrak V \to \mathfrak W$ of formal schemes, the corresponding transformation of functors $h_\mathfrak V \to h_\mathfrak W$ is injective and representable by open immersions (see Schemes, Definition <a href="/tag/01JI" data-tag="01JI">26.15.3</a>). Choose an open covering $\mathfrak X = \bigcup \mathfrak U_ i$ of a formal scheme by affine formal schemes $\mathfrak U_ i$. Then the collection of functors $h_{\mathfrak U_ i}$ covers $h_\mathfrak X$ (see Schemes, Definition <a href="/tag/01JI" data-tag="01JI">26.15.3</a>). Finally, note that 
+    <p>
+      <div class="equation">
+  \[  h_{\mathfrak U_ i} \times _{h_\mathfrak X} h_{\mathfrak U_ j} = h_{\mathfrak U_ i \cap \mathfrak U_ j}  \]
+</div>
+    <p>
+       Hence in order to give a map $h_\mathfrak X \to h_\mathfrak Y$ is equivalent to giving a family of maps $h_{\mathfrak U_ i} \to h_\mathfrak Y$ which agree on overlaps. Thus we can reduce the bijectivity (resp. injectivity) of the map of the lemma to bijectivity (resp. injectivity) for the pairs $(\mathfrak U_ i, \mathfrak Y)$ and injectivity (resp. nothing) for $(\mathfrak U_ i \cap \mathfrak U_ j, \mathfrak Y)$. In this way we reduce to the case where $\mathfrak X$ is an affine formal scheme. Say $\mathfrak X = \text{Spf}(A)$ for some admissible topological ring $A$. Also, choose a fundamental system of ideals of definition $I_\lambda \subset A$. 
+    <p>
+      We can also localize on $\mathfrak Y$. Namely, suppose that $\mathfrak V \subset \mathfrak Y$ is an open formal subscheme and $\varphi : h_\mathfrak X \to h_\mathfrak Y$. Then 
+    <p>
+      <div class="equation">
+  \[  h_\mathfrak V \times _{h_\mathfrak Y, \varphi } h_\mathfrak X \to h_\mathfrak X  \]
+</div>
+    <p>
+       is representable by open immersions. Pulling back to $\mathop{\mathrm{Spec}}(A/I_\lambda )$ for all $\lambda $ we find an open subscheme $U_\lambda \subset \mathop{\mathrm{Spec}}(A/I_\lambda )$. However, for $I_\lambda \subset I_\mu $ the morphism $\mathop{\mathrm{Spec}}(A/I_\lambda ) \to \mathop{\mathrm{Spec}}(A/I_\mu )$ pulls back $U_\mu $ to $U_\lambda $. Thus these glue to give an open formal subscheme $\mathfrak U \subset \mathfrak X$. A straightforward argument (omitted) shows that 
+    <p>
+      <div class="equation">
+  \[  h_\mathfrak U = h_\mathfrak V \times _{h_\mathfrak Y} h_\mathfrak X  \]
+</div>
+    <p>
+       In this way we see that given an open covering $\mathfrak Y = \bigcup \mathfrak V_ j$ and a transformation of functors $\varphi : h_\mathfrak X \to h_\mathfrak Y$ we obtain a corresponding open covering of $\mathfrak X$. Since $\mathfrak X$ is affine, we can refine this covering by a finite open covering $\mathfrak X = \mathfrak U_1 \cup \ldots \cup \mathfrak U_ n$ by affine formal subschemes. In other words, for each $i$ there is a $j$ and a map $\varphi _ i : h_{\mathfrak U_ i} \to h_{\mathfrak V_ j}$ such that 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ h_{\mathfrak U_ i} \ar[r]_{\varphi _ i} \ar[d] &  h_{\mathfrak V_ j} \ar[d] \\  h_{\mathfrak X} \ar[r]^\varphi &  h_\mathfrak Y }  \]
+</div>
+    <p>
+       commutes. With a few additional arguments (which we omit) this implies that it suffices to prove the bijectivity of the lemma in case both $\mathfrak X$ and $\mathfrak Y$ are affine formal schemes. 
+    <p>
+      Assume $\mathfrak X$ and $\mathfrak Y$ are affine formal schemes. Say $\mathfrak X = \text{Spf}(A)$ and $\mathfrak Y = \text{Spf}(B)$. Let $\varphi : h_\mathfrak X \to h_\mathfrak Y$ be a transformation of functors. Let $I_\lambda \subset A$ be a fundamental system of ideals of definition. The canonical inclusion morphism $i_\lambda : \mathop{\mathrm{Spec}}(A/I_\lambda ) \to \mathfrak X$ maps to a morphism $\varphi (i_\lambda ) : \mathop{\mathrm{Spec}}(A/I_\lambda ) \to \mathfrak Y$. By (<a href="/tag/0AHZ" data-tag="0AHZ">87.2.0.1</a>) this corresponds to a continuous map $\chi _\lambda : B \to A/I_\lambda $. Since $\varphi $ is a transformation of functors it follows that for $I_\lambda \subset I_\mu $ the composition $B \to A/I_\lambda \to A/I_\mu $ is equal to $\chi _\mu $. In other words we obtain a ring map 
+    <p>
+      <div class="equation">
+  \[  \chi = \mathop{\mathrm{lim}}\nolimits \chi _\lambda : B \longrightarrow \mathop{\mathrm{lim}}\nolimits A/I_\lambda = A  \]
+</div>
+    <p>
+       This is a continuous homomorphism because the inverse image of $I_\lambda $ is open for all $\lambda $ (as $A/I_\lambda $ has the discrete topology and $\chi _\lambda $ is continuous). Thus we obtain a morphism $\text{Spf}(\chi ) : \mathfrak X \to \mathfrak Y$ by (<a href="/tag/0AHZ" data-tag="0AHZ">87.2.0.1</a>). We omit the verification that this construction is the inverse to the map of the lemma in this case. 
+    <p>
+      Set theoretic remarks. To make this work on the given category of schemes $\mathit{Sch}_\alpha $ we just have to make sure all the schemes used in the proof above are isomorphic to objects of $\mathit{Sch}_\alpha $. In fact, a careful analysis shows that it suffices if the schemes $\mathop{\mathrm{Spec}}(A/I_\lambda )$ occurring above are isomorphic to objects of $\mathit{Sch}_\alpha $. For this it certainly suffices to assume the size of $\mathfrak X$ is at most the size of a scheme contained in $\mathit{Sch}_\alpha $. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AI2">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0AI2">Lemma <span data-tag="0AI2">87.2.2</span>.</a> Let $\mathfrak X$ be a formal scheme. The functor of points $h_\mathfrak X$ (see Lemma <a href="/tag/0AI1" data-tag="0AI1">87.2.1</a>) satisfies the sheaf condition for fpqc coverings. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Topologies, Lemma <a href="/tag/022H" data-tag="022H">34.9.14</a> reduces us to the case of a Zariski covering and a covering $\{ \mathop{\mathrm{Spec}}(S) \to \mathop{\mathrm{Spec}}(R)\} $ with $R \to S$ faithfully flat. We observed in the proof of Lemma <a href="/tag/0AI1" data-tag="0AI1">87.2.1</a> that $h_\mathfrak X$ satisfies the sheaf condition for Zariski coverings. 
+    <p>
+      Suppose that $R \to S$ is a faithfully flat ring map. Denote $\pi : \mathop{\mathrm{Spec}}(S) \to \mathop{\mathrm{Spec}}(R)$ the corresponding morphism of schemes. It is surjective and flat. Let $f : \mathop{\mathrm{Spec}}(S) \to \mathfrak X$ be a morphism such that $f \circ \text{pr}_1 = f \circ \text{pr}_2$ as maps $\mathop{\mathrm{Spec}}(S \otimes _ R S) \to \mathfrak X$. By Descent, Lemma <a href="/tag/02KI" data-tag="02KI">35.13.1</a> we see that as a map on the underlying sets $f$ is of the form $f = g \circ \pi $ for some (set theoretic) map $g : \mathop{\mathrm{Spec}}(R) \to \mathfrak X$. By Morphisms, Lemma <a href="/tag/02JY" data-tag="02JY">29.26.12</a> and the fact that $f$ is continuous we see that $g$ is continuous. 
+    <p>
+      Pick $y \in \mathop{\mathrm{Spec}}(R)$. Choose $\mathfrak U \subset \mathfrak X$ an affine formal open subscheme containing $g(y)$. Say $\mathfrak U = \text{Spf}(A)$ for some admissible topological ring $A$. By the above we may choose an $r \in R$ such that $y \in D(r) \subset g^{-1}(\mathfrak U)$. The restriction of $f$ to $\pi ^{-1}(D(r))$ into $\mathfrak U$ corresponds to a continuous ring map $A \to S_ r$ by (<a href="/tag/0AHZ" data-tag="0AHZ">87.2.0.1</a>). The two induced ring maps $A \to S_ r \otimes _{R_ r} S_ r = (S \otimes _ R S)_ r$ are equal by assumption on $f$. Note that $R_ r \to S_ r$ is faithfully flat. By Descent, Lemma <a href="/tag/023M" data-tag="023M">35.3.6</a> the equalizer of the two arrows $S_ r \to S_ r \otimes _{R_ r} S_ r$ is $R_ r$. We conclude that $A \to S_ r$ factors uniquely through a map $A \to R_ r$ which is also continuous as it has the same (open) kernel as the map $A \to S_ r$. This map in turn gives a morphism $D(r) \to \mathfrak U$ by (<a href="/tag/0AHZ" data-tag="0AHZ">87.2.0.1</a>). 
+    <p>
+      What have we proved so far? We have shown that for any $y \in \mathop{\mathrm{Spec}}(R)$ there exists a standard affine open $y \in D(r) \subset \mathop{\mathrm{Spec}}(R)$ such that the morphism $f|_{\pi ^{-1}(D(r))} : \pi ^{-1}(D(r)) \to \mathfrak X$ factors uniquely though some morphism $D(r) \to \mathfrak X$. We omit the verification that these morphisms glue to the desired morphism $\mathop{\mathrm{Spec}}(R) \to \mathfrak X$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0AI3">
+  <p><a class="environment-identifier" href="/tag/0AI3">Remark <span data-tag="0AI3">87.2.3</span> <span class="named">(McQuillan's variant)</span>.</a>  There is a variant of the construction of formal schemes due to McQuillan, see <span class="cite">[<a href="/bibliography/McQuillan">McQuillan</a>]</span>. He suggests a slight weakening of the condition of admissibility. Namely, recall that an admissible topological ring is a complete (and separated by our conventions) topological ring $A$ which is linearly topologized such that there exists an ideal of definition: an open ideal $I$ such that any neighbourhood of $0$ contains $I^ n$ for some $n \geq 1$. McQuillan works with what we will call <em>weakly admissible</em> topological rings. A weakly admissible topological ring $A$ is a complete (and separated by our conventions) topological ring which is linearly topologized such that there exists an <em>weak ideal of definition</em>: an open ideal $I$ such that for all $f \in I$ we have $f^ n \to 0$ for $n \to \infty $. Similarly to the admissible case, if $I$ is a weak ideal of definition and $J \subset A$ is an open ideal, then $I \cap J$ is a weak ideal of definition. Thus the weak ideals of definition form a fundamental system of open neighbourhoods of $0$ and one can proceed along much the same route as above to define a larger category of formal schemes based on this notion. The analogues of Lemmas <a href="/tag/0AI1" data-tag="0AI1">87.2.1</a> and <a href="/tag/0AI2" data-tag="0AI2">87.2.2</a> still hold in this setting (with the same proof). </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="0AI4">
+        
+      
+  <p><a class="environment-identifier" href="/tag/0AI4">Remark <span data-tag="0AI4">87.2.4</span> <span class="named">(Sheafification of presheaves of topological spaces)</span>.</a> In this remark we briefly discuss sheafification of presheaves of topological spaces. The exact same arguments work for presheaves of topological abelian groups, topological rings, and topological modules (over a given topological ring). In order to do this in the correct generality let us work over a site $\mathcal{C}$. The reader who is interested in the case of (pre)sheaves over a topological space $X$ should think of objects of $\mathcal{C}$ as the opens of $X$, of morphisms of $\mathcal{C}$ as inclusions of opens, and of coverings in $\mathcal{C}$ as coverings in $X$, see Sites, Example <a href="/tag/00VJ" data-tag="00VJ">7.6.4</a>. Denote $\mathop{\mathit{Sh}}\nolimits (\mathcal{C}, \textit{Top})$ the category of sheaves of topological spaces on $\mathcal{C}$ and denote $\textit{PSh}(\mathcal{C}, \textit{Top})$ the category of presheaves of topological spaces on $\mathcal{C}$. Let $\mathcal{F}$ be a presheaf of topological spaces on $\mathcal{C}$. The sheafification $\mathcal{F}^\# $ should satisfy the formula </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C}, \textit{Top})}(\mathcal{F}, \mathcal{G}) = \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C}, \textit{Top})}(\mathcal{F}^\# , \mathcal{G})  \]
+</div>
+  <p> functorially in $\mathcal{G}$ from $\mathop{\mathit{Sh}}\nolimits (\mathcal{C}, \textit{Top})$. In other words, we are trying to construct the left adjoint to the inclusion functor $\mathop{\mathit{Sh}}\nolimits (\mathcal{C}, \textit{Top}) \to \textit{PSh}(\mathcal{C}, \textit{Top})$. We first claim that $\mathop{\mathit{Sh}}\nolimits (\mathcal{C}, \textit{Top})$ has limits and that the inclusion functor commutes with them. Namely, given a category $\mathcal{I}$ and a functor $i \mapsto \mathcal{G}_ i$ into $\mathop{\mathit{Sh}}\nolimits (\mathcal{C}, \textit{Top})$ we simply define </p>
+  <div class="equation">
+  \[  (\mathop{\mathrm{lim}}\nolimits \mathcal{G}_ i)(U) = \mathop{\mathrm{lim}}\nolimits \mathcal{G}_ i(U)  \]
+</div>
+  <p> where we take the limit in the category of topological spaces (Topology, Lemma <a href="/tag/08ZT" data-tag="08ZT">5.14.1</a>). This defines a sheaf because limits commute with limits (Categories, Lemma <a href="/tag/002M" data-tag="002M">4.14.10</a>) and in particular products and equalizers (which are the operations used in the sheaf axiom). Finally, a morphism of presheaves from $\mathcal{F} \to \mathop{\mathrm{lim}}\nolimits \mathcal{G}_ i$ is clearly the same thing as a compatible system of morphisms $\mathcal{F} \to \mathcal{G}_ i$. In other words, the object $\mathop{\mathrm{lim}}\nolimits \mathcal{G}_ i$ is the limit in the category of presheaves of topological spaces and a fortiori in the category of sheaves of topological spaces. Our second claim is that any morphism of presheaves $\mathcal{F} \to \mathcal{G}$ with $\mathcal{G}$ an object of $\mathop{\mathit{Sh}}\nolimits (\mathcal{C}, \textit{Top})$ factors through a subsheaf $\mathcal{G}' \subset \mathcal{G}$ whose size is bounded. Here we define the <em>size</em> $|\mathcal{H}|$ of a sheaf of topological spaces $\mathcal{H}$ to be the cardinal $\sup _{U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})} |\mathcal{H}(U)|$. To prove our claim we let </p>
+  <div class="equation">
+  \[  \mathcal{G}'(U) = \left\{  \quad s \in \mathcal{G}(U) \quad \middle | \quad \begin{matrix}  \text{there exists a covering }\{ U_ i \to U\} _{i \in I} 
+
+\\  \text{such that } s|_{U_ i} \in \mathop{\mathrm{Im}}(\mathcal{F}(U_ i) \to \mathcal{G}(U_ i)) 
+
+\end{matrix} \quad \right\}   \]
+</div>
+  <p> We endow $\mathcal{G}'(U)$ with the induced topology. Then $\mathcal{G}'$ is a sheaf of topological spaces (details omitted) and $\mathcal{G}' \to \mathcal{G}$ is a morphism through which the given map $\mathcal{F} \to \mathcal{G}$ factors. Moreover, the size of $\mathcal{G}'$ is bounded by some cardinal $\kappa $ depending only on $\mathcal{C}$ and the presheaf $\mathcal{F}$ (hint: use that coverings in $\mathcal{C}$ form a set by our conventions). Putting everything together we see that the assumptions of Categories, Theorem <a href="/tag/0AHQ" data-tag="0AHQ">4.25.3</a> are satisfied and we obtain sheafification as the left adjoint of the inclusion functor from sheaves to presheaves. Finally, let $p$ be a point of the site $\mathcal{C}$ given by a functor $u : \mathcal{C} \to \textit{Sets}$, see Sites, Definition <a href="/tag/00Y5" data-tag="00Y5">7.32.2</a>. For a topological space $M$ the presheaf defined by the rule </p>
+  <div class="equation">
+  \[  U \mapsto \text{Map}(u(U), M) = \prod \nolimits _{x \in u(U)} M  \]
+</div>
+  <p> endowed with the product topology is a sheaf of topological spaces. Hence the exact same argument as given in the proof of Sites, Lemma <a href="/tag/00Y8" data-tag="00Y8">7.32.5</a> shows that $\mathcal{F}_ p = \mathcal{F}^\# _ p$, in other words, sheafification commutes with taking stalks at a point. </p>
+</article> 
+</p>

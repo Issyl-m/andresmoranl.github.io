@@ -1,0 +1,454 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sites-cohomology-section-compare-general" class="tex-section"><span data-tag="0EZ1">21.30</span> Comparing cohomology</h2>
+
+<p>
+We develop some general theory which will help us compare cohomology in different topologies. Given $\mathcal{C}$, $\tau $, and $\tau '$ as in Section <a href="/tag/0EWK" data-tag="0EWK">21.27</a> and a morphism $f : X \to Y$ in $\mathcal{C}$ we obtain a commutative diagram of morphisms of topoi 
+</p>
+<div class="equation" id="0EZ2">
+    <span class="equation-label"><a href="/tag/0EZ2" data-tag="0EZ2">21.30.0.1</a></span>
+  <div>\begin{equation}  \label{sites-cohomology-equation-commutative-epsilon} \vcenter { \xymatrix{ \mathop{\mathit{Sh}}\nolimits (\mathcal{C}_\tau /X) \ar[r]_{f_\tau } \ar[d]_{\epsilon _ X} &  \mathop{\mathit{Sh}}\nolimits (\mathcal{C}_\tau /Y) \ar[d]^{\epsilon _ Y} \\  \mathop{\mathit{Sh}}\nolimits (\mathcal{C}_{\tau '}/X) \ar[r]^{f_{\tau '}} &  \mathop{\mathit{Sh}}\nolimits (\mathcal{C}_{\tau '}/X) } } \end{equation}</div>
+</div>
+<p>
+ Here the morphism $\epsilon _ X$, resp. $\epsilon _ Y$ is the comparison morphism of Section <a href="/tag/0EWK" data-tag="0EWK">21.27</a> for the category $\mathcal{C}/X$ endowed with the two topologies $\tau $ and $\tau '$. The morphisms $f_\tau $ and $f_{\tau '}$ are “relocalization” morphisms (Sites, Lemma <a href="/tag/03EH" data-tag="03EH">7.25.8</a>). The commutativity of the diagram is a special case of Sites, Lemma <a href="/tag/03CF" data-tag="03CF">7.28.1</a> (applied with $\mathcal{C} = \mathcal{C}_\tau /Y$, $\mathcal{D} = \mathcal{C}_{\tau '}/Y$, $u = \text{id}$, $U = X$, and $V = X$). We also get $\epsilon _{X, *} \circ f_\tau ^{-1} = f_{\tau '}^{-1} \circ \epsilon _{Y, *}$ either from the lemma or because it is obvious. 
+</p>
+<p>
+<article class="env-situation" id="0EZ3">
+  <p><a class="environment-identifier" href="/tag/0EZ3">Situation <span data-tag="0EZ3">21.30.1</span>.</a> With $\mathcal{C}$, $\tau $, and $\tau '$ as in Section <a href="/tag/0EWK" data-tag="0EWK">21.27</a>. Assume we are given a subset $\mathcal{P} \subset \text{Arrows}(\mathcal{C})$ and for every object $X$ of $\mathcal{C}$ we are given a weak Serre subcategory $\mathcal{A}'_ X \subset \textit{Ab}(\mathcal{C}_{\tau '}/X)$. We make the following assumption: </p>
+  <p><ol>
+  <li class="custom-item" id="0EZ4"><p>
+ given $f : X \to Y$ in $\mathcal{P}$ and $Y' \to Y$ general, then $X \times _ Y Y'$ exists and $X \times _ Y Y' \to Y'$ is in $\mathcal{P}$, 
+</p>
+</li><li class="custom-item" id="0EZ5"><p>
+ $f_{\tau '}^{-1}$ sends $\mathcal{A}'_ Y$ into $\mathcal{A}'_ X$ for any morphism $f : X \to Y$ of $\mathcal{C}$, 
+</p>
+</li><li class="custom-item" id="0EZ6"><p>
+ given $X$ in $\mathcal{C}$ and $\mathcal{F}'$ in $\mathcal{A}'_ X$, then $\mathcal{F}'$ satisfies the sheaf condition for $\tau $-coverings, i.e., $\mathcal{F}' = \epsilon _{X, *}\epsilon _ X^{-1}\mathcal{F}'$, 
+</p>
+</li><li class="custom-item" id="0EZ7"><p>
+ if $f : X \to Y$ in $\mathcal{P}$ and $\mathcal{F}' \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{A}'_ X)$, then $R^ if_{\tau ', *}\mathcal{F}' \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{A}'_ Y)$ for $i \geq 0$. 
+</p>
+</li><li class="custom-item" id="0EZ8"><p>
+ if $\{ U_ i \to U\} _{i \in I}$ is a $\tau $-covering, then there exist 
+</p>
+<ol>
+  <li><p>
+a $\tau '$-covering $\{ V_ j \to U\} _{j \in J}$, 
+</p>
+</li><li><p>
+a $\tau $-covering $\{ f_ j : W_ j \to V_ j\} $ consisting of a single $f_ j \in \mathcal{P}$, and 
+</p>
+</li><li><p>
+a $\tau '$-covering $\{ W_{jk} \to W_ j\} _{k \in K_ j}$ 
+</p>
+</li>
+</ol>
+<p>
+ such that $\{ W_{jk} \to U\} _{j \in J, k \in K_ j}$ is a refinement of $\{ U_ i \to U\} _{i \in I}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0EZ9">
+  <p><a class="environment-identifier" href="/tag/0EZ9">Lemma <span data-tag="0EZ9">21.30.2</span>.</a> In Situation <a href="/tag/0EZ3" data-tag="0EZ3">21.30.1</a> for $X$ in $\mathcal{C}$ denote $\mathcal{A}_ X$ the objects of $\textit{Ab}(\mathcal{C}_\tau /X)$ of the form $\epsilon _ X^{-1}\mathcal{F}'$ with $\mathcal{F}'$ in $\mathcal{A}'_ X$. Then </p>
+  <p><ol>
+  <li><p>
+for $\mathcal{F}$ in $\textit{Ab}(\mathcal{C}_\tau /X)$ we have $\mathcal{F} \in \mathcal{A}_ X \Leftrightarrow \epsilon _{X, *}\mathcal{F} \in \mathcal{A}'_ X$, and 
+</p>
+</li><li><p>
+$f_\tau ^{-1}$ sends $\mathcal{A}_ Y$ into $\mathcal{A}_ X$ for any morphism $f : X \to Y$ of $\mathcal{C}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Part (1) follows from (<a href="/tag/0EZ6" data-tag="0EZ6">3</a>) and part (2) follows from (<a href="/tag/0EZ5" data-tag="0EZ5">2</a>) and the commutativity of (<a href="/tag/0EZ2" data-tag="0EZ2">21.30.0.1</a>) which gives $\epsilon _ X^{-1} \circ f_{\tau '}^{-1} = f_\tau ^{-1} \circ \epsilon _ Y^{-1}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Our next goal is to prove Lemmas <a href="/tag/0EZH" data-tag="0EZH">21.30.10</a> and <a href="/tag/0EZG" data-tag="0EZG">21.30.9</a>. We will do this by an induction argument using the following induction hypothesis. 
+</p>
+<p>
+$(V_ n)$ For $X$ in $\mathcal{C}$ and $\mathcal{F}$ in $\mathcal{A}_ X$ we have $R^ i\epsilon _{X, *}\mathcal{F} = 0$ for $1 \leq i \leq n$. 
+</p>
+<p>
+<article class="env-lemma" id="0EZA">
+  <p><a class="environment-identifier" href="/tag/0EZA">Lemma <span data-tag="0EZA">21.30.3</span>.</a> In Situation <a href="/tag/0EZ3" data-tag="0EZ3">21.30.1</a> assume $(V_ n)$ holds. For $f : X \to Y$ in $\mathcal{P}$ and $\mathcal{F}$ in $\mathcal{A}_ X$ we have $R^ if_{\tau ', *}\epsilon _{X, *}\mathcal{F} = \epsilon _{Y, *}R^ if_{\tau , *}\mathcal{F}$ for $i \leq n$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use the commutative diagram (<a href="/tag/0EZ2" data-tag="0EZ2">21.30.0.1</a>) without further mention. In particular have 
+    <p>
+      <div class="equation">
+  \[  Rf_{\tau ', *}R\epsilon _{X, *}\mathcal{F} = R\epsilon _{Y, *}Rf_{\tau , *}\mathcal{F}  \]
+</div>
+    <p>
+       Assumption $(V_ n)$ tells us that $\epsilon _{X, *}\mathcal{F} \to R\epsilon _{X, *}\mathcal{F}$ is an isomorphism in degrees $\leq n$. Hence $Rf_{\tau ', *}\epsilon _{X, *}\mathcal{F} \to Rf_{\tau ', *}R\epsilon _{X, *}\mathcal{F}$ is an isomorphism in degrees $\leq n$. We conclude that 
+    <p>
+      <div class="equation">
+  \[  R^ if_{\tau ', *}\epsilon _{X, *}\mathcal{F} \to H^ i(R\epsilon _{Y, *}Rf_{\tau , *}\mathcal{F})  \]
+</div>
+    <p>
+       is an isomorphism for $i \leq n$. We will prove the lemma by looking at the second page of the spectral sequence of Lemma <a href="/tag/0734" data-tag="0734">21.14.7</a> for $R\epsilon _{Y, *}Rf_{\tau , *}\mathcal{F}$. Here is a picture: 
+    <p>
+      <div class="equation">
+  \[  \begin{matrix}  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+\\  \epsilon _{Y, *}R^2f_{\tau , *}\mathcal{F} 
+
+&  R^1\epsilon _{Y, *}R^2f_{\tau , *}\mathcal{F} 
+
+&  R^2\epsilon _{Y, *}R^2f_{\tau , *}\mathcal{F} 
+
+&  \ldots 
+
+\\  \epsilon _{Y, *}R^1f_{\tau , *}\mathcal{F} 
+
+&  R^1\epsilon _{Y, *}R^1f_{\tau , *}\mathcal{F} 
+
+&  R^2\epsilon _{Y, *}R^1f_{\tau , *}\mathcal{F} 
+
+&  \ldots 
+
+\\  \epsilon _{Y, *}f_{\tau , *}\mathcal{F} 
+
+&  R^1\epsilon _{Y, *}f_{\tau , *}\mathcal{F} 
+
+&  R^2\epsilon _{Y, *}f_{\tau , *}\mathcal{F} 
+
+&  \ldots 
+
+\end{matrix}  \]
+</div>
+    <p>
+       Let $(C_ m)$ be the hypothesis: $R^ if_{\tau ', *}\epsilon _{X, *}\mathcal{F} = \epsilon _{Y, *}R^ if_{\tau , *}\mathcal{F}$ for $i \leq m$. Observe that $(C_0)$ holds. We will show that $(C_{m - 1}) \Rightarrow (C_ m)$ for $m < n$. Namely, if $(C_{m - 1})$ holds, then for $n \geq p > 0$ and $q \leq m - 1$ we have 
+    <p>
+      <div class="equation">
+  \begin{align*}  R^ p\epsilon _{Y, *}R^ qf_{\tau , *}\mathcal{F} &  = R^ p\epsilon _{Y, *} \epsilon _ Y^{-1} \epsilon _{Y, *} R^ qf_{\tau , *}\mathcal{F} \\ &  = R^ p\epsilon _{Y, *} \epsilon _ Y^{-1}R^ qf_{\tau ', *}\epsilon _{X, *}\mathcal{F} = 0 \end{align*}
+</div>
+    <p>
+       First equality as $\epsilon _ Y^{-1}\epsilon _{Y, *} = \text{id}$, the second by $(C_{m - 1})$, and the final by by $(V_ n)$ because $\epsilon _ Y^{-1}R^ qf_{\tau ', *}\epsilon _{X, *}\mathcal{F}$ is in $\mathcal{A}_ Y$ by (<a href="/tag/0EZ7" data-tag="0EZ7">4</a>). Looking at the spectral sequence we see that $E_2^{0, m} = \epsilon _{Y, *}R^ mf_{\tau , *}\mathcal{F}$ is the only nonzero term $E_2^{p, q}$ with $p + q = m$. Recall that $\text{d}_ r^{p, q} : E_ r^{p, q} \to E_ r^{p + r, q - r + 1}$. Hence there are no nonzero differentials $\text{d}_ r^{p, q}$, $r \geq 2$ either emanating or entering this spot. We conclude that $H^ m(R\epsilon _{Y, *}Rf_{\tau , *}\mathcal{F}) = \epsilon _{Y, *}R^ mf_{\tau , *}\mathcal{F}$ which implies $(C_ m)$ by the discussion above. 
+    <p>
+      Finally, assume $(C_{n - 1})$. The same analysis shows that $E_2^{0, n} = \epsilon _{Y, *}R^ nf_{\tau , *}\mathcal{F}$ is the only nonzero term $E_2^{p, q}$ with $p + q = n$. We do still have no nonzero differentials entering this spot, but there can be a nonzero differential emanating it. Namely, the map $d_{n + 1}^{0, n} : \epsilon _{Y, *}R^ nf_{\tau , *}\mathcal{F} \to R^{n + 1}\epsilon _{Y, *}f_{\tau , *}\mathcal{F}$. We conclude that there is an exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to R^ nf_{\tau ', *}\epsilon _{X, *}\mathcal{F} \to \epsilon _{Y, *}R^ nf_{\tau , *}\mathcal{F} \to R^{n + 1}\epsilon _{Y, *}f_{\tau , *}\mathcal{F}  \]
+</div>
+    <p>
+       By (<a href="/tag/0EZ7" data-tag="0EZ7">4</a>) and (<a href="/tag/0EZ6" data-tag="0EZ6">3</a>) the sheaf $R^ nf_{\tau ', *}\epsilon _{X, *}\mathcal{F}$ satisfies the sheaf property for $\tau $-coverings as does $\epsilon _{Y, *}R^ nf_{\tau , *}\mathcal{F}$ (use the description of $\epsilon _*$ in Section <a href="/tag/0EWK" data-tag="0EWK">21.27</a>). However, the $\tau $-sheafification of the $\tau '$-sheaf $R^{n + 1}\epsilon _{Y, *}f_{\tau , *}\mathcal{F}$ is zero (by locality of cohomology; use Lemmas <a href="/tag/01FW" data-tag="01FW">21.7.3</a> and <a href="/tag/072W" data-tag="072W">21.7.4</a>). Thus $R^ nf_{\tau ', *}\epsilon _{X, *}\mathcal{F} \to \epsilon _{Y, *}R^ nf_{\tau , *}\mathcal{F}$ has to be an isomorphism and the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+If $E'$, resp. $E$ is an object of $D(\mathcal{C}_{\tau '}/X)$, resp. $D(\mathcal{C}_\tau /X)$ then we will write $H^ n_{\tau '}(U, E')$, resp. $H^ n_\tau (U, E)$ for the cohomology of $E'$, resp. $E$ over an object $U$ of $\mathcal{C}/X$. 
+</p>
+<p>
+<article class="env-lemma" id="0EZB">
+  <p><a class="environment-identifier" href="/tag/0EZB">Lemma <span data-tag="0EZB">21.30.4</span>.</a> In Situation <a href="/tag/0EZ3" data-tag="0EZ3">21.30.1</a> if $(V_ n)$ holds, then for $X$ in $\mathcal{C}$ and $L \in D(\mathcal{C}_{\tau '}/X)$ with $H^ i(L) = 0$ for $i < 0$ and $H^ i(L)$ in $\mathcal{A}'_ X$ for $0 \leq i \leq n$ we have $H^ n_{\tau '}(X, L) = H^ n_\tau (X, \epsilon _ X^{-1}L)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/0D6H" data-tag="0D6H">21.20.5</a> we have $H^ n_\tau (X, \epsilon _ X^{-1}L) = H^ n_{\tau '}(X, R\epsilon _{X, *}\epsilon _ X^{-1}L)$. There is a spectral sequence 
+    <p>
+      <div class="equation">
+  \[  E_2^{p, q} = R^ p\epsilon _{X, *}\epsilon _ X^{-1}H^ q(L)  \]
+</div>
+    <p>
+       converging to $H^{p + q}(R\epsilon _{X, *}\epsilon _ X^{-1}L)$. By $(V_ n)$ we have the vanishing of $E_2^{p, q}$ for $0 < p \leq n$ and $0 \leq q \leq n$. Thus $E_2^{0, q} = \epsilon _{X, *}\epsilon _ X^{-1}H^ q(L) = H^ q(L)$ are the only nonzero terms $E_2^{p, q}$ with $p + q \leq n$. It follows that the map 
+    <p>
+      <div class="equation">
+  \[  L \longrightarrow R\epsilon _{X, *}\epsilon _ X^{-1}L  \]
+</div>
+    <p>
+       is an isomorphism in degrees $\leq n$ (small detail omitted). Hence we find that $H^ i_{\tau '}(X, L) = H^ i_{\tau '}(X, R\epsilon _{X, *}\epsilon _ X^{-1}L)$ for $i \leq n$. Thus the lemma is proved. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0EZC">
+  <p><a class="environment-identifier" href="/tag/0EZC">Lemma <span data-tag="0EZC">21.30.5</span>.</a> In Situation <a href="/tag/0EZ3" data-tag="0EZ3">21.30.1</a> if $(V_ n)$ holds, then for $X$ in $\mathcal{C}$ and $\mathcal{F}$ in $\mathcal{A}_ X$ the map $H^{n + 1}_{\tau '}(X, \epsilon _{X, *}\mathcal{F}) \to H^{n + 1}_\tau (X, \mathcal{F})$ is injective with image those classes which become trivial on a $\tau '$-covering of $X$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Recall that $\epsilon _ X^{-1}\epsilon _{X, *}\mathcal{F} = \mathcal{F}$ hence the map is given by pulling back cohomology classes by $\epsilon _ X$. The Leray spectral sequence (Lemma <a href="/tag/0732" data-tag="0732">21.14.5</a>) 
+    <p>
+      <div class="equation">
+  \[  E_2^{p, q} = H^ p_{\tau '}(X, R^ q\epsilon _{X, *}\mathcal{F}) \Rightarrow H^{p + q}_\tau (X, \mathcal{F})  \]
+</div>
+    <p>
+       combined with the assumed vanishing gives an exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to H^{n + 1}_{\tau '}(X, \epsilon _{X, *}\mathcal{F}) \to H^{n + 1}_\tau (X, \mathcal{F}) \to H^0_{\tau '}(X, R^{n + 1}\epsilon _{X, *}\mathcal{F})  \]
+</div>
+    <p>
+       This is a restatement of the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0EZD">
+  <p><a class="environment-identifier" href="/tag/0EZD">Lemma <span data-tag="0EZD">21.30.6</span>.</a> In Situation <a href="/tag/0EZ3" data-tag="0EZ3">21.30.1</a> let $f : X \to Y$ be in $\mathcal{P}$ such that $\{ X \to Y\} $ is a $\tau $-covering. Let $\mathcal{F}'$ be in $\mathcal{A}'_ Y$. If $n \geq 0$ and </p>
+  <div class="equation">
+  \[  \theta \in \text{Equalizer}\left( \xymatrix{ H^{n + 1}_{\tau '}(X, \mathcal{F}') \ar@<1ex>[r] \ar@<-1ex>[r] &  H^{n + 1}_{\tau '}(X \times _ Y X, \mathcal{F}') } \right)  \]
+</div>
+  <p> then there exists a $\tau '$-covering $\{ Y_ i \to Y\} $ such that $\theta $ restricts to zero in $H^{n + 1}_{\tau '}(Y_ i \times _ Y X, \mathcal{F}')$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Observe that $X \times _ Y X$ exists by (<a href="/tag/0EZ4" data-tag="0EZ4">1</a>). For $Z$ in $\mathcal{C}/Y$ denote $\mathcal{F}'|_ Z$ the restriction of $\mathcal{F}'$ to $\mathcal{C}_{\tau '}/Z$. Recall that $H^{n + 1}_{\tau '}(X, \mathcal{F}') = H^{n + 1}(\mathcal{C}_{\tau '}/X, \mathcal{F}'|_ X)$, see Lemma <a href="/tag/03F3" data-tag="03F3">21.7.1</a>. The lemma asserts that the image $\overline{\theta } \in H^0(Y, R^{n + 1}f_{\tau ', *}\mathcal{F}'|_ X)$ of $\theta $ is zero. Consider the cartesian diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X \times _ Y X \ar[d]_{\text{pr}_1} \ar[r]_{\text{pr}_2} &  X \ar[d]^ f \\  X \ar[r]^ f &  Y }  \]
+</div>
+    <p>
+       By trivial base change (Lemma <a href="/tag/0EZ0" data-tag="0EZ0">21.21.1</a>) we have 
+    <p>
+      <div class="equation">
+  \[  f_{\tau '}^{-1}R^{n + 1}f_{\tau ', *}(\mathcal{F}'|_ X) = R^{n + 1}\text{pr}_{1, \tau ', *}(\mathcal{F}'|_{X \times _ Y X})  \]
+</div>
+    <p>
+       If $\text{pr}_1^{-1}\theta = \text{pr}_2^{-1}\theta $, then the section $f_{\tau '}^{-1}\overline{\theta }$ of $f_{\tau '}^{-1}R^{n + 1}f_{\tau ', *}(\mathcal{F}'|_ X)$ is zero, because it is clear that $\text{pr}_1^{-1}\theta $ maps to the zero element in $H^0(X, R^{n + 1}\text{pr}_{1, \tau ', *}(\mathcal{F}'|_{X \times _ Y X}))$. By (<a href="/tag/0EZ5" data-tag="0EZ5">2</a>) we have $\mathcal{F}'|_ X$ in $\mathcal{A}'_ X$. Thus $\mathcal{G}' = R^{n + 1}f_{\tau ', *}(\mathcal{F}'|_ X)$ is an object of $\mathcal{A}'_ Y$ by (<a href="/tag/0EZ7" data-tag="0EZ7">4</a>). Thus $\mathcal{G}'$ satisfies the sheaf property for $\tau $-coverings by (<a href="/tag/0EZ6" data-tag="0EZ6">3</a>). Since $\{ X \to Y\} $ is a $\tau $-covering we conclude that restriction $\mathcal{G}'(Y) \to \mathcal{G}'(X)$ is injective. It follows that $\overline{\theta }$ is zero. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0EZE">
+  <p><a class="environment-identifier" href="/tag/0EZE">Lemma <span data-tag="0EZE">21.30.7</span>.</a> In Situation <a href="/tag/0EZ3" data-tag="0EZ3">21.30.1</a> we have $(V_ n) \Rightarrow (V_{n + 1})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $X$ in $\mathcal{C}$ and $\mathcal{F}$ in $\mathcal{A}_ X$. Let $\xi \in H^{n + 1}_\tau (U, \mathcal{F})$ for some $U/X$. We have to show that $\xi $ restricts to zero on the members of a $\tau '$-covering of $U$. See Lemma <a href="/tag/072W" data-tag="072W">21.7.4</a>. It follows from this that we may replace $U$ by the members of a $\tau '$-covering of $U$. 
+    <p>
+      By locality of cohomology (Lemma <a href="/tag/01FW" data-tag="01FW">21.7.3</a>) we can choose a $\tau $-covering $\{ U_ i \to U\} $ such that $\xi $ restricts to zero on $U_ i$. Choose $\{ V_ j \to V\} $, $\{ f_ j : W_ j \to V_ j\} $, and $\{ W_{jk} \to W_ j\} $ as in (<a href="/tag/0EZ8" data-tag="0EZ8">5</a>). After replacing both $U$ by $V_ j$ and $\mathcal{F}$ by its restriction to $\mathcal{C}_\tau /V_ j$, which is allowed by (<a href="/tag/0EZ4" data-tag="0EZ4">1</a>), we reduce to the case discussed in the next paragraph. 
+    <p>
+      Here $f : X \to Y$ is an element of $\mathcal{P}$ such that $\{ X \to Y\} $ is a $\tau $-covering, $\mathcal{F}$ is an object of $\mathcal{A}_ Y$, and $\xi \in H^{n + 1}_\tau (Y, \mathcal{F})$ is such that there exists a $\tau '$-covering $\{ X_ i \to X\} _{i \in I}$ such that $\xi $ restricts to zero on $X_ i$ for all $i \in I$. Problem: show that $\xi $ restricts to zero on a $\tau '$-covering of $Y$. 
+    <p>
+      By Lemma <a href="/tag/0EZC" data-tag="0EZC">21.30.5</a> there exists a unique $\tau '$-cohomology class $\theta \in H^{n + 1}_{\tau '}(X, \epsilon _{X, *}\mathcal{F})$ whose image is $\xi |_ X$. Since $\xi |_ X$ pulls back to the same class on $X \times _ Y X$ via the two projections, we find that the same is true for $\theta $ (by uniqueness). By Lemma <a href="/tag/0EZD" data-tag="0EZD">21.30.6</a> we see that after replacing $Y$ by the members of a $\tau '$-covering, we may assume that $\theta = 0$. Consequently, we may assume that $\xi |_ X$ is zero. 
+    <p>
+      Let $f : X \to Y$ be an element of $\mathcal{P}$ such that $\{ X \to Y\} $ is a $\tau $-covering, $\mathcal{F}$ is an object of $\mathcal{A}_ Y$, and $\xi \in H^{n + 1}_\tau (Y, \mathcal{F})$ maps to zero in $H^{n + 1}_\tau (X, \mathcal{F})$. Problem: show that $\xi $ restricts to zero on a $\tau '$-covering of $Y$. 
+    <p>
+      The assumptions tell us $\xi $ maps to zero under the map 
+    <p>
+      <div class="equation">
+  \[  \mathcal{F} \longrightarrow Rf_{\tau , *}f_\tau ^{-1}\mathcal{F}  \]
+</div>
+    <p>
+       Use Lemma <a href="/tag/0D6H" data-tag="0D6H">21.20.5</a>. A simple argument using the distinguished triangle of truncations (Derived Categories, Remark <a href="/tag/08J5" data-tag="08J5">13.12.4</a>) shows that $\xi $ maps to zero under the map 
+    <p>
+      <div class="equation">
+  \[  \mathcal{F} \longrightarrow \tau _{\leq n}Rf_{\tau , *}f_\tau ^{-1}\mathcal{F}  \]
+</div>
+    <p>
+       We will compare this with the map $\epsilon _{Y, *}\mathcal{F} \to K$ where 
+    <p>
+      <div class="equation">
+  \[  K = \tau _{\leq n}Rf_{\tau ', *}f_{\tau '}^{-1}\epsilon _{Y, *}\mathcal{F} = \tau _{\leq n}Rf_{\tau ', *}\epsilon _{X, *}f_{\tau }^{-1}\mathcal{F}  \]
+</div>
+    <p>
+       The equality $\epsilon _{X, *} f_\tau ^{-1} = f_{\tau '}^{-1} \epsilon _{Y, *}$ is a property of (<a href="/tag/0EZ2" data-tag="0EZ2">21.30.0.1</a>). Consider the map 
+    <p>
+      <div class="equation">
+  \[  Rf_{\tau ', *}\epsilon _{X, *}f_{\tau }^{-1}\mathcal{F} \longrightarrow Rf_{\tau ', *}R\epsilon _{X, *}f_{\tau }^{-1}\mathcal{F} = R\epsilon _{Y, *}Rf_{\tau , *}f_\tau ^{-1}\mathcal{F}  \]
+</div>
+    <p>
+       used in the proof of Lemma <a href="/tag/0EZA" data-tag="0EZA">21.30.3</a> which induces by adjunction a map 
+    <p>
+      <div class="equation">
+  \[  \epsilon _ Y^{-1} Rf_{\tau ', *}\epsilon _{X, *}f_{\tau }^{-1}\mathcal{F} \to Rf_{\tau , *}f_\tau ^{-1}\mathcal{F}  \]
+</div>
+    <p>
+       Taking trunctions we find a map 
+    <p>
+      <div class="equation">
+  \[  \epsilon _ Y^{-1}K \longrightarrow \tau _{\leq n}Rf_{\tau , *}f_\tau ^{-1}\mathcal{F}  \]
+</div>
+    <p>
+       which is an isomorphism by Lemma <a href="/tag/0EZA" data-tag="0EZA">21.30.3</a>; the lemma applies because $f_\tau ^{-1}\mathcal{F}$ is in $\mathcal{A}_ X$ by Lemma <a href="/tag/0EZ9" data-tag="0EZ9">21.30.2</a>. Choose a distinguished triangle 
+    <p>
+      <div class="equation">
+  \[  \epsilon _{Y, *}\mathcal{F} \to K \to L \to \epsilon _{Y, *}\mathcal{F}[1]  \]
+</div>
+    <p>
+       The map $\mathcal{F} \to f_{\tau , *}f_\tau ^{-1}\mathcal{F}$ is injective as $\{ X \to Y\} $ is a $\tau $-covering. Thus $\epsilon _{Y, *}\mathcal{F} \to \epsilon _{Y, *}f_{\tau , *}f_\tau ^{-1}\mathcal{F} = f_{\tau ', *}f_{\tau '}^{-1}\epsilon _{Y, *}\mathcal{F}$ is injective too. Hence $L$ only has nonzero cohomology sheaves in degrees $0, \ldots , n$. As $f_{\tau ', *}f_{\tau '}^{-1}\epsilon _{Y, *}\mathcal{F}$ is in $\mathcal{A}'_ Y$ by (<a href="/tag/0EZ5" data-tag="0EZ5">2</a>) and (<a href="/tag/0EZ7" data-tag="0EZ7">4</a>) we conclude that 
+    <p>
+      <div class="equation">
+  \[  H^0(L) = \mathop{\mathrm{Coker}}(\epsilon _{Y, *}\mathcal{F} \to f_{\tau ', *}f_{\tau '}^{-1}\epsilon _{Y, *}\mathcal{F})  \]
+</div>
+    <p>
+       is in the weak Serre subcategory $\mathcal{A}'_ Y$. For $1 \leq i \leq n$ we see that $H^ i(L) = R^ if_{\tau ', *}f_{\tau '}^{-1}\epsilon _{Y, *}\mathcal{F}$ is in $\mathcal{A}'_ Y$ by (<a href="/tag/0EZ5" data-tag="0EZ5">2</a>) and (<a href="/tag/0EZ7" data-tag="0EZ7">4</a>). Pulling back the distinguished triangle above by $\epsilon _ Y$ we get the distinguished triangle 
+    <p>
+      <div class="equation">
+  \[  \mathcal{F} \to \tau _{\leq n}Rf_{\tau , *}f_\tau ^{-1}\mathcal{F} \to \epsilon _ Y^{-1}L \to \mathcal{F}[1]  \]
+</div>
+    <p>
+       Since $\xi $ maps to zero in the middle term we find that $\xi $ is the image of an element $\xi ' \in H^ n_\tau (Y, \epsilon _ Y^{-1}L)$. By Lemma <a href="/tag/0EZB" data-tag="0EZB">21.30.4</a> we have 
+    <p>
+      <div class="equation">
+  \[  H^ n_{\tau '}(Y, L) = H^ n_\tau (Y, \epsilon _ Y^{-1}L),  \]
+</div>
+    <p>
+       Thus we may lift $\xi '$ to an element of $H^ n_{\tau '}(Y, L)$ and take the boundary into $H^{n + 1}_{\tau '}(Y, \epsilon _{Y, *}\mathcal{F})$ to see that $\xi $ is in the image of the canonical map $H^{n + 1}_{\tau '}(Y, \epsilon _{Y, *}\mathcal{F}) \to H^{n + 1}_\tau (Y, \mathcal{F})$. By locality of cohomology for $H^{n + 1}_{\tau '}(Y,\epsilon _{Y, *}\mathcal{F})$, see Lemma <a href="/tag/01FW" data-tag="01FW">21.7.3</a>, we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0EZF">
+  <p><a class="environment-identifier" href="/tag/0EZF">Lemma <span data-tag="0EZF">21.30.8</span>.</a> In Situation <a href="/tag/0EZ3" data-tag="0EZ3">21.30.1</a> we have that $(V_ n)$ is true for all $n$. Moreover: </p>
+  <p><ol>
+  <li><p>
+For $X$ in $\mathcal{C}$ and $K' \in D^+_{\mathcal{A}'_ X}(\mathcal{C}_{\tau '}/X)$ the map $K' \to R\epsilon _{X, *}(\epsilon _ X^{-1}K')$ is an isomorphism. 
+</p>
+</li><li><p>
+For $f : X \to Y$ in $\mathcal{P}$ and $K' \in D^+_{\mathcal{A}'_ X}(\mathcal{C}_{\tau '}/X)$ we have $Rf_{\tau ', *}K' \in D^+_{\mathcal{A}'_ X}(\mathcal{C}_{\tau '}/Y)$ and $\epsilon _ Y^{-1}(Rf_{\tau ', *}K') = Rf_{\tau , *}(\epsilon _ X^{-1}K')$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Observe that $(V_0)$ holds as it is the empty condition. Then we get $(V_ n)$ for all $n$ by Lemma <a href="/tag/0EZE" data-tag="0EZE">21.30.7</a>. 
+    <p>
+      Proof of (1). The object $K = \epsilon _ X^{-1}K'$ has cohomology sheaves $H^ i(K) = \epsilon _ X^{-1}H^ i(K')$ in $\mathcal{A}_ X$. Hence the spectral sequence 
+    <p>
+      <div class="equation">
+  \[  E_2^{p, q} = R^ p\epsilon _{X, *} H^ q(K) \Rightarrow H^{p + q}(R\epsilon _{X, *}K)  \]
+</div>
+    <p>
+       degenerates by $(V_ n)$ for all $n$ and we find 
+    <p>
+      <div class="equation">
+  \[  H^ n(R\epsilon _{X, *}K) = \epsilon _{X, *}H^ n(K) = \epsilon _{X, *}\epsilon _ X^{-1}H^ i(K') = H^ i(K').  \]
+</div>
+    <p>
+       again because $H^ i(K')$ is in $\mathcal{A}'_ X$. Thus the canonical map $K' \to R\epsilon _{X, *}(\epsilon _ X^{-1}K')$ is an isomorphism. 
+    <p>
+      Proof of (2). Using the spectral sequence 
+    <p>
+      <div class="equation">
+  \[  E_2^{p, q} = R^ pf_{\tau ', *}H^ q(K') \Rightarrow R^{p + q}f_{\tau ', *}K'  \]
+</div>
+    <p>
+       the fact that $R^ pf_{\tau ', *}H^ q(K')$ is in $\mathcal{A}'_ Y$ by (<a href="/tag/0EZ7" data-tag="0EZ7">4</a>), the fact that $\mathcal{A}'_ Y$ is a weak Serre subcategory of $\textit{Ab}(\mathcal{C}_{\tau '}/Y)$, and Homology, Lemma <a href="/tag/012W" data-tag="012W">12.24.11</a> we conclude that $Rf_{\tau ', *}K' \in D^+_{\mathcal{A}'_ X}(\mathcal{C}_{\tau '}/X)$. To finish the proof we have to show the base change map 
+    <p>
+      <div class="equation">
+  \[  \epsilon _ Y^{-1}(Rf_{\tau ', *}K') \longrightarrow Rf_{\tau , *}(\epsilon _ X^{-1}K')  \]
+</div>
+    <p>
+       is an isomorphism. Comparing the spectral sequence above to the spectral sequence 
+    <p>
+      <div class="equation">
+  \[  E_2^{p, q} = R^ pf_{\tau , *}H^ q(\epsilon _ X^{-1}K') \Rightarrow R^{p + q}f_{\tau , *}\epsilon _ X^{-1}K'  \]
+</div>
+    <p>
+       we reduce this to the case where $K'$ has a single nonzero cohomology sheaf $\mathcal{F}'$ in $\mathcal{A}'_ X$; details omitted. Then Lemma <a href="/tag/0EZA" data-tag="0EZA">21.30.3</a> gives $\epsilon _ Y^{-1}R^ if_{\tau ', *}\mathcal{F}' = R^ if_{\tau , *}\epsilon _ X^{-1}\mathcal{F}'$ for all $i$ and the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0EZG">
+  <p><a class="environment-identifier" href="/tag/0EZG">Lemma <span data-tag="0EZG">21.30.9</span>.</a> In Situation <a href="/tag/0EZ3" data-tag="0EZ3">21.30.1</a>. For any $X$ in $\mathcal{C}$ the category $\mathcal{A}_ X \subset \textit{Ab}(\mathcal{C}_\tau /X)$ is a weak Serre subcategory and the functor </p>
+  <div class="equation">
+  \[  R\epsilon _{X, *} : D^+_{\mathcal{A}_ X}(\mathcal{C}_\tau /X) \longrightarrow D^+_{\mathcal{A}'_ X}(\mathcal{C}_{\tau '}/X)  \]
+</div>
+  <p> is an equivalence with quasi-inverse given by $\epsilon _ X^{-1}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We need to check the conditions listed in Homology, Lemma <a href="/tag/0754" data-tag="0754">12.10.3</a> for $\mathcal{A}_ X$. If $\varphi : \mathcal{F} \to \mathcal{G}$ is a map in $\mathcal{A}_ X$, then $\epsilon _{X, *}\varphi : \epsilon _{X, *}\mathcal{F} \to \epsilon _{X, *}\mathcal{G}$ is a map in $\mathcal{A}'_ X$. Hence $\mathop{\mathrm{Ker}}(\epsilon _{X, *}\varphi )$ and $\mathop{\mathrm{Coker}}(\epsilon _{X, *}\varphi )$ are objects of $\mathcal{A}'_ X$ as this is a weak Serre subcategory of $\textit{Ab}(\mathcal{C}_{\tau '}/X)$. Applying $\epsilon _ X^{-1}$ we obtain an exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \epsilon _ X^{-1}\mathop{\mathrm{Ker}}(\epsilon _{X, *}\varphi ) \to \mathcal{F} \to \mathcal{G} \to \epsilon _ X^{-1}\mathop{\mathrm{Coker}}(\epsilon _{X, *}\varphi ) \to 0  \]
+</div>
+    <p>
+       and we see that $\mathop{\mathrm{Ker}}(\varphi )$ and $\mathop{\mathrm{Coker}}(\varphi )$ are in $\mathcal{A}_ X$. Finally, suppose that 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{F}_1 \to \mathcal{F}_2 \to \mathcal{F}_3 \to 0  \]
+</div>
+    <p>
+       is a short exact sequence in $\textit{Ab}(\mathcal{C}_\tau /X)$ with $\mathcal{F}_1$ and $\mathcal{F}_3$ in $\mathcal{A}_ X$. Then applying $\epsilon _{X, *}$ we obtain an exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \epsilon _{X, *}\mathcal{F}_1 \to \epsilon _{X, *}\mathcal{F}_2 \to \epsilon _{X, *}\mathcal{F}_3 \to R^1\epsilon _{X, *}\mathcal{F}_1 = 0  \]
+</div>
+    <p>
+       Vanishing by Lemma <a href="/tag/0EZF" data-tag="0EZF">21.30.8</a>. Hence $\epsilon _{X, *}\mathcal{F}_2$ is in $\mathcal{A}'_ X$ as this is a weak Serre subcategory of $\textit{Ab}(\mathcal{C}_{\tau '}/X)$. Pulling back by $\epsilon _ X$ we conclude that $\mathcal{F}_2$ is in $\mathcal{A}_ X$. 
+    <p>
+      Thus $\mathcal{A}_ X$ is a weak Serre subcategory of $\textit{Ab}(\mathcal{C}_\tau /X)$ and it makes sense to consider the category $D^+_{\mathcal{A}_ X}(\mathcal{C}_\tau /X)$. Observe that $\epsilon _ X^{-1} : \mathcal{A}'_ X \to \mathcal{A}_ X$ is an equivalence and that $\mathcal{F}' \to R\epsilon _{X, *}\epsilon _ X^{-1}\mathcal{F}'$ is an isomorphism for $\mathcal{F}'$ in $\mathcal{A}'_ X$ since we have $(V_ n)$ for all $n$ by Lemma <a href="/tag/0EZF" data-tag="0EZF">21.30.8</a>. Thus we conclude by Lemma <a href="/tag/0D7U" data-tag="0D7U">21.28.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0EZH">
+  <p><a class="environment-identifier" href="/tag/0EZH">Lemma <span data-tag="0EZH">21.30.10</span>.</a> In Situation <a href="/tag/0EZ3" data-tag="0EZ3">21.30.1</a>. Let $X$ be in $\mathcal{C}$. </p>
+  <p><ol>
+  <li><p>
+for $\mathcal{F}'$ in $\mathcal{A}'_ X$ we have $H^ n_{\tau '}(X, \mathcal{F}') = H^ n_\tau (X, \epsilon _ X^{-1}\mathcal{F}')$, 
+</p>
+</li><li><p>
+for $K' \in D^+_{\mathcal{A}'_ X}(\mathcal{C}_{\tau '}/X)$ we have $H^ n_{\tau '}(X, K') = H^ n_\tau (X, \epsilon _ X^{-1}K')$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from Lemma <a href="/tag/0EZF" data-tag="0EZF">21.30.8</a> by Remark <a href="/tag/08J6" data-tag="08J6">21.14.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

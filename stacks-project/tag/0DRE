@@ -1,0 +1,538 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="stacks-geometry-section-dimension-of-algebraic-stacks" class="tex-section"><span data-tag="0DRE">107.5</span> Dimension theory of algebraic stacks</h2>
+
+<p>
+The main results on the dimension theory of algebraic stacks in the literature that we are aware of are those of <span class="cite">[<a href="/bibliography/Osserman">Osserman</a>]</span>, which makes a study of the notions of codimension and relative dimension. We make a more detailed examination of the notion of the dimension of an algebraic stack at a point, and prove various results relating the dimension of the fibres of a morphism at a point in the source to the dimension of its source and target. We also prove a result (Lemma <a href="/tag/0DSB" data-tag="0DSB">107.6.4</a> below) which allow us (under suitable hypotheses) to compute the dimension of an algebraic stack at a point in terms of a versal ring. 
+</p>
+<p>
+While we haven't always tried to optimise our results, we have largely tried to avoid making unnecessary hypotheses. However, in some of our results, in which we compare certain properties of an algebraic stack to the properties of a versal ring to this stack at a point, we have restricted our attention to the case of algebraic stacks that are locally finitely presented over a locally Noetherian scheme base, all of whose local rings are $G$-rings. This gives us the convenience of having Artin approximation available to compare the geometry of the versal ring to the geometry of the stack itself. However, this restrictive hypothesis may not be necessary for the truth of all of the various statements that we prove. Since it is satisfied in the applications that we have in mind, though, we have been content to make it when it helps. 
+</p>
+<p>
+If $X$ is a scheme, then we define the dimension $\dim (X)$ of $X$ to be the Krull dimension of the topological space underlying $X$, while if $x$ is a point of $X$, then we define the dimension $\dim _ x (X)$ of $X$ at $x$ to be the minimum of the dimensions of the open subsets $U$ of $X$ containing $x$, see Properties, Definition <a href="/tag/04MT" data-tag="04MT">28.10.1</a>. One has the relation $\dim (X) = \sup _{x \in X} \dim _ x(X)$, see Properties, Lemma <a href="/tag/04MU" data-tag="04MU">28.10.2</a>. If $X$ is locally Noetherian, then $\dim _ x(X)$ coincides with the supremum of the dimensions at $x$ of the irreducible components of $X$ passing through $x$. 
+</p>
+<p>
+If $X$ is an algebraic space and $x \in |X|$, then we define $\dim _ x X = \dim _ u U,$ where $U$ is any scheme admitting an étale surjection $U \to X$, and $u\in U$ is any point lying over $x$, see Properties of Spaces, Definition <a href="/tag/04N5" data-tag="04N5">66.9.1</a>. We set $\dim (X) = \sup _{x \in |X|} \dim _ x(X)$, see Properties of Spaces, Definition <a href="/tag/04N6" data-tag="04N6">66.9.2</a>. 
+</p>
+<p>
+<article class="env-remark" id="0DRF">
+  <p><a class="environment-identifier" href="/tag/0DRF">Remark <span data-tag="0DRF">107.5.1</span>.</a> In general, the dimension of the algebraic space $X$ at a point $x$ may not coincide with the dimension of the underlying topological space $|X|$ at $x$. E.g. if $k$ is a field of characteristic zero and $X = \mathbf{A}^1_ k / \mathbf{Z}$, then $X$ has dimension $1$ (the dimension of $\mathbf{A}^1_ k$) at each of its points, while $|X|$ has the indiscrete topology, and hence is of Krull dimension zero. On the other hand, in Algebraic Spaces, Example <a href="/tag/02Z8" data-tag="02Z8">65.14.9</a> there is given an example of an algebraic space which is of dimension $0$ at each of its points, while $|X|$ is irreducible of Krull dimension $1$, and admits a generic point (so that the dimension of $|X|$ at any of its points is $1$); see also the discussion of this example in Properties of Spaces, Section <a href="/tag/04N3" data-tag="04N3">66.9</a>. </p>
+  <p>On the other hand, if $X$ is a <em>decent</em> algebraic space, in the sense of Decent Spaces, Definition <a href="/tag/03I8" data-tag="03I8">68.6.1</a> (in particular, if $X$ is quasi-separated; see Decent Spaces, Section <a href="/tag/03I7" data-tag="03I7">68.6</a>) then in fact the dimension of $X$ at $x$ does coincide with the dimension of $|X|$ at $x$; see Decent Spaces, Lemma <a href="/tag/0A4J" data-tag="0A4J">68.12.5</a>. </p>
+</article> 
+</p>
+<p>
+In order to define the dimension of an algebraic stack, it will be useful to first have the notion of the relative dimension, at a point in the source, of a morphism whose source is an algebraic space, and whose target is an algebraic stack. The definition is slightly involved, just because (unlike in the case of schemes) the points of an algebraic stack, or an algebraic space, are not describable as morphisms from the spectrum of a field, but only as equivalence classes of such. 
+</p>
+<p>
+<article class="env-definition" id="0DRG">
+  <p><a class="environment-identifier" href="/tag/0DRG">Definition <span data-tag="0DRG">107.5.2</span>.</a> If $f : T \to \mathcal{X}$ is a locally of finite type morphism from an algebraic space to an algebraic stack, and if $t \in |T|$ is a point with image $x \in | \mathcal{X}|$, then we define <em>the relative dimension</em> of $f$ at $t$, denoted $\dim _ t(T_ x),$ as follows: choose a morphism $\mathop{\mathrm{Spec}}k \to \mathcal{X}$, with source the spectrum of a field, which represents $x$, and choose a point $t' \in |T \times _{\mathcal{X}} \mathop{\mathrm{Spec}}k|$ mapping to $t$ under the projection to $|T|$ (such a point $t'$ exists, by Properties of Stacks, Lemma <a href="/tag/04XH" data-tag="04XH">100.4.3</a>); then </p>
+  <div class="equation">
+  \[  \dim _ t(T_ x) = \dim _{t'}(T \times _{\mathcal{X}} \mathop{\mathrm{Spec}}k ).  \]
+</div>
+</article> 
+</p>
+<p>
+Note that since $T$ is an algebraic space and $\mathcal{X}$ is an algebraic stack, the fibre product $T \times _{\mathcal{X}} \mathop{\mathrm{Spec}}k$ is an algebraic space, and so the quantity on the right hand side of this proposed definition is in fact defined (see discussion above). 
+</p>
+<p>
+<article class="env-remark" id="0DRH">
+  <p><a class="environment-identifier" href="/tag/0DRH">Remark <span data-tag="0DRH">107.5.3</span>.</a> (1) One easily verifies (for example, by using the invariance of the relative dimension of locally of finite type morphisms of schemes under base-change; see for example Morphisms, Lemma <a href="/tag/02FY" data-tag="02FY">29.29.3</a>) that $\dim _ t(T_ x)$ is well-defined, independently of the choices used to compute it. </p>
+  <p>(2) In the case that $\mathcal{X}$ is also an algebraic space, it is straightforward to confirm that this definition agrees with the definition of relative dimension given in Morphisms of Spaces, Definition <a href="/tag/04NM" data-tag="04NM">67.33.1</a>. </p>
+</article> 
+</p>
+<p>
+We next recall the following lemma, on which our study of the dimension of a locally Noetherian algebraic stack is founded. 
+</p>
+<p>
+<article class="env-lemma" id="0DRI">
+  <p><a class="environment-identifier" href="/tag/0DRI">Lemma <span data-tag="0DRI">107.5.4</span>.</a> If $f: U \to X$ is a smooth morphism of locally Noetherian algebraic spaces, and if $u \in |U|$ with image $x \in |X|$, then </p>
+  <div class="equation">
+  \[  \dim _ u (U) = \dim _ x(X) + \dim _{u} (U_ x)  \]
+</div>
+  <p> where $\dim _ u (U_ x)$ is defined via Definition <a href="/tag/0DRG" data-tag="0DRG">107.5.2</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See Morphisms of Spaces, Lemma <a href="/tag/0AFI" data-tag="0AFI">67.37.10</a> noting that the definition of $\dim _ u (U_ x)$ used here coincides with the definition used there, by Remark <a href="/tag/0DRH" data-tag="0DRH">107.5.3</a> (2). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DRJ">
+  <p><a class="environment-identifier" href="/tag/0DRJ">Lemma <span data-tag="0DRJ">107.5.5</span>.</a> If $\mathcal{X}$ is a locally Noetherian algebraic stack and $x \in |\mathcal{X}|$. Let $U \to \mathcal{X}$ be a smooth morphism from an algebraic space to $\mathcal{X}$, let $u$ be any point of $|U|$ mapping to $x$. Then we have </p>
+  <div class="equation">
+  \[  \dim _ x(\mathcal{X}) = \dim _ u(U) - \dim _{u}(U_ x)  \]
+</div>
+  <p> where the relative dimension $\dim _ u(U_ x)$ is defined by Definition <a href="/tag/0DRG" data-tag="0DRG">107.5.2</a> and the dimension of $\mathcal{X}$ at $x$ is as in Properties of Stacks, Definition <a href="/tag/0AFN" data-tag="0AFN">100.12.2</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Lemma <a href="/tag/0DRI" data-tag="0DRI">107.5.4</a> can be used to verify that the right hand side $\dim _ u(U) + \dim _ u(U_ x)$ is independent of the choice of the smooth morphism $U \to \mathcal{X}$ and $u \in |U|$. We omit the details. In particular, we may assume $U$ is a scheme. In this case we can compute $\dim _ u(U_ x)$ by choosing the representative of $x$ to be the composite $\mathop{\mathrm{Spec}}\kappa (u) \to U \to \mathcal{X}$, where the first morphism is the canonical one with image $u \in U$. Then, if we write $R = U \times _{\mathcal{X}} U$, and let $e : U \to R$ denote the diagonal morphism, the invariance of relative dimension under base-change shows that $\dim _ u(U_ x) = \dim _{e(u)}(R_ u)$. Thus we see that the right hand side is equal to $\dim _ u (U) - \dim _{e(u)}(R_ u) = \dim _ x(\mathcal{X})$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0DRK">
+  <p><a class="environment-identifier" href="/tag/0DRK">Remark <span data-tag="0DRK">107.5.6</span>.</a> For Deligne–Mumford stacks which are suitably decent (e.g. quasi-separated), it will again be the case that $\dim _ x(\mathcal{X})$ coincides with the topologically defined quantity $\dim _ x |\mathcal{X}|$. However, for more general Artin stacks, this will typically not be the case. For example, if $\mathcal{X} = [\mathbf{A}^1/\mathbf{G}_ m]$ (over some field, with the quotient being taken with respect to the usual multiplication action of $\mathbf{G}_ m$ on $\mathbf{A}^1$), then $|\mathcal{X}|$ has two points, one the specialisation of the other (corresponding to the two orbits of $\mathbf{G}_ m$ on $\mathbf{A}^1$), and hence is of dimension $1$ as a topological space; but $\dim _ x (\mathcal{X}) = 0$ for both points $x \in |\mathcal{X}|$. (An even more extreme example is given by the classifying space $[\mathop{\mathrm{Spec}}k/\mathbf{G}_ m]$, whose dimension at its unique point is equal to $-1$.) </p>
+</article> 
+</p>
+<p>
+We can now extend Definition <a href="/tag/0DRG" data-tag="0DRG">107.5.2</a> to the context of (locally finite type) morphisms between (locally Noetherian) algebraic stacks. 
+</p>
+<p>
+<article class="env-definition" id="0DRL">
+  <p><a class="environment-identifier" href="/tag/0DRL">Definition <span data-tag="0DRL">107.5.7</span>.</a> If $f : \mathcal{T} \to \mathcal{X}$ is a locally of finite type morphism between locally Noetherian algebraic stacks, and if $t \in |\mathcal{T}|$ is a point with image $x \in |\mathcal{X}|$, then we define the <em>relative dimension</em> of $f$ at $t$, denoted $\dim _ t(\mathcal{T}_ x),$ as follows: choose a morphism $\mathop{\mathrm{Spec}}k \to \mathcal{X}$, with source the spectrum of a field, which represents $x$, and choose a point $t' \in |\mathcal{T} \times _{\mathcal{X}} \mathop{\mathrm{Spec}}k|$ mapping to $t$ under the projection to $|\mathcal{T}|$ (such a point $t'$ exists, by Properties of Stacks, Lemma <a href="/tag/04XH" data-tag="04XH">100.4.3</a>; then </p>
+  <div class="equation">
+  \[  \dim _ t(\mathcal{T}_ x) = \dim _{t'}(\mathcal{T} \times _{\mathcal{X}} \mathop{\mathrm{Spec}}k ).  \]
+</div>
+</article> 
+</p>
+<p>
+Note that since $\mathcal{T}$ is an algebraic stack and $\mathcal{X}$ is an algebraic stack, the fibre product $\mathcal{T}\times _{\mathcal{X}} \mathop{\mathrm{Spec}}k$ is an algebraic stack, which is locally Noetherian by Morphisms of Stacks, Lemma <a href="/tag/06R6" data-tag="06R6">101.17.5</a>. Thus the quantity on the right side of this proposed definition is defined by Properties of Stacks, Definition <a href="/tag/0AFN" data-tag="0AFN">100.12.2</a>. 
+</p>
+<p>
+<article class="env-remark" id="0DRM">
+  <p><a class="environment-identifier" href="/tag/0DRM">Remark <span data-tag="0DRM">107.5.8</span>.</a> Standard manipulations show that $\dim _ t(\mathcal{T}_ x)$ is well-defined, independently of the choices made to compute it. </p>
+</article> 
+</p>
+<p>
+We now establish some basic properties of relative dimension, which are obvious generalisations of the corresponding statements in the case of morphisms of schemes. 
+</p>
+<p>
+<article class="env-lemma" id="0DRN">
+  <p><a class="environment-identifier" href="/tag/0DRN">Lemma <span data-tag="0DRN">107.5.9</span>.</a> Suppose given a Cartesian square of morphisms of locally Noetherian stacks </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{T}' \ar[d]\ar[r] &  \mathcal{T} \ar[d] \\  \mathcal{X}' \ar[r] &  \mathcal{X} }  \]
+</div>
+  <p> in which the vertical morphisms are locally of finite type. If $t' \in |\mathcal{T}'|$, with images $t$, $x'$, and $x$ in $|\mathcal{T}|$, $|\mathcal{X}'|$, and $|\mathcal{X}|$ respectively, then $\dim _{t'}(\mathcal{T}'_{x'}) = \dim _{t}(\mathcal{T}_ x).$ </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Both sides can (by definition) be computed as the dimension of the same fibre product. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DRP">
+  <p><a class="environment-identifier" href="/tag/0DRP">Lemma <span data-tag="0DRP">107.5.10</span>.</a> If $f: \mathcal{U} \to \mathcal{X}$ is a smooth morphism of locally Noetherian algebraic stacks, and if $u \in |\mathcal{U}|$ with image $x \in |\mathcal{X}|$, then </p>
+  <div class="equation">
+  \[  \dim _ u (\mathcal{U}) = \dim _ x(\mathcal{X}) + \dim _{u} (\mathcal{U}_ x).  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a smooth surjective morphism $V \to \mathcal{U}$ whose source is a scheme, and let $v\in |V|$ be a point mapping to $u$. Then the composite $V \to \mathcal{U} \to \mathcal{X}$ is also smooth, and by Lemma <a href="/tag/0DRI" data-tag="0DRI">107.5.4</a> we have $\dim _ x(\mathcal{X}) = \dim _ v(V) - \dim _ v(V_ x),$ while $\dim _ u(\mathcal{U}) = \dim _ v(V) - \dim _ v(V_ u).$ Thus 
+    <p>
+      <div class="equation">
+  \[  \dim _ u(\mathcal{U}) - \dim _ x(\mathcal{X}) = \dim _ v (V_ x) - \dim _ v (V_ u).  \]
+</div>
+    <p>
+      Choose a representative $\mathop{\mathrm{Spec}}k \to \mathcal{X}$ of $x$ and choose a point $v' \in | V \times _{\mathcal{X}} \mathop{\mathrm{Spec}}k|$ lying over $v$, with image $u'$ in $|\mathcal{U}\times _{\mathcal{X}} \mathop{\mathrm{Spec}}k|$; then by definition $\dim _ u(\mathcal{U}_ x) = \dim _{u'}(\mathcal{U}\times _{\mathcal{X}} \mathop{\mathrm{Spec}}k),$ and $\dim _ v(V_ x) = \dim _{v'}(V\times _{\mathcal{X}} \mathop{\mathrm{Spec}}k).$ 
+    <p>
+      Now $V\times _{\mathcal{X}} \mathop{\mathrm{Spec}}k \to \mathcal{U}\times _{\mathcal{X}}\mathop{\mathrm{Spec}}k$ is a smooth surjective morphism (being the base-change of such a morphism) whose source is an algebraic space (since $V$ and $\mathop{\mathrm{Spec}}k$ are schemes, and $\mathcal{X}$ is an algebraic stack). Thus, again by definition, we have 
+    <p>
+      <div class="equation">
+  \begin{align*}  \dim _{u'}(\mathcal{U}\times _{\mathcal{X}} \mathop{\mathrm{Spec}}k) &  = \dim _{v'}(V\times _{\mathcal{X}} \mathop{\mathrm{Spec}}k) - \dim _{v'}(V \times _{\mathcal{X}} \mathop{\mathrm{Spec}}k)_{u'}) \\ &  = \dim _ v(V_ x) - \dim _{v'}( (V\times _{\mathcal{X}} \mathop{\mathrm{Spec}}k)_{u'}). \end{align*}
+</div>
+    <p>
+       Now $V\times _{\mathcal{X}} \mathop{\mathrm{Spec}}k \cong V\times _{\mathcal{U}} (\mathcal{U}\times _{\mathcal{X}} \mathop{\mathrm{Spec}}k),$ and so Lemma <a href="/tag/0DRN" data-tag="0DRN">107.5.9</a> shows that $\dim _{v'}((V\times _{\mathcal{X}} \mathop{\mathrm{Spec}}k)_{u'}) = \dim _ v(V_ u).$ Putting everything together, we find that 
+    <p>
+      <div class="equation">
+  \[  \dim _ u(\mathcal{U}) - \dim _ x(\mathcal{X}) = \dim _ u(\mathcal{U}_ x),  \]
+</div>
+    <p>
+       as required. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DRQ">
+  <p><a class="environment-identifier" href="/tag/0DRQ">Lemma <span data-tag="0DRQ">107.5.11</span>.</a> Let $f: \mathcal{T} \to \mathcal{X}$ be a locally of finite type morphism of algebraic stacks. </p>
+  <p><ol>
+  <li><p>
+The function $t \mapsto \dim _ t(\mathcal{T}_{f(t)})$ is upper semi-continuous on $|\mathcal{T}|$. 
+</p>
+</li><li><p>
+If $f$ is smooth, then the function $t \mapsto \dim _ t(\mathcal{T}_{f(t)})$ is locally constant on $|\mathcal{T}|$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose to begin with that $\mathcal{T}$ is a scheme $T$, let $U \to \mathcal{X}$ be a smooth surjective morphism whose source is a scheme, and let $T' = T \times _{\mathcal{X}} U$. Let $f': T' \to U$ be the pull-back of $f$ over $U$, and let $g: T' \to T$ be the projection. 
+    <p>
+      Lemma <a href="/tag/0DRN" data-tag="0DRN">107.5.9</a> shows that $\dim _{t'}(T'_{f'(t')}) = \dim _{g(t')}(T_{f(g(t'))}),$ for $t' \in T'$, while, since $g$ is smooth and surjective (being the base-change of a smooth surjective morphism) the map induced by $g$ on underlying topological spaces is continuous and open (by Properties of Spaces, Lemma <a href="/tag/03BX" data-tag="03BX">66.4.6</a>), and surjective. Thus it suffices to note that part (1) for the morphism $f'$ follows from Morphisms of Spaces, Lemma <a href="/tag/04NT" data-tag="04NT">67.34.4</a>, and part (2) from either of Morphisms, Lemma <a href="/tag/02NM" data-tag="02NM">29.30.4</a> or Morphisms, Lemma <a href="/tag/02G1" data-tag="02G1">29.35.12</a> (each of which gives the result for schemes, from which the analogous results for algebraic spaces can be deduced exactly as in Morphisms of Spaces, Lemma <a href="/tag/04NT" data-tag="04NT">67.34.4</a>. 
+    <p>
+      Now return to the general case, and choose a smooth surjective morphism $h:V \to \mathcal{T}$ whose source is a scheme. If $v \in V$, then, essentially by definition, we have 
+    <p>
+      <div class="equation">
+  \[  \dim _{h(v)}(\mathcal{T}_{f(h(v))}) = \dim _{v}(V_{f(h(v))}) - \dim _{v}(V_{h(v)}).  \]
+</div>
+    <p>
+       Since $V$ is a scheme, we have proved that the first of the terms on the right hand side of this equality is upper semi-continuous (and even locally constant if $f$ is smooth), while the second term is in fact locally constant. Thus their difference is upper semi-continuous (and locally constant if $f$ is smooth), and hence the function $\dim _{h(v)}(\mathcal{T}_{f(h(v))})$ is upper semi-continuous on $|V|$ (and locally constant if $f$ is smooth). Since the morphism $|V| \to |\mathcal{T}|$ is open and surjective, the lemma follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Before continuing with our development, we prove two lemmas related to the dimension theory of schemes. 
+</p>
+<p>
+To put the first lemma in context, we note that if $X$ is a finite dimensional scheme, then since $\dim X$ is defined to equal the supremum of the dimensions $\dim _ x X$, there exists a point $x \in X$ such that $\dim _ x X = \dim X$. The following lemma shows that we may furthermore take the point $x$ to be of finite type. 
+</p>
+<p>
+<article class="env-lemma" id="0DRR">
+  <p><a class="environment-identifier" href="/tag/0DRR">Lemma <span data-tag="0DRR">107.5.12</span>.</a> If $X$ is a finite dimensional scheme, then there exists a closed (and hence finite type) point $x \in X$ such that $\dim _ x X = \dim X$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $d = \dim X$, and choose a maximal strictly decreasing chain of irreducible closed subsets of $X$, say 
+    <p>
+      <div class="equation" id="0DRS">
+    <span class="equation-label"><a href="/tag/0DRS" data-tag="0DRS">107.5.12.1</a></span>
+  <div>\begin{equation}  \label{stacks-geometry-equation-maximal-chain} Z_0 \supset Z_1 \supset \ldots \supset Z_ d. \end{equation}</div>
+</div>
+    <p>
+       The subset $Z_ d$ is a minimal irreducible closed subset of $X$, and thus any point of $Z_ d$ is a generic point of $Z_ d$. Since the underlying topological space of the scheme $X$ is sober, we conclude that $Z_ d$ is a singleton, consisting of a single closed point $x \in X$. If $U$ is any neighbourhood of $x$, then the chain 
+    <p>
+      <div class="equation">
+  \[  U\cap Z_0 \supset U\cap Z_1 \supset \ldots \supset U\cap Z_ d = Z_ d = \{ x\}   \]
+</div>
+    <p>
+       is then a strictly descending chain of irreducible closed subsets of $U$, showing that $\dim U \geq d$. Thus we find that $\dim _ x X \geq d$. The other inequality being obvious, the lemma is proved. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The next lemma shows that $\dim _ x X$ is a <em>constant</em> function on an irreducible scheme satisfying some mild additional hypotheses. 
+</p>
+<p>
+<article class="env-lemma" id="0DRT">
+  <p><a class="environment-identifier" href="/tag/0DRT">Lemma <span data-tag="0DRT">107.5.13</span>.</a> If $X$ is an irreducible, Jacobson, catenary, and locally Noetherian scheme of finite dimension, then $\dim U = \dim X$ for every non-empty open subset $U$ of $X$. Equivalently, $\dim _ x X$ is a constant function on $X$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The equivalence of the two claims follows directly from the definitions. Suppose, then, that $U\subset X$ is a non-empty open subset. Certainly $\dim U \leq \dim X$, and we have to show that $\dim U \geq \dim X.$ Write $d = \dim X$, and choose a maximal strictly decreasing chain of irreducible closed subsets of $X$, say 
+    <p>
+      <div class="equation">
+  \[  X = Z_0 \supset Z_1 \supset \ldots \supset Z_ d.  \]
+</div>
+    <p>
+       Since $X$ is Jacobson, the minimal irreducible closed subset $Z_ d$ is equal to $\{ x\} $ for some closed point $x$. 
+    <p>
+      If $x \in U,$ then 
+    <p>
+      <div class="equation">
+  \[  U = U \cap Z_0 \supset U\cap Z_1 \supset \ldots \supset U\cap Z_ d = \{ x\}   \]
+</div>
+    <p>
+       is a strictly decreasing chain of irreducible closed subsets of $U$, and so we conclude that $\dim U \geq d$, as required. Thus we may suppose that $x \not\in U.$ 
+    <p>
+      Consider the flat morphism $\mathop{\mathrm{Spec}}\mathcal{O}_{X,x} \to X$. The non-empty (and hence dense) open subset $U$ of $X$ pulls back to an open subset $V \subset \mathop{\mathrm{Spec}}\mathcal{O}_{X,x}$. Replacing $U$ by a non-empty quasi-compact, and hence Noetherian, open subset, we may assume that the inclusion $U \to X$ is a quasi-compact morphism. Since the formation of scheme-theoretic images of quasi-compact morphisms commutes with flat base-change Morphisms, Lemma <a href="/tag/081I" data-tag="081I">29.26.16</a> we see that $V$ is dense in $\mathop{\mathrm{Spec}}\mathcal{O}_{X,x}$, and so in particular non-empty, and of course $x \not\in V.$ (Here we use $x$ also to denote the closed point of $\mathop{\mathrm{Spec}}\mathcal{O}_{X,x}$, since its image is equal to the given point $x \in X$.) Now $\mathop{\mathrm{Spec}}\mathcal{O}_{X,x} \setminus \{ x\} $ is Jacobson Properties, Lemma <a href="/tag/02IM" data-tag="02IM">28.6.4</a> and hence $V$ contains a closed point $z$ of $\mathop{\mathrm{Spec}}\mathcal{O}_{X,x} \setminus \{ x\} $. The closure in $X$ of the image of $z$ is then an irreducible closed subset $Z$ of $X$ containing $x$, whose intersection with $U$ is non-empty, and for which there is no irreducible closed subset properly contained in $Z$ and properly containing $\{ x\} $ (because pull-back to $\mathop{\mathrm{Spec}}\mathcal{O}_{X,x}$ induces a bijection between irreducible closed subsets of $X$ containing $x$ and irreducible closed subsets of $\mathop{\mathrm{Spec}}\mathcal{O}_{X,x}$). Since $U \cap Z$ is a non-empty closed subset of $U$, it contains a point $u$ that is closed in $X$ (since $X$ is Jacobson), and since $U\cap Z$ is a non-empty (and hence dense) open subset of the irreducible set $Z$ (which contains a point not lying in $U$, namely $x$), the inclusion $\{ u\}  \subset U\cap Z$ is proper. 
+    <p>
+      As $X$ is catenary, the chain 
+    <p>
+      <div class="equation">
+  \[  X = Z_0 \supset Z \supset \{ x\}  = Z_ d  \]
+</div>
+    <p>
+       can be refined to a chain of length $d+1$, which must then be of the form 
+    <p>
+      <div class="equation">
+  \[  X = Z_0 \supset W_1 \supset \ldots \supset W_{d-1} = Z \supset \{ x\}  = Z_ d.  \]
+</div>
+    <p>
+       Since $U\cap Z$ is non-empty, we then find that 
+    <p>
+      <div class="equation">
+  \[  U = U \cap Z_0 \supset U \cap W_1\supset \ldots \supset U\cap W_{d-1} = U\cap Z \supset \{ u\}   \]
+</div>
+    <p>
+       is a strictly decreasing chain of irreducible closed subsets of $U$ of length $d+1$, showing that $\dim U \geq d$, as required. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We will prove a stack-theoretic analogue of Lemma <a href="/tag/0DRT" data-tag="0DRT">107.5.13</a> in Lemma <a href="/tag/0DRX" data-tag="0DRX">107.5.17</a> below, but before doing so, we have to introduce an additional definition, necessitated by the fact that the notion of a scheme being catenary is not an étale local one (see the example of Algebra, Remark <a href="/tag/0355" data-tag="0355">10.164.8</a> which makes it difficult to define what it means for an algebraic space or algebraic stack to be catenary (see the discussion of <span class="cite">[<span class="postnote">page 3</span>, <a href="/bibliography/Osserman">Osserman</a>]</span>). For certain aspects of dimension theory, the following definition seems to provide a good substitute for the missing notion of a catenary algebraic stack. 
+</p>
+<p>
+<article class="env-definition" id="0DRU">
+  <p><a class="environment-identifier" href="/tag/0DRU">Definition <span data-tag="0DRU">107.5.14</span>.</a> We say that a locally Noetherian algebraic stack $\mathcal{X}$ is <em>pseudo-catenary</em> if there exists a smooth and surjective morphism $U \to \mathcal{X}$ whose source is a universally catenary scheme. </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="0DRV">
+  <p><a class="environment-identifier" href="/tag/0DRV">Example <span data-tag="0DRV">107.5.15</span>.</a> If $\mathcal{X}$ is locally of finite type over a universally catenary locally Noetherian scheme $S$, and $U\to \mathcal{X}$ is a smooth surjective morphism whose source is a scheme, then the composite $U \to \mathcal{X} \to S$ is locally of finite type, and so $U$ is universally catenary Morphisms, Lemma <a href="/tag/02J9" data-tag="02J9">29.17.2</a>. Thus $\mathcal{X}$ is pseudo-catenary. </p>
+</article> 
+</p>
+<p>
+The following lemma shows that the property of being pseudo-catenary passes through finite-type morphisms. 
+</p>
+<p>
+<article class="env-lemma" id="0DRW">
+  <p><a class="environment-identifier" href="/tag/0DRW">Lemma <span data-tag="0DRW">107.5.16</span>.</a> If $\mathcal{X}$ is a pseudo-catenary locally Noetherian algebraic stack, and if $\mathcal{Y} \to \mathcal{X}$ is a locally of finite type morphism, then there exists a smooth surjective morphism $V \to \mathcal{Y}$ whose source is a universally catenary scheme; thus $\mathcal{Y}$ is again pseudo-catenary. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By assumption we may find a smooth surjective morphism $U \to \mathcal{X}$ whose source is a universally catenary scheme. The base-change $U\times _{\mathcal{X}} \mathcal{Y}$ is then an algebraic stack; let $V \to U\times _{\mathcal{X}} \mathcal{Y}$ be a smooth surjective morphism whose source is a scheme. The composite $V \to U\times _{\mathcal{X}} \mathcal{Y} \to \mathcal{Y}$ is then smooth and surjective (being a composite of smooth and surjective morphisms), while the morphism $V \to U\times _{\mathcal{X}} \mathcal{Y} \to U$ is locally of finite type (being a composite of morphisms that are locally finite type). Since $U$ is universally catenary, we see that $V$ is universally catenary (by Morphisms, Lemma <a href="/tag/02J9" data-tag="02J9">29.17.2</a>), as claimed. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We now study the behaviour of the function $\dim _ x(\mathcal{X})$ on $|\mathcal{X}|$ (for some locally Noetherian stack $\mathcal{X}$) with respect to the irreducible components of $|\mathcal{X}|$, as well as various related topics. 
+</p>
+<p>
+<article class="env-lemma" id="0DRX">
+  <p><a class="environment-identifier" href="/tag/0DRX">Lemma <span data-tag="0DRX">107.5.17</span>.</a> If $\mathcal{X}$ is a Jacobson, pseudo-catenary, and locally Noetherian algebraic stack for which $|\mathcal{X}|$ is irreducible, then $\dim _ x(\mathcal{X})$ is a constant function on $|\mathcal{X}|$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It suffices to show that $\dim _ x(\mathcal{X})$ is locally constant on $|\mathcal{X}|$, since it will then necessarily be constant (as $|\mathcal{X}|$ is connected, being irreducible). Since $\mathcal{X}$ is pseudo-catenary, we may find a smooth surjective morphism $U \to \mathcal{X}$ with $U$ being a universally catenary scheme. If $\{ U_ i\} $ is an cover of $U$ by quasi-compact open subschemes, we may replace $U$ by $\coprod U_ i,$, and it suffices to show that the function $u \mapsto \dim _{f(u)}(\mathcal{X})$ is locally constant on $U_ i$. Since we check this for one $U_ i$ at a time, we now drop the subscript, and write simply $U$ rather than $U_ i$. Since $U$ is quasi-compact, it is the union of a finite number of irreducible components, say $T_1 \cup \ldots \cup T_ n$. Note that each $T_ i$ is Jacobson, catenary, and locally Noetherian, being a closed subscheme of the Jacobson, catenary, and locally Noetherian scheme $U$. 
+    <p>
+      By Lemma <a href="/tag/0DRI" data-tag="0DRI">107.5.4</a>, we have $\dim _{f(u)}(\mathcal{X}) = \dim _{u}(U) - \dim _{u}(U_{f(u)}).$ Lemma <a href="/tag/0DRQ" data-tag="0DRQ">107.5.11</a> (2) shows that the second term in the right hand expression is locally constant on $U$, as $f$ is smooth, and hence we must show that $\dim _ u(U)$ is locally constant on $U$. Since $\dim _ u(U)$ is the maximum of the dimensions $\dim _ u T_ i$, as $T_ i$ ranges over the components of $U$ containing $u$, it suffices to show that if a point $u$ lies on two distinct components, say $T_ i$ and $T_ j$ (with $i \neq j$), then $\dim _ u T_ i = \dim _ u T_ j$, and then to note that $t\mapsto \dim _ t T$ is a constant function on an irreducible Jacobson, catenary, and locally Noetherian scheme $T$ (as follows from Lemma <a href="/tag/0DRT" data-tag="0DRT">107.5.13</a>). 
+    <p>
+      Let $V = T_ i \setminus (\bigcup _{i' \neq i} T_{i'})$ and $W = T_ j \setminus (\bigcup _{i' \neq j} T_{i'})$. Then each of $V$ and $W$ is a non-empty open subset of $U$, and so each has non-empty open image in $|\mathcal{X}|$. As $|\mathcal{X}|$ is irreducible, these two non-empty open subsets of $|\mathcal{X}|$ have a non-empty intersection. Let $x$ be a point lying in this intersection, and let $v \in V$ and $w\in W$ be points mapping to $x$. We then find that 
+    <p>
+      <div class="equation">
+  \[  \dim T_ i = \dim V = \dim _ v (U) = \dim _ x (\mathcal{X}) + \dim _ v (U_ x)  \]
+</div>
+    <p>
+       and similarly that 
+    <p>
+      <div class="equation">
+  \[  \dim T_ j = \dim W = \dim _ w (U) = \dim _ x (\mathcal{X}) + \dim _ w (U_ x).  \]
+</div>
+    <p>
+       Since $u \mapsto \dim _ u (U_{f(u)})$ is locally constant on $U$, and since $T_ i \cup T_ j$ is connected (being the union of two irreducible, hence connected, sets that have non-empty intersection), we see that $\dim _ v (U_ x) = \dim _ w(U_ x)$, and hence, comparing the preceding two equations, that $\dim T_ i = \dim T_ j$, as required. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DRY">
+  <p><a class="environment-identifier" href="/tag/0DRY">Lemma <span data-tag="0DRY">107.5.18</span>.</a> If $\mathcal{Z} \hookrightarrow \mathcal{X}$ is a closed immersion of locally Noetherian algebraic stacks, and if $z \in |\mathcal{Z}|$ has image $x \in |\mathcal{X}|$, then $\dim _ z (\mathcal{Z}) \leq \dim _ x(\mathcal{X})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a smooth surjective morphism $U\to \mathcal{X}$ whose source is a scheme; the base-changed morphism $V = U\times _{\mathcal{X}} \mathcal{Z} \to \mathcal{Z}$ is then also smooth and surjective, and the projection $V \to U$ is a closed immersion. If $v \in |V|$ maps to $z \in |\mathcal{Z}|$, and if we let $u$ denote the image of $v$ in $|U|$, then clearly $\dim _ v(V) \leq \dim _ u(U)$, while $\dim _ v (V_ z) = \dim _ u(U_ x)$, by Lemma <a href="/tag/0DRN" data-tag="0DRN">107.5.9</a>. Thus 
+    <p>
+      <div class="equation">
+  \[  \dim _ z(\mathcal{Z}) = \dim _ v(V) - \dim _ v(V_ z) \leq \dim _ u(U) - \dim _ u(U_ x) = \dim _ x(\mathcal{X}),  \]
+</div>
+    <p>
+       as claimed. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DRZ">
+  <p><a class="environment-identifier" href="/tag/0DRZ">Lemma <span data-tag="0DRZ">107.5.19</span>.</a> If $\mathcal{X}$ is a locally Noetherian algebraic stack, and if $x \in |\mathcal{X}|$, then $\dim _ x(\mathcal{X}) = \sup _{\mathcal{T}} \{  \dim _ x(\mathcal{T}) \}  $, where $\mathcal{T}$ runs over all the irreducible components of $|\mathcal{X}|$ passing through $x$ (endowed with their induced reduced structure). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Lemma <a href="/tag/0DRY" data-tag="0DRY">107.5.18</a> shows that $\dim _ x (\mathcal{T}) \leq \dim _ x(\mathcal{X})$ for each irreducible component $\mathcal{T}$ passing through the point $x$. Thus to prove the lemma, it suffices to show that 
+    <p>
+      <div class="equation" id="0DS0">
+    <span class="equation-label"><a href="/tag/0DS0" data-tag="0DS0">107.5.19.1</a></span>
+  <div>\begin{equation}  \label{stacks-geometry-equation-desired-inequality} \dim _ x(\mathcal{X}) \leq \sup _{\mathcal{T}} \{ \dim _ x(\mathcal{T})\} . \end{equation}</div>
+</div>
+    <p>
+       Let $U\to \mathcal{X}$ be a smooth cover by a scheme. If $T$ is an irreducible component of $U$ then we let $\mathcal{T}$ denote the closure of its image in $\mathcal{X}$, which is an irreducible component of $\mathcal{X}$. Let $u \in U$ be a point mapping to $x$. Then we have $\dim _ x(\mathcal{X})=\dim _ uU-\dim _ uU_ x=\sup _ T\dim _ uT-\dim _ uU_ x$, where the supremum is over the irreducible components of $U$ passing through $u$. Choose a component $T$ for which the supremum is achieved, and note that $\dim _ x(\mathcal{T})=\dim _ uT-\dim _ u T_ x$. The desired inequality (<a href="/tag/0DS0" data-tag="0DS0">107.5.19.1</a>) now follows from the evident inequality $\dim _ u T_ x \leq \dim _ u U_ x.$ (Note that if $\mathop{\mathrm{Spec}}k \to \mathcal{X}$ is a representative of $x$, then $T\times _{\mathcal{X}} \mathop{\mathrm{Spec}}k$ is a closed subspace of $U\times _{\mathcal{X}} \mathop{\mathrm{Spec}}k$.) 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DS1">
+  <p><a class="environment-identifier" href="/tag/0DS1">Lemma <span data-tag="0DS1">107.5.20</span>.</a> If $\mathcal{X}$ is a locally Noetherian algebraic stack, and if $x \in |\mathcal{X}|$, then for any open substack $\mathcal{V}$ of $\mathcal{X}$ containing $x$, there is a finite type point $x_0 \in |\mathcal{V}|$ such that $\dim _{x_0}(\mathcal{X}) = \dim _ x(\mathcal{V})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a smooth surjective morphism $f:U \to \mathcal{X}$ whose source is a scheme, and consider the function $u \mapsto \dim _{f(u)}(\mathcal{X});$ since the morphism $|U| \to |\mathcal{X}|$ induced by $f$ is open (as $f$ is smooth) as well as surjective (by assumption), and takes finite type points to finite type points (by the very definition of the finite type points of $|\mathcal{X}|$), it suffices to show that for any $u \in U$, and any open neighbourhood of $u$, there is a finite type point $u_0$ in this neighbourhood such that $\dim _{f(u_0)}(\mathcal{X}) = \dim _{f(u)}(\mathcal{X}).$ Since, with this reformulation of the problem, the surjectivity of $f$ is no longer required, we may replace $U$ by the open neighbourhood of the point $u$ in question, and thus reduce to the problem of showing that for each $u \in U$, there is a finite type point $u_0 \in U$ such that $\dim _{f(u_0)}(\mathcal{X}) = \dim _{f(u)}(\mathcal{X}).$ By Lemma <a href="/tag/0DRI" data-tag="0DRI">107.5.4</a> $\dim _{f(u)}(\mathcal{X}) = \dim _ u(U) - \dim _ u(U_{f(u)}),$ while $\dim _{f(u_0)}(\mathcal{X}) = \dim _{u_0}(U) - \dim _{u_0}(U_{f(u_0)}).$ Since $f$ is smooth, the expression $\dim _{u_0}(U_{f(u_0)})$ is locally constant as $u_0$ varies over $U$ (by Lemma <a href="/tag/0DRQ" data-tag="0DRQ">107.5.11</a> (2)), and so shrinking $U$ further around $u$ if necessary, we may assume it is constant. Thus the problem becomes to show that we may find a finite type point $u_0 \in U$ for which $\dim _{u_0}(U) = \dim _ u(U)$. Since by definition $\dim _ u U$ is the minimum of the dimensions $\dim V$, as $V$ ranges over the open neighbourhoods $V$ of $u$ in $U$, we may shrink $U$ down further around $u$ so that $\dim _ u U = \dim U$. The existence of desired point $u_0$ then follows from Lemma <a href="/tag/0DRR" data-tag="0DRR">107.5.12</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DS2">
+  <p><a class="environment-identifier" href="/tag/0DS2">Lemma <span data-tag="0DS2">107.5.21</span>.</a> Let $\mathcal{T} \hookrightarrow \mathcal{X}$ be a locally of finite type monomorphism of algebraic stacks, with $\mathcal{X}$ (and thus also $\mathcal{T}$) being Jacobson, pseudo-catenary, and locally Noetherian. Suppose further that $\mathcal{T}$ is irreducible of some (finite) dimension $d$, and that $\mathcal{X}$ is reduced and of dimension less than or equal to $d$. Then there is a non-empty open substack $\mathcal{V}$ of $\mathcal{T}$ such that the induced monomorphism $\mathcal{V} \hookrightarrow \mathcal{X}$ is an open immersion which identifies $\mathcal{V}$ with an open subset of an irreducible component of $\mathcal{X}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a smooth surjective morphism $f:U \to \mathcal{X}$ with source a scheme, necessarily reduced since $\mathcal{X}$ is, and write $U' = \mathcal{T}\times _{\mathcal{X}} U$. The base-changed morphism $U' \to U$ is a monomorphism of algebraic spaces, locally of finite type, and thus representable Morphisms of Spaces, Lemma <a href="/tag/0418" data-tag="0418">67.51.1</a> and <a href="/tag/0463" data-tag="0463">67.27.10</a>; since $U$ is a scheme, so is $U'$. The projection $f': U' \to \mathcal{T}$ is again a smooth surjection. Let $u' \in U'$, with image $u \in U$. Lemma <a href="/tag/0DRN" data-tag="0DRN">107.5.9</a> shows that $\dim _{u'}(U'_{f(u')}) = \dim _ u(U_{f(u)}),$ while $\dim _{f'(u')}(\mathcal{T}) =d \geq \dim _{f(u)}(\mathcal{X})$ by Lemma <a href="/tag/0DRX" data-tag="0DRX">107.5.17</a> and our assumptions on $\mathcal{T}$ and $\mathcal{X}$. Thus we see that 
+    <p>
+      <div class="equation" id="0DS3">
+    <span class="equation-label"><a href="/tag/0DS3" data-tag="0DS3">107.5.21.1</a></span>
+  <div>\begin{equation}  \label{stacks-geometry-equation-dim-inequality} \dim _{u'} (U') = \dim _{u'} (U'_{f(u')}) + \dim _{f'(u')}(\mathcal{T}) \\ \geq \dim _ u (U_{f(u)}) + \dim _{f(u)}(\mathcal{X}) = \dim _ u (U). \end{equation}</div>
+</div>
+    <p>
+       Since $U' \to U$ is a monomorphism, locally of finite type, it is in particular unramified, and so by the étale local structure of unramified morphisms Étale Morphisms, Lemma <a href="/tag/04HJ" data-tag="04HJ">41.17.3</a>, we may find a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ V' \ar[r]\ar[d] &  V \ar[d] \\  U' \ar[r] &  U }  \]
+</div>
+    <p>
+       in which the scheme $V'$ is non-empty, the vertical arrows are étale, and the upper horizontal arrow is a closed immersion. Replacing $V$ by a quasi-compact open subset whose image has non-empty intersection with the image of $U'$, and replacing $V'$ by the preimage of $V$, we may further assume that $V$ (and thus $V'$) is quasi-compact. Since $V$ is also locally Noetherian, it is thus Noetherian, and so is the union of finitely many irreducible components. 
+    <p>
+      Since étale morphisms preserve pointwise dimension Descent, Lemma <a href="/tag/04N4" data-tag="04N4">35.21.2</a> we deduce from (<a href="/tag/0DS3" data-tag="0DS3">107.5.21.1</a>) that for any point $v' \in V'$, with image $v \in V$, we have $\dim _{v'}( V') \geq \dim _ v(V)$. In particular, the image of $V'$ can't be contained in the intersection of two distinct irreducible components of $V$, and so we may find at least one irreducible open subset of $V$ which has non-empty intersection with $V'$; replacing $V$ by this subset, we may assume that $V$ is integral (being both reduced and irreducible). From the preceding inequality on dimensions, we conclude that the closed immersion $V' \hookrightarrow V$ is in fact an isomorphism. If we let $W$ denote the image of $V'$ in $U'$, then $W$ is a non-empty open subset of $U'$ (as étale morphisms are open), and the induced monomorphism $W \to U$ is étale (since it is so étale locally on the source, i.e. after pulling back to $V'$), and hence is an open immersion (being an étale monomorphism). Thus, if we let $\mathcal{V}$ denote the image of $W$ in $\mathcal{T}$, then $\mathcal{V}$ is a dense (equivalently, non-empty) open substack of $\mathcal{T}$, whose image is dense in an irreducible component of $\mathcal{X}$. Finally, we note that the morphism is $\mathcal{V} \to \mathcal{X}$ is smooth (since its composite with the smooth morphism $W\to \mathcal{V}$ is smooth), and also a monomorphism, and thus is an open immersion. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DS4">
+  <p><a class="environment-identifier" href="/tag/0DS4">Lemma <span data-tag="0DS4">107.5.22</span>.</a> Let $f: \mathcal{T} \to \mathcal{X}$ be a locally of finite type morphism of Jacobson, pseudo-catenary, and locally Noetherian algebraic stacks, whose source is irreducible and whose target is quasi-separated, and let $\mathcal{Z} \hookrightarrow \mathcal{X}$ denote the scheme-theoretic image of $\mathcal{T}$. Then for all $t \in |T|$, we have that $\dim _ t( \mathcal{T}_{f(t)}) \geq \dim \mathcal{T} - \dim \mathcal{Z}$, and there is a non-empty (equivalently, dense) open subset of $|\mathcal{T}|$ over which equality holds. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Replacing $\mathcal{X}$ by $\mathcal{Z}$, we may and do assume that $f$ is scheme theoretically dominant, and also that $\mathcal{X}$ is irreducible. By the upper semi-continuity of fibre dimensions (Lemma <a href="/tag/0DRQ" data-tag="0DRQ">107.5.11</a> (1)), it suffices to prove that the equality $\dim _ t( \mathcal{T}_{f(t)}) =\dim \mathcal{T} - \dim \mathcal{Z}$ holds for $t$ lying in some non-empty open substack of $\mathcal{T}$. For this reason, in the argument we are always free to replace $\mathcal{T}$ by a non-empty open substack. 
+    <p>
+      Let $T' \to \mathcal{T}$ be a smooth surjective morphism whose source is a scheme, and let $T$ be a non-empty quasi-compact open subset of $T'$. Since $\mathcal{Y}$ is quasi-separated, we find that $T \to \mathcal{Y}$ is quasi-compact (by Morphisms of Stacks, Lemma <a href="/tag/050Y" data-tag="050Y">101.7.7</a>, applied to the morphisms $T \to \mathcal{Y} \to \mathop{\mathrm{Spec}}\mathbf{Z}$). Thus, if we replace $\mathcal{T}$ by the image of $T$ in $\mathcal{T}$, then we may assume (appealing to Morphisms of Stacks, Lemma <a href="/tag/050X" data-tag="050X">101.7.6</a> that the morphism $f:\mathcal{T} \to \mathcal{X}$ is quasi-compact. 
+    <p>
+      If we choose a smooth surjection $U \to \mathcal{X}$ with $U$ a scheme, then Lemma <a href="/tag/0DR5" data-tag="0DR5">107.3.1</a> ensures that we may find an irreducible open subset $V$ of $U$ such that $V \to \mathcal{X}$ is smooth and scheme-theoretically dominant. Since scheme-theoretic dominance for quasi-compact morphisms is preserved by flat base-change, the base-change $\mathcal{T} \times _{\mathcal{X}} V \to V$ of the scheme-theoretically dominant morphism $f$ is again scheme-theoretically dominant. We let $Z$ denote a scheme admitting a smooth surjection onto this fibre product; then $Z \to \mathcal{T} \times _{\mathcal{X}} V \to V$ is again scheme-theoretically dominant. Thus we may find an irreducible component $C$ of $Z$ which scheme-theoretically dominates $V$. Since the composite $Z \to \mathcal{T}\times _{\mathcal{X}} V \to \mathcal{T}$ is smooth, and since $\mathcal{T}$ is irreducible, Lemma <a href="/tag/0DR5" data-tag="0DR5">107.3.1</a> shows that any irreducible component of the source has dense image in $|\mathcal{T}|$. We now replace $C$ by a non-empty open subset $W$ which is disjoint from every other irreducible component of $Z$, and then replace $\mathcal{T}$ and $\mathcal{X}$ by the images of $W$ and $V$ (and apply Lemma <a href="/tag/0DRX" data-tag="0DRX">107.5.17</a> to see that this doesn't change the dimension of either $\mathcal{T}$ or $\mathcal{X}$). If we let $\mathcal{W}$ denote the image of the morphism $W \to \mathcal{T}\times _{\mathcal{X}} V$, then $\mathcal{W}$ is open in $\mathcal{T}\times _{\mathcal{X}} V$ (since the morphism $W \to \mathcal{T}\times _{\mathcal{X}} V$ is smooth), and is irreducible (being the image of an irreducible scheme). Thus we end up with a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ W \ar[dr] \ar[r] &  \mathcal{W} \ar[r] \ar[d] &  V \ar[d] \\  &  \mathcal{T} \ar[r] &  \mathcal{X} }  \]
+</div>
+    <p>
+       in which $W$ and $V$ are schemes, the vertical arrows are smooth and surjective, the diagonal arrows and the left-hand upper horizontal arroware smooth, and the induced morphism $\mathcal{W} \to \mathcal{T}\times _{\mathcal{X}} V$ is an open immersion. Using this diagram, together with the definitions of the various dimensions involved in the statement of the lemma, we will reduce our verification of the lemma to the case of schemes, where it is known. 
+    <p>
+      Fix $w \in |W|$ with image $w' \in |\mathcal{W}|$, image $t \in |\mathcal{T}|$, image $v$ in $|V|$, and image $x$ in $|\mathcal{X}|$. Essentially by definition (using the fact that $\mathcal{W}$ is open in $\mathcal{T}\times _{\mathcal{X}} V$, and that the fibre of a base-change is the base-change of the fibre), we obtain the equalities 
+    <p>
+      <div class="equation">
+  \[  \dim _ v V_ x = \dim _{w'} \mathcal{W}_ t  \]
+</div>
+    <p>
+       and 
+    <p>
+      <div class="equation">
+  \[  \dim _ t \mathcal{T}_ x = \dim _{w'} \mathcal{W}_ v.  \]
+</div>
+    <p>
+       By Lemma <a href="/tag/0DRI" data-tag="0DRI">107.5.4</a> (the diagonal arrow and right-hand vertical arrow in our diagram realise $W$ and $V$ as smooth covers by schemes of the stacks $\mathcal{T}$ and $\mathcal{X}$), we find that 
+    <p>
+      <div class="equation">
+  \[  \dim _ t \mathcal{T} = \dim _ w W - \dim _ w W_ t  \]
+</div>
+    <p>
+       and 
+    <p>
+      <div class="equation">
+  \[  \dim _ x \mathcal{X} = \dim _ v V - \dim _ v V_ x.  \]
+</div>
+    <p>
+       Combining the equalities, we find that 
+    <p>
+      <div class="equation">
+  \[  \dim _ t \mathcal{T}_ x - \dim _ t \mathcal{T} + \dim _ x \mathcal{X} = \dim _{w'} \mathcal{W}_ v - \dim _ w W + \dim _ w W_ t + \dim _ v V - \dim _{w'} \mathcal{W}_ t  \]
+</div>
+    <p>
+       Since $W \to \mathcal{W}$ is a smooth surjection, the same is true if we base-change over the morphism $\mathop{\mathrm{Spec}}\kappa (v) \to V$ (thinking of $W \to \mathcal{W}$ as a morphism over $V$), and from this smooth morphism we obtain the first of the following two equalities 
+    <p>
+      <div class="equation">
+  \[  \dim _ w W_ v - \dim _{w'} \mathcal{W}_ v = \dim _ w (W_ v)_{w'} = \dim _ w W_{w'};  \]
+</div>
+    <p>
+       the second equality follows via a direct comparison of the two fibres involved. Similarly, if we think of $W \to \mathcal{W}$ as a morphism of schemes over $\mathcal{T}$, and base-change over some representative of the point $t \in |\mathcal{T}|$, we obtain the equalities 
+    <p>
+      <div class="equation">
+  \[  \dim _ w W_ t - \dim _{w'} \mathcal{W}_ t = \dim _ w (W_ t)_{w'} = \dim _ w W_{w'}.  \]
+</div>
+    <p>
+       Putting everything together, we find that 
+    <p>
+      <div class="equation">
+  \[  \dim _ t \mathcal{T}_ x - \dim _ t \mathcal{T} + \dim _ x \mathcal{X} = \dim _ w W_ v - \dim _ w W + \dim _ v V.  \]
+</div>
+    <p>
+       Our goal is to show that the left-hand side of this equality vanishes for a non-empty open subset of $t$. As $w$ varies over a non-empty open subset of $W$, its image $t \in |\mathcal{T}|$ varies over a non-empty open subset of $|\mathcal{T}|$ (as $W \to \mathcal{T}$ is smooth). 
+    <p>
+      We are therefore reduced to showing that if $W\to V$ is a scheme-theoretically dominant morphism of irreducible locally Noetherian schemes that is locally of finite type, then there is a non-empty open subset of points $w\in W$ such that $\dim _ w W_ v =\dim _ w W - \dim _ v V$ (where $v$ denotes the image of $w$ in $V$). This is a standard fact, whose proof we recall for the convenience of the reader. 
+    <p>
+      We may replace $W$ and $V$ by their underlying reduced subschemes without altering the validity (or not) of this equation, and thus we may assume that they are in fact integral schemes. Since $\dim _ w W_ v$ is locally constant on $W,$ replacing $W$ by a non-empty open subset if necessary, we may assume that $\dim _ w W_ v$ is constant, say equal to $d$. Choosing this open subset to be affine, we may also assume that the morphism $W\to V$ is in fact of finite type. Replacing $V$ by a non-empty open subset if necessary (and then pulling back $W$ over this open subset; the resulting pull-back is non-empty, since the flat base-change of a quasi-compact and scheme-theoretically dominant morphism remains scheme-theoretically dominant), we may furthermore assume that $W$ is flat over $V$. The morphism $W\to V$ is thus of relative dimension $d$ in the sense of Morphisms, Definition <a href="/tag/02NJ" data-tag="02NJ">29.30.1</a> and it follows from Morphisms, Lemma <a href="/tag/0AFE" data-tag="0AFE">29.30.6</a> that $\dim _ w(W) = \dim _ v(V) + d,$ as required. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0DS5">
+  <p><a class="environment-identifier" href="/tag/0DS5">Remark <span data-tag="0DS5">107.5.23</span>.</a> We note that in the context of the preceding lemma, it need not be that $\dim \mathcal{T} \geq \dim \mathcal{Z}$; this does not contradict the inequality in the statement of the lemma, because the fibres of the morphism $f$ are again algebraic stacks, and so may have negative dimension. This is illustrated by taking $k$ to be a field, and applying the lemma to the morphism $[\mathop{\mathrm{Spec}}k/\mathbf{G}_ m] \to \mathop{\mathrm{Spec}}k$. </p>
+  <p>If the morphism $f$ in the statement of the lemma is assumed to be quasi-DM (in the sense of Morphisms of Stacks, Definition <a href="/tag/04YW" data-tag="04YW">101.4.1</a>; e.g. morphisms that are representable by algebraic spaces are quasi-DM), then the fibres of the morphism over points of the target are quasi-DM algebraic stacks, and hence are of non-negative dimension. In this case, the lemma implies that indeed $\dim \mathcal{T} \geq \dim \mathcal{Z}$. In fact, we obtain the following more general result. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0DS6">
+  <p><a class="environment-identifier" href="/tag/0DS6">Lemma <span data-tag="0DS6">107.5.24</span>.</a> Let $f: \mathcal{T} \to \mathcal{X}$ be a locally of finite type morphism of Jacobson, pseudo-catenary, and locally Noetherian algebraic stacks which is quasi-DM, whose source is irreducible and whose target is quasi-separated, and let $\mathcal{Z} \hookrightarrow \mathcal{X}$ denote the scheme-theoretic image of $\mathcal{T}$. Then $\dim \mathcal{Z} \leq \dim \mathcal{T}$, and furthermore, exactly one of the following two conditions holds: </p>
+  <p><ol>
+  <li><p>
+for every finite type point $t \in |T|,$ we have $\dim _ t(\mathcal{T}_{f(t)}) > 0,$ in which case $\dim \mathcal{Z} < \dim \mathcal{T}$; or 
+</p>
+</li><li><p>
+$\mathcal{T}$ and $\mathcal{Z}$ are of the same dimension. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      As was observed in the preceding remark, the dimension of a quasi-DM stack is always non-negative, from which we conclude that $\dim _ t \mathcal{T}_{f(t)} \geq 0$ for all $t \in |\mathcal{T}|$, with the equality 
+    <p>
+      <div class="equation">
+  \[  \dim _ t \mathcal{T}_{f(t)} = \dim _ t \mathcal{T} - \dim _{f(t)} \mathcal{Z}  \]
+</div>
+    <p>
+       holding for a dense open subset of points $t\in |\mathcal{T}|$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

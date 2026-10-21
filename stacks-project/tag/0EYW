@@ -1,0 +1,85 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-algebra-section-tricks" class="tex-section"><span data-tag="0EYW">15.105</span> Tricks with double complexes</h2>
+
+<p>
+This section continues the discussion in Homology, Section <a href="/tag/0E1P" data-tag="0E1P">12.26</a>. 
+</p>
+<p>
+<article class="env-lemma" id="0H0Q">
+  <p><a class="environment-identifier" href="/tag/0H0Q">Lemma <span data-tag="0H0Q">15.105.1</span>.</a> Let $A_0^\bullet \to A_1^\bullet \to A_2^\bullet \to \ldots $ be a complex of complexes of abelian groups. Assume $H^{-p}(A_ p^\bullet ) = 0$ for all $p \geq 0$. Set $A^{p, q} = A_ p^ q$ and view $A^{\bullet , \bullet }$ as a double complex. Then $H^0(\text{Tot}_\pi (A^{\bullet , \bullet })) = 0$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Denote $f_ p : A_ p^\bullet \to A_{p + 1}^\bullet $ the given maps of complexes. Recall that the differential on $\text{Tot}_\pi (A^{\bullet , \bullet })$ is given by 
+    <p>
+      <div class="equation">
+  \[  \prod \nolimits _{p + q = n} (f^ q_ p + (-1)^ p\text{d}^ q_{A_ p^\bullet })  \]
+</div>
+    <p>
+       on elements in degree $n$. Let $\xi \in H^0(\text{Tot}_\pi (A^{\bullet , \bullet }))$ be a cohomology class. We will show $\xi $ is zero. Represent $\xi $ as the class of an cocycle $x = (x_ p) \in \prod A^{p, -p}$. Since $\text{d}(x) = 0$ we find that $\text{d}_{A_0^\bullet }(x_0) = 0$. Since $H^0(A_0^\bullet ) = 0$ there exists a $y_{-1} \in A^{0, -1}$ with $\text{d}_{A_0^\bullet }(y_{-1}) = x_0$. Then we see that $\text{d}_{A_1^\bullet }(x_1 + f_0(y_{-1})) = 0$. Since $H^{-1}(A_1^\bullet ) = 0$ we can find a $y_{-2} \in A^{1, -2}$ such that $-\text{d}_{A_1^\bullet }(y_{-2}) = x_1 + f_0(y_{-1})$. By induction we can find $y_{-p - 1} \in A^{p, -p - 1}$ such that 
+    <p>
+      <div class="equation">
+  \[  (-1)^ p\text{d}_{A_ p^\bullet }(y_{-p - 1}) = x_ p + f_{p - 1}(y_{-p})  \]
+</div>
+    <p>
+       This implies that $\text{d}(y) = x$ where $y = (y_{-p - 1})$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0EYX">
+  <p><a class="environment-identifier" href="/tag/0EYX">Lemma <span data-tag="0EYX">15.105.2</span>.</a> Let </p>
+  <div class="equation">
+  \[  (A_0^\bullet \to A_1^\bullet \to A_2^\bullet \to \ldots ) \longrightarrow (B_0^\bullet \to B_1^\bullet \to B_2^\bullet \to \ldots )  \]
+</div>
+  <p> be a map between two complexes of complexes of abelian groups. Set $A^{p, q} = A_ p^ q$, $B^{p, q} = B_ p^ q$ to obtain double complexes. Let $\text{Tot}_\pi (A^{\bullet , \bullet })$ and $\text{Tot}_\pi (B^{\bullet , \bullet })$ be the product total complexes associated to the double complexes. If each $A_ p^\bullet \to B_ p^\bullet $ is a quasi-isomorphism, then $\text{Tot}_\pi (A^{\bullet , \bullet }) \to \text{Tot}_\pi (B^{\bullet , \bullet })$ is a quasi-isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Recall that $\text{Tot}_\pi (A^{\bullet , \bullet })$ in degree $n$ is given by $\prod _{p + q = n} A^{p, q} = \prod _{p + 1 = n} A^ q_ p$. Let $C_ p^\bullet $ be the cone on the map $A_ p^\bullet \to B_ p^\bullet $, see Derived Categories, Section <a href="/tag/014D" data-tag="014D">13.9</a>. By the functoriality of the cone construction we obtain a complex of complexes 
+    <p>
+      <div class="equation">
+  \[  C_0^\bullet \to C_1^\bullet \to C_2^\bullet \to \ldots  \]
+</div>
+    <p>
+       Then we see $\text{Tot}_\pi (C^{\bullet , \bullet })$ in degree $n$ is given by 
+    <p>
+      <div class="equation">
+  \[  \prod _{p + q = n} C^{p, q} = \prod _{p + q = n} C^ q_ p = \prod _{p + q = n} (B^ q_ p \oplus A^{q + 1}_ p) = \prod _{p + q = n} B^ q_ p \oplus \prod _{p + q = n} A^{q + 1}_ p  \]
+</div>
+    <p>
+       We conclude that $\text{Tot}_\pi (C^{\bullet , \bullet })$ is the cone of the map $\text{Tot}_\pi (A^{\bullet , \bullet }) \to \text{Tot}_\pi (B^{\bullet , \bullet })$ (We omit the verification that the differentials agree.) Thus it suffices to show $\text{Tot}_\pi (A^{\bullet , \bullet })$ is acyclic if each $A_ p^\bullet $ is acyclic. This follows from Lemma <a href="/tag/0H0Q" data-tag="0H0Q">15.105.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

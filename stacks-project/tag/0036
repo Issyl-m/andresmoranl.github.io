@@ -1,0 +1,279 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="categories-section-adjoint" class="tex-section"><span data-tag="0036">4.24</span> Adjoint functors</h2>
+
+<p>
+<article class="env-definition" id="0037">
+  <p><a class="environment-identifier" href="/tag/0037">Definition <span data-tag="0037">4.24.1</span>.</a> Let $\mathcal{C}$, $\mathcal{D}$ be categories. Let $u : \mathcal{C} \to \mathcal{D}$ and $v : \mathcal{D} \to \mathcal{C}$ be functors. We say that $u$ is a <em>left adjoint</em> of $v$, or that $v$ is a <em>right adjoint</em> to $u$ if there are bijections </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _\mathcal {D}(u(X), Y) \longrightarrow \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(X, v(Y))  \]
+</div>
+  <p> functorial in $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$, and $Y \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{D})$. </p>
+</article> 
+</p>
+<p>
+In other words, this means that there is a <em>given</em> isomorphism of functors $\mathcal{C}^{opp} \times \mathcal{D} \to \textit{Sets}$ from $\mathop{\mathrm{Mor}}\nolimits _\mathcal {D}(u(-), -)$ to $\mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(-, v(-))$. For any object $X$ of $\mathcal{C}$ we obtain a morphism $X \to v(u(X))$ corresponding to $\text{id}_{u(X)}$. Similarly, for any object $Y$ of $\mathcal{D}$ we obtain a morphism $u(v(Y)) \to Y$ corresponding to $\text{id}_{v(Y)}$. These maps are called the <em>adjunction maps</em>. The adjunction maps are functorial in $X$ and $Y$, hence we obtain morphisms of functors 
+</p>
+<div class="equation">
+  \[  \eta : \text{id}_\mathcal {C} \to v \circ u\quad (\text{unit}) \quad \text{and}\quad \epsilon : u \circ v \to \text{id}_\mathcal {D}\quad (\text{counit}).  \]
+</div>
+<p>
+ Moreover, if $\alpha : u(X) \to Y$ and $\beta : X \to v(Y)$ are morphisms, then the following are equivalent 
+</p>
+<ol>
+  <li><p>
+$\alpha $ and $\beta $ correspond to each other via the bijection of the definition, 
+</p>
+</li><li><p>
+$\beta $ is the composition $X \to v(u(X)) \xrightarrow {v(\alpha )} v(Y)$, and 
+</p>
+</li><li><p>
+$\alpha $ is the composition $u(X) \xrightarrow {u(\beta )} u(v(Y)) \to Y$. 
+</p>
+</li>
+</ol>
+<p>
+ In this way one can reformulate the notion of adjoint functors in terms of adjunction maps. 
+</p>
+<p>
+<article class="env-lemma" id="0A8B">
+  <p><a class="environment-identifier" href="/tag/0A8B">Lemma <span data-tag="0A8B">4.24.2</span>.</a> Let $u : \mathcal{C} \to \mathcal{D}$ be a functor between categories. If for each $y \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{D})$ the functor $x \mapsto \mathop{\mathrm{Mor}}\nolimits _\mathcal {D}(u(x), y)$ is representable, then $u$ has a right adjoint. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      For each $y$ choose an object $v(y)$ and an isomorphism $\mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(-, v(y)) \to \mathop{\mathrm{Mor}}\nolimits _\mathcal {D}(u(-), y)$ of functors. By Yoneda's lemma (Lemma <a href="/tag/001P" data-tag="001P">4.3.5</a>) for any morphism $g : y \to y'$ the transformation of functors 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(-, v(y)) \to \mathop{\mathrm{Mor}}\nolimits _\mathcal {D}(u(-), y) \to \mathop{\mathrm{Mor}}\nolimits _\mathcal {D}(u(-), y') \to \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(-, v(y'))  \]
+</div>
+    <p>
+       corresponds to a unique morphism $v(g) : v(y) \to v(y')$. We omit the verification that $v$ is a functor and that it is right adjoint to $u$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FWV">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0FWV">Lemma <span data-tag="0FWV">4.24.3</span>.</a> Let $u$ be a left adjoint to $v$ as in Definition <a href="/tag/0037" data-tag="0037">4.24.1</a>. </p>
+  <p><ol>
+  <li><p>
+If $v \circ u$ is fully faithful, then $u$ is fully faithful. 
+</p>
+</li><li><p>
+If $u \circ v$ is fully faithful, then $v$ is fully faithful. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Proof of (2). Assume $u \circ v$ is fully faithful. Say we have $X$, $Y$ in $\mathcal{D}$. Then the natural composite map 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits (X,Y) \to \mathop{\mathrm{Mor}}\nolimits (v(X),v(Y)) \to \mathop{\mathrm{Mor}}\nolimits (u(v(X)), u(v(Y)))  \]
+</div>
+    <p>
+       is a bijection, so $v$ is at least faithful. To show full faithfulness, we must show that the second map above is injective. But the adjunction between $u$ and $v$ says that 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits (v(X), v(Y)) \to \mathop{\mathrm{Mor}}\nolimits (u(v(X)), u(v(Y))) \to \mathop{\mathrm{Mor}}\nolimits (u(v(X)), Y)  \]
+</div>
+    <p>
+       is a bijection, where the first map is natural one and the second map comes from the counit $u(v(Y)) \to Y$ of the adjunction. So this says that $\mathop{\mathrm{Mor}}\nolimits (v(X), v(Y)) \to \mathop{\mathrm{Mor}}\nolimits (u(v(X)), u(v(Y)))$ is also injective, as wanted. The proof of (1) is dual to this. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="07RB">
+  <p><a class="environment-identifier" href="/tag/07RB">Lemma <span data-tag="07RB">4.24.4</span>.</a> Let $u$ be a left adjoint to $v$ as in Definition <a href="/tag/0037" data-tag="0037">4.24.1</a>. Then </p>
+  <p><ol>
+  <li><p>
+$u$ is fully faithful $\Leftrightarrow $ $\text{id} \cong v \circ u$ $\Leftrightarrow $ $\eta : \text{id} \to v \circ u$ is an isomorphism, 
+</p>
+</li><li><p>
+$v$ is fully faithful $\Leftrightarrow $ $u \circ v \cong \text{id}$ $\Leftrightarrow $ $\epsilon : u \circ v \to \text{id}$ is an isomorphism. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Proof of (1). Assume $u$ is fully faithful. We will show $\eta _ X : X \to v(u(X))$ is an isomorphism. Let $X' \to v(u(X))$ be any morphism. By adjointness this corresponds to a morphism $u(X') \to u(X)$. By fully faithfulness of $u$ this corresponds to a unique morphism $X' \to X$. Thus we see that post-composing by $\eta _ X$ defines a bijection $\mathop{\mathrm{Mor}}\nolimits (X', X) \to \mathop{\mathrm{Mor}}\nolimits (X', v(u(X)))$. Hence $\eta _ X$ is an isomorphism. If there exists an isomorphism $\text{id} \cong v \circ u$ of functors, then $v \circ u$ is fully faithful. By Lemma <a href="/tag/0FWV" data-tag="0FWV">4.24.3</a> we see that $u$ is fully faithful. By the above this implies $\eta $ is an isomorphism. Thus all $3$ conditions are equivalent (and these conditions are also equivalent to $v \circ u$ being fully faithful). 
+    <p>
+      Part (2) is dual to part (1). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0038">
+  <p><a class="environment-identifier" href="/tag/0038">Lemma <span data-tag="0038">4.24.5</span>.</a> Let $u$ be a left adjoint to $v$ as in Definition <a href="/tag/0037" data-tag="0037">4.24.1</a>. </p>
+  <p><ol>
+  <li><p>
+Suppose that $M : \mathcal{I} \to \mathcal{C}$ is a diagram, and suppose that $\mathop{\mathrm{colim}}\nolimits _\mathcal {I} M$ exists in $\mathcal{C}$. Then $u(\mathop{\mathrm{colim}}\nolimits _\mathcal {I} M) = \mathop{\mathrm{colim}}\nolimits _\mathcal {I} u \circ M$. In other words, $u$ commutes with (representable) colimits. 
+</p>
+</li><li><p>
+Suppose that $M : \mathcal{I} \to \mathcal{D}$ is a diagram, and suppose that $\mathop{\mathrm{lim}}\nolimits _\mathcal {I} M$ exists in $\mathcal{D}$. Then $v(\mathop{\mathrm{lim}}\nolimits _\mathcal {I} M) = \mathop{\mathrm{lim}}\nolimits _\mathcal {I} v \circ M$. In other words $v$ commutes with representable limits. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      A morphism from a colimit into an object is the same as a compatible system of morphisms from the constituents of the limit into the object, see Remark <a href="/tag/002H" data-tag="002H">4.14.4</a>. So 
+    <p>
+      <div class="equation">
+  \[  \begin{matrix}  \mathop{\mathrm{Mor}}\nolimits _\mathcal {D}(u(\mathop{\mathrm{colim}}\nolimits _{i \in \mathcal{I}} M_ i), Y) 
+
+&  = 
+
+&  \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(\mathop{\mathrm{colim}}\nolimits _{i \in \mathcal{I}} M_ i, v(Y)) 
+
+\\ &  = 
+
+&  \mathop{\mathrm{lim}}\nolimits _{i \in \mathcal{I}^{opp}} \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(M_ i, v(Y)) 
+
+\\ &  = 
+
+&  \mathop{\mathrm{lim}}\nolimits _{i \in \mathcal{I}^{opp}} \mathop{\mathrm{Mor}}\nolimits _\mathcal {D}(u(M_ i), Y) 
+
+\end{matrix}  \]
+</div>
+    <p>
+       proves that $u(\mathop{\mathrm{colim}}\nolimits _{i \in \mathcal{I}} M_ i)$ is the colimit we are looking for. A similar argument works for the other statement. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0039">
+  <p><a class="environment-identifier" href="/tag/0039">Lemma <span data-tag="0039">4.24.6</span>.</a> Let $u$ be a left adjoint of $v$ as in Definition <a href="/tag/0037" data-tag="0037">4.24.1</a>. </p>
+  <p><ol>
+  <li><p>
+If $\mathcal{C}$ has finite colimits, then $u$ is right exact. 
+</p>
+</li><li><p>
+If $\mathcal{D}$ has finite limits, then $v$ is left exact. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Obvious from the definitions and Lemma <a href="/tag/0038" data-tag="0038">4.24.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GLL">
+  <p><a class="environment-identifier" href="/tag/0GLL">Lemma <span data-tag="0GLL">4.24.7</span>.</a> Let $u : \mathcal{C} \to \mathcal{D}$ be a left adjoint to the functor $v : \mathcal{D} \to \mathcal{C}$. Let $\eta _ X : X \to v(u(X))$ be the unit and $\epsilon _ Y : u(v(Y)) \to Y$ be the counit. Then </p>
+  <div class="equation">
+  \[  u(X) \xrightarrow {u(\eta _ X)} u(v(u(X)) \xrightarrow {\epsilon _{u(X)}} u(X) \quad \text{and}\quad v(Y) \xrightarrow {\eta _{v(Y)}} v(u(v(Y))) \xrightarrow {v(\epsilon _ Y)} v(Y)  \]
+</div>
+  <p> are the identity morphisms. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0B65">
+  <p><a class="environment-identifier" href="/tag/0B65">Lemma <span data-tag="0B65">4.24.8</span>.</a> Let $u_1, u_2 : \mathcal{C} \to \mathcal{D}$ be functors with right adjoints $v_1, v_2 : \mathcal{D} \to \mathcal{C}$. Let $\beta : u_2 \to u_1$ be a transformation of functors. Let $\beta ^\vee : v_1 \to v_2$ be the corresponding transformation of adjoint functors. Then </p>
+  <div class="equation">
+  \[  \xymatrix{ u_2 \circ v_1 \ar[r]_\beta \ar[d]_{\beta ^\vee } &  u_1 \circ v_1 \ar[d] \\  u_2 \circ v_2 \ar[r] &  \text{id} }  \]
+</div>
+  <p> is commutative where the unlabeled arrows are the counit transformations. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is true because $\beta ^\vee _ D : v_1D \to v_2D$ is the unique morphism such that the induced maps $\mathop{\mathrm{Mor}}\nolimits (C, v_1D) \to \mathop{\mathrm{Mor}}\nolimits (C, v_2D)$ is the map $\mathop{\mathrm{Mor}}\nolimits (u_1C, D) \to \mathop{\mathrm{Mor}}\nolimits (u_2C, D)$ induced by $\beta _ C : u_2C \to u_1C$. Namely, this means the map 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits (u_1 v_1 D, D') \to \mathop{\mathrm{Mor}}\nolimits (u_2 v_1 D, D')  \]
+</div>
+    <p>
+       induced by $\beta _{v_1 D}$ is the same as the map 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits (v_1 D, v_1 D') \to \mathop{\mathrm{Mor}}\nolimits (v_1 D, v_2 D')  \]
+</div>
+    <p>
+       induced by $\beta ^\vee _{D'}$. Taking $D' = D$ we find that the counit $u_1 v_1 D \to D$ precomposed by $\beta _{v_1D}$ corresponds to $\beta ^\vee _ D$ under adjunction. This exactly means that the diagram commutes when evaluated on $D$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DV0">
+  <p><a class="environment-identifier" href="/tag/0DV0">Lemma <span data-tag="0DV0">4.24.9</span>.</a> Let $\mathcal{A}$, $\mathcal{B}$, and $\mathcal{C}$ be categories. Let $v : \mathcal{A} \to \mathcal{B}$ and $v' : \mathcal{B} \to \mathcal{C}$ be functors with left adjoints $u$ and $u'$ respectively. Then </p>
+  <p><ol>
+  <li><p>
+The functor $v'' = v' \circ v$ has a left adjoint equal to $u'' = u \circ u'$. 
+</p>
+</li><li><p>
+Given $X$ in $\mathcal{A}$ we have 
+</p>
+<div class="equation" id="0DV1">
+    <span class="equation-label"><a href="/tag/0DV1" data-tag="0DV1">4.24.9.1</a></span>
+  <div>\begin{equation}  \label{categories-equation-compose-counits} \epsilon _ X^ v \circ u(\epsilon ^{v'}_{v(X)}) = \epsilon ^{v''}_ X : u''(v''(X)) \to X \end{equation}</div>
+</div>
+<p>
+ Where $\epsilon $ is the counit of the adjunctions. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let us unwind the formula in (2) because this will also immediately prove (1). First, the counit of the adjunctions for the pairs $(u, v)$ and $(u', v')$ are maps $\epsilon _ X^ v : u(v(X)) \to X$ and $\epsilon _ Y^{v'} : u'(v'(Y)) \to Y$, see discussion following Definition <a href="/tag/0037" data-tag="0037">4.24.1</a>. With $u''$ and $v''$ as in (1) we unwind everything 
+    <p>
+      <div class="equation">
+  \[  u''(v''(X)) = u(u'(v'(v(X)))) \xrightarrow {u(\epsilon _{v(X)}^{v'})} u(v(X)) \xrightarrow {\epsilon _ X^ v} X  \]
+</div>
+    <p>
+       to get the map on the left hand side of (<a href="/tag/0DV1" data-tag="0DV1">4.24.9.1</a>). Let us denote this by $\epsilon _ X^{v''}$ for now. To see that this is the counit of an adjoint pair $(u'', v'')$ we have to show that given $Z$ in $\mathcal{C}$ the rule that sends a morphism $\beta : Z \to v''(X)$ to $\alpha = \epsilon _ X^{v''} \circ u''(\beta ) : u''(Z) \to X$ is a bijection on sets of morphisms. This is true because, this is the composition of the rule sending $\beta $ to $\epsilon _{v(X)}^{v'} \circ u'(\beta )$ which is a bijection by assumption on $(u', v')$ and then sending this to $\epsilon _ X^ v \circ u(\epsilon _{v(X)}^{v'} \circ u'(\beta ))$ which is a bijection by assumption on $(u, v)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

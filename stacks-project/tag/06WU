@@ -1,0 +1,135 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="stacks-sheaves-section-quasi-coherent-algebraic-stacks" class="tex-section"><span data-tag="06WU">96.15</span> Quasi-coherent sheaves on algebraic stacks</h2>
+
+<p>
+Let $\mathcal{X}$ be an algebraic stack over $S$. By Algebraic Stacks, Lemma <a href="/tag/04T5" data-tag="04T5">94.16.2</a> we can find an equivalence $[U/R] \to \mathcal{X}$ where $(U, R, s, t, c)$ is a smooth groupoid in algebraic spaces. Then 
+</p>
+<div class="equation">
+  \[  \mathit{QCoh}(\mathcal{O}_\mathcal {X}) \cong \mathit{QCoh}(\mathcal{O}_{[U/R]}) \cong \mathit{QCoh}(U, R, s, t, c)  \]
+</div>
+<p>
+ where the second equivalence is Proposition <a href="/tag/06WT" data-tag="06WT">96.14.3</a>. Hence the category of quasi-coherent sheaves on an algebraic stack is equivalent to the category of quasi-coherent modules on a smooth groupoid in algebraic spaces. In particular, by Groupoids in Spaces, Lemma <a href="/tag/06VZ" data-tag="06VZ">78.12.6</a> we see that $\mathit{QCoh}(\mathcal{O}_\mathcal {X})$ is abelian! 
+</p>
+<p>
+There is something slightly disconcerting about our current setup. It is that the fully faithful embedding 
+</p>
+<div class="equation">
+  \[  \mathit{QCoh}(\mathcal{O}_\mathcal {X}) \longrightarrow \textit{Mod}(\mathcal{O}_\mathcal {X})  \]
+</div>
+<p>
+ is in general <strong>not</strong> exact. However, exactly the same thing happens for schemes: for most schemes $X$ the embedding 
+</p>
+<div class="equation">
+  \[  \mathit{QCoh}(\mathcal{O}_ X) \cong \mathit{QCoh}((\mathit{Sch}/X)_{fppf}, \mathcal{O}_ X) \longrightarrow \textit{Mod}((\mathit{Sch}/X)_{fppf}, \mathcal{O}_ X)  \]
+</div>
+<p>
+ isn't exact, see Descent, Lemma <a href="/tag/06VE" data-tag="06VE">35.10.2</a>. Parenthetically, the example in the proof of Descent, Lemma <a href="/tag/06VE" data-tag="06VE">35.10.2</a> shows that in general the strictly full embedding $\mathit{QCoh}(\mathcal{O}_\mathcal {X}) \to \textit{LQCoh}(\mathcal{O}_\mathcal {X})$ isn't exact either. 
+</p>
+<p>
+We collect all the results obtained so far in a single statement. 
+</p>
+<p>
+<article class="env-lemma" id="06WV">
+  <p><a class="environment-identifier" href="/tag/06WV">Lemma <span data-tag="06WV">96.15.1</span>.</a> Let $\mathcal{X}$ be an algebraic stack over $S$. </p>
+  <p><ol>
+  <li><p>
+If $[U/R] \to \mathcal{X}$ is a presentation of $\mathcal{X}$ then there is a canonical equivalence $\mathit{QCoh}(\mathcal{O}_\mathcal {X}) \cong \mathit{QCoh}(U, R, s, t, c)$. 
+</p>
+</li><li><p>
+The category $\mathit{QCoh}(\mathcal{O}_\mathcal {X})$ is abelian. 
+</p>
+</li><li><p>
+The inclusion functor $\mathit{QCoh}(\mathcal{O}_\mathcal {X}) \to \textit{Mod}(\mathcal{O}_\mathcal {X})$ is right exact but <strong>not</strong> exact in general. 
+</p>
+</li><li><p>
+The category $\mathit{QCoh}(\mathcal{O}_\mathcal {X})$ has colimits and they agree with colimits in the category $\textit{Mod}(\mathcal{O}_\mathcal {X})$. 
+</p>
+</li><li><p>
+Given $\mathcal{F}, \mathcal{G}$ in $\mathit{QCoh}(\mathcal{O}_\mathcal {X})$ the tensor product $\mathcal{F} \otimes _{\mathcal{O}_\mathcal {X}} \mathcal{G}$ in $\textit{Mod}(\mathcal{O}_\mathcal {X})$ is an object of $\mathit{QCoh}(\mathcal{O}_\mathcal {X})$. 
+</p>
+</li><li><p>
+Given $\mathcal{F}, \mathcal{G}$ in $\mathit{QCoh}(\mathcal{O}_\mathcal {X})$ with $\mathcal{F}$ finite locally free the sheaf $\mathop{\mathcal{H}\! \mathit{om}}\nolimits _{\mathcal{O}_\mathcal {X}}(\mathcal{F}, \mathcal{G})$ in $\textit{Mod}(\mathcal{O}_\mathcal {X})$ is an object of $\mathit{QCoh}(\mathcal{O}_\mathcal {X})$. 
+</p>
+</li><li><p>
+Given a short exact sequence $0 \to \mathcal{F}_1 \to \mathcal{F}_2 \to \mathcal{F}_3 \to 0$ in $\textit{Mod}(\mathcal{O}_\mathcal {X})$ with $\mathcal{F}_1$ and $\mathcal{F}_3$ quasi-coherent, then $\mathcal{F}_2$ is quasi-coherent. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Properties (4), (5), and (6) were proven in Lemma <a href="/tag/06WN" data-tag="06WN">96.12.5</a>. Part (1) is Proposition <a href="/tag/06WT" data-tag="06WT">96.14.3</a>. Part (2) follows from part (1) and Groupoids in Spaces, Lemma <a href="/tag/06VZ" data-tag="06VZ">78.12.6</a> as discussed above. Right exactness of the inclusion functor in (3) follows from (4); please compare with Homology, Lemma <a href="/tag/010N" data-tag="010N">12.7.2</a>. For the nonexactness of the inclusion functor in part (3) see Descent, Lemma <a href="/tag/06VE" data-tag="06VE">35.10.2</a>. To see (7) observe that it suffices to check the restriction of $\mathcal{F}_2$ to the big site of a scheme is quasi-coherent (Lemma <a href="/tag/06WI" data-tag="06WI">96.11.3</a>), hence this follows from the corresponding part of Descent, Lemma <a href="/tag/06VE" data-tag="06VE">35.10.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Next we construct the coherator for modules on an algebraic stack. 
+</p>
+<p>
+<article class="env-proposition" id="0781">
+  <p><a class="environment-identifier" href="/tag/0781">Proposition <span data-tag="0781">96.15.2</span>.</a> Let $\mathcal{X}$ be an algebraic stack over $S$. </p>
+  <p><ol>
+  <li><p>
+The category $\mathit{QCoh}(\mathcal{O}_\mathcal {X})$ is a Grothendieck abelian category. Consequently, $\mathit{QCoh}(\mathcal{O}_\mathcal {X})$ has enough injectives and all limits. 
+</p>
+</li><li><p>
+The inclusion functor $\mathit{QCoh}(\mathcal{O}_\mathcal {X}) \to \textit{Mod}(\mathcal{O}_\mathcal {X})$ has a right adjoint<a class="footnotemark" href="#a0001667824" id="a0001667824-mark"><sup>1</sup></a> 
+</p>
+<div class="equation">
+  \[  Q : \textit{Mod}(\mathcal{O}_\mathcal {X}) \longrightarrow \mathit{QCoh}(\mathcal{O}_\mathcal {X})  \]
+</div>
+<p>
+ such that for every quasi-coherent sheaf $\mathcal{F}$ the adjunction mapping $Q(\mathcal{F}) \to \mathcal{F}$ is an isomorphism. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This proof is a repeat of the proof in the case of schemes, see Properties, Proposition <a href="/tag/077P" data-tag="077P">28.24.4</a> and the case of algebraic spaces, see Properties of Spaces, Proposition <a href="/tag/077V" data-tag="077V">66.32.2</a>. We advise the reader to read either of those proofs first. 
+    <p>
+      Part (1) means $\mathit{QCoh}(\mathcal{O}_\mathcal {X})$ (a) has all colimits, (b) filtered colimits are exact, and (c) has a generator, see Injectives, Section <a href="/tag/079A" data-tag="079A">19.10</a>. By Lemma <a href="/tag/06WV" data-tag="06WV">96.15.1</a> colimits in $\mathit{QCoh}(\mathcal{O}_ X)$ exist and agree with colimits in $\textit{Mod}(\mathcal{O}_ X)$. By Modules on Sites, Lemma <a href="/tag/03DB" data-tag="03DB">18.14.2</a> filtered colimits are exact. Hence (a) and (b) hold. 
+    <p>
+      Choose a presentation $\mathcal{X} = [U/R]$ so that $(U, R, s, t, c)$ is a smooth groupoid in algebraic spaces and in particular $s$ and $t$ are flat morphisms of algebraic spaces. By Lemma <a href="/tag/06WV" data-tag="06WV">96.15.1</a> above we have $\mathit{QCoh}(\mathcal{O}_\mathcal {X}) = \mathit{QCoh}(U, R, s, t, c)$. By Groupoids in Spaces, Lemma <a href="/tag/0780" data-tag="0780">78.14.2</a> there exists a set $T$ and a family $(\mathcal{F}_ t)_{t \in T}$ of quasi-coherent sheaves on $\mathcal{X}$ such that every quasi-coherent sheaf on $\mathcal{X}$ is the directed colimit of its subsheaves which are isomorphic to one of the $\mathcal{F}_ t$. Thus $\bigoplus _ t \mathcal{F}_ t$ is a generator of $\mathit{QCoh}(\mathcal{O}_ X)$ and we conclude that (c) holds. The assertions on limits and injectives hold in any Grothendieck abelian category, see Injectives, Theorem <a href="/tag/079H" data-tag="079H">19.11.7</a> and Lemma <a href="/tag/07D8" data-tag="07D8">19.13.2</a>. 
+    <p>
+      Proof of (2). To construct $Q$ we use the following general procedure. Given an object $\mathcal{F}$ of $\textit{Mod}(\mathcal{O}_\mathcal {X})$ we consider the functor 
+    <p>
+      <div class="equation">
+  \[  \mathit{QCoh}(\mathcal{O}_\mathcal {X})^{opp} \longrightarrow \textit{Sets}, \quad \mathcal{G} \longmapsto \mathop{\mathrm{Hom}}\nolimits _\mathcal {X}(\mathcal{G}, \mathcal{F})  \]
+</div>
+    <p>
+       This functor transforms colimits into limits, hence is representable, see Injectives, Lemma <a href="/tag/07D7" data-tag="07D7">19.13.1</a>. Thus there exists a quasi-coherent sheaf $Q(\mathcal{F})$ and a functorial isomorphism $\mathop{\mathrm{Hom}}\nolimits _\mathcal {X}(\mathcal{G}, \mathcal{F}) = \mathop{\mathrm{Hom}}\nolimits _\mathcal {X}(\mathcal{G}, Q(\mathcal{F}))$ for $\mathcal{G}$ in $\mathit{QCoh}(\mathcal{O}_\mathcal {X})$. By the Yoneda lemma (Categories, Lemma <a href="/tag/001P" data-tag="001P">4.3.5</a>) the construction $\mathcal{F} \leadsto Q(\mathcal{F})$ is functorial in $\mathcal{F}$. By construction $Q$ is a right adjoint to the inclusion functor. The fact that $Q(\mathcal{F}) \to \mathcal{F}$ is an isomorphism when $\mathcal{F}$ is quasi-coherent is a formal consequence of the fact that the inclusion functor $\mathit{QCoh}(\mathcal{O}_\mathcal {X}) \to \textit{Mod}(\mathcal{O}_\mathcal {X})$ is fully faithful. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

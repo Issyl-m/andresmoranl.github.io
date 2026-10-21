@@ -1,0 +1,128 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="derived-section-functorial-injective-resolutions" class="tex-section"><span data-tag="0140">13.24</span> Functorial injective embeddings and resolution functors</h2>
+
+<p>
+In this section we redo the construction of a resolution functor $K^{+}(\mathcal{A}) \to K^{+}(\mathcal{I})$ in case the category $\mathcal{A}$ has functorial injective embeddings. There are two reasons for this: (1) the proof is easier and (2) the construction also works if $\mathcal{A}$ is a “big” abelian category. See Remark <a href="/tag/0142" data-tag="0142">13.24.3</a> below. 
+</p>
+<p>
+Let $\mathcal{A}$ be an abelian category. As before denote $\mathcal{I}$ the additive full subcategory of $\mathcal{A}$ consisting of injective objects. Consider the category $\text{InjRes}(\mathcal{A})$ of arrows $\alpha : K^\bullet \to I^\bullet $ where $K^\bullet $ is a bounded below complex of $\mathcal{A}$, $I^\bullet $ is a bounded below complex of injectives of $\mathcal{A}$ and $\alpha $ is a quasi-isomorphism. In other words, $\alpha $ is an injective resolution and $K^\bullet $ is bounded below. There is an obvious functor 
+</p>
+<div class="equation">
+  \[  s : \text{InjRes}(\mathcal{A}) \longrightarrow \text{Comp}^{+}(\mathcal{A})  \]
+</div>
+<p>
+ defined by $(\alpha : K^\bullet \to I^\bullet ) \mapsto K^\bullet $. There is also a functor 
+</p>
+<div class="equation">
+  \[  t : \text{InjRes}(\mathcal{A}) \longrightarrow K^{+}(\mathcal{I})  \]
+</div>
+<p>
+ defined by $(\alpha : K^\bullet \to I^\bullet ) \mapsto I^\bullet $. 
+</p>
+<p>
+<article class="env-lemma" id="0141">
+  <p><a class="environment-identifier" href="/tag/0141">Lemma <span data-tag="0141">13.24.1</span>.</a> Let $\mathcal{A}$ be an abelian category. Assume $\mathcal{A}$ has functorial injective embeddings, see Homology, Definition <a href="/tag/0139" data-tag="0139">12.27.5</a>. </p>
+  <p><ol>
+  <li><p>
+There exists a functor $inj : \text{Comp}^{+}(\mathcal{A}) \to \text{InjRes}(\mathcal{A})$ such that $s \circ inj = \text{id}$. 
+</p>
+</li><li><p>
+For any functor $inj : \text{Comp}^{+}(\mathcal{A}) \to \text{InjRes}(\mathcal{A})$ such that $s \circ inj = \text{id}$ we obtain a resolution functor, see Definition <a href="/tag/013W" data-tag="013W">13.23.2</a>. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $A \mapsto (A \to J(A))$ be a functorial injective embedding, see Homology, Definition <a href="/tag/0139" data-tag="0139">12.27.5</a>. We first note that we may assume $J(0) = 0$. Namely, if not then for any object $A$ we have $0 \to A \to 0$ which gives a direct sum decomposition $J(A) = J(0) \oplus \mathop{\mathrm{Ker}}(J(A) \to J(0))$. Note that the functorial morphism $A \to J(A)$ has to map into the second summand. Hence we can replace our functor by $J'(A) = \mathop{\mathrm{Ker}}(J(A) \to J(0))$ if needed. 
+    <p>
+      Let $K^\bullet $ be a bounded below complex of $\mathcal{A}$. Say $K^ p = 0$ if $p < B$. We are going to construct a double complex $I^{\bullet , \bullet }$ of injectives, together with a map $\alpha : K^\bullet \to I^{\bullet , 0}$ such that $\alpha $ induces a quasi-isomorphism of $K^\bullet $ with the associated total complex of $I^{\bullet , \bullet }$. First we set $I^{p, q} = 0$ whenever $q < 0$. Next, we set $I^{p, 0} = J(K^ p)$ and $\alpha ^ p : K^ p \to I^{p, 0}$ the functorial embedding. Since $J$ is a functor we see that $I^{\bullet , 0}$ is a complex and that $\alpha $ is a morphism of complexes. Each $\alpha ^ p$ is injective. And $I^{p, 0} = 0$ for $p < B$ because $J(0) = 0$. Next, we set $I^{p, 1} = J(\mathop{\mathrm{Coker}}(K^ p \to I^{p, 0}))$. Again by functoriality we see that $I^{\bullet , 1}$ is a complex. And again we get that $I^{p, 1} = 0$ for $p < B$. It is also clear that $K^ p$ maps isomorphically onto $\mathop{\mathrm{Ker}}(I^{p, 0} \to I^{p, 1})$. As our third step we take $I^{p, 2} = J(\mathop{\mathrm{Coker}}(I^{p, 0} \to I^{p, 1}))$. And so on and so forth. 
+    <p>
+      At this point we can apply Homology, Lemma <a href="/tag/0133" data-tag="0133">12.25.4</a> to get that the map 
+    <p>
+      <div class="equation">
+  \[  \alpha : K^\bullet \longrightarrow \text{Tot}(I^{\bullet , \bullet })  \]
+</div>
+    <p>
+       is a quasi-isomorphism. To prove we get a functor $inj$ it rests to show that the construction above is functorial. This verification is omitted. 
+    <p>
+      Suppose we have a functor $inj$ such that $s \circ inj = \text{id}$. For every object $K^\bullet $ of $\text{Comp}^{+}(\mathcal{A})$ we can write 
+    <p>
+      <div class="equation">
+  \[  inj(K^\bullet ) = (i_{K^\bullet } : K^\bullet \to j(K^\bullet ))  \]
+</div>
+    <p>
+       This provides us with a resolution functor as in Definition <a href="/tag/013W" data-tag="013W">13.23.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="05TL">
+  <p><a class="environment-identifier" href="/tag/05TL">Remark <span data-tag="05TL">13.24.2</span>.</a> Suppose $inj$ is a functor such that $s \circ inj = \text{id}$ as in part (2) of Lemma <a href="/tag/0141" data-tag="0141">13.24.1</a>. Write $inj(K^\bullet ) = (i_{K^\bullet } : K^\bullet \to j(K^\bullet ))$ as in the proof of that lemma. Suppose $\alpha : K^\bullet \to L^\bullet $ is a map of bounded below complexes. Consider the map $inj(\alpha )$ in the category $\text{InjRes}(\mathcal{A})$. It induces a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ K^\bullet \ar[rr]^-{\alpha } \ar[d]_{i_ K} &  &  L^\bullet \ar[d]^{i_ L} \\  j(K)^\bullet \ar[rr]^-{inj(\alpha )} &  &  j(L)^\bullet }  \]
+</div>
+  <p> of morphisms of complexes. Hence, looking at the proof of Lemma <a href="/tag/05TJ" data-tag="05TJ">13.23.3</a> we see that the functor $j : K^{+}(\mathcal{A}) \to K^{+}(\mathcal{I})$ is given by the rule </p>
+  <div class="equation">
+  \[  j(\alpha \text{ up to homotopy}) = inj(\alpha )\text{ up to homotopy}\in \mathop{\mathrm{Hom}}\nolimits _{K^{+}(\mathcal{I})}(j(K^\bullet ), j(L^\bullet ))  \]
+</div>
+  <p> Hence we see that $j$ matches $t \circ inj$ in this case, i.e., the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \text{Comp}^{+}(\mathcal{A}) \ar[rr]_{t \circ inj} \ar[rd] &  &  K^{+}(\mathcal{I}) \\  &  K^{+}(\mathcal{A}) \ar[ru]_ j }  \]
+</div>
+  <p> is commutative. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="0142">
+  <p><a class="environment-identifier" href="/tag/0142">Remark <span data-tag="0142">13.24.3</span>.</a> Let $\textit{Mod}(\mathcal{O}_ X)$ be the category of $\mathcal{O}_ X$-modules on a ringed space $(X, \mathcal{O}_ X)$ (or more generally on a ringed site). We will see later that $\textit{Mod}(\mathcal{O}_ X)$ has enough injectives and in fact functorial injective embeddings, see Injectives, Theorem <a href="/tag/01DU" data-tag="01DU">19.8.4</a>. Note that the proof of Lemma <a href="/tag/013X" data-tag="013X">13.23.4</a> does not apply to $\textit{Mod}(\mathcal{O}_ X)$. But the proof of Lemma <a href="/tag/0141" data-tag="0141">13.24.1</a> does apply to $\textit{Mod}(\mathcal{O}_ X)$. Thus we obtain </p>
+  <div class="equation">
+  \[  j : K^{+}(\textit{Mod}(\mathcal{O}_ X)) \longrightarrow K^{+}(\mathcal{I})  \]
+</div>
+  <p> which is a resolution functor where $\mathcal{I}$ is the additive category of injective $\mathcal{O}_ X$-modules. This argument also works in the following cases: </p>
+  <p><ol>
+  <li><p>
+The category $\text{Mod}_ R$ of $R$-modules over a ring $R$. 
+</p>
+</li><li><p>
+The category $\textit{PMod}(\mathcal{O})$ of presheaves of $\mathcal{O}$-modules on a site endowed with a presheaf of rings. 
+</p>
+</li><li><p>
+The category $\textit{Mod}(\mathcal{O})$ of sheaves of $\mathcal{O}$-modules on a ringed site. 
+</p>
+</li><li><p>
+Add more here as needed. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>

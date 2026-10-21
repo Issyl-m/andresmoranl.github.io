@@ -1,0 +1,144 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sites-section-pullback" class="tex-section"><span data-tag="06UM">7.45</span> Pullback maps</h2>
+
+<p>
+It sometimes happens that a site $\mathcal{C}$ does not have a final object. In this case we define the global section functor as follows. 
+</p>
+<p>
+<article class="env-definition" id="06UN">
+  <p><a class="environment-identifier" href="/tag/06UN">Definition <span data-tag="06UN">7.45.1</span>.</a> The <em>global sections</em> of a presheaf of sets $\mathcal{F}$ over a site $\mathcal{C}$ is the set </p>
+  <div class="equation">
+  \[  \Gamma (\mathcal{C}, \mathcal{F}) = \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(*, \mathcal{F})  \]
+</div>
+  <p> where $*$ is the final object in the category of presheaves on $\mathcal{C}$, i.e., the presheaf which associates to every object a singleton. </p>
+</article> 
+</p>
+<p>
+Of course the same definition applies to sheaves as well. Here is one way to compute global sections. 
+</p>
+<p>
+<article class="env-lemma" id="0792">
+  <p><a class="environment-identifier" href="/tag/0792">Lemma <span data-tag="0792">7.45.2</span>.</a> Let $\mathcal{C}$ be a site. Let $a, b : V \to U$ be objects of $\mathcal{C}$ such that </p>
+  <div class="equation">
+  \[  \xymatrix{ h_ V^\#  \ar@<1ex>[r] \ar@<-1ex>[r] &  h_ U^\#  \ar[r] &  {*} }  \]
+</div>
+  <p> is a coequalizer in $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})$. Then $\Gamma (\mathcal{C}, \mathcal{F})$ is the equalizer of $a^*, b^* : \mathcal{F}(U) \to \mathcal{F}(V)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $\mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C})}(h_ U^\# , \mathcal{F}) = \mathcal{F}(U)$ this is clear from the definitions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Now, let $f : \mathop{\mathit{Sh}}\nolimits (\mathcal{D}) \to \mathop{\mathit{Sh}}\nolimits (\mathcal{C})$ be a morphism of topoi. Then for any sheaf $\mathcal{F}$ on $\mathcal{C}$ there is a pullback map 
+</p>
+<div class="equation">
+  \[  f^{-1} : \Gamma (\mathcal{C}, \mathcal{F}) \longrightarrow \Gamma (\mathcal{D}, f^{-1}\mathcal{F})  \]
+</div>
+<p>
+ Namely, as $f^{-1}$ is exact it transforms $*$ into $*$. Hence a global section $s$ of $\mathcal{F}$ over $\mathcal{C}$, which is a map of sheaves $s : * \to \mathcal{F}$, can be pulled back to $f^{-1}s : * = f^{-1}* \to f^{-1}\mathcal{F}$. 
+</p>
+<p>
+We can generalize this a bit by considering a pair of sheaves $\mathcal{F}$, $\mathcal{G}$ on $\mathcal{C}$, $\mathcal{D}$ together with a map $f^{-1}\mathcal{F} \to \mathcal{G}$. Then we compose the construction above with the obvious map $\Gamma (\mathcal{D}, f^{-1}\mathcal{F}) \to \Gamma (\mathcal{D}, \mathcal{G})$ to get a map 
+</p>
+<div class="equation">
+  \[  \Gamma (\mathcal{C}, \mathcal{F}) \longrightarrow \Gamma (\mathcal{D}, \mathcal{G})  \]
+</div>
+<p>
+ This map is sometimes also called a pullback map. 
+</p>
+<p>
+A slightly more general construction which occurs frequently in nature is the following. Suppose that we have a commutative diagram of morphisms of topoi 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathop{\mathit{Sh}}\nolimits (\mathcal{D}) \ar[rd]_ h \ar[rr]_ f &  &  \mathop{\mathit{Sh}}\nolimits (\mathcal{C}) \ar[ld]^ g \\  &  \mathop{\mathit{Sh}}\nolimits (\mathcal{B}) }  \]
+</div>
+<p>
+ Next, suppose that we have a sheaf $\mathcal{F}$ on $\mathcal{C}$. Then there is a <em>pullback map</em> 
+</p>
+<div class="equation">
+  \[  f^{-1} : g_*\mathcal{F} \longrightarrow h_*f^{-1}\mathcal{F}  \]
+</div>
+<p>
+ Namely, it is just the map coming from the identification $g_*f_*f^{-1}\mathcal{F} = h_*f^{-1}\mathcal{F}$ together with $g_*$ applied to the canonical map $\mathcal{F} \to f_*f^{-1}\mathcal{F}$. If $g$ is the identity, then this map on global sections agrees with the pullback map above. 
+</p>
+<p>
+In the situation of the previous paragraph, suppose we have a pair of sheaves $\mathcal{F}$, $\mathcal{G}$ on $\mathcal{C}$, $\mathcal{D}$ together with a map $f^{-1}\mathcal{F} \to \mathcal{G}$, then we compose the pullback map above with $h_*$ applied to $f^{-1}\mathcal{F} \to \mathcal{G}$ to get a map 
+</p>
+<div class="equation">
+  \[  g_*\mathcal{F} \longrightarrow h_*\mathcal{G}  \]
+</div>
+<p>
+ Restricting to sections over an object of $\mathcal{B}$ one recovers the “pullback map” on global sections discussed above (with suitable choices of sites). 
+</p>
+<p>
+An even more general situation is where we have a commutative diagram of topoi 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathop{\mathit{Sh}}\nolimits (\mathcal{D}) \ar[d]_ h \ar[r]_ f &  \mathop{\mathit{Sh}}\nolimits (\mathcal{C}) \ar[d]^ g \\  \mathop{\mathit{Sh}}\nolimits (\mathcal{B}) \ar[r]^ e &  \mathop{\mathit{Sh}}\nolimits (\mathcal{A}) }  \]
+</div>
+<p>
+ and a sheaf $\mathcal{G}$ on $\mathcal{C}$. Then there is a <em>base change map</em> 
+</p>
+<div class="equation">
+  \[  e^{-1}g_*\mathcal{G} \longrightarrow h_*f^{-1}\mathcal{G}.  \]
+</div>
+<p>
+ Namely, this map is adjoint to a map $g_*\mathcal{G} \to e_*h_*f^{-1}\mathcal{G} = (e \circ h)_*f^{-1}\mathcal{G}$ which is the pullback map just described. 
+</p>
+<p>
+<article class="env-remark" id="0F6X">
+  <p><a class="environment-identifier" href="/tag/0F6X">Remark <span data-tag="0F6X">7.45.3</span>.</a> Consider a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathop{\mathit{Sh}}\nolimits (\mathcal{B}') \ar[r]_ k \ar[d]_{f'} &  \mathop{\mathit{Sh}}\nolimits (\mathcal{B}) \ar[d]^ f \\  \mathop{\mathit{Sh}}\nolimits (\mathcal{C}') \ar[r]^ l \ar[d]_{g'} &  \mathop{\mathit{Sh}}\nolimits (\mathcal{C}) \ar[d]^ g \\  \mathop{\mathit{Sh}}\nolimits (\mathcal{D}') \ar[r]^ m &  \mathop{\mathit{Sh}}\nolimits (\mathcal{D}) }  \]
+</div>
+  <p> of topoi. Then the base change maps for the two squares compose to give the base change map for the outer rectangle. More precisely, the composition </p>
+  <div class="equation">
+  \begin{align*}  m^{-1} \circ (g \circ f)_* &  = m^{-1} \circ g_* \circ f_* \\ &  \to g'_* \circ l^{-1} \circ f_* \\ &  \to g'_* \circ f'_* \circ k^{-1} \\ &  = (g' \circ f')_* \circ k^{-1} \end{align*}
+</div>
+  <p> is the base change map for the rectangle. We omit the verification. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="0F6Y">
+  <p><a class="environment-identifier" href="/tag/0F6Y">Remark <span data-tag="0F6Y">7.45.4</span>.</a> Consider a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathop{\mathit{Sh}}\nolimits (\mathcal{C}'') \ar[r]_{g'} \ar[d]_{f''} &  \mathop{\mathit{Sh}}\nolimits (\mathcal{C}') \ar[r]_ g \ar[d]_{f'} &  \mathop{\mathit{Sh}}\nolimits (\mathcal{C}) \ar[d]^ f \\  \mathop{\mathit{Sh}}\nolimits (\mathcal{D}'') \ar[r]^{h'} &  \mathop{\mathit{Sh}}\nolimits (\mathcal{D}') \ar[r]^ h &  \mathop{\mathit{Sh}}\nolimits (\mathcal{D}) }  \]
+</div>
+  <p> of ringed topoi. Then the base change maps for the two squares compose to give the base change map for the outer rectangle. More precisely, the composition </p>
+  <div class="equation">
+  \begin{align*}  (h \circ h')^{-1} \circ f_* &  = (h')^{-1} \circ h^{-1} \circ f_* \\ &  \to (h')^{-1} \circ f'_* \circ g^{-1} \\ &  \to f''_* \circ (g')^{-1} \circ g^{-1} \\ &  = f”_* \circ (g \circ g')^{-1} \end{align*}
+</div>
+  <p> is the base change map for the rectangle. We omit the verification. </p>
+</article> 
+</p>

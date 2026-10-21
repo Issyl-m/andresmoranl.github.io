@@ -1,0 +1,185 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sites-section-functoriality-PSh" class="tex-section"><span data-tag="00VC">7.5</span> Functoriality of categories of presheaves</h2>
+
+<p>
+Let $u : \mathcal{C} \to \mathcal{D}$ be a functor between categories. In this case we denote 
+</p>
+<div class="equation">
+  \[  u^ p : \textit{PSh}(\mathcal{D}) \longrightarrow \textit{PSh}(\mathcal{C})  \]
+</div>
+<p>
+ the functor that associates to $\mathcal{G}$ on $\mathcal{D}$ the presheaf $u^ p\mathcal{G} = \mathcal{G} \circ u$. Note that by the previous section this functor commutes with all limits and colimits. 
+</p>
+<p>
+For $V \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{D})$ let $\mathcal{I}^ u_ V$ denote the category with 
+</p>
+<div class="equation" id="053L">
+    <span class="equation-label"><a href="/tag/053L" data-tag="053L">7.5.0.1</a></span>
+  <div>\begin{equation}  \label{sites-equation-colim-category} \begin{matrix}  \mathop{\mathrm{Ob}}\nolimits (\mathcal{I}^ u_ V) 
+
+&  = 
+
+&  \{  (U, \phi ) \mid U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C}), \phi : V \to u(U) \}  
+
+\\  \mathop{\mathrm{Mor}}\nolimits _{\mathcal{I}^ u_ V}((U, \phi ), (U', \phi ')) 
+
+&  = 
+
+&  \{  f : U \to U' \text{ in }\mathcal{C} \mid u(f) \circ \phi = \phi ' \}  
+
+\end{matrix} \end{equation}</div>
+</div>
+<p>
+ We sometimes drop the superscript ${}^ u$ from the notation and we simply write $\mathcal{I}_ V$. We will use these categories to define a left adjoint to the functor $u^ p$. Before we do so we prove a few technical lemmas. 
+</p>
+<p>
+<article class="env-lemma" id="00X4">
+  <p><a class="environment-identifier" href="/tag/00X4">Lemma <span data-tag="00X4">7.5.1</span>.</a> Let $u : \mathcal{C} \to \mathcal{D}$ be a functor between categories. Suppose that $\mathcal{C}$ has fibre products and equalizers, and that $u$ commutes with them. Then the categories $(\mathcal{I}_ V)^{opp}$ satisfy the hypotheses of Categories, Lemma <a href="/tag/002X" data-tag="002X">4.19.8</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      There are two conditions to check. 
+    <p>
+      First, suppose we are given three objects $\phi : V \to u(U)$, $\phi ' : V \to u(U')$, and $\phi '' : V \to u(U'')$ and morphisms $a : U' \to U$, $b : U'' \to U$ such that $u(a) \circ \phi ' = \phi $ and $u(b) \circ \phi '' = \phi $. We have to show there exists another object $\phi ''' : V \to u(U''')$ and morphisms $c : U''' \to U'$ and $d : U''' \to U''$ such that $u(c) \circ \phi ''' = \phi '$, $u(d) \circ \phi ''' = \phi ''$ and $a \circ c = b \circ d$. We take $U''' = U' \times _ U U''$ with $c$ and $d$ the projection morphisms. This works as $u$ commutes with fibre products; we omit the verification. 
+    <p>
+      Second, suppose we are given two objects $\phi : V \to u(U)$ and $\phi ' : V \to u(U')$ and morphisms $a, b : (U, \phi ) \to (U', \phi ')$. We have to find a morphism $c : (U'', \phi '') \to (U, \phi )$ which equalizes $a$ and $b$. Let $c : U'' \to U$ be the equalizer of $a$ and $b$ in the category $\mathcal{C}$. As $u$ commutes with equalizers and since $u(a) \circ \phi = u(b) \circ \phi = \phi '$ we obtain a morphism $\phi '' : V \to u(U'')$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00X3">
+  <p><a class="environment-identifier" href="/tag/00X3">Lemma <span data-tag="00X3">7.5.2</span>.</a> Let $u : \mathcal{C} \to \mathcal{D}$ be a functor between categories. Assume </p>
+  <p><ol>
+  <li><p>
+the category $\mathcal{C}$ has a final object $X$ and $u(X)$ is a final object of $\mathcal{D}$ , and 
+</p>
+</li><li><p>
+the category $\mathcal{C}$ has fibre products and $u$ commutes with them. 
+</p>
+</li>
+</ol></p>
+  <p> Then the index categories $(\mathcal{I}^ u_ V)^{opp}$ are filtered (see Categories, Definition <a href="/tag/002V" data-tag="002V">4.19.1</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The assumptions imply that the assumptions of Lemma <a href="/tag/00X4" data-tag="00X4">7.5.1</a> are satisfied (see the discussion in Categories, Section <a href="/tag/04AS" data-tag="04AS">4.18</a>). By Categories, Lemma <a href="/tag/002X" data-tag="002X">4.19.8</a> we see that $\mathcal{I}_ V$ is a (possibly empty) disjoint union of directed categories. Hence it suffices to show that $\mathcal{I}_ V$ is connected. 
+    <p>
+      First, we show that $\mathcal{I}_ V$ is nonempty. Namely, let $X$ be the final object of $\mathcal{C}$, which exists by assumption. Let $V \to u(X)$ be the morphism coming from the fact that $u(X)$ is final in $\mathcal{D}$ by assumption. This gives an object of $\mathcal{I}_ V$. 
+    <p>
+      Second, we show that $\mathcal{I}_ V$ is connected. Let $\phi _1 : V \to u(U_1)$ and $\phi _2 : V \to u(U_2)$ be in $\mathop{\mathrm{Ob}}\nolimits (\mathcal{I}_ V)$. By assumption $U_1\times U_2$ exists and $u(U_1\times U_2) = u(U_1)\times u(U_2)$. Consider the morphism $\phi : V \to u(U_1\times U_2)$ corresponding to $(\phi _1, \phi _2)$ by the universal property of products. Clearly the object $\phi : V \to u(U_1\times U_2)$ maps to both $\phi _1 : V \to u(U_1)$ and $\phi _2 : V \to u(U_2)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Given $g : V' \to V$ in $\mathcal{D}$ we get a functor $\overline{g} : \mathcal{I}_ V \to \mathcal{I}_{V'}$ by setting $\overline{g}(U, \phi ) = (U, \phi \circ g)$ on objects. Given a presheaf $\mathcal{F}$ on $\mathcal{C}$ we obtain a functor 
+</p>
+<div class="equation">
+  \[  \mathcal{F}_ V : \mathcal{I}_ V^{opp} \longrightarrow \textit{Sets}, \quad (U, \phi ) \longmapsto \mathcal{F}(U).  \]
+</div>
+<p>
+ In other words, $\mathcal{F}_ V$ is a presheaf of sets on $\mathcal{I}_ V$. Note that we have $\mathcal{F}_{V'} \circ \overline{g} = \mathcal{F}_ V$. We define 
+</p>
+<div class="equation">
+  \[  u_ p\mathcal{F}(V) = \mathop{\mathrm{colim}}\nolimits _{\mathcal{I}_ V^{opp}} \mathcal{F}_ V  \]
+</div>
+<p>
+ As a colimit we obtain for each $(U, \phi ) \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{I}_ V)$ a canonical map $\mathcal{F}(U)\xrightarrow {c(\phi )}u_ p\mathcal{F}(V)$. For $g : V' \to V$ as above there is a canonical restriction map $g^* : u_ p\mathcal{F}(V) \to u_ p\mathcal{F}(V')$ compatible with $\mathcal{F}_{V'} \circ \overline{g} = \mathcal{F}_ V$ by Categories, Lemma <a href="/tag/002K" data-tag="002K">4.14.8</a>. It is the unique map so that for all $(U, \phi ) \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{I}_ V)$ the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathcal{F}(U) \ar[r]^{c(\phi )} \ar[d]_{\text{id}} &  u_ p\mathcal{F}(V) \ar[d]^{g^*} \\  \mathcal{F}(U) \ar[r]^{c(\phi \circ g)} &  u_ p\mathcal{F}(V') }  \]
+</div>
+<p>
+ commutes. The uniqueness of these maps implies that we obtain a presheaf. This presheaf will be denoted $u_ p\mathcal{F}$. 
+</p>
+<p>
+<article class="env-lemma" id="00VD">
+  <p><a class="environment-identifier" href="/tag/00VD">Lemma <span data-tag="00VD">7.5.3</span>.</a> There is a canonical map $\mathcal{F}(U) \to u_ p\mathcal{F}(u(U))$, which is compatible with restriction maps (on $\mathcal{F}$ and on $u_ p\mathcal{F}$). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is just the map $c(\text{id}_{u(U)})$ introduced above. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Note that any map of presheaves $\mathcal{F} \to \mathcal{F}'$ gives rise to compatible systems of maps between functors $\mathcal{F}_ V \to \mathcal{F}'_ V$, and hence to a map of presheaves $u_ p\mathcal{F} \to u_ p\mathcal{F}'$. In other words, we have defined a functor 
+</p>
+<div class="equation">
+  \[  u_ p : \textit{PSh}(\mathcal{C}) \longrightarrow \textit{PSh}(\mathcal{D})  \]
+</div>
+<p>
+<article class="env-lemma" id="00VE">
+  <p><a class="environment-identifier" href="/tag/00VE">Lemma <span data-tag="00VE">7.5.4</span>.</a> The functor $u_ p$ is a left adjoint to the functor $u^ p$. In other words the formula </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(\mathcal{F}, u^ p\mathcal{G}) = \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{D})}(u_ p\mathcal{F}, \mathcal{G})  \]
+</div>
+  <p> holds bifunctorially in $\mathcal{F}$ and $\mathcal{G}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\mathcal{G}$ be a presheaf on $\mathcal{D}$ and let $\mathcal{F}$ be a presheaf on $\mathcal{C}$. We will show that the displayed formula holds by constructing maps either way. We will leave it to the reader to verify they are each others inverse. 
+    <p>
+      Given a map $\alpha : u_ p \mathcal{F} \to \mathcal{G}$ we get $u^ p\alpha : u^ p u_ p \mathcal{F} \to u^ p \mathcal{G}$. Lemma <a href="/tag/00VD" data-tag="00VD">7.5.3</a> says that there is a map $\mathcal{F} \to u^ p u_ p \mathcal{F}$. The composition of the two gives the desired map. (The good thing about this construction is that it is clearly functorial in everything in sight.) 
+    <p>
+      Conversely, given a map $\beta : \mathcal{F} \to u^ p\mathcal{G}$ we get a map $u_ p\beta : u_ p\mathcal{F} \to u_ p u^ p\mathcal{G}$. Let $V \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{D})$. We claim that the functor $u^ p\mathcal{G}_ V$ on $\mathcal{I}_ V$ has a canonical map to the constant functor with value $\mathcal{G}(V)$. Namely, for every object $(U, \phi )$ of $\mathcal{I}_ V$, the value of $u^ p\mathcal{G}_ V$ on this object is $\mathcal{G}(u(U))$ which maps to $\mathcal{G}(V)$ by $\mathcal{G}(\phi ) = \phi ^*$. This is a transformation of functors because $\mathcal{G}$ is a functor itself. This leads to a map $u_ p u^ p \mathcal{G}(V) \to \mathcal{G}(V)$. Another trivial verification shows that this is functorial in $V$ leading to a map of presheaves $u_ p u^ p \mathcal{G} \to \mathcal{G}$. The composition $u_ p\mathcal{F} \to u_ p u^ p\mathcal{G} \to \mathcal{G}$ is the desired map. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="00VF">
+  <p><a class="environment-identifier" href="/tag/00VF">Remark <span data-tag="00VF">7.5.5</span>.</a> Suppose that $\mathcal{A}$ is a category such that any diagram $\mathcal{I}_ Y \to \mathcal{A}$ has a colimit in $\mathcal{A}$. In this case it is clear that there are functors $u^ p$ and $u_ p$, defined in exactly the same way as above, on the categories of presheaves with values in $\mathcal{A}$. Moreover, the adjointness of the pair $u^ p$ and $u_ p$ continues to hold in this setting. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="04D2">
+  <p><a class="environment-identifier" href="/tag/04D2">Lemma <span data-tag="04D2">7.5.6</span>.</a> Let $u : \mathcal{C} \to \mathcal{D}$ be a functor between categories. For any object $U$ of $\mathcal{C}$ we have $u_ ph_ U = h_{u(U)}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By adjointness of $u_ p$ and $u^ p$ we have 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{D})}(u_ ph_ U, \mathcal{G}) = \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(h_ U, u^ p\mathcal{G}) = u^ p\mathcal{G}(U) = \mathcal{G}(u(U))  \]
+</div>
+    <p>
+       and hence by Yoneda's lemma we see that $u_ ph_ U = h_{u(U)}$ as presheaves. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

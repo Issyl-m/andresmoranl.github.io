@@ -1,0 +1,209 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-morphisms-section-flat-relative-assassin" class="tex-section"><span data-tag="0GSF">37.18</span> Flat modules and relative assassins</h2>
+
+<p>
+In this section we will prove that the support of a flat module is (in some sense) equidimensional over the base in geometric situations. For the Noetherian case we refer the reader to <span class="cite">[<span class="postnote">IV Proposition 12.1.1.5</span>, <a href="/bibliography/EGA">EGA</a>]</span>. First, we prove two helper lemmas. 
+</p>
+<p>
+<article class="env-lemma" id="0GSG">
+  <p><a class="environment-identifier" href="/tag/0GSG">Lemma <span data-tag="0GSG">37.18.1</span>.</a> Let $A$ be a valuation ring. Let $A \to B$ is a local homomorphism of local rings which is essentially of finite type. Let $u : N \to M$ be a map of finite $B$-modules. Assume $M$ is flat over $A$ and $\overline{u} : N/\mathfrak m_ A N \to M/\mathfrak m_ A M$ is injective. Then $u$ is injective and $M/u(N)$ is flat over $A$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will deduce this lemma from Algebra, Lemma <a href="/tag/046Y" data-tag="046Y">10.128.4</a> (please note that we exchanged the roles of $M$ and $N$). To do the reduction we will use More on Algebra, Lemma <a href="/tag/0GSE" data-tag="0GSE">15.26.7</a> to reduce to the finitely presented case. 
+    <p>
+      By assumption we can write $B$ as a quotient of the localization of a polynomial algebra $P = A[x_1, \ldots , x_ n]$ at a prime ideal $\mathfrak q$. Then we can think of $u : N \to M$ as a map of finite $P_\mathfrak q$-modules. Hence we may and do assume that $B$ is essentially of finite presentation over $A$. 
+    <p>
+      Next, the $B$-module $N$ is finite but perhaps not of finite presentation. Write $N = \mathop{\mathrm{colim}}\nolimits N_\lambda $ as a filtered colimit of finitely presented $B$-modules with surjective transition maps. For example choose a presentation $0 \to K \to B^{\oplus r} \to N \to 0$, write $K$ as the union of its finite submodules $K_\lambda $, and set $N_\lambda = \mathop{\mathrm{Coker}}(K_\lambda \to B^{\oplus r})$. The module $N/\mathfrak m_ A N$ is of finite presentation over the Noetherian ring $B/\mathfrak m_ A B$. Hence for $\lambda $ large enough we have $N_\lambda /\mathfrak m_ A N_\lambda = N/\mathfrak m_ A N$. Now, if we can show the lemma for the composition $u_\lambda : N_\lambda \to M$, then we conclude that $N_\lambda = N$ and the result holds for $u$. Hence we may and do assume $N$ is of finite presentation over $B$. 
+    <p>
+      By More on Algebra, Lemma <a href="/tag/0GSE" data-tag="0GSE">15.26.7</a> the module $M$ is of finite presentation over $B$. Thus all the assumptions of Algebra, Lemma <a href="/tag/046Y" data-tag="046Y">10.128.4</a> hold and we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GSH">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0GSH">Lemma <span data-tag="0GSH">37.18.2</span>.</a> Let $f : X \to S$ be a morphism of schemes. Let $y \in X$ be a point with image $t \in S$. Denote $Y \subset X$ the closure of $\{ y\} $ viewed as an integral closed subscheme of $X$. Let $s \in S$ and let $x \in Y_ s$ be a generic point of an irreducible component of $Y_ s$. There exists a cartesian diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ X' \ar[r]_{g'} \ar[d]_{f'} &  X \ar[d]^ f \\  S' \ar[r]^ g &  S }  \]
+</div>
+  <p> with the following properties: </p>
+  <p><ol>
+  <li><p>
+$S'$ is the spectrum of a valuation ring with generic point $t'$ and closed point $s'$, 
+</p>
+</li><li><p>
+$g(t') = t$ and $g(s') = s$, 
+</p>
+</li><li><p>
+there exists a point $y' \in X'_{t'}$ which is a generic point of an irreducible component of $(S' \times _ S Y)_{t'} = Y_ t \times _ t t'$ and satisfies $g'(y') = y$, 
+</p>
+</li><li><p>
+denoting $Y' \subset X'$ the closure of $\{ y'\} $ viewed as an integral closed subscheme of $X'$ there exists a point $x' \in Y'_{s'}$ which is a generic point of an irreducible component of $Y'_{s'}$ with $g'(x') = x$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We choose a valuation ring $R$, we set $S' = \mathop{\mathrm{Spec}}(R)$ with generic point $t'$ and closed point $s'$, and we choose a morphism $h : S' \to X$ with $h(t') = y$ and $h(s') = x$. See Schemes, Lemma <a href="/tag/01J8" data-tag="01J8">26.20.4</a>. Set $g = f \circ h$ so that $g(t') = t$ and $g(s') = s$. Consider the base change 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X' \ar[r]_{g'} \ar[d] &  X \ar[d] \\  S' \ar@/^1em/[u]^\sigma \ar[r]^-g &  S }  \]
+</div>
+    <p>
+       We obtain a section $\sigma $ of the base change such that $h = g' \circ \sigma $. 
+    <p>
+      Of course $\sigma $ factors through the base change $S' \times _ S Y$ of $Y$ as $h$ factors through $Y$. Let $y' \in X'_{t'} \subset X'$ be the generic point of an irreducible component of the fibre 
+    <p>
+      <div class="equation">
+  \[  (S' \times _ S Y)_{t'} = Y_ t \times _ t t'  \]
+</div>
+    <p>
+       containing the point $\sigma (t')$, i.e., such that $y' \leadsto \sigma (t')$. Since $g'(y') \in Y_ t$ and $g(y') \leadsto g(\sigma (t')) = y$ we find that $g'(y') = y$ because $y$ is the generic point of the fibre $Y_ t$. Denote $Y' \subset X'$ the closure of $\{ y'\} $ in $X'$ viewed as an integral closed subscheme. Then $\sigma $ factors through $Y'$ as $\sigma (t') \in Y'$. Choose a generic point $x' \in Y'_{s'}$ of an irreducible component of $Y'_{s'}$ which contains $\sigma (s')$, i.e., we get $x' \leadsto \sigma (s')$ and hence $g'(x') \leadsto g'(\sigma (s')) = x$. Again as $x$ is a generic point of an irreducible component of $Y_ s$ by assumption and as $g'(Y') \subset Y$ we conclude that $g'(x') = x$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GSI">
+  <p><a class="environment-identifier" href="/tag/0GSI">Lemma <span data-tag="0GSI">37.18.3</span>.</a> Let $f : X \to S$ be a morphism of schemes which is locally of finite type. Let $\mathcal{F}$ be a quasi-coherent finite type $\mathcal{O}_ X$-module. Let $y \in \text{Ass}_{X/S}(\mathcal{F})$ with image $t \in S$. Denote $Y \subset X$ the closure of $\{ y\} $ in $X$ viewed as an integral closed subscheme. Let $s \in S$ and let $x \in Y_ s$ be a generic point of an irreducible component of $Y_ s$. If $\mathcal{F}$ is flat over $S$ at $x$, then $x \in \text{Ass}_{X/S}(\mathcal{F})$ and $\dim _ x(Y_ s) = \dim (Y_ t)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a diagram as in Lemma <a href="/tag/0GSH" data-tag="0GSH">37.18.2</a>. Set $\mathcal{F}' = (g')^*\mathcal{F}$. Divisors, Lemma <a href="/tag/05DC" data-tag="05DC">31.7.3</a> implies that $y' \in \text{Ass}_{X'/S'}(\mathcal{F}')$. By our choice of $y'$ we also see that $\dim (Y'_{t'}) = \dim (Y_ t)$, see for example Algebra, Lemma <a href="/tag/0CWE" data-tag="0CWE">10.116.7</a>. By Algebra, Lemma <a href="/tag/00QK" data-tag="00QK">10.125.9</a> we see that $Y'_{s'}$ is equidimensional of dimension equal to $\dim (Y_ t)$. Since $\mathcal{F}$ is flat at $x$ over $S$ we see that $\mathcal{F}'$ is flat at $x'$ over $S'$, see Morphisms, Lemma <a href="/tag/01U8" data-tag="01U8">29.26.7</a>. 
+    <p>
+      Suppose that we can show $x' \in \text{Ass}_{X'/S}(\mathcal{F}')$. Then Divisors, Lemma <a href="/tag/05DC" data-tag="05DC">31.7.3</a> implies that $x \in \text{Ass}_{X/S}(\mathcal{F})$ and that the irreducible component $C'$ of $Y'_{s'}$ containing $x'$ is an irreducible component of $C \times _ s s'$ where $C \subset Y_ s$ is the irreducible component containing $x$. Whence $\dim (C) = \dim (C') = \dim (Y_ t)$ (see above) and the proof is complete. This reduces us to the case discussed in the next paragraph. 
+    <p>
+      Assume $S = \mathop{\mathrm{Spec}}(A)$ where $A$ is a valuation ring and $t$ and $s$ are the generic and closed points of $S$. We will assume $x \not\in \text{Ass}_{X/S}(\mathcal{F})$ in order to get a contradiction. In other words, we assume $x \not\in \text{Ass}_{X_ s}(\mathcal{F}_ s)$ where $\mathcal{F}_ s$ is the pullback of $\mathcal{F}$ to $X_ s$. Consider the ring map 
+    <p>
+      <div class="equation">
+  \[  A \longrightarrow \mathcal{O}_{X, x} = B  \]
+</div>
+    <p>
+       and the module $N = \mathcal{F}_ x$ over $B = \mathcal{O}_{X, x}$. Then $B/\mathfrak m_ A B = \mathcal{O}_{X_ s, x}$ and $N/\mathfrak m_ A N$ is the stalk of $\mathcal{F}_ s$ at the point $x$. Denote $\mathfrak q \subset B$ the prime ideal corresponding to the point $y$, see Schemes, Lemma <a href="/tag/01J7" data-tag="01J7">26.13.2</a>. Since $x$ is a generic point of $Y_ s$ we see that the radical of $\mathfrak q + \mathfrak m_ A B$ is $\mathfrak m_ B$. Then $\text{Ass}_{B/\mathfrak m_ A B}(N/\mathfrak m_ A N)$ is a finite set of prime ideals (Algebra, Lemma <a href="/tag/00LC" data-tag="00LC">10.63.5</a>) which doesn't contain the maximal ideal of $B/\mathfrak m_ A B$ since $x \not\in \text{Ass}_{X/S}(\mathcal{F})$. Thus the image of of $\mathfrak q$ in $B/\mathfrak m_ A B$ is not contained in any of those prime ideals. Hence by prime avoidance (Algebra, Lemma <a href="/tag/00DS" data-tag="00DS">10.15.2</a>) we can find an element $g \in \mathfrak q$ whose image in $B/\mathfrak m_ A B$ is a nonzerodivisor on $N/\mathfrak m_ A N$ (this uses the description of zerodivisors in Algebra, Lemma <a href="/tag/00LD" data-tag="00LD">10.63.9</a>). Since $N = \mathcal{F}_ x$ is $A$-flat by Lemma <a href="/tag/0GSG" data-tag="0GSG">37.18.1</a> we see that 
+    <p>
+      <div class="equation">
+  \[  g : N \longrightarrow N  \]
+</div>
+    <p>
+       is injective. In particular, if $K = \text{Frac}(A)$ is the fraction field of $A$, then we see that 
+    <p>
+      <div class="equation">
+  \[  g : N \otimes _ A K \longrightarrow N \otimes _ A K  \]
+</div>
+    <p>
+       is injective. Observe that $\mathfrak q$ corresponds to a prime ideal of $B \otimes _ A K$. Denote $\mathcal{F}_ t$ the restriction of $\mathcal{F}$ to the generic fibre $X_ t$. We have $(B \otimes _ A K)_{\mathfrak q} = \mathcal{O}_{X_ t, y}$ and $(N \otimes _ A K)_\mathfrak q$ is the stalk at $y$ of $\mathcal{F}_ t$. Hence we find that $g \in \mathfrak m_ y \subset \mathcal{O}_{X_ t, y}$ is a nonzerodivisor on the stalk $(\mathcal{F}_ t)_ y$ which contradicts our assumption that $y \in \text{Ass}_{X/S}(\mathcal{F})$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0H3X">
+  <p><a class="environment-identifier" href="/tag/0H3X">Lemma <span data-tag="0H3X">37.18.4</span>.</a> Let $f : X \to S$ be a morphism of schemes which is locally of finite type. Let $\mathcal{F}$ be a finite type, quasi-coherent $\mathcal{O}_ X$-module flat over $S$. Assume $S$ is irreducible with generic point $\eta $. If $\dim (\text{Supp}(\mathcal{F}_\eta )) \leq r$ then for all $s \in S$ we have $\dim (\text{Supp}(\mathcal{F}_ s)) \leq r$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $x \in \text{Supp}(\mathcal{F}_ s)$ be a generic point of an irreducible component of $\text{Supp}(\mathcal{F}_ s)$. By Algebra, Lemma <a href="/tag/080T" data-tag="080T">10.41.12</a> we can find a specialization $y \leadsto x$ in $\text{Supp}(\mathcal{F})$ with $f(y) = \eta $. Of course we may assume $y$ is a generic point of an irreducible component of $\text{Supp}(\mathcal{F}_\eta )$. We conclude from Lemma <a href="/tag/0GSI" data-tag="0GSI">37.18.3</a> that the dimension of $\overline{\{ x\} }$ is at most $r$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GSJ">
+  <p><a class="environment-identifier" href="/tag/0GSJ">Lemma <span data-tag="0GSJ">37.18.5</span>.</a> Let $f : X \to S$ be a morphism of schemes which is locally of finite type. Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_ X$-module of finite type. Let $y \in \text{Ass}_{X/S}(\mathcal{F})$. Denote $Y \subset X$ the closure of $\{ y\} $ in $X$ viewed as an integral closed subscheme. Denote $T \subset S$ the closure of $\{ f(y)\} $ viewed as an integral closed subscheme. We obtain a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ Y \ar[r] \ar[d] &  X \ar[d] \\  T \ar[r] &  S }  \]
+</div>
+  <p> where $Y \to T$ is dominant. Assume $\mathcal{F}$ is flat over $S$ at all generic points of irreducible components of fibres of $Y \to T$ (for example if $\mathcal{F}$ is flat over $S$). Then </p>
+  <p><ol>
+  <li><p>
+if $s \in S$ and $x \in Y_ s$ is the generic point of an irreducible component of $Y_ s$, then $x \in \text{Ass}_{X/S}(\mathcal{F})$, and 
+</p>
+</li><li><p>
+there is an integer $d \geq 0$ such that $Y \to T$ is of relative dimension $d$, see Morphisms, Definition <a href="/tag/02NJ" data-tag="02NJ">29.30.1</a>. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows immediately from the pointwise version Lemma <a href="/tag/0GSI" data-tag="0GSI">37.18.3</a>. Note that to compute the dimension of the locally algebraic schemes $Y_ s$ it suffices to look near the generic points, see Varieties, Section <a href="/tag/06LF" data-tag="06LF">33.20</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0GSK">
+  <p><a class="environment-identifier" href="/tag/0GSK">Remark <span data-tag="0GSK">37.18.6</span>.</a> Here are some cases where the material above, especially Lemma <a href="/tag/0GSJ" data-tag="0GSJ">37.18.5</a>, allows one to conclude that a morphism $f : X \to S$ of schemes has relative dimension $d$ as defined in Morphisms, Definition <a href="/tag/02NJ" data-tag="02NJ">29.30.1</a>. For example, this is true if </p>
+  <p><ol>
+  <li><p>
+$X$ is integral with generic point $\xi $, 
+</p>
+</li><li><p>
+the transcendence degree of $\kappa (\xi )$ over $\kappa (f(\xi ))$ is $d$, 
+</p>
+</li><li><p>
+$f$ is locally of finite type, and 
+</p>
+</li><li><p>
+there exists a quasi-coherent $\mathcal{O}_ X$-module $\mathcal{F}$ of finite type which is flat over $S$ with $\text{Supp}(\mathcal{F}) = X$. 
+</p>
+</li>
+</ol></p>
+  <p> Another set of hypotheses that work are the following: </p>
+  <p><ol>
+  <li><p>
+$S$ is irreducible with generic point $\eta $, 
+</p>
+</li><li><p>
+$X_\eta $ is dense in $X$, 
+</p>
+</li><li><p>
+every irreducible component of $X_\eta $ has dimension $d$, 
+</p>
+</li><li><p>
+$f$ is locally of finite type, and 
+</p>
+</li><li><p>
+there exists a quasi-coherent $\mathcal{O}_ X$-module $\mathcal{F}$ of finite type which is flat over $S$ with $\text{Supp}(\mathcal{F}) = X$. 
+</p>
+</li>
+</ol></p>
+  <p> Of course, we can relax the flatness condition on $\mathcal{F}$ and require only that $\mathcal{F}$ is flat over $S$ in codimension $0$, i.e., that $\mathcal{F}$ is flat over $S$ at every generic point of every fibre. If we ever need these results, we will carefully state and prove them here. </p>
+</article> 
+</p>

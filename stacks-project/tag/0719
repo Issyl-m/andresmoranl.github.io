@@ -1,0 +1,138 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="cohomology-section-K-injective" class="tex-section"><span data-tag="0719">20.38</span> Producing K-injective resolutions</h2>
+
+<p>
+Let $(X, \mathcal{O}_ X)$ be a ringed space. Let $\mathcal{F}^\bullet $ be a complex of $\mathcal{O}_ X$-modules. The category $\textit{Mod}(\mathcal{O}_ X)$ has enough injectives, hence we can use Derived Categories, Lemma <a href="/tag/070F" data-tag="070F">13.29.3</a> produce a diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \ldots \ar[r] &  \tau _{\geq -2}\mathcal{F}^\bullet \ar[r] \ar[d] &  \tau _{\geq -1}\mathcal{F}^\bullet \ar[d] \\  \ldots \ar[r] &  \mathcal{I}_2^\bullet \ar[r] &  \mathcal{I}_1^\bullet }  \]
+</div>
+<p>
+ in the category of complexes of $\mathcal{O}_ X$-modules such that 
+</p>
+<ol>
+  <li><p>
+the vertical arrows are quasi-isomorphisms, 
+</p>
+</li><li><p>
+$\mathcal{I}_ n^\bullet $ is a bounded below complex of injectives, 
+</p>
+</li><li><p>
+the arrows $\mathcal{I}_{n + 1}^\bullet \to \mathcal{I}_ n^\bullet $ are termwise split surjections. 
+</p>
+</li>
+</ol>
+<p>
+ The category of $\mathcal{O}_ X$-modules has limits (they are computed on the level of presheaves), hence we can form the termwise limit $\mathcal{I}^\bullet = \mathop{\mathrm{lim}}\nolimits _ n \mathcal{I}_ n^\bullet $. By Derived Categories, Lemmas <a href="/tag/070J" data-tag="070J">13.31.4</a> and <a href="/tag/070L" data-tag="070L">13.31.8</a> this is a K-injective complex. In general the canonical map 
+</p>
+<div class="equation" id="071A">
+    <span class="equation-label"><a href="/tag/071A" data-tag="071A">20.38.0.1</a></span>
+  <div>\begin{equation}  \label{cohomology-equation-into-candidate-K-injective} \mathcal{F}^\bullet \to \mathcal{I}^\bullet \end{equation}</div>
+</div>
+<p>
+ may not be a quasi-isomorphism. In the following lemma we describe some conditions under which it is. 
+</p>
+<p>
+<article class="env-lemma" id="071B">
+  <p><a class="environment-identifier" href="/tag/071B">Lemma <span data-tag="071B">20.38.1</span>.</a> In the situation described above. Denote $\mathcal{H}^ m = H^ m(\mathcal{F}^\bullet )$ the $m$th cohomology sheaf. Let $\mathcal{B}$ be a set of open subsets of $X$. Let $d \in \mathbf{N}$. Assume </p>
+  <p><ol>
+  <li><p>
+every open in $X$ has a covering whose members are elements of $\mathcal{B}$, 
+</p>
+</li><li><p>
+for every $U \in \mathcal{B}$ we have $H^ p(U, \mathcal{H}^ q) = 0$ for $p > d$ and $q < 0$<a class="footnotemark" href="#a0000490693" id="a0000490693-mark"><sup>1</sup></a>. 
+</p>
+</li>
+</ol></p>
+  <p> Then (<a href="/tag/071A" data-tag="071A">20.38.0.1</a>) is a quasi-isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Derived Categories, Lemma <a href="/tag/070M" data-tag="070M">13.34.6</a> it suffices to show that the map $\mathcal{F}^\bullet \to R\mathop{\mathrm{lim}}\nolimits \tau _{\geq -n} \mathcal{F}^\bullet $ is an isomorphism. This is Lemma <a href="/tag/0D64" data-tag="0D64">20.37.9</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Here is a technical lemma about the cohomology sheaves of the inverse limit of a system of complexes of sheaves. In some sense this lemma is the wrong thing to try to prove as one should take derived limits and not actual inverse limits. 
+</p>
+<p>
+<article class="env-lemma" id="08BY">
+  <p><a class="environment-identifier" href="/tag/08BY">Lemma <span data-tag="08BY">20.38.2</span>.</a> Let $(X, \mathcal{O}_ X)$ be a ringed space. Let $(\mathcal{F}_ n^\bullet )$ be an inverse system of complexes of $\mathcal{O}_ X$-modules. Let $m \in \mathbf{Z}$. Assume there exist a set $\mathcal{B}$ of open subsets of $X$ and an integer $n_0$ such that </p>
+  <p><ol>
+  <li><p>
+every open in $X$ has a covering whose members are elements of $\mathcal{B}$, 
+</p>
+</li><li><p>
+for every $U \in \mathcal{B}$ 
+</p>
+<ol>
+  <li><p>
+the systems of abelian groups $\mathcal{F}_ n^{m - 2}(U)$ and $\mathcal{F}_ n^{m - 1}(U)$ have vanishing $R^1\mathop{\mathrm{lim}}\nolimits $ (for example these have the Mittag-Leffler condition), 
+</p>
+</li><li><p>
+the system of abelian groups $H^{m - 1}(\mathcal{F}_ n^\bullet (U))$ has vanishing $R^1\mathop{\mathrm{lim}}\nolimits $ (for example it has the Mittag-Leffler condition), and 
+</p>
+</li><li><p>
+we have $H^ m(\mathcal{F}_ n^\bullet (U)) = H^ m(\mathcal{F}_{n_0}^\bullet (U))$ for all $n \geq n_0$. 
+</p>
+</li>
+</ol>
+</li>
+</ol></p>
+  <p> Then the maps $H^ m(\mathcal{F}^\bullet ) \to \mathop{\mathrm{lim}}\nolimits H^ m(\mathcal{F}_ n^\bullet ) \to H^ m(\mathcal{F}_{n_0}^\bullet )$ are isomorphisms of sheaves where $\mathcal{F}^\bullet = \mathop{\mathrm{lim}}\nolimits \mathcal{F}_ n^\bullet $ is the termwise inverse limit. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $U \in \mathcal{B}$. Note that $H^ m(\mathcal{F}^\bullet (U))$ is the cohomology of 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{lim}}\nolimits _ n \mathcal{F}_ n^{m - 2}(U) \to \mathop{\mathrm{lim}}\nolimits _ n \mathcal{F}_ n^{m - 1}(U) \to \mathop{\mathrm{lim}}\nolimits _ n \mathcal{F}_ n^ m(U) \to \mathop{\mathrm{lim}}\nolimits _ n \mathcal{F}_ n^{m + 1}(U)  \]
+</div>
+    <p>
+       in the third spot from the left. By assumptions (2)(a) and (2)(b) we may apply More on Algebra, Lemma <a href="/tag/0918" data-tag="0918">15.88.3</a> to conclude that 
+    <p>
+      <div class="equation">
+  \[  H^ m(\mathcal{F}^\bullet (U)) = \mathop{\mathrm{lim}}\nolimits H^ m(\mathcal{F}_ n^\bullet (U))  \]
+</div>
+    <p>
+       By assumption (2)(c) we conclude 
+    <p>
+      <div class="equation">
+  \[  H^ m(\mathcal{F}^\bullet (U)) = H^ m(\mathcal{F}_ n^\bullet (U))  \]
+</div>
+    <p>
+       for all $n \geq n_0$. By assumption (1) we conclude that the sheafification of $U \mapsto H^ m(\mathcal{F}^\bullet (U))$ is equal to the sheafification of $U \mapsto H^ m(\mathcal{F}_ n^\bullet (U))$ for all $n \geq n_0$. Thus the inverse system of sheaves $H^ m(\mathcal{F}_ n^\bullet )$ is constant for $n \geq n_0$ with value $H^ m(\mathcal{F}^\bullet )$ which proves the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

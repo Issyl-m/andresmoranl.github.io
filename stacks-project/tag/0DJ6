@@ -1,0 +1,275 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="perfect-section-cohomology-base-change" class="tex-section"><span data-tag="0DJ6">36.26</span> Cohomology and base change, V</h2>
+
+<p>
+In Section <a href="/tag/08ET" data-tag="08ET">36.22</a> we saw a base change theorem holds when the morphisms are tor independent. Even in the affine case there cannot be a base change theorem without such a condition, see More on Algebra, Section <a href="/tag/065Y" data-tag="065Y">15.62</a>. In this section we analyze when one can get a base change result “one complex at a time”. 
+</p>
+<p>
+To make this work, suppose we have a commutative diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ X' \ar[r]_{g'} \ar[d]_{f'} &  X \ar[d]^ f \\  S' \ar[r]^ g &  S }  \]
+</div>
+<p>
+ of schemes (usually we will assume it is cartesian). Let $K \in D_\mathit{QCoh}(\mathcal{O}_ X)$ and let $L(g')^*K \to K'$ be a map in $D_\mathit{QCoh}(\mathcal{O}_{X'})$. For a point $x' \in X'$ set $x = g'(x') \in X$, $s' = f'(x') \in S'$ and $s = f(x) = g(s')$. Then we can consider the maps 
+</p>
+<div class="equation">
+  \[  K_ x \otimes _{\mathcal{O}_{S, s}}^\mathbf {L} \mathcal{O}_{S', s'} \to K_ x \otimes _{\mathcal{O}_{X, x}}^\mathbf {L} \mathcal{O}_{X', x'} \to K'_{x'}  \]
+</div>
+<p>
+ where the first arrow is More on Algebra, Equation (<a href="/tag/065Z" data-tag="065Z">15.62.0.1</a>) and the second comes from $(L(g')^*K)_{x'} = K_ x \otimes _{\mathcal{O}_{X, x}}^\mathbf {L} \mathcal{O}_{X', x'}$ and the given map $L(g')^*K \to K'$. For each $i \in \mathbf{Z}$ we obtain a $\mathcal{O}_{X, x} \otimes _{\mathcal{O}_{S, s}} \mathcal{O}_{S', s'}$-module structure on $H^ i(K_ x \otimes _{\mathcal{O}_{S, s}}^\mathbf {L} \mathcal{O}_{S', s'})$. Putting everything together we obtain canonical maps 
+</p>
+<div class="equation" id="0DJ7">
+    <span class="equation-label"><a href="/tag/0DJ7" data-tag="0DJ7">36.26.0.1</a></span>
+  <div>\begin{equation}  \label{perfect-equation-bc} H^ i(K_ x \otimes _{\mathcal{O}_{S, s}}^\mathbf {L} \mathcal{O}_{S', s'}) \otimes _{(\mathcal{O}_{X, x} \otimes _{\mathcal{O}_{S, s}} \mathcal{O}_{S', s'})} \mathcal{O}_{X', x'} \longrightarrow H^ i(K'_{x'}) \end{equation}</div>
+</div>
+<p>
+ of $\mathcal{O}_{X', x'}$-modules. 
+</p>
+<p>
+<article class="env-lemma" id="0DJ8">
+  <p><a class="environment-identifier" href="/tag/0DJ8">Lemma <span data-tag="0DJ8">36.26.1</span>.</a> Let </p>
+  <div class="equation">
+  \[  \xymatrix{ X' \ar[r]_{g'} \ar[d]_{f'} &  X \ar[d]^ f \\  S' \ar[r]^ g &  S }  \]
+</div>
+  <p> be a cartesian diagram of schemes. Let $K \in D_\mathit{QCoh}(\mathcal{O}_ X)$ and let $L(g')^*K \to K'$ be a map in $D_\mathit{QCoh}(\mathcal{O}_{X'})$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+for any $x' \in X'$ and $i \in \mathbf{Z}$ the map (<a href="/tag/0DJ7" data-tag="0DJ7">36.26.0.1</a>) is an isomorphism, 
+</p>
+</li><li><p>
+for $U \subset X$, $V' \subset S'$ affine open both mapping into the affine open $V \subset S$ with $U' = V' \times _ V U$ the composition 
+</p>
+<div class="equation">
+  \[  R\Gamma (U, K) \otimes _{\mathcal{O}_ S(U)}^\mathbf {L} \mathcal{O}_{S'}(V') \to R\Gamma (U, K) \otimes _{\mathcal{O}_ X(U)}^\mathbf {L} \mathcal{O}_{X'}(U') \to R\Gamma (U', K')  \]
+</div>
+<p>
+ is an isomorphism in $D(\mathcal{O}_{S'}(V'))$, and 
+</p>
+</li><li><p>
+there is a set $I$ of quadruples $U_ i, V_ i', V_ i, U_ i'$, $i \in I$ as in (2) with $X' = \bigcup U'_ i$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The second arrow in (2) comes from the equality 
+    <p>
+      <div class="equation">
+  \[  R\Gamma (U, K) \otimes _{\mathcal{O}_ X(U)}^\mathbf {L} \mathcal{O}_{X'}(U') = R\Gamma (U', L(g')^*K)  \]
+</div>
+    <p>
+       of Lemma <a href="/tag/08DW" data-tag="08DW">36.3.8</a> and the given arrow $L(g')^*K \to K'$. The first arrow of (2) is More on Algebra, Equation (<a href="/tag/065Z" data-tag="065Z">15.62.0.1</a>). It is clear that (2) implies (3). Observe that (1) is local on $X'$. Therefore it suffices to show that if $X$, $S$, $S'$, $X'$ are affine, then (1) is equivalent to the condition that 
+    <p>
+      <div class="equation">
+  \[  R\Gamma (X, K) \otimes _{\mathcal{O}_ S(S)}^\mathbf {L} \mathcal{O}_{S'}(S') \to R\Gamma (X, K) \otimes _{\mathcal{O}_ X(X)}^\mathbf {L} \mathcal{O}_{X'}(X') \to R\Gamma (X', K')  \]
+</div>
+    <p>
+       is an isomorphism in $D(\mathcal{O}_{S'}(S'))$. Say $S = \mathop{\mathrm{Spec}}(R)$, $X = \mathop{\mathrm{Spec}}(A)$, $S' = \mathop{\mathrm{Spec}}(R')$, $X' = \mathop{\mathrm{Spec}}(A')$, $K$ corresponds to the complex $M^\bullet $ of $A$-modules, and $K'$ corresponds to the complex $N^\bullet $ of $A'$-modules. Note that $A' = A \otimes _ R R'$. The condition above is that the composition 
+    <p>
+      <div class="equation">
+  \[  M^\bullet \otimes _ R^\mathbf {L} R' \to M^\bullet \otimes _ A^\mathbf {L} A' \to N^\bullet  \]
+</div>
+    <p>
+       is an isomorphism in $D(R')$. Equivalently, it is that for all $i \in \mathbf{Z}$ the map 
+    <p>
+      <div class="equation">
+  \[  H^ i(M^\bullet \otimes _ R^\mathbf {L} R') \to H^ i(M^\bullet \otimes _ A^\mathbf {L} A') \to H^ i(N^\bullet )  \]
+</div>
+    <p>
+       is an isomorphism. Observe that this is a map of $A \otimes _ R R'$-modules, i.e., of $A'$-modules. On the other hand, (1) is the requirement that for compatible primes $\mathfrak q' \subset A'$, $\mathfrak q \subset A$, $\mathfrak p' \subset R'$, $\mathfrak p \subset R$ the composition 
+    <p>
+      <div class="equation">
+  \[  H^ i(M^\bullet _\mathfrak q \otimes _{R_\mathfrak p}^\mathbf {L} R'_{\mathfrak p'}) \otimes _{(A_\mathfrak q \otimes _{R_\mathfrak p} R'_{\mathfrak p'})} A'_{\mathfrak q'} \to H^ i(M^\bullet _{\mathfrak q} \otimes _{A_\mathfrak q}^\mathbf {L} A'_{\mathfrak q'}) \to H^ i(N^\bullet _{\mathfrak q'})  \]
+</div>
+    <p>
+       is an isomorphism. Since 
+    <p>
+      <div class="equation">
+  \[  H^ i(M^\bullet _\mathfrak q \otimes _{R_\mathfrak p}^\mathbf {L} R'_{\mathfrak p'}) \otimes _{(A_\mathfrak q \otimes _{R_\mathfrak p} R'_{\mathfrak p'})} A'_{\mathfrak q'} = H^ i(M^\bullet \otimes _ R^\mathbf {L} R') \otimes _{A'} A'_{\mathfrak q'}  \]
+</div>
+    <p>
+       is the localization at $\mathfrak q'$, we see that these two conditions are equivalent by Algebra, Lemma <a href="/tag/00HN" data-tag="00HN">10.23.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DJ9">
+  <p><a class="environment-identifier" href="/tag/0DJ9">Lemma <span data-tag="0DJ9">36.26.2</span>.</a> Let </p>
+  <div class="equation">
+  \[  \xymatrix{ X' \ar[r]_{g'} \ar[d]_{f'} &  X \ar[d]^ f \\  S' \ar[r]^ g &  S }  \]
+</div>
+  <p> be a cartesian diagram of schemes. Let $K \in D_\mathit{QCoh}(\mathcal{O}_ X)$ and let $L(g')^*K \to K'$ be a map in $D_\mathit{QCoh}(\mathcal{O}_{X'})$. If </p>
+  <p><ol>
+  <li><p>
+the equivalent conditions of Lemma <a href="/tag/0DJ8" data-tag="0DJ8">36.26.1</a> hold, and 
+</p>
+</li><li><p>
+$f$ is quasi-compact and quasi-separated, 
+</p>
+</li>
+</ol></p>
+  <p> then the composition $Lg^*Rf_*K \to Rf'_*L(g')^*K \to Rf'_*K'$ is an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We could prove this using the same method as in the proof of Lemma <a href="/tag/08IB" data-tag="08IB">36.22.5</a> but instead we will prove it using the induction principle and relative Mayer-Vietoris. 
+    <p>
+      To check the map is an isomorphism we may work locally on $S'$. Hence we may assume $g : S' \to S$ is a morphism of affine schemes. In particular $X$ is a quasi-compact and quasi-separated scheme. We will use the induction principle of Cohomology of Schemes, Lemma <a href="/tag/08DR" data-tag="08DR">30.4.1</a> to prove that for any quasi-compact open $U \subset X$ the similarly constructed map $Lg^*R(U \to S)_*K|_ U \to R(U' \to S')_*K'|_{U'}$ is an isomorphism. Here $U' = (g')^{-1}(U)$. 
+    <p>
+      If $U \subset X$ is an affine open, then we find that the result is true by assumption, see Lemma <a href="/tag/0DJ8" data-tag="0DJ8">36.26.1</a> part (2) and the translation into algebra afforded to us by Lemmas <a href="/tag/06Z0" data-tag="06Z0">36.3.5</a> and <a href="/tag/08DW" data-tag="08DW">36.3.8</a>. 
+    <p>
+      The induction step. Suppose that $X = U \cup V$ is an open covering with $U$, $V$, $U \cap V$ quasi-compact such that the result holds for $U$, $V$, and $U \cap V$. Denote $a = f|_ U$, $b = f|_ V$ and $c = f|_{U \cap V}$. Let $a' : U' \to S'$, $b' : V' \to S'$ and $c' : U' \cap V' \to S'$ be the base changes of $a$, $b$, and $c$. Using the distinguished triangles from relative Mayer-Vietoris (Cohomology, Lemma <a href="/tag/08HZ" data-tag="08HZ">20.33.5</a>) we obtain a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ Lg^*Rf_*K \ar[r] \ar[d] &  Rf'_* K' \ar[d] \\  Lg^*Ra_* K|_ U \oplus Lg^*Rb_* K|_ V \ar[r] \ar[d] &  Ra'_* K'|_{U'} \oplus Rb'_* K'|_{V'} \ar[d] \\  Lg^*Rc_* K|_{U \cap V} \ar[r] \ar[d] &  Rc'_* K'|_{U' \cap V'} \ar[d] \\  Lg^*Rf_* K[1] \ar[r] &  Rf'_* K'[1] }  \]
+</div>
+    <p>
+       Since the 2nd and 3rd horizontal arrows are isomorphisms so is the first (Derived Categories, Lemma <a href="/tag/014A" data-tag="014A">13.4.3</a>) and the proof of the lemma is finished. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DJA">
+  <p><a class="environment-identifier" href="/tag/0DJA">Lemma <span data-tag="0DJA">36.26.3</span>.</a> Let </p>
+  <div class="equation">
+  \[  \xymatrix{ X' \ar[r]_{g'} \ar[d]_{f'} &  X \ar[d]^ f \\  S' \ar[r]^ g &  S }  \]
+</div>
+  <p> be a cartesian diagram of schemes. Let $K \in D_\mathit{QCoh}(\mathcal{O}_ X)$ and let $L(g')^*K \to K'$ be a map in $D_\mathit{QCoh}(\mathcal{O}_{X'})$. If the equivalent conditions of Lemma <a href="/tag/0DJ8" data-tag="0DJ8">36.26.1</a> hold, then </p>
+  <p><ol>
+  <li><p>
+for $E \in D_\mathit{QCoh}(\mathcal{O}_ X)$ the equivalent conditions of Lemma <a href="/tag/0DJ8" data-tag="0DJ8">36.26.1</a> hold for $L(g')^*(E \otimes ^\mathbf {L} K) \to L(g')^*E \otimes ^\mathbf {L} K'$, 
+</p>
+</li><li><p>
+if $E$ in $D(\mathcal{O}_ X)$ is perfect the equivalent conditions of Lemma <a href="/tag/0DJ8" data-tag="0DJ8">36.26.1</a> hold for $L(g')^*R\mathop{\mathcal{H}\! \mathit{om}}\nolimits (E, K) \to R\mathop{\mathcal{H}\! \mathit{om}}\nolimits (L(g')^*E, K')$, and 
+</p>
+</li><li><p>
+if $K$ is bounded below and $E$ in $D(\mathcal{O}_ X)$ pseudo-coherent the equivalent conditions of Lemma <a href="/tag/0DJ8" data-tag="0DJ8">36.26.1</a> hold for $L(g')^*R\mathop{\mathcal{H}\! \mathit{om}}\nolimits (E, K) \to R\mathop{\mathcal{H}\! \mathit{om}}\nolimits (L(g')^*E, K')$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The statement makes sense as the complexes involved have quasi-coherent cohomology sheaves by Lemmas <a href="/tag/08DW" data-tag="08DW">36.3.8</a>, <a href="/tag/08DX" data-tag="08DX">36.3.9</a>, and <a href="/tag/0A6H" data-tag="0A6H">36.10.8</a> and Cohomology, Lemmas <a href="/tag/09U7" data-tag="09U7">20.47.3</a> and <a href="/tag/09UA" data-tag="09UA">20.49.6</a>. Having said this, we can check the maps (<a href="/tag/0DJ7" data-tag="0DJ7">36.26.0.1</a>) are isomorphisms in case (1) by computing the source and target of (<a href="/tag/0DJ7" data-tag="0DJ7">36.26.0.1</a>) using the transitive property of tensor product, see More on Algebra, Lemma <a href="/tag/0BYJ" data-tag="0BYJ">15.60.15</a>. The map in (2) and (3) is the composition 
+    <p>
+      <div class="equation">
+  \[  L(g')^*R\mathop{\mathcal{H}\! \mathit{om}}\nolimits (E, K) \to R\mathop{\mathcal{H}\! \mathit{om}}\nolimits (L(g')^*E, L(g')^*K) \to R\mathop{\mathcal{H}\! \mathit{om}}\nolimits (L(g')^*E, K')  \]
+</div>
+    <p>
+       where the first arrow is Cohomology, Remark <a href="/tag/08I3" data-tag="08I3">20.42.13</a> and the second arrow comes from the given map $L(g')^*K \to K'$. To prove the maps (<a href="/tag/0DJ7" data-tag="0DJ7">36.26.0.1</a>) are isomorphisms one represents $E_ x$ by a bounded complex of finite projective $\mathcal{O}_{X. x}$-modules in case (2) or by a bounded above complex of finite free modules in case (3) and computes the source and target of the arrow. Some details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0A1D">
+  <p><a class="environment-identifier" href="/tag/0A1D">Lemma <span data-tag="0A1D">36.26.4</span>.</a> Let $f : X \to S$ be a quasi-compact and quasi-separated morphism of schemes. Let $E \in D_\mathit{QCoh}(\mathcal{O}_ X)$. Let $\mathcal{G}^\bullet $ be a bounded above complex of quasi-coherent $\mathcal{O}_ X$-modules flat over $S$. Then formation of </p>
+  <div class="equation">
+  \[  Rf_*(E \otimes ^\mathbf {L}_{\mathcal{O}_ X} \mathcal{G}^\bullet )  \]
+</div>
+  <p> commutes with arbitrary base change (see proof for precise statement). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The statement means the following. Let $g : S' \to S$ be a morphism of schemes and consider the base change diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X' \ar[r]_{g'} \ar[d]_{f'} &  X \ar[d]^ f \\  S' \ar[r]^ g &  S }  \]
+</div>
+    <p>
+       in other words $X' = S' \times _ S X$. The lemma asserts that 
+    <p>
+      <div class="equation">
+  \[  Lg^*Rf_*(E \otimes ^\mathbf {L}_{\mathcal{O}_ X} \mathcal{G}^\bullet ) \longrightarrow Rf'_*\left( L(g')^*E \otimes ^\mathbf {L}_{\mathcal{O}_{X'}} (g')^*\mathcal{G}^\bullet \right)  \]
+</div>
+    <p>
+       is an isomorphism. Observe that on the right hand side we do <strong>not</strong> use the derived pullback on $\mathcal{G}^\bullet $. To prove this, we apply Lemmas <a href="/tag/0DJ9" data-tag="0DJ9">36.26.2</a> and <a href="/tag/0DJA" data-tag="0DJA">36.26.3</a> to see that it suffices to prove the canonical map 
+    <p>
+      <div class="equation">
+  \[  L(g')^*\mathcal{G}^\bullet \to (g')^*\mathcal{G}^\bullet  \]
+</div>
+    <p>
+       satisfies the equivalent conditions of Lemma <a href="/tag/0DJ8" data-tag="0DJ8">36.26.1</a>. This follows by checking the condition on stalks, where it immediately follows from the fact that $\mathcal{G}^\bullet _ x \otimes _{\mathcal{O}_{S, s}} \mathcal{O}_{S', s'}$ computes the derived tensor product by our assumptions on the complex $\mathcal{G}^\bullet $. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08IE">
+  <p><a class="environment-identifier" href="/tag/08IE">Lemma <span data-tag="08IE">36.26.5</span>.</a> Let $f : X \to S$ be a quasi-compact and quasi-separated morphism of schemes. Let $E$ be an object of $D(\mathcal{O}_ X)$. Let $\mathcal{G}^\bullet $ be a complex of quasi-coherent $\mathcal{O}_ X$-modules. If </p>
+  <p><ol>
+  <li><p>
+$E$ is perfect, $\mathcal{G}^\bullet $ is a bounded above, and $\mathcal{G}^ n$ is flat over $S$, or 
+</p>
+</li><li><p>
+$E$ is pseudo-coherent, $\mathcal{G}^\bullet $ is bounded, and $\mathcal{G}^ n$ is flat over $S$, 
+</p>
+</li>
+</ol></p>
+  <p> then formation of </p>
+  <div class="equation">
+  \[  Rf_*R\mathop{\mathcal{H}\! \mathit{om}}\nolimits (E, \mathcal{G}^\bullet )  \]
+</div>
+  <p> commutes with arbitrary base change (see proof for precise statement). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The statement means the following. Let $g : S' \to S$ be a morphism of schemes and consider the base change diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X' \ar[r]_{g'} \ar[d]_{f'} &  X \ar[d]^ f \\  S' \ar[r]^ g &  S }  \]
+</div>
+    <p>
+       in other words $X' = S' \times _ S X$. The lemma asserts that 
+    <p>
+      <div class="equation">
+  \[  Lg^*Rf_*R\mathop{\mathcal{H}\! \mathit{om}}\nolimits (E, \mathcal{G}^\bullet ) \longrightarrow R(f')_*R\mathop{\mathcal{H}\! \mathit{om}}\nolimits (L(g')^*E, (g')^*\mathcal{G}^\bullet )  \]
+</div>
+    <p>
+       is an isomorphism. Observe that on the right hand side we do <strong>not</strong> use the derived pullback on $\mathcal{G}^\bullet $. To prove this, we apply Lemmas <a href="/tag/0DJ9" data-tag="0DJ9">36.26.2</a> and <a href="/tag/0DJA" data-tag="0DJA">36.26.3</a> to see that it suffices to prove the canonical map 
+    <p>
+      <div class="equation">
+  \[  L(g')^*\mathcal{G}^\bullet \to (g')^*\mathcal{G}^\bullet  \]
+</div>
+    <p>
+       satisfies the equivalent conditions of Lemma <a href="/tag/0DJ8" data-tag="0DJ8">36.26.1</a>. This was shown in the proof of Lemma <a href="/tag/0A1D" data-tag="0A1D">36.26.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

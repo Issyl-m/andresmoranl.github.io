@@ -1,0 +1,235 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="obsolete-section-not-flat" class="tex-section"><span data-tag="0CXY">115.21</span> The stack of coherent sheaves in the non-flat case</h2>
+
+<p>
+In Quot, Theorem <a href="/tag/08WC" data-tag="08WC">99.5.12</a> the assumption that $f : X \to B$ is flat is not necessary. In this section we modify the method of proof based on ideas from derived algebraic geometry to get around the flatness hypothesis. An entirely different method is used in Quot, Section <a href="/tag/08WB" data-tag="08WB">99.6</a> to get exactly the same result; this is why the method from this section is obsolete. 
+</p>
+<p>
+The only step in the proof of Quot, Theorem <a href="/tag/08WC" data-tag="08WC">99.5.12</a> which uses flatness is in the application of Quot, Lemma <a href="/tag/08WA" data-tag="08WA">99.5.11</a>. The lemma is used to construct an obstruction theory as in Artin's Axioms, Section <a href="/tag/07YV" data-tag="07YV">98.24</a>. The proof of the lemma relies on Deformation Theory, Lemmas <a href="/tag/08VW" data-tag="08VW">91.12.1</a> and <a href="/tag/08VY" data-tag="08VY">91.12.5</a> from Deformation Theory, Section <a href="/tag/08VV" data-tag="08VV">91.12</a>. This is how the assumption that $f$ is flat comes about. Before we go on, note that results (2) and (3) of Deformation Theory, Lemmas <a href="/tag/08VW" data-tag="08VW">91.12.1</a> do hold without the assumption that $f$ is flat as they rely on Deformation Theory, Lemmas <a href="/tag/08MU" data-tag="08MU">91.11.7</a> and <a href="/tag/08MR" data-tag="08MR">91.11.4</a> which do not have any flatness assumptions. 
+</p>
+<p>
+Before we give the details we give some motivation for the construction from derived algebraic geometry, since we think it will clarify what follows. Let $A$ be a finite type algebra over the locally Noetherian base $S$. Denote $X \otimes ^\mathbf {L} A$ a “derived base change” of $X$ to $A$ and denote $i : X_ A \to X \otimes ^\mathbf {L} A$ the canonical inclusion morphism. The object $X \otimes ^\mathbf {L} A$ does not (yet) have a definition in the Stacks project; we may think of it as the algebraic space $X_ A$ endowed with a simplicial sheaf of rings $\mathcal{O}_{X \otimes ^\mathbf {L} A}$ whose homology sheaves are 
+</p>
+<div class="equation">
+  \[  H_ i(\mathcal{O}_{X \otimes ^\mathbf {L} A}) = \text{Tor}^{\mathcal{O}_ S}_ i(\mathcal{O}_ X, A).  \]
+</div>
+<p>
+ The morphism $X \otimes ^\mathbf {L} A \to \mathop{\mathrm{Spec}}(A)$ is flat (the terms of the simplicial sheaf of rings being $A$-flat), so the usual material for deformations of flat modules applies to it. Thus we see that we get an obstruction theory using the groups 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Ext}}\nolimits ^ i_{X \otimes ^\mathbf {L} A}(i_*\mathcal{F}, i_*\mathcal{F} \otimes _ A M)  \]
+</div>
+<p>
+ where $i = 0, 1, 2$ for inf auts, inf defs, obstructions. Note that a flat deformation of $i_*\mathcal{F}$ to $X \otimes ^\mathbf {L} A'$ is automatically of the form $i'_*\mathcal{F}'$ where $\mathcal{F}'$ is a flat deformation of $\mathcal{F}$. By adjunction of the functors $Li^*$ and $i_* = Ri_*$ these ext groups are equal to 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Ext}}\nolimits ^ i_{X_ A}(Li^*(i_*\mathcal{F}), \mathcal{F} \otimes _ A M)  \]
+</div>
+<p>
+ Thus we obtain obstruction groups of exactly the same form as in the proof of Quot, Lemma <a href="/tag/08WA" data-tag="08WA">99.5.11</a> with the only change being that one replaces the first occurrence of $\mathcal{F}$ by the complex $Li^*(i_*\mathcal{F})$. 
+</p>
+<p>
+Below we prove the non-flat version of the lemma by a “direct” construction of $E(\mathcal{F}) = Li^*(i_*\mathcal{F})$ and direct proof of its relationship to the deformation theory of $\mathcal{F}$. In fact, it suffices to construct $\tau _{\geq -2}E(\mathcal{F})$, as we are only interested in the ext groups $\mathop{\mathrm{Ext}}\nolimits ^ i_{X_ A}(Li^*(i_*\mathcal{F}), \mathcal{F} \otimes _ A M)$ for $i = 0, 1, 2$. We can even identify the cohomology sheaves 
+</p>
+<div class="equation">
+  \[  H^ i(E(\mathcal{F})) = \left\{  \begin{matrix}  0 
+
+&  \text{if }i > 0 
+
+\\  \mathcal{F} 
+
+&  \text{if } i = 0 
+
+\\  0 
+
+&  \text{if } i = -1 
+
+\\  \text{Tor}_1^{\mathcal{O}_ S}(\mathcal{O}_ X, A) \otimes _{\mathcal{O}_ X} \mathcal{F} 
+
+&  \text{if } i = -2 
+
+\end{matrix} \right.  \]
+</div>
+<p>
+ This observation will guide our construction of $E(\mathcal{F})$ in the remarks below. 
+</p>
+<p>
+<article class="env-remark" id="09DN">
+  <p><a class="environment-identifier" href="/tag/09DN">Remark <span data-tag="09DN">115.21.1</span> <span class="named">(Direct construction)</span>.</a>  Let $S$ be a scheme. Let $f : X \to B$ be a morphism of algebraic spaces over $S$. Let $U$ be another algebraic space over $B$. Denote $q : X \times _ B U \to U$ the second projection. Consider the distinguished triangle </p>
+  <div class="equation">
+  \[  Lq^*L_{U/B} \to L_{X \times _ B U/B} \to E \to Lq^*L_{U/B}[1]  \]
+</div>
+  <p> of Cotangent, Section <a href="/tag/09DJ" data-tag="09DJ">92.28</a>. For any sheaf $\mathcal{F}$ of $\mathcal{O}_{X \times _ B U}$-modules we have the Atiyah class </p>
+  <div class="equation">
+  \[  \mathcal{F} \to L_{X \times _ B U/B} \otimes _{\mathcal{O}_{X \times _ B U}}^\mathbf {L} \mathcal{F}[1]  \]
+</div>
+  <p> see Cotangent, Section <a href="/tag/09DF" data-tag="09DF">92.19</a>. We can compose this with the map to $E$ and choose a distinguished triangle </p>
+  <div class="equation">
+  \[  E(\mathcal{F}) \to \mathcal{F} \to \mathcal{F} \otimes _{\mathcal{O}_{X \times _ B U}}^\mathbf {L} E[1] \to E(\mathcal{F})[1]  \]
+</div>
+  <p> in $D(\mathcal{O}_{X \times _ B U})$. By construction the Atiyah class lifts to a map </p>
+  <div class="equation">
+  \[  e_\mathcal {F} : E(\mathcal{F}) \longrightarrow Lq^*L_{U/B} \otimes _{\mathcal{O}_{X \times _ B U}}^\mathbf {L} \mathcal{F}[1]  \]
+</div>
+  <p> fitting into a morphism of distinguished triangles </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{F} \otimes ^\mathbf {L} Lq^*L_{U/B}[1] \ar[r] &  \mathcal{F} \otimes ^\mathbf {L} L_{X \times _ B U/B}[1] \ar[r] &  \mathcal{F} \otimes ^\mathbf {L} E[1] \\  E(\mathcal{F}) \ar[r] \ar[u]^{e_\mathcal {F}} &  \mathcal{F} \ar[r] \ar[u]^{Atiyah} &  \mathcal{F} \otimes ^\mathbf {L} E[1] \ar[u]^{=} }  \]
+</div>
+  <p> Given $S, B, X, f, U, \mathcal{F}$ we fix a choice of $E(\mathcal{F})$ and $e_\mathcal {F}$. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="09DP">
+  <p><a class="environment-identifier" href="/tag/09DP">Remark <span data-tag="09DP">115.21.2</span> <span class="named">(Construction of obstruction class)</span>.</a>  With notation as in Remark <a href="/tag/09DN" data-tag="09DN">115.21.1</a> let $i : U \to U'$ be a first order thickening of $U$ over $B$. Let $\mathcal{I} \subset \mathcal{O}_{U'}$ be the quasi-coherent sheaf of ideals cutting out $B$ in $B'$. The fundamental triangle </p>
+  <div class="equation">
+  \[  Li^*L_{U'/B} \to L_{U/B} \to L_{U/U'} \to Li^*L_{U'/B}[1]  \]
+</div>
+  <p> together with the map $L_{U/U'} \to \mathcal{I}[1]$ determine a map $e_{U'} : L_{U/B} \to \mathcal{I}[1]$. Combined with the map $e_\mathcal {F}$ of the previous remark we obtain </p>
+  <div class="equation">
+  \[  (\text{id}_\mathcal {F} \otimes Lq^*e_{U'}) \cup e_\mathcal {F} : E(\mathcal{F}) \longrightarrow \mathcal{F} \otimes _{\mathcal{O}_{X \times _ B U}} q^*\mathcal{I}[2]  \]
+</div>
+  <p> (we have also composed with the map from the derived tensor product to the usual tensor product). In other words, we obtain an element </p>
+  <div class="equation">
+  \[  \xi _{U'} \in \mathop{\mathrm{Ext}}\nolimits ^2_{\mathcal{O}_{X \times _ B U}}( E(\mathcal{F}), \mathcal{F} \otimes _{\mathcal{O}_{X \times _ B U}} q^*\mathcal{I})  \]
+</div>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="09DQ">
+  <p><a class="environment-identifier" href="/tag/09DQ">Lemma <span data-tag="09DQ">115.21.3</span>.</a> In the situation of Remark <a href="/tag/09DP" data-tag="09DP">115.21.2</a> assume that $\mathcal{F}$ is flat over $U$. Then the vanishing of the class $\xi _{U'}$ is a necessary and sufficient condition for the existence of a $\mathcal{O}_{X \times _ B U'}$-module $\mathcal{F}'$ flat over $U'$ with $i^*\mathcal{F}' \cong \mathcal{F}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof (sketch).</strong>
+       We will use the criterion of Deformation Theory, Lemma <a href="/tag/08MV" data-tag="08MV">91.11.8</a>. We will abbreviate $\mathcal{O} = \mathcal{O}_{X \times _ B U}$ and $\mathcal{O}' = \mathcal{O}_{X \times _ B U'}$. Consider the short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{I} \to \mathcal{O}_{U'} \to \mathcal{O}_ U \to 0.  \]
+</div>
+    <p>
+       Let $\mathcal{J} \subset \mathcal{O}'$ be the quasi-coherent sheaf of ideals cutting out $X \times _ B U$. By the above we obtain an exact sequence 
+    <p>
+      <div class="equation">
+  \[  \text{Tor}_1^{\mathcal{O}_ B}(\mathcal{O}_ X, \mathcal{O}_ U) \to q^*\mathcal{I} \to \mathcal{J} \to 0  \]
+</div>
+    <p>
+       where the $\text{Tor}_1^{\mathcal{O}_ B}(\mathcal{O}_ X, \mathcal{O}_ U)$ is an abbreviation for 
+    <p>
+      <div class="equation">
+  \[  \text{Tor}_1^{h^{-1}\mathcal{O}_ B}(p^{-1}\mathcal{O}_ X, q^{-1}\mathcal{O}_ U) \otimes _{(p^{-1}\mathcal{O}_ X\otimes _{h^{-1}\mathcal{O}_ B}q^{-1}\mathcal{O}_ U)} \mathcal{O}.  \]
+</div>
+    <p>
+       Tensoring with $\mathcal{F}$ we obtain the exact sequence 
+    <p>
+      <div class="equation">
+  \[  \mathcal{F} \otimes _\mathcal {O} \text{Tor}_1^{\mathcal{O}_ B}(\mathcal{O}_ X, \mathcal{O}_ U) \to \mathcal{F} \otimes _\mathcal {O} q^*\mathcal{I} \to \mathcal{F} \otimes _\mathcal {O} \mathcal{J} \to 0  \]
+</div>
+    <p>
+       (Note that the roles of the letters $\mathcal{I}$ and $\mathcal{J}$ are reversed relative to the notation in Deformation Theory, Lemma <a href="/tag/08MV" data-tag="08MV">91.11.8</a>.) Condition (1) of the lemma is that the last map above is an isomorphism, i.e., that the first map is zero. The vanishing of this map may be checked on stalks at geometric points $\overline{z} = (\overline{x}, \overline{u}) : \mathop{\mathrm{Spec}}(k) \to X \times _ B U$. Set $R = \mathcal{O}_{B, \overline{b}}$, $A = \mathcal{O}_{X, \overline{x}}$, $B = \mathcal{O}_{U, \overline{u}}$, and $C = \mathcal{O}_{\overline{z}}$. By Cotangent, Lemma <a href="/tag/09DM" data-tag="09DM">92.28.2</a> and the defining triangle for $E(\mathcal{F})$ we see that 
+    <p>
+      <div class="equation">
+  \[  H^{-2}(E(\mathcal{F}))_{\overline{z}} = \mathcal{F}_{\overline{z}} \otimes \text{Tor}_1^ R(A, B)  \]
+</div>
+    <p>
+       The map $\xi _{U'}$ therefore induces a map 
+    <p>
+      <div class="equation">
+  \[  \mathcal{F}_{\overline{z}} \otimes \text{Tor}_1^ R(A, B) \longrightarrow \mathcal{F}_{\overline{z}} \otimes _ B \mathcal{I}_{\overline{u}}  \]
+</div>
+    <p>
+       We claim this map is the same as the stalk of the map described above (proof omitted; this is a purely ring theoretic statement). Thus we see that condition (1) of Deformation Theory, Lemma <a href="/tag/08MV" data-tag="08MV">91.11.8</a> is equivalent to the vanishing $H^{-2}(\xi _{U'}) : H^{-2}(E(\mathcal{F})) \to \mathcal{F} \otimes \mathcal{I}$. 
+    <p>
+      To finish the proof we show that, assuming that condition (1) is satisfied, condition (2) is equivalent to the vanishing of $\xi _{U'}$. In the rest of the proof we write $\mathcal{F} \otimes \mathcal{I}$ to denote $\mathcal{F} \otimes _\mathcal {O} q^*\mathcal{I} = \mathcal{F} \otimes _\mathcal {O} \mathcal{J}$. A consideration of the spectral sequence 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Ext}}\nolimits ^ i(H^{-j}(E(\mathcal{F})), \mathcal{F} \otimes \mathcal{I}) \Rightarrow \mathop{\mathrm{Ext}}\nolimits ^{i + j}(E(\mathcal{F}), \mathcal{F} \otimes \mathcal{I})  \]
+</div>
+    <p>
+       using that $H^0(E(\mathcal{F})) = \mathcal{F}$ and $H^{-1}(E(\mathcal{F})) = 0$ shows that there is an exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathop{\mathrm{Ext}}\nolimits ^2(\mathcal{F}, \mathcal{F} \otimes \mathcal{I}) \to \mathop{\mathrm{Ext}}\nolimits ^2(E(\mathcal{F}), \mathcal{F} \otimes \mathcal{I}) \to \mathop{\mathrm{Hom}}\nolimits (H^{-2}(E(\mathcal{F})), \mathcal{F} \otimes \mathcal{I})  \]
+</div>
+    <p>
+       Thus our element $\xi _{U'}$ is an element of $\mathop{\mathrm{Ext}}\nolimits ^2(\mathcal{F}, \mathcal{F} \otimes \mathcal{I})$. The proof is finished by showing this element agrees with the element of Deformation Theory, Lemma <a href="/tag/08MV" data-tag="08MV">91.11.8</a> a verification we omit. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09DR">
+  <p><a class="environment-identifier" href="/tag/09DR">Lemma <span data-tag="09DR">115.21.4</span>.</a> In Quot, Situation <a href="/tag/08KB" data-tag="08KB">99.5.1</a> assume that $S$ is a locally Noetherian scheme and $S = B$. Let $\mathcal{X} = \textit{Coh}_{X/B}$. Then we have openness of versality for $\mathcal{X}$ (see Artin's Axioms, Definition <a href="/tag/07XQ" data-tag="07XQ">98.13.1</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof (sketch).</strong>
+       Let $U \to S$ be of finite type morphism of schemes, $x$ an object of $\mathcal{X}$ over $U$ and $u_0 \in U$ a finite type point such that $x$ is versal at $u_0$. After shrinking $U$ we may assume that $u_0$ is a closed point (Morphisms, Lemma <a href="/tag/01TA" data-tag="01TA">29.16.1</a>) and $U = \mathop{\mathrm{Spec}}(A)$ with $U \to S$ mapping into an affine open $\mathop{\mathrm{Spec}}(\Lambda )$ of $S$. We will use Artin's Axioms, Lemma <a href="/tag/07YZ" data-tag="07YZ">98.24.4</a> to prove the lemma. Let $\mathcal{F}$ be the coherent module on $X_ A = \mathop{\mathrm{Spec}}(A) \times _ S X$ flat over $A$ corresponding to the given object $x$. 
+    <p>
+      Choose $E(\mathcal{F})$ and $e_\mathcal {F}$ as in Remark <a href="/tag/09DN" data-tag="09DN">115.21.1</a>. The description of the cohomology sheaves of $E(\mathcal{F})$ shows that 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Ext}}\nolimits ^1(E(\mathcal{F}), \mathcal{F} \otimes _ A M) = \mathop{\mathrm{Ext}}\nolimits ^1(\mathcal{F}, \mathcal{F} \otimes _ A M)  \]
+</div>
+    <p>
+       for any $A$-module $M$. Using this and using Deformation Theory, Lemma <a href="/tag/08MU" data-tag="08MU">91.11.7</a> we have an isomorphism of functors 
+    <p>
+      <div class="equation">
+  \[  T_ x(M) = \mathop{\mathrm{Ext}}\nolimits ^1_{X_ A}(E(\mathcal{F}), \mathcal{F} \otimes _ A M)  \]
+</div>
+    <p>
+       By Lemma <a href="/tag/09DQ" data-tag="09DQ">115.21.3</a> given any surjection $A' \to A$ of $\Lambda $-algebras with square zero kernel $I$ we have an obstruction class 
+    <p>
+      <div class="equation">
+  \[  \xi _{A'} \in \mathop{\mathrm{Ext}}\nolimits ^2_{X_ A}(E(\mathcal{F}), \mathcal{F} \otimes _ A I)  \]
+</div>
+    <p>
+       Apply Derived Categories of Spaces, Lemma <a href="/tag/08JR" data-tag="08JR">75.23.3</a> to the computation of the Ext groups $\mathop{\mathrm{Ext}}\nolimits ^ i_{X_ A}(E(\mathcal{F}), \mathcal{F} \otimes _ A M)$ for $i \leq m$ with $m = 2$. We omit the verification that $E(\mathcal{F})$ is in $D^-_{\textit{Coh}}$; hint: use Cotangent, Lemma <a href="/tag/08PZ" data-tag="08PZ">92.5.4</a>. We find a perfect object $K \in D(A)$ and functorial isomorphisms 
+    <p>
+      <div class="equation">
+  \[  H^ i(K \otimes _ A^\mathbf {L} M) \longrightarrow \mathop{\mathrm{Ext}}\nolimits ^ i_{X_ A}(E(\mathcal{F}), \mathcal{F} \otimes _ A M)  \]
+</div>
+    <p>
+       for $i \leq m$ compatible with boundary maps. This object $K$, together with the displayed identifications above gives us a datum as in Artin's Axioms, Situation <a href="/tag/07YX" data-tag="07YX">98.24.2</a>. Finally, condition (iv) of Artin's Axioms, Lemma <a href="/tag/07YY" data-tag="07YY">98.24.3</a> holds by a variant of Deformation Theory, Lemma <a href="/tag/08VY" data-tag="08VY">91.12.5</a> whose formulation and proof we omit. Thus Artin's Axioms, Lemma <a href="/tag/07YZ" data-tag="07YZ">98.24.4</a> applies and the lemma is proved. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-theorem" id="0CXZ">
+  <p><a class="environment-identifier" href="/tag/0CXZ">Theorem <span data-tag="0CXZ">115.21.5</span>.</a> Let $S$ be a scheme. Let $f : X \to B$ be morphism of algebraic spaces over $S$. Assume that $f$ is of finite presentation and separated. Then $\textit{Coh}_{X/B}$ is an algebraic stack over $S$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This theorem is a copy of Quot, Theorem <a href="/tag/09DS" data-tag="09DS">99.6.1</a>. The reason we have this copy here is that with the material in this section we get a second proof (as discussed at the beginning of this section). Namely, we argue exactly as in the proof of Quot, Theorem <a href="/tag/08WC" data-tag="08WC">99.5.12</a> except that we substitute Lemma <a href="/tag/09DR" data-tag="09DR">115.21.4</a> for Quot, Lemma <a href="/tag/08WA" data-tag="08WA">99.5.11</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

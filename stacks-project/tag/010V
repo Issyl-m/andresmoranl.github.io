@@ -1,0 +1,382 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="homology-section-complexes" class="tex-section"><span data-tag="010V">12.13</span> Complexes</h2>
+
+<p>
+Of course the notions of a chain complex and a cochain complex are dual and you only have to read one of the two parts of this section. So pick the one you like. (Actually, this doesn't quite work right since the conventions on numbering things are not adapted to an easy transition between chain and cochain complexes.) 
+</p>
+<p>
+A <em>chain complex $A_\bullet $</em> in an additive category $\mathcal{A}$ is a complex 
+</p>
+<div class="equation">
+  \[  \ldots \to A_{n + 1} \xrightarrow {d_{n + 1}} A_ n \xrightarrow {d_ n} A_{n - 1} \to \ldots  \]
+</div>
+<p>
+ of $\mathcal{A}$. In other words, we are given an object $A_ i$ of $\mathcal{A}$ for all $i \in \mathbf{Z}$ and for all $i \in \mathbf{Z}$ a morphism $d_ i : A_ i \to A_{i - 1}$ such that $d_{i - 1} \circ d_ i = 0$ for all $i$. A <em>morphism of chain complexes $f : A_\bullet \to B_\bullet $</em> is given by a family of morphisms $f_ i : A_ i \to B_ i$ such that all the diagrams 
+</p>
+<div class="equation">
+  \[  \xymatrix{ A_ i \ar[r]_{d_ i} \ar[d]_{f_ i} &  A_{i - 1} \ar[d]^{f_{i - 1}} \\  B_ i \ar[r]^{d_ i} &  B_{i - 1} }  \]
+</div>
+<p>
+ commute. The <em>category of chain complexes of $\mathcal{A}$</em> is denoted $\text{Ch}(\mathcal{A})$. The full subcategory consisting of objects of the form 
+</p>
+<div class="equation">
+  \[  \ldots \to A_2 \to A_1 \to A_0 \to 0 \to 0 \to \ldots  \]
+</div>
+<p>
+ is denoted $\text{Ch}_{\geq 0}(\mathcal{A})$. In other words, a chain complex $A_\bullet $ belongs to $\text{Ch}_{\geq 0}(\mathcal{A})$ if and only if $A_ i = 0$ for all $i < 0$. 
+</p>
+<p>
+Given an additive category $\mathcal{A}$ we identify $\mathcal{A}$ with the full subcategory of $\text{Ch}(\mathcal{A})$ consisting of chain complexes zero except in degree $0$ by the functor 
+</p>
+<div class="equation">
+  \[  \mathcal{A} \longrightarrow \text{Ch}(\mathcal{A}),\quad A \longmapsto (\ldots \to 0 \to A \to 0 \to \ldots )  \]
+</div>
+<p>
+ By abuse of notation we often denote the object on the right hand side simply $A$. If we want to stress that we are viewing $A$ as a chain complex we may sometimes use the notation $A[0]$, see Section <a href="/tag/0119" data-tag="0119">12.14</a>. 
+</p>
+<p>
+A <em>homotopy $h$</em> between a pair of morphisms of chain complexes $f, g : A_\bullet \to B_\bullet $ is a collection of morphisms $h_ i : A_ i \to B_{i + 1}$ such that we have 
+</p>
+<div class="equation">
+  \[  f_ i - g_ i = d_{i + 1} \circ h_ i + h_{i - 1} \circ d_ i  \]
+</div>
+<p>
+ for all $i$. Two morphisms $f, g : A_\bullet \to B_\bullet $ are said to be <em>homotopic</em> if a homotopy between $f$ and $g$ exists. Clearly, the notions of chain complex, morphism of chain complexes, and homotopies between morphisms of chain complexes make sense even in a preadditive category. 
+</p>
+<p>
+<article class="env-lemma" id="010W">
+       
+      
+  <p><a class="environment-identifier" href="/tag/010W">Lemma <span data-tag="010W">12.13.1</span>.</a> Let $\mathcal{A}$ be an additive category. Let $f, g : B_\bullet \to C_\bullet $ be morphisms of chain complexes. Suppose given morphisms of chain complexes $a : A_\bullet \to B_\bullet $, and $c : C_\bullet \to D_\bullet $. If $\{ h_ i : B_ i \to C_{i + 1}\} $ defines a homotopy between $f$ and $g$, then $\{ c_{i + 1} \circ h_ i \circ a_ i\} $ defines a homotopy between $c \circ f \circ a$ and $c \circ g \circ a$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In particular this means that it makes sense to define the category of chain complexes with maps up to homotopy. We'll return to this later. 
+</p>
+<p>
+<article class="env-definition" id="010X">
+  <p><a class="environment-identifier" href="/tag/010X">Definition <span data-tag="010X">12.13.2</span>.</a> Let $\mathcal{A}$ be an additive category. We say a morphism $a : A_\bullet \to B_\bullet $ is a <em>homotopy equivalence</em> if there exists a morphism $b : B_\bullet \to A_\bullet $ such that there exists a homotopy between $b \circ a$ and $\text{id}_ A$ and there exists a homotopy between $a \circ b$ and $\text{id}_ B$. If there exists such a morphism between $A_\bullet $ and $B_\bullet $, then we say that $A_\bullet $ and $B_\bullet $ are <em>homotopy equivalent</em>. </p>
+</article> 
+</p>
+<p>
+In other words, two complexes are homotopy equivalent if they become isomorphic in the category of complexes up to homotopy. 
+</p>
+<p>
+<article class="env-lemma" id="010Y">
+  <p><a class="environment-identifier" href="/tag/010Y">Lemma <span data-tag="010Y">12.13.3</span>.</a> Let $\mathcal{A}$ be an abelian category. </p>
+  <p><ol>
+  <li><p>
+The category of chain complexes in $\mathcal{A}$ is abelian. 
+</p>
+</li><li><p>
+A morphism of complexes $f : A_\bullet \to B_\bullet $ is injective if and only if each $f_ n : A_ n \to B_ n$ is injective. 
+</p>
+</li><li><p>
+A morphism of complexes $f : A_\bullet \to B_\bullet $ is surjective if and only if each $f_ n : A_ n \to B_ n$ is surjective. 
+</p>
+</li><li><p>
+A sequence of chain complexes 
+</p>
+<div class="equation">
+  \[  A_\bullet \xrightarrow {f} B_\bullet \xrightarrow {g} C_\bullet  \]
+</div>
+<p>
+ is exact at $B_\bullet $ if and only if each sequence 
+</p>
+<div class="equation">
+  \[  A_ i \xrightarrow {f_ i} B_ i \xrightarrow {g_ i} C_ i  \]
+</div>
+<p>
+ is exact at $B_ i$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+For any $i \in \mathbf{Z}$ the $i$th <em>homology group</em> of a chain complex $A_\bullet $ in an abelian category is defined by the following formula 
+</p>
+<div class="equation">
+  \[  H_ i(A_\bullet ) = \mathop{\mathrm{Ker}}(d_ i)/\mathop{\mathrm{Im}}(d_{i + 1}).  \]
+</div>
+<p>
+ If $f : A_\bullet \to B_\bullet $ is a morphism of chain complexes of $\mathcal{A}$ then we get an induced morphism $H_ i(f) : H_ i(A_\bullet ) \to H_ i(B_\bullet )$ because clearly $f_ i(\mathop{\mathrm{Ker}}(d_ i : A_ i \to A_{i - 1})) \subset \mathop{\mathrm{Ker}}(d_ i : B_ i \to B_{i - 1})$, and similarly for $\mathop{\mathrm{Im}}(d_{i + 1})$. Thus we obtain a functor 
+</p>
+<div class="equation">
+  \[  H_ i : \text{Ch}(\mathcal{A}) \longrightarrow \mathcal{A}.  \]
+</div>
+<p>
+<article class="env-definition" id="010Z">
+  <p><a class="environment-identifier" href="/tag/010Z">Definition <span data-tag="010Z">12.13.4</span>.</a> Let $\mathcal{A}$ be an abelian category. </p>
+  <p><ol>
+  <li><p>
+A morphism of chain complexes $f : A_\bullet \to B_\bullet $ is called a <em>quasi-isomorphism</em> if the induced map $H_ i(f) : H_ i(A_\bullet ) \to H_ i(B_\bullet )$ is an isomorphism for all $i \in \mathbf{Z}$. 
+</p>
+</li><li><p>
+A chain complex $A_\bullet $ is called <em>acyclic</em> if all of its homology objects $H_ i(A_\bullet )$ are zero. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0110">
+  <p><a class="environment-identifier" href="/tag/0110">Lemma <span data-tag="0110">12.13.5</span>.</a> Let $\mathcal{A}$ be an abelian category. </p>
+  <p><ol>
+  <li><p>
+If the maps $f, g : A_\bullet \to B_\bullet $ are homotopic, then the induced maps $H_ i(f)$ and $H_ i(g)$ are equal. 
+</p>
+</li><li><p>
+If the map $f : A_\bullet \to B_\bullet $ is a homotopy equivalence, then $f$ is a quasi-isomorphism. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0111">
+  <p><a class="environment-identifier" href="/tag/0111">Lemma <span data-tag="0111">12.13.6</span>.</a> Let $\mathcal{A}$ be an abelian category. Suppose that </p>
+  <div class="equation">
+  \[  0 \to A_\bullet \to B_\bullet \to C_\bullet \to 0  \]
+</div>
+  <p> is a short exact sequence of chain complexes of $\mathcal{A}$. Then there is a canonical long exact homology sequence </p>
+  <div class="equation">
+  \[  \xymatrix{ \ldots &  \ldots &  \ldots \ar[lld] \\  H_ i(A_\bullet ) \ar[r] &  H_ i(B_\bullet ) \ar[r] &  H_ i(C_\bullet ) \ar[lld] \\  H_{i - 1}(A_\bullet ) \ar[r] &  H_{i - 1}(B_\bullet ) \ar[r] &  H_{i - 1}(C_\bullet ) \ar[lld] \\  \ldots &  \ldots &  \ldots \\  }  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. The maps come from the Snake Lemma <a href="/tag/010H" data-tag="010H">12.5.17</a> applied to the diagrams 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ &  A_ i/\mathop{\mathrm{Im}}(d_{A, i + 1}) \ar[r] \ar[d]^{d_{A, i}} &  B_ i/\mathop{\mathrm{Im}}(d_{B, i + 1}) \ar[r] \ar[d]^{d_{B, i}} &  C_ i/\mathop{\mathrm{Im}}(d_{C, i + 1}) \ar[r] \ar[d]^{d_{C, i}} &  0 \\  0 \ar[r] &  \mathop{\mathrm{Ker}}(d_{A, i - 1}) \ar[r] &  \mathop{\mathrm{Ker}}(d_{B, i - 1}) \ar[r] &  \mathop{\mathrm{Ker}}(d_{C, i - 1}) &  }  \]
+</div>
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+A <em>cochain complex $A^\bullet $</em> in an additive category $\mathcal{A}$ is a complex 
+</p>
+<div class="equation">
+  \[  \ldots \to A^{n - 1} \xrightarrow {d^{n - 1}} A^ n \xrightarrow {d^ n} A^{n + 1} \to \ldots  \]
+</div>
+<p>
+ of $\mathcal{A}$. In other words, we are given an object $A^ i$ of $\mathcal{A}$ for all $i \in \mathbf{Z}$ and for all $i \in \mathbf{Z}$ a morphism $d^ i : A^ i \to A^{i + 1}$ such that $d^{i + 1} \circ d^ i = 0$ for all $i$. A <em>morphism of cochain complexes $f : A^\bullet \to B^\bullet $</em> is given by a family of morphisms $f^ i : A^ i \to B^ i$ such that all the diagrams 
+</p>
+<div class="equation">
+  \[  \xymatrix{ A^ i \ar[r]_{d^ i} \ar[d]_{f^ i} &  A^{i + 1} \ar[d]^{f^{i + 1}} \\  B^ i \ar[r]^{d^ i} &  B^{i + 1} }  \]
+</div>
+<p>
+ commute. The <em>category of cochain complexes of $\mathcal{A}$</em> is denoted $\text{CoCh}(\mathcal{A})$. The full subcategory consisting of objects of the form 
+</p>
+<div class="equation">
+  \[  \ldots \to 0 \to 0 \to A^0 \to A^1 \to A^2 \to \ldots  \]
+</div>
+<p>
+ is denoted $\text{CoCh}_{\geq 0}(\mathcal{A})$. In other words, a cochain complex $A^\bullet $ belongs to the subcategory $\text{CoCh}_{\geq 0}(\mathcal{A})$ if and only if $A^ i = 0$ for all $i < 0$. 
+</p>
+<p>
+Given an additive category $\mathcal{A}$ we identify $\mathcal{A}$ with the full subcategory of $\text{CoCh}(\mathcal{A})$ consisting of cochain complexes zero except in degree $0$ by the functor 
+</p>
+<div class="equation">
+  \[  \mathcal{A} \longrightarrow \text{CoCh}(\mathcal{A}),\quad A \longmapsto (\ldots \to 0 \to A \to 0 \to \ldots )  \]
+</div>
+<p>
+ By abuse of notation we often denote the object on the right hand side simply $A$. If we want to stress that we are viewing $A$ as a cochain complex we may sometimes use the notation $A[0]$, see Section <a href="/tag/0119" data-tag="0119">12.14</a>. 
+</p>
+<p>
+A <em>homotopy $h$</em> between a pair of morphisms of cochain complexes $f, g : A^\bullet \to B^\bullet $ is a collection of morphisms $h^ i : A^ i \to B^{i - 1}$ such that we have 
+</p>
+<div class="equation">
+  \[  f^ i - g^ i = d^{i - 1} \circ h^ i + h^{i + 1} \circ d^ i  \]
+</div>
+<p>
+ for all $i$. Two morphisms $f, g : A^\bullet \to B^\bullet $ are said to be <em>homotopic</em> if a homotopy between $f$ and $g$ exists. Clearly, the notions of cochain complex, morphism of cochain complexes, and homotopies between morphisms of cochain complexes make sense even in a preadditive category. 
+</p>
+<p>
+<article class="env-lemma" id="0112">
+  <p><a class="environment-identifier" href="/tag/0112">Lemma <span data-tag="0112">12.13.7</span>.</a> Let $\mathcal{A}$ be an additive category. Let $f, g : B^\bullet \to C^\bullet $ be morphisms of cochain complexes. Suppose given morphisms of cochain complexes $a : A^\bullet \to B^\bullet $, and $c : C^\bullet \to D^\bullet $. If $\{ h^ i : B^ i \to C^{i - 1}\} $ defines a homotopy between $f$ and $g$, then $\{ c^{i - 1} \circ h^ i \circ a^ i\} $ defines a homotopy between $c \circ f \circ a$ and $c \circ g \circ a$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In particular this means that it makes sense to define the category of cochain complexes with maps up to homotopy. We'll return to this later. 
+</p>
+<p>
+<article class="env-definition" id="0113">
+  <p><a class="environment-identifier" href="/tag/0113">Definition <span data-tag="0113">12.13.8</span>.</a> Let $\mathcal{A}$ be an additive category. We say a morphism $a : A^\bullet \to B^\bullet $ is a <em>homotopy equivalence</em> if there exists a morphism $b : B^\bullet \to A^\bullet $ such that there exists a homotopy between $b \circ a$ and $\text{id}_ A$ and there exists a homotopy between $a \circ b$ and $\text{id}_ B$. If there exists such a morphism between $A^\bullet $ and $B^\bullet $, then we say that $A^\bullet $ and $B^\bullet $ are <em>homotopy equivalent</em>. </p>
+</article> 
+</p>
+<p>
+In other words, two complexes are homotopy equivalent if they become isomorphic in the category of complexes up to homotopy. 
+</p>
+<p>
+<article class="env-lemma" id="0114">
+  <p><a class="environment-identifier" href="/tag/0114">Lemma <span data-tag="0114">12.13.9</span>.</a> Let $\mathcal{A}$ be an abelian category. </p>
+  <p><ol>
+  <li><p>
+The category of cochain complexes in $\mathcal{A}$ is abelian. 
+</p>
+</li><li><p>
+A morphism of cochain complexes $f : A^\bullet \to B^\bullet $ is injective if and only if each $f^ n : A^ n \to B^ n$ is injective. 
+</p>
+</li><li><p>
+A morphism of cochain complexes $f : A^\bullet \to B^\bullet $ is surjective if and only if each $f^ n : A^ n \to B^ n$ is surjective. 
+</p>
+</li><li><p>
+A sequence of cochain complexes 
+</p>
+<div class="equation">
+  \[  A^\bullet \xrightarrow {f} B^\bullet \xrightarrow {g} C^\bullet  \]
+</div>
+<p>
+ is exact at $B^\bullet $ if and only if each sequence 
+</p>
+<div class="equation">
+  \[  A^ i \xrightarrow {f^ i} B^ i \xrightarrow {g^ i} C^ i  \]
+</div>
+<p>
+ is exact at $B^ i$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+For any $i \in \mathbf{Z}$ the $i$th <em>cohomology group</em> of a cochain complex $A^\bullet $ is defined by the following formula 
+</p>
+<div class="equation">
+  \[  H^ i(A^\bullet ) = \mathop{\mathrm{Ker}}(d^ i)/\mathop{\mathrm{Im}}(d^{i - 1}).  \]
+</div>
+<p>
+ If $f : A^\bullet \to B^\bullet $ is a morphism of cochain complexes of $\mathcal{A}$ then we get an induced morphism $H^ i(f) : H^ i(A^\bullet ) \to H^ i(B^\bullet )$ because clearly $f^ i(\mathop{\mathrm{Ker}}(d^ i : A^ i \to A^{i + 1})) \subset \mathop{\mathrm{Ker}}(d^ i : B^ i \to B^{i + 1})$, and similarly for $\mathop{\mathrm{Im}}(d^{i - 1})$. Thus we obtain a functor 
+</p>
+<div class="equation">
+  \[  H^ i : \text{CoCh}(\mathcal{A}) \longrightarrow \mathcal{A}.  \]
+</div>
+<p>
+<article class="env-definition" id="0115">
+  <p><a class="environment-identifier" href="/tag/0115">Definition <span data-tag="0115">12.13.10</span>.</a> Let $\mathcal{A}$ be an abelian category. </p>
+  <p><ol>
+  <li><p>
+A morphism of cochain complexes $f : A^\bullet \to B^\bullet $ of $\mathcal{A}$ is called a <em>quasi-isomorphism</em> if the induced maps $H^ i(f) : H^ i(A^\bullet ) \to H^ i(B^\bullet )$ is an isomorphism for all $i \in \mathbf{Z}$. 
+</p>
+</li><li><p>
+A cochain complex $A^\bullet $ is called <em>acyclic</em> if all of its cohomology objects $H^ i(A^\bullet )$ are zero. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0116">
+  <p><a class="environment-identifier" href="/tag/0116">Lemma <span data-tag="0116">12.13.11</span>.</a> Let $\mathcal{A}$ be an abelian category. </p>
+  <p><ol>
+  <li><p>
+If the maps $f, g : A^\bullet \to B^\bullet $ are homotopic, then the induced maps $H^ i(f)$ and $H^ i(g)$ are equal. 
+</p>
+</li><li><p>
+If $f : A^\bullet \to B^\bullet $ is a homotopy equivalence, then $f$ is a quasi-isomorphism. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0117">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0117">Lemma <span data-tag="0117">12.13.12</span>.</a> Let $\mathcal{A}$ be an abelian category. Suppose that </p>
+  <div class="equation">
+  \[  0 \to A^\bullet \to B^\bullet \to C^\bullet \to 0  \]
+</div>
+  <p> is a short exact sequence of cochain complexes of $\mathcal{A}$. Then there is a long exact cohomology sequence </p>
+  <div class="equation">
+  \[  \xymatrix{ \ldots &  \ldots &  \ldots \ar[lld] \\  H^ i(A^\bullet ) \ar[r] &  H^ i(B^\bullet ) \ar[r] &  H^ i(C^\bullet ) \ar[lld] \\  H^{i + 1}(A^\bullet ) \ar[r] &  H^{i + 1}(B^\bullet ) \ar[r] &  H^{i + 1}(C^\bullet ) \ar[lld] \\  \ldots &  \ldots &  \ldots \\  }  \]
+</div>
+  <p> The construction produces long exact cohomology sequences which are functorial in the short exact sequence and compatible with shifts as in Definition <a href="/tag/011H" data-tag="011H">12.14.8</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      For the horizontal maps $H^ i(A^\bullet ) \to H^ i(B^\bullet )$ and $H^ i(B^\bullet ) \to H^ i(C^\bullet )$ we use the fact that $H^ i$ is a functor, see above. For the “boundary map” $H^ i(C^\bullet ) \to H^{i + 1}(A^\bullet )$ we use the map $\delta $ of the Snake Lemma <a href="/tag/010H" data-tag="010H">12.5.17</a> applied to the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ &  A^ i/\mathop{\mathrm{Im}}(d_ A^{i - 1}) \ar[r] \ar[d]^{d_ A^ i} &  B^ i/\mathop{\mathrm{Im}}(d_ B^{i - 1}) \ar[r] \ar[d]^{d_ B^ i} &  C^ i/\mathop{\mathrm{Im}}(d_ C^{i - 1}) \ar[r] \ar[d]^{d_ C^ i} &  0 \\  0 \ar[r] &  \mathop{\mathrm{Ker}}(d_ A^{i + 1}) \ar[r] &  \mathop{\mathrm{Ker}}(d_ B^{i + 1}) \ar[r] &  \mathop{\mathrm{Ker}}(d_ C^{i + 1}) &  }  \]
+</div>
+    <p>
+       This works as the kernel of the right vertical map is equal to $H^ i(C^\bullet )$ and the cokernel of the left vertical map is $H^{i + 1}(A^\bullet )$. The exactness of the long sequence is the exactnesss in part (2) of Lemma <a href="/tag/010H" data-tag="010H">12.5.17</a>. The functoriality is Lemma <a href="/tag/08N7" data-tag="08N7">12.5.18</a>. Compatibility with shifts is immediate from the definitions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

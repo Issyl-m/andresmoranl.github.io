@@ -1,0 +1,164 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="groupoids-section-groupoids" class="tex-section"><span data-tag="0230">39.13</span> Groupoids</h2>
+
+<p>
+Recall that a groupoid is a category in which every morphism is an isomorphism, see Categories, Definition <a href="/tag/0018" data-tag="0018">4.2.5</a>. Hence a groupoid has a set of objects $\text{Ob}$, a set of arrows $\text{Arrows}$, a <em>source</em> and <em>target</em> map $s, t : \text{Arrows} \to \text{Ob}$, and a <em>composition law</em> $c : \text{Arrows} \times _{s, \text{Ob}, t} \text{Arrows} \to \text{Arrows}$. These maps satisfy exactly the following axioms 
+</p>
+<ol>
+  <li><p>
+(associativity) $c \circ (1, c) = c \circ (c, 1)$ as maps $\text{Arrows} \times _{s, \text{Ob}, t} \text{Arrows} \times _{s, \text{Ob}, t} \text{Arrows} \to \text{Arrows}$, 
+</p>
+</li><li><p>
+(identity) there exists a map $e : \text{Ob} \to \text{Arrows}$ such that 
+</p>
+<ol>
+  <li><p>
+$s \circ e = t \circ e = \text{id}$ as maps $\text{Ob} \to \text{Ob}$, 
+</p>
+</li><li><p>
+$c \circ (1, e \circ s) = c \circ (e \circ t, 1) = 1$ as maps $\text{Arrows} \to \text{Arrows}$, 
+</p>
+</li>
+</ol>
+</li><li><p>
+(inverse) there exists a map $i : \text{Arrows} \to \text{Arrows}$ such that 
+</p>
+<ol>
+  <li><p>
+$s \circ i = t$, $t \circ i = s$ as maps $\text{Arrows} \to \text{Ob}$, and 
+</p>
+</li><li><p>
+$c \circ (1, i) = e \circ t$ and $c \circ (i, 1) = e \circ s$ as maps $\text{Arrows} \to \text{Arrows}$. 
+</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>
+ If this is the case the maps $e$ and $i$ are uniquely determined and $i$ is a bijection. Note that if $(\text{Ob}', \text{Arrows}', s', t', c')$ is a second groupoid category, then a functor $f : (\text{Ob}, \text{Arrows}, s, t, c) \to (\text{Ob}', \text{Arrows}', s', t', c')$ is given by a pair of set maps $f : \text{Ob} \to \text{Ob}'$ and $f : \text{Arrows} \to \text{Arrows}'$ such that $s' \circ f = f \circ s$, $t' \circ f = f \circ t$, and $c' \circ (f, f) = f \circ c$. The compatibility with identity and inverse is automatic. We will use this below. (Warning: The compatibility with identity has to be imposed in the case of general categories.) 
+</p>
+<p>
+<article class="env-definition" id="0231">
+  <p><a class="environment-identifier" href="/tag/0231">Definition <span data-tag="0231">39.13.1</span>.</a> Let $S$ be a scheme. </p>
+  <p><ol>
+  <li><p>
+A <em>groupoid scheme over $S$</em>, or simply a <em>groupoid over $S$</em> is a quintuple $(U, R, s, t, c)$ where $U$ and $R$ are schemes over $S$, and $s, t : R \to U$ and $c : R \times _{s, U, t} R \to R$ are morphisms of schemes over $S$ with the following property: For any scheme $T$ over $S$ the quintuple 
+</p>
+<div class="equation">
+  \[  (U(T), R(T), s, t, c)  \]
+</div>
+<p>
+ is a groupoid category in the sense described above. 
+</p>
+</li><li><p>
+A <em>morphism $f : (U, R, s, t, c) \to (U', R', s', t', c')$ of groupoid schemes over $S$</em> is given by morphisms of schemes $f : U \to U'$ and $f : R \to R'$ with the following property: For any scheme $T$ over $S$ the maps $f$ define a functor from the groupoid category $(U(T), R(T), s, t, c)$ to the groupoid category $(U'(T), R'(T), s', t', c')$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+Let $(U, R, s, t, c)$ be a groupoid over $S$. Note that, by the remarks preceding the definition and the Yoneda lemma, there are unique morphisms of schemes $e : U \to R$ and $i : R \to R$ over $S$ such that for every scheme $T$ over $S$ the induced map $e : U(T) \to R(T)$ is the identity, and $i : R(T) \to R(T)$ is the inverse of the groupoid category. The septuple $(U, R, s, t, c, e, i)$ satisfies commutative diagrams corresponding to each of the axioms (1), (2)(a), (2)(b), (3)(a) and (3)(b) above, and conversely given a septuple with this property the quintuple $(U, R, s, t, c)$ is a groupoid scheme. Note that $i$ is an isomorphism, and $e$ is a section of both $s$ and $t$. Moreover, given a groupoid scheme over $S$ we denote 
+</p>
+<div class="equation">
+  \[  j = (t, s) : R \longrightarrow U \times _ S U  \]
+</div>
+<p>
+ which is compatible with our conventions in Section <a href="/tag/022O" data-tag="022O">39.3</a> above. We sometimes say “let $(U, R, s, t, c, e, i)$ be a groupoid over $S$” to stress the existence of identity and inverse. 
+</p>
+<p>
+<article class="env-lemma" id="0232">
+  <p><a class="environment-identifier" href="/tag/0232">Lemma <span data-tag="0232">39.13.2</span>.</a> Given a groupoid scheme $(U, R, s, t, c)$ over $S$ the morphism $j : R \to U \times _ S U$ is a pre-equivalence relation. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. This is a nice exercise in the definitions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0233">
+  <p><a class="environment-identifier" href="/tag/0233">Lemma <span data-tag="0233">39.13.3</span>.</a> Given an equivalence relation $j : R \to U \times _ S U$ over $S$ there is a unique way to extend it to a groupoid $(U, R, s, t, c)$ over $S$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. This is a nice exercise in the definitions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02YE">
+  <p><a class="environment-identifier" href="/tag/02YE">Lemma <span data-tag="02YE">39.13.4</span>.</a> Let $S$ be a scheme. Let $(U, R, s, t, c)$ be a groupoid over $S$. In the commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ &  U &  \\  R \ar[d]_ s \ar[ru]^ t &  R \times _{s, U, t} R \ar[l]^-{\text{pr}_0} \ar[d]^{\text{pr}_1} \ar[r]_-c &  R \ar[d]^ s \ar[lu]_ t \\  U &  R \ar[l]_ t \ar[r]^ s &  U }  \]
+</div>
+  <p> the two lower squares are fibre product squares. Moreover, the triangle on top (which is really a square) is also cartesian. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. Exercise in the definitions and the functorial point of view in algebraic geometry. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03C6">
+  <p><a class="environment-identifier" href="/tag/03C6">Lemma <span data-tag="03C6">39.13.5</span>.</a> Let $S$ be a scheme. Let $(U, R, s, t, c, e, i)$ be a groupoid over $S$. The diagram </p>
+  <div class="equation" id="03C7">
+    <span class="equation-label"><a href="/tag/03C7" data-tag="03C7">39.13.5.1</a></span>
+  <div>\begin{equation}  \label{groupoids-equation-pull} \xymatrix{ R \times _{t, U, t} R \ar@<1ex>[r]^-{\text{pr}_1} \ar@<-1ex>[r]_-{\text{pr}_0} \ar[d]_{(\text{pr}_0, c \circ (i, 1))} &  R \ar[r]^ t \ar[d]^{\text{id}_ R} &  U \ar[d]^{\text{id}_ U} \\  R \times _{s, U, t} R \ar@<1ex>[r]^-c \ar@<-1ex>[r]_-{\text{pr}_0} \ar[d]_{\text{pr}_1} &  R \ar[r]^ t \ar[d]^ s &  U \\  R \ar@<1ex>[r]^ s \ar@<-1ex>[r]_ t &  U } \end{equation}</div>
+</div>
+  <p> is commutative. The two top rows are isomorphic via the vertical maps given. The two lower left squares are cartesian. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The commutativity of the diagram follows from the axioms of a groupoid. Note that, in terms of groupoids, the top left vertical arrow assigns to a pair of morphisms $(\alpha , \beta )$ with the same target, the pair of morphisms $(\alpha , \alpha ^{-1} \circ \beta )$. In any groupoid this defines a bijection between $\text{Arrows} \times _{t, \text{Ob}, t} \text{Arrows}$ and $\text{Arrows} \times _{s, \text{Ob}, t} \text{Arrows}$. Hence the second assertion of the lemma. The last assertion follows from Lemma <a href="/tag/02YE" data-tag="02YE">39.13.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DT8">
+  <p><a class="environment-identifier" href="/tag/0DT8">Lemma <span data-tag="0DT8">39.13.6</span>.</a> Let $(U, R, s, t, c)$ be a groupoid over a scheme $S$. Let $S' \to S$ be a morphism. Then the base changes $U' = S' \times _ S U$, $R' = S' \times _ S R$ endowed with the base changes $s'$, $t'$, $c'$ of the morphisms $s, t, c$ form a groupoid scheme $(U', R', s', t', c')$ over $S'$ and the projections determine a morphism $(U', R', s', t', c') \to (U, R, s, t, c)$ of groupoid schemes over $S$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. Hint: $R' \times _{s', U', t'} R' = S' \times _ S (R \times _{s, U, t} R)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

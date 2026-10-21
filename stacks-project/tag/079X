@@ -1,0 +1,146 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sites-cohomology-section-limp" class="tex-section"><span data-tag="079X">21.13</span> Totally acyclic sheaves</h2>
+
+<p>
+Let $(\mathcal{C}, \mathcal{O})$ be a ringed site. Let $K$ be a presheaf of sets on $\mathcal{C}$ (we intentionally use a roman capital here to distinguish from abelian sheaves). Given a sheaf of $\mathcal{O}$-modules $\mathcal{F}$ we set 
+</p>
+<div class="equation">
+  \[  \mathcal{F}(K) = \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(K, \mathcal{F}) = \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C})}(K^\# , \mathcal{F})  \]
+</div>
+<p>
+ The functor $\mathcal{F} \mapsto \mathcal{F}(K)$ is a left exact functor $\textit{Mod}(\mathcal{O}) \to \textit{Ab}$ hence we have its right derived functors. We will denote these $H^ p(K, \mathcal{F})$ so that $H^0(K, \mathcal{F}) = \mathcal{F}(K)$. 
+</p>
+<p>
+Here are some observations: 
+</p>
+<ol>
+  <li><p>
+Since $\mathcal{F}(K) = \mathcal{F}(K^\# )$, we have $H^ p(K, \mathcal{F}) = H^ p(K^\# , \mathcal{F})$. Allowing $K$ to be a presheaf in the definition above is a purely notational convenience. 
+</p>
+</li><li><p>
+Suppose that $K = h_ U$ or $K = h_ U^\# $ for some object $U$ of $\mathcal{C}$. Then $H^ p(K, \mathcal{F}) = H^ p(U, \mathcal{F})$, because $\mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C})}(h_ U^\# , \mathcal{F}) = \mathcal{F}(U)$, see Sites, Section <a href="/tag/00WO" data-tag="00WO">7.12</a>. 
+</p>
+</li><li><p>
+If $\mathcal{O} = \mathbf{Z}$ (the constant sheaf), then the cohomology groups are functors $H^ p(K, - ) : \textit{Ab}(\mathcal{C}) \to \textit{Ab}$ since $\textit{Mod}(\mathcal{O}) = \textit{Ab}(\mathcal{C})$ in this case. 
+</p>
+</li>
+</ol>
+<p>
+ We can translate some of our already proven results using this language. 
+</p>
+<p>
+<article class="env-lemma" id="079Y">
+  <p><a class="environment-identifier" href="/tag/079Y">Lemma <span data-tag="079Y">21.13.1</span>.</a> Let $(\mathcal{C}, \mathcal{O})$ be a ringed site. Let $K$ be a presheaf of sets on $\mathcal{C}$. Let $\mathcal{F}$ be an $\mathcal{O}$-module and denote $\mathcal{F}_{ab}$ the underlying sheaf of abelian groups. Then $H^ p(K, \mathcal{F}) = H^ p(K, \mathcal{F}_{ab})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We may replace $K$ by its sheafification and assume $K$ is a sheaf. Note that both $H^ p(K, \mathcal{F})$ and $H^ p(K, \mathcal{F}_{ab})$ depend only on the topos, not on the underlying site. Hence by Sites, Lemma <a href="/tag/03CI" data-tag="03CI">7.29.5</a> we may replace $\mathcal{C}$ by a “larger” site such that $K = h_ U$ for some object $U$ of $\mathcal{C}$. In this case the result follows from Lemma <a href="/tag/03FD" data-tag="03FD">21.12.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="079Z">
+  <p><a class="environment-identifier" href="/tag/079Z">Lemma <span data-tag="079Z">21.13.2</span>.</a> Let $\mathcal{C}$ be a site. Let $K' \to K$ be a map of presheaves of sets on $\mathcal{C}$ whose sheafification is surjective. Set $K'_ p = K' \times _ K \ldots \times _ K K'$ ($p + 1$-factors). For every abelian sheaf $\mathcal{F}$ there is a spectral sequence with $E_1^{p, q} = H^ q(K'_ p, \mathcal{F})$ converging to $H^{p + q}(K, \mathcal{F})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since sheafification is exact, we see that $(K_ p')^\# $ is equal to $(K')^\#  \times _{K^\# } \ldots \times _{K^\# } (K')^\# $ ($p + 1$-factors). Thus we may replace $K$ and $K'$ by their sheafifications and assume $K \to K'$ is a surjective map of sheaves. After replacing $\mathcal{C}$ by a “larger” site as in Sites, Lemma <a href="/tag/03CI" data-tag="03CI">7.29.5</a> we may assume that $K, K'$ are objects of $\mathcal{C}$ and that $\mathcal{U} = \{ K' \to K\} $ is a covering. Then we have the Čech to cohomology spectral sequence of Lemma <a href="/tag/03AZ" data-tag="03AZ">21.10.6</a> whose $E_1$ page is as indicated in the statement of the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="07A0">
+  <p><a class="environment-identifier" href="/tag/07A0">Lemma <span data-tag="07A0">21.13.3</span>.</a> Let $\mathcal{C}$ be a site. Let $K$ be a sheaf of sets on $\mathcal{C}$. Consider the morphism of topoi $j : \mathop{\mathit{Sh}}\nolimits (\mathcal{C}/K) \to \mathop{\mathit{Sh}}\nolimits (\mathcal{C})$, see Sites, Lemma <a href="/tag/0791" data-tag="0791">7.30.3</a>. Then $j^{-1}$ preserves injectives and $H^ p(K, \mathcal{F}) = H^ p(\mathcal{C}/K, j^{-1}\mathcal{F})$ for any abelian sheaf $\mathcal{F}$ on $\mathcal{C}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Sites, Lemmas <a href="/tag/04GZ" data-tag="04GZ">7.30.1</a> and <a href="/tag/0791" data-tag="0791">7.30.3</a> the morphism of topoi $j$ is equivalent to a localization. Hence this follows from Lemma <a href="/tag/03F3" data-tag="03F3">21.7.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Keeping in mind Lemma <a href="/tag/079Y" data-tag="079Y">21.13.1</a> we see that the following definition is the “correct one” also for sheaves of modules on ringed sites. 
+</p>
+<p>
+<article class="env-definition" id="072Y">
+  <p><a class="environment-identifier" href="/tag/072Y">Definition <span data-tag="072Y">21.13.4</span>.</a> Let $\mathcal{C}$ be a site. We say an abelian sheaf $\mathcal{F}$ is <em>totally acyclic</em><a class="footnotemark" href="#a0000510035" id="a0000510035-mark"><sup>1</sup></a> if for every sheaf of sets $K$ we have $H^ p(K, \mathcal{F}) = 0$ for all $p \geq 1$. </p>
+</article> 
+</p>
+<p>
+It is clear that being totally acyclic is an intrinsic property, i.e., preserved under equivalences of topoi. A totally acyclic sheaf has vanishing higher cohomology on all objects of the site, but in general the condition of being totally acyclic is strictly stronger. Here is a characterization of totally acyclic sheaves which is sometimes useful. 
+</p>
+<p>
+<article class="env-lemma" id="07A1">
+  <p><a class="environment-identifier" href="/tag/07A1">Lemma <span data-tag="07A1">21.13.5</span>.</a> Let $\mathcal{C}$ be a site. Let $\mathcal{F}$ be an abelian sheaf. If </p>
+  <p><ol>
+  <li><p>
+$H^ p(U, \mathcal{F}) = 0$ for $p > 0$ and $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$, and 
+</p>
+</li><li><p>
+for every surjection $K' \to K$ of sheaves of sets the extended Čech complex 
+</p>
+<div class="equation">
+  \[  0 \to H^0(K, \mathcal{F}) \to H^0(K', \mathcal{F}) \to H^0(K' \times _ K K', \mathcal{F}) \to \ldots  \]
+</div>
+<p>
+ is exact, 
+</p>
+</li>
+</ol></p>
+  <p> then $\mathcal{F}$ is totally acyclic (and the converse holds too). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By assumption (1) we have $H^ p(h_ U^\# , g^{-1}\mathcal{I}) = 0$ for all $p > 0$ and all objects $U$ of $\mathcal{C}$. Note that if $K = \coprod K_ i$ is a coproduct of sheaves of sets on $\mathcal{C}$ then $H^ p(K, g^{-1}\mathcal{I}) = \prod H^ p(K_ i, g^{-1}\mathcal{I})$. For any sheaf of sets $K$ there exists a surjection 
+    <p>
+      <div class="equation">
+  \[  K' = \coprod h_{U_ i}^\#  \longrightarrow K  \]
+</div>
+    <p>
+       see Sites, Lemma <a href="/tag/00WS" data-tag="00WS">7.12.5</a>. Thus we conclude that: (*) for every sheaf of sets $K$ there exists a surjection $K' \to K$ of sheaves of sets such that $H^ p(K', \mathcal{F}) = 0$ for $p > 0$. We claim that (*) and condition (2) imply that $\mathcal{F}$ is totally acyclic. Note that conditions (*) and (2) only depend on $\mathcal{F}$ as an object of the topos $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})$ and not on the underlying site. (We will not use property (1) in the rest of the proof.) 
+    <p>
+      We are going to prove by induction on $n \geq 0$ that (*) and (2) imply the following induction hypothesis $IH_ n$: $H^ p(K, \mathcal{F}) = 0$ for all $0 < p \leq n$ and all sheaves of sets $K$. Note that $IH_0$ holds. Assume $IH_ n$. Pick a sheaf of sets $K$. Pick a surjection $K' \to K$ such that $H^ p(K', \mathcal{F}) = 0$ for all $p > 0$. We have a spectral sequence with 
+    <p>
+      <div class="equation">
+  \[  E_1^{p, q} = H^ q(K'_ p, \mathcal{F})  \]
+</div>
+    <p>
+       covering to $H^{p + q}(K, \mathcal{F})$, see Lemma <a href="/tag/079Z" data-tag="079Z">21.13.2</a>. By $IH_ n$ we see that $E_1^{p, q} = 0$ for $0 < q \leq n$ and by assumption (2) we see that $E_2^{p, 0} = 0$ for $p > 0$. Finally, we have $E_1^{0, q} = 0$ for $q > 0$ because $H^ q(K', \mathcal{F}) = 0$ by choice of $K'$. Hence we conclude that $H^{n + 1}(K, \mathcal{F}) = 0$ because all the terms $E_2^{p, q}$ with $p + q = n + 1$ are zero. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

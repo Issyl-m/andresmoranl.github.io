@@ -1,0 +1,336 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="dpa-section-tate" class="tex-section"><span data-tag="09PF">23.6</span> Tate resolutions</h2>
+
+<p>
+In this section we briefly discuss the resolutions constructed in <span class="cite">[<a href="/bibliography/Tate-homology">Tate-homology</a>]</span> and <span class="cite">[<a href="/bibliography/AH">AH</a>]</span> which combine divided power structures with differential graded algebras. In this section we will use <em>homological notation</em> for differential graded algebras. Our differential graded algebras will sit in nonnegative homological degrees. Thus our differential graded algebras $(A, \text{d})$ will be given as chain complexes 
+</p>
+<div class="equation">
+  \[  \ldots \to A_2 \to A_1 \to A_0 \to 0 \to \ldots  \]
+</div>
+<p>
+ endowed with a multiplication. 
+</p>
+<p>
+Let $R$ be a ring (commutative, as usual). In this section we will often consider graded $R$-algebras $A = \bigoplus _{d \geq 0} A_ d$ whose components are zero in negative degrees. We will set $A_+ = \bigoplus _{d > 0} A_ d$. We will write $A_{even} = \bigoplus _{d \geq 0} A_{2d}$ and $A_{odd} = \bigoplus _{d \geq 0} A_{2d + 1}$. Recall that $A$ is graded commutative if $x y = (-1)^{\deg (x)\deg (y)} y x$ for homogeneous elements $x, y$. Recall that $A$ is strictly graded commutative if in addition $x^2 = 0$ for homogeneous elements $x$ of odd degree. Finally, to understand the following definition, keep in mind that $\gamma _ n(x) = x^ n/n!$ if $A$ is a $\mathbf{Q}$-algebra. 
+</p>
+<p>
+<article class="env-definition" id="09PG">
+  <p><a class="environment-identifier" href="/tag/09PG">Definition <span data-tag="09PG">23.6.1</span>.</a> Let $R$ be a ring. Let $A = \bigoplus _{d \geq 0} A_ d$ be a graded $R$-algebra which is strictly graded commutative. A collection of maps $\gamma _ n : A_{even, +} \to A_{even, +}$ defined for all $n > 0$ is called a <em>divided power structure</em> on $A$ if we have </p>
+  <p><ol>
+  <li><p>
+$\gamma _ n(x) \in A_{2nd}$ if $x \in A_{2d}$, 
+</p>
+</li><li><p>
+$\gamma _1(x) = x$ for any $x$, we also set $\gamma _0(x) = 1$, 
+</p>
+</li><li><p>
+$\gamma _ n(x)\gamma _ m(x) = \frac{(n + m)!}{n! m!} \gamma _{n + m}(x)$, 
+</p>
+</li><li><p>
+$\gamma _ n(xy) = x^ n \gamma _ n(y)$ for all $x \in A_{even}$ and $y \in A_{even, +}$, 
+</p>
+</li><li><p>
+$\gamma _ n(xy) = 0$ if $x, y \in A_{odd}$ homogeneous and $n > 1$ 
+</p>
+</li><li><p>
+if $x, y \in A_{even, +}$ then $\gamma _ n(x + y) = \sum _{i = 0, \ldots , n} \gamma _ i(x)\gamma _{n - i}(y)$, 
+</p>
+</li><li><p>
+$\gamma _ n(\gamma _ m(x)) = \frac{(nm)!}{n! (m!)^ n} \gamma _{nm}(x)$ for $x \in A_{even, +}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+Observe that conditions (2), (3), (4), (6), and (7) imply that $\gamma $ is a “usual” divided power structure on the ideal $A_{even, +}$ of the (commutative) ring $A_{even}$, see Sections <a href="/tag/07GK" data-tag="07GK">23.2</a>, <a href="/tag/07GT" data-tag="07GT">23.3</a>, <a href="/tag/07GZ" data-tag="07GZ">23.4</a>, and <a href="/tag/07H4" data-tag="07H4">23.5</a>. In particular, we have $n! \gamma _ n(x) = x^ n$ for all $x \in A_{even, +}$. Condition (1) states that $\gamma $ is compatible with grading and condition (5) tells us $\gamma _ n$ for $n > 1$ vanishes on products of homogeneous elements of odd degree. But note that it may happen that 
+</p>
+<div class="equation">
+  \[  \gamma _2(z_1 z_2 + z_3 z_4) = z_1z_2z_3z_4  \]
+</div>
+<p>
+ is nonzero if $z_1, z_2, z_3, z_4$ are homogeneous elements of odd degree. 
+</p>
+<p>
+<article class="env-example" id="09PH">
+  <p><a class="environment-identifier" href="/tag/09PH">Example <span data-tag="09PH">23.6.2</span> <span class="named">(Adjoining odd variable)</span>.</a>  Let $R$ be a ring. Let $(A, \gamma )$ be a strictly graded commutative graded $R$-algebra endowed with a divided power structure as in the definition above. Let $d > 0$ be an odd integer. In this setting we can adjoin a variable $T$ of degree $d$ to $A$. Namely, set </p>
+  <div class="equation">
+  \[  A\langle T \rangle = A \oplus AT  \]
+</div>
+  <p> with grading given by $A\langle T \rangle _ m = A_ m \oplus A_{m - d}T$. We claim there is a unique divided power structure on $A\langle T \rangle $ compatible with the given divided power structure on $A$. Namely, we set </p>
+  <div class="equation">
+  \[  \gamma _ n(x + yT) = \gamma _ n(x) + \gamma _{n - 1}(x)yT  \]
+</div>
+  <p> for $x \in A_{even, +}$ and $y \in A_{odd}$. </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="09PI">
+  <p><a class="environment-identifier" href="/tag/09PI">Example <span data-tag="09PI">23.6.3</span> <span class="named">(Adjoining even variable)</span>.</a>  Let $R$ be a ring. Let $(A, \gamma )$ be a strictly graded commutative graded $R$-algebra endowed with a divided power structure as in the definition above. Let $d > 0$ be an even integer. In this setting we can adjoin a variable $T$ of degree $d$ to $A$. Namely, set </p>
+  <div class="equation">
+  \[  A\langle T \rangle = A \oplus AT \oplus AT^{(2)} \oplus AT^{(3)} \oplus \ldots  \]
+</div>
+  <p> with multiplication given by </p>
+  <div class="equation">
+  \[  T^{(n)} T^{(m)} = \frac{(n + m)!}{n!m!} T^{(n + m)}  \]
+</div>
+  <p> and with grading given by </p>
+  <div class="equation">
+  \[  A\langle T \rangle _ m = A_ m \oplus A_{m - d}T \oplus A_{m - 2d}T^{(2)} \oplus \ldots  \]
+</div>
+  <p> We claim there is a unique divided power structure on $A\langle T \rangle $ compatible with the given divided power structure on $A$ such that $\gamma _ n(T^{(i)}) = T^{(ni)}$. To define the divided power structure we first set </p>
+  <div class="equation">
+  \[  \gamma _ n\left(\sum \nolimits _{i > 0} x_ i T^{(i)}\right) = \sum \prod \nolimits _{n = \sum e_ i} x_ i^{e_ i} T^{(ie_ i)}  \]
+</div>
+  <p> if $x_ i$ is in $A_{even}$. If $x_0 \in A_{even, +}$ then we take </p>
+  <div class="equation">
+  \[  \gamma _ n\left(\sum \nolimits _{i \geq 0} x_ i T^{(i)}\right) = \sum \nolimits _{a + b = n} \gamma _ a(x_0)\gamma _ b\left(\sum \nolimits _{i > 0} x_ iT^{(i)}\right)  \]
+</div>
+  <p> where $\gamma _ b$ is as defined above. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="0F4I">
+  <p><a class="environment-identifier" href="/tag/0F4I">Remark <span data-tag="0F4I">23.6.4</span>.</a> We can also adjoin a set (possibly infinite) of exterior or divided power generators in a given degree $d > 0$, rather than just one as in Examples <a href="/tag/09PH" data-tag="09PH">23.6.2</a> and <a href="/tag/09PI" data-tag="09PI">23.6.3</a>. Namely, following Remark <a href="/tag/07H6" data-tag="07H6">23.5.2</a>: for $(A,\gamma )$ as above and a set $J$, let $A\langle T_ j:j\in J\rangle $ be the directed colimit of the algebras $A\langle T_ j:j\in S\rangle $ over all finite subsets $S$ of $J$. It is immediate that this algebra has a unique divided power structure, compatible with the given structure on $A$ and on each generator $T_ j$. </p>
+</article> 
+</p>
+<p>
+At this point we tie in the definition of divided power structures with differentials. To understand the definition note that $\text{d}(x^ n/n!) = \text{d}(x) x^{n - 1}/(n - 1)!$ if $A$ is a $\mathbf{Q}$-algebra and $x \in A_{even, +}$. 
+</p>
+<p>
+<article class="env-definition" id="09PJ">
+  <p><a class="environment-identifier" href="/tag/09PJ">Definition <span data-tag="09PJ">23.6.5</span>.</a> Let $R$ be a ring. Let $A = \bigoplus _{d \geq 0} A_ d$ be a differential graded $R$-algebra which is strictly graded commutative. A divided power structure $\gamma $ on $A$ is <em>compatible with the differential graded structure</em> if $\text{d}(\gamma _ n(x)) = \text{d}(x) \gamma _{n - 1}(x)$ for all $x \in A_{even, +}$. </p>
+</article> 
+</p>
+<p>
+Warning: Let $(A, \text{d}, \gamma )$ be as in Definition <a href="/tag/09PJ" data-tag="09PJ">23.6.5</a>. It may not be true that $\gamma _ n(x)$ is a boundary, if $x$ is a boundary. Thus $\gamma $ in general does not induce a divided power structure on the homology algebra $H(A)$. In some papers the authors put an additional compatibility condition in order to ensure that this is the case, but we elect not to do so. 
+</p>
+<p>
+<article class="env-lemma" id="09PK">
+  <p><a class="environment-identifier" href="/tag/09PK">Lemma <span data-tag="09PK">23.6.6</span>.</a> Let $(A, \text{d}, \gamma )$ and $(B, \text{d}, \gamma )$ be as in Definition <a href="/tag/09PJ" data-tag="09PJ">23.6.5</a>. Let $f : A \to B$ be a map of differential graded algebras compatible with divided power structures. Assume </p>
+  <p><ol>
+  <li><p>
+$H_ k(A) = 0$ for $k > 0$, and 
+</p>
+</li><li><p>
+$f$ is surjective. 
+</p>
+</li>
+</ol></p>
+  <p> Then $\gamma $ induces a divided power structure on the graded $R$-algebra $H(B)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose that $x$ and $x'$ are homogeneous of the same degree $2d$ and define the same cohomology class in $H(B)$. Say $x' - x = \text{d}(w)$. Choose a lift $y \in A_{2d}$ of $x$ and a lift $z \in A_{2d + 1}$ of $w$. Then $y' = y + \text{d}(z)$ is a lift of $x'$. Hence 
+    <p>
+      <div class="equation">
+  \[  \gamma _ n(y') = \sum \gamma _ i(y) \gamma _{n - i}(\text{d}(z)) = \gamma _ n(y) + \sum \nolimits _{i < n} \gamma _ i(y) \gamma _{n - i}(\text{d}(z))  \]
+</div>
+    <p>
+       Since $A$ is acyclic in positive degrees and since $\text{d}(\gamma _ j(\text{d}(z))) = 0$ for all $j$ we can write this as 
+    <p>
+      <div class="equation">
+  \[  \gamma _ n(y') = \gamma _ n(y) + \sum \nolimits _{i < n} \gamma _ i(y) \text{d}(z_ i)  \]
+</div>
+    <p>
+       for some $z_ i$ in $A$. Moreover, for $0 < i < n$ we have 
+    <p>
+      <div class="equation">
+  \[  \text{d}(\gamma _ i(y) z_ i) = \text{d}(\gamma _ i(y))z_ i + \gamma _ i(y)\text{d}(z_ i) = \text{d}(y) \gamma _{i - 1}(y) z_ i + \gamma _ i(y)\text{d}(z_ i)  \]
+</div>
+    <p>
+       and the first term maps to zero in $B$ as $\text{d}(y)$ maps to zero in $B$. Hence $\gamma _ n(x')$ and $\gamma _ n(x)$ map to the same element of $H(B)$. Thus we obtain a well defined map $\gamma _ n : H_{2d}(B) \to H_{2nd}(B)$ for all $d > 0$ and $n > 0$. We omit the verification that this defines a divided power structure on $H(B)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09PL">
+  <p><a class="environment-identifier" href="/tag/09PL">Lemma <span data-tag="09PL">23.6.7</span>.</a> Let $(A, \text{d}, \gamma )$ be as in Definition <a href="/tag/09PJ" data-tag="09PJ">23.6.5</a>. Let $R \to R'$ be a ring map. Then $\text{d}$ and $\gamma $ induce similar structures on $A' = A \otimes _ R R'$ such that $(A', \text{d}, \gamma )$ is as in Definition <a href="/tag/09PJ" data-tag="09PJ">23.6.5</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Observe that $A'_{even} = A_{even} \otimes _ R R'$ and $A'_{even, +} = A_{even, +} \otimes _ R R'$. Hence we are trying to show that the divided powers $\gamma $ extend to $A'_{even}$ (terminology as in Definition <a href="/tag/07H0" data-tag="07H0">23.4.1</a>). Once we have shown $\gamma $ extends it follows easily that this extension has all the desired properties. 
+    <p>
+      Choose a polynomial $R$-algebra $P$ (on any set of generators) and a surjection of $R$-algebras $P \to R'$. The ring map $A_{even} \to A_{even} \otimes _ R P$ is flat, hence the divided powers $\gamma $ extend to $A_{even} \otimes _ R P$ uniquely by Lemma <a href="/tag/07H1" data-tag="07H1">23.4.2</a>. Let $J = \mathop{\mathrm{Ker}}(P \to R')$. To show that $\gamma $ extends to $A \otimes _ R R'$ it suffices to show that $I' = \mathop{\mathrm{Ker}}(A_{even, +} \otimes _ R P \to A_{even, +} \otimes _ R R')$ is generated by elements $z$ such that $\gamma _ n(z) \in I'$ for all $n > 0$. This is clear as $I'$ is generated by elements of the form $x \otimes f$ with $x \in A_{even, +}$ and $f \in \mathop{\mathrm{Ker}}(P \to R')$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09PM">
+  <p><a class="environment-identifier" href="/tag/09PM">Lemma <span data-tag="09PM">23.6.8</span>.</a> Let $(A, \text{d}, \gamma )$ be as in Definition <a href="/tag/09PJ" data-tag="09PJ">23.6.5</a>. Let $d \geq 1$ be an integer. Let $A\langle T \rangle $ be the graded divided power polynomial algebra on $T$ with $\deg (T) = d$ constructed in Example <a href="/tag/09PH" data-tag="09PH">23.6.2</a> or <a href="/tag/09PI" data-tag="09PI">23.6.3</a>. Let $f \in A_{d - 1}$ be an element with $\text{d}(f) = 0$. There exists a unique differential $\text{d}$ on $A\langle T\rangle $ such that $\text{d}(T) = f$ and such that $\text{d}$ is compatible with the divided power structure on $A\langle T \rangle $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is proved by a direct computation which is omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In Lemma <a href="/tag/0GZ6" data-tag="0GZ6">23.12.3</a> we will compute the cohomology of $A\langle T \rangle $ in some special cases. Here is Tate's construction, as extended by Avramov and Halperin. 
+</p>
+<p>
+<article class="env-lemma" id="09PN">
+  <p><a class="environment-identifier" href="/tag/09PN">Lemma <span data-tag="09PN">23.6.9</span>.</a> Let $R \to S$ be a homomorphism of commutative rings. There exists a factorization </p>
+  <div class="equation">
+  \[  R \to A \to S  \]
+</div>
+  <p> with the following properties: </p>
+  <p><ol>
+  <li><p>
+$(A, \text{d}, \gamma )$ is as in Definition <a href="/tag/09PJ" data-tag="09PJ">23.6.5</a>, 
+</p>
+</li><li><p>
+$A \to S$ is a quasi-isomorphism (if we endow $S$ with the zero differential), 
+</p>
+</li><li><p>
+$A_0 = R[x_ j: j\in J] \to S$ is any surjection of a polynomial ring onto $S$, and 
+</p>
+</li><li><p>
+$A$ is a graded divided power polynomial algebra over $R$. 
+</p>
+</li>
+</ol></p>
+  <p> The last condition means that $A$ is constructed out of $A_0$ by successively adjoining a set of variables $T$ in each degree $> 0$ as in Example <a href="/tag/09PH" data-tag="09PH">23.6.2</a> or <a href="/tag/09PI" data-tag="09PI">23.6.3</a>. Moreover, if $R$ is Noetherian and $R\to S$ is of finite type, then $A$ can be taken to have only finitely many generators in each degree. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We write out the construction for the case that $R$ is Noetherian and $R\to S$ is of finite type. Without those assumptions, the proof is the same, except that we have to use some set (possibly infinite) of generators in each degree. 
+    <p>
+      Start of the construction: Let $A(0) = R[x_1, \ldots , x_ n]$ be a (usual) polynomial ring and let $A(0) \to S$ be a surjection. As grading we take $A(0)_0 = A(0)$ and $A(0)_ d = 0$ for $d \not= 0$. Thus $\text{d} = 0$ and $\gamma _ n$, $n > 0$, is zero as well. 
+    <p>
+      Choose generators $f_1, \ldots , f_ m \in R[x_1, \ldots , x_ n]$ for the kernel of the given map $A(0) = R[x_1, \ldots , x_ n] \to S$. We apply Example <a href="/tag/09PH" data-tag="09PH">23.6.2</a> $m$ times to get 
+    <p>
+      <div class="equation">
+  \[  A(1) = A(0)\langle T_1, \ldots , T_ m\rangle  \]
+</div>
+    <p>
+       with $\deg (T_ i) = 1$ as a graded divided power polynomial algebra. We set $\text{d}(T_ i) = f_ i$. Since $A(1)$ is a divided power polynomial algebra over $A(0)$ and since $\text{d}(f_ i) = 0$ this extends uniquely to a differential on $A(1)$ by Lemma <a href="/tag/09PM" data-tag="09PM">23.6.8</a>. 
+    <p>
+      Induction hypothesis: Assume we are given factorizations 
+    <p>
+      <div class="equation">
+  \[  R \to A(0) \to A(1) \to \ldots \to A(m) \to S  \]
+</div>
+    <p>
+       where $A(0)$ and $A(1)$ are as above and each $R \to A(m') \to S$ for $2 \leq m' \leq m$ satisfies properties (1) and (4) of the statement of the lemma and (2) replaced by the condition that $H_ i(A(m')) \to H_ i(S)$ is an isomorphism for $m' > i \geq 0$. The base case is $m = 1$. 
+    <p>
+      Induction step: Assume we have $R \to A(m) \to S$ as in the induction hypothesis. Consider the group $H_ m(A(m))$. This is a module over $H_0(A(m)) = S$. In fact, it is a subquotient of $A(m)_ m$ which is a finite type module over $A(m)_0 = R[x_1, \ldots , x_ n]$. Thus we can pick finitely many elements 
+    <p>
+      <div class="equation">
+  \[  e_1, \ldots , e_ t \in \mathop{\mathrm{Ker}}(\text{d} : A(m)_ m \to A(m)_{m - 1})  \]
+</div>
+    <p>
+       which map to generators of this module. Applying Example <a href="/tag/09PH" data-tag="09PH">23.6.2</a> or <a href="/tag/09PI" data-tag="09PI">23.6.3</a> $t$ times we get 
+    <p>
+      <div class="equation">
+  \[  A(m + 1) = A(m)\langle T_1, \ldots , T_ t\rangle  \]
+</div>
+    <p>
+       with $\deg (T_ i) = m + 1$ as a graded divided power algebra. We set $\text{d}(T_ i) = e_ i$. Since $A(m+1)$ is a divided power polynomial algebra over $A(m)$ and since $\text{d}(e_ i) = 0$ this extends uniquely to a differential on $A(m + 1)$ compatible with the divided power structure. Since we've added only material in degree $m + 1$ and higher we see that $H_ i(A(m + 1)) = H_ i(A(m))$ for $i < m$. Moreover, it is clear that $H_ m(A(m + 1)) = 0$ by construction. 
+    <p>
+      To finish the proof we observe that we have shown there exists a sequence of maps 
+    <p>
+      <div class="equation">
+  \[  R \to A(0) \to A(1) \to \ldots \to A(m) \to A(m + 1) \to \ldots \to S  \]
+</div>
+    <p>
+       and to finish the proof we set $A = \mathop{\mathrm{colim}}\nolimits A(m)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BZ9">
+  <p><a class="environment-identifier" href="/tag/0BZ9">Lemma <span data-tag="0BZ9">23.6.10</span>.</a> Let $R \to S$ be a pseudo-coherent ring map (More on Algebra, Definition <a href="/tag/067H" data-tag="067H">15.84.1</a>). Then Lemma <a href="/tag/09PN" data-tag="09PN">23.6.9</a> holds, with the resolution $A$ of $S$ having finitely many generators in each degree. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is proved in exactly the same way as Lemma <a href="/tag/09PN" data-tag="09PN">23.6.9</a>. The only additional twist is that, given $A(m) \to S$ we have to show that $H_ m = H_ m(A(m))$ is a finite $R[x_1, \ldots , x_ m]$-module (so that in the next step we need only add finitely many variables). Consider the complex 
+    <p>
+      <div class="equation">
+  \[  \ldots \to A(m)_{m - 1} \to A(m)_ m \to A(m)_{m - 1} \to \ldots \to A(m)_0 \to S \to 0  \]
+</div>
+    <p>
+       Since $S$ is a pseudo-coherent $R[x_1, \ldots , x_ n]$-module and since $A(m)_ i$ is a finite free $R[x_1, \ldots , x_ n]$-module we conclude that this is a pseudo-coherent complex, see More on Algebra, Lemma <a href="/tag/064Y" data-tag="064Y">15.66.9</a>. Since the complex is exact in (homological) degrees $> m$ we conclude that $H_ m$ is a finite $R$-module by More on Algebra, Lemma <a href="/tag/064S" data-tag="064S">15.66.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09PP">
+  <p><a class="environment-identifier" href="/tag/09PP">Lemma <span data-tag="09PP">23.6.11</span>.</a> Let $R$ be a commutative ring. Suppose that $(A, \text{d}, \gamma )$ and $(B, \text{d}, \gamma )$ are as in Definition <a href="/tag/09PJ" data-tag="09PJ">23.6.5</a>. Let $\overline{\varphi } : H_0(A) \to H_0(B)$ be an $R$-algebra map. Assume </p>
+  <p><ol>
+  <li><p>
+$A$ is a graded divided power polynomial algebra over $R$. 
+</p>
+</li><li><p>
+$H_ k(B) = 0$ for $k > 0$. 
+</p>
+</li>
+</ol></p>
+  <p> Then there exists a map $\varphi : A \to B$ of differential graded $R$-algebras compatible with divided powers that lifts $\overline{\varphi }$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The assumption means that $A$ is obtained from $R$ by successively adjoining some set of polynomial generators in degree zero, exterior generators in positive odd degrees, and divided power generators in positive even degrees. So we have a filtration $R \subset A(0) \subset A(1) \subset \ldots $ of $A$ such that $A(m + 1)$ is obtained from $A(m)$ by adjoining generators of the appropriate type (which we simply call “divided power generators”) in degree $m + 1$. In particular, $A(0) \to H_0(A)$ is a surjection from a (usual) polynomial algebra over $R$ onto $H_0(A)$. Thus we can lift $\overline{\varphi }$ to an $R$-algebra map $\varphi (0) : A(0) \to B_0$. 
+    <p>
+      Write $A(1) = A(0)\langle T_ j:j\in J\rangle $ for some set $J$ of divided power variables $T_ j$ of degree $1$. Let $f_ j \in B_0$ be $f_ j = \varphi (0)(\text{d}(T_ j))$. Observe that $f_ j$ maps to zero in $H_0(B)$ as $\text{d}T_ j$ maps to zero in $H_0(A)$. Thus we can find $b_ j \in B_1$ with $\text{d}(b_ j) = f_ j$. By the universal property of divided power polynomial algebras from Lemma <a href="/tag/07H5" data-tag="07H5">23.5.1</a>, we find a lift $\varphi (1) : A(1) \to B$ of $\varphi (0)$ mapping $T_ j$ to $f_ j$. 
+    <p>
+      Having constructed $\varphi (m)$ for some $m \geq 1$ we can construct $\varphi (m + 1) : A(m + 1) \to B$ in exactly the same manner. We omit the details. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09PQ">
+  <p><a class="environment-identifier" href="/tag/09PQ">Lemma <span data-tag="09PQ">23.6.12</span>.</a> Let $R$ be a commutative ring. Let $S$ and $T$ be commutative $R$-algebras. Then there is a canonical structure of a strictly graded commutative $R$-algebra with divided powers on </p>
+  <div class="equation">
+  \[  \operatorname {Tor}_*^ R(S, T).  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a factorization $R \to A \to S$ as above. Since $A \to S$ is a quasi-isomorphism and since $A_ d$ is a free $R$-module, we see that the differential graded algebra $B = A \otimes _ R T$ computes the Tor groups displayed in the lemma. Choose a surjection $R[y_ j:j\in J] \to T$. Then we see that $B$ is a quotient of the differential graded algebra $A[y_ j:j\in J]$ whose homology sits in degree $0$ (it is equal to $S[y_ j:j\in J]$). By Lemma <a href="/tag/09PL" data-tag="09PL">23.6.7</a> the differential graded algebras $B$ and $A[y_ j:j\in J]$ have divided power structures compatible with the differentials. Hence we obtain our divided power structure on $H(B)$ by Lemma <a href="/tag/09PK" data-tag="09PK">23.6.6</a>. 
+    <p>
+      The divided power algebra structure constructed in this way is independent of the choice of $A$. Namely, if $A'$ is a second choice, then Lemma <a href="/tag/09PP" data-tag="09PP">23.6.11</a> implies there is a map $A \to A'$ preserving all structure and the augmentations towards $S$. Then the induced map $B = A \otimes _ R T \to A' \otimes _ R T' = B'$ also preserves all structure and is a quasi-isomorphism. The induced isomorphism of Tor algebras is therefore compatible with products and divided powers. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

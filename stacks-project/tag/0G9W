@@ -1,0 +1,285 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="local-cohomology-section-uniform-vanishing-bis" class="tex-section"><span data-tag="0G9W">51.21</span> A bit of uniformity, II</h2>
+
+<p>
+Let $I$ be an ideal of a Noetherian ring $A$. Let $M$ be a finite $A$-module. Let $i > 0$. By More on Algebra, Lemma <a href="/tag/0911" data-tag="0911">15.28.3</a> there exists a $c = c(A, I, M, i)$ such that $\text{Tor}^ A_ i(M, A/I^ n) \to \text{Tor}^ A_ i(M, A/I^{n - c})$ is zero for all $n \geq c$. In this section, we discuss some results which show that one sometimes can choose a constant $c$ which works for all $A$-modules $M$ simultaneously (and for a range of indices $i$). This material is related to uniform Artin-Rees as discussed in <span class="cite">[<a href="/bibliography/Huneke-uniform">Huneke-uniform</a>]</span> and <span class="cite">[<a href="/bibliography/AHS">AHS</a>]</span>. 
+</p>
+<p>
+In Remark <a href="/tag/0GA5" data-tag="0GA5">51.21.9</a> we will apply this to show that various pro-systems related to derived completion are (or are not) strictly pro-isomorphic. 
+</p>
+<p>
+The following lemma can be significantly strengthened. 
+</p>
+<p>
+<article class="env-lemma" id="0G9X">
+  <p><a class="environment-identifier" href="/tag/0G9X">Lemma <span data-tag="0G9X">51.21.1</span>.</a> Let $I$ be an ideal of a Noetherian ring $A$. For every $m \geq 0$ and $i > 0$ there exist a $c = c(A, I, m, i) \geq 0$ such that for every $A$-module $M$ annihilated by $I^ m$ the map </p>
+  <div class="equation">
+  \[  \text{Tor}^ A_ i(M, A/I^ n) \to \text{Tor}^ A_ i(M, A/I^{n - c})  \]
+</div>
+  <p> is zero for all $n \geq c$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By induction on $i$. Base case $i = 1$. The short exact sequence $0 \to I^ n \to A \to A/I^ n \to 0$ determines an injection $\text{Tor}_1^ A(M, A/I^ n) \subset I^ n \otimes _ A M$, see Algebra, Remark <a href="/tag/00M6" data-tag="00M6">10.75.9</a>. As $M$ is annihilated by $I^ m$ we see that the map $I^ n \otimes _ A M \to I^{n - m} \otimes _ A M$ is zero for $n \geq m$. Hence the result holds with $c = m$. 
+    <p>
+      Induction step. Let $i > 1$ and assume $c$ works for $i - 1$. By More on Algebra, Lemma <a href="/tag/0911" data-tag="0911">15.28.3</a> applied to $M = A/I^ m$ we can choose $c' \geq 0$ such that $\text{Tor}_ i(A/I^ m, A/I^ n) \to \text{Tor}_ i(A/I^ m, A/I^{n - c'})$ is zero for $n \geq c'$. Let $M$ be annihilated by $I^ m$. Choose a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to S \to \bigoplus \nolimits _{i \in I} A/I^ m \to M \to 0  \]
+</div>
+    <p>
+       The corresponding long exact sequence of tors gives an exact sequence 
+    <p>
+      <div class="equation">
+  \[  \text{Tor}_ i^ A(\bigoplus \nolimits _{i \in I} A/I^ m, A/I^ n) \to \text{Tor}_ i^ A(M, A/I^ n) \to \text{Tor}_{i - 1}^ A(S, A/I^ n)  \]
+</div>
+    <p>
+       for all integers $n \geq 0$. If $n \geq c + c'$, then the map $\text{Tor}_{i - 1}^ A(S, A/I^ n) \to \text{Tor}_{i - 1}^ A(S, A/I^{n - c})$ is zero and the map $\text{Tor}_ i^ A(A/I^ m, A/I^{n - c}) \to \text{Tor}_ i^ A(A/I^ m, A/I^{n - c - c'})$ is zero. Combined with the short exact sequences this implies the result holds for $i$ with constant $c + c'$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0G9Y">
+  <p><a class="environment-identifier" href="/tag/0G9Y">Lemma <span data-tag="0G9Y">51.21.2</span>.</a> Let $I = (a_1, \ldots , a_ t)$ be an ideal of a Noetherian ring $A$. Set $a = a_1$ and denote $B = A[\frac{I}{a}]$ the affine blowup algebra. There exists a $c > 0$ such that $\text{Tor}_ i^ A(B, M)$ is annihilated by $I^ c$ for all $A$-modules $M$ and $i \geq t$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Recall that $B$ is the quotient of $A[x_2, \ldots , x_ t]/(a_1x_2 - a_2, \ldots , a_1x_ t - a_ t)$ by its $a_1$-torsion, see Algebra, Lemma <a href="/tag/0G8S" data-tag="0G8S">10.70.6</a>. Let 
+    <p>
+      <div class="equation">
+  \[  B_\bullet = \text{Koszul complex on }a_1x_2 - a_2, \ldots , a_1x_ t - a_ t \text{ over }A[x_2, \ldots , x_ t]  \]
+</div>
+    <p>
+       viewed as a chain complex sitting in degrees $(t - 1), \ldots , 0$. The complex $B_\bullet [1/a_1]$ is isomorphic to the Koszul complex on $x_2 - a_2/a_1, \ldots , x_ t - a_ t/a_1$ which is a regular sequence in $A[1/a_1][x_2, \ldots , x_ t]$. Since regular sequences are Koszul regular, we conclude that the augmentation 
+    <p>
+      <div class="equation">
+  \[  \epsilon : B_\bullet \longrightarrow B  \]
+</div>
+    <p>
+       is a quasi-isomorphism after inverting $a_1$. Since the homology modules of the cone $C_\bullet $ on $\epsilon $ are finite $A[x_2, \ldots , x_ n]$-modules and since $C_\bullet $ is bounded, we conclude that there exists a $c \geq 0$ such that $a_1^ c$ annihilates all of these. By Derived Categories, Lemma <a href="/tag/08Q2" data-tag="08Q2">13.12.5</a> this implies that, after possibly replacing $c$ by a larger integer, that $a_1^ c$ is zero on $C_\bullet $ in $D(A)$. The proof is finished once the reader contemplates the distinguished triangle 
+    <p>
+      <div class="equation">
+  \[  B_\bullet \otimes _ A^\mathbf {L} M \to B \otimes _ A^\mathbf {L} M \to C_\bullet \otimes _ A^\mathbf {L} M  \]
+</div>
+    <p>
+       Namely, the first term is represented by $B_\bullet \otimes _ A M$ which is sitting in homological degrees $(t - 1), \ldots , 0$ in view of the fact that the terms in the Koszul complex $B_\bullet $ are free (and hence flat) $A$-modules. Whence $\text{Tor}_ i^ A(B, M) = H_ i(C_\bullet \otimes _ A^\mathbf {L} M)$ for $i > t - 1$ and this is annihilated by $a_1^ c$. Since $a_1^ cB = I^ cB$ and since the tor module is a module over $B$ we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+For the rest of the discussion in this section we fix a Noetherian ring $A$ and an ideal $I \subset A$. We denote 
+</p>
+<div class="equation">
+  \[  p : X \to \mathop{\mathrm{Spec}}(A)  \]
+</div>
+<p>
+ the blowing up of $\mathop{\mathrm{Spec}}(A)$ in the ideal $I$. In other words, $X$ is the $\text{Proj}$ of the Rees algebra $\bigoplus _{n \geq 0} I^ n$. By Cohomology of Schemes, Lemmas <a href="/tag/0AG6" data-tag="0AG6">30.14.2</a> and <a href="/tag/0AG7" data-tag="0AG7">30.14.3</a> we can choose an integer $q(A, I) \geq 0$ such that for all $q \geq q(A, I)$ we have $H^ i(X, \mathcal{O}_ X(q)) = 0$ for $i > 0$ and $H^0(X, \mathcal{O}_ X(q)) = I^ q$. 
+</p>
+<p>
+<article class="env-lemma" id="0G9Z">
+  <p><a class="environment-identifier" href="/tag/0G9Z">Lemma <span data-tag="0G9Z">51.21.3</span>.</a> In the situation above, for $q \geq q(A, I)$ and any $A$-module $M$ we have </p>
+  <div class="equation">
+  \[  R\Gamma (X, Lp^*\widetilde{M}(q)) \cong M \otimes _ A^\mathbf {L} I^ q  \]
+</div>
+  <p> in $D(A)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a free resolution $F_\bullet \to M$. Then $\widetilde{F}_\bullet $ is a flat resolution of $\widetilde{M}$. Hence $Lp^*\widetilde{M}$ is given by the complex $p^*\widetilde{F}_\bullet $. Thus $Lp^*\widetilde{M}(q)$ is given by the complex $p^*\widetilde{F}_\bullet (q)$. Since $p^*\widetilde{F}_ i(q)$ are right acyclic for $\Gamma (X, -)$ by our choice of $q \geq q(A, I)$ and since we have $\Gamma (X, p^*\widetilde{F}_ i(q)) = I^ qF_ i$ by our choice of $q \geq q(A, I)$, we get that $R\Gamma (X, Lp^*\widetilde{M}(q))$ is given by the complex with terms $I^ qF_ i$ by Derived Categories of Schemes, Lemma <a href="/tag/0G9P" data-tag="0G9P">36.4.3</a>. The result follows as the complex $I^ qF_\bullet $ computes $M \otimes _ A^\mathbf {L} I^ q$ by definition. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GA0">
+  <p><a class="environment-identifier" href="/tag/0GA0">Lemma <span data-tag="0GA0">51.21.4</span>.</a> In the situation above, let $t$ be an upper bound on the number of generators for $I$. There exists an integer $c = c(A, I) \geq 0$ such that for any $A$-module $M$ the cohomology sheaves $H^ j(Lp^*\widetilde{M})$ are annihilated by $I^ c$ for $j \leq -t$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Say $I = (a_1, \ldots , a_ t)$. The question is affine local on $X$. For $1 \leq i \leq t$ let $B_ i = A[\frac{I}{a_ i}]$ be the affine blowup algebra. Then $X$ has an affine open covering by the spectra of the rings $B_ i$, see Divisors, Lemma <a href="/tag/0804" data-tag="0804">31.33.2</a>. By the description of derived pullback given in Derived Categories of Schemes, Lemma <a href="/tag/08DW" data-tag="08DW">36.3.8</a> we conclude it suffices to prove that for each $i$ there exists a $c \geq 0$ such that 
+    <p>
+      <div class="equation">
+  \[  \text{Tor}_ j^ A(B_ i, M)  \]
+</div>
+    <p>
+       is annihilated by $I^ c$ for $j \geq t$. This is Lemma <a href="/tag/0G9Y" data-tag="0G9Y">51.21.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GA1">
+  <p><a class="environment-identifier" href="/tag/0GA1">Lemma <span data-tag="0GA1">51.21.5</span>.</a> In the situation above, let $t$ be an upper bound on the number of generators for $I$. There exists an integer $c = c(A, I) \geq 0$ such that for any $A$-module $M$ the tor modules $\text{Tor}_ i^ A(M, A/I^ q)$ are annihilated by $I^ c$ for $i > t$ and all $q \geq 0$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $q(A, I)$ be as above. For $q \geq q(A, I)$ we have 
+    <p>
+      <div class="equation">
+  \[  R\Gamma (X, Lp^*\widetilde{M}(q)) = M \otimes _ A^\mathbf {L} I^ q  \]
+</div>
+    <p>
+       by Lemma <a href="/tag/0G9Z" data-tag="0G9Z">51.21.3</a>. We have a bounded and convergent spectral sequence 
+    <p>
+      <div class="equation">
+  \[  H^ a(X, H^ b(Lp^*\widetilde{M}(q))) \Rightarrow \text{Tor}_{-a - b}^ A(M, I^ q)  \]
+</div>
+    <p>
+       by Derived Categories of Schemes, Lemma <a href="/tag/0G9Q" data-tag="0G9Q">36.4.4</a>. Let $d$ be an integer as in Cohomology of Schemes, Lemma <a href="/tag/071L" data-tag="071L">30.4.4</a> (actually we can take $d = t$, see Cohomology of Schemes, Lemma <a href="/tag/01XI" data-tag="01XI">30.4.2</a>). Then we see that $H^{-i}(X, Lp^*\widetilde{M}(q)) = \text{Tor}_ i^ A(M, I^ q)$ has a finite filtration with at most $d$ steps whose graded are subquotients of the modules 
+    <p>
+      <div class="equation">
+  \[  H^ a(X, H^{- i - a}(Lp^*\widetilde{M})(q)),\quad a = 0, 1, \ldots , d - 1  \]
+</div>
+    <p>
+       If $i \geq t$ then all of these modules are annihilated by $I^ c$ where $c = c(A, I)$ is as in Lemma <a href="/tag/0GA0" data-tag="0GA0">51.21.4</a> because the cohomology sheaves $H^{- i - a}(Lp^*\widetilde{M})$ are all annihilated by $I^ c$ by the lemma. Hence we see that $\text{Tor}_ i^ A(M, I^ q)$ is annihilated by $I^{dc}$ for $q \geq q(A, I)$ and $i \geq t$. Using the short exact sequence $0 \to I^ q \to A \to A/I^ q \to 0$ we find that $\text{Tor}_ i(M, A/I^ q)$ is annihilated by $I^{dc}$ for $q \geq q(A, I)$ and $i > t$. We conclude that $I^ m$ with $m = \max (dc, q(A, I) - 1)$ annihilates $\text{Tor}_ i^ A(M, A/I^ q)$ for all $q \geq 0$ and $i > t$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GA2">
+  <p><a class="environment-identifier" href="/tag/0GA2">Lemma <span data-tag="0GA2">51.21.6</span>.</a> Let $I$ be an ideal of a Noetherian ring $A$. Let $t \geq 0$ be an upper bound on the number of generators of $I$. There exist $N, c \geq 0$ such that the maps </p>
+  <div class="equation">
+  \[  \text{Tor}_{t + 1}^ A(M, A/I^ n) \to \text{Tor}_{t + 1}^ A(M, A/I^{n - c})  \]
+</div>
+  <p> are zero for any $A$-module $M$ and all $n \geq N$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $c_1$ be the constant found in Lemma <a href="/tag/0GA1" data-tag="0GA1">51.21.5</a>. Please keep in mind that this constant $c_1$ works for $\text{Tor}_ i$ for all $i > t$ simultaneously. 
+    <p>
+      Say $I = (a_1, \ldots , a_ t)$. For an $A$-module $M$ we set 
+    <p>
+      <div class="equation">
+  \[  \ell (M) = \# \{ i \mid 1 \leq i \leq t,\  a_ i^{c_1}\text{ is zero on }M\}   \]
+</div>
+    <p>
+       This is an element of $\{ 0, 1, \ldots , t\} $. We will prove by descending induction on $0 \leq s \leq t$ the following statement $H_ s$: there exist $N, c \geq 0$ such that for every module $M$ with $\ell (M) \geq s$ the maps 
+    <p>
+      <div class="equation">
+  \[  \text{Tor}_{t + 1 + i}^ A(M, A/I^ n) \to \text{Tor}_{t + 1 + i}^ A(M, A/I^{n - c})  \]
+</div>
+    <p>
+       are zero for $i = 0, \ldots , s$ for all $n \geq N$. 
+    <p>
+      Base case: $s = t$. If $\ell (M) = t$, then $M$ is annihilated by $(a_1^{c_1}, \ldots , a_ t^{c_1}\} $ and hence by $I^{t(c_1 - 1) + 1}$. We conclude from Lemma <a href="/tag/0G9X" data-tag="0G9X">51.21.1</a> that $H_ t$ holds by taking $c = N$ to be the maximum of the integers $c(A, I, t(c_1 - 1) + 1, t + 1), \ldots , c(A, I, t(c_1 - 1) + 1, 2t + 1)$ found in the lemma. 
+    <p>
+      Induction step. Say $0 \leq s < t$ we have $N, c$ as in $H_{s + 1}$. Consider a module $M$ with $\ell (M) = s$. Then we can choose an $i$ such that $a_ i^{c_1}$ is nonzero on $M$. It follows that $\ell (M[a_ i^ c]) \geq s + 1$ and $\ell (M/a_ i^{c_1}M) \geq s + 1$ and the induction hypothesis applies to them. Consider the exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to M[a_ i^{c_1}] \to M \xrightarrow {a_ i^{c_1}} M \to M/a_ i^{c_1}M \to 0  \]
+</div>
+    <p>
+       Denote $E \subset M$ the image of the middle arrow. Consider the corresponding diagram of Tor modules 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ &  &  \text{Tor}_{i + 1}(M/a_ i^{c_1}M, A/I^ q) \ar[d] \\  \text{Tor}_ i(M[a_ i^{c_1}], A/I^ q) \ar[r] &  \text{Tor}_ i(M, A/I^ q) \ar[r] \ar[rd]^0 &  \text{Tor}_ i(E, A/I^ q) \ar[d] \\  &  &  \text{Tor}_ i(M, A/I^ q) }  \]
+</div>
+    <p>
+       with exact rows and columns (for every $q$). The south-east arrow is zero by our choice of $c_1$. We conclude that the module $\text{Tor}_ i(M, A/I^ q)$ is sandwiched between a quotient module of $\text{Tor}_ i(M[a_ i^{c_1}], A/I^ q)$ and a submodule of $\text{Tor}_{i + 1}(M/a_ i^{c_1}M, A/I^ q)$. Hence we conclude $H_ s$ holds with $N$ replaced by $N + c$ and $c$ replaced by $2c$. Some details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="0GA3">
+  <p><a class="environment-identifier" href="/tag/0GA3">Proposition <span data-tag="0GA3">51.21.7</span>.</a> Let $I$ be an ideal of a Noetherian ring $A$. Let $t \geq 0$ be an upper bound on the number of generators of $I$. There exist $N, c \geq 0$ such that for $n \geq N$ the maps </p>
+  <div class="equation">
+  \[  A/I^ n \to A/I^{n - c}  \]
+</div>
+  <p> satisfy the equivalent conditions of Lemma <a href="/tag/0G9V" data-tag="0G9V">51.20.2</a> with $e = t$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Immediate consequence of Lemmas <a href="/tag/0GA2" data-tag="0GA2">51.21.6</a> and <a href="/tag/0G9V" data-tag="0G9V">51.20.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0GA4">
+  <p><a class="environment-identifier" href="/tag/0GA4">Remark <span data-tag="0GA4">51.21.8</span>.</a> The paper <span class="cite">[<a href="/bibliography/AHS">AHS</a>]</span> shows, besides many other things, that if $A$ is local, then Proposition <a href="/tag/0GA3" data-tag="0GA3">51.21.7</a> also holds with $e = t$ replaced by $e = \dim (A)$. Looking at Lemma <a href="/tag/0EH1" data-tag="0EH1">51.20.3</a> it is natural to ask whether Proposition <a href="/tag/0GA3" data-tag="0GA3">51.21.7</a> holds with $e = t$ replaced with $e = \text{cd}(A, I)$. We don't know. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="0GA5">
+  <p><a class="environment-identifier" href="/tag/0GA5">Remark <span data-tag="0GA5">51.21.9</span>.</a> Let $I$ be an ideal of a Noetherian ring $A$. Say $I = (f_1, \ldots , f_ r)$. Denote $K_ n^\bullet $ the Koszul complex on $f_1^ n, \ldots , f_ r^ n$ as in More on Algebra, Situation <a href="/tag/0BKC" data-tag="0BKC">15.93.15</a> and denote $K_ n \in D(A)$ the corresponding object. Let $M^\bullet $ be a bounded complex of finite $A$-modules and denote $M \in D(A)$ the corresponding object. Consider the following inverse systems in $D(A)$: </p>
+  <p><ol>
+  <li><p>
+$M^\bullet /I^ nM^\bullet $, i.e., the complex whose terms are $M^ i/I^ nM^ i$, 
+</p>
+</li><li><p>
+$M \otimes _ A^\mathbf {L} A/I^ n$, 
+</p>
+</li><li><p>
+$M \otimes _ A^\mathbf {L} K_ n$, and 
+</p>
+</li><li><p>
+$M \otimes _ P^\mathbf {L} P/J^ n$ (see below). 
+</p>
+</li>
+</ol></p>
+  <p> All of these inverse systems are isomorphic as pro-objects: the isomorphism between (2) and (3) follows from More on Algebra, Lemma <a href="/tag/0921" data-tag="0921">15.96.1</a>. The isomorphism between (1) and (2) is given in More on Algebra, Lemma <a href="/tag/0G9M" data-tag="0G9M">15.102.3</a>. For the last one, see below. </p>
+  <p>However, we can ask if these isomorphisms of pro-systems are “strict”; this terminology and question is related to the discussion in <span class="cite">[<span class="postnote">pages 61, 62</span>, <a href="/bibliography/quillenhomology">quillenhomology</a>]</span>. Namely, given a category $\mathcal{C}$ we can define a “strict pro-category” whose objects are inverse systems $(X_ n)$ and whose morphisms $(X_ n) \to (Y_ n)$ are given by tuples $(c, \varphi _ n)$ consisting of a $c \geq 0$ and morphisms $\varphi _ n : X_ n \to Y_{n - c}$ for all $n \geq c$ satisfying an obvious compatibility condition and up to a certain equivalence (given essentially by increasing $c$). Then we ask whether the above inverse systems are isomorphic in this strict pro-category. </p>
+  <p>This clearly cannot be the case for (1) and (3) even when $M = A[0]$. Namely, the system $H^0(K_ n) = A/(f_1^ n, \ldots , f_ r^ n)$ is not strictly pro-isomorphic in the category of modules to the system $A/I^ n$ in general. For example, if we take $A = \mathbf{Z}[x_1, \ldots , x_ r]$ and $f_ i = x_ i$, then $H^0(K_ n)$ is not annihilated by $I^{r(n - 1)}$.<a class="footnotemark" href="#a0001092989" id="a0001092989-mark"><sup>1</sup></a> </p>
+  <p>It turns out that the results above show that the natural map from (2) to (1) discussed in More on Algebra, Lemma <a href="/tag/0G9M" data-tag="0G9M">15.102.3</a> is a strict pro-isomorphism. We will sketch the proof. Using standard arguments involving stupid truncations, we first reduce to the case where $M^\bullet $ is given by a single finite $A$-module $M$ placed in degree $0$. Pick $N, c \geq 0$ as in Proposition <a href="/tag/0GA3" data-tag="0GA3">51.21.7</a>. The proposition implies that for $n \geq N$ we get factorizations </p>
+  <div class="equation">
+  \[  M \otimes _ A^\mathbf {L} A/I^ n \to \tau _{\geq -t}(M \otimes _ A^\mathbf {L} A/I^ n) \to M \otimes _ A^\mathbf {L} A/I^{n - c}  \]
+</div>
+  <p> of the transition maps in the system (2). On the other hand, by More on Algebra, Lemma <a href="/tag/0911" data-tag="0911">15.28.3</a>, we can find another constant $c' = c'(M) \geq 0$ such that the maps $\text{Tor}_ i^ A(M, A/I^{n'}) \to \text{Tor}_ i(M, A/I^{n' - c'})$ are zero for $i = 1, 2, \ldots , t$ and $n' \geq c'$. Then it follows from Derived Categories, Lemma <a href="/tag/08Q2" data-tag="08Q2">13.12.5</a> that the map </p>
+  <div class="equation">
+  \[  \tau _{\geq -t}(M \otimes _ A^\mathbf {L} A/I^{n + tc'}) \to \tau _{\geq -t}(M \otimes _ A^\mathbf {L} A/I^ n)  \]
+</div>
+  <p> factors through $M \otimes _ A^\mathbf {L}A/I^{n + tc'} \to M/I^{n + tc'}M$. Combined with the previous result we obtain a factorization </p>
+  <div class="equation">
+  \[  M \otimes _ A^\mathbf {L}A/I^{n + tc'} \to M/I^{n + tc'}M \to M \otimes _ A^\mathbf {L} A/I^{n - c}  \]
+</div>
+  <p> which gives us what we want. If we ever need this result, we will carefully state it and provide a detailed proof. </p>
+  <p>For number (4) suppose we have a Noetherian ring $P$, a ring homomorphism $P \to A$, and an ideal $J \subset P$ such that $I = JA$. By More on Algebra, Section <a href="/tag/06Y5" data-tag="06Y5">15.61</a> we get a functor $M \otimes _ P^\mathbf {L} - : D(P) \to D(A)$ and we get an inverse system $M \otimes _ P^\mathbf {L} P/J^ n$ in $D(A)$ as in (4). If $P$ is Noetherian, then the system in (4) is pro-isomorphic to the system in (1) because we can compare with Koszul complexes. If $P \to A$ is finite, then the system (4) is strictly pro-isomorphic to the system (2) because the inverse system $A \otimes _ P^\mathbf {L} P/J^ n$ is strictly pro-isomorphic to the inverse system $A/I^ n$ (by the discussion above) and because we have </p>
+  <div class="equation">
+  \[  M \otimes _ P^\mathbf {L} P/J^ n = M \otimes _ A^\mathbf {L} (A \otimes _ P^\mathbf {L} P/J^ n)  \]
+</div>
+  <p> by More on Algebra, Lemma <a href="/tag/06Y6" data-tag="06Y6">15.61.1</a>. </p>
+  <p>A standard example in (4) is to take $P = \mathbf{Z}[x_1, \ldots , x_ r]$, the map $P \to A$ sending $x_ i$ to $f_ i$, and $J = (x_1, \ldots , x_ r)$. In this case one shows that </p>
+  <div class="equation">
+  \[  M \otimes _ P^\mathbf {L} P/J^ n = M \otimes _{A[x_1, \ldots , x_ r]}^\mathbf {L} A[x_1, \ldots , x_ r]/(x_1, \ldots , x_ r)^ n  \]
+</div>
+  <p> and we reduce to one of the cases discussed above (although this case is strictly easier as $A[x_1, \ldots , x_ r]/(x_1, \ldots , x_ r)^ n$ has tor dimension at most $r$ for all $n$ and hence the step using Proposition <a href="/tag/0GA3" data-tag="0GA3">51.21.7</a> can be avoided). This case is discussed in the proof of <span class="cite">[<span class="postnote">Proposition 3.5.1</span>, <a href="/bibliography/BS">BS</a>]</span>. </p>
+</article> 
+</p>

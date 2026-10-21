@@ -1,0 +1,179 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sheaves-section-limits-sheaves" class="tex-section"><span data-tag="009E">6.29</span> Limits and colimits of sheaves</h2>
+
+<p>
+Let $X$ be a topological space. Let $\mathcal{I} \to \mathop{\mathit{Sh}}\nolimits (X)$, $i \mapsto \mathcal{F}_ i$ be a diagram. 
+</p>
+<ol>
+  <li><p>
+Both $\mathop{\mathrm{lim}}\nolimits _ i \mathcal{F}_ i$ and $\mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i$ exist. 
+</p>
+</li><li><p>
+The inclusion functor $i : \mathop{\mathit{Sh}}\nolimits (X) \to \textit{PSh}(X)$ commutes with limits. In other words, we may compute the limit in the category of sheaves as the limit in the category of presheaves. In particular, for any open $U \subset X$ we have 
+</p>
+<div class="equation">
+  \[  (\mathop{\mathrm{lim}}\nolimits _ i \mathcal{F}_ i)(U) = \mathop{\mathrm{lim}}\nolimits _ i \mathcal{F}_ i(U).  \]
+</div>
+</li><li><p>
+The inclusion functor $i : \mathop{\mathit{Sh}}\nolimits (X) \to \textit{PSh}(X)$ does not commute with colimits in general (not even with finite colimits – think surjections). The colimit is computed as the sheafification of the colimit in the category of presheaves: 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i = \Big(U \mapsto \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i(U)\Big)^\# .  \]
+</div>
+</li><li><p>
+Let $x \in X$ be a point. In general the stalk of $\mathop{\mathrm{lim}}\nolimits _ i \mathcal{F}_ i$ at $x$ is not equal to the limit of the stalks. But if the index category is finite then it is the case. In other words, the stalk functor is left exact. 
+</p>
+</li><li><p>
+Let $x \in X$. We always have 
+</p>
+<div class="equation">
+  \[  (\mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i)_ x = \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_{i, x}.  \]
+</div>
+</li><li><p>
+The sheafification functor ${}^\#  : \textit{PSh}(X) \to \mathop{\mathit{Sh}}\nolimits (X)$ commutes with all colimits, and with finite limits. But it does not commute with all limits. 
+</p>
+</li>
+</ol>
+<p>
+ The proofs are all easy. Here is an example of what is true for directed colimits of sheaves. 
+</p>
+<p>
+<article class="env-lemma" id="009F">
+  <p><a class="environment-identifier" href="/tag/009F">Lemma <span data-tag="009F">6.29.1</span>.</a> Let $X$ be a topological space. Let $I$ be a directed set. Let $(\mathcal{F}_ i, \varphi _{ii'})$ be a system of sheaves of sets over $I$, see Categories, Section <a href="/tag/002Z" data-tag="002Z">4.21</a>. Let $U \subset X$ be an open subset. Consider the canonical map </p>
+  <div class="equation">
+  \[  \Psi : \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i(U) \longrightarrow \left(\mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i\right)(U)  \]
+</div>
+  <p><ol>
+  <li><p>
+If all the transition maps are injective then $\Psi $ is injective for any open $U$. 
+</p>
+</li><li><p>
+If $U$ is quasi-compact, then $\Psi $ is injective. 
+</p>
+</li><li><p>
+If $U$ is quasi-compact and all the transition maps are injective then $\Psi $ is an isomorphism. 
+</p>
+</li><li><p>
+If $U$ has a cofinal system of open coverings $\mathcal{U} : U = \bigcup _{j\in J} U_ j$ with $J$ finite and $U_ j \cap U_{j'}$ quasi-compact for all $j, j' \in J$, then $\Psi $ is bijective. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume all the transition maps are injective. In this case the presheaf $\mathcal{F}' : V \mapsto \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i(V)$ is separated (see Definition <a href="/tag/007A" data-tag="007A">6.11.2</a>). By the discussion above we have $(\mathcal{F}')^\#  = \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i$. By Lemma <a href="/tag/0082" data-tag="0082">6.17.5</a> we see that $\mathcal{F}' \to (\mathcal{F}')^\# $ is injective. This proves (1). 
+    <p>
+      Assume $U$ is quasi-compact. Suppose that $s \in \mathcal{F}_ i(U)$ and $s' \in \mathcal{F}_{i'}(U)$ give rise to elements on the left hand side which have the same image under $\Psi $. Since $U$ is quasi-compact this means there exists a finite open covering $U = \bigcup _{j = 1, \ldots , m} U_ j$ and for each $j$ an index $i_ j \in I$, $i_ j \geq i$, $i_ j \geq i'$ such that $\varphi _{ii_ j}(s)$ and $\varphi _{i'i_ j}(s')$ have the same restriction to $U_ j$. Let $i''\in I$ be $\geq $ than all of the $i_ j$. We conclude that $\varphi _{ii''}(s)$ and $\varphi _{i'i''}(s')$ agree on the opens $U_ j$ for all $j$ and hence that $\varphi _{ii''}(s) = \varphi _{i'i''}(s')$. This proves (2). 
+    <p>
+      Assume $U$ is quasi-compact and all transition maps injective. Let $s$ be an element of the target of $\Psi $. Since $U$ is quasi-compact there exists a finite open covering $U = \bigcup _{j = 1, \ldots , m} U_ j$, for each $j$ an index $i_ j \in I$ and $s_ j \in \mathcal{F}_{i_ j}(U_ j)$ such that $s|_{U_ j}$ comes from $s_ j$ for all $j$. Pick $i \in I$ which is $\geq $ than all of the $i_ j$. By (1) the sections $\varphi _{i_ ji}(s_ j)$ agree over the overlaps $U_ j \cap U_{j'}$. Hence they glue to a section $s' \in \mathcal{F}_ i(U)$ which maps to $s$ under $\Psi $. This proves (3). 
+    <p>
+      Assume the hypothesis of (4). In particular we see that $U$ is quasi-compact and hence by (2) we have injectivity of $\Psi $. Let $s$ be an element of the target of $\Psi $. By assumption there exists a finite open covering $U = \bigcup _{j = 1, \ldots , m} U_ j$, with $U_ j \cap U_{j'}$ quasi-compact for all $j, j' \in J$ and for each $j$ an index $i_ j \in I$ and $s_ j \in \mathcal{F}_{i_ j}(U_ j)$ such that $s|_{U_ j}$ is the image of $s_ j$ for all $j$. Since $U_ j \cap U_{j'}$ is quasi-compact we can apply (2) and we see that there exists an $i_{jj'} \in I$, $i_{jj'} \geq i_ j$, $i_{jj'} \geq i_{j'}$ such that $\varphi _{i_ ji_{jj'}}(s_ j)$ and $\varphi _{i_{j'}i_{jj'}}(s_{j'})$ agree over $U_ j \cap U_{j'}$. Choose an index $i \in I$ which is bigger or equal than all the $i_{jj'}$. Then we see that the sections $\varphi _{i_ ji}(s_ j)$ of $\mathcal{F}_ i$ glue to a section of $\mathcal{F}_ i$ over $U$. This section is mapped to the element $s$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-example" id="009G">
+  <p><a class="environment-identifier" href="/tag/009G">Example <span data-tag="009G">6.29.2</span>.</a> Let $X = \{ s_1, s_2, \xi _1, \xi _2, \xi _3, \ldots \} $ as a set. Declare a subset $U \subset X$ to be open if $s_1 \in U$ or $s_2 \in U$ implies $U$ contains all of the $\xi _ i$. Let $U_ n = \{ \xi _ n, \xi _{n + 1}, \ldots \} $, and let $j_ n : U_ n \to X$ be the inclusion map. Set $\mathcal{F}_ n = j_{n, *}\underline{\mathbf{Z}}$. There are transition maps $\mathcal{F}_ n \to \mathcal{F}_{n + 1}$. Let $\mathcal{F} = \mathop{\mathrm{colim}}\nolimits \mathcal{F}_ n$. Note that $\mathcal{F}_{n, \xi _ m} = 0$ if $m < n$ because $\{ \xi _ m\} $ is an open subset of $X$ which misses $U_ n$. Hence we see that $\mathcal{F}_{\xi _ n} = 0$ for all $n$. On the other hand the stalk $\mathcal{F}_{s_ i}$, $i = 1, 2$ is the colimit </p>
+  <div class="equation">
+  \[  M = \mathop{\mathrm{colim}}\nolimits _ n \prod \nolimits _{m \geq n} \mathbf{Z}  \]
+</div>
+  <p> which is not zero. We conclude that the sheaf $\mathcal{F}$ is the direct sum of the skyscraper sheaves with value $M$ at the closed points $s_1$ and $s_2$. Hence $\Gamma (X, \mathcal{F}) = M \oplus M$. On the other hand, the reader can verify that $\mathop{\mathrm{colim}}\nolimits _ n \Gamma (X, \mathcal{F}_ n) = M$. Hence some condition is necessary in part (4) of Lemma <a href="/tag/009F" data-tag="009F">6.29.1</a> above. </p>
+</article> 
+</p>
+<p>
+There is a version of the previous lemma dealing with sheaves on a diagram of spectral spaces. To state it we introduce some notation. Let $\mathcal{I}$ be a cofiltered index category. Let $i \mapsto X_ i$ be a diagram of spectral spaces over $\mathcal{I}$ such that for $a : j \to i$ in $\mathcal{I}$ the corresponding map $f_ a : X_ j \to X_ i$ is spectral. Set $X = \mathop{\mathrm{lim}}\nolimits X_ i$ and denote $p_ i : X \to X_ i$ the projection. 
+</p>
+<p>
+<article class="env-lemma" id="0A32">
+  <p><a class="environment-identifier" href="/tag/0A32">Lemma <span data-tag="0A32">6.29.3</span>.</a> In the situation described above, let $i \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{I})$ and let $\mathcal{G}$ be a sheaf on $X_ i$. For $U_ i \subset X_ i$ quasi-compact open we have </p>
+  <div class="equation">
+  \[  p_ i^{-1}\mathcal{G}(p_ i^{-1}(U_ i)) = \mathop{\mathrm{colim}}\nolimits _{a : j \to i} f_ a^{-1}\mathcal{G}(f_ a^{-1}(U_ i))  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let us prove the canonical map $\mathop{\mathrm{colim}}\nolimits _{a : j \to i} f_ a^{-1}\mathcal{G}(f_ a^{-1}(U_ i)) \to p_ i^{-1}\mathcal{G}(p_ i^{-1}(U_ i))$ is injective. Let $s, s'$ be sections of $f_ a^{-1}\mathcal{G}$ over $f_ a^{-1}(U_ i)$ for some $a : j \to i$. For $b : k \to j$ let $Z_ k \subset f_{a \circ b}^{-1}(U_ i)$ be the closed subset of points $x$ such that the image of $s$ and $s'$ in the stalk $(f_{a \circ b}^{-1}\mathcal{G})_ x$ are different. If $Z_ k$ is nonempty for all $b : k \to j$, then by Topology, Lemma <a href="/tag/0A2W" data-tag="0A2W">5.24.2</a> we see that $\mathop{\mathrm{lim}}\nolimits _{b : k \to j} Z_ k$ is nonempty too. Then for $x \in \mathop{\mathrm{lim}}\nolimits _{b : k \to j} Z_ k \subset X$ (observe that $\mathcal{I}/j \to \mathcal{I}$ is initial) we see that the image of $s$ and $s'$ in the stalk of $p_ i^{-1}\mathcal{G}$ at $x$ are different too since $(p_ i^{-1}\mathcal{G})_ x = (f_{b \circ a}^{-1}\mathcal{G})_{p_ k(x)}$ for all $b : k \to j$ as above. Thus if the images of $s$ and $s'$ in $p_ i^{-1}\mathcal{G}(p_ i^{-1}(U_ i))$ are the same, then $Z_ k$ is empty for some $b : k \to j$. This proves injectivity. 
+    <p>
+      Surjectivity. Let $s$ be a section of $p_ i^{-1}\mathcal{G}$ over $p_ i^{-1}(U_ i)$. By Topology, Lemma <a href="/tag/0A2Z" data-tag="0A2Z">5.24.5</a> the set $p_ i^{-1}(U_ i)$ is a quasi-compact open of the spectral space $X$. By construction of the pullback sheaf, we can find an open covering $p_ i^{-1}(U_ i) = \bigcup _{l \in L} W_ l$, opens $V_{l, i} \subset X_ i$, sections $s_{l, i} \in \mathcal{G}(V_{l, i})$ such that $p_ i(W_ l) \subset V_{l, i}$ and $p_ i^{-1}s_{l, i}|_{W_ l} = s|_{W_ l}$. Because $X$ and $X_ i$ are spectral and $p_ i^{-1}(U_ i)$ is quasi-compact open, we may assume $L$ is finite and $W_ l$ and $V_{l, i}$ quasi-compact open for all $l$. Then we can apply Topology, Lemma <a href="/tag/0A30" data-tag="0A30">5.24.6</a> to find $a : j \to i$ and open covering $f_ a^{-1}(U_ i) = \bigcup _{l \in L} W_{l, j}$ by quasi-compact opens whose pullback to $X$ is the covering $p_ i^{-1}(U_ i) = \bigcup _{l \in L} W_ l$ and such that moreover $W_{l, j} \subset f_ a^{-1}(V_{l, i})$. Write $s_{l, j}$ the restriction of the pullback of $s_{l, i}$ by $f_ a$ to $W_{l, j}$. Then we see that $s_{l, j}$ and $s_{l', j}$ restrict to elements of $(f_ a^{-1}\mathcal{G})(W_{l, j} \cap W_{l', j})$ which pullback to the same element $(p_ i^{-1}\mathcal{G})(W_ l \cap W_{l'})$, namely, the restriction of $s$. Hence by injectivity, we can find $b : k \to j$ such that the sections $f_ b^{-1}s_{l, j}$ glue to a section over $f_{a \circ b}^{-1}(U_ i)$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Next, in addition to the cofiltered system $X_ i$ of spectral spaces, assume given 
+</p>
+<ol>
+  <li><p>
+a sheaf $\mathcal{F}_ i$ on $X_ i$ for all $i \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{I})$, 
+</p>
+</li><li><p>
+for $a : j \to i$ an $f_ a$-map $\varphi _ a : \mathcal{F}_ i \to \mathcal{F}_ j$ 
+</p>
+</li>
+</ol>
+<p>
+ such that $\varphi _ c = \varphi _ b \circ \varphi _ a$ whenever $c = a \circ b$. Set $\mathcal{F} = \mathop{\mathrm{colim}}\nolimits p_ i^{-1}\mathcal{F}_ i$ on $X$. 
+</p>
+<p>
+<article class="env-lemma" id="0A33">
+  <p><a class="environment-identifier" href="/tag/0A33">Lemma <span data-tag="0A33">6.29.4</span>.</a> In the situation described above, let $i \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{I})$ and let $U_ i \subset X_ i$ be a quasi-compact open. Then </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _{a : j \to i} \mathcal{F}_ j(f_ a^{-1}(U_ i)) = \mathcal{F}(p_ i^{-1}(U_ i))  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Recall that $p_ i^{-1}(U_ i)$ is a quasi-compact open of the spectral space $X$, see Topology, Lemma <a href="/tag/0A2Z" data-tag="0A2Z">5.24.5</a>. Hence Lemma <a href="/tag/009F" data-tag="009F">6.29.1</a> applies and we have 
+    <p>
+      <div class="equation">
+  \[  \mathcal{F}(p_ i^{-1}(U_ i)) = \mathop{\mathrm{colim}}\nolimits _{a : j \to i} p_ j^{-1}\mathcal{F}_ j(p_ i^{-1}(U_ i)).  \]
+</div>
+    <p>
+       A formal argument shows that 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _{a : j \to i} \mathcal{F}_ j(f_ a^{-1}(U_ i)) = \mathop{\mathrm{colim}}\nolimits _{a : j \to i} \mathop{\mathrm{colim}}\nolimits _{b : k \to j} f_ b^{-1}\mathcal{F}_ j(f_{a \circ b}^{-1}(U_ i))  \]
+</div>
+    <p>
+       Thus it suffices to show that 
+    <p>
+      <div class="equation">
+  \[  p_ j^{-1}\mathcal{F}_ j(p_ i^{-1}(U_ i)) = \mathop{\mathrm{colim}}\nolimits _{b : k \to j} f_ b^{-1}\mathcal{F}_ j(f_{a \circ b}^{-1}(U_ i))  \]
+</div>
+    <p>
+       This is Lemma <a href="/tag/0A32" data-tag="0A32">6.29.3</a> applied to $\mathcal{F}_ j$ and the quasi-compact open $f_ a^{-1}(U_ i)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

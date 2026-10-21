@@ -1,0 +1,273 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="categories-section-directed-colimits" class="tex-section"><span data-tag="04AX">4.19</span> Filtered colimits</h2>
+
+<p>
+Colimits are easier to compute or describe when they are over a filtered diagram. Here is the definition. 
+</p>
+<p>
+<article class="env-definition" id="002V">
+  <p><a class="environment-identifier" href="/tag/002V">Definition <span data-tag="002V">4.19.1</span>.</a> We say that a diagram $M : \mathcal{I} \to \mathcal{C}$ is <em>directed</em>, or <em>filtered</em> if the following conditions hold: </p>
+  <p><ol>
+  <li><p>
+the category $\mathcal{I}$ has at least one object, 
+</p>
+</li><li><p>
+for every pair of objects $x, y$ of $\mathcal{I}$ there exist an object $z$ and morphisms $x \to z$, $y \to z$, and 
+</p>
+</li><li><p>
+for every pair of objects $x, y$ of $\mathcal{I}$ and every pair of morphisms $a, b : x \to y$ of $\mathcal{I}$ there exists a morphism $c : y \to z$ of $\mathcal{I}$ such that $M(c \circ a) = M(c \circ b)$ as morphisms in $\mathcal{C}$. 
+</p>
+</li>
+</ol></p>
+  <p> We say that an index category $\mathcal{I}$ is <em>directed</em>, or <em>filtered</em> if $\text{id} : \mathcal{I} \to \mathcal{I}$ is filtered (in other words you erase the $M$ in part (3) above). </p>
+</article> 
+</p>
+<p>
+We observe that any diagram with filtered index category is filtered, and this is how filtered colimits usually come about. In fact, if $M : \mathcal{I} \to \mathcal{C}$ is a filtered diagram, then we can factor $M$ as $\mathcal{I} \to \mathcal{I}' \to \mathcal{C}$ where $\mathcal{I}'$ is a filtered index category<a class="footnotemark" href="#a0000008959" id="a0000008959-mark"><sup>1</sup></a> such that $\mathop{\mathrm{colim}}\nolimits _\mathcal {I} M$ exists if and only if $\mathop{\mathrm{colim}}\nolimits _{\mathcal{I}'} M'$ exists in which case the colimits are canonically isomorphic. 
+</p>
+<p>
+Suppose that $M : \mathcal{I} \to \textit{Sets}$ is a filtered diagram. In this case we may describe the equivalence relation in the formula 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _\mathcal {I} M = (\coprod \nolimits _{i\in I} M_ i)/\sim  \]
+</div>
+<p>
+ simply as follows 
+</p>
+<div class="equation">
+  \[  m_ i \sim m_{i'} \Leftrightarrow \exists i'', \phi : i \to i'', \phi ': i' \to i'', M(\phi )(m_ i) = M(\phi ')(m_{i'}).  \]
+</div>
+<p>
+ In other words, two elements are equal in the colimit if and only if they “eventually become equal”. 
+</p>
+<p>
+<article class="env-lemma" id="002W">
+  <p><a class="environment-identifier" href="/tag/002W">Lemma <span data-tag="002W">4.19.2</span>.</a> Let $\mathcal{I}$ and $\mathcal{J}$ be index categories. Assume that $\mathcal{I}$ is filtered and $\mathcal{J}$ is finite. Let $M : \mathcal{I} \times \mathcal{J} \to \textit{Sets}$, $(i, j) \mapsto M_{i, j}$ be a diagram of diagrams of sets. In this case </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _ i \mathop{\mathrm{lim}}\nolimits _ j M_{i, j} = \mathop{\mathrm{lim}}\nolimits _ j \mathop{\mathrm{colim}}\nolimits _ i M_{i, j}.  \]
+</div>
+  <p> In particular, colimits over $\mathcal{I}$ commute with finite products, fibre products, and equalizers of sets. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. In fact, it is a fun exercise to prove that a category is filtered if and only if colimits over the category commute with finite limits (into the category of sets). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We give a counter example to the lemma in the case where $\mathcal{J}$ is infinite. Namely, let $\mathcal{I}$ consist of $\mathbf{N} = \{ 1, 2, 3, \ldots \} $ with a unique morphism $i \to i'$ whenever $i \leq i'$. Let $\mathcal{J}$ be the discrete category $\mathbf{N} = \{ 1, 2, 3, \ldots \} $ (only morphisms are identities). Let $M_{i, j} = \{ 1, 2, \ldots , i\} $ with obvious inclusion maps $M_{i, j} \to M_{i', j}$ when $i \leq i'$. In this case $\mathop{\mathrm{colim}}\nolimits _ i M_{i, j} = \mathbf{N}$ and hence 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{lim}}\nolimits _ j \mathop{\mathrm{colim}}\nolimits _ i M_{i, j} = \prod \nolimits _ j \mathbf{N} = \mathbf{N}^\mathbf {N}  \]
+</div>
+<p>
+ On the other hand $\mathop{\mathrm{lim}}\nolimits _ j M_{i, j} = \prod \nolimits _ j M_{i, j}$ and hence 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _ i \mathop{\mathrm{lim}}\nolimits _ j M_{i, j} = \bigcup \nolimits _ i \{ 1, 2, \ldots , i\} ^{\mathbf{N}}  \]
+</div>
+<p>
+ which is smaller than the other limit. 
+</p>
+<p>
+<article class="env-lemma" id="0BUC">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0BUC">Lemma <span data-tag="0BUC">4.19.3</span>.</a> Let $\mathcal{I}$ be a category. Let $\mathcal{J}$ be a full subcategory. Assume that $\mathcal{I}$ is filtered. Assume also that for any object $i$ of $\mathcal{I}$, there exists a morphism $i \to j$ to some object $j$ of $\mathcal{J}$. Then $\mathcal{J}$ is filtered and cofinal in $\mathcal{I}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. Pleasant exercise of the notions involved. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+It turns out we sometimes need a more finegrained control over the possible conditions one can impose on index categories. Thus we add some lemmas on the possible things one can require. 
+</p>
+<p>
+<article class="env-lemma" id="09WQ">
+  <p><a class="environment-identifier" href="/tag/09WQ">Lemma <span data-tag="09WQ">4.19.4</span>.</a> Let $\mathcal{I}$ be an index category, i.e., a category. Assume that for every pair of objects $x, y$ of $\mathcal{I}$ there exist an object $z$ and morphisms $x \to z$ and $y \to z$. Then </p>
+  <p><ol>
+  <li><p>
+If $M$ and $N$ are diagrams of sets over $\mathcal{I}$, then $\mathop{\mathrm{colim}}\nolimits (M_ i \times N_ i) \to \mathop{\mathrm{colim}}\nolimits M_ i \times \mathop{\mathrm{colim}}\nolimits N_ i$ is surjective, 
+</p>
+</li><li><p>
+in general colimits of diagrams of sets over $\mathcal{I}$ do not commute with finite nonempty products. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Proof of (1). Let $(\overline{m}, \overline{n})$ be an element of $\mathop{\mathrm{colim}}\nolimits M_ i \times \mathop{\mathrm{colim}}\nolimits N_ i$. Then we can find $m \in M_ x$ and $n \in N_ y$ for some $x, y \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{I})$ such that $m$ maps to $\overline{m}$ and $n$ maps to $\overline{n}$. See Section <a href="/tag/002U" data-tag="002U">4.15</a>. Choose $a : x \to z$ and $b : y \to z$ in $\mathcal{I}$. Then $(M(a)(m), N(b)(n))$ is an element of $(M \times N)_ z$ whose image in $\mathop{\mathrm{colim}}\nolimits (M_ i \times N_ i)$ maps to $(\overline{m}, \overline{n})$ as desired. 
+    <p>
+      Proof of (2). Let $G$ be a non-trivial group and let $\mathcal{I}$ be the one-object category with endomorphism monoid $G$. Then $\mathcal{I}$ trivially satisfies the condition stated in the lemma. Now let $G$ act on itself by translation and view the $G$-set $G$ as a set-valued $\mathcal{I}$-diagram. Then 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _\mathcal {I} G \times \mathop{\mathrm{colim}}\nolimits _\mathcal {I} G \cong G/G \times G/G  \]
+</div>
+    <p>
+       is not isomorphic to 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _\mathcal {I} (G \times G) \cong (G \times G)/G  \]
+</div>
+    <p>
+       This example indicates that you cannot just drop the additional condition Lemma <a href="/tag/002W" data-tag="002W">4.19.2</a> even if you only care about finite products. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09WR">
+  <p><a class="environment-identifier" href="/tag/09WR">Lemma <span data-tag="09WR">4.19.5</span>.</a> Let $\mathcal{I}$ be an index category, i.e., a category. Assume that for every pair of objects $x, y$ of $\mathcal{I}$ there exist an object $z$ and morphisms $x \to z$ and $y \to z$. Let $M : \mathcal{I} \to \textit{Ab}$ be a diagram of abelian groups over $\mathcal{I}$. Then the colimit of $M$ in the category of sets surjects onto the colimit of $M$ in the category of abelian groups. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Recall that the colimit in the category of sets is the quotient of the disjoint union $\coprod M_ i$ by relation, see Section <a href="/tag/002U" data-tag="002U">4.15</a>. Similarly, the colimit in the category of abelian groups is a quotient of the direct sum $\bigoplus M_ i$. The assumption of the lemma means that given $i, j \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{I})$ and $m \in M_ i$ and $n \in M_ j$, then we can find an object $k$ and morphisms $a : i \to k$ and $b : j \to k$. Thus $m + n$ is represented in the colimit by the element $M(a)(m) + M(b)(n)$ of $M_ k$. Thus the $\coprod M_ i$ surjects onto the colimit. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09WS">
+  <p><a class="environment-identifier" href="/tag/09WS">Lemma <span data-tag="09WS">4.19.6</span>.</a> Let $\mathcal{I}$ be an index category, i.e., a category. Assume that for every solid diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ x \ar[d] \ar[r] &  y \ar@{..>}[d] \\  z \ar@{..>}[r] &  w }  \]
+</div>
+  <p> in $\mathcal{I}$ there exist an object $w$ and dotted arrows making the diagram commute. Then $\mathcal{I}$ is either empty or a nonempty disjoint union of connected categories having the same property. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $\mathcal{I}$ is the empty category, then the lemma is true. Otherwise, we define a relation on objects of $\mathcal{I}$ by saying that $x \sim y$ if there exist a $z$ and morphisms $x \to z$ and $y \to z$. This is an equivalence relation by the assumption of the lemma. Hence $\mathop{\mathrm{Ob}}\nolimits (\mathcal{I})$ is a disjoint union of equivalence classes. Let $\mathcal{I}_ j$ be the full subcategories corresponding to these equivalence classes. Then $\mathcal{I} = \coprod \mathcal{I}_ j$ with $\mathcal{I}_ j$ nonempty as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09WT">
+  <p><a class="environment-identifier" href="/tag/09WT">Lemma <span data-tag="09WT">4.19.7</span>.</a> Let $\mathcal{I}$ be an index category, i.e., a category. Assume that for every solid diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ x \ar[d] \ar[r] &  y \ar@{..>}[d] \\  z \ar@{..>}[r] &  w }  \]
+</div>
+  <p> in $\mathcal{I}$ there exist an object $w$ and dotted arrows making the diagram commute. Then </p>
+  <p><ol>
+  <li><p>
+an injective morphism $M \to N$ of diagrams of sets over $\mathcal{I}$ gives rise to an injective map $\mathop{\mathrm{colim}}\nolimits M_ i \to \mathop{\mathrm{colim}}\nolimits N_ i$ of sets, 
+</p>
+</li><li><p>
+in general the same is not the case for diagrams of abelian groups and their colimits. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $\mathcal{I}$ is the empty category, then the lemma is true. Thus we may assume $\mathcal{I}$ is nonempty. In this case we can write $\mathcal{I} = \coprod \mathcal{I}_ j$ where each $\mathcal{I}_ j$ is nonempty and satisfies the same property, see Lemma <a href="/tag/09WS" data-tag="09WS">4.19.6</a>. Since $\mathop{\mathrm{colim}}\nolimits _\mathcal {I} M = \coprod _ j \mathop{\mathrm{colim}}\nolimits _{\mathcal{I}_ j} M|_{\mathcal{I}_ j}$ this reduces the proof of (1) to the connected case. 
+    <p>
+      Assume $\mathcal{I}$ is connected and $M \to N$ is injective, i.e., all the maps $M_ i \to N_ i$ are injective. We identify $M_ i$ with the image of $M_ i \to N_ i$, i.e., we will think of $M_ i$ as a subset of $N_ i$. We will use the description of the colimits given in Section <a href="/tag/002U" data-tag="002U">4.15</a> without further mention. Let $s, s' \in \mathop{\mathrm{colim}}\nolimits M_ i$ map to the same element of $\mathop{\mathrm{colim}}\nolimits N_ i$. Say $s$ comes from an element $m$ of $M_ i$ and $s'$ comes from an element $m'$ of $M_{i'}$. Then we can find a sequence $i = i_0, i_1, \ldots , i_ n = i'$ of objects of $\mathcal{I}$ and morphisms 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ &  i_1 \ar[ld] \ar[rd] &  &  i_3 \ar[ld] &  &  i_{2n-1} \ar[rd] &  \\  i = i_0 &  &  i_2 &  &  \ldots &  &  i_{2n} = i' }  \]
+</div>
+    <p>
+       and elements $n_{i_ j} \in N_{i_ j}$ mapping to each other under the maps $N_{i_{2k-1}} \to N_{i_{2k-2}}$ and $N_{i_{2k-1}} \to N_{i_{2k}}$ induced from the maps in $\mathcal{I}$ above with $n_{i_0} = m$ and $n_{i_{2n}} = m'$. We will prove by induction on $n$ that this implies $s = s'$. The base case $n = 0$ is trivial. Assume $n \geq 1$. Using the assumption on $\mathcal{I}$ we find a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ &  i_1 \ar[ld] \ar[rd] \\  i_0 \ar[rd] &  &  i_2 \ar[ld] \\  &  w }  \]
+</div>
+    <p>
+       We conclude that $m$ and $n_{i_2}$ map to the same element of $N_ w$ because both are the image of the element $n_{i_1}$. In particular, this element is an element $m'' \in M_ w$ which gives rise to the same element as $s$ in $\mathop{\mathrm{colim}}\nolimits M_ i$. Then we find the chain 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ &  i_3 \ar[ld] \ar[rd] &  &  i_5 \ar[ld] &  &  i_{2n-1} \ar[rd] &  \\  w &  &  i_4 &  &  \ldots &  &  i_{2n} = i' }  \]
+</div>
+    <p>
+       and the elements $n_{i_ j}$ for $j \geq 3$ which has a smaller length than the chain we started with. This proves the induction step and the proof of (1) is complete. 
+    <p>
+      Let $G$ be a group and let $\mathcal{I}$ be the one-object category with endomorphism monoid $G$. Then $\mathcal{I}$ satisfies the condition stated in the lemma because given $g_1, g_2 \in G$ we can find $h_1, h_2 \in G$ with $h_1 g_1 = h_2 g_2$. A diagram $M$ over $\mathcal{I}$ in $\textit{Ab}$ is the same thing as an abelian group $M$ with $G$-action and $\mathop{\mathrm{colim}}\nolimits _\mathcal {I} M$ is the coinvariants $M_ G$ of $M$. Take $G$ the group of order $2$ acting trivially on $M = \mathbf{Z}/2\mathbf{Z}$ mapping into the first summand of $N = \mathbf{Z}/2\mathbf{Z} \times \mathbf{Z}/2\mathbf{Z}$ where the nontrivial element of $G$ acts by $(x, y) \mapsto (x + y, y)$. Then $M_ G \to N_ G$ is zero. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="002X">
+  <p><a class="environment-identifier" href="/tag/002X">Lemma <span data-tag="002X">4.19.8</span>.</a> Let $\mathcal{I}$ be an index category, i.e., a category. Assume </p>
+  <p><ol>
+  <li><p>
+for every pair of morphisms $a : w \to x$ and $b : w \to y$ in $\mathcal{I}$ there exist an object $z$ and morphisms $c : x \to z$ and $d : y \to z$ such that $c \circ a = d \circ b$, and 
+</p>
+</li><li><p>
+for every pair of morphisms $a, b : x \to y$ there exists a morphism $c : y \to z$ such that $c \circ a = c \circ b$. 
+</p>
+</li>
+</ol></p>
+  <p> Then $\mathcal{I}$ is a (possibly empty) union of disjoint filtered index categories $\mathcal{I}_ j$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $\mathcal{I}$ is the empty category, then the lemma is true. Otherwise, we define a relation on objects of $\mathcal{I}$ by saying that $x \sim y$ if there exist a $z$ and morphisms $x \to z$ and $y \to z$. This is an equivalence relation by the first assumption of the lemma. Hence $\mathop{\mathrm{Ob}}\nolimits (\mathcal{I})$ is a disjoint union of equivalence classes. Let $\mathcal{I}_ j$ be the full subcategories corresponding to these equivalence classes. The rest is clear from the definitions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="002Y">
+  <p><a class="environment-identifier" href="/tag/002Y">Lemma <span data-tag="002Y">4.19.9</span>.</a> Let $\mathcal{I}$ be an index category satisfying the hypotheses of Lemma <a href="/tag/002X" data-tag="002X">4.19.8</a> above. Then colimits over $\mathcal{I}$ commute with fibre products and equalizers in sets (and more generally with finite connected limits). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/002X" data-tag="002X">4.19.8</a> we may write $\mathcal{I} = \coprod \mathcal{I}_ j$ with each $\mathcal{I}_ j$ filtered. By Lemma <a href="/tag/002W" data-tag="002W">4.19.2</a> we see that colimits of $\mathcal{I}_ j$ commute with equalizers and fibre products. Thus it suffices to show that equalizers and fibre products commute with coproducts in the category of sets (including empty coproducts). In other words, given a set $J$ and sets $A_ j, B_ j, C_ j$ and set maps $A_ j \to B_ j$, $C_ j \to B_ j$ for $j \in J$ we have to show that 
+    <p>
+      <div class="equation">
+  \[  (\coprod \nolimits _{j \in J} A_ j) \times _{(\coprod \nolimits _{j \in J} B_ j)} (\coprod \nolimits _{j \in J} C_ j) = \coprod \nolimits _{j \in J} A_ j \times _{B_ j} C_ j  \]
+</div>
+    <p>
+       and given $a_ j, a'_ j : A_ j \to B_ j$ that 
+    <p>
+      <div class="equation">
+  \[  \text{Equalizer}( \coprod \nolimits _{j \in J} a_ j, \coprod \nolimits _{j \in J} a'_ j) = \coprod \nolimits _{j \in J} \text{Equalizer}(a_ j, a'_ j)  \]
+</div>
+    <p>
+       This is true even if $J = \emptyset $. Details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

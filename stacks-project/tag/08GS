@@ -1,0 +1,342 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="spaces-perfect-section-mayer-vietoris" class="tex-section"><span data-tag="08GS">75.10</span> Mayer-Vietoris</h2>
+
+<p>
+In this section we prove that an elementary distinguished triangle gives rise to various Mayer-Vietoris sequences. 
+</p>
+<p>
+Let $S$ be a scheme. Let $U \to X$ be an étale morphism of algebraic spaces over $S$. In Properties of Spaces, Section <a href="/tag/04LX" data-tag="04LX">66.27</a> it was shown that $U_{spaces, {\acute{e}tale}} = X_{spaces, {\acute{e}tale}}/U$ compatible with structure sheaves. Hence in this situation we often think of the morphism $j_ U : U \to X$ as a localization morphism (see Modules on Sites, Definition <a href="/tag/04IX" data-tag="04IX">18.19.1</a>). In particular we think of pullback $j_ U^*$ as restriction to $U$ and we often denote it by ${}|_ U$; this is compatible with Properties of Spaces, Equation (<a href="/tag/03LW" data-tag="03LW">66.26.1.1</a>). In particular we see that 
+</p>
+<div class="equation" id="08GT">
+    <span class="equation-label"><a href="/tag/08GT" data-tag="08GT">75.10.0.1</a></span>
+  <div>\begin{equation}  \label{spaces-perfect-equation-stalk-restriction} (\mathcal{F}|_ U)_{\overline{u}} = \mathcal{F}_{\overline{x}} \end{equation}</div>
+</div>
+<p>
+ if $\overline{u}$ is a geometric point of $U$ and $\overline{x}$ the image of $\overline{u}$ in $X$. Moreover, restriction has an exact left adjoint $j_{U!}$, see Modules on Sites, Lemmas <a href="/tag/03DI" data-tag="03DI">18.19.2</a> and <a href="/tag/03DJ" data-tag="03DJ">18.19.3</a>. Finally, recall that if $\mathcal{G}$ is an $\mathcal{O}_ X$-module, then 
+</p>
+<div class="equation" id="08GU">
+    <span class="equation-label"><a href="/tag/08GU" data-tag="08GU">75.10.0.2</a></span>
+  <div>\begin{equation}  \label{spaces-perfect-equation-stalk-j-shriek} (j_{U!}\mathcal{G})_{\overline{x}} = \bigoplus \nolimits _{\overline{u}} \mathcal{G}_{\overline{u}} \end{equation}</div>
+</div>
+<p>
+ for any geometric point $\overline{x} : \mathop{\mathrm{Spec}}(k) \to X$ where the direct sum is over those morphisms $\overline{u} : \mathop{\mathrm{Spec}}(k) \to U$ such that $j_ U \circ \overline{u} = \overline{x}$, see Modules on Sites, Lemma <a href="/tag/0710" data-tag="0710">18.38.1</a> and Properties of Spaces, Lemma <a href="/tag/04K6" data-tag="04K6">66.19.13</a>. 
+</p>
+<p>
+<article class="env-lemma" id="08GV">
+  <p><a class="environment-identifier" href="/tag/08GV">Lemma <span data-tag="08GV">75.10.1</span>.</a> Let $S$ be a scheme. Let $(U \subset X, V \to X)$ be an elementary distinguished square of algebraic spaces over $S$. </p>
+  <p><ol>
+  <li><p>
+For a sheaf of $\mathcal{O}_ X$-modules $\mathcal{F}$ we have a short exact sequence 
+</p>
+<div class="equation">
+  \[  0 \to j_{U \times _ X V!}\mathcal{F}|_{U \times _ X V} \to j_{U!}\mathcal{F}|_ U \oplus j_{V!}\mathcal{F}|_ V \to \mathcal{F} \to 0  \]
+</div>
+</li><li><p>
+For an object $E$ of $D(\mathcal{O}_ X)$ we have a distinguished triangle 
+</p>
+<div class="equation">
+  \[  j_{U \times _ X V!}E|_{U \times _ X V} \to j_{U!}E|_ U \oplus j_{V!}E|_ V \to E \to j_{U \times _ X V!}E|_{U \times _ X V}[1]  \]
+</div>
+<p>
+ in $D(\mathcal{O}_ X)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      To show the sequence of (1) is exact we may check on stalks at geometric points by Properties of Spaces, Theorem <a href="/tag/04K5" data-tag="04K5">66.19.12</a>. Let $\overline{x}$ be a geometric point of $X$. By Equations (<a href="/tag/08GT" data-tag="08GT">75.10.0.1</a>) and (<a href="/tag/08GU" data-tag="08GU">75.10.0.2</a>) taking stalks at $\overline{x}$ we obtain the sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \bigoplus \nolimits _{(\overline{u}, \overline{v})} \mathcal{F}_{\overline{x}} \to \bigoplus \nolimits _{\overline{u}} \mathcal{F}_{\overline{x}} \oplus \bigoplus \nolimits _{\overline{v}} \mathcal{F}_{\overline{x}} \to \mathcal{F}_{\overline{x}} \to 0  \]
+</div>
+    <p>
+       This sequence is exact because for every $\overline{x}$ there either is exactly one $\overline{u}$ mapping to $\overline{x}$, or there is no $\overline{u}$ and exactly one $\overline{v}$ mapping to $\overline{x}$. 
+    <p>
+      Proof of (2). We have seen in Cohomology on Sites, Section <a href="/tag/08FH" data-tag="08FH">21.20</a> that the restriction functors and the extension by zero functors on derived categories are computed by just applying the functor to any complex. Let $\mathcal{E}^\bullet $ be a complex of $\mathcal{O}_ X$-modules representing $E$. The distinguished triangle of the lemma is the distinguished triangle associated (by Derived Categories, Section <a href="/tag/014Z" data-tag="014Z">13.12</a> and especially Lemma <a href="/tag/0152" data-tag="0152">13.12.1</a>) to the short exact sequence of complexes of $\mathcal{O}_ X$-modules 
+    <p>
+      <div class="equation">
+  \[  0 \to j_{U \times _ X V!}\mathcal{E}^\bullet |_{U \times _ X V} \to j_{U!}\mathcal{E}^\bullet |_ U \oplus j_{V!}\mathcal{E}^\bullet |_ V \to \mathcal{E}^\bullet \to 0  \]
+</div>
+    <p>
+       which is short exact by (1). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08GW">
+  <p><a class="environment-identifier" href="/tag/08GW">Lemma <span data-tag="08GW">75.10.2</span>.</a> Let $S$ be a scheme. Let $(U \subset X, V \to X)$ be an elementary distinguished square of algebraic spaces over $S$. </p>
+  <p><ol>
+  <li><p>
+For every sheaf of $\mathcal{O}_ X$-modules $\mathcal{F}$ we have a short exact sequence 
+</p>
+<div class="equation">
+  \[  0 \to \mathcal{F} \to j_{U, *}\mathcal{F}|_ U \oplus j_{V, *}\mathcal{F}|_ V \to j_{U \times _ X V, *}\mathcal{F}|_{U \times _ X V} \to 0  \]
+</div>
+</li><li><p>
+For any object $E$ of $D(\mathcal{O}_ X)$ we have a distinguished triangle 
+</p>
+<div class="equation">
+  \[  E \to Rj_{U, *}E|_ U \oplus Rj_{V, *}E|_ V \to Rj_{U \times _ X V, *}E|_{U \times _ X V} \to E[1]  \]
+</div>
+<p>
+ in $D(\mathcal{O}_ X)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $W$ be an object of $X_{\acute{e}tale}$. We claim the sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{F}(W) \to \mathcal{F}(W \times _ X U) \oplus \mathcal{F}(W \times _ X V) \to \mathcal{F}(W \times _ X U \times _ X V)  \]
+</div>
+    <p>
+       is exact and that an element of the last group can locally on $W$ be lifted to the middle one. By Lemma <a href="/tag/08GN" data-tag="08GN">75.9.2</a> the pair $(W \times _ X U \subset W, V \times _ X W \to W)$ is an elementary distinguished square. Thus we may assume $W = X$ and it suffices to prove the same thing for 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{F}(X) \to \mathcal{F}(U) \oplus \mathcal{F}(V) \to \mathcal{F}(U \times _ X V)  \]
+</div>
+    <p>
+       We have seen that 
+    <p>
+      <div class="equation">
+  \[  0 \to j_{U \times _ X V!}\mathcal{O}_{U \times _ X V} \to j_{U!}\mathcal{O}_ U \oplus j_{V!}\mathcal{O}_ V \to \mathcal{O}_ X \to 0  \]
+</div>
+    <p>
+       is a exact sequence of $\mathcal{O}_ X$-modules in Lemma <a href="/tag/08GV" data-tag="08GV">75.10.1</a> and applying the right exact functor $\mathop{\mathrm{Hom}}\nolimits _{\mathcal{O}_ X}(- , \mathcal{F})$ gives the sequence above. This also means that the obstruction to lifting $s \in \mathcal{F}(U \times _ X V)$ to an element of $\mathcal{F}(U) \oplus \mathcal{F}(V)$ lies in $\mathop{\mathrm{Ext}}\nolimits ^1_{\mathcal{O}_ X}(\mathcal{O}_ X, \mathcal{F}) = H^1(X, \mathcal{F})$. By locality of cohomology (Cohomology on Sites, Lemma <a href="/tag/01FW" data-tag="01FW">21.7.3</a>) this obstruction vanishes étale locally on $X$ and the proof of (1) is complete. 
+    <p>
+      Proof of (2). Choose a K-injective complex $\mathcal{I}^\bullet $ representing $E$ whose terms $\mathcal{I}^ n$ are injective objects of $\textit{Mod}(\mathcal{O}_ X)$, see Injectives, Theorem <a href="/tag/079P" data-tag="079P">19.12.6</a>. Then $\mathcal{I}^\bullet |U$ is a K-injective complex (Cohomology on Sites, Lemma <a href="/tag/08FI" data-tag="08FI">21.20.1</a>). Hence $Rj_{U, *}E|_ U$ is represented by $j_{U, *}\mathcal{I}^\bullet |_ U$. Similarly for $V$ and $U \times _ X V$. Hence the distinguished triangle of the lemma is the distinguished triangle associated (by Derived Categories, Section <a href="/tag/014Z" data-tag="014Z">13.12</a> and especially Lemma <a href="/tag/0152" data-tag="0152">13.12.1</a>) to the short exact sequence of complexes 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{I}^\bullet \to j_{U, *}\mathcal{I}^\bullet |_ U \oplus j_{V, *}\mathcal{I}^\bullet |_ V \to j_{U \times _ X V, *}\mathcal{I}^\bullet |_{U \times _ X V} \to 0.  \]
+</div>
+    <p>
+       This sequence is exact by (1). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08JK">
+  <p><a class="environment-identifier" href="/tag/08JK">Lemma <span data-tag="08JK">75.10.3</span>.</a> Let $S$ be a scheme. Let $f : X \to Y$ be a morphism of algebraic spaces over $S$. Let $(U \subset X, V \to X)$ be an elementary distinguished square. Denote $a = f|_ U : U \to Y$, $b = f|_ V : V \to Y$, and $c = f|_{U \times _ X V} : U \times _ X V \to Y$ the restrictions. For every object $E$ of $D(\mathcal{O}_ X)$ there exists a distinguished triangle </p>
+  <div class="equation">
+  \[  Rf_*E \to Ra_*(E|_ U) \oplus Rb_*(E|_ V) \to Rc_*(E|_{U \times _ X V}) \to Rf_*E[1]  \]
+</div>
+  <p> in $D(\mathcal{O}_ Y)$. This triangle is functorial in $E$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a K-injective complex $\mathcal{I}^\bullet $ representing $E$. We may assume $\mathcal{I}^ n$ is an injective object of $\textit{Mod}(\mathcal{O}_ X)$ for all $n$, see Injectives, Theorem <a href="/tag/079P" data-tag="079P">19.12.6</a>. Then $Rf_*E$ is computed by $f_*\mathcal{I}^\bullet $. Similarly for $U$, $V$, and $U \cap V$ by Cohomology on Sites, Lemma <a href="/tag/08FI" data-tag="08FI">21.20.1</a>. Hence the distinguished triangle of the lemma is the distinguished triangle associated (by Derived Categories, Section <a href="/tag/014Z" data-tag="014Z">13.12</a> and especially Lemma <a href="/tag/0152" data-tag="0152">13.12.1</a>) to the short exact sequence of complexes 
+    <p>
+      <div class="equation">
+  \[  0 \to f_*\mathcal{I}^\bullet \to a_*\mathcal{I}^\bullet |_ U \oplus b_*\mathcal{I}^\bullet |_ V \to c_*\mathcal{I}^\bullet |_{U \times _ X V} \to 0.  \]
+</div>
+    <p>
+       To see this is a short exact sequence of complexes we argue as follows. Pick an injective object $\mathcal{I}$ of $\textit{Mod}(\mathcal{O}_ X)$. Apply $f_*$ to the short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{I} \to j_{U, *}\mathcal{I}|_ U \oplus j_{V, *}\mathcal{I}|_ V \to j_{U \times _ X V, *}\mathcal{I}|_{U \times _ X V} \to 0  \]
+</div>
+    <p>
+       of Lemma <a href="/tag/08GW" data-tag="08GW">75.10.2</a> and use that $R^1f_*\mathcal{I} = 0$ to get a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to f_*\mathcal{I} \to f_*j_{U, *}\mathcal{I}|_ U \oplus f_*j_{V, *}\mathcal{I}|_ V \to f_*j_{U \times _ X V, *}\mathcal{I}|_{U \times _ X V} \to 0  \]
+</div>
+    <p>
+       The proof is finished by observing that $a_* = f_*j_{U, *}$ and similarly for $b_*$ and $c_*$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08H9">
+  <p><a class="environment-identifier" href="/tag/08H9">Lemma <span data-tag="08H9">75.10.4</span>.</a> Let $S$ be a scheme. Let $(U \subset X, V \to X)$ be an elementary distinguished square of algebraic spaces over $S$. For objects $E$, $F$ of $D(\mathcal{O}_ X)$ we have a Mayer-Vietoris sequence </p>
+  <div class="equation">
+  \[  \xymatrix{ &  \ldots \ar[r] &  \mathop{\mathrm{Ext}}\nolimits ^{-1}(E_{U \times _ X V}, F_{U \times _ X V}) \ar[lld] \\  \mathop{\mathrm{Hom}}\nolimits (E, F) \ar[r] &  \mathop{\mathrm{Hom}}\nolimits (E_ U, F_ U) \oplus \mathop{\mathrm{Hom}}\nolimits (E_ V, F_ V) \ar[r] &  \mathop{\mathrm{Hom}}\nolimits (E_{U \times _ X V}, F_{U \times _ X V}) }  \]
+</div>
+  <p> where the subscripts denote restrictions to the relevant opens and the $\mathop{\mathrm{Hom}}\nolimits $'s are taken in the relevant derived categories. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Use the distinguished triangle of Lemma <a href="/tag/08GV" data-tag="08GV">75.10.1</a> to obtain a long exact sequence of $\mathop{\mathrm{Hom}}\nolimits $'s (from Derived Categories, Lemma <a href="/tag/0149" data-tag="0149">13.4.2</a>) and use that $\mathop{\mathrm{Hom}}\nolimits (j_{U!}E|_ U, F) = \mathop{\mathrm{Hom}}\nolimits (E|_ U, F|_ U)$ by Cohomology on Sites, Lemma <a href="/tag/08FJ" data-tag="08FJ">21.20.8</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CRS">
+  <p><a class="environment-identifier" href="/tag/0CRS">Lemma <span data-tag="0CRS">75.10.5</span>.</a> Let $S$ be a scheme. Let $(U \subset X, V \to X)$ be an elementary distinguished square of algebraic spaces over $S$. For an object $E$ of $D(\mathcal{O}_ X)$ we have a distinguished triangle </p>
+  <div class="equation">
+  \[  R\Gamma (X, E) \to R\Gamma (U, E) \oplus R\Gamma (V, E) \to R\Gamma (U \times _ X V, E) \to R\Gamma (X, E)[1]  \]
+</div>
+  <p> and in particular a long exact cohomology sequence </p>
+  <div class="equation">
+  \[  \ldots \to H^ n(X, E) \to H^ n(U, E) \oplus H^ n(V, E) \to H^ n(U \times _ X V, E) \to H^{n + 1}(X, E) \to \ldots  \]
+</div>
+  <p> The construction of the distinguished triangle and the long exact sequence is functorial in $E$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a K-injective complex $\mathcal{I}^\bullet $ representing $E$ whose terms $\mathcal{I}^ n$ are injective objects of $\textit{Mod}(\mathcal{O}_ X)$, see Injectives, Theorem <a href="/tag/079P" data-tag="079P">19.12.6</a>. In the proof of Lemma <a href="/tag/08GW" data-tag="08GW">75.10.2</a> we found a short exact sequence of complexes 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{I}^\bullet \to j_{U, *}\mathcal{I}^\bullet |_ U \oplus j_{V, *}\mathcal{I}^\bullet |_ V \to j_{U \times _ X V, *}\mathcal{I}^\bullet |_{U \times _ X V} \to 0  \]
+</div>
+    <p>
+       Since $H^1(X, \mathcal{I}^ n) = 0$, we see that taking global sections gives an exact sequence of complexes 
+    <p>
+      <div class="equation">
+  \[  0 \to \Gamma (X, \mathcal{I}^\bullet ) \to \Gamma (U, \mathcal{I}^\bullet ) \oplus \Gamma (V, \mathcal{I}^\bullet ) \to \Gamma (U \times _ X V, \mathcal{I}^\bullet ) \to 0  \]
+</div>
+    <p>
+       Since these complexes represent $R\Gamma (X, E)$, $R\Gamma (U, E)$, $R\Gamma (V, E)$, and $R\Gamma (U \times _ X V, E)$ we get a distinguished triangle by Derived Categories, Section <a href="/tag/014Z" data-tag="014Z">13.12</a> and especially Lemma <a href="/tag/0152" data-tag="0152">13.12.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08HA">
+  <p><a class="environment-identifier" href="/tag/08HA">Lemma <span data-tag="08HA">75.10.6</span>.</a> Let $S$ be a scheme. Let $j : U \to X$ be a étale morphism of algebraic spaces over $S$. Given an étale morphism $V \to Y$, set $W = V \times _ X U$ and denote $j_ W : W \to V$ the projection morphism. Then $(j_!E)|_ V = j_{W!}(E|_ W)$ for $E$ in $D(\mathcal{O}_ U)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is true because $(j_!\mathcal{F})|_ V = j_{W!}(\mathcal{F}|_ W)$ for an $\mathcal{O}_ X$-module $\mathcal{F}$ as follows immediately from the construction of the functors $j_!$ and $j_{W!}$, see Modules on Sites, Lemma <a href="/tag/03DI" data-tag="03DI">18.19.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08GG">
+  <p><a class="environment-identifier" href="/tag/08GG">Lemma <span data-tag="08GG">75.10.7</span>.</a> Let $S$ be a scheme. Let $(U \subset X, j : V \to X)$ be an elementary distinguished square of algebraic spaces over $S$. Set $T = |X| \setminus |U|$. </p>
+  <p><ol>
+  <li><p>
+If $E$ is an object of $D(\mathcal{O}_ X)$ supported on $T$, then (a) $E \to Rj_*(E|_ V)$ and (b) $j_!(E|_ V) \to E$ are isomorphisms. 
+</p>
+</li><li><p>
+If $F$ is an object of $D(\mathcal{O}_ V)$ supported on $j^{-1}T$, then (a) $F \to (j_!F)|_ V$, (b) $(Rj_*F)|_ V \to F$, and (c) $j_!F \to Rj_*F$ are isomorphisms. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $E$ be an object of $D(\mathcal{O}_ X)$ whose cohomology sheaves are supported on $T$. Then we see that $E|_ U = 0$ and $E|_{U \times _ X V} = 0$ as $T$ doesn't meet $U$ and $j^{-1}T$ doesn't meet $U \times _ X V$. Thus (1)(a) follows from Lemma <a href="/tag/08GW" data-tag="08GW">75.10.2</a>. In exactly the same way (1)(b) follows from Lemma <a href="/tag/08GV" data-tag="08GV">75.10.1</a>. 
+    <p>
+      Let $F$ be an object of $D(\mathcal{O}_ V)$ whose cohomology sheaves are supported on $j^{-1}T$. By Lemma <a href="/tag/08GE" data-tag="08GE">75.3.1</a> we have $(Rj_*F)|_ U = Rj_{W, *}(F|_ W) = 0$ because $F|_ W = 0$ by our assumption. Similarly $(j_!F)|_ U = j_{W!}(F|_ W) = 0$ by Lemma <a href="/tag/08HA" data-tag="08HA">75.10.6</a>. Thus $j_!F$ and $Rj_*F$ are supported on $T$ and $(j_!F)|_ V$ and $(Rj_*F)|_ V$ are supported on $j^{-1}(T)$. To check that the maps (2)(a), (b), (c) are isomorphisms in the derived category, it suffices to check that these map induce isomorphisms on stalks of cohomology sheaves at geometric points of $T$ and $j^{-1}(T)$ by Properties of Spaces, Theorem <a href="/tag/04K5" data-tag="04K5">66.19.12</a>. This we may do after replacing $X$ by $V$, $U$ by $U \times _ X V$, $V$ by $V \times _ X V$ and $F$ by $F|_{V \times _ X V}$ (restriction via first projection), see Lemmas <a href="/tag/08GE" data-tag="08GE">75.3.1</a>, <a href="/tag/08HA" data-tag="08HA">75.10.6</a>, and <a href="/tag/08GN" data-tag="08GN">75.9.2</a>. Since $V \times _ X V \to V$ has a section this reduces (2) to the case that $j : V \to X$ has a section. 
+    <p>
+      Assume $j$ has a section $\sigma : X \to V$. Set $V' = \sigma (X)$. This is an open subspace of $V$. Set $U' = j^{-1}(U)$. This is another open subspace of $V$. Then $(U' \subset V, V' \to V)$ is an elementary distinguished square. Observe that $F|_{U'} = 0$ and $F|_{V' \cap U'} = 0$ because $F$ is supported on $j^{-1}(T)$. Denote $j' : V' \to V$ the open immersion and $j_{V'} : V' \to X$ the composition $V' \to V \to X$ which is the inverse of $\sigma $. Set $F' = \sigma ^*F$. The distinguished triangles of Lemmas <a href="/tag/08GV" data-tag="08GV">75.10.1</a> and <a href="/tag/08GW" data-tag="08GW">75.10.2</a> show that $F = j'_!(F|_{V'})$ and $F = Rj'_*(F|_{V'})$. It follows that $j_!F = j_!j'_!(F|_{V'}) = j_{V'!}F = F'$ because $j_{V'} : V' \to X$ is an isomorphism and the inverse of $\sigma $. Similarly, $Rj_*F = Rj_*Rj'_*F = Rj_{V', *}F = F'$. This proves (2)(c). To prove (2)(a) and (2)(b) it suffices to show that $F = F'|_ V$. This is clear because both $F$ and $F'|_ V$ restrict to zero on $U'$ and $U' \cap V'$ and the same object on $V'$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We can glue complexes! 
+</p>
+<p>
+<article class="env-lemma" id="08HB">
+  <p><a class="environment-identifier" href="/tag/08HB">Lemma <span data-tag="08HB">75.10.8</span>.</a> Let $S$ be a scheme. Let $(U \subset X, V \to X)$ be an elementary distinguished square of algebraic spaces over $S$. Suppose given </p>
+  <p><ol>
+  <li><p>
+an object $A$ of $D(\mathcal{O}_ U)$, 
+</p>
+</li><li><p>
+an object $B$ of $D(\mathcal{O}_ V)$, and 
+</p>
+</li><li><p>
+an isomorphism $c : A|_{U \times _ X V} \to B|_{U \times _ X V}$. 
+</p>
+</li>
+</ol></p>
+  <p> Then there exists an object $F$ of $D(\mathcal{O}_ X)$ and isomorphisms $f : F|_ U \to A$, $g : F|_ V \to B$ such that $c = g|_{U \times _ X V} \circ f^{-1}|_{U \times _ X V}$. Moreover, given </p>
+  <p><ol>
+  <li><p>
+an object $E$ of $D(\mathcal{O}_ X)$, 
+</p>
+</li><li><p>
+a morphism $a : A \to E|_ U$ of $D(\mathcal{O}_ U)$, 
+</p>
+</li><li><p>
+a morphism $b : B \to E|_ V$ of $D(\mathcal{O}_ V)$, 
+</p>
+</li>
+</ol></p>
+  <p> such that </p>
+  <div class="equation">
+  \[  a|_{U \times _ X V} = b|_{U \times _ X V} \circ c.  \]
+</div>
+  <p> Then there exists a morphism $F \to E$ in $D(\mathcal{O}_ X)$ whose restriction to $U$ is $a \circ f$ and whose restriction to $V$ is $b \circ g$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Denote $j_ U$, $j_ V$, $j_{U \times _ X V}$ the corresponding morphisms towards $X$. Choose a distinguished triangle 
+    <p>
+      <div class="equation">
+  \[  F \to Rj_{U, *}A \oplus Rj_{V, *}B \to Rj_{U \times _ X V, *}(B|_{U \times _ X V}) \to F[1]  \]
+</div>
+    <p>
+       Here the map $Rj_{V, *}B \to Rj_{U \times _ X V, *}(B|_{U \times _ X V})$ is the obvious one. The map $Rj_{U, *}A \to Rj_{U \times _ X V, *}(B|_{U \times _ X V})$ is the composition of $Rj_{U, *}A \to Rj_{U \times _ X V, *}(A|_{U \times _ X V})$ with $Rj_{U \times _ X V, *}c$. Restricting to $U$ we obtain 
+    <p>
+      <div class="equation">
+  \[  F|_ U \to A \oplus (Rj_{V, *}B)|_ U \to (Rj_{U \times _ X V, *}(B|_{U \times _ X V}))|_ U \to F|_ U[1]  \]
+</div>
+    <p>
+       Denote $j : U \times _ X V \to U$. Compatibility of restriction and total direct image (Lemma <a href="/tag/08GE" data-tag="08GE">75.3.1</a>) shows that both $(Rj_{V, *}B)|_ U$ and $(Rj_{U \times _ X V, *}(B|_{U \times _ X V}))|_ U$ are canonically isomorphic to $Rj_*(B|_{U \times _ X V})$. Hence the second arrow of the last displayed equation has a section, and we conclude that the morphism $F|_ U \to A$ is an isomorphism. 
+    <p>
+      To see that the morphism $F|_ V \to B$ is an isomorphism we will use a trick. Namely, choose a distinguished triangle 
+    <p>
+      <div class="equation">
+  \[  F|_ V \to B \to B' \to F[1]|_ V  \]
+</div>
+    <p>
+       in $D(\mathcal{O}_ V)$. Since $F|_ U \to A$ is an isomorphism, and since we have the isomorphism $c : A|_{U \times _ X V} \to B|_{U \times _ X V}$ the restriction of $F|_ V \to B$ is an isomorphism over $U \times _ X V$. Thus $B'$ is supported on $j_ V^{-1}(T)$ where $T = |X| \setminus |U|$. On the other hand, there is a morphism of distinguished triangles 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ F \ar[r] \ar[d] &  Rj_{U, *}F|_ U \oplus Rj_{V, *}F|_ V \ar[r] \ar[d] &  Rj_{U \times _ X V, *}F|_{U \times _ X V} \ar[r] \ar[d] &  F[1] \ar[d] \\  F \ar[r] &  Rj_{U, *}A \oplus Rj_{V, *}B \ar[r] &  Rj_{U \times _ X V, *}(B|_{U \times _ X V}) \ar[r] &  F[1] }  \]
+</div>
+    <p>
+       The all of the vertical maps in this diagram are isomorphisms, except for the map $Rj_{V, *}F|_ V \to Rj_{V, *}B$, hence that is an isomorphism too (Derived Categories, Lemma <a href="/tag/014A" data-tag="014A">13.4.3</a>). This implies that $Rj_{V, *}B' = 0$. Hence $B' = 0$ by Lemma <a href="/tag/08GG" data-tag="08GG">75.10.7</a>. 
+    <p>
+      The existence of the morphism $F \to E$ follows from the Mayer-Vietoris sequence for $\mathop{\mathrm{Hom}}\nolimits $, see Lemma <a href="/tag/08H9" data-tag="08H9">75.10.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

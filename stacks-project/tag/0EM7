@@ -1,0 +1,216 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-algebra-section-henselization" class="tex-section"><span data-tag="0EM7">15.12</span> Henselization of pairs</h2>
+
+<p>
+We continue the discussion started in Section <a href="/tag/09XD" data-tag="09XD">15.11</a>. 
+</p>
+<p>
+<article class="env-lemma" id="0A02">
+  <p><a class="environment-identifier" href="/tag/0A02">Lemma <span data-tag="0A02">15.12.1</span>.</a> The inclusion functor </p>
+  <div class="equation">
+  \[  \text{category of henselian pairs} \longrightarrow \text{category of pairs}  \]
+</div>
+  <p> has a left adjoint $(A, I) \mapsto (A^ h, I^ h)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $(A, I)$ be a pair. Consider the category $\mathcal{C}$ consisting of étale ring maps $A \to B$ such that $A/I \to B/IB$ is an isomorphism. We will show that the category $\mathcal{C}$ is directed and that $A^ h = \mathop{\mathrm{colim}}\nolimits _{B \in \mathcal{C}} B$ with ideal $I^ h = IA^ h$ gives the desired adjoint. 
+    <p>
+      We first prove that $\mathcal{C}$ is directed (Categories, Definition <a href="/tag/002V" data-tag="002V">4.19.1</a>). It is nonempty because $\text{id} : A \to A$ is an object. If $B$ and $B'$ are two objects of $\mathcal{C}$, then $B'' = B \otimes _ A B'$ is an object of $\mathcal{C}$ (use Algebra, Lemma <a href="/tag/00U2" data-tag="00U2">10.143.3</a>) and there are morphisms $B \to B''$ and $B' \to B''$. Suppose that $f, g : B \to B'$ are two maps between objects of $\mathcal{C}$. Then a coequalizer is 
+    <p>
+      <div class="equation">
+  \[  (B' \otimes _{f, B, g} B') \otimes _{(B' \otimes _ A B')} B'  \]
+</div>
+    <p>
+       which is étale over $A$ by Algebra, Lemmas <a href="/tag/00U2" data-tag="00U2">10.143.3</a> and <a href="/tag/00U7" data-tag="00U7">10.143.8</a>. Thus the category $\mathcal{C}$ is directed. 
+    <p>
+      Since $B/IB = A/I$ for all objects $B$ of $\mathcal{C}$ we see that $A^ h/I^ h = A^ h/IA^ h = \mathop{\mathrm{colim}}\nolimits B/IB = \mathop{\mathrm{colim}}\nolimits A/I = A/I$. 
+    <p>
+      Next, we show that $A^ h = \mathop{\mathrm{colim}}\nolimits _{B \in \mathcal{C}} B$ with $I^ h = IA^ h$ is a henselian pair. To do this we will verify condition (2) of Lemma <a href="/tag/09XI" data-tag="09XI">15.11.6</a>. Namely, suppose given an étale ring map $A^ h \to A'$ and $A^ h$-algebra map $\sigma : A' \to A^ h/I^ h$. Then there exists a $B \in \mathcal{C}$ and an étale ring map $B \to B'$ such that $A' = B' \otimes _ B A^ h$. See Algebra, Lemma <a href="/tag/00U2" data-tag="00U2">10.143.3</a>. Since $A^ h/I^ h = A/I$, the map $\sigma $ induces an $A$-algebra map $s : B' \to A/I$. Then $B'/IB' = A/I \times C$ as $A/I$-algebra, where $C$ is the kernel of the map $B'/IB' \to A/I$ induced by $s$. Let $g \in B'$ map to $(1, 0) \in A/I \times C$. Then $B \to B'_ g$ is étale and $A/I \to B'_ g/IB'_ g$ is an isomorphism, i.e., $B'_ g$ is an object of $\mathcal{C}$. Thus we obtain a canonical map $B'_ g \to A^ h$ such that 
+    <p>
+      <div class="equation">
+  \[  \vcenter { \xymatrix{ B'_ g \ar[r] &  A^ h \\  B \ar[u] \ar[ur] } } \quad \text{and}\quad \vcenter { \xymatrix{ B' \ar[r] \ar[rrd]_ s &  B'_ g \ar[r] &  A^ h \ar[d] \\  &  &  A/I } }  \]
+</div>
+    <p>
+       commute. This induces a map $A' = B' \otimes _ B A^ h \to A^ h$ compatible with $\sigma $ as desired. 
+    <p>
+      Let $(A, I) \to (A', I')$ be a morphism of pairs with $(A', I')$ henselian. We will show there is a unique factorization $A \to A^ h \to A'$ which will finish the proof. Namely, for each $A \to B$ in $\mathcal{C}$ the ring map $A' \to B' = A' \otimes _ A B$ is étale and induces an isomorphism $A'/I' \to B'/I'B'$. Hence there is a section $\sigma _ B : B' \to A'$ by Lemma <a href="/tag/09XI" data-tag="09XI">15.11.6</a>. Given a morphism $B_1 \to B_2$ in $\mathcal{C}$ we claim the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ B'_1 \ar[rr] \ar[rd]_{\sigma _{B_1}} &  &  B'_2 \ar[ld]^{\sigma _{B_2}} \\  &  A' }  \]
+</div>
+    <p>
+       commutes. This follows once we prove that for every $B$ in $\mathcal{C}$ the section $\sigma _ B$ is the unique $A'$-algebra map $B' \to A'$. We have $B' \otimes _{A'} B' = B' \times R$ for some ring $R$, see Algebra, Lemma <a href="/tag/02FL" data-tag="02FL">10.151.4</a>. In our case $R/I'R = 0$ as $B'/I'B' = A'/I'$. Thus given two $A'$-algebra maps $\sigma _ B, \sigma _ B' : B' \to A'$ then $e = (\sigma _ B \otimes \sigma _ B')(0, 1) \in A'$ is an idempotent contained in $I'$. We conclude that $e = 0$ by Lemma <a href="/tag/09XF" data-tag="09XF">15.10.2</a>. Hence $\sigma _ B = \sigma _ B'$ as desired. Using the commutativity we obtain 
+    <p>
+      <div class="equation">
+  \[  A^ h = \mathop{\mathrm{colim}}\nolimits _{B \in \mathcal{C}} B \to \mathop{\mathrm{colim}}\nolimits _{B \in \mathcal{C}} A' \otimes _ A B \xrightarrow {\mathop{\mathrm{colim}}\nolimits \sigma _ B} A'  \]
+</div>
+    <p>
+       as desired. The uniqueness of the maps $\sigma _ B$ also guarantees that this map is unique. Hence $(A, I) \mapsto (A^ h, I^ h)$ is the desired adjoint. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AGU">
+  <p><a class="environment-identifier" href="/tag/0AGU">Lemma <span data-tag="0AGU">15.12.2</span>.</a> Let $(A, I)$ be a pair. Let $(A^ h, I^ h)$ be as in Lemma <a href="/tag/0A02" data-tag="0A02">15.12.1</a>. Then $A \to A^ h$ is flat, $I^ h = IA^ h$ and $A/I^ n \to A^ h/I^ nA^ h$ is an isomorphism for all $n$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In the proof of Lemma <a href="/tag/0A02" data-tag="0A02">15.12.1</a> we have seen that $A^ h$ is a filtered colimit of étale $A$-algebras $B$ such that $A/I \to B/IB$ is an isomorphism and we have seen that $I^ h = IA^ h$. As an étale ring map is flat (Algebra, Lemma <a href="/tag/00U2" data-tag="00U2">10.143.3</a>) we conclude that $A \to A^ h$ is flat by Algebra, Lemma <a href="/tag/05UT" data-tag="05UT">10.39.3</a>. Since each $A \to B$ is flat we find that the maps $A/I^ n \to B/I^ nB$ are isomorphisms as well (for example by Algebra, Lemma <a href="/tag/051H" data-tag="051H">10.101.3</a>). Taking the colimit we find that $A/I^ n = A^ h/I^ nA^ h$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0A03">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0A03">Lemma <span data-tag="0A03">15.12.3</span>.</a> The functor of Lemma <a href="/tag/0A02" data-tag="0A02">15.12.1</a> associates to a local ring $(A, \mathfrak m)$ its henselization. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $(A^ h, \mathfrak m^ h)$ be the henselization of the pair $(A, \mathfrak m)$ constructed in Lemma <a href="/tag/0A02" data-tag="0A02">15.12.1</a>. Then $\mathfrak m^ h = \mathfrak m A^ h$ is a maximal ideal by Lemma <a href="/tag/0AGU" data-tag="0AGU">15.12.2</a> and since it is contained in the Jacobson radical, we conclude $A^ h$ is local with maximal ideal $\mathfrak m^ h$. Having said this there are two ways to finish the proof. 
+    <p>
+      First proof: observe that the construction in the proof of Algebra, Lemma <a href="/tag/04GN" data-tag="04GN">10.155.1</a> as a colimit is the same as the colimit used to construct $A^ h$ in Lemma <a href="/tag/0A02" data-tag="0A02">15.12.1</a>. Second proof: Both the henselization $A \to S$ and $A \to A^ h$ of Lemma <a href="/tag/0A02" data-tag="0A02">15.12.1</a> are local ring homomorphisms, both $S$ and $A^ h$ are filtered colimits of étale $A$-algebras, both $S$ and $A^ h$ are henselian local rings, and both $S$ and $A^ h$ have residue fields equal to $\kappa (\mathfrak m)$ (by Lemma <a href="/tag/0AGU" data-tag="0AGU">15.12.2</a> for the second case). Hence they are canonically isomorphic by Algebra, Lemma <a href="/tag/08HT" data-tag="08HT">10.154.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AGV">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0AGV">Lemma <span data-tag="0AGV">15.12.4</span>.</a> Let $(A, I)$ be a pair with $A$ Noetherian. Let $(A^ h, I^ h)$ be as in Lemma <a href="/tag/0A02" data-tag="0A02">15.12.1</a>. Then the map of $I$-adic completions </p>
+  <div class="equation">
+  \[  A^\wedge \to (A^ h)^\wedge  \]
+</div>
+  <p> is an isomorphism. Moreover, $A^ h$ is Noetherian, the maps $A \to A^ h \to A^\wedge $ are flat, and $A^ h \to A^\wedge $ is faithfully flat. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The first statement is an immediate consequence of Lemma <a href="/tag/0AGU" data-tag="0AGU">15.12.2</a> and in fact holds without assuming $A$ is Noetherian. In the proof of Lemma <a href="/tag/0A02" data-tag="0A02">15.12.1</a> we have seen that $A^ h$ is a filtered colimit of étale $A$-algebras $B$ such that $A/I \to B/IB$ is an isomorphism. For each such $A \to B$ the induced map $A^\wedge \to B^\wedge $ is an isomorphism (see proof of Lemma <a href="/tag/0AGU" data-tag="0AGU">15.12.2</a>). By Algebra, Lemma <a href="/tag/00MB" data-tag="00MB">10.97.2</a> the ring map $B \to A^\wedge = B^\wedge = (A^ h)^\wedge $ is flat for each $B$. Thus $A^ h \to A^\wedge = (A^ h)^\wedge $ is flat by Algebra, Lemma <a href="/tag/05UU" data-tag="05UU">10.39.6</a>. Since $I^ h = IA^ h$ is contained in the Jacobson radical of $A^ h$ and since $A^ h \to A^\wedge $ induces an isomorphism $A^ h/I^ h \to A/I$ we see that $A^ h \to A^\wedge $ is faithfully flat by Algebra, Lemma <a href="/tag/00HP" data-tag="00HP">10.39.15</a>. By Algebra, Lemma <a href="/tag/0316" data-tag="0316">10.97.6</a> the ring $A^\wedge $ is Noetherian. Hence we conclude that $A^ h$ is Noetherian by Algebra, Lemma <a href="/tag/033E" data-tag="033E">10.164.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0A04">
+  <p><a class="environment-identifier" href="/tag/0A04">Lemma <span data-tag="0A04">15.12.5</span>.</a> Let $(A, I) = \mathop{\mathrm{colim}}\nolimits (A_ i, I_ i)$ be a filtered colimit of pairs. The functor of Lemma <a href="/tag/0A02" data-tag="0A02">15.12.1</a> gives $A^ h = \mathop{\mathrm{colim}}\nolimits A_ i^ h$ and $I^ h = \mathop{\mathrm{colim}}\nolimits I_ i^ h$. </p>
+</article> 
+</p>
+<p>
+This lemma is false for non-filtered colimits, see Example <a href="/tag/0FWU" data-tag="0FWU">15.11.14</a>. 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Categories, Lemma <a href="/tag/0038" data-tag="0038">4.24.5</a> we see that $(A^ h, I^ h)$ is the colimit of the system $(A_ i^ h, I_ i^ h)$ in the category of henselian pairs. Thus for a henselian pair $(B, J)$ we have 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits ((A^ h, I^ h), (B, J)) = \mathop{\mathrm{lim}}\nolimits \mathop{\mathrm{Mor}}\nolimits ((A_ i^ h, I_ i^ h), (B, J)) = \mathop{\mathrm{Mor}}\nolimits (\mathop{\mathrm{colim}}\nolimits (A_ i^ h, I_ i^ h), (B, J))  \]
+</div>
+    <p>
+       Here the colimit is in the category of pairs. Since the colimit is filtered we obtain $\mathop{\mathrm{colim}}\nolimits (A_ i^ h, I_ i^ h) = (\mathop{\mathrm{colim}}\nolimits A_ i^ h, \mathop{\mathrm{colim}}\nolimits I_ i^ h)$ in the category of pairs; details omitted. Again using the colimit is filtered, this is a henselian pair (Lemma <a href="/tag/0FWT" data-tag="0FWT">15.11.13</a>). Hence by the Yoneda lemma we find $(A^ h, I^ h) = (\mathop{\mathrm{colim}}\nolimits A_ i^ h, \mathop{\mathrm{colim}}\nolimits I_ i^ h)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0F0L">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0F0L">Lemma <span data-tag="0F0L">15.12.6</span>.</a> Let $A$ be a ring with ideals $I$ and $J$. If $V(I) = V(J)$ then the functor of Lemma <a href="/tag/0A02" data-tag="0A02">15.12.1</a> produces the same ring for the pair $(A, I)$ as for the pair $(A, J)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $(A', IA')$ be the pair produced by Lemma <a href="/tag/0A02" data-tag="0A02">15.12.1</a> starting with the pair $(A, I)$, see Lemma <a href="/tag/0AGU" data-tag="0AGU">15.12.2</a>. Let $(A'', JA'')$ be the pair produced by Lemma <a href="/tag/0A02" data-tag="0A02">15.12.1</a> starting with the pair $(A, J)$. By Lemma <a href="/tag/09XJ" data-tag="09XJ">15.11.7</a> we see that $(A', JA')$ is a henselian pair and $(A'', IA'')$ is a henselian pair. By the universal property of the construction we obtain unique $A$-algebra maps $A'' \to A'$ and $A' \to A''$. The uniqueness shows that these are mutually inverse. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DYE">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0DYE">Lemma <span data-tag="0DYE">15.12.7</span>.</a> Let $(A, I) \to (B, J)$ be a map of pairs such that $V(J) = V(IB)$. Let $(A^ h , I^ h) \to (B^ h, J^ h)$ be the induced map on henselizations (Lemma <a href="/tag/0A02" data-tag="0A02">15.12.1</a>). If $A \to B$ is integral, then the induced map $A^ h \otimes _ A B \to B^ h$ is an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/0F0L" data-tag="0F0L">15.12.6</a> we may assume $J = IB$. By Lemma <a href="/tag/09XK" data-tag="09XK">15.11.8</a> the pair $(A^ h \otimes _ A B, I^ h(A^ h \otimes _ A B))$ is henselian. By the universal property of $(B^ h, IB^ h)$ we obtain a map $B^ h \to A^ h \otimes _ A B$. We omit the proof that this map is the inverse of the map in the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0H7Q">
+  <p><a class="environment-identifier" href="/tag/0H7Q">Lemma <span data-tag="0H7Q">15.12.8</span>.</a> Let $I_1, I_2, \dots , I_ n \subset A$ be ideals in a ring $A$. Suppose $I_ i + I_ j = A$ for $i \not= j$, $1 \leq i, j \leq n$. Denote $A^ h$ the henselization of the pair $(A, I_1 \cap \ldots \cap I_ n)$ and $A_ i^ h$ the henselization of the pair $(A, I_ i)$. Then the natural morphism </p>
+  <div class="equation">
+  \[  A^ h \to \prod \nolimits _{i = 1, \ldots , n} A^ h_ i  \]
+</div>
+  <p> is an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The map comes from the functoriality of the construction. If $n = 1$ the result is immediate. If $n > 1$, observe that $(I_1 \cap \ldots \cap I_{n - 1}) + I_ n = A$ by our condition on the ideals. Thus if we prove the lemma for $n = 2$, then the lemma follows for all $n$ by induction. 
+    <p>
+      The case $n = 2$. Choose $f_ i \in I_ i$ such that $f_1 + f_2 = 1$. Recall that $A^ h$ is constructed as the colimit of $A$-algebras $B$ such that $A \to B$ is étale and $A/I_1 \cap I_2 \to B/(I_1 \cap I_2)B$ is an isomorphism. See proof of Lemma <a href="/tag/0A02" data-tag="0A02">15.12.1</a>. Denote $Hens$ the category of such $A$-algebras $B$. Similarly, denote $Hens_ i$, $i = 1, 2$ the category of étale $A$-algebras $B$ such that $A/I_ i \to B/I_ iB$ is an isomorphism. 
+    <p>
+      Consider the subcategory $Hens_1(f_2) \subset Hens_1$ consisting of those $B$ such that $f_2$ is invertible. This is a cofinal subcategory since if $B$ is in $Hens_1$, then $B_{f_2}$ is in $Hens_1$ as well (hint: $B_{f_2}/I_1B_{f_2} = (B/I_1B)_{f_2} = B/I_1B$ because $f_2$ is a unit modulo $I_1$). Similarly, the subcategory $Hens_2(f_1) \subset Hens_2$ is cofinal. Hence to compute $A_1^ h$ and $A_2^ h$ we may work with this smaller categories, see Categories, Lemma <a href="/tag/04E7" data-tag="04E7">4.17.2</a>. 
+    <p>
+      Consider the functor 
+    <p>
+      <div class="equation">
+  \[  Hens_1(f_2) \times Hens_2(f_1) \to Hens,\quad (B_1, B_2) \mapsto B_1 \times B_2  \]
+</div>
+    <p>
+       This functor makes sense as 
+    <p>
+      <div class="equation">
+  \begin{align*}  (B_1 \times B_2)/(I_1 \cap I_2)(B_1 \times B_2) &  = B_1/(I_1 \cap I_2)B_1 \times B_2/(I_1 \cap I_2)B_2 \\ &  = B_1/I_1B_1 \times B_2/I_2B_2 \\ &  = A/I_1 \times A/I_2 \\ &  = A/(I_1 \cap I_2) \end{align*}
+</div>
+    <p>
+       The second equality holds because $(I_1 \cap I_2)B_1 = I_1B_1 \cap I_2B_1 = I_1B_1$ as $f_2 \in I_2$ is invertible in $B_1$ (we have also used Algebra, Lemma <a href="/tag/0BBY" data-tag="0BBY">10.39.2</a>). The last equality holds by Algebra, Lemma <a href="/tag/00DT" data-tag="00DT">10.15.4</a>. To finish the proof, it suffices to prove that the displayed functor is cofinal (see lemma quoted above). The first condition of Categories, Definition <a href="/tag/04E6" data-tag="04E6">4.17.1</a> holds because an object $B$ of $Hens$ maps to $B_{f_2} \times B_{f_1}$ which is in the image of the functor. The second one always holds because if we have $B \to B_1 \times B_2$ and $B \to B'_1 \times B'_2$ with $B_1, B'_1 \in Hens_1(f_2)$ and $B_2, B'_2 \in Hens_2(f_1)$, then we can set $B''_1 = B_1 \otimes _ B B'_1$ which is in $Hens_1(f_2)$ and similarly $B''_2 = B_2 \otimes _ B B''_2$ in $Hens_2(f_1)$ to find a map $B \to B''_1 \times B''_2$ fitting into the commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ &  B \ar[ld] \ar[d] \ar[rd] \\  B_1 \times B_2 \ar[r] &  B_1'' \times B_2'' &  B_1' \times B_2' \ar[l] }  \]
+</div>
+    <p>
+       This finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

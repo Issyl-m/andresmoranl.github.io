@@ -1,0 +1,418 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="etale-cohomology-section-proper-base-change" class="tex-section"><span data-tag="095S">59.91</span> The proper base change theorem</h2>
+
+<p>
+The proper base change theorem is stated and proved in this section. Our approach follows roughly the proof in <span class="cite">[<span class="postnote">XII, Theorem 5.1</span>, <a href="/bibliography/SGA4">SGA4</a>]</span> using Gabber's ideas (from the affine case) to slightly simplify the arguments. 
+</p>
+<p>
+<article class="env-lemma" id="0A0B">
+  <p><a class="environment-identifier" href="/tag/0A0B">Lemma <span data-tag="0A0B">59.91.1</span>.</a> Let $(A, I)$ be a henselian pair. Let $f : X \to \mathop{\mathrm{Spec}}(A)$ be a proper morphism of schemes. Let $Z = X \times _{\mathop{\mathrm{Spec}}(A)} \mathop{\mathrm{Spec}}(A/I)$. For any sheaf $\mathcal{F}$ on the topological space associated to $X$ we have $\Gamma (X, \mathcal{F}) = \Gamma (Z, \mathcal{F}|_ Z)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use Lemma <a href="/tag/09ZG" data-tag="09ZG">59.82.4</a> to prove this. First observe that the underlying topological space of $X$ is spectral by Properties, Lemma <a href="/tag/094L" data-tag="094L">28.2.4</a>. Let $Y \subset X$ be an irreducible closed subscheme. To finish the proof we show that $Y \cap Z = Y \times _{\mathop{\mathrm{Spec}}(A)} \mathop{\mathrm{Spec}}(A/I)$ is connected. Replacing $X$ by $Y$ we may assume that $X$ is irreducible and we have to show that $Z$ is connected. Let $X \to \mathop{\mathrm{Spec}}(B) \to \mathop{\mathrm{Spec}}(A)$ be the Stein factorization of $f$ (More on Morphisms, Theorem <a href="/tag/03H2" data-tag="03H2">37.53.5</a>). Then $A \to B$ is integral and $(B, IB)$ is a henselian pair (More on Algebra, Lemma <a href="/tag/09XK" data-tag="09XK">15.11.8</a>). Thus we may assume the fibres of $X \to \mathop{\mathrm{Spec}}(A)$ are geometrically connected. On the other hand, the image $T \subset \mathop{\mathrm{Spec}}(A)$ of $f$ is irreducible and closed as $X$ is proper over $A$. Hence $T \cap V(I)$ is connected by More on Algebra, Lemma <a href="/tag/09Y6" data-tag="09Y6">15.11.16</a>. Now $Y \times _{\mathop{\mathrm{Spec}}(A)} \mathop{\mathrm{Spec}}(A/I) \to T \cap V(I)$ is a surjective closed map with connected fibres. The result now follows from Topology, Lemma <a href="/tag/0377" data-tag="0377">5.7.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0A0C">
+  <p><a class="environment-identifier" href="/tag/0A0C">Lemma <span data-tag="0A0C">59.91.2</span>.</a> Let $(A, I)$ be a henselian pair. Let $f : X \to \mathop{\mathrm{Spec}}(A)$ be a proper morphism of schemes. Let $i : Z \to X$ be the closed immersion of $X \times _{\mathop{\mathrm{Spec}}(A)} \mathop{\mathrm{Spec}}(A/I)$ into $X$. For any sheaf $\mathcal{F}$ on $X_{\acute{e}tale}$ we have $\Gamma (X, \mathcal{F}) = \Gamma (Z, i_{small}^{-1}\mathcal{F})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from Lemma <a href="/tag/09ZF" data-tag="09ZF">59.82.2</a> and <a href="/tag/0A0B" data-tag="0A0B">59.91.1</a> and the fact that any scheme finite over $X$ is proper over $\mathop{\mathrm{Spec}}(A)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0A3S">
+  <p><a class="environment-identifier" href="/tag/0A3S">Lemma <span data-tag="0A3S">59.91.3</span>.</a> Let $A$ be a henselian local ring. Let $f : X \to \mathop{\mathrm{Spec}}(A)$ be a proper morphism of schemes. Let $X_0 \subset X$ be the fibre of $f$ over the closed point. For any sheaf $\mathcal{F}$ on $X_{\acute{e}tale}$ we have $\Gamma (X, \mathcal{F}) = \Gamma (X_0, \mathcal{F}|_{X_0})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a special case of Lemma <a href="/tag/0A0C" data-tag="0A0C">59.91.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $f : X \to S$ be a morphism of schemes. Let $\overline{s} : \mathop{\mathrm{Spec}}(k) \to S$ be a geometric point. The fibre of $f$ at $\overline{s}$ is the scheme $X_{\overline{s}} = \mathop{\mathrm{Spec}}(k) \times _{\overline{s}, S} X$ viewed as a scheme over $\mathop{\mathrm{Spec}}(k)$. If $\mathcal{F}$ is a sheaf on $X_{\acute{e}tale}$, then denote $\mathcal{F}_{\overline{s}} = p_{small}^{-1}\mathcal{F}$ the pullback of $\mathcal{F}$ to $(X_{\overline{s}})_{\acute{e}tale}$. In the following we will consider the set 
+</p>
+<div class="equation">
+  \[  \Gamma (X_{\overline{s}}, \mathcal{F}_{\overline{s}})  \]
+</div>
+<p>
+ Let $s \in S$ be the image point of $\overline{s}$. Let $\kappa (s)^{sep}$ be the separable algebraic closure of $\kappa (s)$ in $k$ as in Definition <a href="/tag/03QX" data-tag="03QX">59.56.1</a>. By Lemma <a href="/tag/0A3I" data-tag="0A3I">59.39.5</a> pullback defines a bijection 
+</p>
+<div class="equation">
+  \[  \Gamma (X_{\kappa (s)^{sep}}, p_{sep}^{-1} \mathcal{F}) \longrightarrow \Gamma (X_{\overline{s}}, \mathcal{F}_{\overline{s}})  \]
+</div>
+<p>
+ where $p_{sep} : X_{\kappa (s)^{sep}} = \mathop{\mathrm{Spec}}(\kappa (s)^{sep}) \times _ S X \to X$ is the projection. 
+</p>
+<p>
+<article class="env-lemma" id="0A3T">
+  <p><a class="environment-identifier" href="/tag/0A3T">Lemma <span data-tag="0A3T">59.91.4</span>.</a> Let $f : X \to S$ be a proper morphism of schemes. Let $\overline{s} \to S$ be a geometric point. For any sheaf $\mathcal{F}$ on $X_{\acute{e}tale}$ the canonical map </p>
+  <div class="equation">
+  \[  (f_*\mathcal{F})_{\overline{s}} \longrightarrow \Gamma (X_{\overline{s}}, \mathcal{F}_{\overline{s}})  \]
+</div>
+  <p> is bijective. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Theorem <a href="/tag/03Q9" data-tag="03Q9">59.53.1</a> (for sheaves of sets) we have 
+    <p>
+      <div class="equation">
+  \[  (f_*\mathcal{F})_{\overline{s}} = \Gamma (X \times _ S \mathop{\mathrm{Spec}}(\mathcal{O}_{S, \overline{s}}^{sh}), p_{small}^{-1}\mathcal{F})  \]
+</div>
+    <p>
+       where $p : X \times _ S \mathop{\mathrm{Spec}}(\mathcal{O}_{S, \overline{s}}^{sh}) \to X$ is the projection. Since the residue field of the strictly henselian local ring $\mathcal{O}_{S, \overline{s}}^{sh}$ is $\kappa (s)^{sep}$ we conclude from the discussion above the lemma and Lemma <a href="/tag/0A3S" data-tag="0A3S">59.91.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0A3U">
+  <p><a class="environment-identifier" href="/tag/0A3U">Lemma <span data-tag="0A3U">59.91.5</span>.</a> Let $f : X \to Y$ be a proper morphism of schemes. Let $g : Y' \to Y$ be a morphism of schemes. Set $X' = Y' \times _ Y X$ with projections $f' : X' \to Y'$ and $g' : X' \to X$. Let $\mathcal{F}$ be any sheaf on $X_{\acute{e}tale}$. Then $g^{-1}f_*\mathcal{F} = f'_*(g')^{-1}\mathcal{F}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      There is a canonical map $g^{-1}f_*\mathcal{F} \to f'_*(g')^{-1}\mathcal{F}$. Namely, it is adjoint to the map 
+    <p>
+      <div class="equation">
+  \[  f_*\mathcal{F} \longrightarrow g_*f'_*(g')^{-1}\mathcal{F} = f_*g'_*(g')^{-1}\mathcal{F}  \]
+</div>
+    <p>
+       which is $f_*$ applied to the canonical map $\mathcal{F} \to g'_*(g')^{-1}\mathcal{F}$. To check this map is an isomorphism we can compute what happens on stalks. Let $y' : \mathop{\mathrm{Spec}}(k) \to Y'$ be a geometric point with image $y$ in $Y$. By Lemma <a href="/tag/0A3T" data-tag="0A3T">59.91.4</a> the stalks are $\Gamma (X'_{y'}, \mathcal{F}_{y'})$ and $\Gamma (X_ y, \mathcal{F}_ y)$ respectively. Here the sheaves $\mathcal{F}_ y$ and $\mathcal{F}_{y'}$ are the pullbacks of $\mathcal{F}$ by the projections $X_ y \to X$ and $X'_{y'} \to X$. Since $X_ y = X'_{y'}$ as schemes we see that the stalks agree. We omit the verification that this isomorphism is compatible with our map. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+At this point we start discussing the proper base change theorem. To do so we introduce some notation. consider a commutative diagram 
+</p>
+<div class="equation" id="0A29">
+    <span class="equation-label"><a href="/tag/0A29" data-tag="0A29">59.91.5.1</a></span>
+  <div>\begin{equation}  \label{etale-cohomology-equation-base-change-diagram} \vcenter { \xymatrix{ X' \ar[r]_{g'} \ar[d]_{f'} &  X \ar[d]^ f \\  Y' \ar[r]^ g &  Y } } \end{equation}</div>
+</div>
+<p>
+ of morphisms of schemes. Then we obtain a commutative diagram of sites 
+</p>
+<div class="equation">
+  \[  \xymatrix{ X'_{\acute{e}tale}\ar[r]_{g'_{small}} \ar[d]_{f'_{small}} &  X_{\acute{e}tale}\ar[d]^{f_{small}} \\  Y'_{\acute{e}tale}\ar[r]^{g_{small}} &  Y_{\acute{e}tale}}  \]
+</div>
+<p>
+ For any object $E$ of $D(X_{\acute{e}tale})$ we obtain a canonical base change map 
+</p>
+<div class="equation" id="0A2A">
+    <span class="equation-label"><a href="/tag/0A2A" data-tag="0A2A">59.91.5.2</a></span>
+  <div>\begin{equation}  \label{etale-cohomology-equation-base-change} g_{small}^{-1}Rf_{small, *}E \longrightarrow Rf'_{small, *}(g'_{small})^{-1}E \end{equation}</div>
+</div>
+<p>
+ in $D(Y'_{\acute{e}tale})$. See Cohomology on Sites, Remark <a href="/tag/07A7" data-tag="07A7">21.19.3</a> where we use the constant sheaf $\mathbf{Z}$ as our sheaf of rings. We will usually omit the subscripts ${}_{small}$ in this formula. For example, if $E = \mathcal{F}[0]$ where $\mathcal{F}$ is an abelian sheaf on $X_{\acute{e}tale}$, the base change map is a map 
+</p>
+<div class="equation" id="0A4A">
+    <span class="equation-label"><a href="/tag/0A4A" data-tag="0A4A">59.91.5.3</a></span>
+  <div>\begin{equation}  \label{etale-cohomology-equation-base-change-sheaf} g^{-1}Rf_*\mathcal{F} \longrightarrow Rf'_*(g')^{-1}\mathcal{F} \end{equation}</div>
+</div>
+<p>
+ in $D(Y'_{\acute{e}tale})$. 
+</p>
+<p>
+The map (<a href="/tag/0A2A" data-tag="0A2A">59.91.5.2</a>) has no chance of being an isomorphism in the generality given above. The goal is to show it is an isomorphism if the diagram (<a href="/tag/0A29" data-tag="0A29">59.91.5.1</a>) is cartesian, $f : X \to Y$ proper, the cohomology sheaves of $E$ are torsion, and $E$ is bounded below. To study this question we introduce the following terminology. Let us say that <em>cohomology commutes with base change for $f : X \to Y$</em> if (<a href="/tag/0A4A" data-tag="0A4A">59.91.5.3</a>) is an isomorphism for every diagram (<a href="/tag/0A29" data-tag="0A29">59.91.5.1</a>) where $X' = Y' \times _ Y X$ and every torsion abelian sheaf $\mathcal{F}$. 
+</p>
+<p>
+<article class="env-lemma" id="0A4B">
+  <p><a class="environment-identifier" href="/tag/0A4B">Lemma <span data-tag="0A4B">59.91.6</span>.</a> Let $f : X \to Y$ be a proper morphism of schemes. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+cohomology commutes with base change for $f$ (see above), 
+</p>
+</li><li><p>
+for every prime number $\ell $ and every injective sheaf of $\mathbf{Z}/\ell \mathbf{Z}$-modules $\mathcal{I}$ on $X_{\acute{e}tale}$ and every diagram (<a href="/tag/0A29" data-tag="0A29">59.91.5.1</a>) where $X' = Y' \times _ Y X$ the sheaves $R^ qf'_*(g')^{-1}\mathcal{I}$ are zero for $q > 0$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It is clear that (1) implies (2). Conversely, assume (2) and let $\mathcal{F}$ be a torsion abelian sheaf on $X_{\acute{e}tale}$. Let $Y' \to Y$ be a morphism of schemes and let $X' = Y' \times _ Y X$ with projections $g' : X' \to X$ and $f' : X' \to Y'$ as in diagram (<a href="/tag/0A29" data-tag="0A29">59.91.5.1</a>). We want to show the maps of sheaves 
+    <p>
+      <div class="equation">
+  \[  g^{-1}R^ qf_*\mathcal{F} \longrightarrow R^ qf'_*(g')^{-1}\mathcal{F}  \]
+</div>
+    <p>
+       are isomorphisms for all $q \geq 0$. 
+    <p>
+      For every $n \geq 1$, let $\mathcal{F}[n]$ be the subsheaf of sections of $\mathcal{F}$ annihilated by $n$. Then $\mathcal{F} = \mathop{\mathrm{colim}}\nolimits \mathcal{F}[n]$. The functors $g^{-1}$ and $(g')^{-1}$ commute with arbitrary colimits (as left adjoints). Taking higher direct images along $f$ or $f'$ commutes with filtered colimits by Lemma <a href="/tag/09Z1" data-tag="09Z1">59.51.7</a>. Hence we see that 
+    <p>
+      <div class="equation">
+  \[  g^{-1}R^ qf_*\mathcal{F} = \mathop{\mathrm{colim}}\nolimits g^{-1}R^ qf_*\mathcal{F}[n] \quad \text{and}\quad R^ qf'_*(g')^{-1}\mathcal{F} = \mathop{\mathrm{colim}}\nolimits R^ qf'_*(g')^{-1}\mathcal{F}[n]  \]
+</div>
+    <p>
+       Thus it suffices to prove the result in case $\mathcal{F}$ is annihilated by a positive integer $n$. 
+    <p>
+      If $n = \ell n'$ for some prime number $\ell $, then we obtain a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{F}[\ell ] \to \mathcal{F} \to \mathcal{F}/\mathcal{F}[\ell ] \to 0  \]
+</div>
+    <p>
+       Observe that $\mathcal{F}/\mathcal{F}[\ell ]$ is annihilated by $n'$. Moreover, if the result holds for both $\mathcal{F}[\ell ]$ and $\mathcal{F}/\mathcal{F}[\ell ]$, then the result holds by the long exact sequence of higher direct images (and the $5$ lemma). In this way we reduce to the case that $\mathcal{F}$ is annihilated by a prime number $\ell $. 
+    <p>
+      Assume $\mathcal{F}$ is annihilated by a prime number $\ell $. Choose an injective resolution $\mathcal{F} \to \mathcal{I}^\bullet $ in $D(X_{\acute{e}tale}, \mathbf{Z}/\ell \mathbf{Z})$. Applying assumption (2) and Leray's acyclicity lemma (Derived Categories, Lemma <a href="/tag/015E" data-tag="015E">13.16.7</a>) we see that 
+    <p>
+      <div class="equation">
+  \[  f'_*(g')^{-1}\mathcal{I}^\bullet  \]
+</div>
+    <p>
+       computes $Rf'_*(g')^{-1}\mathcal{F}$. We conclude by applying Lemma <a href="/tag/0A3U" data-tag="0A3U">59.91.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0A4C">
+  <p><a class="environment-identifier" href="/tag/0A4C">Lemma <span data-tag="0A4C">59.91.7</span>.</a> Let $f : X \to Y$ and $g : Y \to Z$ be proper morphisms of schemes. Assume </p>
+  <p><ol>
+  <li><p>
+cohomology commutes with base change for $f$, 
+</p>
+</li><li><p>
+cohomology commutes with base change for $g \circ f$, and 
+</p>
+</li><li><p>
+$f$ is surjective. 
+</p>
+</li>
+</ol></p>
+  <p> Then cohomology commutes with base change for $g$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use the equivalence of Lemma <a href="/tag/0A4B" data-tag="0A4B">59.91.6</a> without further mention. Let $\ell $ be a prime number. Let $\mathcal{I}$ be an injective sheaf of $\mathbf{Z}/\ell \mathbf{Z}$-modules on $Y_{\acute{e}tale}$. Choose an injective map of sheaves $f^{-1}\mathcal{I} \to \mathcal{J}$ where $\mathcal{J}$ is an injective sheaf of $\mathbf{Z}/\ell \mathbf{Z}$-modules on $X_{\acute{e}tale}$. Since $f$ is surjective the map $\mathcal{I} \to f_*\mathcal{J}$ is injective (look at stalks in geometric points). Since $\mathcal{I}$ is injective we see that $\mathcal{I}$ is a direct summand of $f_*\mathcal{J}$. Thus it suffices to prove the desired vanishing for $f_*\mathcal{J}$. 
+    <p>
+      Let $Z' \to Z$ be a morphism of schemes and set $Y' = Z' \times _ Z Y$ and $X' = Z' \times _ Z X = Y' \times _ Y X$. Denote $a : X' \to X$, $b : Y' \to Y$, and $c : Z' \to Z$ the projections. Similarly for $f' : X' \to Y'$ and $g' : Y' \to Z'$. By Lemma <a href="/tag/0A3U" data-tag="0A3U">59.91.5</a> we have $b^{-1}f_*\mathcal{J} = f'_*a^{-1}\mathcal{J}$. On the other hand, we know that $R^ qf'_*a^{-1}\mathcal{J}$ and $R^ q(g' \circ f')_*a^{-1}\mathcal{J}$ are zero for $q > 0$. Using the spectral sequence (Cohomology on Sites, Lemma <a href="/tag/0734" data-tag="0734">21.14.7</a>) 
+    <p>
+      <div class="equation">
+  \[  R^ pg'_* R^ qf'_* a^{-1}\mathcal{J} \Rightarrow R^{p + q}(g' \circ f')_* a^{-1}\mathcal{J}  \]
+</div>
+    <p>
+       we conclude that $ R^ pg'_*(b^{-1}f_*\mathcal{J}) = R^ pg'_*(f'_*a^{-1}\mathcal{J}) = 0$ for $p > 0$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0A4D">
+  <p><a class="environment-identifier" href="/tag/0A4D">Lemma <span data-tag="0A4D">59.91.8</span>.</a> Let $f : X \to Y$ and $g : Y \to Z$ be proper morphisms of schemes. Assume </p>
+  <p><ol>
+  <li><p>
+cohomology commutes with base change for $f$, and 
+</p>
+</li><li><p>
+cohomology commutes with base change for $g$. 
+</p>
+</li>
+</ol></p>
+  <p> Then cohomology commutes with base change for $g \circ f$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use the equivalence of Lemma <a href="/tag/0A4B" data-tag="0A4B">59.91.6</a> without further mention. Let $\ell $ be a prime number. Let $\mathcal{I}$ be an injective sheaf of $\mathbf{Z}/\ell \mathbf{Z}$-modules on $X_{\acute{e}tale}$. Then $f_*\mathcal{I}$ is an injective sheaf of $\mathbf{Z}/\ell \mathbf{Z}$-modules on $Y_{\acute{e}tale}$ (Cohomology on Sites, Lemma <a href="/tag/0730" data-tag="0730">21.14.2</a>). The result follows formally from this, but we will also spell it out. 
+    <p>
+      Let $Z' \to Z$ be a morphism of schemes and set $Y' = Z' \times _ Z Y$ and $X' = Z' \times _ Z X = Y' \times _ Y X$. Denote $a : X' \to X$, $b : Y' \to Y$, and $c : Z' \to Z$ the projections. Similarly for $f' : X' \to Y'$ and $g' : Y' \to Z'$. By Lemma <a href="/tag/0A3U" data-tag="0A3U">59.91.5</a> we have $b^{-1}f_*\mathcal{I} = f'_*a^{-1}\mathcal{I}$. On the other hand, we know that $R^ qf'_*a^{-1}\mathcal{I}$ and $R^ q(g')_*b^{-1}f_*\mathcal{I}$ are zero for $q > 0$. Using the spectral sequence (Cohomology on Sites, Lemma <a href="/tag/0734" data-tag="0734">21.14.7</a>) 
+    <p>
+      <div class="equation">
+  \[  R^ pg'_* R^ qf'_* a^{-1}\mathcal{I} \Rightarrow R^{p + q}(g' \circ f')_* a^{-1}\mathcal{I}  \]
+</div>
+    <p>
+       we conclude that $R^ p(g' \circ f')_*a^{-1}\mathcal{I} = 0$ for $p > 0$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0A4E">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0A4E">Lemma <span data-tag="0A4E">59.91.9</span>.</a> Let $f : X \to Y$ be a finite morphism of schemes. Then cohomology commutes with base change for $f$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Observe that a finite morphism is proper, see Morphisms, Lemma <a href="/tag/01WN" data-tag="01WN">29.45.11</a>. Moreover, the base change of a finite morphism is finite, see Morphisms, Lemma <a href="/tag/01WL" data-tag="01WL">29.45.6</a>. Thus the result follows from Lemma <a href="/tag/0A4B" data-tag="0A4B">59.91.6</a> combined with Proposition <a href="/tag/03QP" data-tag="03QP">59.55.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0A4F">
+  <p><a class="environment-identifier" href="/tag/0A4F">Lemma <span data-tag="0A4F">59.91.10</span>.</a> To prove that cohomology commutes with base change for every proper morphism of schemes it suffices to prove it holds for the morphism $\mathbf{P}^1_ S \to S$ for every scheme $S$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $f : X \to Y$ be a proper morphism of schemes. Let $Y = \bigcup Y_ i$ be an affine open covering and set $X_ i = f^{-1}(Y_ i)$. If we can prove cohomology commutes with base change for $X_ i \to Y_ i$, then cohomology commutes with base change for $f$. Namely, the formation of the higher direct images commutes with Zariski (and even étale) localization on the base, see Lemma <a href="/tag/03Q8" data-tag="03Q8">59.51.6</a>. Thus we may assume $Y$ is affine. 
+    <p>
+      Let $Y$ be an affine scheme and let $X \to Y$ be a proper morphism. By Chow's lemma there exists a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X \ar[rd] &  X' \ar[d] \ar[l]^\pi \ar[r] &  \mathbf{P}^ n_ Y \ar[dl] \\  &  Y &  }  \]
+</div>
+    <p>
+       where $X' \to \mathbf{P}^ n_ Y$ is an immersion, and $\pi : X' \to X$ is proper and surjective, see Limits, Lemma <a href="/tag/0202" data-tag="0202">32.12.1</a>. Since $X \to Y$ is proper, we find that $X' \to Y$ is proper (Morphisms, Lemma <a href="/tag/01W3" data-tag="01W3">29.42.4</a>). Hence $X' \to \mathbf{P}^ n_ Y$ is a closed immersion (Morphisms, Lemma <a href="/tag/01W6" data-tag="01W6">29.42.7</a>). It follows that $X' \to X \times _ Y \mathbf{P}^ n_ Y = \mathbf{P}^ n_ X$ is a closed immersion (as an immersion with closed image). 
+    <p>
+      By Lemma <a href="/tag/0A4C" data-tag="0A4C">59.91.7</a> it suffices to prove cohomology commutes with base change for $\pi $ and $X' \to Y$. These morphisms both factor as a closed immersion followed by a projection $\mathbf{P}^ n_ S \to S$ (for some $S$). By Lemma <a href="/tag/0A4E" data-tag="0A4E">59.91.9</a> the result holds for closed immersions (as closed immersions are finite). By Lemma <a href="/tag/0A4D" data-tag="0A4D">59.91.8</a> it suffices to prove the result for projections $\mathbf{P}^ n_ S \to S$. 
+    <p>
+      For every $n \geq 1$ there is a finite surjective morphism 
+    <p>
+      <div class="equation">
+  \[  \mathbf{P}^1_ S \times _ S \ldots \times _ S \mathbf{P}^1_ S \longrightarrow \mathbf{P}^ n_ S  \]
+</div>
+    <p>
+       given on coordinates by 
+    <p>
+      <div class="equation">
+  \[  ((x_1 : y_1), (x_2 : y_2), \ldots , (x_ n : y_ n)) \longmapsto (F_0 : \ldots : F_ n)  \]
+</div>
+    <p>
+       where $F_0, \ldots , F_ n$ in $x_1, \ldots , y_ n$ are the polynomials with integer coefficients such that 
+    <p>
+      <div class="equation">
+  \[  \prod (x_ i t + y_ i) = F_0 t^ n + F_1 t^{n - 1} + \ldots + F_ n  \]
+</div>
+    <p>
+       Applying Lemmas <a href="/tag/0A4C" data-tag="0A4C">59.91.7</a>, <a href="/tag/0A4E" data-tag="0A4E">59.91.9</a>, and <a href="/tag/0A4D" data-tag="0A4D">59.91.8</a> one more time we conclude that the lemma is true. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-theorem" id="095T">
+  <p><a class="environment-identifier" href="/tag/095T">Theorem <span data-tag="095T">59.91.11</span> <span class="named">(Proper Base Change)</span>.</a>  Let $f : X \to Y$ be a proper morphism of schemes. Let $g : Y' \to Y$ be a morphism of schemes. Set $X' = Y' \times _ Y X$ and consider the cartesian diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ X' \ar[r]_{g'} \ar[d]_{f'} &  X \ar[d]^ f \\  Y' \ar[r]^ g &  Y }  \]
+</div>
+  <p> Let $\mathcal{F}$ be an abelian torsion sheaf on $X_{\acute{e}tale}$. Then the base change map </p>
+  <div class="equation">
+  \[  g^{-1}Rf_*\mathcal{F} \longrightarrow Rf'_*(g')^{-1}\mathcal{F}  \]
+</div>
+  <p> is an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In the terminology introduced above, this means that cohomology commutes with base change for every proper morphism of schemes. By Lemma <a href="/tag/0A4F" data-tag="0A4F">59.91.10</a> it suffices to prove that cohomology commutes with base change for the morphism $\mathbf{P}^1_ S \to S$ for every scheme $S$. 
+    <p>
+      Let $S$ be the spectrum of a strictly henselian local ring with closed point $s$. Set $X = \mathbf{P}^1_ S$ and $X_0 = X_ s = \mathbf{P}^1_ s$. Let $\mathcal{F}$ be a sheaf of $\mathbf{Z}/\ell \mathbf{Z}$-modules on $X_{\acute{e}tale}$. The key to our proof is that 
+    <p>
+      <div class="equation">
+  \[  H^ q_{\acute{e}tale}(X, \mathcal{F}) = H^ q_{\acute{e}tale}(X_0, \mathcal{F}|_{X_0}).  \]
+</div>
+    <p>
+       Namely, choose a resolution $\mathcal{F} \to \mathcal{I}^\bullet $ by injective sheaves of $\mathbf{Z}/\ell \mathbf{Z}$-modules. Then $\mathcal{I}^\bullet |_{X_0}$ is a resolution of $\mathcal{F}|_{X_0}$ by right $H^0_{\acute{e}tale}(X_0, -)$-acyclic objects, see Lemma <a href="/tag/0A5H" data-tag="0A5H">59.85.2</a>. Leray's acyclicity lemma tells us the right hand side is computed by the complex $H^0_{\acute{e}tale}(X_0, \mathcal{I}^\bullet |_{X_0})$ which is equal to $H^0_{\acute{e}tale}(X, \mathcal{I}^\bullet )$ by Lemma <a href="/tag/0A3S" data-tag="0A3S">59.91.3</a>. This complex computes the left hand side. 
+    <p>
+      Assume $S$ is general and $\mathcal{F}$ is a sheaf of $\mathbf{Z}/\ell \mathbf{Z}$-modules on $X_{\acute{e}tale}$. Let $\overline{s} : \mathop{\mathrm{Spec}}(k) \to S$ be a geometric point of $S$ lying over $s \in S$. We have 
+    <p>
+      <div class="equation">
+  \[  (R^ qf_*\mathcal{F})_{\overline{s}} = H^ q_{\acute{e}tale}(\mathbf{P}^1_{\mathcal{O}_{S, \overline{s}}^{sh}}, \mathcal{F}|_{\mathbf{P}^1_{\mathcal{O}_{S, \overline{s}}^{sh}}}) = H^ q_{\acute{e}tale}(\mathbf{P}^1_{\kappa (s)^{sep}}, \mathcal{F}|_{\mathbf{P}^1_{\kappa (s)^{sep}}})  \]
+</div>
+    <p>
+       where $\kappa (s)^{sep}$ is the residue field of $\mathcal{O}_{S, \overline{s}}^{sh}$, i.e., the separable algebraic closure of $\kappa (s)$ in $k$. The first equality by Theorem <a href="/tag/03Q9" data-tag="03Q9">59.53.1</a> and the second equality by the displayed formula in the previous paragraph. 
+    <p>
+      Finally, consider any morphism of schemes $g : T \to S$ where $S$ and $\mathcal{F}$ are as above. Set $f' : \mathbf{P}^1_ T \to T$ the projection and let $g' : \mathbf{P}^1_ T \to \mathbf{P}^1_ S$ the morphism induced by $g$. Consider the base change map 
+    <p>
+      <div class="equation">
+  \[  g^{-1}R^ qf_*\mathcal{F} \longrightarrow R^ qf'_*(g')^{-1}\mathcal{F}  \]
+</div>
+    <p>
+       Let $\overline{t}$ be a geometric point of $T$ with image $\overline{s} = g(\overline{t})$. By our discussion above the map on stalks at $\overline{t}$ is the map 
+    <p>
+      <div class="equation">
+  \[  H^ q_{\acute{e}tale}(\mathbf{P}^1_{\kappa (s)^{sep}}, \mathcal{F}|_{\mathbf{P}^1_{\kappa (s)^{sep}}}) \longrightarrow H^ q_{\acute{e}tale}(\mathbf{P}^1_{\kappa (t)^{sep}}, \mathcal{F}|_{\mathbf{P}^1_{\kappa (t)^{sep}}})  \]
+</div>
+    <p>
+       Since $\kappa (s)^{sep} \subset \kappa (t)^{sep}$ this map is an isomorphism by Lemma <a href="/tag/0A5E" data-tag="0A5E">59.83.12</a>. 
+    <p>
+      This proves cohomology commutes with base change for $\mathbf{P}^1_ S \to S$ and sheaves of $\mathbf{Z}/\ell \mathbf{Z}$-modules. In particular, for an injective sheaf of $\mathbf{Z}/\ell \mathbf{Z}$-modules the higher direct images of any base change are zero. In other words, condition (2) of Lemma <a href="/tag/0A4B" data-tag="0A4B">59.91.6</a> holds and the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DDE">
+  <p><a class="environment-identifier" href="/tag/0DDE">Lemma <span data-tag="0DDE">59.91.12</span>.</a> Let $f : X \to Y$ be a proper morphism of schemes. Let $g : Y' \to Y$ be a morphism of schemes. Set $X' = Y' \times _ Y X$ and denote $f' : X' \to Y'$ and $g' : X' \to X$ the projections. Let $E \in D^+(X_{\acute{e}tale})$ have torsion cohomology sheaves. Then the base change map (<a href="/tag/0A2A" data-tag="0A2A">59.91.5.2</a>) $g^{-1}Rf_*E \to Rf'_*(g')^{-1}E$ is an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a simple consequence of the proper base change theorem (Theorem <a href="/tag/095T" data-tag="095T">59.91.11</a>) using the spectral sequences 
+    <p>
+      <div class="equation">
+  \[  E_2^{p, q} = R^ pf_*H^ q(E) \quad \text{and}\quad {E'}_2^{p, q} = R^ pf'_*(g')^{-1}H^ q(E)  \]
+</div>
+    <p>
+       converging to $R^ nf_*E$ and $R^ nf'_*(g')^{-1}E$. The spectral sequences are constructed in Derived Categories, Lemma <a href="/tag/015J" data-tag="015J">13.21.3</a>. Some details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DDF">
+  <p><a class="environment-identifier" href="/tag/0DDF">Lemma <span data-tag="0DDF">59.91.13</span>.</a> Let $f : X \to Y$ be a proper morphism of schemes. Let $\overline{y} \to Y$ be a geometric point. </p>
+  <p><ol>
+  <li><p>
+For a torsion abelian sheaf $\mathcal{F}$ on $X_{\acute{e}tale}$ we have $(R^ nf_*\mathcal{F})_{\overline{y}} = H^ n_{\acute{e}tale}(X_{\overline{y}}, \mathcal{F}_{\overline{y}})$. 
+</p>
+</li><li><p>
+For $E \in D^+(X_{\acute{e}tale})$ with torsion cohomology sheaves we have $(R^ nf_*E)_{\overline{y}} = H^ n_{\acute{e}tale}(X_{\overline{y}}, E|_{X_{\overline{y}}})$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In the statement, $\mathcal{F}_{\overline{y}}$ denotes the pullback of $\mathcal{F}$ to the scheme theoretic fibre $X_{\overline{y}} = \overline{y} \times _ Y X$. Since pulling back by $\overline{y} \to Y$ produces the stalk of $\mathcal{F}$, the first statement of the lemma is a special case of Theorem <a href="/tag/095T" data-tag="095T">59.91.11</a>. The second one is a special case of Lemma <a href="/tag/0DDE" data-tag="0DDE">59.91.12</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

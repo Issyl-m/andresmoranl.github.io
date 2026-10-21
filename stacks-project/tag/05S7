@@ -1,0 +1,513 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="derived-section-derived-functors" class="tex-section"><span data-tag="05S7">13.14</span> Derived functors in general</h2>
+
+<p>
+A reference for this section is Deligne's exposé XVII in <span class="cite">[<a href="/bibliography/SGA4">SGA4</a>]</span>. A very general notion of right and left derived functors exists where we have an exact functor between triangulated categories, a multiplicative system in the source category and we want to find the “correct” extension of the exact functor to the localized category. 
+</p>
+<p>
+<article class="env-situation" id="05S8">
+  <p><a class="environment-identifier" href="/tag/05S8">Situation <span data-tag="05S8">13.14.1</span>.</a> Here $F : \mathcal{D} \to \mathcal{D}'$ is an exact functor of triangulated categories and $S$ is a saturated multiplicative system in $\mathcal{D}$ compatible with the structure of triangulated category on $\mathcal{D}$. </p>
+</article> 
+</p>
+<p>
+Let $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{D})$. Recall from Categories, Remark <a href="/tag/05Q0" data-tag="05Q0">4.27.7</a> the filtered category $X/S$ of arrows $s : X \to X'$ in $S$ with source $X$. Dually, in Categories, Remark <a href="/tag/05Q4" data-tag="05Q4">4.27.15</a> we defined the cofiltered category $S/X$ of arrows $s : X' \to X$ in $S$ with target $X$. 
+</p>
+<p>
+<article class="env-definition" id="05S9">
+  <p><a class="environment-identifier" href="/tag/05S9">Definition <span data-tag="05S9">13.14.2</span>.</a> Assumptions and notation as in Situation <a href="/tag/05S8" data-tag="05S8">13.14.1</a>. Let $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{D})$. </p>
+  <p><ol>
+  <li><p>
+we say the <em>right derived functor $RF$ is defined at</em> $X$ if the ind-object 
+</p>
+<div class="equation">
+  \[  (X/S) \longrightarrow \mathcal{D}', \quad (s : X \to X') \longmapsto F(X')  \]
+</div>
+<p>
+ is essentially constant<a class="footnotemark" href="#a0000261077" id="a0000261077-mark"><sup>1</sup></a>; in this case the value $Y$ in $\mathcal{D}'$ is called the <em>value of $RF$ at $X$</em>. 
+</p>
+</li><li><p>
+we say the <em>left derived functor $LF$ is defined at</em> $X$ if the pro-object 
+</p>
+<div class="equation">
+  \[  (S/X) \longrightarrow \mathcal{D}', \quad (s: X' \to X) \longmapsto F(X')  \]
+</div>
+<p>
+ is essentially constant; in this case the value $Y$ in $\mathcal{D}'$ is called the <em>value of $LF$ at $X$</em>. 
+</p>
+</li>
+</ol></p>
+  <p> By abuse of notation we often denote the values simply $RF(X)$ or $LF(X)$. </p>
+</article> 
+</p>
+<p>
+It will turn out that the full subcategory of $\mathcal{D}$ consisting of objects where $RF$ is defined is a triangulated subcategory, and $RF$ will define a functor on this subcategory which transforms morphisms of $S$ into isomorphisms. 
+</p>
+<p>
+<article class="env-lemma" id="05SA">
+  <p><a class="environment-identifier" href="/tag/05SA">Lemma <span data-tag="05SA">13.14.3</span>.</a> Assumptions and notation as in Situation <a href="/tag/05S8" data-tag="05S8">13.14.1</a>. Let $f : X \to Y$ be a morphism of $\mathcal{D}$. </p>
+  <p><ol>
+  <li><p>
+If $RF$ is defined at $X$ and $Y$ then there exists a unique morphism $RF(f) : RF(X) \to RF(Y)$ between the values such that for any commutative diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ X \ar[d]_ f \ar[r]_ s &  X' \ar[d]^{f'} \\  Y \ar[r]^{s'} &  Y' }  \]
+</div>
+<p>
+ with $s, s' \in S$ the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ F(X) \ar[d] \ar[r] &  F(X') \ar[d] \ar[r] &  RF(X) \ar[d] \\  F(Y) \ar[r] &  F(Y') \ar[r] &  RF(Y) }  \]
+</div>
+<p>
+ commutes. 
+</p>
+</li><li><p>
+If $LF$ is defined at $X$ and $Y$ then there exists a unique morphism $LF(f) : LF(X) \to LF(Y)$ between the values such that for any commutative diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ X' \ar[d]_{f'} \ar[r]_ s &  X \ar[d]^ f \\  Y' \ar[r]^{s'} &  Y }  \]
+</div>
+<p>
+ with $s, s'$ in $S$ the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ LF(X) \ar[d] \ar[r] &  F(X') \ar[d] \ar[r] &  F(X) \ar[d] \\  LF(Y) \ar[r] &  F(Y') \ar[r] &  F(Y) }  \]
+</div>
+<p>
+ commutes. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Part (1) holds if we only assume that the colimits 
+    <p>
+      <div class="equation">
+  \[  RF(X) = \mathop{\mathrm{colim}}\nolimits _{s : X \to X'} F(X') \quad \text{and}\quad RF(Y) = \mathop{\mathrm{colim}}\nolimits _{s' : Y \to Y'} F(Y')  \]
+</div>
+    <p>
+       exist. Namely, to give a morphism $RF(X) \to RF(Y)$ between the colimits is the same thing as giving for each $s : X \to X'$ in $\mathop{\mathrm{Ob}}\nolimits (X/S)$ a morphism $F(X') \to RF(Y)$ compatible with morphisms in the category $X/S$. To get the morphism we choose a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X \ar[d]_ f \ar[r]_ s &  X' \ar[d]^{f'} \\  Y \ar[r]^{s'} &  Y' }  \]
+</div>
+    <p>
+       with $s, s'$ in $S$ as is possible by MS2 and we set $F(X') \to RF(Y)$ equal to the composition $F(X') \to F(Y') \to RF(Y)$. To see that this is independent of the choice of the diagram above use MS3. Details omitted. The proof of (2) is dual. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="05SB">
+  <p><a class="environment-identifier" href="/tag/05SB">Lemma <span data-tag="05SB">13.14.4</span>.</a> Assumptions and notation as in Situation <a href="/tag/05S8" data-tag="05S8">13.14.1</a>. Let $s : X \to Y$ be an element of $S$. </p>
+  <p><ol>
+  <li><p>
+$RF$ is defined at $X$ if and only if it is defined at $Y$. In this case the map $RF(s) : RF(X) \to RF(Y)$ between values is an isomorphism. 
+</p>
+</li><li><p>
+$LF$ is defined at $X$ if and only if it is defined at $Y$. In this case the map $LF(s) : LF(X) \to LF(Y)$ between values is an isomorphism. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="05SU">
+       
+      
+  <p><a class="environment-identifier" href="/tag/05SU">Lemma <span data-tag="05SU">13.14.5</span>.</a> Assumptions and notation as in Situation <a href="/tag/05S8" data-tag="05S8">13.14.1</a>. Let $X$ be an object of $\mathcal{D}$ and $n \in \mathbf{Z}$. </p>
+  <p><ol>
+  <li><p>
+$RF$ is defined at $X$ if and only if it is defined at $X[n]$. In this case there is a canonical isomorphism $RF(X)[n]= RF(X[n])$ between values. 
+</p>
+</li><li><p>
+$LF$ is defined at $X$ if and only if it is defined at $X[n]$. In this case there is a canonical isomorphism $LF(X)[n] \to LF(X[n])$ between values. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="05SC">
+  <p><a class="environment-identifier" href="/tag/05SC">Lemma <span data-tag="05SC">13.14.6</span>.</a> Assumptions and notation as in Situation <a href="/tag/05S8" data-tag="05S8">13.14.1</a>. Let $(X, Y, Z, f, g, h)$ be a distinguished triangle of $\mathcal{D}$. If $RF$ is defined at two out of three of $X, Y, Z$, then it is defined at the third. Moreover, in this case </p>
+  <div class="equation">
+  \[  (RF(X), RF(Y), RF(Z), RF(f), RF(g), RF(h))  \]
+</div>
+  <p> is a distinguished triangle in $\mathcal{D}'$. Similarly for $LF$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Say $RF$ is defined at $X, Y$ with values $A, B$. Let $RF(f) : A \to B$ be the induced morphism, see Lemma <a href="/tag/05SA" data-tag="05SA">13.14.3</a>. We may choose a distinguished triangle $(A, B, C, RF(f), b, c)$ in $\mathcal{D}'$. We claim that $C$ is a value of $RF$ at $Z$. 
+    <p>
+      To see this pick $s : X \to X'$ in $S$ such that there exists a morphism $\alpha : A \to F(X')$ as in Categories, Definition <a href="/tag/05PU" data-tag="05PU">4.22.1</a>. We may choose a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X \ar[d]_ f \ar[r]_ s &  X' \ar[d]^{f'} \\  Y \ar[r]^{s'} &  Y' }  \]
+</div>
+    <p>
+       with $s' \in S$ by MS2. Using that $Y/S$ is filtered we can (after replacing $s'$ by some $s'' : Y \to Y''$ in $S$) assume that there exists a morphism $\beta : B \to F(Y')$ as in Categories, Definition <a href="/tag/05PU" data-tag="05PU">4.22.1</a>. Picture 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ A \ar[d]_{RF(f)} \ar[r]_-\alpha &  F(X') \ar[r] \ar[d]^{F(f')} &  A \ar[d]^{RF(f)} \\  B \ar[r]^-\beta &  F(Y') \ar[r] &  B }  \]
+</div>
+    <p>
+       It may not be true that the left square commutes, but the outer and right squares commute. The assumption that the ind-object $\{ F(Y')\} _{s' : Y' \to Y}$ is essentially constant means that there exists a $s'' : Y \to Y''$ in $S$ and a morphism $h : Y' \to Y''$ such that $s'' = h \circ s'$ and such that $F(h)$ equal to $F(Y') \to B \to F(Y') \to F(Y'')$. Hence after replacing $Y'$ by $Y''$ and $\beta $ by $F(h) \circ \beta $ the diagram will commute (by direct computation with arrows). 
+    <p>
+      Using MS6 choose a morphism of triangles 
+    <p>
+      <div class="equation">
+  \[  (s, s', s'') : (X, Y, Z, f, g, h) \longrightarrow (X', Y', Z', f', g', h')  \]
+</div>
+    <p>
+       with $s'' \in S$. By TR3 choose a morphism of triangles 
+    <p>
+      <div class="equation">
+  \[  (\alpha , \beta , \gamma ) : (A, B, C, RF(f), b, c) \longrightarrow (F(X'), F(Y'), F(Z'), F(f'), F(g'), F(h'))  \]
+</div>
+    <p>
+      By Lemma <a href="/tag/05SB" data-tag="05SB">13.14.4</a> it suffices to prove that $RF(Z')$ is defined and that the arrow $\gamma : C \to F(Z')$ induces an isomorphism $C \to RF(Z')$. Namely, then we will get an isomorphism 
+    <p>
+      <div class="equation">
+  \[  (A, B, C, RF(f), b, c) \longrightarrow (RF(X'), RF(Y'), RF(Z'), RF(f'), RF(g'), RF(h'))  \]
+</div>
+    <p>
+       of triangles and by TR1 we conclude that the target is a distinguished triangle. Consider the category $\mathcal{I}$ of Lemma <a href="/tag/05R9" data-tag="05R9">13.5.10</a> of triangles 
+    <p>
+      <div class="equation">
+  \[  \mathcal{I} = \{ (t, t', t'') : (X', Y', Z', f', g', h') \to (X'', Y'', Z'', f'', g'', h'') \mid (t, t', t'') \in S\}   \]
+</div>
+    <p>
+       To show that the system $F(Z'')$ is essentially constant over the category $Z'/S$ is equivalent to showing that the system of $F(Z'')$ is essentially constant over $\mathcal{I}$ because $\mathcal{I} \to Z'/S$ is cofinal, see Categories, Lemma <a href="/tag/0A1S" data-tag="0A1S">4.22.11</a> (cofinality is proven in Lemma <a href="/tag/05R9" data-tag="05R9">13.5.10</a>). For any object $W$ in $\mathcal{D}'$ we consider the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{colim}}\nolimits _\mathcal {I} \mathop{\mathrm{Mor}}\nolimits _{\mathcal{D}'}(W, F(X'')) \ar[d] &  \mathop{\mathrm{Mor}}\nolimits _{\mathcal{D}'}(W, A) \ar[l] \ar[d] \\  \mathop{\mathrm{colim}}\nolimits _\mathcal {I} \mathop{\mathrm{Mor}}\nolimits _{\mathcal{D}'}(W, F(Y'')) \ar[d] &  \mathop{\mathrm{Mor}}\nolimits _{\mathcal{D}'}(W, B) \ar[d] \ar[l] \\  \mathop{\mathrm{colim}}\nolimits _\mathcal {I} \mathop{\mathrm{Mor}}\nolimits _{\mathcal{D}'}(W, F(Z'')) \ar[d] &  \mathop{\mathrm{Mor}}\nolimits _{\mathcal{D}'}(W, C) \ar[d] \ar[l] \\  \mathop{\mathrm{colim}}\nolimits _\mathcal {I} \mathop{\mathrm{Mor}}\nolimits _{\mathcal{D}'}(W, F(X''[1])) \ar[d] &  \mathop{\mathrm{Mor}}\nolimits _{\mathcal{D}'}(W, A[1]) \ar[d] \ar[l] \\  \mathop{\mathrm{colim}}\nolimits _\mathcal {I} \mathop{\mathrm{Mor}}\nolimits _{\mathcal{D}'}(W, F(Y''[1])) &  \mathop{\mathrm{Mor}}\nolimits _{\mathcal{D}'}(W, B[1]) \ar[l] }  \]
+</div>
+    <p>
+       where the horizontal arrows are given by composing with $(\alpha , \beta , \gamma )$. Since filtered colimits are exact (Algebra, Lemma <a href="/tag/00DB" data-tag="00DB">10.8.8</a>) the left column is an exact sequence. Thus the $5$ lemma (Homology, Lemma <a href="/tag/05QB" data-tag="05QB">12.5.20</a>) tells us the map 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _\mathcal {I} \mathop{\mathrm{Mor}}\nolimits _{\mathcal{D}'}(W, F(Z'')) \longrightarrow \mathop{\mathrm{Mor}}\nolimits _{\mathcal{D}'}(W, C)  \]
+</div>
+    <p>
+       is bijective. We conclude that $F(Z'')$ is essentially constant over $\mathcal{I}$ with value $C$ by part (4) of Categories, Lemma <a href="/tag/05PY" data-tag="05PY">4.22.9</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="05SD">
+  <p><a class="environment-identifier" href="/tag/05SD">Lemma <span data-tag="05SD">13.14.7</span>.</a> Assumptions and notation as in Situation <a href="/tag/05S8" data-tag="05S8">13.14.1</a>. Let $X, Y$ be objects of $\mathcal{D}$. </p>
+  <p><ol>
+  <li><p>
+If $RF$ is defined at $X$ and $Y$, then $RF$ is defined at $X \oplus Y$. 
+</p>
+</li><li><p>
+If $\mathcal{D}'$ is Karoubian and $RF$ is defined at $X \oplus Y$, then $RF$ is defined at both $X$ and $Y$. 
+</p>
+</li>
+</ol></p>
+  <p> In either case we have $RF(X \oplus Y) = RF(X) \oplus RF(Y)$. Similarly for $LF$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $RF$ is defined at $X$ and $Y$, then the distinguished triangle $X \to X \oplus Y \to Y \to X[1]$ (Lemma <a href="/tag/05QT" data-tag="05QT">13.4.11</a>) and Lemma <a href="/tag/05SC" data-tag="05SC">13.14.6</a> shows that $RF$ is defined at $X \oplus Y$ and that we have a distinguished triangle $RF(X) \to RF(X \oplus Y) \to RF(Y) \to RF(X)[1]$. Applying Lemma <a href="/tag/05QT" data-tag="05QT">13.4.11</a> to this once more we find that $RF(X \oplus Y) = RF(X) \oplus RF(Y)$. This proves (1) and the final assertion. 
+    <p>
+      Conversely, assume that $RF$ is defined at $X \oplus Y$ and that $\mathcal{D}'$ is Karoubian. Since $S$ is a saturated system $S$ is the set of arrows which become invertible under the additive localization functor $Q : \mathcal{D} \to S^{-1}\mathcal{D}$, see Categories, Lemma <a href="/tag/05Q9" data-tag="05Q9">4.27.21</a>. Thus for any $s : X \to X'$ and $s' : Y \to Y'$ in $S$ the morphism $s \oplus s' : X \oplus Y \to X' \oplus Y'$ is an element of $S$. In this way we obtain a functor 
+    <p>
+      <div class="equation">
+  \[  X/S \times Y/S \longrightarrow (X \oplus Y)/S  \]
+</div>
+    <p>
+       Recall that the categories $X/S, Y/S, (X \oplus Y)/S$ are filtered (Categories, Remark <a href="/tag/05Q0" data-tag="05Q0">4.27.7</a>). By Categories, Lemma <a href="/tag/0A2C" data-tag="0A2C">4.22.12</a> $X/S \times Y/S$ is filtered and $F|_{X/S} : X/S \to \mathcal{D}'$ (resp. $G|_{Y/S} : Y/S \to \mathcal{D}'$) is essentially constant if and only if $F|_{X/S} \circ \text{pr}_1 : X/S \times Y/S \to \mathcal{D}'$ (resp. $G|_{Y/S} \circ \text{pr}_2 : X/S \times Y/S \to \mathcal{D}'$) is essentially constant. Below we will show that the displayed functor is cofinal, hence by Categories, Lemma <a href="/tag/0A1S" data-tag="0A1S">4.22.11</a>, we see that $F|_{(X \oplus Y)/S}$ is essentially constant implies that $F|_{X/S} \circ \text{pr}_1 \oplus F|_{Y/S} \circ \text{pr}_2 : X/S \times Y/S \to \mathcal{D}'$ is essentially constant. By Homology, Lemma <a href="/tag/0A2G" data-tag="0A2G">12.30.3</a> (and this is where we use that $\mathcal{D}'$ is Karoubian) we see that $F|_{X/S} \circ \text{pr}_1 \oplus F|_{Y/S} \circ \text{pr}_2$ being essentially constant implies $F|_{X/S} \circ \text{pr}_1$ and $F|_{Y/S} \circ \text{pr}_2$ are essentially constant proving that $RF$ is defined at $X$ and $Y$. 
+    <p>
+      Proof that the displayed functor is cofinal. To do this pick any $t : X \oplus Y \to Z$ in $S$. Using MS2 we can find morphisms $Z \to X'$, $Z \to Y'$ and $s : X \to X'$, $s' : Y \to Y'$ in $S$ such that 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X \ar[d]^ s &  X \oplus Y \ar[d] \ar[l] \ar[r] &  Y \ar[d]_{s'} \\  X' &  Z \ar[l] \ar[r] &  Y' }  \]
+</div>
+    <p>
+       commutes. This proves there is a map $Z \to X' \oplus Y'$ in $(X \oplus Y)/S$, i.e., we get part (1) of Categories, Definition <a href="/tag/04E6" data-tag="04E6">4.17.1</a>. To prove part (2) it suffices to prove that given $t : X \oplus Y \to Z$ and morphisms $s_ i \oplus s'_ i : Z \to X'_ i \oplus Y'_ i$, $i = 1, 2$ in $(X \oplus Y)/S$ we can find morphisms $a : X'_1 \to X'$, $b : X'_2 \to X'$, $c : Y'_1 \to Y'$, $d : Y'_2 \to Y'$ in $S$ such that $a \circ s_1 = b \circ s_2$ and $c \circ s'_1 = d \circ s'_2$. To do this we first choose any $X'$ and $Y'$ and maps $a, b, c, d$ in $S$; this is possible as $X/S$ and $Y/S$ are filtered. Then the two maps $a \circ s_1, b \circ s_2 : Z \to X'$ become equal in $S^{-1}\mathcal{D}$. Hence we can find a morphism $X' \to X''$ in $S$ equalizing them. Similarly we find $Y' \to Y''$ in $S$ equalizing $c \circ s'_1$ and $d \circ s'_2$. Replacing $X'$ by $X''$ and $Y'$ by $Y''$ we get $a \circ s_1 = b \circ s_2$ and $c \circ s'_1 = d \circ s'_2$. 
+    <p>
+      The proof of the corresponding statements for $LF$ are dual. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="05SE">
+  <p><a class="environment-identifier" href="/tag/05SE">Proposition <span data-tag="05SE">13.14.8</span>.</a> Assumptions and notation as in Situation <a href="/tag/05S8" data-tag="05S8">13.14.1</a>. </p>
+  <p><ol>
+  <li><p>
+The full subcategory $\mathcal{E}$ of $\mathcal{D}$ consisting of objects at which $RF$ is defined is a strictly full triangulated subcategory of $\mathcal{D}$. 
+</p>
+</li><li><p>
+We obtain an exact functor $RF : \mathcal{E} \longrightarrow \mathcal{D}'$ of triangulated categories. 
+</p>
+</li><li><p>
+Elements of $S$ with either source or target in $\mathcal{E}$ are morphisms of $\mathcal{E}$. 
+</p>
+</li><li><p>
+Any element of $S_\mathcal {E} = \text{Arrows}(\mathcal{E}) \cap S$ is mapped to an isomorphism by $RF$. 
+</p>
+</li><li><p>
+The set $S_\mathcal {E}$ is a saturated multiplicative system in $\mathcal{E}$ compatible with the triangulated structure. 
+</p>
+</li><li><p>
+The functor $S_\mathcal {E}^{-1}\mathcal{E} \to S^{-1}\mathcal{D}$ is a fully faithful exact functor of triangulated categories. 
+</p>
+</li><li><p>
+We obtain an exact functor 
+</p>
+<div class="equation">
+  \[  RF : S_\mathcal {E}^{-1}\mathcal{E} \longrightarrow \mathcal{D}'.  \]
+</div>
+</li><li><p>
+If $\mathcal{D}'$ is Karoubian, then $\mathcal{E}$ is a saturated triangulated subcategory of $\mathcal{D}$. 
+</p>
+</li>
+</ol></p>
+  <p> A similar result holds for $LF$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $S$ is saturated it contains all isomorphisms (see remark following Categories, Definition <a href="/tag/05Q8" data-tag="05Q8">4.27.20</a>). Hence (1) follows from Lemmas <a href="/tag/05SB" data-tag="05SB">13.14.4</a>, <a href="/tag/05SC" data-tag="05SC">13.14.6</a>, and <a href="/tag/05SU" data-tag="05SU">13.14.5</a>. We get (2) from Lemmas <a href="/tag/05SA" data-tag="05SA">13.14.3</a>, <a href="/tag/05SU" data-tag="05SU">13.14.5</a>, and <a href="/tag/05SC" data-tag="05SC">13.14.6</a>. We get (3) from Lemma <a href="/tag/05SB" data-tag="05SB">13.14.4</a>. Part (4) follows from Lemma <a href="/tag/05SB" data-tag="05SB">13.14.4</a>. Part (5) follows from the definitions and part (3). The fully faithfulness in (6) follows from (3) and the definitions. The fact that $S_\mathcal {E}^{-1}\mathcal{E} \to S^{-1}\mathcal{D}$ is exact follows from the fact that a triangle in $S_\mathcal {E}^{-1}\mathcal{E}$ is distinguished if and only if it is isomorphic to the image of a distinguished triangle in $\mathcal{E}$, see proof of Proposition <a href="/tag/05R6" data-tag="05R6">13.5.6</a>. The factorization of $RF : \mathcal{E} \to \mathcal{D}'$ through an exact functor $S_\mathcal {E}^{-1}\mathcal{E} \to \mathcal{D}'$ follows from Lemma <a href="/tag/05R7" data-tag="05R7">13.5.7</a>. Finally, part (8) follows from Lemma <a href="/tag/05SD" data-tag="05SD">13.14.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Proposition <a href="/tag/05SE" data-tag="05SE">13.14.8</a> tells us that $RF$ lives on a maximal strictly full triangulated subcategory of $S^{-1}\mathcal{D}$ and is an exact functor on this triangulated category. Picture: 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathcal{D} \ar[d]_ Q \ar[rrr]_ F &  &  &  \mathcal{D}' \\  S^{-1}\mathcal{D} &  &  S_\mathcal {E}^{-1}\mathcal{E} \ar[ll]_{\text{fully faithful}}^{\text{exact}} \ar[ur]_{RF} }  \]
+</div>
+<p>
+<article class="env-definition" id="05SV">
+  <p><a class="environment-identifier" href="/tag/05SV">Definition <span data-tag="05SV">13.14.9</span>.</a> In Situation <a href="/tag/05S8" data-tag="05S8">13.14.1</a>. We say $F$ is <em>right derivable</em>, or that $RF$ <em>everywhere defined</em> if $RF$ is defined at every object of $\mathcal{D}$. We say $F$ is <em>left derivable</em>, or that $LF$ <em>everywhere defined</em> if $LF$ is defined at every object of $\mathcal{D}$. </p>
+</article> 
+</p>
+<p>
+In this case we obtain a right (resp. left) derived functor 
+</p>
+<div class="equation" id="05SW">
+    <span class="equation-label"><a href="/tag/05SW" data-tag="05SW">13.14.9.1</a></span>
+  <div>\begin{equation}  \label{derived-equation-everywhere} RF : S^{-1}\mathcal{D} \longrightarrow \mathcal{D}', \quad \text{(resp. } LF : S^{-1}\mathcal{D} \longrightarrow \mathcal{D}'), \end{equation}</div>
+</div>
+<p>
+ see Proposition <a href="/tag/05SE" data-tag="05SE">13.14.8</a>. In most interesting situations it is not the case that $RF \circ Q$ is equal to $F$. In fact, it might happen that the canonical map $F(X) \to RF(X)$ is never an isomorphism. In practice this does not happen, because in practice we only know how to prove $F$ is right derivable by showing that $RF$ can be computed by evaluating $F$ at judiciously chosen objects of the triangulated category $\mathcal{D}$. This warrants a definition. 
+</p>
+<p>
+<article class="env-definition" id="05SX">
+  <p><a class="environment-identifier" href="/tag/05SX">Definition <span data-tag="05SX">13.14.10</span>.</a> In Situation <a href="/tag/05S8" data-tag="05S8">13.14.1</a>. </p>
+  <p><ol>
+  <li><p>
+An object $X$ of $\mathcal{D}$ <em>computes</em> $RF$ if $RF$ is defined at $X$ and the canonical map $F(X) \to RF(X)$ is an isomorphism. 
+</p>
+</li><li><p>
+An object $X$ of $\mathcal{D}$ <em>computes</em> $LF$ if $LF$ is defined at $X$ and the canonical map $LF(X) \to F(X)$ is an isomorphism. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="05SY">
+  <p><a class="environment-identifier" href="/tag/05SY">Lemma <span data-tag="05SY">13.14.11</span>.</a> Assumptions and notation as in Situation <a href="/tag/05S8" data-tag="05S8">13.14.1</a>. Let $X$ be an object of $\mathcal{D}$ and $n \in \mathbf{Z}$. </p>
+  <p><ol>
+  <li><p>
+$X$ computes $RF$ if and only if $X[n]$ computes $RF$. 
+</p>
+</li><li><p>
+$X$ computes $LF$ if and only if $X[n]$ computes $LF$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="05SZ">
+  <p><a class="environment-identifier" href="/tag/05SZ">Lemma <span data-tag="05SZ">13.14.12</span>.</a> Assumptions and notation as in Situation <a href="/tag/05S8" data-tag="05S8">13.14.1</a>. Let $(X, Y, Z, f, g, h)$ be a distinguished triangle of $\mathcal{D}$. If $X, Y$ compute $RF$ then so does $Z$. Similar for $LF$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/05SC" data-tag="05SC">13.14.6</a> we know that $RF$ is defined at $Z$ and that $RF$ applied to the triangle produces a distinguished triangle. Consider the morphism of distinguished triangles 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ (F(X), F(Y), F(Z), F(f), F(g), F(h)) \ar[d] \\  (RF(X), RF(Y), RF(Z), RF(f), RF(g), RF(h)) }  \]
+</div>
+    <p>
+       Two out of three maps are isomorphisms, hence so is the third. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="05T0">
+  <p><a class="environment-identifier" href="/tag/05T0">Lemma <span data-tag="05T0">13.14.13</span>.</a> Assumptions and notation as in Situation <a href="/tag/05S8" data-tag="05S8">13.14.1</a>. Let $X, Y$ be objects of $\mathcal{D}$. If $X \oplus Y$ computes $RF$, then $X$ and $Y$ compute $RF$. Similarly for $LF$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $X \oplus Y$ computes $RF$, then $RF(X \oplus Y) = F(X) \oplus F(Y)$. In the proof of Lemma <a href="/tag/05SD" data-tag="05SD">13.14.7</a> we have seen that the functor $X/S \times Y/S \to (X \oplus Y)/S$, $(s, s') \mapsto s \oplus s'$ is cofinal. Thus by Categories, Lemma <a href="/tag/0A1S" data-tag="0A1S">4.22.11</a> and by characterization (4) of Categories, Lemma <a href="/tag/05PY" data-tag="05PY">4.22.9</a> we know that for any object $W$ in $\mathcal{D}'$ the map 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _{\mathcal{D}'}(F(X \oplus Y), W) \longrightarrow \mathop{\mathrm{colim}}\nolimits _{s : X \to X', s' : Y \to Y'} \mathop{\mathrm{Hom}}\nolimits _{\mathcal{D}'}(F(X' \oplus Y'), W)  \]
+</div>
+    <p>
+       is bijective. Since this arrow is clearly compatible with direct sum decompositions on both sides, we conclude that the map 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _{\mathcal{D}'}(F(X), W) \longrightarrow \mathop{\mathrm{colim}}\nolimits _{s : X \to X'} \mathop{\mathrm{Hom}}\nolimits _{\mathcal{D}'}(F(X'), W)  \]
+</div>
+    <p>
+       is bijective (minor detail omitted). Thus by Categories, Lemma <a href="/tag/05PY" data-tag="05PY">4.22.9</a> we conclude $RF$ is defined at $X$ with value $F(X)$. Similarly for $Y$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="05T1">
+  <p><a class="environment-identifier" href="/tag/05T1">Lemma <span data-tag="05T1">13.14.14</span>.</a> Assumptions and notation as in Situation <a href="/tag/05S8" data-tag="05S8">13.14.1</a>. </p>
+  <p><ol>
+  <li><p>
+If for every object $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{D})$ there exists an arrow $s : X \to X'$ in $S$ such that $X'$ computes $RF$, then $RF$ is everywhere defined. 
+</p>
+</li><li><p>
+If for every object $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{D})$ there exists an arrow $s : X' \to X$ in $S$ such that $X'$ computes $LF$, then $LF$ is everywhere defined. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is clear from the definitions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06XN">
+  <p><a class="environment-identifier" href="/tag/06XN">Lemma <span data-tag="06XN">13.14.15</span>.</a> Assumptions and notation as in Situation <a href="/tag/05S8" data-tag="05S8">13.14.1</a>. If there exists a subset $\mathcal{I} \subset \mathop{\mathrm{Ob}}\nolimits (\mathcal{D})$ such that </p>
+  <p><ol>
+  <li><p>
+for all $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{D})$ there exists $s : X \to X'$ in $S$ with $X' \in \mathcal{I}$, and 
+</p>
+</li><li><p>
+for every arrow $s : X \to X'$ in $S$ with $X, X' \in \mathcal{I}$ the map $F(s) : F(X) \to F(X')$ is an isomorphism, 
+</p>
+</li>
+</ol></p>
+  <p> then $RF$ is everywhere defined and every $X \in \mathcal{I}$ computes $RF$. Dually, if there exists a subset $\mathcal{P} \subset \mathop{\mathrm{Ob}}\nolimits (\mathcal{D})$ such that </p>
+  <p><ol>
+  <li><p>
+for all $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{D})$ there exists $s : X' \to X$ in $S$ with $X' \in \mathcal{P}$, and 
+</p>
+</li><li><p>
+for every arrow $s : X \to X'$ in $S$ with $X, X' \in \mathcal{P}$ the map $F(s) : F(X) \to F(X')$ is an isomorphism, 
+</p>
+</li>
+</ol></p>
+  <p> then $LF$ is everywhere defined and every $X \in \mathcal{P}$ computes $LF$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $X$ be an object of $\mathcal{D}$. Assumption (1) implies that the arrows $s : X \to X'$ in $S$ with $X' \in \mathcal{I}$ are cofinal in the category $X/S$. Assumption (2) implies that $F$ is constant on this cofinal subcategory. Clearly this implies that $F : (X/S) \to \mathcal{D}'$ is essentially constant with value $F(X')$ for any $s : X \to X'$ in $S$ with $X' \in \mathcal{I}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="05T2">
+  <p><a class="environment-identifier" href="/tag/05T2">Lemma <span data-tag="05T2">13.14.16</span>.</a> Let $\mathcal{A}, \mathcal{B}, \mathcal{C}$ be triangulated categories. Let $S$, resp. $S'$ be a saturated multiplicative system in $\mathcal{A}$, resp. $\mathcal{B}$ compatible with the triangulated structure. Let $F : \mathcal{A} \to \mathcal{B}$ and $G : \mathcal{B} \to \mathcal{C}$ be exact functors. Denote $F' : \mathcal{A} \to (S')^{-1}\mathcal{B}$ the composition of $F$ with the localization functor. </p>
+  <p><ol>
+  <li><p>
+If $RF'$, $RG$, $R(G \circ F)$ are everywhere defined, then there is a canonical transformation of functors $t : R(G \circ F) \longrightarrow RG \circ RF'$. 
+</p>
+</li><li><p>
+If $LF'$, $LG$, $L(G \circ F)$ are everywhere defined, then there is a canonical transformation of functors $t : LG \circ LF' \to L(G \circ F)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In this proof we try to be careful. Hence let us think of the derived functors as the functors 
+    <p>
+      <div class="equation">
+  \[  RF' : S^{-1}\mathcal{A} \to (S')^{-1}\mathcal{B}, \quad R(G \circ F) : S^{-1}\mathcal{A} \to \mathcal{C}, \quad RG : (S')^{-1}\mathcal{B} \to \mathcal{C}.  \]
+</div>
+    <p>
+       Let us denote $Q_ A : \mathcal{A} \to S^{-1}\mathcal{A}$ and $Q_ B : \mathcal{B} \to (S')^{-1}\mathcal{B}$ the localization functors. Then $F' = Q_ B \circ F$. Note that for every object $Y$ of $\mathcal{B}$ there is a canonical map 
+    <p>
+      <div class="equation">
+  \[  G(Y) \longrightarrow RG(Q_ B(Y))  \]
+</div>
+    <p>
+       in other words, there is a transformation of functors $t' : G \to RG \circ Q_ B$. Let $X$ be an object of $\mathcal{A}$. We have 
+    <p>
+      <div class="equation">
+  \begin{align*}  R(G \circ F)(Q_ A(X)) &  = \mathop{\mathrm{colim}}\nolimits _{s : X \to X' \in S} G(F(X')) \\ &  \xrightarrow {t'} \mathop{\mathrm{colim}}\nolimits _{s : X \to X' \in S} RG(Q_ B(F(X'))) \\ &  = \mathop{\mathrm{colim}}\nolimits _{s : X \to X' \in S} RG(F'(X')) \\ &  = RG(\mathop{\mathrm{colim}}\nolimits _{s : X \to X' \in S} F'(X')) \\ &  = RG(RF'(X)). \end{align*}
+</div>
+    <p>
+       The system $F'(X')$ is essentially constant in the category $(S')^{-1}\mathcal{B}$. Hence we may pull the colimit inside the functor $RG$ in the third equality of the diagram above, see Categories, Lemma <a href="/tag/05SH" data-tag="05SH">4.22.8</a> and its proof. We omit the proof this defines a transformation of functors. The case of left derived functors is similar. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

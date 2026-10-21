@@ -1,0 +1,518 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="categories-section-monoidal" class="tex-section"><span data-tag="0FFJ">4.43</span> Monoidal categories</h2>
+
+<p>
+Let $\mathcal{C}$ be a category. Suppose we are given a functor 
+</p>
+<div class="equation">
+  \[  \otimes : \mathcal{C} \times \mathcal{C} \longrightarrow \mathcal{C}  \]
+</div>
+<p>
+ We often want to know whether $\otimes $ satisfies an associative rule and whether there is a unit for $\otimes $. 
+</p>
+<p>
+An <em>associativity constraint</em> for $(\mathcal{C}, \otimes )$ is a functorial isomorphism 
+</p>
+<div class="equation">
+  \[  \phi _{X, Y, Z} : X \otimes (Y \otimes Z) \to (X \otimes Y) \otimes Z  \]
+</div>
+<p>
+ such that for all objects $X, Y, Z, W$ the diagram 
+</p>
+<div class="equation" id="0HAU">
+    <span class="equation-label"><a href="/tag/0HAU" data-tag="0HAU">4.43.0.1</a></span>
+  <div>\begin{equation}  \label{categories-equation-pentagon} \vcenter { \xymatrix{ X \otimes (Y \otimes ( Z \otimes W)) \ar[r] \ar[d] &  X \otimes ((Y \otimes Z) \otimes W) \ar[d] \\  (X \otimes Y) \otimes (Z \otimes W) \ar[d] &  (X \otimes (Y \otimes Z)) \otimes W \ar[ld] \\  ((X \otimes Y) \otimes Z) \otimes W } } \end{equation}</div>
+</div>
+<p>
+ is commutative where every arrow is determined by a suitable application of $\phi $ and functoriality of $\otimes $. 
+</p>
+<p>
+In <span class="cite">[<span class="postnote">Theorem 3.1</span>, <a href="/bibliography/associativity">associativity</a>]</span> it is explained how a triple $(\mathcal{C}, \otimes , \phi )$ as a above is coherent. A reformulation is that such a triple gives rise to a system of well defined functors 
+</p>
+<div class="equation">
+  \[  \mathcal{C} \times \ldots \times \mathcal{C} \longrightarrow \mathcal{C}, \quad (X_1, \ldots , X_ n) \longmapsto X_1 \otimes \ldots \otimes X_ n  \]
+</div>
+<p>
+ for all $n \geq 1$ and for $n, m \geq 1$ functorial isomorphisms 
+</p>
+<div class="equation">
+  \[  (X_1 \otimes \ldots \otimes X_ n) \otimes (Y_1 \otimes \ldots \otimes Y_ m) \to X_1 \otimes \ldots \otimes X_ n \otimes Y_1 \otimes \ldots \otimes Y_ m  \]
+</div>
+<p>
+ such that all possible diagrams formed from these isomorphisms commute (the pentagram diagram above is an example). For $n = 5$ this means that the expressions 
+</p>
+<div class="equation">
+  \[  \begin{matrix}  (((X_1 \otimes X_2) \otimes X_3) \otimes X_4) \otimes X_5 
+
+&  ((X_1 \otimes (X_2 \otimes X_3)) \otimes X_4) \otimes X_5 
+
+\\  ((X_1 \otimes X_2) \otimes (X_3 \otimes X_4)) \otimes X_5 
+
+&  (X_1 \otimes ((X_2 \otimes X_3) \otimes X_4)) \otimes X_5 
+
+\\  (X_1 \otimes (X_2 \otimes (X_3 \otimes X_4))) \otimes X_5 
+
+&  ((X_1 \otimes X_2) \otimes X_3) \otimes (X_4 \otimes X_5) 
+
+\\  (X_1 \otimes (X_2 \otimes X_3)) \otimes (X_4 \otimes X_5) 
+
+&  (X_1 \otimes X_2) \otimes ((X_3 \otimes X_4) \otimes X_5) 
+
+\\  (X_1 \otimes X_2) \otimes (X_3 \otimes (X_4 \otimes X_5)) 
+
+&  X_1 \otimes (((X_2 \otimes X_3) \otimes X_4) \otimes X_5) 
+
+\\  X_1 \otimes ((X_2 \otimes (X_3 \otimes X_4)) \otimes X_5) 
+
+&  X_1 \otimes ((X_2 \otimes X_3) \otimes (X_4 \otimes X_5)) 
+
+\\  X_1 \otimes (X_2 \otimes ((X_3 \otimes X_4) \otimes X_5)) 
+
+&  X_1 \otimes (X_2 \otimes (X_3 \otimes (X_4 \otimes X_5))) 
+
+\end{matrix}  \]
+</div>
+<p>
+ are all functorially isomorphic to $X_1 \otimes \ldots \otimes X_5$ and that these isomorphisms are all compatible with all possible isomorphisms one gets between these functors using $\phi $ in 3 consecutive spots (when possible). We will use this without further mention in the following and we will no longer write parentheses when writing iterations of $\otimes $. 
+</p>
+<p>
+A <em>unit</em> for a triple $(\mathcal{C}, \otimes , \phi )$ as above is an object $\mathbf{1}$ of $\mathcal{C}$ together with functorial isomorphisms 
+</p>
+<div class="equation">
+  \[  l : \mathbf{1} \otimes X \to X \quad \text{and}\quad r : X \otimes \mathbf{1} \to X  \]
+</div>
+<p>
+ such that for all objects $X, Y$ the diagram 
+</p>
+<div class="equation" id="0HAV">
+    <span class="equation-label"><a href="/tag/0HAV" data-tag="0HAV">4.43.0.2</a></span>
+  <div>\begin{equation}  \label{categories-equation-triangle} \vcenter { \xymatrix{ X \otimes (\mathbf{1} \otimes Y) \ar[rr]_\phi \ar[rd]_{\text{id} \otimes l} &  &  (X \otimes \mathbf{1}) \otimes Y \ar[ld]^{r \otimes \text{id}} \\  &  X \otimes Y } } \end{equation}</div>
+</div>
+<p>
+ is commutative. We will often think of units as pairs $(\mathbf{1}, 1)$ as in the following lemma. 
+</p>
+<p>
+<article class="env-lemma" id="0HAW">
+  <p><a class="environment-identifier" href="/tag/0HAW">Lemma <span data-tag="0HAW">4.43.1</span>.</a> Let $(\mathcal{C}, \otimes , \phi )$ be as above. There is a 1-to-1 correspondence between units $(\mathbf{1}, l, r)$ in $\mathcal{C}$ and pairs $(\mathbf{1}, 1)$ where $\mathbf{1}$ is an object of $\mathcal{C}$ and $1 : \mathbf{1} \otimes \mathbf{1} \to \mathbf{1}$ is an isomorphism such that the functors $L : X \mapsto \mathbf{1} \otimes X$ and $R : X \mapsto X \otimes \mathbf{1}$ are equivalences. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Given a unit $(\mathbf{1}, l, r)$ we get an isomorpism $r : \mathbf{1} \otimes \mathbf{1} \to \mathbf{1}$ and $L$ and $R$ are equivalences as they are isomorphic to the identity functor. Conversely, suppose given $(\mathbf{1}, 1)$ such that $L$ and $R$ are equivalences. We obtain functorial isomorphisms $l_ X : \mathbf{1} \otimes X \to X$ and $r_ X : X \otimes \mathbf{1} \to X$ characterized by $L(l_ X) = 1 \otimes \text{id}_ X$ and $R(r_ X) = \text{id}_ X \otimes 1$. Then we have to show that the two arrows $\text{id}_ X \otimes l_ Y$ and $r_ X \otimes \text{id}_ Y$ from $X \otimes \mathbf{1} \otimes Y$ to $X \otimes Y$ are the same for all $X$ and $Y$. This property only depends on the isomorphism classes of $X$ and $Y$. Since $R$ and $L$ are equivalences, it suffices to do this for $X = Z \otimes \mathbf{1}$ and $Y = \mathbf{1} \otimes W$ for some objects $Z$ and $W$. In other words, we have to show that 
+    <p>
+      <div class="equation">
+  \[  \text{id}_ Z \otimes \text{id}_\mathbf {1} \otimes l_{\mathbf{1} \otimes W} = r_{Z \otimes \mathbf{1}} \otimes \text{id}_\mathbf {1} \otimes \text{id}_ Y  \]
+</div>
+    <p>
+       By construction these maps are equal to $\text{id}_ Z \otimes 1 \otimes \text{id}_\mathbf {1} \otimes \text{id}_ W$ and $\text{id}_ Z \otimes \text{id}_\mathbf {1} \otimes 1 \otimes \text{id}_ W$. Thus it suffices to show that $1 \otimes \text{id}_\mathbf {1} = \text{id}_\mathbf {1} \otimes 1$. 
+    <p>
+      We have $\text{id}_\mathbf {1} \otimes 1 = r_\mathbf {1} \otimes \text{id}_\mathbf {1}$ and $l_\mathbf {1} \otimes \text{id}_\mathbf {1} = \text{id}_\mathbf {1} \otimes 1$. We may write $r_\mathbf {1} = a \circ 1$ and $l_\mathbf {1} = b \circ 1$ for some $a, b$ automorphisms of $\mathbf{1}$. Thus we have $\text{id}_\mathbf {1} \otimes 1 = (a \otimes \text{id}_\mathbf {1}) \circ (1 \otimes \text{id}_\mathbf {1})$ and $1 \otimes \text{id}_\mathbf {1} = (\text{id}_\mathbf {1} \otimes b) \circ (\text{id}_\mathbf {1} \otimes 1)$. Then we can write 
+    <p>
+      <div class="equation">
+  \begin{align*}  (1 \otimes \text{id}_\mathbf {1}) \circ (\text{id}_\mathbf {1} \otimes 1 \otimes \text{id}_\mathbf {1}) &  = (1 \otimes \text{id}_\mathbf {1}) \circ (\text{id}_\mathbf {1} \otimes \text{id}_\mathbf {1} \otimes b) \circ (\text{id}_\mathbf {1} \otimes \text{id}_\mathbf {1} \otimes 1) \\ &  = (\text{id}_\mathbf {1} \otimes b) \circ (1 \otimes \text{id}_\mathbf {1}) \circ (\text{id}_\mathbf {1} \otimes \text{id}_\mathbf {1} \otimes 1) \\ &  = (\text{id}_\mathbf {1} \otimes b) \circ (1 \otimes 1) \end{align*}
+</div>
+    <p>
+       and we also have 
+    <p>
+      <div class="equation">
+  \begin{align*}  (1 \otimes \text{id}_\mathbf {1}) \circ (\text{id}_\mathbf {1} \otimes 1 \otimes \text{id}_\mathbf {1}) &  = (\text{id}_\mathbf {1} \otimes b) \circ (\text{id}_\mathbf {1} \otimes 1) \circ (a \otimes \text{id}_\mathbf {1} \otimes \text{id}_\mathbf {1}) \circ (1 \otimes \text{id}_\mathbf {1} \otimes \text{id}_\mathbf {1}) \\ &  = (\text{id}_\mathbf {1} \otimes b) \circ (a \otimes \text{id}_\mathbf {1}) \circ (1 \otimes 1) \end{align*}
+</div>
+    <p>
+       This proves that $a \otimes \text{id}_\mathbf {1}$ is the identity and hence $a$ is the identity as desired. 
+    <p>
+      To finish the proof, we note that the rules above determine inverse equivalences of categories between the category of units (suitably defined) and the category of pairs $(\mathbf{1}, 1)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0HAX">
+  <p><a class="environment-identifier" href="/tag/0HAX">Lemma <span data-tag="0HAX">4.43.2</span>.</a> Let $(\mathcal{C}, \otimes , \phi )$ be as above. Let $(\mathbf{1}, 1)$ be a unit (see Lemma <a href="/tag/0HAW" data-tag="0HAW">4.43.1</a>). Then </p>
+  <p><ol>
+  <li><p>
+$1 \otimes \text{id}_\mathbf {1} = \text{id}_\mathbf {1} \otimes 1$ 
+</p>
+</li><li><p>
+$\Gamma = \text{Mor}(\mathbf{1}, \mathbf{1})$ is a commutative monoid, 
+</p>
+</li><li><p>
+$a = 1 \circ (a \otimes \text{id}_\mathbf {1}) \circ 1^{-1} = 1 \circ (\text{id}_\mathbf {1} \otimes a) \circ 1^{-1}$ for all $a \in \Gamma $, 
+</p>
+</li><li><p>
+any other unit is isomorphic to $(\mathbf{1}, 1)$ by a unique isomorphism. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Part (1) was shown in the proof of Lemma <a href="/tag/0HAW" data-tag="0HAW">4.43.1</a>. For $a \in \Gamma $ we have 
+    <p>
+      <div class="equation">
+  \begin{align*}  (1 \circ (a \otimes \text{id}_\mathbf {1})) \otimes \text{id}_\mathbf {1} &  = (1 \otimes \text{id}_\mathbf {1}) \circ (a \otimes \text{id}_\mathbf {1} \otimes \text{id}_\mathbf {1}) \\ &  = (\text{id}_\mathbf {1} \otimes 1) \circ (a \otimes \text{id}_\mathbf {1} \otimes \text{id}_\mathbf {1}) \\ &  = (a \otimes \text{id}_\mathbf {1}) \circ (\text{id}_\mathbf {1} \otimes 1) \\ &  = (a \otimes \text{id}_\mathbf {1}) \circ (1 \otimes \text{id}_\mathbf {1}) \\ &  = (a \circ 1) \otimes \text{id}_\mathbf {1} \end{align*}
+</div>
+    <p>
+       Thus $1 \circ (a \otimes \text{id}_\mathbf {1}) = a \circ 1$ and this implies one half of (3). The other half follows in the same way. To see (2) we observe that for $a, b \in \Gamma $ we have 
+    <p>
+      <div class="equation">
+  \[  a \circ b = 1 \circ (a \otimes \text{id}_\mathbf {1}) \circ 1^{-1} \circ 1 \circ (\text{id}_\mathbf {1} \otimes b) \circ 1^{-1} = 1 \circ (a \otimes b) \circ \circ 1^{-1}  \]
+</div>
+    <p>
+       and $b \circ a$ evaluates to the same expression. Thus (2) holds. To see (4) suppose that $(\mathbf{1}', 1')$ is a second unit. Using $r$ and $l'$ there are isomorphisms $\mathbf{1}' \otimes \mathbf{1} \to \mathbf{1}'$ and $\mathbf{1}' \otimes \mathbf{1} \to \mathbf{1}$. Thus there exists an isomorphism $t : \mathbf{1}' \to \mathbf{1}$. Then the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathbf{1}' \otimes \mathbf{1}' \ar[r]_{t \otimes t} \ar[d]_{1'} &  \mathbf{1} \otimes \mathbf{1} \ar[d]^1 \\  \mathbf{1}' \ar[r]^ t &  \mathbf{1} }  \]
+</div>
+    <p>
+       commutes up to an automorphism $a$ of $\mathbf{1}$. After replacing $t$ by $a \circ t$ the diagram will commute (hint: use (3) to see that $1 \circ (a \otimes a) = a^2 \circ 1$). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="0FFK">
+  <p><a class="environment-identifier" href="/tag/0FFK">Definition <span data-tag="0FFK">4.43.3</span>.</a> A triple $(\mathcal{C}, \otimes , \phi )$ where $\mathcal{C}$ is a category, $\otimes : \mathcal{C} \times \mathcal{C} \to \mathcal{C}$ is a functor, and $\phi $ is an associativity constraint is called a <em>monoidal category</em> if there exists a unit $\mathbf{1}$. </p>
+</article> 
+</p>
+<p>
+We always write $\mathbf{1}$ to denote a unit of a monoidal category and we denote $1 : \mathbf{1} \otimes \mathbf{1} \to \mathbf{1}$ a chosen isomorphism; as the pair $(\mathbf{1}, 1)$ is determined up to unique isomorphism (Lemma <a href="/tag/0HAX" data-tag="0HAX">4.43.2</a>) there is no harm in choosing one. 
+</p>
+<p>
+<article class="env-lemma" id="0HAY">
+  <p><a class="environment-identifier" href="/tag/0HAY">Lemma <span data-tag="0HAY">4.43.4</span>.</a> In a monoidal category $\mathcal{C}, \otimes , \phi , \mathbf{1}, 1$ and with notation as in the proof of Lemma <a href="/tag/0HAW" data-tag="0HAW">4.43.1</a> we have </p>
+  <p><ol>
+  <li><p>
+the arrows $1, r_\mathbf {1}, l_\mathbf {1} : \mathbf{1} \otimes \mathbf{1} \to \mathbf{1}$ agree, 
+</p>
+</li><li><p>
+the arrows $l_ X \otimes \text{id}_ Y, l_{X \otimes Y} : \mathbf{1} \otimes X \otimes Y \to X \otimes Y$ agree, and 
+</p>
+</li><li><p>
+the arrows $\text{id}_ X \otimes r_ Y , r_{X \otimes Y} : X \otimes Y \otimes \mathbf{1} \to X \otimes Y$ agree. 
+</p>
+</li>
+</ol></p>
+  <p> A monoidal category satisfies the assumptions of <span class="cite">[<span class="postnote">Theorem 5.2</span>, <a href="/bibliography/associativity">associativity</a>]</span>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We have seen (1) in the proof of Lemma <a href="/tag/0HAW" data-tag="0HAW">4.43.1</a>. We have seen in the proof of Lemma <a href="/tag/0HAW" data-tag="0HAW">4.43.1</a> that $l_ X$ and $l_{X \otimes Y}$ are the unique morphisms such that $\text{id}_\mathbf {1} \otimes l_{X \otimes Y} = 1 \otimes \text{id}_{X \otimes Y}$ and $\text{id}_\mathbf {1} \otimes l_ X = 1 \otimes \text{id}_ X$. Part (2) follows immediately. Part (3) is proved in a similar manner. Jointly with the commutativity of (<a href="/tag/0HAU" data-tag="0HAU">4.43.0.1</a>) and (<a href="/tag/0HAV" data-tag="0HAV">4.43.0.2</a>) this means the final statement of the lemma holds. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In <span class="cite">[<span class="postnote">Theorem 5.2</span>, <a href="/bibliography/associativity">associativity</a>]</span> it is explained how a quintuple $(\mathcal{C}, \otimes , \phi , \mathbf{1}, 1)$ as in the lemma above is coherent. A reformulation is that in a monoidal category (in our sense) for every $n \geq i \geq 0$ we have functorial isomorphisms 
+</p>
+<div class="equation">
+  \[  X_1 \otimes \ldots \otimes X_ i \otimes \mathbf{1} \otimes X_{i + 1} \otimes \ldots \otimes X_ n \to X_1 \otimes \ldots \otimes X_ n  \]
+</div>
+<p>
+ such that all possible diagrams formed from these isomorphisms commute. So for example starting with two insertions of $\mathbf{1}$ and using the isomorphisms in different order would result in the same morphism. Besides the convention on removing parentheses when writing iterates of $\otimes $, from now on we identify $X \otimes \mathbf{1}$ and $\mathbf{1} \otimes X$ with $X$ without further mention. Moreover, we will say “let $\mathcal{C}$ be a monoidal category” with $\otimes , \phi , \mathbf{1}$ understood. 
+</p>
+<p>
+<article class="env-definition" id="0FFL">
+  <p><a class="environment-identifier" href="/tag/0FFL">Definition <span data-tag="0FFL">4.43.5</span>.</a> Let $\mathcal{C}$ and $\mathcal{C}'$ be monoidal categories. A <em>functor of monoidal categories</em> $F : \mathcal{C} \to \mathcal{C}'$ is given by a functor $F$ as indicated and an isomorphism </p>
+  <div class="equation">
+  \[  F(X) \otimes F(Y) \to F(X \otimes Y)  \]
+</div>
+  <p> functorial in $X$ and $Y$ such that for all objects $X$, $Y$, and $Z$ the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ F(X) \otimes (F(Y) \otimes F(Z)) \ar[r] \ar[d] &  F(X) \otimes F(Y \otimes Z) \ar[r] &  F(X \otimes (Y \otimes Z)) \ar[d] \\  (F(X) \otimes F(Y)) \otimes F(Z) \ar[r] &  F(X \otimes Y) \otimes F(Z) \ar[r] &  F((X \otimes Y) \otimes Z) }  \]
+</div>
+  <p> commutes and such that $F(\mathbf{1})$ is a unit in $\mathcal{C}'$. </p>
+</article> 
+</p>
+<p>
+By our conventions about units, we may always assume $F(\mathbf{1}) = \mathbf{1}$ if $F$ is a functor of monoidal categories. As an example, if $A \to B$ is a ring homomorphism, then the functor $M \mapsto M \otimes _ A B$ is functor of monoidal categories from $\text{Mod}_ A$ to $\text{Mod}_ B$. 
+</p>
+<p>
+<article class="env-lemma" id="0FFM">
+  <p><a class="environment-identifier" href="/tag/0FFM">Lemma <span data-tag="0FFM">4.43.6</span>.</a> Let $\mathcal{C}$ be a monoidal category. Let $X$ be an object of $\mathcal{C}$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+the functor $L : Y \mapsto X \otimes Y$ is an equivalence, 
+</p>
+</li><li><p>
+the functor $R : Y \mapsto Y \otimes X$ is an equivalence, 
+</p>
+</li><li><p>
+there exists an object $X'$ such that $X \otimes X' \cong X' \otimes X \cong \mathbf{1}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume (1). Choose $X'$ such that $L(X') = \mathbf{1}$, i.e., $X \otimes X' \cong \mathbf{1}$. Denote $L'$ and $R'$ the functors corresponding to $X'$. The equation $X \otimes X' \cong \mathbf{1}$ implies $L \circ L' \cong \text{id}$. Thus $L'$ must be the quasi-inverse to $L$ (which exists by assumption). Hence $L' \circ L \cong \text{id}$. Hence $X' \otimes X \cong \mathbf{1}$. Thus (3) holds. 
+    <p>
+      The proof of (2) $\Rightarrow $ (3) is dual to what we just said. 
+    <p>
+      Assume (3). Then it is clear that $L'$ and $L$ are quasi-inverse to each other and it is clear that $R'$ and $R$ are quasi-inverse to each other. Thus (1) and (2) hold. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="0FFN">
+  <p><a class="environment-identifier" href="/tag/0FFN">Definition <span data-tag="0FFN">4.43.7</span>.</a> Let $\mathcal{C}$ be a monoidal category. An object $X$ of $\mathcal{C}$ is called <em>invertible</em> if any (or all) of the equivalent conditions of Lemma <a href="/tag/0FFM" data-tag="0FFM">4.43.6</a> hold. </p>
+</article> 
+</p>
+<p>
+Observe that if $F : \mathcal{C} \to \mathcal{C}'$ is a functor of monoidal categories, then $F$ sends invertible objects to invertible objects. 
+</p>
+<p>
+<article class="env-definition" id="0FFP">
+  <p><a class="environment-identifier" href="/tag/0FFP">Definition <span data-tag="0FFP">4.43.8</span>.</a> Given a monoidal category $(\mathcal{C}, \otimes , \phi )$ and an object $X$ a <em>left dual</em> is an object $Y$ together with morphisms $\eta : \mathbf{1} \to X \otimes Y$ and $\epsilon : Y \otimes X \to \mathbf{1}$ such that the diagrams </p>
+  <div class="equation">
+  \[  \vcenter { \xymatrix{ X \ar[rd]_1 \ar[r]_-{\eta \otimes 1} &  X \otimes Y \otimes X \ar[d]^{1 \otimes \epsilon } \\  &  X } } \quad \text{and}\quad \vcenter { \xymatrix{ Y \ar[rd]_1 \ar[r]_-{1 \otimes \eta } &  Y \otimes X \otimes Y \ar[d]^{\epsilon \otimes 1} \\  &  Y } }  \]
+</div>
+  <p> commute. In this situation we say that $X$ is a <em>right dual</em> of $Y$. </p>
+</article> 
+</p>
+<p>
+Observe that if $F : \mathcal{C} \to \mathcal{C}'$ is a functor of monoidal categories, then $F(Y)$ is a left dual of $F(X)$ if $Y$ is a left dual of $X$. 
+</p>
+<p>
+<article class="env-lemma" id="0FFQ">
+  <p><a class="environment-identifier" href="/tag/0FFQ">Lemma <span data-tag="0FFQ">4.43.9</span>.</a> Let $\mathcal{C}$ be a monoidal category. If $Y$ is a left dual to $X$, then </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits (Z' \otimes X, Z) = \mathop{\mathrm{Mor}}\nolimits (Z', Z \otimes Y) \quad \text{and}\quad \mathop{\mathrm{Mor}}\nolimits (Y \otimes Z', Z) = \mathop{\mathrm{Mor}}\nolimits (Z', X \otimes Z)  \]
+</div>
+  <p> functorially in $Z$ and $Z'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider the maps 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits (Z' \otimes X, Z) \to \mathop{\mathrm{Mor}}\nolimits (Z' \otimes X \otimes Y, Z \otimes Y) \to \mathop{\mathrm{Mor}}\nolimits (Z', Z \otimes Y)  \]
+</div>
+    <p>
+       where we use $\eta $ in the second arrow and the sequence of maps 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits (Z', Z \otimes Y) \to \mathop{\mathrm{Mor}}\nolimits (Z' \otimes X, Z \otimes Y \otimes X) \to \mathop{\mathrm{Mor}}\nolimits (Z' \otimes X, Z)  \]
+</div>
+    <p>
+       where we use $\epsilon $ in the second arrow. To show these arrows are mutually inverse, consider a map $a : Z' \to Z \otimes Y$. We have to show that 
+    <p>
+      <div class="equation">
+  \[  Z' \xrightarrow {\text{id}_{Z'} \otimes \eta } Z' \otimes X \otimes Y \xrightarrow {a \otimes \text{id}_{X \otimes Y}} Z \otimes Y \otimes X \otimes Y \xrightarrow {\text{id}_ Z \otimes \epsilon \otimes \text{id}_ Y} Z \otimes Y  \]
+</div>
+    <p>
+       is equal to $a$. The composition of the first two arrows equals $(\text{id}_{Z \otimes Y} \otimes \eta ) \circ a : Z' \to Z \otimes Y \to Z \otimes Y \otimes X \otimes Y$. Then the composition of $\text{id}_{Z \otimes Y} \otimes \eta $ and $\text{id}_ Z \otimes \epsilon \otimes \text{id}_ Y$ equals the identity by definition of the dual. Similarly for the other composition. We omit the proof of the second equality. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0FFR">
+  <p><a class="environment-identifier" href="/tag/0FFR">Remark <span data-tag="0FFR">4.43.10</span>.</a> Lemma <a href="/tag/0FFQ" data-tag="0FFQ">4.43.9</a> says in particular that $Z \mapsto Z \otimes Y$ is the right adjoint of $Z' \mapsto Z' \otimes X$. In particular, uniqueness of adjoint functors guarantees that a left dual of $X$, if it exists, is unique up to unique isomorphism. Conversely, assume the functor $Z \mapsto Z \otimes Y$ is a right adjoint of the functor $Z' \mapsto Z' \otimes X$, i.e., we're given a bijection </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits (Z' \otimes X, Z) \longrightarrow \mathop{\mathrm{Mor}}\nolimits (Z', Z \otimes Y)  \]
+</div>
+  <p> functorial in both $Z$ and $Z'$. The unit of the adjunction produces maps </p>
+  <div class="equation">
+  \[  \eta _ Z : Z \to Z \otimes X \otimes Y  \]
+</div>
+  <p> functorial in $Z$ and the counit of the adjoint produces maps </p>
+  <div class="equation">
+  \[  \epsilon _{Z'} : Z' \otimes Y \otimes X \to Z'  \]
+</div>
+  <p> functorial in $Z'$. In particular, we find $\eta = \eta _\mathbf {1} : \mathbf{1} \to X \otimes Y$ and $\epsilon = \epsilon _\mathbf {1} : Y \otimes X \to \mathbf{1}$. As an exercise in the relationship between units, counits, and the adjunction isomorphism, the reader can show that we have </p>
+  <div class="equation">
+  \[  (\epsilon \otimes \text{id}_ Y) \circ \eta _ Y = \text{id}_ Y \quad \text{and}\quad \epsilon _ X \circ (\eta \otimes \text{id}_ X) = \text{id}_ X  \]
+</div>
+  <p> However, this isn't enough to show that $(\epsilon \otimes \text{id}_ Y) \circ (\text{id}_ Y \otimes \eta ) = \text{id}_ Y$ and $(\text{id}_ X \otimes \epsilon ) \circ (\eta \otimes \text{id}_ X) = \text{id}_ X$, because we don't know in general that $\eta _ Y = \text{id}_ Y \otimes \eta $ and we don't know that $\epsilon _ X = \epsilon \otimes \text{id}_ X$. For this it would suffice to know that our adjunction isomorphism has the following property: for every $W, Z, Z'$ the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{Mor}}\nolimits (Z' \otimes X, Z) \ar[r] \ar[d]_{\text{id}_ W \otimes -} &  \mathop{\mathrm{Mor}}\nolimits (Z', Z \otimes Y) \ar[d]^{\text{id}_ W \otimes -} \\  \mathop{\mathrm{Mor}}\nolimits (W \otimes Z' \otimes X, W \otimes Z) \ar[r] &  \mathop{\mathrm{Mor}}\nolimits (W \otimes Z', W \otimes Z \otimes Y) }  \]
+</div>
+  <p> commutes. If this holds, we will say <em>the adjunction is compatible with the given tensor structure</em>. Thus the requirement that $Z \mapsto Z \otimes Y$ be the right adjoint of $Z' \mapsto Z' \otimes X$ compatible with the given tensor structure is an equivalent formulation of the property of being a left dual. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0FFS">
+  <p><a class="environment-identifier" href="/tag/0FFS">Lemma <span data-tag="0FFS">4.43.11</span>.</a> Let $\mathcal{C}$ be a monoidal category. If $Y_ i$, $i = 1, 2$ are left duals of $X_ i$, $i = 1, 2$, then $Y_2 \otimes Y_1$ is a left dual of $X_1 \otimes X_2$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows from uniqueness of adjoints and Remark <a href="/tag/0FFR" data-tag="0FFR">4.43.10</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+A <em>commutativity constraint</em> for $(\mathcal{C}, \otimes )$ is a functorial isomorphism 
+</p>
+<div class="equation">
+  \[  \psi : X \otimes Y \longrightarrow Y \otimes X  \]
+</div>
+<p>
+ such that the composition 
+</p>
+<div class="equation">
+  \[  X \otimes Y \xrightarrow {\psi } Y \otimes X \xrightarrow {\psi } X \otimes Y  \]
+</div>
+<p>
+ is the identity. We say $\psi $ is <em>compatible</em> with a given associativity constraint $\phi $ if for all objects $X, Y, Z$ the diagram 
+</p>
+<div class="equation" id="0HAZ">
+    <span class="equation-label"><a href="/tag/0HAZ" data-tag="0HAZ">4.43.11.1</a></span>
+  <div>\begin{equation}  \label{categories-equation-hexagon} \vcenter { \xymatrix{ X \otimes (Y \otimes Z) \ar[r]_\phi \ar[d]^\psi &  (X \otimes Y) \otimes Z \ar[r]_\psi &  Z \otimes (X \otimes Y) \ar[d]^\phi \\  X \otimes (Z \otimes Y) \ar[r]^\phi &  (X \otimes Z) \otimes Y \ar[r]^\psi &  (Z \otimes X) \otimes Y } } \end{equation}</div>
+</div>
+<p>
+ commutes. 
+</p>
+<p>
+<article class="env-definition" id="0FFW">
+  <p><a class="environment-identifier" href="/tag/0FFW">Definition <span data-tag="0FFW">4.43.12</span>.</a> A quadruple $(\mathcal{C}, \otimes , \phi , \psi )$ where $\mathcal{C}$ is a category, $\otimes : \mathcal{C} \otimes \mathcal{C} \to \mathcal{C}$ is a functor, $\phi $ is an associativity constraint, and $\psi $ is a commutativity constraint compatible with $\phi $ is called a <em>symmetric monoidal category</em> if there exists a unit. </p>
+</article> 
+</p>
+<p>
+To be sure, if $(\mathcal{C}, \otimes , \phi , \psi )$ is a symmetric monoidal category, then $(\mathcal{C}, \otimes , \phi )$ is a monoidal category and we may use the language and notation discussed above. 
+</p>
+<p>
+<article class="env-lemma" id="0HB0">
+  <p><a class="environment-identifier" href="/tag/0HB0">Lemma <span data-tag="0HB0">4.43.13</span>.</a> In a symmetric monoidal category $\mathcal{C}, \otimes , \phi , \psi , \mathbf{1}, 1$ we have </p>
+  <p><ol>
+  <li><p>
+the arrows $1 \circ \psi , 1 : \mathbf{1} \otimes \mathbf{1} \to \mathbf{1}$ agree, 
+</p>
+</li><li><p>
+the arrows $\text{id}_ X \otimes l_ Y, (l_ X \otimes \text{id}) \circ (\psi \otimes \text{id}_ Y): X \otimes \mathbf{1} \otimes Y \to X \otimes Y$ agree, 
+</p>
+</li>
+</ol></p>
+  <p> A symmetric monoidal category satisfies the assumptions of <span class="cite">[<span class="postnote">Theorem 5.1</span>, <a href="/bibliography/associativity">associativity</a>]</span>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We may write $\psi = a \otimes \text{id}_\mathbf {1}$ for a unique isomorphism $a : \mathbf{1} \to \mathbf{1}$. Lemma <a href="/tag/0HAX" data-tag="0HAX">4.43.2</a> implies that $a \otimes \text{id}_\mathbf {1} = \text{id}_\mathbf {1} \otimes a$. Functoriality of $\psi $ says that the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ (\mathbf{1} \otimes \mathbf{1}) \otimes \mathbf{1} \ar[r]_\psi \ar[d]_{1 \otimes \text{id}_\mathbf {1}} &  \mathbf{1} \otimes (\mathbf{1} \otimes \mathbf{1}) \ar[d]^{\text{id}_\mathbf {1} \otimes 1} \\  \mathbf{1} \otimes \mathbf{1} \ar[r]^\psi &  \mathbf{1} \otimes \mathbf{1} }  \]
+</div>
+    <p>
+       commutes. Thus the top arrow is equal to $a \otimes \text{id}_\mathbf {1} \otimes \text{id}_\mathbf {1}$. Thus (<a href="/tag/0HAZ" data-tag="0HAZ">4.43.11.1</a>) for $X = Y = Z = \mathbf{1}$ says that $a \otimes \text{id}_\mathbf {1} \otimes \text{id}_\mathbf {1}$ is equal to its own square. Hence $a = \text{id}_\mathbf {1}$. This proves (1). 
+    <p>
+      Part (2) states that $\psi : X \otimes \mathbf{1} \to \mathbf{1} \otimes X$ is the identity, if we identify the source and the target with $X$ in our monoidal category. This follows from the commutativity of (<a href="/tag/0HAZ" data-tag="0HAZ">4.43.11.1</a>) for $\mathbf{1}, X, \mathbf{1}$, namely 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathbf{1} \otimes (X \otimes \mathbf{1}) \ar[r]_\phi \ar[d]^\psi &  (\mathbf{1} \otimes X) \otimes \mathbf{1} \ar[r]_\psi &  \mathbf{1} \otimes (\mathbf{1} \otimes X) \ar[d]^\phi \\  \mathbf{1} \otimes (\mathbf{1} \otimes X) \ar[r]^\phi &  (\mathbf{1} \otimes \mathbf{1}) \otimes X \ar[r]^\psi &  (\mathbf{1} \otimes \mathbf{1}) \otimes X }  \]
+</div>
+    <p>
+       commutes and we know all but one of the morphisms $\psi $ in this diagram are equal to the identity. 
+    <p>
+      In addition to (1) and (2) the commutativity of the diagrams (<a href="/tag/0HAU" data-tag="0HAU">4.43.0.1</a>), (<a href="/tag/0HAV" data-tag="0HAV">4.43.0.2</a>), (<a href="/tag/0HAZ" data-tag="0HAZ">4.43.11.1</a>) and the results of Lemma <a href="/tag/0HAY" data-tag="0HAY">4.43.4</a> imply the final statement of the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In <span class="cite">[<span class="postnote">Theorem 5.1</span>, <a href="/bibliography/associativity">associativity</a>]</span> it is explained how a sextuple $(\mathcal{C}, \otimes , \phi , \psi , \mathbf{1}, 1)$ as in the lemma above is coherent. A reformulation is that in a symmetric monoidal category (in our sense) for every $n \geq 1$ and permutation $\sigma $ of $\{ 1, \ldots , n\} $ we have functorial isomorphisms 
+</p>
+<div class="equation">
+  \[  X_1 \otimes \ldots \otimes X_ n \to X_{\sigma (1)} \otimes \ldots \otimes X_{\sigma (n)}  \]
+</div>
+<p>
+ such that all possible diagrams formed from these isomorphisms commute and these isomorphisms are compatible with the structure of a monoidal category (e.g., with the isomorphisms when we insert a $\mathbf{1}$ in a slot). 
+</p>
+<p>
+<article class="env-lemma" id="0FN8">
+  <p><a class="environment-identifier" href="/tag/0FN8">Lemma <span data-tag="0FN8">4.43.14</span>.</a> Let $(\mathcal{C}, \otimes , \phi , \psi )$ be a symmetric monoidal category. Let $X$ be an object of $\mathcal{C}$ and let $Y$, $\eta : \mathbf{1} \to X \otimes Y$, and $\epsilon : Y \otimes X \to \mathbf{1}$ be a left dual of $X$ as in Definition <a href="/tag/0FFP" data-tag="0FFP">4.43.8</a>. Then $\eta ' = \psi \circ \eta : \mathbf{1} \to Y \otimes X$ and $\epsilon ' = \epsilon \circ \psi : X \otimes Y \to \mathbf{1}$ makes $X$ into a left dual of $Y$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. Hint: pleasant exercise in the definitions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="0FFY">
+  <p><a class="environment-identifier" href="/tag/0FFY">Definition <span data-tag="0FFY">4.43.15</span>.</a> Let $\mathcal{C}$ and $\mathcal{C}'$ be symmetric monoidal categories. A <em>functor of symmetric monoidal categories</em> $F : \mathcal{C} \to \mathcal{C}'$ is given by a functor $F$ as indicated and an isomorphism </p>
+  <div class="equation">
+  \[  F(X) \otimes F(Y) \to F(X \otimes Y)  \]
+</div>
+  <p> functorial in $X$ and $Y$ such that $F$ is a functor of monoidal categories and such that for all objects $X$ and $Y$ the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ F(X) \otimes F(Y) \ar[r] \ar[d] &  F(X \otimes Y) \ar[d] \\  F(Y) \otimes F(X) \ar[r] &  F(Y \otimes X) }  \]
+</div>
+  <p> commutes. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="0GWJ">
+  <p><a class="environment-identifier" href="/tag/0GWJ">Remark <span data-tag="0GWJ">4.43.16</span>.</a> Let $\mathcal{C}$ be a monoidal category. We say $\mathcal{C}$ has an <em>internal hom</em> if for every pair of objects $X, Y$ of $\mathcal{C}$ there is an object $hom(X, Y)$ of $\mathcal{C}$ such that we have </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits (X, hom(Y, Z)) = \mathop{\mathrm{Mor}}\nolimits (X \otimes Y, Z)  \]
+</div>
+  <p> functorially in $X, Y, Z$. By the Yoneda lemma the bifunctor $(X, Y) \mapsto hom(X, Y)$ is determined up to unique isomorphism if it exists. Given an internal hom we obtain canonical maps </p>
+  <p><ol>
+  <li><p>
+$hom(X, Y) \otimes X \to Y$, 
+</p>
+</li><li><p>
+$hom(Y, Z) \otimes hom(X, Y) \to hom(X, Z)$, 
+</p>
+</li><li><p>
+$Z \otimes hom(X, Y) \to hom(X, Z \otimes Y)$, 
+</p>
+</li><li><p>
+$Y \to hom(X, Y \otimes X)$, and 
+</p>
+</li><li><p>
+$hom(Y, Z) \otimes X \to hom(hom(X, Y), Z)$ in case $\mathcal{C}$ is symmetric monoidal. 
+</p>
+</li>
+</ol></p>
+  <p> Namely, the map in (1) is the image of $\text{id}_{hom(X, Y)}$ by $\mathop{\mathrm{Mor}}\nolimits (hom(X, Y), hom(X, Y)) \to \mathop{\mathrm{Mor}}\nolimits (hom(X, Y) \otimes X, Y)$. To construct the map in (2) by the defining property of $hom(X, Z)$ we need to construct a map </p>
+  <div class="equation">
+  \[  hom(Y, Z) \otimes hom(X, Y) \otimes X \longrightarrow Z  \]
+</div>
+  <p> and such a map exists since by (1) we have maps $hom(X, Y) \otimes X \to Y$ and $hom(Y, Z) \otimes Y \to Z$. To construct the map in (3) by the defining property of $hom(X, Z \otimes Y)$ we need to construct a map </p>
+  <div class="equation">
+  \[  Z \otimes hom(X, Y) \otimes X \to Z \otimes Y  \]
+</div>
+  <p> for which we use $\text{id}_ Z \otimes a$ where $a$ is the map in (1). To construct the map in (4) we note that we already have the map $Y \otimes hom(X, X) \to hom(X, Y \otimes X)$ by (3). Thus it suffices to construct a map $\mathbf{1} \to hom(X, X)$ and for this we take the element in $\mathop{\mathrm{Mor}}\nolimits (\mathbf{1}, hom(X, X))$ corresponding to the canonical isomorphism $\mathbf{1} \otimes X \to X$ in $\mathop{\mathrm{Mor}}\nolimits (\mathbf{1} \otimes X, X)$. Finally, we come to (5). By the universal property of $hom(hom(X, Y), Z)$ it suffices to construct a map </p>
+  <div class="equation">
+  \[  hom(Y, Z) \otimes X \otimes hom(X, Y) \longrightarrow Z  \]
+</div>
+  <p> We do this by swapping the last two tensor products using the commutativity constraint and then using the maps $hom(X, Y) \otimes X \to Y$ and $hom(Y, Z) \otimes Y \to Z$. </p>
+</article> 
+</p>

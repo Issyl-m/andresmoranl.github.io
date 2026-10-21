@@ -1,0 +1,89 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="algebra-section-mittag-leffler" class="tex-section"><span data-tag="0594">10.86</span> Mittag-Leffler systems</h2>
+
+<p>
+The purpose of this section is to define Mittag-Leffler systems and why this is a useful notion. 
+</p>
+<p>
+In the following, $I$ will be a directed set, see Categories, Definition <a href="/tag/00D3" data-tag="00D3">4.21.1</a>. Let $(A_ i, \varphi _{ji}: A_ j \to A_ i)$ be an inverse system of sets or of modules indexed by $I$, see Categories, Definition <a href="/tag/0031" data-tag="0031">4.21.4</a>. This is a directed inverse system as we assumed $I$ directed (Categories, Definition <a href="/tag/0031" data-tag="0031">4.21.4</a>). For each $i \in I$, the images $\varphi _{ji}(A_ j) \subset A_ i$ for $j \geq i$ form a decreasing directed family of subsets (or submodules) of $A_ i$. Let $A'_ i = \bigcap _{j \geq i} \varphi _{ji}(A_ j)$. Then $\varphi _{ji}(A'_ j) \subset A'_ i$ for $j \geq i$, hence by restricting we get a directed inverse system $(A'_ i, \varphi _{ji}|_{A'_ j})$. From the construction of the limit of an inverse system in the category of sets or modules, we have $\mathop{\mathrm{lim}}\nolimits A_ i = \mathop{\mathrm{lim}}\nolimits A'_ i$. The Mittag-Leffler condition on $(A_ i, \varphi _{ji})$ is that $A'_ i$ equals $\varphi _{ji}(A_ j)$ for some $j \geq i$ (and hence equals $\varphi _{ki}(A_ k)$ for all $k \geq j$): 
+</p>
+<p>
+<article class="env-definition" id="0595">
+  <p><a class="environment-identifier" href="/tag/0595">Definition <span data-tag="0595">10.86.1</span>.</a> Let $(A_ i, \varphi _{ji})$ be a directed inverse system of sets over $I$. Then we say $(A_ i, \varphi _{ji})$ is <em>Mittag-Leffler</em> if for each $i \in I$, the family $\varphi _{ji}(A_ j) \subset A_ i$ for $j \geq i$ stabilizes. Explicitly, this means that for each $i \in I$, there exists $j \geq i$ such that for $k \geq j$ we have $\varphi _{ki}(A_ k) = \varphi _{ji}( A_ j)$. If $(A_ i, \varphi _{ji})$ is a directed inverse system of modules over a ring $R$, we say that it is Mittag-Leffler if the underlying inverse system of sets is Mittag-Leffler. </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="0596">
+  <p><a class="environment-identifier" href="/tag/0596">Example <span data-tag="0596">10.86.2</span>.</a> If $(A_ i, \varphi _{ji})$ is a directed inverse system of sets or of modules and the maps $\varphi _{ji}$ are surjective, then clearly the system is Mittag-Leffler. Conversely, suppose $(A_ i, \varphi _{ji})$ is Mittag-Leffler. Let $A'_ i \subset A_ i$ be the stable image of $\varphi _{ji}(A_ j)$ for $j \geq i$. Then $\varphi _{ji}|_{A'_ j}: A'_ j \to A'_ i$ is surjective for $j \geq i$ and $\mathop{\mathrm{lim}}\nolimits A_ i = \mathop{\mathrm{lim}}\nolimits A'_ i$. Hence the limit of the Mittag-Leffler system $(A_ i, \varphi _{ji})$ can also be written as the limit of a directed inverse system over $I$ with surjective maps. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0597">
+  <p><a class="environment-identifier" href="/tag/0597">Lemma <span data-tag="0597">10.86.3</span>.</a> Let $(A_ i, \varphi _{ji})$ be a directed inverse system over $I$. Suppose $I$ is countable. If $(A_ i, \varphi _{ji})$ is Mittag-Leffler and the $A_ i$ are nonempty, then $\mathop{\mathrm{lim}}\nolimits A_ i$ is nonempty. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $i_1, i_2, i_3, \ldots $ be an enumeration of the elements of $I$. Define inductively a sequence of elements $j_ n \in I$ for $n = 1, 2, 3, \ldots $ by the conditions: $j_1 = i_1$, and $j_ n \geq i_ n$ and $j_ n \geq j_ m$ for $m < n$. Then the sequence $j_ n$ is increasing and forms a cofinal subset of $I$. Hence we may assume $I =\{ 1, 2, 3, \ldots \} $. So by Example <a href="/tag/0596" data-tag="0596">10.86.2</a> we are reduced to showing that the limit of an inverse system of nonempty sets with surjective maps indexed by the positive integers is nonempty. This follows from the axiom of choice. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The Mittag-Leffler condition will be important for us because of the following exactness property. 
+</p>
+<p>
+<article class="env-lemma" id="0598">
+  <p><a class="environment-identifier" href="/tag/0598">Lemma <span data-tag="0598">10.86.4</span>.</a> Let </p>
+  <div class="equation">
+  \[  0 \to A_ i \xrightarrow {f_ i} B_ i \xrightarrow {g_ i} C_ i \to 0  \]
+</div>
+  <p> be an exact sequence of directed inverse systems of abelian groups over $I$. Suppose $I$ is countable. If $(A_ i)$ is Mittag-Leffler, then </p>
+  <div class="equation">
+  \[  0 \to \mathop{\mathrm{lim}}\nolimits A_ i \to \mathop{\mathrm{lim}}\nolimits B_ i \to \mathop{\mathrm{lim}}\nolimits C_ i\to 0  \]
+</div>
+  <p> is exact. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Taking limits of directed inverse systems is left exact, hence we only need to prove surjectivity of $\mathop{\mathrm{lim}}\nolimits B_ i \to \mathop{\mathrm{lim}}\nolimits C_ i$. So let $(c_ i) \in \mathop{\mathrm{lim}}\nolimits C_ i$. For each $i \in I$, let $E_ i = g_ i^{-1}(c_ i)$, which is nonempty since $g_ i: B_ i \to C_ i$ is surjective. The system of maps $\varphi _{ji}: B_ j \to B_ i$ for $(B_ i)$ restrict to maps $E_ j \to E_ i$ which make $(E_ i)$ into an inverse system of nonempty sets. It is enough to show that $(E_ i)$ is Mittag-Leffler. For then Lemma <a href="/tag/0597" data-tag="0597">10.86.3</a> would show $\mathop{\mathrm{lim}}\nolimits E_ i$ is nonempty, and taking any element of $\mathop{\mathrm{lim}}\nolimits E_ i$ would give an element of $\mathop{\mathrm{lim}}\nolimits B_ i$ mapping to $(c_ i)$. 
+    <p>
+      By the injection $f_ i: A_ i \to B_ i$ we will regard $A_ i$ as a subset of $B_ i$. Since $(A_ i)$ is Mittag-Leffler, if $i \in I$ then there exists $j \geq i$ such that $\varphi _{ki}(A_ k) = \varphi _{ji}(A_ j)$ for $k \geq j$. We claim that also $\varphi _{ki}(E_ k) = \varphi _{ji}(E_ j)$ for $k \geq j$. Always $\varphi _{ki}(E_ k) \subset \varphi _{ji}(E_ j)$ for $k \geq j$. For the reverse inclusion let $e_ j \in E_ j$, and we need to find $x_ k \in E_ k$ such that $\varphi _{ki}(x_ k) = \varphi _{ji}(e_ j)$. Let $e'_ k \in E_ k$ be any element, and set $e'_ j = \varphi _{kj}(e'_ k)$. Then $g_ j(e_ j - e'_ j) = c_ j - c_ j = 0$, hence $e_ j - e'_ j = a_ j \in A_ j$. Since $\varphi _{ki}(A_ k) = \varphi _{ji}(A_ j)$, there exists $a_ k \in A_ k$ such that $\varphi _{ki}(a_ k) = \varphi _{ji}(a_ j)$. Hence 
+    <p>
+      <div class="equation">
+  \[  \varphi _{ki}(e'_ k + a_ k) = \varphi _{ji}(e'_ j) + \varphi _{ji}(a_ j) = \varphi _{ji}(e_ j),  \]
+</div>
+    <p>
+       so we can take $x_ k = e'_ k + a_ k$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

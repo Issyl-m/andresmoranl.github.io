@@ -1,0 +1,287 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="stacks-cohomology-section-pushforward-quasi-coherent" class="tex-section"><span data-tag="070A">103.11</span> Pushforward of quasi-coherent modules</h2>
+
+<p>
+Let $f : \mathcal{X} \to \mathcal{Y}$ be a morphism of algebraic stacks. Consider the pushforward 
+</p>
+<div class="equation">
+  \[  f_* : \textit{Mod}(\mathcal{O}_\mathcal {X}) \longrightarrow \textit{Mod}(\mathcal{O}_\mathcal {Y})  \]
+</div>
+<p>
+ It turns out that this functor almost never preserves the subcategories of quasi-coherent sheaves. For example, consider the morphism of schemes 
+</p>
+<div class="equation">
+  \[  j : X = \mathbf{A}^2_ k \setminus \{ 0\}  \longrightarrow \mathbf{A}^2_ k = Y.  \]
+</div>
+<p>
+ Associated to this we have the corresponding morphism of algebraic stacks 
+</p>
+<div class="equation">
+  \[  f = j_{big} : \mathcal{X} = (\mathit{Sch}/X)_{fppf} \to (\mathit{Sch}/Y)_{fppf} = \mathcal{Y}  \]
+</div>
+<p>
+ The pushforward $f_*\mathcal{O}_\mathcal {X}$ of the structure sheaf has global sections $k[x, y]$. Hence if $f_*\mathcal{O}_\mathcal {X}$ is quasi-coherent on $\mathcal{Y}$ then we would have $f_*\mathcal{O}_\mathcal {X} = \mathcal{O}_\mathcal {Y}$. However, consider $T = \mathop{\mathrm{Spec}}(k) \to \mathbf{A}^2_ k = Y$ mapping to $0$. Then $\Gamma (T, f_*\mathcal{O}_\mathcal {X}) = 0$ because $X \times _ Y T = \emptyset $ whereas $\Gamma (T, \mathcal{O}_\mathcal {Y}) = k$. On the positive side, for any flat morphism $T \to Y$ we have the equality $\Gamma (T, f_*\mathcal{O}_\mathcal {X}) = \Gamma (T, \mathcal{O}_\mathcal {Y})$ as follows from Cohomology of Schemes, Lemma <a href="/tag/02KH" data-tag="02KH">30.5.2</a> using that $j$ is quasi-compact and quasi-separated. 
+</p>
+<p>
+Let $f : \mathcal{X} \to \mathcal{Y}$ be a quasi-compact and quasi-separated morphism of algebraic stacks. We work around the problem mentioned above using the following three observations: 
+</p>
+<ol>
+  <li><p>
+$f_*$ does preserve locally quasi-coherent modules (Lemma <a href="/tag/075Z" data-tag="075Z">103.6.2</a>), 
+</p>
+</li><li><p>
+$f_*$ transforms a quasi-coherent sheaf into a locally quasi-coherent sheaf whose flat comparison maps are isomorphisms (Lemma <a href="/tag/0765" data-tag="0765">103.7.3</a>), and 
+</p>
+</li><li><p>
+locally quasi-coherent $\mathcal{O}_\mathcal {Y}$-modules with the flat base change property give rise to quasi-coherent modules on a presentation of $\mathcal{Y}$ and hence quasi-coherent modules on $\mathcal{Y}$, see Sheaves on Stacks, Section <a href="/tag/06WU" data-tag="06WU">96.15</a>. 
+</p>
+</li>
+</ol>
+<p>
+ Thus we obtain a functor 
+</p>
+<div class="equation">
+  \[  f_{\mathit{QCoh}, *} : \mathit{QCoh}(\mathcal{O}_\mathcal {X}) \longrightarrow \mathit{QCoh}(\mathcal{O}_\mathcal {Y})  \]
+</div>
+<p>
+ which is a right adjoint to $f^* : \mathit{QCoh}(\mathcal{O}_\mathcal {Y}) \to \mathit{QCoh}(\mathcal{O}_\mathcal {X})$ such that moreover 
+</p>
+<div class="equation">
+  \[  \Gamma (y, f_*\mathcal{F}) = \Gamma (y, f_{\mathit{QCoh}, *}\mathcal{F})  \]
+</div>
+<p>
+ for any $y \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{Y})$ such that the associated $1$-morphism $y : V \to \mathcal{Y}$ is flat, see Lemma <a href="/tag/0GQQ" data-tag="0GQQ">103.11.2</a>. Moreover, a similar construction will produce functors $R^ if_{\mathit{QCoh}, *}$. However, these results will not be sufficient to produce a total direct image functor (of complexes with quasi-coherent cohomology sheaves). 
+</p>
+<p>
+<article class="env-proposition" id="077A">
+  <p><a class="environment-identifier" href="/tag/077A">Proposition <span data-tag="077A">103.11.1</span>.</a> Let $f : \mathcal{X} \to \mathcal{Y}$ be a quasi-compact and quasi-separated morphism of algebraic stacks. The functor $f^* : \mathit{QCoh}(\mathcal{O}_\mathcal {Y}) \to \mathit{QCoh}(\mathcal{O}_\mathcal {X})$ has a right adjoint </p>
+  <div class="equation">
+  \[  f_{\mathit{QCoh}, *} : \mathit{QCoh}(\mathcal{O}_\mathcal {X}) \longrightarrow \mathit{QCoh}(\mathcal{O}_\mathcal {Y})  \]
+</div>
+  <p> which can be defined as the composition </p>
+  <div class="equation">
+  \[  \mathit{QCoh}(\mathcal{O}_\mathcal {X}) \to \textit{LQCoh}^{fbc}(\mathcal{O}_\mathcal {X}) \xrightarrow {f_*} \textit{LQCoh}^{fbc}(\mathcal{O}_\mathcal {Y}) \xrightarrow {Q} \mathit{QCoh}(\mathcal{O}_\mathcal {Y})  \]
+</div>
+  <p> where the functors $f_*$ and $Q$ are as in Proposition <a href="/tag/0771" data-tag="0771">103.8.1</a> and Lemma <a href="/tag/0778" data-tag="0778">103.10.1</a>. Moreover, if we define $R^ if_{\mathit{QCoh}, *}$ as the composition </p>
+  <div class="equation">
+  \[  \mathit{QCoh}(\mathcal{O}_\mathcal {X}) \to \textit{LQCoh}^{fbc}(\mathcal{O}_\mathcal {X}) \xrightarrow {R^ if_*} \textit{LQCoh}^{fbc}(\mathcal{O}_\mathcal {Y}) \xrightarrow {Q} \mathit{QCoh}(\mathcal{O}_\mathcal {Y})  \]
+</div>
+  <p> then the sequence of functors $\{ R^ if_{\mathit{QCoh}, *}\} _{i \geq 0}$ forms a cohomological $\delta $-functor. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a combination of the results mentioned in the statement. The adjointness can be shown as follows: Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_\mathcal {X}$-module and let $\mathcal{G}$ be a quasi-coherent $\mathcal{O}_\mathcal {Y}$-module. Then we have 
+    <p>
+      <div class="equation">
+  \begin{align*}  \mathop{\mathrm{Mor}}\nolimits _{\mathit{QCoh}(\mathcal{O}_\mathcal {X})}(f^*\mathcal{G}, \mathcal{F}) &  = \mathop{\mathrm{Mor}}\nolimits _{\textit{LQCoh}^{fbc}(\mathcal{O}_\mathcal {Y})} (\mathcal{G}, f_*\mathcal{F}) \\ &  = \mathop{\mathrm{Mor}}\nolimits _{\mathit{QCoh}(\mathcal{O}_\mathcal {Y})}(\mathcal{G}, Q(f_*\mathcal{F})) \\ &  = \mathop{\mathrm{Mor}}\nolimits _{\mathit{QCoh}(\mathcal{O}_\mathcal {Y})}(\mathcal{G}, f_{\mathit{QCoh}, *}\mathcal{F}) \end{align*}
+</div>
+    <p>
+       the first equality by adjointness of $f_*$ and $f^*$ (for arbitrary sheaves of modules). By Proposition <a href="/tag/0771" data-tag="0771">103.8.1</a> we see that $f_*\mathcal{F}$ is an object of $\textit{LQCoh}^{fbc}(\mathcal{O}_\mathcal {Y})$ (and can be computed in either the fppf or étale topology) and we obtain the second equality by Lemma <a href="/tag/0778" data-tag="0778">103.10.1</a>. The third equality is the definition of $f_{\mathit{QCoh}, *}$. 
+    <p>
+      To see that $\{ R^ if_{\mathit{QCoh}, *}\} _{i \geq 0}$ is a cohomological $\delta $-functor as defined in Homology, Definition <a href="/tag/010Q" data-tag="010Q">12.12.1</a> let 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{F}_1 \to \mathcal{F}_2 \to \mathcal{F}_3 \to 0  \]
+</div>
+    <p>
+       be a short exact sequence of $\mathit{QCoh}(\mathcal{O}_\mathcal {X})$. This sequence may not be an exact sequence in $\textit{Mod}(\mathcal{O}_\mathcal {X})$ but we know that it is up to parasitic modules, see Lemma <a href="/tag/0776" data-tag="0776">103.9.4</a>. Thus we may break up the sequence into short exact sequences 
+    <p>
+      <div class="equation">
+  \[  \begin{matrix}  0 \to \mathcal{P}_1 \to \mathcal{F}_1 \to \mathcal{I}_2 \to 0 
+
+\\  0 \to \mathcal{I}_2 \to \mathcal{F}_2 \to \mathcal{Q}_2 \to 0 
+
+\\  0 \to \mathcal{P}_2 \to \mathcal{Q}_2 \to \mathcal{I}_3 \to 0 
+
+\\  0 \to \mathcal{I}_3 \to \mathcal{F}_3 \to \mathcal{P}_3 \to 0 
+
+\end{matrix}  \]
+</div>
+    <p>
+       of $\textit{Mod}(\mathcal{O}_\mathcal {X})$ with $\mathcal{P}_ i$ parasitic. Note that each of the sheaves $\mathcal{P}_ j$, $\mathcal{I}_ j$, $\mathcal{Q}_ j$ is an object of $\textit{LQCoh}^{fbc}(\mathcal{O}_\mathcal {X})$, see Proposition <a href="/tag/0771" data-tag="0771">103.8.1</a>. Applying $R^ if_*$ we obtain long exact sequences 
+    <p>
+      <div class="equation">
+  \[  \begin{matrix}  0 \to f_*\mathcal{P}_1 \to f_*\mathcal{F}_1 \to f_*\mathcal{I}_2 \to R^1f_*\mathcal{P}_1 \to \ldots 
+
+\\  0 \to f_*\mathcal{I}_2 \to f_*\mathcal{F}_2 \to f_*\mathcal{Q}_2 \to R^1f_*\mathcal{I}_2 \to \ldots 
+
+\\  0 \to f_*\mathcal{P}_2 \to f_*\mathcal{Q}_2 \to f_*\mathcal{I}_3 \to R^1f_*\mathcal{P}_2 \to \ldots 
+
+\\  0 \to f_*\mathcal{I}_3 \to f_*\mathcal{F}_3 \to f_*\mathcal{P}_3 \to R^1f_*\mathcal{I}_3 \to \ldots 
+
+\end{matrix}  \]
+</div>
+    <p>
+       where are the terms are objects of $\textit{LQCoh}^{fbc}(\mathcal{O}_\mathcal {Y})$ by Proposition <a href="/tag/0771" data-tag="0771">103.8.1</a>. By Lemma <a href="/tag/0775" data-tag="0775">103.9.3</a> the sheaves $R^ if_*\mathcal{P}_ j$ are parasitic, hence vanish on applying the functor $Q$, see Lemma <a href="/tag/0779" data-tag="0779">103.10.2</a>. Since $Q$ is exact the maps 
+    <p>
+      <div class="equation">
+  \[  Q(R^ if_*\mathcal{F}_3) \cong Q(R^ if_*\mathcal{I}_3) \cong Q(R^ if_*\mathcal{Q}_2) \rightarrow Q(R^{i + 1}f_*\mathcal{I}_2) \cong Q(R^{i + 1}f_*\mathcal{F}_1)  \]
+</div>
+    <p>
+       can serve as the connecting map which turns the family of functors $\{ R^ if_{\mathit{QCoh}, *}\} _{i \geq 0}$ into a cohomological $\delta $-functor. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GQQ">
+  <p><a class="environment-identifier" href="/tag/0GQQ">Lemma <span data-tag="0GQQ">103.11.2</span>.</a> Let $f : \mathcal{X} \to \mathcal{Y}$ be a quasi-compact and quasi-separated morphism of algebraic stacks. Let $y : V \to \mathcal{Y}$ in $\mathop{\mathrm{Ob}}\nolimits (\mathcal{Y})$ with $y$ a flat morphism. Let $\mathcal{F}$ be in $\mathit{QCoh}(\mathcal{O}_\mathcal {X})$. Then $(f_*\mathcal{F})(y) = (f_{\mathit{QCoh}, *}\mathcal{F})(y)$ and $(R^ if_*\mathcal{F})(y) = (R^ if_{\mathit{QCoh}, *}\mathcal{F})(y)$ for all $i \in \mathbf{Z}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from the construction of the functors $R^ if_{\mathit{QCoh}, *}$ in Proposition <a href="/tag/077A" data-tag="077A">103.11.1</a>, the definition of parasitic modules in Definition <a href="/tag/0773" data-tag="0773">103.9.1</a>, and Lemma <a href="/tag/0779" data-tag="0779">103.10.2</a> part (2). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0GQR">
+  <p><a class="environment-identifier" href="/tag/0GQR">Remark <span data-tag="0GQR">103.11.3</span>.</a> Let $f : \mathcal{X} \to \mathcal{Y}$ be a quasi-compact and quasi-separated morphism of algebraic stacks. Let $\mathcal{F}$ and $\mathcal{G}$ be in $\mathit{QCoh}(\mathcal{O}_\mathcal {X})$. Then there is a canonical commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ f_{\mathit{QCoh}, *}\mathcal{F} \otimes _{\mathcal{O}_\mathcal {Y}} f_{\mathit{QCoh}, *}\mathcal{G} \ar[r] \ar[d] &  f_*\mathcal{F} \otimes _{\mathcal{O}_\mathcal {Y}} f_*\mathcal{G} \ar[d]^ c \\  f_{\mathit{QCoh}, *}(\mathcal{F} \otimes _{\mathcal{O}_\mathcal {X}} \mathcal{G}) \ar[r] &  f_*(\mathcal{F} \otimes _{\mathcal{O}_\mathcal {X}} \mathcal{G}) }  \]
+</div>
+  <p> The vertical arrow $c$ on the right is the naive relative cup product (in degree $0$), see Cohomology on Sites, Section <a href="/tag/0FPJ" data-tag="0FPJ">21.33</a>. The source and target of $c$ are in $\textit{LQCoh}^{fbc}(\mathcal{O}_\mathcal {X})$, see Proposition <a href="/tag/0771" data-tag="0771">103.8.1</a>. Applying $Q$ to $c$ we obtain the left vertical arrow as $Q$ commutes with tensor products, see Remark <a href="/tag/0GQM" data-tag="0GQM">103.10.6</a>. This construction is functorial in $\mathcal{F}$ and $\mathcal{G}$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0782">
+  <p><a class="environment-identifier" href="/tag/0782">Lemma <span data-tag="0782">103.11.4</span>.</a> Let $f : \mathcal{X} \to \mathcal{Y}$ be a quasi-compact and quasi-separated morphism of algebraic stacks. Let $\mathcal{F}$ be a quasi-coherent sheaf on $\mathcal{X}$. Then there exists a spectral sequence with $E_2$-page </p>
+  <div class="equation">
+  \[  E_2^{p, q} = H^ p(\mathcal{Y}, R^ qf_{\mathit{QCoh}, *}\mathcal{F})  \]
+</div>
+  <p> converging to $H^{p + q}(\mathcal{X}, \mathcal{F})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Cohomology on Sites, Lemma <a href="/tag/0732" data-tag="0732">21.14.5</a> the Leray spectral sequence with 
+    <p>
+      <div class="equation">
+  \[  E_2^{p, q} = H^ p(\mathcal{Y}, R^ qf_*\mathcal{F})  \]
+</div>
+    <p>
+       converges to $H^{p + q}(\mathcal{X}, \mathcal{F})$. The kernel and cokernel of the adjunction map 
+    <p>
+      <div class="equation">
+  \[  R^ qf_{\mathit{QCoh}, *}\mathcal{F} \longrightarrow R^ qf_*\mathcal{F}  \]
+</div>
+    <p>
+       are parasitic modules on $\mathcal{Y}$ (Lemma <a href="/tag/0779" data-tag="0779">103.10.2</a>) hence have vanishing cohomology (Lemma <a href="/tag/0775" data-tag="0775">103.9.3</a>). It follows formally that $H^ p(\mathcal{Y}, R^ qf_{\mathit{QCoh}, *}\mathcal{F}) = H^ p(\mathcal{Y}, R^ qf_*\mathcal{F})$ and we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0783">
+  <p><a class="environment-identifier" href="/tag/0783">Lemma <span data-tag="0783">103.11.5</span>.</a> Let $f : \mathcal{X} \to \mathcal{Y}$ and $g : \mathcal{Y} \to \mathcal{Z}$ be quasi-compact and quasi-separated morphisms of algebraic stacks. Let $\mathcal{F}$ be a quasi-coherent sheaf on $\mathcal{X}$. Then there exists a spectral sequence with $E_2$-page </p>
+  <div class="equation">
+  \[  E_2^{p, q} = R^ pg_{\mathit{QCoh}, *}(R^ qf_{\mathit{QCoh}, *}\mathcal{F})  \]
+</div>
+  <p> converging to $R^{p + q}(g \circ f)_{\mathit{QCoh}, *}\mathcal{F}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Cohomology on Sites, Lemma <a href="/tag/0734" data-tag="0734">21.14.7</a> the Leray spectral sequence with 
+    <p>
+      <div class="equation">
+  \[  E_2^{p, q} = R^ pg_*(R^ qf_*\mathcal{F})  \]
+</div>
+    <p>
+       converges to $R^{p + q}(g \circ f)_*\mathcal{F}$. By the results of Proposition <a href="/tag/0771" data-tag="0771">103.8.1</a> all the terms of this spectral sequence are objects of $\textit{LQCoh}^{fbc}(\mathcal{O}_\mathcal {Z})$. Applying the exact functor $Q_\mathcal {Z} : \textit{LQCoh}^{fbc}(\mathcal{O}_\mathcal {Z}) \to \mathit{QCoh}(\mathcal{O}_\mathcal {Z})$ we obtain a spectral sequence in $\mathit{QCoh}(\mathcal{O}_\mathcal {Z})$ covering to $R^{p + q}(g \circ f)_{\mathit{QCoh}, *}\mathcal{F}$. Hence the result follows if we can show that 
+    <p>
+      <div class="equation">
+  \[  Q_\mathcal {Z}(R^ pg_*(R^ qf_*\mathcal{F})) = Q_\mathcal {Z}(R^ pg_*(Q_\mathcal {X}(R^ qf_*\mathcal{F}))  \]
+</div>
+    <p>
+       This follows from the fact that the kernel and cokernel of the map 
+    <p>
+      <div class="equation">
+  \[  Q_\mathcal {X}(R^ qf_*\mathcal{F}) \longrightarrow R^ qf_*\mathcal{F}  \]
+</div>
+    <p>
+       are parasitic (Lemma <a href="/tag/0779" data-tag="0779">103.10.2</a>) and that $R^ pg_*$ transforms parasitic modules into parasitic modules (Lemma <a href="/tag/0775" data-tag="0775">103.9.3</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+To end this section we make explicit the spectral sequences associated to a smooth covering by a scheme. Please compare with Sheaves on Stacks, Sections <a href="/tag/06XI" data-tag="06XI">96.20</a> and <a href="/tag/072F" data-tag="072F">96.21</a>. 
+</p>
+<p>
+<article class="env-proposition" id="0784">
+  <p><a class="environment-identifier" href="/tag/0784">Proposition <span data-tag="0784">103.11.6</span>.</a> Let $f : \mathcal{U} \to \mathcal{X}$ be a morphism of algebraic stacks. Assume $f$ is representable by algebraic spaces, surjective, flat, and locally of finite presentation. Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_\mathcal {X}$-module. Then there is a spectral sequence </p>
+  <div class="equation">
+  \[  E_2^{p, q} = H^ q(\mathcal{U}_ p, f_ p^*\mathcal{F}) \Rightarrow H^{p + q}(\mathcal{X}, \mathcal{F})  \]
+</div>
+  <p> where $f_ p$ is the morphism $\mathcal{U} \times _\mathcal {X} \ldots \times _\mathcal {X} \mathcal{U} \to \mathcal{X}$ ($p + 1$ factors). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a special case of Sheaves on Stacks, Proposition <a href="/tag/06XJ" data-tag="06XJ">96.20.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="0785">
+  <p><a class="environment-identifier" href="/tag/0785">Proposition <span data-tag="0785">103.11.7</span>.</a> Let $f : \mathcal{U} \to \mathcal{X}$ and $g : \mathcal{X} \to \mathcal{Y}$ be composable morphisms of algebraic stacks. Assume that </p>
+  <p><ol>
+  <li><p>
+$f$ is representable by algebraic spaces, surjective, flat, locally of finite presentation, quasi-compact, and quasi-separated, and 
+</p>
+</li><li><p>
+$g$ is quasi-compact and quasi-separated. 
+</p>
+</li>
+</ol></p>
+  <p> If $\mathcal{F}$ is in $\mathit{QCoh}(\mathcal{O}_\mathcal {X})$ then there is a spectral sequence </p>
+  <div class="equation">
+  \[  E_2^{p, q} = R^ q(g \circ f_ p)_{\mathit{QCoh}, *}f_ p^*\mathcal{F} \Rightarrow R^{p + q}g_{\mathit{QCoh}, *}\mathcal{F}  \]
+</div>
+  <p> in $\mathit{QCoh}(\mathcal{O}_\mathcal {Y})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Note that each of the morphisms $f_ p : \mathcal{U} \times _\mathcal {X} \ldots \times _\mathcal {X} \mathcal{U} \to \mathcal{X}$ is quasi-compact and quasi-separated, hence $g \circ f_ p$ is quasi-compact and quasi-separated, hence the assertion makes sense (i.e., the functors $R^ q(g \circ f_ p)_{\mathit{QCoh}, *}$ are defined). There is a spectral sequence 
+    <p>
+      <div class="equation">
+  \[  E_2^{p, q} = R^ q(g \circ f_ p)_*f_ p^{-1}\mathcal{F} \Rightarrow R^{p + q}g_*\mathcal{F}  \]
+</div>
+    <p>
+       by Sheaves on Stacks, Proposition <a href="/tag/072G" data-tag="072G">96.21.1</a>. Applying the exact functor $Q_\mathcal {Y} : \textit{LQCoh}^{fbc}(\mathcal{O}_\mathcal {Y}) \to \mathit{QCoh}(\mathcal{O}_\mathcal {Y})$ gives the desired spectral sequence in $\mathit{QCoh}(\mathcal{O}_\mathcal {Y})$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

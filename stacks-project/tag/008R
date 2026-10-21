@@ -1,0 +1,232 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sheaves-section-presheaves-modules-functorial" class="tex-section"><span data-tag="008R">6.24</span> Continuous maps and sheaves of modules</h2>
+
+<p>
+The case of sheaves of modules is more complicated. The reason is that the natural setting for defining the pullback and pushforward functors, is the setting of ringed spaces, which we will define below. First we state a few obvious lemmas. 
+</p>
+<p>
+<article class="env-lemma" id="008S">
+  <p><a class="environment-identifier" href="/tag/008S">Lemma <span data-tag="008S">6.24.1</span>.</a> Let $f : X \to Y$ be a continuous map of topological spaces. Let $\mathcal{O}$ be a presheaf of rings on $X$. Let $\mathcal{F}$ be a presheaf of $\mathcal{O}$-modules. There is a natural map of underlying presheaves of sets </p>
+  <div class="equation">
+  \[  f_*\mathcal{O} \times f_*\mathcal{F} \longrightarrow f_*\mathcal{F}  \]
+</div>
+  <p> which turns $f_*\mathcal{F}$ into a presheaf of $f_*\mathcal{O}$-modules. This construction is functorial in $\mathcal{F}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $V \subset Y$ is open. We define the map of the lemma to be the map 
+    <p>
+      <div class="equation">
+  \[  f_*\mathcal{O}(V) \times f_*\mathcal{F}(V) = \mathcal{O}(f^{-1}V) \times \mathcal{F}(f^{-1}V) \to \mathcal{F}(f^{-1}V) = f_*\mathcal{F}(V).  \]
+</div>
+    <p>
+       Here the arrow in the middle is the multiplication map on $X$. We leave it to the reader to see this is compatible with restriction mappings and defines a structure of $f_*\mathcal{O}$-module on $f_*\mathcal{F}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="008T">
+  <p><a class="environment-identifier" href="/tag/008T">Lemma <span data-tag="008T">6.24.2</span>.</a> Let $f : X \to Y$ be a continuous map of topological spaces. Let $\mathcal{O}$ be a presheaf of rings on $Y$. Let $\mathcal{G}$ be a presheaf of $\mathcal{O}$-modules. There is a natural map of underlying presheaves of sets </p>
+  <div class="equation">
+  \[  f_ p\mathcal{O} \times f_ p\mathcal{G} \longrightarrow f_ p\mathcal{G}  \]
+</div>
+  <p> which turns $f_ p\mathcal{G}$ into a presheaf of $f_ p\mathcal{O}$-modules. This construction is functorial in $\mathcal{G}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $U \subset X$ is open. We define the map of the lemma to be the map 
+    <p>
+      <div class="equation">
+  \begin{eqnarray*}  f_ p\mathcal{O}(U) \times f_ p\mathcal{G}(U) &  = &  \mathop{\mathrm{colim}}\nolimits _{f(U) \subset V} \mathcal{O}(V) \times \mathop{\mathrm{colim}}\nolimits _{f(U) \subset V} \mathcal{G}(V) \\ &  = &  \mathop{\mathrm{colim}}\nolimits _{f(U) \subset V} (\mathcal{O}(V)\times \mathcal{G}(V)) \\ &  \to &  \mathop{\mathrm{colim}}\nolimits _{f(U) \subset V} \mathcal{G}(V) \\ &  = &  f_ p\mathcal{G}(U). \end{eqnarray*}
+</div>
+    <p>
+       Here the arrow in the middle is the multiplication map on $Y$. The second equality holds because directed colimits commute with finite limits, see Categories, Lemma <a href="/tag/002W" data-tag="002W">4.19.2</a>. We leave it to the reader to see this is compatible with restriction mappings and defines a structure of $f_ p\mathcal{O}$-module on $f_ p\mathcal{G}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $f : X \to Y$ be a continuous map. Let $\mathcal{O}_ X$ be a presheaf of rings on $X$ and let $\mathcal{O}_ Y$ be a presheaf of rings on $Y$. So at the moment we have defined functors 
+</p>
+<div class="equation">
+  \begin{eqnarray*}  f_* : \textit{PMod}(\mathcal{O}_ X) &  \longrightarrow &  \textit{PMod}(f_*\mathcal{O}_ X) \\  f_ p : \textit{PMod}(\mathcal{O}_ Y) &  \longrightarrow &  \textit{PMod}(f_ p\mathcal{O}_ Y) \end{eqnarray*}
+</div>
+<p>
+ These satisfy some compatibilities as follows. 
+</p>
+<p>
+<article class="env-lemma" id="008U">
+  <p><a class="environment-identifier" href="/tag/008U">Lemma <span data-tag="008U">6.24.3</span>.</a> Let $f : X \to Y$ be a continuous map of topological spaces. Let $\mathcal{O}$ be a presheaf of rings on $Y$. Let $\mathcal{G}$ be a presheaf of $\mathcal{O}$-modules. Let $\mathcal{F}$ be a presheaf of $f_ p\mathcal{O}$-modules. Then </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\textit{PMod}(f_ p\mathcal{O})}(f_ p\mathcal{G}, \mathcal{F}) = \mathop{\mathrm{Mor}}\nolimits _{\textit{PMod}(\mathcal{O})}(\mathcal{G}, f_*\mathcal{F}).  \]
+</div>
+  <p> Here we use Lemmas <a href="/tag/008T" data-tag="008T">6.24.2</a> and <a href="/tag/008S" data-tag="008S">6.24.1</a>, and we think of $f_*\mathcal{F}$ as an $\mathcal{O}$-module via the map $i_\mathcal {O} : \mathcal{O} \to f_*f_ p\mathcal{O}$ (defined first in the proof of Lemma <a href="/tag/008F" data-tag="008F">6.21.3</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Note that we have 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\textit{PAb}(X)}(f_ p\mathcal{G}, \mathcal{F}) = \mathop{\mathrm{Mor}}\nolimits _{\textit{PAb}(Y)}(\mathcal{G}, f_*\mathcal{F}).  \]
+</div>
+    <p>
+       according to Section <a href="/tag/008N" data-tag="008N">6.22</a>. So what we have to prove is that under this correspondence, the subsets of module maps correspond. In addition, the correspondence is determined by the rule 
+    <p>
+      <div class="equation">
+  \[  (\psi : f_ p\mathcal{G} \to \mathcal{F}) \longmapsto (f_*\psi \circ i_\mathcal {G} : \mathcal{G} \to f_* \mathcal{F})  \]
+</div>
+    <p>
+       and in the other direction by the rule 
+    <p>
+      <div class="equation">
+  \[  (\varphi : \mathcal{G} \to f_* \mathcal{F}) \longmapsto (c_\mathcal {F} \circ f_ p\varphi : f_ p\mathcal{G} \to \mathcal{F})  \]
+</div>
+    <p>
+       where $i_\mathcal {G}$ and $c_\mathcal {F}$ are as in Section <a href="/tag/008N" data-tag="008N">6.22</a>. Hence, using the functoriality of $f_*$ and $f_ p$ we see that it suffices to check that the maps $i_\mathcal {G} : \mathcal{G} \to f_* f_ p \mathcal{G}$ and $c_\mathcal {F} : f_ p f_* \mathcal{F} \to \mathcal{F}$ are compatible with module structures, which we leave to the reader. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="008V">
+  <p><a class="environment-identifier" href="/tag/008V">Lemma <span data-tag="008V">6.24.4</span>.</a> Let $f : X \to Y$ be a continuous map of topological spaces. Let $\mathcal{O}$ be a presheaf of rings on $X$. Let $\mathcal{F}$ be a presheaf of $\mathcal{O}$-modules. Let $\mathcal{G}$ be a presheaf of $f_*\mathcal{O}$-modules. Then </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\textit{PMod}(\mathcal{O})}( \mathcal{O} \otimes _{p, f_ pf_*\mathcal{O}} f_ p\mathcal{G}, \mathcal{F}) = \mathop{\mathrm{Mor}}\nolimits _{\textit{PMod}(f_*\mathcal{O})}(\mathcal{G}, f_*\mathcal{F}).  \]
+</div>
+  <p> Here we use Lemmas <a href="/tag/008T" data-tag="008T">6.24.2</a> and <a href="/tag/008S" data-tag="008S">6.24.1</a>, and we use the map $c_\mathcal {O} : f_ pf_*\mathcal{O} \to \mathcal{O}$ in the definition of the tensor product. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from the equalities 
+    <p>
+      <div class="equation">
+  \begin{eqnarray*}  \mathop{\mathrm{Mor}}\nolimits _{\textit{PMod}(\mathcal{O})}( \mathcal{O} \otimes _{p, f_ pf_*\mathcal{O}} f_ p\mathcal{G}, \mathcal{F}) &  = &  \mathop{\mathrm{Mor}}\nolimits _{\textit{PMod}(f_ pf_*\mathcal{O})}( f_ p\mathcal{G}, \mathcal{F}_{f_ pf_*\mathcal{O}}) \\ &  = &  \mathop{\mathrm{Mor}}\nolimits _{\textit{PMod}(f_*\mathcal{O})}(\mathcal{G}, f_*(\mathcal{F}_{f_ pf_*\mathcal{O}})) \\ &  = &  \mathop{\mathrm{Mor}}\nolimits _{\textit{PMod}(f_*\mathcal{O})}(\mathcal{G}, f_*\mathcal{F}). \end{eqnarray*}
+</div>
+    <p>
+       The first equality is Lemma <a href="/tag/006R" data-tag="006R">6.6.2</a>. The second equality is Lemma <a href="/tag/008U" data-tag="008U">6.24.3</a>. The third equality is given by the equality $f_*(\mathcal{F}_{f_ pf_*\mathcal{O}}) = f_*\mathcal{F}$ of abelian sheaves which is $f_*\mathcal{O}$-linear. Namely, $\text{id}_{f_*\mathcal{O}}$ corresponds to $c_\mathcal {O}$ under the adjunction described in the proof of Lemma <a href="/tag/008F" data-tag="008F">6.21.3</a> and thus $\text{id}_{f_*\mathcal{O}} = f_*c_\mathcal {O} \circ i_{f_*\mathcal{O}}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="008W">
+  <p><a class="environment-identifier" href="/tag/008W">Lemma <span data-tag="008W">6.24.5</span>.</a> Let $f : X \to Y$ be a continuous map of topological spaces. Let $\mathcal{O}$ be a sheaf of rings on $X$. Let $\mathcal{F}$ be a sheaf of $\mathcal{O}$-modules. The pushforward $f_*\mathcal{F}$, as defined in Lemma <a href="/tag/008S" data-tag="008S">6.24.1</a> is a sheaf of $f_*\mathcal{O}$-modules. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Obvious from the definition and Lemma <a href="/tag/008D" data-tag="008D">6.21.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="008X">
+  <p><a class="environment-identifier" href="/tag/008X">Lemma <span data-tag="008X">6.24.6</span>.</a> Let $f : X \to Y$ be a continuous map of topological spaces. Let $\mathcal{O}$ be a sheaf of rings on $Y$. Let $\mathcal{G}$ be a sheaf of $\mathcal{O}$-modules. There is a natural map of underlying presheaves of sets </p>
+  <div class="equation">
+  \[  f^{-1}\mathcal{O} \times f^{-1}\mathcal{G} \longrightarrow f^{-1}\mathcal{G}  \]
+</div>
+  <p> which turns $f^{-1}\mathcal{G}$ into a sheaf of $f^{-1}\mathcal{O}$-modules. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Recall that $f^{-1}$ is defined as the composition of the functor $f_ p$ and sheafification. Thus the lemma is a combination of Lemma <a href="/tag/008T" data-tag="008T">6.24.2</a> and Lemma <a href="/tag/0089" data-tag="0089">6.20.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $f : X \to Y$ be a continuous map. Let $\mathcal{O}_ X$ be a sheaf of rings on $X$ and let $\mathcal{O}_ Y$ be a sheaf of rings on $Y$. So now we have defined functors 
+</p>
+<div class="equation">
+  \begin{eqnarray*}  f_* : \textit{Mod}(\mathcal{O}_ X) &  \longrightarrow &  \textit{Mod}(f_*\mathcal{O}_ X) \\  f^{-1} : \textit{Mod}(\mathcal{O}_ Y) &  \longrightarrow &  \textit{Mod}(f^{-1}\mathcal{O}_ Y) \end{eqnarray*}
+</div>
+<p>
+ These satisfy some compatibilities as follows. 
+</p>
+<p>
+<article class="env-lemma" id="008Y">
+  <p><a class="environment-identifier" href="/tag/008Y">Lemma <span data-tag="008Y">6.24.7</span>.</a> Let $f : X \to Y$ be a continuous map of topological spaces. Let $\mathcal{O}$ be a sheaf of rings on $Y$. Let $\mathcal{G}$ be a sheaf of $\mathcal{O}$-modules. Let $\mathcal{F}$ be a sheaf of $f^{-1}\mathcal{O}$-modules. Then </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\textit{Mod}(f^{-1}\mathcal{O})}(f^{-1}\mathcal{G}, \mathcal{F}) = \mathop{\mathrm{Mor}}\nolimits _{\textit{Mod}(\mathcal{O})}(\mathcal{G}, f_*\mathcal{F}).  \]
+</div>
+  <p> Here we use Lemmas <a href="/tag/008X" data-tag="008X">6.24.6</a> and <a href="/tag/008W" data-tag="008W">6.24.5</a>, and we think of $f_*\mathcal{F}$ as an $\mathcal{O}$-module by restriction via $\mathcal{O} \to f_*f^{-1}\mathcal{O}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Argue by the equalities 
+    <p>
+      <div class="equation">
+  \begin{eqnarray*}  \mathop{\mathrm{Mor}}\nolimits _{\textit{Mod}(f^{-1}\mathcal{O})}(f^{-1}\mathcal{G}, \mathcal{F}) &  = &  \mathop{\mathrm{Mor}}\nolimits _{\textit{Mod}(f_ p\mathcal{O})}(f_ p\mathcal{G}, \mathcal{F}) \\ &  = &  \mathop{\mathrm{Mor}}\nolimits _{\textit{Mod}(\mathcal{O})}(\mathcal{G}, f_*\mathcal{F}). \end{eqnarray*}
+</div>
+    <p>
+       where the second is Lemmas <a href="/tag/008U" data-tag="008U">6.24.3</a> and the first is by Lemma <a href="/tag/0089" data-tag="0089">6.20.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="008Z">
+  <p><a class="environment-identifier" href="/tag/008Z">Lemma <span data-tag="008Z">6.24.8</span>.</a> Let $f : X \to Y$ be a continuous map of topological spaces. Let $\mathcal{O}$ be a sheaf of rings on $X$. Let $\mathcal{F}$ be a sheaf of $\mathcal{O}$-modules. Let $\mathcal{G}$ be a sheaf of $f_*\mathcal{O}$-modules. Then </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\textit{Mod}(\mathcal{O})}( \mathcal{O} \otimes _{f^{-1}f_*\mathcal{O}} f^{-1}\mathcal{G}, \mathcal{F}) = \mathop{\mathrm{Mor}}\nolimits _{\textit{Mod}(f_*\mathcal{O})}(\mathcal{G}, f_*\mathcal{F}).  \]
+</div>
+  <p> Here we use Lemmas <a href="/tag/008X" data-tag="008X">6.24.6</a> and <a href="/tag/008W" data-tag="008W">6.24.5</a>, and we use the canonical map $f^{-1}f_*\mathcal{O} \to \mathcal{O}$ in the definition of the tensor product. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from the equalities 
+    <p>
+      <div class="equation">
+  \begin{eqnarray*}  \mathop{\mathrm{Mor}}\nolimits _{\textit{Mod}(\mathcal{O})}( \mathcal{O} \otimes _{f^{-1}f_*\mathcal{O}} f^{-1}\mathcal{G}, \mathcal{F}) &  = &  \mathop{\mathrm{Mor}}\nolimits _{\textit{Mod}(f^{-1}f_*\mathcal{O})}( f^{-1}\mathcal{G}, \mathcal{F}_{f^{-1}f_*\mathcal{O}}) \\ &  = &  \mathop{\mathrm{Mor}}\nolimits _{\textit{Mod}(f_*\mathcal{O})}(\mathcal{G}, f_*\mathcal{F}). \end{eqnarray*}
+</div>
+    <p>
+       which are a combination of Lemma <a href="/tag/008A" data-tag="008A">6.20.2</a> and <a href="/tag/008Y" data-tag="008Y">6.24.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $f : X \to Y$ be a continuous map. Let $\mathcal{O}_ X$ be a (pre)sheaf of rings on $X$ and let $\mathcal{O}_ Y$ be a (pre)sheaf of rings on $Y$. So at the moment we have defined functors 
+</p>
+<div class="equation">
+  \begin{eqnarray*}  f_* : \textit{PMod}(\mathcal{O}_ X) &  \longrightarrow &  \textit{PMod}(f_*\mathcal{O}_ X) \\  f_* : \textit{Mod}(\mathcal{O}_ X) &  \longrightarrow &  \textit{Mod}(f_*\mathcal{O}_ X) \\  f_ p : \textit{PMod}(\mathcal{O}_ Y) &  \longrightarrow &  \textit{PMod}(f_ p\mathcal{O}_ Y) \\  f^{-1} : \textit{Mod}(\mathcal{O}_ Y) &  \longrightarrow &  \textit{Mod}(f^{-1}\mathcal{O}_ Y) \end{eqnarray*}
+</div>
+<p>
+ Clearly, usually the pair of functors $(f_*, f^{-1})$ on sheaves of modules are not adjoint, because their target categories do not match. Namely, as we saw above, it works only if by some miracle the sheaves of rings $\mathcal{O}_ X, \mathcal{O}_ Y$ satisfy the relations $\mathcal{O}_ X = f^{-1}\mathcal{O}_ Y$ and $\mathcal{O}_ Y = f_*\mathcal{O}_ X$. This is almost never true in practice. We interrupt the discussion to define the correct notion of morphism for which a suitable adjoint pair of functors on sheaves of modules exists. 
+</p>

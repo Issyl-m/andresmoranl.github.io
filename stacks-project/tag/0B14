@@ -1,0 +1,126 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="simplicial-section-hom-from-cosimplicial-sets-into-simplicial" class="tex-section"><span data-tag="0B14">14.15</span> Hom from cosimplicial sets into simplicial objects</h2>
+
+<p>
+Let $\mathcal{C}$ be a category. Let $U$ be a cosimplicial object of $\mathcal{C}$, and let $V$ be a simplicial object of $\mathcal{C}$. Then we get a simplicial set $\mathop{\mathrm{Hom}}\nolimits _\mathcal {C}(U, V)$ as follows: 
+</p>
+<ol>
+  <li><p>
+we set $\mathop{\mathrm{Hom}}\nolimits _\mathcal {C}(U, V)_ n = \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(U_ n, V_ n)$, and 
+</p>
+</li><li><p>
+for $\varphi : [m] \to [n]$ we take the map $\mathop{\mathrm{Hom}}\nolimits _\mathcal {C}(U, V)_ n \to \mathop{\mathrm{Hom}}\nolimits _\mathcal {C}(U, V)_ m$ given by $f \mapsto V(\varphi ) \circ f \circ U(\varphi )$. 
+</p>
+</li>
+</ol>
+<p>
+ This is our motivation for the following definition. 
+</p>
+<p>
+<article class="env-definition" id="0B15">
+  <p><a class="environment-identifier" href="/tag/0B15">Definition <span data-tag="0B15">14.15.1</span>.</a> Let $\mathcal{C}$ be a category with finite products. Let $V$ be a simplicial object of $\mathcal{C}$. Let $U$ be a cosimplicial set such that each $U_ n$ is finite nonempty. We define <em>$\mathop{\mathrm{Hom}}\nolimits (U, V)$</em> to be the simplicial object of $\mathcal{C}$ defined as follows: </p>
+  <p><ol>
+  <li><p>
+we set $\mathop{\mathrm{Hom}}\nolimits (U, V)_ n = \prod _{u \in U_ n} V_ n$, in other words the unique object of $\mathcal{C}$ such that its $X$-valued points satisfy 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(X, \mathop{\mathrm{Hom}}\nolimits (U, V)_ n) = \text{Map}(U_ n, \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(X, V_ n))  \]
+</div>
+<p>
+ and 
+</p>
+</li><li><p>
+for $\varphi : [m] \to [n]$ we take the map $\mathop{\mathrm{Hom}}\nolimits (U, V)_ n \to \mathop{\mathrm{Hom}}\nolimits (U, V)_ m$ given by $f \mapsto V(\varphi ) \circ f \circ U(\varphi )$ on $X$-valued points as above. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+We leave it to the reader to spell out the definition in terms of maps between products. We also point out that the construction is functorial in both $U$ (contravariantly) and $V$ (covariantly), exactly as in Lemma <a href="/tag/017E" data-tag="017E">14.13.3</a> in the case of products of simplicial sets with simplicial objects. 
+</p>
+<p>
+We spell out the construction above in a special case. Let $X$ be an object of a category $\mathcal{C}$. Assume that self products $X \times \ldots \times X$ exist. Let $k$ be an integer. Consider the simplicial object $U$ with terms 
+</p>
+<div class="equation">
+  \[  U_ n = \prod \nolimits _{\alpha \in \mathop{\mathrm{Mor}}\nolimits ([k], [n])} X  \]
+</div>
+<p>
+ and maps given $\varphi : [m] \to [n]$ 
+</p>
+<div class="equation">
+  \[  U(\varphi ) : \prod \nolimits _{\alpha \in \mathop{\mathrm{Mor}}\nolimits ([k], [n])} X \longrightarrow \prod \nolimits _{\alpha ' \in \mathop{\mathrm{Mor}}\nolimits ([k], [m])} X, \quad (f_{\alpha })_{\alpha } \longmapsto (f_{\varphi \circ \alpha '})_{\alpha '}  \]
+</div>
+<p>
+ In terms of “coordinates”, the element $(x_\alpha )_\alpha $ is mapped to the element $(x_{\varphi \circ \alpha '})_{\alpha '}$. We claim this object is equal to $\mathop{\mathrm{Hom}}\nolimits (C[k], X)$ where we think of $X$ as the constant simplicial object $X$ and where $C[k]$ is the cosimplicial set from Example <a href="/tag/0B13" data-tag="0B13">14.5.6</a>. 
+</p>
+<p>
+<article class="env-lemma" id="017M">
+  <p><a class="environment-identifier" href="/tag/017M">Lemma <span data-tag="017M">14.15.2</span>.</a> With $X$, $k$ and $U$ as above. </p>
+  <p><ol>
+  <li><p>
+For any simplicial object $V$ of $\mathcal{C}$ we have the following canonical bijection 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\text{Simp}(\mathcal{C})}(V, U) \longrightarrow \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(V_ k, X).  \]
+</div>
+<p>
+ which maps $\gamma $ to the morphism $\gamma _ k$ composed with the projection onto the factor corresponding to $\text{id}_{[k]}$. 
+</p>
+</li><li><p>
+Similarly, if $W$ is an $k$-truncated simplicial object of $\mathcal{C}$, then we have 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\text{Simp}_ k(\mathcal{C})}(W, \text{sk}_ k U) = \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(W_ k, X).  \]
+</div>
+</li><li><p>
+The object $U$ constructed above is an incarnation of $\mathop{\mathrm{Hom}}\nolimits (C[k], X)$ where $C[k]$ is the cosimplicial set from Example <a href="/tag/0B13" data-tag="0B13">14.5.6</a>. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We first prove (1). Suppose that $\gamma : V \to U$ is a morphism. This is given by a family of morphisms $\gamma _{\alpha } : V_ n \to X$ for $\alpha : [k] \to [n]$. The morphisms have to satisfy the rules that for all $\varphi : [m] \to [n]$ the diagrams 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X \ar[d]^{\text{id}_ X} &  V_ n \ar[d]^{V(\varphi )} \ar[l]^{\gamma _{\varphi \circ \alpha '}} \\  X &  V_ m \ar[l]_{\gamma _{\alpha '}} }  \]
+</div>
+    <p>
+       commute for all $\alpha ' : [k] \to [m]$. Taking $\alpha ' = \text{id}_{[k]}$, we see that for any $\varphi : [k] \to [n]$ we have $\gamma _\varphi = \gamma _{\text{id}_{[k]}} \circ V(\varphi )$. Thus the morphism $\gamma $ is determined by the component of $\gamma _ k$ corresponding to $\text{id}_{[k]}$. Conversely, given such a morphism $f : V_ k \to X$ we easily construct a morphism $\gamma $ by putting $\gamma _\alpha = f \circ V(\alpha )$. 
+    <p>
+      The truncated case is similar, and left to the reader. 
+    <p>
+      Part (3) is immediate from the construction of $U$ and the fact that $C[k]_ n = \mathop{\mathrm{Mor}}\nolimits ([k], [n])$ which are the index sets used in the construction of $U_ n$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

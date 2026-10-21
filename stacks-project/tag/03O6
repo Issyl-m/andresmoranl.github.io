@@ -1,0 +1,196 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="etale-cohomology-section-fpqc-descent" class="tex-section"><span data-tag="03O6">59.16</span> Faithfully flat descent</h2>
+
+<p>
+In this section we discuss faithfully flat descent for quasi-coherent modules. More precisely, we will prove quasi-coherent modules satisfy effective descent with respect to fpqc coverings. 
+</p>
+<p>
+<article class="env-definition" id="03O7">
+  <p><a class="environment-identifier" href="/tag/03O7">Definition <span data-tag="03O7">59.16.1</span>.</a> Let $\mathcal{U} = \{  t_ i : T_ i \to T\} _{i \in I}$ be a family of morphisms of schemes with fixed target. A <em>descent datum</em> for quasi-coherent sheaves with respect to $\mathcal{U}$ is a collection $((\mathcal{F}_ i)_{i \in I}, (\varphi _{ij})_{i, j \in I})$ where </p>
+  <p><ol>
+  <li><p>
+$\mathcal{F}_ i$ is a quasi-coherent sheaf on $T_ i$, and 
+</p>
+</li><li><p>
+$\varphi _{ij} : \text{pr}_0^* \mathcal{F}_ i \to \text{pr}_1^* \mathcal{F}_ j$ is an isomorphism of modules on $T_ i \times _ T T_ j$, 
+</p>
+</li>
+</ol></p>
+  <p> such that the <em>cocycle condition</em> holds: the diagrams </p>
+  <div class="equation">
+  \[  \xymatrix{ \text{pr}_0^*\mathcal{F}_ i \ar[dr]_{\text{pr}_{02}^*\varphi _{ik}} \ar[rr]^{\text{pr}_{01}^*\varphi _{ij}} &  &  \text{pr}_1^*\mathcal{F}_ j \ar[dl]^{\text{pr}_{12}^*\varphi _{jk}} \\  &  \text{pr}_2^*\mathcal{F}_ k }  \]
+</div>
+  <p> commute on $T_ i \times _ T T_ j \times _ T T_ k$. This descent datum is called <em>effective</em> if there exist a quasi-coherent sheaf $\mathcal{F}$ over $T$ and $\mathcal{O}_{T_ i}$-module isomorphisms $\varphi _ i : t_ i^* \mathcal{F} \cong \mathcal{F}_ i$ compatible with the maps $\varphi _{ij}$, namely </p>
+  <div class="equation">
+  \[  \varphi _{ij} = \text{pr}_1^* (\varphi _ j) \circ \text{pr}_0^* (\varphi _ i)^{-1}.  \]
+</div>
+</article> 
+</p>
+<p>
+In this and the next section we discuss some ingredients of the proof of the following theorem, as well as some related material. 
+</p>
+<p>
+<article class="env-theorem" id="03O8">
+  <p><a class="environment-identifier" href="/tag/03O8">Theorem <span data-tag="03O8">59.16.2</span>.</a> If $\mathcal{V} = \{ T_ i \to T\} _{i\in I}$ is an fpqc covering, then all descent data for quasi-coherent sheaves with respect to $\mathcal{V}$ are effective. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See Descent, Proposition <a href="/tag/023T" data-tag="023T">35.5.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In other words, the fibered category of quasi-coherent sheaves is a stack on the fpqc site. The proof of the theorem is in two steps. The first one is to realize that for Zariski coverings this is easy (or well-known) using standard glueing of sheaves (see Sheaves, Section <a href="/tag/00AK" data-tag="00AK">6.33</a>) and the locality of quasi-coherence. The second step is the case of an fpqc covering of the form $\{ \mathop{\mathrm{Spec}}(B) \to \mathop{\mathrm{Spec}}(A)\} $ where $A \to B$ is a faithfully flat ring map. This is a lemma in algebra, which we now present. 
+</p>
+<p>
+<strong>Descent of modules.</strong> If $A \to B$ is a ring map, we consider the complex 
+</p>
+<div class="equation">
+  \[  (B/A)_\bullet : B \to B \otimes _ A B \to B \otimes _ A B \otimes _ A B \to \ldots  \]
+</div>
+<p>
+ where $B$ is in degree 0, $B \otimes _ A B$ in degree 1, etc, and the maps are given by 
+</p>
+<div class="equation">
+  \begin{eqnarray*}  b &  \mapsto &  1 \otimes b - b \otimes 1, \\  b_0 \otimes b_1 &  \mapsto &  1 \otimes b_0 \otimes b_1 - b_0 \otimes 1 \otimes b_1 + b_0 \otimes b_1 \otimes 1, \\ &  \text{etc.} \end{eqnarray*}
+</div>
+<p>
+<article class="env-lemma" id="03O9">
+  <p><a class="environment-identifier" href="/tag/03O9">Lemma <span data-tag="03O9">59.16.3</span>.</a> If $A \to B$ is faithfully flat, then the complex $(B/A)_\bullet $ is exact in positive degrees, and $H^0((B/A)_\bullet ) = A$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See Descent, Lemma <a href="/tag/023M" data-tag="023M">35.3.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Grothendieck proves this in three steps. Firstly, he assumes that the map $A \to B$ has a section, and constructs an explicit homotopy to the complex where $A$ is the only nonzero term, in degree 0. Secondly, he observes that to prove the result, it suffices to do so after a faithfully flat base change $A \to A'$, replacing $B$ with $B' = B \otimes _ A A'$. Thirdly, he applies the faithfully flat base change $A \to A' = B$ and remark that the map $A' = B \to B' = B \otimes _ A B$ has a natural section. 
+</p>
+<p>
+The same strategy proves the following lemma. 
+</p>
+<p>
+<article class="env-lemma" id="03OA">
+  <p><a class="environment-identifier" href="/tag/03OA">Lemma <span data-tag="03OA">59.16.4</span>.</a> If $A \to B$ is faithfully flat and $M$ is an $A$-module, then the complex $(B/A)_\bullet \otimes _ A M$ is exact in positive degrees, and $H^0((B/A)_\bullet \otimes _ A M) = M$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See Descent, Lemma <a href="/tag/023M" data-tag="023M">35.3.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="03OB">
+  <p><a class="environment-identifier" href="/tag/03OB">Definition <span data-tag="03OB">59.16.5</span>.</a> Let $A \to B$ be a ring map and $N$ a $B$-module. A <em>descent datum</em> for $N$ with respect to $A \to B$ is an isomorphism $\varphi : N \otimes _ A B \cong B \otimes _ A N$ of $B \otimes _ A B$-modules such that the diagram of $B \otimes _ A B \otimes _ A B$-modules </p>
+  <div class="equation">
+  \[  \xymatrix{ {N \otimes _ A B \otimes _ A B} \ar[dr]_{\varphi _{02}} \ar[rr]^{\varphi _{01}} &  &  {B \otimes _ A N \otimes _ A B} \ar[dl]^{\varphi _{12}} \\  &  {B \otimes _ A B \otimes _ A N} }  \]
+</div>
+  <p> commutes where $\varphi _{01} = \varphi \otimes \text{id}_ B$ and similarly for $\varphi _{12}$ and $\varphi _{02}$. </p>
+</article> 
+</p>
+<p>
+If $N' = B \otimes _ A M$ for some $A$-module M, then it has a canonical descent datum given by the map 
+</p>
+<div class="equation">
+  \[  \begin{matrix}  \varphi _\text {can}: 
+
+&  N' \otimes _ A B 
+
+&  \to 
+
+&  B \otimes _ A N' 
+
+\\ &  b_0 \otimes m \otimes b_1 
+
+&  \mapsto 
+
+&  b_0 \otimes b_1 \otimes m. 
+
+\end{matrix}  \]
+</div>
+<p>
+<article class="env-definition" id="03OC">
+  <p><a class="environment-identifier" href="/tag/03OC">Definition <span data-tag="03OC">59.16.6</span>.</a> A descent datum $(N, \varphi )$ is called <em>effective</em> if there exists an $A$-module $M$ such that $(N, \varphi ) \cong (B \otimes _ A M, \varphi _\text {can})$, with the obvious notion of isomorphism of descent data. </p>
+</article> 
+</p>
+<p>
+Theorem <a href="/tag/03O8" data-tag="03O8">59.16.2</a> is a consequence the following result. 
+</p>
+<p>
+<article class="env-theorem" id="03OD">
+  <p><a class="environment-identifier" href="/tag/03OD">Theorem <span data-tag="03OD">59.16.7</span>.</a> If $A \to B$ is faithfully flat then descent data with respect to $A\to B$ are effective. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See Descent, Proposition <a href="/tag/023N" data-tag="023N">35.3.9</a>. See also Descent, Remark <a href="/tag/039Y" data-tag="039Y">35.3.11</a> for an alternative view of the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remarks" id="03OE">
+  <p><a class="environment-identifier" href="/tag/03OE">Remarks <span data-tag="03OE">59.16.8</span>.</a> The results on descent of modules have several applications: </p>
+  <p><ol>
+  <li><p>
+The exactness of the Čech complex in positive degrees for the covering $\{ \mathop{\mathrm{Spec}}(B) \to \mathop{\mathrm{Spec}}(A)\} $ where $A \to B$ is faithfully flat. This will give some vanishing of cohomology. 
+</p>
+</li><li><p>
+If $(N, \varphi )$ is a descent datum with respect to a faithfully flat map $A \to B$, then the corresponding $A$-module is given by 
+</p>
+<div class="equation">
+  \[  M = \mathop{\mathrm{Ker}}\left( \begin{matrix}  N 
+
+&  \longrightarrow 
+
+&  B \otimes _ A N 
+
+\\  n 
+
+&  \longmapsto 
+
+&  1 \otimes n - \varphi (n \otimes 1) 
+
+\end{matrix} \right).  \]
+</div>
+<p>
+ See Descent, Proposition <a href="/tag/023N" data-tag="023N">35.3.9</a>. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>

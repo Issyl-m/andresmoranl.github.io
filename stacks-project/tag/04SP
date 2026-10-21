@@ -1,0 +1,112 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="examples-stacks-section-stack-of-spaces" class="tex-section"><span data-tag="04SP">95.7</span> Algebraic spaces</h2>
+
+<p>
+We define a category $\mathcal{S}\! \mathit{paces}$ as follows: 
+</p>
+<ol>
+  <li><p>
+An object of $\mathcal{S}\! \mathit{paces}$ is a morphism $X \to U$ of algebraic spaces over $S$, where $U$ is representable by an object of $(\mathit{Sch}/S)_{fppf}$, and 
+</p>
+</li><li><p>
+a morphism $(f, g) : (X \to U) \to (Y \to V)$ is a commutative diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ X \ar[d] \ar[r]_ f &  Y \ar[d] \\  U \ar[r]^ g &  V }  \]
+</div>
+<p>
+ of morphisms of algebraic spaces over $S$. 
+</p>
+</li>
+</ol>
+<p>
+ Thus $\mathcal{S}\! \mathit{paces}$ is a category and 
+</p>
+<div class="equation">
+  \[  p : \mathcal{S}\! \mathit{paces}\to (\mathit{Sch}/S)_{fppf}, \quad (X \to U) \mapsto U  \]
+</div>
+<p>
+ is a functor. Note that the fibre category of $\mathcal{S}\! \mathit{paces}$ over a scheme $U$ is just the category $\textit{Spaces}/U$ of algebraic spaces over $U$ (see Topologies on Spaces, Section <a href="/tag/03Y6" data-tag="03Y6">73.2</a>). Hence we sometimes think of an object of $\mathcal{S}\! \mathit{paces}$ as a pair $X/U$ consisting of a scheme $U$ and an algebraic space $X$ over $U$. We remark for later use that given $(X/U), (Y/V) \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{S}\! \mathit{paces})$ we have 
+</p>
+<div class="equation" id="04U8">
+    <span class="equation-label"><a href="/tag/04U8" data-tag="04U8">95.7.0.1</a></span>
+  <div>\begin{equation}  \label{examples-stacks-equation-morphisms-spaces} \mathop{\mathrm{Mor}}\nolimits _{\mathcal{S}\! \mathit{paces}}(X/U, Y/V) = \coprod \nolimits _{g \in \mathop{\mathrm{Mor}}\nolimits _ S(U, V)} \mathop{\mathrm{Mor}}\nolimits _{\textit{Spaces}/U}(X, U \times _{g, V} Y) \end{equation}</div>
+</div>
+<p>
+ The category $\mathcal{S}\! \mathit{paces}$ is almost, but not quite a stack over $(\mathit{Sch}/S)_{fppf}$. The problem is a set theoretical issue as we will explain below. 
+</p>
+<p>
+<article class="env-lemma" id="04U9">
+  <p><a class="environment-identifier" href="/tag/04U9">Lemma <span data-tag="04U9">95.7.1</span>.</a> A morphism $(f, g) : X/U \to Y/V$ of $\mathcal{S}\! \mathit{paces}$ is strongly cartesian if and only if the map $f$ induces an isomorphism $X \to U \times _{g, V} Y$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $Y/V \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{S}\! \mathit{paces})$. Let $g : U \to V$ be a morphism of $(\mathit{Sch}/S)_{fppf}$. Note that the projection $p : U \times _{g, V} Y \to Y$ gives rise a morphism $(p, g) : U \times _{g, V} Y/U \to Y/V$ of $\mathcal{S}\! \mathit{paces}$. We claim that $(p, g)$ is strongly cartesian. Namely, for any object $Z/W$ of $\mathcal{S}\! \mathit{paces}$ we have 
+    <p>
+      <div class="equation">
+  \begin{align*}  \mathop{\mathrm{Mor}}\nolimits _{\mathcal{S}\! \mathit{paces}}(Z/W, U \times _{g, V} Y/U) &  = \coprod \nolimits _{h \in \mathop{\mathrm{Mor}}\nolimits _ S(W, U)} \mathop{\mathrm{Mor}}\nolimits _{\textit{Spaces}/W}(Z, W \times _{h, U} U \times _{g, V} Y) \\ &  = \coprod \nolimits _{h \in \mathop{\mathrm{Mor}}\nolimits _ S(W, U)} \mathop{\mathrm{Mor}}\nolimits _{\textit{Spaces}/W}(Z, W \times _{g \circ h, V} Y) \\ &  = \mathop{\mathrm{Mor}}\nolimits _{\mathcal{S}\! \mathit{paces}}(Z/W, Y/V) \times _{\mathop{\mathrm{Mor}}\nolimits _ S(W, V)} \mathop{\mathrm{Mor}}\nolimits _ S(W, U) \end{align*}
+</div>
+    <p>
+       where we have used Equation (<a href="/tag/04U8" data-tag="04U8">95.7.0.1</a>) twice. This proves that the condition of Categories, Definition <a href="/tag/02XK" data-tag="02XK">4.33.1</a> holds for $(p, g)$, and hence our claim is true. Now by Categories, Lemma <a href="/tag/02XL" data-tag="02XL">4.33.2</a> we see that isomorphisms are strongly cartesian and compositions of strongly cartesian morphisms are strongly cartesian which proves the “if” part of the lemma. For the converse, note that given $Y/V$ and $g : U \to V$, if there exists a strongly cartesian morphism lifting $g$ with target $Y/V$ then it has to be isomorphic to $(p, g)$ (see discussion following Categories, Definition <a href="/tag/02XK" data-tag="02XK">4.33.1</a>). Hence the "only if" part of the lemma holds. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="04UA">
+  <p><a class="environment-identifier" href="/tag/04UA">Lemma <span data-tag="04UA">95.7.2</span>.</a> The functor $p : \mathcal{S}\! \mathit{paces}\to (\mathit{Sch}/S)_{fppf}$ satisfies conditions (1) and (2) of Stacks, Definition <a href="/tag/026F" data-tag="026F">8.4.1</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It is follows from Lemma <a href="/tag/04U9" data-tag="04U9">95.7.1</a> that $\mathcal{S}\! \mathit{paces}$ is a fibred category over $(\mathit{Sch}/S)_{fppf}$ which proves (1). Suppose that $\{ U_ i \to U\} _{i \in I}$ is a covering of $(\mathit{Sch}/S)_{fppf}$. Suppose that $X, Y$ are algebraic spaces over $U$. Finally, suppose that $\varphi _ i : X_{U_ i} \to Y_{U_ i}$ are morphisms of $\textit{Spaces}/U_ i$ such that $\varphi _ i$ and $\varphi _ j$ restrict to the same morphisms $X_{U_ i \times _ U U_ j} \to Y_{U_ i \times _ U U_ j}$ of algebraic spaces over $U_ i \times _ U U_ j$. To prove (2) we have to show that there exists a unique morphism $\varphi : X \to Y$ over $U$ whose base change to $U_ i$ is equal to $\varphi _ i$. As a morphism from $X$ to $Y$ is the same thing as a map of sheaves this follows directly from Sites, Lemma <a href="/tag/04TQ" data-tag="04TQ">7.26.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="04UB">
+  <p><a class="environment-identifier" href="/tag/04UB">Remark <span data-tag="04UB">95.7.3</span>.</a> Ignoring set theoretical difficulties<a class="footnotemark" href="#a0001658440" id="a0001658440-mark"><sup>1</sup></a> $\mathcal{S}\! \mathit{paces}$ also satisfies descent for objects and hence is a stack. Namely, we have to show that given </p>
+  <p><ol>
+  <li><p>
+an fppf covering $\{ U_ i \to U\} _{i \in I}$, 
+</p>
+</li><li><p>
+for each $i \in I$ an algebraic space $X_ i/U_ i$, and 
+</p>
+</li><li><p>
+for each $i, j \in I$ an isomorphism $\varphi _{ij} : X_ i \times _ U U_ j \to U_ i \times _ U X_ j$ of algebraic spaces over $U_ i \times _ U U_ j$ satisfying the cocycle condition over $U_ i \times _ U U_ j \times _ U U_ k$, 
+</p>
+</li>
+</ol></p>
+  <p> there exists an algebraic space $X/U$ and isomorphisms $X_{U_ i} \cong X_ i$ over $U_ i$ recovering the isomorphisms $\varphi _{ij}$. First, note that by Sites, Lemma <a href="/tag/04TR" data-tag="04TR">7.26.4</a> there exists a sheaf $X$ on $(\mathit{Sch}/U)_{fppf}$ recovering the $X_ i$ and the $\varphi _{ij}$. Then by Bootstrap, Lemma <a href="/tag/04SK" data-tag="04SK">80.11.1</a> we see that $X$ is an algebraic space (if we ignore the set theoretic condition of that lemma). We will use this argument in the next section to show that if we consider only algebraic spaces of finite type, then we obtain a stack. </p>
+</article> 
+</p>

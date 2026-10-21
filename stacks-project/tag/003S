@@ -1,0 +1,345 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="categories-section-fibred-groupoids" class="tex-section"><span data-tag="003S">4.35</span> Categories fibred in groupoids</h2>
+
+<p>
+In this section we explain how to think about categories fibred in groupoids and we see how they are basically the same as functors with values in the $(2, 1)$-category of groupoids. 
+</p>
+<p>
+<article class="env-definition" id="003T">
+  <p><a class="environment-identifier" href="/tag/003T">Definition <span data-tag="003T">4.35.1</span>.</a> Let $p : \mathcal{S} \to \mathcal{C}$ be a functor. We say that $\mathcal{S}$ is <em>fibred in groupoids</em> over $\mathcal{C}$ if the following two conditions hold: </p>
+  <p><ol>
+  <li><p>
+For every morphism $f : V \to U$ in $\mathcal{C}$ and every lift $x$ of $U$ there is a lift $\phi : y \to x$ of $f$ with target $x$. 
+</p>
+</li><li><p>
+For every pair of morphisms $\phi : y \to x$ and $ \psi : z \to x$ and any morphism $f : p(z) \to p(y)$ such that $p(\phi ) \circ f = p(\psi )$ there exists a unique lift $\chi : z \to y$ of $f$ such that $\phi \circ \chi = \psi $. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+Condition (2) phrased differently says that applying the functor $p$ gives a bijection between the sets of dotted arrows in the following commutative diagram below: 
+</p>
+<div class="equation">
+  \[  \xymatrix{ y \ar[r] &  x &  p(y) \ar[r] &  p(x) \\  z \ar@{-->}[u] \ar[ru] &  &  p(z) \ar@{-->}[u]\ar[ru] &  \\  }  \]
+</div>
+<p>
+ Another way to think about the second condition is the following. Suppose that $g : W \to V$ and $f : V \to U$ are morphisms in $\mathcal{C}$. Let $x \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{S}_ U)$. By the first condition we can lift $f$ to $ \phi : y \to x$ and then we can lift $g$ to $\psi : z \to y$. Instead of doing this two step process we can directly lift $g \circ f$ to $\gamma : z' \to x$. This gives the solid arrows in the diagram 
+</p>
+<div class="equation" id="03WP">
+    <span class="equation-label"><a href="/tag/03WP" data-tag="03WP">4.35.1.1</a></span>
+  <div>\begin{equation}  \label{categories-equation-fibred-groupoids} \vcenter { \xymatrix{ z' \ar@{-->}[d]\ar[rrd]^\gamma &  &  \\  z \ar@{-->}[u] \ar[r]^\psi \ar@{~>}[d]^ p &  y \ar[r]^\phi \ar@{~>}[d]^ p &  x \ar@{~>}[d]^ p \\  W \ar[r]^ g &  V \ar[r]^ f &  U \\  } } \end{equation}</div>
+</div>
+<p>
+ where the squiggly arrows represent not morphisms but the functor $p$. Applying the second condition to the arrows $\phi \circ \psi $, $\gamma $ and $\text{id}_ W$ we conclude that there is a unique morphism $\chi : z \to z'$ in $\mathcal{S}_ W$ such that $\gamma \circ \chi = \phi \circ \psi $. Similarly there is a unique morphism $z' \to z$. The uniqueness implies that the morphisms $z' \to z$ and $z\to z'$ are mutually inverse, in other words isomorphisms. 
+</p>
+<p>
+It should be clear from this discussion that a category fibred in groupoids is very closely related to a fibred category. Here is the result. 
+</p>
+<p>
+<article class="env-lemma" id="003V">
+  <p><a class="environment-identifier" href="/tag/003V">Lemma <span data-tag="003V">4.35.2</span>.</a> Let $p : \mathcal{S} \to \mathcal{C}$ be a functor. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$p : \mathcal{S} \to \mathcal{C}$ is a category fibred in groupoids, and 
+</p>
+</li><li><p>
+all fibre categories are groupoids and $\mathcal{S}$ is a fibred category over $\mathcal{C}$. 
+</p>
+</li>
+</ol></p>
+  <p> Moreover, in this case every morphism of $\mathcal{S}$ is strongly cartesian. In addition, given $f^\ast x \to x$ lying over $f$ for all $f: V \to U = p(x)$ the data $(U \mapsto \mathcal{S}_ U, f \mapsto f^*, \alpha _{f, g}, \alpha _ U)$ constructed in Lemma <a href="/tag/02XO" data-tag="02XO">4.33.7</a> defines a pseudo functor from $\mathcal{C}^{opp}$ in to the $(2, 1)$-category of groupoids. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume $p : \mathcal{S} \to \mathcal{C}$ is fibred in groupoids. To show all fibre categories $\mathcal{S}_ U$ for $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ are groupoids, we must exhibit for every $f : y \to x$ in $\mathcal{S}_ U$ an inverse morphism. The diagram on the left (in $\mathcal{S}_ U$) is mapped by $p$ to the diagram on the right: 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ y \ar[r]^ f &  x &  U \ar[r]^{\text{id}_ U} &  U \\  x \ar@{-->}[u] \ar[ru]_{\text{id}_ x} &  &  U \ar@{-->}[u]\ar[ru]_{\text{id}_ U} &  \\  }  \]
+</div>
+    <p>
+       Since only $\text{id}_ U$ makes the diagram on the right commute, there is a unique $g : x \to y$ making the diagram on the left commute, so $fg = \text{id}_ x$. By a similar argument there is a unique $h : y \to x$ so that $gh = \text{id}_ y$. Then $fgh = f : y \to x$. We have $fg = \text{id}_ x$, so $h = f$. Condition (2) of Definition <a href="/tag/003T" data-tag="003T">4.35.1</a> says exactly that every morphism of $\mathcal{S}$ is strongly cartesian. Hence condition (1) of Definition <a href="/tag/003T" data-tag="003T">4.35.1</a> implies that $\mathcal{S}$ is a fibred category over $\mathcal{C}$. 
+    <p>
+      Conversely, assume all fibre categories are groupoids and $\mathcal{S}$ is a fibred category over $\mathcal{C}$. We have to check conditions (1) and (2) of Definition <a href="/tag/003T" data-tag="003T">4.35.1</a>. The first condition follows trivially. Let $\phi : y \to x$, $\psi : z \to x$ and $f : p(z) \to p(y)$ such that $p(\phi ) \circ f = p(\psi )$ be as in condition (2) of Definition <a href="/tag/003T" data-tag="003T">4.35.1</a>. Write $U = p(x)$, $V = p(y)$, $W = p(z)$, $p(\phi ) = g : V \to U$, $p(\psi ) = h : W \to U$. Choose a strongly cartesian $g^*x \to x$ lying over $g$. Then we get a morphism $i : y \to g^*x$ in $\mathcal{S}_ V$, which is therefore an isomorphism. We also get a morphism $j : z \to g^*x$ corresponding to the pair $(\psi , f)$ as $g^*x \to x$ is strongly cartesian. Then one checks that $\chi = i^{-1} \circ j$ is a solution. 
+    <p>
+      We have seen in the proof of (1) $\Rightarrow $ (2) that every morphism of $\mathcal{S}$ is strongly cartesian. The final statement follows directly from Lemma <a href="/tag/02XO" data-tag="02XO">4.33.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03WQ">
+  <p><a class="environment-identifier" href="/tag/03WQ">Lemma <span data-tag="03WQ">4.35.3</span>.</a> Let $\mathcal{C}$ be a category. Let $p : \mathcal{S} \to \mathcal{C}$ be a fibred category. Let $\mathcal{S}'$ be the subcategory of $\mathcal{S}$ defined as follows </p>
+  <p><ol>
+  <li><p>
+$\mathop{\mathrm{Ob}}\nolimits (\mathcal{S}') = \mathop{\mathrm{Ob}}\nolimits (\mathcal{S})$, and 
+</p>
+</li><li><p>
+for $x, y \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{S}')$ the set of morphisms between $x$ and $y$ in $\mathcal{S}'$ is the set of strongly cartesian morphisms between $x$ and $y$ in $\mathcal{S}$. 
+</p>
+</li>
+</ol></p>
+  <p> Let $p' : \mathcal{S}' \to \mathcal{C}$ be the restriction of $p$ to $\mathcal{S}'$. Then $p' : \mathcal{S}' \to \mathcal{C}$ is fibred in groupoids. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Note that the construction makes sense since by Lemma <a href="/tag/02XL" data-tag="02XL">4.33.2</a> the identity morphism of any object of $\mathcal{S}$ is strongly cartesian, and the composition of strongly cartesian morphisms is strongly cartesian. The first lifting property of Definition <a href="/tag/003T" data-tag="003T">4.35.1</a> follows from the condition that in a fibred category given any morphism $f : V \to U$ and $x$ lying over $U$ there exists a strongly cartesian morphism $\varphi : y \to x$ lying over $f$. Let us check the second lifting property of Definition <a href="/tag/003T" data-tag="003T">4.35.1</a> for the category $p' : \mathcal{S}' \to \mathcal{C}$ over $\mathcal{C}$. To do this we argue as in the discussion following Definition <a href="/tag/003T" data-tag="003T">4.35.1</a>. Thus in Diagram <a href="/tag/03WP" data-tag="03WP">4.35.1.1</a> the morphisms $\phi $, $\psi $ and $\gamma $ are strongly cartesian morphisms of $\mathcal{S}$. Hence $\gamma $ and $\phi \circ \psi $ are strongly cartesian morphisms of $\mathcal{S}$ lying over the same arrow of $\mathcal{C}$ and having the same target in $\mathcal{S}$. By the discussion following Definition <a href="/tag/02XK" data-tag="02XK">4.33.1</a> this means these two arrows are isomorphic as desired (here we use also that any isomorphism in $\mathcal{S}$ is strongly cartesian, by Lemma <a href="/tag/02XL" data-tag="02XL">4.33.2</a> again). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-example" id="003U">
+  <p><a class="environment-identifier" href="/tag/003U">Example <span data-tag="003U">4.35.4</span>.</a> A homomorphism of groups $p : G \to H$ gives rise to a functor $p : \mathcal{S}\to \mathcal{C}$ as in Example <a href="/tag/001F" data-tag="001F">4.2.12</a>. This functor $p : \mathcal{S}\to \mathcal{C}$ is fibred in groupoids if and only if $p$ is surjective. The fibre category $\mathcal{S}_ U$ over the (unique) object $U\in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ is the category associated to the kernel of $p$ as in Example <a href="/tag/0019" data-tag="0019">4.2.6</a>. </p>
+</article> 
+</p>
+<p>
+Given $p : \mathcal{S} \to \mathcal{C}$, we can ask: if the fibre category $\mathcal{S}_ U$ is a groupoid for all $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$, must $\mathcal{S}$ be fibred in groupoids over $\mathcal{C}$? We can see the answer is no as follows. Start with a category fibred in groupoids $p : \mathcal{S} \to \mathcal{C}$. Altering the morphisms in $\mathcal{S}$ which do not map to the identity morphism on some object does not alter the categories $\mathcal{S}_ U$. Hence we can violate the existence and uniqueness conditions on lifts. One example is the functor from Example <a href="/tag/003U" data-tag="003U">4.35.4</a> when $G \to H$ is not surjective. Here is another example. 
+</p>
+<p>
+<article class="env-example" id="02C4">
+  <p><a class="environment-identifier" href="/tag/02C4">Example <span data-tag="02C4">4.35.5</span>.</a> Let $\mathop{\mathrm{Ob}}\nolimits (\mathcal{C}) = \{ A, B, T\} $ and $\mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(A, B) = \{ f\} $, $\mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(B, T) = \{ g\} $, $\mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(A, T) = \{ h\}  = \{ gf\} , $ plus the identity morphism for each object. See the diagram below for a picture of this category. Now let $\mathop{\mathrm{Ob}}\nolimits (\mathcal{S}) = \{ A', B', T'\} $ and $\mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(A', B') = \emptyset $, $\mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(B', T') = \{ g'\} $, $\mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(A', T') = \{ h'\} , $ plus the identity morphisms. The functor $p : \mathcal{S} \to \mathcal{C}$ is obvious. Then for every $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$, $\mathcal{S}_ U$ is the category with one object and the identity morphism on that object, so a groupoid, but the morphism $f: A \to B$ cannot be lifted. Similarly, if we declare $\mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(A', B') = \{ f'_1, f'_2\} $ and $ \mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(A', T') = \{ h'\}  = \{ g'f'_1 \}  = \{ g'f'_2\} $, then the fibre categories are the same and $f: A \to B$ in the diagram below has two lifts. </p>
+  <div class="equation">
+  \[  \xymatrix{ B' \ar[r]^{g'} &  T' &  &  B \ar[r]^ g &  T &  \\  A' \ar@{-->}[u]^{??} \ar[ru]_{h'} &  &  \ar@{}[u]^{above} &  A \ar[u]^ f \ar[ru]_{gf = h} &  \\  }  \]
+</div>
+</article> 
+</p>
+<p>
+Later we would like to make assertions such as “any category fibred in groupoids over $\mathcal{C}$ is equivalent to a split one”, or “any category fibred in groupoids whose fibre categories are setlike is equivalent to a category fibred in sets”. The notion of equivalence depends on the $2$-category we are working with. 
+</p>
+<p>
+<article class="env-definition" id="02XS">
+  <p><a class="environment-identifier" href="/tag/02XS">Definition <span data-tag="02XS">4.35.6</span>.</a> Let $\mathcal{C}$ be a category. The <em>$2$-category of categories fibred in groupoids over $\mathcal{C}$</em> is the sub $2$-category of the $2$-category of fibred categories over $\mathcal{C}$ (see Definition <a href="/tag/02XP" data-tag="02XP">4.33.9</a>) defined as follows: </p>
+  <p><ol>
+  <li><p>
+Its objects will be categories $p : \mathcal{S} \to \mathcal{C}$ fibred in groupoids. 
+</p>
+</li><li><p>
+Its $1$-morphisms $(\mathcal{S}, p) \to (\mathcal{S}', p')$ will be functors $G : \mathcal{S} \to \mathcal{S}'$ such that $p' \circ G = p$ (since every morphism is strongly cartesian $G$ automatically preserves them). 
+</p>
+</li><li><p>
+Its $2$-morphisms $t : G \to H$ for $G, H : (\mathcal{S}, p) \to (\mathcal{S}', p')$ will be morphisms of functors such that $p'(t_ x) = \text{id}_{p(x)}$ for all $x \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{S})$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+Note that every $2$-morphism is automatically an isomorphism! Hence this is actually a $(2, 1)$-category and not just a $2$-category. Here is the obligatory lemma on $2$-fibre products. 
+</p>
+<p>
+<article class="env-lemma" id="0041">
+  <p><a class="environment-identifier" href="/tag/0041">Lemma <span data-tag="0041">4.35.7</span>.</a> Let $\mathcal{C}$ be a category. The $2$-category of categories fibred in groupoids over $\mathcal{C}$ has 2-fibre products, and they are described as in Lemma <a href="/tag/0040" data-tag="0040">4.32.3</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/02XQ" data-tag="02XQ">4.33.10</a> the fibre product as described in Lemma <a href="/tag/0040" data-tag="0040">4.32.3</a> is a fibred category. Hence it suffices to prove that the fibre categories are groupoids, see Lemma <a href="/tag/003V" data-tag="003V">4.35.2</a>. By Lemma <a href="/tag/02XI" data-tag="02XI">4.32.5</a> it is enough to show that the $2$-fibre product of groupoids is a groupoid, which is clear (from the construction in Lemma <a href="/tag/02X9" data-tag="02X9">4.31.4</a> for example). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0H2E">
+  <p><a class="environment-identifier" href="/tag/0H2E">Remark <span data-tag="0H2E">4.35.8</span>.</a> Let $\mathcal{C}$ be a category. Let $f : \mathcal{X} \to \mathcal{S}$ and $g : \mathcal{Y} \to \mathcal{S}$ be $1$-morphisms of categories fibred in groupoids over $\mathcal{C}$. Let $p : \mathcal{S} \to \mathcal{C}$ be the given functor. We claim the $2$-fibre product of Lemma <a href="/tag/0041" data-tag="0041">4.35.7</a> is canonically equivalent (as a category) to the one in Example <a href="/tag/003R" data-tag="003R">4.31.3</a>. Objects of the former are quadruples $(U, x, y, \alpha )$ where $p(\alpha ) = \text{id}_ U$ (see Lemma <a href="/tag/0040" data-tag="0040">4.32.3</a>) and objects of the latter are triples $(x, y, \alpha )$ (see Example <a href="/tag/003R" data-tag="003R">4.31.3</a>). The equivalence between the two categories is given by the rules $(U, x, y, \alpha ) \mapsto (x, y, \alpha )$ and $(x, y, \alpha ) \mapsto (p(f(x)), x, y', \alpha ')$ where $\alpha ' = g(\gamma )^{-1} \circ \alpha $ and $\gamma : y' \to y$ is a lift of the arrow $p(\alpha ) : p(f(x)) \to p(g(y))$. Details omitted. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="003Z">
+  <p><a class="environment-identifier" href="/tag/003Z">Lemma <span data-tag="003Z">4.35.9</span>.</a> Let $p : \mathcal{S}\to \mathcal{C}$ and $p' : \mathcal{S'}\to \mathcal{C}$ be categories fibred in groupoids, and suppose that $G : \mathcal{S}\to \mathcal{S}'$ is a functor over $\mathcal{C}$. </p>
+  <p><ol>
+  <li><p>
+Then $G$ is faithful (resp. fully faithful, resp. an equivalence) if and only if for each $U\in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ the induced functor $G_ U : \mathcal{S}_ U\to \mathcal{S}'_ U$ is faithful (resp. fully faithful, resp. an equivalence). 
+</p>
+</li><li><p>
+If $G$ is an equivalence, then $G$ is an equivalence in the $2$-category of categories fibred in groupoids over $\mathcal{C}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $x, y$ be objects of $\mathcal{S}$ lying over the same object $U$. Consider the commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(x, y) \ar[rd]_ p \ar[rr]_ G &  &  \mathop{\mathrm{Mor}}\nolimits _{\mathcal{S}'}(G(x), G(y)) \ar[ld]^{p'} \\  &  \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(U, U) &  }  \]
+</div>
+    <p>
+       From this diagram it is clear that if $G$ is faithful (resp. fully faithful) then so is each $G_ U$. 
+    <p>
+      Suppose $G$ is an equivalence. For every object $x'$ of $\mathcal{S}'$ there exists an object $x$ of $\mathcal{S}$ such that $G(x)$ is isomorphic to $x'$. Suppose that $x'$ lies over $U'$ and $x$ lies over $U$. Then there is an isomorphism $f : U' \to U$ in $\mathcal{C}$, namely, $p'$ applied to the isomorphism $x' \to G(x)$. By the axioms of a category fibred in groupoids there exists an arrow $f^*x \to x$ of $\mathcal{S}$ lying over $f$. Hence there exists an isomorphism $\alpha : x' \to G(f^*x)$ such that $p'(\alpha ) = \text{id}_{U'}$ (this time by the axioms for $\mathcal{S}'$). All in all we conclude that for every object $x'$ of $\mathcal{S}'$ we can choose a pair $(o_{x'}, \alpha _{x'})$ consisting of an object $o_{x'}$ of $\mathcal{S}$ and an isomorphism $\alpha _{x'} : x' \to G(o_{x'})$ with $p'(\alpha _{x'}) = \text{id}_{p'(x')}$. From this point on we proceed as usual (see proof of Lemma <a href="/tag/02C3" data-tag="02C3">4.2.19</a>) to produce an inverse functor $F : \mathcal{S}' \to \mathcal{S}$, by taking $x' \mapsto o_{x'}$ and $\varphi ' : x' \to y'$ to the unique arrow $\varphi _{\varphi '} : o_{x'} \to o_{y'}$ with $\alpha _{y'}^{-1} \circ G(\varphi _{\varphi '}) \circ \alpha _{x'} = \varphi '$. With these choices $F$ is a functor over $\mathcal{C}$. We omit the verification that $G \circ F$ and $F \circ G$ are $2$-isomorphic to the respective identity functors (in the $2$-category of categories fibred in groupoids over $\mathcal{C}$). 
+    <p>
+      Suppose that $G_ U$ is faithful (resp. fully faithful) for all $U\in \mathop{\mathrm{Ob}}\nolimits (\mathcal C)$. To show that $G$ is faithful (resp. fully faithful) we have to show for any objects $x, y\in \mathop{\mathrm{Ob}}\nolimits (\mathcal{S})$ that $G$ induces an injection (resp. bijection) between $\mathop{\mathrm{Mor}}\nolimits _\mathcal {S}(x, y)$ and $\mathop{\mathrm{Mor}}\nolimits _{\mathcal{S}'}(G(x), G(y))$. Set $U = p(x)$ and $V = p(y)$. It suffices to prove that $G$ induces an injection (resp. bijection) between morphism $x \to y$ lying over $f$ to morphisms $G(x) \to G(y)$ lying over $f$ for any morphism $f : U \to V$. Now fix $f : U \to V$. Denote $f^*y \to y$ a pullback. Then also $G(f^*y) \to G(y)$ is a pullback. The set of morphisms from $x$ to $y$ lying over $f$ is bijective to the set of morphisms between $x$ and $f^*y$ lying over $\text{id}_ U$. (By the second axiom of a category fibred in groupoids.) Similarly the set of morphisms from $G(x)$ to $G(y)$ lying over $f$ is bijective to the set of morphisms between $G(x)$ and $G(f^*y)$ lying over $\text{id}_ U$. Hence the fact that $G_ U$ is faithful (resp. fully faithful) gives the desired result. 
+    <p>
+      Finally suppose for all $G_ U$ is an equivalence for all $U$, so it is fully faithful and essentially surjective. We have seen this implies $G$ is fully faithful, and thus to prove it is an equivalence we have to prove that it is essentially surjective. This is clear, for if $z'\in \mathop{\mathrm{Ob}}\nolimits (\mathcal{S}')$ then $z'\in \mathop{\mathrm{Ob}}\nolimits (\mathcal{S}'_ U)$ where $U = p'(z')$. Since $G_ U$ is essentially surjective we know that $z'$ is isomorphic, in $\mathcal{S}'_ U$, to an object of the form $G_ U(z)$ for some $z\in \mathop{\mathrm{Ob}}\nolimits (\mathcal{S}_ U)$. But morphisms in $\mathcal{S}'_ U$ are morphisms in $\mathcal{S}'$ and hence $z'$ is isomorphic to $G(z)$ in $\mathcal{S}'$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="04Z7">
+  <p><a class="environment-identifier" href="/tag/04Z7">Lemma <span data-tag="04Z7">4.35.10</span>.</a> Let $\mathcal{C}$ be a category. Let $p : \mathcal{S}\to \mathcal{C}$ and $p' : \mathcal{S'}\to \mathcal{C}$ be categories fibred in groupoids. Let $G : \mathcal{S}\to \mathcal{S}'$ be a functor over $\mathcal{C}$. Then $G$ is fully faithful if and only if the diagonal </p>
+  <div class="equation">
+  \[  \Delta _ G : \mathcal{S} \longrightarrow \mathcal{S} \times _{G, \mathcal{S}', G} \mathcal{S}  \]
+</div>
+  <p> is an equivalence. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/003Z" data-tag="003Z">4.35.9</a> it suffices to look at fibre categories over an object $U$ of $\mathcal{C}$. An object of the right hand side is a triple $(x, x', \alpha )$ where $\alpha : G(x) \to G(x')$ is a morphism in $\mathcal{S}'_ U$. The functor $\Delta _ G$ maps the object $x$ of $\mathcal{S}_ U$ to the triple $(x, x, \text{id}_{G(x)})$. Note that $(x, x', \alpha )$ is in the essential image of $\Delta _ G$ if and only if $\alpha = G(\beta )$ for some morphism $\beta : x \to x'$ in $\mathcal{S}_ U$ (details omitted). Hence in order for $\Delta _ G$ to be an equivalence, every $\alpha $ has to be the image of a morphism $\beta : x \to x'$, and also every two distinct morphisms $\beta , \beta ' : x \to x'$ have to give distinct morphisms $G(\beta ), G(\beta ')$. This proves the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03YT">
+  <p><a class="environment-identifier" href="/tag/03YT">Lemma <span data-tag="03YT">4.35.11</span>.</a> Let $\mathcal{C}$ be a category. Let $\mathcal{S}_ i$, $i = 1, 2, 3, 4$ be categories fibred in groupoids over $\mathcal{C}$. Suppose that $\varphi : \mathcal{S}_1 \to \mathcal{S}_2$ and $\psi : \mathcal{S}_3 \to \mathcal{S}_4$ are equivalences over $\mathcal{C}$. Then </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\textit{Cat}/\mathcal{C}}(\mathcal{S}_2, \mathcal{S}_3) \longrightarrow \mathop{\mathrm{Mor}}\nolimits _{\textit{Cat}/\mathcal{C}}(\mathcal{S}_1, \mathcal{S}_4), \quad \alpha \longmapsto \psi \circ \alpha \circ \varphi  \]
+</div>
+  <p> is an equivalence of categories. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a generality and holds in any $2$-category. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="042I">
+  <p><a class="environment-identifier" href="/tag/042I">Lemma <span data-tag="042I">4.35.12</span>.</a> Let $\mathcal{C}$ be a category. If $p : \mathcal{S} \to \mathcal{C}$ is fibred in groupoids, then so is the inertia fibred category $\mathcal{I}_\mathcal {S} \to \mathcal{C}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Clear from the construction in Lemma <a href="/tag/034H" data-tag="034H">4.34.1</a> or by using (from the same lemma) that $I_\mathcal {S} \to \mathcal{S} \times _{\Delta , \mathcal{S} \times _\mathcal {C} \mathcal{S}, \Delta }\mathcal{S}$ is an equivalence and appealing to Lemma <a href="/tag/0041" data-tag="0041">4.35.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02XT">
+  <p><a class="environment-identifier" href="/tag/02XT">Lemma <span data-tag="02XT">4.35.13</span>.</a> Let $\mathcal{C}$ be a category. Let $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$. If $p : \mathcal{S} \to \mathcal{C}$ is a category fibred in groupoids and $p$ factors through $p' : \mathcal{S} \to \mathcal{C}/U$ then $p' : \mathcal{S} \to \mathcal{C}/U$ is fibred in groupoids. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We have already seen in Lemma <a href="/tag/02XR" data-tag="02XR">4.33.11</a> that $p'$ is a fibred category. Hence it suffices to prove the fibre categories are groupoids, see Lemma <a href="/tag/003V" data-tag="003V">4.35.2</a>. For $V \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ we have 
+    <p>
+      <div class="equation">
+  \[  \mathcal{S}_ V = \coprod \nolimits _{f : V \to U} \mathcal{S}_{(f : V \to U)}  \]
+</div>
+    <p>
+       where the left hand side is the fibre category of $p$ and the right hand side is the disjoint union of the fibre categories of $p'$. Hence the result. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09WW">
+  <p><a class="environment-identifier" href="/tag/09WW">Lemma <span data-tag="09WW">4.35.14</span>.</a> Let $\mathcal{A} \to \mathcal{B} \to \mathcal{C}$ be functors between categories. If $\mathcal{A}$ is fibred in groupoids over $\mathcal{B}$ and $\mathcal{B}$ is fibred in groupoids over $\mathcal{C}$, then $\mathcal{A}$ is fibred in groupoids over $\mathcal{C}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      One can prove this directly from the definition. However, we will argue using the criterion of Lemma <a href="/tag/003V" data-tag="003V">4.35.2</a>. By Lemma <a href="/tag/09WV" data-tag="09WV">4.33.12</a> we see that $\mathcal{A}$ is fibred over $\mathcal{C}$. To finish the proof we show that the fibre category $\mathcal{A}_ U$ is a groupoid for $U$ in $\mathcal{C}$. Namely, if $x \to y$ is a morphism of $\mathcal{A}_ U$, then its image in $\mathcal{B}$ is an isomorphism as $\mathcal{B}_ U$ is a groupoid. But then $x \to y$ is an isomorphism, for example by Lemma <a href="/tag/02XL" data-tag="02XL">4.33.2</a> and the fact that every morphism of $\mathcal{A}$ is strongly $\mathcal{B}$-cartesian (see Lemma <a href="/tag/003V" data-tag="003V">4.35.2</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06N6">
+  <p><a class="environment-identifier" href="/tag/06N6">Lemma <span data-tag="06N6">4.35.15</span>.</a> Let $p : \mathcal{S} \to \mathcal{C}$ be a category fibred in groupoids. Let $x \to y$ and $z \to y$ be morphisms of $\mathcal{S}$. If $p(x) \times _{p(y)} p(z)$ exists, then $x \times _ y z$ exists and $p(x \times _ y z) = p(x) \times _{p(y)} p(z)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows from Lemma <a href="/tag/06N5" data-tag="06N5">4.33.13</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06N7">
+  <p><a class="environment-identifier" href="/tag/06N7">Lemma <span data-tag="06N7">4.35.16</span>.</a> Let $\mathcal{C}$ be a category. Let $F : \mathcal{X} \to \mathcal{Y}$ be a $1$-morphism of categories fibred in groupoids over $\mathcal{C}$. There exists a factorization $\mathcal{X} \to \mathcal{X}' \to \mathcal{Y}$ by $1$-morphisms of categories fibred in groupoids over $\mathcal{C}$ such that $\mathcal{X} \to \mathcal{X}'$ is an equivalence over $\mathcal{C}$ and such that $\mathcal{X}'$ is a category fibred in groupoids over $\mathcal{Y}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Denote $p : \mathcal{X} \to \mathcal{C}$ and $q : \mathcal{Y} \to \mathcal{C}$ the structure functors. We construct $\mathcal{X}'$ explicitly as follows. An object of $\mathcal{X}'$ is a quadruple $(U, x, y, f)$ where $x \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{X}_ U)$, $y \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{Y}_ U)$ and $f : F(x) \to y$ is an isomorphism in $\mathcal{Y}_ U$. A morphism $(a, b) : (U, x, y, f) \to (U', x', y', f')$ is given by $a : x \to x'$ and $b : y \to y'$ with $p(a) = q(b)$ and such that $f' \circ F(a) = b \circ f$. In other words $\mathcal{X}' = \mathcal{X} \times _{F, \mathcal{Y}, \text{id}} \mathcal{Y}$ with the construction of the $2$-fibre product from Lemma <a href="/tag/0040" data-tag="0040">4.32.3</a>. By Lemma <a href="/tag/0041" data-tag="0041">4.35.7</a> we see that $\mathcal{X}'$ is a category fibred in groupoids over $\mathcal{C}$ and that $\mathcal{X}' \to \mathcal{Y}$ is a morphism of categories over $\mathcal{C}$. As functor $\mathcal{X} \to \mathcal{X}'$ we take $x \mapsto (p(x), x, F(x), \text{id}_{F(x)})$ on objects and $(a : x \to x') \mapsto (a, F(a))$ on morphisms. It is clear that the composition $\mathcal{X} \to \mathcal{X}' \to \mathcal{Y}$ equals $F$. We omit the verification that $\mathcal{X} \to \mathcal{X}'$ is an equivalence of fibred categories over $\mathcal{C}$. 
+    <p>
+      Finally, we have to show that $\mathcal{X}' \to \mathcal{Y}$ is a category fibred in groupoids. Let $b : y' \to y$ be a morphism in $\mathcal{Y}$ and let $(U, x, y, f)$ be an object of $\mathcal{X}'$ lying over $y$. Because $\mathcal{X}$ is fibred in groupoids over $\mathcal{C}$ we can find a morphism $a : x' \to x$ lying over $U' = q(y') \to q(y) = U$. Since $\mathcal{Y}$ is fibred in groupoids over $\mathcal{C}$ and since both $F(x') \to F(x)$ and $y' \to y$ lie over the same morphism $U' \to U$ we can find $f' : F(x') \to y'$ lying over $\text{id}_{U'}$ such that $f \circ F(a) = b \circ f'$. Hence we obtain $(a, b) : (U', x', y', f') \to (U, x, y, f)$. This verifies the first condition (1) of Definition <a href="/tag/003T" data-tag="003T">4.35.1</a>. To see (2) let $(a, b) : (U', x', y', f') \to (U, x, y, f)$ and $(a', b') : (U'', x'', y'', f'') \to (U, x, y, f)$ be morphisms of $\mathcal{X}'$ and let $b'' : y' \to y''$ be a morphism of $\mathcal{Y}$ such that $b' \circ b'' = b$. We have to show that there exists a unique morphism $a'' : x' \to x''$ such that $f'' \circ F(a'') = b'' \circ f'$ and such that $(a', b') \circ (a'', b'') = (a, b)$. Because $\mathcal{X}$ is fibred in groupoids we know there exists a unique morphism $a'' : x' \to x''$ such that $a' \circ a'' = a$ and $p(a'') = q(b'')$. Because $\mathcal{Y}$ is fibred in groupoids we see that $F(a'')$ is the unique morphism $F(x') \to F(x'')$ such that $F(a') \circ F(a'') = F(a)$ and $q(F(a'')) = q(b'')$. The relation $f'' \circ F(a'') = b'' \circ f'$ follows from this and the given relations $f \circ F(a) = b \circ f'$ and $f \circ F(a') = b' \circ f''$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06N8">
+  <p><a class="environment-identifier" href="/tag/06N8">Lemma <span data-tag="06N8">4.35.17</span>.</a> Let $\mathcal{C}$ be a category. Let $F : \mathcal{X} \to \mathcal{Y}$ be a $1$-morphism of categories fibred in groupoids over $\mathcal{C}$. Assume we have a $2$-commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{X}' \ar[rd]_ f &  \mathcal{X} \ar[l]^ a \ar[d]^ F \ar[r]_ b &  \mathcal{X}'' \ar[ld]^ g \\  &  \mathcal{Y} }  \]
+</div>
+  <p> where $a$ and $b$ are equivalences of categories over $\mathcal{C}$ and $f$ and $g$ are categories fibred in groupoids. Then there exists an equivalence $h : \mathcal{X}'' \to \mathcal{X}'$ of categories over $\mathcal{Y}$ such that $h \circ b$ is $2$-isomorphic to $a$ as $1$-morphisms of categories over $\mathcal{C}$. If the diagram above actually commutes, then we can arrange it so that $h \circ b$ is $2$-isomorphic to $a$ as $1$-morphisms of categories over $\mathcal{Y}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will show that both $\mathcal{X}'$ and $\mathcal{X}''$ over $\mathcal{Y}$ are equivalent to the category fibred in groupoids $\mathcal{X} \times _{F, \mathcal{Y}, \text{id}} \mathcal{Y}$ over $\mathcal{Y}$, see proof of Lemma <a href="/tag/06N7" data-tag="06N7">4.35.16</a>. Choose a quasi-inverse $b^{-1} : \mathcal{X}'' \to \mathcal{X}$ in the $2$-category of categories over $\mathcal{C}$. Since the right triangle of the diagram is $2$-commutative we see that 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathcal{X} \ar[d]_ F &  \mathcal{X}'' \ar[l]^{b^{-1}} \ar[d]^ g \\  \mathcal{Y} &  \mathcal{Y} \ar[l] }  \]
+</div>
+    <p>
+       is $2$-commutative. Hence we obtain a $1$-morphism $c : \mathcal{X}'' \to \mathcal{X} \times _{F, \mathcal{Y}, \text{id}} \mathcal{Y}$ by the universal property of the $2$-fibre product. Moreover $c$ is a morphism of categories over $\mathcal{Y}$ (!) and an equivalence (by the assumption that $b$ is an equivalence, see Lemma <a href="/tag/02XB" data-tag="02XB">4.31.7</a>). Hence $c$ is an equivalence in the $2$-category of categories fibred in groupoids over $\mathcal{Y}$ by Lemma <a href="/tag/003Z" data-tag="003Z">4.35.9</a>. 
+    <p>
+      We still have to construct a $2$-isomorphism between $c \circ b$ and the functor $d : \mathcal{X} \to \mathcal{X} \times _{F, \mathcal{Y}, \text{id}} \mathcal{Y}$, $x \mapsto (p(x), x, F(x), \text{id}_{F(x)})$ constructed in the proof of Lemma <a href="/tag/06N7" data-tag="06N7">4.35.16</a>. Let $\alpha : F \to g \circ b$ and $\beta : b^{-1} \circ b \to \text{id}$ be $2$-isomorphisms between $1$-morphisms of categories over $\mathcal{C}$. Note that $c \circ b$ is given by the rule 
+    <p>
+      <div class="equation">
+  \[  x \mapsto (p(x), b^{-1}(b(x)), g(b(x)), \alpha _ x \circ F(\beta _ x))  \]
+</div>
+    <p>
+       on objects. Then we see that 
+    <p>
+      <div class="equation">
+  \[  (\beta _ x, \alpha _ x) : (p(x), x, F(x), \text{id}_{F(x)}) \longrightarrow (p(x), b^{-1}(b(x)), g(b(x)), \alpha _ x \circ F(\beta _ x))  \]
+</div>
+    <p>
+       is a functorial isomorphism which gives our $2$-morphism $d \to b \circ c$. Finally, if the diagram commutes then $\alpha _ x$ is the identity for all $x$ and we see that this $2$-morphism is a $2$-morphism in the $2$-category of categories over $\mathcal{Y}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

@@ -1,0 +1,529 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-algebra-section-koszul-regular" class="tex-section"><span data-tag="062D">15.31</span> Koszul regular sequences</h2>
+
+<p>
+Please take a look at Algebra, Sections <a href="/tag/0AUH" data-tag="0AUH">10.68</a>, <a href="/tag/061M" data-tag="061M">10.69</a>, and <a href="/tag/00LE" data-tag="00LE">10.72</a> before looking at this one. 
+</p>
+<p>
+<article class="env-definition" id="062E">
+  <p><a class="environment-identifier" href="/tag/062E">Definition <span data-tag="062E">15.31.1</span>.</a> Let $R$ be a ring. Let $r \geq 0$ and let $f_1, \ldots , f_ r \in R$ be a sequence of elements. Let $M$ be an $R$-module. The sequence $f_1, \ldots , f_ r$ is called </p>
+  <p><ol>
+  <li><p>
+<em>$M$-Koszul-regular</em> if $H_ i(K_\bullet (f_1, \ldots , f_ r) \otimes _ R M) = 0$ for all $i \not= 0$, 
+</p>
+</li><li><p>
+<em>$M$-$H_1$-regular</em> if $H_1(K_\bullet (f_1, \ldots , f_ r) \otimes _ R M) = 0$, 
+</p>
+</li><li><p>
+<em>Koszul-regular</em> if $H_ i(K_\bullet (f_1, \ldots , f_ r)) = 0$ for all $i \not= 0$, and 
+</p>
+</li><li><p>
+<em>$H_1$-regular</em> if $H_1(K_\bullet (f_1, \ldots , f_ r)) = 0$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+We will see in Lemmas <a href="/tag/062F" data-tag="062F">15.31.2</a>, <a href="/tag/0CEM" data-tag="0CEM">15.31.3</a>, and <a href="/tag/062I" data-tag="062I">15.31.6</a> that for elements $f_1, \ldots , f_ r$ of a ring $R$ we have the following implications 
+</p>
+<div class="equation">
+  \begin{align*}  f_1, \ldots , f_ r\text{ is a regular sequence} &  \Rightarrow f_1, \ldots , f_ r\text{ is a Koszul-regular sequence} \\ &  \Rightarrow f_1, \ldots , f_ r\text{ is an }H_1\text{-regular sequence} \\ &  \Rightarrow f_1, \ldots , f_ r\text{ is a quasi-regular sequence.} \end{align*}
+</div>
+<p>
+ In general none of these implications can be reversed, but if $R$ is a Noetherian local ring and $f_1, \ldots , f_ r \in \mathfrak m_ R$, then the four conditions are all equivalent (Lemma <a href="/tag/09CC" data-tag="09CC">15.31.7</a>). If $f = f_1 \in R$ is a length $1$ sequence and $f$ is not a unit of $R$ then it is clear that the following are all equivalent 
+</p>
+<ol>
+  <li><p>
+$f$ is a regular sequence of length one, 
+</p>
+</li><li><p>
+$f$ is a Koszul-regular sequence of length one, and 
+</p>
+</li><li><p>
+$f$ is a $H_1$-regular sequence of length one. 
+</p>
+</li>
+</ol>
+<p>
+ It is also clear that these imply that $f$ is a quasi-regular sequence of length one. But there do exist quasi-regular sequences of length $1$ which are not regular sequences. Namely, let 
+</p>
+<div class="equation">
+  \[  R = k[x, y_0, y_1, \ldots ]/(xy_0, xy_1 - y_0, xy_2 - y_1, \ldots )  \]
+</div>
+<p>
+ and let $f$ be the image of $x$ in $R$. Then $f$ is a zerodivisor, but $\bigoplus _{n \geq 0} (f^ n)/(f^{n + 1}) \cong k[x]$ is a polynomial ring. 
+</p>
+<p>
+<article class="env-lemma" id="062F">
+  <p><a class="environment-identifier" href="/tag/062F">Lemma <span data-tag="062F">15.31.2</span>.</a> Let $R$ be a ring, $M$ an $R$-module, and $f_1, \ldots , f_ r \in R$ such that for $i = 1, \ldots , r$ multiplication by $f_ i$ is injective on $M/(f_1, \ldots , f_{i - 1})M$. Then $f_1, \ldots , f_ r$ is $M$-Koszul regular. In particular, an $M$-regular sequence is $M$-Koszul-regular and any regular sequence is Koszul-regular. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $R$, $M$, $f_1, \ldots , f_ r$ be as in the first sentence of the lemma. If $r = 1$, it is immediate that $f_1$ is $M$-Koszul-regular. Assume $r > 1$. Since $f_1$ is a nonzerodivisor on $M$, we obtain a short exact sequence of complexes: 
+    <p>
+      <div class="equation">
+  \[  0 \to K_\bullet (f_2, \ldots , f_ r) \otimes M \xrightarrow {f_1} K_\bullet (f_2, \ldots , f_ r) \otimes M \to K_\bullet (\overline{f}_2, \ldots , \overline{f}_ r) \otimes M/f_1M \to 0  \]
+</div>
+    <p>
+       Here $\overline{f}_ i$ is the image of $f_ i$ in $R/(f_1)$. By Lemma <a href="/tag/0629" data-tag="0629">15.29.8</a> the complex $K_\bullet (f_1, \ldots , f_ r)$ is isomorphic to the cone of multiplication by $f_1$ on $K_\bullet (f_2, \ldots , f_ r)$. Thus $K_\bullet (R, f_1, \ldots , f_ r) \otimes M$ is isomorphic to the cone on the first map. Hence $K_\bullet (\overline{f}_2, \ldots , \overline{f}_ r) \otimes M/f_1M$ is quasi-isomorphic to $K_\bullet (f_1, \ldots , f_ r) \otimes M$. As $R/(f_1)$, $M/f_1M$, $\overline{f}_2, \ldots , \overline{f}_ r$ satisfy the conditions of the lemma, by induction we conclude this complex is acyclic in postive degrees. This finishes the proof of the first statement. The second statement immediately follows from the first. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CEM">
+  <p><a class="environment-identifier" href="/tag/0CEM">Lemma <span data-tag="0CEM">15.31.3</span>.</a> A $M$-Koszul-regular sequence is $M$-$H_1$-regular. A Koszul-regular sequence is $H_1$-regular. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is immediate from the definition. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="062G">
+  <p><a class="environment-identifier" href="/tag/062G">Lemma <span data-tag="062G">15.31.4</span>.</a> Let $f_1, \ldots , f_{r - 1} \in R$ be a sequence and $f, g \in R$. Let $M$ be an $R$-module. </p>
+  <p><ol>
+  <li><p>
+If $f_1, \ldots , f_{r - 1}, f$ and $f_1, \ldots , f_{r - 1}, g$ are $M$-$H_1$-regular then $f_1, \ldots , f_{r - 1}, fg$ is $M$-$H_1$-regular too. 
+</p>
+</li><li><p>
+If $f_1, \ldots , f_{r - 1}, f$ and $f_1, \ldots , f_{r - 1}, g$ are $M$-Koszul-regular then $f_1, \ldots , f_{r - 1}, fg$ is $M$-Koszul-regular too. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/062C" data-tag="062C">15.29.11</a> we have exact sequences 
+    <p>
+      <div class="equation">
+  \[  H_ i(K_\bullet (f_1, \ldots , f_{r - 1}, f) \otimes M) \to H_ i(K_\bullet (f_1, \ldots , f_{r - 1}, fg) \otimes M) \to H_ i(K_\bullet (f_1, \ldots , f_{r - 1}, g) \otimes M)  \]
+</div>
+    <p>
+       for all $i$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="062H">
+  <p><a class="environment-identifier" href="/tag/062H">Lemma <span data-tag="062H">15.31.5</span>.</a> Let $\varphi : R \to S$ be a flat ring map. Let $f_1, \ldots , f_ r \in R$. Let $M$ be an $R$-module and set $N = M \otimes _ R S$. </p>
+  <p><ol>
+  <li><p>
+If $f_1, \ldots , f_ r$ in $R$ is an $M$-$H_1$-regular sequence, then $\varphi (f_1), \ldots , \varphi (f_ r)$ is an $N$-$H_1$-regular sequence in $S$. 
+</p>
+</li><li><p>
+If $f_1, \ldots , f_ r$ is an $M$-Koszul-regular sequence in $R$, then $\varphi (f_1), \ldots , \varphi (f_ r)$ is an $N$-Koszul-regular sequence in $S$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is true because $K_\bullet (f_1, \ldots , f_ r) \otimes _ R S = K_\bullet (\varphi (f_1), \ldots , \varphi (f_ r))$ and therefore $(K_\bullet (f_1, \ldots , f_ r) \otimes _ R M) \otimes _ R S = K_\bullet (\varphi (f_1), \ldots , \varphi (f_ r)) \otimes _ S N$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="062I">
+  <p><a class="environment-identifier" href="/tag/062I">Lemma <span data-tag="062I">15.31.6</span>.</a> An $M$-$H_1$-regular sequence is $M$-quasi-regular. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $R$ be a ring and let $M$ be an $R$-module. Let $f_1, \ldots , f_ r$ be an $M$-$H_1$-regular sequence. Denote $J = (f_1, \ldots , f_ r)$. The assumption means that we have an exact sequence 
+    <p>
+      <div class="equation">
+  \[  \wedge ^2(R^ r) \otimes M \to R^{\oplus r} \otimes M \to JM \to 0  \]
+</div>
+    <p>
+       where the first arrow is given by $e_ i \wedge e_ j \otimes m \mapsto (f_ ie_ j - f_ je_ i) \otimes m$. Tensoring the sequence with $R/J$ we see that 
+    <p>
+      <div class="equation">
+  \[  JM/J^2M = (R/J)^{\oplus r} \otimes _ R M = (M/JM)^{\oplus r}  \]
+</div>
+    <p>
+       is a finite free module. To finish the proof we have to prove for every $n \geq 2$ the following: if 
+    <p>
+      <div class="equation">
+  \[  \xi = \sum \nolimits _{|I| = n, I = (i_1, \ldots , i_ r)} m_ I f_1^{i_1} \ldots f_ r^{i_ r} \in J^{n + 1}M  \]
+</div>
+    <p>
+       then $m_ I \in JM$ for all $I$. In the next paragraph, we prove $m_ I \in JM$ for $I = (0, \ldots , 0, n)$ and in the last paragraph we deduce the general case from this special case. 
+    <p>
+      Let $I = (0, \ldots , 0, n)$. Let $\xi $ be as above. We can write $\xi = m_1 f_1 + \ldots + m_{r - 1}f_{r - 1} + m_ I f_ r^ n$. As we have assumed $\xi \in J^{n + 1}M$, we can also write $\xi = \sum _{1 \leq i \leq j \leq r - 1} m_{ij}f_ if_ j + \sum _{1 \leq i \leq r - 1}m'_ i f_ if_ r^ n + m'' f_ r^{n + 1}$. Then we see that 
+    <p>
+      <div class="equation">
+  \[  \begin{matrix}  (m_1 - m_{11}f_1 - m'_1f_ r^ n)f_1 + 
+
+\\  (m_2 - m_{12}f_1 - m_{22}f_2 - m'_2f_ r^ n)f_2 + 
+
+\\  \ldots + 
+
+\\  (m_{r - 1} - m_{1 r - 1}f_1 - \ldots - m_{r - 1 r - 1}f_{r - 1} - m'_{r - 1}f_ r^ n)f_{r - 1} + 
+
+\\  (m_ I - m'' f_ r)f_ r^ n = 0 
+
+\end{matrix}  \]
+</div>
+    <p>
+       Since $f_1, \ldots , f_{r - 1}, f_ r^ n$ is $M$-$H_1$-regular by Lemma <a href="/tag/062G" data-tag="062G">15.31.4</a> we see that $m_ I - m'' f_ r$ is in the submodule $f_1M + \ldots + f_{r - 1}M + f_ r^ nM$. Thus $m_ I \in f_1M + \ldots + f_ rM$. 
+    <p>
+      Let $S = R[x_1, x_2, \ldots , x_ r, 1/x_ r]$. The ring map $R \to S$ is faithfully flat, hence $f_1, \ldots , f_ r$ is an $M$-$H_1$-regular sequence in $S$, see Lemma <a href="/tag/062H" data-tag="062H">15.31.5</a>. By Lemma <a href="/tag/0625" data-tag="0625">15.29.4</a> we see that 
+    <p>
+      <div class="equation">
+  \[  g_1 = f_1 - \frac{x_1}{x_ r} f_ r, \  \ldots , \  g_{r - 1} = f_{r - 1} - \frac{x_{r - 1}}{x_ r} f_ r, \  g_ r = \frac{1}{x_ r}f_ r  \]
+</div>
+    <p>
+       is an $M$-$H_1$-regular sequence in $S$. Finally, note that our element $\xi $ can be rewritten 
+    <p>
+      <div class="equation">
+  \[  \xi = \sum \nolimits _{|I| = n, I = (i_1, \ldots , i_ r)} m_ I (g_1 + x_1 g_ r)^{i_1} \ldots (g_{r - 1} + x_{r - 1} g_ r)^{i_{r - 1}} (x_ rg_ r)^{i_ r}  \]
+</div>
+    <p>
+       and the coefficient of $g_ r^ n$ in this expression is 
+    <p>
+      <div class="equation">
+  \[  \sum m_ I x_1^{i_1} \ldots x_ r^{i_ r}  \]
+</div>
+    <p>
+       By the case discussed in the previous paragraph this sum is in $J(M \otimes _ R S)$. Since the monomials $x_1^{i_1} \ldots x_ r^{i_ r}$ form part of an $R$-basis of $S$ over $R$ we conclude that $m_ I \in J$ for all $I$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+For nonzero finite modules over Noetherian local rings all of the types of regular sequences introduced so far are equivalent. 
+</p>
+<p>
+<article class="env-lemma" id="09CC">
+  <p><a class="environment-identifier" href="/tag/09CC">Lemma <span data-tag="09CC">15.31.7</span>.</a> Let $(R, \mathfrak m)$ be a Noetherian local ring. Let $M$ be a nonzero finite $R$-module. Let $f_1, \ldots , f_ r \in \mathfrak m$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$f_1, \ldots , f_ r$ is an $M$-regular sequence, 
+</p>
+</li><li><p>
+$f_1, \ldots , f_ r$ is a $M$-Koszul-regular sequence, 
+</p>
+</li><li><p>
+$f_1, \ldots , f_ r$ is an $M$-$H_1$-regular sequence, 
+</p>
+</li><li><p>
+$f_1, \ldots , f_ r$ is an $M$-quasi-regular sequence. 
+</p>
+</li>
+</ol></p>
+  <p> In particular the sequence $f_1, \ldots , f_ r$ is a regular sequence in $R$ if and only if it is a Koszul regular sequence, if and only if it is a $H_1$-regular sequence, if and only if it is a quasi-regular sequence. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The implication (1) $\Rightarrow $ (2) is Lemma <a href="/tag/062F" data-tag="062F">15.31.2</a>. The implication (2) $\Rightarrow $ (3) is Lemma <a href="/tag/0CEM" data-tag="0CEM">15.31.3</a>. The implication (3) $\Rightarrow $ (4) is Lemma <a href="/tag/062I" data-tag="062I">15.31.6</a>. The implication (4) $\Rightarrow $ (1) is Algebra, Lemma <a href="/tag/061S" data-tag="061S">10.69.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0665">
+  <p><a class="environment-identifier" href="/tag/0665">Lemma <span data-tag="0665">15.31.8</span>.</a> Let $A$ be a ring. Let $I \subset A$ be an ideal. Let $g_1, \ldots , g_ m$ be a sequence in $A$ whose image in $A/I$ is $H_1$-regular. Then $I \cap (g_1, \ldots , g_ m) = I(g_1, \ldots , g_ m)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider the exact sequence of complexes 
+    <p>
+      <div class="equation">
+  \[  0 \to I \otimes _ A K_\bullet (A, g_1, \ldots , g_ m) \to K_\bullet (A, g_1, \ldots , g_ m) \to K_\bullet (A/I, g_1, \ldots , g_ m) \to 0  \]
+</div>
+    <p>
+       Since the complex on the right has $H_1 = 0$ by assumption we see that 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Coker}}(I^{\oplus m} \to I) \longrightarrow \mathop{\mathrm{Coker}}(A^{\oplus m} \to A)  \]
+</div>
+    <p>
+       is injective. This is equivalent to the assertion of the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0666">
+  <p><a class="environment-identifier" href="/tag/0666">Lemma <span data-tag="0666">15.31.9</span>.</a> Let $A$ be a ring. Let $I \subset J \subset A$ be ideals. Assume that $J/I \subset A/I$ is generated by an $H_1$-regular sequence. Then $I \cap J^2 = IJ$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      To prove this choose $g_1, \ldots , g_ m \in J$ whose images in $A/I$ form a $H_1$-regular sequence which generates $J/I$. In particular $J = I + (g_1, \ldots , g_ m)$. Suppose that $x \in I \cap J^2$. Because $x \in J^2$ can write 
+    <p>
+      <div class="equation">
+  \[  x = \sum a_{ij} g_ ig_ j + \sum a_ j g_ j + a  \]
+</div>
+    <p>
+       with $a_{ij} \in A$, $a_ j \in I$ and $a \in I^2$. Then $\sum a_{ij}g_ ig_ j \in I \cap (g_1, \ldots , g_ m)$ hence by Lemma <a href="/tag/0665" data-tag="0665">15.31.8</a> we see that $\sum a_{ij}g_ ig_ j \in I(g_1, \ldots , g_ m)$. Thus $x \in IJ$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0667">
+  <p><a class="environment-identifier" href="/tag/0667">Lemma <span data-tag="0667">15.31.10</span>.</a> Let $A$ be a ring. Let $I$ be an ideal generated by a quasi-regular sequence $f_1, \ldots , f_ n$ in $A$. Let $g_1, \ldots , g_ m \in A$ be elements whose images $\overline{g}_1, \ldots , \overline{g}_ m$ form an $H_1$-regular sequence in $A/I$. Then $f_1, \ldots , f_ n, g_1, \ldots , g_ m$ is a quasi-regular sequence in $A$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We claim that $g_1, \ldots , g_ m$ forms an $H_1$-regular sequence in $A/I^ d$ for every $d$. By induction assume that this holds in $A/I^{d - 1}$. We have a short exact sequence of complexes 
+    <p>
+      <div class="equation">
+  \[  0 \to K_\bullet (A, g_\bullet ) \otimes _ A I^{d - 1}/I^ d \to K_\bullet (A/I^ d, g_\bullet ) \to K_\bullet (A/I^{d - 1}, g_\bullet ) \to 0  \]
+</div>
+    <p>
+       Since $f_1, \ldots , f_ n$ is quasi-regular we see that the first complex is a direct sum of copies of $K_\bullet (A/I, g_1, \ldots , g_ m)$ hence acyclic in degree $1$. By induction hypothesis the last complex is acyclic in degree $1$. Hence also the middle complex is. In particular, the sequence $g_1, \ldots , g_ m$ forms a quasi-regular sequence in $A/I^ d$ for every $d \geq 1$, see Lemma <a href="/tag/062I" data-tag="062I">15.31.6</a>. Now we are ready to prove that $f_1, \ldots , f_ n, g_1, \ldots , g_ m$ is a quasi-regular sequence in $A$. Namely, set $J = (f_1, \ldots , f_ n, g_1, \ldots , g_ m)$ and suppose that (with multinomial notation) 
+    <p>
+      <div class="equation">
+  \[  \sum \nolimits _{|N| + |M| = d} a_{N, M} f^ N g^ M \in J^{d + 1}  \]
+</div>
+    <p>
+       for some $a_{N, M} \in A$. We have to show that $a_{N, M} \in J$ for all $N, M$. Let $e \in \{ 0, 1, \ldots , d\} $. Then 
+    <p>
+      <div class="equation">
+  \[  \sum \nolimits _{|N| = d - e, \  |M| = e} a_{N, M} f^ N g^ M \in (g_1, \ldots , g_ m)^{e + 1} + I^{d - e + 1}  \]
+</div>
+    <p>
+       Because $g_1, \ldots , g_ m$ is a quasi-regular sequence in $A/I^{d - e + 1}$ we deduce 
+    <p>
+      <div class="equation">
+  \[  \sum \nolimits _{|N| = d - e} a_{N, M} f^ N \in (g_1, \ldots , g_ m) + I^{d - e + 1}  \]
+</div>
+    <p>
+       for each $M$ with $|M| = e$. By Lemma <a href="/tag/0665" data-tag="0665">15.31.8</a> applied to $I^{d - e}/I^{d - e + 1}$ in the ring $A/I^{d - e + 1}$ this implies $\sum _{|N| = d - e} a_{N, M} f^ N \in I^{d - e}(g_1, \ldots , g_ m)$. Since $f_1, \ldots , f_ n$ is quasi-regular in $A$ this implies that $a_{N, M} \in J$ for each $N, M$ with $|N| = d - e$ and $|M| = e$. This proves the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0668">
+  <p><a class="environment-identifier" href="/tag/0668">Lemma <span data-tag="0668">15.31.11</span>.</a> Let $A$ be a ring. Let $I$ be an ideal generated by an $H_1$-regular sequence $f_1, \ldots , f_ n$ in $A$. Let $g_1, \ldots , g_ m \in A$ be elements whose images $\overline{g}_1, \ldots , \overline{g}_ m$ form an $H_1$-regular sequence in $A/I$. Then $f_1, \ldots , f_ n, g_1, \ldots , g_ m$ is an $H_1$-regular sequence in $A$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We have to show that $H_1(A, f_1, \ldots , f_ n, g_1, \ldots , g_ m) = 0$. To do this consider the commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \wedge ^2(A^{\oplus n + m}) \ar[r] \ar[d] &  A^{\oplus n + m} \ar[r] \ar[d] &  A \ar[r] \ar[d] &  0 \\  \wedge ^2(A/I^{\oplus m}) \ar[r] &  A/I^{\oplus m} \ar[r] &  A/I \ar[r] &  0 }  \]
+</div>
+    <p>
+       Consider an element $(a_1, \ldots , a_{n + m}) \in A^{\oplus n + m}$ which maps to zero in $A$. Because $\overline{g}_1, \ldots , \overline{g}_ m$ form an $H_1$-regular sequence in $A/I$ we see that $(\overline{a}_{n + 1}, \ldots , \overline{a}_{n + m})$ is the image of some element $\overline{\alpha }$ of $\wedge ^2(A/I^{\oplus m})$. We can lift $\overline{\alpha }$ to an element $\alpha \in \wedge ^2(A^{\oplus n + m})$ and subtract the image of it in $A^{\oplus n + m}$ from our element $(a_1, \ldots , a_{n + m})$. Thus we may assume that $a_{n + 1}, \ldots , a_{n + m} \in I$. Since $I = (f_1, \ldots , f_ n)$ we can modify our element $(a_1, \ldots , a_{n + m})$ by linear combinations of the elements 
+    <p>
+      <div class="equation">
+  \[  (0, \ldots , g_ j, 0, \ldots , 0, f_ i, 0, \ldots , 0)  \]
+</div>
+    <p>
+       in the image of the top left horizontal arrow to reduce to the case that $a_{n + 1}, \ldots , a_{n + m}$ are zero. In this case $(a_1, \ldots , a_ n, 0, \ldots , 0)$ defines an element of $H_1(A, f_1, \ldots , f_ n)$ which we assumed to be zero. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="068L">
+  <p><a class="environment-identifier" href="/tag/068L">Lemma <span data-tag="068L">15.31.12</span>.</a> Let $A$ be a ring. Let $f_1, \ldots , f_ n, g_1, \ldots , g_ m \in A$ be an $H_1$-regular sequence. Then the images $\overline{g}_1, \ldots , \overline{g}_ m$ in $A/(f_1, \ldots , f_ n)$ form an $H_1$-regular sequence. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Set $I = (f_1, \ldots , f_ n)$. We have to show that any relation $\sum _{j = 1, \ldots , m} \overline{a}_ j \overline{g}_ j$ in $A/I$ is a linear combination of trivial relations. Because $I = (f_1, \ldots , f_ n)$ we can lift this relation to a relation 
+    <p>
+      <div class="equation">
+  \[  \sum \nolimits _{j = 1, \ldots , m} a_ j g_ j + \sum \nolimits _{i = 1, \ldots , n} b_ if_ i = 0  \]
+</div>
+    <p>
+       in $A$. By assumption this relation in $A$ is a linear combination of trivial relations. Taking the image in $A/I$ we obtain what we want. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0669">
+  <p><a class="environment-identifier" href="/tag/0669">Lemma <span data-tag="0669">15.31.13</span>.</a> Let $A$ be a ring. Let $I$ be an ideal generated by a Koszul-regular sequence $f_1, \ldots , f_ n$ in $A$. Let $g_1, \ldots , g_ m \in A$ be elements whose images $\overline{g}_1, \ldots , \overline{g}_ m$ form a Koszul-regular sequence in $A/I$. Then $f_1, \ldots , f_ n, g_1, \ldots , g_ m$ is a Koszul-regular sequence in $A$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Our assumptions say that $K_\bullet (A, f_1, \ldots , f_ n)$ is a finite free resolution of $A/I$ and $K_\bullet (A/I, \overline{g}_1, \ldots , \overline{g}_ m)$ is a finite free resolution of $A/(f_ i, g_ j)$ over $A/I$. Then 
+    <p>
+      <div class="equation">
+  \begin{align*}  K_\bullet (A, f_1, \ldots , f_ n, g_1, \ldots , g_ m) &  = \text{Tot}(K_\bullet (A, f_1, \ldots , f_ n) \otimes _ A K_\bullet (A, g_1, \ldots , g_ m)) \\ &  \cong A/I \otimes _ A K_\bullet (A, g_1, \ldots , g_ m) \\ &  = K_\bullet (A/I, \overline{g}_1, \ldots , \overline{g}_ m) \\ &  \cong A/(f_ i, g_ j) \end{align*}
+</div>
+    <p>
+       The first equality by Lemma <a href="/tag/0664" data-tag="0664">15.29.12</a>. The first quasi-isomorphism $\cong $ by (the dual of) Homology, Lemma <a href="/tag/0133" data-tag="0133">12.25.4</a> as the $q$th row of the double complex $K_\bullet (A, f_1, \ldots , f_ n) \otimes _ A K_\bullet (A, g_1, \ldots , g_ m)$ is a resolution of $A/I \otimes _ A K_ q(A, g_1, \ldots , g_ m)$. The second equality is clear. The last quasi-isomorphism by assumption. Hence we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+To conclude in the following lemma it is necessary to assume that both $f_1, \ldots , f_ n$ and $f_1, \ldots , f_ n, g_1, \ldots , g_ m$ are Koszul-regular. A counter example to dropping the assumption that $f_1, \ldots , f_ n$ is Koszul-regular is Examples, Lemma <a href="/tag/0640" data-tag="0640">110.15.1</a>. 
+</p>
+<p>
+<article class="env-lemma" id="068M">
+  <p><a class="environment-identifier" href="/tag/068M">Lemma <span data-tag="068M">15.31.14</span>.</a> Let $A$ be a ring. Let $f_1, \ldots , f_ n, g_1, \ldots , g_ m \in A$. If both $f_1, \ldots , f_ n$ and $f_1, \ldots , f_ n, g_1, \ldots , g_ m$ are Koszul-regular sequences in $A$, then $\overline{g}_1, \ldots , \overline{g}_ m$ in $A/(f_1, \ldots , f_ n)$ form a Koszul-regular sequence. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Set $I = (f_1, \ldots , f_ n)$. Our assumptions say that $K_\bullet (A, f_1, \ldots , f_ n)$ is a finite free resolution of $A/I$ and $K_\bullet (A, f_1, \ldots , f_ n, g_1, \ldots , g_ m)$ is a finite free resolution of $A/(f_ i, g_ j)$ over $A$. Then 
+    <p>
+      <div class="equation">
+  \begin{align*}  A/(f_ i, g_ j) &  \cong K_\bullet (A, f_1, \ldots , f_ n, g_1, \ldots , g_ m) \\ &  = \text{Tot}(K_\bullet (A, f_1, \ldots , f_ n) \otimes _ A K_\bullet (A, g_1, \ldots , g_ m)) \\ &  \cong A/I \otimes _ A K_\bullet (A, g_1, \ldots , g_ m) \\ &  = K_\bullet (A/I, \overline{g}_1, \ldots , \overline{g}_ m) \end{align*}
+</div>
+    <p>
+       The first quasi-isomorphism $\cong $ by assumption. The first equality by Lemma <a href="/tag/0664" data-tag="0664">15.29.12</a>. The second quasi-isomorphism by (the dual of) Homology, Lemma <a href="/tag/0133" data-tag="0133">12.25.4</a> as the $q$th row of the double complex $K_\bullet (A, f_1, \ldots , f_ n) \otimes _ A K_\bullet (A, g_1, \ldots , g_ m)$ is a resolution of $A/I \otimes _ A K_ q(A, g_1, \ldots , g_ m)$. The second equality is clear. Hence we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="066A">
+  <p><a class="environment-identifier" href="/tag/066A">Lemma <span data-tag="066A">15.31.15</span>.</a> Let $R$ be a ring. Let $I$ be an ideal generated by $f_1, \ldots , f_ r \in R$. </p>
+  <p><ol>
+  <li><p>
+If $I$ can be generated by a quasi-regular sequence of length $r$, then $f_1, \ldots , f_ r$ is a quasi-regular sequence. 
+</p>
+</li><li><p>
+If $I$ can be generated by an $H_1$-regular sequence of length $r$, then $f_1, \ldots , f_ r$ is an $H_1$-regular sequence. 
+</p>
+</li><li><p>
+If $I$ can be generated by a Koszul-regular sequence of length $r$, then $f_1, \ldots , f_ r$ is a Koszul-regular sequence. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $I$ can be generated by a quasi-regular sequence of length $r$, then $I/I^2$ is free of rank $r$ over $R/I$. Since $f_1, \ldots , f_ r$ generate by assumption we see that the images $\overline{f}_ i$ form a basis of $I/I^2$ over $R/I$. It follows that $f_1, \ldots , f_ r$ is a quasi-regular sequence as all this means, besides the freeness of $I/I^2$, is that the maps $\text{Sym}^ n_{R/I}(I/I^2) \to I^ n/I^{n + 1}$ are isomorphisms. 
+    <p>
+      We continue to assume that $I$ can be generated by a quasi-regular sequence, say $g_1, \ldots , g_ r$. Write $g_ j = \sum a_{ij}f_ i$. As $f_1, \ldots , f_ r$ is quasi-regular according to the previous paragraph, we see that $\det (a_{ij})$ is invertible mod $I$. The matrix $a_{ij}$ gives a map $R^{\oplus r} \to R^{\oplus r}$ which induces a map of Koszul complexes $\alpha : K_\bullet (R, f_1, \ldots , f_ r) \to K_\bullet (R, g_1, \ldots , g_ r)$, see Lemma <a href="/tag/0624" data-tag="0624">15.29.3</a>. This map becomes an isomorphism on inverting $\det (a_{ij})$. Since the cohomology modules of both $K_\bullet (R, f_1, \ldots , f_ r)$ and $K_\bullet (R, g_1, \ldots , g_ r)$ are annihilated by $I$, see Lemma <a href="/tag/0663" data-tag="0663">15.29.6</a>, we see that $\alpha $ is a quasi-isomorphism. 
+    <p>
+      Now assume that $g_1, \ldots , g_ r$ is a $H_1$-regular sequence generating $I$. Then $g_1, \ldots , g_ r$ is a quasi-regular sequence by Lemma <a href="/tag/062I" data-tag="062I">15.31.6</a>. By the previous paragraph we conclude that $f_1, \ldots , f_ r$ is a $H_1$-regular sequence. Similarly for Koszul-regular sequences. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="068P">
+       
+      
+  <p><a class="environment-identifier" href="/tag/068P">Lemma <span data-tag="068P">15.31.16</span>.</a> Let $R$ be a ring. Let $a_1, \ldots , a_ n \in R$ be elements such that $R \to R^{\oplus n}$, $x \mapsto (xa_1, \ldots , xa_ n)$ is injective. Then the element $\sum a_ i t_ i$ of the polynomial ring $R[t_1, \ldots , t_ n]$ is a nonzerodivisor. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If one of the $a_ i$ is a unit this is just the statement that any element of the form $t_1 + a_2 t_2 + \ldots + a_ n t_ n$ is a nonzerodivisor in the polynomial ring over $R$. 
+    <p>
+      Case I: $R$ is Noetherian. Let $\mathfrak q_ j$, $j = 1, \ldots , m$ be the associated primes of $R$. We have to show that each of the maps 
+    <p>
+      <div class="equation">
+  \[  \sum a_ i t_ i : \text{Sym}^ d(R^{\oplus n}) \longrightarrow \text{Sym}^{d + 1}(R^{\oplus n})  \]
+</div>
+    <p>
+       is injective. As $\text{Sym}^ d(R^{\oplus n})$ is a free $R$-module its associated primes are $\mathfrak q_ j$, $j = 1, \ldots , m$. For each $j$ there exists an $i = i(j)$ such that $a_ i \not\in \mathfrak q_ j$ because there exists an $x \in R$ with $\mathfrak q_ jx = 0$ but $a_ i x \not= 0$ for some $i$ by assumption. Hence $a_ i$ is a unit in $R_{\mathfrak q_ j}$ and the map is injective after localizing at $\mathfrak q_ j$. Thus the map is injective, see Algebra, Lemma <a href="/tag/0311" data-tag="0311">10.63.19</a>. 
+    <p>
+      Case II: $R$ general. We can write $R$ as the union of Noetherian rings $R_\lambda $ with $a_1, \ldots , a_ n \in R_\lambda $. For each $R_\lambda $ the result holds, hence the result holds for $R$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="068Q">
+  <p><a class="environment-identifier" href="/tag/068Q">Lemma <span data-tag="068Q">15.31.17</span>.</a> Let $R$ be a ring. Let $f_1, \ldots , f_ n$ be a Koszul-regular sequence in $R$ such that $(f_1, \ldots , f_ n) \not= R$. Consider the faithfully flat, smooth ring map </p>
+  <div class="equation">
+  \[  R \longrightarrow S = R[\{ t_{ij}\} _{i \leq j}, t_{11}^{-1}, t_{22}^{-1}, \ldots , t_{nn}^{-1}]  \]
+</div>
+  <p> For $1 \leq i \leq n$ set </p>
+  <div class="equation">
+  \[  g_ i = \sum \nolimits _{i \leq j} t_{ij} f_ j \in S.  \]
+</div>
+  <p> Then $g_1, \ldots , g_ n$ is a regular sequence in $S$ and $(f_1, \ldots , f_ n)S = (g_1, \ldots , g_ n)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The equality of ideals is obvious as the matrix 
+    <p>
+      <div class="equation">
+  \[  \left( \begin{matrix}  t_{11} 
+
+&  t_{12} 
+
+&  t_{13} 
+
+&  \ldots 
+
+\\  0 
+
+&  t_{22} 
+
+&  t_{23} 
+
+&  \ldots 
+
+\\  0 
+
+&  0 
+
+&  t_{33} 
+
+&  \ldots 
+
+\\  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+\end{matrix} \right)  \]
+</div>
+    <p>
+       is invertible in $S$. Because $f_1, \ldots , f_ n$ is a Koszul-regular sequence we see that the kernel of $R \to R^{\oplus n}$, $x \mapsto (xf_1, \ldots , xf_ n)$ is zero (as it computes the $n$the Koszul homology of $R$ w.r.t. $f_1, \ldots , f_ n$). Hence by Lemma <a href="/tag/068P" data-tag="068P">15.31.16</a> we see that $g_1 = f_1 t_{11} + \ldots + f_ n t_{1n}$ is a nonzerodivisor in $S' = R[t_{11}, t_{12}, \ldots , t_{1n}, t_{11}^{-1}]$. We see that $g_1, f_2, \ldots , f_ n$ is a Koszul-sequence in $S'$ by Lemma <a href="/tag/062H" data-tag="062H">15.31.5</a> and <a href="/tag/066A" data-tag="066A">15.31.15</a>. We conclude that $\overline{f}_2, \ldots , \overline{f}_ n$ is a Koszul-regular sequence in $S'/(g_1)$ by Lemma <a href="/tag/068M" data-tag="068M">15.31.14</a>. Hence by induction on $n$ we see that the images $\overline{g}_2, \ldots , \overline{g}_ n$ of $g_2, \ldots , g_ n$ in $S'/(g_1)[\{ t_{ij}\} _{2 \leq i \leq j}, t_{22}^{-1}, \ldots , t_{nn}^{-1}]$ form a regular sequence. This in turn means that $g_1, \ldots , g_ n$ forms a regular sequence in $S$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

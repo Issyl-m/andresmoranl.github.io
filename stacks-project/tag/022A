@@ -1,0 +1,323 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="topologies-section-fpqc" class="tex-section"><span data-tag="022A">34.9</span> The fpqc topology</h2>
+
+<p>
+<article class="env-definition" id="022B">
+  <p><a class="environment-identifier" href="/tag/022B">Definition <span data-tag="022B">34.9.1</span>.</a> Let $T$ be a scheme. An <em>fpqc covering of $T$</em> is a family of morphisms $\{ f_ i : T_ i \to T\} _{i \in I}$ of schemes such that each $f_ i$ is flat and such that for every affine open $U \subset T$ there exists $n \geq 0$, a map $a : \{ 1, \ldots , n\}  \to I$ and affine opens $V_ j \subset T_{a(j)}$, $j = 1, \ldots , n$ with $\bigcup _{j = 1}^ n f_{a(j)}(V_ j) = U$. </p>
+</article> 
+</p>
+<p>
+To be sure this condition implies that $T = \bigcup f_ i(T_ i)$. It is slightly harder to recognize an fpqc covering, hence we provide some lemmas to do so. 
+</p>
+<p>
+<article class="env-lemma" id="03L7">
+  <p><a class="environment-identifier" href="/tag/03L7">Lemma <span data-tag="03L7">34.9.2</span>.</a> Let $T$ be a scheme. Let $\{ f_ i : T_ i \to T\} _{i \in I}$ be a family of morphisms of schemes with target $T$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$\{ f_ i : T_ i \to T\} _{i \in I}$ is an fpqc covering, 
+</p>
+</li><li><p>
+each $f_ i$ is flat and for every affine open $U \subset T$ there exist quasi-compact opens $U_ i \subset T_ i$ which are almost all empty, such that $U = \bigcup f_ i(U_ i)$, 
+</p>
+</li><li><p>
+each $f_ i$ is flat and there exists an affine open covering $T = \bigcup _{\alpha \in A} U_\alpha $ and for each $\alpha \in A$ there exist $i_{\alpha , 1}, \ldots , i_{\alpha , n(\alpha )} \in I$ and quasi-compact opens $U_{\alpha , j} \subset T_{i_{\alpha , j}}$ such that $U_\alpha = \bigcup _{j = 1, \ldots , n(\alpha )} f_{i_{\alpha , j}}(U_{\alpha , j})$. 
+</p>
+</li>
+</ol></p>
+  <p> If $T$ is quasi-separated, these are also equivalent to </p>
+  <p><ol>
+  <li class="custom-item" data-marker="(4)"><p>
+each $f_ i$ is flat, and for every $t \in T$ there exist $i_1, \ldots , i_ n \in I$ and quasi-compact opens $U_ j \subset T_{i_ j}$ such that $\bigcup _{j = 1, \ldots , n} f_{i_ j}(U_ j)$ is a (not necessarily open) neighbourhood of $t$ in $T$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We omit the proof of the equivalence of (1), (2), and (3). From now on assume $T$ is quasi-separated. We prove (4) implies (2). Let $U \subset T$ be an affine open. To prove (2) it suffices to show that for every $t \in U$ there exist finitely many quasi-compact opens $U_ j \subset T_{i_ j}$ such that $f_{i_ j}(U_ j) \subset U$ and such that $\bigcup f_{i_ j}(U_ j)$ is a neighbourhood of $t$ in $U$. By assumption there do exist finitely many quasi-compact opens $U'_ j \subset T_{i_ j}$ such that such that $\bigcup f_{i_ j}(U'_ j)$ is a neighbourhood of $t$ in $T$. Since $T$ is quasi-separated we see that $U_ j = U'_ j \cap f_{i_ j}^{-1}(U) = (f_{i_ j}|_{U'_ j})^{-1}(U)$ is quasi-compact by Schemes, Lemma <a href="/tag/03GI" data-tag="03GI">26.21.14</a>. Thus (2) holds. Since it is clear that (2) implies (4) the proof is finished. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-example" id="0H7E">
+  <p><a class="environment-identifier" href="/tag/0H7E">Example <span data-tag="0H7E">34.9.3</span>.</a> Let $X = X_1 \cup X_2$ where $X_1 = X_2 = \mathop{\mathrm{Spec}}(k[t_1,t_2,\dots ])$ be the non-quasi-separated scheme from Schemes, Example <a href="/tag/01KL" data-tag="01KL">26.21.4</a>, and $Y = X_1 \amalg \mathop{\mathrm{Spec}}(\mathcal{O}_{X_2, 0})$. Then the obvious morphism $f : Y \to X$ is flat and surjective, and (since $Y$ is quasi-compact) trivially satisfies (4) of Lemma <a href="/tag/03L7" data-tag="03L7">34.9.2</a>. But $\{ f : Y \to X\} $ isn't an fpqc covering. Namely, we claim there is no quasi-compact open $W$ of $Y$ whose image by $f$ is $X_2$. Namely, $f^{-1}(X_2) = X_1 \setminus \{ 0\}  \amalg \mathop{\mathrm{Spec}}(\mathcal{O}_{X_2, 0})$. Hence if $W$ exists, then $W = U \amalg \mathop{\mathrm{Spec}}(\mathcal{O}_{X_2, 0})$ for some quasi-compact open $U$ of $X_1 \setminus \{ 0\}  = X_2 \setminus \{ 0\} $. But then we may write $U = D(f_1) \cup \ldots \cup D(f_ n)$ for some $f_ i \in k[t_1, t_2, \ldots ]$ vanishing at $0$. Suppose that $f_1, \ldots , f_ n$ use only the variables $x_1, \ldots , x_ m$. Then $p = (0, \ldots , 0, 1, 0, \ldots )$ with $1$ in the $(m + 1)$st spot is a closed point of $X_2$ not in the image of $W$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="040I">
+  <p><a class="environment-identifier" href="/tag/040I">Lemma <span data-tag="040I">34.9.4</span>.</a> Let $T$ be a scheme. Let $\{ f_ i : T_ i \to T\} _{i \in I}$ be a family of morphisms of schemes with target $T$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$\{ f_ i : T_ i \to T\} _{i \in I}$ is an fpqc covering, and 
+</p>
+</li><li><p>
+setting $T' = \coprod _{i \in I} T_ i$, and $f = \coprod _{i \in I} f_ i$ the family $\{ f : T' \to T\} $ is an fpqc covering. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose that $U \subset T$ is an affine open. If (1) holds, then we find $i_1, \ldots , i_ n \in I$ and affine opens $U_ j \subset T_{i_ j}$ such that $U = \bigcup _{j = 1, \ldots , n} f_{i_ j}(U_ j)$. Then $U_1 \amalg \ldots \amalg U_ n \subset T'$ is a quasi-compact open surjecting onto $U$. Thus $\{ f : T' \to T\} $ is an fpqc covering by Lemma <a href="/tag/03L7" data-tag="03L7">34.9.2</a>. Conversely, if (2) holds then there exists a quasi-compact open $U' \subset T'$ with $U = f(U')$. Then $U_ j = U' \cap T_ j$ is quasi-compact open in $T_ j$ and empty for almost all $j$. By Lemma <a href="/tag/03L7" data-tag="03L7">34.9.2</a> we see that (1) holds. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03L8">
+  <p><a class="environment-identifier" href="/tag/03L8">Lemma <span data-tag="03L8">34.9.5</span>.</a> Let $T$ be a scheme. Let $\{ f_ i : T_ i \to T\} _{i \in I}$ be a family of morphisms of schemes with target $T$. Assume that </p>
+  <p><ol>
+  <li><p>
+each $f_ i$ is flat, and 
+</p>
+</li><li><p>
+the family $\{ f_ i : T_ i \to T\} _{i \in I}$ can be refined by an fpqc covering of $T$. 
+</p>
+</li>
+</ol></p>
+  <p> Then $\{ f_ i : T_ i \to T\} _{i \in I}$ is an fpqc covering of $T$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\{ g_ j : X_ j \to T\} _{j \in J}$ be an fpqc covering refining $\{ f_ i : T_ i \to T\} $. Suppose that $U \subset T$ is affine open. Choose $j_1, \ldots , j_ m \in J$ and $V_ k \subset X_{j_ k}$ affine open such that $U = \bigcup g_{j_ k}(V_ k)$. For each $j$ pick $i_ j \in I$ and a morphism $h_ j : X_ j \to T_{i_ j}$ such that $g_ j = f_{i_ j} \circ h_ j$. Since $h_{j_ k}(V_ k)$ is quasi-compact we can find a quasi-compact open $h_{j_ k}(V_ k) \subset U_ k \subset f_{i_{j_ k}}^{-1}(U)$. Then $U = \bigcup f_{i_{j_ k}}(U_ k)$. We conclude that $\{ f_ i : T_ i \to T\} _{i \in I}$ is an fpqc covering by Lemma <a href="/tag/03L7" data-tag="03L7">34.9.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03L9">
+  <p><a class="environment-identifier" href="/tag/03L9">Lemma <span data-tag="03L9">34.9.6</span>.</a> Let $T$ be a scheme. Let $\{ f_ i : T_ i \to T\} _{i \in I}$ be a family of morphisms of schemes with target $T$. Assume that </p>
+  <p><ol>
+  <li><p>
+each $f_ i$ is flat, and 
+</p>
+</li><li><p>
+there exists an fpqc covering $\{ g_ j : S_ j \to T\} _{j \in J}$ such that each $\{ S_ j \times _ T T_ i \to S_ j\} _{i \in I}$ is an fpqc covering. 
+</p>
+</li>
+</ol></p>
+  <p> Then $\{ f_ i : T_ i \to T\} _{i \in I}$ is an fpqc covering of $T$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use Lemma <a href="/tag/03L7" data-tag="03L7">34.9.2</a> without further mention. Let $U \subset T$ be an affine open. By (2) we can find quasi-compact opens $V_ j \subset S_ j$ for $j \in J$, almost all empty, such that $U = \bigcup g_ j(V_ j)$. Then for each $j$ we can choose quasi-compact opens $W_{ij} \subset S_ j \times _ T T_ i$ for $i \in I$, almost all empty, with $V_ j = \bigcup _ i \text{pr}_1(W_{ij})$. Thus $\{ S_ j \times _ T T_ i \to T\} $ is an fpqc covering. Since this covering refines $\{ f_ i : T_ i \to T\} $ we conclude by Lemma <a href="/tag/03L8" data-tag="03L8">34.9.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="022C">
+  <p><a class="environment-identifier" href="/tag/022C">Lemma <span data-tag="022C">34.9.7</span>.</a> Any fppf covering is an fpqc covering, and a fortiori, any syntomic, smooth, étale or Zariski covering is an fpqc covering. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will show that an fppf covering is an fpqc covering, and then the rest follows from Lemma <a href="/tag/021N" data-tag="021N">34.7.2</a>. Let $\{ f_ i : U_ i \to U\} _{i \in I}$ be an fppf covering. By definition this means that the $f_ i$ are flat which checks the first condition of Definition <a href="/tag/022B" data-tag="022B">34.9.1</a>. To check the second, let $V \subset U$ be an affine open subset. Write $f_ i^{-1}(V) = \bigcup _{j \in J_ i} V_{ij}$ for some affine opens $V_{ij} \subset U_ i$. Since each $f_ i$ is open (Morphisms, Lemma <a href="/tag/01UA" data-tag="01UA">29.26.10</a>), we see that $V = \bigcup _{i\in I} \bigcup _{j \in J_ i} f_ i(V_{ij})$ is an open covering of $V$. Since $V$ is quasi-compact, this covering has a finite refinement. This finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The fpqc<a class="footnotemark" href="#a0000757375" id="a0000757375-mark"><sup>1</sup></a> topology cannot be treated in the same way as the fppf topology<a class="footnotemark" href="#a0000757377" id="a0000757377-mark"><sup>2</sup></a>. Namely, suppose that $R$ is a nonzero ring. We will see in Lemma <a href="/tag/0BBK" data-tag="0BBK">34.9.15</a> that there does not exist a set $A$ of fpqc-coverings of $\mathop{\mathrm{Spec}}(R)$ such that every fpqc-covering can be refined by an element of $A$. If $R = k$ is a field, then the reason for this unboundedness is that there does not exist a field extension of $k$ such that every field extension of $k$ is contained in it. 
+</p>
+<p>
+If you ignore set theoretic difficulties, then you run into presheaves which do not have a sheafification, see <span class="cite">[<span class="postnote">Theorem 5.5</span>, <a href="/bibliography/Waterhouse-fpqc-sheafification">Waterhouse-fpqc-sheafification</a>]</span>. A mildly interesting option is to consider only those faithfully flat ring extensions $R \to R'$ where the cardinality of $R'$ is suitably bounded. (And if you consider all schemes in a fixed universe as in SGA4 then you are bounding the cardinality by a strongly inaccessible cardinal.) However, it is not so clear what happens if you change the cardinal to a bigger one. 
+</p>
+<p>
+For these reasons we do not introduce fpqc sites and we will not consider cohomology with respect to the fpqc-topology. 
+</p>
+<p>
+On the other hand, given a contravariant functor $F : \mathit{Sch}^{opp} \to \textit{Sets}$ it does make sense to ask whether $F$ satisfies the sheaf property for the fpqc topology, see below. Moreover, we can wonder about descent of object in the fpqc topology, etc. Simply put, for certain results the correct generality is to work with fpqc coverings. 
+</p>
+<p>
+<article class="env-lemma" id="022D">
+  <p><a class="environment-identifier" href="/tag/022D">Lemma <span data-tag="022D">34.9.8</span>.</a> Let $T$ be a scheme. </p>
+  <p><ol>
+  <li><p>
+If $T' \to T$ is an isomorphism then $\{ T' \to T\} $ is an fpqc covering of $T$. 
+</p>
+</li><li><p>
+If $\{ T_ i \to T\} _{i\in I}$ is an fpqc covering and for each $i$ we have an fpqc covering $\{ T_{ij} \to T_ i\} _{j\in J_ i}$, then $\{ T_{ij} \to T\} _{i \in I, j\in J_ i}$ is an fpqc covering. 
+</p>
+</li><li><p>
+If $\{ T_ i \to T\} _{i\in I}$ is an fpqc covering and $T' \to T$ is a morphism of schemes then $\{ T' \times _ T T_ i \to T'\} _{i\in I}$ is an fpqc covering. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Part (1) is immediate. Recall that the composition of flat morphisms is flat and that the base change of a flat morphism is flat (Morphisms, Lemmas <a href="/tag/01U9" data-tag="01U9">29.26.8</a> and <a href="/tag/01U7" data-tag="01U7">29.26.6</a>). Thus we can apply Lemma <a href="/tag/03L7" data-tag="03L7">34.9.2</a> in each case to check that our families of morphisms are fpqc coverings. 
+    <p>
+      Proof of (2). Assume $\{ T_ i \to T\} _{i\in I}$ is an fpqc covering and for each $i$ we have an fpqc covering $\{ f_{ij} : T_{ij} \to T_ i\} _{j\in J_ i}$. Let $U \subset T$ be an affine open. We can find quasi-compact opens $U_ i \subset T_ i$ for $i \in I$, almost all empty, such that $U = \bigcup f_ i(U_ i)$. Then for each $i$ we can choose quasi-compact opens $U_{ij} \subset T_{ij}$ for $j \in J_ i$, almost all empty, with $U_ i = \bigcup _ j f_{ij}(U_{ij})$. Thus $\{ T_{ij} \to T\} $ is an fpqc covering. 
+    <p>
+      Proof of (3). Assume $\{ T_ i \to T\} _{i\in I}$ is an fpqc covering and $T' \to T$ is a morphism of schemes. Let $U' \subset T'$ be an affine open which maps into the affine open $U \subset T$. Choose quasi-compact opens $U_ i \subset T_ i$, almost all empty, such that $U = \bigcup f_ i(U_ i)$. Then $U' \times _ U U_ i$ is a quasi-compact open of $T' \times _ T T_ i$ and $U' = \bigcup \text{pr}_1(U' \times _ U U_ i)$. Since $T'$ can be covered by such affine opens $U' \subset T'$ we see that $\{ T' \times _ T T_ i \to T'\} _{i\in I}$ is an fpqc covering by Lemma <a href="/tag/03L7" data-tag="03L7">34.9.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="022E">
+  <p><a class="environment-identifier" href="/tag/022E">Lemma <span data-tag="022E">34.9.9</span>.</a> Let $T$ be an affine scheme. Let $\{ T_ i \to T\} _{i \in I}$ be an fpqc covering of $T$. Then there exists an fpqc covering $\{ U_ j \to T\} _{j = 1, \ldots , n}$ which is a refinement of $\{ T_ i \to T\} _{i \in I}$ such that each $U_ j$ is an affine scheme. Moreover, we may choose each $U_ j$ to be open affine in one of the $T_ i$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows directly from the definition. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="022F">
+  <p><a class="environment-identifier" href="/tag/022F">Definition <span data-tag="022F">34.9.10</span>.</a> Let $T$ be an affine scheme. A <em>standard fpqc covering</em> of $T$ is a family $\{ f_ j : U_ j \to T\} _{j = 1, \ldots , n}$ with each $U_ j$ is affine, flat over $T$ and $T = \bigcup f_ j(U_ j)$. </p>
+</article> 
+</p>
+<p>
+Since we do not introduce the affine site we have to show directly that the collection of all standard fpqc coverings satisfies the axioms. 
+</p>
+<p>
+<article class="env-lemma" id="03LA">
+  <p><a class="environment-identifier" href="/tag/03LA">Lemma <span data-tag="03LA">34.9.11</span>.</a> Let $T$ be an affine scheme. </p>
+  <p><ol>
+  <li><p>
+If $T' \to T$ is an isomorphism then $\{ T' \to T\} $ is a standard fpqc covering of $T$. 
+</p>
+</li><li><p>
+If $\{ T_ i \to T\} _{i\in I}$ is a standard fpqc covering and for each $i$ we have a standard fpqc covering $\{ T_{ij} \to T_ i\} _{j\in J_ i}$, then $\{ T_{ij} \to T\} _{i \in I, j\in J_ i}$ is a standard fpqc covering. 
+</p>
+</li><li><p>
+If $\{ T_ i \to T\} _{i\in I}$ is a standard fpqc covering and $T' \to T$ is a morphism of affine schemes then $\{ T' \times _ T T_ i \to T'\} _{i\in I}$ is a standard fpqc covering. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows formally from the fact that compositions and base changes of flat morphisms are flat (Morphisms, Lemmas <a href="/tag/01U9" data-tag="01U9">29.26.8</a> and <a href="/tag/01U7" data-tag="01U7">29.26.6</a>) and that fibre products of affine schemes are affine (Schemes, Lemma <a href="/tag/01JQ" data-tag="01JQ">26.17.2</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03LB">
+  <p><a class="environment-identifier" href="/tag/03LB">Lemma <span data-tag="03LB">34.9.12</span>.</a> Let $T$ be a scheme. Let $\{ f_ i : T_ i \to T\} _{i \in I}$ be a family of morphisms of schemes with target $T$. Assume that </p>
+  <p><ol>
+  <li><p>
+each $f_ i$ is flat, and 
+</p>
+</li><li><p>
+every affine scheme $Z$ and morphism $h : Z \to T$ there exists a standard fpqc covering $\{ Z_ j \to Z\} _{j = 1, \ldots , n}$ which refines the family $\{ T_ i \times _ T Z \to Z\} _{i \in I}$. 
+</p>
+</li>
+</ol></p>
+  <p> Then $\{ f_ i : T_ i \to T\} _{i \in I}$ is an fpqc covering of $T$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $T = \bigcup U_\alpha $ be an affine open covering. For each $\alpha $ the pullback family $\{ T_ i \times _ T U_\alpha \to U_\alpha \} $ can be refined by a standard fpqc covering, hence is an fpqc covering by Lemma <a href="/tag/03L8" data-tag="03L8">34.9.5</a>. As $\{ U_\alpha \to T\} $ is an fpqc covering we conclude that $\{ T_ i \to T\} $ is an fpqc covering by Lemma <a href="/tag/03L9" data-tag="03L9">34.9.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="022G">
+  <p><a class="environment-identifier" href="/tag/022G">Definition <span data-tag="022G">34.9.13</span>.</a> Let $F$ be a contravariant functor on the category of schemes with values in sets. </p>
+  <p><ol>
+  <li><p>
+Let $\{ U_ i \to T\} _{i \in I}$ be a family of morphisms of schemes with fixed target. We say that $F$ <em>satisfies the sheaf property for the given family</em> if for any collection of elements $\xi _ i \in F(U_ i)$ such that $\xi _ i|_{U_ i \times _ T U_ j} = \xi _ j|_{U_ i \times _ T U_ j}$ there exists a unique element $\xi \in F(T)$ such that $\xi _ i = \xi |_{U_ i}$ in $F(U_ i)$. 
+</p>
+</li><li><p>
+We say that $F$ <em>satisfies the sheaf property for the fpqc topology</em> if it satisfies the sheaf property for any fpqc covering. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+We try to avoid using the terminology “$F$ is a sheaf” in this situation since we are not defining a category of fpqc sheaves as we explained above. 
+</p>
+<p>
+<article class="env-lemma" id="022H">
+  <p><a class="environment-identifier" href="/tag/022H">Lemma <span data-tag="022H">34.9.14</span>.</a> Let $F$ be a contravariant functor on the category of schemes with values in sets. Then $F$ satisfies the sheaf property for the fpqc topology if and only if it satisfies </p>
+  <p><ol>
+  <li><p>
+the sheaf property for every Zariski covering, and 
+</p>
+</li><li><p>
+the sheaf property for any standard fpqc covering. 
+</p>
+</li>
+</ol></p>
+  <p> Moreover, in the presence of (1) property (2) is equivalent to property </p>
+  <p><ol>
+  <li class="custom-item" data-marker="(2')"><p>
+the sheaf property for $\{ V \to U\} $ with $V$, $U$ affine and $V \to U$ faithfully flat. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume (1) and (2) hold. Let $\{ f_ i : T_ i \to T\} _{i \in I}$ be an fpqc covering. Let $s_ i \in F(T_ i)$ be a family of elements such that $s_ i$ and $s_ j$ map to the same element of $F(T_ i \times _ T T_ j)$. Let $W \subset T$ be the maximal open subset such that there exists a unique $s \in F(W)$ with $s|_{f_ i^{-1}(W)} = s_ i|_{f_ i^{-1}(W)}$ for all $i$. Such a maximal open exists because $F$ satisfies the sheaf property for Zariski coverings; in fact $W$ is the union of all opens with this property. Let $t \in T$. We will show $t \in W$. To do this we pick an affine open $t \in U \subset T$ and we will show there is a unique $s \in F(U)$ with $s|_{f_ i^{-1}(U)} = s_ i|_{f_ i^{-1}(U)}$ for all $i$. 
+    <p>
+      By Lemma <a href="/tag/022E" data-tag="022E">34.9.9</a> we can find a standard fpqc covering $\{ U_ j \to U\} _{j = 1, \ldots , n}$ refining $\{ U \times _ T T_ i \to U\} $, say by morphisms $h_ j : U_ j \to T_{i_ j}$. By (2) we obtain a unique element $s \in F(U)$ such that $s|_{U_ j} = F(h_ j)(s_{i_ j})$. Note that for any scheme $V \to U$ over $U$ there is a unique section $s_ V \in F(V)$ which restricts to $F(h_ j \circ \text{pr}_2)(s_{i_ j})$ on $V \times _ U U_ j$ for $j = 1, \ldots , n$. Namely, this is true if $V$ is affine by (2) as $\{ V \times _ U U_ j \to V\} $ is a standard fpqc covering and in general this follows from (1) and the affine case by choosing an affine open covering of $V$. In particular, $s_ V = s|_ V$. Now, taking $V = U \times _ T T_ i$ and using that $s_{i_ j}|_{T_{i_ j} \times _ T T_ i} = s_ i|_{T_{i_ j} \times _ T T_ i}$ we conclude that $s|_{U \times _ T T_ i} = s_ V = s_ i|_{U \times _ T T_ i}$ which is what we had to show. 
+    <p>
+      Proof of the equivalence of (2) and (2') in the presence of (1). Suppose $\{ T_ i \to T\} $ is a standard fpqc covering, then $\coprod T_ i \to T$ is a faithfully flat morphism of affine schemes. In the presence of (1) we have $F(\coprod T_ i) = \prod F(T_ i)$ and similarly $F((\coprod T_ i) \times _ T (\coprod T_ i)) = \prod F(T_ i \times _ T T_{i'})$. Thus the sheaf condition for $\{ T_ i \to T\} $ and $\{ \coprod T_ i \to T\} $ is the same. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma is here just to point out set theoretical difficulties do indeed arise and should be ignored by most readers. 
+</p>
+<p>
+<article class="env-lemma" id="0BBK">
+  <p><a class="environment-identifier" href="/tag/0BBK">Lemma <span data-tag="0BBK">34.9.15</span>.</a> Let $R$ be a nonzero ring. There does not exist a set $A$ of fpqc-coverings of $\mathop{\mathrm{Spec}}(R)$ such that every fpqc-covering can be refined by an element of $A$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let us first explain this when $R = k$ is a field. For any set $I$ consider the purely transcendental field extension $k_ I = k(\{ t_ i\} _{i \in I})/k$. Since $k \to k_ I$ is faithfully flat we see that $\{ \mathop{\mathrm{Spec}}(k_ I) \to \mathop{\mathrm{Spec}}(k)\} $ is an fpqc covering. Let $A$ be a set and for each $\alpha \in A$ let $\mathcal{U}_\alpha = \{ S_{\alpha , j} \to \mathop{\mathrm{Spec}}(k)\} _{j \in J_\alpha }$ be an fpqc covering. If $\mathcal{U}_\alpha $ refines $\{ \mathop{\mathrm{Spec}}(k_ I) \to \mathop{\mathrm{Spec}}(k)\} $ then the morphisms $S_{\alpha , j} \to \mathop{\mathrm{Spec}}(k)$ factor through $\mathop{\mathrm{Spec}}(k_ I)$. Since $\mathcal{U}_\alpha $ is a covering, at least some $S_{\alpha , j}$ is nonempty. Pick a point $s \in S_{\alpha , j}$. Since we have the factorization $S_{\alpha , j} \to \mathop{\mathrm{Spec}}(k_ I) \to \mathop{\mathrm{Spec}}(k)$ we obtain a homomorphism of fields $k_ I \to \kappa (s)$. In particular, we see that the cardinality of $\kappa (s)$ is at least the cardinality of $I$. Thus if we take $I$ to be a set of cardinality bigger than the cardinalities of the residue fields of all the schemes $S_{\alpha , j}$, then such a factorization does not exist and the lemma holds for $R = k$. 
+    <p>
+      General case. Since $R$ is nonzero it has a maximal prime ideal $\mathfrak m$ with residue field $\kappa $. Let $I$ be a set and consider $R_ I = S_ I^{-1} R[\{ t_ i\} _{i \in I}]$ where $S_ I \subset R[\{ t_ i\} _{i \in I}]$ is the multiplicative subset of $f \in R[\{ t_ i\} _{i \in I}]$ such that $f$ maps to a nonzero element of $R/\mathfrak p[\{ t_ i\} _{i \in I}]$ for all primes $\mathfrak p$ of $R$. Then $R_ I$ is a faithfully flat $R$-algebra and $\{ \mathop{\mathrm{Spec}}(R_ I) \to \mathop{\mathrm{Spec}}(R)\} $ is an fpqc covering. We leave it as an exercise to the reader to show that $R_ I \otimes _ R \kappa \cong \kappa (\{ t_ i\} _{i \in I}) = \kappa _ I$ with notation as above (hint: use that $R \to \kappa $ is surjective and that any $f \in R[\{ t_ i\} _{i \in I}]$ one of whose monomials occurs with coefficient $1$ is an element of $S_ I$). Let $A$ be a set and for each $\alpha \in A$ let $\mathcal{U}_\alpha = \{ S_{\alpha , j} \to \mathop{\mathrm{Spec}}(R)\} _{j \in J_\alpha }$ be an fpqc covering. If $\mathcal{U}_\alpha $ refines $\{ \mathop{\mathrm{Spec}}(R_ I) \to \mathop{\mathrm{Spec}}(R)\} $, then by base change we conclude that $\{ S_{\alpha , j} \times _{\mathop{\mathrm{Spec}}(R)} \mathop{\mathrm{Spec}}(\kappa ) \to \mathop{\mathrm{Spec}}(\kappa )\} $ refines $\{ \mathop{\mathrm{Spec}}(\kappa _ I) \to \mathop{\mathrm{Spec}}(\kappa )\} $. Hence by the result of the previous paragraph, there exists an $I$ such that this is not the case and the lemma is proved. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

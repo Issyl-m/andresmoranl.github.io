@@ -1,0 +1,309 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="groupoids-section-colimits" class="tex-section"><span data-tag="07TS">39.15</span> Colimits of quasi-coherent modules</h2>
+
+<p>
+In this section we prove some technical results saying that under suitable assumptions every quasi-coherent module on a groupoid is a filtered colimit of “small” quasi-coherent modules. 
+</p>
+<p>
+<article class="env-lemma" id="07TR">
+  <p><a class="environment-identifier" href="/tag/07TR">Lemma <span data-tag="07TR">39.15.1</span>.</a> Let $(U, R, s, t, c)$ be a groupoid scheme over $S$. Assume $s, t$ are flat, quasi-compact, and quasi-separated. For any quasi-coherent module $\mathcal{G}$ on $U$, there exists a canonical isomorphism $\alpha : t^*s_*t^*\mathcal{G} \to s^*s_*t^*\mathcal{G}$ which turns $(s_*t^*\mathcal{G}, \alpha )$ into a quasi-coherent module on $(U, R, s, t, c)$. This construction defines a functor </p>
+  <div class="equation">
+  \[  \mathit{QCoh}(\mathcal{O}_ U) \longrightarrow \mathit{QCoh}(U, R, s, t, c)  \]
+</div>
+  <p> which is a right adjoint to the forgetful functor $(\mathcal{F}, \beta ) \mapsto \mathcal{F}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The pushforward of a quasi-coherent module along a quasi-compact and quasi-separated morphism is quasi-coherent, see Schemes, Lemma <a href="/tag/01LC" data-tag="01LC">26.24.1</a>. Hence $s_*t^*\mathcal{G}$ is quasi-coherent. With notation as in Lemma <a href="/tag/02YE" data-tag="02YE">39.13.4</a> we have 
+    <p>
+      <div class="equation">
+  \[  t^*s_*t^*\mathcal{G} = \text{pr}_{1, *}\text{pr}_0^*t^*\mathcal{G} = \text{pr}_{1, *}c^*t^*\mathcal{G} = s^*s_*t^*\mathcal{G}  \]
+</div>
+    <p>
+       The middle equality because $t \circ c = t \circ \text{pr}_0$ as morphisms $R \times _{s, U, t} R \to U$, and the first and the last equality because we know that base change and pushforward commute in these steps by Cohomology of Schemes, Lemma <a href="/tag/02KH" data-tag="02KH">30.5.2</a>. 
+    <p>
+      To verify the cocycle condition of Definition <a href="/tag/03LI" data-tag="03LI">39.14.1</a> for $\alpha $ and the adjointness property we describe the construction $\mathcal{G} \mapsto (s_*t^*\mathcal{G}, \alpha )$ in another way. Consider the groupoid scheme $(R, R \times _{t, U, t} R, \text{pr}_0, \text{pr}_1, \text{pr}_{02})$ associated to the equivalence relation $R \times _{t, U, t} R$ on $R$, see Lemma <a href="/tag/0233" data-tag="0233">39.13.3</a>. There is a morphism 
+    <p>
+      <div class="equation">
+  \[  f : (R, R \times _{t, U, t} R, \text{pr}_1, \text{pr}_0, \text{pr}_{02}) \longrightarrow (U, R, s, t, c)  \]
+</div>
+    <p>
+       of groupoid schemes given by $s : R \to U$ and $R \times _{t, U, t} R \to R$ given by $(r_0, r_1) \mapsto r_0^{-1} \circ r_1$; we omit the verification of the commutativity of the required diagrams. Since $t, s : R \to U$ are quasi-compact, quasi-separated, and flat, and since we have a cartesian square 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ R \times _{t, U, t} R \ar[d]_{\text{pr}_0} \ar[rr]_-{(r_0, r_1) \mapsto r_0^{-1} \circ r_1} &  &  R \ar[d]^ t \\  R \ar[rr]^ s &  &  U }  \]
+</div>
+    <p>
+       by Lemma <a href="/tag/03C6" data-tag="03C6">39.13.5</a> it follows that Lemma <a href="/tag/09VH" data-tag="09VH">39.14.4</a> applies to $f$. Thus pushforward and pullback of quasi-coherent modules along $f$ are adjoint functors. To finish the proof we will identify these functors with the functors described above. To do this, note that 
+    <p>
+      <div class="equation">
+  \[  t^* : \mathit{QCoh}(\mathcal{O}_ U) \longrightarrow \mathit{QCoh}(R, R \times _{t, U, t} R, \text{pr}_1, \text{pr}_0, \text{pr}_{02})  \]
+</div>
+    <p>
+       is an equivalence by the theory of descent of quasi-coherent sheaves as $\{ t : R \to U\} $ is an fpqc covering, see Descent, Proposition <a href="/tag/023T" data-tag="023T">35.5.2</a>. 
+    <p>
+      Pushforward along $f$ precomposed with the equivalence $t^*$ sends $\mathcal{G}$ to $(s_*t^*\mathcal{G}, \alpha )$; we omit the verification that the isomorphism $\alpha $ obtained in this fashion is the same as the one constructed above. 
+    <p>
+      Pullback along $f$ postcomposed with the inverse of the equivalence $t^*$ sends $(\mathcal{F}, \beta )$ to the descent relative to $\{ t : R \to U\} $ of the module $s^*\mathcal{F}$ endowed with the descent datum $\gamma $ on $R \times _{t, U, t} R$ which is the pullback of $\beta $ by $(r_0, r_1) \mapsto r_0^{-1} \circ r_1$. Consider the isomorphism $\beta : t^*\mathcal{F} \to s^*\mathcal{F}$. The canonical descent datum (Descent, Definition <a href="/tag/023D" data-tag="023D">35.2.3</a>) on $t^*\mathcal{F}$ relative to $\{ t : R \to U\} $ translates via $\beta $ into the map 
+    <p>
+      <div class="equation">
+  \[  \text{pr}_0^*s^*\mathcal{F} \xrightarrow {\text{pr}_0^*\beta ^{-1}} \text{pr}_0^*t^*\mathcal{F} \xrightarrow {can} \text{pr}_1^*t^*\mathcal{F} \xrightarrow {\text{pr}_1^*\beta } \text{pr}_1^*s^*\mathcal{F}  \]
+</div>
+    <p>
+       Since $\beta $ satisfies the cocycle condition, this is equal to the pullback of $\beta $ by $(r_0, r_1) \mapsto r_0^{-1} \circ r_1$. To see this take the actual cocycle relation in Definition <a href="/tag/03LI" data-tag="03LI">39.14.1</a> and pull it back by the morphism $(\text{pr}_0, c \circ (i, 1)) : R \times _{t, U, t} R \to R \times _{s, U, t} R$ which also plays a role in the commutative diagram of Lemma <a href="/tag/03C6" data-tag="03C6">39.13.5</a>. It follows that $(s^*\mathcal{F}, \gamma )$ is isomorphic to $(t^*\mathcal{F}, can)$. All in all, we conclude that pullback by $f$ postcomposed with the inverse of the equivalence $t^*$ is isomorphic to the forgetful functor $(\mathcal{F}, \beta ) \mapsto \mathcal{F}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0GNF">
+  <p><a class="environment-identifier" href="/tag/0GNF">Remark <span data-tag="0GNF">39.15.2</span>.</a> In the situation of Lemma <a href="/tag/07TR" data-tag="07TR">39.15.1</a> denote </p>
+  <div class="equation">
+  \[  F : \mathit{QCoh}(U, R, s, t, c) \to \mathit{QCoh}(\mathcal{O}_ U),\quad (\mathcal{F}, \beta ) \mapsto \mathcal{F}  \]
+</div>
+  <p> the forgetful functor and denote </p>
+  <div class="equation">
+  \[  G : \mathit{QCoh}(\mathcal{O}_ U) \to \mathit{QCoh}(U, R, s, t, c),\quad \mathcal{G} \mapsto (s_*t^*\mathcal{G}, \alpha )  \]
+</div>
+  <p> the right adjoint constructed in the lemma. Then the unit $\eta : \text{id} \to G \circ F$ of the adjunction evaluated on $(\mathcal{F}, \beta )$ is given by the map </p>
+  <div class="equation">
+  \[  \mathcal{F} \to s_*s^*\mathcal{F} \xrightarrow {\beta ^{-1}} s_*t^*\mathcal{F}  \]
+</div>
+  <p> We omit the verification. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="07TT">
+  <p><a class="environment-identifier" href="/tag/07TT">Lemma <span data-tag="07TT">39.15.3</span>.</a> Let $f : Y \to X$ be a morphism of schemes. Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_ X$-module, let $\mathcal{G}$ be a quasi-coherent $\mathcal{O}_ Y$-module, and let $\varphi : \mathcal{G} \to f^*\mathcal{F}$ be a module map. Assume </p>
+  <p><ol>
+  <li><p>
+$\varphi $ is injective, 
+</p>
+</li><li><p>
+$f$ is quasi-compact, quasi-separated, flat, and surjective, 
+</p>
+</li><li><p>
+$X$, $Y$ are locally Noetherian, and 
+</p>
+</li><li><p>
+$\mathcal{G}$ is a coherent $\mathcal{O}_ Y$-module. 
+</p>
+</li>
+</ol></p>
+  <p> Then $\mathcal{F} \cap f_*\mathcal{G}$ defined as the pullback </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{F} \ar[r] &  f_*f^*\mathcal{F} \\  \mathcal{F} \cap f_*\mathcal{G} \ar[u] \ar[r] &  f_*\mathcal{G} \ar[u] }  \]
+</div>
+  <p> is a coherent $\mathcal{O}_ X$-module. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will freely use the characterization of coherent modules of Cohomology of Schemes, Lemma <a href="/tag/01XZ" data-tag="01XZ">30.9.1</a> as well as the fact that coherent modules form a Serre subcategory of $\mathit{QCoh}(\mathcal{O}_ X)$, see Cohomology of Schemes, Lemma <a href="/tag/01Y1" data-tag="01Y1">30.9.3</a>. If $f$ has a section $\sigma $, then we see that $\mathcal{F} \cap f_*\mathcal{G}$ is contained in the image of $\sigma ^*\mathcal{G} \to \sigma ^*f^*\mathcal{F} = \mathcal{F}$, hence coherent. In general, to show that $\mathcal{F} \cap f_*\mathcal{G}$ is coherent, it suffices the show that $f^*(\mathcal{F} \cap f_*\mathcal{G})$ is coherent (see Descent, Lemma <a href="/tag/05AZ" data-tag="05AZ">35.7.1</a>). Since $f$ is flat this is equal to $f^*\mathcal{F} \cap f^*f_*\mathcal{G}$. Since $f$ is flat, quasi-compact, and quasi-separated we see $f^*f_*\mathcal{G} = p_*q^*\mathcal{G}$ where $p, q : Y \times _ X Y \to Y$ are the projections, see Cohomology of Schemes, Lemma <a href="/tag/02KH" data-tag="02KH">30.5.2</a>. Since $p$ has a section we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $S$ be a scheme. Let $(U, R, s, t, c)$ be a groupoid in schemes over $S$. Assume that $U$ is locally Noetherian. In the lemma below we say that a quasi-coherent sheaf $(\mathcal{F}, \alpha )$ on $(U, R, s, t, c)$ is <em>coherent</em> if $\mathcal{F}$ is a coherent $\mathcal{O}_ U$-module. 
+</p>
+<p>
+<article class="env-lemma" id="07TU">
+  <p><a class="environment-identifier" href="/tag/07TU">Lemma <span data-tag="07TU">39.15.4</span>.</a> Let $(U, R, s, t, c)$ be a groupoid scheme over $S$. Assume that </p>
+  <p><ol>
+  <li><p>
+$U$, $R$ are Noetherian, 
+</p>
+</li><li><p>
+$s, t$ are flat, quasi-compact, and quasi-separated. 
+</p>
+</li>
+</ol></p>
+  <p> Then every quasi-coherent module $(\mathcal{F}, \beta )$ on $(U, R, s, t, c)$ is a filtered colimit of coherent modules. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use the characterization of Cohomology of Schemes, Lemma <a href="/tag/01XZ" data-tag="01XZ">30.9.1</a> of coherent modules on locally Noetherian scheme without further mention. We can write $\mathcal{F} = \mathop{\mathrm{colim}}\nolimits \mathcal{H}_ i$ as the filtered colimit of coherent submodules $\mathcal{H}_ i \subset \mathcal{F}$, see Cohomology of Schemes, Lemma <a href="/tag/0GN6" data-tag="0GN6">30.10.4</a>. Given a quasi-coherent sheaf $\mathcal{H}$ on $U$ we denote $(s_*t^*\mathcal{H}, \alpha )$ the quasi-coherent sheaf on $(U, R, s, t, c)$ of Lemma <a href="/tag/07TR" data-tag="07TR">39.15.1</a>. Consider the adjunction map $(\mathcal{F}, \beta ) \to (s_*t^*\mathcal{F}, \alpha )$ in $\mathit{QCoh}(U, R, s, t, c)$, see Remark <a href="/tag/0GNF" data-tag="0GNF">39.15.2</a>. Set 
+    <p>
+      <div class="equation">
+  \[  (\mathcal{F}_ i, \beta _ i) = (\mathcal{F}, \beta ) \times _{(s_*t^*\mathcal{F}, \alpha )} (s_*t^*\mathcal{H}_ i, \alpha )  \]
+</div>
+    <p>
+       in $\mathit{QCoh}(U, R, s, t, c)$. Since restriction to $U$ is an exact functor on $\mathit{QCoh}(U, R, s, t, c)$ by the proof of Lemma <a href="/tag/077S" data-tag="077S">39.14.6</a> we obtain a pullback diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathcal{F} \ar[r] &  s_*t^*\mathcal{F} \\  \mathcal{F}_ i \ar[r] \ar[u] &  s_*t^*\mathcal{H}_ i \ar[u] }  \]
+</div>
+    <p>
+       in other words $\mathcal{F}_ i = \mathcal{F} \cap s_*t^*\mathcal{H}_ i$. By the description of the adjunction map in Remark <a href="/tag/0GNF" data-tag="0GNF">39.15.2</a> this diagram is isomorphic to the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathcal{F} \ar[r] &  s_*s^*\mathcal{F} \\  \mathcal{F}_ i \ar[r] \ar[u] &  s_*t^*\mathcal{H}_ i \ar[u] }  \]
+</div>
+    <p>
+       where the right vertical arrow is the result of applying $s_*$ to the map 
+    <p>
+      <div class="equation">
+  \[  t^*\mathcal{H}_ i \to t^*\mathcal{F} \xrightarrow {\beta } s^*\mathcal{F}  \]
+</div>
+    <p>
+       This arrow is injective as $t$ is a flat morphism. It follows that $\mathcal{F}_ i$ is coherent by Lemma <a href="/tag/07TT" data-tag="07TT">39.15.3</a>. Finally, because $s$ is quasi-compact and quasi-separated we see that $s_*$ commutes with colimits (see Cohomology of Schemes, Lemma <a href="/tag/07TB" data-tag="07TB">30.6.1</a>). Hence $s_*t^*\mathcal{F} = \mathop{\mathrm{colim}}\nolimits s_*t^*\mathcal{H}_ i$ and hence $(\mathcal{F}, \beta ) = \mathop{\mathrm{colim}}\nolimits (\mathcal{F}_ i, \beta _ i)$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Here is a curious lemma that is useful when working with groupoids on fields. In fact, this is the standard argument to prove that any representation of an algebraic group is a colimit of finite dimensional representations. 
+</p>
+<p>
+<article class="env-lemma" id="07TV">
+  <p><a class="environment-identifier" href="/tag/07TV">Lemma <span data-tag="07TV">39.15.5</span>.</a> Let $(U, R, s, t, c)$ be a groupoid scheme over $S$. Assume that </p>
+  <p><ol>
+  <li><p>
+$U$, $R$ are affine, 
+</p>
+</li><li><p>
+there exist $e_ i \in \mathcal{O}_ R(R)$ such that every element $g \in \mathcal{O}_ R(R)$ can be uniquely written as $\sum s^*(f_ i)e_ i$ for some $f_ i \in \mathcal{O}_ U(U)$. 
+</p>
+</li>
+</ol></p>
+  <p> Then every quasi-coherent module $(\mathcal{F}, \alpha )$ on $(U, R, s, t, c)$ is a filtered colimit of finite type quasi-coherent modules. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The assumption means that $\mathcal{O}_ R(R)$ is a free $\mathcal{O}_ U(U)$-module via $s$ with basis $e_ i$. Hence for any quasi-coherent $\mathcal{O}_ U$-module $\mathcal{G}$ we see that $s^*\mathcal{G}(R) = \bigoplus _ i \mathcal{G}(U)e_ i$. We will write $s(-)$ to indicate pullback of sections by $s$ and similarly for other morphisms. Let $(\mathcal{F}, \alpha )$ be a quasi-coherent module on $(U, R, s, t, c)$. Let $\sigma \in \mathcal{F}(U)$. By the above we can write 
+    <p>
+      <div class="equation">
+  \[  \alpha (t(\sigma )) = \sum s(\sigma _ i) e_ i  \]
+</div>
+    <p>
+       for some unique $\sigma _ i \in \mathcal{F}(U)$ (all but finitely many are zero of course). We can also write 
+    <p>
+      <div class="equation">
+  \[  c(e_ i) = \sum \text{pr}_1(f_{ij}) \text{pr}_0(e_ j)  \]
+</div>
+    <p>
+       as functions on $R \times _{s, U, t}R$. Then the commutativity of the diagram in Definition <a href="/tag/03LI" data-tag="03LI">39.14.1</a> means that 
+    <p>
+      <div class="equation">
+  \[  \sum \text{pr}_1(\alpha (t(\sigma _ i))) \text{pr}_0(e_ i) = \sum \text{pr}_1(s(\sigma _ i)f_{ij}) \text{pr}_0(e_ j)  \]
+</div>
+    <p>
+       (calculation omitted). Picking off the coefficients of $\text{pr}_0(e_ l)$ we see that $\alpha (t(\sigma _ l)) = \sum s(\sigma _ i)f_{il}$. Hence the submodule $\mathcal{G} \subset \mathcal{F}$ generated by the elements $\sigma _ i$ defines a finite type quasi-coherent module preserved by $\alpha $. Hence it is a subobject of $\mathcal{F}$ in $\mathit{QCoh}(U, R, s, t, c)$. This submodule contains $\sigma $ (as one sees by pulling back the first relation by $e$). Hence we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We suggest the reader skip the rest of this section. Let $S$ be a scheme. Let $(U, R, s, t, c)$ be a groupoid in schemes over $S$. Let $\kappa $ be a cardinal. In the following we will say that a quasi-coherent sheaf $(\mathcal{F}, \alpha )$ on $(U, R, s, t, c)$ is $\kappa $-generated if $\mathcal{F}$ is a $\kappa $-generated $\mathcal{O}_ U$-module, see Properties, Definition <a href="/tag/077L" data-tag="077L">28.24.1</a>. 
+</p>
+<p>
+<article class="env-lemma" id="077T">
+  <p><a class="environment-identifier" href="/tag/077T">Lemma <span data-tag="077T">39.15.6</span>.</a> Let $(U, R, s, t, c)$ be a groupoid scheme over $S$. Let $\kappa $ be a cardinal. There exists a set $T$ and a family $(\mathcal{F}_ t, \alpha _ t)_{t \in T}$ of $\kappa $-generated quasi-coherent modules on $(U, R, s, t, c)$ such that every $\kappa $-generated quasi-coherent module on $(U, R, s, t, c)$ is isomorphic to one of the $(\mathcal{F}_ t, \alpha _ t)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      For each quasi-coherent module $\mathcal{F}$ on $U$ there is a (possibly empty) set of maps $\alpha : t^*\mathcal{F} \to s^*\mathcal{F}$ such that $(\mathcal{F}, \alpha )$ is a quasi-coherent modules on $(U, R, s, t, c)$. By Properties, Lemma <a href="/tag/077M" data-tag="077M">28.24.2</a> there exists a set of isomorphism classes of $\kappa $-generated quasi-coherent $\mathcal{O}_ U$-modules. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="077U">
+  <p><a class="environment-identifier" href="/tag/077U">Lemma <span data-tag="077U">39.15.7</span>.</a> Let $(U, R, s, t, c)$ be a groupoid scheme over $S$. Assume that $s, t$ are flat. There exists a cardinal $\kappa $ such that every quasi-coherent module $(\mathcal{F}, \alpha )$ on $(U, R, s, t, c)$ is the directed colimit of its $\kappa $-generated quasi-coherent submodules. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In the statement of the lemma and in this proof a <em>submodule</em> of a quasi-coherent module $(\mathcal{F}, \alpha )$ is a quasi-coherent submodule $\mathcal{G} \subset \mathcal{F}$ such that $\alpha (t^*\mathcal{G}) = s^*\mathcal{G}$ as subsheaves of $s^*\mathcal{F}$. This makes sense because since $s, t$ are flat the pullbacks $s^*$ and $t^*$ are exact, i.e., preserve subsheaves. The proof will be a repeat of the proof of Properties, Lemma <a href="/tag/077N" data-tag="077N">28.24.3</a>. We urge the reader to read that proof first. 
+    <p>
+      Choose an affine open covering $U = \bigcup _{i \in I} U_ i$. For each pair $i, j$ choose affine open coverings 
+    <p>
+      <div class="equation">
+  \[  U_ i \cap U_ j = \bigcup \nolimits _{k \in I_{ij}} U_{ijk} \quad \text{and}\quad s^{-1}(U_ i) \cap t^{-1}(U_ j) = \bigcup \nolimits _{k \in J_{ij}} W_{ijk}.  \]
+</div>
+    <p>
+       Write $U_ i = \mathop{\mathrm{Spec}}(A_ i)$, $U_{ijk} = \mathop{\mathrm{Spec}}(A_{ijk})$, $W_{ijk} = \mathop{\mathrm{Spec}}(B_{ijk})$. Let $\kappa $ be any infinite cardinal $\geq $ than the cardinality of any of the sets $I$, $I_{ij}$, $J_{ij}$. 
+    <p>
+      Let $(\mathcal{F}, \alpha )$ be a quasi-coherent module on $(U, R, s, t, c)$. Set $M_ i = \mathcal{F}(U_ i)$, $M_{ijk} = \mathcal{F}(U_{ijk})$. Note that 
+    <p>
+      <div class="equation">
+  \[  M_ i \otimes _{A_ i} A_{ijk} = M_{ijk} = M_ j \otimes _{A_ j} A_{ijk}  \]
+</div>
+    <p>
+       and that $\alpha $ gives isomorphisms 
+    <p>
+      <div class="equation">
+  \[  \alpha |_{W_{ijk}} : M_ i \otimes _{A_ i, t} B_{ijk} \longrightarrow M_ j \otimes _{A_ j, s} B_{ijk}  \]
+</div>
+    <p>
+       see Schemes, Lemma <a href="/tag/01I9" data-tag="01I9">26.7.3</a>. Using the axiom of choice we choose a map 
+    <p>
+      <div class="equation">
+  \[  (i, j, k, m) \mapsto S(i, j, k, m)  \]
+</div>
+    <p>
+       which associates to every $i, j \in I$, $k \in I_{ij}$ or $k \in J_{ij}$ and $m \in M_ i$ a finite subset $S(i, j, k, m) \subset M_ j$ such that we have 
+    <p>
+      <div class="equation">
+  \[  m \otimes 1 = \sum \nolimits _{m' \in S(i, j, k, m)} m' \otimes a_{m'} \quad \text{or}\quad \alpha (m \otimes 1) = \sum \nolimits _{m' \in S(i, j, k, m)} m' \otimes b_{m'}  \]
+</div>
+    <p>
+       in $M_{ijk}$ for some $a_{m'} \in A_{ijk}$ or $b_{m'} \in B_{ijk}$. Moreover, let's agree that $S(i, i, k, m) = \{ m\} $ for all $i, j = i, k, m$ when $k \in I_{ij}$. Fix such a collection $S(i, j, k, m)$ 
+    <p>
+      Given a family $\mathcal{S} = (S_ i)_{i \in I}$ of subsets $S_ i \subset M_ i$ of cardinality at most $\kappa $ we set $\mathcal{S}' = (S'_ i)$ where 
+    <p>
+      <div class="equation">
+  \[  S'_ j = \bigcup \nolimits _{(i, j, k, m)\text{ such that }m \in S_ i} S(i, j, k, m)  \]
+</div>
+    <p>
+       Note that $S_ i \subset S'_ i$. Note that $S'_ i$ has cardinality at most $\kappa $ because it is a union over a set of cardinality at most $\kappa $ of finite sets. Set $\mathcal{S}^{(0)} = \mathcal{S}$, $\mathcal{S}^{(1)} = \mathcal{S}'$ and by induction $\mathcal{S}^{(n + 1)} = (\mathcal{S}^{(n)})'$. Then set $\mathcal{S}^{(\infty )} = \bigcup _{n \geq 0} \mathcal{S}^{(n)}$. Writing $\mathcal{S}^{(\infty )} = (S^{(\infty )}_ i)$ we see that for any element $m \in S^{(\infty )}_ i$ the image of $m$ in $M_{ijk}$ can be written as a finite sum $\sum m' \otimes a_{m'}$ with $m' \in S_ j^{(\infty )}$. In this way we see that setting 
+    <p>
+      <div class="equation">
+  \[  N_ i = A_ i\text{-submodule of }M_ i\text{ generated by }S^{(\infty )}_ i  \]
+</div>
+    <p>
+       we have 
+    <p>
+      <div class="equation">
+  \[  N_ i \otimes _{A_ i} A_{ijk} = N_ j \otimes _{A_ j} A_{ijk} \quad \text{and}\quad \alpha (N_ i \otimes _{A_ i, t} B_{ijk}) = N_ j \otimes _{A_ j, s} B_{ijk}  \]
+</div>
+    <p>
+       as submodules of $M_{ijk}$ or $M_ j \otimes _{A_ j, s} B_{ijk}$. Thus there exists a quasi-coherent submodule $\mathcal{G} \subset \mathcal{F}$ with $\mathcal{G}(U_ i) = N_ i$ such that $\alpha (t^*\mathcal{G}) = s^*\mathcal{G}$ as submodules of $s^*\mathcal{F}$. In other words, $(\mathcal{G}, \alpha |_{t^*\mathcal{G}})$ is a submodule of $(\mathcal{F}, \alpha )$. Moreover, by construction $\mathcal{G}$ is $\kappa $-generated. 
+    <p>
+      Let $\{ (\mathcal{G}_ t, \alpha _ t)\} _{t \in T}$ be the set of $\kappa $-generated quasi-coherent submodules of $(\mathcal{F}, \alpha )$. If $t, t' \in T$ then $\mathcal{G}_ t + \mathcal{G}_{t'}$ is also a $\kappa $-generated quasi-coherent submodule as it is the image of the map $\mathcal{G}_ t \oplus \mathcal{G}_{t'} \to \mathcal{F}$. Hence the system (ordered by inclusion) is directed. The arguments above show that every section of $\mathcal{F}$ over $U_ i$ is in one of the $\mathcal{G}_ t$ (because we can start with $\mathcal{S}$ such that the given section is an element of $S_ i$). Hence $\mathop{\mathrm{colim}}\nolimits _ t \mathcal{G}_ t \to \mathcal{F}$ is both injective and surjective as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

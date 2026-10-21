@@ -1,0 +1,143 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="etale-cohomology-section-inverse-image" class="tex-section"><span data-tag="03PZ">59.36</span> Inverse image</h2>
+
+<p>
+In this section we briefly discuss pullback of sheaves on the small étale sites. The precise construction of this is in Topologies, Section <a href="/tag/0214" data-tag="0214">34.4</a>. 
+</p>
+<p>
+<article class="env-definition" id="03Q0">
+  <p><a class="environment-identifier" href="/tag/03Q0">Definition <span data-tag="03Q0">59.36.1</span>.</a> Let $f: X\to Y$ be a morphism of schemes. The <em>inverse image</em>, or <em>pullback</em><a class="footnotemark" href="#a0001218605" id="a0001218605-mark"><sup>1</sup></a> functors are the functors </p>
+  <div class="equation">
+  \[  f^{-1} = f_{small}^{-1} : \mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale}) \longrightarrow \mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale})  \]
+</div>
+  <p> and </p>
+  <div class="equation">
+  \[  f^{-1} = f_{small}^{-1} : \textit{Ab}(Y_{\acute{e}tale}) \longrightarrow \textit{Ab}(X_{\acute{e}tale})  \]
+</div>
+  <p> which are left adjoint to $f_* = f_{small, *}$. Thus $f^{-1}$ is characterized by the fact that </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _{{\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale})}} (f^{-1}\mathcal{G}, \mathcal{F}) = \mathop{\mathrm{Hom}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale})} (\mathcal{G}, f_*\mathcal{F})  \]
+</div>
+  <p> functorially, for any $\mathcal{F} \in \mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale})$ and $\mathcal{G} \in \mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale})$. We similarly have </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _{{\textit{Ab}(X_{\acute{e}tale})}} (f^{-1}\mathcal{G}, \mathcal{F}) = \mathop{\mathrm{Hom}}\nolimits _{\textit{Ab}(Y_{\acute{e}tale})} (\mathcal{G}, f_*\mathcal{F})  \]
+</div>
+  <p> for $\mathcal{F} \in \textit{Ab}(X_{\acute{e}tale})$ and $\mathcal{G} \in \textit{Ab}(Y_{\acute{e}tale})$. </p>
+</article> 
+</p>
+<p>
+It is not trivial that such an adjoint exists. On the other hand, it exists in a fairly general setting, see Remark <a href="/tag/03Q2" data-tag="03Q2">59.36.3</a> below. The general machinery shows that $f^{-1}\mathcal{G}$ is the sheaf associated to the presheaf 
+</p>
+<div class="equation" id="04I3">
+    <span class="equation-label"><a href="/tag/04I3" data-tag="04I3">59.36.1.1</a></span>
+  <div>\begin{equation}  \label{etale-cohomology-equation-pullback} U/X \longmapsto \mathop{\mathrm{colim}}\nolimits _{U \to X \times _ Y V} \mathcal{G}(V/Y) \end{equation}</div>
+</div>
+<p>
+ where the colimit is over the category of pairs $(V/Y, \varphi : U/X \to X \times _ Y V/X)$. To see this apply Sites, Proposition <a href="/tag/00X6" data-tag="00X6">7.14.7</a> to the functor $u$ of Equation (<a href="/tag/04I1" data-tag="04I1">59.34.0.1</a>) and use the description of $u_ s = (u_ p\  )^\# $ in Sites, Sections <a href="/tag/00WU" data-tag="00WU">7.13</a> and <a href="/tag/00VC" data-tag="00VC">7.5</a>. We will occasionally use this formula for the pullback in order to prove some of its basic properties. 
+</p>
+<p>
+<article class="env-lemma" id="03Q1">
+  <p><a class="environment-identifier" href="/tag/03Q1">Lemma <span data-tag="03Q1">59.36.2</span>.</a> Let $f : X \to Y$ be a morphism of schemes. </p>
+  <p><ol>
+  <li><p>
+The functor $f^{-1} : \textit{Ab}(Y_{\acute{e}tale}) \to \textit{Ab}(X_{\acute{e}tale})$ is exact. 
+</p>
+</li><li><p>
+The functor $f^{-1} : \mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale}) \to \mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale})$ is exact, i.e., it commutes with finite limits and colimits, see Categories, Definition <a href="/tag/0034" data-tag="0034">4.23.1</a>. 
+</p>
+</li><li><p>
+Let $\overline{x} \to X$ be a geometric point. Let $\mathcal{G}$ be a sheaf on $Y_{\acute{e}tale}$. Then there is a canonical identification 
+</p>
+<div class="equation">
+  \[  (f^{-1}\mathcal{G})_{\overline{x}} = \mathcal{G}_{\overline{y}}.  \]
+</div>
+<p>
+ where $\overline{y} = f \circ \overline{x}$. 
+</p>
+</li><li><p>
+For any $V \to Y$ étale we have $f^{-1}h_ V = h_{X \times _ Y V}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The exactness of $f^{-1}$ on sheaves of sets is a consequence of Sites, Proposition <a href="/tag/00X6" data-tag="00X6">7.14.7</a> applied to our functor $u$ of Equation (<a href="/tag/04I1" data-tag="04I1">59.34.0.1</a>). In fact the exactness of pullback is part of the definition of a morphism of topoi (or sites if you like). Thus we see (2) holds. It implies part (1) since given an abelian sheaf $\mathcal{G}$ on $Y_{\acute{e}tale}$ the underlying sheaf of sets of $f^{-1}\mathcal{F}$ is the same as $f^{-1}$ of the underlying sheaf of sets of $\mathcal{F}$, see Sites, Section <a href="/tag/00YR" data-tag="00YR">7.44</a>. See also Modules on Sites, Lemma <a href="/tag/04JC" data-tag="04JC">18.31.2</a>. In the literature (1) and (2) are sometimes deduced from (3) via Theorem <a href="/tag/03PU" data-tag="03PU">59.29.10</a>. 
+    <p>
+      Part (3) is a general fact about stalks of pullbacks, see Sites, Lemma <a href="/tag/05V1" data-tag="05V1">7.34.2</a>. We will also prove (3) directly as follows. Note that by Lemma <a href="/tag/03PT" data-tag="03PT">59.29.9</a> taking stalks commutes with sheafification. Now recall that $f^{-1}\mathcal{G}$ is the sheaf associated to the presheaf 
+    <p>
+      <div class="equation">
+  \[  U \longrightarrow \mathop{\mathrm{colim}}\nolimits _{U \to X \times _ Y V} \mathcal{G}(V),  \]
+</div>
+    <p>
+       see Equation (<a href="/tag/04I3" data-tag="04I3">59.36.1.1</a>). Thus we have 
+    <p>
+      <div class="equation">
+  \begin{align*}  (f^{-1}\mathcal{G})_{\overline{x}} &  = \mathop{\mathrm{colim}}\nolimits _{(U, \overline{u})} f^{-1}\mathcal{G}(U) \\ &  = \mathop{\mathrm{colim}}\nolimits _{(U, \overline{u})} \mathop{\mathrm{colim}}\nolimits _{a : U \to X \times _ Y V} \mathcal{G}(V) \\ &  = \mathop{\mathrm{colim}}\nolimits _{(V, \overline{v})} \mathcal{G}(V) \\ &  = \mathcal{G}_{\overline{y}} \end{align*}
+</div>
+    <p>
+       in the third equality the pair $(U, \overline{u})$ and the map $a : U \to X \times _ Y V$ corresponds to the pair $(V, a \circ \overline{u})$. 
+    <p>
+      Part (4) can be proved in a similar manner by identifying the colimits which define $f^{-1}h_ V$. Or you can use Yoneda's lemma (Categories, Lemma <a href="/tag/001P" data-tag="001P">4.3.5</a>) and the functorial equalities 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale})}(f^{-1}h_ V, \mathcal{F}) = \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale})}(h_ V, f_*\mathcal{F}) = f_*\mathcal{F}(V) = \mathcal{F}(X \times _ Y V)  \]
+</div>
+    <p>
+       combined with the fact that representable presheaves are sheaves. See also Sites, Lemma <a href="/tag/04D3" data-tag="04D3">7.13.5</a> for a completely general result. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The pair of functors $(f_*, f^{-1})$ define a morphism of small étale topoi 
+</p>
+<div class="equation">
+  \[  f_{small} : \mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale}) \longrightarrow \mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale})  \]
+</div>
+<p>
+ Many generalities on cohomology of sheaves hold for topoi and morphisms of topoi. We will try to point out when results are general and when they are specific to the étale topos. 
+</p>
+<p>
+<article class="env-remark" id="03Q2">
+  <p><a class="environment-identifier" href="/tag/03Q2">Remark <span data-tag="03Q2">59.36.3</span>.</a> More generally, let $\mathcal{C}_1, \mathcal{C}_2$ be sites, and assume they have final objects and fibre products. Let $u: \mathcal{C}_2 \to \mathcal{C}_1$ be a functor satisfying: </p>
+  <p><ol>
+  <li><p>
+if $\{ V_ i \to V\} $ is a covering of $\mathcal{C}_2$, then $\{ u(V_ i) \to u(V)\} $ is a covering of $\mathcal{C}_1$ (we say that $u$ is <em>continuous</em>), and 
+</p>
+</li><li><p>
+$u$ commutes with finite limits (i.e., $u$ is left exact, i.e., $u$ preserves fibre products and final objects). 
+</p>
+</li>
+</ol></p>
+  <p> Then one can define $f_*: \mathop{\mathit{Sh}}\nolimits (\mathcal{C}_1) \to \mathop{\mathit{Sh}}\nolimits (\mathcal{C}_2)$ by $ f_* \mathcal{F}(V) = \mathcal{F}(u(V))$. Moreover, there exists an exact functor $f^{-1}$ which is left adjoint to $f_*$, see Sites, Definition <a href="/tag/00X1" data-tag="00X1">7.14.1</a> and Proposition <a href="/tag/00X6" data-tag="00X6">7.14.7</a>. Warning: It is not enough to require simply that $u$ is continuous and commutes with fibre products in order to get a morphism of topoi. </p>
+</article> 
+</p>

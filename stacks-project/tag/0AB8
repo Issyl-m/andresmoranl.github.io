@@ -1,0 +1,330 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-groupoids-section-finite-groupoids" class="tex-section"><span data-tag="0AB8">40.14</span> Finite groupoids</h2>
+
+<p>
+A groupoid scheme $(U, R, s, t, c)$ is sometimes called <em>finite</em> if the morphisms $s$ and $t$ are finite. This is potentially confusing as it doesn't imply that $U$ or $R$ or the quotient sheaf $U/R$ are finite over anything. 
+</p>
+<p>
+<article class="env-lemma" id="0AB9">
+  <p><a class="environment-identifier" href="/tag/0AB9">Lemma <span data-tag="0AB9">40.14.1</span>.</a> Let $(U, R, s, t, c)$ be a groupoid scheme over a scheme $S$. Assume $s, t$ are finite. There exists a sequence of $R$-invariant closed subschemes </p>
+  <div class="equation">
+  \[  U = Z_0 \supset Z_1 \supset Z_2 \supset \ldots  \]
+</div>
+  <p> such that $\bigcap Z_ r = \emptyset $ and such that $s^{-1}(Z_{r - 1}) \setminus s^{-1}(Z_ r) \to Z_{r - 1} \setminus Z_ r$ is finite locally free of rank $r$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\{ Z_ r\} $ be the stratification of $U$ given by the Fitting ideals of the finite type quasi-coherent modules $s_*\mathcal{O}_ R$. See Divisors, Lemma <a href="/tag/05P8" data-tag="05P8">31.9.6</a>. Since the identity $e : U \to R$ is a section to $s$ we see that $s_*\mathcal{O}_ R$ contains $\mathcal{O}_ S$ as a direct summand. Hence $U = Z_{-1} = Z_0$ (details omitted). Since formation of Fitting ideals commutes with base change (More on Algebra, Lemma <a href="/tag/07ZA" data-tag="07ZA">15.8.4</a>) we find that $s^{-1}(Z_ r)$ corresponds to the $r$th Fitting ideal of $\text{pr}_{1, *}\mathcal{O}_{R \times _{s, U, t} R}$ because the lower right square of diagram (<a href="/tag/04LF" data-tag="04LF">40.3.0.1</a>) is cartesian. Using the fact that the lower left square is also cartesian we conclude that $s^{-1}(Z_ r) = t^{-1}(Z_ r)$, in other words $Z_ r$ is $R$-invariant. The morphism $s^{-1}(Z_{r - 1}) \setminus s^{-1}(Z_ r) \to Z_{r - 1} \setminus Z_ r$ is finite locally free of rank $r$ because the module $s_*\mathcal{O}_ R$ pulls back to a finite locally free module of rank $r$ on $Z_{r - 1} \setminus Z_ r$ by Divisors, Lemma <a href="/tag/05P8" data-tag="05P8">31.9.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0ABA">
+  <p><a class="environment-identifier" href="/tag/0ABA">Lemma <span data-tag="0ABA">40.14.2</span>.</a> Let $(U, R, s, t, c)$ be a groupoid scheme over a scheme $S$. Assume $s, t$ are finite. There exists an open subscheme $W \subset U$ and a closed subscheme $W' \subset W$ such that </p>
+  <p><ol>
+  <li><p>
+$W$ and $W'$ are $R$-invariant, 
+</p>
+</li><li><p>
+$U = t(s^{-1}(\overline{W}))$ set theoretically, 
+</p>
+</li><li><p>
+$W$ is a thickening of $W'$, and 
+</p>
+</li><li><p>
+the maps $s'$, $t'$ of the restriction $(W', R', s', t', c')$ are finite locally free. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider the stratification $U = Z_0 \supset Z_1 \supset Z_2 \supset \ldots $ of Lemma <a href="/tag/0AB9" data-tag="0AB9">40.14.1</a>. 
+    <p>
+      We will construct disjoint unions $W = \coprod _{r \geq 1} W_ r$ and $W' = \coprod _{r \geq 1} W'_ r$ with each $W'_ r \to W_ r$ a thickening of $R$-invariant subschemes of $U$ such that the morphisms $s_ r', t_ r'$ of the restrictions $(W_ r', R_ r', s_ r', t_ r', c_ r')$ are finite locally free of rank $r$. To begin we set $W_1 = W'_1 = U \setminus Z_1$. This is an $R$-invariant open subscheme of $U$, it is true that $W_0$ is a thickening of $W'_0$, and the maps $s_1'$, $t_1'$ of the restriction $(W_1', R_1', s_1', t_1', c_1')$ are isomorphisms, i.e., finite locally free of rank $1$. Moreover, every point of $U \setminus Z_1$ is in $t(s^{-1}(\overline{W_1}))$. 
+    <p>
+      Assume we have found subschemes $W'_ r \subset W_ r \subset U$ for $r \leq n$ such that 
+    <p>
+      <ol>
+  <li><p>
+$W_1, \ldots , W_ n$ are disjoint, 
+</p>
+</li><li><p>
+$W_ r$ and $W_ r'$ are $R$-invariant, 
+</p>
+</li><li><p>
+$U \setminus Z_ n \subset \bigcup _{r \leq n} t(s^{-1}(\overline{W_ r}))$ set theoretically, 
+</p>
+</li><li><p>
+$W_ r$ is a thickening of $W'_ r$, 
+</p>
+</li><li><p>
+the maps $s_ r'$, $t_ r'$ of the restriction $(W_ r', R_ r', s_ r', t_ r', c_ r')$ are finite locally free of rank $r$. 
+</p>
+</li>
+</ol>
+    <p>
+       Then we set 
+    <p>
+      <div class="equation">
+  \[  W_{n + 1} = Z_ n \setminus \left( Z_{n + 1} \cup \bigcup \nolimits _{r \leq n} t(s^{-1}(\overline{W_ r})) \right)  \]
+</div>
+    <p>
+       set theoretically and 
+    <p>
+      <div class="equation">
+  \[  W'_{n + 1} = Z_ n \setminus \left( Z_{n + 1} \cup \bigcup \nolimits _{r \leq n} t(s^{-1}(\overline{W_ r})) \right)  \]
+</div>
+    <p>
+       scheme theoretically. Then $W_{n + 1}$ is an $R$-invariant open subscheme of $U$ because $Z_{n + 1} \setminus \overline{U \setminus Z_{n + 1}}$ is open in $U$ and $\overline{U \setminus Z_{n + 1}}$ is contained in the closed subset $\bigcup \nolimits _{r \leq n} t(s^{-1}(\overline{W_ r}))$ we are removing by property (3) and the fact that $t$ is a closed morphism. It is clear that $W'_{n + 1}$ is a closed subscheme of $W_{n + 1}$ with the same underlying topological space. Finally, properties (1), (2) and (3) are clear and property (5) follows from Lemma <a href="/tag/0AB9" data-tag="0AB9">40.14.1</a>. 
+    <p>
+      By Lemma <a href="/tag/0AB9" data-tag="0AB9">40.14.1</a> we have $\bigcap Z_ r = \emptyset $. Hence every point of $U$ is contained in $U \setminus Z_ n$ for some $n$. Thus we see that $U = \bigcup _{r \geq 1} t(s^{-1}(\overline{W_ r}))$ set theoretically and we see that (2) holds. Thus $W' \subset W$ satisfy (1), (2), (3), and (4). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $(U, R, s, t, c)$ be a groupoid scheme. Given a point $u \in U$ the <em>$R$-orbit</em> of $u$ is the subset $t(s^{-1}(\{ u\} ))$ of $U$. 
+</p>
+<p>
+<article class="env-lemma" id="0ABB">
+  <p><a class="environment-identifier" href="/tag/0ABB">Lemma <span data-tag="0ABB">40.14.3</span>.</a> In Lemma <a href="/tag/0ABA" data-tag="0ABA">40.14.2</a> assume in addition that $s$ and $t$ are of finite presentation. Then </p>
+  <p><ol>
+  <li><p>
+the morphism $W' \to W$ is of finite presentation, and 
+</p>
+</li><li><p>
+if $u \in U$ is a point whose $R$-orbit consists of generic points of irreducible components of $U$, then $u \in W$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In this case the stratification $U = Z_0 \supset Z_1 \supset Z_2 \supset \ldots $ of Lemma <a href="/tag/0AB9" data-tag="0AB9">40.14.1</a> is given by closed immersions $Z_ k \to U$ of finite presentation, see Divisors, Lemma <a href="/tag/05P8" data-tag="05P8">31.9.6</a>. Part (1) follows immediately from this as $W' \to W$ is locally given by intersecting the open $W$ by $Z_ r$. To see part (2) let $\{ u_1, \ldots , u_ n\} $ be the orbit of $u$. Since the closed subschemes $Z_ k$ are $R$-invariant and $\bigcap Z_ k = \emptyset $, we find an $k$ such that $u_ i \in Z_ k$ and $u_ i \not\in Z_{k + 1}$ for all $i$. The image of $Z_ k \to U$ and $Z_{k + 1} \to U$ is locally constructible (Morphisms, Theorem <a href="/tag/054K" data-tag="054K">29.23.3</a>). Since $u_ i \in U$ is a generic point of an irreducible component of $U$, there exists an open neighbourhood $U_ i$ of $u_ i$ which is contained in $Z_ k \setminus Z_{k + 1}$ set theoretically (Properties, Lemma <a href="/tag/0AAW" data-tag="0AAW">28.2.2</a>). In the proof of Lemma <a href="/tag/0ABA" data-tag="0ABA">40.14.2</a> we have constructed $W$ as a disjoint union $\coprod W_ r$ with $W_ r \subset Z_{r - 1} \setminus Z_ r$ such that $U = \bigcup t(s^{-1}(\overline{W_ r}))$. As $\{ u_1, \ldots , u_ n\} $ is an $R$-orbit we see that $u \in t(s^{-1}(\overline{W_ r}))$ implies $u_ i \in \overline{W_ r}$ for some $i$ which implies $U_ i \cap W_ r \not= \emptyset $ which implies $r = k$. Thus we conclude that $u$ is in 
+    <p>
+      <div class="equation">
+  \[  W_{k + 1} = Z_ k \setminus \left( Z_{k + 1} \cup \bigcup \nolimits _{r \leq k} t(s^{-1}(\overline{W_ r})) \right)  \]
+</div>
+    <p>
+       as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0ABC">
+  <p><a class="environment-identifier" href="/tag/0ABC">Lemma <span data-tag="0ABC">40.14.4</span>.</a> Let $(U, R, s, t, c)$ be a groupoid scheme over a scheme $S$. Assume $s, t$ are finite and of finite presentation and $U$ quasi-separated. Let $u_1, \ldots , u_ m \in U$ be points whose orbits consist of generic points of irreducible components of $U$. Then there exist $R$-invariant subschemes $V' \subset V \subset U$ such that </p>
+  <p><ol>
+  <li><p>
+$u_1, \ldots , u_ m \in V'$, 
+</p>
+</li><li><p>
+$V$ is open in $U$, 
+</p>
+</li><li><p>
+$V'$ and $V$ are affine, 
+</p>
+</li><li><p>
+$V' \subset V$ is a thickening of finite presentation, 
+</p>
+</li><li><p>
+the morphisms $s', t'$ of the restriction $(V', R', s', t', c')$ are finite locally free. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $W' \subset W \subset U$ be as in Lemma <a href="/tag/0ABA" data-tag="0ABA">40.14.2</a>. By Lemma <a href="/tag/0ABB" data-tag="0ABB">40.14.3</a> we get $u_ j \in W$ and that $W' \to W$ is a thickening of finite presentation. By Limits, Lemma <a href="/tag/09NL" data-tag="09NL">32.11.3</a> it suffices to find an $R$-invariant affine open subscheme $V'$ of $W'$ containing $u_ j$ (because then we can let $V \subset W$ be the corresponding open subscheme which will be affine). Thus we may replace $(U, R, s, t, c)$ by the restriction $(W', R', s', t', c')$ to $W'$. In other words, we may assume we have a groupoid scheme $(U, R, s, t, c)$ whose morphisms $s$ and $t$ are finite locally free. By Properties, Lemma <a href="/tag/01ZV" data-tag="01ZV">28.30.1</a> we can find an affine open containing the union of the orbits of $u_1, \ldots , u_ m$. Finally, we can apply Groupoids, Lemma <a href="/tag/03JE" data-tag="03JE">39.24.1</a> to conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma is a special case of Lemma <a href="/tag/0ABC" data-tag="0ABC">40.14.4</a> but we redo the argument as it is slightly easier in this case (it avoids using Lemma <a href="/tag/0ABB" data-tag="0ABB">40.14.3</a>). 
+</p>
+<p>
+<article class="env-lemma" id="0ABD">
+  <p><a class="environment-identifier" href="/tag/0ABD">Lemma <span data-tag="0ABD">40.14.5</span>.</a> Let $(U, R, s, t, c)$ be a groupoid scheme over a scheme $S$. Assume $s, t$ finite, $U$ is locally Noetherian, and $u_1, \ldots , u_ m \in U$ points whose orbits consist of generic points of irreducible components of $U$. Then there exist $R$-invariant subschemes $V' \subset V \subset U$ such that </p>
+  <p><ol>
+  <li><p>
+$u_1, \ldots , u_ m \in V'$, 
+</p>
+</li><li><p>
+$V$ is open in $U$, 
+</p>
+</li><li><p>
+$V'$ and $V$ are affine, 
+</p>
+</li><li><p>
+$V' \subset V$ is a thickening, 
+</p>
+</li><li><p>
+the morphisms $s', t'$ of the restriction $(V', R', s', t', c')$ are finite locally free. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\{ u_{j1}, \ldots , u_{jn_ j}\} $ be the orbit of $u_ j$. Let $W' \subset W \subset U$ be as in Lemma <a href="/tag/0ABA" data-tag="0ABA">40.14.2</a>. Since $U = t(s^{-1}(\overline{W}))$ we see that at least one $u_{ji} \in \overline{W}$. Since $u_{ji}$ is a generic point of an irreducible component and $U$ locally Noetherian, this implies that $u_{ji} \in W$. Since $W$ is $R$-invariant, we conclude that $u_ j \in W$ and in fact the whole orbit is contained in $W$. By Cohomology of Schemes, Lemma <a href="/tag/01YQ" data-tag="01YQ">30.13.3</a> it suffices to find an $R$-invariant affine open subscheme $V'$ of $W'$ containing $u_1, \ldots , u_ m$ (because then we can let $V \subset W$ be the corresponding open subscheme which will be affine). Thus we may replace $(U, R, s, t, c)$ by the restriction $(W', R', s', t', c')$ to $W'$. In other words, we may assume we have a groupoid scheme $(U, R, s, t, c)$ whose morphisms $s$ and $t$ are finite locally free. By Properties, Lemma <a href="/tag/01ZV" data-tag="01ZV">28.30.1</a> we can find an affine open containing $\{ u_{ij}\} $ (a locally Noetherian scheme is quasi-separated by Properties, Lemma <a href="/tag/01OY" data-tag="01OY">28.5.4</a>). Finally, we can apply Groupoids, Lemma <a href="/tag/03JE" data-tag="03JE">39.24.1</a> to conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0ABE">
+  <p><a class="environment-identifier" href="/tag/0ABE">Lemma <span data-tag="0ABE">40.14.6</span>.</a> Let $(U, R, s, t, c)$ be a groupoid scheme over a scheme $S$ with $s, t$ integral. Let $g : U' \to U$ be an integral morphism such that every $R$-orbit in $U$ meets $g(U')$. Let $(U', R', s', t', c')$ be the restriction of $R$ to $U'$. If $u' \in U'$ is contained in an $R'$-invariant affine open, then the image $u \in U$ is contained in an $R$-invariant affine open of $U$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $W' \subset U'$ be an $R'$-invariant affine open. Set $\tilde R = U' \times _{g, U, t} R$ with maps $\text{pr}_0 : \tilde R \to U'$ and $h = s \circ \text{pr}_1 : \tilde R \to U$. Observe that $\text{pr}_0$ and $h$ are integral. It follows that $\tilde W = \text{pr}_0^{-1}(W')$ is affine. Since $W'$ is $R'$-invariant, the image $W = h(\tilde W)$ is set theoretically $R$-invariant and $\tilde W = h^{-1}(W)$ set theoretically (details omitted). Thus, if we can show that $W$ is open, then $W$ is a scheme and the morphism $\tilde W \to W$ is integral surjective which implies that $W$ is affine by Limits, Proposition <a href="/tag/05YU" data-tag="05YU">32.11.2</a>. However, our assumption on orbits meeting $U'$ implies that $h : \tilde R \to U$ is surjective. Since an integral surjective morphism is submersive (Topology, Lemma <a href="/tag/0AAU" data-tag="0AAU">5.6.5</a> and Morphisms, Lemma <a href="/tag/01WM" data-tag="01WM">29.45.7</a>) it follows that $W$ is open. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following technical lemma produces “almost” invariant functions in the situation of a finite groupoid on a quasi-affine scheme. 
+</p>
+<p>
+<article class="env-lemma" id="0ABF">
+  <p><a class="environment-identifier" href="/tag/0ABF">Lemma <span data-tag="0ABF">40.14.7</span>.</a> Let $(U, R, s, t, c)$ be a groupoid scheme with $s, t$ finite and of finite presentation. Let $u_1, \ldots , u_ m \in U$ be points whose $R$-orbits consist of generic points of irreducible components of $U$. Let $j : U \to \mathop{\mathrm{Spec}}(A)$ be an immersion. Let $I \subset A$ be an ideal such that $j(U) \cap V(I) = \emptyset $ and $V(I) \cup j(U)$ is closed in $\mathop{\mathrm{Spec}}(A)$. Then there exists an $h \in I$ such that $j^{-1}D(h)$ is an $R$-invariant affine open subscheme of $U$ containing $u_1, \ldots , u_ m$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $u_1, \ldots , u_ m \in V' \subset V \subset U$ be as in Lemma <a href="/tag/0ABC" data-tag="0ABC">40.14.4</a>. Since $U \setminus V$ is closed in $U$, $j$ an immersion, and $V(I) \cup j(U)$ is closed in $\mathop{\mathrm{Spec}}(A)$, we can find an ideal $J \subset I$ such that $V(J) = V(I) \cup j(U \setminus V)$. For example we can take the ideal of elements of $I$ which vanish on $j(U \setminus V)$. Thus we can replace $(U, R, s, t, c)$, $j : U \to \mathop{\mathrm{Spec}}(A)$, and $I$ by $(V', R', s', t', c')$, $j|_{V'} : V' \to \mathop{\mathrm{Spec}}(A)$, and $J$. In other words, we may assume that $U$ is affine and that $s$ and $t$ are finite locally free. Take any $f \in I$ which does not vanish at all the points in the $R$-orbits of $u_1, \ldots , u_ m$ (Algebra, Lemma <a href="/tag/00DS" data-tag="00DS">10.15.2</a>). Consider 
+    <p>
+      <div class="equation">
+  \[  g = \text{Norm}_ s(t^\sharp (j^\sharp (f))) \in \Gamma (U, \mathcal{O}_ U)  \]
+</div>
+    <p>
+       Since $f \in I$ and since $V(I) \cup j(U)$ is closed we see that $U \cap D(f) \to D(f)$ is a closed immersion. Hence $f^ ng$ is the image of an element $h \in I$ for some $n > 0$. We claim that $h$ works. Namely, we have seen in Groupoids, Lemma <a href="/tag/03BH" data-tag="03BH">39.23.2</a> that $g$ is an $R$-invariant function, hence $D(g) \subset U$ is $R$-invariant. Since $f$ does not vanish on the orbit of $u_ j$, the function $g$ does not vanish at $u_ j$. Moreover, we have $V(g) \supset V(j^\sharp (f))$ and hence $j^{-1}D(h) = D(g)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0ABG">
+  <p><a class="environment-identifier" href="/tag/0ABG">Lemma <span data-tag="0ABG">40.14.8</span>.</a> Let $(U, R, s, t, c)$ be a groupoid scheme. If $s, t$ are finite, and $u, u' \in R$ are distinct points in the same orbit, then $u'$ is not a specialization of $u$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $r \in R$ with $s(r) = u$ and $t(r) = u'$. If $u \leadsto u'$ then we can find a nontrivial specialization $r \leadsto r'$ with $s(r') = u'$, see Schemes, Lemma <a href="/tag/01K9" data-tag="01K9">26.19.8</a>. Set $u'' = t(r')$. Note that $u'' \not= u'$ as there are no specializations in the fibres of a finite morphism. Hence we can continue and find a nontrivial specialization $r' \leadsto r''$ with $s(r'') = u''$, etc. This shows that the orbit of $u$ contains an infinite sequence $u \leadsto u' \leadsto u'' \leadsto \ldots $ of specializations which is nonsense as the orbit $t(s^{-1}(\{ u\} ))$ is finite. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0ABH">
+  <p><a class="environment-identifier" href="/tag/0ABH">Lemma <span data-tag="0ABH">40.14.9</span>.</a> Let $j : V \to \mathop{\mathrm{Spec}}(A)$ be a quasi-compact immersion of schemes. Let $f \in A$ be such that $j^{-1}D(f)$ is affine and $j(V) \cap V(f)$ is closed. Then $V$ is affine. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from Morphisms, Lemma <a href="/tag/0C3A" data-tag="0C3A">29.11.15</a> but we will also give a direct proof. Let $A' = \Gamma (V, \mathcal{O}_ V)$. Then $j' : V \to \mathop{\mathrm{Spec}}(A')$ is a quasi-compact open immersion, see Properties, Lemma <a href="/tag/01P9" data-tag="01P9">28.19.4</a>. Let $f' \in A'$ be the image of $f$. Then $(j')^{-1}D(f') = j^{-1}D(f)$ is affine. On the other hand, $j'(V) \cap V(f')$ is a subscheme of $\mathop{\mathrm{Spec}}(A')$ which maps isomorphically to the closed subscheme $j(V) \cap V(f)$ of $\mathop{\mathrm{Spec}}(A)$. Hence it is closed in $\mathop{\mathrm{Spec}}(A')$ for example by Schemes, Lemma <a href="/tag/01KT" data-tag="01KT">26.21.11</a>. Thus we may replace $A$ by $A'$ and assume that $j$ is an open immersion and $A = \Gamma (V, \mathcal{O}_ V)$. 
+    <p>
+      In this case we claim that $j(V) = \mathop{\mathrm{Spec}}(A)$ which finishes the proof. If not, then we can find a principal affine open $D(g) \subset \mathop{\mathrm{Spec}}(A)$ which meets the complement and avoids the closed subset $j(V) \cap V(f)$. Note that $j$ maps $j^{-1}D(f)$ isomorphically onto $D(f)$, see Properties, Lemma <a href="/tag/01P8" data-tag="01P8">28.19.3</a>. Hence $D(g)$ meets $V(f)$. On the other hand, $j^{-1}D(g)$ is a principal open of the affine open $j^{-1}D(f)$ hence affine. Hence by Properties, Lemma <a href="/tag/01P8" data-tag="01P8">28.19.3</a> again we see that $D(g)$ is isomorphic to $j^{-1}D(g) \subset j^{-1}D(f)$ which implies that $D(g) \subset D(f)$. This contradiction finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0ABI">
+  <p><a class="environment-identifier" href="/tag/0ABI">Lemma <span data-tag="0ABI">40.14.10</span>.</a> Let $(U, R, s, t, c)$ be a groupoid scheme. Let $u \in U$. Assume </p>
+  <p><ol>
+  <li><p>
+$s, t$ are finite morphisms, 
+</p>
+</li><li><p>
+$U$ is separated and locally Noetherian, 
+</p>
+</li><li><p>
+$\dim (\mathcal{O}_{U, u'}) \leq 1$ for every point $u'$ in the orbit of $u$. 
+</p>
+</li>
+</ol></p>
+  <p> Then $u$ is contained in an $R$-invariant affine open of $U$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The $R$-orbit of $u$ is finite. By conditions (2) and (3) it is contained in an affine open $U'$ of $U$, see Varieties, Proposition <a href="/tag/09NN" data-tag="09NN">33.42.7</a>. Then $t(s^{-1}(U \setminus U'))$ is an $R$-invariant closed subset of $U$ which does not contain $u$. Thus $U \setminus t(s^{-1}(U \setminus U'))$ is an $R$-invariant open of $U'$ containing $u$. Replacing $U$ by this open we may assume $U$ is quasi-affine. 
+    <p>
+      By Lemma <a href="/tag/0ABE" data-tag="0ABE">40.14.6</a> we may replace $U$ by its reduction and assume $U$ is reduced. This means $R$-invariant subschemes $W' \subset W \subset U$ of Lemma <a href="/tag/0ABA" data-tag="0ABA">40.14.2</a> are equal $W' = W$. As $U = t(s^{-1}(\overline{W}))$ some point $u'$ of the $R$-orbit of $u$ is contained in $\overline{W}$ and by Lemma <a href="/tag/0ABE" data-tag="0ABE">40.14.6</a> we may replace $U$ by $\overline{W}$ and $u$ by $u'$. Hence we may assume there is a dense open $R$-invariant subscheme $W \subset U$ such that the morphisms $s_ W, t_ W$ of the restriction $(W, R_ W, s_ W, t_ W, c_ W)$ are finite locally free. 
+    <p>
+      If $u \in W$ then we are done by Groupoids, Lemma <a href="/tag/03JE" data-tag="03JE">39.24.1</a> (because $W$ is quasi-affine so any finite set of points of $W$ is contained in an affine open, see Properties, Lemma <a href="/tag/01ZY" data-tag="01ZY">28.30.5</a>). Thus we assume $u \not\in W$ and hence none of the points of the orbit of $u$ is in $W$. Let $\xi \in U$ be a point with a nontrivial specialization to a point $u'$ in the orbit of $u$. Since there are no specializations among the points in the orbit of $u$ (Lemma <a href="/tag/0ABG" data-tag="0ABG">40.14.8</a>) we see that $\xi $ is not in the orbit. By assumption (3) we see that $\xi $ is a generic point of $U$ and hence $\xi \in W$. As $U$ is Noetherian there are finitely many of these points $\xi _1, \ldots , \xi _ m \in W$. Because $s_ W, t_ W$ are flat the orbit of each $\xi _ j$ consists of generic points of irreducible components of $W$ (and hence $U$). 
+    <p>
+      Let $j : U \to \mathop{\mathrm{Spec}}(A)$ be an immersion of $U$ into an affine scheme (this is possible as $U$ is quasi-affine). Let $J \subset A$ be an ideal such that $V(J) \cap j(W) = \emptyset $ and $V(J) \cup j(W)$ is closed. Apply Lemma <a href="/tag/0ABF" data-tag="0ABF">40.14.7</a> to the groupoid scheme $(W, R_ W, s_ W, t_ W, c_ W)$, the morphism $j|_ W : W \to \mathop{\mathrm{Spec}}(A)$, the points $\xi _ j$, and the ideal $J$ to find an $f \in J$ such that $(j|_ W)^{-1}D(f)$ is an $R_ W$-invariant affine open containing $\xi _ j$ for all $j$. Since $f \in J$ we see that $j^{-1}D(f) \subset W$, i.e., $j^{-1}D(f)$ is an $R$-invariant affine open of $U$ contained in $W$ containing all $\xi _ j$. 
+    <p>
+      Let $Z$ be the reduced induced closed subscheme structure on 
+    <p>
+      <div class="equation">
+  \[  U \setminus j^{-1}D(f) = j^{-1}V(f).  \]
+</div>
+    <p>
+       Then $Z$ is set theoretically $R$-invariant (but it may not be scheme theoretically $R$-invariant). Let $(Z, R_ Z, s_ Z, t_ Z, c_ Z)$ be the restriction of $R$ to $Z$. Since $Z \to U$ is finite, it follows that $s_ Z$ and $t_ Z$ are finite. Since $u \in Z$ the orbit of $u$ is in $Z$ and agrees with the $R_ Z$-orbit of $u$ viewed as a point of $Z$. Since $\dim (\mathcal{O}_{U, u'}) \leq 1$ and since $\xi _ j \not\in Z$ for all $j$, we see that $\dim (\mathcal{O}_{Z, u'}) \leq 0$ for all $u'$ in the orbit of $u$. In other words, the $R_ Z$-orbit of $u$ consists of generic points of irreducible components of $Z$. 
+    <p>
+      Let $I \subset A$ be an ideal such that $V(I) \cap j(U) =\emptyset $ and $V(I) \cup j(U)$ is closed. Apply Lemma <a href="/tag/0ABF" data-tag="0ABF">40.14.7</a> to the groupoid scheme $(Z, R_ Z, s_ Z, t_ Z, c_ Z)$, the restriction $j|_ Z$, the ideal $I$, and the point $u \in Z$ to obtain $h \in I$ such that $j^{-1}D(h) \cap Z$ is an $R_ Z$-invariant open affine containing $u$. 
+    <p>
+      Consider the $R_ W$-invariant (Groupoids, Lemma <a href="/tag/03BH" data-tag="03BH">39.23.2</a>) function 
+    <p>
+      <div class="equation">
+  \[  g = \text{Norm}_{s_ W}(t_ W^\sharp (j^\sharp (h)|_ W)) \in \Gamma (W, \mathcal{O}_ W)  \]
+</div>
+    <p>
+       (In the following we only need the restriction of $g$ to $j^{-1}D(f)$ and in this case the norm is along a finite locally free morphism of affines.) We claim that 
+    <p>
+      <div class="equation">
+  \[  V = (W_ g \cap j^{-1}D(f)) \cup (j^{-1}D(h) \cap Z)  \]
+</div>
+    <p>
+       is an $R$-invariant affine open of $U$ which finishes the proof of the lemma. It is set theoretically $R$-invariant by construction. As $V$ is a constructible set, to see that it is open it suffices to show it is closed under generalization in $U$ (Topology, Lemma <a href="/tag/0542" data-tag="0542">5.19.10</a> or the more general Topology, Lemma <a href="/tag/0903" data-tag="0903">5.23.6</a>). Since $W_ g \cap j^{-1}D(f)$ is open in $U$, it suffices to consider a specialization $u_1 \leadsto u_2$ of $U$ with $u_2 \in j^{-1}D(h) \cap Z$. This means that $h$ is nonzero in $j(u_2)$ and $u_2 \in Z$. If $u_1 \in Z$, then $j(u_1) \leadsto j(u_2)$ and since $h$ is nonzero in $j(u_2)$ it is nonzero in $j(u_1)$ which implies $u_1 \in V$. If $u_1 \not\in Z$ and also not in $W_ g \cap j^{-1}D(f)$, then $u_1 \in W$, $u_1 \not\in W_ g$ because the complement of $Z = j^{-1}V(f)$ is contained in $W \cap j^{-1}D(f)$. Hence there exists a point $r_1 \in R$ with $s(r_1) = u_1$ such that $h$ is zero in $t(r_1)$. Since $s$ is finite we can find a specialization $r_1 \leadsto r_2$ with $s(r_2) = u_2$. However, then we conclude that $h$ is zero in $u'_2 = t(r_2)$ which contradicts the fact that $j^{-1}D(h) \cap Z$ is $R$-invariant and $u_2$ is in it. Thus $V$ is open. 
+    <p>
+      Observe that $V \subset j^{-1}D(h)$ for our function $h \in I$. Thus we obtain an immersion 
+    <p>
+      <div class="equation">
+  \[  j' : V \longrightarrow \mathop{\mathrm{Spec}}(A_ h)  \]
+</div>
+    <p>
+       Let $f' \in A_ h$ be the image of $f$. Then $(j')^{-1}D(f')$ is the principal open determined by $g$ in the affine open $j^{-1}D(f)$ of $U$. Hence $(j')^{-1}D(f)$ is affine. Finally, $j'(V) \cap V(f') = j'(j^{-1}D(h) \cap Z)$ is closed in $\mathop{\mathrm{Spec}}(A_ h/(f')) = \mathop{\mathrm{Spec}}((A/f)_ h) = D(h) \cap V(f)$ by our choice of $h \in I$ and the ideal $I$. Hence we can apply Lemma <a href="/tag/0ABH" data-tag="0ABH">40.14.9</a> to conclude that $V$ is affine as claimed above. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

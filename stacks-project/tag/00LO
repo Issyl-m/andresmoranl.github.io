@@ -1,0 +1,352 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="algebra-section-ext" class="tex-section"><span data-tag="00LO">10.71</span> Ext groups</h2>
+
+<p>
+In this section we do a tiny bit of homological algebra, in order to establish some fundamental properties of depth over Noetherian local rings. 
+</p>
+<p>
+<article class="env-lemma" id="00LP">
+  <p><a class="environment-identifier" href="/tag/00LP">Lemma <span data-tag="00LP">10.71.1</span>.</a> Let $R$ be a ring. Let $M$ be an $R$-module. </p>
+  <p><ol>
+  <li><p>
+There exists an exact complex 
+</p>
+<div class="equation">
+  \[  \ldots \to F_2 \to F_1 \to F_0 \to M \to 0.  \]
+</div>
+<p>
+ with $F_ i$ free $R$-modules. 
+</p>
+</li><li><p>
+If $R$ is Noetherian and $M$ finite over $R$, then we can choose the complex such that $F_ i$ is finite free. In other words, we can find an exact complex 
+</p>
+<div class="equation">
+  \[  \ldots \to R^{\oplus n_2} \to R^{\oplus n_1} \to R^{\oplus n_0} \to M \to 0.  \]
+</div>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let us explain only the Noetherian case. As a first step choose a surjection $R^{n_0} \to M$. Then having constructed an exact complex of length $e$ we simply choose a surjection $R^{n_{e + 1}} \to \mathop{\mathrm{Ker}}(R^{n_ e} \to R^{n_{e-1}})$ which is possible because $R$ is Noetherian. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="00LQ">
+  <p><a class="environment-identifier" href="/tag/00LQ">Definition <span data-tag="00LQ">10.71.2</span>.</a> Let $R$ be a ring. Let $M$ be an $R$-module. </p>
+  <p><ol>
+  <li><p>
+A (left) <em>resolution</em> $F_\bullet \to M$ of $M$ is an exact complex 
+</p>
+<div class="equation">
+  \[  \ldots \to F_2 \to F_1 \to F_0 \to M \to 0  \]
+</div>
+<p>
+ of $R$-modules. 
+</p>
+</li><li><p>
+A <em>resolution of $M$ by free $R$-modules</em> is a resolution $F_\bullet \to M$ where each $F_ i$ is a free $R$-module. 
+</p>
+</li><li><p>
+A <em>resolution of $M$ by finite free $R$-modules</em> is a resolution $F_\bullet \to M$ where each $F_ i$ is a finite free $R$-module. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+We often use the notation $F_{\bullet }$ to denote a complex of $R$-modules 
+</p>
+<div class="equation">
+  \[  \ldots \to F_ i \to F_{i-1} \to \ldots  \]
+</div>
+<p>
+ In this case we often use $d_ i$ or $d_{F, i}$ to denote the map $F_ i \to F_{i-1}$. In this section we are always going to assume that $F_0$ is the last nonzero term in the complex. The <em>$i$th homology group of the complex</em> $F_{\bullet }$ is the group $H_ i = \mathop{\mathrm{Ker}}(d_{F, i})/\mathop{\mathrm{Im}}(d_{F, i + 1})$. A <em>map of complexes $\alpha : F_{\bullet } \to G_{\bullet }$</em> is given by maps $\alpha _ i : F_ i \to G_ i$ such that $\alpha _{i-1} \circ d_{F, i} = d_{G, i-1} \circ \alpha _ i$. Such a map induces a map on homology $H_ i(\alpha ) : H_ i(F_{\bullet }) \to H_ i(G_{\bullet })$. If $\alpha , \beta : F_{\bullet } \to G_{\bullet }$ are maps of complexes, then a <em>homotopy</em> between $\alpha $ and $\beta $ is given by a collection of maps $h_ i : F_ i \to G_{i + 1}$ such that $\alpha _ i - \beta _ i = d_{G, i + 1} \circ h_ i + h_{i-1} \circ d_{F, i}$. Two maps $\alpha , \beta : F_{\bullet } \to G_{\bullet }$ are said to be <em>homotopic</em> if a homotopy between $\alpha $ and $\beta $ exists. 
+</p>
+<p>
+We will use a very similar notation regarding complexes of the form $F^{\bullet }$ which look like 
+</p>
+<div class="equation">
+  \[  \ldots \to F^ i \xrightarrow {d^ i} F^{i + 1} \to \ldots  \]
+</div>
+<p>
+ There are maps of complexes, homotopies, etc. In this case we set $H^ i(F^{\bullet }) = \mathop{\mathrm{Ker}}(d^ i)/\mathop{\mathrm{Im}}(d^{i - 1})$ and we call it the <em>$i$th cohomology group</em>. 
+</p>
+<p>
+<article class="env-lemma" id="00LR">
+  <p><a class="environment-identifier" href="/tag/00LR">Lemma <span data-tag="00LR">10.71.3</span>.</a> Any two homotopic maps of complexes induce the same maps on (co)homology groups. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00LS">
+  <p><a class="environment-identifier" href="/tag/00LS">Lemma <span data-tag="00LS">10.71.4</span>.</a> Let $R$ be a ring. Let $M \to N$ be a map of $R$-modules. Let $N_\bullet \to N$ be an arbitrary resolution. Let </p>
+  <div class="equation">
+  \[  \ldots \to F_2 \to F_1 \to F_0 \to M  \]
+</div>
+  <p> be a complex of $R$-modules where each $F_ i$ is a free $R$-module. Then </p>
+  <p><ol>
+  <li><p>
+there exists a map of complexes $F_\bullet \to N_\bullet $ such that 
+</p>
+<div class="equation">
+  \[  \xymatrix{ F_0 \ar[r] \ar[d] &  M \ar[d] \\  N_0 \ar[r] &  N }  \]
+</div>
+<p>
+ is commutative, and 
+</p>
+</li><li><p>
+any two maps $\alpha , \beta : F_\bullet \to N_\bullet $ as in (1) are homotopic. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Proof of (1). Because $F_0$ is free we can find a map $F_0 \to N_0$ lifting the map $F_0 \to M \to N$. We obtain an induced map $F_1 \to F_0 \to N_0$ which ends up in the image of $N_1 \to N_0$. Since $F_1$ is free we may lift this to a map $F_1 \to N_1$. This in turn induces a map $F_2 \to F_1 \to N_1$ which maps to zero into $N_0$. Since $N_\bullet $ is exact we see that the image of this map is contained in the image of $N_2 \to N_1$. Hence we may lift to get a map $F_2 \to N_2$. Repeat. 
+    <p>
+      Proof of (2). To show that $\alpha , \beta $ are homotopic it suffices to show the difference $\gamma = \alpha - \beta $ is homotopic to zero. Note that the image of $\gamma _0 : F_0 \to N_0$ is contained in the image of $N_1 \to N_0$. Hence we may lift $\gamma _0$ to a map $h_0 : F_0 \to N_1$. Consider the map $\gamma _1' = \gamma _1 - h_0 \circ d_{F, 1}$. By our choice of $h_0$ we see that the image of $\gamma _1'$ is contained in the kernel of $N_1 \to N_0$. Since $N_\bullet $ is exact we may lift $\gamma _1'$ to a map $h_1 : F_1 \to N_2$. At this point we have $\gamma _1 = h_0 \circ d_{F, 1} + d_{N, 2} \circ h_1$. Repeat. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+At this point we are ready to define the groups $\mathop{\mathrm{Ext}}\nolimits ^ i_ R(M, N)$. Namely, choose a resolution $F_{\bullet }$ of $M$ by free $R$-modules, see Lemma <a href="/tag/00LP" data-tag="00LP">10.71.1</a>. Consider the (cohomological) complex 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _ R(F_\bullet , N) : \mathop{\mathrm{Hom}}\nolimits _ R(F_0, N) \to \mathop{\mathrm{Hom}}\nolimits _ R(F_1, N) \to \mathop{\mathrm{Hom}}\nolimits _ R(F_2, N) \to \ldots  \]
+</div>
+<p>
+ We define $\mathop{\mathrm{Ext}}\nolimits ^ i_ R(M, N)$ for $i \geq 0$ to be the $i$th cohomology group of this complex<a class="footnotemark" href="#a0000147260" id="a0000147260-mark"><sup>1</sup></a>. For $i < 0$ we set $\mathop{\mathrm{Ext}}\nolimits ^ i_ R(M, N) = 0$. Before we continue we point out that 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Ext}}\nolimits ^0_ R(M, N) = \mathop{\mathrm{Ker}}(\mathop{\mathrm{Hom}}\nolimits _ R(F_0, N) \to \mathop{\mathrm{Hom}}\nolimits _ R(F_1, N)) = \mathop{\mathrm{Hom}}\nolimits _ R(M, N)  \]
+</div>
+<p>
+ because we can apply part (1) of Lemma <a href="/tag/0582" data-tag="0582">10.10.1</a> to the exact sequence $F_1 \to F_0 \to M \to 0$. The following lemma explains in what sense this is well defined. 
+</p>
+<p>
+<article class="env-lemma" id="00LT">
+  <p><a class="environment-identifier" href="/tag/00LT">Lemma <span data-tag="00LT">10.71.5</span>.</a> Let $R$ be a ring. Let $M_1, M_2, N$ be $R$-modules. Suppose that $F_{\bullet }$ is a free resolution of the module $M_1$, and $G_{\bullet }$ is a free resolution of the module $M_2$. Let $\varphi : M_1 \to M_2$ be a module map. Let $\alpha : F_{\bullet } \to G_{\bullet }$ be a map of complexes inducing $\varphi $ on $M_1 = \mathop{\mathrm{Coker}}(d_{F, 1}) \to M_2 = \mathop{\mathrm{Coker}}(d_{G, 1})$, see Lemma <a href="/tag/00LS" data-tag="00LS">10.71.4</a>. Then the induced maps </p>
+  <div class="equation">
+  \[  H^ i(\alpha ) : H^ i(\mathop{\mathrm{Hom}}\nolimits _ R(F_{\bullet }, N)) \longrightarrow H^ i(\mathop{\mathrm{Hom}}\nolimits _ R(G_{\bullet }, N))  \]
+</div>
+  <p> are independent of the choice of $\alpha $. If $\varphi $ is an isomorphism, so are all the maps $H^ i(\alpha )$. If $M_1 = M_2$, $F_\bullet = G_\bullet $, and $\varphi $ is the identity, so are all the maps $H_ i(\alpha )$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Another map $\beta : F_{\bullet } \to G_{\bullet }$ inducing $\varphi $ is homotopic to $\alpha $ by Lemma <a href="/tag/00LS" data-tag="00LS">10.71.4</a>. Hence the maps $\mathop{\mathrm{Hom}}\nolimits _ R(F_\bullet , N) \to \mathop{\mathrm{Hom}}\nolimits _ R(G_\bullet , N)$ are homotopic. Hence the independence result follows from Lemma <a href="/tag/00LR" data-tag="00LR">10.71.3</a>. 
+    <p>
+      Suppose that $\varphi $ is an isomorphism. Let $\psi : M_2 \to M_1$ be an inverse. Choose $\beta : G_{\bullet } \to F_{\bullet }$ be a map inducing $\psi : M_2 = \mathop{\mathrm{Coker}}(d_{G, 1}) \to M_1 = \mathop{\mathrm{Coker}}(d_{F, 1})$, see Lemma <a href="/tag/00LS" data-tag="00LS">10.71.4</a>. OK, and now consider the map $H^ i(\alpha ) \circ H^ i(\beta ) = H^ i(\alpha \circ \beta )$. By the above the map $H^ i(\alpha \circ \beta )$ is the <em>same</em> as the map $H^ i(\text{id}_{G_{\bullet }}) = \text{id}$. Similarly for the composition $H^ i(\beta ) \circ H^ i(\alpha )$. Hence $H^ i(\alpha )$ and $H^ i(\beta )$ are inverses of each other. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00LU">
+  <p><a class="environment-identifier" href="/tag/00LU">Lemma <span data-tag="00LU">10.71.6</span>.</a> Let $R$ be a ring. Let $M$ be an $R$-module. Let $0 \to N' \to N \to N'' \to 0$ be a short exact sequence. Then we get a long exact sequence </p>
+  <div class="equation">
+  \[  \begin{matrix}  0 \to \mathop{\mathrm{Hom}}\nolimits _ R(M, N') \to \mathop{\mathrm{Hom}}\nolimits _ R(M, N) \to \mathop{\mathrm{Hom}}\nolimits _ R(M, N'') 
+
+\\  \phantom{0\  } \to \mathop{\mathrm{Ext}}\nolimits ^1_ R(M, N') \to \mathop{\mathrm{Ext}}\nolimits ^1_ R(M, N) \to \mathop{\mathrm{Ext}}\nolimits ^1_ R(M, N'') \to \ldots 
+
+\end{matrix}  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Pick a free resolution $F_{\bullet } \to M$. Since each of the $F_ i$ are free we see that we get a short exact sequence of complexes 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathop{\mathrm{Hom}}\nolimits _ R(F_{\bullet }, N') \to \mathop{\mathrm{Hom}}\nolimits _ R(F_{\bullet }, N) \to \mathop{\mathrm{Hom}}\nolimits _ R(F_{\bullet }, N'') \to 0  \]
+</div>
+    <p>
+       Thus we get the long exact sequence from the snake lemma applied to this. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="065P">
+  <p><a class="environment-identifier" href="/tag/065P">Lemma <span data-tag="065P">10.71.7</span>.</a> Let $R$ be a ring. Let $N$ be an $R$-module. Let $0 \to M' \to M \to M'' \to 0$ be a short exact sequence. Then we get a long exact sequence </p>
+  <div class="equation">
+  \[  \begin{matrix}  0 \to \mathop{\mathrm{Hom}}\nolimits _ R(M'', N) \to \mathop{\mathrm{Hom}}\nolimits _ R(M, N) \to \mathop{\mathrm{Hom}}\nolimits _ R(M', N) 
+
+\\  \phantom{0\  } \to \mathop{\mathrm{Ext}}\nolimits ^1_ R(M'', N) \to \mathop{\mathrm{Ext}}\nolimits ^1_ R(M, N) \to \mathop{\mathrm{Ext}}\nolimits ^1_ R(M', N) \to \ldots 
+
+\end{matrix}  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Pick sets of generators $\{ m'_{i'}\} _{i' \in I'}$ and $\{ m''_{i''}\} _{i'' \in I''}$ of $M'$ and $M''$. For each $i'' \in I''$ choose a lift $\tilde m''_{i''} \in M$ of the element $m''_{i''} \in M''$. Set $F' = \bigoplus _{i' \in I'} R$, $F'' = \bigoplus _{i'' \in I''} R$ and $F = F' \oplus F''$. Mapping the generators of these free modules to the corresponding chosen generators gives surjective $R$-module maps $F' \to M'$, $F'' \to M''$, and $F \to M$. We obtain a map of short exact sequences 
+    <p>
+      <div class="equation">
+  \[  \begin{matrix}  0 
+
+&  \to 
+
+&  M' 
+
+&  \to 
+
+&  M 
+
+&  \to 
+
+&  M'' 
+
+&  \to 
+
+&  0 
+
+\\ & &  \uparrow 
+
+& &  \uparrow 
+
+& &  \uparrow 
+
+\\  0 
+
+&  \to 
+
+&  F' 
+
+&  \to 
+
+&  F 
+
+&  \to 
+
+&  F'' 
+
+&  \to 
+
+&  0 
+
+\\ \end{matrix}  \]
+</div>
+    <p>
+       By the snake lemma we see that the sequence of kernels $0 \to K' \to K \to K'' \to 0$ is short exact sequence of $R$-modules. Hence we can continue this process indefinitely. In other words we obtain a short exact sequence of resolutions fitting into the diagram 
+    <p>
+      <div class="equation">
+  \[  \begin{matrix}  0 
+
+&  \to 
+
+&  M' 
+
+&  \to 
+
+&  M 
+
+&  \to 
+
+&  M'' 
+
+&  \to 
+
+&  0 
+
+\\ & &  \uparrow 
+
+& &  \uparrow 
+
+& &  \uparrow 
+
+\\  0 
+
+&  \to 
+
+&  F_\bullet ' 
+
+&  \to 
+
+&  F_\bullet 
+
+&  \to 
+
+&  F_\bullet '' 
+
+&  \to 
+
+&  0 
+
+\\ \end{matrix}  \]
+</div>
+    <p>
+       Because each of the sequences $0 \to F'_ n \to F_ n \to F''_ n \to 0$ is split exact (by construction) we obtain a short exact sequence of complexes 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathop{\mathrm{Hom}}\nolimits _ R(F''_{\bullet }, N) \to \mathop{\mathrm{Hom}}\nolimits _ R(F_{\bullet }, N) \to \mathop{\mathrm{Hom}}\nolimits _ R(F'_{\bullet }, N) \to 0  \]
+</div>
+    <p>
+       by applying the $\mathop{\mathrm{Hom}}\nolimits _ R(-, N)$ functor. Thus we get the long exact sequence from the snake lemma applied to this. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00LV">
+  <p><a class="environment-identifier" href="/tag/00LV">Lemma <span data-tag="00LV">10.71.8</span>.</a> Let $R$ be a ring. Let $M$, $N$ be $R$-modules. Any $x\in R$ such that either $xN = 0$, or $xM = 0$ annihilates each of the modules $\mathop{\mathrm{Ext}}\nolimits ^ i_ R(M, N)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Pick a free resolution $F_{\bullet }$ of $M$. Since $\mathop{\mathrm{Ext}}\nolimits ^ i_ R(M, N)$ is defined as the cohomology of the complex $\mathop{\mathrm{Hom}}\nolimits _ R(F_{\bullet }, N)$ the lemma is clear when $xN = 0$. If $xM = 0$, then we see that multiplication by $x$ on $F_{\bullet }$ lifts the zero map on $M$. Hence by Lemma <a href="/tag/00LT" data-tag="00LT">10.71.5</a> we see that it induces the same map on Ext groups as the zero map. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08YR">
+  <p><a class="environment-identifier" href="/tag/08YR">Lemma <span data-tag="08YR">10.71.9</span>.</a> Let $R$ be a Noetherian ring. Let $M$, $N$ be finite $R$-modules. Then $\mathop{\mathrm{Ext}}\nolimits ^ i_ R(M, N)$ is a finite $R$-module for all $i$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This holds because $\mathop{\mathrm{Ext}}\nolimits ^ i_ R(M, N)$ is computed as the cohomology groups of a complex $\mathop{\mathrm{Hom}}\nolimits _ R(F_\bullet , N)$ with each $F_ n$ a finite free $R$-module, see Lemma <a href="/tag/00LP" data-tag="00LP">10.71.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

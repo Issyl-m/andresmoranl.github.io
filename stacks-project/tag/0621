@@ -1,0 +1,289 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-algebra-section-koszul" class="tex-section"><span data-tag="0621">15.29</span> The Koszul complex</h2>
+
+<p>
+We define the Koszul complex as follows. 
+</p>
+<p>
+<article class="env-definition" id="0622">
+  <p><a class="environment-identifier" href="/tag/0622">Definition <span data-tag="0622">15.29.1</span>.</a> Let $R$ be a ring. Let $\varphi : E \to R$ be an $R$-module map. The <em>Koszul complex</em> $K_\bullet (\varphi )$ associated to $\varphi $ is the commutative differential graded algebra defined as follows: </p>
+  <p><ol>
+  <li><p>
+the underlying graded algebra is the exterior algebra $K_\bullet (\varphi ) = \wedge (E)$, 
+</p>
+</li><li><p>
+the differential $d : K_\bullet (\varphi ) \to K_\bullet (\varphi )$ is the unique derivation such that $d(e) = \varphi (e)$ for all $e \in E = K_1(\varphi )$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+Explicitly, if $e_1 \wedge \ldots \wedge e_ n$ is one of the generators of degree $n$ in $K_\bullet (\varphi )$, then 
+</p>
+<div class="equation">
+  \[  d(e_1 \wedge \ldots \wedge e_ n) = \sum \nolimits _{i = 1, \ldots , n} (-1)^{i + 1} \varphi (e_ i)e_1 \wedge \ldots \wedge \widehat{e_ i} \wedge \ldots \wedge e_ n.  \]
+</div>
+<p>
+ It is straightforward to see that this gives a well defined derivation on the tensor algebra, which annihilates $e \otimes e$ and hence factors through the exterior algebra. 
+</p>
+<p>
+We often assume that $E$ is a finite free module, say $E = R^{\oplus n}$. In this case the map $\varphi $ is given by a sequence of elements $f_1, \ldots , f_ n \in R$. 
+</p>
+<p>
+<article class="env-definition" id="0623">
+  <p><a class="environment-identifier" href="/tag/0623">Definition <span data-tag="0623">15.29.2</span>.</a> Let $R$ be a ring and let $f_1, \ldots , f_ r \in R$. The <em>Koszul complex on $f_1, \ldots , f_ r$</em> is the Koszul complex associated to the map $(f_1, \ldots , f_ r) : R^{\oplus r} \to R$. Notation $K_\bullet (f_\bullet )$, $K_\bullet (f_1, \ldots , f_ r)$, $K_\bullet (R, f_1, \ldots , f_ r)$, or $K_\bullet (R, f_\bullet )$. </p>
+</article> 
+</p>
+<p>
+Of course, if $E$ is finite locally free, then $K_\bullet (\varphi )$ is locally on $\mathop{\mathrm{Spec}}(R)$ isomorphic to a Koszul complex $K_\bullet (f_1, \ldots , f_ r)$. This complex has many interesting formal properties. 
+</p>
+<p>
+<article class="env-lemma" id="0624">
+  <p><a class="environment-identifier" href="/tag/0624">Lemma <span data-tag="0624">15.29.3</span>.</a> Let $\varphi : E \to R$ and $\varphi ' : E' \to R$ be $R$-module maps. Let $\psi : E \to E'$ be an $R$-module map such that $\varphi ' \circ \psi = \varphi $. Then $\psi $ induces a homomorphism of differential graded algebras $K_\bullet (\varphi ) \to K_\bullet (\varphi ')$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is immediate from the definitions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0625">
+  <p><a class="environment-identifier" href="/tag/0625">Lemma <span data-tag="0625">15.29.4</span>.</a> Let $f_1, \ldots , f_ r \in R$ be a sequence. Let $(x_{ij})$ be an invertible $r \times r$-matrix with coefficients in $R$. Then the complexes $K_\bullet (f_\bullet )$ and </p>
+  <div class="equation">
+  \[  K_\bullet (\sum x_{1j}f_ j, \sum x_{2j}f_ j, \ldots , \sum x_{rj}f_ j)  \]
+</div>
+  <p> are isomorphic. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Set $g_ i = \sum x_{ij}f_ j$. The matrix $(x_{ji})$ gives an isomorphism $x : R^{\oplus r} \to R^{\oplus r}$ such that $(g_1, \ldots , g_ r) = (f_1, \ldots , f_ r) \circ x$. Hence this follows from the functoriality of the Koszul complex described in Lemma <a href="/tag/0624" data-tag="0624">15.29.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0626">
+  <p><a class="environment-identifier" href="/tag/0626">Lemma <span data-tag="0626">15.29.5</span>.</a> Let $R$ be a ring. Let $\varphi : E \to R$ be an $R$-module map. Let $e \in E$ with image $f = \varphi (e)$ in $R$. Then </p>
+  <div class="equation">
+  \[  f = de + ed  \]
+</div>
+  <p> as endomorphisms of $K_\bullet (\varphi )$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is true because $d(ea) = d(e)a - ed(a) = fa - ed(a)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0663">
+  <p><a class="environment-identifier" href="/tag/0663">Lemma <span data-tag="0663">15.29.6</span>.</a> Let $R$ be a ring. Let $f_1, \ldots , f_ r \in R$ be a sequence. Multiplication by $f_ i$ on $K_\bullet (f_\bullet )$ is homotopic to zero, and in particular the cohomology modules $H_ i(K_\bullet (f_\bullet ))$ are annihilated by the ideal $(f_1, \ldots , f_ r)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Special case of Lemma <a href="/tag/0626" data-tag="0626">15.29.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In Derived Categories, Section <a href="/tag/014D" data-tag="014D">13.9</a> we defined the cone of a morphism of cochain complexes. The cone $C(f)_\bullet $ of a morphism of chain complexes $f : A_\bullet \to B_\bullet $ is the complex $C(f)_\bullet $ given by $C(f)_ n = B_ n \oplus A_{n - 1}$ and differential 
+</p>
+<div class="equation" id="0627">
+    <span class="equation-label"><a href="/tag/0627" data-tag="0627">15.29.6.1</a></span>
+  <div>\begin{equation}  \label{more-algebra-equation-differential-cone} d_{C(f), n} = \left( \begin{matrix}  d_{B, n} 
+
+&  f_{n - 1} 
+
+\\  0 
+
+&  -d_{A, n - 1} 
+
+\end{matrix} \right) \end{equation}</div>
+</div>
+<p>
+ It comes equipped with canonical morphisms of complexes $i : B_\bullet \to C(f)_\bullet $ and $p : C(f)_\bullet \to A_\bullet [-1]$ induced by the obvious maps $B_ n \to C(f)_ n \to A_{n - 1}$. 
+</p>
+<p>
+<article class="env-lemma" id="0628">
+  <p><a class="environment-identifier" href="/tag/0628">Lemma <span data-tag="0628">15.29.7</span>.</a> Let $R$ be a ring. Let $\varphi : E \to R$ be an $R$-module map. Let $f \in R$. Set $E' = E \oplus R$ and define $\varphi ' : E' \to R$ by $\varphi $ on $E$ and multiplication by $f$ on $R$. The complex $K_\bullet (\varphi ')$ is isomorphic to the cone of the map of complexes </p>
+  <div class="equation">
+  \[  f : K_\bullet (\varphi ) \longrightarrow K_\bullet (\varphi ).  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Denote $e_0 \in E'$ the element $1 \in R \subset R \oplus E$. By our definition of the cone above we see that 
+    <p>
+      <div class="equation">
+  \[  C(f)_ n = K_ n(\varphi ) \oplus K_{n - 1}(\varphi ) = \wedge ^ n(E) \oplus \wedge ^{n - 1}(E) = \wedge ^ n(E')  \]
+</div>
+    <p>
+       where in the last $=$ we map $(0, e_1 \wedge \ldots \wedge e_{n - 1})$ to $e_0 \wedge e_1 \wedge \ldots \wedge e_{n - 1}$ in $\wedge ^ n(E')$. A computation shows that this isomorphism is compatible with differentials. Namely, this is clear for elements of the first summand as $\varphi '|_ E = \varphi $ and $d_{C(f)}$ restricted to the first summand is just $d_{K_\bullet (\varphi )}$. On the other hand, if $e_1 \wedge \ldots \wedge e_{n - 1}$ is in the second summand, then 
+    <p>
+      <div class="equation">
+  \[  d_{C(f)}(0, e_1 \wedge \ldots \wedge e_{n - 1}) = fe_1 \wedge \ldots \wedge e_{n - 1} - d_{K_\bullet (\varphi )}(e_1 \wedge \ldots \wedge e_{n - 1})  \]
+</div>
+    <p>
+       and on the other hand 
+    <p>
+      <div class="equation">
+  \begin{align*} &  d_{K_\bullet (\varphi ')}(0, e_0 \wedge e_1 \wedge \ldots \wedge e_{n - 1}) \\ &  = \sum \nolimits _{i = 0, \ldots , n - 1} (-1)^ i \varphi '(e_ i)e_0 \wedge \ldots \wedge \widehat{e_ i} \wedge \ldots \wedge e_{n - 1} \\ &  = fe_1 \wedge \ldots \wedge e_{n - 1} + \sum \nolimits _{i = 1, \ldots , n - 1} (-1)^ i \varphi (e_ i)e_0 \wedge \ldots \wedge \widehat{e_ i} \wedge \ldots \wedge e_{n - 1} \\ &  = fe_1 \wedge \ldots \wedge e_{n - 1} - e_0 \left(\sum \nolimits _{i = 1, \ldots , n - 1} (-1)^{i + 1} \varphi (e_ i)e_1 \wedge \ldots \wedge \widehat{e_ i} \wedge \ldots \wedge e_{n - 1}\right) \end{align*}
+</div>
+    <p>
+       which is the image of the result of the previous computation. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0629">
+  <p><a class="environment-identifier" href="/tag/0629">Lemma <span data-tag="0629">15.29.8</span>.</a> Let $R$ be a ring. Let $f_1, \ldots , f_ r$ be a sequence of elements of $R$. The complex $K_\bullet (f_1, \ldots , f_ r)$ is isomorphic to the cone of the map of complexes </p>
+  <div class="equation">
+  \[  f_ r : K_\bullet (f_1, \ldots , f_{r - 1}) \longrightarrow K_\bullet (f_1, \ldots , f_{r - 1}).  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Special case of Lemma <a href="/tag/0628" data-tag="0628">15.29.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="062A">
+  <p><a class="environment-identifier" href="/tag/062A">Lemma <span data-tag="062A">15.29.9</span>.</a> Let $R$ be a ring. Let $A_\bullet $ be a complex of $R$-modules. Let $f, g \in R$. Let $C(f)_\bullet $ be the cone of $f : A_\bullet \to A_\bullet $. Define similarly $C(g)_\bullet $ and $C(fg)_\bullet $. Then $C(fg)_\bullet $ is homotopy equivalent to the cone of a map </p>
+  <div class="equation">
+  \[  C(f)_\bullet [1] \longrightarrow C(g)_\bullet  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We first prove this if $A_\bullet $ is the complex consisting of $R$ placed in degree $0$. In this case the complex $C(f)_\bullet $ is the complex 
+    <p>
+      <div class="equation">
+  \[  \ldots \to 0 \to R \xrightarrow {f} R \to 0 \to \ldots  \]
+</div>
+    <p>
+       with $R$ placed in (homological) degrees $1$ and $0$. The map of complexes we use is 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ 0 \ar[r] \ar[d] &  0 \ar[r] \ar[d] &  R \ar[r]^ f \ar[d]^1 &  R \ar[r] \ar[d] &  0 \ar[d] \\  0 \ar[r] &  R \ar[r]^ g &  R \ar[r] &  0 \ar[r] &  0 }  \]
+</div>
+    <p>
+       The cone of this is the chain complex consisting of $R^{\oplus 2}$ placed in degrees $1$ and $0$ and differential (<a href="/tag/0627" data-tag="0627">15.29.6.1</a>) 
+    <p>
+      <div class="equation">
+  \[  \left( \begin{matrix}  g 
+
+&  1 
+
+\\  0 
+
+&  -f 
+
+\end{matrix} \right) : R^{\oplus 2} \longrightarrow R^{\oplus 2}  \]
+</div>
+    <p>
+       To see this chain complex is homotopic to $C(fg)_\bullet $, i.e., to $R \xrightarrow {fg} R$, consider the maps of complexes 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ R \ar[d]_{(1, -g)} \ar[r]_{fg} &  R \ar[d]^{(0, 1)} \\  R^{\oplus 2} \ar[r] &  R^{\oplus 2} } \quad \quad \xymatrix{ R^{\oplus 2} \ar[d]_{(1, 0)} \ar[r] &  R^{\oplus 2} \ar[d]^{(f, 1)} \\  R \ar[r]^{fg} &  R }  \]
+</div>
+    <p>
+       with obvious notation. The composition of these two maps in one direction is the identity on $C(fg)_\bullet $, but in the other direction it isn't the identity. We omit writing out the required homotopy. 
+    <p>
+      To see the result holds in general, we use that we have a functor $K_\bullet \mapsto \text{Tot}(A_\bullet \otimes _ R K_\bullet )$ on the category of complexes which is compatible with homotopies and cones. Then we write $C(f)_\bullet $ and $C(g)_\bullet $ as the total complex of the double complexes 
+    <p>
+      <div class="equation">
+  \[  (R \xrightarrow {f} R) \otimes _ R A_\bullet \quad \text{and}\quad (R \xrightarrow {g} R) \otimes _ R A_\bullet  \]
+</div>
+    <p>
+       and in this way we deduce the result from the special case discussed above. Some details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="062B">
+  <p><a class="environment-identifier" href="/tag/062B">Lemma <span data-tag="062B">15.29.10</span>.</a> Let $R$ be a ring. Let $\varphi : E \to R$ be an $R$-module map. Let $f, g \in R$. Set $E' = E \oplus R$ and define $\varphi '_ f, \varphi '_ g, \varphi '_{fg} : E' \to R$ by $\varphi $ on $E$ and multiplication by $f, g, fg$ on $R$. The complex $K_\bullet (\varphi '_{fg})$ is homotopy equivalent to the cone of a map of complexes </p>
+  <div class="equation">
+  \[  K_\bullet (\varphi '_ f)[1] \longrightarrow K_\bullet (\varphi '_ g).  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/0628" data-tag="0628">15.29.7</a> the complex $K_\bullet (\varphi '_ f)$ is isomorphic to the cone of multiplication by $f$ on $K_\bullet (\varphi )$ and similarly for the other two cases. Hence the lemma follows from Lemma <a href="/tag/062A" data-tag="062A">15.29.9</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="062C">
+  <p><a class="environment-identifier" href="/tag/062C">Lemma <span data-tag="062C">15.29.11</span>.</a> Let $R$ be a ring. Let $f_1, \ldots , f_{r - 1}$ be a sequence of elements of $R$. Let $f, g \in R$. The complex $K_\bullet (f_1, \ldots , f_{r - 1}, fg)$ is homotopy equivalent to the cone of a map of complexes </p>
+  <div class="equation">
+  \[  K_\bullet (f_1, \ldots , f_{r - 1}, f)[1] \longrightarrow K_\bullet (f_1, \ldots , f_{r - 1}, g)  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Special case of Lemma <a href="/tag/062B" data-tag="062B">15.29.10</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0664">
+  <p><a class="environment-identifier" href="/tag/0664">Lemma <span data-tag="0664">15.29.12</span>.</a> Let $R$ be a ring. Let $f_1, \ldots , f_ r$, $g_1, \ldots , g_ s$ be elements of $R$. Then there is an isomorphism of Koszul complexes </p>
+  <div class="equation">
+  \[  K_\bullet (R, f_1, \ldots , f_ r, g_1, \ldots , g_ s) = \text{Tot}(K_\bullet (R, f_1, \ldots , f_ r) \otimes _ R K_\bullet (R, g_1, \ldots , g_ s)).  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. Hint: If $K_\bullet (R, f_1, \ldots , f_ r)$ is generated as a differential graded algebra by $x_1, \ldots , x_ r$ with $\text{d}(x_ i) = f_ i$ and $K_\bullet (R, g_1, \ldots , g_ s)$ is generated as a differential graded algebra by $y_1, \ldots , y_ s$ with $\text{d}(y_ j) = g_ j$, then we can think of $K_\bullet (R, f_1, \ldots , f_ r, g_1, \ldots , g_ s)$ as the differential graded algebra generated by the sequence of elements $x_1, \ldots , x_ r, y_1, \ldots , y_ s$ with $\text{d}(x_ i) = f_ i$ and $\text{d}(y_ j) = g_ j$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

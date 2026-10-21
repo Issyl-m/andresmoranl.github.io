@@ -1,0 +1,202 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="topology-section-submersive" class="tex-section"><span data-tag="0405">5.6</span> Submersive maps</h2>
+
+<p>
+If $X$ is a topological space and $E \subset X$ is a subset, then we usually endow $E$ with the <em>induced topology</em>. 
+</p>
+<p>
+<article class="env-lemma" id="09R8">
+  <p><a class="environment-identifier" href="/tag/09R8">Lemma <span data-tag="09R8">5.6.1</span>.</a> Let $X$ be a topological space. Let $Y$ be a set and let $f : Y \to X$ be an injective map of sets. The induced topology on $Y$ is the topology characterized by each of the following statements: </p>
+  <p><ol>
+  <li><p>
+it is the weakest topology on $Y$ such that $f$ is continuous, 
+</p>
+</li><li><p>
+the open subsets of $Y$ are $f^{-1}(U)$ for $U \subset X$ open, 
+</p>
+</li><li><p>
+the closed subsets of $Y$ are the sets $f^{-1}(Z)$ for $Z \subset X$ closed. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The set $\mathcal{T} = \{ f^{-1}(U) | U \subset X \text{ open}\} $ is a topology on $Y$. Firstly, $\emptyset = f^{-1}(\emptyset )$ and $f^{-1}(X) = Y$. So $\mathcal{T}$ contains $\emptyset $ and $Y$. 
+    <p>
+      Now let $\{ V_ i\} _{i \in I}$ be a collection of open subsets where $V_ i \in \mathcal{T}$ and write $V_ i = f^{-1}(U_ i)$ where $U_ i$ is an open subset of $X$, then 
+    <p>
+      <div class="equation">
+  \[  \bigcup \nolimits _{i\in I} V_ i = \bigcup \nolimits _{i\in I} f^{-1}(U_ i) = f^{-1}\left(\bigcup \nolimits _{i\in I} U_ i\right)  \]
+</div>
+    <p>
+       So $\bigcup _{i\in I} V_ i \in \mathcal{T}$ as $\bigcup _{i\in I} U_ i$ is open in $X$. Now let $V_1, V_2 \in \mathcal{T}$. We have $U_1, U_2$ open in $X$ such that $V_1 = f^{-1}(U_1)$ and $V_2 = f^{-1}(U_2)$. Then 
+    <p>
+      <div class="equation">
+  \[  V_1 \cap V_2 = f^{-1}(U_1) \cap f^{-1}(U_2) = f^{-1}(U_1 \cap U_2)  \]
+</div>
+    <p>
+       So $V_1 \cap V_2 \in \mathcal{T}$ because $U_1 \cap U_2$ is open in $X$. 
+    <p>
+      Any topology on $Y$ such that $f$ is continuous contains $\mathcal{T}$ according to the definition of a continuous map. Thus $\mathcal{T}$ is indeed the weakest topology on $Y$ such that $f$ is continuous. This proves that (1) and (2) are equivalent. 
+    <p>
+      The equivalence of (2) and (3) follows from the equality $f^{-1}(X \setminus E) = Y \setminus f^{-1}(E)$ for all subsets $E \subset X$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Dually, if $X$ is a topological space and $X \to Y$ is a surjection of sets, then $Y$ can be endowed with the <em>quotient topology</em>. 
+</p>
+<p>
+<article class="env-lemma" id="08ZK">
+  <p><a class="environment-identifier" href="/tag/08ZK">Lemma <span data-tag="08ZK">5.6.2</span>.</a> Let $X$ be a topological space. Let $Y$ be a set and let $f : X \to Y$ be a surjective map of sets. The quotient topology on $Y$ is the topology characterized by each of the following statements: </p>
+  <p><ol>
+  <li><p>
+it is the strongest topology on $Y$ such that $f$ is continuous, 
+</p>
+</li><li><p>
+a subset $V$ of $Y$ is open if and only if $f^{-1}(V)$ is open, 
+</p>
+</li><li><p>
+a subset $Z$ of $Y$ is closed if and only if $f^{-1}(Z)$ is closed. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The set $\mathcal{T} = \{ V\subset Y | f^{-1}(V) \text{ is open}\} $ is a topology on $Y$. Firstly $\emptyset = f^{-1}(\emptyset )$ and $f^{-1}(Y) = X$. So $\mathcal{T}$ contains $\emptyset $ and $Y$. 
+    <p>
+      Let $(V_ i)_{i \in I}$ be a family of elements $V_ i \in \mathcal{T}$. Then 
+    <p>
+      <div class="equation">
+  \[  \bigcup \nolimits _{i\in I} f^{-1}(V_ i) = f^{-1}\left(\bigcup \nolimits _{i\in I} V_ i\right)  \]
+</div>
+    <p>
+       Thus $\bigcup _{i\in I} V_ i \in \mathcal{T}$ as $\bigcup _{i\in I}f^{-1}(V_ i)$ is open in $X$. Furthermore if $V_1, V_2 \in \mathcal{T}$ then 
+    <p>
+      <div class="equation">
+  \[  f^{-1}(V_1) \cap f^{-1}(V_2) = f^{-1}(V_1 \cap V_2)  \]
+</div>
+    <p>
+       So $V_1 \cap V_2 \in \mathcal{T}$ because $f^{-1}(V_1) \cap f^{-1}(V_2)$ is open in $X$. 
+    <p>
+      Finally a topology on $Y$ such that $f$ is continuous is included in $\mathcal{T}$ according to the definition of a continuous function, so $\mathcal{T}$ is the strongest topology on $Y$ such that $f$ is continuous. It proves that (1) and (2) are equivalent. 
+    <p>
+      Finally, (2) and (3) equivalence follows from $f^{-1}(X\setminus E) = Y \setminus f^{-1}(E)$ for all subsets $E \subset X$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $f : X \to Y$ be a continuous map of topological spaces. In this case we obtain a factorization $X \to f(X) \to Y$ of maps of sets. We can endow $f(X)$ with the quotient topology coming from the surjection $X \to f(X)$ or with the induced topology coming from the injection $f(X) \to Y$. The map 
+</p>
+<div class="equation">
+  \[  (f(X), \text{quotient topology}) \longrightarrow (f(X), \text{induced topology})  \]
+</div>
+<p>
+ is continuous. 
+</p>
+<p>
+<article class="env-definition" id="0406">
+  <p><a class="environment-identifier" href="/tag/0406">Definition <span data-tag="0406">5.6.3</span>.</a> Let $f : X \to Y$ be a continuous map of topological spaces. </p>
+  <p><ol>
+  <li><p>
+We say $f$ is a <em>strict map of topological spaces</em> if the induced topology and the quotient topology on $f(X)$ agree (see discussion above). 
+</p>
+</li><li><p>
+We say $f$ is <em>submersive</em><a class="footnotemark" href="#a0000029099" id="a0000029099-mark"><sup>1</sup></a> if $f$ is surjective and strict. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+Thus a continuous map $f : X \to Y$ is submersive if $f$ is a surjection and for any $T \subset Y$ we have $T$ is open or closed if and only if $f^{-1}(T)$ is so. In other words, $Y$ has the quotient topology relative to the surjection $X \to Y$. 
+</p>
+<p>
+<article class="env-lemma" id="02YB">
+  <p><a class="environment-identifier" href="/tag/02YB">Lemma <span data-tag="02YB">5.6.4</span>.</a> Let $f : X \to Y$ be surjective, open, continuous map of topological spaces. Let $T \subset Y$ be a subset. Then </p>
+  <p><ol>
+  <li><p>
+$f^{-1}(\overline{T}) = \overline{f^{-1}(T)}$, 
+</p>
+</li><li><p>
+$T \subset Y$ is closed if and only if $f^{-1}(T)$ is closed, 
+</p>
+</li><li><p>
+$T \subset Y$ is open if and only if $f^{-1}(T)$ is open, and 
+</p>
+</li><li><p>
+$T \subset Y$ is locally closed if and only if $f^{-1}(T)$ is locally closed. 
+</p>
+</li>
+</ol></p>
+  <p> In particular we see that $f$ is submersive. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It is clear that $\overline{f^{-1}(T)} \subset f^{-1}(\overline{T})$. If $x \in X$, and $x \not\in \overline{f^{-1}(T)}$, then there exists an open neighbourhood $x \in U \subset X$ with $U \cap f^{-1}(T) = \emptyset $. Since $f$ is open we see that $f(U)$ is an open neighbourhood of $f(x)$ not meeting $T$. Hence $x \not\in f^{-1}(\overline{T})$. This proves (1). Part (2) is an easy consequence of (1). Part (3) is obvious from the fact that $f$ is open and surjective. For (4), if $f^{-1}(T)$ is locally closed, then $f^{-1}(T) \subset \overline{f^{-1}(T)} = f^{-1}(\overline{T})$ is open, and hence by (3) applied to the map $f^{-1}(\overline{T}) \to \overline{T}$ we see that $T$ is open in $\overline{T}$, i.e., $T$ is locally closed. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AAU">
+  <p><a class="environment-identifier" href="/tag/0AAU">Lemma <span data-tag="0AAU">5.6.5</span>.</a> Let $f : X \to Y$ be surjective, closed, continuous map of topological spaces. Let $T \subset Y$ be a subset. Then </p>
+  <p><ol>
+  <li><p>
+$\overline{T} = f(\overline{f^{-1}(T)})$, 
+</p>
+</li><li><p>
+$T \subset Y$ is closed if and only if $f^{-1}(T)$ is closed, 
+</p>
+</li><li><p>
+$T \subset Y$ is open if and only if $f^{-1}(T)$ is open, and 
+</p>
+</li><li><p>
+$T \subset Y$ is locally closed if and only if $f^{-1}(T)$ is locally closed. 
+</p>
+</li>
+</ol></p>
+  <p> In particular we see that $f$ is submersive. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It is clear that $\overline{f^{-1}(T)} \subset f^{-1}(\overline{T})$. Then $T \subset f(\overline{f^{-1}(T)}) \subset \overline{T}$ is a closed subset, hence we get (1). Part (2) is obvious from the fact that $f$ is closed and surjective. Part (3) follows from (2) applied to the complement of $T$. For (4), if $f^{-1}(T)$ is locally closed, then $f^{-1}(T) \subset \overline{f^{-1}(T)}$ is open. Since the map $\overline{f^{-1}(T)} \to \overline{T}$ is surjective by (1) we can apply part (3) to the map $\overline{f^{-1}(T)} \to \overline{T}$ induced by $f$ to conclude that $T$ is open in $\overline{T}$, i.e., $T$ is locally closed. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

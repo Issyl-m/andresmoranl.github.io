@@ -1,0 +1,262 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="cohomology-section-cech-functor" class="tex-section"><span data-tag="01EH">20.10</span> Čech cohomology as a functor on presheaves</h2>
+
+<p>
+Warning: In this section we work almost exclusively with presheaves and categories of presheaves and the results are completely wrong in the setting of sheaves and categories of sheaves! 
+</p>
+<p>
+Let $X$ be a ringed space. Let $\mathcal{U} : U = \bigcup _{i \in I} U_ i$ be an open covering. Let $\mathcal{F}$ be a presheaf of $\mathcal{O}_ X$-modules. We have the Čech complex $\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{F})$ of $\mathcal{F}$ just by thinking of $\mathcal{F}$ as a presheaf of abelian groups. However, each term $\check{\mathcal{C}}^ p(\mathcal{U}, \mathcal{F})$ has a natural structure of a $\mathcal{O}_ X(U)$-module and the differential is given by $\mathcal{O}_ X(U)$-module maps. Moreover, it is clear that the construction 
+</p>
+<div class="equation">
+  \[  \mathcal{F} \longmapsto \check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{F})  \]
+</div>
+<p>
+ is functorial in $\mathcal{F}$. In fact, it is a functor 
+</p>
+<div class="equation" id="01EI">
+    <span class="equation-label"><a href="/tag/01EI" data-tag="01EI">20.10.0.1</a></span>
+  <div>\begin{equation}  \label{cohomology-equation-cech-functor} \check{\mathcal{C}}^\bullet (\mathcal{U}, -) : \textit{PMod}(\mathcal{O}_ X) \longrightarrow \text{Comp}^{+}(\text{Mod}_{\mathcal{O}_ X(U)}) \end{equation}</div>
+</div>
+<p>
+ see Derived Categories, Definition <a href="/tag/013H" data-tag="013H">13.8.1</a> for notation. Recall that the category of bounded below complexes in an abelian category is an abelian category, see Homology, Lemma <a href="/tag/0114" data-tag="0114">12.13.9</a>. 
+</p>
+<p>
+<article class="env-lemma" id="01EJ">
+  <p><a class="environment-identifier" href="/tag/01EJ">Lemma <span data-tag="01EJ">20.10.1</span>.</a> The functor given by Equation (<a href="/tag/01EI" data-tag="01EI">20.10.0.1</a>) is an exact functor (see Homology, Lemma <a href="/tag/010N" data-tag="010N">12.7.2</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      For any open $W \subset U$ the functor $\mathcal{F} \mapsto \mathcal{F}(W)$ is an additive exact functor from $\textit{PMod}(\mathcal{O}_ X)$ to $\text{Mod}_{\mathcal{O}_ X(U)}$. The terms $\check{\mathcal{C}}^ p(\mathcal{U}, \mathcal{F})$ of the complex are products of these exact functors and hence exact. Moreover a sequence of complexes is exact if and only if the sequence of terms in a given degree is exact. Hence the lemma follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01EK">
+  <p><a class="environment-identifier" href="/tag/01EK">Lemma <span data-tag="01EK">20.10.2</span>.</a> Let $X$ be a ringed space. Let $\mathcal{U} : U = \bigcup _{i \in I} U_ i$ be an open covering. The functors $\mathcal{F} \mapsto \check{H}^ n(\mathcal{U}, \mathcal{F})$ form a $\delta $-functor from the abelian category of presheaves of $\mathcal{O}_ X$-modules to the category of $\mathcal{O}_ X(U)$-modules (see Homology, Definition <a href="/tag/010Q" data-tag="010Q">12.12.1</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/01EJ" data-tag="01EJ">20.10.1</a> a short exact sequence of presheaves of $\mathcal{O}_ X$-modules $0 \to \mathcal{F}_1 \to \mathcal{F}_2 \to \mathcal{F}_3 \to 0$ is turned into a short exact sequence of complexes of $\mathcal{O}_ X(U)$-modules. Hence we can use Homology, Lemma <a href="/tag/0117" data-tag="0117">12.13.12</a> to get the boundary maps $\delta _{\mathcal{F}_1 \to \mathcal{F}_2 \to \mathcal{F}_3} : \check{H}^ n(\mathcal{U}, \mathcal{F}_3) \to \check{H}^{n + 1}(\mathcal{U}, \mathcal{F}_1)$ and a corresponding long exact sequence. We omit the verification that these maps are compatible with maps between short exact sequences of presheaves. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In the formulation of the following lemma we use the functor $j_{p!}$ of extension by $0$ for presheaves of modules relative to an open immersion $j : U \to X$. See Sheaves, Section <a href="/tag/009Z" data-tag="009Z">6.31</a>. For any open $W \subset X$ and any presheaf $\mathcal{G}$ of $\mathcal{O}_ X|_ U$-modules we have 
+</p>
+<div class="equation">
+  \[  (j_{p!}\mathcal{G})(W) = \left\{  \begin{matrix}  \mathcal{G}(W) 
+
+&  \text{if } W \subset U 
+
+\\  0 
+
+&  \text{else.} 
+
+\end{matrix} \right.  \]
+</div>
+<p>
+ Moreover, the functor $j_{p!}$ is a left adjoint to the restriction functor see Sheaves, Lemma <a href="/tag/00A7" data-tag="00A7">6.31.8</a>. In particular we have the following formula 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _{\mathcal{O}_ X}(j_{p!}\mathcal{O}_ U, \mathcal{F}) = \mathop{\mathrm{Hom}}\nolimits _{\mathcal{O}_ U}(\mathcal{O}_ U, \mathcal{F}|_ U) = \mathcal{F}(U).  \]
+</div>
+<p>
+ Since the functor $\mathcal{F} \mapsto \mathcal{F}(U)$ is an exact functor on the category of presheaves we conclude that the presheaf $j_{p!}\mathcal{O}_ U$ is a projective object in the category $\textit{PMod}(\mathcal{O}_ X)$, see Homology, Lemma <a href="/tag/013C" data-tag="013C">12.28.2</a>. 
+</p>
+<p>
+Note that if we are given open subsets $U \subset V \subset X$ with associated open immersions $j_ U, j_ V$, then we have a canonical map $(j_ U)_{p!}\mathcal{O}_ U \to (j_ V)_{p!}\mathcal{O}_ V$. It is the identity on sections over any open $W \subset U$ and $0$ else. In terms of the identification $\mathop{\mathrm{Hom}}\nolimits _{\mathcal{O}_ X}((j_ U)_{p!}\mathcal{O}_ U, (j_ V)_{p!}\mathcal{O}_ V) = (j_ V)_{p!}\mathcal{O}_ V(U) = \mathcal{O}_ V(U)$ it corresponds to the element $1 \in \mathcal{O}_ V(U)$. 
+</p>
+<p>
+<article class="env-lemma" id="01EL">
+  <p><a class="environment-identifier" href="/tag/01EL">Lemma <span data-tag="01EL">20.10.3</span>.</a> Let $X$ be a ringed space. Let $\mathcal{U} : U = \bigcup _{i \in I} U_ i$ be an open covering. Denote $j_{i_0\ldots i_ p} : U_{i_0 \ldots i_ p} \to X$ the open immersion. Consider the chain complex $K(\mathcal{U})_\bullet $ of presheaves of $\mathcal{O}_ X$-modules </p>
+  <div class="equation">
+  \[  \ldots \to \bigoplus _{i_0i_1i_2} (j_{i_0i_1i_2})_{p!}\mathcal{O}_{U_{i_0i_1i_2}} \to \bigoplus _{i_0i_1} (j_{i_0i_1})_{p!}\mathcal{O}_{U_{i_0i_1}} \to \bigoplus _{i_0} (j_{i_0})_{p!}\mathcal{O}_{U_{i_0}} \to 0 \to \ldots  \]
+</div>
+  <p> where the last nonzero term is placed in degree $0$ and where the map </p>
+  <div class="equation">
+  \[  (j_{i_0\ldots i_{p + 1}})_{p!}\mathcal{O}_{U_{i_0\ldots i_{p + 1}}} \longrightarrow (j_{i_0\ldots \hat i_ j \ldots i_{p + 1}})_{p!} \mathcal{O}_{U_{i_0\ldots \hat i_ j \ldots i_{p + 1}}}  \]
+</div>
+  <p> is given by $(-1)^ j$ times the canonical map. Then there is an isomorphism </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _{\mathcal{O}_ X}(K(\mathcal{U})_\bullet , \mathcal{F}) = \check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{F})  \]
+</div>
+  <p> functorial in $\mathcal{F} \in \mathop{\mathrm{Ob}}\nolimits (\textit{PMod}(\mathcal{O}_ X))$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We saw in the discussion just above the lemma that 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _{\mathcal{O}_ X}( (j_{i_0\ldots i_ p})_{p!}\mathcal{O}_{U_{i_0\ldots i_ p}}, \mathcal{F}) = \mathcal{F}(U_{i_0\ldots i_ p}).  \]
+</div>
+    <p>
+       Hence we see that it is indeed the case that the direct sum 
+    <p>
+      <div class="equation">
+  \[  \bigoplus \nolimits _{i_0 \ldots i_ p} (j_{i_0 \ldots i_ p})_{p!}\mathcal{O}_{U_{i_0 \ldots i_ p}}  \]
+</div>
+    <p>
+       represents the functor 
+    <p>
+      <div class="equation">
+  \[  \mathcal{F} \longmapsto \prod \nolimits _{i_0\ldots i_ p} \mathcal{F}(U_{i_0\ldots i_ p}).  \]
+</div>
+    <p>
+       Hence by Categories, Yoneda Lemma <a href="/tag/001P" data-tag="001P">4.3.5</a> we see that there is a complex $K(\mathcal{U})_\bullet $ with terms as given. It is a simple matter to see that the maps are as given in the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01EM">
+  <p><a class="environment-identifier" href="/tag/01EM">Lemma <span data-tag="01EM">20.10.4</span>.</a> Let $X$ be a ringed space. Let $\mathcal{U} : U = \bigcup _{i \in I} U_ i$ be an open covering. Let $\mathcal{O}_\mathcal {U} \subset \mathcal{O}_ X$ be the image presheaf of the map $\bigoplus j_{p!}\mathcal{O}_{U_ i} \to \mathcal{O}_ X$. The chain complex $K(\mathcal{U})_\bullet $ of presheaves of Lemma <a href="/tag/01EL" data-tag="01EL">20.10.3</a> above has homology presheaves </p>
+  <div class="equation">
+  \[  H_ i(K(\mathcal{U})_\bullet ) = \left\{  \begin{matrix}  0 
+
+&  \text{if} 
+
+&  i \not= 0 
+
+\\  \mathcal{O}_\mathcal {U} 
+
+&  \text{if} 
+
+&  i = 0 
+
+\end{matrix} \right.  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider the extended complex $K^{ext}_\bullet $ one gets by putting $\mathcal{O}_\mathcal {U}$ in degree $-1$ with the obvious map $K(\mathcal{U})_0 = \bigoplus _{i_0} (j_{i_0})_{p!}\mathcal{O}_{U_{i_0}} \to \mathcal{O}_\mathcal {U}$. It suffices to show that taking sections of this extended complex over any open $W \subset X$ leads to an acyclic complex. In fact, we claim that for every $W \subset X$ the complex $K^{ext}_\bullet (W)$ is homotopy equivalent to the zero complex. Write $I = I_1 \amalg I_2$ where $W \subset U_ i$ if and only if $i \in I_1$. 
+    <p>
+      If $I_1 = \emptyset $, then the complex $K^{ext}_\bullet (W) = 0$ so there is nothing to prove. 
+    <p>
+      If $I_1 \not= \emptyset $, then $\mathcal{O}_\mathcal {U}(W) = \mathcal{O}_ X(W)$ and 
+    <p>
+      <div class="equation">
+  \[  K^{ext}_ p(W) = \bigoplus \nolimits _{i_0 \ldots i_ p \in I_1} \mathcal{O}_ X(W).  \]
+</div>
+    <p>
+       This is true because of the simple description of the presheaves $(j_{i_0 \ldots i_ p})_{p!}\mathcal{O}_{U_{i_0 \ldots i_ p}}$. Moreover, the differential of the complex $K^{ext}_\bullet (W)$ is given by 
+    <p>
+      <div class="equation">
+  \[  d(s)_{i_0 \ldots i_ p} = \sum \nolimits _{j = 0, \ldots , p + 1} \sum \nolimits _{i \in I_1} (-1)^ j s_{i_0 \ldots i_{j - 1} i i_ j \ldots i_ p}.  \]
+</div>
+    <p>
+       The sum is finite as the element $s$ has finite support. Fix an element $i_{\text{fix}} \in I_1$. Define a map 
+    <p>
+      <div class="equation">
+  \[  h : K^{ext}_ p(W) \longrightarrow K^{ext}_{p + 1}(W)  \]
+</div>
+    <p>
+       by the rule 
+    <p>
+      <div class="equation">
+  \[  h(s)_{i_0 \ldots i_{p + 1}} = \left\{  \begin{matrix}  0 
+
+&  \text{if} 
+
+&  i_0 \not= i_{\text{fix}} 
+
+\\  s_{i_1 \ldots i_{p + 1}} 
+
+&  \text{if} 
+
+&  i_0 = i_{\text{fix}} 
+
+\end{matrix} \right.  \]
+</div>
+    <p>
+       We will use the shorthand $h(s)_{i_0 \ldots i_{p + 1}} = (i_0 = i_{\text{fix}}) s_{i_1 \ldots i_ p}$ for this. Then we compute 
+    <p>
+      <div class="equation">
+  \begin{eqnarray*} & &  (dh + hd)(s)_{i_0 \ldots i_ p} \\ &  = &  \sum _ j \sum _{i \in I_1} (-1)^ j h(s)_{i_0 \ldots i_{j - 1} i i_ j \ldots i_ p} + (i = i_0) d(s)_{i_1 \ldots i_ p} \\ &  = &  s_{i_0 \ldots i_ p} + \sum _{j \geq 1}\sum _{i \in I_1} (-1)^ j (i_0 = i_{\text{fix}}) s_{i_1 \ldots i_{j - 1} i i_ j \ldots i_ p} + (i_0 = i_{\text{fix}}) d(s)_{i_1 \ldots i_ p} \end{eqnarray*}
+</div>
+    <p>
+       which is equal to $s_{i_0 \ldots i_ p}$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01EN">
+  <p><a class="environment-identifier" href="/tag/01EN">Lemma <span data-tag="01EN">20.10.5</span>.</a> Let $X$ be a ringed space. Let $\mathcal{U} : U = \bigcup _{i \in I} U_ i$ be an open covering of $U \subset X$. The Čech cohomology functors $\check{H}^ p(\mathcal{U}, -)$ are canonically isomorphic as a $\delta $-functor to the right derived functors of the functor </p>
+  <div class="equation">
+  \[  \check{H}^0(\mathcal{U}, -) : \textit{PMod}(\mathcal{O}_ X) \longrightarrow \text{Mod}_{\mathcal{O}_ X(U)}.  \]
+</div>
+  <p> Moreover, there is a functorial quasi-isomorphism </p>
+  <div class="equation">
+  \[  \check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{F}) \longrightarrow R\check{H}^0(\mathcal{U}, \mathcal{F})  \]
+</div>
+  <p> where the right hand side indicates the right derived functor </p>
+  <div class="equation">
+  \[  R\check{H}^0(\mathcal{U}, -) : D^{+}(\textit{PMod}(\mathcal{O}_ X)) \longrightarrow D^{+}(\mathcal{O}_ X(U))  \]
+</div>
+  <p> of the left exact functor $\check{H}^0(\mathcal{U}, -)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Note that the category of presheaves of $\mathcal{O}_ X$-modules has enough injectives, see Injectives, Proposition <a href="/tag/01DV" data-tag="01DV">19.8.5</a>. Note that $\check{H}^0(\mathcal{U}, -)$ is a left exact functor from the category of presheaves of $\mathcal{O}_ X$-modules to the category of $\mathcal{O}_ X(U)$-modules. Hence the derived functor and the right derived functor exist, see Derived Categories, Section <a href="/tag/0156" data-tag="0156">13.20</a>. 
+    <p>
+      Let $\mathcal{I}$ be an injective presheaf of $\mathcal{O}_ X$-modules. In this case the functor $\mathop{\mathrm{Hom}}\nolimits _{\mathcal{O}_ X}(-, \mathcal{I})$ is exact on $\textit{PMod}(\mathcal{O}_ X)$. By Lemma <a href="/tag/01EL" data-tag="01EL">20.10.3</a> we have 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _{\mathcal{O}_ X}(K(\mathcal{U})_\bullet , \mathcal{I}) = \check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{I}).  \]
+</div>
+    <p>
+       By Lemma <a href="/tag/01EM" data-tag="01EM">20.10.4</a> we have that $K(\mathcal{U})_\bullet $ is quasi-isomorphic to $\mathcal{O}_\mathcal {U}[0]$. Hence by the exactness of Hom into $\mathcal{I}$ mentioned above we see that $\check{H}^ i(\mathcal{U}, \mathcal{I}) = 0$ for all $i > 0$. Thus the $\delta $-functor $(\check{H}^ n, \delta )$ (see Lemma <a href="/tag/01EK" data-tag="01EK">20.10.2</a>) satisfies the assumptions of Homology, Lemma <a href="/tag/010T" data-tag="010T">12.12.4</a>, and hence is a universal $\delta $-functor. 
+    <p>
+      By Derived Categories, Lemma <a href="/tag/015B" data-tag="015B">13.20.4</a> also the sequence $R^ i\check{H}^0(\mathcal{U}, -)$ forms a universal $\delta $-functor. By the uniqueness of universal $\delta $-functors, see Homology, Lemma <a href="/tag/010U" data-tag="010U">12.12.5</a> we conclude that $R^ i\check{H}^0(\mathcal{U}, -) = \check{H}^ i(\mathcal{U}, -)$. This is enough for most applications and the reader is suggested to skip the rest of the proof. 
+    <p>
+      Let $\mathcal{F}$ be any presheaf of $\mathcal{O}_ X$-modules. Choose an injective resolution $\mathcal{F} \to \mathcal{I}^\bullet $ in the category $\textit{PMod}(\mathcal{O}_ X)$. Consider the double complex $\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{I}^\bullet )$ with terms $\check{\mathcal{C}}^ p(\mathcal{U}, \mathcal{I}^ q)$. Consider the associated total complex $\text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{I}^\bullet ))$, see Homology, Definition <a href="/tag/012Z" data-tag="012Z">12.18.3</a>. There is a map of complexes 
+    <p>
+      <div class="equation">
+  \[  \check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{F}) \longrightarrow \text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{I}^\bullet ))  \]
+</div>
+    <p>
+       coming from the maps $\check{\mathcal{C}}^ p(\mathcal{U}, \mathcal{F}) \to \check{\mathcal{C}}^ p(\mathcal{U}, \mathcal{I}^0)$ and there is a map of complexes 
+    <p>
+      <div class="equation">
+  \[  \check{H}^0(\mathcal{U}, \mathcal{I}^\bullet ) \longrightarrow \text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{I}^\bullet ))  \]
+</div>
+    <p>
+       coming from the maps $\check{H}^0(\mathcal{U}, \mathcal{I}^ q) \to \check{\mathcal{C}}^0(\mathcal{U}, \mathcal{I}^ q)$. Both of these maps are quasi-isomorphisms by an application of Homology, Lemma <a href="/tag/0133" data-tag="0133">12.25.4</a>. Namely, the columns of the double complex are exact in positive degrees because the Čech complex as a functor is exact (Lemma <a href="/tag/01EJ" data-tag="01EJ">20.10.1</a>) and the rows of the double complex are exact in positive degrees since as we just saw the higher Čech cohomology groups of the injective presheaves $\mathcal{I}^ q$ are zero. Since quasi-isomorphisms become invertible in $D^{+}(\mathcal{O}_ X(U))$ this gives the last displayed morphism of the lemma. We omit the verification that this morphism is functorial. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

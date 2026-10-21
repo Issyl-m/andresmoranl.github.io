@@ -1,0 +1,233 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-morphisms-section-pushouts" class="tex-section"><span data-tag="07RS">37.14</span> Pushouts in the category of schemes, I</h2>
+
+<p>
+In this section we construct pushouts of $Y \leftarrow X \rightarrow X'$ where $X \to Y$ is affine and $X \to X'$ is a thickening. This will actually be an important case for us, hence a detailed discussion is merited. In Section <a href="/tag/0ECH" data-tag="0ECH">37.67</a> we discuss a more interesting and more difficult case. See Categories, Section <a href="/tag/0025" data-tag="0025">4.9</a> for a general discussion of pushouts in any category. 
+</p>
+<p>
+<article class="env-lemma" id="0ET0">
+  <p><a class="environment-identifier" href="/tag/0ET0">Lemma <span data-tag="0ET0">37.14.1</span>.</a> Let $A' \to A$ be a surjection of rings and let $B \to A$ be a ring map. Let $B' = B \times _ A A'$ be the fibre product of rings. Set $S = \mathop{\mathrm{Spec}}(A)$, $S' = \mathop{\mathrm{Spec}}(A')$, $T = \mathop{\mathrm{Spec}}(B)$, and $T' = \mathop{\mathrm{Spec}}(B')$. Then </p>
+  <div class="equation">
+  \[  \vcenter { \xymatrix{ S \ar[r]_ i \ar[d]_ f &  S' \ar[d]^{f'} \\  T \ar[r]^{i'} &  T' } } \quad \text{corresponding to}\quad \vcenter { \xymatrix{ A &  A' \ar[l] \\  B \ar[u] &  B' \ar[l] \ar[u] } }  \]
+</div>
+  <p> is a pushout of schemes. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By More on Algebra, Lemma <a href="/tag/0B7J" data-tag="0B7J">15.6.2</a> we have $T' = T \amalg _ S S'$ as topological spaces, i.e., the diagram is a pushout in the category of topological spaces. Next, consider the map 
+    <p>
+      <div class="equation">
+  \[  ((i')^\sharp , (f')^\sharp ) : \mathcal{O}_{T'} \longrightarrow i'_*\mathcal{O}_ T \times _{g_*\mathcal{O}_ S} f'_*\mathcal{O}_{S'}  \]
+</div>
+    <p>
+       where $g = i' \circ f = f' \circ i$. We claim this map is an isomorphism of sheaves of rings. Namely, we can view both sides as quasi-coherent $\mathcal{O}_{T'}$-modules (use Schemes, Lemmas <a href="/tag/01LC" data-tag="01LC">26.24.1</a> for the right hand side) and the map is $\mathcal{O}_{T'}$-linear. Thus it suffices to show the map is an isomorphism on the level of global sections (Schemes, Lemma <a href="/tag/01IB" data-tag="01IB">26.7.5</a>). On global sections we recover the identification $B' \to B \times _ A A'$ from statement of the lemma (this is how we chose $B'$). 
+    <p>
+      Let $X$ be a scheme. Suppose we are given morphisms of schemes $m' : S' \to X$ and $n : T \to X$ such that $m' \circ i = n \circ f$ (call this $m$). We get a unique map of topological spaces $n' : T' \to X$ compatible with $m'$ and $n$ as $T' = T \amalg _ S S'$ (see above). By the description of $\mathcal{O}_{T'}$ in the previous paragraph we obtain a unique homomorphism of sheaves of rings 
+    <p>
+      <div class="equation">
+  \[  (n')^\sharp : \mathcal{O}_ X \longrightarrow (n')_*\mathcal{O}_{T'} = m'_*\mathcal{O}_ T \times _{m_*\mathcal{O}_ T} n_*\mathcal{O}_ S  \]
+</div>
+    <p>
+       given by $(m')^\sharp $ and $n^\sharp $. Thus $(n', (n')^\sharp )$ is the unique morphism of ringed spaces $T' \to X$ compatible with $m'$ and $n$. To finish the proof it suffices to show that $n'$ is a morphism of schemes, i.e., a morphism of locally ringed spaces. 
+    <p>
+      Let $t' \in T'$ with image $x \in X$. We have to show that $\mathcal{O}_{X, x} \to \mathcal{O}_{T', t'}$ is local. If $t' \not\in T$, then $t'$ is the image of a unique point $s' \in S'$ and $\mathcal{O}_{T', t'} = \mathcal{O}_{S', s'}$. Namely, $S' \setminus S \to T' \setminus T$ is an isomorphism of schemes as $B' \to A'$ induces an isomorphism $\mathop{\mathrm{Ker}}(B' \to B) = \mathop{\mathrm{Ker}}(A' \to A)$. If $t'$ is the image of $t \in T$, then we know that the composition $\mathcal{O}_{X, x} \to \mathcal{O}_{T', t'} \to \mathcal{O}_{T, t}$ is local and we conclude also. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BMP">
+  <p><a class="environment-identifier" href="/tag/0BMP">Lemma <span data-tag="0BMP">37.14.2</span>.</a> Let $\mathcal{I} \to (\mathit{Sch}/S)_{fppf}$, $i \mapsto X_ i$ be a diagram of schemes. Let $(W, X_ i \to W)$ be a cocone for the diagram in the category of schemes (Categories, Remark <a href="/tag/0G2U" data-tag="0G2U">4.14.5</a>). If there exists a fpqc covering $\{ W_ a \to W\} _{a \in A}$ of schemes such that </p>
+  <p><ol>
+  <li><p>
+for all $a \in A$ we have $W_ a = \mathop{\mathrm{colim}}\nolimits X_ i \times _ W W_ a$ in the category of schemes, and 
+</p>
+</li><li><p>
+for all $a, b \in A$ we have $W_ a \times _ W W_ b = \mathop{\mathrm{colim}}\nolimits X_ i \times _ W W_ a \times _ W W_ b$ in the category of schemes, 
+</p>
+</li>
+</ol></p>
+  <p> then $W = \mathop{\mathrm{colim}}\nolimits X_ i$ in the category of schemes. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Namely, for a scheme $T$ a morphism $W \to T$ is the same thing as collection of morphism $W_ a \to T$, $a \in A$ which agree on the overlaps $W_ a \times _ W W_ b$, see Descent, Lemma <a href="/tag/023Q" data-tag="023Q">35.13.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="07RT">
+  <p><a class="environment-identifier" href="/tag/07RT">Lemma <span data-tag="07RT">37.14.3</span>.</a> Let $X \to X'$ be a thickening of schemes and let $X \to Y$ be an affine morphism of schemes. Then there exists a pushout </p>
+  <div class="equation">
+  \[  \xymatrix{ X \ar[r] \ar[d]_ f &  X' \ar[d]^{f'} \\  Y \ar[r] &  Y' }  \]
+</div>
+  <p> in the category of schemes. Moreover, $Y \subset Y'$ is a thickening, $X = Y \times _{Y'} X'$, and </p>
+  <div class="equation">
+  \[  \mathcal{O}_{Y'} = \mathcal{O}_ Y \times _{f_*\mathcal{O}_ X} f'_*\mathcal{O}_{X'}  \]
+</div>
+  <p> as sheaves on $|Y| = |Y'|$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We first construct $Y'$ as a ringed space. Namely, as topological space we take $Y' = Y$. Denote $f' : X' \to Y'$ the map of topological spaces which equals $f$. As structure sheaf $\mathcal{O}_{Y'}$ we take the right hand side of the equation of the lemma. To see that $Y'$ is a scheme, we have to show that any point has an affine neighbourhood. Since the formation of the fibre product of sheaves commutes with restricting to opens, we may assume $Y$ is affine. Then $X$ is affine (as $f$ is affine) and $X'$ is affine as well (see Lemma <a href="/tag/06AD" data-tag="06AD">37.2.3</a>). Say $Y \leftarrow X \rightarrow X'$ corresponds to $B \rightarrow A \leftarrow A'$. Set $B' = B \times _ A A'$; this is the global sections of $\mathcal{O}_{Y'}$. As $A' \to A$ is surjective with locally nilpotent kernel we see that $B' \to B$ is surjective with locally nilpotent kernel. Hence $\mathop{\mathrm{Spec}}(B') = \mathop{\mathrm{Spec}}(B)$ (as topological spaces). We claim that $Y' = \mathop{\mathrm{Spec}}(B')$. To see this we will show for $g' \in B'$ with image $g \in B$ that $\mathcal{O}_{Y'}(D(g)) = B'_{g'}$. Namely, by More on Algebra, Lemma <a href="/tag/01Z8" data-tag="01Z8">15.5.3</a> we see that 
+    <p>
+      <div class="equation">
+  \[  (B')_{g'} = B_ g \times _{A_ h} A'_{h'}  \]
+</div>
+    <p>
+       where $h \in A$, $h' \in A'$ are the images of $g'$. Since $B_ g$, resp. $A_ h$, resp. $A'_{h'}$ is equal to $\mathcal{O}_ Y(D(g))$, resp. $f_*\mathcal{O}_ X(D(g))$, resp. $f'_*\mathcal{O}_{X'}(D(g))$ the claim follows. 
+    <p>
+      It remains to show that $Y'$ is the pushout. The discussion above shows the scheme $Y'$ has an affine open covering $Y' = \bigcup W'_ i$ such that the corresponding opens $U'_ i \subset X'$, $W_ i \subset Y$, and $U_ i \subset X$ are affine open. Moreover, if $A'_ i$, $B_ i$, $A_ i$ are the rings corresponding to $U'_ i$, $W_ i$, $U_ i$, then $W'_ i$ corresponds to $B_ i \times _{A_ i} A'_ i$. Thus we can apply Lemmas <a href="/tag/0ET0" data-tag="0ET0">37.14.1</a> and <a href="/tag/0BMP" data-tag="0BMP">37.14.2</a> to conclude our construction is a pushout in the category of schemes. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In the following lemma we use the fibre product of categories as defined in Categories, Example <a href="/tag/003R" data-tag="003R">4.31.3</a>. 
+</p>
+<p>
+<article class="env-lemma" id="07RV">
+  <p><a class="environment-identifier" href="/tag/07RV">Lemma <span data-tag="07RV">37.14.4</span>.</a> Let $X \to X'$ be a thickening of schemes and let $X \to Y$ be an affine morphism of schemes. Let $Y' = Y \amalg _ X X'$ be the pushout (see Lemma <a href="/tag/07RT" data-tag="07RT">37.14.3</a>). Base change gives a functor </p>
+  <div class="equation">
+  \[  F : (\mathit{Sch}/Y') \longrightarrow (\mathit{Sch}/Y) \times _{(\mathit{Sch}/X)} (\mathit{Sch}/X')  \]
+</div>
+  <p> given by $V' \longmapsto (V' \times _{Y'} Y, V' \times _{Y'} X', 1)$ which has a left adjoint </p>
+  <div class="equation">
+  \[  G : (\mathit{Sch}/Y) \times _{(\mathit{Sch}/X)} (\mathit{Sch}/X') \longrightarrow (\mathit{Sch}/Y')  \]
+</div>
+  <p> which sends the triple $(V, U', \varphi )$ to the pushout $V \amalg _{(V \times _ Y X)} U'$. Finally, $F \circ G$ is isomorphic to the identity functor. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $(V, U', \varphi )$ be an object of the fibre product category. Set $U = U' \times _{X'} X$. Note that $U \to U'$ is a thickening. Since $\varphi : V \times _ Y X \to U' \times _{X'} X = U$ is an isomorphism we have a morphism $U \to V$ over $X \to Y$ which identifies $U$ with the fibre product $X \times _ Y V$. In particular $U \to V$ is affine, see Morphisms, Lemma <a href="/tag/01SD" data-tag="01SD">29.11.9</a>. Hence we can apply Lemma <a href="/tag/07RT" data-tag="07RT">37.14.3</a> to get a pushout $V' = V \amalg _ U U'$. Denote $V' \to Y'$ the morphism we obtain in virtue of the fact that $V'$ is a pushout and because we are given morphisms $V \to Y$ and $U' \to X'$ agreeing on $U$ as morphisms into $Y'$. Setting $G(V, U', \varphi ) = V'$ gives the functor $G$. 
+    <p>
+      Let us prove that $G$ is a left adjoint to $F$. Let $Z$ be a scheme over $Y'$. We have to show that 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits (V', Z) = \mathop{\mathrm{Mor}}\nolimits ((V, U', \varphi ), F(Z))  \]
+</div>
+    <p>
+       where the morphism sets are taking in their respective categories. Let $g' : V' \to Z$ be a morphism. Denote $\tilde g$, resp. $\tilde f'$ the composition of $g'$ with the morphism $V \to V'$, resp. $U' \to V'$. Base change $\tilde g$, resp. $\tilde f'$ by $Y \to Y'$, resp. $X' \to Y'$ to get a morphism $g : V \to Z \times _{Y'} Y$, resp. $f' : U' \to Z \times _{Y'} X'$. Then $(g, f')$ is an element of the right hand side of the equation above (details omitted). Conversely, suppose that $(g, f') : (V, U', \varphi ) \to F(Z)$ is an element of the right hand side. We may consider the composition $\tilde g : V \to Z$, resp. $\tilde f' : U' \to Z$ of $g$, resp. $f$ by $Z \times _{Y'} X' \to Z$, resp. $Z \times _{Y'} Y \to Z$. Then $\tilde g$ and $\tilde f'$ agree as morphism from $U$ to $Z$. By the universal property of pushout, we obtain a morphism $g' : V' \to Z$, i.e., an element of the left hand side. We omit the verification that these constructions are mutually inverse. 
+    <p>
+      To prove that $F \circ G$ is isomorphic to the identity we have to show that the adjunction mapping $(V, U', \varphi ) \to F(G(V, U', \varphi ))$ is an isomorphism. To do this we may work affine locally. Say $X = \mathop{\mathrm{Spec}}(A)$, $X' = \mathop{\mathrm{Spec}}(A')$, and $Y = \mathop{\mathrm{Spec}}(B)$. Then $A' \to A$ and $B \to A$ are ring maps as in More on Algebra, Lemma <a href="/tag/07RU" data-tag="07RU">15.6.4</a> and $Y' = \mathop{\mathrm{Spec}}(B')$ with $B' = B \times _ A A'$. Next, suppose that $V = \mathop{\mathrm{Spec}}(D)$, $U' = \mathop{\mathrm{Spec}}(C')$ and $\varphi $ is given by an $A$-algebra isomorphism $D \otimes _ B A \to C' \otimes _{A'} A = C'/IC'$. Set $D' = D \times _{C'/IC'} C'$. In this case the statement we have to prove is that $D' \otimes _{B'} B \cong D$ and $D' \otimes _{B'} A' \cong C'$. This is a special case of More on Algebra, Lemma <a href="/tag/07RU" data-tag="07RU">15.6.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08KU">
+  <p><a class="environment-identifier" href="/tag/08KU">Lemma <span data-tag="08KU">37.14.5</span>.</a> Let $X \to X'$ be a thickening of schemes and let $X \to Y$ be an affine morphism of schemes. Let $Y' = Y \amalg _ X X'$ be the pushout (see Lemma <a href="/tag/07RT" data-tag="07RT">37.14.3</a>). Let $V' \to Y'$ be a morphism of schemes. Set $V = Y \times _{Y'} V'$, $U' = X' \times _{Y'} V'$, and $U = X \times _{Y'} V'$. There is an equivalence of categories between </p>
+  <p><ol>
+  <li><p>
+quasi-coherent $\mathcal{O}_{V'}$-modules flat over $Y'$, and 
+</p>
+</li><li><p>
+the category of triples $(\mathcal{G}, \mathcal{F}', \varphi )$ where 
+</p>
+<ol>
+  <li><p>
+$\mathcal{G}$ is a quasi-coherent $\mathcal{O}_ V$-module flat over $Y$, 
+</p>
+</li><li><p>
+$\mathcal{F}'$ is a quasi-coherent $\mathcal{O}_{U'}$-module flat over $X'$, and 
+</p>
+</li><li><p>
+$\varphi : (U \to V)^*\mathcal{G} \to (U \to U')^*\mathcal{F}'$ is an isomorphism of $\mathcal{O}_ U$-modules. 
+</p>
+</li>
+</ol>
+</li>
+</ol></p>
+  <p> The equivalence maps $\mathcal{G}'$ to $((V \to V')^*\mathcal{G}', (U' \to V')^*\mathcal{G}', can)$. Suppose $\mathcal{G}'$ corresponds to the triple $(\mathcal{G}, \mathcal{F}', \varphi )$. Then </p>
+  <p><ol>
+  <li class="custom-item" data-marker="(a)"><p>
+$\mathcal{G}'$ is a finite type $\mathcal{O}_{V'}$-module if and only if $\mathcal{G}$ and $\mathcal{F}'$ are finite type $\mathcal{O}_ Y$ and $\mathcal{O}_{U'}$-modules. 
+</p>
+</li><li class="custom-item" data-marker="(b)"><p>
+if $V' \to Y'$ is locally of finite presentation, then $\mathcal{G}'$ is an $\mathcal{O}_{V'}$-module of finite presentation if and only if $\mathcal{G}$ and $\mathcal{F}'$ are $\mathcal{O}_ Y$ and $\mathcal{O}_{U'}$-modules of finite presentation. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      A quasi-inverse functor assigns to the triple $(\mathcal{G}, \mathcal{F}', \varphi )$ the fibre product 
+    <p>
+      <div class="equation">
+  \[  (V \to V')_*\mathcal{G} \times _{(U \to V')_*\mathcal{F}} (U' \to V')_*\mathcal{F}'  \]
+</div>
+    <p>
+       where $\mathcal{F} = (U \to U')^*\mathcal{F}'$. This works, because on affines we recover the equivalence of More on Algebra, Lemma <a href="/tag/07RW" data-tag="07RW">15.7.5</a>. Some details omitted. 
+    <p>
+      Parts (a) and (b) follow from More on Algebra, Lemmas <a href="/tag/08IH" data-tag="08IH">15.7.4</a> and <a href="/tag/08KP" data-tag="08KP">15.7.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="07RX">
+  <p><a class="environment-identifier" href="/tag/07RX">Lemma <span data-tag="07RX">37.14.6</span>.</a> In the situation of Lemma <a href="/tag/07RV" data-tag="07RV">37.14.4</a>. If $V' = G(V, U', \varphi )$ for some triple $(V, U', \varphi )$, then </p>
+  <p><ol>
+  <li><p>
+$V' \to Y'$ is locally of finite type if and only if $V \to Y$ and $U' \to X'$ are locally of finite type, 
+</p>
+</li><li><p>
+$V' \to Y'$ is flat if and only if $V \to Y$ and $U' \to X'$ are flat, 
+</p>
+</li><li><p>
+$V' \to Y'$ is flat and locally of finite presentation if and only if $V \to Y$ and $U' \to X'$ are flat and locally of finite presentation, 
+</p>
+</li><li><p>
+$V' \to Y'$ is smooth if and only if $V \to Y$ and $U' \to X'$ are smooth, 
+</p>
+</li><li><p>
+$V' \to Y'$ is étale if and only if $V \to Y$ and $U' \to X'$ are étale, and 
+</p>
+</li><li><p>
+add more here as needed. 
+</p>
+</li>
+</ol></p>
+  <p> If $W'$ is flat over $Y'$, then the adjunction mapping $G(F(W')) \to W'$ is an isomorphism. Hence $F$ and $G$ define mutually quasi-inverse functors between the category of schemes flat over $Y'$ and the category of triples $(V, U', \varphi )$ with $V \to Y$ and $U' \to X'$ flat. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Looking over affine pieces the assertions of this lemma are equivalent to the corresponding assertions of More on Algebra, Lemma <a href="/tag/08KQ" data-tag="08KQ">15.7.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

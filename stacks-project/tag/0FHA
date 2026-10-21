@@ -1,0 +1,535 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="weil-section-axioms" class="tex-section"><span data-tag="0FHA">45.9</span> Weil cohomology theories, I</h2>
+
+<p>
+This section is the analogue of Section <a href="/tag/0FGS" data-tag="0FGS">45.7</a> over arbitrary fields. In other words, we work out what data and axioms correspond to functors $G$ of symmetric monoidal categories from the category of motives to the category of graded vector spaces such that $G(\mathbf{1}(1))$ sits in degree $-2$. In Section <a href="/tag/0FHY" data-tag="0FHY">45.11</a> we will define a Weil cohomology theory by adding a single supplementary condition. 
+</p>
+<p>
+We fix a field $k$ (the base field). We fix a field $F$ of characteristic $0$ (the coefficient field). The data is given by: 
+</p>
+<ol>
+  <li class="custom-item" data-marker="(D0)"><p>
+A $1$-dimensional $F$-vector space $F(1)$. 
+</p>
+</li><li class="custom-item" data-marker="(D1)"><p>
+A contravariant functor $H^*$ from the category of smooth projective schemes over $k$ to the category of graded commutative $F$-algebras. 
+</p>
+</li><li class="custom-item" data-marker="(D2)"><p>
+For every smooth projective scheme $X$ over $k$ a group homomorphism $\gamma : \mathop{\mathrm{CH}}\nolimits ^ i(X) \to H^{2i}(X)(i)$. 
+</p>
+</li><li class="custom-item" data-marker="(D3)"><p>
+For every nonempty smooth projective scheme $X$ over $k$ which is equidimensional of dimension $d$ a map $\int _ X : H^{2d}(X)(d) \to F$. 
+</p>
+</li>
+</ol>
+<p>
+ We make some remarks to explain what this means and to introduce some terminology associated with this. 
+</p>
+<p>
+Remarks on (D0). The vector space $F(1)$ gives rise to <em>Tate twists</em> on the category of $F$-vector spaces. Namely, for $n \in \mathbf{Z}$ we set $F(n) = F(1)^{\otimes n}$ if $n \geq 0$, we set $F(-1) = \mathop{\mathrm{Hom}}\nolimits _ F(F(1), F)$, and we set $F(n) = F(-1)^{\otimes - n}$ if $n < 0$. Please compare with More on Algebra, Section <a href="/tag/0AFW" data-tag="0AFW">15.119</a>. For an $F$-vector space $V$ we define the <em>$n$th Tate twist</em> 
+</p>
+<div class="equation">
+  \[  V(n) = V \otimes _ F F(n)  \]
+</div>
+<p>
+ We will use obvious notation, e.g., given $F$-vector spaces $U$, $V$ and $W$ and a linear map $U \otimes _ F V \to W$ we obtain a linear map $U(n) \otimes _ F V(m) \to W(n + m)$ for $n, m \in \mathbf{Z}$. 
+</p>
+<p>
+Remarks on (D1). Given a smooth projective scheme $X$ over $k$ we say that $H^*(X)$ is the <em>cohomology</em> of $X$. Given a morphism $f : X \to Y$ of smooth projective schemes over $k$ we denote $f^* : H^*(Y) \to H^*(X)$ the map $H^*(f)$ and we call it the <em>pullback map</em>. 
+</p>
+<p>
+Remarks on (D2). The map $\gamma $ is called the <em>cycle class map</em>. We say that $\gamma (\alpha )$ is the <em>cohomology class</em> of $\alpha $. If $Z \subset Y \subset X$ are closed subschemes with $Y$ and $X$ smooth projective over $k$ and $Z$ integral, then $[Z]$ could mean the class of the cycle $[Z]$ in $\mathop{\mathrm{CH}}\nolimits ^*(Y)$ or in $\mathop{\mathrm{CH}}\nolimits ^*(X)$. In this case the notation $\gamma ([Z])$ is ambiguous and the intended meaning has to be deduced from context. 
+</p>
+<p>
+Remarks on (D3). The map $\int _ X$ is sometimes called the <em>trace map</em> and is sometimes denoted $\text{Tr}_ X$. 
+</p>
+<p>
+The first axiom is often called <em>Poincaré duality</em> 
+</p>
+<ol>
+  <li class="custom-item" data-marker="(A)"><p>
+Let $X$ be a nonempty smooth projective scheme over $k$ which is equidimensional of dimension $d$. Then 
+</p>
+<ol>
+  <li><p>
+$\dim _ F H^ i(X) < \infty $ for all $i$, 
+</p>
+</li><li><p>
+$H^ i(X) \times H^{2d - i}(X)(d) \rightarrow H^{2d}(X)(d) \rightarrow F$ is a perfect pairing for all $i$ where the final map is the trace map $\int _ X$. 
+</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>
+ Let $f : X \to Y$ be a morphism of nonempty smooth projective schemes with $X$ equidimensional of dimension $d$ and $Y$ is equidimensional of dimension $e$. Using Poincaré duality we can define a <em>pushforward</em> 
+</p>
+<div class="equation">
+  \[  f_* : H^{2d - i}(X)(d) \longrightarrow H^{2e - i}(Y)(e)  \]
+</div>
+<p>
+ as the contragredient of the linear map $f^* : H^ i(Y) \to H^ i(X)$. In a formula, for $a \in H^{2d - i}(X)(d)$, the element $f_*a \in H^{2e - i}(Y)(e)$ is characterized by 
+</p>
+<div class="equation">
+  \[  \int _ X f^*b \cup a = \int _ Y b \cup f_*a  \]
+</div>
+<p>
+ for all $b \in H^ i(Y)$. 
+</p>
+<p>
+<article class="env-lemma" id="0FHB">
+  <p><a class="environment-identifier" href="/tag/0FHB">Lemma <span data-tag="0FHB">45.9.1</span>.</a> Assume given (D0), (D1), and (D3) satisfying (A). For $f : X \to Y$ a morphism of nonempty equidimensional smooth projective schemes over $k$ we have $f_*(f^*b \cup a) = b \cup f_*a$. If $g : Y \to Z$ is a second morphism with $Z$ nonempty smooth projective and equidimensional, then $g_* \circ f_* = (g \circ f)_*$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The first equality holds because 
+    <p>
+      <div class="equation">
+  \[  \int _ Y c \cup b \cup f_*a = \int _ X f^*c \cup f^*b \cup a = \int _ Y c \cup f_*(f^*b \cup a).  \]
+</div>
+    <p>
+       The second equality holds because 
+    <p>
+      <div class="equation">
+  \[  \int _ Z c \cup (g \circ f)_*a = \int _ X (g \circ f)^*c \cup a = \int _ X f^* g^* c \cup a = \int _ Y g^*c \cup f_*a = \int _ Z c \cup g_*f_*a  \]
+</div>
+    <p>
+       This ends the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The second axiom says that $H^*$ respects the monoidal structure given by products via the <em>Künneth formula</em> 
+</p>
+<ol>
+  <li class="custom-item" data-marker="(B)"><p>
+Let $X$ and $Y$ be smooth projective schemes over $k$. 
+</p>
+<ol>
+  <li><p>
+$H^*(X) \otimes _ F H^*(Y) \to H^*(X \times Y)$, $\alpha \otimes \beta \mapsto \text{pr}_1^*\alpha \cup \text{pr}_2^*\beta $ is an isomorphism, 
+</p>
+</li><li><p>
+if $X$ and $Y$ are nonempty and equidimensional, then $\int _{X \times Y} = \int _ X \otimes \int _ Y$ via (a). 
+</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>
+ Using axiom (B)(b) we can compute pushforwards along projections. 
+</p>
+<p>
+<article class="env-lemma" id="0FHC">
+  <p><a class="environment-identifier" href="/tag/0FHC">Lemma <span data-tag="0FHC">45.9.2</span>.</a> Assume given (D0), (D1), and (D3) satisfying (A) and (B). Let $X$ and $Y$ be nonempty smooth projective schemes over $k$ equidimensional of dimensions $d$ and $e$. Then $\text{pr}_{2, *} : H^*(X \times Y)(d + e) \to H^*(Y)(e)$ sends $a \otimes b$ to $(\int _ X a) b$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from axioms (B)(a) and (B)(b). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The third axiom concerns the cycle class maps 
+</p>
+<ol>
+  <li class="custom-item" data-marker="(C)"><p>
+The cycle class maps satisfy the following rules 
+</p>
+<ol>
+  <li><p>
+for a morphism $f : X \to Y$ of smooth projective schemes over $k$ we have $\gamma (f^!\beta ) = f^*\gamma (\beta )$ for $\beta \in \mathop{\mathrm{CH}}\nolimits ^*(Y)$, 
+</p>
+</li><li><p>
+for a morphism $f : X \to Y$ of nonempty equidimensional smooth projective schemes over $k$ we have $\gamma (f_*\alpha ) = f_*\gamma (\alpha )$ for $\alpha \in \mathop{\mathrm{CH}}\nolimits ^*(X)$, 
+</p>
+</li><li><p>
+for any smooth projective scheme $X$ over $k$ we have $\gamma (\alpha \cdot \beta ) = \gamma (\alpha ) \cup \gamma (\beta )$ for $\alpha , \beta \in \mathop{\mathrm{CH}}\nolimits ^*(X)$, and 
+</p>
+</li><li><p>
+$\int _{\mathop{\mathrm{Spec}}(k)} \gamma ([\mathop{\mathrm{Spec}}(k)]) = 1$. 
+</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>
+ Let us elucidate axiom (C)(b). Namely, say $f : X \to Y$ is as in (C)(b) with $\dim (X) = d$ and $\dim (Y) = e$. Then we see that pushforward on Chow groups gives 
+</p>
+<div class="equation">
+  \[  f_* : \mathop{\mathrm{CH}}\nolimits ^{d - i}(X) = \mathop{\mathrm{CH}}\nolimits _ i(X) \to \mathop{\mathrm{CH}}\nolimits _ i(Y) = \mathop{\mathrm{CH}}\nolimits ^{e - i}(Y)  \]
+</div>
+<p>
+ Say $\alpha \in \mathop{\mathrm{CH}}\nolimits ^{d - i}(X)$. On the one hand, we have $f_*\alpha \in \mathop{\mathrm{CH}}\nolimits ^{e - i}(Y)$ and hence $\gamma (f_*\alpha ) \in H^{2e - 2i}(Y)(e - i)$. On the other hand, we have $\gamma (\alpha ) \in H^{2d - 2i}(X)(d - i)$ and hence $f_*\gamma (\alpha ) \in H^{2e - 2i}(Y)(e - i)$ as well. Thus the condition $\gamma (f_*\alpha ) = f_*\gamma (\alpha )$ makes sense. 
+</p>
+<p>
+<article class="env-remark" id="0FHD">
+  <p><a class="environment-identifier" href="/tag/0FHD">Remark <span data-tag="0FHD">45.9.3</span>.</a> Assume given (D0), (D1), (D2), and (D3) satisfying (A), (B), and (C)(a). Let $X$ be a smooth projective scheme over $k$. We obtain maps </p>
+  <div class="equation">
+  \[  H^*(X) \otimes _ F H^*(X) \longrightarrow H^*(X \times X) \xrightarrow {\Delta ^*} H^*(X)  \]
+</div>
+  <p> where the first arrow is as in axiom (B) and $\Delta ^*$ is pullback along the diagonal morphism $\Delta : X \to X \times X$. The composition is the cup product as pullback is an algebra homomorphism and $\text{pr}_ i \circ \Delta = \text{id}$. On the other hand, given cycles $\alpha , \beta $ on $X$ the intersection product is defined by the formula </p>
+  <div class="equation">
+  \[  \alpha \cdot \beta = \Delta ^!(\alpha \times \beta )  \]
+</div>
+  <p> In other words, $\alpha \cdot \beta $ is the pullback of the exterior product $\alpha \times \beta $ on $X \times X$ by the diagonal. Note also that $\alpha \times \beta = \text{pr}_1^*\alpha \cdot \text{pr}_2^*\beta $ in $\mathop{\mathrm{CH}}\nolimits ^*(X \times X)$ (we omit the proof). Hence, given axiom (C)(a), axiom (C)(c) is equivalent to the statement that $\gamma $ is compatible with exterior product in the sense that $\gamma (\alpha \times \beta )$ is equal to $\text{pr}_1^*\gamma (\alpha ) \cup \text{pr}_2^*\gamma (\beta )$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0FHE">
+  <p><a class="environment-identifier" href="/tag/0FHE">Lemma <span data-tag="0FHE">45.9.4</span>.</a> Assume given (D0), (D1), (D2), and (D3) satisfying (A), (B), and (C). Then $H^ i(\mathop{\mathrm{Spec}}(k)) = 0$ for $i \not= 0$ and there is a unique $F$-algebra isomorphism $F = H^0(\mathop{\mathrm{Spec}}(k))$. We have $\gamma ([\mathop{\mathrm{Spec}}(k)]) = 1$ and $\int _{\mathop{\mathrm{Spec}}(k)} 1 = 1$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By axiom (C)(d) we see that $H^0(\mathop{\mathrm{Spec}}(k))$ is nonzero and even $\gamma ([\mathop{\mathrm{Spec}}(k)])$ is nonzero. Since $\mathop{\mathrm{Spec}}(k) \times \mathop{\mathrm{Spec}}(k) = \mathop{\mathrm{Spec}}(k)$ we get 
+    <p>
+      <div class="equation">
+  \[  H^*(\mathop{\mathrm{Spec}}(k)) \otimes _ F H^*(\mathop{\mathrm{Spec}}(k)) = H^*(\mathop{\mathrm{Spec}}(k))  \]
+</div>
+    <p>
+       by axiom (B)(a) which implies (look at dimensions) that only $H^0$ is nonzero and moreover has dimension $1$. Thus $F = H^0(\mathop{\mathrm{Spec}}(k))$ via the unique $F$-algebra isomorphism given by mapping $1 \in F$ to $1 \in H^0(\mathop{\mathrm{Spec}}(k))$. Since $[\mathop{\mathrm{Spec}}(k)] \cdot [\mathop{\mathrm{Spec}}(k)] = [\mathop{\mathrm{Spec}}(k)]$ in the Chow ring of $\mathop{\mathrm{Spec}}(k)$ we conclude that $\gamma ([\mathop{\mathrm{Spec}}(k)) \cup \gamma ([\mathop{\mathrm{Spec}}(k)]) = \gamma ([\mathop{\mathrm{Spec}}(k)])$ by axiom (C)(c). Since we already know that $\gamma ([\mathop{\mathrm{Spec}}(k)])$ is nonzero we conclude that it has to be equal to $1$. Finally, we have $\int _{\mathop{\mathrm{Spec}}(k)} 1 = 1$ since $\int _{\mathop{\mathrm{Spec}}(k)} \gamma ([\mathop{\mathrm{Spec}}(k)]) = 1$ by axiom (C)(d). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FHF">
+  <p><a class="environment-identifier" href="/tag/0FHF">Lemma <span data-tag="0FHF">45.9.5</span>.</a> Assume given (D0), (D1), (D2), and (D3) satisfying (A), (B), and (C). Let $X$ be a smooth projective scheme over $k$. If $X = \emptyset $, then $H^*(X) = 0$. If $X$ is nonempty, then $\gamma ([X]) = 1$ and $1 \not= 0$ in $H^0(X)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      First assume $X$ is nonempty. Observe that $[X]$ is the pullback of $[\mathop{\mathrm{Spec}}(k)]$ by the structure morphism $p : X \to \mathop{\mathrm{Spec}}(k)$. Hence we get $\gamma ([X]) = 1$ by axiom (C)(a) and Lemma <a href="/tag/0FHE" data-tag="0FHE">45.9.4</a>. Let $X' \subset X$ be an irreducible component. By functoriality it suffices to show $1 \not= 0$ in $H^0(X')$. Thus we may and do assume $X$ is irreducible, and in particular nonempty and equidimensional, say of dimension $d$. To see that $1 \not= 0$ it suffices to show that $H^*(X)$ is nonzero. 
+    <p>
+      Let $x \in X$ be a closed point whose residue field $k'$ is separable over $k$, see Varieties, Lemma <a href="/tag/056U" data-tag="056U">33.25.6</a>. Let $i : \mathop{\mathrm{Spec}}(k') \to X$ be the inclusion morphism. Denote $p : X \to \mathop{\mathrm{Spec}}(k)$ is the structure morphism. Observe that $p_*i_*[\mathop{\mathrm{Spec}}(k')] = [k' : k][\mathop{\mathrm{Spec}}(k)]$ in $\mathop{\mathrm{CH}}\nolimits _0(\mathop{\mathrm{Spec}}(k))$. Using axiom (C)(b) twice and Lemma <a href="/tag/0FHE" data-tag="0FHE">45.9.4</a> we conclude that 
+    <p>
+      <div class="equation">
+  \[  p_*i_*\gamma ([\mathop{\mathrm{Spec}}(k')]) = \gamma ([k' : k][\mathop{\mathrm{Spec}}(k)]) = [k' : k] \in F = H^0(\mathop{\mathrm{Spec}}(k))  \]
+</div>
+    <p>
+       is nonzero. Thus $i_*\gamma ([\mathop{\mathrm{Spec}}(k)]) \in H^{2d}(X)(d)$ is nonzero (because it maps to something nonzero via $p_*$). This concludes the proof in case $X$ is nonempty. 
+    <p>
+      Finally, we consider the case of the empty scheme. Axiom (B)(a) gives $H^*(\emptyset ) \otimes H^*(\emptyset ) = H^*(\emptyset )$ and we get that $H^*(\emptyset )$ is either zero or $1$-dimensional in degree $0$. Then axiom (B)(a) again shows that $H^*(\emptyset ) \otimes H^*(X) = H^*(\emptyset )$ for all smooth projective schemes $X$ over $k$. Using axiom (A)(b) and the nonvanishing of $H^0(X)$ we've seen above we find that $H^*(X)$ is nonzero in at least two degrees if $\dim (X) > 0$. This then forces $H^*(\emptyset )$ to be zero. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FHG">
+  <p><a class="environment-identifier" href="/tag/0FHG">Lemma <span data-tag="0FHG">45.9.6</span>.</a> Assume given (D0), (D1), (D2), and (D3) satisfying (A), (B), and (C). Let $i : X \to Y$ be a closed immersion of nonempty smooth projective equidimensional schemes over $k$. Then $\gamma ([X]) = i_*1$ in $H^{2c}(Y)(c)$ where $c = \dim (Y) - \dim (X)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is true because $1 = \gamma ([X])$ in $H^0(X)$ by Lemma <a href="/tag/0FHF" data-tag="0FHF">45.9.5</a> and then we can apply axiom (C)(b). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FHH">
+  <p><a class="environment-identifier" href="/tag/0FHH">Lemma <span data-tag="0FHH">45.9.7</span>.</a> Assume given (D0), (D1), (D2), and (D3) satisfying (A), (B), and (C). Let $X$ be a nonempty smooth projective scheme over $k$ equidimensional of dimension $d$. Choose a basis $e_{i, j}, j = 1, \ldots , \beta _ i$ of $H^ i(X)$ over $F$. Using Künneth write </p>
+  <div class="equation">
+  \[  \gamma ([\Delta ]) = \sum \nolimits _ i \sum \nolimits _ j e_{i, j} \otimes e'_{2d - i , j} \quad \text{in}\quad \bigoplus \nolimits _ i H^ i(X) \otimes _ F H^{2d - i}(X)(d)  \]
+</div>
+  <p> with $e'_{2d - i, j} \in H^{2d - i}(X)(d)$. Then $\int _ X e_{i, j} \cup e'_{2d - i, j'} = (-1)^ i\delta _{jj'}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Recall that $\Delta ^* : H^*(X \times X) \to H^*(X)$ is equal to the cup product map $H^*(X) \otimes _ F H^*(X) \to H^*(X)$, see Remark <a href="/tag/0FHD" data-tag="0FHD">45.9.3</a>. On the other hand, recall that $\gamma ([\Delta ]) = \Delta _*1$ (Lemma <a href="/tag/0FHG" data-tag="0FHG">45.9.6</a>) and hence 
+    <p>
+      <div class="equation">
+  \[  \int _{X \times X} \gamma ([\Delta ]) \cup a \otimes b = \int _{X \times X} \Delta _*1 \cup a \otimes b = \int _ X a \cup b  \]
+</div>
+    <p>
+       by Lemma <a href="/tag/0FHB" data-tag="0FHB">45.9.1</a>. On the other hand, we have 
+    <p>
+      <div class="equation">
+  \[  \int _{X \times X} (\sum e_{i, j} \otimes e'_{2d -i , j}) \cup a \otimes b = \sum (\int _ X a \cup e_{i, j})(\int _ X e'_{2d - i, j} \cup b)  \]
+</div>
+    <p>
+       by axiom (B)(b); note that we made two switches of order so that the sign for each term is $1$. Thus if we choose $a$ such that $\int _ X a \cup e_{i, j} = 1$ and all other pairings equal to zero, then we conclude that $\int _ X e'_{2d - i, j} \cup b = \int _ X a \cup b$ for all $b$, i.e., $e'_{2d - i, j} = a$. This proves the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FHI">
+  <p><a class="environment-identifier" href="/tag/0FHI">Lemma <span data-tag="0FHI">45.9.8</span>.</a> Assume given (D0), (D1), (D2), and (D3) satisfying (A), (B), and (C). Then $H^*(\mathbf{P}^1_ k)$ is $1$-dimensional in dimensions $0$ and $2$ and zero in other degrees. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $x \in \mathbf{P}^1_ k$ be a $k$-rational point. Observe that $\Delta = \text{pr}_1^*x + \text{pr}_2^*x$ as divisors on $\mathbf{P}^1_ k \times \mathbf{P}^1_ k$. Using axiom (C)(a) and additivity of $\gamma $ we see that 
+    <p>
+      <div class="equation">
+  \[  \gamma ([\Delta ]) = \text{pr}_1^*\gamma ([x]) + \text{pr}_2^*\gamma ([x]) = \gamma ([x]) \otimes 1 + 1 \otimes \gamma ([x])  \]
+</div>
+    <p>
+       in $H^*(\mathbf{P}^1_ k \times \mathbf{P}^1_ k) = H^*(\mathbf{P}^1_ k) \otimes _ F H^*(\mathbf{P}^1_ k)$. However, by Lemma <a href="/tag/0FHH" data-tag="0FHH">45.9.7</a> we know that $\gamma ([\Delta ])$ cannot be written as a sum of fewer than $\sum \beta _ i$ pure tensors where $\beta _ i = \dim _ F H^ i(\mathbf{P}^1_ k)$. Thus we see that $\sum \beta _ i \leq 2$. By Lemma <a href="/tag/0FHF" data-tag="0FHF">45.9.5</a> we have $H^0(\mathbf{P}^1_ k) \not= 0$. By Poincaré duality, more precisely axiom (A)(b), we have $\beta _0 = \beta _2$. Therefore the lemma holds. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FHJ">
+  <p><a class="environment-identifier" href="/tag/0FHJ">Lemma <span data-tag="0FHJ">45.9.9</span>.</a> Assume given (D0), (D1), (D2), and (D3) satisfying (A), (B), and (C). If $X$ and $Y$ are smooth projective schemes over $k$, then $H^*(X \amalg Y) \to H^*(X) \times H^*(Y)$, $a \mapsto (i^*a, j^*a)$ is an isomorphism where $i$, $j$ are the coprojections. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $X$ or $Y$ is empty, then this is true because $H^*(\emptyset ) = 0$ by Lemma <a href="/tag/0FHF" data-tag="0FHF">45.9.5</a>. Thus we may assume both $X$ and $Y$ are nonempty. 
+    <p>
+      We first show that the map is injective. First, observe that we can find morphisms $X' \to X$ and $Y' \to Y$ of smooth projective schemes so that $X'$ and $Y'$ are equidimensional of the same dimension and such that $X' \to X$ and $Y' \to Y$ each have a section. Namely, decompose $X = \coprod X_ d$ and $Y = \coprod Y_ e$ into open and closed subschemes equidimensional of dimension $d$ and $e$. Then take $X' = \coprod X_ d \times \mathbf{P}^{n - d}$ and $Y' = \coprod Y_ e \times \mathbf{P}^{n - e}$ for some $n$ sufficiently large. Thus pullback by $X' \amalg Y' \to X \amalg Y$ is injective (because there is a section) and it suffices to show the injectivity for $X', Y'$ as we do in the next parapgrah. 
+    <p>
+      Let us show the map is injective when $X$ and $Y$ are equidimensional of the same dimension $d$. Observe that $[X \amalg Y] = [X] + [Y]$ in $\mathop{\mathrm{CH}}\nolimits ^0(X \amalg Y)$ and that $[X]$ and $[Y]$ are orthogonal idempotents in $\mathop{\mathrm{CH}}\nolimits ^0(X \amalg Y)$. Thus 
+    <p>
+      <div class="equation">
+  \[  1 = \gamma ([X \amalg Y] = \gamma ([X]) + \gamma ([Y]) = i_*1 + j_*1  \]
+</div>
+    <p>
+       is a decomposition into orthogonal idempotents. Here we have used Lemmas <a href="/tag/0FHF" data-tag="0FHF">45.9.5</a> and <a href="/tag/0FHG" data-tag="0FHG">45.9.6</a> and axiom (C)(c). Then we see that 
+    <p>
+      <div class="equation">
+  \[  a = a \cup 1 = a \cup i_*1 + a \cup j_*1 = i_*(i^*a) + j_*(j^*a)  \]
+</div>
+    <p>
+       by the projection formula (Lemma <a href="/tag/0FHB" data-tag="0FHB">45.9.1</a>) and hence the map is injective. 
+    <p>
+      We show the map is surjective. Write $e = \gamma ([X])$ and $f = \gamma ([Y])$ viewed as elements in $H^0(X \amalg Y)$. We have $i^*e = 1$, $i^*f = 0$, $j^*e = 0$, and $j^*f = 1$ by axiom (C)(a). Hence if $i^* : H^*(X \amalg Y) \to H^*(X)$ and $j^* : H^*(X \amalg Y) \to H^*(Y)$ are surjective, then so is $(i^*, j^*)$. Namely, for $a, a' \in H^*(X \amalg Y)$ we have 
+    <p>
+      <div class="equation">
+  \[  (i^*a, j^*a') = (i^*(a \cup e + a' \cup f), j^*(a \cup e + a' \cup f))  \]
+</div>
+    <p>
+       By symmetry it suffices to show $i^* : H^*(X \amalg Y) \to H^*(X)$ is surjective. If there is a morphism $Y \to X$, then there is a morphism $g : X \amalg Y \to X$ with $g \circ i = \text{id}_ X$ and we conclude. To finish the proof, observe that in order to prove $i^*$ is surjective, it suffices to do so after tensoring by a nonzero graded $F$-vector space. Hence by axiom (B)(b) and nonvanishing of cohomology (Lemma <a href="/tag/0FHF" data-tag="0FHF">45.9.5</a>) it suffices to prove $i^*$ is surjective after replacing $X$ and $Y$ by $X \times \mathop{\mathrm{Spec}}(k')$ and $Y \times \mathop{\mathrm{Spec}}(k')$ for some finite separable extension $k'/k$. If we choose $k'$ such that there exists a closed point $x \in X$ with $\kappa (x) = k'$ (and this is possible by Varieties, Lemma <a href="/tag/056U" data-tag="056U">33.25.6</a>) then there is a morphism $Y \times \mathop{\mathrm{Spec}}(k') \to X \times \mathop{\mathrm{Spec}}(k')$ and we find that the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FHK">
+  <p><a class="environment-identifier" href="/tag/0FHK">Lemma <span data-tag="0FHK">45.9.10</span>.</a> Let $k$ be a field. Let $F$ be a field of characteristic $0$. Assume given a $\mathbf{Q}$-linear functor </p>
+  <div class="equation">
+  \[  G : M_ k \longrightarrow \text{graded }F\text{-vector spaces}  \]
+</div>
+  <p> of symmetric monoidal categories such that $G(\mathbf{1}(1))$ is nonzero only in degree $-2$. Then we obtain data (D0), (D1), (D2), and (D3) satisfying all of (A), (B), and (C) above. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This proof is the same as the proof of Lemma <a href="/tag/0FH1" data-tag="0FH1">45.7.9</a>; we urge the reader to read the proof of that lemma instead. 
+    <p>
+      We obtain a contravariant functor from the category of smooth projective schemes over $k$ to the category of graded $F$-vector spaces by setting $H^*(X) = G(h(X))$. By assumption we have a canonical isomorphism 
+    <p>
+      <div class="equation">
+  \[  H^*(X \times Y) = G(h(X \times Y)) = G(h(X) \otimes h(Y)) = G(h(X)) \otimes G(h(Y)) = H^*(X) \otimes H^*(Y)  \]
+</div>
+    <p>
+       compatible with pullbacks. Using pullback along the diagonal $\Delta : X \to X \times X$ we obtain a canonical map 
+    <p>
+      <div class="equation">
+  \[  H^*(X) \otimes H^*(X) = H^*(X \times X) \to H^*(X)  \]
+</div>
+    <p>
+       of graded vector spaces compatible with pullbacks. This defines a functorial graded $F$-algebra structure on $H^*(X)$. Since $\Delta $ commutes with the commutativity constraint $h(X) \otimes h(X) \to h(X) \otimes h(X)$ (switching the factors) and since $G$ is a functor of symmetric monoidal categories (so compatible with commutativity constraints), and by our convention in Homology, Example <a href="/tag/0FFX" data-tag="0FFX">12.17.4</a> we conclude that $H^*(X)$ is a graded commutative algebra! Hence we get our datum (D1). 
+    <p>
+      Since $\mathbf{1}(1)$ is invertible in the category of motives we see that $G(\mathbf{1}(1))$ is invertible in the category of graded $F$-vector spaces. Thus $\sum _ i \dim _ F G^ i(\mathbf{1}(1)) = 1$. By assumption we only get something nonzero in degree $-2$. Our datum (D0) is the vector space $F(1) = G^{-2}(\mathbf{1}(1))$. Since $G$ is a symmetric monoidal functor we see that $F(n) = G^{-2n}(\mathbf{1}(n))$ for all $n \in \mathbf{Z}$. It follows that 
+    <p>
+      <div class="equation">
+  \[  H^{2r}(X)(r) = G^{2r}(h(X)) \otimes G^{-2r}(\mathbf{1}(r)) = G^0(h(X)(r))  \]
+</div>
+    <p>
+       a formula we will frequently use below. 
+    <p>
+      Let $X$ be a smooth projective scheme over $k$. By Lemma <a href="/tag/0FG0" data-tag="0FG0">45.3.1</a> we have 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{CH}}\nolimits ^ r(X) \otimes \mathbf{Q} = \text{Corr}^ r(\mathop{\mathrm{Spec}}(k), X) = \mathop{\mathrm{Hom}}\nolimits (\mathbf{1}(-r), h(X)) = \mathop{\mathrm{Hom}}\nolimits (\mathbf{1}, h(X)(r))  \]
+</div>
+    <p>
+       Applying the functor $G$ this maps into $\mathop{\mathrm{Hom}}\nolimits (G(\mathbf{1}), G(h(X)(r)))$. By taking the image of $1$ in $G^0(\mathbf{1}) = F$ into $G^0(h(X)(r)) = H^{2r}(X)(r)$ we obtain 
+    <p>
+      <div class="equation">
+  \[  \gamma : \mathop{\mathrm{CH}}\nolimits ^ r(X) \otimes \mathbf{Q} \longrightarrow H^{2r}(X)(r)  \]
+</div>
+    <p>
+       This is the datum (D2). 
+    <p>
+      Let $X$ be a nonempty smooth projective scheme over $k$ which is equidimensional of dimension $d$. By Lemma <a href="/tag/0FG0" data-tag="0FG0">45.3.1</a> we have 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits (h(X)(d), \mathbf{1}) = \mathop{\mathrm{Mor}}\nolimits ((X, 1, d), (\mathop{\mathrm{Spec}}(k), 1, 0)) = \text{Corr}^{-d}(X, \mathop{\mathrm{Spec}}(k)) = \mathop{\mathrm{CH}}\nolimits _ d(X)  \]
+</div>
+    <p>
+       Thus the class of the cycle $[X]$ in $\mathop{\mathrm{CH}}\nolimits _ d(X)$ defines a morphism $h(X)(d) \to \mathbf{1}$. Applying $G$ and taking degree $0$ parts we obtain 
+    <p>
+      <div class="equation">
+  \[  H^{2d}(X)(d) = G^0(h(X)(d)) \longrightarrow G^0(\mathbf{1}) = F  \]
+</div>
+    <p>
+       This map $\int _ X : H^{2d}(X)(d) \to F$ is the datum (D3). 
+    <p>
+      Let $X$ be a smooth projective scheme over $k$ which is nonempty and equidimensional of dimension $d$. By Lemma <a href="/tag/0FGI" data-tag="0FGI">45.4.9</a> we know that $h(X)(d)$ is a left dual to $h(X)$. Hence $G(h(X)(d)) = H^*(X) \otimes _ F F(d)[2d]$ is a left dual to $H^*(X)$ in the category of graded $F$-vector spaces. Here $[n]$ is the shift functor on graded vector spaces. By Homology, Lemma <a href="/tag/0FFV" data-tag="0FFV">12.17.5</a> we find that $\sum _ i \dim _ F H^ i(X) < \infty $ and that $\epsilon : h(X)(d) \otimes h(X) \to \mathbf{1}$ produces nondegenerate pairings $H^{2d - i}(X)(d) \otimes _ F H^ i(X) \to F$. In the proof of Lemma <a href="/tag/0FGI" data-tag="0FGI">45.4.9</a> we have seen that $\epsilon $ is given by $[\Delta ]$ via the identifications 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits (h(X)(d) \otimes h(X), \mathbf{1}) = \text{Corr}^{-d}(X \times X, \mathop{\mathrm{Spec}}(k)) = \mathop{\mathrm{CH}}\nolimits _ d(X \times X)  \]
+</div>
+    <p>
+       Thus $\epsilon $ is the composition of $[X] : h(X)(d) \to \mathbf{1}$ and $h(\Delta )(d) : h(X)(d) \otimes h(X) \to h(X)(d)$. It follows that the pairings above are given by cup product followed by $\int _ X$. This proves axiom (A). 
+    <p>
+      Axiom (B) follows from the assumption that $G$ is compatible with tensor structures and our construction of the cup product above. 
+    <p>
+      Axiom (C). Our construction of $\gamma $ takes a cycle $\alpha $ on $X$, interprets it a correspondence $a$ from $\mathop{\mathrm{Spec}}(k)$ to $X$ of some degree, and then applies $G$. If $f : Y \to X$ is a morphism of nonempty equidimensional smooth projective schemes over $k$, then $f^!\alpha $ is the pushforward (!) of $\alpha $ by the correspondence $[\Gamma _ f]$ from $X$ to $Y$, see Lemma <a href="/tag/0FG5" data-tag="0FG5">45.3.6</a>. Hence $f^!\alpha $ viewed as a correspondence from $\mathop{\mathrm{Spec}}(k)$ to $Y$ is equal to $a \circ [\Gamma _ f]$, see Lemma <a href="/tag/0FG0" data-tag="0FG0">45.3.1</a>. Since $G$ is a functor, we conclude $\gamma $ is compatible with pullbacks, i.e., axiom (C)(a) holds. 
+    <p>
+      Let $f : Y \to X$ be a morphism of nonempty equidimensional smooth projective schemes over $k$ and let $\beta \in \mathop{\mathrm{CH}}\nolimits ^ r(Y)$ be a cycle on $Y$. We have to show that 
+    <p>
+      <div class="equation">
+  \[  \int _ Y \gamma (\beta ) \cup f^*c = \int _ X \gamma (f_*\beta ) \cup c  \]
+</div>
+    <p>
+       for all $c \in H^*(X)$. Let $a, a^ t, \eta _ X, \eta _ Y, [X], [Y]$ be as in Lemma <a href="/tag/0FG8" data-tag="0FG8">45.3.9</a>. Let $b$ be $\beta $ viewed as a correspondence from $\mathop{\mathrm{Spec}}(k)$ to $Y$ of degree $r$. Then $f_*\beta $ viewed as a correspondence from $\mathop{\mathrm{Spec}}(k)$ to $X$ is equal to $a^ t \circ b$, see Lemmas <a href="/tag/0FG5" data-tag="0FG5">45.3.6</a> and <a href="/tag/0FG0" data-tag="0FG0">45.3.1</a>. The displayed equality above holds if we can show that 
+    <p>
+      <div class="equation">
+  \[  h(X) = \mathbf{1} \otimes h(X) \xrightarrow {b \otimes 1} h(Y)(r) \otimes h(X) \xrightarrow {1 \otimes a} h(Y)(r) \otimes h(Y) \xrightarrow {\eta _ Y} h(Y)(r) \xrightarrow {[Y]} \mathbf{1}(r - e)  \]
+</div>
+    <p>
+       is equal to 
+    <p>
+      <div class="equation">
+  \[  h(X) = \mathbf{1} \otimes h(X) \xrightarrow {a^ t \circ b \otimes 1} h(X)(r + d - e) \otimes h(X) \xrightarrow {\eta _ X} h(X)(r + d - e) \xrightarrow {[X]} \mathbf{1}(r - e)  \]
+</div>
+    <p>
+       This follows immediately from Lemma <a href="/tag/0FG8" data-tag="0FG8">45.3.9</a>. Thus we have axiom (C)(b). 
+    <p>
+      To prove axiom (C)(c) we use the discussion in Remark <a href="/tag/0FGU" data-tag="0FGU">45.7.2</a>. Hence it suffices to prove that $\gamma $ is compatible with exterior products. Let $X$, $Y$ be nonempty smooth projective schemes over $k$ and let $\alpha $, $\beta $ be cycles on them. Denote $a$, $b$ the corresponding correspondences from $\mathop{\mathrm{Spec}}(k)$ to $X$, $Y$. Then $\alpha \times \beta $ corresponds to the correspondence $a \otimes b$ from $\mathop{\mathrm{Spec}}(k)$ to $X \otimes Y = X \times Y$. Hence the requirement follows from the fact that $G$ is compatible with the tensor structures on both sides. 
+    <p>
+      Axiom (C)(d) follows because the cycle $[\mathop{\mathrm{Spec}}(k)]$ corresponds to the identity morphism on $h(\mathop{\mathrm{Spec}}(k))$. This finishes the proof of the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FHL">
+  <p><a class="environment-identifier" href="/tag/0FHL">Lemma <span data-tag="0FHL">45.9.11</span>.</a> Let $k$ be a field. Let $F$ be a field of characteristic $0$. Given (D0), (D1), (D2), and (D3) satisfying (A), (B), and (C) we can construct a $\mathbf{Q}$-linear functor </p>
+  <div class="equation">
+  \[  G : M_ k \longrightarrow \text{graded }F\text{-vector spaces}  \]
+</div>
+  <p> of symmetric monoidal categories such that $H^*(X) = G(h(X))$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The proof of this lemma is the same as the proof of Lemma <a href="/tag/0FH2" data-tag="0FH2">45.7.10</a>; we urge the reader to read the proof of that lemma instead. 
+    <p>
+      By Lemma <a href="/tag/0FGH" data-tag="0FGH">45.4.8</a> it suffices to construct a functor $G$ on the category of smooth projective schemes over $k$ with morphisms given by correspondences of degree $0$ such that the image of $G(c_2)$ on $G(\mathbf{P}^1_ k)$ is an invertible graded $F$-vector space. 
+    <p>
+      Let $X$ be a smooth projective scheme over $k$. There is a canonical decomposition 
+    <p>
+      <div class="equation">
+  \[  X = \coprod \nolimits _{0 \leq d \le \dim (X)} X_ d  \]
+</div>
+    <p>
+       into open and closed subschemes such that $X_ d$ is equidimensional of dimension $d$. By Lemma <a href="/tag/0FHJ" data-tag="0FHJ">45.9.9</a> we have correspondingly 
+    <p>
+      <div class="equation">
+  \[  H^*(X) \longrightarrow \prod \nolimits _{0 \leq d \le \dim (X)} H^*(X_ d)  \]
+</div>
+    <p>
+       If $Y$ is a second smooth projective scheme over $k$ and we similarly decompose $Y = \coprod Y_ e$, then 
+    <p>
+      <div class="equation">
+  \[  \text{Corr}^0(X, Y) = \bigoplus \text{Corr}^0(X_ d, Y_ e)  \]
+</div>
+    <p>
+       As well we have $X \otimes Y = \coprod X_ d \otimes Y_ e$ in the category of correspondences. From these observations it follows that it suffices to construct $G$ on the category whose objects are equidimensional smooth projective schemes over $k$ and whose morphisms are correspondences of degree $0$. (Some details omitted.) 
+    <p>
+      Given an equdimensional smooth projective scheme $X$ over $k$ we set $G(X) = H^*(X)$. Observe that $G(X) = 0$ if $X = \emptyset $ (Lemma <a href="/tag/0FHF" data-tag="0FHF">45.9.5</a>). Thus maps from and to $G(\emptyset )$ are zero and we may and do assume our schemes are nonempty in the discussions below. 
+    <p>
+      Given a correspondence $c \in \text{Corr}^0(X, Y)$ between nonempty equidmensional smooth projective schemes over $k$ we consider the map $G(c) : G(X) = H^*(X) \to G(Y) = H^*(Y)$ given by the rule 
+    <p>
+      <div class="equation">
+  \[  a \longmapsto G(c)(a) = \text{pr}_{2, *}(\gamma (c) \cup \text{pr}_1^*a)  \]
+</div>
+    <p>
+       It is clear that $G(c)$ is additive in $c$ and hence $\mathbf{Q}$-linear. Compatibility of $\gamma $ with pullbacks, pushforwards, and intersection products given by axioms (C)(a), (C)(b), and (C)(c) shows that we have $G(c' \circ c) = G(c') \circ G(c)$ if $c' \in \text{Corr}^0(Y, Z)$. Namely, for $a \in H^*(X)$ we have 
+    <p>
+      <div class="equation">
+  \begin{align*}  (G(c') \circ G(c))(a) &  = \text{pr}^{23}_{3, *}(\gamma (c') \cup \text{pr}^{23, *}_2(\text{pr}^{12}_{2, *}(\gamma (c) \cup \text{pr}^{12, *}_1a))) \\ &  = \text{pr}^{23}_{3, *}(\gamma (c') \cup \text{pr}^{123}_{23, *}(\text{pr}^{123, *}_{12}(\gamma (c) \cup \text{pr}^{12, *}_1 a))) \\ &  = \text{pr}^{23}_{3, *} \text{pr}^{123}_{23, *}( \text{pr}^{123, *}_{23}\gamma (c') \cup \text{pr}^{123, *}_{12}\gamma (c) \cup \text{pr}^{123, *}_1 a) \\ &  = \text{pr}^{23}_{3, *} \text{pr}^{123}_{23, *}( \gamma (\text{pr}^{123, *}_{23}c') \cup \gamma (\text{pr}^{123, *}_{12}c) \cup \text{pr}^{123, *}_1 a) \\ &  = \text{pr}^{13}_{3, *} \text{pr}^{123}_{13, *}( \gamma (\text{pr}^{123, *}_{23}c' \cdot \text{pr}^{123, *}_{12}c) \cup \text{pr}^{123, *}_1 a) \\ &  = \text{pr}^{13}_{3, *}( \gamma (\text{pr}^{123}_{13, *}(\text{pr}^{123, *}_{23}c' \cdot \text{pr}^{123, *}_{12}c)) \cup \text{pr}^{13, *}_1 a) \\ &  = G(c' \circ c)(a) \end{align*}
+</div>
+    <p>
+       with obvious notation. The first equality follows from the definitions. The second equality holds because $\text{pr}^{23, *}_2 \circ \text{pr}^{12}_{2, *} = \text{pr}^{123}_{23, *} \circ \text{pr}^{123, *}_{12}$ as follows immediately from the description of pushforward along projections given in Lemma <a href="/tag/0FHC" data-tag="0FHC">45.9.2</a>. The third equality holds by Lemma <a href="/tag/0FHB" data-tag="0FHB">45.9.1</a> and the fact that $H^*$ is a functor. The fourth equalith holds by axiom (C)(a) and the fact that the Gysin map agrees with flat pullback for flat morphisms (Chow Homology, Lemma <a href="/tag/0FF4" data-tag="0FF4">42.59.5</a>). The fifth equality uses axiom (C)(c) as well as Lemma <a href="/tag/0FHB" data-tag="0FHB">45.9.1</a> to see that $\text{pr}^{23}_{3, *} \circ \text{pr}^{123}_{23, *} = \text{pr}^{13}_{3, *} \circ \text{pr}^{123}_{13, *}$. The sixth equality uses the projection formula from Lemma <a href="/tag/0FHB" data-tag="0FHB">45.9.1</a> as well as axiom (C)(b) to see that $ \text{pr}^{123}_{13, *} \gamma (\text{pr}^{123, *}_{23}c' \cdot \text{pr}^{123, *}_{12}c) = \gamma (\text{pr}^{123}_{13, *}( \text{pr}^{123, *}_{23}c' \cdot \text{pr}^{123, *}_{12}c))$. Finally, the last equality is the definition. 
+    <p>
+      To finish the proof that $G$ is a functor, we have to show identities are preserved. In other words, if $1 = [\Delta ] \in \text{Corr}^0(X, X)$ is the identity in the category of correspondences (Lemma <a href="/tag/0FG2" data-tag="0FG2">45.3.3</a>), then we have to show that $G([\Delta ]) = \text{id}$. This follows from the determination of $\gamma ([\Delta ])$ in Lemma <a href="/tag/0FHH" data-tag="0FHH">45.9.7</a> and Lemma <a href="/tag/0FHC" data-tag="0FHC">45.9.2</a>. This finishes the construction of $G$ as a functor on smooth projective schemes over $k$ and correspondences of degree $0$. 
+    <p>
+      By Lemma <a href="/tag/0FHE" data-tag="0FHE">45.9.4</a> we have that $G(\mathop{\mathrm{Spec}}(k)) = H^*(\mathop{\mathrm{Spec}}(k))$ is canonically isomorphic to $F$ as an $F$-algebra. The Künneth axiom (B)(a) shows our functor is compatible with tensor products. Thus our functor is a functor of symmetric monoidal categories. 
+    <p>
+      We still have to check that the image of $G(c_2)$ on $G(\mathbf{P}^1_ k) = H^*(\mathbf{P}^1_ k)$ is an invertible graded $F$-vector space (in particular we don't know yet that $G$ extends to $M_ k$). By Lemma <a href="/tag/0FHI" data-tag="0FHI">45.9.8</a> we only have nonzero cohomology in degrees $0$ and $2$ both of dimension $1$. We have $1 = c_0 + c_2$ is a decomposition of the identity into a sum of orthogonal idempotents in $\text{Corr}^0(\mathbf{P}^1_ k, \mathbf{P}^1_ k)$, see Example <a href="/tag/0FG6" data-tag="0FG6">45.3.7</a>. Further we have $c_0 = a \circ b$ where $a \in \text{Corr}^0(\mathop{\mathrm{Spec}}(k), \mathbf{P}^1_ k)$ and $b \in \text{Corr}^0(\mathbf{P}^1_ k, \mathop{\mathrm{Spec}}(k))$ and where $b \circ a = 1$ in $\text{Corr}^0(\mathop{\mathrm{Spec}}(k), \mathop{\mathrm{Spec}}(k))$, see proof of Lemma <a href="/tag/0FGD" data-tag="0FGD">45.4.4</a>. Thus $G(c_0)$ is the projector onto the degree $0$ part. It follows that $G(c_2)$ must be the projector onto the degree $2$ part and the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="0FHM">
+  <p><a class="environment-identifier" href="/tag/0FHM">Proposition <span data-tag="0FHM">45.9.12</span>.</a> Let $k$ be a field. Let $F$ be a field of characteristic $0$. There is a $1$-to-$1$ correspondence between the following </p>
+  <p><ol>
+  <li><p>
+data (D0), (D1), (D2), and (D3) satisfying (A), (B), and(C), and 
+</p>
+</li><li><p>
+$\mathbf{Q}$-linear symmetric monoidal functors 
+</p>
+<div class="equation">
+  \[  G : M_ k \longrightarrow \text{graded }F\text{-vector spaces}  \]
+</div>
+<p>
+ such that $G(\mathbf{1}(1))$ is nonzero only in degree $-2$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Given $G$ as in (2) by setting $H^*(X) = G(h(X))$ we obtain data (D0), (D1), (D2), and (D3) satisfying (A), (B), and (C), see Lemma <a href="/tag/0FHK" data-tag="0FHK">45.9.10</a> and its proof. 
+    <p>
+      Conversely, given data (D0), (D1), (D2), and (D3) satisfying (A), (B), and (C) we get a functor $G$ as in (2) by the construction of the proof of Lemma <a href="/tag/0FHL" data-tag="0FHL">45.9.11</a>. 
+    <p>
+      We omit the detailed proof that these constructions are inverse to each other. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

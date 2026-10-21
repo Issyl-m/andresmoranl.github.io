@@ -1,0 +1,327 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="chow-section-intersecting-chern-classes" class="tex-section"><span data-tag="02U4">42.38</span> Intersecting with Chern classes</h2>
+
+<p>
+In this section we define Chern classes of vector bundles on $X$ as bivariant classes on $X$, see Lemma <a href="/tag/0B7H" data-tag="0B7H">42.38.7</a> and the discussion following this lemma. Our construction follows the familiar pattern of first defining the operation on prime cycles and then summing. In Lemma <a href="/tag/02U6" data-tag="02U6">42.38.2</a> we show that the result is determined by the usual formula on the associated projective bundle. Next, we show that capping with Chern classes passes through rational equivalence, commutes with proper pushforward, commutes with flat pullback, and commutes with the Gysin maps for inclusions of effective Cartier divisors. These lemmas could have been avoided by directly using the characterization in Lemma <a href="/tag/02U6" data-tag="02U6">42.38.2</a> and using Lemma <a href="/tag/0EPK" data-tag="0EPK">42.33.4</a>; the reader who wishes to see this worked out should consult Chow Groups of Spaces, Lemma <a href="/tag/0ERY" data-tag="0ERY">82.28.1</a>. 
+</p>
+<p>
+<article class="env-definition" id="02U5">
+  <p><a class="environment-identifier" href="/tag/02U5">Definition <span data-tag="02U5">42.38.1</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $X$ be locally of finite type over $S$. Let $\mathcal{E}$ be a finite locally free sheaf of rank $r$ on $X$. We define, for every integer $k$ and any $0 \leq j \leq r$, an operation </p>
+  <div class="equation">
+  \[  c_ j(\mathcal{E}) \cap - : Z_ k(X) \to \mathop{\mathrm{CH}}\nolimits _{k - j}(X)  \]
+</div>
+  <p> called <em>intersection with the $j$th Chern class of $\mathcal{E}$</em>. </p>
+  <p><ol>
+  <li><p>
+Given an integral closed subscheme $i : W \to X$ of $\delta $-dimension $k$ we define 
+</p>
+<div class="equation">
+  \[  c_ j(\mathcal{E}) \cap [W] = i_*(c_ j({i^*\mathcal{E}}) \cap [W]) \in \mathop{\mathrm{CH}}\nolimits _{k - j}(X)  \]
+</div>
+<p>
+ where $c_ j({i^*\mathcal{E}}) \cap [W]$ is as defined in Definition <a href="/tag/02U0" data-tag="02U0">42.37.1</a>. 
+</p>
+</li><li><p>
+For a general $k$-cycle $\alpha = \sum n_ i [W_ i]$ we set 
+</p>
+<div class="equation">
+  \[  c_ j(\mathcal{E}) \cap \alpha = \sum n_ i c_ j(\mathcal{E}) \cap [W_ i]  \]
+</div>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+If $\mathcal{E}$ has rank $1$ then this agrees with our previous definition (Definition <a href="/tag/02SO" data-tag="02SO">42.25.1</a>) by Lemma <a href="/tag/02U2" data-tag="02U2">42.37.2</a>. 
+</p>
+<p>
+<article class="env-lemma" id="02U6">
+  <p><a class="environment-identifier" href="/tag/02U6">Lemma <span data-tag="02U6">42.38.2</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $X$ be locally of finite type over $S$. Let $\mathcal{E}$ be a finite locally free sheaf of rank $r$ on $X$. Let $(\pi : P \to X, \mathcal{O}_ P(1))$ be the projective bundle associated to $\mathcal{E}$. For $\alpha \in Z_ k(X)$ the elements $c_ j(\mathcal{E}) \cap \alpha $ are the unique elements $\alpha _ j$ of $\mathop{\mathrm{CH}}\nolimits _{k - j}(X)$ such that $\alpha _0 = \alpha $ and </p>
+  <div class="equation">
+  \[  \sum \nolimits _{i = 0}^ r (-1)^ i c_1(\mathcal{O}_ P(1))^ i \cap \pi ^*(\alpha _{r - i}) = 0  \]
+</div>
+  <p> holds in the Chow group of $P$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The uniqueness of $\alpha _0, \ldots , \alpha _ r$ such that $\alpha _0 = \alpha $ and such that the displayed equation holds follows from the projective space bundle formula Lemma <a href="/tag/02TX" data-tag="02TX">42.36.2</a>. The identity holds by definition for $\alpha = [W]$ where $W$ is an integral closed subscheme of $X$. For a general $k$-cycle $\alpha $ on $X$ write $\alpha = \sum n_ a[W_ a]$ with $n_ a \not= 0$, and $i_ a : W_ a \to X$ pairwise distinct integral closed subschemes. Then the family $\{ W_ a\} $ is locally finite on $X$. Set $P_ a = \pi ^{-1}(W_ a) = \mathbf{P}(\mathcal{E}|_{W_ a})$. Denote $i'_ a : P_ a \to P$ the corresponding closed immersions. Consider the fibre product diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ P' \ar@{=}[r] \ar[d]_{\pi '} &  \coprod P_ a \ar[d]_{\coprod \pi _ a} \ar[r]_{\coprod i'_ a} &  P \ar[d]^\pi \\  X' \ar@{=}[r] &  \coprod W_ a \ar[r]^{\coprod i_ a} &  X }  \]
+</div>
+    <p>
+       The morphism $p : X' \to X$ is proper. Moreover $\pi ' : P' \to X'$ together with the invertible sheaf $\mathcal{O}_{P'}(1) = \coprod \mathcal{O}_{P_ a}(1)$ which is also the pullback of $\mathcal{O}_ P(1)$ is the projective bundle associated to $\mathcal{E}' = p^*\mathcal{E}$. By definition 
+    <p>
+      <div class="equation">
+  \[  c_ j(\mathcal{E}) \cap [\alpha ] = \sum i_{a, *}(c_ j(\mathcal{E}|_{W_ a}) \cap [W_ a]).  \]
+</div>
+    <p>
+       Write $\beta _{a, j} = c_ j(\mathcal{E}|_{W_ a}) \cap [W_ a]$ which is an element of $\mathop{\mathrm{CH}}\nolimits _{k - j}(W_ a)$. We have 
+    <p>
+      <div class="equation">
+  \[  \sum \nolimits _{i = 0}^ r (-1)^ i c_1(\mathcal{O}_{P_ a}(1))^ i \cap \pi _ a^*(\beta _{a, r - i}) = 0  \]
+</div>
+    <p>
+       for each $a$ by definition. Thus clearly we have 
+    <p>
+      <div class="equation">
+  \[  \sum \nolimits _{i = 0}^ r (-1)^ i c_1(\mathcal{O}_{P'}(1))^ i \cap (\pi ')^*(\beta _{r - i}) = 0  \]
+</div>
+    <p>
+       with $\beta _ j = \sum n_ a\beta _{a, j} \in \mathop{\mathrm{CH}}\nolimits _{k - j}(X')$. Denote $p' : P' \to P$ the morphism $\coprod i'_ a$. We have $\pi ^*p_*\beta _ j = p'_*(\pi ')^*\beta _ j$ by Lemma <a href="/tag/02RG" data-tag="02RG">42.15.1</a>. By the projection formula of Lemma <a href="/tag/02SU" data-tag="02SU">42.26.4</a> we conclude that 
+    <p>
+      <div class="equation">
+  \[  \sum \nolimits _{i = 0}^ r (-1)^ i c_1(\mathcal{O}_ P(1))^ i \cap \pi ^*(p_*\beta _ j) = 0  \]
+</div>
+    <p>
+       Since $p_*\beta _ j$ is a representative of $c_ j(\mathcal{E}) \cap \alpha $ we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We will consistently use this characterization of Chern classes to prove many more properties. 
+</p>
+<p>
+<article class="env-lemma" id="02U7">
+  <p><a class="environment-identifier" href="/tag/02U7">Lemma <span data-tag="02U7">42.38.3</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $X$ be locally of finite type over $S$. Let $\mathcal{E}$ be a finite locally free sheaf of rank $r$ on $X$. If $\alpha \sim _{rat} \beta $ are rationally equivalent $k$-cycles on $X$ then $c_ j(\mathcal{E}) \cap \alpha = c_ j(\mathcal{E}) \cap \beta $ in $\mathop{\mathrm{CH}}\nolimits _{k - j}(X)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/02U6" data-tag="02U6">42.38.2</a> the elements $\alpha _ j = c_ j(\mathcal{E}) \cap \alpha $, $j \geq 1$ and $\beta _ j = c_ j(\mathcal{E}) \cap \beta $, $j \geq 1$ are uniquely determined by the <em>same</em> equation in the chow group of the projective bundle associated to $\mathcal{E}$. (This of course relies on the fact that flat pullback is compatible with rational equivalence, see Lemma <a href="/tag/02S1" data-tag="02S1">42.20.2</a>.) Hence they are equal. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In other words capping with Chern classes of finite locally free sheaves factors through rational equivalence to give maps 
+</p>
+<div class="equation">
+  \[  c_ j(\mathcal{E}) \cap - : \mathop{\mathrm{CH}}\nolimits _ k(X) \to \mathop{\mathrm{CH}}\nolimits _{k - j}(X).  \]
+</div>
+<p>
+ Our next task is to show that Chern classes are bivariant classes, see Definition <a href="/tag/0B76" data-tag="0B76">42.33.1</a>. 
+</p>
+<p>
+<article class="env-lemma" id="02U9">
+  <p><a class="environment-identifier" href="/tag/02U9">Lemma <span data-tag="02U9">42.38.4</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $X$, $Y$ be locally of finite type over $S$. Let $\mathcal{E}$ be a finite locally free sheaf of rank $r$ on $X$. Let $p : X \to Y$ be a proper morphism. Let $\alpha $ be a $k$-cycle on $X$. Let $\mathcal{E}$ be a finite locally free sheaf on $Y$. Then </p>
+  <div class="equation">
+  \[  p_*(c_ j(p^*\mathcal{E}) \cap \alpha ) = c_ j(\mathcal{E}) \cap p_*\alpha  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $(\pi : P \to Y, \mathcal{O}_ P(1))$ be the projective bundle associated to $\mathcal{E}$. Then $P_ X = X \times _ Y P$ is the projective bundle associated to $p^*\mathcal{E}$ and $\mathcal{O}_{P_ X}(1)$ is the pullback of $\mathcal{O}_ P(1)$. Write $\alpha _ j = c_ j(p^*\mathcal{E}) \cap \alpha $, so $\alpha _0 = \alpha $. By Lemma <a href="/tag/02U6" data-tag="02U6">42.38.2</a> we have 
+    <p>
+      <div class="equation">
+  \[  \sum \nolimits _{i = 0}^ r (-1)^ i c_1(\mathcal{O}_ P(1))^ i \cap \pi _ X^*(\alpha _{r - i}) = 0  \]
+</div>
+    <p>
+       in the chow group of $P_ X$. Consider the fibre product diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ P_ X \ar[r]_-{p'} \ar[d]_{\pi _ X} &  P \ar[d]^\pi \\  X \ar[r]^ p &  Y }  \]
+</div>
+    <p>
+       Apply proper pushforward $p'_*$ (Lemma <a href="/tag/02S2" data-tag="02S2">42.20.3</a>) to the displayed equality above. Using Lemmas <a href="/tag/02SU" data-tag="02SU">42.26.4</a> and <a href="/tag/02RG" data-tag="02RG">42.15.1</a> we obtain 
+    <p>
+      <div class="equation">
+  \[  \sum \nolimits _{i = 0}^ r (-1)^ i c_1(\mathcal{O}_ P(1))^ i \cap \pi ^*(p_*\alpha _{r - i}) = 0  \]
+</div>
+    <p>
+       in the chow group of $P$. By the characterization of Lemma <a href="/tag/02U6" data-tag="02U6">42.38.2</a> we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02U8">
+  <p><a class="environment-identifier" href="/tag/02U8">Lemma <span data-tag="02U8">42.38.5</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $X$, $Y$ be locally of finite type over $S$. Let $\mathcal{E}$ be a finite locally free sheaf of rank $r$ on $Y$. Let $f : X \to Y$ be a flat morphism of relative dimension $r$. Let $\alpha $ be a $k$-cycle on $Y$. Then </p>
+  <div class="equation">
+  \[  f^*(c_ j(\mathcal{E}) \cap \alpha ) = c_ j(f^*\mathcal{E}) \cap f^*\alpha  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Write $\alpha _ j = c_ j(\mathcal{E}) \cap \alpha $, so $\alpha _0 = \alpha $. By Lemma <a href="/tag/02U6" data-tag="02U6">42.38.2</a> we have 
+    <p>
+      <div class="equation">
+  \[  \sum \nolimits _{i = 0}^ r (-1)^ i c_1(\mathcal{O}_ P(1))^ i \cap \pi ^*(\alpha _{r - i}) = 0  \]
+</div>
+    <p>
+       in the chow group of the projective bundle $(\pi : P \to Y, \mathcal{O}_ P(1))$ associated to $\mathcal{E}$. Consider the fibre product diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ P_ X = \mathbf{P}(f^*\mathcal{E}) \ar[r]_-{f'} \ar[d]_{\pi _ X} &  P \ar[d]^\pi \\  X \ar[r]^ f &  Y }  \]
+</div>
+    <p>
+       Note that $\mathcal{O}_{P_ X}(1)$ is the pullback of $\mathcal{O}_ P(1)$. Apply flat pullback $(f')^*$ (Lemma <a href="/tag/02S1" data-tag="02S1">42.20.2</a>) to the displayed equation above. By Lemmas <a href="/tag/02SS" data-tag="02SS">42.26.2</a> and <a href="/tag/02RD" data-tag="02RD">42.14.3</a> we see that 
+    <p>
+      <div class="equation">
+  \[  \sum \nolimits _{i = 0}^ r (-1)^ i c_1(\mathcal{O}_{P_ X}(1))^ i \cap \pi _ X^*(f^*\alpha _{r - i}) = 0  \]
+</div>
+    <p>
+       holds in the chow group of $P_ X$. By the characterization of Lemma <a href="/tag/02U6" data-tag="02U6">42.38.2</a> we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0B7G">
+  <p><a class="environment-identifier" href="/tag/0B7G">Lemma <span data-tag="0B7G">42.38.6</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $X$ be locally of finite type over $S$. Let $\mathcal{E}$ be a finite locally free sheaf of rank $r$ on $X$. Let $(\mathcal{L}, s, i : D \to X)$ be as in Definition <a href="/tag/02T8" data-tag="02T8">42.29.1</a>. Then $c_ j(\mathcal{E}|_ D) \cap i^*\alpha = i^*(c_ j(\mathcal{E}) \cap \alpha )$ for all $\alpha \in \mathop{\mathrm{CH}}\nolimits _ k(X)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Write $\alpha _ j = c_ j(\mathcal{E}) \cap \alpha $, so $\alpha _0 = \alpha $. By Lemma <a href="/tag/02U6" data-tag="02U6">42.38.2</a> we have 
+    <p>
+      <div class="equation">
+  \[  \sum \nolimits _{i = 0}^ r (-1)^ i c_1(\mathcal{O}_ P(1))^ i \cap \pi ^*(\alpha _{r - i}) = 0  \]
+</div>
+    <p>
+       in the chow group of the projective bundle $(\pi : P \to X, \mathcal{O}_ P(1))$ associated to $\mathcal{E}$. Consider the fibre product diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ P_ D = \mathbf{P}(\mathcal{E}|_ D) \ar[r]_-{i'} \ar[d]_{\pi _ D} &  P \ar[d]^\pi \\  D \ar[r]^ i &  X }  \]
+</div>
+    <p>
+       Note that $\mathcal{O}_{P_ D}(1)$ is the pullback of $\mathcal{O}_ P(1)$. Apply the Gysin map $(i')^*$ (Lemma <a href="/tag/02TO" data-tag="02TO">42.30.2</a>) to the displayed equation above. Applying Lemmas <a href="/tag/0B72" data-tag="0B72">42.30.4</a> and <a href="/tag/0B71" data-tag="0B71">42.29.9</a> we obtain 
+    <p>
+      <div class="equation">
+  \[  \sum \nolimits _{i = 0}^ r (-1)^ i c_1(\mathcal{O}_{P_ D}(1))^ i \cap \pi _ D^*(i^*\alpha _{r - i}) = 0  \]
+</div>
+    <p>
+       in the chow group of $P_ D$. By the characterization of Lemma <a href="/tag/02U6" data-tag="02U6">42.38.2</a> we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+At this point we have enough material to be able to prove that capping with Chern classes defines a bivariant class. 
+</p>
+<p>
+<article class="env-lemma" id="0B7H">
+  <p><a class="environment-identifier" href="/tag/0B7H">Lemma <span data-tag="0B7H">42.38.7</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $X$ be locally of finite type over $S$. Let $\mathcal{E}$ be a locally free $\mathcal{O}_ X$-module of rank $r$. Let $0 \leq p \leq r$. Then the rule that to $f : X' \to X$ assigns $c_ p(f^*\mathcal{E}) \cap - : \mathop{\mathrm{CH}}\nolimits _ k(X') \to \mathop{\mathrm{CH}}\nolimits _{k - p}(X')$ is a bivariant class of degree $p$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Immediate from Lemmas <a href="/tag/02U7" data-tag="02U7">42.38.3</a>, <a href="/tag/02U9" data-tag="02U9">42.38.4</a>, <a href="/tag/02U8" data-tag="02U8">42.38.5</a>, and <a href="/tag/0B7G" data-tag="0B7G">42.38.6</a> and Definition <a href="/tag/0B76" data-tag="0B76">42.33.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+This lemma allows us to define the Chern classes of a finite locally free module as follows. 
+</p>
+<p>
+<article class="env-definition" id="0FE1">
+  <p><a class="environment-identifier" href="/tag/0FE1">Definition <span data-tag="0FE1">42.38.8</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $X$ be locally of finite type over $S$. Let $\mathcal{E}$ be a locally free $\mathcal{O}_ X$-module of rank $r$. For $i = 0, \ldots , r$ the <em>$i$th Chern class</em> of $\mathcal{E}$ is the bivariant class $c_ i(\mathcal{E}) \in A^ i(X)$ of degree $i$ constructed in Lemma <a href="/tag/0B7H" data-tag="0B7H">42.38.7</a>. The <em>total Chern class</em> of $\mathcal{E}$ is the formal sum </p>
+  <div class="equation">
+  \[  c(\mathcal{E}) = c_0(\mathcal{E}) + c_1(\mathcal{E}) + \ldots + c_ r(\mathcal{E})  \]
+</div>
+  <p> which is viewed as a nonhomogeneous bivariant class on $X$. </p>
+</article> 
+</p>
+<p>
+By the remark following Definition <a href="/tag/02U5" data-tag="02U5">42.38.1</a> if $\mathcal{E}$ is invertible, then this definition agrees with Definition <a href="/tag/0FDW" data-tag="0FDW">42.34.4</a>. Next we see that Chern classes are in the center of the bivariant Chow cohomology ring $A^*(X)$. 
+</p>
+<p>
+<article class="env-lemma" id="02UA">
+  <p><a class="environment-identifier" href="/tag/02UA">Lemma <span data-tag="02UA">42.38.9</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $X$ be locally of finite type over $S$. Let $\mathcal{E}$ be a locally free $\mathcal{O}_ X$-module of rank $r$. Then </p>
+  <p><ol>
+  <li><p>
+$c_ j(\mathcal{E}) \in A^ j(X)$ is in the center of $A^*(X)$ and 
+</p>
+</li><li><p>
+if $f : X' \to X$ is locally of finite type and $c \in A^*(X' \to X)$, then $c \circ c_ j(\mathcal{E}) = c_ j(f^*\mathcal{E}) \circ c$. 
+</p>
+</li>
+</ol></p>
+  <p> In particular, if $\mathcal{F}$ is a second locally free $\mathcal{O}_ X$-module on $X$ of rank $s$, then </p>
+  <div class="equation">
+  \[  c_ i(\mathcal{E}) \cap c_ j(\mathcal{F}) \cap \alpha = c_ j(\mathcal{F}) \cap c_ i(\mathcal{E}) \cap \alpha  \]
+</div>
+  <p> as elements of $\mathop{\mathrm{CH}}\nolimits _{k - i - j}(X)$ for all $\alpha \in \mathop{\mathrm{CH}}\nolimits _ k(X)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It is immediate that (2) implies (1). Let $\alpha \in \mathop{\mathrm{CH}}\nolimits _ k(X)$. Write $\alpha _ j = c_ j(\mathcal{E}) \cap \alpha $, so $\alpha _0 = \alpha $. By Lemma <a href="/tag/02U6" data-tag="02U6">42.38.2</a> we have 
+    <p>
+      <div class="equation">
+  \[  \sum \nolimits _{i = 0}^ r (-1)^ i c_1(\mathcal{O}_ P(1))^ i \cap \pi ^*(\alpha _{r - i}) = 0  \]
+</div>
+    <p>
+       in the chow group of the projective bundle $(\pi : P \to Y, \mathcal{O}_ P(1))$ associated to $\mathcal{E}$. Denote $\pi ' : P' \to X'$ the base change of $\pi $ by $f$. Using Lemma <a href="/tag/0B7B" data-tag="0B7B">42.34.5</a> and the properties of bivariant classes we obtain 
+    <p>
+      <div class="equation">
+  \begin{align*}  0 &  = c \cap \left(\sum \nolimits _{i = 0}^ r (-1)^ i c_1(\mathcal{O}_ P(1))^ i \cap \pi ^*(\alpha _{r - i})\right) \\ &  = \sum \nolimits _{i = 0}^ r (-1)^ i c_1(\mathcal{O}_{P'}(1))^ i \cap (\pi ')^*(c \cap \alpha _{r - i}) \end{align*}
+</div>
+    <p>
+       in the Chow group of $P'$ (calculation omitted). Hence we see that $c \cap \alpha _ j$ is equal to $c_ j(f^*\mathcal{E}) \cap (c \cap \alpha )$ by the characterization of Lemma <a href="/tag/02U6" data-tag="02U6">42.38.2</a>. This proves the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0ESW">
+  <p><a class="environment-identifier" href="/tag/0ESW">Remark <span data-tag="0ESW">42.38.10</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $X$ be locally of finite type over $S$. Let $\mathcal{E}$ be a finite locally free $\mathcal{O}_ X$-module. If the rank of $\mathcal{E}$ is not constant then we can still define the Chern classes of $\mathcal{E}$. Namely, in this case we can write </p>
+  <div class="equation">
+  \[  X = X_0 \amalg X_1 \amalg X_2 \amalg \ldots  \]
+</div>
+  <p> where $X_ r \subset X$ is the open and closed subspace where the rank of $\mathcal{E}$ is $r$. By Lemma <a href="/tag/0FDZ" data-tag="0FDZ">42.35.4</a> we have $A^ p(X) = \prod A^ p(X_ r)$. Hence we can define $c_ p(\mathcal{E})$ to be the product of the classes $c_ p(\mathcal{E}|_{X_ r})$ in $A^ p(X_ r)$. Explicitly, if $X' \to X$ is a morphism locally of finite type, then we obtain by pullback a corresponding decomposition of $X'$ and we find that </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{CH}}\nolimits _*(X') = \prod \nolimits _{r \geq 0} \mathop{\mathrm{CH}}\nolimits _*(X'_ r)  \]
+</div>
+  <p> by our definitions. Then $c_ p(\mathcal{E}) \in A^ p(X)$ is the bivariant class which preserves these direct product decompositions and acts by the already defined operations $c_ i(\mathcal{E}|_{X_ r}) \cap -$ on the factors. Observe that in this setting it may happen that $c_ p(\mathcal{E})$ is nonzero for infinitely many $p$. It follows that the total chern class is an element </p>
+  <div class="equation">
+  \[  c(\mathcal{E}) = c_0(\mathcal{E}) + c_1(\mathcal{E}) + c_2(\mathcal{E}) + \ldots \in A^*(X)^\wedge  \]
+</div>
+  <p> of the completed bivariant cohomology ring, see Remark <a href="/tag/0FE0" data-tag="0FE0">42.35.5</a>. In this setting we define the “rank” of $\mathcal{E}$ to be the element $r(\mathcal{E}) \in A^0(X)$ as the bivariant operation which sends $(\alpha _ r) \in \prod \mathop{\mathrm{CH}}\nolimits _*(X'_ r)$ to $(r\alpha _ r) \in \prod \mathop{\mathrm{CH}}\nolimits _*(X'_ r)$. Note that it is still true that $c_ p(\mathcal{E})$ and $r(\mathcal{E})$ are in the center of $A^*(X)$. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="0FA4">
+  <p><a class="environment-identifier" href="/tag/0FA4">Remark <span data-tag="0FA4">42.38.11</span>.</a> Let $(S, \delta )$ be as in Situation <a href="/tag/02QL" data-tag="02QL">42.7.1</a>. Let $X$ be locally of finite type over $S$. Let $\mathcal{E}$ be a finite locally free $\mathcal{O}_ X$-module. In general we write $X = \coprod X_ r$ as in Remark <a href="/tag/0ESW" data-tag="0ESW">42.38.10</a>. If only a finite number of the $X_ r$ are nonempty, then we can set </p>
+  <div class="equation">
+  \[  c_{top}(\mathcal{E}) = \sum \nolimits _ r c_ r(\mathcal{E}|_{X_ r}) \in A^*(X) = \bigoplus A^*(X_ r)  \]
+</div>
+  <p> where the equality is Lemma <a href="/tag/0FDZ" data-tag="0FDZ">42.35.4</a>. If infinitely many $X_ r$ are nonempty, we will use the same notation to denote </p>
+  <div class="equation">
+  \[  c_{top}(\mathcal{E}) = \prod c_ r(\mathcal{E}|_{X_ r}) \in \prod A^ r(X_ r) \subset A^*(X)^\wedge  \]
+</div>
+  <p> see Remark <a href="/tag/0FE0" data-tag="0FE0">42.35.5</a> for notation. </p>
+</article> 
+</p>

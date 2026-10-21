@@ -1,0 +1,140 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="stacks-sheaves-section-pushforward" class="tex-section"><span data-tag="06W5">96.5</span> Computing pushforward</h2>
+
+<p>
+Let $f : \mathcal{X} \to \mathcal{Y}$ be a $1$-morphism of categories fibred in groupoids over $(\mathit{Sch}/S)_{fppf}$. Let $\mathcal{F}$ be a presheaf on $\mathcal{X}$. Let $y \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{Y})$. We can compute $f_*\mathcal{F}(y)$ in the following way. Suppose that $y$ lies over the scheme $V$ and using the $2$-Yoneda lemma think of $y$ as a $1$-morphism. Consider the projection 
+</p>
+<div class="equation">
+  \[  \text{pr} : (\mathit{Sch}/V)_{fppf} \times _{y, \mathcal{Y}} \mathcal{X} \longrightarrow \mathcal{X}  \]
+</div>
+<p>
+ Then we have a canonical identification 
+</p>
+<div class="equation" id="06W6">
+    <span class="equation-label"><a href="/tag/06W6" data-tag="06W6">96.5.0.1</a></span>
+  <div>\begin{equation}  \label{stacks-sheaves-equation-pushforward} f_*\mathcal{F}(y) = \Gamma \Big( (\mathit{Sch}/V)_{fppf} \times _{y, \mathcal{Y}} \mathcal{X}, \  \text{pr}^{-1}\mathcal{F}\Big) \end{equation}</div>
+</div>
+<p>
+ Namely, objects of the $2$-fibre product are triples $(h : U \to V, x, f(x) \to h^*y)$. Dropping the $h$ from the notation we see that this is equivalent to the data of an object $x$ of $\mathcal{X}$ and a morphism $\alpha : f(x) \to y$ of $\mathcal{Y}$. Since $f_*\mathcal{F}(y) = \mathop{\mathrm{lim}}\nolimits _{f(x) \to y} \mathcal{F}(x)$ by definition the equality follows. 
+</p>
+<p>
+As a consequence we have the following “base change” result for pushforwards. This result is trivial and hinges on the fact that we are using “big” sites. 
+</p>
+<p>
+<article class="env-lemma" id="075B">
+  <p><a class="environment-identifier" href="/tag/075B">Lemma <span data-tag="075B">96.5.1</span>.</a> Let $S$ be a scheme. Let </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{Y}' \times _\mathcal {Y} \mathcal{X} \ar[r]_{g'} \ar[d]_{f'} &  \mathcal{X} \ar[d]^ f \\  \mathcal{Y}' \ar[r]^ g &  \mathcal{Y} }  \]
+</div>
+  <p> be a $2$-cartesian diagram of categories fibred in groupoids over $S$. Then we have a canonical isomorphism </p>
+  <div class="equation">
+  \[  g^{-1}f_*\mathcal{F} \longrightarrow f'_*(g')^{-1}\mathcal{F}  \]
+</div>
+  <p> functorial in the presheaf $\mathcal{F}$ on $\mathcal{X}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Given an object $y'$ of $\mathcal{Y}'$ over $V$ there is an equivalence 
+    <p>
+      <div class="equation">
+  \[  (\mathit{Sch}/V)_{fppf} \times _{g(y'), \mathcal{Y}} \mathcal{X} = (\mathit{Sch}/V)_{fppf} \times _{y', \mathcal{Y}'} (\mathcal{Y}' \times _\mathcal {Y} \mathcal{X})  \]
+</div>
+    <p>
+       Hence by (<a href="/tag/06W6" data-tag="06W6">96.5.0.1</a>) a bijection $g^{-1}f_*\mathcal{F}(y') \to f'_*(g')^{-1}\mathcal{F}(y')$. We omit the verification that this is compatible with restriction mappings. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In the case of a representable morphism of categories fibred in groupoids this formula (<a href="/tag/06W6" data-tag="06W6">96.5.0.1</a>) simplifies. We suggest the reader skip the rest of this section. 
+</p>
+<p>
+<article class="env-lemma" id="06W7">
+  <p><a class="environment-identifier" href="/tag/06W7">Lemma <span data-tag="06W7">96.5.2</span>.</a> Let $f : \mathcal{X} \to \mathcal{Y}$ be a $1$-morphism of categories fibred in groupoids over $(\mathit{Sch}/S)_{fppf}$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$f$ is representable, and 
+</p>
+</li><li><p>
+for every $y \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{Y})$ the functor $\mathcal{X}^{opp} \to \textit{Sets}$, $x \mapsto \mathop{\mathrm{Mor}}\nolimits _\mathcal {Y}(f(x), y)$ is representable. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      According to the discussion in Algebraic Stacks, Section <a href="/tag/04ST" data-tag="04ST">94.6</a> we see that $f$ is representable if and only if for every $y \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{Y})$ lying over $U$ the $2$-fibre product $(\mathit{Sch}/U)_{fppf} \times _{y, \mathcal{Y}} \mathcal{X}$ is representable, i.e., of the form $(\mathit{Sch}/V_ y)_{fppf}$ for some scheme $V_ y$ over $U$. Objects in this $2$-fibre products are triples $(h : V \to U, x, \alpha : f(x) \to h^*y)$ where $\alpha $ lies over $\text{id}_ V$. Dropping the $h$ from the notation we see that this is equivalent to the data of an object $x$ of $\mathcal{X}$ and a morphism $f(x) \to y$. Hence the $2$-fibre product is representable by $V_ y$ and $f(x_ y) \to y$ where $x_ y$ is an object of $\mathcal{X}$ over $V_ y$ if and only if the functor in (2) is representable by $x_ y$ with universal object a map $f(x_ y) \to y$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathcal{X} \ar[rr]_ f \ar[rd]_ p &  &  \mathcal{Y} \ar[ld]^ q \\  &  (\mathit{Sch}/S)_{fppf} }  \]
+</div>
+<p>
+ be a $1$-morphism of categories fibred in groupoids. Assume $f$ is representable. For every $y \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{Y})$ we choose an object $u(y) \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{X})$ representing the functor $x \mapsto \mathop{\mathrm{Mor}}\nolimits _\mathcal {Y}(f(x), y)$ of Lemma <a href="/tag/06W7" data-tag="06W7">96.5.2</a> (this is possible by the axiom of choice). The objects come with canonical morphisms $f(u(y)) \to y$ by construction. For every morphism $\beta : y' \to y$ in $\mathcal{Y}$ we obtain a unique morphism $u(\beta ) : u(y') \to u(y)$ in $\mathcal{X}$ such that the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ f(u(y')) \ar[d] \ar[rr]_{f(u(\beta ))} &  &  f(u(y)) \ar[d] \\  y' \ar[rr] &  &  y }  \]
+</div>
+<p>
+ commutes. In other words, $u : \mathcal{Y} \to \mathcal{X}$ is a functor. In fact, we can say a little bit more. Namely, suppose that $V' = q(y')$, $V = q(y)$, $U' = p(u(y'))$ and $U = p(u(y))$. Then 
+</p>
+<div class="equation">
+  \[  \xymatrix{ U' \ar[rr]_{p(u(\beta ))} \ar[d] &  &  U \ar[d] \\  V' \ar[rr]^{q(\beta )} &  &  V }  \]
+</div>
+<p>
+ is a fibre product square. This is true because $U' \to U$ represents the base change $(\mathit{Sch}/V')_{fppf} \times _{y', \mathcal{Y}} \mathcal{X} \to (\mathit{Sch}/V)_{fppf} \times _{y, \mathcal{Y}} \mathcal{X}$ of $V' \to V$. 
+</p>
+<p>
+<article class="env-lemma" id="06W8">
+  <p><a class="environment-identifier" href="/tag/06W8">Lemma <span data-tag="06W8">96.5.3</span>.</a> Let $f : \mathcal{X} \to \mathcal{Y}$ be a representable $1$-morphism of categories fibred in groupoids over $(\mathit{Sch}/S)_{fppf}$. Let $\tau \in \{ Zar, {\acute{e}tale}, smooth, syntomic, fppf\} $. Then the functor $u : \mathcal{Y}_\tau \to \mathcal{X}_\tau $ is continuous and defines a morphism of sites $\mathcal{X}_\tau \to \mathcal{Y}_\tau $ which induces the same morphism of topoi $\mathop{\mathit{Sh}}\nolimits (\mathcal{X}_\tau ) \to \mathop{\mathit{Sh}}\nolimits (\mathcal{Y}_\tau )$ as the morphism $f$ constructed in Lemma <a href="/tag/06TS" data-tag="06TS">96.4.4</a>. Moreover, $f_*\mathcal{F}(y) = \mathcal{F}(u(y))$ for any presheaf $\mathcal{F}$ on $\mathcal{X}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\{ y_ i \to y\} $ be a $\tau $-covering in $\mathcal{Y}$. By definition this simply means that $\{ q(y_ i) \to q(y)\} $ is a $\tau $-covering of schemes. By the final remark above the lemma we see that $\{ p(u(y_ i)) \to p(u(y))\} $ is the base change of the $\tau $-covering $\{ q(y_ i) \to q(y)\} $ by $p(u(y)) \to q(y)$, hence is itself a $\tau $-covering by the axioms of a site. Hence $\{ u(y_ i) \to u(y)\} $ is a $\tau $-covering of $\mathcal{X}$. This proves that $u$ is continuous. 
+    <p>
+      Let's use the notation $u_ p, u_ s, u^ p, u^ s$ of Sites, Sections <a href="/tag/00VC" data-tag="00VC">7.5</a> and <a href="/tag/00WU" data-tag="00WU">7.13</a>. If we can show the final assertion of the lemma, then we see that $f_* = u^ p = u^ s$ (by continuity of $u$ seen above) and hence by adjointness $f^{-1} = u_ s$ which will prove $u_ s$ is exact, hence that $u$ determines a morphism of sites, and the equality will be clear as well. To see that $f_*\mathcal{F}(y) = \mathcal{F}(u(y))$ note that by definition 
+    <p>
+      <div class="equation">
+  \[  f_*\mathcal{F}(y) = ({}_ pf\mathcal{F})(y) = \mathop{\mathrm{lim}}\nolimits _{f(x) \to y} \mathcal{F}(x).  \]
+</div>
+    <p>
+       Since $u(y)$ is a final object in the category the limit is taken over we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

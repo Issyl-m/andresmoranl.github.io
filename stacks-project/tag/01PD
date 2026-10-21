@@ -1,0 +1,397 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="properties-section-extending-quasi-coherent-sheaves" class="tex-section"><span data-tag="01PD">28.23</span> Extending quasi-coherent sheaves</h2>
+
+<p>
+It is sometimes useful to be able to show that a given quasi-coherent sheaf on an open subscheme extends to the whole scheme. 
+</p>
+<p>
+<article class="env-lemma" id="01PE">
+  <p><a class="environment-identifier" href="/tag/01PE">Lemma <span data-tag="01PE">28.23.1</span>.</a> Let $j : U \to X$ be a quasi-compact open immersion of schemes. </p>
+  <p><ol>
+  <li><p>
+Any quasi-coherent sheaf on $U$ extends to a quasi-coherent sheaf on $X$. 
+</p>
+</li><li><p>
+Let $\mathcal{F}$ be a quasi-coherent sheaf on $X$. Let $\mathcal{G} \subset \mathcal{F}|_ U$ be a quasi-coherent subsheaf. There exists a quasi-coherent subsheaf $\mathcal{H}$ of $\mathcal{F}$ such that $\mathcal{H}|_ U = \mathcal{G}$ as subsheaves of $\mathcal{F}|_ U$. 
+</p>
+</li><li><p>
+Let $\mathcal{F}$ be a quasi-coherent sheaf on $X$. Let $\mathcal{G}$ be a quasi-coherent sheaf on $U$. Let $\varphi : \mathcal{G} \to \mathcal{F}|_ U$ be a morphism of $\mathcal{O}_ U$-modules. There exists a quasi-coherent sheaf $\mathcal{H}$ of $\mathcal{O}_ X$-modules and a map $\psi : \mathcal{H} \to \mathcal{F}$ such that $\mathcal{H}|_ U = \mathcal{G}$ and that $\psi |_ U = \varphi $. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      An immersion is separated (see Schemes, Lemma <a href="/tag/01L7" data-tag="01L7">26.23.8</a>) and $j$ is quasi-compact by assumption. Hence for any quasi-coherent sheaf $\mathcal{G}$ on $U$ the sheaf $j_*\mathcal{G}$ is an extension to $X$. See Schemes, Lemma <a href="/tag/01LC" data-tag="01LC">26.24.1</a> and Sheaves, Section <a href="/tag/009Z" data-tag="009Z">6.31</a>. 
+    <p>
+      Assume $\mathcal{F}$, $\mathcal{G}$ are as in (2). Then $j_*\mathcal{G}$ is a quasi-coherent sheaf on $X$ (see above). It is a subsheaf of $j_*j^*\mathcal{F}$. Hence the kernel 
+    <p>
+      <div class="equation">
+  \[  \mathcal{H} = \mathop{\mathrm{Ker}}(\mathcal{F} \oplus j_* \mathcal{G} \longrightarrow j_*j^*\mathcal{F})  \]
+</div>
+    <p>
+       is quasi-coherent as well, see Schemes, Section <a href="/tag/01LA" data-tag="01LA">26.24</a>. It is formal to check that $\mathcal{H} \subset \mathcal{F}$ and that $\mathcal{H}|_ U = \mathcal{G}$ (using the material in Sheaves, Section <a href="/tag/009Z" data-tag="009Z">6.31</a> again). 
+    <p>
+      Part (3) is proved in the same manner as (2). Just take $\mathcal{H} = \mathop{\mathrm{Ker}}(\mathcal{F} \oplus j_* \mathcal{G} \to j_*j^*\mathcal{F})$ with its obvious map to $\mathcal{F}$ and its obvious identification with $\mathcal{G}$ over $U$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01PF">
+  <p><a class="environment-identifier" href="/tag/01PF">Lemma <span data-tag="01PF">28.23.2</span>.</a> Let $X$ be a quasi-compact and quasi-separated scheme. Let $U \subset X$ be a quasi-compact open. Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_ X$-module. Let $\mathcal{G} \subset \mathcal{F}|_ U$ be a quasi-coherent $\mathcal{O}_ U$-submodule which is of finite type. Then there exists a quasi-coherent submodule $\mathcal{G}' \subset \mathcal{F}$ which is of finite type such that $\mathcal{G}'|_ U = \mathcal{G}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $n$ be the minimal number of affine opens $U_ i \subset X$, $i = 1, \ldots , n$ such that $X = U \cup \bigcup U_ i$. (Here we use that $X$ is quasi-compact.) Suppose we can prove the lemma for the case $n = 1$. Then we can successively extend $\mathcal{G}$ to a $\mathcal{G}_1$ over $U \cup U_1$ to a $\mathcal{G}_2$ over $U \cup U_1 \cup U_2$ to a $\mathcal{G}_3$ over $U \cup U_1 \cup U_2 \cup U_3$, and so on. Thus we reduce to the case $n = 1$. 
+    <p>
+      Thus we may assume that $X = U \cup V$ with $V$ affine. Since $X$ is quasi-separated and $U$, $V$ are quasi-compact open, we see that $U \cap V$ is a quasi-compact open. It suffices to prove the lemma for the system $(V, U \cap V, \mathcal{F}|_ V, \mathcal{G}|_{U \cap V})$ since we can glue the resulting sheaf $\mathcal{G}'$ over $V$ to the given sheaf $\mathcal{G}$ over $U$ along the common value over $U \cap V$. Thus we reduce to the case where $X$ is affine. 
+    <p>
+      Assume $X = \mathop{\mathrm{Spec}}(R)$. Write $\mathcal{F} = \widetilde M$ for some $R$-module $M$. By Lemma <a href="/tag/01PE" data-tag="01PE">28.23.1</a> above we may find a quasi-coherent subsheaf $\mathcal{H} \subset \mathcal{F}$ which restricts to $\mathcal{G}$ over $U$. Write $\mathcal{H} = \widetilde N$ for some $R$-module $N$. For every $u \in U$ there exists an $f \in R$ such that $u \in D(f) \subset U$ and such that $N_ f$ is finitely generated, see Lemma <a href="/tag/01PB" data-tag="01PB">28.17.1</a>. Since $U$ is quasi-compact we can cover it by finitely many $D(f_ i)$ such that $N_{f_ i}$ is generated by finitely many elements, say $x_{i, 1}/f_ i^ N, \ldots , x_{i, r_ i}/f_ i^ N$. Let $N' \subset N$ be the submodule generated by the elements $x_{i, j}$. Then the subsheaf $\mathcal{G}' = \widetilde{N'} \subset \mathcal{H} \subset \mathcal{F}$ works. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01PG">
+  <p><a class="environment-identifier" href="/tag/01PG">Lemma <span data-tag="01PG">28.23.3</span>.</a> Let $X$ be a quasi-compact and quasi-separated scheme. Any quasi-coherent sheaf of $\mathcal{O}_ X$-modules is the directed colimit of its quasi-coherent $\mathcal{O}_ X$-submodules which are of finite type. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The colimit is directed because if $\mathcal{G}_1$, $\mathcal{G}_2$ are quasi-coherent subsheaves of finite type, then the image of $\mathcal{G}_1 \oplus \mathcal{G}_2 \to \mathcal{F}$ is a quasi-coherent submodule of finite type. Let $U \subset X$ be any affine open, and let $s \in \Gamma (U, \mathcal{F})$ be any section. Let $\mathcal{G} \subset \mathcal{F}|_ U$ be the subsheaf generated by $s$. Then clearly $\mathcal{G}$ is quasi-coherent and has finite type as an $\mathcal{O}_ U$-module. By Lemma <a href="/tag/01PF" data-tag="01PF">28.23.2</a> we see that $\mathcal{G}$ is the restriction of a quasi-coherent subsheaf $\mathcal{G}' \subset \mathcal{F}$ which has finite type. Since $X$ has a basis for the topology consisting of affine opens we conclude that every local section of $\mathcal{F}$ is locally contained in a quasi-coherent submodule of finite type. Thus we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01PI">
+  <p><a class="environment-identifier" href="/tag/01PI">Lemma <span data-tag="01PI">28.23.4</span>.</a> Let $X$ be a quasi-compact and quasi-separated scheme. Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_ X$-module. Let $U \subset X$ be a quasi-compact open. Let $\mathcal{G}$ be an $\mathcal{O}_ U$-module which is of finite presentation. Let $\varphi : \mathcal{G} \to \mathcal{F}|_ U$ be a morphism of $\mathcal{O}_ U$-modules. Then there exists an $\mathcal{O}_ X$-module $\mathcal{G}'$ of finite presentation, and a morphism of $\mathcal{O}_ X$-modules $\varphi ' : \mathcal{G}' \to \mathcal{F}$ such that $\mathcal{G}'|_ U = \mathcal{G}$ and such that $\varphi '|_ U = \varphi $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The beginning of the proof is a repeat of the beginning of the proof of Lemma <a href="/tag/01PF" data-tag="01PF">28.23.2</a>. We write it out carefully anyway. 
+    <p>
+      Let $n$ be the minimal number of affine opens $U_ i \subset X$, $i = 1, \ldots , n$ such that $X = U \cup \bigcup U_ i$. (Here we use that $X$ is quasi-compact.) Suppose we can prove the lemma for the case $n = 1$. Then we can successively extend the pair $(\mathcal{G}, \varphi )$ to a pair $(\mathcal{G}_1, \varphi _1)$ over $U \cup U_1$ to a pair $(\mathcal{G}_2, \varphi _2)$ over $U \cup U_1 \cup U_2$ to a pair $(\mathcal{G}_3, \varphi _3)$ over $U \cup U_1 \cup U_2 \cup U_3$, and so on. Thus we reduce to the case $n = 1$. 
+    <p>
+      Thus we may assume that $X = U \cup V$ with $V$ affine. Since $X$ is quasi-separated and $U$ quasi-compact, we see that $U \cap V \subset V$ is quasi-compact. Suppose we prove the lemma for the system $(V, U \cap V, \mathcal{F}|_ V, \mathcal{G}|_{U \cap V}, \varphi |_{U \cap V})$ thereby producing $(\mathcal{G}', \varphi ')$ over $V$. Then we can glue $\mathcal{G}'$ over $V$ to the given sheaf $\mathcal{G}$ over $U$ along the common value over $U \cap V$, and similarly we can glue the map $\varphi '$ to the map $\varphi $ along the common value over $U \cap V$. Thus we reduce to the case where $X$ is affine. 
+    <p>
+      Assume $X = \mathop{\mathrm{Spec}}(R)$. By Lemma <a href="/tag/01PE" data-tag="01PE">28.23.1</a> above we may find a quasi-coherent sheaf $\mathcal{H}$ with a map $\psi : \mathcal{H} \to \mathcal{F}$ over $X$ which restricts to $\mathcal{G}$ and $\varphi $ over $U$. By Lemma <a href="/tag/01PF" data-tag="01PF">28.23.2</a> we can find a finite type quasi-coherent $\mathcal{O}_ X$-submodule $\mathcal{H}' \subset \mathcal{H}$ such that $\mathcal{H}'|_ U = \mathcal{G}$. Thus after replacing $\mathcal{H}$ by $\mathcal{H}'$ and $\psi $ by the restriction of $\psi $ to $\mathcal{H}'$ we may assume that $\mathcal{H}$ is of finite type. By Lemma <a href="/tag/01PC" data-tag="01PC">28.17.2</a> we conclude that $\mathcal{H} = \widetilde{N}$ with $N$ a finitely generated $R$-module. Hence there exists a surjection as in the following short exact sequence of quasi-coherent $\mathcal{O}_ X$-modules 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{K} \to \mathcal{O}_ X^{\oplus n} \to \mathcal{H} \to 0  \]
+</div>
+    <p>
+       where $\mathcal{K}$ is defined as the kernel. Since $\mathcal{G}$ is of finite presentation and $\mathcal{H}|_ U = \mathcal{G}$ by Modules, Lemma <a href="/tag/01BP" data-tag="01BP">17.11.4</a> the restriction $\mathcal{K}|_ U$ is an $\mathcal{O}_ U$-module of finite type. Hence by Lemma <a href="/tag/01PF" data-tag="01PF">28.23.2</a> again we see that there exists a finite type quasi-coherent $\mathcal{O}_ X$-submodule $\mathcal{K}' \subset \mathcal{K}$ such that $\mathcal{K}'|_ U = \mathcal{K}|_ U$. The solution to the problem posed in the lemma is to set 
+    <p>
+      <div class="equation">
+  \[  \mathcal{G}' = \mathcal{O}_ X^{\oplus n}/\mathcal{K}'  \]
+</div>
+    <p>
+       which is clearly of finite presentation and restricts to give $\mathcal{G}$ on $U$ with $\varphi '$ equal to the composition 
+    <p>
+      <div class="equation">
+  \[  \mathcal{G}' = \mathcal{O}_ X^{\oplus n}/\mathcal{K}' \to \mathcal{O}_ X^{\oplus n}/\mathcal{K} = \mathcal{H} \xrightarrow {\psi } \mathcal{F}.  \]
+</div>
+    <p>
+       This finishes the proof of the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0G41">
+  <p><a class="environment-identifier" href="/tag/0G41">Lemma <span data-tag="0G41">28.23.5</span>.</a> Let $X$ be a quasi-compact and quasi-separated scheme. Let $U \subset X$ be a quasi-compact open. Let $\mathcal{G}$ be an $\mathcal{O}_ U$-module. </p>
+  <p><ol>
+  <li><p>
+If $\mathcal{G}$ is quasi-coherent and of finite type, then there exists a quasi-coherent $\mathcal{O}_ X$-module $\mathcal{G}'$ of finite type such that $\mathcal{G}'|_ U = \mathcal{G}$. 
+</p>
+</li><li><p>
+If $\mathcal{G}$ is of finite presentation, then there exists an $\mathcal{O}_ X$-module $\mathcal{G}'$ of finite presentation such that $\mathcal{G}'|_ U = \mathcal{G}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Part (2) is the special case of Lemma <a href="/tag/01PI" data-tag="01PI">28.23.4</a> where $\mathcal{F} = 0$. For part (1) we first write $\mathcal{G} = \mathcal{F}|_ U$ for some quasi-coherent $\mathcal{O}_ X$-module by Lemma <a href="/tag/01PE" data-tag="01PE">28.23.1</a> and then we apply Lemma <a href="/tag/01PF" data-tag="01PF">28.23.2</a> with $\mathcal{G} = \mathcal{F}|_ U$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma says that every quasi-coherent sheaf on a quasi-compact and quasi-separated scheme is a filtered colimit of $\mathcal{O}$-modules of finite presentation. Actually, we reformulate this in (perhaps more familiar) terms of directed colimits over directed sets in the next lemma. 
+</p>
+<p>
+<article class="env-lemma" id="01PJ">
+       
+      
+  <p><a class="environment-identifier" href="/tag/01PJ">Lemma <span data-tag="01PJ">28.23.6</span>.</a> Let $X$ be a scheme. Assume $X$ is quasi-compact and quasi-separated. Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_ X$-module. There exist </p>
+  <p><ol>
+  <li><p>
+a filtered index category $\mathcal{I}$ (see Categories, Definition <a href="/tag/002V" data-tag="002V">4.19.1</a>), 
+</p>
+</li><li><p>
+a diagram $\mathcal{I} \to \textit{Mod}(\mathcal{O}_ X)$ (see Categories, Section <a href="/tag/002D" data-tag="002D">4.14</a>), $i \mapsto \mathcal{F}_ i$, 
+</p>
+</li><li><p>
+morphisms of $\mathcal{O}_ X$-modules $\varphi _ i : \mathcal{F}_ i \to \mathcal{F}$ 
+</p>
+</li>
+</ol></p>
+  <p> such that each $\mathcal{F}_ i$ is of finite presentation and such that the morphisms $\varphi _ i$ induce an isomorphism </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i = \mathcal{F}.  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a set $I$ and for each $i \in I$ an $\mathcal{O}_ X$-module of finite presentation and a homomorphism of $\mathcal{O}_ X$-modules $\varphi _ i : \mathcal{F}_ i \to \mathcal{F}$ with the following property: For any $\psi : \mathcal{G} \to \mathcal{F}$ with $\mathcal{G}$ of finite presentation there is an $i \in I$ such that there exists an isomorphism $\alpha : \mathcal{F}_ i \to \mathcal{G}$ with $\varphi _ i = \psi \circ \alpha $. It is clear from Modules, Lemma <a href="/tag/01BC" data-tag="01BC">17.9.8</a> that such a set exists (see also its proof). We denote $\mathcal{I}$ the category with $\mathop{\mathrm{Ob}}\nolimits (\mathcal{I}) = I$ and given $i, i' \in I$ we set 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _\mathcal {I}(i, i') = \{ \alpha : \mathcal{F}_ i \to \mathcal{F}_{i'} \mid \alpha \circ \varphi _{i'} = \varphi _ i \} .  \]
+</div>
+    <p>
+       We claim that $\mathcal{I}$ is a filtered category and that $\mathcal{F} = \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i$. 
+    <p>
+      Let $i, i' \in I$. Then we can consider the morphism 
+    <p>
+      <div class="equation">
+  \[  \mathcal{F}_ i \oplus \mathcal{F}_{i'} \longrightarrow \mathcal{F}  \]
+</div>
+    <p>
+       which is the direct sum of $\varphi _ i$ and $\varphi _{i'}$. Since a direct sum of finitely presented $\mathcal{O}_ X$-modules is finitely presented we see that there exists some $i'' \in I$ such that $\varphi _{i''} : \mathcal{F}_{i''} \to \mathcal{F}$ is isomorphic to the displayed arrow towards $\mathcal{F}$ above. Since there are commutative diagrams 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathcal{F}_ i \ar[r] \ar[d] &  \mathcal{F} \ar@{=}[d] \\  \mathcal{F}_ i \oplus \mathcal{F}_{i'} \ar[r] &  \mathcal{F} } \quad \text{and} \quad \xymatrix{ \mathcal{F}_{i'} \ar[r] \ar[d] &  \mathcal{F} \ar@{=}[d] \\  \mathcal{F}_ i \oplus \mathcal{F}_{i'} \ar[r] &  \mathcal{F} }  \]
+</div>
+    <p>
+       we see that there are morphisms $i \to i''$ and $i' \to i''$ in $\mathcal{I}$. Next, suppose that we have $i, i' \in I$ and morphisms $\alpha , \beta : i \to i'$ (corresponding to $\mathcal{O}_ X$-module maps $\alpha , \beta : \mathcal{F}_ i \to \mathcal{F}_{i'}$). In this case consider the coequalizer 
+    <p>
+      <div class="equation">
+  \[  \mathcal{G} = \mathop{\mathrm{Coker}}( \mathcal{F}_ i \xrightarrow {\alpha - \beta } \mathcal{F}_{i'} )  \]
+</div>
+    <p>
+       Note that $\mathcal{G}$ is an $\mathcal{O}_ X$-module of finite presentation. Since by definition of morphisms in the category $\mathcal{I}$ we have $\varphi _{i'} \circ \alpha = \varphi _{i'} \circ \beta $ we see that we get an induced map $\psi : \mathcal{G} \to \mathcal{F}$. Hence again the pair $(\mathcal{G}, \psi )$ is isomorphic to the pair $(\mathcal{F}_{i''}, \varphi _{i''})$ for some $i''$. Hence we see that there exists a morphism $i' \to i''$ in $\mathcal{I}$ which equalizes $\alpha $ and $\beta $. Thus we have shown that the category $\mathcal{I}$ is filtered. 
+    <p>
+      We still have to show that the colimit of the diagram is $\mathcal{F}$. By definition of the colimit, and by our definition of the category $\mathcal{I}$ there is a canonical map 
+    <p>
+      <div class="equation">
+  \[  \varphi : \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i \longrightarrow \mathcal{F}.  \]
+</div>
+    <p>
+       Pick $x \in X$. Let us show that $\varphi _ x$ is an isomorphism. Recall that 
+    <p>
+      <div class="equation">
+  \[  (\mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i)_ x = \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_{i, x},  \]
+</div>
+    <p>
+       see Sheaves, Section <a href="/tag/009E" data-tag="009E">6.29</a>. First we show that the map $\varphi _ x$ is injective. Suppose that $s \in \mathcal{F}_{i, x}$ is an element such that $s$ maps to zero in $\mathcal{F}_ x$. Then there exists a quasi-compact open $U$ such that $s$ comes from $s \in \mathcal{F}_ i(U)$ and such that $\varphi _ i(s) = 0$ in $\mathcal{F}(U)$. By Lemma <a href="/tag/01PF" data-tag="01PF">28.23.2</a> we can find a finite type quasi-coherent subsheaf $\mathcal{K} \subset \mathop{\mathrm{Ker}}(\varphi _ i)$ which restricts to the quasi-coherent $\mathcal{O}_ U$-submodule of $\mathcal{F}_ i$ generated by $s$: $\mathcal{K}|_ U = \mathcal{O}_ U\cdot s \subset \mathcal{F}_ i|_ U$. Clearly, $\mathcal{F}_ i/\mathcal{K}$ is of finite presentation and the map $\varphi _ i$ factors through the quotient map $\mathcal{F}_ i \to \mathcal{F}_ i/\mathcal{K}$. Hence we can find an $i' \in I$ and a morphism $\alpha : \mathcal{F}_ i \to \mathcal{F}_{i'}$ in $\mathcal{I}$ which can be identified with the quotient map $\mathcal{F}_ i \to \mathcal{F}_ i/\mathcal{K}$. Then it follows that the section $s$ maps to zero in $\mathcal{F}_{i'}(U)$ and in particular in $(\mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i)_ x = \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_{i, x}$. The injectivity follows. Finally, we show that the map $\varphi _ x$ is surjective. Pick $s \in \mathcal{F}_ x$. Choose a quasi-compact open neighbourhood $U \subset X$ of $x$ such that $s$ corresponds to a section $s \in \mathcal{F}(U)$. Consider the map $s : \mathcal{O}_ U \to \mathcal{F}$ (multiplication by $s$). By Lemma <a href="/tag/01PI" data-tag="01PI">28.23.4</a> there exists an $\mathcal{O}_ X$-module $\mathcal{G}$ of finite presentation and an $\mathcal{O}_ X$-module map $\mathcal{G} \to \mathcal{F}$ such that $\mathcal{G}|_ U \to \mathcal{F}|_ U$ is identified with $s : \mathcal{O}_ U \to \mathcal{F}$. Again by definition of $\mathcal{I}$ there exists an $i \in I$ such that $\mathcal{G} \to \mathcal{F}$ is isomorphic to $\varphi _ i : \mathcal{F}_ i \to \mathcal{F}$. Clearly there exists a section $s' \in \mathcal{F}_ i(U)$ mapping to $s \in \mathcal{F}(U)$. This proves surjectivity and the proof of the lemma is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01PK">
+  <p><a class="environment-identifier" href="/tag/01PK">Lemma <span data-tag="01PK">28.23.7</span>.</a> Let $X$ be a scheme. Assume $X$ is quasi-compact and quasi-separated. Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_ X$-module. There exist </p>
+  <p><ol>
+  <li><p>
+a directed set $I$ (see Categories, Definition <a href="/tag/00D3" data-tag="00D3">4.21.1</a>), 
+</p>
+</li><li><p>
+a system $(\mathcal{F}_ i, \varphi _{ii'})$ over $I$ in $\textit{Mod}(\mathcal{O}_ X)$ (see Categories, Definition <a href="/tag/0030" data-tag="0030">4.21.2</a>) 
+</p>
+</li><li><p>
+morphisms of $\mathcal{O}_ X$-modules $\varphi _ i : \mathcal{F}_ i \to \mathcal{F}$ 
+</p>
+</li>
+</ol></p>
+  <p> such that each $\mathcal{F}_ i$ is of finite presentation and such that the morphisms $\varphi _ i$ induce an isomorphism </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i = \mathcal{F}.  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a direct consequence of Lemma <a href="/tag/01PJ" data-tag="01PJ">28.23.6</a> and Categories, Lemma <a href="/tag/0032" data-tag="0032">4.21.5</a> (combined with the fact that colimits exist in the category of sheaves of $\mathcal{O}_ X$-modules, see Sheaves, Section <a href="/tag/009E" data-tag="009E">6.29</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="086M">
+  <p><a class="environment-identifier" href="/tag/086M">Lemma <span data-tag="086M">28.23.8</span>.</a> Let $X$ be a scheme. Assume $X$ is quasi-compact and quasi-separated. Let $\mathcal{F}$ be a finite type quasi-coherent $\mathcal{O}_ X$-module. Then we can write $\mathcal{F} = \mathop{\mathrm{colim}}\nolimits \mathcal{F}_ i$ with $\mathcal{F}_ i$ of finite presentation and all transition maps $\mathcal{F}_ i \to \mathcal{F}_{i'}$ surjective. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Write $\mathcal{F} = \mathop{\mathrm{colim}}\nolimits \mathcal{G}_ i$ as a filtered colimit of finitely presented $\mathcal{O}_ X$-modules (Lemma <a href="/tag/01PK" data-tag="01PK">28.23.7</a>). We claim that $\mathcal{G}_ i \to \mathcal{F}$ is surjective for some $i$. Namely, choose a finite affine open covering $X = U_1 \cup \ldots \cup U_ m$. Choose sections $s_{jl} \in \mathcal{F}(U_ j)$ generating $\mathcal{F}|_{U_ j}$, see Lemma <a href="/tag/01PB" data-tag="01PB">28.17.1</a>. By Sheaves, Lemma <a href="/tag/009F" data-tag="009F">6.29.1</a> we see that $s_{jl}$ is in the image of $\mathcal{G}_ i \to \mathcal{F}$ for $i$ large enough. Hence $\mathcal{G}_ i \to \mathcal{F}$ is surjective for $i$ large enough. Choose such an $i$ and let $\mathcal{K} \subset \mathcal{G}_ i$ be the kernel of the map $\mathcal{G}_ i \to \mathcal{F}$. Write $\mathcal{K} = \mathop{\mathrm{colim}}\nolimits \mathcal{K}_ a$ as the filtered colimit of its finite type quasi-coherent submodules (Lemma <a href="/tag/01PG" data-tag="01PG">28.23.3</a>). Then $\mathcal{F} = \mathop{\mathrm{colim}}\nolimits \mathcal{G}_ i/\mathcal{K}_ a$ is a solution to the problem posed by the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="080V">
+  <p><a class="environment-identifier" href="/tag/080V">Lemma <span data-tag="080V">28.23.9</span>.</a> Let $X$ be a quasi-compact and quasi-separated scheme. Let $\mathcal{F}$ be a finite type quasi-coherent $\mathcal{O}_ X$-module. Let $U \subset X$ be a quasi-compact open such that $\mathcal{F}|_ U$ is of finite presentation. Then there exists a map of $\mathcal{O}_ X$-modules $\varphi : \mathcal{G} \to \mathcal{F}$ with (a) $\mathcal{G}$ of finite presentation, (b) $\varphi $ is surjective, and (c) $\varphi |_ U$ is an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Write $\mathcal{F} = \mathop{\mathrm{colim}}\nolimits \mathcal{F}_ i$ as a directed colimit with each $\mathcal{F}_ i$ of finite presentation, see Lemma <a href="/tag/01PK" data-tag="01PK">28.23.7</a>. Choose a finite affine open covering $X = \bigcup V_ j$ and choose finitely many sections $s_{jl} \in \mathcal{F}(V_ j)$ generating $\mathcal{F}|_{V_ j}$, see Lemma <a href="/tag/01PB" data-tag="01PB">28.17.1</a>. By Sheaves, Lemma <a href="/tag/009F" data-tag="009F">6.29.1</a> we see that $s_{jl}$ is in the image of $\mathcal{F}_ i \to \mathcal{F}$ for $i$ large enough. Hence $\mathcal{F}_ i \to \mathcal{F}$ is surjective for $i$ large enough. Choose such an $i$ and let $\mathcal{K} \subset \mathcal{F}_ i$ be the kernel of the map $\mathcal{F}_ i \to \mathcal{F}$. Since $\mathcal{F}_ U$ is of finite presentation, we see that $\mathcal{K}|_ U$ is of finite type, see Modules, Lemma <a href="/tag/01BP" data-tag="01BP">17.11.4</a>. Hence we can find a finite type quasi-coherent submodule $\mathcal{K}' \subset \mathcal{K}$ with $\mathcal{K}'|_ U = \mathcal{K}|_ U$, see Lemma <a href="/tag/01PF" data-tag="01PF">28.23.2</a>. Then $\mathcal{G} = \mathcal{F}_ i/\mathcal{K}'$ with the given map $\mathcal{G} \to \mathcal{F}$ is a solution. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $X$ be a scheme. In the following lemma we use the notion of a <em>quasi-coherent $\mathcal{O}_ X$-algebra $\mathcal{A}$ of finite presentation</em>. This means that for every affine open $\mathop{\mathrm{Spec}}(R) \subset X$ we have $\mathcal{A} = \widetilde{A}$ where $A$ is a (commutative) $R$-algebra which is of finite presentation as an $R$-algebra. 
+</p>
+<p>
+<article class="env-lemma" id="05JS">
+  <p><a class="environment-identifier" href="/tag/05JS">Lemma <span data-tag="05JS">28.23.10</span>.</a> Let $X$ be a scheme. Assume $X$ is quasi-compact and quasi-separated. Let $\mathcal{A}$ be a quasi-coherent $\mathcal{O}_ X$-algebra. There exist </p>
+  <p><ol>
+  <li><p>
+a directed set $I$ (see Categories, Definition <a href="/tag/00D3" data-tag="00D3">4.21.1</a>), 
+</p>
+</li><li><p>
+a system $(\mathcal{A}_ i, \varphi _{ii'})$ over $I$ in the category of $\mathcal{O}_ X$-algebras, 
+</p>
+</li><li><p>
+morphisms of $\mathcal{O}_ X$-algebras $\varphi _ i : \mathcal{A}_ i \to \mathcal{A}$ 
+</p>
+</li>
+</ol></p>
+  <p> such that each $\mathcal{A}_ i$ is a quasi-coherent $\mathcal{O}_ X$-algebra of finite presentation and such that the morphisms $\varphi _ i$ induce an isomorphism </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _ i \mathcal{A}_ i = \mathcal{A}.  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      First we write $\mathcal{A} = \mathop{\mathrm{colim}}\nolimits _ i \mathcal{F}_ i$ as a directed colimit of finitely presented quasi-coherent sheaves as in Lemma <a href="/tag/01PK" data-tag="01PK">28.23.7</a>. For each $i$ let $\mathcal{B}_ i = \text{Sym}(\mathcal{F}_ i)$ be the symmetric algebra on $\mathcal{F}_ i$ over $\mathcal{O}_ X$. Write $\mathcal{I}_ i = \mathop{\mathrm{Ker}}(\mathcal{B}_ i \to \mathcal{A})$. Write $\mathcal{I}_ i = \mathop{\mathrm{colim}}\nolimits _ j \mathcal{F}_{i, j}$ where $\mathcal{F}_{i, j}$ is a finite type quasi-coherent submodule of $\mathcal{I}_ i$, see Lemma <a href="/tag/01PG" data-tag="01PG">28.23.3</a>. Set $\mathcal{I}_{i, j} \subset \mathcal{I}_ i$ equal to the $\mathcal{B}_ i$-ideal generated by $\mathcal{F}_{i, j}$. Set $\mathcal{A}_{i, j} = \mathcal{B}_ i/\mathcal{I}_{i, j}$. Then $\mathcal{A}_{i, j}$ is a quasi-coherent finitely presented $\mathcal{O}_ X$-algebra. Define $(i, j) \leq (i', j')$ if $i \leq i'$ and the map $\mathcal{B}_ i \to \mathcal{B}_{i'}$ maps the ideal $\mathcal{I}_{i, j}$ into the ideal $\mathcal{I}_{i', j'}$. Then it is clear that $\mathcal{A} = \mathop{\mathrm{colim}}\nolimits _{i, j} \mathcal{A}_{i, j}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $X$ be a scheme. In the following lemma we use the notion of a <em>quasi-coherent $\mathcal{O}_ X$-algebra $\mathcal{A}$ of finite type</em>. This means that for every affine open $\mathop{\mathrm{Spec}}(R) \subset X$ we have $\mathcal{A} = \widetilde{A}$ where $A$ is a (commutative) $R$-algebra which is of finite type as an $R$-algebra. 
+</p>
+<p>
+<article class="env-lemma" id="05JT">
+  <p><a class="environment-identifier" href="/tag/05JT">Lemma <span data-tag="05JT">28.23.11</span>.</a> Let $X$ be a scheme. Assume $X$ is quasi-compact and quasi-separated. Let $\mathcal{A}$ be a quasi-coherent $\mathcal{O}_ X$-algebra. Then $\mathcal{A}$ is the directed colimit of its finite type quasi-coherent $\mathcal{O}_ X$-subalgebras. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $\mathcal{A}_1, \mathcal{A}_2 \subset \mathcal{A}$ are quasi-coherent $\mathcal{O}_ X$-subalgebras of finite type, then the image of $\mathcal{A}_1 \otimes _{\mathcal{O}_ X} \mathcal{A}_2 \to \mathcal{A}$ is also a quasi-coherent $\mathcal{O}_ X$-subalgebra of finite type (some details omitted) which contains both $\mathcal{A}_1$ and $\mathcal{A}_2$. In this way we see that the system is directed. To show that $\mathcal{A}$ is the colimit of this system, write $\mathcal{A} = \mathop{\mathrm{colim}}\nolimits _ i \mathcal{A}_ i$ as a directed colimit of finitely presented quasi-coherent $\mathcal{O}_ X$-algebras as in Lemma <a href="/tag/05JS" data-tag="05JS">28.23.10</a>. Then the images $\mathcal{A}'_ i = \mathop{\mathrm{Im}}(\mathcal{A}_ i \to \mathcal{A})$ are quasi-coherent subalgebras of $\mathcal{A}$ of finite type. Since $\mathcal{A}$ is the colimit of these the result follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $X$ be a scheme. In the following lemma we use the notion of a <em>finite (resp. integral) quasi-coherent $\mathcal{O}_ X$-algebra $\mathcal{A}$</em>. This means that for every affine open $\mathop{\mathrm{Spec}}(R) \subset X$ we have $\mathcal{A} = \widetilde{A}$ where $A$ is a (commutative) $R$-algebra which is finite (resp. integral) as an $R$-algebra. 
+</p>
+<p>
+<article class="env-lemma" id="086N">
+  <p><a class="environment-identifier" href="/tag/086N">Lemma <span data-tag="086N">28.23.12</span>.</a> Let $X$ be a scheme. Assume $X$ is quasi-compact and quasi-separated. Let $\mathcal{A}$ be a finite quasi-coherent $\mathcal{O}_ X$-algebra. Then $\mathcal{A} = \mathop{\mathrm{colim}}\nolimits \mathcal{A}_ i$ is a directed colimit of finite and finitely presented quasi-coherent $\mathcal{O}_ X$-algebras such that all transition maps $\mathcal{A}_{i'} \to \mathcal{A}_ i$ are surjective. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/086M" data-tag="086M">28.23.8</a> there exists a finitely presented $\mathcal{O}_ X$-module $\mathcal{F}$ and a surjection $\mathcal{F} \to \mathcal{A}$. Using the algebra structure we obtain a surjection 
+    <p>
+      <div class="equation">
+  \[  \text{Sym}^*_{\mathcal{O}_ X}(\mathcal{F}) \longrightarrow \mathcal{A}  \]
+</div>
+    <p>
+       Denote $\mathcal{J}$ the kernel. Write $\mathcal{J} = \mathop{\mathrm{colim}}\nolimits \mathcal{E}_ i$ as a filtered colimit of finite type $\mathcal{O}_ X$-submodules $\mathcal{E}_ i$ (Lemma <a href="/tag/01PG" data-tag="01PG">28.23.3</a>). Set 
+    <p>
+      <div class="equation">
+  \[  \mathcal{A}_ i = \text{Sym}^*_{\mathcal{O}_ X}(\mathcal{F})/(\mathcal{E}_ i)  \]
+</div>
+    <p>
+       where $(\mathcal{E}_ i)$ indicates the ideal sheaf generated by the image of $\mathcal{E}_ i \to \text{Sym}^*_{\mathcal{O}_ X}(\mathcal{F})$. Then each $\mathcal{A}_ i$ is a finitely presented $\mathcal{O}_ X$-algebra, the transition maps are surjections, and $\mathcal{A} = \mathop{\mathrm{colim}}\nolimits \mathcal{A}_ i$. To finish the proof we still have to show that $\mathcal{A}_ i$ is a finite $\mathcal{O}_ X$-algebra for $i$ sufficiently large. To do this we choose an affine open covering $X = U_1 \cup \ldots \cup U_ m$. Take generators $f_{j, 1}, \ldots , f_{j, N_ j} \in \Gamma (U_ i, \mathcal{F})$. As $\mathcal{A}(U_ j)$ is a finite $\mathcal{O}_ X(U_ j)$-algebra we see that for each $k$ there exists a monic polynomial $P_{j, k} \in \mathcal{O}(U_ j)[T]$ such that $P_{j, k}(f_{j, k})$ is zero in $\mathcal{A}(U_ j)$. Since $\mathcal{A} = \mathop{\mathrm{colim}}\nolimits \mathcal{A}_ i$ by construction, we have $P_{j, k}(f_{j, k}) = 0$ in $\mathcal{A}_ i(U_ j)$ for all sufficiently large $i$. For such $i$ the algebras $\mathcal{A}_ i$ are finite. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0817">
+  <p><a class="environment-identifier" href="/tag/0817">Lemma <span data-tag="0817">28.23.13</span>.</a> Let $X$ be a scheme. Assume $X$ is quasi-compact and quasi-separated. Let $\mathcal{A}$ be an integral quasi-coherent $\mathcal{O}_ X$-algebra. Then </p>
+  <p><ol>
+  <li><p>
+$\mathcal{A}$ is the directed colimit of its finite quasi-coherent $\mathcal{O}_ X$-subalgebras, and 
+</p>
+</li><li><p>
+$\mathcal{A}$ is a direct colimit of finite and finitely presented quasi-coherent $\mathcal{O}_ X$-algebras. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/05JT" data-tag="05JT">28.23.11</a> we have $\mathcal{A} = \mathop{\mathrm{colim}}\nolimits \mathcal{A}_ i$ where $\mathcal{A}_ i \subset \mathcal{A}$ runs through the quasi-coherent $\mathcal{O}_ X$-algebras of finite type. Any finite type quasi-coherent $\mathcal{O}_ X$-subalgebra of $\mathcal{A}$ is finite (apply Algebra, Lemma <a href="/tag/02JJ" data-tag="02JJ">10.36.5</a> to $\mathcal{A}_ i(U) \subset \mathcal{A}(U)$ for affine opens $U$ in $X$). This proves (1). 
+    <p>
+      To prove (2), write $\mathcal{A} = \mathop{\mathrm{colim}}\nolimits \mathcal{F}_ i$ as a colimit of finitely presented $\mathcal{O}_ X$-modules using Lemma <a href="/tag/01PK" data-tag="01PK">28.23.7</a>. For each $i$, let $\mathcal{J}_ i$ be the kernel of the map 
+    <p>
+      <div class="equation">
+  \[  \text{Sym}^*_{\mathcal{O}_ X}(\mathcal{F}_ i) \longrightarrow \mathcal{A}  \]
+</div>
+    <p>
+       For $i' \geq i$ there is an induced map $\mathcal{J}_ i \to \mathcal{J}_{i'}$ and we have $\mathcal{A} = \mathop{\mathrm{colim}}\nolimits \text{Sym}^*_{\mathcal{O}_ X}(\mathcal{F}_ i)/\mathcal{J}_ i$. Moreover, the quasi-coherent $\mathcal{O}_ X$-algebras $\text{Sym}^*_{\mathcal{O}_ X}(\mathcal{F}_ i)/\mathcal{J}_ i$ are finite (see above). Write $\mathcal{J}_ i = \mathop{\mathrm{colim}}\nolimits \mathcal{E}_{ik}$ as a colimit of finitely presented $\mathcal{O}_ X$-modules. Given $i' \geq i$ and $k$ there exists a $k'$ such that we have a map $\mathcal{E}_{ik} \to \mathcal{E}_{i'k'}$ making 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathcal{J}_ i \ar[r] &  \mathcal{J}_{i'} \\  \mathcal{E}_{ik} \ar[u] \ar[r] &  \mathcal{E}_{i'k'} \ar[u] }  \]
+</div>
+    <p>
+       commute. This follows from Modules, Lemma <a href="/tag/01BS" data-tag="01BS">17.22.8</a>. This induces a map 
+    <p>
+      <div class="equation">
+  \[  \mathcal{A}_{ik} = \text{Sym}^*_{\mathcal{O}_ X}(\mathcal{F}_ i)/(\mathcal{E}_{ik}) \longrightarrow \text{Sym}^*_{\mathcal{O}_ X}(\mathcal{F}_{i'})/(\mathcal{E}_{i'k'}) = \mathcal{A}_{i'k'}  \]
+</div>
+    <p>
+       where $(\mathcal{E}_{ik})$ denotes the ideal generated by $\mathcal{E}_{ik}$. The quasi-coherent $\mathcal{O}_ X$-algebras $\mathcal{A}_{ki}$ are of finite presentation and finite for $k$ large enough (see proof of Lemma <a href="/tag/086N" data-tag="086N">28.23.12</a>). Finally, we have 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits \mathcal{A}_{ik} = \mathop{\mathrm{colim}}\nolimits \mathcal{A}_ i = \mathcal{A}  \]
+</div>
+    <p>
+       Namely, the first equality was shown in the proof of Lemma <a href="/tag/086N" data-tag="086N">28.23.12</a> and the second equality because $\mathcal{A}$ is the colimit of the modules $\mathcal{F}_ i$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

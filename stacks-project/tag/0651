@@ -1,0 +1,444 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-algebra-section-tor" class="tex-section"><span data-tag="0651">15.68</span> Tor dimension</h2>
+
+<p>
+Instead of resolving by projective modules we can look at resolutions by flat modules. This leads to the following concept. 
+</p>
+<p>
+<article class="env-definition" id="0652">
+  <p><a class="environment-identifier" href="/tag/0652">Definition <span data-tag="0652">15.68.1</span>.</a> Let $R$ be a ring. Denote $D(R)$ its derived category. Let $a, b \in \mathbf{Z}$. </p>
+  <p><ol>
+  <li><p>
+An object $K^\bullet $ of $D(R)$ has <em>tor-amplitude in $[a, b]$</em> if $H^ i(K^\bullet \otimes _ R^\mathbf {L} M) = 0$ for all $R$-modules $M$ and all $i \not\in [a, b]$. 
+</p>
+</li><li><p>
+An object $K^\bullet $ of $D(R)$ has <em>finite tor dimension</em> if it has tor-amplitude in $[a, b]$ for some $a, b$. 
+</p>
+</li><li><p>
+An $R$-module $M$ has <em>tor dimension $\leq d$</em> if $M[0]$ as an object of $D(R)$ has tor-amplitude in $[-d, 0]$. 
+</p>
+</li><li><p>
+An $R$-module $M$ has <em>finite tor dimension</em> if $M[0]$ as an object of $D(R)$ has finite tor dimension. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+We observe that if $K^\bullet $ has finite tor dimension, then $K^\bullet \in D^ b(R)$. 
+</p>
+<p>
+<article class="env-lemma" id="0653">
+  <p><a class="environment-identifier" href="/tag/0653">Lemma <span data-tag="0653">15.68.2</span>.</a> Let $R$ be a ring. Let $K^\bullet $ be a bounded above complex of flat $R$-modules with tor-amplitude in $[a, b]$. Then $\mathop{\mathrm{Coker}}(d_ K^{a - 1})$ is a flat $R$-module. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      As $K^\bullet $ is a bounded above complex of flat modules we see that $K^\bullet \otimes _ R M = K^\bullet \otimes _ R^{\mathbf{L}} M$. Hence for every $R$-module $M$ the sequence 
+    <p>
+      <div class="equation">
+  \[  K^{a - 2} \otimes _ R M \to K^{a - 1} \otimes _ R M \to K^ a \otimes _ R M  \]
+</div>
+    <p>
+       is exact in the middle. Since $K^{a - 2} \to K^{a - 1} \to K^ a \to \mathop{\mathrm{Coker}}(d_ K^{a - 1}) \to 0$ is a flat resolution this implies that $\text{Tor}_1^ R(\mathop{\mathrm{Coker}}(d_ K^{a - 1}), M) = 0$ for all $R$-modules $M$. This means that $\mathop{\mathrm{Coker}}(d_ K^{a - 1})$ is flat, see Algebra, Lemma <a href="/tag/00M5" data-tag="00M5">10.75.8</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0654">
+  <p><a class="environment-identifier" href="/tag/0654">Lemma <span data-tag="0654">15.68.3</span>.</a> Let $R$ be a ring. Let $K^\bullet $ be an object of $D(R)$. Let $a, b \in \mathbf{Z}$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$K^\bullet $ has tor-amplitude in $[a, b]$. 
+</p>
+</li><li><p>
+$K^\bullet $ is quasi-isomorphic to a complex $E^\bullet $ of flat $R$-modules with $E^ i = 0$ for $i \not\in [a, b]$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If (2) holds, then we may compute $K^\bullet \otimes _ R^\mathbf {L} M = E^\bullet \otimes _ R M$ and it is clear that (1) holds. Assume that (1) holds. We may replace $K^\bullet $ by a projective resolution with $K^ i = 0$ for $i > b$. See Derived Categories, Lemma <a href="/tag/0646" data-tag="0646">13.19.3</a>. Set $E^\bullet = \tau _{\geq a}K^\bullet $. Everything is clear except that $E^ a$ is flat which follows immediately from Lemma <a href="/tag/0653" data-tag="0653">15.68.2</a> and the definitions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BYL">
+  <p><a class="environment-identifier" href="/tag/0BYL">Lemma <span data-tag="0BYL">15.68.4</span>.</a> Let $R$ be a ring. Let $a \in \mathbf{Z}$ and let $K$ be an object of $D(R)$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$K$ has tor-amplitude in $[a, \infty ]$, and 
+</p>
+</li><li><p>
+$K$ is quasi-isomorphic to a K-flat complex $E^\bullet $ whose terms are flat $R$-modules with $E^ i = 0$ for $i \not\in [a, \infty ]$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The implication (2) $\Rightarrow $ (1) is immediate. Assume (1) holds. First we choose a K-flat complex $K^\bullet $ with flat terms representing $K$, see Lemma <a href="/tag/06Y4" data-tag="06Y4">15.60.10</a>. For any $R$-module $M$ the cohomology of 
+    <p>
+      <div class="equation">
+  \[  K^{n - 1} \otimes _ R M \to K^ n \otimes _ R M \to K^{n + 1} \otimes _ R M  \]
+</div>
+    <p>
+       computes $H^ n(K \otimes _ R^\mathbf {L} M)$. This is always zero for $n < a$. Hence if we apply Lemma <a href="/tag/0653" data-tag="0653">15.68.2</a> to the complex $\ldots \to K^{a - 1} \to K^ a \to K^{a + 1}$ we conclude that $N = \mathop{\mathrm{Coker}}(K^{a - 1} \to K^ a)$ is a flat $R$-module. We set 
+    <p>
+      <div class="equation">
+  \[  E^\bullet = \tau _{\geq a}K^\bullet = (\ldots \to 0 \to N \to K^{a + 1} \to \ldots )  \]
+</div>
+    <p>
+       The kernel $L^\bullet $ of $K^\bullet \to E^\bullet $ is the complex 
+    <p>
+      <div class="equation">
+  \[  L^\bullet = (\ldots \to K^{a - 1} \to I \to 0 \to \ldots )  \]
+</div>
+    <p>
+       where $I \subset K^ a$ is the image of $K^{a - 1} \to K^ a$. Since we have the short exact sequence $0 \to I \to K^ a \to N \to 0$ we see that $I$ is a flat $R$-module. Thus $L^\bullet $ is a bounded above complex of flat modules, hence K-flat by Lemma <a href="/tag/064K" data-tag="064K">15.60.7</a>. It follows that $E^\bullet $ is K-flat by Lemma <a href="/tag/0BYH" data-tag="0BYH">15.60.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0655">
+  <p><a class="environment-identifier" href="/tag/0655">Lemma <span data-tag="0655">15.68.5</span>.</a> Let $R$ be a ring. Let $(K^\bullet , L^\bullet , M^\bullet , f, g, h)$ be a distinguished triangle in $D(R)$. Let $a, b \in \mathbf{Z}$. </p>
+  <p><ol>
+  <li><p>
+If $K^\bullet $ has tor-amplitude in $[a + 1, b + 1]$ and $L^\bullet $ has tor-amplitude in $[a, b]$ then $M^\bullet $ has tor-amplitude in $[a, b]$. 
+</p>
+</li><li><p>
+If $K^\bullet , M^\bullet $ have tor-amplitude in $[a, b]$, then $L^\bullet $ has tor-amplitude in $[a, b]$. 
+</p>
+</li><li><p>
+If $L^\bullet $ has tor-amplitude in $[a + 1, b + 1]$ and $M^\bullet $ has tor-amplitude in $[a, b]$, then $K^\bullet $ has tor-amplitude in $[a + 1, b + 1]$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. Hint: This just follows from the long exact cohomology sequence associated to a distinguished triangle and the fact that $- \otimes _ R^{\mathbf{L}} M$ preserves distinguished triangles. The easiest one to prove is (2) and the others follow from it by translation. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="066F">
+  <p><a class="environment-identifier" href="/tag/066F">Lemma <span data-tag="066F">15.68.6</span>.</a> Let $R$ be a ring. Let $M$ be an $R$-module. Let $d \geq 0$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$M$ has tor dimension $\leq d$, and 
+</p>
+</li><li><p>
+there exists a resolution 
+</p>
+<div class="equation">
+  \[  0 \to F_ d \to \ldots \to F_1 \to F_0 \to M \to 0  \]
+</div>
+<p>
+ with $F_ i$ a flat $R$-module. 
+</p>
+</li>
+</ol></p>
+  <p> In particular an $R$-module has tor dimension $0$ if and only if it is a flat $R$-module. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume (2). Then the complex $E^\bullet $ with $E^{-i} = F_ i$ is quasi-isomorphic to $M$. Hence the Tor dimension of $M$ is at most $d$ by Lemma <a href="/tag/0654" data-tag="0654">15.68.3</a>. Conversely, assume (1). Let $P^\bullet \to M$ be a projective resolution of $M$. By Lemma <a href="/tag/0653" data-tag="0653">15.68.2</a> we see that $\tau _{\geq -d}P^\bullet $ is a flat resolution of $M$ of length $d$, i.e., (2) holds. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="066G">
+  <p><a class="environment-identifier" href="/tag/066G">Lemma <span data-tag="066G">15.68.7</span>.</a> Let $R$ be a ring. Let $a, b \in \mathbf{Z}$. If $K^\bullet \oplus L^\bullet $ has tor amplitude in $[a, b]$ so do $K^\bullet $ and $L^\bullet $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Clear from the fact that the Tor functors are additive. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="066H">
+  <p><a class="environment-identifier" href="/tag/066H">Lemma <span data-tag="066H">15.68.8</span>.</a> Let $R$ be a ring. Let $K^\bullet $ be a bounded complex of $R$-modules such that $K^ i$ has tor amplitude in $[a - i, b - i]$ for all $i$. Then $K^\bullet $ has tor amplitude in $[a, b]$. In particular if $K^\bullet $ is a finite complex of $R$-modules of finite tor dimension, then $K^\bullet $ has finite tor dimension. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows by induction on the length of the finite complex: use Lemma <a href="/tag/0655" data-tag="0655">15.68.5</a> and the stupid truncations. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="066I">
+  <p><a class="environment-identifier" href="/tag/066I">Lemma <span data-tag="066I">15.68.9</span>.</a> Let $R$ be a ring. Let $a, b \in \mathbf{Z}$. Let $K^\bullet \in D^ b(R)$ such that $H^ i(K^\bullet )$ has tor amplitude in $[a - i, b - i]$ for all $i$. Then $K^\bullet $ has tor amplitude in $[a, b]$. In particular if $K^\bullet \in D^ b(R)$ and all its cohomology groups have finite tor dimension then $K^\bullet $ has finite tor dimension. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows by induction on the length of the finite complex: use Lemma <a href="/tag/0655" data-tag="0655">15.68.5</a> and the canonical truncations. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0B66">
+  <p><a class="environment-identifier" href="/tag/0B66">Lemma <span data-tag="0B66">15.68.10</span>.</a> Let $A \to B$ be a ring map. Let $K^\bullet $ and $L^\bullet $ be complexes of $B$-modules. Let $a, b, c, d \in \mathbf{Z}$. If </p>
+  <p><ol>
+  <li><p>
+$K^\bullet $ as a complex of $B$-modules has tor amplitude in $[a, b]$, 
+</p>
+</li><li><p>
+$L^\bullet $ as a complex of $A$-modules has tor amplitude in $[c, d]$, 
+</p>
+</li>
+</ol></p>
+  <p> then $K^\bullet \otimes ^\mathbf {L}_ B L^\bullet $ as a complex of $A$-modules has tor amplitude in $[a + c, b + d]$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We may assume that $K^\bullet $ is a complex of flat $B$-modules with $K^ i = 0$ for $i \not\in [a, b]$, see Lemma <a href="/tag/0654" data-tag="0654">15.68.3</a>. Let $M$ be an $A$-module. Choose a free resolution $F^\bullet \to M$. Then 
+    <p>
+      <div class="equation">
+  \[  (K^\bullet \otimes _ B^\mathbf {L} L^\bullet ) \otimes _ A^{\mathbf{L}} M = \text{Tot}(\text{Tot}(K^\bullet \otimes _ B L^\bullet ) \otimes _ A F^\bullet ) = \text{Tot}(K^\bullet \otimes _ B \text{Tot}(L^\bullet \otimes _ A F^\bullet ))  \]
+</div>
+    <p>
+       see Homology, Remark <a href="/tag/08BI" data-tag="08BI">12.18.4</a> for the second equality. By assumption (2) the complex $\text{Tot}(L^\bullet \otimes _ A F^\bullet )$ has nonzero cohomology only in degrees $[c, d]$. Hence the spectral sequence of Homology, Lemma <a href="/tag/0130" data-tag="0130">12.25.1</a> for the double complex $K^\bullet \otimes _ B \text{Tot}(L^\bullet \otimes _ A F^\bullet )$ proves that $(K^\bullet \otimes _ B^\mathbf {L} L^\bullet ) \otimes _ A^{\mathbf{L}} M$ has nonzero cohomology only in degrees $[a + c, b + d]$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="066J">
+  <p><a class="environment-identifier" href="/tag/066J">Lemma <span data-tag="066J">15.68.11</span>.</a> Let $A \to B$ be a ring map. Assume that $B$ is flat as an $A$-module. Let $K^\bullet $ be a complex of $B$-modules. Let $a, b \in \mathbf{Z}$. If $K^\bullet $ as a complex of $B$-modules has tor amplitude in $[a, b]$, then $K^\bullet $ as a complex of $A$-modules has tor amplitude in $[a, b]$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a special case of Lemma <a href="/tag/0B66" data-tag="0B66">15.68.10</a>, but can also be seen directly as follows. We have $K^\bullet \otimes _ A^{\mathbf{L}} M = K^\bullet \otimes _ B^{\mathbf{L}} (M \otimes _ A B)$ since any projective resolution of $K^\bullet $ as a complex of $B$-modules is a flat resolution of $K^\bullet $ as a complex of $A$-modules and can be used to compute $K^\bullet \otimes _ A^{\mathbf{L}} M$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="066K">
+  <p><a class="environment-identifier" href="/tag/066K">Lemma <span data-tag="066K">15.68.12</span>.</a> Let $A \to B$ be a ring map. Assume that $B$ has tor dimension $\leq d$ as an $A$-module. Let $K^\bullet $ be a complex of $B$-modules. Let $a, b \in \mathbf{Z}$. If $K^\bullet $ as a complex of $B$-modules has tor amplitude in $[a, b]$, then $K^\bullet $ as a complex of $A$-modules has tor amplitude in $[a - d, b]$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a special case of Lemma <a href="/tag/0B66" data-tag="0B66">15.68.10</a>, but can also be seen directly as follows. Let $M$ be an $A$-module. Choose a free resolution $F^\bullet \to M$. Then 
+    <p>
+      <div class="equation">
+  \[  K^\bullet \otimes _ A^{\mathbf{L}} M = \text{Tot}(K^\bullet \otimes _ A F^\bullet ) = \text{Tot}(K^\bullet \otimes _ B (F^\bullet \otimes _ A B)) = K^\bullet \otimes _ B^{\mathbf{L}} (M \otimes _ A^{\mathbf{L}} B).  \]
+</div>
+    <p>
+       By our assumption on $B$ as an $A$-module we see that $M \otimes _ A^{\mathbf{L}} B$ has cohomology only in degrees $-d, -d + 1, \ldots , 0$. Because $K^\bullet $ has tor amplitude in $[a, b]$ we see from the spectral sequence in Example <a href="/tag/0662" data-tag="0662">15.63.4</a> that $K^\bullet \otimes _ B^{\mathbf{L}} (M \otimes _ A^{\mathbf{L}} B)$ has cohomology only in degrees $[-d + a, b]$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="066L">
+  <p><a class="environment-identifier" href="/tag/066L">Lemma <span data-tag="066L">15.68.13</span>.</a> Let $A \to B$ be a ring map. Let $a, b \in \mathbf{Z}$. Let $K^\bullet $ be a complex of $A$-modules with tor amplitude in $[a, b]$. Then $K^\bullet \otimes _ A^{\mathbf{L}} B$ as a complex of $B$-modules has tor amplitude in $[a, b]$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/0654" data-tag="0654">15.68.3</a> we can find a quasi-isomorphism $E^\bullet \to K^\bullet $ where $E^\bullet $ is a complex of flat $A$-modules with $E^ i = 0$ for $i \not\in [a, b]$. Then $E^\bullet \otimes _ A B$ computes $K^\bullet \otimes _ A ^{\mathbf{L}} B$ by construction and each $E^ i \otimes _ A B$ is a flat $B$-module by Algebra, Lemma <a href="/tag/00HI" data-tag="00HI">10.39.7</a>. Hence we conclude by Lemma <a href="/tag/0654" data-tag="0654">15.68.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="066M">
+  <p><a class="environment-identifier" href="/tag/066M">Lemma <span data-tag="066M">15.68.14</span>.</a> Let $A \to B$ be a flat ring map. Let $d \geq 0$. Let $M$ be an $A$-module of tor dimension $\leq d$. Then $M \otimes _ A B$ is a $B$-module of tor dimension $\leq d$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Immediate consequence of Lemma <a href="/tag/066L" data-tag="066L">15.68.13</a> and the fact that $M \otimes _ A^{\mathbf{L}} B = M \otimes _ A B$ because $B$ is flat over $A$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0B67">
+  <p><a class="environment-identifier" href="/tag/0B67">Lemma <span data-tag="0B67">15.68.15</span>.</a> Let $A \to B$ be a ring map. Let $K^\bullet $ be a complex of $B$-modules. Let $a, b \in \mathbf{Z}$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$K^\bullet $ has tor amplitude in $[a, b]$ as a complex of $A$-modules, 
+</p>
+</li><li><p>
+$K^\bullet _\mathfrak q$ has tor amplitude in $[a, b]$ as a complex of $A_\mathfrak p$-modules for every prime $\mathfrak q \subset B$ with $\mathfrak p = A \cap \mathfrak q$, 
+</p>
+</li><li><p>
+$K^\bullet _\mathfrak m$ has tor amplitude in $[a, b]$ as a complex of $A_\mathfrak p$-modules for every maximal ideal $\mathfrak m \subset B$ with $\mathfrak p = A \cap \mathfrak m$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume (3) and let $M$ be an $A$-module. Then $H^ i = H^ i(K^\bullet \otimes _ A^\mathbf {L} M)$ is a $B$-module and $(H^ i)_\mathfrak m = H^ i(K^\bullet _\mathfrak m \otimes _{A_\mathfrak p}^\mathbf {L} M_\mathfrak p)$. Hence $H^ i = 0$ for $i \not\in [a, b]$ by Algebra, Lemma <a href="/tag/00HN" data-tag="00HN">10.23.1</a>. Thus (3) $\Rightarrow $ (1). We omit the proofs of (1) $\Rightarrow $ (2) and (2) $\Rightarrow $ (3). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="066N">
+  <p><a class="environment-identifier" href="/tag/066N">Lemma <span data-tag="066N">15.68.16</span>.</a> Let $R$ be a ring. Let $f_1, \ldots , f_ r \in R$ be elements which generate the unit ideal. Let $a, b \in \mathbf{Z}$. Let $K^\bullet $ be a complex of $R$-modules. If for each $i$ the complex $K^\bullet \otimes _ R R_{f_ i}$ has tor amplitude in $[a, b]$, then $K^\bullet $ has tor amplitude in $[a, b]$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows immediately from Lemma <a href="/tag/0B67" data-tag="0B67">15.68.15</a> but can also be seen directly as follows. Note that $- \otimes _ R R_{f_ i}$ is an exact functor and that therefore 
+    <p>
+      <div class="equation">
+  \[  H^ i(K^\bullet )_{f_ i} = H^ i(K^\bullet ) \otimes _ R R_{f_ i} = H^ i(K^\bullet \otimes _ R R_{f_ i}).  \]
+</div>
+    <p>
+       and similarly for every $R$-module $M$ we have 
+    <p>
+      <div class="equation">
+  \[  H^ i(K^\bullet \otimes _ R^{\mathbf{L}} M)_{f_ i} = H^ i(K^\bullet \otimes _ R^{\mathbf{L}} M) \otimes _ R R_{f_ i} = H^ i(K^\bullet \otimes _ R R_{f_ i} \otimes _{R_{f_ i}}^{\mathbf{L}} M_{f_ i}).  \]
+</div>
+    <p>
+       Hence the result follows from the fact that an $R$-module $N$ is zero if and only if $N_{f_ i}$ is zero for each $i$, see Algebra, Lemma <a href="/tag/00EO" data-tag="00EO">10.23.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="068S">
+  <p><a class="environment-identifier" href="/tag/068S">Lemma <span data-tag="068S">15.68.17</span>.</a> Let $R$ be a ring. Let $a, b \in \mathbf{Z}$. Let $K^\bullet $ be a complex of $R$-modules. Let $R \to R'$ be a faithfully flat ring map. If the complex $K^\bullet \otimes _ R R'$ has tor amplitude in $[a, b]$, then $K^\bullet $ has tor amplitude in $[a, b]$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $M$ be an $R$-module. Since $R \to R'$ is flat we see that 
+    <p>
+      <div class="equation">
+  \[  (M \otimes _ R^{\mathbf{L}} K^\bullet ) \otimes _ R R' = ((M \otimes _ R R') \otimes _{R'}^{\mathbf{L}} (K^\bullet \otimes _ R R')  \]
+</div>
+    <p>
+       and taking cohomology commutes with tensoring with $R'$. Hence $\text{Tor}_ i^ R(M, K^\bullet ) \otimes _ R R' = \text{Tor}_ i^{R'}(M \otimes _ R R', K^\bullet \otimes _ R R')$. Since $R \to R'$ is faithfully flat, the vanishing of $\text{Tor}_ i^{R'}(M \otimes _ R R', K^\bullet \otimes _ R R')$ for $i \not\in [a, b]$ implies the same thing for $\text{Tor}_ i^ R(M, K^\bullet )$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DJF">
+  <p><a class="environment-identifier" href="/tag/0DJF">Lemma <span data-tag="0DJF">15.68.18</span>.</a> Given ring maps $R \to A \to B$ with $A \to B$ faithfully flat and $K \in D(A)$ the tor amplitude of $K$ over $R$ is the same as the tor amplitude of $K \otimes _ A^\mathbf {L} B$ over $R$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is true because for an $R$-module $M$ we have $H^ i(K \otimes _ R^\mathbf {L} M) \otimes _ A B = H^ i((K \otimes _ A^\mathbf {L} B) \otimes _ R^\mathbf {L} M)$ for all $i$. Namely, represent $K$ by a complex $K^\bullet $ of $A$-modules and choose a free resolution $F^\bullet \to M$. Then we have the equality 
+    <p>
+      <div class="equation">
+  \[  \text{Tot}(K^\bullet \otimes _ A B \otimes _ R F^\bullet ) = \text{Tot}(K^\bullet \otimes _ R F^\bullet ) \otimes _ A B  \]
+</div>
+    <p>
+       The cohomology groups of the left hand side are $H^ i((K \otimes _ A^\mathbf {L} B) \otimes _ R^\mathbf {L} M)$ and on the right hand side we obtain $H^ i(K \otimes _ R^\mathbf {L} M) \otimes _ A B$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="066P">
+  <p><a class="environment-identifier" href="/tag/066P">Lemma <span data-tag="066P">15.68.19</span>.</a> Let $R$ be a ring of finite global dimension $d$. Then </p>
+  <p><ol>
+  <li><p>
+every module has tor dimension $\leq d$, 
+</p>
+</li><li><p>
+a complex of $R$-modules $K^\bullet $ with $H^ i(K^\bullet ) \not= 0$ only if $i \in [a, b]$ has tor amplitude in $[a - d, b]$, and 
+</p>
+</li><li><p>
+a complex of $R$-modules $K^\bullet $ has finite tor dimension if and only if $K^\bullet \in D^ b(R)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The assumption on $R$ means that every module has a finite projective resolution of length at most $d$, in particular every module has tor dimension $\leq d$. The second statement follows from Lemma <a href="/tag/066I" data-tag="066I">15.68.9</a> and the definitions. The third statement is a rephrasing of the second. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0H75">
+  <p><a class="environment-identifier" href="/tag/0H75">Lemma <span data-tag="0H75">15.68.20</span>.</a> Let $R' \to R$ be a surjective ring map whose kernel is a nilpotent ideal. Let $K' \in D(R')$ and set $K = K' \otimes _{R'}^\mathbf {L} R$. Let $a, b \in \mathbf{Z}$. Then $K$ has tor amplitude in $[a, b]$ if and only if $K'$ does. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      One direction follows from Lemma <a href="/tag/066L" data-tag="066L">15.68.13</a>. For the other, assume $K$ has tor amplitude in $[a, b]$ and let $M'$ be an $R'$-module. We have to show that $K' \otimes _{R'}^\mathbf {L} M'$ has nonzero cohomology only for degrees contained in the interval $[a, b]$. 
+    <p>
+      Let $I = \mathop{\mathrm{Ker}}(R' \to R)$. Then $I^ n = 0$ for some $n$. If $IM' = 0$, then we can view $M'$ as an $R$-module and argue as follows 
+    <p>
+      <div class="equation">
+  \[  K' \otimes _{R'}^\mathbf {L} M' = K' \otimes _{R'}^\mathbf {L} (R \otimes _ R^\mathbf {L} M') = (K' \otimes _{R'}^\mathbf {L} R) \otimes _ R^\mathbf {L} M' = K \otimes _ R^\mathbf {L} M'  \]
+</div>
+    <p>
+       which has nonvanishing cohomology only in the interval $[a, b]$ by assumption on $K$. If $I^{t + 1}M' = 0$, then we consider the short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to IM' \to M' \to M'/IM' \to 0  \]
+</div>
+    <p>
+       By induction on $t$ we have that both $K' \otimes _{R'}^\mathbf {L} IM'$ and $K' \otimes _{R'}^\mathbf {L} M'/IM'$ have nonzero cohomology only for degrees in the interval $[a, b]$. Then the distinguished triangle 
+    <p>
+      <div class="equation">
+  \[  K' \otimes _{R'}^\mathbf {L} IM' \to K' \otimes _{R'}^\mathbf {L} M' \to K' \otimes _{R'}^\mathbf {L} M'/IM' \to (K' \otimes _{R'}^\mathbf {L} IM')[1]  \]
+</div>
+    <p>
+       proves the same is true for $K' \otimes _{R'}^\mathbf {L} M'$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

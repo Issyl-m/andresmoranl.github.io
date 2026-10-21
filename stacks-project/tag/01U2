@@ -1,0 +1,289 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="morphisms-section-flat" class="tex-section"><span data-tag="01U2">29.26</span> Flat morphisms</h2>
+
+<p>
+Flatness is one of the most important technical tools in algebraic geometry. In this section we introduce this notion. We intentionally limit the discussion to straightforward observations, apart from Lemma <a href="/tag/01UA" data-tag="01UA">29.26.10</a>. A very important class of results, namely criteria for flatness, are discussed in Algebra, Sections <a href="/tag/00MD" data-tag="00MD">10.99</a>, <a href="/tag/051E" data-tag="051E">10.101</a>, <a href="/tag/00R3" data-tag="00R3">10.128</a>, and More on Morphisms, Section <a href="/tag/039A" data-tag="039A">37.16</a>. There is a chapter dedicated to advanced material on flat morphisms of schemes, namely More on Flatness, Section <a href="/tag/057N" data-tag="057N">38.1</a>. 
+</p>
+<p>
+Recall that a module $M$ over a ring $R$ is <em>flat</em> if the functor $-\otimes _ R M : \text{Mod}_ R \to \text{Mod}_ R$ is exact. A ring map $R \to A$ is said to be <em>flat</em> if $A$ is flat as an $R$-module. See Algebra, Definition <a href="/tag/00HB" data-tag="00HB">10.39.1</a>. 
+</p>
+<p>
+<article class="env-definition" id="01U3">
+  <p><a class="environment-identifier" href="/tag/01U3">Definition <span data-tag="01U3">29.26.1</span>.</a> Let $f : X \to S$ be a morphism of schemes. Let $\mathcal{F}$ be a quasi-coherent sheaf of $\mathcal{O}_ X$-modules. </p>
+  <p><ol>
+  <li><p>
+We say $f$ is <em>flat at a point $x \in X$</em> if the local ring $\mathcal{O}_{X, x}$ is flat over the local ring $\mathcal{O}_{S, f(x)}$. 
+</p>
+</li><li><p>
+We say that $\mathcal{F}$ is <em>flat over $S$ at a point $x \in X$</em> if the stalk $\mathcal{F}_ x$ is a flat $\mathcal{O}_{S, f(x)}$-module. 
+</p>
+</li><li><p>
+We say $f$ is <em>flat</em> if $f$ is flat at every point of $X$. 
+</p>
+</li><li><p>
+We say that $\mathcal{F}$ is <em>flat over $S$</em> if $\mathcal{F}$ is flat over $S$ at every point $x$ of $X$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+Thus we see that $f$ is flat if and only if the structure sheaf $\mathcal{O}_ X$ is flat over $S$. 
+</p>
+<p>
+<article class="env-lemma" id="01U4">
+  <p><a class="environment-identifier" href="/tag/01U4">Lemma <span data-tag="01U4">29.26.2</span>.</a> Let $f : X \to S$ be a morphism of schemes. Let $\mathcal{F}$ be a quasi-coherent sheaf of $\mathcal{O}_ X$-modules. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+The sheaf $\mathcal{F}$ is flat over $S$. 
+</p>
+</li><li><p>
+For every affine opens $U \subset X$, $V \subset S$ with $f(U) \subset V$ the $\mathcal{O}_ S(V)$-module $\mathcal{F}(U)$ is flat. 
+</p>
+</li><li><p>
+There exists an open covering $S = \bigcup _{j \in J} V_ j$ and open coverings $f^{-1}(V_ j) = \bigcup _{i \in I_ j} U_ i$ such that each of the modules $\mathcal{F}|_{U_ i}$ is flat over $V_ j$, for all $j\in J, i\in I_ j$. 
+</p>
+</li><li><p>
+There exists an affine open covering $S = \bigcup _{j \in J} V_ j$ and affine open coverings $f^{-1}(V_ j) = \bigcup _{i \in I_ j} U_ i$ such that $\mathcal{F}(U_ i)$ is a flat $\mathcal{O}_ S(V_ j)$-module, for all $j\in J, i\in I_ j$. 
+</p>
+</li>
+</ol></p>
+  <p> Moreover, if $\mathcal{F}$ is flat over $S$ then for any open subschemes $U \subset X$, $V \subset S$ with $f(U) \subset V$ the restriction $\mathcal{F}|_ U$ is flat over $V$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $R \to A$ be a ring map. Let $M$ be an $A$-module. If $M$ is $R$-flat, then for all primes $\mathfrak q$ the module $M_{\mathfrak q}$ is flat over $R_{\mathfrak p}$ with $\mathfrak p$ the prime of $R$ lying under $\mathfrak q$. Conversely, if $M_{\mathfrak q}$ is flat over $R_{\mathfrak p}$ for all primes $\mathfrak q$ of $A$, then $M$ is flat over $R$. See Algebra, Lemma <a href="/tag/00HT" data-tag="00HT">10.39.18</a>. This equivalence easily implies the statements of the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01U5">
+  <p><a class="environment-identifier" href="/tag/01U5">Lemma <span data-tag="01U5">29.26.3</span>.</a> Let $f : X \to S$ be a morphism of schemes. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+The morphism $f$ is flat. 
+</p>
+</li><li><p>
+For every affine opens $U \subset X$, $V \subset S$ with $f(U) \subset V$ the ring map $\mathcal{O}_ S(V) \to \mathcal{O}_ X(U)$ is flat. 
+</p>
+</li><li><p>
+There exists an open covering $S = \bigcup _{j \in J} V_ j$ and open coverings $f^{-1}(V_ j) = \bigcup _{i \in I_ j} U_ i$ such that each of the morphisms $U_ i \to V_ j$, $j\in J, i\in I_ j$ is flat. 
+</p>
+</li><li><p>
+There exists an affine open covering $S = \bigcup _{j \in J} V_ j$ and affine open coverings $f^{-1}(V_ j) = \bigcup _{i \in I_ j} U_ i$ such that $\mathcal{O}_ S(V_ j) \to \mathcal{O}_ X(U_ i)$ is flat, for all $j\in J, i\in I_ j$. 
+</p>
+</li>
+</ol></p>
+  <p> Moreover, if $f$ is flat then for any open subschemes $U \subset X$, $V \subset S$ with $f(U) \subset V$ the restriction $f|_ U : U \to V$ is flat. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a special case of Lemma <a href="/tag/01U4" data-tag="01U4">29.26.2</a> above. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FLM">
+  <p><a class="environment-identifier" href="/tag/0FLM">Lemma <span data-tag="0FLM">29.26.4</span>.</a> Let $f : X \to Y$ be an affine morphism of schemes over a base scheme $S$. Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_ X$-module. Then $\mathcal{F}$ is flat over $S$ if and only if $f_*\mathcal{F}$ is flat over $S$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/01U4" data-tag="01U4">29.26.2</a> and the fact that $f$ is an affine morphism, this reduces us to the affine case. Say $X \to Y \to S$ corresponds to the ring maps $C \leftarrow B \leftarrow A$. Let $N$ be the $C$-module corresponding to $\mathcal{F}$. Recall that $f_*\mathcal{F}$ corresponds to $N$ viewed as a $B$-module, see Schemes, Lemma <a href="/tag/01I9" data-tag="01I9">26.7.3</a>. Thus the result is clear. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01U6">
+  <p><a class="environment-identifier" href="/tag/01U6">Lemma <span data-tag="01U6">29.26.5</span>.</a> Let $X \to Y \to Z$ be morphisms of schemes. Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_ X$-module. Let $x \in X$ with image $y$ in $Y$. If $\mathcal{F}$ is flat over $Y$ at $x$, and $Y$ is flat over $Z$ at $y$, then $\mathcal{F}$ is flat over $Z$ at $x$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See Algebra, Lemma <a href="/tag/00HC" data-tag="00HC">10.39.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01U7">
+  <p><a class="environment-identifier" href="/tag/01U7">Lemma <span data-tag="01U7">29.26.6</span>.</a> The composition of flat morphisms is flat. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a special case of Lemma <a href="/tag/01U6" data-tag="01U6">29.26.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01U8">
+  <p><a class="environment-identifier" href="/tag/01U8">Lemma <span data-tag="01U8">29.26.7</span>.</a> Let $f : X \to S$ be a morphism of schemes. Let $\mathcal{F}$ be a quasi-coherent sheaf of $\mathcal{O}_ X$-modules. Let $g : S' \to S$ be a morphism of schemes. Denote $g' : X' = X_{S'} \to X$ the projection. Let $x' \in X'$ be a point with image $x = g'(x') \in X$. If $\mathcal{F}$ is flat over $S$ at $x$, then $(g')^*\mathcal{F}$ is flat over $S'$ at $x'$. In particular, if $\mathcal{F}$ is flat over $S$, then $(g')^*\mathcal{F}$ is flat over $S'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See Algebra, Lemma <a href="/tag/00HI" data-tag="00HI">10.39.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01U9">
+  <p><a class="environment-identifier" href="/tag/01U9">Lemma <span data-tag="01U9">29.26.8</span>.</a> The base change of a flat morphism is flat. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a special case of Lemma <a href="/tag/01U8" data-tag="01U8">29.26.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03HV">
+  <p><a class="environment-identifier" href="/tag/03HV">Lemma <span data-tag="03HV">29.26.9</span>.</a> Let $f : X \to S$ be a flat morphism of schemes. Then generalizations lift along $f$, see Topology, Definition <a href="/tag/0063" data-tag="0063">5.19.4</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See Algebra, Section <a href="/tag/00HU" data-tag="00HU">10.41</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01UA">
+  <p><a class="environment-identifier" href="/tag/01UA">Lemma <span data-tag="01UA">29.26.10</span>.</a> A flat morphism locally of finite presentation is universally open. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from Lemmas <a href="/tag/03HV" data-tag="03HV">29.26.9</a> and Lemma <a href="/tag/01U1" data-tag="01U1">29.24.2</a> above. We can also argue directly as follows. 
+    <p>
+      Let $f : X \to S$ be flat and locally of finite presentation. By Lemmas <a href="/tag/01U9" data-tag="01U9">29.26.8</a> and <a href="/tag/01TS" data-tag="01TS">29.22.4</a> any base change of $f$ is flat and locally of finite presentation. Hence it suffices to show $f$ is open. To show $f$ is open it suffices to show that we may cover $X$ by open affines $X = \bigcup U_ i$ such that $U_ i \to S$ is open. We may cover $X$ by affine opens $U_ i \subset X$ such that each $U_ i$ maps into an affine open $V_ i \subset S$ and such that the induced ring map $\mathcal{O}_ S(V_ i) \to \mathcal{O}_ X(U_ i)$ is flat and of finite presentation (Lemmas <a href="/tag/01U5" data-tag="01U5">29.26.3</a> and <a href="/tag/01TQ" data-tag="01TQ">29.22.2</a>). Then $U_ i \to V_ i$ is open by Algebra, Proposition <a href="/tag/00I1" data-tag="00I1">10.41.8</a> and the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CVT">
+  <p><a class="environment-identifier" href="/tag/0CVT">Lemma <span data-tag="0CVT">29.26.11</span>.</a> Let $f : X \to Y$ be a morphism of schemes. Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_ X$-module. Assume $f$ locally finite presentation, $\mathcal{F}$ of finite type, $X = \text{Supp}(\mathcal{F})$, and $\mathcal{F}$ flat over $Y$. Then $f$ is universally open. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemmas <a href="/tag/01U8" data-tag="01U8">29.26.7</a>, <a href="/tag/01TS" data-tag="01TS">29.22.4</a>, and <a href="/tag/056J" data-tag="056J">29.5.3</a> the assumptions are preserved under base change. By Lemma <a href="/tag/01U1" data-tag="01U1">29.24.2</a> it suffices to show that generalizations lift along $f$. This follows from Algebra, Lemma <a href="/tag/080T" data-tag="080T">10.41.12</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02JY">
+       
+      
+  <p><a class="environment-identifier" href="/tag/02JY">Lemma <span data-tag="02JY">29.26.12</span>.</a> Let $f : X \to Y$ be a quasi-compact, surjective, flat morphism. A subset $T \subset Y$ is open (resp. closed) if and only $f^{-1}(T)$ is open (resp. closed). In other words, $f$ is a submersive morphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The question is local on $Y$, hence we may assume that $Y$ is affine. In this case $X$ is quasi-compact as $f$ is quasi-compact. Write $X = X_1 \cup \ldots \cup X_ n$ as a finite union of affine opens. Then $f' : X' = X_1 \amalg \ldots \amalg X_ n \to Y$ is a surjective flat morphism of affine schemes. Note that for $T \subset Y$ we have $(f')^{-1}(T) = f^{-1}(T) \cap X_1 \amalg \ldots \amalg f^{-1}(T) \cap X_ n$. Hence, $f^{-1}(T)$ is open if and only if $(f')^{-1}(T)$ is open. Thus we may assume both $X$ and $Y$ are affine. 
+    <p>
+      Let $f : \mathop{\mathrm{Spec}}(B) \to \mathop{\mathrm{Spec}}(A)$ be a surjective morphism of affine schemes corresponding to a flat ring map $A \to B$. Suppose that $f^{-1}(T)$ is closed, say $f^{-1}(T) = V(J)$ for $J \subset B$ an ideal. Then $T = f(f^{-1}(T)) = f(V(J))$ is the image of $\mathop{\mathrm{Spec}}(B/J) \to \mathop{\mathrm{Spec}}(A)$ (here we use that $f$ is surjective). On the other hand, generalizations lift along $f$ (Lemma <a href="/tag/03HV" data-tag="03HV">29.26.9</a>). Hence by Topology, Lemma <a href="/tag/0065" data-tag="0065">5.19.6</a> we see that $Y \setminus T = f(X \setminus f^{-1}(T))$ is stable under generalization. Hence $T$ is stable under specialization (Topology, Lemma <a href="/tag/0062" data-tag="0062">5.19.2</a>). Thus $T$ is closed by Algebra, Lemma <a href="/tag/00HY" data-tag="00HY">10.41.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02JZ">
+  <p><a class="environment-identifier" href="/tag/02JZ">Lemma <span data-tag="02JZ">29.26.13</span>.</a> Let $h : X \to Y$ be a morphism of schemes over $S$. Let $\mathcal{G}$ be a quasi-coherent sheaf on $Y$. Let $x \in X$ with $y = h(x) \in Y$. If $h$ is flat at $x$, then </p>
+  <div class="equation">
+  \[  \mathcal{G}\text{ flat over }S\text{ at }y \Leftrightarrow h^*\mathcal{G}\text{ flat over }S\text{ at }x.  \]
+</div>
+  <p> In particular: If $h$ is surjective and flat, then $\mathcal{G}$ is flat over $S$, if and only if $h^*\mathcal{G}$ is flat over $S$. If $h$ is surjective and flat, and $X$ is flat over $S$, then $Y$ is flat over $S$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      You can prove this by applying Algebra, Lemma <a href="/tag/0584" data-tag="0584">10.39.9</a>. Here is a direct proof. Let $s \in S$ be the image of $y$. Consider the local ring maps $\mathcal{O}_{S, s} \to \mathcal{O}_{Y, y} \to \mathcal{O}_{X, x}$. By assumption the ring map $\mathcal{O}_{Y, y} \to \mathcal{O}_{X, x}$ is faithfully flat, see Algebra, Lemma <a href="/tag/00HR" data-tag="00HR">10.39.17</a>. Let $N = \mathcal{G}_ y$. Note that $h^*\mathcal{G}_ x = N \otimes _{\mathcal{O}_{Y, y}} \mathcal{O}_{X, x}$, see Sheaves, Lemma <a href="/tag/0098" data-tag="0098">6.26.4</a>. Let $M' \to M$ be an injection of $\mathcal{O}_{S, s}$-modules. By the faithful flatness mentioned above we have 
+    <p>
+      <div class="equation">
+  \begin{align*}  \mathop{\mathrm{Ker}}( M' \otimes _{\mathcal{O}_{S, s}} N \to M \otimes _{\mathcal{O}_{S, s}} N) \otimes _{\mathcal{O}_{Y, y}} \mathcal{O}_{X, x} \\  = \mathop{\mathrm{Ker}}( M' \otimes _{\mathcal{O}_{S, s}} N \otimes _{\mathcal{O}_{Y, y}} \mathcal{O}_{X, x} \to M \otimes _{\mathcal{O}_{S, s}} N \otimes _{\mathcal{O}_{Y, y}} \mathcal{O}_{X, x}) \end{align*}
+</div>
+    <p>
+       Hence the equivalence of the lemma follows from the second characterization of flatness in Algebra, Lemma <a href="/tag/00HD" data-tag="00HD">10.39.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="07T9">
+  <p><a class="environment-identifier" href="/tag/07T9">Lemma <span data-tag="07T9">29.26.14</span>.</a> Let $f : Y \to X$ be a morphism of schemes. Let $\mathcal{F}$ be a finite type quasi-coherent $\mathcal{O}_ X$-module with scheme theoretic support $Z \subset X$. If $f$ is flat, then $f^{-1}(Z)$ is the scheme theoretic support of $f^*\mathcal{F}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Using the characterization of scheme theoretic support on affines as given in Lemma <a href="/tag/05JU" data-tag="05JU">29.5.4</a> we reduce to Algebra, Lemma <a href="/tag/07T8" data-tag="07T8">10.40.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="081H">
+  <p><a class="environment-identifier" href="/tag/081H">Lemma <span data-tag="081H">29.26.15</span>.</a> Let $f : X \to Y$ be a flat morphism of schemes. Let $V \subset Y$ be a retrocompact open which is scheme theoretically dense. Then $f^{-1}V$ is scheme theoretically dense in $X$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use the characterization of Lemma <a href="/tag/01RE" data-tag="01RE">29.7.5</a>. We have to show that for any open $U \subset X$ the map $\mathcal{O}_ X(U) \to \mathcal{O}_ X(U \cap f^{-1}V)$ is injective. It suffices to prove this when $U$ is an affine open which maps into an affine open $W \subset Y$. Say $W = \mathop{\mathrm{Spec}}(A)$ and $U = \mathop{\mathrm{Spec}}(B)$. Then $V \cap W = D(f_1) \cup \ldots \cup D(f_ n)$ for some $f_ i \in A$, see Algebra, Lemma <a href="/tag/00F6" data-tag="00F6">10.29.1</a>. Thus we have to show that $B \to B_{f_1} \times \ldots \times B_{f_ n}$ is injective. We are given that $A \to A_{f_1} \times \ldots \times A_{f_ n}$ is injective and that $A \to B$ is flat. Since $B_{f_ i} = A_{f_ i} \otimes _ A B$ we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="081I">
+       
+      
+  <p><a class="environment-identifier" href="/tag/081I">Lemma <span data-tag="081I">29.26.16</span>.</a> Let $f : X \to Y$ be a flat morphism of schemes. Let $g : V \to Y$ be a quasi-compact morphism of schemes. Let $Z \subset Y$ be the scheme theoretic image of $g$ and let $Z' \subset X$ be the scheme theoretic image of the base change $V \times _ Y X \to X$. Then $Z' = f^{-1}Z$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Recall that $Z$ is cut out by $\mathcal{I} = \mathop{\mathrm{Ker}}(\mathcal{O}_ Y \to g_*\mathcal{O}_ V)$ and $Z'$ is cut out by $\mathcal{I}' = \mathop{\mathrm{Ker}}(\mathcal{O}_ X \to (V \times _ Y X \to X)_*\mathcal{O}_{V \times _ Y X})$, see Lemma <a href="/tag/01R8" data-tag="01R8">29.6.3</a>. Hence the question is local on $X$ and $Y$ and we may assume $X$ and $Y$ affine. Note that we may replace $V$ by $\coprod V_ i$ where $V = V_1 \cup \ldots \cup V_ n$ is a finite affine open covering. Hence we may assume $g$ is affine. In this case $(V \times _ Y X \to X)_*\mathcal{O}_{V \times _ Y X}$ is the pullback of $g_*\mathcal{O}_ V$ by $f$. Since $f$ is flat we conclude that $f^*\mathcal{I} = \mathcal{I}'$ and the lemma holds. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

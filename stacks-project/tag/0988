@@ -1,0 +1,494 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="proetale-section-proetale" class="tex-section"><span data-tag="0988">61.12</span> The pro-étale site</h2>
+
+<p>
+In this section we only discuss the actual definition and construction of the various pro-étale sites and the morphisms between them. The existence of weakly contractible objects will be done in Section <a href="/tag/0F4N" data-tag="0F4N">61.13</a>. 
+</p>
+<p>
+The pro-étale topology is a bit like the fpqc topology (see Topologies, Section <a href="/tag/022A" data-tag="022A">34.9</a>) in that the topos of sheaves on the small pro-étale site of a scheme depends on the choice of the underlying category of schemes. Thus we cannot speak of <em>the</em> pro-étale topos of a scheme. However, it will be true that the cohomology groups of a sheaf are unchanged if we enlarge our underlying category of schemes, see Section <a href="/tag/0F4R" data-tag="0F4R">61.31</a>. 
+</p>
+<p>
+We will define pro-étale coverings using weakly étale morphisms of schemes, see More on Morphisms, Section <a href="/tag/094N" data-tag="094N">37.64</a>. The reason is that, on the one hand, it is somewhat awkward to define the notion of a pro-étale morphism of schemes, and on the other, Proposition <a href="/tag/097Z" data-tag="097Z">61.9.1</a> assures us that we obtain the same sheaves<a class="footnotemark" href="#a0001288164" id="a0001288164-mark"><sup>1</sup></a> with the definition that follows. 
+</p>
+<p>
+<article class="env-definition" id="0989">
+  <p><a class="environment-identifier" href="/tag/0989">Definition <span data-tag="0989">61.12.1</span>.</a> Let $T$ be a scheme. A <em>pro-étale covering of $T$</em> is a family of morphisms $\{ f_ i : T_ i \to T\} _{i \in I}$ of schemes such that each $f_ i$ is weakly-étale and such that for every affine open $U \subset T$ there exists $n \geq 0$, a map $a : \{ 1, \ldots , n\}  \to I$ and affine opens $V_ j \subset T_{a(j)}$, $j = 1, \ldots , n$ with $\bigcup _{j = 1}^ n f_{a(j)}(V_ j) = U$. </p>
+</article> 
+</p>
+<p>
+To be sure this condition implies that $T = \bigcup f_ i(T_ i)$. Here is a lemma that will allow us to recognize pro-étale coverings. It will also allow us to reduce many lemmas about pro-étale coverings to the corresponding results for fpqc coverings. 
+</p>
+<p>
+<article class="env-lemma" id="098A">
+  <p><a class="environment-identifier" href="/tag/098A">Lemma <span data-tag="098A">61.12.2</span>.</a> Let $T$ be a scheme. Let $\{ f_ i : T_ i \to T\} _{i \in I}$ be a family of morphisms of schemes with target $T$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$\{ f_ i : T_ i \to T\} _{i \in I}$ is a pro-étale covering, 
+</p>
+</li><li><p>
+each $f_ i$ is weakly étale and $\{ f_ i : T_ i \to T\} _{i \in I}$ is an fpqc covering, 
+</p>
+</li><li><p>
+each $f_ i$ is weakly étale and for every affine open $U \subset T$ there exist quasi-compact opens $U_ i \subset T_ i$ which are almost all empty, such that $U = \bigcup f_ i(U_ i)$, 
+</p>
+</li><li><p>
+each $f_ i$ is weakly étale and there exists an affine open covering $T = \bigcup _{\alpha \in A} U_\alpha $ and for each $\alpha \in A$ there exist $i_{\alpha , 1}, \ldots , i_{\alpha , n(\alpha )} \in I$ and quasi-compact opens $U_{\alpha , j} \subset T_{i_{\alpha , j}}$ such that $U_\alpha = \bigcup _{j = 1, \ldots , n(\alpha )} f_{i_{\alpha , j}}(U_{\alpha , j})$. 
+</p>
+</li>
+</ol></p>
+  <p> If $T$ is quasi-separated, these are also equivalent to </p>
+  <p><ol>
+  <li class="custom-item" data-marker="(5)"><p>
+each $f_ i$ is weakly étale, and for every $t \in T$ there exist $i_1, \ldots , i_ n \in I$ and quasi-compact opens $U_ j \subset T_{i_ j}$ such that $\bigcup _{j = 1, \ldots , n} f_{i_ j}(U_ j)$ is a (not necessarily open) neighbourhood of $t$ in $T$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The equivalence of (1) and (2) is immediate from the definitions. Hence the lemma follows from Topologies, Lemma <a href="/tag/03L7" data-tag="03L7">34.9.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="098B">
+  <p><a class="environment-identifier" href="/tag/098B">Lemma <span data-tag="098B">61.12.3</span>.</a> Any étale covering and any Zariski covering is a pro-étale covering. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from the corresponding result for fpqc coverings (Topologies, Lemma <a href="/tag/022C" data-tag="022C">34.9.7</a>), Lemma <a href="/tag/098A" data-tag="098A">61.12.2</a>, and the fact that an étale morphism is a weakly étale morphism, see More on Morphisms, Lemma <a href="/tag/094X" data-tag="094X">37.64.9</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="098C">
+  <p><a class="environment-identifier" href="/tag/098C">Lemma <span data-tag="098C">61.12.4</span>.</a> Let $T$ be a scheme. </p>
+  <p><ol>
+  <li><p>
+If $T' \to T$ is an isomorphism then $\{ T' \to T\} $ is a pro-étale covering of $T$. 
+</p>
+</li><li><p>
+If $\{ T_ i \to T\} _{i\in I}$ is a pro-étale covering and for each $i$ we have a pro-étale covering $\{ T_{ij} \to T_ i\} _{j\in J_ i}$, then $\{ T_{ij} \to T\} _{i \in I, j\in J_ i}$ is a pro-étale covering. 
+</p>
+</li><li><p>
+If $\{ T_ i \to T\} _{i\in I}$ is a pro-étale covering and $T' \to T$ is a morphism of schemes then $\{ T' \times _ T T_ i \to T'\} _{i\in I}$ is a pro-étale covering. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from the fact that composition and base changes of weakly étale morphisms are weakly étale (More on Morphisms, Lemmas <a href="/tag/094T" data-tag="094T">37.64.5</a> and <a href="/tag/094U" data-tag="094U">37.64.6</a>), Lemma <a href="/tag/098A" data-tag="098A">61.12.2</a>, and the corresponding results for fpqc coverings, see Topologies, Lemma <a href="/tag/022D" data-tag="022D">34.9.8</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="098D">
+  <p><a class="environment-identifier" href="/tag/098D">Lemma <span data-tag="098D">61.12.5</span>.</a> Let $T$ be an affine scheme. Let $\{ T_ i \to T\} _{i \in I}$ be a pro-étale covering of $T$. Then there exists a pro-étale covering $\{ U_ j \to T\} _{j = 1, \ldots , n}$ which is a refinement of $\{ T_ i \to T\} _{i \in I}$ such that each $U_ j$ is an affine scheme. Moreover, we may choose each $U_ j$ to be open affine in one of the $T_ i$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows directly from the definition. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Thus we define the corresponding standard coverings of affines as follows. 
+</p>
+<p>
+<article class="env-definition" id="098E">
+  <p><a class="environment-identifier" href="/tag/098E">Definition <span data-tag="098E">61.12.6</span>.</a> Let $T$ be an affine scheme. A <em>standard pro-étale covering</em> of $T$ is a family $\{ f_ i : T_ i \to T\} _{i = 1, \ldots , n}$ where each $T_ j$ is affine, each $f_ i$ is weakly étale, and $T = \bigcup f_ i(T_ i)$. </p>
+</article> 
+</p>
+<p>
+We follow the general outline given in Topologies, Section <a href="/tag/020M" data-tag="020M">34.2</a> for constructing the big pro-étale site we will be working with. However, because we need a bit larger rings to accommodate for the size of certain constructions we modify the constructions slightly. 
+</p>
+<p>
+<article class="env-definition" id="098G">
+  <p><a class="environment-identifier" href="/tag/098G">Definition <span data-tag="098G">61.12.7</span>.</a> A <em>big pro-étale site</em> is any site $\mathit{Sch}_{pro\text{-}\acute{e}tale}$ as in Sites, Definition <a href="/tag/00VH" data-tag="00VH">7.6.2</a> constructed as follows: </p>
+  <p><ol>
+  <li><p>
+Choose any set of schemes $S_0$, and any set of pro-étale coverings $\text{Cov}_0$ among these schemes. 
+</p>
+</li><li><p>
+Change the function $Bound$ of Sets, Equation (<a href="/tag/046U" data-tag="046U">3.9.1.1</a>) into 
+</p>
+<div class="equation">
+  \[  Bound(\kappa ) = \max \{ \kappa ^{2^{2^{2^\kappa }}}, \kappa ^{\aleph _0}, \kappa ^+\} .  \]
+</div>
+</li><li><p>
+As underlying category take any category $\mathit{Sch}_\alpha $ constructed as in Sets, Lemma <a href="/tag/000J" data-tag="000J">3.9.2</a> starting with the set $S_0$ and the function $Bound$. 
+</p>
+</li><li><p>
+Choose any set of coverings as in Sets, Lemma <a href="/tag/000X" data-tag="000X">3.11.1</a> starting with the category $\mathit{Sch}_\alpha $ and the class of pro-étale coverings, and the set $\text{Cov}_0$ chosen above. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+See the remarks following Topologies, Definition <a href="/tag/020S" data-tag="020S">34.3.5</a> for motivation and explanation regarding the definition of big sites. 
+</p>
+<p>
+It will turn out, see Lemma <a href="/tag/098J" data-tag="098J">61.31.1</a>, that the topology on a big pro-étale site $\mathit{Sch}_{pro\text{-}\acute{e}tale}$ is in some sense induced from the pro-étale topology on the category of all schemes. 
+</p>
+<p>
+<article class="env-definition" id="098K">
+  <p><a class="environment-identifier" href="/tag/098K">Definition <span data-tag="098K">61.12.8</span>.</a> Let $S$ be a scheme. Let $\mathit{Sch}_{pro\text{-}\acute{e}tale}$ be a big pro-étale site containing $S$. </p>
+  <p><ol>
+  <li><p>
+The <em>big pro-étale site of $S$</em>, denoted $(\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$, is the site $\mathit{Sch}_{pro\text{-}\acute{e}tale}/S$ introduced in Sites, Section <a href="/tag/00XZ" data-tag="00XZ">7.25</a>. 
+</p>
+</li><li><p>
+The <em>small pro-étale site of $S$</em>, which we denote $S_{pro\text{-}\acute{e}tale}$, is the full subcategory of $(\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$ whose objects are those $U/S$ such that $U \to S$ is weakly étale. A covering of $S_{pro\text{-}\acute{e}tale}$ is any covering $\{ U_ i \to U\} $ of $(\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$ with $U \in \mathop{\mathrm{Ob}}\nolimits (S_{pro\text{-}\acute{e}tale})$. 
+</p>
+</li><li><p>
+The <em>big affine pro-étale site of $S$</em>, denoted $(\textit{Aff}/S)_{pro\text{-}\acute{e}tale}$, is the full subcategory of $(\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$ whose objects are affine $U/S$. A covering of $(\textit{Aff}/S)_{pro\text{-}\acute{e}tale}$ is any covering $\{ U_ i \to U\} $ of $(\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$ which is a standard pro-étale covering. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+It is not completely clear that the small pro-étale site and the big affine pro-étale site are sites. We check this now. 
+</p>
+<p>
+<article class="env-lemma" id="098L">
+  <p><a class="environment-identifier" href="/tag/098L">Lemma <span data-tag="098L">61.12.9</span>.</a> Let $S$ be a scheme. Let $\mathit{Sch}_{pro\text{-}\acute{e}tale}$ be a big pro-étale site containing $S$. Both $S_{pro\text{-}\acute{e}tale}$ and $(\textit{Aff}/S)_{pro\text{-}\acute{e}tale}$ are sites. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let us show that $S_{pro\text{-}\acute{e}tale}$ is a site. It is a category with a given set of families of morphisms with fixed target. Thus we have to show properties (1), (2) and (3) of Sites, Definition <a href="/tag/00VH" data-tag="00VH">7.6.2</a>. Since $(\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$ is a site, it suffices to prove that given any covering $\{ U_ i \to U\} $ of $(\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$ with $U \in \mathop{\mathrm{Ob}}\nolimits (S_{pro\text{-}\acute{e}tale})$ we also have $U_ i \in \mathop{\mathrm{Ob}}\nolimits (S_{pro\text{-}\acute{e}tale})$. This follows from the definitions as the composition of weakly étale morphisms is weakly étale. 
+    <p>
+      To show that $(\textit{Aff}/S)_{pro\text{-}\acute{e}tale}$ is a site, reasoning as above, it suffices to show that the collection of standard pro-étale coverings of affines satisfies properties (1), (2) and (3) of Sites, Definition <a href="/tag/00VH" data-tag="00VH">7.6.2</a>. This follows from Lemma <a href="/tag/098A" data-tag="098A">61.12.2</a> and the corresponding result for standard fpqc coverings (Topologies, Lemma <a href="/tag/03LA" data-tag="03LA">34.9.11</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="098M">
+  <p><a class="environment-identifier" href="/tag/098M">Lemma <span data-tag="098M">61.12.10</span>.</a> Let $S$ be a scheme. Let $\mathit{Sch}_{pro\text{-}\acute{e}tale}$ be a big pro-étale site containing $S$. Let $\mathit{Sch}$ be the category of all schemes. </p>
+  <p><ol>
+  <li><p>
+The categories $\mathit{Sch}_{pro\text{-}\acute{e}tale}$, $(\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$, $S_{pro\text{-}\acute{e}tale}$, and $(\textit{Aff}/S)_{pro\text{-}\acute{e}tale}$ have fibre products agreeing with fibre products in $\mathit{Sch}$. 
+</p>
+</li><li><p>
+The categories $\mathit{Sch}_{pro\text{-}\acute{e}tale}$, $(\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$, $S_{pro\text{-}\acute{e}tale}$ have equalizers agreeing with equalizers in $\mathit{Sch}$. 
+</p>
+</li><li><p>
+The categories $(\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$, and $S_{pro\text{-}\acute{e}tale}$ both have a final object, namely $S/S$. 
+</p>
+</li><li><p>
+The category $\mathit{Sch}_{pro\text{-}\acute{e}tale}$ has a final object agreeing with the final object of $\mathit{Sch}$, namely $\mathop{\mathrm{Spec}}(\mathbf{Z})$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The category $\mathit{Sch}_{pro\text{-}\acute{e}tale}$ contains $\mathop{\mathrm{Spec}}(\mathbf{Z})$ and is closed under products and fibre products by construction, see Sets, Lemma <a href="/tag/000R" data-tag="000R">3.9.9</a>. Suppose we have $U \to S$, $V \to U$, $W \to U$ morphisms of schemes with $U, V, W \in \mathop{\mathrm{Ob}}\nolimits (\mathit{Sch}_{pro\text{-}\acute{e}tale})$. The fibre product $V \times _ U W$ in $\mathit{Sch}_{pro\text{-}\acute{e}tale}$ is a fibre product in $\mathit{Sch}$ and is the fibre product of $V/S$ with $W/S$ over $U/S$ in the category of all schemes over $S$, and hence also a fibre product in $(\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$. This proves the result for $(\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$. If $U \to S$, $V \to U$ and $W \to U$ are weakly étale then so is $V \times _ U W \to S$ (see More on Morphisms, Section <a href="/tag/094N" data-tag="094N">37.64</a>) and hence we get fibre products for $S_{pro\text{-}\acute{e}tale}$. If $U, V, W$ are affine, so is $V \times _ U W$ and hence we get fibre products for $(\textit{Aff}/S)_{pro\text{-}\acute{e}tale}$. 
+    <p>
+      Let $a, b : U \to V$ be two morphisms in $\mathit{Sch}_{pro\text{-}\acute{e}tale}$. In this case the equalizer of $a$ and $b$ (in the category of schemes) is 
+    <p>
+      <div class="equation">
+  \[  V \times _{\Delta _{V/\mathop{\mathrm{Spec}}(\mathbf{Z})}, V \times _{\mathop{\mathrm{Spec}}(\mathbf{Z})} V, (a, b)} (U \times _{\mathop{\mathrm{Spec}}(\mathbf{Z})} U)  \]
+</div>
+    <p>
+       which is an object of $\mathit{Sch}_{pro\text{-}\acute{e}tale}$ by what we saw above. Thus $\mathit{Sch}_{pro\text{-}\acute{e}tale}$ has equalizers. If $a$ and $b$ are morphisms over $S$, then the equalizer (in the category of schemes) is also given by 
+    <p>
+      <div class="equation">
+  \[  V \times _{\Delta _{V/S}, V \times _ S V, (a, b)} (U \times _ S U)  \]
+</div>
+    <p>
+       hence we see that $(\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$ has equalizers. Moreover, if $U$ and $V$ are weakly-étale over $S$, then so is the equalizer above as a fibre product of schemes weakly étale over $S$. Thus $S_{pro\text{-}\acute{e}tale}$ has equalizers. The statements on final objects is clear. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Next, we check that the big affine pro-étale site defines the same topos as the big pro-étale site. 
+</p>
+<p>
+<article class="env-lemma" id="098N">
+  <p><a class="environment-identifier" href="/tag/098N">Lemma <span data-tag="098N">61.12.11</span>.</a> Let $S$ be a scheme. Let $\mathit{Sch}_{pro\text{-}\acute{e}tale}$ be a big pro-étale site containing $S$. The functor $(\textit{Aff}/S)_{pro\text{-}\acute{e}tale}\to (\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$ is a special cocontinuous functor. Hence it induces an equivalence of topoi from $\mathop{\mathit{Sh}}\nolimits ((\textit{Aff}/S)_{pro\text{-}\acute{e}tale})$ to $\mathop{\mathit{Sh}}\nolimits ((\mathit{Sch}/S)_{pro\text{-}\acute{e}tale})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The notion of a special cocontinuous functor is introduced in Sites, Definition <a href="/tag/03CG" data-tag="03CG">7.29.2</a>. Thus we have to verify assumptions (1) – (5) of Sites, Lemma <a href="/tag/03A0" data-tag="03A0">7.29.1</a>. Denote the inclusion functor $u : (\textit{Aff}/S)_{pro\text{-}\acute{e}tale}\to (\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$. Being cocontinuous just means that any pro-étale covering of $T/S$, $T$ affine, can be refined by a standard pro-étale covering of $T$. This is the content of Lemma <a href="/tag/098D" data-tag="098D">61.12.5</a>. Hence (1) holds. We see $u$ is continuous simply because a standard pro-étale covering is a pro-étale covering. Hence (2) holds. Parts (3) and (4) follow immediately from the fact that $u$ is fully faithful. And finally condition (5) follows from the fact that every scheme has an affine open covering. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="098P">
+  <p><a class="environment-identifier" href="/tag/098P">Lemma <span data-tag="098P">61.12.12</span>.</a> Let $\mathit{Sch}_{pro\text{-}\acute{e}tale}$ be a big pro-étale site. Let $f : T \to S$ be a morphism in $\mathit{Sch}_{pro\text{-}\acute{e}tale}$. The functor $T_{pro\text{-}\acute{e}tale}\to (\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$ is cocontinuous and induces a morphism of topoi </p>
+  <div class="equation">
+  \[  i_ f : \mathop{\mathit{Sh}}\nolimits (T_{pro\text{-}\acute{e}tale}) \longrightarrow \mathop{\mathit{Sh}}\nolimits ((\mathit{Sch}/S)_{pro\text{-}\acute{e}tale})  \]
+</div>
+  <p> For a sheaf $\mathcal{G}$ on $(\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$ we have the formula $(i_ f^{-1}\mathcal{G})(U/T) = \mathcal{G}(U/S)$. The functor $i_ f^{-1}$ also has a left adjoint $i_{f, !}$ which commutes with fibre products and equalizers. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Denote the functor $u : T_{pro\text{-}\acute{e}tale}\to (\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$. In other words, given a weakly étale morphism $j : U \to T$ corresponding to an object of $T_{pro\text{-}\acute{e}tale}$ we set $u(U \to T) = (f \circ j : U \to S)$. This functor commutes with fibre products, see Lemma <a href="/tag/098M" data-tag="098M">61.12.10</a>. Moreover, $T_{pro\text{-}\acute{e}tale}$ has equalizers and $u$ commutes with them by Lemma <a href="/tag/098M" data-tag="098M">61.12.10</a>. It is clearly cocontinuous. It is also continuous as $u$ transforms coverings to coverings and commutes with fibre products. Hence the lemma follows from Sites, Lemmas <a href="/tag/00XR" data-tag="00XR">7.21.5</a> and <a href="/tag/00XS" data-tag="00XS">7.21.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="098Q">
+  <p><a class="environment-identifier" href="/tag/098Q">Lemma <span data-tag="098Q">61.12.13</span>.</a> Let $S$ be a scheme. Let $\mathit{Sch}_{pro\text{-}\acute{e}tale}$ be a big pro-étale site containing $S$. The inclusion functor $S_{pro\text{-}\acute{e}tale}\to (\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$ satisfies the hypotheses of Sites, Lemma <a href="/tag/00XU" data-tag="00XU">7.21.8</a> and hence induces a morphism of sites </p>
+  <div class="equation">
+  \[  \pi _ S : (\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}\longrightarrow S_{pro\text{-}\acute{e}tale} \]
+</div>
+  <p> and a morphism of topoi </p>
+  <div class="equation">
+  \[  i_ S : \mathop{\mathit{Sh}}\nolimits (S_{pro\text{-}\acute{e}tale}) \longrightarrow \mathop{\mathit{Sh}}\nolimits ((\mathit{Sch}/S)_{pro\text{-}\acute{e}tale})  \]
+</div>
+  <p> such that $\pi _ S \circ i_ S = \text{id}$. Moreover, $i_ S = i_{\text{id}_ S}$ with $i_{\text{id}_ S}$ as in Lemma <a href="/tag/098P" data-tag="098P">61.12.12</a>. In particular the functor $i_ S^{-1} = \pi _{S, *}$ is described by the rule $i_ S^{-1}(\mathcal{G})(U/S) = \mathcal{G}(U/S)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In this case the functor $u : S_{pro\text{-}\acute{e}tale}\to (\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$, in addition to the properties seen in the proof of Lemma <a href="/tag/098P" data-tag="098P">61.12.12</a> above, also is fully faithful and transforms the final object into the final object. The lemma follows from Sites, Lemma <a href="/tag/00XU" data-tag="00XU">7.21.8</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="098R">
+  <p><a class="environment-identifier" href="/tag/098R">Definition <span data-tag="098R">61.12.14</span>.</a> In the situation of Lemma <a href="/tag/098Q" data-tag="098Q">61.12.13</a> the functor $i_ S^{-1} = \pi _{S, *}$ is often called the <em>restriction to the small pro-étale site</em>, and for a sheaf $\mathcal{F}$ on the big pro-étale site we denote $\mathcal{F}|_{S_{pro\text{-}\acute{e}tale}}$ this restriction. </p>
+</article> 
+</p>
+<p>
+With this notation in place we have for a sheaf $\mathcal{F}$ on the big site and a sheaf $\mathcal{G}$ on the big site that 
+</p>
+<div class="equation">
+  \begin{align*}  \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (S_{pro\text{-}\acute{e}tale})}(\mathcal{F}|_{S_{pro\text{-}\acute{e}tale}}, \mathcal{G}) &  = \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits ((\mathit{Sch}/S)_{pro\text{-}\acute{e}tale})}(\mathcal{F}, i_{S, *}\mathcal{G}) \\  \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (S_{pro\text{-}\acute{e}tale})}(\mathcal{G}, \mathcal{F}|_{S_{pro\text{-}\acute{e}tale}}) &  = \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits ((\mathit{Sch}/S)_{pro\text{-}\acute{e}tale})}(\pi _ S^{-1}\mathcal{G}, \mathcal{F}) \end{align*}
+</div>
+<p>
+ Moreover, we have $(i_{S, *}\mathcal{G})|_{S_{pro\text{-}\acute{e}tale}} = \mathcal{G}$ and we have $(\pi _ S^{-1}\mathcal{G})|_{S_{pro\text{-}\acute{e}tale}} = \mathcal{G}$. 
+</p>
+<p>
+<article class="env-lemma" id="098S">
+  <p><a class="environment-identifier" href="/tag/098S">Lemma <span data-tag="098S">61.12.15</span>.</a> Let $\mathit{Sch}_{pro\text{-}\acute{e}tale}$ be a big pro-étale site. Let $f : T \to S$ be a morphism in $\mathit{Sch}_{pro\text{-}\acute{e}tale}$. The functor </p>
+  <div class="equation">
+  \[  u : (\mathit{Sch}/T)_{pro\text{-}\acute{e}tale}\longrightarrow (\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}, \quad V/T \longmapsto V/S  \]
+</div>
+  <p> is cocontinuous, and has a continuous right adjoint </p>
+  <div class="equation">
+  \[  v : (\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}\longrightarrow (\mathit{Sch}/T)_{pro\text{-}\acute{e}tale}, \quad (U \to S) \longmapsto (U \times _ S T \to T).  \]
+</div>
+  <p> They induce the same morphism of topoi </p>
+  <div class="equation">
+  \[  f_{big} : \mathop{\mathit{Sh}}\nolimits ((\mathit{Sch}/T)_{pro\text{-}\acute{e}tale}) \longrightarrow \mathop{\mathit{Sh}}\nolimits ((\mathit{Sch}/S)_{pro\text{-}\acute{e}tale})  \]
+</div>
+  <p> We have $f_{big}^{-1}(\mathcal{G})(U/T) = \mathcal{G}(U/S)$. We have $f_{big, *}(\mathcal{F})(U/S) = \mathcal{F}(U \times _ S T/T)$. Also, $f_{big}^{-1}$ has a left adjoint $f_{big!}$ which commutes with fibre products and equalizers. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The functor $u$ is cocontinuous, continuous, and commutes with fibre products and equalizers (details omitted; compare with proof of Lemma <a href="/tag/098P" data-tag="098P">61.12.12</a>). Hence Sites, Lemmas <a href="/tag/00XR" data-tag="00XR">7.21.5</a> and <a href="/tag/00XS" data-tag="00XS">7.21.6</a> apply and we deduce the formula for $f_{big}^{-1}$ and the existence of $f_{big!}$. Moreover, the functor $v$ is a right adjoint because given $U/T$ and $V/S$ we have $\mathop{\mathrm{Mor}}\nolimits _ S(u(U), V) = \mathop{\mathrm{Mor}}\nolimits _ T(U, V \times _ S T)$ as desired. Thus we may apply Sites, Lemmas <a href="/tag/00XX" data-tag="00XX">7.22.1</a> and <a href="/tag/00XY" data-tag="00XY">7.22.2</a> to get the formula for $f_{big, *}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="098T">
+  <p><a class="environment-identifier" href="/tag/098T">Lemma <span data-tag="098T">61.12.16</span>.</a> Let $\mathit{Sch}_{pro\text{-}\acute{e}tale}$ be a big pro-étale site. Let $f : T \to S$ be a morphism in $\mathit{Sch}_{pro\text{-}\acute{e}tale}$. </p>
+  <p><ol>
+  <li><p>
+We have $i_ f = f_{big} \circ i_ T$ with $i_ f$ as in Lemma <a href="/tag/098P" data-tag="098P">61.12.12</a> and $i_ T$ as in Lemma <a href="/tag/098Q" data-tag="098Q">61.12.13</a>. 
+</p>
+</li><li><p>
+The functor $S_{pro\text{-}\acute{e}tale}\to T_{pro\text{-}\acute{e}tale}$, $(U \to S) \mapsto (U \times _ S T \to T)$ is continuous and induces a morphism of topoi 
+</p>
+<div class="equation">
+  \[  f_{small} : \mathop{\mathit{Sh}}\nolimits (T_{pro\text{-}\acute{e}tale}) \longrightarrow \mathop{\mathit{Sh}}\nolimits (S_{pro\text{-}\acute{e}tale}).  \]
+</div>
+<p>
+ We have $f_{small, *}(\mathcal{F})(U/S) = \mathcal{F}(U \times _ S T/T)$. 
+</p>
+</li><li><p>
+We have a commutative diagram of morphisms of sites 
+</p>
+<div class="equation">
+  \[  \xymatrix{ T_{pro\text{-}\acute{e}tale}\ar[d]_{f_{small}} &  (\mathit{Sch}/T)_{pro\text{-}\acute{e}tale}\ar[d]^{f_{big}} \ar[l]^{\pi _ T}\\  S_{pro\text{-}\acute{e}tale}&  (\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}\ar[l]_{\pi _ S} }  \]
+</div>
+<p>
+ so that $f_{small} \circ \pi _ T = \pi _ S \circ f_{big}$ as morphisms of topoi. 
+</p>
+</li><li><p>
+We have $f_{small} = \pi _ S \circ f_{big} \circ i_ T = \pi _ S \circ i_ f$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The equality $i_ f = f_{big} \circ i_ T$ follows from the equality $i_ f^{-1} = i_ T^{-1} \circ f_{big}^{-1}$ which is clear from the descriptions of these functors above. Thus we see (1). 
+    <p>
+      The functor $u : S_{pro\text{-}\acute{e}tale}\to T_{pro\text{-}\acute{e}tale}$, $u(U \to S) = (U \times _ S T \to T)$ transforms coverings into coverings and commutes with fibre products, see Lemmas <a href="/tag/098C" data-tag="098C">61.12.4</a> and <a href="/tag/098M" data-tag="098M">61.12.10</a>. Moreover, both $S_{pro\text{-}\acute{e}tale}$, $T_{pro\text{-}\acute{e}tale}$ have final objects, namely $S/S$ and $T/T$ and $u(S/S) = T/T$. Hence by Sites, Proposition <a href="/tag/00X6" data-tag="00X6">7.14.7</a> the functor $u$ corresponds to a morphism of sites $T_{pro\text{-}\acute{e}tale}\to S_{pro\text{-}\acute{e}tale}$. This in turn gives rise to the morphism of topoi, see Sites, Lemma <a href="/tag/00XC" data-tag="00XC">7.15.2</a>. The description of the pushforward is clear from these references. 
+    <p>
+      Part (3) follows because $\pi _ S$ and $\pi _ T$ are given by the inclusion functors and $f_{small}$ and $f_{big}$ by the base change functors $U \mapsto U \times _ S T$. 
+    <p>
+      Statement (4) follows from (3) by precomposing with $i_ T$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In the situation of the lemma, using the terminology of Definition <a href="/tag/098R" data-tag="098R">61.12.14</a> we have: for $\mathcal{F}$ a sheaf on the big pro-étale site of $T$ 
+</p>
+<div class="equation" id="0F60">
+    <span class="equation-label"><a href="/tag/0F60" data-tag="0F60">61.12.16.1</a></span>
+  <div>\begin{equation}  \label{proetale-equation-compare-big-small} (f_{big, *}\mathcal{F})|_{S_{pro\text{-}\acute{e}tale}} = f_{small, *}(\mathcal{F}|_{T_{pro\text{-}\acute{e}tale}}), \end{equation}</div>
+</div>
+<p>
+ This equality is clear from the commutativity of the diagram of sites of the lemma, since restriction to the small pro-étale site of $T$, resp. $S$ is given by $\pi _{T, *}$, resp. $\pi _{S, *}$. A similar formula involving pullbacks and restrictions is false. 
+</p>
+<p>
+<article class="env-lemma" id="098U">
+  <p><a class="environment-identifier" href="/tag/098U">Lemma <span data-tag="098U">61.12.17</span>.</a> Given schemes $X$, $Y$, $Y$ in $\mathit{Sch}_{pro\text{-}\acute{e}tale}$ and morphisms $f : X \to Y$, $g : Y \to Z$ we have $g_{big} \circ f_{big} = (g \circ f)_{big}$ and $g_{small} \circ f_{small} = (g \circ f)_{small}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from the simple description of pushforward and pullback for the functors on the big sites from Lemma <a href="/tag/098S" data-tag="098S">61.12.15</a>. For the functors on the small sites this follows from the description of the pushforward functors in Lemma <a href="/tag/098T" data-tag="098T">61.12.16</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0F61">
+  <p><a class="environment-identifier" href="/tag/0F61">Lemma <span data-tag="0F61">61.12.18</span>.</a> Let $\mathit{Sch}_{pro\text{-}\acute{e}tale}$ be a big pro-étale site. Consider a cartesian diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ T' \ar[r]_{g'} \ar[d]_{f'} &  T \ar[d]^ f \\  S' \ar[r]^ g &  S }  \]
+</div>
+  <p> in $\mathit{Sch}_{pro\text{-}\acute{e}tale}$. Then $i_ g^{-1} \circ f_{big, *} = f'_{small, *} \circ (i_{g'})^{-1}$ and $g_{big}^{-1} \circ f_{big, *} = f'_{big, *} \circ (g'_{big})^{-1}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since the diagram is cartesian, we have for $U'/S'$ that $U' \times _{S'} T' = U' \times _ S T$. Hence both $i_ g^{-1} \circ f_{big, *}$ and $f'_{small, *} \circ (i_{g'})^{-1}$ send a sheaf $\mathcal{F}$ on $(\mathit{Sch}/T)_{pro\text{-}\acute{e}tale}$ to the sheaf $U' \mapsto \mathcal{F}(U' \times _{S'} T')$ on $S'_{pro\text{-}\acute{e}tale}$ (use Lemmas <a href="/tag/098P" data-tag="098P">61.12.12</a> and <a href="/tag/098S" data-tag="098S">61.12.15</a>). The second equality can be proved in the same manner or can be deduced from the very general Sites, Lemma <a href="/tag/03CF" data-tag="03CF">7.28.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We can think about a sheaf on the big pro-étale site of $S$ as a collection of sheaves on the small pro-étale site on schemes over $S$. 
+</p>
+<p>
+<article class="env-lemma" id="098V">
+  <p><a class="environment-identifier" href="/tag/098V">Lemma <span data-tag="098V">61.12.19</span>.</a> Let $S$ be a scheme contained in a big pro-étale site $\mathit{Sch}_{pro\text{-}\acute{e}tale}$. A sheaf $\mathcal{F}$ on the big pro-étale site $(\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$ is given by the following data: </p>
+  <p><ol>
+  <li><p>
+for every $T/S \in \mathop{\mathrm{Ob}}\nolimits ((\mathit{Sch}/S)_{pro\text{-}\acute{e}tale})$ a sheaf $\mathcal{F}_ T$ on $T_{pro\text{-}\acute{e}tale}$, 
+</p>
+</li><li><p>
+for every $f : T' \to T$ in $(\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$ a map $c_ f : f_{small}^{-1}\mathcal{F}_ T \to \mathcal{F}_{T'}$. 
+</p>
+</li>
+</ol></p>
+  <p> These data are subject to the following conditions: </p>
+  <p><ol>
+  <li class="custom-item" data-marker="(a)"><p>
+given any $f : T' \to T$ and $g : T'' \to T'$ in $(\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$ the composition $c_ g \circ g_{small}^{-1}c_ f$ is equal to $c_{f \circ g}$, and 
+</p>
+</li><li class="custom-item" data-marker="(b)"><p>
+if $f : T' \to T$ in $(\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$ is weakly étale then $c_ f$ is an isomorphism. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Identical to the proof of Topologies, Lemma <a href="/tag/021K" data-tag="021K">34.4.20</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="098W">
+  <p><a class="environment-identifier" href="/tag/098W">Lemma <span data-tag="098W">61.12.20</span>.</a> Let $S$ be a scheme. Let $S_{affine, {pro\text{-}\acute{e}tale}}$ denote the full subcategory of $S_{pro\text{-}\acute{e}tale}$ consisting of affine objects. A covering of $S_{affine, {pro\text{-}\acute{e}tale}}$ will be a standard pro-étale covering, see Definition <a href="/tag/098E" data-tag="098E">61.12.6</a>. Then restriction </p>
+  <div class="equation">
+  \[  \mathcal{F} \longmapsto \mathcal{F}|_{S_{affine, {\acute{e}tale}}}  \]
+</div>
+  <p> defines an equivalence of topoi $\mathop{\mathit{Sh}}\nolimits (S_{pro\text{-}\acute{e}tale}) \cong \mathop{\mathit{Sh}}\nolimits (S_{affine, {pro\text{-}\acute{e}tale}})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This you can show directly from the definitions, and is a good exercise. But it also follows immediately from Sites, Lemma <a href="/tag/03A0" data-tag="03A0">7.29.1</a> by checking that the inclusion functor $S_{affine, {pro\text{-}\acute{e}tale}} \to S_{pro\text{-}\acute{e}tale}$ is a special cocontinuous functor (see Sites, Definition <a href="/tag/03CG" data-tag="03CG">7.29.2</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="098X">
+  <p><a class="environment-identifier" href="/tag/098X">Lemma <span data-tag="098X">61.12.21</span>.</a> Let $S$ be an affine scheme. Let $S_{app}$ denote the full subcategory of $S_{pro\text{-}\acute{e}tale}$ consisting of affine objects $U$ such that $\mathcal{O}(S) \to \mathcal{O}(U)$ is ind-étale. A covering of $S_{app}$ will be a standard pro-étale covering, see Definition <a href="/tag/098E" data-tag="098E">61.12.6</a>. Then restriction </p>
+  <div class="equation">
+  \[  \mathcal{F} \longmapsto \mathcal{F}|_{S_{app}}  \]
+</div>
+  <p> defines an equivalence of topoi $\mathop{\mathit{Sh}}\nolimits (S_{pro\text{-}\acute{e}tale}) \cong \mathop{\mathit{Sh}}\nolimits (S_{app})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/098W" data-tag="098W">61.12.20</a> we may replace $S_{pro\text{-}\acute{e}tale}$ by $S_{affine, {pro\text{-}\acute{e}tale}}$. The lemma follows from Sites, Lemma <a href="/tag/03A0" data-tag="03A0">7.29.1</a> by checking that the inclusion functor $S_{app} \to S_{affine, {pro\text{-}\acute{e}tale}}$ is a special cocontinuous functor, see Sites, Definition <a href="/tag/03CG" data-tag="03CG">7.29.2</a>. The conditions of Sites, Lemma <a href="/tag/03A0" data-tag="03A0">7.29.1</a> follow immediately from the definition and the facts (a) any object $U$ of $S_{affine, {pro\text{-}\acute{e}tale}}$ has a covering $\{ V \to U\} $ with $V$ ind-étale over $X$ (Proposition <a href="/tag/097Z" data-tag="097Z">61.9.1</a>) and (b) the functor $u$ is fully faithful. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="098Z">
+  <p><a class="environment-identifier" href="/tag/098Z">Lemma <span data-tag="098Z">61.12.22</span>.</a> Let $S$ be a scheme. The topology on each of the pro-étale sites $\mathit{Sch}_{pro\text{-}\acute{e}tale}$, $S_{pro\text{-}\acute{e}tale}$, $(\mathit{Sch}/S)_{pro\text{-}\acute{e}tale}$, $S_{affine, {pro\text{-}\acute{e}tale}}$, and $(\textit{Aff}/S)_{pro\text{-}\acute{e}tale}$ is subcanonical. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Combine Lemma <a href="/tag/098A" data-tag="098A">61.12.2</a> and Descent, Lemma <a href="/tag/023Q" data-tag="023Q">35.13.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

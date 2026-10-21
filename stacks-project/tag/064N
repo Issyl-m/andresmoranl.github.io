@@ -1,0 +1,507 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-algebra-section-pseudo-coherent" class="tex-section"><span data-tag="064N">15.66</span> Pseudo-coherent modules, I</h2>
+
+<p>
+Suppose that $R$ is a ring. Recall that an $R$-module $M$ is of finite type if there exists a surjection $R^{\oplus a} \to M$ and of finite presentation if there exists a presentation $R^{\oplus a_1} \to R^{\oplus a_0} \to M \to 0$. Similarly, we can consider those $R$-modules for which there exists a length $n$ resolution 
+</p>
+<div class="equation" id="064P">
+    <span class="equation-label"><a href="/tag/064P" data-tag="064P">15.66.0.1</a></span>
+  <div>\begin{equation}  \label{more-algebra-equation-pseudo-coherent} R^{\oplus a_ n} \to R^{\oplus a_{n - 1}} \to \ldots \to R^{\oplus a_0} \to M \to 0 \end{equation}</div>
+</div>
+<p>
+ by finite free $R$-modules. A module is called <em>pseudo-coherent</em> if we can find such a resolution for every $n$. Here is the formal definition. 
+</p>
+<p>
+<article class="env-definition" id="064Q">
+  <p><a class="environment-identifier" href="/tag/064Q">Definition <span data-tag="064Q">15.66.1</span>.</a> Let $R$ be a ring. Denote $D(R)$ its derived category. Let $m \in \mathbf{Z}$. </p>
+  <p><ol>
+  <li><p>
+An object $K^\bullet $ of $D(R)$ is <em>$m$-pseudo-coherent</em> if there exists a bounded complex $E^\bullet $ of finite free $R$-modules and a morphism $\alpha : E^\bullet \to K^\bullet $ such that $H^ i(\alpha )$ is an isomorphism for $i > m$ and $H^ m(\alpha )$ is surjective. 
+</p>
+</li><li><p>
+An object $K^\bullet $ of $D(R)$ is <em>pseudo-coherent</em> if it is quasi-isomorphic to a bounded above complex of finite free $R$-modules. 
+</p>
+</li><li><p>
+An $R$-module $M$ is called <em>$m$-pseudo-coherent</em> if $M[0]$ is an $m$-pseudo-coherent object of $D(R)$. 
+</p>
+</li><li><p>
+An $R$-module $M$ is called <em>pseudo-coherent</em><a class="footnotemark" href="#a0000341489" id="a0000341489-mark"><sup>1</sup></a> if $M[0]$ is a pseudo-coherent object of $D(R)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+As usual we apply this terminology also to complexes of $R$-modules. Since any morphism $E^\bullet \to K^\bullet $ in $D(R)$ is represented by an actual map of complexes, see Derived Categories, Lemma <a href="/tag/064B" data-tag="064B">13.19.8</a>, there is no ambiguity. It turns out that $K^\bullet $ is pseudo-coherent if and only if $K^\bullet $ is $m$-pseudo-coherent for all $m \in \mathbf{Z}$, see Lemma <a href="/tag/064U" data-tag="064U">15.66.5</a>. Also, if the ring is Noetherian the condition can be understood as a finite generation condition on the cohomology, see Lemma <a href="/tag/066E" data-tag="066E">15.66.17</a>. Let us first relate this to the informal discussion above. 
+</p>
+<p>
+<article class="env-lemma" id="064R">
+  <p><a class="environment-identifier" href="/tag/064R">Lemma <span data-tag="064R">15.66.2</span>.</a> Let $R$ be a ring and $m \in \mathbf{Z}$. Let $(K^\bullet , L^\bullet , M^\bullet , f, g, h)$ be a distinguished triangle in $D(R)$. </p>
+  <p><ol>
+  <li><p>
+If $K^\bullet $ is $(m + 1)$-pseudo-coherent and $L^\bullet $ is $m$-pseudo-coherent then $M^\bullet $ is $m$-pseudo-coherent. 
+</p>
+</li><li><p>
+If $K^\bullet , M^\bullet $ are $m$-pseudo-coherent, then $L^\bullet $ is $m$-pseudo-coherent. 
+</p>
+</li><li><p>
+If $L^\bullet $ is $(m + 1)$-pseudo-coherent and $M^\bullet $ is $m$-pseudo-coherent, then $K^\bullet $ is $(m + 1)$-pseudo-coherent. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Proof of (1). Choose $\alpha : P^\bullet \to K^\bullet $ with $P^\bullet $ a bounded complex of finite free modules such that $H^ i(\alpha )$ is an isomorphism for $i > m + 1$ and surjective for $i = m + 1$. We may replace $P^\bullet $ by $\sigma _{\geq m + 1}P^\bullet $ and hence we may assume that $P^ i = 0$ for $i < m + 1$. Choose $\beta : E^\bullet \to L^\bullet $ with $E^\bullet $ a bounded complex of finite free modules such that $H^ i(\beta )$ is an isomorphism for $i > m$ and surjective for $i = m$. By Derived Categories, Lemma <a href="/tag/064E" data-tag="064E">13.19.11</a> we can find a map $\gamma : P^\bullet \to E^\bullet $ such that the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ K^\bullet \ar[r] &  L^\bullet \\  P^\bullet \ar[u] \ar[r]^\gamma &  E^\bullet \ar[u]_\beta }  \]
+</div>
+    <p>
+       is commutative in $D(R)$. The cone $C(\gamma )^\bullet $ is a bounded complex of finite free $R$-modules, and the commutativity of the diagram implies that there exists a morphism of distinguished triangles 
+    <p>
+      <div class="equation">
+  \[  (P^\bullet , E^\bullet , C(\gamma )^\bullet ) \longrightarrow (K^\bullet , L^\bullet , M^\bullet ).  \]
+</div>
+    <p>
+       It follows from the induced map on long exact cohomology sequences and Homology, Lemmas <a href="/tag/05QA" data-tag="05QA">12.5.19</a> and <a href="/tag/05QB" data-tag="05QB">12.5.20</a> that $C(\gamma )^\bullet \to M^\bullet $ induces an isomorphism on cohomology in degrees $> m$ and a surjection in degree $m$. Hence $M^\bullet $ is $m$-pseudo-coherent. 
+    <p>
+      Assertions (2) and (3) follow from (1) by rotating the distinguished triangle. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="064S">
+  <p><a class="environment-identifier" href="/tag/064S">Lemma <span data-tag="064S">15.66.3</span>.</a> Let $R$ be a ring. Let $K^\bullet $ be a complex of $R$-modules. Let $m \in \mathbf{Z}$. </p>
+  <p><ol>
+  <li><p>
+If $K^\bullet $ is $m$-pseudo-coherent and $H^ i(K^\bullet ) = 0$ for $i > m$, then $H^ m(K^\bullet )$ is a finite type $R$-module. 
+</p>
+</li><li><p>
+If $K^\bullet $ is $m$-pseudo-coherent and $H^ i(K^\bullet ) = 0$ for $i > m + 1$, then $H^{m + 1}(K^\bullet )$ is a finitely presented $R$-module. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Proof of (1). Choose a bounded complex $E^\bullet $ of finite projective $R$-modules and a map $\alpha : E^\bullet \to K^\bullet $ which induces an isomorphism on cohomology in degrees $> m$ and a surjection in degree $m$. It is clear that it suffices to prove the result for $E^\bullet $. Let $n$ be the largest integer such that $E^ n \not= 0$. If $n = m$, then the result is clear. If $n > m$, then $E^{n - 1} \to E^ n$ is surjective as $H^ n(E^\bullet ) = 0$. As $E^ n$ is finite projective we see that $E^{n - 1} = E' \oplus E^ n$. Hence it suffices to prove the result for the complex $(E')^\bullet $ which is the same as $E^\bullet $ except has $E'$ in degree $n - 1$ and $0$ in degree $n$. We win by induction on $n$. 
+    <p>
+      Proof of (2). Choose a bounded complex $E^\bullet $ of finite projective $R$-modules and a map $\alpha : E^\bullet \to K^\bullet $ which induces an isomorphism on cohomology in degrees $> m$ and a surjection in degree $m$. As in the proof of (1) we can reduce to the case that $E^ i = 0$ for $i > m + 1$. Then we see that $H^{m + 1}(K^\bullet ) \cong H^{m + 1}(E^\bullet ) = \mathop{\mathrm{Coker}}(E^ m \to E^{m + 1})$ which is of finite presentation. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="064T">
+  <p><a class="environment-identifier" href="/tag/064T">Lemma <span data-tag="064T">15.66.4</span>.</a> Let $R$ be a ring. Let $M$ be an $R$-module. Then </p>
+  <p><ol>
+  <li><p>
+$M$ is $0$-pseudo-coherent if and only if $M$ is a finite $R$-module, 
+</p>
+</li><li><p>
+$M$ is $(-1)$-pseudo-coherent if and only if $M$ is a finitely presented $R$-module, 
+</p>
+</li><li><p>
+$M$ is $(-d)$-pseudo-coherent if and only if there exists a resolution 
+</p>
+<div class="equation">
+  \[  R^{\oplus a_ d} \to R^{\oplus a_{d - 1}} \to \ldots \to R^{\oplus a_0} \to M \to 0  \]
+</div>
+<p>
+ of length $d$, and 
+</p>
+</li><li><p>
+$M$ is pseudo-coherent if and only if there exists an infinite resolution 
+</p>
+<div class="equation">
+  \[  \ldots \to R^{\oplus a_1} \to R^{\oplus a_0} \to M \to 0  \]
+</div>
+<p>
+ by finite free $R$-modules. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $M$ is of finite type (resp. of finite presentation), then $M$ is $0$-pseudo-coherent (resp. $(-1)$-pseudo-coherent) as follows from the discussion preceding Definition <a href="/tag/064Q" data-tag="064Q">15.66.1</a>. Conversely, if $M$ is $0$-pseudo-coherent, then $M = H^0(M[0])$ is of finite type by Lemma <a href="/tag/064S" data-tag="064S">15.66.3</a>. If $M$ is $(-1)$-pseudo-coherent, then it is $0$-pseudo-coherent hence of finite type. Choose a surjection $R^{\oplus a} \to M$ and denote $K = \mathop{\mathrm{Ker}}(R^{\oplus a} \to M)$. By Lemma <a href="/tag/064R" data-tag="064R">15.66.2</a> we see that $K$ is $0$-pseudo-coherent, hence of finite type, whence $M$ is of finite presentation. 
+    <p>
+      To prove the third and fourth statement use induction and an argument similar to the above (details omitted). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="064U">
+  <p><a class="environment-identifier" href="/tag/064U">Lemma <span data-tag="064U">15.66.5</span>.</a> Let $R$ be a ring. Let $K^\bullet $ be a complex of $R$-modules. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$K^\bullet $ is pseudo-coherent, 
+</p>
+</li><li><p>
+$K^\bullet $ is $m$-pseudo-coherent for every $m \in \mathbf{Z}$, and 
+</p>
+</li><li><p>
+$K^\bullet $ is quasi-isomorphic to a bounded above complex of finite projective $R$-modules. 
+</p>
+</li>
+</ol></p>
+  <p> If (1), (2), and (3) hold and $H^ i(K^\bullet ) = 0$ for $i > b$, then we can find a quasi-isomorphism $F^\bullet \to K^\bullet $ with $F^ i$ finite free $R$-modules and $F^ i = 0$ for $i > b$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We see that (1) $\Rightarrow $ (3) as a finite free module is a finite projective $R$-module. Conversely, suppose $P^\bullet $ is a bounded above complex of finite projective $R$-modules. Say $P^ i = 0$ for $i > n_0$. We choose a direct sum decompositions $F^{n_0} = P^{n_0} \oplus C^{n_0}$ with $F^{n_0}$ a finite free $R$-module, and inductively 
+    <p>
+      <div class="equation">
+  \[  F^{n - 1} = P^{n - 1} \oplus C^ n \oplus C^{n - 1}  \]
+</div>
+    <p>
+       for $n \leq n_0$ with $F^{n_0}$ a finite free $R$-module. As a complex $F^\bullet $ has maps $F^{n - 1} \to F^ n$ which agree with $P^{n - 1} \to P^ n$, induce the identity $C^ n \to C^ n$, and are zero on $C^{n - 1}$. The map $F^\bullet \to P^\bullet $ is a quasi-isomorphism (even a homotopy equivalence) and hence (3) implies (1). 
+    <p>
+      Assume (1). Let $E^\bullet $ be a bounded above complex of finite free $R$-modules and let $E^\bullet \to K^\bullet $ be a quasi-isomorphism. Then the induced maps $\sigma _{\geq m}E^\bullet \to K^\bullet $ from the stupid truncation of $E^\bullet $ to $K^\bullet $ show that $K^\bullet $ is $m$-pseudo-coherent. Hence (1) implies (2). 
+    <p>
+      Assume (2). Since $K^\bullet $ is $0$-pseudo-coherent we see in particular that $K^\bullet $ is bounded above. Let $b$ be an integer such that $H^ i(K^\bullet ) = 0$ for $i > b$. By descending induction on $n \in \mathbf{Z}$ we are going to construct finite free $R$-modules $F^ i$ for $i \geq n$, differentials $d^ i : F^ i \to F^{i + 1}$ for $i \geq n$, maps $\alpha : F^ i \to K^ i$ compatible with differentials, such that (1) $H^ i(\alpha )$ is an isomorphism for $i > n$ and surjective for $i = n$, and (2) $F^ i = 0$ for $i > b$. Picture 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ &  F^ n \ar[r] \ar[d]^\alpha &  F^{n + 1} \ar[d]^\alpha \ar[r] &  \ldots \\  K^{n - 1} \ar[r] &  K^ n \ar[r] &  K^{n + 1} \ar[r] &  \ldots }  \]
+</div>
+    <p>
+       The base case is $n = b + 1$ where we can take $F^ i = 0$ for all $i$. Induction step. Let $C^\bullet $ be the cone on $\alpha $ (Derived Categories, Definition <a href="/tag/014E" data-tag="014E">13.9.1</a>). The long exact sequence of cohomology 
+    <p>
+      <div class="equation">
+  \[  0 \to H^{n - 1}(K^\bullet ) \to H^{n - 1}(C^\bullet ) \to H^ n(F^\bullet ) \to H^ n(K^\bullet ) \to H^ n(C^\bullet ) \to \ldots  \]
+</div>
+    <p>
+       shows that $H^ i(C^\bullet ) = 0$ for $i \geq n$. By Lemma <a href="/tag/064R" data-tag="064R">15.66.2</a> we see that $C^\bullet $ is $(n - 1)$-pseudo-coherent. By Lemma <a href="/tag/064S" data-tag="064S">15.66.3</a> we see that $H^{n - 1}(C^\bullet )$ is a finite $R$-module. In particular, we see that the kernel of $H^ n(F^\bullet ) \to H^ n(K^\bullet )$ is a finite $R$-module. Choose a finite free $R$-module $F^{n - 1}$ and a map $F^{n - 1} \to \mathop{\mathrm{Ker}}(F^ n \to F^{n - 1})$ such that $F^{n - 1}$ surjects onto the kernel of $H^ n(F^\bullet ) \to H^ n(K^\bullet )$. We extend our of complexes to 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ &  F^{n - 1} \ar[d]^{\alpha ^{n - 1}} \ar[r] &  F^ n \ar[r] \ar[d]^\alpha &  F^{n + 1} \ar[d]^\alpha \ar[r] &  \ldots \\  \ldots \ar[r] &  K^{n - 1} \ar[r] &  K^ n \ar[r] &  K^{n + 1} \ar[r] &  \ldots }  \]
+</div>
+    <p>
+       Note that $\alpha ^{n - 1}$ exists because the image of $F^{n - 1} \to F^ n \to K^ n$ is in the image of $K^{n - 1} \to K^ n$ by construction. Dnote again $C^\bullet $ the cone of this extended map of complexes. At this point we see that we get an exact sequence 
+    <p>
+      <div class="equation">
+  \[  H^{n - 1}(F^\bullet ) \to H^{n - 1}(K^\bullet ) \to H^{n - 1}(C^\bullet ) \to H^ n(F^\bullet ) \cong H^ n(K^\bullet ) \to H^ n(C^\bullet ) \to \ldots  \]
+</div>
+    <p>
+       In other words, we see that the cokernel of $H^{n - 1}(F^\bullet ) \to H^{n - 1}(K^\bullet )$ is a finite $R$-module, say generated by the classes of $\xi _1, \ldots , \xi _ r \in \mathop{\mathrm{Ker}}(K^{n - 1} \to K^ n)$. Then we replace $F^{n - 1}$ by $F^{n - 1} \oplus R^{\oplus r}$ where the basis elements in the free summand map to zero in $F^ n$ and the to $\xi _ i$ in $K^{n - 1}$. This finishes the proof of the induction step. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="064V">
+  <p><a class="environment-identifier" href="/tag/064V">Lemma <span data-tag="064V">15.66.6</span>.</a> Let $R$ be a ring. Let $(K^\bullet , L^\bullet , M^\bullet , f, g, h)$ be a distinguished triangle in $D(R)$. If two out of three of $K^\bullet , L^\bullet , M^\bullet $ are pseudo-coherent then the third is also pseudo-coherent. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Combine Lemmas <a href="/tag/064R" data-tag="064R">15.66.2</a> and <a href="/tag/064U" data-tag="064U">15.66.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="064W">
+  <p><a class="environment-identifier" href="/tag/064W">Lemma <span data-tag="064W">15.66.7</span>.</a> Let $R$ be a ring. Let $K^\bullet $ be a complex of $R$-modules. Let $m \in \mathbf{Z}$. </p>
+  <p><ol>
+  <li><p>
+If $H^ i(K^\bullet ) = 0$ for all $i \geq m$, then $K^\bullet $ is $m$-pseudo-coherent. 
+</p>
+</li><li><p>
+If $H^ i(K^\bullet ) = 0$ for $i > m$ and $H^ m(K^\bullet )$ is a finite $R$-module, then $K^\bullet $ is $m$-pseudo-coherent. 
+</p>
+</li><li><p>
+If $H^ i(K^\bullet ) = 0$ for $i > m + 1$, the module $H^{m + 1}(K^\bullet )$ is of finite presentation, and $H^ m(K^\bullet )$ is of finite type, then $K^\bullet $ is $m$-pseudo-coherent. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It suffices to prove (3). Set $M = H^{m + 1}(K^\bullet )$. Note that $\tau _{\geq m + 1}K^\bullet $ is quasi-isomorphic to $M[- m - 1]$. By Lemma <a href="/tag/064T" data-tag="064T">15.66.4</a> we see that $M[- m - 1]$ is $m$-pseudo-coherent. Since we have the distinguished triangle 
+    <p>
+      <div class="equation">
+  \[  (\tau _{\leq m}K^\bullet , K^\bullet , \tau _{\geq m + 1}K^\bullet )  \]
+</div>
+    <p>
+       (Derived Categories, Remark <a href="/tag/08J5" data-tag="08J5">13.12.4</a>) by Lemma <a href="/tag/064R" data-tag="064R">15.66.2</a> it suffices to prove that $\tau _{\leq m}K^\bullet $ is pseudo-coherent. By assumption $H^ m(\tau _{\leq m}K^\bullet )$ is a finite type $R$-module. Hence we can find a finite free $R$-module $E$ and a map $E \to \mathop{\mathrm{Ker}}(d_ K^ m)$ such that the composition $E \to \mathop{\mathrm{Ker}}(d_ K^ m) \to H^ m(\tau _{\leq m}K^\bullet )$ is surjective. Then $E[-m] \to \tau _{\leq m}K^\bullet $ witnesses the fact that $\tau _{\leq m}K^\bullet $ is $m$-pseudo-coherent. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="064X">
+  <p><a class="environment-identifier" href="/tag/064X">Lemma <span data-tag="064X">15.66.8</span>.</a> Let $R$ be a ring. Let $m \in \mathbf{Z}$. If $K^\bullet \oplus L^\bullet $ is $m$-pseudo-coherent (resp. pseudo-coherent) so are $K^\bullet $ and $L^\bullet $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In this proof we drop the superscript ${}^\bullet $. Assume that $K \oplus L$ is $m$-pseudo-coherent. It is clear that $K, L \in D^{-}(R)$. Note that there is a distinguished triangle 
+    <p>
+      <div class="equation">
+  \[  (K \oplus L, K \oplus L, L \oplus L[1]) = (K, K, 0) \oplus (L, L, L \oplus L[1])  \]
+</div>
+    <p>
+       see Derived Categories, Lemma <a href="/tag/05QS" data-tag="05QS">13.4.10</a>. By Lemma <a href="/tag/064R" data-tag="064R">15.66.2</a> we see that $L \oplus L[1]$ is $m$-pseudo-coherent. Hence also $L[1] \oplus L[2]$ is $m$-pseudo-coherent. By induction $L[n] \oplus L[n + 1]$ is $m$-pseudo-coherent. By Lemma <a href="/tag/064W" data-tag="064W">15.66.7</a> we see that $L[n]$ is $m$-pseudo-coherent for large $n$. Hence working backwards, using the distinguished triangles 
+    <p>
+      <div class="equation">
+  \[  (L[n], L[n] \oplus L[n - 1], L[n - 1])  \]
+</div>
+    <p>
+       we conclude that $L[n], L[n - 1], \ldots , L$ are $m$-pseudo-coherent as desired. The pseudo-coherent case follows from this and Lemma <a href="/tag/064U" data-tag="064U">15.66.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="064Y">
+  <p><a class="environment-identifier" href="/tag/064Y">Lemma <span data-tag="064Y">15.66.9</span>.</a> Let $R$ be a ring. Let $m \in \mathbf{Z}$. Let $K^\bullet $ be a bounded above complex of $R$-modules such that $K^ i$ is $(m - i)$-pseudo-coherent for all $i$. Then $K^\bullet $ is $m$-pseudo-coherent. In particular, if $K^\bullet $ is a bounded above complex of pseudo-coherent $R$-modules, then $K^\bullet $ is pseudo-coherent. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We may replace $K^\bullet $ by $\sigma _{\geq m - 1}K^\bullet $ (for example) and hence assume that $K^\bullet $ is bounded. Then the complex $K^\bullet $ is $m$-pseudo-coherent as each $K^ i[-i]$ is $m$-pseudo-coherent by induction on the length of the complex: use Lemma <a href="/tag/064R" data-tag="064R">15.66.2</a> and the stupid truncations. For the final statement, it suffices to prove that $K^\bullet $ is $m$-pseudo-coherent for all $m \in \mathbf{Z}$, see Lemma <a href="/tag/064U" data-tag="064U">15.66.5</a>. This follows from the first part. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="066B">
+  <p><a class="environment-identifier" href="/tag/066B">Lemma <span data-tag="066B">15.66.10</span>.</a> Let $R$ be a ring. Let $m \in \mathbf{Z}$. Let $K^\bullet \in D^{-}(R)$ such that $H^ i(K^\bullet )$ is $(m - i)$-pseudo-coherent (resp. pseudo-coherent) for all $i$. Then $K^\bullet $ is $m$-pseudo-coherent (resp. pseudo-coherent). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume $K^\bullet $ is an object of $D^{-}(R)$ such that each $H^ i(K^\bullet )$ is $(m - i)$-pseudo-coherent. Let $n$ be the largest integer such that $H^ n(K^\bullet )$ is nonzero. We will prove the lemma by induction on $n$. If $n < m$, then $K^\bullet $ is $m$-pseudo-coherent by Lemma <a href="/tag/064W" data-tag="064W">15.66.7</a>. If $n \geq m$, then we have the distinguished triangle 
+    <p>
+      <div class="equation">
+  \[  (\tau _{\leq n - 1}K^\bullet , K^\bullet , H^ n(K^\bullet )[-n])  \]
+</div>
+    <p>
+       (Derived Categories, Remark <a href="/tag/08J5" data-tag="08J5">13.12.4</a>) Since $H^ n(K^\bullet )[-n]$ is $m$-pseudo-coherent by assumption, we can use Lemma <a href="/tag/064R" data-tag="064R">15.66.2</a> to see that it suffices to prove that $\tau _{\leq n - 1}K^\bullet $ is $m$-pseudo-coherent. By induction on $n$ we win. (The pseudo-coherent case follows from this and Lemma <a href="/tag/064U" data-tag="064U">15.66.5</a>.) 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="064Z">
+  <p><a class="environment-identifier" href="/tag/064Z">Lemma <span data-tag="064Z">15.66.11</span>.</a> Let $A \to B$ be a ring map. Assume that $B$ is pseudo-coherent as an $A$-module. Let $K^\bullet $ be a complex of $B$-modules. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$K^\bullet $ is $m$-pseudo-coherent as a complex of $B$-modules, and 
+</p>
+</li><li><p>
+$K^\bullet $ is $m$-pseudo-coherent as a complex of $A$-modules. 
+</p>
+</li>
+</ol></p>
+  <p> The same equivalence holds for pseudo-coherence. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume (1). Choose a bounded complex of finite free $B$-modules $E^\bullet $ and a map $\alpha : E^\bullet \to K^\bullet $ which is an isomorphism on cohomology in degrees $> m$ and a surjection in degree $m$. Consider the distinguished triangle $(E^\bullet , K^\bullet , C(\alpha )^\bullet )$. By Lemma <a href="/tag/064W" data-tag="064W">15.66.7</a> $C(\alpha )^\bullet $ is $m$-pseudo-coherent as a complex of $A$-modules. Hence it suffices to prove that $E^\bullet $ is pseudo-coherent as a complex of $A$-modules, which follows from Lemma <a href="/tag/064Y" data-tag="064Y">15.66.9</a>. The pseudo-coherent case of (1) $\Rightarrow $ (2) follows from this and Lemma <a href="/tag/064U" data-tag="064U">15.66.5</a>. 
+    <p>
+      Assume (2). Let $n$ be the largest integer such that $H^ n(K^\bullet ) \not= 0$. We will prove that $K^\bullet $ is $m$-pseudo-coherent as a complex of $B$-modules by induction on $n - m$. The case $n < m$ follows from Lemma <a href="/tag/064W" data-tag="064W">15.66.7</a>. Choose a bounded complex of finite free $A$-modules $E^\bullet $ and a map $\alpha : E^\bullet \to K^\bullet $ which is an isomorphism on cohomology in degrees $> m$ and a surjection in degree $m$. Consider the induced map of complexes 
+    <p>
+      <div class="equation">
+  \[  \alpha \otimes 1 : E^\bullet \otimes _ A B \to K^\bullet .  \]
+</div>
+    <p>
+       Note that $C(\alpha \otimes 1)^\bullet $ is acyclic in degrees $\geq n$ as $H^ n(E) \to H^ n(E^\bullet \otimes _ A B) \to H^ n(K^\bullet )$ is surjective by construction and since $H^ i(E^\bullet \otimes _ A B) = 0$ for $i > n$ by the spectral sequence of Example <a href="/tag/0662" data-tag="0662">15.63.4</a>. On the other hand, $C(\alpha \otimes 1)^\bullet $ is $m$-pseudo-coherent as a complex of $A$-modules because both $K^\bullet $ and $E^\bullet \otimes _ A B$ (see Lemma <a href="/tag/064Y" data-tag="064Y">15.66.9</a>) are so, see Lemma <a href="/tag/064R" data-tag="064R">15.66.2</a>. Hence by induction we see that $C(\alpha \otimes 1)^\bullet $ is $m$-pseudo-coherent as a complex of $B$-modules. Finally another application of Lemma <a href="/tag/064R" data-tag="064R">15.66.2</a> shows that $K^\bullet $ is $m$-pseudo-coherent as a complex of $B$-modules (as clearly $E^\bullet \otimes _ A B$ is pseudo-coherent as a complex of $B$-modules). The pseudo-coherent case of (2) $\Rightarrow $ (1) follows from this and Lemma <a href="/tag/064U" data-tag="064U">15.66.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0650">
+  <p><a class="environment-identifier" href="/tag/0650">Lemma <span data-tag="0650">15.66.12</span>.</a> Let $A \to B$ be a ring map. Let $K^\bullet $ be an $m$-pseudo-coherent (resp. pseudo-coherent) complex of $A$-modules. Then $K^\bullet \otimes _ A^{\mathbf{L}} B$ is an $m$-pseudo-coherent (resp. pseudo-coherent) complex of $B$-modules. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      First we note that the statement of the lemma makes sense as $K^\bullet $ is bounded above and hence $K^\bullet \otimes _ A^{\mathbf{L}} B$ is defined by Equation (<a href="/tag/064H" data-tag="064H">15.58.0.2</a>). Having said this, choose a bounded complex $E^\bullet $ of finite free $A$-modules and $\alpha : E^\bullet \to K^\bullet $ with $H^ i(\alpha )$ an isomorphism for $i > m$ and surjective for $i = m$. Then the cone $C(\alpha )^\bullet $ is acyclic in degrees $\geq m$. Since $-\otimes _ A^{\mathbf{L}} B$ is an exact functor we get a distinguished triangle 
+    <p>
+      <div class="equation">
+  \[  (E^\bullet \otimes _ A^{\mathbf{L}} B, K^\bullet \otimes _ A^{\mathbf{L}} B, C(\alpha )^\bullet \otimes _ A^{\mathbf{L}} B)  \]
+</div>
+    <p>
+       of complexes of $B$-modules. By the dual to Derived Categories, Lemma <a href="/tag/05TC" data-tag="05TC">13.16.1</a> we see that $H^ i(C(\alpha )^\bullet \otimes _ A^{\mathbf{L}} B) = 0$ for $i \geq m$. Since $E^\bullet $ is a complex of projective $R$-modules we see that $E^\bullet \otimes _ A^{\mathbf{L}} B = E^\bullet \otimes _ A B$ and hence 
+    <p>
+      <div class="equation">
+  \[  E^\bullet \otimes _ A B \longrightarrow K^\bullet \otimes _ A^{\mathbf{L}} B  \]
+</div>
+    <p>
+       is a morphism of complexes of $B$-modules that witnesses the fact that $K^\bullet \otimes _ A^{\mathbf{L}} B$ is $m$-pseudo-coherent. The case of pseudo-coherent complexes follows from the case of $m$-pseudo-coherent complexes via Lemma <a href="/tag/064U" data-tag="064U">15.66.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="066C">
+  <p><a class="environment-identifier" href="/tag/066C">Lemma <span data-tag="066C">15.66.13</span>.</a> Let $A \to B$ be a flat ring map. Let $M$ be an $m$-pseudo-coherent (resp. pseudo-coherent) $A$-module. Then $M \otimes _ A B$ is an $m$-pseudo-coherent (resp. pseudo-coherent) $B$-module. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Immediate consequence of Lemma <a href="/tag/0650" data-tag="0650">15.66.12</a> and the fact that $M \otimes _ A^{\mathbf{L}} B = M \otimes _ A B$ because $B$ is flat over $A$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma also follows from the stronger Lemma <a href="/tag/068R" data-tag="068R">15.66.15</a>. 
+</p>
+<p>
+<article class="env-lemma" id="066D">
+  <p><a class="environment-identifier" href="/tag/066D">Lemma <span data-tag="066D">15.66.14</span>.</a> Let $R$ be a ring. Let $f_1, \ldots , f_ r \in R$ be elements which generate the unit ideal. Let $m \in \mathbf{Z}$. Let $K^\bullet $ be a complex of $R$-modules. If for each $i$ the complex $K^\bullet \otimes _ R R_{f_ i}$ is $m$-pseudo-coherent (resp. pseudo-coherent), then $K^\bullet $ is $m$-pseudo-coherent (resp. pseudo-coherent). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use without further mention that $- \otimes _ R R_{f_ i}$ is an exact functor and that therefore 
+    <p>
+      <div class="equation">
+  \[  H^ i(K^\bullet )_{f_ i} = H^ i(K^\bullet ) \otimes _ R R_{f_ i} = H^ i(K^\bullet \otimes _ R R_{f_ i}).  \]
+</div>
+    <p>
+       Assume $K^\bullet \otimes _ R R_{f_ i}$ is $m$-pseudo-coherent for $i = 1, \ldots , r$. Let $n \in \mathbf{Z}$ be the largest integer such that $H^ n(K^\bullet \otimes _ R R_{f_ i})$ is nonzero for some $i$. This implies in particular that $H^ i(K^\bullet ) = 0$ for $i > n$ (and that $H^ n(K^\bullet ) \not= 0$) see Algebra, Lemma <a href="/tag/00EO" data-tag="00EO">10.23.2</a>. We will prove the lemma by induction on $n - m$. If $n < m$, then the lemma is true by Lemma <a href="/tag/064W" data-tag="064W">15.66.7</a>. If $n \geq m$, then $H^ n(K^\bullet )_{f_ i}$ is a finite $R_{f_ i}$-module for each $i$, see Lemma <a href="/tag/064S" data-tag="064S">15.66.3</a>. Hence $H^ n(K^\bullet )$ is a finite $R$-module, see Algebra, Lemma <a href="/tag/00EO" data-tag="00EO">10.23.2</a>. Choose a finite free $R$-module $E$ and a surjection $E \to H^ n(K^\bullet )$. As $E$ is projective we can lift this to a map of complexes $\alpha : E[-n] \to K^\bullet $. Then the cone $C(\alpha )^\bullet $ has vanishing cohomology in degrees $\geq n$. On the other hand, the complexes $C(\alpha )^\bullet \otimes _ R R_{f_ i}$ are $m$-pseudo-coherent for each $i$, see Lemma <a href="/tag/064R" data-tag="064R">15.66.2</a>. Hence by induction we see that $C(\alpha )^\bullet $ is $m$-pseudo-coherent as a complex of $R$-modules. Applying Lemma <a href="/tag/064R" data-tag="064R">15.66.2</a> once more we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="068R">
+  <p><a class="environment-identifier" href="/tag/068R">Lemma <span data-tag="068R">15.66.15</span>.</a> Let $R$ be a ring. Let $m \in \mathbf{Z}$. Let $K^\bullet $ be a complex of $R$-modules. Let $R \to R'$ be a faithfully flat ring map. If the complex $K^\bullet \otimes _ R R'$ is $m$-pseudo-coherent (resp. pseudo-coherent), then $K^\bullet $ is $m$-pseudo-coherent (resp. pseudo-coherent). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use without further mention that $- \otimes _ R R'$ is an exact functor and that therefore 
+    <p>
+      <div class="equation">
+  \[  H^ i(K^\bullet ) \otimes _ R R' = H^ i(K^\bullet \otimes _ R R').  \]
+</div>
+    <p>
+       Assume $K^\bullet \otimes _ R R'$ is $m$-pseudo-coherent. Let $n \in \mathbf{Z}$ be the largest integer such that $H^ n(K^\bullet )$ is nonzero; then $n$ is also the largest integer such that $H^ n(K^\bullet \otimes _ R R')$ is nonzero. We will prove the lemma by induction on $n - m$. If $n < m$, then the lemma is true by Lemma <a href="/tag/064W" data-tag="064W">15.66.7</a>. If $n \geq m$, then $H^ n(K^\bullet ) \otimes _ R R'$ is a finite $R'$-module, see Lemma <a href="/tag/064S" data-tag="064S">15.66.3</a>. Hence $H^ n(K^\bullet )$ is a finite $R$-module, see Algebra, Lemma <a href="/tag/03C4" data-tag="03C4">10.83.2</a>. Choose a finite free $R$-module $E$ and a surjection $E \to H^ n(K^\bullet )$. As $E$ is projective we can lift this to a map of complexes $\alpha : E[-n] \to K^\bullet $. Then the cone $C(\alpha )^\bullet $ has vanishing cohomology in degrees $\geq n$. On the other hand, the complex $C(\alpha )^\bullet \otimes _ R R'$ is $m$-pseudo-coherent, see Lemma <a href="/tag/064R" data-tag="064R">15.66.2</a>. Hence by induction we see that $C(\alpha )^\bullet $ is $m$-pseudo-coherent as a complex of $R$-modules. Applying Lemma <a href="/tag/064R" data-tag="064R">15.66.2</a> once more we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DJE">
+  <p><a class="environment-identifier" href="/tag/0DJE">Lemma <span data-tag="0DJE">15.66.16</span>.</a> Let $R$ be a ring. Let $K, L$ be objects of $D(R)$. </p>
+  <p><ol>
+  <li><p>
+If $K$ is $n$-pseudo-coherent and $H^ i(K) = 0$ for $i > a$ and $L$ is $m$-pseudo-coherent and $H^ j(L) = 0$ for $j > b$, then $K \otimes _ R^\mathbf {L} L$ is $t$-pseudo-coherent with $t = \max (m + a, n + b)$. 
+</p>
+</li><li><p>
+If $K$ and $L$ are pseudo-coherent, then $K \otimes _ R^\mathbf {L} L$ is pseudo-coherent. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Proof of (1). We may assume there exist bounded complexes $K^\bullet $ and $L^\bullet $ of finite free $R$-modules and maps $\alpha : K^\bullet \to K$ and $\beta : L^\bullet \to L$ with $H^ i(\alpha )$ and isomorphism for $i > n$ and surjective for $i = n$ and with $H^ i(\beta )$ and isomorphism for $i > m$ and surjective for $i = m$. Then the map 
+    <p>
+      <div class="equation">
+  \[  \alpha \otimes ^\mathbf {L} \beta : \text{Tot}(K^\bullet \otimes _ R L^\bullet ) \to K \otimes _ R^\mathbf {L} L  \]
+</div>
+    <p>
+       induces isomorphisms on cohomology in degree $i$ for $i > t$ and a surjection for $i = t$. This follows from the spectral sequence of tors (details omitted). Part (2) follows from part (1) and Lemma <a href="/tag/064U" data-tag="064U">15.66.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="066E">
+  <p><a class="environment-identifier" href="/tag/066E">Lemma <span data-tag="066E">15.66.17</span>.</a> Let $R$ be a Noetherian ring. Then </p>
+  <p><ol>
+  <li><p>
+A complex of $R$-modules $K^\bullet $ is $m$-pseudo-coherent if and only if $K^\bullet \in D^{-}(R)$ and $H^ i(K^\bullet )$ is a finite $R$-module for $i \geq m$. 
+</p>
+</li><li><p>
+A complex of $R$-modules $K^\bullet $ is pseudo-coherent if and only if $K^\bullet \in D^{-}(R)$ and $H^ i(K^\bullet )$ is a finite $R$-module for all $i$. 
+</p>
+</li><li><p>
+An $R$-module is pseudo-coherent if and only if it is finite. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In Algebra, Lemma <a href="/tag/00LP" data-tag="00LP">10.71.1</a> we have seen that any finite $R$-module is pseudo-coherent. On the other hand, a pseudo-coherent module is finite, see Lemma <a href="/tag/064T" data-tag="064T">15.66.4</a>. Hence (3) holds. Suppose that $K^\bullet $ is an $m$-pseudo-coherent complex. Then there exists a bounded complex of finite free $R$-modules $E^\bullet $ such that $H^ i(K^\bullet )$ is isomorphic to $H^ i(E^\bullet )$ for $i > m$ and such that $H^ m(K^\bullet )$ is a quotient of $H^ m(E^\bullet )$. Thus it is clear that each $H^ i(K^\bullet )$, $i \geq m$ is a finite module. The converse implication in (1) follows from Lemma <a href="/tag/066B" data-tag="066B">15.66.10</a> and part (3). Part (2) follows from (1) and Lemma <a href="/tag/064U" data-tag="064U">15.66.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0EWZ">
+  <p><a class="environment-identifier" href="/tag/0EWZ">Lemma <span data-tag="0EWZ">15.66.18</span>.</a> Let $R$ be a coherent ring (Algebra, Definition <a href="/tag/05CV" data-tag="05CV">10.90.1</a>). Let $K \in D^-(R)$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$K$ is $m$-pseudo-coherent, 
+</p>
+</li><li><p>
+$H^ m(K)$ is a finite $R$-module and $H^ i(K)$ is coherent for $i > m$, and 
+</p>
+</li><li><p>
+$H^ m(K)$ is a finite $R$-module and $H^ i(K)$ is finitely presented for $i > m$. 
+</p>
+</li>
+</ol></p>
+  <p> Thus $K$ is pseudo-coherent if and only if $H^ i(K)$ is a coherent module for all $i$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Recall that an $R$-module $M$ is coherent if and only if it is of finite presentation (Algebra, Lemma <a href="/tag/05CX" data-tag="05CX">10.90.4</a>). This explains the equivalence of (2) and (3). If so and if we choose an exact sequence $0 \to N \to R^{\oplus m} \to M \to 0$, then $N$ is coherent by Algebra, Lemma <a href="/tag/05CW" data-tag="05CW">10.90.3</a>. Thus in this case, repeating this procedure with $N$ we find a resolution 
+    <p>
+      <div class="equation">
+  \[  \ldots \to R^{\oplus n} \to R^{\oplus m} \to M \to 0  \]
+</div>
+    <p>
+       by finite free $R$-modules. In other words, $M$ is pseudo-coherent. The equivalence of (1) and (2) follows from this and Lemmas <a href="/tag/066B" data-tag="066B">15.66.10</a> and <a href="/tag/064T" data-tag="064T">15.66.4</a>. The final assertion follows from the equivalence of (1) and (2) combined with Lemma <a href="/tag/064U" data-tag="064U">15.66.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

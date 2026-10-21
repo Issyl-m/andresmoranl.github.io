@@ -1,0 +1,162 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-groupoids-section-technical-lemma" class="tex-section"><span data-tag="02YD">40.6</span> Properties of groupoids</h2>
+
+<p>
+Let $(U, R, s, t, c)$ be a groupoid scheme. The idea behind the results in this section is that $s: R \to U$ is a base change of the morphism $U \to [U/R]$ (see Diagram (<a href="/tag/04LC" data-tag="04LC">40.1.0.1</a>). Hence the local properties of $s : R \to U$ should reflect local properties of the morphism $U \to [U/R]$. This doesn't work, because $[U/R]$ is not always an algebraic stack, and hence we cannot speak of geometric or algebraic properties of $U \to [U/R]$. But it turns out that we can make some of it work without even referring to the quotient stack at all. 
+</p>
+<p>
+Here is a first example of such a result. The open $W \subset U'$ found in the lemma is roughly speaking the locus where the morphism $U' \to [U/R]$ has property $\mathcal{P}$. 
+</p>
+<p>
+<article class="env-lemma" id="04LH">
+  <p><a class="environment-identifier" href="/tag/04LH">Lemma <span data-tag="04LH">40.6.1</span>.</a> Let $S$ be a scheme. Let $(U, R, s, t, c, e, i)$ be a groupoid over $S$. Let $g : U' \to U$ be a morphism of schemes. Denote $h$ the composition </p>
+  <div class="equation">
+  \[  \xymatrix{ h : U' \times _{g, U, t} R \ar[r]_-{\text{pr}_1} &  R \ar[r]_ s &  U. }  \]
+</div>
+  <p> Let $\mathcal{P}, \mathcal{Q}, \mathcal{R}$ be properties of morphisms of schemes. Assume </p>
+  <p><ol>
+  <li><p>
+$\mathcal{R} \Rightarrow \mathcal{Q}$, 
+</p>
+</li><li><p>
+$\mathcal{Q}$ is preserved under base change and composition, 
+</p>
+</li><li><p>
+for any morphism $f : X \to Y$ which has $\mathcal{Q}$ there exists a largest open $W(\mathcal{P}, f) \subset X$ such that $f|_{W(\mathcal{P}, f)}$ has $\mathcal{P}$, and 
+</p>
+</li><li><p>
+for any morphism $f : X \to Y$ which has $\mathcal{Q}$, and any morphism $Y' \to Y$ which has $\mathcal{R}$ we have $Y' \times _ Y W(\mathcal{P}, f) = W(\mathcal{P}, f')$, where $f' : X_{Y'} \to Y'$ is the base change of $f$. 
+</p>
+</li>
+</ol></p>
+  <p> If $s, t$ have $\mathcal{R}$ and $g$ has $\mathcal{Q}$, then there exists an open subscheme $W \subset U'$ such that $W \times _{g, U, t} R = W(\mathcal{P}, h)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Note that the following diagram is commutative 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ U' \times _{g, U, t} R \times _{t, U, t} R \ar[rr]_-{\text{pr}_{12}} \ar@<1ex>[d]^-{\text{pr}_{02}} \ar@<-1ex>[d]_-{\text{pr}_{01}} &  &  R \times _{t, U, t} R \ar@<1ex>[d]^-{\text{pr}_1} \ar@<-1ex>[d]_-{\text{pr}_0} \\  U' \times _{g, U, t} R \ar[rr]^{\text{pr}_1} &  &  R }  \]
+</div>
+    <p>
+       with both squares cartesian (this uses that the two maps $t \circ \text{pr}_ i : R \times _{t, U, t} R \to U$ are equal). Combining this with the properties of diagram (<a href="/tag/04LG" data-tag="04LG">40.3.0.2</a>) we get a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ U' \times _{g, U, t} R \times _{t, U, t} R \ar[rr]_-{c \circ (i, 1)} \ar@<1ex>[d]^-{\text{pr}_{02}} \ar@<-1ex>[d]_-{\text{pr}_{01}} &  &  R \ar@<1ex>[d]^-{s} \ar@<-1ex>[d]_-{t} \\  U' \times _{g, U, t} R \ar[rr]^ h &  &  U }  \]
+</div>
+    <p>
+       where both squares are cartesian. 
+    <p>
+      Assume $s, t$ have $\mathcal{R}$ and $g$ has $\mathcal{Q}$. Then $h$ has $\mathcal{Q}$ as a composition of $s$ (which has $\mathcal{R}$ hence $\mathcal{Q}$) and a base change of $g$ (which has $\mathcal{Q}$). Thus $W(\mathcal{P}, h) \subset U' \times _{g, U, t} R$ exists. By our assumptions we have $\text{pr}_{01}^{-1}(W(\mathcal{P}, h)) = \text{pr}_{02}^{-1}(W(\mathcal{P}, h))$ since both are the largest open on which $c \circ (i, 1)$ has $\mathcal{P}$. Note that the projection $U' \times _{g, U, t} R \to U'$ has a section, namely $\sigma : U' \to U' \times _{g, U, t} R$, $u' \mapsto (u', e(g(u')))$. Also via the isomorphism 
+    <p>
+      <div class="equation">
+  \[  (U' \times _{g, U, t} R) \times _{U'} (U' \times _{g, U, t} R) = U' \times _{g, U, t} R \times _{t, U, t} R  \]
+</div>
+    <p>
+       the two projections of the left hand side to $U' \times _{g, U, t} R$ agree with the morphisms $\text{pr}_{01}$ and $\text{pr}_{02}$ on the right hand side. Since $\text{pr}_{01}^{-1}(W(\mathcal{P}, h)) = \text{pr}_{02}^{-1}(W(\mathcal{P}, h))$ we conclude that $W(\mathcal{P}, h)$ is the inverse image of a subset of $U$, which is necessarily the open set $W = \sigma ^{-1}(W(\mathcal{P}, h))$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="04LI">
+  <p><a class="environment-identifier" href="/tag/04LI">Remark <span data-tag="04LI">40.6.2</span>.</a> Warning: Lemma <a href="/tag/04LH" data-tag="04LH">40.6.1</a> should be used with care. For example, it applies to $\mathcal{P}=$“flat”, $\mathcal{Q}=$“empty”, and $\mathcal{R}=$“flat and locally of finite presentation”. But given a morphism of schemes $f : X \to Y$ the largest open $W \subset X$ such that $f|_ W$ is flat is <em>not</em> the set of points where $f$ is flat! </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="047W">
+  <p><a class="environment-identifier" href="/tag/047W">Remark <span data-tag="047W">40.6.3</span>.</a> Notwithstanding the warning in Remark <a href="/tag/04LI" data-tag="04LI">40.6.2</a> there are some cases where Lemma <a href="/tag/04LH" data-tag="04LH">40.6.1</a> can be used without causing too much ambiguity. We give a list. In each case we omit the verification of assumptions (1) and (2) and we give references which imply (3) and (4). Here is the list: </p>
+  <p><ol>
+  <li><p>
+$\mathcal{Q} = \mathcal{R} =$“locally of finite type”, and $\mathcal{P} =$“relative dimension $\leq d$”. See Morphisms, Definition <a href="/tag/02NJ" data-tag="02NJ">29.30.1</a> and Morphisms, Lemmas <a href="/tag/02FZ" data-tag="02FZ">29.29.4</a> and <a href="/tag/02FY" data-tag="02FY">29.29.3</a>. 
+</p>
+</li><li><p>
+$\mathcal{Q} = \mathcal{R} =$“locally of finite type”, and $\mathcal{P} =$“locally quasi-finite”. This is the case $d = 0$ of the previous item, see Morphisms, Lemma <a href="/tag/0397" data-tag="0397">29.30.5</a>. 
+</p>
+</li><li><p>
+$\mathcal{Q} = \mathcal{R} =$“locally of finite type”, and $\mathcal{P} =$“unramified”. See Morphisms, Lemmas <a href="/tag/02G6" data-tag="02G6">29.36.3</a> and <a href="/tag/0475" data-tag="0475">29.36.15</a>. 
+</p>
+</li>
+</ol></p>
+  <p> What is interesting about the cases listed above is that we do not need to assume that $s, t$ are flat to get a conclusion about the locus where the morphism $h$ has property $\mathcal{P}$. We continue the list: </p>
+  <p><ol>
+  <li class="custom-item" data-marker="(4)"><p>
+$\mathcal{Q} =$“locally of finite presentation”, $\mathcal{R} =$“flat and locally of finite presentation”, and $\mathcal{P} =$“flat”. See More on Morphisms, Theorem <a href="/tag/0399" data-tag="0399">37.15.1</a> and Lemma <a href="/tag/047C" data-tag="047C">37.15.2</a>. 
+</p>
+</li><li class="custom-item" data-marker="(5)"><p>
+$\mathcal{Q} =$“locally of finite presentation”, $\mathcal{R} =$“flat and locally of finite presentation”, and $\mathcal{P}=$“Cohen-Macaulay”. See More on Morphisms, Definition <a href="/tag/045R" data-tag="045R">37.22.1</a> and More on Morphisms, Lemmas <a href="/tag/045T" data-tag="045T">37.22.6</a> and <a href="/tag/045U" data-tag="045U">37.22.7</a>. 
+</p>
+</li><li class="custom-item" data-marker="(6)"><p>
+$\mathcal{Q} =$“locally of finite presentation”, $\mathcal{R} =$“flat and locally of finite presentation”, and $\mathcal{P}=$“syntomic” use Morphisms, Lemma <a href="/tag/02V3" data-tag="02V3">29.31.12</a> (the locus is automatically open). 
+</p>
+</li><li class="custom-item" data-marker="(7)"><p>
+$\mathcal{Q} =$“locally of finite presentation”, $\mathcal{R} =$“flat and locally of finite presentation”, and $\mathcal{P}=$“smooth”. See Morphisms, Lemma <a href="/tag/02V4" data-tag="02V4">29.35.15</a> (the locus is automatically open). 
+</p>
+</li><li class="custom-item" data-marker="(8)"><p>
+$\mathcal{Q} =$“locally of finite presentation”, $\mathcal{R} =$“flat and locally of finite presentation”, and $\mathcal{P}=$“étale”. See Morphisms, Lemma <a href="/tag/0476" data-tag="0476">29.37.17</a> (the locus is automatically open). 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+Here is the second result. The $R$-invariant open $W \subset U$ should be thought of as the inverse image of the largest open of $[U/R]$ over which the morphism $U \to [U/R]$ has property $\mathcal{P}$. 
+</p>
+<p>
+<article class="env-lemma" id="03JC">
+  <p><a class="environment-identifier" href="/tag/03JC">Lemma <span data-tag="03JC">40.6.4</span>.</a> Let $S$ be a scheme. Let $(U, R, s, t, c)$ be a groupoid over $S$. Let $\tau \in \{ Zariski, \linebreak[0] fppf, \linebreak[0] {\acute{e}tale}, \linebreak[0] smooth, \linebreak[0] syntomic\} $<a class="footnotemark" href="#a0000912833" id="a0000912833-mark"><sup>1</sup></a>. Let $\mathcal{P}$ be a property of morphisms of schemes which is $\tau $-local on the target (Descent, Definition <a href="/tag/02KO" data-tag="02KO">35.22.1</a>). Assume $\{ s : R \to U\} $ and $\{ t : R \to U\} $ are coverings for the $\tau $-topology. Let $W \subset U$ be the maximal open subscheme such that $s|_{s^{-1}(W)} : s^{-1}(W) \to W$ has property $\mathcal{P}$. Then $W$ is $R$-invariant, see Groupoids, Definition <a href="/tag/03BC" data-tag="03BC">39.19.1</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The existence and properties of the open $W \subset U$ are described in Descent, Lemma <a href="/tag/06QP" data-tag="06QP">35.22.3</a>. In Diagram (<a href="/tag/04LF" data-tag="04LF">40.3.0.1</a>) let $W_1 \subset R$ be the maximal open subscheme over which the morphism $\text{pr}_1 : R \times _{s, U, t} R \to R$ has property $\mathcal{P}$. It follows from the aforementioned Descent, Lemma <a href="/tag/06QP" data-tag="06QP">35.22.3</a> and the assumption that $\{ s : R \to U\} $ and $\{ t : R \to U\} $ are coverings for the $\tau $-topology that $t^{-1}(W) = W_1 = s^{-1}(W)$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06QQ">
+  <p><a class="environment-identifier" href="/tag/06QQ">Lemma <span data-tag="06QQ">40.6.5</span>.</a> Let $S$ be a scheme. Let $(U, R, s, t, c)$ be a groupoid over $S$. Let $G \to U$ be its stabilizer group scheme. Let $\tau \in \{ fppf, \linebreak[0] {\acute{e}tale}, \linebreak[0] smooth, \linebreak[0] syntomic\} $. Let $\mathcal{P}$ be a property of morphisms which is $\tau $-local on the target. Assume $\{ s : R \to U\} $ and $\{ t : R \to U\} $ are coverings for the $\tau $-topology. Let $W \subset U$ be the maximal open subscheme such that $G_ W \to W$ has property $\mathcal{P}$. Then $W$ is $R$-invariant (see Groupoids, Definition <a href="/tag/03BC" data-tag="03BC">39.19.1</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The existence and properties of the open $W \subset U$ are described in Descent, Lemma <a href="/tag/06QP" data-tag="06QP">35.22.3</a>. The morphism 
+    <p>
+      <div class="equation">
+  \[  G \times _{U, t} R \longrightarrow R \times _{s, U} G, \quad (g, r) \longmapsto (r, r^{-1} \circ g \circ r)  \]
+</div>
+    <p>
+       is an isomorphism over $R$ (where $\circ $ denotes composition in the groupoid). Hence $s^{-1}(W) = t^{-1}(W)$ by the properties of $W$ proved in the aforementioned Descent, Lemma <a href="/tag/06QP" data-tag="06QP">35.22.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

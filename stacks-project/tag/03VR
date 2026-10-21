@@ -1,0 +1,345 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="trace-section-automorphic" class="tex-section"><span data-tag="03VR">64.31</span> Automorphic forms and sheaves</h2>
+
+<p>
+References: See especially the amazing papers <span class="cite">[<a href="/bibliography/D1">D1</a>]</span>, <span class="cite">[<a href="/bibliography/D2">D2</a>]</span> and <span class="cite">[<a href="/bibliography/D0">D0</a>]</span> by Drinfeld. 
+</p>
+<p>
+<strong>Unramified cusp forms.</strong> Let $k$ be a finite field of characteristic $p$. Let $X$ geometrically irreducible projective smooth curve over $k$. Set $K = k(X)$ equal to the function field of $X$. Let $v$ be a place of $K$ which is the same thing as a closed point $x\in X$. Let $K_ v$ be the completion of $K$ at $v$, which is the same thing as the fraction field of the completion of the local ring of $X$ at $x$. Denote $O_ v\subset K_ v$ the ring of integers. We further set 
+</p>
+<div class="equation">
+  \[  O = \prod \nolimits _ v O_ v \subset \mathbf{A} = \prod _ v' K_ v  \]
+</div>
+<p>
+ and we let $\Lambda $ be any ring with $p$ invertible in $\Lambda $. 
+</p>
+<p>
+<article class="env-definition" id="03VS">
+  <p><a class="environment-identifier" href="/tag/03VS">Definition <span data-tag="03VS">64.31.1</span>.</a> An <em>unramified cusp form on $\text{GL}_2(\mathbf{A})$ with values in $\Lambda $</em><a class="footnotemark" href="#a0001331250" id="a0001331250-mark"><sup>1</sup></a> is a function </p>
+  <div class="equation">
+  \[  f : \text{GL}_2(\mathbf{A}) \to \Lambda  \]
+</div>
+  <p> such that </p>
+  <p><ol>
+  <li><p>
+$f(x\gamma ) = f(x)$ for all $x\in \text{GL}_2(\mathbf{A})$ and all $\gamma \in \text{GL}_2(K)$ 
+</p>
+</li><li><p>
+$f(ux) = f(x)$ for all $x\in \text{GL}_2(\mathbf{A})$ and all $u\in \text{GL}_2(O)$ 
+</p>
+</li><li><p>
+for all $x\in \text{GL}_2(\mathbf{A})$, 
+</p>
+<div class="equation">
+  \[  \int _{\mathbf{A} \mod K} f \left(x \left( \begin{matrix}  1 
+
+&  z 
+
+\\  0 
+
+&  1 
+
+\end{matrix} \right) \right) dz = 0  \]
+</div>
+<p>
+ see <span class="cite">[<span class="postnote">Section 4.1</span>, <a href="/bibliography/dJ-conjecture">dJ-conjecture</a>]</span> for an explanation of how to make sense out of this for a general ring $\Lambda $ in which $p$ is invertible. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+<strong>Hecke Operators.</strong> For $v$ a place of $K$ and $f$ an unramified cusp form we set 
+</p>
+<div class="equation">
+  \[  T_ v(f)(x) = \int _{g\in M_ v}f(g^{-1}x)dg,  \]
+</div>
+<p>
+ and 
+</p>
+<div class="equation">
+  \[  U_ v(f)(x) = f\left( \left( \begin{matrix}  \pi _ v^{-1} 
+
+&  0 
+
+\\  0 
+
+&  \pi _ v^{-1} 
+
+\end{matrix} \right)x\right)  \]
+</div>
+<p>
+ Notations used: here $\pi _ v \in O_ v$ is a uniformizer 
+</p>
+<div class="equation">
+  \[  M_ v = \left\{  h\in Mat(2\times 2, O_ v) | \det h = \pi _ vO_ v^*\right\}   \]
+</div>
+<p>
+ and $dg = $ is the Haar measure on $\text{GL}_2(K_ v)$ with $\int _{\text{GL}_2(O_ v)} dg = 1$. Explicitly we have 
+</p>
+<div class="equation">
+  \[  T_ v(f)(x) = f\left( \left( \begin{matrix}  \pi _ v^{-1}
+
+&  0 
+
+\\  0 
+
+&  1 
+
+\end{matrix} \right) x\right) + \sum _{i = 1}^{q_ v} f\left(\left( \begin{matrix}  1 
+
+&  0 
+
+\\  -\pi _ v^{-1}\lambda _ i 
+
+&  \pi _ v^{-1} 
+
+\end{matrix} \right) x\right)  \]
+</div>
+<p>
+ with $\lambda _ i\in O_ v$ a set of representatives of $O_ v/(\pi _ v)=\kappa _ v$, $q_ v = \# \kappa _ v$. 
+</p>
+<p>
+<strong>Eigenforms.</strong> An <em>eigenform</em> $f$ is an unramified cusp form such that some value of $f$ is a unit and $T_ vf = t_ vf$ and $U_ vf = u_ vf$ for some (uniquely determined) $t_ v, u_ v \in \Lambda $. 
+</p>
+<p>
+<article class="env-theorem" id="03VT">
+  <p><a class="environment-identifier" href="/tag/03VT">Theorem <span data-tag="03VT">64.31.2</span>.</a> Given an eigenform $f$ with values in $\overline{\mathbf{Q}}_ l$ and eigenvalues $u_ v\in \overline{\mathbf{Z}}_ l^*$ then there exists </p>
+  <div class="equation">
+  \[  \rho : \pi _1(X)\to \text{GL}_2(E)  \]
+</div>
+  <p> continuous, absolutely irreducible where $E$ is a finite extension of $\mathbf{Q}_\ell $ contained in $\overline{\mathbf{Q}}_ l$ such that $t_ v = \text{Tr}(\rho (F_ v))$, and $u_ v = q_ v^{-1}\det \left(\rho (F_ v)\right)$ for all places $v$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See <span class="cite">[<a href="/bibliography/D0">D0</a>]</span>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-theorem" id="03VU">
+  <p><a class="environment-identifier" href="/tag/03VU">Theorem <span data-tag="03VU">64.31.3</span>.</a> Suppose $\mathbf{Q}_ l \subset E$ finite, and </p>
+  <div class="equation">
+  \[  \rho : \pi _1(X)\to \text{GL}_2(E)  \]
+</div>
+  <p> absolutely irreducible, continuous. Then there exists an eigenform $f$ with values in $\overline{\mathbf{Q}}_ l$ whose eigenvalues $t_ v$, $u_ v$ satisfy the equalities $t_ v = \text{Tr}(\rho (F_ v))$ and $u_ v = q_ v^{-1}\det (\rho (F_ v))$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See <span class="cite">[<a href="/bibliography/D1">D1</a>]</span>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="03VV">
+  <p><a class="environment-identifier" href="/tag/03VV">Remark <span data-tag="03VV">64.31.4</span>.</a> We now have, thanks to Lafforgue and many other mathematicians, complete theorems like this two above for $\text{GL}_ n$ and allowing ramification! In other words, the full global Langlands correspondence for $\text{GL}_ n$ is known for function fields of curves over finite fields. At the same time this does not mean there aren't a lot of interesting questions left to answer about the fundamental groups of curves over finite fields, as we shall see below. </p>
+</article> 
+</p>
+<p>
+<strong>Central character.</strong> If $f$ is an eigenform then 
+</p>
+<div class="equation">
+  \[  \begin{matrix}  \chi _ f : 
+
+&  O^*\backslash \mathbf{A}^*/K^* 
+
+&  \to 
+
+&  \Lambda ^* 
+
+\\ &  (1, \ldots , \pi _ v, 1, \ldots , 1) 
+
+&  \mapsto 
+
+&  u_ v^{-1} 
+
+\end{matrix}  \]
+</div>
+<p>
+ is called the <em>central character</em>. If corresponds to the determinant of $\rho $ via normalizations as above. Set 
+</p>
+<div class="equation">
+  \[  C(\Lambda ) = \left\{  {\text{unr. cusp forms } f \text{ with coefficients in }\Lambda } \atop {\text{ such that } U_ v f = \varphi _ v^{-1}f\forall v} \right\}   \]
+</div>
+<p>
+<article class="env-proposition" id="03VW">
+  <p><a class="environment-identifier" href="/tag/03VW">Proposition <span data-tag="03VW">64.31.5</span>.</a> If $\Lambda $ is Noetherian then $C(\Lambda )$ is a finitely generated $\Lambda $-module. Moreover, if $\Lambda $ is a field with prime subfield $\mathbf{F} \subset \Lambda $ then </p>
+  <div class="equation">
+  \[  C(\Lambda )=(C(\mathbf{F}))\otimes _{\mathbf{F}}\Lambda  \]
+</div>
+  <p> compatibly with $T_ v$ acting. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See <span class="cite">[<span class="postnote">Proposition 4.7</span>, <a href="/bibliography/dJ-conjecture">dJ-conjecture</a>]</span>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+This proposition trivially implies the following lemma. 
+</p>
+<p>
+<article class="env-lemma" id="03VX">
+  <p><a class="environment-identifier" href="/tag/03VX">Lemma <span data-tag="03VX">64.31.6</span>.</a> Algebraicity of eigenvalues. If $\Lambda $ is a field then the eigenvalues $t_ v$ for $f\in C(\Lambda )$ are algebraic over the prime subfield $\mathbf{F} \subset \Lambda $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows from Proposition <a href="/tag/03VW" data-tag="03VW">64.31.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Combining all of the above we can do the following very useful trick. 
+</p>
+<p>
+<article class="env-lemma" id="03VY">
+  <p><a class="environment-identifier" href="/tag/03VY">Lemma <span data-tag="03VY">64.31.7</span>.</a> Switching $l$. Let $E$ be a number field. Start with </p>
+  <div class="equation">
+  \[  \rho : \pi _1(X)\to SL_2(E_\lambda )  \]
+</div>
+  <p> absolutely irreducible continuous, where $\lambda $ is a place of $E$ not lying above $p$. Then for any second place $\lambda '$ of $E$ not lying above $p$ there exists a finite extension $E'_{\lambda '}$ and a absolutely irreducible continuous representation </p>
+  <div class="equation">
+  \[  \rho ': \pi _1(X)\to SL_2(E'_{\lambda '})  \]
+</div>
+  <p> which is compatible with $\rho $ in the sense that the characteristic polynomials of all Frobenii are the same. </p>
+</article> 
+</p>
+<p>
+Note how this is an instance of Deligne's conjecture! 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      To prove the switching lemma use Theorem <a href="/tag/03VU" data-tag="03VU">64.31.3</a> to obtain $f\in C(\overline{\mathbf{Q}}_ l)$ eigenform ass. to $\rho $. Next, use Proposition <a href="/tag/03VW" data-tag="03VW">64.31.5</a> to see that we may choose $f\in C(E')$ with $E \subset E'$ finite. Next we may complete $E'$ to see that we get $f\in C(E'_{\lambda '})$ eigenform with $E'_{\lambda '}$ a finite extension of $E_{\lambda '}$. And finally we use Theorem <a href="/tag/03VT" data-tag="03VT">64.31.2</a> to obtain $\rho ': \pi _1(X) \to SL_2(E_{\lambda '}')$ abs. irred. and continuous after perhaps enlarging $E'_{\lambda '}$ a bit again. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Speculation: If for a (topological) ring $\Lambda $ we have 
+</p>
+<div class="equation">
+  \[  \left( {\rho : \pi _1(X)\to SL_2(\Lambda ) \atop \text{ abs irred}} \right) \leftrightarrow \text{ eigen forms in } C(\Lambda )  \]
+</div>
+<p>
+ then all eigenvalues of $\rho (F_ v)$ algebraic (won't work in an easy way if $\Lambda $ is a finite ring. Based on the speculation that the Langlands correspondence works more generally than just over fields one arrives at the following conjecture. 
+</p>
+<p>
+<strong>Conjecture.</strong> (See <span class="cite">[<a href="/bibliography/dJ-conjecture">dJ-conjecture</a>]</span>) For any continuous 
+</p>
+<div class="equation">
+  \[  \rho : \pi _1(X)\to \text{GL}_ n(\mathbf{F}_ l[[t]])  \]
+</div>
+<p>
+ we have $\#  \rho (\pi _1(X_{\overline{k}}))<\infty $. 
+</p>
+<p>
+A rephrasing in the language of sheaves: "For any lisse sheaf of $\overline{\mathbf{F}_ l((t))}$-modules the geom monodromy is finite." 
+</p>
+<p>
+<article class="env-theorem" id="03VZ">
+  <p><a class="environment-identifier" href="/tag/03VZ">Theorem <span data-tag="03VZ">64.31.8</span>.</a> The Conjecture holds if $n\leq 2$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See <span class="cite">[<a href="/bibliography/dJ-conjecture">dJ-conjecture</a>]</span>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-theorem" id="03W0">
+  <p><a class="environment-identifier" href="/tag/03W0">Theorem <span data-tag="03W0">64.31.9</span>.</a> Conjecture holds if $l > 2n$ modulo some unproven things. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See <span class="cite">[<a href="/bibliography/Gaitsgory">Gaitsgory</a>]</span>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+It turns out the conjecture is useful for something. See work of Drinfeld on Kashiwara's conjectures. But there is also the much more down to earth application as follows. 
+</p>
+<p>
+<article class="env-theorem" id="03W1">
+  <p><a class="environment-identifier" href="/tag/03W1">Theorem <span data-tag="03W1">64.31.10</span>.</a> (See <span class="cite">[<span class="postnote">Theorem 3.5</span>, <a href="/bibliography/dJ-conjecture">dJ-conjecture</a>]</span>) Suppose </p>
+  <div class="equation">
+  \[  \rho _0: \pi _1(X)\to \text{GL}_ n(\mathbf{F}_ l)  \]
+</div>
+  <p> is a continuous, $l\neq p$. Assume </p>
+  <p><ol>
+  <li><p>
+Conj. holds for $X$, 
+</p>
+</li><li><p>
+$\rho _0 |_{\pi _1(X_{\overline{k}})}$ abs. irred., and 
+</p>
+</li><li><p>
+$l$ does not divide $n$. 
+</p>
+</li>
+</ol></p>
+  <p> Then the universal deformation ring $R_{\text{univ}}$ of $\rho _0$ is finite flat over $\mathbf{Z}_ l$. </p>
+</article> 
+</p>
+<p>
+Explanation: There is a representation $\rho _{\text{univ}}: \pi _1(X)\to \text{GL}_ n(R_{\text{univ}})$ (Univ. Defo ring) $R_{\text{univ}}$ loc. complete, residue field $\mathbf{F}_ l$ and $(R_{\text{univ}}\to \mathbf{F}_ l)\circ \rho _{\text{univ}}\cong \rho _0$. And given any $R\to \mathbf{F}_ l$, $R$ local complete and $\rho : \pi _1(X)\to \text{GL}_ n(R)$ then there exists $\psi : R_{\text{univ}}\to R$ such that $\psi \circ \rho _{\text{univ}}\cong \rho $. The theorem says that the morphism 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Spec}}(R_{\text{univ}}) \longrightarrow \mathop{\mathrm{Spec}}(\mathbf{Z}_ l)  \]
+</div>
+<p>
+ is finite and flat. In particular, such a $\rho _0$ lifts to a $\rho : \pi _1(X) \to \text{GL}_ n(\overline{\mathbf{Q}}_ l)$. 
+</p>
+<p>
+Notes: 
+</p>
+<ol>
+  <li><p>
+The theorem on deformations is easy. 
+</p>
+</li><li><p>
+Any result towards the conjecture seems hard. 
+</p>
+</li><li><p>
+It would be interesting to have more conjectures on $\pi _1(X)$! 
+</p>
+</li>
+</ol>

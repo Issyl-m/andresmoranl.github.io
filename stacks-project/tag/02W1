@@ -1,0 +1,86 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="descent-section-descending-types-morphisms" class="tex-section"><span data-tag="02W1">35.36</span> Descending types of morphisms</h2>
+
+<p>
+In the following we study the question as to whether descent data for schemes relative to a fpqc-covering are effective. The first remark to make is that this is not always the case. We will see this in Algebraic Spaces, Example <a href="/tag/03FN" data-tag="03FN">65.14.2</a>. Even projective morphisms do not always satisfy descent for fpqc-coverings, by Examples, Lemma <a href="/tag/08KF" data-tag="08KF">110.68.1</a>. 
+</p>
+<p>
+On the other hand, if the schemes we are trying to descend are particularly simple, then it is sometime the case that for whole classes of schemes descent data are effective. We will introduce terminology here that describes this phenomenon abstractly, even though it may lead to confusion if not used correctly later on. 
+</p>
+<p>
+<article class="env-definition" id="02W2">
+  <p><a class="environment-identifier" href="/tag/02W2">Definition <span data-tag="02W2">35.36.1</span>.</a> Let $\mathcal{P}$ be a property of morphisms of schemes over a base. Let $\tau \in \{ Zariski, fpqc, fppf, {\acute{e}tale}, smooth, syntomic\} $. We say <em>morphisms of type $\mathcal{P}$ satisfy descent for $\tau $-coverings</em> if for any $\tau $-covering $\mathcal{U} : \{ U_ i \to S\} _{i \in I}$ (see Topologies, Section <a href="/tag/020M" data-tag="020M">34.2</a>), any descent datum $(X_ i, \varphi _{ij})$ relative to $\mathcal{U}$ such that each morphism $X_ i \to U_ i$ has property $\mathcal{P}$ is effective. </p>
+</article> 
+</p>
+<p>
+Note that in each of the cases we have already seen that the functor from schemes over $S$ to descent data over $\mathcal{U}$ is fully faithful (Lemma <a href="/tag/02W0" data-tag="02W0">35.35.11</a> combined with the results in Topologies that any $\tau $-covering is also a fpqc-covering). We have also seen that descent data are always effective with respect to Zariski coverings (Lemma <a href="/tag/02VY" data-tag="02VY">35.35.10</a>). It may be prudent to only study the notion just introduced when $\mathcal{P}$ is either stable under any base change or at least local on the base in the $\tau $-topology (see Definition <a href="/tag/02KO" data-tag="02KO">35.22.1</a>) in order to avoid erroneous arguments (relying on $\mathcal{P}$ when descending halfway). 
+</p>
+<p>
+Here is the obligatory lemma reducing this question to the case of a covering given by a single morphism of affines. 
+</p>
+<p>
+<article class="env-lemma" id="02W3">
+  <p><a class="environment-identifier" href="/tag/02W3">Lemma <span data-tag="02W3">35.36.2</span>.</a> Let $\mathcal{P}$ be a property of morphisms of schemes over a base. Let $\tau \in \{ fpqc, fppf, {\acute{e}tale}, smooth, syntomic\} $. Suppose that </p>
+  <p><ol>
+  <li><p>
+$\mathcal{P}$ is stable under any base change (see Schemes, Definition <a href="/tag/01JZ" data-tag="01JZ">26.18.3</a>), 
+</p>
+</li><li><p>
+if $Y_ j \to V_ j$, $j = 1, \ldots , m$ have $\mathcal{P}$, then so does $\coprod Y_ j \to \coprod V_ j$, and 
+</p>
+</li><li><p>
+for any surjective morphism of affines $X \to S$ which is flat, flat of finite presentation, étale, smooth or syntomic depending on whether $\tau $ is fpqc, fppf, étale, smooth, or syntomic, any descent datum $(V, \varphi )$ relative to $X$ over $S$ such that $\mathcal{P}$ holds for $V \to X$ is effective. 
+</p>
+</li>
+</ol></p>
+  <p> Then morphisms of type $\mathcal{P}$ satisfy descent for $\tau $-coverings. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $S$ be a scheme. Let $\mathcal{U} = \{ \varphi _ i : U_ i \to S\} _{i \in I}$ be a $\tau $-covering of $S$. Let $(X_ i, \varphi _{ii'})$ be a descent datum relative to $\mathcal{U}$ and assume that each morphism $X_ i \to U_ i$ has property $\mathcal{P}$. We have to show there exists a scheme $X \to S$ such that $(X_ i, \varphi _{ii'}) \cong (U_ i \times _ S X, can)$. 
+    <p>
+      Before we start the proof proper we remark that for any family of morphisms $\mathcal{V} : \{ V_ j \to S\} $ and any morphism of families $\mathcal{V} \to \mathcal{U}$, if we pullback the descent datum $(X_ i, \varphi _{ii'})$ to a descent datum $(Y_ j, \varphi _{jj'})$ over $\mathcal{V}$, then each of the morphisms $Y_ j \to V_ j$ has property $\mathcal{P}$ also. This is true because of assumption (1) that $\mathcal{P}$ is stable under any base change and the definition of pullback (see Definition <a href="/tag/02VT" data-tag="02VT">35.34.9</a>). We will use this without further mention. 
+    <p>
+      First, let us prove the lemma when $S$ is affine. By Topologies, Lemma <a href="/tag/022E" data-tag="022E">34.9.9</a>, <a href="/tag/021P" data-tag="021P">34.7.4</a>, <a href="/tag/0218" data-tag="0218">34.4.4</a>, <a href="/tag/0222" data-tag="0222">34.5.4</a>, or <a href="/tag/0228" data-tag="0228">34.6.4</a> there exists a standard $\tau $-covering $\mathcal{V} : \{ V_ j \to S\} _{j = 1, \ldots , m}$ which refines $\mathcal{U}$. The pullback functor $DD(\mathcal{U}) \to DD(\mathcal{V})$ between categories of descent data is fully faithful by Lemma <a href="/tag/02W0" data-tag="02W0">35.35.11</a>. Hence it suffices to prove that the descent datum over the standard $\tau $-covering $\mathcal{V}$ is effective. By assumption (2) we see that $\coprod Y_ j \to \coprod V_ j$ has property $\mathcal{P}$. By Lemma <a href="/tag/023X" data-tag="023X">35.34.5</a> this reduces us to the covering $\{ \coprod _{j = 1, \ldots , m} V_ j \to S\} $ for which we have assumed the result in assumption (3) of the lemma. Hence the lemma holds when $S$ is affine. 
+    <p>
+      Assume $S$ is general. Let $V \subset S$ be an affine open. By the properties of site the family $\mathcal{U}_ V = \{ V \times _ S U_ i \to V\} _{i \in I}$ is a $\tau $-covering of $V$. Denote $(X_ i, \varphi _{ii'})_ V$ the restriction (or pullback) of the given descent datum to $\mathcal{U}_ V$. Hence by what we just saw we obtain a scheme $X_ V$ over $V$ whose canonical descent datum with respect to $\mathcal{U}_ V$ is isomorphic to $(X_ i, \varphi _{ii'})_ V$. Suppose that $V' \subset V$ is an affine open of $V$. Then both $X_{V'}$ and $V' \times _ V X_ V$ have canonical descent data isomorphic to $(X_ i, \varphi _{ii'})_{V'}$. Hence, by Lemma <a href="/tag/02W0" data-tag="02W0">35.35.11</a> again we obtain a canonical morphism $\rho ^ V_{V'} : X_{V'} \to X_ V$ over $S$ which identifies $X_{V'}$ with the inverse image of $V'$ in $X_ V$. We omit the verification that given affine opens $V'' \subset V' \subset V$ of $S$ we have $\rho ^ V_{V''} = \rho ^ V_{V'} \circ \rho ^{V'}_{V''}$. 
+    <p>
+      By Constructions, Lemma <a href="/tag/01LH" data-tag="01LH">27.2.1</a> the data $(X_ V, \rho ^ V_{V'})$ glue to a scheme $X \to S$. Moreover, we are given isomorphisms $V \times _ S X \to X_ V$ which recover the maps $\rho ^ V_{V'}$. Unwinding the construction of the schemes $X_ V$ we obtain isomorphisms 
+    <p>
+      <div class="equation">
+  \[  V \times _ S U_ i \times _ S X \longrightarrow V \times _ S X_ i  \]
+</div>
+    <p>
+       compatible with the maps $\varphi _{ii'}$ and compatible with restricting to smaller affine opens in $X$. This implies that the canonical descent datum on $U_ i \times _ S X$ is isomorphic to the given descent datum and we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

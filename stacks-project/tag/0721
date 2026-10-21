@@ -1,0 +1,329 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="spaces-cohomology-section-alternating-cech" class="tex-section"><span data-tag="0721">69.6</span> The alternating Čech complex</h2>
+
+<p>
+Let $S$ be a scheme. Let $f : U \to X$ be an étale morphism of algebraic spaces over $S$. The functor 
+</p>
+<div class="equation">
+  \[  j : U_{spaces, {\acute{e}tale}} \longrightarrow X_{spaces, {\acute{e}tale}},\quad V/U \longmapsto V/X  \]
+</div>
+<p>
+ induces an equivalence of $U_{spaces, {\acute{e}tale}}$ with the localization $X_{spaces, {\acute{e}tale}}/U$, see Properties of Spaces, Section <a href="/tag/04LX" data-tag="04LX">66.27</a>. Hence there exist functors 
+</p>
+<div class="equation">
+  \[  f_! : \textit{Ab}(U_{\acute{e}tale}) \longrightarrow \textit{Ab}(X_{\acute{e}tale}),\quad f_! : \textit{Mod}(\mathcal{O}_ U) \longrightarrow \textit{Mod}(\mathcal{O}_ X),  \]
+</div>
+<p>
+ which are left adjoint to 
+</p>
+<div class="equation">
+  \[  f^{-1} : \textit{Ab}(X_{\acute{e}tale}) \longrightarrow \textit{Ab}(U_{\acute{e}tale}),\quad f^* : \textit{Mod}(\mathcal{O}_ X) \longrightarrow \textit{Mod}(\mathcal{O}_ U)  \]
+</div>
+<p>
+ see Modules on Sites, Section <a href="/tag/03DH" data-tag="03DH">18.19</a>. Warning: This functor, a priori, has nothing to do with cohomology with compact supports! We dubbed this functor “extension by zero” in the reference above. Note that the two versions of $f_!$ agree as $f^* = f^{-1}$ for sheaves of $\mathcal{O}_ X$-modules. 
+</p>
+<p>
+As we are going to use this construction below let us recall some of its properties. Given an abelian sheaf $\mathcal{G}$ on $U_{\acute{e}tale}$ the sheaf $f_!$ is the sheafification of the presheaf 
+</p>
+<div class="equation">
+  \[  V/X \longmapsto f_!\mathcal{G}(V) = \bigoplus \nolimits _{\varphi \in \mathop{\mathrm{Mor}}\nolimits _ X(V, U)} \mathcal{G}(V \xrightarrow {\varphi } U),  \]
+</div>
+<p>
+ see Modules on Sites, Lemma <a href="/tag/03DI" data-tag="03DI">18.19.2</a>. Moreover, if $\mathcal{G}$ is an $\mathcal{O}_ U$-module, then $f_!\mathcal{G}$ is the sheafification of the exact same presheaf of abelian groups which is endowed with an $\mathcal{O}_ X$-module structure in an obvious way (see loc. cit.). Let $\overline{x} : \mathop{\mathrm{Spec}}(k) \to X$ be a geometric point. Then there is a canonical identification 
+</p>
+<div class="equation">
+  \[  (f_!\mathcal{G})_{\overline{x}} = \bigoplus \nolimits _{\overline{u}} \mathcal{G}_{\overline{u}}  \]
+</div>
+<p>
+ where the sum is over all $\overline{u} : \mathop{\mathrm{Spec}}(k) \to U$ such that $f \circ \overline{u} = \overline{x}$, see Modules on Sites, Lemma <a href="/tag/0710" data-tag="0710">18.38.1</a> and Properties of Spaces, Lemma <a href="/tag/04K6" data-tag="04K6">66.19.13</a>. In the following we are going to study the sheaf $f_!\underline{\mathbf{Z}}$. Here $\underline{\mathbf{Z}}$ denotes the constant sheaf on $X_{\acute{e}tale}$ or $U_{\acute{e}tale}$. 
+</p>
+<p>
+<article class="env-lemma" id="0722">
+  <p><a class="environment-identifier" href="/tag/0722">Lemma <span data-tag="0722">69.6.1</span>.</a> Let $S$ be a scheme. Let $f_ i : U_ i \to X$ be étale morphisms of algebraic spaces over $S$. Then there are isomorphisms </p>
+  <div class="equation">
+  \[  f_{1, !}\underline{\mathbf{Z}} \otimes _{\mathbf{Z}} f_{2, !}\underline{\mathbf{Z}} \longrightarrow f_{12, !}\underline{\mathbf{Z}}  \]
+</div>
+  <p> where $f_{12} : U_1 \times _ X U_2 \to X$ is the structure morphism and </p>
+  <div class="equation">
+  \[  (f_1 \amalg f_2)_! \underline{\mathbf{Z}} \longrightarrow f_{1, !}\underline{\mathbf{Z}} \oplus f_{2, !}\underline{\mathbf{Z}}  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Once we have defined the map it will be an isomorphism by our description of stalks above. To define the map it suffices to work on the level of presheaves. Thus we have to define a map 
+    <p>
+      <div class="equation">
+  \[  \left(\bigoplus \nolimits _{\varphi _1 \in \mathop{\mathrm{Mor}}\nolimits _ X(V, U_1)} \mathbf{Z}\right) \otimes _{\mathbf{Z}} \left(\bigoplus \nolimits _{\varphi _2 \in \mathop{\mathrm{Mor}}\nolimits _ X(V, U_2)} \mathbf{Z}\right) \longrightarrow \bigoplus \nolimits _{\varphi \in \mathop{\mathrm{Mor}}\nolimits _ X(V, U_1 \times _ X U_2)} \mathbf{Z}  \]
+</div>
+    <p>
+       We map the element $1_{\varphi _1} \otimes 1_{\varphi _2}$ to the element $1_{\varphi _1 \times \varphi _2}$ with obvious notation. We omit the proof of the second equality. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Another important feature is the trace map 
+</p>
+<div class="equation">
+  \[  \text{Tr}_ f : f_!\underline{\mathbf{Z}} \longrightarrow \underline{\mathbf{Z}}.  \]
+</div>
+<p>
+ The trace map is adjoint to the map $\mathbf{Z} \to f^{-1}\underline{\mathbf{Z}}$ (which is an isomorphism). If $\overline{x}$ is above, then $\text{Tr}_ f$ on stalks at $\overline{x}$ is the map 
+</p>
+<div class="equation">
+  \[  (\text{Tr}_ f)_{\overline{x}} : (f_!\underline{\mathbf{Z}})_{\overline{x}} = \bigoplus \nolimits _{\overline{u}} \mathbf{Z} \longrightarrow \mathbf{Z} = \underline{\mathbf{Z}}_{\overline{x}}  \]
+</div>
+<p>
+ which sums the given integers. This is true because it is adjoint to the map $1 : \mathbf{Z} \to f^{-1}\underline{\mathbf{Z}}$. In particular, if $f$ is surjective as well as étale then $\text{Tr}_ f$ is surjective. 
+</p>
+<p>
+Assume that $f : U \to X$ is a surjective étale morphism of algebraic spaces. Consider the <em>Koszul complex</em> associated to the trace map we discussed above 
+</p>
+<div class="equation">
+  \[  \ldots \to \wedge ^3f_!\underline{\mathbf{Z}} \to \wedge ^2f_!\underline{\mathbf{Z}} \to f_!\underline{\mathbf{Z}} \to \underline{\mathbf{Z}} \to 0  \]
+</div>
+<p>
+ Here the exterior powers are over the sheaf of rings $\underline{\mathbf{Z}}$. The maps are defined by the rule 
+</p>
+<div class="equation">
+  \[  e_1 \wedge \ldots \wedge e_ n \longmapsto \sum \nolimits _{i = 1, \ldots , n} (-1)^{i + 1} \text{Tr}_ f(e_ i) e_1 \wedge \ldots \wedge \widehat{e_ i} \wedge \ldots \wedge e_ n  \]
+</div>
+<p>
+ where $e_1, \ldots , e_ n$ are local sections of $f_!\underline{\mathbf{Z}}$. Let $\overline{x}$ be a geometric point of $X$ and set $M_{\overline{x}} = (f_!\underline{\mathbf{Z}})_{\overline{x}} = \bigoplus _{\overline{u}} \mathbf{Z}$. Then the stalk of the complex above at $\overline{x}$ is the complex 
+</p>
+<div class="equation">
+  \[  \ldots \to \wedge ^3 M_{\overline{x}} \to \wedge ^2 M_{\overline{x}} \to M_{\overline{x}} \to \mathbf{Z} \to 0  \]
+</div>
+<p>
+ which is exact because $M_{\overline{x}} \to \mathbf{Z}$ is surjective, see More on Algebra, Lemma <a href="/tag/0626" data-tag="0626">15.29.5</a>. Hence if we let $K^\bullet = K^\bullet (f)$ be the complex with $K^ i = \wedge ^{i + 1}f_!\underline{\mathbf{Z}}$, then we obtain a quasi-isomorphism 
+</p>
+<div class="equation" id="0723">
+    <span class="equation-label"><a href="/tag/0723" data-tag="0723">69.6.1.1</a></span>
+  <div>\begin{equation}  \label{spaces-cohomology-equation-quasi-isomorphism} K^\bullet \longrightarrow \underline{\mathbf{Z}}[0] \end{equation}</div>
+</div>
+<p>
+ We use the complex $K^\bullet $ to define what we call the alternating Čech complex associated to $f : U \to X$. 
+</p>
+<p>
+<article class="env-definition" id="0724">
+  <p><a class="environment-identifier" href="/tag/0724">Definition <span data-tag="0724">69.6.2</span>.</a> Let $S$ be a scheme. Let $f : U \to X$ be a surjective étale morphism of algebraic spaces over $S$. Let $\mathcal{F}$ be an object of $\textit{Ab}(X_{\acute{e}tale})$. The <em>alternating Čech complex</em><a class="footnotemark" href="#a0001383328" id="a0001383328-mark"><sup>1</sup></a> $\check{\mathcal{C}}^\bullet _{alt}(f, \mathcal{F})$ associated to $\mathcal{F}$ and $f$ is the complex </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits (K^0, \mathcal{F}) \to \mathop{\mathrm{Hom}}\nolimits (K^1, \mathcal{F}) \to \mathop{\mathrm{Hom}}\nolimits (K^2, \mathcal{F}) \to \ldots  \]
+</div>
+  <p> with Hom groups computed in $\textit{Ab}(X_{\acute{e}tale})$. </p>
+</article> 
+</p>
+<p>
+The reader may verify that if $U = \coprod U_ i$ and $f|_{U_ i} : U_ i \to X$ is the open immersion of a subspace, then $\check{\mathcal{C}}_{alt}^\bullet (f, \mathcal{F})$ agrees with the complex introduced in Cohomology, Section <a href="/tag/01FG" data-tag="01FG">20.23</a> for the Zariski covering $X = \bigcup U_ i$ and the restriction of $\mathcal{F}$ to the Zariski site of $X$. What is more important however, is to relate the cohomology of the alternating Čech complex to the cohomology. 
+</p>
+<p>
+<article class="env-lemma" id="0725">
+  <p><a class="environment-identifier" href="/tag/0725">Lemma <span data-tag="0725">69.6.3</span>.</a> Let $S$ be a scheme. Let $f : U \to X$ be a surjective étale morphism of algebraic spaces over $S$. Let $\mathcal{F}$ be an object of $\textit{Ab}(X_{\acute{e}tale})$. There exists a canonical map </p>
+  <div class="equation">
+  \[  \check{\mathcal{C}}^\bullet _{alt}(f, \mathcal{F}) \longrightarrow R\Gamma (X, \mathcal{F})  \]
+</div>
+  <p> in $D(\textit{Ab})$. Moreover, there is a spectral sequence with $E_1$-page </p>
+  <div class="equation">
+  \[  E_1^{p, q} = \mathop{\mathrm{Ext}}\nolimits _{\textit{Ab}(X_{\acute{e}tale})}^ q(K^ p, \mathcal{F})  \]
+</div>
+  <p> converging to $H^{p + q}(X, \mathcal{F})$ where $K^ p = \wedge ^{p + 1}f_!\underline{\mathbf{Z}}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Recall that we have the quasi-isomorphism $K^\bullet \to \underline{\mathbf{Z}}[0]$, see (<a href="/tag/0723" data-tag="0723">69.6.1.1</a>). Choose an injective resolution $\mathcal{F} \to \mathcal{I}^\bullet $ in $\textit{Ab}(X_{\acute{e}tale})$. Consider the double complex $\mathop{\mathrm{Hom}}\nolimits (K^\bullet , \mathcal{I}^\bullet )$ with terms $\mathop{\mathrm{Hom}}\nolimits (K^ p, \mathcal{I}^ q)$. The differential $d_1^{p, q} : A^{p, q} \to A^{p + 1, q}$ is the one coming from the differential $K^{p + 1} \to K^ p$ and the differential $d_2^{p, q} : A^{p, q} \to A^{p, q + 1}$ is the one coming from the differential $\mathcal{I}^ q \to \mathcal{I}^{q + 1}$. Denote $\text{Tot}(\mathop{\mathrm{Hom}}\nolimits (K^\bullet , \mathcal{I}^\bullet ))$ the associated total complex, see Homology, Section <a href="/tag/0FNB" data-tag="0FNB">12.18</a>. We will use the two spectral sequences $({}'E_ r, {}'d_ r)$ and $({}''E_ r, {}''d_ r)$ associated to this double complex, see Homology, Section <a href="/tag/012X" data-tag="012X">12.25</a>. 
+    <p>
+      Because $K^\bullet $ is a resolution of $\underline{\mathbf{Z}}$ we see that the complexes 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits (K^\bullet , \mathcal{I}^ q) : \mathop{\mathrm{Hom}}\nolimits (K^0, \mathcal{I}^ q) \to \mathop{\mathrm{Hom}}\nolimits (K^1, \mathcal{I}^ q) \to \mathop{\mathrm{Hom}}\nolimits (K^2, \mathcal{I}^ q) \to \ldots  \]
+</div>
+    <p>
+       are acyclic in positive degrees and have $H^0$ equal to $\Gamma (X, \mathcal{I}^ q)$. Hence by Homology, Lemma <a href="/tag/0133" data-tag="0133">12.25.4</a> the natural map 
+    <p>
+      <div class="equation">
+  \[  \mathcal{I}^\bullet (X) \longrightarrow \text{Tot}(\mathop{\mathrm{Hom}}\nolimits (K^\bullet , \mathcal{I}^\bullet ))  \]
+</div>
+    <p>
+       is a quasi-isomorphism of complexes of abelian groups. In particular we conclude that $H^ n(\text{Tot}(\mathop{\mathrm{Hom}}\nolimits (K^\bullet , \mathcal{I}^\bullet ))) = H^ n(X, \mathcal{F})$. 
+    <p>
+      The map $\check{\mathcal{C}}^\bullet _{alt}(f, \mathcal{F}) \to R\Gamma (X, \mathcal{F})$ of the lemma is the composition of $\check{\mathcal{C}}^\bullet _{alt}(f, \mathcal{F}) \to \text{Tot}(\mathop{\mathrm{Hom}}\nolimits (K^\bullet , \mathcal{I}^\bullet ))$ with the inverse of the displayed quasi-isomorphism. 
+    <p>
+      Finally, consider the spectral sequence $({}'E_ r, {}'d_ r)$. We have 
+    <p>
+      <div class="equation">
+  \[  E_1^{p, q} = q\text{th cohomology of } \mathop{\mathrm{Hom}}\nolimits (K^ p, \mathcal{I}^0) \to \mathop{\mathrm{Hom}}\nolimits (K^ p, \mathcal{I}^1) \to \mathop{\mathrm{Hom}}\nolimits (K^ p, \mathcal{I}^2) \to \ldots  \]
+</div>
+    <p>
+       This proves the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+It follows from the lemma that it is important to understand the ext groups $\mathop{\mathrm{Ext}}\nolimits _{\textit{Ab}(X_{\acute{e}tale})}(K^ p, \mathcal{F})$, i.e., the right derived functors of $\mathcal{F} \mapsto \mathop{\mathrm{Hom}}\nolimits (K^ p, \mathcal{F})$. 
+</p>
+<p>
+<article class="env-lemma" id="0726">
+  <p><a class="environment-identifier" href="/tag/0726">Lemma <span data-tag="0726">69.6.4</span>.</a> Let $S$ be a scheme. Let $f : U \to X$ be a surjective, étale, and separated morphism of algebraic spaces over $S$. For $p \geq 0$ set </p>
+  <div class="equation">
+  \[  W_ p = U \times _ X \ldots \times _ X U \setminus \text{all diagonals}  \]
+</div>
+  <p> where the fibre product has $p + 1$ factors. There is a free action of $S_{p + 1}$ on $W_ p$ over $X$ and </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits (K^ p, \mathcal{F}) = S_{p + 1}\text{-anti-invariant elements of } \mathcal{F}(W_ p)  \]
+</div>
+  <p> functorially in $\mathcal{F}$ where $K^ p = \wedge ^{p + 1}f_!\underline{\mathbf{Z}}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Because $U \to X$ is separated the diagonal $U \to U \times _ X U$ is a closed immersion. Since $U \to X$ is étale the diagonal $U \to U \times _ X U$ is an open immersion, see Morphisms of Spaces, Lemmas <a href="/tag/06CR" data-tag="06CR">67.39.10</a> and <a href="/tag/05W1" data-tag="05W1">67.38.9</a>. Hence $W_ p$ is an open and closed subspace of $U^{p + 1} = U \times _ X \ldots \times _ X U$. The action of $S_{p + 1}$ on $W_ p$ is free as we've thrown out the fixed points of the action. By Lemma <a href="/tag/0722" data-tag="0722">69.6.1</a> we see that 
+    <p>
+      <div class="equation">
+  \[  (f_!\underline{\mathbf{Z}})^{\otimes p + 1} = f^{p + 1}_!\underline{\mathbf{Z}} = (W_ p \to X)_!\underline{\mathbf{Z}} \oplus Rest  \]
+</div>
+    <p>
+       where $f^{p + 1} : U^{p + 1} \to X$ is the structure morphism. Looking at stalks over a geometric point $\overline{x}$ of $X$ we see that 
+    <p>
+      <div class="equation">
+  \[  \left( \bigoplus \nolimits _{\overline{u} \mapsto \overline{x}} \mathbf{Z} \right)^{\otimes p + 1} \longrightarrow (W_ p \to X)_!\underline{\mathbf{Z}}_{\overline{x}}  \]
+</div>
+    <p>
+       is the quotient whose kernel is generated by all tensors $1_{\overline{u}_0} \otimes \ldots \otimes 1_{\overline{u}_ p}$ where $\overline{u}_ i = \overline{u}_ j$ for some $i \not= j$. Thus the quotient map 
+    <p>
+      <div class="equation">
+  \[  (f_!\underline{\mathbf{Z}})^{\otimes p + 1} \longrightarrow \wedge ^{p + 1}f_!\underline{\mathbf{Z}}  \]
+</div>
+    <p>
+       factors through $(W_ p \to X)_!\underline{\mathbf{Z}}$, i.e., we get 
+    <p>
+      <div class="equation">
+  \[  (f_!\underline{\mathbf{Z}})^{\otimes p + 1} \longrightarrow (W_ p \to X)_!\underline{\mathbf{Z}} \longrightarrow \wedge ^{p + 1}f_!\underline{\mathbf{Z}}  \]
+</div>
+    <p>
+       This already proves that $\mathop{\mathrm{Hom}}\nolimits (K^ p, \mathcal{F})$ is (functorially) a subgroup of 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits ((W_ p \to X)_!\underline{\mathbf{Z}}, \mathcal{F}) = \mathcal{F}(W_ p)  \]
+</div>
+    <p>
+       To identify it with the $S_{p + 1}$-anti-invariants we have to prove that the surjection $(W_ p \to X)_!\underline{\mathbf{Z}} \to \wedge ^{p + 1}f_!\underline{\mathbf{Z}}$ is the maximal $S_{p + 1}$-anti-invariant quotient. In other words, we have to show that $\wedge ^{p + 1}f_!\underline{\mathbf{Z}}$ is the quotient of $(W_ p \to X)_!\underline{\mathbf{Z}}$ by the subsheaf generated by the local sections $s - \text{sign}(\sigma )\sigma (s)$ where $s$ is a local section of $(W_ p \to X)_!\underline{\mathbf{Z}}$. This can be checked on the stalks, where it is clear. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0727">
+  <p><a class="environment-identifier" href="/tag/0727">Lemma <span data-tag="0727">69.6.5</span>.</a> Let $S$ be a scheme. Let $W$ be an algebraic space over $S$. Let $G$ be a finite group acting freely on $W$. Let $U = W/G$, see Properties of Spaces, Lemma <a href="/tag/071S" data-tag="071S">66.34.1</a>. Let $\chi : G \to \{ +1, -1\} $ be a character. Then there exists a rank 1 locally free sheaf of $\mathbf{Z}$-modules $\underline{\mathbf{Z}}(\chi )$ on $U_{\acute{e}tale}$ such that for every abelian sheaf $\mathcal{F}$ on $U_{\acute{e}tale}$ we have </p>
+  <div class="equation">
+  \[  H^0(W, \mathcal{F}|_ W)^\chi = H^0(U, \mathcal{F} \otimes _{\mathbf{Z}} \underline{\mathbf{Z}}(\chi ))  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The quotient morphism $q : W \to U$ is a $G$-torsor, i.e., there exists a surjective étale morphism $U' \to U$ such that $W \times _ U U' = \coprod _{g \in G} U'$ as spaces with $G$-action over $U'$. (Namely, $U' = W$ works.) Hence $q_*\underline{\mathbf{Z}}$ is a finite locally free $\mathbf{Z}$-module with an action of $G$. For any geometric point $\overline{u}$ of $U$, then we get $G$-equivariant isomorphisms 
+    <p>
+      <div class="equation">
+  \[  (q_*\underline{\mathbf{Z}})_{\overline{u}} = \bigoplus \nolimits _{\overline{w} \mapsto \overline{u}} \mathbf{Z} = \bigoplus \nolimits _{g \in G} \mathbf{Z} = \mathbf{Z}[G]  \]
+</div>
+    <p>
+       where the second $=$ uses a geometric point $\overline{w}_0$ lying over $\overline{u}$ and maps the summand corresponding to $g \in G$ to the summand corresponding to $g(\overline{w}_0)$. We have 
+    <p>
+      <div class="equation">
+  \[  H^0(W, \mathcal{F}|_ W) = H^0(U, \mathcal{F} \otimes _\mathbf {Z} q_*\underline{\mathbf{Z}})  \]
+</div>
+    <p>
+       because $q_*\mathcal{F}|_ W = \mathcal{F} \otimes _\mathbf {Z} q_*\underline{\mathbf{Z}}$ as one can check by restricting to $U'$. Let 
+    <p>
+      <div class="equation">
+  \[  \underline{\mathbf{Z}}(\chi ) = (q_*\underline{\mathbf{Z}})^\chi \subset q_*\underline{\mathbf{Z}}  \]
+</div>
+    <p>
+       be the subsheaf of sections that transform according to $\chi $. For any geometric point $\overline{u}$ of $U$ we have 
+    <p>
+      <div class="equation">
+  \[  \underline{\mathbf{Z}}(\chi )_{\overline{u}} = \mathbf{Z} \cdot \sum \nolimits _ g \chi (g) g \subset \mathbf{Z}[G] = (q_*\underline{\mathbf{Z}})_{\overline{u}}  \]
+</div>
+    <p>
+       It follows that $\underline{\mathbf{Z}}(\chi )$ is locally free of rank 1 (more precisely, this should be checked after restricting to $U'$). Note that for any $\mathbf{Z}$-module $M$ the $\chi $-semi-invariants of $M[G]$ are the elements of the form $m \cdot \sum \nolimits _ g \chi (g) g$. Thus we see that for any abelian sheaf $\mathcal{F}$ on $U$ we have 
+    <p>
+      <div class="equation">
+  \[  \left(\mathcal{F} \otimes _\mathbf {Z} q_*\underline{\mathbf{Z}}\right)^\chi = \mathcal{F} \otimes _\mathbf {Z} \underline{\mathbf{Z}}(\chi )  \]
+</div>
+    <p>
+       because we have equality at all stalks. The result of the lemma follows by taking global sections. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Now we can put everything together and obtain the following pleasing result. 
+</p>
+<p>
+<article class="env-lemma" id="0728">
+  <p><a class="environment-identifier" href="/tag/0728">Lemma <span data-tag="0728">69.6.6</span>.</a> Let $S$ be a scheme. Let $f : U \to X$ be a surjective, étale, and separated morphism of algebraic spaces over $S$. For $p \geq 0$ set </p>
+  <div class="equation">
+  \[  W_ p = U \times _ X \ldots \times _ X U \setminus \text{all diagonals}  \]
+</div>
+  <p> (with $p + 1$ factors) as in Lemma <a href="/tag/0726" data-tag="0726">69.6.4</a>. Let $\chi _ p : S_{p + 1} \to \{ +1, -1\} $ be the sign character. Let $U_ p = W_ p/S_{p + 1}$ and $\underline{\mathbf{Z}}(\chi _ p)$ be as in Lemma <a href="/tag/0727" data-tag="0727">69.6.5</a>. Then the spectral sequence of Lemma <a href="/tag/0725" data-tag="0725">69.6.3</a> has $E_1$-page </p>
+  <div class="equation">
+  \[  E_1^{p, q} = H^ q(U_ p, \mathcal{F}|_{U_ p} \otimes _\mathbf {Z} \underline{\mathbf{Z}}(\chi _ p))  \]
+</div>
+  <p> and converges to $H^{p + q}(X, \mathcal{F})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Note that since the action of $S_{p + 1}$ on $W_ p$ is over $X$ we do obtain a morphism $U_ p \to X$. Since $W_ p \to X$ is étale and since $W_ p \to U_ p$ is surjective étale, it follows that also $U_ p \to X$ is étale, see Morphisms of Spaces, Lemma <a href="/tag/03XT" data-tag="03XT">67.39.2</a>. Therefore an injective object of $\textit{Ab}(X_{\acute{e}tale})$ restricts to an injective object of $\textit{Ab}(U_{p, {\acute{e}tale}})$, see Cohomology on Sites, Lemma <a href="/tag/03F3" data-tag="03F3">21.7.1</a>. Moreover, the functor $\mathcal{G} \mapsto \mathcal{G} \otimes _\mathbf {Z} \underline{\mathbf{Z}}(\chi _ p))$ is an auto-equivalence of $\textit{Ab}(U_ p)$, whence transforms injective objects into injective objects and is exact (because $\underline{\mathbf{Z}}(\chi _ p)$ is an invertible $\underline{\mathbf{Z}}$-module). Thus given an injective resolution $\mathcal{F} \to \mathcal{I}^\bullet $ in $\textit{Ab}(X_{\acute{e}tale})$ the complex 
+    <p>
+      <div class="equation">
+  \[  \Gamma (U_ p, \mathcal{I}^0|_{U_ p} \otimes _\mathbf {Z} \underline{\mathbf{Z}}(\chi _ p)) \to \Gamma (U_ p, \mathcal{I}^1|_{U_ p} \otimes _\mathbf {Z} \underline{\mathbf{Z}}(\chi _ p)) \to \Gamma (U_ p, \mathcal{I}^2|_{U_ p} \otimes _\mathbf {Z} \underline{\mathbf{Z}}(\chi _ p)) \to \ldots  \]
+</div>
+    <p>
+       computes $H^*(U_ p, \mathcal{F}|_{U_ p} \otimes _\mathbf {Z} \underline{\mathbf{Z}}(\chi _ p))$. On the other hand, by Lemma <a href="/tag/0727" data-tag="0727">69.6.5</a> it is equal to the complex of $S_{p + 1}$-anti-invariants in 
+    <p>
+      <div class="equation">
+  \[  \Gamma (W_ p, \mathcal{I}^0) \to \Gamma (W_ p, \mathcal{I}^1) \to \Gamma (W_ p, \mathcal{I}^2) \to \ldots  \]
+</div>
+    <p>
+       which by Lemma <a href="/tag/0726" data-tag="0726">69.6.4</a> is equal to the complex 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits (K^ p, \mathcal{I}^0) \to \mathop{\mathrm{Hom}}\nolimits (K^ p, \mathcal{I}^1) \to \mathop{\mathrm{Hom}}\nolimits (K^ p, \mathcal{I}^2) \to \ldots  \]
+</div>
+    <p>
+       which computes $\mathop{\mathrm{Ext}}\nolimits ^*_{\textit{Ab}(X_{\acute{e}tale})}(K^ p, \mathcal{F})$. Putting everything together we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

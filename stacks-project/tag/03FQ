@@ -1,0 +1,201 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="spaces-properties-section-etale-morphisms" class="tex-section"><span data-tag="03FQ">66.16</span> Étale morphisms of algebraic spaces</h2>
+
+<p>
+This section really belongs in the chapter on morphisms of algebraic spaces, but we need the notion of an algebraic space étale over another in order to define the small étale site of an algebraic space. Thus we need to do some preliminary work on étale morphisms from schemes to algebraic spaces, and étale morphisms between algebraic spaces. For more about étale morphisms of algebraic spaces, see Morphisms of Spaces, Section <a href="/tag/03XS" data-tag="03XS">67.39</a>. 
+</p>
+<p>
+<article class="env-lemma" id="03EC">
+  <p><a class="environment-identifier" href="/tag/03EC">Lemma <span data-tag="03EC">66.16.1</span>.</a> Let $S$ be a scheme. Let $X$ be an algebraic space over $S$. Let $U$, $U'$ be schemes over $S$. </p>
+  <p><ol>
+  <li><p>
+If $U \to U'$ is an étale morphism of schemes, and if $U' \to X$ is an étale morphism from $U'$ to $X$, then the composition $U \to X$ is an étale morphism from $U$ to $X$. 
+</p>
+</li><li><p>
+If $\varphi : U \to X$ and $\varphi ' : U' \to X$ are étale morphisms towards $X$, and if $\chi : U \to U'$ is a morphism of schemes such that $\varphi = \varphi ' \circ \chi $, then $\chi $ is an étale morphism of schemes. 
+</p>
+</li><li><p>
+If $\chi : U \to U'$ is a surjective étale morphism of schemes and $\varphi ' : U' \to X$ is a morphism such that $\varphi = \varphi ' \circ \chi $ is étale, then $\varphi '$ is étale. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Recall that our definition of an étale morphism from a scheme into an algebraic space comes from Spaces, Definition <a href="/tag/025V" data-tag="025V">65.5.1</a> via the fact that any morphism from a scheme into an algebraic space is representable. 
+    <p>
+      Part (1) of the lemma follows from this, the fact that étale morphisms are preserved under composition (Morphisms, Lemma <a href="/tag/02GN" data-tag="02GN">29.37.3</a>) and Spaces, Lemmas <a href="/tag/02WK" data-tag="02WK">65.5.4</a> and <a href="/tag/02WJ" data-tag="02WJ">65.5.3</a> (which are formal). 
+    <p>
+      To prove part (2) choose a scheme $W$ over $S$ and a surjective étale morphism $W \to X$. Consider the base change $\chi _ W : W \times _ X U \to W \times _ X U'$ of $\chi $. As $W \times _ X U$ and $W \times _ X U'$ are étale over $W$, we conclude that $\chi _ W$ is étale, by Morphisms, Lemma <a href="/tag/02GW" data-tag="02GW">29.37.19</a>. On the other hand, in the commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ W \times _ X U \ar[r] \ar[d] &  W \times _ X U' \ar[d] \\  U \ar[r] &  U' }  \]
+</div>
+    <p>
+       the two vertical arrows are étale and surjective. Hence by Descent, Lemma <a href="/tag/02KM" data-tag="02KM">35.14.4</a> we conclude that $U \to U'$ is étale. 
+    <p>
+      To prove part (3) choose a scheme $W$ over $S$ and a morphism $W \to X$. As above we consider the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ W \times _ X U \ar[r] \ar[d] &  W \times _ X U' \ar[d] \ar[r] &  W \ar[d] \\  U \ar[r] &  U' \ar[r] &  X }  \]
+</div>
+    <p>
+       Now we know that $W \times _ X U \to W \times _ X U'$ is surjective étale (as a base change of $U \to U'$) and that $W \times _ X U \to W$ is étale. Thus $W \times _ X U' \to W$ is étale by Descent, Lemma <a href="/tag/02KM" data-tag="02KM">35.14.4</a>. By definition this means that $\varphi '$ is étale. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="03FR">
+  <p><a class="environment-identifier" href="/tag/03FR">Definition <span data-tag="03FR">66.16.2</span>.</a> Let $S$ be a scheme. A morphism $f : X \to Y$ between algebraic spaces over $S$ is called <em>étale</em> if and only if for every étale morphism $\varphi : U \to X$ where $U$ is a scheme, the composition $f \circ \varphi $ is étale also. </p>
+</article> 
+</p>
+<p>
+If $X$ and $Y$ are schemes, then this agree with the usual notion of an étale morphism of schemes. In fact, whenever $X \to Y$ is a representable morphism of algebraic spaces, then this agrees with the notion defined via Spaces, Definition <a href="/tag/025V" data-tag="025V">65.5.1</a>. This follows by combining Lemma <a href="/tag/03FS" data-tag="03FS">66.16.3</a> below and Spaces, Lemma <a href="/tag/02WZ" data-tag="02WZ">65.11.4</a>. 
+</p>
+<p>
+<article class="env-lemma" id="03FS">
+  <p><a class="environment-identifier" href="/tag/03FS">Lemma <span data-tag="03FS">66.16.3</span>.</a> Let $S$ be a scheme. Let $f : X \to Y$ be a morphism of algebraic spaces over $S$. The following are equivalent: </p>
+  <p><ol>
+  <li><p>
+$f$ is étale, 
+</p>
+</li><li><p>
+there exists a surjective étale morphism $\varphi : U \to X$, where $U$ is a scheme, such that the composition $f \circ \varphi $ is étale (as a morphism of algebraic spaces), 
+</p>
+</li><li><p>
+there exists a surjective étale morphism $\psi : V \to Y$, where $V$ is a scheme, such that the base change $V \times _ Y X \to V$ is étale (as a morphism of algebraic spaces), 
+</p>
+</li><li><p>
+there exists a commutative diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ U \ar[d] \ar[r] &  V \ar[d] \\  X \ar[r] &  Y }  \]
+</div>
+<p>
+ where $U$, $V$ are schemes, the vertical arrows are étale, and the left vertical arrow is surjective such that the horizontal arrow is étale. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let us prove that (4) implies (1). Assume a diagram as in (4) given. Let $W \to X$ be an étale morphism with $W$ a scheme. Then we see that $W \times _ X U \to U$ is étale. Hence $W \times _ X U \to V$ is étale as the composition of the étale morphisms of schemes $W \times _ X U \to U$ and $U \to V$. Therefore $W \times _ X U \to Y$ is étale by Lemma <a href="/tag/03EC" data-tag="03EC">66.16.1</a> (1). Since also the projection $W \times _ X U \to W$ is surjective and étale, we conclude from Lemma <a href="/tag/03EC" data-tag="03EC">66.16.1</a> (3) that $W \to Y$ is étale. 
+    <p>
+      Let us prove that (1) implies (4). Assume (1). Choose a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ U \ar[d] \ar[r] &  V \ar[d] \\  X \ar[r] &  Y }  \]
+</div>
+    <p>
+       where $U \to X$ and $V \to Y$ are surjective and étale, see Spaces, Lemma <a href="/tag/02X1" data-tag="02X1">65.11.6</a>. By assumption the morphism $U \to Y$ is étale, and hence $U \to V$ is étale by Lemma <a href="/tag/03EC" data-tag="03EC">66.16.1</a> (2). 
+    <p>
+      We omit the proof that (2) and (3) are also equivalent to (1). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03FT">
+  <p><a class="environment-identifier" href="/tag/03FT">Lemma <span data-tag="03FT">66.16.4</span>.</a> The composition of two étale morphisms of algebraic spaces is étale. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is immediate from the definition. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03FU">
+  <p><a class="environment-identifier" href="/tag/03FU">Lemma <span data-tag="03FU">66.16.5</span>.</a> The base change of an étale morphism of algebraic spaces by any morphism of algebraic spaces is étale. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $X \to Y$ be an étale morphism of algebraic spaces over $S$. Let $Z \to Y$ be a morphism of algebraic spaces. Choose a scheme $U$ and a surjective étale morphism $U \to X$. Choose a scheme $W$ and a surjective étale morphism $W \to Z$. Then $U \to Y$ is étale, hence in the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ W \times _ Y U \ar[d] \ar[r] &  W \ar[d] \\  Z \times _ Y X \ar[r] &  Z }  \]
+</div>
+    <p>
+       the top horizontal arrow is étale. Moreover, the left vertical arrow is surjective and étale (verification omitted). Hence we conclude that the lower horizontal arrow is étale by Lemma <a href="/tag/03FS" data-tag="03FS">66.16.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03FV">
+  <p><a class="environment-identifier" href="/tag/03FV">Lemma <span data-tag="03FV">66.16.6</span>.</a> Let $S$ be a scheme. Let $X, Y, Z$ be algebraic spaces. Let $g : X \to Z$, $h : Y \to Z$ be étale morphisms and let $f : X \to Y$ be a morphism such that $h \circ f = g$. Then $f$ is étale. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ U \ar[d] \ar[r]_\chi &  V \ar[d] \\  X \ar[r] &  Y }  \]
+</div>
+    <p>
+       where $U \to X$ and $V \to Y$ are surjective and étale, see Spaces, Lemma <a href="/tag/02X1" data-tag="02X1">65.11.6</a>. By assumption the morphisms $\varphi : U \to X \to Z$ and $\psi : V \to Y \to Z$ are étale. Moreover, $\psi \circ \chi = \varphi $ by our assumption on $f, g, h$. Hence $U \to V$ is étale by Lemma <a href="/tag/03EC" data-tag="03EC">66.16.1</a> part (2). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03IR">
+  <p><a class="environment-identifier" href="/tag/03IR">Lemma <span data-tag="03IR">66.16.7</span>.</a> Let $S$ be a scheme. If $X \to Y$ is an étale morphism of algebraic spaces over $S$, then the associated map $|X| \to |Y|$ of topological spaces is open. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is clear from the diagram in Lemma <a href="/tag/03FS" data-tag="03FS">66.16.3</a> and Lemma <a href="/tag/03BX" data-tag="03BX">66.4.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Finally, here is a fun lemma. It is not true that an algebraic space with an étale morphism towards a scheme is a scheme, see Spaces, Example <a href="/tag/03FN" data-tag="03FN">65.14.2</a>. But it is true if the target is the spectrum of a field. 
+</p>
+<p>
+<article class="env-lemma" id="03KX">
+  <p><a class="environment-identifier" href="/tag/03KX">Lemma <span data-tag="03KX">66.16.8</span>.</a> Let $S$ be a scheme. Let $X \to \mathop{\mathrm{Spec}}(k)$ be étale morphism over $S$, where $k$ is a field. Then $X$ is a scheme. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $U$ be an affine scheme, and let $U \to X$ be an étale morphism. By Definition <a href="/tag/03FR" data-tag="03FR">66.16.2</a> we see that $U \to \mathop{\mathrm{Spec}}(k)$ is an étale morphism. Hence $U = \coprod _{i = 1, \ldots , n} \mathop{\mathrm{Spec}}(k_ i)$ is a finite disjoint union of spectra of finite separable extensions $k_ i$ of $k$, see Morphisms, Lemma <a href="/tag/02GL" data-tag="02GL">29.37.7</a>. The $R = U \times _ X U \to U \times _{\mathop{\mathrm{Spec}}(k)} U$ is a monomorphism and $U \times _{\mathop{\mathrm{Spec}}(k)} U$ is also a finite disjoint union of spectra of finite separable extensions of $k$. Hence by Schemes, Lemma <a href="/tag/03DP" data-tag="03DP">26.23.11</a> we see that $R$ is similarly a finite disjoint union of spectra of finite separable extensions of $k$. This $U$ and $R$ are affine and both projections $R \to U$ are finite locally free. Hence $U/R$ is a scheme by Groupoids, Proposition <a href="/tag/03BM" data-tag="03BM">39.23.9</a>. By Spaces, Lemma <a href="/tag/02WU" data-tag="02WU">65.10.2</a> it is also an open subspace of $X$. By Lemma <a href="/tag/03JH" data-tag="03JH">66.13.1</a> we conclude that $X$ is a scheme. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

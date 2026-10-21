@@ -1,0 +1,266 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="trace-section-lefschetz-numbers" class="tex-section"><span data-tag="03TW">64.14</span> Lefschetz numbers</h2>
+
+<p>
+The fact that the total cohomology of a constructible complex of finite tor dimension is a perfect complex is the key technical reason why cohomology behaves well, and allows us to define rigorously the traces occurring in the trace formula. 
+</p>
+<p>
+<article class="env-definition" id="03TX">
+  <p><a class="environment-identifier" href="/tag/03TX">Definition <span data-tag="03TX">64.14.1</span>.</a> Let $\Lambda $ be a finite ring, $X$ a projective curve over a finite field $k$ and $K \in D_{ctf}(X, \Lambda )$ (for instance $K = \underline\Lambda $). There is a canonical map $c_ K : \pi _ X^{-1}K \to K$, and its base change $c_ K|_{X_{\bar k}}$ induces an action denoted $\pi _ X^*$ on the perfect complex $R\Gamma (X_{\bar k}, K|_{X_{\bar k}})$. The <em>global Lefschetz number</em> of $K$ is the trace $\text{Tr}(\pi _ X^* |_{R\Gamma (X_{\bar k}, K)})$ of that action. It is an element of $\Lambda ^\natural $. </p>
+</article> 
+</p>
+<p>
+<article class="env-definition" id="03TY">
+  <p><a class="environment-identifier" href="/tag/03TY">Definition <span data-tag="03TY">64.14.2</span>.</a> With $\Lambda , X, k, K$ as in Definition <a href="/tag/03TX" data-tag="03TX">64.14.1</a>. Since $K\in D_{ctf}(X, \Lambda )$, for any geometric point $\bar x$ of $X$, the complex $K_{\bar x}$ is a perfect complex (in $D_{perf}(\Lambda )$). As we have seen in Section <a href="/tag/03SL" data-tag="03SL">64.3</a>, the Frobenius $\pi _ X$ acts on $K_{\bar x}$. The <em>local Lefschetz number</em> of $K$ is the sum </p>
+  <div class="equation">
+  \[  \sum \nolimits _{x\in X(k)} \text{Tr}(\pi _ x |_{K_{\overline{x}}})  \]
+</div>
+  <p> which is again an element of $\Lambda ^\natural $. </p>
+</article> 
+</p>
+<p>
+At last, we can formulate precisely the trace formula. 
+</p>
+<p>
+<article class="env-theorem" id="03TZ">
+  <p><a class="environment-identifier" href="/tag/03TZ">Theorem <span data-tag="03TZ">64.14.3</span> <span class="named">(Lefschetz Trace Formula)</span>.</a>  Let $X$ be a projective curve over a finite field $k$, $\Lambda $ a finite ring and $K \in D_{ctf}(X, \Lambda )$. Then the global and local Lefschetz numbers of $K$ are equal, i.e., </p>
+  <div class="equation" id="03U0">
+    <span class="equation-label"><a href="/tag/03U0" data-tag="03U0">64.14.3.1</a></span>
+  <div>\begin{equation}  \label{trace-equation-trace-formula} \text{Tr}(\pi ^*_ X |_{R\Gamma (X_{\bar k}, K)}) = \sum \nolimits _{x\in X(k)} \text{Tr}(\pi _ X |_{K_{\bar x}}) \end{equation}</div>
+</div>
+  <p> in $\Lambda ^\natural $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See discussion below. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We will use, rather than prove, the trace formula. Nevertheless, we will give quite a few details of the proof of the theorem as given in <span class="cite">[<a href="/bibliography/SGA4.5">SGA4.5</a>]</span> (some of the things that are not adequately explained are listed in Section <a href="/tag/03V5" data-tag="03V5">64.21</a>). 
+</p>
+<p>
+We only stated the formula for curves, and in some weak sense it is a consequence of the following result. 
+</p>
+<p>
+<article class="env-theorem" id="03U1">
+  <p><a class="environment-identifier" href="/tag/03U1">Theorem <span data-tag="03U1">64.14.4</span> <span class="named">(Weil)</span>.</a>  Let $C$ be a nonsingular projective curve over an algebraically closed field $k$, and $\varphi : C \to C$ a $k$-endomorphism of $C$ distinct from the identity. Let $V(\varphi ) = \Delta _ C \cdot \Gamma _\varphi $, where $\Delta _ C$ is the diagonal, $\Gamma _\varphi $ is the graph of $\varphi $, and the intersection number is taken on $C \times C$. Let $J = \underline{\mathrm{Pic}}^0_{C/k}$ be the jacobian of $C$ and denote $\varphi ^* : J \to J$ the action induced by $\varphi $ by taking pullbacks. Then </p>
+  <div class="equation">
+  \[  V(\varphi ) = 1 - \text{Tr}_ J(\varphi ^*) + \deg \varphi .  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The number $V(\varphi )$ is the number of fixed points of $\varphi $, it is equal to 
+    <p>
+      <div class="equation">
+  \[  V(\varphi ) = \sum \nolimits _{c \in |C| : \varphi (c) = c} m_{\text{Fix}(\varphi )} (c)  \]
+</div>
+    <p>
+       where $m_{\text{Fix}(\varphi )} (c)$ is the multiplicity of $c$ as a fixed point of $\varphi $, namely the order or vanishing of the image of a local uniformizer under $\varphi - \text{id}_ C$. Proofs of this theorem can be found in <span class="cite">[<a href="/bibliography/Lang">Lang</a>]</span> and <span class="cite">[<a href="/bibliography/Weil">Weil</a>]</span>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-example" id="03U2">
+  <p><a class="environment-identifier" href="/tag/03U2">Example <span data-tag="03U2">64.14.5</span>.</a> Let $C = E$ be an elliptic curve and $\varphi = [n]$ be multiplication by $n$. Then $\varphi ^* = \varphi ^ t$ is multiplication by $n$ on the jacobian, so it has trace $2n$ and degree $n^2$. On the other hand, the fixed points of $\varphi $ are the points $p \in E$ such that $n p = p$, which is the $(n-1)$-torsion, which has cardinality $(n-1)^2$. So the theorem reads </p>
+  <div class="equation">
+  \[  (n-1)^2 = 1 - 2n + n^2.  \]
+</div>
+</article> 
+</p>
+<p>
+<strong>Jacobians.</strong> We now discuss without proofs the correspondence between a curve and its jacobian which is used in Weil's proof. Let $C$ be a nonsingular projective curve over an algebraically closed field $k$ and choose a base point $c_0 \in C(k)$. Denote by $A^1(C \times C)$ (or $\mathop{\mathrm{Pic}}\nolimits (C \times C)$, or $\text{CaCl}(C \times C)$) the abelian group of codimension 1 divisors of $C \times C$. Then 
+</p>
+<div class="equation">
+  \[  A^1(C \times C) = \text{pr}_1^* (A^1(C)) \oplus \text{pr}_2^* (A^1(C)) \oplus R  \]
+</div>
+<p>
+ where 
+</p>
+<div class="equation">
+  \[  R = \{  Z \in A^1(C \times C) \  | \  Z|_{C \times \{ c_0\} } \sim _\text {rat} 0 \text{ and } Z|_{\{ c_0\}  \times C} \sim _\text {rat} 0 \} .  \]
+</div>
+<p>
+ In other words, $R$ is the subgroup of line bundles which pull back to the trivial one under either projection. Then there is a canonical isomorphism of abelian groups $R \cong \text{End}(J)$ which maps a divisor $Z$ in $R$ to the endomorphism 
+</p>
+<div class="equation">
+  \[  \begin{matrix}  J 
+
+&  \to 
+
+&  J 
+
+\\  \left[ \mathcal{O}_ C(D) \right] 
+
+&  \mapsto 
+
+&  (\text{pr}_1 |_ Z)_* (\text{pr}_2 |_ Z)^* (D). 
+
+\end{matrix}  \]
+</div>
+<p>
+ The aforementioned correspondence is the following. We denote by $\sigma $ the automorphism of $C \times C$ that switches the factors. 
+</p>
+<div class="equation">
+  \[  \begin{matrix}  \text{End}(J) 
+
+&  R 
+
+\\  \text{composition of }\alpha , \beta 
+
+&  {\text{pr}_{13}}_* ({\text{pr}_{12}}^*(\alpha ) \circ {\text{pr}_{23}}^*(\beta )) 
+
+\\  \text{id}_ J 
+
+&  \Delta _ C - \{ c_0\}  \times C - C \times \{ c_0\}  
+
+\\  \varphi ^* 
+
+&  \Gamma _\varphi - C \times \{ \varphi (c_0)\}  - \sum _{\varphi (c) = c_0} \{ c\}  \times C 
+
+\\  { \begin{matrix}  \text{the trace form} 
+
+\\  \alpha , \beta \mapsto \text{Tr}(\alpha \beta ) 
+
+\end{matrix} } 
+
+&  \alpha , \beta \mapsto - \int _{C \times C} \alpha . \sigma ^*\beta 
+
+\\  { \begin{matrix}  \text{the Rosati involution} 
+
+\\  \alpha \mapsto \alpha ^\dagger 
+
+\end{matrix} } 
+
+&  \alpha \mapsto \sigma ^*\alpha 
+
+\\  { \begin{matrix}  \text{positivity of Rosati} 
+
+\\  \text{Tr}(\alpha \alpha ^\dagger ) > 0 
+
+\end{matrix} } 
+
+&  { \begin{matrix}  \text{Hodge index theorem on }C \times C 
+
+\\  - \int _{C \times C} \alpha \sigma ^*\alpha > 0. 
+
+\end{matrix} } 
+
+\\ \end{matrix}  \]
+</div>
+<p>
+ In fact, in light of the Kunneth formula, the subgroup $R$ corresponds to the $1, 1$ hodge classes in $H^1(C)\otimes H^1(C)$. 
+</p>
+<p>
+<strong>Weil's proof.</strong> Using this correspondence, we can prove the trace formula. We have 
+</p>
+<div class="equation">
+  \begin{eqnarray*}  V(\varphi ) &  = &  \int _{C \times C} \Gamma _\varphi .\Delta \\ &  = &  \int _{C \times C} \Gamma _\varphi . \left(\Delta _ C - \{ c_0\}  \times C - C \times \{ c_0\} \right) + \int _{C \times C} \Gamma _\varphi . \left(\{ c_0\}  \times C + C \times \{ c_0\} \right). \end{eqnarray*}
+</div>
+<p>
+ Now, on the one hand 
+</p>
+<div class="equation">
+  \[  \int _{C \times C} \Gamma _\varphi . \left(\{ c_0\}  \times C + C \times \{ c_0\} \right) = 1 + \deg \varphi  \]
+</div>
+<p>
+ and on the other hand, since $R$ is the orthogonal of the ample divisor $\{ c_0\}  \times C + C \times \{ c_0\} $, 
+</p>
+<div class="equation">
+  \begin{eqnarray*} & &  \int _{C \times C} \Gamma _\varphi . \left(\Delta _ C - \{ c_0\}  \times C - C \times \{ c_0\} \right) \\ &  = &  \int _{C \times C} \left(\Gamma _\varphi - C \times \{ \varphi (c_0)\}  - \sum _{\varphi (c) = c_0} \{ c\}  \times C \right). \left(\Delta _ C - \{ c_0\}  \times C - C \times \{ c_0\} \right) \\ &  = &  - \text{Tr}_ J (\varphi ^* \circ \text{id}_ J). \end{eqnarray*}
+</div>
+<p>
+ Recapitulating, we have 
+</p>
+<div class="equation">
+  \[  V(\varphi ) = 1 - \text{Tr}_ J (\varphi ^*) + \deg \varphi  \]
+</div>
+<p>
+ which is the trace formula. 
+</p>
+<p>
+<article class="env-lemma" id="03U3">
+  <p><a class="environment-identifier" href="/tag/03U3">Lemma <span data-tag="03U3">64.14.6</span>.</a> Consider the situation of Theorem <a href="/tag/03U1" data-tag="03U1">64.14.4</a> and let $\ell $ be a prime number invertible in $k$. Then </p>
+  <div class="equation">
+  \[  \sum \nolimits _{i = 0}^2 (-1)^ i \text{Tr}(\varphi ^* |_{H^ i (C, \underline{\mathbf{Z}/\ell ^ n \mathbf{Z}})}) = V(\varphi ) \mod \ell ^ n.  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Sketch of proof.</strong>
+       Observe first that the assumption makes sense because $H^ i(C, \underline{\mathbf{Z}/\ell ^ n \mathbf{Z}})$ is a free $\mathbf{Z}/\ell ^ n \mathbf{Z}$-module for all $i$. The trace of $\varphi ^*$ on the 0th degree cohomology is 1. The choice of a primitive $\ell ^ n$th root of unity in $k$ gives an isomorphism 
+    <p>
+      <div class="equation">
+  \[  H^ i(C, \underline{\mathbf{Z}/\ell ^ n \mathbf{Z}}) \cong H^ i(C, \mu _{\ell ^ n})  \]
+</div>
+    <p>
+       compatibly with the action of the geometric Frobenius. On the other hand, $H^1(C, \mu _{\ell ^ n}) = J[\ell ^ n]$. Therefore, 
+    <p>
+      <div class="equation">
+  \begin{eqnarray*}  \text{Tr}(\varphi ^* |_{H^1 (C, \underline{\mathbf{Z}/\ell ^ n \mathbf{Z}})})) &  = &  \text{Tr}_ J (\varphi ^*) \mod \ell ^ n \\ &  = &  \text{Tr}_{\mathbf{Z}/\ell ^ n \mathbf{Z}} (\varphi ^* : J[\ell ^ n] \to J[\ell ^ n]). \end{eqnarray*}
+</div>
+    <p>
+       Moreover, $H^2(C, \mu _{\ell ^ n}) = \mathop{\mathrm{Pic}}\nolimits (C)/\ell ^ n\mathop{\mathrm{Pic}}\nolimits (C) \cong \mathbf{Z}/\ell ^ n \mathbf{Z}$ where $\varphi ^*$ is multiplication by $\deg \varphi $. Hence 
+    <p>
+      <div class="equation">
+  \[  \text{Tr} (\varphi ^*|_{H^2 (C, \underline{\mathbf{Z}/\ell ^ n \mathbf{Z}})}) = \deg \varphi .  \]
+</div>
+    <p>
+       Thus we have 
+    <p>
+      <div class="equation">
+  \[  \sum _{i = 0}^2 (-1)^ i \text{Tr}(\varphi ^* |_{H^ i (C, \underline{\mathbf{Z}/\ell ^ n \mathbf{Z}})}) = 1 - \text{Tr}_ J(\varphi ^*) + \deg \varphi \mod \ell ^ n  \]
+</div>
+    <p>
+       and the corollary follows from Theorem <a href="/tag/03U1" data-tag="03U1">64.14.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+An alternative way to prove this corollary is to show that 
+</p>
+<div class="equation">
+  \[  X \mapsto H^* (X, \mathbf{Q}_\ell ) = \mathbf{Q}_\ell \otimes \mathop{\mathrm{lim}}\nolimits _ n H^*(X, \mathbf{Z}/\ell ^ n\mathbf{Z})  \]
+</div>
+<p>
+ defines a Weil cohomology theory on smooth projective varieties over $k$. Then the trace formula 
+</p>
+<div class="equation">
+  \[  V(\varphi ) = \sum _{i = 0}^2 (-1)^ i \text{Tr}(\varphi ^* |_{H^ i(C, \mathbf{Q}_\ell )})  \]
+</div>
+<p>
+ is a formal consequence of the axioms (it's an exercise in linear algebra, the proof is the same as in the topological case). 
+</p>

@@ -1,0 +1,326 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="stacks-cohomology-section-lisse-etale" class="tex-section"><span data-tag="0786">103.14</span> The lisse-étale and the flat-fppf sites</h2>
+
+<p>
+In the book <span class="cite">[<a href="/bibliography/LM-B">LM-B</a>]</span> many of the results above are proved using the lisse-étale site of an algebraic stack. We define this site here. In Examples, Section <a href="/tag/07BF" data-tag="07BF">110.60</a> we show that the lisse-étale site isn't functorial. We also define its analogue, the flat-fppf site, which is better suited to the development of algebraic stacks as given in the Stacks project (because we use the fppf topology as our base topology). Of course the flat-fppf site isn't functorial either. 
+</p>
+<p>
+<article class="env-definition" id="0787">
+  <p><a class="environment-identifier" href="/tag/0787">Definition <span data-tag="0787">103.14.1</span>.</a> Let $\mathcal{X}$ be an algebraic stack. </p>
+  <p><ol>
+  <li><p>
+The <em>lisse-étale site</em> of $\mathcal{X}$ is the full subcategory $\mathcal{X}_{lisse,{\acute{e}tale}}$<a class="footnotemark" href="#a0001748686" id="a0001748686-mark"><sup>1</sup></a> of $\mathcal{X}$ whose objects are those $x \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{X})$ lying over a scheme $U$ such that $x : U \to \mathcal{X}$ is smooth. A covering of $\mathcal{X}_{lisse,{\acute{e}tale}}$ is a family of morphisms $\{ x_ i \to x\} _{i \in I}$ of $\mathcal{X}_{lisse,{\acute{e}tale}}$ which forms a covering of $\mathcal{X}_{\acute{e}tale}$. 
+</p>
+</li><li><p>
+The <em>flat-fppf site</em> of $\mathcal{X}$ is the full subcategory $\mathcal{X}_{flat,fppf}$ of $\mathcal{X}$ whose objects are those $x \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{X})$ lying over a scheme $U$ such that $x : U \to \mathcal{X}$ is flat. A covering of $\mathcal{X}_{flat,fppf}$ is a family of morphisms $\{ x_ i \to x\} _{i \in I}$ of $\mathcal{X}_{flat,fppf}$ which forms a covering of $\mathcal{X}_{fppf}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+We denote $\mathcal{O}_{\mathcal{X}_{lisse,{\acute{e}tale}}}$ the restriction of $\mathcal{O}_\mathcal {X}$ to the lisse-étale site and similarly for $\mathcal{O}_{\mathcal{X}_{flat,fppf}}$. The relationship between the lisse-étale site and the étale site is as follows (we mainly stick to “topological” properties in this lemma). 
+</p>
+<p>
+<article class="env-lemma" id="0788">
+  <p><a class="environment-identifier" href="/tag/0788">Lemma <span data-tag="0788">103.14.2</span>.</a> Let $\mathcal{X}$ be an algebraic stack. </p>
+  <p><ol>
+  <li><p>
+The inclusion functor $\mathcal{X}_{lisse,{\acute{e}tale}} \to \mathcal{X}_{\acute{e}tale}$ is fully faithful, continuous and cocontinuous. It follows that 
+</p>
+<ol>
+  <li><p>
+there is a morphism of topoi 
+</p>
+<div class="equation">
+  \[  g : \mathop{\mathit{Sh}}\nolimits (\mathcal{X}_{lisse,{\acute{e}tale}}) \longrightarrow \mathop{\mathit{Sh}}\nolimits (\mathcal{X}_{\acute{e}tale})  \]
+</div>
+<p>
+ with $g^{-1}$ given by restriction, 
+</p>
+</li><li><p>
+the functor $g^{-1}$ has a left adjoint $g_!^{Sh}$ on sheaves of sets, 
+</p>
+</li><li><p>
+the adjunction maps $g^{-1}g_* \to \text{id}$ and $\text{id} \to g^{-1}g_!^{Sh}$ are isomorphisms, 
+</p>
+</li><li><p>
+the functor $g^{-1}$ has a left adjoint $g_!$ on abelian sheaves, 
+</p>
+</li><li><p>
+the adjunction map $\text{id} \to g^{-1}g_!$ is an isomorphism, and 
+</p>
+</li><li><p>
+we have $g^{-1}\mathcal{O}_\mathcal {X} = \mathcal{O}_{\mathcal{X}_{lisse,{\acute{e}tale}}}$ hence $g$ induces a flat morphism of ringed topoi such that $g^{-1} = g^*$. 
+</p>
+</li>
+</ol>
+</li><li><p>
+The inclusion functor $\mathcal{X}_{flat,fppf} \to \mathcal{X}_{fppf}$ is fully faithful, continuous and cocontinuous. It follows that 
+</p>
+<ol>
+  <li><p>
+there is a morphism of topoi 
+</p>
+<div class="equation">
+  \[  g : \mathop{\mathit{Sh}}\nolimits (\mathcal{X}_{flat,fppf}) \longrightarrow \mathop{\mathit{Sh}}\nolimits (\mathcal{X}_{fppf})  \]
+</div>
+<p>
+ with $g^{-1}$ given by restriction, 
+</p>
+</li><li><p>
+the functor $g^{-1}$ has a left adjoint $g_!^{Sh}$ on sheaves of sets, 
+</p>
+</li><li><p>
+the adjunction maps $g^{-1}g_* \to \text{id}$ and $\text{id} \to g^{-1}g_!^{Sh}$ are isomorphisms, 
+</p>
+</li><li><p>
+the functor $g^{-1}$ has a left adjoint $g_!$ on abelian sheaves, 
+</p>
+</li><li><p>
+the adjunction map $\text{id} \to g^{-1}g_!$ is an isomorphism, and 
+</p>
+</li><li><p>
+we have $g^{-1}\mathcal{O}_\mathcal {X} = \mathcal{O}_{\mathcal{X}_{flat,fppf}}$ hence $g$ induces a flat morphism of ringed topoi such that $g^{-1} = g^*$. 
+</p>
+</li>
+</ol>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In both cases it is immediate that the functor is fully faithful, continuous, and cocontinuous (see Sites, Definitions <a href="/tag/00WV" data-tag="00WV">7.13.1</a> and <a href="/tag/00XJ" data-tag="00XJ">7.20.1</a>). Hence properties (a), (b), (c) follow from Sites, Lemmas <a href="/tag/00XR" data-tag="00XR">7.21.5</a> and <a href="/tag/00XT" data-tag="00XT">7.21.7</a>. Parts (d), (e) follow from Modules on Sites, Lemmas <a href="/tag/04BG" data-tag="04BG">18.16.2</a> and <a href="/tag/077I" data-tag="077I">18.16.4</a>. Part (f) is immediate. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GR0">
+  <p><a class="environment-identifier" href="/tag/0GR0">Lemma <span data-tag="0GR0">103.14.3</span>.</a> Let $\mathcal{X}$ be an algebraic stack. Notation as in Lemma <a href="/tag/0788" data-tag="0788">103.14.2</a>. </p>
+  <p><ol>
+  <li><p>
+For an abelian sheaf $\mathcal{F}$ on $\mathcal{X}_{\acute{e}tale}$ we have 
+</p>
+<ol>
+  <li><p>
+$H^ p(\mathcal{X}_{\acute{e}tale}, \mathcal{F}) = H^ p(\mathcal{X}_{lisse,{\acute{e}tale}}, g^{-1}\mathcal{F})$, and 
+</p>
+</li><li><p>
+$H^ p(x, \mathcal{F}) = H^ p(\mathcal{X}_{lisse,{\acute{e}tale}}/x, g^{-1}\mathcal{F})$ for any object $x$ of $\mathcal{X}_{lisse,{\acute{e}tale}}$. 
+</p>
+</li>
+</ol>
+<p>
+ The same holds for sheaves of modules. 
+</p>
+</li><li><p>
+For an abelian sheaf $\mathcal{F}$ on $\mathcal{X}_{fppf}$ we have 
+</p>
+<ol>
+  <li><p>
+$H^ p(\mathcal{X}_{fppf}, \mathcal{F}) = H^ p(\mathcal{X}_{flat,fppf}, g^{-1}\mathcal{F})$, and 
+</p>
+</li><li><p>
+$H^ p(x, \mathcal{F}) = H^ p(\mathcal{X}_{flat,fppf}/x, g^{-1}\mathcal{F})$ for any object $x$ of $\mathcal{X}_{flat,fppf}$. 
+</p>
+</li>
+</ol>
+<p>
+ The same holds for sheaves of modules. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Part (1)(a) follows from Sheaves on Stacks, Lemma <a href="/tag/07AK" data-tag="07AK">96.23.3</a> applied to the inclusion functor $\mathcal{X}_{lisse,{\acute{e}tale}} \to \mathcal{X}_{\acute{e}tale}$. Part (1)(b) follows from part (1)(a). Namely, if $x$ lies over the scheme $U$, then the site $\mathcal{X}_{\acute{e}tale}/x$ is equivalent to $(\mathit{Sch}/U)_{\acute{e}tale}$ and $\mathcal{X}_{lisse,{\acute{e}tale}}$ is equivalent to $U_{lisse,{\acute{e}tale}}$. Part (2) is proved in the same manner. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0789">
+  <p><a class="environment-identifier" href="/tag/0789">Lemma <span data-tag="0789">103.14.4</span>.</a> Let $\mathcal{X}$ be an algebraic stack. Notation as in Lemma <a href="/tag/0788" data-tag="0788">103.14.2</a>. </p>
+  <p><ol>
+  <li><p>
+There exists a functor 
+</p>
+<div class="equation">
+  \[  g_! : \textit{Mod}(\mathcal{X}_{lisse,{\acute{e}tale}}, \mathcal{O}_{\mathcal{X}_{lisse,{\acute{e}tale}}}) \longrightarrow \textit{Mod}(\mathcal{X}_{\acute{e}tale}, \mathcal{O}_{\mathcal{X}})  \]
+</div>
+<p>
+ which is left adjoint to $g^*$. Moreover it agrees with the functor $g_!$ on abelian sheaves and $g^*g_! = \text{id}$. 
+</p>
+</li><li><p>
+There exists a functor 
+</p>
+<div class="equation">
+  \[  g_! : \textit{Mod}(\mathcal{X}_{flat,fppf}, \mathcal{O}_{\mathcal{X}_{flat,fppf}}) \longrightarrow \textit{Mod}(\mathcal{X}_{fppf}, \mathcal{O}_{\mathcal{X}})  \]
+</div>
+<p>
+ which is left adjoint to $g^*$. Moreover it agrees with the functor $g_!$ on abelian sheaves and $g^*g_! = \text{id}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In both cases, the existence of the functor $g_!$ follows from Modules on Sites, Lemma <a href="/tag/0797" data-tag="0797">18.41.1</a>. To see that $g_!$ agrees with the functor on abelian sheaves we will show the maps Modules on Sites, Equation (<a href="/tag/0799" data-tag="0799">18.41.2.1</a>) are isomorphisms. 
+    <p>
+      Lisse-étale case. Let $x \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{X}_{lisse,{\acute{e}tale}})$ lying over a scheme $U$ with $x : U \to \mathcal{X}$ smooth. Consider the induced fully faithful functor 
+    <p>
+      <div class="equation">
+  \[  g' : \mathcal{X}_{lisse,{\acute{e}tale}}/x \longrightarrow \mathcal{X}_{\acute{e}tale}/x  \]
+</div>
+    <p>
+       The right hand side is identified with $(\mathit{Sch}/U)_{\acute{e}tale}$ and the left hand side with the full subcategory of schemes $U'/U$ such that the composition $U' \to U \to \mathcal{X}$ is smooth. Thus Étale Cohomology, Lemma <a href="/tag/07AJ" data-tag="07AJ">59.49.2</a> applies. 
+    <p>
+      Flat-fppf case. Let $x \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{X}_{flat,fppf})$ lying over a scheme $U$ with $x : U \to \mathcal{X}$ flat. Consider the induced fully faithful functor 
+    <p>
+      <div class="equation">
+  \[  g' : \mathcal{X}_{flat,fppf}/x \longrightarrow \mathcal{X}_{fppf}/x  \]
+</div>
+    <p>
+       The right hand side is identified with $(\mathit{Sch}/U)_{fppf}$ and the left hand side with the full subcategory of schemes $U'/U$ such that the composition $U' \to U \to \mathcal{X}$ is flat. Thus Étale Cohomology, Lemma <a href="/tag/07AJ" data-tag="07AJ">59.49.2</a> applies. 
+    <p>
+      In both cases the equality $g^*g_! = \text{id}$ follows from $g^* = g^{-1}$ and the equality for abelian sheaves in Lemma <a href="/tag/0788" data-tag="0788">103.14.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="078A">
+  <p><a class="environment-identifier" href="/tag/078A">Lemma <span data-tag="078A">103.14.5</span>.</a> Let $\mathcal{X}$ be an algebraic stack. Notation as in Lemmas <a href="/tag/0788" data-tag="0788">103.14.2</a> and <a href="/tag/0789" data-tag="0789">103.14.4</a>. </p>
+  <p><ol>
+  <li><p>
+We have $g_!\mathcal{O}_{\mathcal{X}_{lisse,{\acute{e}tale}}} = \mathcal{O}_\mathcal {X}$. 
+</p>
+</li><li><p>
+We have $g_!\mathcal{O}_{\mathcal{X}_{flat, fppf}} = \mathcal{O}_\mathcal {X}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In this proof we write $\mathcal{C} = \mathcal{X}_{\acute{e}tale}$ (resp. $\mathcal{C} = \mathcal{X}_{fppf}$) and we denote $\mathcal{C}' = \mathcal{X}_{lisse,{\acute{e}tale}}$ (resp. $\mathcal{C}' = \mathcal{X}_{flat, fppf}$). Then $\mathcal{C}'$ is a full subcategory of $\mathcal{C}$. In this proof we will think of objects $V$ of $\mathcal{C}$ as schemes over $\mathcal{X}$ and objects $U$ of $\mathcal{C}'$ as schemes smooth (resp. flat) over $\mathcal{X}$. Finally, we write $\mathcal{O} = \mathcal{O}_\mathcal {X}$ and $\mathcal{O}' = \mathcal{O}_{\mathcal{X}_{lisse,{\acute{e}tale}}}$ (resp. $\mathcal{O}' = \mathcal{O}_{\mathcal{X}_{flat,fppf}}$). In the notation above we have $\mathcal{O}(V) = \Gamma (V, \mathcal{O}_ V)$ and $\mathcal{O}'(U) = \Gamma (U, \mathcal{O}_ U)$. Consider the $\mathcal{O}$-module homomorphism $g_!\mathcal{O}' \to \mathcal{O}$ adjoint to the identification $\mathcal{O}' = g^{-1}\mathcal{O}$. 
+    <p>
+      Recall that $g_!\mathcal{O}'$ is the sheaf associated to the presheaf $g_{p!}\mathcal{O}'$ given by the rule 
+    <p>
+      <div class="equation">
+  \[  V \longmapsto \mathop{\mathrm{colim}}\nolimits _{V \to U} \mathcal{O}'(U)  \]
+</div>
+    <p>
+       where the colimit is taken in the category of abelian groups (Modules on Sites, Definition <a href="/tag/04BF" data-tag="04BF">18.16.1</a>). Below we will use frequently that if 
+    <p>
+      <div class="equation">
+  \[  V \to U \to U'  \]
+</div>
+    <p>
+       are morphisms and if $f' \in \mathcal{O}'(U')$ restricts to $f \in \mathcal{O}'(U)$, then $(V \to U, f)$ and $(V \to U', f')$ define the same element of the colimit. Also, $g_!\mathcal{O}' \to \mathcal{O}$ maps the element $(V \to U, f)$ simply to the pullback of $f$ to $V$. 
+    <p>
+      Let us prove that $g_!\mathcal{O}' \to \mathcal{O}$ is surjective. Let $h \in \mathcal{O}(V)$ for some object $V$ of $\mathcal{C}$. It suffices to show that $h$ is locally in the image. Choose an object $U$ of $\mathcal{C}'$ corresponding to a surjective smooth morphism $U \to \mathcal{X}$. Since $U \times _\mathcal {X} V \to V$ is surjective smooth, after replacing $V$ by the members of an étale covering of $V$ we may assume there exists a morphism $V \to U$, see Topologies on Spaces, Lemma <a href="/tag/0CFV" data-tag="0CFV">73.4.4</a>. Using $h$ we obtain a morphism $V \to U \times \mathbf{A}^1$ such that writing $\mathbf{A}^1 = \mathop{\mathrm{Spec}}(\mathbf{Z}[t])$ the element $t \in \mathcal{O}(U \times \mathbf{A}^1)$ pulls back to $h$. Since $U \times \mathbf{A}^1$ is an object of $\mathcal{C}'$ we see that $(V \to U \times \mathbf{A}^1, t)$ is an element of the colimit above which maps to $h \in \mathcal{O}(V)$ as desired. 
+    <p>
+      Suppose that $s \in g_!\mathcal{O}'(V)$ is a section mapping to zero in $\mathcal{O}(V)$. To finish the proof we have to show that $s$ is zero. After replacing $V$ by the members of a covering we may assume $s$ is an element of the colimit 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{colim}}\nolimits _{V \to U} \mathcal{O}'(U)  \]
+</div>
+    <p>
+       Say $s = \sum (\varphi _ i, s_ i)$ is a finite sum with $\varphi _ i : V \to U_ i$, $U_ i$ smooth (resp. flat) over $\mathcal{X}$, and $s_ i \in \Gamma (U_ i, \mathcal{O}_{U_ i})$. Choose a scheme $W$ surjective étale over the algebraic space $U = U_1 \times _\mathcal {X} \ldots \times _\mathcal {X} U_ n$. Note that $W$ is still smooth (resp. flat) over $\mathcal{X}$, i.e., defines an object of $\mathcal{C}'$. The fibre product 
+    <p>
+      <div class="equation">
+  \[  V' = V \times _{(\varphi _1, \ldots , \varphi _ n), U} W  \]
+</div>
+    <p>
+       is surjective étale over $V$, hence it suffices to show that $s$ maps to zero in $g_!\mathcal{O}'(V')$. Note that the restriction $\sum (\varphi _ i, s_ i)|_{V'}$ corresponds to the sum of the pullbacks of the functions $s_ i$ to $W$. In other words, we have reduced to the case of $(\varphi , s)$ where $\varphi : V \to U$ is a morphism with $U$ in $\mathcal{C}'$ and $s \in \mathcal{O}'(U)$ restricts to zero in $\mathcal{O}(V)$. By the commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ V \ar[rr]_-{(\varphi , 0)} \ar[rrd]_\varphi &  &  U \times \mathbf{A}^1 \\  &  &  U \ar[u]_{(\text{id}, 0)} }  \]
+</div>
+    <p>
+       we see that $((\varphi , 0) : V \to U \times \mathbf{A}^1, \text{pr}_2^*x)$ represents zero in the colimit above. Hence we may replace $U$ by $U \times \mathbf{A}^1$, $\varphi $ by $(\varphi , 0)$ and $s$ by $\text{pr}_1^*s + \text{pr}_2^*x$. Thus we may assume that the vanishing locus $Z : s = 0$ in $U$ of $s$ is smooth (resp. flat) over $\mathcal{X}$. Then we see that $(V \to Z, 0)$ and $(\varphi , s)$ have the same value in the colimit, i.e., we see that the element $s$ is zero as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The lisse-étale and the flat-fppf sites can be used to characterize parasitic modules as follows. 
+</p>
+<p>
+<article class="env-lemma" id="07AR">
+  <p><a class="environment-identifier" href="/tag/07AR">Lemma <span data-tag="07AR">103.14.6</span>.</a> Let $\mathcal{X}$ be an algebraic stack. </p>
+  <p><ol>
+  <li><p>
+Let $\mathcal{F}$ be an $\mathcal{O}_\mathcal {X}$-module with the flat base change property on $\mathcal{X}_{\acute{e}tale}$. The following are equivalent 
+</p>
+<ol>
+  <li><p>
+$\mathcal{F}$ is parasitic, and 
+</p>
+</li><li><p>
+$g^*\mathcal{F} = 0$ where $g : \mathop{\mathit{Sh}}\nolimits (\mathcal{X}_{lisse,{\acute{e}tale}}) \to \mathop{\mathit{Sh}}\nolimits (\mathcal{X}_{\acute{e}tale})$ is as in Lemma <a href="/tag/0788" data-tag="0788">103.14.2</a>. 
+</p>
+</li>
+</ol>
+</li><li><p>
+Let $\mathcal{F}$ be an $\mathcal{O}_\mathcal {X}$-module on $\mathcal{X}_{fppf}$. The following are equivalent 
+</p>
+<ol>
+  <li><p>
+$\mathcal{F}$ is parasitic, and 
+</p>
+</li><li><p>
+$g^*\mathcal{F} = 0$ where $g : \mathop{\mathit{Sh}}\nolimits (\mathcal{X}_{flat,fppf}) \to \mathop{\mathit{Sh}}\nolimits (\mathcal{X}_{fppf})$ is as in Lemma <a href="/tag/0788" data-tag="0788">103.14.2</a>. 
+</p>
+</li>
+</ol>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Part (2) is immediate from the definitions (this is one of the advantages of the flat-fppf site over the lisse-étale site). The implication (1)(a) $\Rightarrow $ (1)(b) is immediate as well. To see (1)(b) $\Rightarrow $ (1)(a) let $U$ be a scheme and let $x : U \to \mathcal{X}$ be a surjective smooth morphism. Then $x$ is an object of the lisse-étale site of $\mathcal{X}$. Hence we see that (1)(b) implies that $\mathcal{F}|_{U_{\acute{e}tale}} = 0$. Let $V \to \mathcal{X}$ be an flat morphism where $V$ is a scheme. Set $W = U \times _\mathcal {X} V$ and consider the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ W \ar[d]_ p \ar[r]_ q &  V \ar[d] \\  U \ar[r] &  \mathcal{X} }  \]
+</div>
+    <p>
+       Note that the projection $p : W \to U$ is flat and the projection $q : W \to V$ is smooth and surjective. This implies that $q_{small}^*$ is a faithful functor on quasi-coherent modules. By assumption $\mathcal{F}$ has the flat base change property so that we obtain $p_{small}^*\mathcal{F}|_{U_{\acute{e}tale}} \cong q_{small}^*\mathcal{F}|_{V_{\acute{e}tale}}$. Thus if $\mathcal{F}$ is in the kernel of $g^*$, then $\mathcal{F}|_{V_{\acute{e}tale}} = 0$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

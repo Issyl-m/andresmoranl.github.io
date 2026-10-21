@@ -1,0 +1,118 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="derham-section-relative-spectral-sequence" class="tex-section"><span data-tag="0FMK">50.12</span> The spectral sequence for a smooth morphism</h2>
+
+<p>
+Consider a commutative diagram of schemes 
+</p>
+<div class="equation">
+  \[  \xymatrix{ X \ar[rr]_ f \ar[rd]_ p &  &  Y \ar[ld]^ q \\  &  S }  \]
+</div>
+<p>
+ where $f$ is a smooth morphism. Then we obtain a locally split short exact sequence 
+</p>
+<div class="equation">
+  \[  0 \to f^*\Omega _{Y/S} \to \Omega _{X/S} \to \Omega _{X/Y} \to 0  \]
+</div>
+<p>
+ by Morphisms, Lemma <a href="/tag/02K4" data-tag="02K4">29.35.16</a>. Let us think of this as a descending filtration $F$ on $\Omega _{X/S}$ with $F^0\Omega _{X/S} = \Omega _{X/S}$, $F^1\Omega _{X/S} = f^*\Omega _{Y/S}$, and $F^2\Omega _{X/S} = 0$. Applying the functor $\wedge ^ p$ we obtain for every $p$ an induced filtration 
+</p>
+<div class="equation">
+  \[  \Omega ^ p_{X/S} = F^0\Omega ^ p_{X/S} \supset F^1\Omega ^ p_{X/S} \supset F^2\Omega ^ p_{X/S} \supset \ldots \supset F^{p + 1}\Omega ^ p_{X/S} = 0  \]
+</div>
+<p>
+ whose successive quotients are 
+</p>
+<div class="equation">
+  \[  \text{gr}^ k\Omega ^ p_{X/S} = F^ k\Omega ^ p_{X/S}/F^{k + 1}\Omega ^ p_{X/S} = f^*\Omega ^ k_{Y/S} \otimes _{\mathcal{O}_ X} \Omega ^{p - k}_{X/Y} = f^{-1}\Omega ^ k_{Y/S} \otimes _{f^{-1}\mathcal{O}_ Y} \Omega ^{p - k}_{X/Y}  \]
+</div>
+<p>
+ for $k = 0, \ldots , p$. In fact, the reader can check using the Leibniz rule that $F^ k\Omega ^\bullet _{X/S}$ is a subcomplex of $\Omega ^\bullet _{X/S}$. In this way $\Omega ^\bullet _{X/S}$ has the structure of a filtered complex. We can also see this by observing that 
+</p>
+<div class="equation">
+  \[  F^ k\Omega ^\bullet _{X/S} = \mathop{\mathrm{Im}}\left(\wedge : \text{Tot}( f^{-1}\sigma _{\geq k}\Omega ^\bullet _{Y/S} \otimes _{p^{-1}\mathcal{O}_ S} \Omega ^\bullet _{X/S}) \longrightarrow \Omega ^\bullet _{X/S}\right)  \]
+</div>
+<p>
+ is the image of a map of complexes on $X$. The filtered complex 
+</p>
+<div class="equation">
+  \[  \Omega ^\bullet _{X/S} = F^0\Omega ^\bullet _{X/S} \supset F^1\Omega ^\bullet _{X/S} \supset F^2\Omega ^\bullet _{X/S} \supset \ldots  \]
+</div>
+<p>
+ has the following associated graded parts 
+</p>
+<div class="equation">
+  \[  \text{gr}^ k\Omega ^\bullet _{X/S} = f^{-1}\Omega ^ k_{Y/S}[-k] \otimes _{f^{-1}\mathcal{O}_ Y} \Omega ^\bullet _{X/Y}  \]
+</div>
+<p>
+ by what was said above. 
+</p>
+<p>
+<article class="env-lemma" id="0FMM">
+  <p><a class="environment-identifier" href="/tag/0FMM">Lemma <span data-tag="0FMM">50.12.1</span>.</a> Let $f : X \to Y$ be a quasi-compact, quasi-separated, and smooth morphism of schemes over a base scheme $S$. There is a bounded spectral sequence with first page </p>
+  <div class="equation">
+  \[  E_1^{p, q} = H^ q(\Omega ^ p_{Y/S} \otimes _{\mathcal{O}_ Y}^\mathbf {L} Rf_*\Omega ^\bullet _{X/Y})  \]
+</div>
+  <p> converging to $R^{p + q}f_*\Omega ^\bullet _{X/S}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider $\Omega ^\bullet _{X/S}$ as a filtered complex with the filtration introduced above. The spectral sequence is the spectral sequence of Cohomology, Lemma <a href="/tag/0FLL" data-tag="0FLL">20.29.5</a>. By Derived Categories of Schemes, Lemma <a href="/tag/0FML" data-tag="0FML">36.23.2</a> we have 
+    <p>
+      <div class="equation">
+  \[  Rf_*\text{gr}^ k\Omega ^\bullet _{X/S} = \Omega ^ k_{Y/S}[-k] \otimes _{\mathcal{O}_ Y}^\mathbf {L} Rf_*\Omega ^\bullet _{X/Y}  \]
+</div>
+    <p>
+       and thus we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0FMN">
+  <p><a class="environment-identifier" href="/tag/0FMN">Remark <span data-tag="0FMN">50.12.2</span>.</a> In Lemma <a href="/tag/0FMM" data-tag="0FMM">50.12.1</a> consider the cohomology sheaves </p>
+  <div class="equation">
+  \[  \mathcal{H}^ q_{dR}(X/Y) = H^ q(Rf_*\Omega ^\bullet _{X/Y})  \]
+</div>
+  <p> If $f$ is proper in addition to being smooth and $S$ is a scheme over $\mathbf{Q}$ then $\mathcal{H}^ q_{dR}(X/Y)$ is finite locally free (insert future reference here). If we only assume $\mathcal{H}^ q_{dR}(X/Y)$ are flat $\mathcal{O}_ Y$-modules, then we obtain (tiny argument omitted) </p>
+  <div class="equation">
+  \[  E_1^{p, q} = \Omega ^ p_{Y/S} \otimes _{\mathcal{O}_ Y} \mathcal{H}^ q_{dR}(X/Y)  \]
+</div>
+  <p> and the differentials in the spectral sequence are maps </p>
+  <div class="equation">
+  \[  d_1^{p, q} : \Omega ^ p_{Y/S} \otimes _{\mathcal{O}_ Y} \mathcal{H}^ q_{dR}(X/Y) \longrightarrow \Omega ^{p + 1}_{Y/S} \otimes _{\mathcal{O}_ Y} \mathcal{H}^ q_{dR}(X/Y)  \]
+</div>
+  <p> In particular, for $p = 0$ we obtain a map $d_1^{0, q} : \mathcal{H}^ q_{dR}(X/Y) \to \Omega ^1_{Y/S} \otimes _{\mathcal{O}_ Y} \mathcal{H}^ q_{dR}(X/Y)$ which turns out to be an integrable connection $\nabla $ (insert future reference here) and the complex </p>
+  <div class="equation">
+  \[  \mathcal{H}^ q_{dR}(X/Y) \to \Omega ^1_{Y/S} \otimes _{\mathcal{O}_ Y} \mathcal{H}^ q_{dR}(X/Y) \to \Omega ^2_{Y/S} \otimes _{\mathcal{O}_ Y} \mathcal{H}^ q_{dR}(X/Y) \to \ldots  \]
+</div>
+  <p> with differentials given by $d_1^{\bullet , q}$ is the de Rham complex of $\nabla $. The connection $\nabla $ is known as the <em>Gauss-Manin connection</em>. </p>
+</article> 
+</p>

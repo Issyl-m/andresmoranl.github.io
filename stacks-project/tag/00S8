@@ -1,0 +1,378 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="algebra-section-lci" class="tex-section"><span data-tag="00S8">10.135</span> Local complete intersections</h2>
+
+<p>
+The property of being a local complete intersection is an intrinsic property of a Noetherian local ring. This will be discussed in Divided Power Algebra, Section <a href="/tag/09PY" data-tag="09PY">23.8</a>. However, for the moment we just define this property for finite type algebras over a field. 
+</p>
+<p>
+<article class="env-definition" id="00S9">
+  <p><a class="environment-identifier" href="/tag/00S9">Definition <span data-tag="00S9">10.135.1</span>.</a> Let $k$ be a field. Let $S$ be a finite type $k$-algebra. </p>
+  <p><ol>
+  <li><p>
+We say that $S$ is a <em>global complete intersection over $k$</em> if there exists a presentation $S = k[x_1, \ldots , x_ n]/(f_1, \ldots , f_ c)$ such that $\dim (S) = n - c$. 
+</p>
+</li><li><p>
+We say that $S$ is a <em>local complete intersection over $k$</em> if there exists a covering $\mathop{\mathrm{Spec}}(S) = \bigcup D(g_ i)$ such that each of the rings $S_{g_ i}$ is a global complete intersection over $k$. 
+</p>
+</li>
+</ol></p>
+  <p> We will also use the convention that the zero ring is a global complete intersection over $k$. </p>
+</article> 
+</p>
+<p>
+Suppose $S$ is a global complete intersection $S = k[x_1, \ldots , x_ n]/(f_1, \ldots , f_ c)$ as in Definition <a href="/tag/00S9" data-tag="00S9">10.135.1</a>. For a maximal ideal $\mathfrak m \subset k[x_1, \ldots , x_ n]$ we have $\dim (k[x_1, \ldots , x_ n]_\mathfrak m) = n$ (Lemma <a href="/tag/00OP" data-tag="00OP">10.114.1</a>). If $(f_1, \ldots , f_ c) \subset \mathfrak m$, then we conclude that $\dim (S_\mathfrak m) \geq n - c$ by Lemma <a href="/tag/00KW" data-tag="00KW">10.60.13</a>. Since $\dim (S) = n - c$ by Definition <a href="/tag/00S9" data-tag="00S9">10.135.1</a> we conclude that $\dim (S_\mathfrak m) = n - c$ for all maximal ideals of $S$ and that $\mathop{\mathrm{Spec}}(S)$ is equidimensional (Topology, Definition <a href="/tag/0058" data-tag="0058">5.10.5</a>) of dimension $n - c$, see Lemma <a href="/tag/00OT" data-tag="00OT">10.114.5</a>. We will often use this without further mention. 
+</p>
+<p>
+<article class="env-lemma" id="00SA">
+  <p><a class="environment-identifier" href="/tag/00SA">Lemma <span data-tag="00SA">10.135.2</span>.</a> Let $k$ be a field. Let $S$ be a finite type $k$-algebra. Let $g \in S$. </p>
+  <p><ol>
+  <li><p>
+If $S$ is a global complete intersection so is $S_ g$. 
+</p>
+</li><li><p>
+If $S$ is a local complete intersection so is $S_ g$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The second statement follows immediately from the first. Proof of the first statement. If $S_ g$ is the zero ring, then it is true. Assume $S_ g$ is nonzero. Write $S = k[x_1, \ldots , x_ n]/(f_1, \ldots , f_ c)$ with $n - c = \dim (S)$ as in Definition <a href="/tag/00S9" data-tag="00S9">10.135.1</a>. By the remarks following the definition $\dim (S_ g) = n - c$. Let $g' \in k[x_1, \ldots , x_ n]$ be an element whose residue class corresponds to $g$. Then $S_ g = k[x_1, \ldots , x_ n, x_{n + 1}]/(f_1, \ldots , f_ c, x_{n + 1}g' - 1)$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00SB">
+  <p><a class="environment-identifier" href="/tag/00SB">Lemma <span data-tag="00SB">10.135.3</span>.</a> Let $k$ be a field. Let $S$ be a finite type $k$-algebra. If $S$ is a local complete intersection, then $S$ is a Cohen-Macaulay ring. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a maximal prime $\mathfrak m$ of $S$. We have to show that $S_\mathfrak m$ is Cohen-Macaulay. By assumption we may assume $S = k[x_1, \ldots , x_ n]/(f_1, \ldots , f_ c)$ with $\dim (S) = n - c$. Let $\mathfrak m' \subset k[x_1, \ldots , x_ n]$ be the maximal ideal corresponding to $\mathfrak m$. According to Proposition <a href="/tag/00OQ" data-tag="00OQ">10.114.2</a> the local ring $k[x_1, \ldots , x_ n]_{\mathfrak m'}$ is regular local of dimension $n$. In particular it is Cohen-Macaulay by Lemma <a href="/tag/00NQ" data-tag="00NQ">10.106.3</a>. By Lemma <a href="/tag/00KW" data-tag="00KW">10.60.13</a> applied $c$ times the local ring $S_{\mathfrak m} = k[x_1, \ldots , x_ n]_{\mathfrak m'}/(f_1, \ldots , f_ c)$ has dimension $\geq n - c$. By assumption $\dim (S_{\mathfrak m}) \leq n - c$. Thus we get equality. This implies that $f_1, \ldots , f_ c$ is a regular sequence in $k[x_1, \ldots , x_ n]_{\mathfrak m'}$ and that $S_{\mathfrak m}$ is Cohen-Macaulay, see Proposition <a href="/tag/00N6" data-tag="00N6">10.103.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following is the technical key to the rest of the material in this section. An important feature of this lemma is that we may choose any presentation for the ring $S$, but that condition (1) does not depend on this choice. 
+</p>
+<p>
+<article class="env-lemma" id="00SC">
+  <p><a class="environment-identifier" href="/tag/00SC">Lemma <span data-tag="00SC">10.135.4</span>.</a> Let $k$ be a field. Let $S$ be a finite type $k$-algebra. Let $\mathfrak q$ be a prime of $S$. Choose any presentation $S = k[x_1, \ldots , x_ n]/I$. Let $\mathfrak q'$ be the prime of $k[x_1, \ldots , x_ n]$ corresponding to $\mathfrak q$. Set $c = \text{height}(\mathfrak q') - \text{height}(\mathfrak q)$, in other words $\dim _{\mathfrak q}(S) = n - c$ (see Lemma <a href="/tag/00P2" data-tag="00P2">10.116.4</a>). The following are equivalent </p>
+  <p><ol>
+  <li><p>
+There exists a $g \in S$, $g \not\in \mathfrak q$ such that $S_ g$ is a global complete intersection over $k$. 
+</p>
+</li><li><p>
+The ideal $I_{\mathfrak q'} \subset k[x_1, \ldots , x_ n]_{\mathfrak q'}$ can be generated by $c$ elements. 
+</p>
+</li><li><p>
+The conormal module $(I/I^2)_{\mathfrak q}$ can be generated by $c$ elements over $S_{\mathfrak q}$. 
+</p>
+</li><li><p>
+The conormal module $(I/I^2)_{\mathfrak q}$ is a free $S_{\mathfrak q}$-module of rank $c$. 
+</p>
+</li><li><p>
+The ideal $I_{\mathfrak q'}$ can be generated by a regular sequence in the regular local ring $k[x_1, \ldots , x_ n]_{\mathfrak q'}$. 
+</p>
+</li>
+</ol></p>
+  <p> In this case any $c$ elements of $I_{\mathfrak q'}$ which generate $I_{\mathfrak q'}/\mathfrak q'I_{\mathfrak q'}$ form a regular sequence in the local ring $k[x_1, \ldots , x_ n]_{\mathfrak q'}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Set $R = k[x_1, \ldots , x_ n]_{\mathfrak q'}$. This is a Cohen-Macaulay local ring of dimension $\text{height}(\mathfrak q')$, see for example Lemma <a href="/tag/00SB" data-tag="00SB">10.135.3</a>. Moreover, $\overline{R} = R/IR = R/I_{\mathfrak q'} = S_{\mathfrak q}$ is a quotient of dimension $\text{height}(\mathfrak q)$. Let $f_1, \ldots , f_ c \in I_{\mathfrak q'}$ be elements which generate $(I/I^2)_{\mathfrak q}$. By Lemma <a href="/tag/00DV" data-tag="00DV">10.20.1</a> we see that $f_1, \ldots , f_ c$ generate $I_{\mathfrak q'}$. Since the dimensions work out, we conclude by Proposition <a href="/tag/00N6" data-tag="00N6">10.103.4</a> that $f_1, \ldots , f_ c$ is a regular sequence in $R$. By Lemma <a href="/tag/00LN" data-tag="00LN">10.69.2</a> we see that $(I/I^2)_{\mathfrak q}$ is free. These arguments show that (2), (3), (4) are equivalent and that they imply the last statement of the lemma, and therefore they imply (5). 
+    <p>
+      If (5) holds, say $I_{\mathfrak q'}$ is generated by a regular sequence of length $e$, then $\text{height}(\mathfrak q) = \dim (S_{\mathfrak q}) = \dim (k[x_1, \ldots , x_ n]_{\mathfrak q'}) - e = \text{height}(\mathfrak q') - e$ by dimension theory, see Section <a href="/tag/00KD" data-tag="00KD">10.60</a>. We conclude that $e = c$. Thus (5) implies (2). 
+    <p>
+      We continue with the notation introduced in the first paragraph. For each $f_ i$ we may find $d_ i \in k[x_1, \ldots , x_ n]$, $d_ i \not\in \mathfrak q'$ such that $f_ i' = d_ i f_ i \in k[x_1, \ldots , x_ n]$. Then it is still true that $I_{\mathfrak q'} = (f_1', \ldots , f_ c')R$. Hence there exists a $g' \in k[x_1, \ldots , x_ n]$, $g' \not\in \mathfrak q'$ such that $I_{g'} = (f_1', \ldots , f_ c')$. Moreover, pick $g'' \in k[x_1, \ldots , x_ n]$, $g'' \not\in \mathfrak q'$ such that $\dim (S_{g''}) = \dim _{\mathfrak q} \mathop{\mathrm{Spec}}(S)$. By Lemma <a href="/tag/00P2" data-tag="00P2">10.116.4</a> this dimension is equal to $n - c$. Finally, set $g$ equal to the image of $g'g''$ in $S$. Then we see that 
+    <p>
+      <div class="equation">
+  \[  S_ g \cong k[x_1, \ldots , x_ n, x_{n + 1}] / (f_1', \ldots , f_ c', x_{n + 1}g'g'' - 1)  \]
+</div>
+    <p>
+       and by our choice of $g''$ this ring has dimension $n - c$. Therefore it is a global complete intersection. Thus each of (2), (3), and (4) implies (1). 
+    <p>
+      Assume (1). Let $S_ g \cong k[y_1, \ldots , y_ m]/(f_1, \ldots , f_ t)$ be a presentation of $S_ g$ as a global complete intersection. Write $J = (f_1, \ldots , f_ t)$. Let $\mathfrak q'' \subset k[y_1, \ldots , y_ m]$ be the prime corresponding to $\mathfrak qS_ g$. Note that $t = m - \dim (S_ g) = \text{height}(\mathfrak q'') - \text{height}(\mathfrak q)$, see Lemma <a href="/tag/00P2" data-tag="00P2">10.116.4</a> for the last equality. As seen in the proof of Lemma <a href="/tag/00SB" data-tag="00SB">10.135.3</a> (and also above) the elements $f_1, \ldots , f_ t$ form a regular sequence in the local ring $k[y_1, \ldots , y_ m]_{\mathfrak q''}$. By Lemma <a href="/tag/00LN" data-tag="00LN">10.69.2</a> we see that $(J/J^2)_{\mathfrak q}$ is free of rank $t$. By Lemma <a href="/tag/00S6" data-tag="00S6">10.134.16</a> we have 
+    <p>
+      <div class="equation">
+  \[  J/J^2 \oplus S_ g^ n \cong (I/I^2)_ g \oplus S_ g^ m  \]
+</div>
+    <p>
+       Thus $(I/I^2)_{\mathfrak q}$ is free of rank $t + n - m = m - \dim (S_ g) + n - m = n - \dim (S_ g) = \text{height}(\mathfrak q') - \text{height}(\mathfrak q) = c$. Thus we obtain (4). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The result of Lemma <a href="/tag/00SC" data-tag="00SC">10.135.4</a> suggests the following definition. 
+</p>
+<p>
+<article class="env-definition" id="00SD">
+  <p><a class="environment-identifier" href="/tag/00SD">Definition <span data-tag="00SD">10.135.5</span>.</a> Let $k$ be a field. Let $S$ be a local $k$-algebra essentially of finite type over $k$. We say $S$ is a <em>complete intersection (over $k$)</em> if there exists a local $k$-algebra $R$ and elements $f_1, \ldots , f_ c \in \mathfrak m_ R$ such that </p>
+  <p><ol>
+  <li><p>
+$R$ is essentially of finite type over $k$, 
+</p>
+</li><li><p>
+$R$ is a regular local ring, 
+</p>
+</li><li><p>
+$f_1, \ldots , f_ c$ form a regular sequence in $R$, and 
+</p>
+</li><li><p>
+$S \cong R/(f_1, \ldots , f_ c)$ as $k$-algebras. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+By the Cohen structure theorem (see Theorem <a href="/tag/032A" data-tag="032A">10.160.8</a>) any complete Noetherian local ring may be written as the quotient of some regular complete local ring. Hence we may use the definition above to define the notion of a complete intersection ring for any complete Noetherian local ring. We will discuss this in Divided Power Algebra, Section <a href="/tag/09PY" data-tag="09PY">23.8</a>. In the meantime the following lemma shows that such a definition makes sense. 
+</p>
+<p>
+<article class="env-lemma" id="00SE">
+  <p><a class="environment-identifier" href="/tag/00SE">Lemma <span data-tag="00SE">10.135.6</span>.</a> Let $A \to B \to C$ be surjective local ring homomorphisms. Assume $A$ and $B$ are regular local rings. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$\mathop{\mathrm{Ker}}(A \to C)$ is generated by a regular sequence, 
+</p>
+</li><li><p>
+$\mathop{\mathrm{Ker}}(A \to C)$ is generated by $\dim (A) - \dim (C)$ elements, 
+</p>
+</li><li><p>
+$\mathop{\mathrm{Ker}}(B \to C)$ is generated by a regular sequence, and 
+</p>
+</li><li><p>
+$\mathop{\mathrm{Ker}}(B \to C)$ is generated by $\dim (B) - \dim (C)$ elements. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      A regular local ring is Cohen-Macaulay, see Lemma <a href="/tag/00NQ" data-tag="00NQ">10.106.3</a>. Hence the equivalences (1) $\Leftrightarrow $ (2) and (3) $\Leftrightarrow $ (4), see Proposition <a href="/tag/00N6" data-tag="00N6">10.103.4</a>. By Lemma <a href="/tag/00NR" data-tag="00NR">10.106.4</a> the ideal $\mathop{\mathrm{Ker}}(A \to B)$ can be generated by $\dim (A) - \dim (B)$ elements. Hence we see that (4) implies (2). 
+    <p>
+      It remains to show that (1) implies (4). We do this by induction on $\dim (A) - \dim (B)$. The case $\dim (A) - \dim (B) = 0$ is trivial. Assume $\dim (A) > \dim (B)$. Write $I = \mathop{\mathrm{Ker}}(A \to C)$ and $J = \mathop{\mathrm{Ker}}(A \to B)$. Note that $J \subset I$. Our assumption is that the minimal number of generators of $I$ is $\dim (A) - \dim (C)$. Let $\mathfrak m \subset A$ be the maximal ideal. Consider the maps 
+    <p>
+      <div class="equation">
+  \[  J/ \mathfrak m J \to I / \mathfrak m I \to \mathfrak m /\mathfrak m^2  \]
+</div>
+    <p>
+       By Lemma <a href="/tag/00NR" data-tag="00NR">10.106.4</a> and its proof the composition is injective. Take any element $x \in J$ which is not zero in $J /\mathfrak mJ$. By the above and Nakayama's lemma $x$ is an element of a minimal set of generators of $I$. Hence we may replace $A$ by $A/xA$ and $I$ by $I/xA$ which decreases both $\dim (A)$ and the minimal number of generators of $I$ by $1$. Thus we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00SF">
+  <p><a class="environment-identifier" href="/tag/00SF">Lemma <span data-tag="00SF">10.135.7</span>.</a> Let $k$ be a field. Let $S$ be a local $k$-algebra essentially of finite type over $k$. The following are equivalent: </p>
+  <p><ol>
+  <li><p>
+$S$ is a complete intersection over $k$, 
+</p>
+</li><li><p>
+for any surjection $R \to S$ with $R$ a regular local ring essentially of finite presentation over $k$ the ideal $\mathop{\mathrm{Ker}}(R \to S)$ can be generated by a regular sequence, 
+</p>
+</li><li><p>
+for some surjection $R \to S$ with $R$ a regular local ring essentially of finite presentation over $k$ the ideal $\mathop{\mathrm{Ker}}(R \to S)$ can be generated by $\dim (R) - \dim (S)$ elements, 
+</p>
+</li><li><p>
+there exists a global complete intersection $A$ over $k$ and a prime $\mathfrak a$ of $A$ such that $S \cong A_{\mathfrak a}$, and 
+</p>
+</li><li><p>
+there exists a local complete intersection $A$ over $k$ and a prime $\mathfrak a$ of $A$ such that $S \cong A_{\mathfrak a}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It is clear that (2) implies (1) and (1) implies (3). It is also clear that (4) implies (5). Let us show that (3) implies (4). Thus we assume there exists a surjection $R \to S$ with $R$ a regular local ring essentially of finite presentation over $k$ such that the ideal $\mathop{\mathrm{Ker}}(R \to S)$ can be generated by $\dim (R) - \dim (S)$ elements. We may write $R = (k[x_1, \ldots , x_ n]/J)_{\mathfrak q}$ for some $J \subset k[x_1, \ldots , x_ n]$ and some prime $\mathfrak q \subset k[x_1, \ldots , x_ n]$ with $J \subset \mathfrak q$. Let $I \subset k[x_1, \ldots , x_ n]$ be the kernel of the map $k[x_1, \ldots , x_ n] \to S$ so that $S \cong (k[x_1, \ldots , x_ n]/I)_{\mathfrak q}$. By assumption $(I/J)_{\mathfrak q}$ is generated by $\dim (R) - \dim (S)$ elements. We conclude that $I_{\mathfrak q}$ can be generated by $\dim (k[x_1, \ldots , x_ n]_{\mathfrak q}) - \dim (S)$ elements by Lemma <a href="/tag/00SE" data-tag="00SE">10.135.6</a>. From Lemma <a href="/tag/00SC" data-tag="00SC">10.135.4</a> we see that for some $g \in k[x_1, \ldots , x_ n]$, $g \not\in \mathfrak q$ the algebra $(k[x_1, \ldots , x_ n]/I)_ g$ is a global complete intersection and $S$ is isomorphic to a local ring of it. 
+    <p>
+      To finish the proof of the lemma we have to show that (5) implies (2). Assume (5) and let $\pi : R \to S$ be a surjection with $R$ a regular local $k$-algebra essentially of finite type over $k$. By assumption we have $S = A_{\mathfrak a}$ for some local complete intersection $A$ over $k$. Choose a presentation $R = (k[y_1, \ldots , y_ m]/J)_{\mathfrak q}$ with $J \subset \mathfrak q \subset k[y_1, \ldots , y_ m]$. We may and do assume that $J$ is the kernel of the map $k[y_1, \ldots , y_ m] \to R$. Let $I \subset k[y_1, \ldots , y_ m]$ be the kernel of the map $k[y_1, \ldots , y_ m] \to S = A_{\mathfrak a}$. Then $J \subset I$ and $(I/J)_{\mathfrak q}$ is the kernel of the surjection $\pi : R \to S$. So $S = (k[y_1, \ldots , y_ m]/I)_{\mathfrak q}$. 
+    <p>
+      By Lemma <a href="/tag/00QS" data-tag="00QS">10.126.7</a> we see that there exist $g \in A$, $g \not\in \mathfrak a$ and $g' \in k[y_1, \ldots , y_ m]$, $g' \not\in \mathfrak q$ such that $A_ g \cong (k[y_1, \ldots , y_ m]/I)_{g'}$. After replacing $A$ by $A_ g$ and $k[y_1, \ldots , y_ m]$ by $k[y_1, \ldots , y_{m + 1}]$ we may assume that $A \cong k[y_1, \ldots , y_ m]/I$. Consider the surjective maps of local rings 
+    <p>
+      <div class="equation">
+  \[  k[y_1, \ldots , y_ m]_{\mathfrak q} \to R \to S.  \]
+</div>
+    <p>
+       We have to show that the kernel of $R \to S$ is generated by a regular sequence. By Lemma <a href="/tag/00SC" data-tag="00SC">10.135.4</a> we know that $k[y_1, \ldots , y_ m]_{\mathfrak q} \to A_{\mathfrak a} = S$ has this property (as $A$ is a local complete intersection over $k$). We win by Lemma <a href="/tag/00SE" data-tag="00SE">10.135.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00SG">
+  <p><a class="environment-identifier" href="/tag/00SG">Lemma <span data-tag="00SG">10.135.8</span>.</a> Let $k$ be a field. Let $S$ be a finite type $k$-algebra. Let $\mathfrak q$ be a prime of $S$. The following are equivalent: </p>
+  <p><ol>
+  <li><p>
+The local ring $S_{\mathfrak q}$ is a complete intersection ring (Definition <a href="/tag/00SD" data-tag="00SD">10.135.5</a>). 
+</p>
+</li><li><p>
+There exists a $g \in S$, $g \not\in \mathfrak q$ such that $S_ g$ is a local complete intersection over $k$. 
+</p>
+</li><li><p>
+There exists a $g \in S$, $g \not\in \mathfrak q$ such that $S_ g$ is a global complete intersection over $k$. 
+</p>
+</li><li><p>
+For any presentation $S = k[x_1, \ldots , x_ n]/I$ with $\mathfrak q' \subset k[x_1, \ldots , x_ n]$ corresponding to $\mathfrak q$ any of the equivalent conditions (1) – (5) of Lemma <a href="/tag/00SC" data-tag="00SC">10.135.4</a> hold. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a combination of Lemmas <a href="/tag/00SC" data-tag="00SC">10.135.4</a> and <a href="/tag/00SF" data-tag="00SF">10.135.7</a> and the definitions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00SH">
+  <p><a class="environment-identifier" href="/tag/00SH">Lemma <span data-tag="00SH">10.135.9</span>.</a> Let $k$ be a field. Let $S$ be a finite type $k$-algebra. The following are equivalent: </p>
+  <p><ol>
+  <li><p>
+The ring $S$ is a local complete intersection over $k$. 
+</p>
+</li><li><p>
+All local rings of $S$ are complete intersection rings over $k$. 
+</p>
+</li><li><p>
+All localizations of $S$ at maximal ideals are complete intersection rings over $k$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from Lemma <a href="/tag/00SG" data-tag="00SG">10.135.8</a>, the fact that $\mathop{\mathrm{Spec}}(S)$ is quasi-compact and the definitions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma says that being a complete intersection is preserved under change of base field (in a strong sense). 
+</p>
+<p>
+<article class="env-lemma" id="00SI">
+  <p><a class="environment-identifier" href="/tag/00SI">Lemma <span data-tag="00SI">10.135.10</span>.</a> Let $K/k$ be a field extension. Let $S$ be a finite type algebra over $k$. Let $\mathfrak q_ K$ be a prime of $S_ K = K \otimes _ k S$ and let $\mathfrak q$ be the corresponding prime of $S$. Then $S_{\mathfrak q}$ is a complete intersection over $k$ (Definition <a href="/tag/00SD" data-tag="00SD">10.135.5</a>) if and only if $(S_ K)_{\mathfrak q_ K}$ is a complete intersection over $K$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a presentation $S = k[x_1, \ldots , x_ n]/I$. This gives a presentation $S_ K = K[x_1, \ldots , x_ n]/I_ K$ where $I_ K = K \otimes _ k I$. Let $\mathfrak q_ K' \subset K[x_1, \ldots , x_ n]$, resp. $\mathfrak q' \subset k[x_1, \ldots , x_ n]$ be the corresponding prime. We will show that the equivalent conditions of Lemma <a href="/tag/00SC" data-tag="00SC">10.135.4</a> hold for the pair $(S = k[x_1, \ldots , x_ n]/I, \mathfrak q)$ if and only if they hold for the pair $(S_ K = K[x_1, \ldots , x_ n]/I_ K, \mathfrak q_ K)$. The lemma will follow from this (see Lemma <a href="/tag/00SG" data-tag="00SG">10.135.8</a>). 
+    <p>
+      By Lemma <a href="/tag/00P4" data-tag="00P4">10.116.6</a> we have $\dim _{\mathfrak q} S = \dim _{\mathfrak q_ K} S_ K$. Hence the integer $c$ occurring in Lemma <a href="/tag/00SC" data-tag="00SC">10.135.4</a> is the same for the pair $(S = k[x_1, \ldots , x_ n]/I, \mathfrak q)$ as for the pair $(S_ K = K[x_1, \ldots , x_ n]/I_ K, \mathfrak q_ K)$. On the other hand we have 
+    <p>
+      <div class="equation">
+  \begin{eqnarray*}  I \otimes _{k[x_1, \ldots , x_ n]} \kappa (\mathfrak q') \otimes _{\kappa (\mathfrak q')} \kappa (\mathfrak q_ K') &  = &  I \otimes _{k[x_1, \ldots , x_ n]} \kappa (\mathfrak q_ K') \\ &  = &  I \otimes _{k[x_1, \ldots , x_ n]} K[x_1, \ldots , x_ n] \otimes _{K[x_1, \ldots , x_ n]} \kappa (\mathfrak q_ K') \\ &  = &  (K \otimes _ k I) \otimes _{K[x_1, \ldots , x_ n]} \kappa (\mathfrak q_ K') \\ &  = &  I_ K \otimes _{K[x_1, \ldots , x_ n]} \kappa (\mathfrak q'_ K). \end{eqnarray*}
+</div>
+    <p>
+       Therefore, $\dim _{\kappa (\mathfrak q')} I \otimes _{k[x_1, \ldots , x_ n]} \kappa (\mathfrak q') = \dim _{\kappa (\mathfrak q'_ K)} I_ K \otimes _{K[x_1, \ldots , x_ n]} \kappa (\mathfrak q_ K')$. Thus it follows from Nakayama's Lemma <a href="/tag/00DV" data-tag="00DV">10.20.1</a> that the minimal number of generators of $I_{\mathfrak q'}$ is the same as the minimal number of generators of $(I_ K)_{\mathfrak q'_ K}$. Thus the lemma follows from characterization (2) of Lemma <a href="/tag/00SC" data-tag="00SC">10.135.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00SJ">
+  <p><a class="environment-identifier" href="/tag/00SJ">Lemma <span data-tag="00SJ">10.135.11</span>.</a> Let $k \to K$ be a field extension. Let $S$ be a finite type $k$-algebra. Then $S$ is a local complete intersection over $k$ if and only if $S \otimes _ k K$ is a local complete intersection over $K$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from a combination of Lemmas <a href="/tag/00SH" data-tag="00SH">10.135.9</a> and <a href="/tag/00SI" data-tag="00SI">10.135.10</a>. But we also give a different proof here (based on the same principles). 
+    <p>
+      Set $S' = S \otimes _ k K$. Let $\alpha : k[x_1, \ldots , x_ n] \to S$ be a presentation with kernel $I$. Let $\alpha ' : K[x_1, \ldots , x_ n] \to S'$ be the induced presentation with kernel $I'$. 
+    <p>
+      Suppose that $S$ is a local complete intersection. Pick a prime $\mathfrak q \subset S'$. Denote $\mathfrak q'$ the corresponding prime of $K[x_1, \ldots , x_ n]$, $\mathfrak p$ the corresponding prime of $S$, and $\mathfrak p'$ the corresponding prime of $k[x_1, \ldots , x_ n]$. Consider the following diagram of Noetherian local rings 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ S'_{\mathfrak q} &  K[x_1, \ldots , x_ n]_{\mathfrak q'} \ar[l] \\  S_{\mathfrak p}\ar[u] &  k[x_1, \ldots , x_ n]_{\mathfrak p'} \ar[u] \ar[l] }  \]
+</div>
+    <p>
+       By Lemma <a href="/tag/00SC" data-tag="00SC">10.135.4</a> we know that $S_{\mathfrak p}$ is cut out by some regular sequence $f_1, \ldots , f_ c$ in $k[x_1, \ldots , x_ n]_{\mathfrak p'}$. Since the right vertical arrow is flat we see that the images of $f_1, \ldots , f_ c$ form a regular sequence in $K[x_1, \ldots , x_ n]_{\mathfrak q'}$. Because tensoring with $K$ over $k$ is an exact functor we have $S'_{\mathfrak q} = K[x_1, \ldots , x_ n]_{\mathfrak q'}/(f_1, \ldots , f_ c)$. Hence by Lemma <a href="/tag/00SC" data-tag="00SC">10.135.4</a> again we see that $S'$ is a local complete intersection in a neighbourhood of $\mathfrak q$. Since $\mathfrak q$ was arbitrary we see that $S'$ is a local complete intersection over $K$. 
+    <p>
+      Suppose that $S'$ is a local complete intersection. Pick a maximal ideal $\mathfrak m$ of $S$. Let $\mathfrak m'$ denote the corresponding maximal ideal of $k[x_1, \ldots , x_ n]$. Denote $\kappa = \kappa (\mathfrak m)$ the residue field. By Remark <a href="/tag/00E6" data-tag="00E6">10.18.5</a> the primes of $S'$ lying over $\mathfrak m$ correspond to primes in $K \otimes _ k \kappa $. By the Hilbert-Nullstellensatz Theorem <a href="/tag/00FV" data-tag="00FV">10.34.1</a> we have $[\kappa : k] < \infty $. Hence $K \otimes _ k \kappa $ is finite nonzero over $K$. Hence $K \otimes _ k \kappa $ has a finite number $> 0$ of primes which are all maximal, each of which has a residue field finite over $K$ (see Section <a href="/tag/00J4" data-tag="00J4">10.53</a>). Hence there are finitely many $> 0$ prime ideals $\mathfrak n \subset S'$ lying over $\mathfrak m$, each of which is maximal and has a residue field which is finite over $K$. Pick one, say $\mathfrak n \subset S'$, and let $\mathfrak n' \subset K[x_1, \ldots , x_ n]$ denote the corresponding prime ideal of $K[x_1, \ldots , x_ n]$. Note that since $V(\mathfrak mS')$ is finite, we see that $\mathfrak n$ is an isolated closed point of it, and we deduce that $\mathfrak mS'_{\mathfrak n}$ is an ideal of definition of $S'_{\mathfrak n}$. This implies that $\dim (S_{\mathfrak m}) = \dim (S'_{\mathfrak n})$ for example by Lemma <a href="/tag/00ON" data-tag="00ON">10.112.7</a>. (This can also be seen using Lemma <a href="/tag/00P4" data-tag="00P4">10.116.6</a>.) Consider the corresponding diagram of Noetherian local rings 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ S'_{\mathfrak n} &  K[x_1, \ldots , x_ n]_{\mathfrak n'} \ar[l] \\  S_{\mathfrak m}\ar[u] &  k[x_1, \ldots , x_ n]_{\mathfrak m'} \ar[u] \ar[l] }  \]
+</div>
+    <p>
+       According to Lemma <a href="/tag/00S4" data-tag="00S4">10.134.8</a> we have $\mathop{N\! L}\nolimits (\alpha ) \otimes _ S S' = \mathop{N\! L}\nolimits (\alpha ')$, in particular $I'/(I')^2 = I/I^2 \otimes _ S S'$. Thus $(I/I^2)_{\mathfrak m} \otimes _{S_{\mathfrak m}} \kappa $ and $(I'/(I')^2)_{\mathfrak n} \otimes _{S'_{\mathfrak n}} \kappa (\mathfrak n)$ have the same dimension. Since $(I'/(I')^2)_{\mathfrak n}$ is free of rank $n - \dim S'_{\mathfrak n}$ we deduce that $(I/I^2)_{\mathfrak m}$ can be generated by $n - \dim S'_{\mathfrak n} = n - \dim S_{\mathfrak m}$ elements. By Lemma <a href="/tag/00SC" data-tag="00SC">10.135.4</a> we see that $S$ is a local complete intersection in a neighbourhood of $\mathfrak m$. Since $\mathfrak m$ was any maximal ideal we conclude that $S$ is a local complete intersection. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We end with a lemma which we will later use to prove that given ring maps $T \to A \to B$ where $B$ is syntomic over $T$, and $B$ is syntomic over $A$, then $A$ is syntomic over $T$. 
+</p>
+<p>
+<article class="env-lemma" id="02JP">
+  <p><a class="environment-identifier" href="/tag/02JP">Lemma <span data-tag="02JP">10.135.12</span>.</a> Let </p>
+  <div class="equation">
+  \[  \xymatrix{ B &  S \ar[l] \\  A \ar[u] &  R \ar[l] \ar[u] }  \]
+</div>
+  <p> be a commutative square of local rings. Assume </p>
+  <p><ol>
+  <li><p>
+$R$ and $\overline{S} = S/\mathfrak m_ R S$ are regular local rings, 
+</p>
+</li><li><p>
+$A = R/I$ and $B = S/J$ for some ideals $I$, $J$, 
+</p>
+</li><li><p>
+$J \subset S$ and $\overline{J} = J/\mathfrak m_ R \cap J \subset \overline{S}$ are generated by regular sequences, and 
+</p>
+</li><li><p>
+$A \to B$ and $R \to S$ are flat. 
+</p>
+</li>
+</ol></p>
+  <p> Then $I$ is generated by a regular sequence. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Set $\overline{B} = B/\mathfrak m_ RB = B/\mathfrak m_ AB$ so that $\overline{B} = \overline{S}/\overline{J}$. Let $f_1, \ldots , f_{\overline{c}} \in J$ be elements such that $\overline{f}_1, \ldots , \overline{f}_{\overline{c}} \in \overline{J}$ form a regular sequence generating $\overline{J}$. Note that $\overline{c} = \dim (\overline{S}) - \dim (\overline{B})$, see Lemma <a href="/tag/00SE" data-tag="00SE">10.135.6</a>. By Lemma <a href="/tag/00MG" data-tag="00MG">10.99.3</a> the ring $S/(f_1, \ldots , f_{\overline{c}})$ is flat over $R$. Hence $S/(f_1, \ldots , f_{\overline{c}}) + IS$ is flat over $A$. The map $S/(f_1, \ldots , f_{\overline{c}}) + IS \to B$ is therefore a surjection of finite $S/IS$-modules flat over $A$ which is an isomorphism modulo $\mathfrak m_ A$, and hence an isomorphism by Lemma <a href="/tag/00ME" data-tag="00ME">10.99.1</a>. In other words, $J = (f_1, \ldots , f_{\overline{c}}) + IS$. 
+    <p>
+      By Lemma <a href="/tag/00SE" data-tag="00SE">10.135.6</a> again the ideal $J$ is generated by a regular sequence of $c = \dim (S) - \dim (B)$ elements. Hence $J/\mathfrak m_ SJ$ is a vector space of dimension $c$. By the description of $J$ above there exist $g_1, \ldots , g_{c - \overline{c}} \in I$ such that $J$ is generated by $f_1, \ldots , f_{\overline{c}}, g_1, \ldots , g_{c - \overline{c}}$ (use Nakayama's Lemma <a href="/tag/00DV" data-tag="00DV">10.20.1</a>). Consider the ring $A' = R/(g_1, \ldots , g_{c - \overline{c}})$ and the surjection $A' \to A$. We see from the above that $B = S/(f_1, \ldots , f_{\overline{c}}, g_1, \ldots , g_{c - \overline{c}})$ is flat over $A'$ (as $S/(f_1, \ldots , f_{\overline{c}})$ is flat over $R$). Hence $A' \to B$ is injective (as it is faithfully flat, see Lemma <a href="/tag/00HR" data-tag="00HR">10.39.17</a>). Since this map factors through $A$ we get $A' = A$. Note that $\dim (B) = \dim (A) + \dim (\overline{B})$, and $\dim (S) = \dim (R) + \dim (\overline{S})$, see Lemma <a href="/tag/00ON" data-tag="00ON">10.112.7</a>. Hence $c - \overline{c} = \dim (R) -\dim (A)$ by elementary algebra. Thus $I = (g_1, \ldots , g_{c - \overline{c}})$ is generated by a regular sequence according to Lemma <a href="/tag/00SE" data-tag="00SE">10.135.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

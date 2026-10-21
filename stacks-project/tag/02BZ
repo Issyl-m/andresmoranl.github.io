@@ -1,0 +1,187 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="coding-section-style" class="tex-section"><span data-tag="02BZ">114.1</span> List of style comments</h2>
+
+<p>
+These will be changed over time, but having some here now will hopefully encourage a consistent LaTeX style. We will call “code<a class="footnotemark" href="#a0001818072" id="a0001818072-mark"><sup>1</sup></a>” the contents of the source files. 
+</p>
+<ol>
+  <li><p>
+Keep all lines in all tex files to at most 80 characters. 
+</p>
+</li><li><p>
+Do not use indentation in the tex file. Use syntax highlighting in your editor, instead of indentation, to visualize environments, etc. 
+</p>
+</li><li><p>
+Use 
+</p>
+<pre><code>
+\medskip\noindent
+</code></pre>
+<p>
+ to start a new paragraph, and use 
+</p>
+<pre><code>
+\noindent
+</code></pre>
+<p>
+ to start a new paragraph just after an environment. 
+</p>
+</li><li><p>
+Do not break the code for mathematical formulas across lines if possible. If the complete code complete with enclosing dollar signs does not fit on the line, then start with the first dollar sign on the first character of the next line. If it still does not fit, find a mathematically reasonable spot to break the code. 
+</p>
+</li><li><p>
+Displayed math equations should be coded as follows 
+</p>
+<pre><code>
+$$
+...
+...
+$$
+</code></pre>
+<p>
+ In other words, start with a double dollar sign on a line by itself and end similarly. 
+</p>
+</li><li><p>
+<em>Do not use any macros</em>. Rationale: This makes it easier to read the tex file, and start editing an arbitrary part without having to learn innumerable macros. And it doesn't make it harder or more timeconsuming to write. Of course the disadvantage is that the same mathematical object may be TeXed differently in different places in the text, but this should be easy to spot. 
+</p>
+</li><li><p>
+The theorem environments we use are: “theorem”, “proposition”, “lemma” (plain), “definition”, “example”, “exercise”, “situation” (definition), “remark”, “remarks” (remark). Of course there is also a “proof” environment. 
+</p>
+</li><li><p>
+An environment “foo” should be coded as follows 
+</p>
+<pre><code>
+\begin{foo}
+...
+...
+\end{foo}
+</code></pre>
+<p>
+ similarly to the way displayed equations are coded. 
+</p>
+</li><li><p>
+Instead of a “corollary”, just use “lemma” environment since likely the result will be used to prove the next bigger theorem anyway. 
+</p>
+</li><li><p>
+Directly following each lemma, proposition, or theorem is the proof of said lemma, proposition, or theorem. No nested proofs please. 
+</p>
+</li><li><p>
+The files preamble.tex, chapters.tex and fdl.tex are special tex files. Apart from these, each tex file has the following structure 
+</p>
+<pre><code>
+\input{preamble}
+\begin{document}
+\title{Title}
+\maketitle
+\tableofcontents
+...
+...
+\input{chapters}
+\bibliography{my}
+\bibliographystyle{amsalpha}
+\end{document}
+</code></pre>
+</li><li><p>
+Try to add labels to lemmas, propositions, theorems, and even remarks, exercise, and other environments. If labelling a lemma use something like 
+</p>
+<pre><code>
+\begin{lemma}
+\label{lemma-bar}
+...
+\end{lemma}
+</code></pre>
+<p>
+ Similarly for all other environments. In other words, the label of a environment named “foo” starts with “foo-”. In addition to this please make all labels consist only of lower case letters, digits, and the symbol “-”. 
+</p>
+</li><li><p>
+Never refer to “the lemma above” (or proposition, etc). Instead use: 
+</p>
+<pre><code>
+Lemma \ref{lemma-bar} above
+</code></pre>
+<p>
+ This means that later moving lemmas around is basically harmless. 
+</p>
+</li><li><p>
+Cross-file referencing. To reference a lemma labeled “lemma-bar” in the file foo.tex which has title “Foo”, please use the following code 
+</p>
+<pre><code>
+Foo, Lemma \ref{foo-lemma-bar}
+</code></pre>
+<p>
+ If this does not work, then take a look at the file preamble.tex to find the correct expression to use. This will produce the “Foo, Lemma $<$link$>$” in the output file so it will be clear that the link points out of the file. 
+</p>
+</li><li><p>
+If at all possible avoid forward references in proof environments. (It should be possible to write an automated test for this.) 
+</p>
+</li><li><p>
+Do not start any sentence with a mathematical symbol. 
+</p>
+</li><li><p>
+Do not have a sentence of the type “This follows from the following” just before a lemma, proposition, or theorem. Every sentence ends with a period. 
+</p>
+</li><li><p>
+State all hypotheses in each lemma, proposition, theorem. This makes it easier for readers to see if a given lemma, proposition, or theorem applies to their particular problem. 
+</p>
+</li><li><p>
+Keep proofs short; less than 1 page in pdf or dvi. You can always achieve this by splitting out the proof in lemmas etc. 
+</p>
+</li><li><p>
+In a defining property foobar use 
+</p>
+<pre><code>
+{\it foobar}
+</code></pre>
+<p>
+ in the code inside the definition environment. Similarly if the definition occurs in the text of the document. This will make it easier for the reader to see what it is that is being defined. 
+</p>
+</li><li><p>
+Put any definition that will be used outside the section it is in, in its own definition environment. Temporary definitions may be made in the text. A tricky case is that of mathematical constructions (which are often definitions involving interrelated lemmas). Maybe a good solution is to have them in their own short section so users can refer to the section instead of a definition. 
+</p>
+</li><li><p>
+Do not number equations unless they are actually being referenced somewhere in the text. We can always add labels later. 
+</p>
+</li><li><p>
+In statements of lemmas, propositions and theorems and in proofs keep the sentences short. For example, instead of “Let $R$ be a ring and let $M$ be an $R$-module.” write “Let $R$ be a ring. Let $M$ be an $R$-module.”. Rationale: This makes it easier to parse the trickier parts of proofs and statements. 
+</p>
+</li><li><p>
+Use the 
+</p>
+<pre><code>
+\section
+</code></pre>
+<p>
+ command to make sections, but try to avoid using subsections and subsubsections. 
+</p>
+</li><li><p>
+Avoid using complicated latex constructions. 
+</p>
+</li>
+</ol>

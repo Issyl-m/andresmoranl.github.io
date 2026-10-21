@@ -1,0 +1,166 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="spaces-chow-section-intersecting-effective-Cartier" class="tex-section"><span data-tag="0ER0">82.22</span> Intersecting with effective Cartier divisors</h2>
+
+<p>
+This section is the analogue of Chow Homology, Section <a href="/tag/02T7" data-tag="02T7">42.29</a>. Please read the introduction of that section we motivation. 
+</p>
+<p>
+Recall that effective Cartier divisors correspond $1$-to-$1$ to isomorphism classes of pairs $(\mathcal{L}, s)$ where $\mathcal{L}$ is an invertible sheaf and $s$ is a global section, see Divisors on Spaces, Lemma <a href="/tag/0847" data-tag="0847">71.7.8</a>. If $D$ corresponds to $(\mathcal{L}, s)$, then $\mathcal{L} = \mathcal{O}_ X(D)$. Please keep this in mind while reading this section. 
+</p>
+<p>
+<article class="env-definition" id="0ER1">
+  <p><a class="environment-identifier" href="/tag/0ER1">Definition <span data-tag="0ER1">82.22.1</span>.</a> In Situation <a href="/tag/0EDT" data-tag="0EDT">82.2.1</a> let $X/B$ be good. Let $(\mathcal{L}, s)$ be a pair consisting of an invertible sheaf and a global section $s \in \Gamma (X, \mathcal{L})$. Let $D = Z(s)$ be the vanishing locus of $s$, and denote $i : D \to X$ the closed immersion. We define, for every integer $k$, a (refined) <em>Gysin homomorphism</em> </p>
+  <div class="equation">
+  \[  i^* : Z_{k + 1}(X) \to \mathop{\mathrm{CH}}\nolimits _ k(D).  \]
+</div>
+  <p> by the following rules: </p>
+  <p><ol>
+  <li><p>
+Given an integral closed subspace $W \subset X$ with $\dim _\delta (W) = k + 1$ we define 
+</p>
+<ol>
+  <li><p>
+if $W \not\subset D$, then $i^*[W] = [D \cap W]_ k$ as a $k$-cycle on $D$, and 
+</p>
+</li><li><p>
+if $W \subset D$, then $i^*[W] = i'_*(c_1(\mathcal{L}|_ W) \cap [W])$, where $i' : W \to D$ is the induced closed immersion. 
+</p>
+</li>
+</ol>
+</li><li><p>
+For a general $(k + 1)$-cycle $\alpha = \sum n_ j[W_ j]$ we set 
+</p>
+<div class="equation">
+  \[  i^*\alpha = \sum n_ j i^*[W_ j]  \]
+</div>
+</li><li><p>
+If $D$ is an effective Cartier divisor, then we denote $D \cdot \alpha = i_*i^*\alpha $ the pushforward of the class to a class on $X$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+In fact, as we will see later, this Gysin homomorphism $i^*$ can be viewed as an example of a non-flat pullback. Thus we will sometimes informally call the class $i^*\alpha $ the <em>pullback</em> of the class $\alpha $. 
+</p>
+<p>
+<article class="env-remark" id="0ER2">
+  <p><a class="environment-identifier" href="/tag/0ER2">Remark <span data-tag="0ER2">82.22.2</span>.</a> Let $S$, $B$, $X$, $\mathcal{L}$, $s$, $i : D \to X$ be as in Definition <a href="/tag/0ER1" data-tag="0ER1">82.22.1</a> and assume that $\mathcal{L}|_ D \cong \mathcal{O}_ D$. In this case we can define a canonical map $i^* : Z_{k + 1}(X) \to Z_ k(D)$ on cycles, by requiring that $i^*[W] = 0$ whenever $W \subset D$. The possibility to do this will be useful later on. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="0ER3">
+  <p><a class="environment-identifier" href="/tag/0ER3">Remark <span data-tag="0ER3">82.22.3</span>.</a> Let $f : X' \to X$ be a morphism of good algebraic spaces over $B$ as in Situation <a href="/tag/0EDT" data-tag="0EDT">82.2.1</a>. Let $(\mathcal{L}, s, i : D \to X)$ be a triple as in Definition <a href="/tag/0ER1" data-tag="0ER1">82.22.1</a>. Then we can set $\mathcal{L}' = f^*\mathcal{L}$, $s' = f^*s$, and $D' = X' \times _ X D = Z(s')$. This gives a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ D' \ar[d]_ g \ar[r]_{i'} &  X' \ar[d]^ f \\  D \ar[r]^ i &  X }  \]
+</div>
+  <p> and we can ask for various compatibilities between $i^*$ and $(i')^*$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0ER4">
+  <p><a class="environment-identifier" href="/tag/0ER4">Lemma <span data-tag="0ER4">82.22.4</span>.</a> In Situation <a href="/tag/0EDT" data-tag="0EDT">82.2.1</a> let $X/B$ be good. Let $(\mathcal{L}, s, i : D \to X)$ be as in Definition <a href="/tag/0ER1" data-tag="0ER1">82.22.1</a>. Let $\alpha $ be a $(k + 1)$-cycle on $X$. Then $i_*i^*\alpha = c_1(\mathcal{L}) \cap \alpha $ in $\mathop{\mathrm{CH}}\nolimits _ k(X)$. In particular, if $D$ is an effective Cartier divisor, then $D \cdot \alpha = c_1(\mathcal{O}_ X(D)) \cap \alpha $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Write $\alpha = \sum n_ j[W_ j]$ where $i_ j : W_ j \to X$ are integral closed subspaces with $\dim _\delta (W_ j) = k$. Since $D$ is the vanishing locus of $s$ we see that $D \cap W_ j$ is the vanishing locus of the restriction $s|_{W_ j}$. Hence for each $j$ such that $W_ j \not\subset D$ we have $c_1(\mathcal{L}) \cap [W_ j] = [D \cap W_ j]_ k$ by Lemma <a href="/tag/0EQN" data-tag="0EQN">82.18.4</a>. So we have 
+    <p>
+      <div class="equation">
+  \[  c_1(\mathcal{L}) \cap \alpha = \sum \nolimits _{W_ j \not\subset D} n_ j[D \cap W_ j]_ k + \sum \nolimits _{W_ j \subset D} n_ j i_{j, *}(c_1(\mathcal{L})|_{W_ j}) \cap [W_ j])  \]
+</div>
+    <p>
+       in $\mathop{\mathrm{CH}}\nolimits _ k(X)$ by Definition <a href="/tag/0EQJ" data-tag="0EQJ">82.18.1</a>. The right hand side matches (termwise) the pushforward of the class $i^*\alpha $ on $D$ from Definition <a href="/tag/0ER1" data-tag="0ER1">82.22.1</a>. Hence we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0ER5">
+  <p><a class="environment-identifier" href="/tag/0ER5">Lemma <span data-tag="0ER5">82.22.5</span>.</a> In Situation <a href="/tag/0EDT" data-tag="0EDT">82.2.1</a>. Let $f : X' \to X$ be a proper morphism of good algebraic spaces over $B$. Let $(\mathcal{L}, s, i : D \to X)$ be as in Definition <a href="/tag/0ER1" data-tag="0ER1">82.22.1</a>. Form the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ D' \ar[d]_ g \ar[r]_{i'} &  X' \ar[d]^ f \\  D \ar[r]^ i &  X }  \]
+</div>
+  <p> as in Remark <a href="/tag/0ER3" data-tag="0ER3">82.22.3</a>. For any $(k + 1)$-cycle $\alpha '$ on $X'$ we have $i^*f_*\alpha ' = g_*(i')^*\alpha '$ in $\mathop{\mathrm{CH}}\nolimits _ k(D)$ (this makes sense as $f_*$ is defined on the level of cycles). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose $\alpha = [W']$ for some integral closed subspace $W' \subset X'$. Let $W \subset X$ be the “image” of $W'$ as in Lemma <a href="/tag/0EEG" data-tag="0EEG">82.7.1</a>. In case $W' \not\subset D'$, then $W \not\subset D$ and we see that 
+    <p>
+      <div class="equation">
+  \[  [W' \cap D']_ k = \text{div}_{\mathcal{L}'|_{W'}}({s'|_{W'}}) \quad \text{and}\quad [W \cap D]_ k = \text{div}_{\mathcal{L}|_ W}(s|_ W)  \]
+</div>
+    <p>
+       and hence $f_*$ of the first cycle equals the second cycle by Lemma <a href="/tag/0EQS" data-tag="0EQS">82.19.3</a>. Hence the equality holds as cycles. In case $W' \subset D'$, then $W \subset D$ and $f_*(c_1(\mathcal{L}|_{W'}) \cap [W'])$ is equal to $c_1(\mathcal{L}|_ W) \cap [W]$ in $\mathop{\mathrm{CH}}\nolimits _ k(W)$ by the second assertion of Lemma <a href="/tag/0EQS" data-tag="0EQS">82.19.3</a>. By Remark <a href="/tag/0EQ8" data-tag="0EQ8">82.15.3</a> the result follows for general $\alpha '$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0ER6">
+  <p><a class="environment-identifier" href="/tag/0ER6">Lemma <span data-tag="0ER6">82.22.6</span>.</a> In Situation <a href="/tag/0EDT" data-tag="0EDT">82.2.1</a>. Let $f : X' \to X$ be a flat morphism of relative dimension $r$ of good algebraic spaces over $B$. Let $(\mathcal{L}, s, i : D \to X)$ be as in Definition <a href="/tag/0ER1" data-tag="0ER1">82.22.1</a>. Form the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ D' \ar[d]_ g \ar[r]_{i'} &  X' \ar[d]^ f \\  D \ar[r]^ i &  X }  \]
+</div>
+  <p> as in Remark <a href="/tag/0ER3" data-tag="0ER3">82.22.3</a>. For any $(k + 1)$-cycle $\alpha $ on $X$ we have $(i')^*f^*\alpha = g^*i^*\alpha '$ in $\mathop{\mathrm{CH}}\nolimits _{k + r}(D)$ (this makes sense as $f^*$ is defined on the level of cycles). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose $\alpha = [W]$ for some integral closed subspace $W \subset X$. Let $W' = f^{-1}(W) \subset X'$. In case $W \not\subset D$, then $W' \not\subset D'$ and we see that 
+    <p>
+      <div class="equation">
+  \[  W' \cap D' = g^{-1}(W \cap D)  \]
+</div>
+    <p>
+       as closed subspaces of $D'$. Hence the equality holds as cycles, see Lemma <a href="/tag/0EPB" data-tag="0EPB">82.10.5</a>. In case $W \subset D$, then $W' \subset D'$ and $W' = g^{-1}(W)$ with $[W']_{k + 1 + r} = g^*[W]$ and equality holds in $\mathop{\mathrm{CH}}\nolimits _{k + r}(D')$ by Lemma <a href="/tag/0EQR" data-tag="0EQR">82.19.2</a>. By Remark <a href="/tag/0EQ8" data-tag="0EQ8">82.15.3</a> the result follows for general $\alpha '$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0ER7">
+  <p><a class="environment-identifier" href="/tag/0ER7">Lemma <span data-tag="0ER7">82.22.7</span>.</a> In Situation <a href="/tag/0EDT" data-tag="0EDT">82.2.1</a> let $X/B$ be good. Let $(\mathcal{L}, s, i : D \to X)$ be as in Definition <a href="/tag/0ER1" data-tag="0ER1">82.22.1</a>. Let $Z \subset X$ be a closed subscheme such that $\dim _\delta (Z) \leq k + 1$ and such that $D \cap Z$ is an effective Cartier divisor on $Z$. Then $i^*([Z]_{k + 1}) = [D \cap Z]_ k$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The assumption means that $s|_ Z$ is a regular section of $\mathcal{L}|_ Z$. Thus $D \cap Z = Z(s)$ and we get 
+    <p>
+      <div class="equation">
+  \[  [D \cap Z]_ k = \sum n_ i [Z(s_ i)]_ k  \]
+</div>
+    <p>
+       as cycles where $s_ i = s|_{Z_ i}$, the $Z_ i$ are the irreducible components of $\delta $-dimension $k + 1$, and $[Z]_{k + 1} = \sum n_ i[Z_ i]$. See Lemma <a href="/tag/0EQL" data-tag="0EQL">82.18.3</a>. We have $D \cap Z_ i = Z(s_ i)$. Comparing with the definition of the Gysin map we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

@@ -1,0 +1,218 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="derham-section-leray-hirsch" class="tex-section"><span data-tag="0FUL">50.13</span> Leray-Hirsch type theorems</h2>
+
+<p>
+In this section we prove that for a smooth proper morphism one can sometimes express the de Rham cohomology upstairs in terms of the de Rham cohomology downstairs. 
+</p>
+<p>
+<article class="env-lemma" id="0FMP">
+  <p><a class="environment-identifier" href="/tag/0FMP">Lemma <span data-tag="0FMP">50.13.1</span>.</a> Let $f : X \to Y$ be a smooth proper morphism of schemes. Let $N$ and $n_1, \ldots , n_ N \geq 0$ be integers and let $\xi _ i \in H^{n_ i}_{dR}(X/Y)$, $1 \leq i \leq N$. Assume for all points $y \in Y$ the images of $\xi _1, \ldots , \xi _ N$ in $H^*_{dR}(X_ y/y)$ form a basis over $\kappa (y)$. Then the map </p>
+  <div class="equation">
+  \[  \bigoplus \nolimits _{i = 1}^ N \mathcal{O}_ Y[-n_ i] \longrightarrow Rf_*\Omega ^\bullet _{X/Y}  \]
+</div>
+  <p> associated to $\xi _1, \ldots , \xi _ N$ is an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/0FM0" data-tag="0FM0">50.3.5</a> $Rf_*\Omega ^\bullet _{X/Y}$ is a perfect object of $D(\mathcal{O}_ Y)$ whose formation commutes with arbitrary base change. Thus the map of the lemma is a map $a : K \to L$ between perfect objects of $D(\mathcal{O}_ Y)$ whose derived restriction to any point is an isomorphism by our assumption on fibres. Then the cone $C$ on $a$ is a perfect object of $D(\mathcal{O}_ Y)$ (Cohomology, Lemma <a href="/tag/08CR" data-tag="08CR">20.49.7</a>) whose derived restriction to any point is zero. It follows that $C$ is zero by More on Algebra, Lemma <a href="/tag/0BCD" data-tag="0BCD">15.77.7</a> and $a$ is an isomorphism. (This also uses Derived Categories of Schemes, Lemmas <a href="/tag/06Z0" data-tag="06Z0">36.3.5</a> and <a href="/tag/08EB" data-tag="08EB">36.10.7</a> to translate into algebra.) 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We first prove the main result of this section in the following special case. 
+</p>
+<p>
+<article class="env-lemma" id="0FUM">
+  <p><a class="environment-identifier" href="/tag/0FUM">Lemma <span data-tag="0FUM">50.13.2</span>.</a> Let $f : X \to Y$ be a smooth proper morphism of schemes over a base $S$. Assume </p>
+  <p><ol>
+  <li><p>
+$Y$ and $S$ are affine, and 
+</p>
+</li><li><p>
+there exist integers $N$ and $n_1, \ldots , n_ N \geq 0$ and $\xi _ i \in H^{n_ i}_{dR}(X/S)$, $1 \leq i \leq N$ such that for all points $y \in Y$ the images of $\xi _1, \ldots , \xi _ N$ in $H^*_{dR}(X_ y/y)$ form a basis over $\kappa (y)$. 
+</p>
+</li>
+</ol></p>
+  <p> Then the map </p>
+  <div class="equation">
+  \[  \bigoplus \nolimits _{i = 1}^ N H^*_{dR}(Y/S) \longrightarrow H^*_{dR}(X/S), \quad (a_1, \ldots , a_ N) \longmapsto \sum \xi _ i \cup f^*a_ i  \]
+</div>
+  <p> is an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Say $Y = \mathop{\mathrm{Spec}}(A)$ and $S = \mathop{\mathrm{Spec}}(R)$. In this case $\Omega ^\bullet _{A/R}$ computes $R\Gamma (Y, \Omega ^\bullet _{Y/S})$ by Lemma <a href="/tag/0FLW" data-tag="0FLW">50.3.1</a>. Choose a finite affine open covering $\mathcal{U} : X = \bigcup _{i \in I} U_ i$. Consider the complex 
+    <p>
+      <div class="equation">
+  \[  K^\bullet = \text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \Omega _{X/S}^\bullet ))  \]
+</div>
+    <p>
+       as in Cohomology, Section <a href="/tag/01FP" data-tag="01FP">20.25</a>. Let us collect some facts about this complex most of which can be found in the reference just given: 
+    <p>
+      <ol>
+  <li><p>
+$K^\bullet $ is a complex of $R$-modules whose terms are $A$-modules, 
+</p>
+</li><li><p>
+$K^\bullet $ represents $R\Gamma (X, \Omega ^\bullet _{X/S})$ in $D(R)$ (Cohomology of Schemes, Lemma <a href="/tag/01XB" data-tag="01XB">30.2.2</a> and Cohomology, Lemma <a href="/tag/0FLH" data-tag="0FLH">20.25.2</a>), 
+</p>
+</li><li><p>
+there is a natural map $\Omega ^\bullet _{A/R} \to K^\bullet $ of complexes of $R$-modules which is $A$-linear on terms and induces the pullback map $H^*_{dR}(Y/S) \to H^*_{dR}(X/S)$ on cohomology, 
+</p>
+</li><li><p>
+$K^\bullet $ has a multiplication denoted $\wedge $ which turns it into a differential graded $R$-algebra, 
+</p>
+</li><li><p>
+the multiplication on $K^\bullet $ induces the cup product on $H^*_{dR}(X/S)$ (Cohomology, Section <a href="/tag/0FKU" data-tag="0FKU">20.31</a>), 
+</p>
+</li><li><p>
+the filtration $F$ on $\Omega ^*_{X/S}$ induces a filtration 
+</p>
+<div class="equation">
+  \[  K^\bullet = F^0K^\bullet \supset F^1K^\bullet \supset F^2K^\bullet \supset \ldots  \]
+</div>
+<p>
+ by subcomplexes on $K^\bullet $ such that 
+</p>
+<ol>
+  <li><p>
+$F^ kK^ n \subset K^ n$ is an $A$-submmodule, 
+</p>
+</li><li><p>
+$F^ kK^\bullet \wedge F^ lK^\bullet \subset F^{k + l}K^\bullet $, 
+</p>
+</li><li><p>
+$\text{gr}^ kK^\bullet $ is a complex of $A$-modules, 
+</p>
+</li><li><p>
+$\text{gr}^0K^\bullet = \text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \Omega _{X/Y}^\bullet ))$ and represents $R\Gamma (X, \Omega ^\bullet _{X/Y})$ in $D(A)$, 
+</p>
+</li><li><p>
+multiplication induces an isomorphism $\Omega ^ k_{A/R}[-k] \otimes _ A \text{gr}^0K^\bullet \to \text{gr}^ kK^\bullet $ 
+</p>
+</li>
+</ol>
+</li>
+</ol>
+    <p>
+       We omit the detailed proofs of these statements; please see discussion leading up to the construction of the spectral sequence in Lemma <a href="/tag/0FMM" data-tag="0FMM">50.12.1</a>. 
+    <p>
+      For every $i = 1, \ldots , N$ we choose a cocycle $x_ i \in K^{n_ i}$ representing $\xi _ i$. Next, we look at the map of complexes 
+    <p>
+      <div class="equation">
+  \[  \tilde x : M^\bullet = \bigoplus \nolimits _{i = 1, \ldots , N} \Omega ^\bullet _{A/R}[-n_ i] \longrightarrow K^\bullet  \]
+</div>
+    <p>
+       which sends $\omega $ in the $i$th summand to $x_ i \wedge \omega $. All that remains is to show that this map is a quasi-isomorphism. We endow $M^\bullet $ with the structure of a filtered complex by the rule 
+    <p>
+      <div class="equation">
+  \[  F^ kM^\bullet = \bigoplus \nolimits _{i = 1, \ldots , N} (\sigma _{\geq k}\Omega ^\bullet _{A/R})[-n_ i]  \]
+</div>
+    <p>
+       With this choice the map $\tilde x$ is a morphism of filtered complexes. Observe that $\text{gr}^0M^\bullet = \bigoplus A[-n_ i]$ and multiplication induces an isomorphism $\Omega ^ k_{A/R}[-k] \otimes _ A \text{gr}^0M^\bullet \to \text{gr}^ kM^\bullet $. By construction and Lemma <a href="/tag/0FMP" data-tag="0FMP">50.13.1</a> we see that 
+    <p>
+      <div class="equation">
+  \[  \text{gr}^0\tilde x : \text{gr}^0M^\bullet \longrightarrow \text{gr}^0K^\bullet  \]
+</div>
+    <p>
+       is an isomorphism in $D(A)$. It follows that for all $k \geq 0$ we obtain isomorphisms 
+    <p>
+      <div class="equation">
+  \[  \text{gr}^ k \tilde x : \text{gr}^ kM^\bullet = \Omega ^ k_{A/R}[-k] \otimes _ A \text{gr}^0M^\bullet \longrightarrow \Omega ^ k_{A/R}[-k] \otimes _ A \text{gr}^0K^\bullet = \text{gr}^ kK^\bullet  \]
+</div>
+    <p>
+       in $D(A)$. Namely, the complex $\text{gr}^0K^\bullet = \text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \Omega _{X/Y}^\bullet ))$ is K-flat as a complex of $A$-modules by Derived Categories of Schemes, Lemma <a href="/tag/0FMQ" data-tag="0FMQ">36.23.3</a>. Hence the tensor product on the right hand side is the derived tensor product as is true by inspection on the left hand side. Finally, taking the derived tensor product $\Omega ^ k_{A/R}[-k] \otimes _ A^\mathbf {L} -$ is a functor on $D(A)$ and therefore sends isomorphisms to isomorphisms. Arguing by induction on $k$ we deduce that 
+    <p>
+      <div class="equation">
+  \[  \tilde x : M^\bullet /F^ kM^\bullet \to K^\bullet /F^ kK^\bullet  \]
+</div>
+    <p>
+       is an isomorphism in $D(R)$ since we have the short exact sequences 
+    <p>
+      <div class="equation">
+  \[  0 \to F^ kM^\bullet /F^{k + 1}M^\bullet \to M^\bullet /F^{k + 1}M^\bullet \to \text{gr}^ kM^\bullet \to 0  \]
+</div>
+    <p>
+       and similarly for $K^\bullet $. This proves that $\tilde x$ is a quasi-isomorphism as the filtrations are finite in any given degree. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="0FMR">
+  <p><a class="environment-identifier" href="/tag/0FMR">Proposition <span data-tag="0FMR">50.13.3</span>.</a> Let $f : X \to Y$ be a smooth proper morphism of schemes over a base $S$. Let $N$ and $n_1, \ldots , n_ N \geq 0$ be integers and let $\xi _ i \in H^{n_ i}_{dR}(X/S)$, $1 \leq i \leq N$. Assume for all points $y \in Y$ the images of $\xi _1, \ldots , \xi _ N$ in $H^*_{dR}(X_ y/y)$ form a basis over $\kappa (y)$. The map </p>
+  <div class="equation">
+  \[  \tilde\xi = \bigoplus \tilde\xi _ i[-n_ i] : \bigoplus \Omega ^\bullet _{Y/S}[-n_ i] \longrightarrow Rf_*\Omega ^\bullet _{X/S}  \]
+</div>
+  <p> (see proof) is an isomorphism in $D(Y, (Y \to S)^{-1}\mathcal{O}_ S)$ and correspondingly the map </p>
+  <div class="equation">
+  \[  \bigoplus \nolimits _{i = 1}^ N H^*_{dR}(Y/S) \longrightarrow H^*_{dR}(X/S), \quad (a_1, \ldots , a_ N) \longmapsto \sum \xi _ i \cup f^*a_ i  \]
+</div>
+  <p> is an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Denote $p : X \to S$ and $q : Y \to S$ be the structure morphisms. Let $\xi '_ i : \Omega ^\bullet _{X/S} \to \Omega ^\bullet _{X/S}[n_ i]$ be the map of Remark <a href="/tag/0FU7" data-tag="0FU7">50.4.3</a> corresponding to $\xi _ i$. Denote 
+    <p>
+      <div class="equation">
+  \[  \tilde\xi _ i : \Omega ^\bullet _{Y/S} \to Rf_*\Omega ^\bullet _{X/S}[n_ i]  \]
+</div>
+    <p>
+       the composition of $\xi '_ i$ with the canonical map $\Omega ^\bullet _{Y/S} \to Rf_*\Omega ^\bullet _{X/S}$. Using 
+    <p>
+      <div class="equation">
+  \[  R\Gamma (Y, Rf_*\Omega ^\bullet _{X/S}) = R\Gamma (X, \Omega ^\bullet _{X/S})  \]
+</div>
+    <p>
+       on cohomology $\tilde\xi _ i$ is the map $\eta \mapsto \xi _ i \cup f^*\eta $ from $H^ m_{dR}(Y/S)$ to $H^{m + n}_{dR}(X/S)$. Further, since the formation of $\xi '_ i$ commutes with restrictions to opens, so does the formation of $\tilde\xi _ i$ commute with restriction to opens. 
+    <p>
+      Thus we can consider the map 
+    <p>
+      <div class="equation">
+  \[  \tilde\xi = \bigoplus \tilde\xi _ i[-n_ i] : \bigoplus \Omega ^\bullet _{Y/S}[-n_ i] \longrightarrow Rf_*\Omega ^\bullet _{X/S}  \]
+</div>
+    <p>
+       To prove the lemma it suffices to show that this is an isomorphism in $D(Y, q^{-1}\mathcal{O}_ S)$. If we could show $\tilde\xi $ comes from a map of filtered complexes (with suitable filtrations), then we could appeal to the spectral sequence of Lemma <a href="/tag/0FMM" data-tag="0FMM">50.12.1</a> to finish the proof. This takes more work than is necessary and instead our approach will be to reduce to the affine case (whose proof does in some sense use the spectral sequence). 
+    <p>
+      Indeed, if $Y' \subset Y$ is is any open with inverse image $X' \subset X$, then $\tilde\xi |_{X'}$ induces the map 
+    <p>
+      <div class="equation">
+  \[  \bigoplus \nolimits _{i = 1}^ N H^*_{dR}(Y'/S) \longrightarrow H^*_{dR}(X'/S), \quad (a_1, \ldots , a_ N) \longmapsto \sum \xi _ i|_{X'} \cup f^*a_ i  \]
+</div>
+    <p>
+       on cohomology over $Y'$, see discussion above. Thus it suffices to find a basis for the topology on $Y$ such that the proposition holds for the members of the basis (in particular we can forget about the map $\tilde\xi $ when we do this). This reduces us to the case where $Y$ and $S$ are affine which is handled by Lemma <a href="/tag/0FUM" data-tag="0FUM">50.13.2</a> and the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

@@ -1,0 +1,141 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="stacks-morphisms-section-stratify" class="tex-section"><span data-tag="06RB">101.29</span> Stratification by gerbes</h2>
+
+<p>
+The goal of this section is to show that many algebraic stacks $\mathcal{X}$ have a “stratification” by locally closed substacks $\mathcal{X}_ i \subset \mathcal{X}$ such that each $\mathcal{X}_ i$ is a gerbe. This shows that in some sense gerbes are the building blocks out of which any algebraic stack is constructed. Note that by stratification we only mean that 
+</p>
+<div class="equation">
+  \[  |\mathcal{X}| = \bigcup \nolimits _ i |\mathcal{X}_ i|  \]
+</div>
+<p>
+ is a stratification of the topological space associated to $\mathcal{X}$ and nothing more (in this section). Hence it is harmless to replace $\mathcal{X}$ by its reduction (see Properties of Stacks, Section <a href="/tag/0508" data-tag="0508">100.10</a>) in order to study this stratification. 
+</p>
+<p>
+The following proposition tells us there is (almost always) a dense open substack of the reduction of $\mathcal{X}$ 
+</p>
+<p>
+<article class="env-proposition" id="06RC">
+  <p><a class="environment-identifier" href="/tag/06RC">Proposition <span data-tag="06RC">101.29.1</span>.</a> Let $\mathcal{X}$ be a reduced algebraic stack such that $\mathcal{I}_\mathcal {X} \to \mathcal{X}$ is quasi-compact. Then there exists a dense open substack $\mathcal{U} \subset \mathcal{X}$ which is a gerbe. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      According to Proposition <a href="/tag/06QJ" data-tag="06QJ">101.28.9</a> it is enough to find a dense open substack $\mathcal{U}$ such that $\mathcal{I}_\mathcal {U} \to \mathcal{U}$ is flat and locally of finite presentation. Note that $\mathcal{I}_\mathcal {U} = \mathcal{I}_\mathcal {X} \times _\mathcal {X} \mathcal{U}$, see Lemma <a href="/tag/06PQ" data-tag="06PQ">101.5.5</a>. 
+    <p>
+      Choose a presentation $\mathcal{X} = [U/R]$. Let $G \to U$ be the stabilizer group algebraic space of the groupoid $R$. By Lemma <a href="/tag/06PR" data-tag="06PR">101.5.7</a> we see that $G \to U$ is the base change of $\mathcal{I}_\mathcal {X} \to \mathcal{X}$ hence quasi-compact (by assumption) and locally of finite type (by Lemma <a href="/tag/050Q" data-tag="050Q">101.5.1</a>). Let $W \subset U$ be the largest open (possibly empty) subscheme such that the restriction $G_ W \to W$ is flat and locally of finite presentation (we omit the proof that $W$ exists; hint: use that the properties are local). By Morphisms of Spaces, Proposition <a href="/tag/06QS" data-tag="06QS">67.32.1</a> we see that $W \subset U$ is dense. Note that $W \subset U$ is $R$-invariant by More on Groupoids in Spaces, Lemma <a href="/tag/06R4" data-tag="06R4">79.6.2</a>. Hence $W$ corresponds to an open substack $\mathcal{U} \subset \mathcal{X}$ by Properties of Stacks, Lemma <a href="/tag/0507" data-tag="0507">100.9.11</a>. Since $|U| \to |\mathcal{X}|$ is open and $|W| \subset |U|$ is dense we conclude that $\mathcal{U}$ is dense in $\mathcal{X}$. Finally, the morphism $\mathcal{I}_\mathcal {U} \to \mathcal{U}$ is flat and locally of finite presentation because the base change by the surjective smooth morphism $W \to \mathcal{U}$ is the morphism $G_ W \to W$ which is flat and locally of finite presentation by construction. See Lemmas <a href="/tag/06PZ" data-tag="06PZ">101.25.4</a> and <a href="/tag/06Q8" data-tag="06Q8">101.27.11</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The above proposition immediately implies that any point has a residual gerbe on an algebraic stack with quasi-compact inertia, as we will show in Lemma <a href="/tag/06RD" data-tag="06RD">101.31.1</a>. It turns out that there doesn't always exist a finite stratification by gerbes. Here is an example. 
+</p>
+<p>
+<article class="env-example" id="06RE">
+  <p><a class="environment-identifier" href="/tag/06RE">Example <span data-tag="06RE">101.29.2</span>.</a> Let $k$ be a field. Take $U = \mathop{\mathrm{Spec}}(k[x_0, x_1, x_2, \ldots ])$ and let $\mathbf{G}_ m$ act by $t(x_0, x_1, x_2, \ldots ) = (tx_0, t^ p x_1, t^{p^2} x_2, \ldots )$ where $p$ is a prime number. Let $\mathcal{X} = [U/\mathbf{G}_ m]$. This is an algebraic stack. There is a stratification of $\mathcal{X}$ by strata </p>
+  <p><ol>
+  <li><p>
+$\mathcal{X}_0$ is where $x_0$ is not zero, 
+</p>
+</li><li><p>
+$\mathcal{X}_1$ is where $x_0$ is zero but $x_1$ is not zero, 
+</p>
+</li><li><p>
+$\mathcal{X}_2$ is where $x_0, x_1$ are zero, but $x_2$ is not zero, 
+</p>
+</li><li><p>
+and so on, and 
+</p>
+</li><li><p>
+$\mathcal{X}_{\infty }$ is where all the $x_ i$ are zero. 
+</p>
+</li>
+</ol></p>
+  <p> Each stratum is a gerbe over a scheme with group $\mu _{p^ i}$ for $\mathcal{X}_ i$ and $\mathbf{G}_ m$ for $\mathcal{X}_{\infty }$. The strata are reduced locally closed substacks. There is no coarser stratification with the same properties. </p>
+</article> 
+</p>
+<p>
+Nonetheless, using transfinite induction we can use Proposition <a href="/tag/06RC" data-tag="06RC">101.29.1</a> find possibly infinite stratifications by gerbes...! 
+</p>
+<p>
+<article class="env-lemma" id="06RF">
+  <p><a class="environment-identifier" href="/tag/06RF">Lemma <span data-tag="06RF">101.29.3</span>.</a> Let $\mathcal{X}$ be an algebraic stack such that $\mathcal{I}_\mathcal {X} \to \mathcal{X}$ is quasi-compact. Then there exists a well-ordered index set $I$ and for every $i \in I$ a reduced locally closed substack $\mathcal{U}_ i \subset \mathcal{X}$ such that </p>
+  <p><ol>
+  <li><p>
+each $\mathcal{U}_ i$ is a gerbe, 
+</p>
+</li><li><p>
+we have $|\mathcal{X}| = \bigcup _{i \in I} |\mathcal{U}_ i|$, 
+</p>
+</li><li><p>
+$T_ i = |\mathcal{X}| \setminus \bigcup _{i' < i} |\mathcal{U}_{i'}|$ is closed in $|\mathcal{X}|$ for all $i \in I$, and 
+</p>
+</li><li><p>
+$|\mathcal{U}_ i|$ is open in $T_ i$. 
+</p>
+</li>
+</ol></p>
+  <p> We can moreover arrange it so that either (a) $|\mathcal{U}_ i| \subset T_ i$ is dense, or (b) $\mathcal{U}_ i$ is quasi-compact. In case (a), if we choose $\mathcal{U}_ i$ as large as possible (see proof for details), then the stratification is canonical. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $T \subset |\mathcal{X}|$ be a nonempty closed subset. We are going to find (resp. choose) for every such $T$ a reduced locally closed substack $\mathcal{U}(T) \subset \mathcal{X}$ with $|\mathcal{U}(T)| \subset T$ open dense (resp. nonempty quasi-compact). Namely, by Properties of Stacks, Lemma <a href="/tag/0509" data-tag="0509">100.10.1</a> there exists a unique reduced closed substack $\mathcal{X}' \subset \mathcal{X}$ such that $T = |\mathcal{X}'|$. Note that $\mathcal{I}_{\mathcal{X}'} = \mathcal{I}_\mathcal {X} \times _\mathcal {X} \mathcal{X}'$ by Lemma <a href="/tag/06R5" data-tag="06R5">101.5.6</a>. Hence $\mathcal{I}_{\mathcal{X}'} \to \mathcal{X}'$ is quasi-compact as a base change, see Lemma <a href="/tag/050V" data-tag="050V">101.7.3</a>. Therefore Proposition <a href="/tag/06RC" data-tag="06RC">101.29.1</a> implies there exists a dense maximal (see proof proposition) open substack $\mathcal{U} \subset \mathcal{X}'$ which is a gerbe. In case (a) we set $\mathcal{U}(T) = \mathcal{U}$ (this is canonical) and in case (b) we simply choose a nonempty quasi-compact open $\mathcal{U}(T) \subset \mathcal{U}$, see Properties of Stacks, Lemma <a href="/tag/04Y9" data-tag="04Y9">100.4.9</a> (we can do this for all $T$ simultaneously by the axiom of choice). 
+    <p>
+      Using transfinite recursion we construct for every ordinal $\alpha $ a closed subset $T_\alpha \subset |\mathcal{X}|$. For $\alpha = 0$ we set $T_0 = |\mathcal{X}|$. Given $T_\alpha $ set 
+    <p>
+      <div class="equation">
+  \[  T_{\alpha + 1} = T_\alpha \setminus |\mathcal{U}(T_\alpha )|.  \]
+</div>
+    <p>
+       If $\beta $ is a limit ordinal we set 
+    <p>
+      <div class="equation">
+  \[  T_\beta = \bigcap \nolimits _{\alpha < \beta } T_\alpha .  \]
+</div>
+    <p>
+       We claim that $T_\alpha = \emptyset $ for all $\alpha $ large enough. Namely, assume that $T_\alpha \not= \emptyset $ for all $\alpha $. Then we obtain an injective map from the class of ordinals into the set of subsets of $|\mathcal{X}|$ which is a contradiction. 
+    <p>
+      The claim implies the lemma. Namely, let 
+    <p>
+      <div class="equation">
+  \[  I = \{ \alpha \mid \mathcal{U}_\alpha \not= \emptyset \} .  \]
+</div>
+    <p>
+       This is a well-ordered set by the claim. For $i = \alpha \in I$ we set $\mathcal{U}_ i = \mathcal{U}_\alpha $. So $\mathcal{U}_ i$ is a reduced locally closed substack and a gerbe, i.e., (1) holds. By construction $T_ i = T\alpha $ if $i = \alpha \in I$, hence (3) holds. Also, (4) and (a) or (b) hold by our choice of $\mathcal{U}(T)$ as well. Finally, to see (2) let $x \in |\mathcal{X}|$. There exists a smallest ordinal $\beta $ with $x \not\in T_\beta $ (because the ordinals are well-ordered). In this case $\beta $ has to be a successor ordinal by the definition of $T_\beta $ for limit ordinals. Hence $\beta = \alpha + 1$ and $x \in |\mathcal{U}(T_\alpha )|$ and we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="06RG">
+  <p><a class="environment-identifier" href="/tag/06RG">Remark <span data-tag="06RG">101.29.4</span>.</a> We can wonder about the order type of the canonical stratifications which occur as output of the stratifications of type (a) constructed in Lemma <a href="/tag/06RF" data-tag="06RF">101.29.3</a>. A natural guess is that the well-ordered set $I$ has <em>cardinality</em> at most $\aleph _0$. We have no idea if this is true or false. If you do please email <a href="mailto:stacks.project@gmail.com">stacks.project@gmail.com</a>. </p>
+</article> 
+</p>

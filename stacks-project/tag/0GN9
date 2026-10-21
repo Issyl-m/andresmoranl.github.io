@@ -1,0 +1,259 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="descent-section-quasi-coherent-sheaves-bis" class="tex-section"><span data-tag="0GN9">35.10</span> Quasi-coherent sheaves and topologies, II</h2>
+
+<p>
+We continue the discussion comparing quasi-coherent modules on a scheme $S$ with quasi-coherent modules on any of the sites associated to $S$ in the chapter on topologies. 
+</p>
+<p>
+<article class="env-lemma" id="0GNA">
+  <p><a class="environment-identifier" href="/tag/0GNA">Lemma <span data-tag="0GNA">35.10.1</span>.</a> In Lemma <a href="/tag/070S" data-tag="070S">35.8.5</a> the morphism of ringed sites $\text{id}_{small, {\acute{e}tale}, Zar} : S_{\acute{e}tale}\to S_{Zar}$ is flat. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let us denote $\epsilon = \text{id}_{small, {\acute{e}tale}, Zar}$ and $\mathcal{O}_{\acute{e}tale}$ and $\mathcal{O}_{Zar}$ the structure sheaves on $S_{\acute{e}tale}$ and $S_{Zar}$. We have to show that $\mathcal{O}_{\acute{e}tale}$ is a flat $\epsilon ^{-1}\mathcal{O}_{Zar}$-module. Recall that étale morphisms are open, see Morphisms, Lemma <a href="/tag/03WT" data-tag="03WT">29.37.13</a>. It follows (from the construction of pullback on sheaves) that $\epsilon ^{-1}\mathcal{O}_{Zar}$ is the sheafification of the presheaf $\mathcal{O}'$ on $S_{\acute{e}tale}$ which sends an étale morphism $f : V \to S$ to $\mathcal{O}_ S(f(V))$. If both $V$ and $U = f(V) \subset S$ are affine, then $V \to U$ is an étale morphism of affines, hence corresponds to an étale ring map. Since étale ring maps are flat, we see that $\mathcal{O}_ S(U) = \mathcal{O}'(V) \to \mathcal{O}_{\acute{e}tale}(V) = \mathcal{O}_ V(V)$ is flat. Finally, for every étale morphism $f : V \to S$, i.e., object of $S_{\acute{e}tale}$, there is an affine open covering $V = \bigcup V_ i$ such that $f(V_ i)$ is an affine open in $S$ for all $i$<a class="footnotemark" href="#a0000769400" id="a0000769400-mark"><sup>1</sup></a>. Thus the result by Modules on Sites, Lemma <a href="/tag/0GN1" data-tag="0GN1">18.28.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06VE">
+  <p><a class="environment-identifier" href="/tag/06VE">Lemma <span data-tag="06VE">35.10.2</span>.</a> Let $S$ be a scheme. Let $\tau \in \{ Zariski, \linebreak[0] {\acute{e}tale}, \linebreak[0] smooth, \linebreak[0] syntomic, \linebreak[0] fppf\} $. The functors </p>
+  <div class="equation">
+  \[  \mathit{QCoh}(\mathcal{O}_ S) \longrightarrow \textit{Mod}((\mathit{Sch}/S)_\tau , \mathcal{O}) \quad \text{and}\quad \mathit{QCoh}(\mathcal{O}_ S) \longrightarrow \textit{Mod}(S_\tau , \mathcal{O})  \]
+</div>
+  <p> defined by the rule $\mathcal{F} \mapsto \mathcal{F}^ a$ seen in Proposition <a href="/tag/03DX" data-tag="03DX">35.8.9</a> are </p>
+  <p><ol>
+  <li><p>
+fully faithful, 
+</p>
+</li><li><p>
+commmute with direct sums, 
+</p>
+</li><li><p>
+commmute with colimits, 
+</p>
+</li><li><p>
+right exact, 
+</p>
+</li><li><p>
+exact as a functor $\mathit{QCoh}(\mathcal{O}_ S) \to \textit{Mod}(S_{\acute{e}tale}, \mathcal{O})$, 
+</p>
+</li><li><p>
+<strong>not</strong> exact as a functor $\mathit{QCoh}(\mathcal{O}_ S) \to \textit{Mod}((\mathit{Sch}/S)_\tau , \mathcal{O})$ in general, 
+</p>
+</li><li><p>
+given two quasi-coherent $\mathcal{O}_ S$-modules $\mathcal{F}$, $\mathcal{G}$ we have $(\mathcal{F} \otimes _{\mathcal{O}_ S} \mathcal{G})^ a = \mathcal{F}^ a \otimes _\mathcal {O} \mathcal{G}^ a$, 
+</p>
+</li><li><p>
+if $\tau = {\acute{e}tale}$ or $\tau = Zariski$, given two quasi-coherent $\mathcal{O}_ S$-modules $\mathcal{F}$, $\mathcal{G}$ such that $\mathcal{F}$ is of finite presentation we have $(\mathop{\mathcal{H}\! \mathit{om}}\nolimits _{\mathcal{O}_ S}(\mathcal{F}, \mathcal{G}))^ a = \mathop{\mathcal{H}\! \mathit{om}}\nolimits _\mathcal {O}(\mathcal{F}^ a, \mathcal{G}^ a)$ in $\textit{Mod}(S_\tau , \mathcal{O})$, 
+</p>
+</li><li><p>
+given two quasi-coherent $\mathcal{O}_ S$-modules $\mathcal{F}$, $\mathcal{G}$ we do <strong>not</strong> have $(\mathop{\mathcal{H}\! \mathit{om}}\nolimits _{\mathcal{O}_ S}(\mathcal{F}, \mathcal{G}))^ a = \mathop{\mathcal{H}\! \mathit{om}}\nolimits _\mathcal {O}(\mathcal{F}^ a, \mathcal{G}^ a)$ in $\textit{Mod}((\mathit{Sch}/S)_\tau , \mathcal{O})$ in general even if $\mathcal{F}$ is of finite presentation, and 
+</p>
+</li><li><p>
+given a short exact sequence $0 \to \mathcal{F}_1^ a \to \mathcal{E} \to \mathcal{F}_2^ a \to 0$ of $\mathcal{O}$-modules then $\mathcal{E}$ is quasi-coherent<a class="footnotemark" href="#a0000769632" id="a0000769632-mark"><sup>2</sup></a>, i.e., $\mathcal{E}$ is in the essential image of the functor. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Part (1) we saw in Proposition <a href="/tag/03DX" data-tag="03DX">35.8.9</a>. 
+    <p>
+      We have seen in Schemes, Section <a href="/tag/01LA" data-tag="01LA">26.24</a> that a colimit of quasi-coherent sheaves on a scheme is a quasi-coherent sheaf. Moreover, in Remark <a href="/tag/03FH" data-tag="03FH">35.8.6</a> we saw that $\mathcal{F} \mapsto \mathcal{F}^ a$ is the pullback functor for a morphism of ringed sites, hence commutes with all colimits, see Modules on Sites, Lemma <a href="/tag/03DC" data-tag="03DC">18.14.3</a>. Thus (3) and its special case (2) hold. 
+    <p>
+      This also shows that the functor is right exact (i.e., commutes with finite colimits), hence (4). 
+    <p>
+      The functor $\mathit{QCoh}(\mathcal{O}_ S) \to \textit{Mod}(S_{\acute{e}tale}, \mathcal{O})$, $\mathcal{F} \mapsto \mathcal{F}^ a$ is left exact because an étale morphism is flat, see Morphisms, Lemma <a href="/tag/02GS" data-tag="02GS">29.37.12</a>. This proves (5). 
+    <p>
+      To see (6), suppose that $S = \mathop{\mathrm{Spec}}(\mathbf{Z})$. Then $2 : \mathcal{O}_ S \to \mathcal{O}_ S$ is injective but the associated map of $\mathcal{O}$-modules on $(\mathit{Sch}/S)_\tau $ isn't injective because $2 : \mathbf{F}_2 \to \mathbf{F}_2$ isn't injective and $\mathop{\mathrm{Spec}}(\mathbf{F}_2)$ is an object of $(\mathit{Sch}/S)_\tau $. 
+    <p>
+      Part (7) holds because, as mentioned above, the functor $\mathcal{F} \mapsto \mathcal{F}^ a$ is the pullback functor for a morphism of ringed sites and such commute with tensor products by Modules on Sites, Lemma <a href="/tag/03EL" data-tag="03EL">18.26.2</a>. 
+    <p>
+      Part (8) is obvious if $\tau = Zariski$ because the category of $\mathcal{O}$-modules on $S_{Zar}$ is the same as the category of $\mathcal{O}_ S$-modules on the topological space $S$. If $\tau = {\acute{e}tale}$ then (8) holds because, as mentioned above, the functor $\mathcal{F} \mapsto \mathcal{F}^ a$ is the pullback functor for the flat morphism of ringed sites $(S_{\acute{e}tale}, \mathcal{O}) \to (S_{Zar}, \mathcal{O}_ S)$, see Lemma <a href="/tag/0GNA" data-tag="0GNA">35.10.1</a>. Pullback by flat morphisms of ringed sites commutes with taking internal hom out of a finitely presented module by Modules on Sites, Lemma <a href="/tag/0GN2" data-tag="0GN2">18.31.4</a>. 
+    <p>
+      To see (9), suppose that $S = \mathop{\mathrm{Spec}}(\mathbf{Z})$. Let $\mathcal{F} = \mathop{\mathrm{Coker}}(2 : \mathcal{O}_ S \to \mathcal{O}_ S)$ and $\mathcal{G} = \mathcal{O}_ S$. Then $\mathcal{F}^ a = \mathop{\mathrm{Coker}}(2 : \mathcal{O} \to \mathcal{O})$ and $\mathcal{G}^ a = \mathcal{O}$. Hence $\mathop{\mathcal{H}\! \mathit{om}}\nolimits _\mathcal {O}(\mathcal{F}^ a, \mathcal{G}^ a) = \mathcal{O}[2]$ is equal to the $2$-torsion in $\mathcal{O}$, which is not zero, see proof of (6). On the other hand, the module $\mathop{\mathcal{H}\! \mathit{om}}\nolimits _{\mathcal{O}_ S}(\mathcal{F}, \mathcal{G})$ is zero. 
+    <p>
+      Proof of (10). Let $0 \to \mathcal{F}_1^ a \to \mathcal{E} \to \mathcal{F}_2^ a \to 0$ be a short exact sequence of $\mathcal{O}$-modules with $\mathcal{F}_1$ and $\mathcal{F}_2$ quasi-coherent on $S$. Consider the restriction 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{F}_1 \to \mathcal{E}|_{S_{Zar}} \to \mathcal{F}_2  \]
+</div>
+    <p>
+       to $S_{Zar}$. By Proposition <a href="/tag/03DW" data-tag="03DW">35.9.3</a> we see that on any affine $U \subset S$ we have $H^1(U, \mathcal{F}_1^ a) = H^1(U, \mathcal{F}_1) = 0$. Hence the sequence above is also exact on the right. By Schemes, Section <a href="/tag/01LA" data-tag="01LA">26.24</a> we conclude that $\mathcal{F} = \mathcal{E}|_{S_{Zar}}$ is quasi-coherent. Thus we obtain a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ &  \mathcal{F}_1^ a \ar[r] \ar[d] &  \mathcal{F}^ a \ar[r] \ar[d] &  \mathcal{F}_2^ a \ar[r] \ar[d] &  0 \\  0 \ar[r] &  \mathcal{F}_1^ a \ar[r] &  \mathcal{E} \ar[r] &  \mathcal{F}_2^ a \ar[r] &  0 }  \]
+</div>
+    <p>
+       To finish the proof it suffices to show that the top row is also right exact. To do this, denote once more $U = \mathop{\mathrm{Spec}}(A) \subset S$ an affine open of $S$. We have seen above that $0 \to \mathcal{F}_1(U) \to \mathcal{E}(U) \to \mathcal{F}_2(U) \to 0$ is exact. For any affine scheme $V/U$, $V = \mathop{\mathrm{Spec}}(B)$ the map $\mathcal{F}_1^ a(V) \to \mathcal{E}(V)$ is injective. We have $\mathcal{F}_1^ a(V) = \mathcal{F}_1(U) \otimes _ A B$ by definition. The injection $\mathcal{F}_1^ a(V) \to \mathcal{E}(V)$ factors as 
+    <p>
+      <div class="equation">
+  \[  \mathcal{F}_1(U) \otimes _ A B \to \mathcal{E}(U) \otimes _ A B \to \mathcal{E}(V)  \]
+</div>
+    <p>
+       Considering $A$-algebras $B$ of the form $B = A \oplus M$ we see that $\mathcal{F}_1(U) \to \mathcal{E}(U)$ is universally injective (see Algebra, Definition <a href="/tag/058I" data-tag="058I">10.82.1</a>). Since $\mathcal{E}(U) = \mathcal{F}(U)$ we conclude that $\mathcal{F}_1 \to \mathcal{F}$ remains injective after any base change, or equivalently that $\mathcal{F}_1^ a \to \mathcal{F}^ a$ is injective. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GNB">
+  <p><a class="environment-identifier" href="/tag/0GNB">Lemma <span data-tag="0GNB">35.10.3</span>.</a> Let $S$ be a scheme. The category $\mathit{QCoh}(S_{\acute{e}tale}, \mathcal{O})$ of quasi-coherent modules on $S_{\acute{e}tale}$ has the following properties: </p>
+  <p><ol>
+  <li><p>
+Any direct sum of quasi-coherent sheaves is quasi-coherent. 
+</p>
+</li><li><p>
+Any colimit of quasi-coherent sheaves is quasi-coherent. 
+</p>
+</li><li><p>
+The kernel and cokernel of a morphism of quasi-coherent sheaves is quasi-coherent. 
+</p>
+</li><li><p>
+Given a short exact sequence of $\mathcal{O}$-modules $0 \to \mathcal{F}_1 \to \mathcal{F}_2 \to \mathcal{F}_3 \to 0$ if two out of three are quasi-coherent so is the third. 
+</p>
+</li><li><p>
+Given two quasi-coherent $\mathcal{O}$-modules the tensor product is quasi-coherent. 
+</p>
+</li><li><p>
+Given two quasi-coherent $\mathcal{O}$-modules $\mathcal{F}$, $\mathcal{G}$ such that $\mathcal{F}$ is of finite presentation. then the internal hom $\mathop{\mathcal{H}\! \mathit{om}}\nolimits _\mathcal {O}(\mathcal{F}, \mathcal{G})$ is quasi-coherent. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The corresponding facts hold for quasi-coherent modules on the scheme $S$, see Schemes, Section <a href="/tag/01LA" data-tag="01LA">26.24</a>. The proof will be to use Lemma <a href="/tag/06VE" data-tag="06VE">35.10.2</a> to transfer these truths to $S_{\acute{e}tale}$. 
+    <p>
+      Proof of (1). Let $\mathcal{F}_ i$, $i \in I$ be a family of objects of $\mathit{QCoh}(S_{\acute{e}tale}, \mathcal{O})$. Write $\mathcal{F}_ i = \mathcal{G}_ i^ a$ for some quasi-coherent modules $\mathcal{G}_ i$ on $S$. Then $\bigoplus \mathcal{F}_ i = (\bigoplus \mathcal{G}_ i)^ a$ by the lemma cited and we conclude. 
+    <p>
+      Proof of (2). Let $\mathcal{I} \to \mathit{QCoh}(S_{\acute{e}tale}, \mathcal{O})$, $i \mapsto \mathcal{F}_ i$ be a diagram. Write $\mathcal{F}_ i = \mathcal{G}_ i^ a$ so we get a diagram $\mathcal{I} \to \mathit{QCoh}(\mathcal{O}_ S)$. Then $\mathop{\mathrm{colim}}\nolimits \mathcal{F}_ i = (\mathop{\mathrm{colim}}\nolimits \mathcal{G}_ i)^ a$ by the lemma cited and we conclude. 
+    <p>
+      Proof of (3). Let $a : \mathcal{F} \to \mathcal{F}'$ be an arrow of $\mathit{QCoh}(S_{\acute{e}tale}, \mathcal{O})$. Write $a = b^ a$ for some map $b : \mathcal{G} \to \mathcal{G}'$ of quasi-coherent modules on $S$. By the lemma cited we have $\mathop{\mathrm{Ker}}(a) = \mathop{\mathrm{Ker}}(b)^ a$ and $\mathop{\mathrm{Coker}}(a) = \mathop{\mathrm{Coker}}(b)^ a$ and we conclude. 
+    <p>
+      Proof of (4). This follows from (3) except in the case when we know $\mathcal{F}_1$ and $\mathcal{F}_3$ are quasi-coherent. In this case write $\mathcal{F}_1 = \mathcal{G}_1^ a$ and $\mathcal{F}_3 = \mathcal{G}_3^ a$ with $\mathcal{G}_ i$ quasi-coherent on $S$. By Lemma <a href="/tag/06VE" data-tag="06VE">35.10.2</a> part (10) we conclude. 
+    <p>
+      Proof of (5). Let $\mathcal{F}$ and $\mathcal{F}'$ be in $\mathit{QCoh}(S_{\acute{e}tale}, \mathcal{O})$. Write $\mathcal{F} = \mathcal{G}^ a$ and $\mathcal{F}' = (\mathcal{G}')^ a$ with $\mathcal{G}$ and $\mathcal{G}'$ quasi-coherent on $S$. By the lemma cited we have $\mathcal{F} \otimes _\mathcal {O} \mathcal{F}' = (\mathcal{G} \otimes _{\mathcal{O}_ S} \mathcal{G}')^ a$ and we conclude. 
+    <p>
+      Proof of (6). Let $\mathcal{F}$ and $\mathcal{G}$ be in $\mathit{QCoh}(S_{\acute{e}tale}, \mathcal{O})$ with $\mathcal{F}$ of finite presentation. Write $\mathcal{F} = \mathcal{H}^ a$ and $\mathcal{G} = (\mathcal{I})^ a$ with $\mathcal{H}$ and $\mathcal{I}$ quasi-coherent on $S$. By Lemma <a href="/tag/05VG" data-tag="05VG">35.8.10</a> we see that $\mathcal{H}$ is of finite presentation. By Lemma <a href="/tag/06VE" data-tag="06VE">35.10.2</a> part (8) we have $\mathop{\mathcal{H}\! \mathit{om}}\nolimits _\mathcal {O}(\mathcal{F}, \mathcal{G}) = (\mathop{\mathcal{H}\! \mathit{om}}\nolimits _{\mathcal{O}_ S}(\mathcal{H}, \mathcal{I}))^ a$ and we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GNC">
+  <p><a class="environment-identifier" href="/tag/0GNC">Lemma <span data-tag="0GNC">35.10.4</span>.</a> Let $S$ be a scheme. Let $\tau \in \{ Zariski, \linebreak[0] {\acute{e}tale}, \linebreak[0] smooth, \linebreak[0] syntomic, \linebreak[0] fppf\} $. The category $\mathit{QCoh}((\mathit{Sch}/S)_\tau , \mathcal{O})$ of quasi-coherent modules on $(\mathit{Sch}/S)_\tau $ has the following properties: </p>
+  <p><ol>
+  <li><p>
+Any direct sum of quasi-coherent sheaves is quasi-coherent. 
+</p>
+</li><li><p>
+Any colimit of quasi-coherent sheaves is quasi-coherent. 
+</p>
+</li><li><p>
+The cokernel of a morphism of quasi-coherent sheaves is quasi-coherent. 
+</p>
+</li><li><p>
+Given a short exact sequence of $\mathcal{O}$-modules $0 \to \mathcal{F}_1 \to \mathcal{F}_2 \to \mathcal{F}_3 \to 0$ if $\mathcal{F}_1$ and $\mathcal{F}_3$ are quasi-coherent so is $\mathcal{F}_2$. 
+</p>
+</li><li><p>
+Given two quasi-coherent $\mathcal{O}$-modules the tensor product is quasi-coherent. 
+</p>
+</li><li><p>
+Given two quasi-coherent $\mathcal{O}$-modules $\mathcal{F}$, $\mathcal{G}$ such that $\mathcal{F}$ is finite locally free, the internal hom $\mathop{\mathcal{H}\! \mathit{om}}\nolimits _\mathcal {O}(\mathcal{F}, \mathcal{G})$ is quasi-coherent. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The corresponding facts hold for quasi-coherent modules on the scheme $S$, see Schemes, Section <a href="/tag/01LA" data-tag="01LA">26.24</a>. The proof will be to use Lemma <a href="/tag/06VE" data-tag="06VE">35.10.2</a> to transfer these truths to $(\mathit{Sch}/S)_\tau $. 
+    <p>
+      Proof of (1). Let $\mathcal{F}_ i$, $i \in I$ be a family of objects of $\mathit{QCoh}((\mathit{Sch}/S)_\tau , \mathcal{O})$. Write $\mathcal{F}_ i = \mathcal{G}_ i^ a$ for some quasi-coherent modules $\mathcal{G}_ i$ on $S$. Then $\bigoplus \mathcal{F}_ i = (\bigoplus \mathcal{G}_ i)^ a$ by the lemma cited and we conclude. 
+    <p>
+      Proof of (2). Let $\mathcal{I} \to \mathit{QCoh}((\mathit{Sch}/S)_\tau , \mathcal{O})$, $i \mapsto \mathcal{F}_ i$ be a diagram. Write $\mathcal{F}_ i = \mathcal{G}_ i^ a$ so we get a diagram $\mathcal{I} \to \mathit{QCoh}(\mathcal{O}_ S)$. Then $\mathop{\mathrm{colim}}\nolimits \mathcal{F}_ i = (\mathop{\mathrm{colim}}\nolimits \mathcal{G}_ i)^ a$ by the lemma cited and we conclude. 
+    <p>
+      Proof of (3). Let $a : \mathcal{F} \to \mathcal{F}'$ be an arrow of $\mathit{QCoh}((\mathit{Sch}/S)_\tau , \mathcal{O})$. Write $a = b^ a$ for some map $b : \mathcal{G} \to \mathcal{G}'$ of quasi-coherent modules on $S$. By the lemma cited we have $\mathop{\mathrm{Coker}}(a) = \mathop{\mathrm{Coker}}(b)^ a$ (because a cokernel is a colimit) and we conclude. 
+    <p>
+      Proof of (4). Write $\mathcal{F}_1 = \mathcal{G}_1^ a$ and $\mathcal{F}_3 = \mathcal{G}_3^ a$ with $\mathcal{G}_ i$ quasi-coherent on $S$. By Lemma <a href="/tag/06VE" data-tag="06VE">35.10.2</a> part (10) we conclude. 
+    <p>
+      Proof of (5). Let $\mathcal{F}$ and $\mathcal{F}'$ be in $\mathit{QCoh}((\mathit{Sch}/S)_\tau , \mathcal{O})$. Write $\mathcal{F} = \mathcal{G}^ a$ and $\mathcal{F}' = (\mathcal{G}')^ a$ with $\mathcal{G}$ and $\mathcal{G}'$ quasi-coherent on $S$. By the lemma cited we have $\mathcal{F} \otimes _\mathcal {O} \mathcal{F}' = (\mathcal{G} \otimes _{\mathcal{O}_ S} \mathcal{G}')^ a$ and we conclude. 
+    <p>
+      Proof of (6). Write $\mathcal{F} = \mathcal{H}^ a$ for some quasi-coherent $\mathcal{O}_ S$-module. By Lemma <a href="/tag/05VG" data-tag="05VG">35.8.10</a> we see that $\mathcal{H}$ is finite locally free. The problem is Zariski local on $S$ (details omitted) hence we may assume $\mathcal{H} = \mathcal{O}_ S^{\oplus n}$ is finite free. Then $\mathcal{F} = \mathcal{O}^{\oplus n}$ and $\mathop{\mathcal{H}\! \mathit{om}}\nolimits _\mathcal {O}(\mathcal{F}, \mathcal{G}) = \mathcal{G}^{\oplus n}$ is quasi-coherent. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-example" id="0GND">
+  <p><a class="environment-identifier" href="/tag/0GND">Example <span data-tag="0GND">35.10.5</span>.</a> Let $S$ be a scheme. Let $\mathcal{F}$ and $\mathcal{G}$ be quasi-coherent modules on $(\mathit{Sch}/S)_\tau $ for one of the topologies $\tau $ considered in Lemma <a href="/tag/0GNC" data-tag="0GNC">35.10.4</a>. In general it is not the case that $\mathop{\mathcal{H}\! \mathit{om}}\nolimits _\mathcal {O}(\mathcal{F}, \mathcal{G})$ is quasi-coherent even if $\mathcal{F}$ is of finite presentation. Namely, say $S = \mathop{\mathrm{Spec}}(\mathbf{Z})$, $\mathcal{F} = \mathop{\mathrm{Coker}}(2 : \mathcal{O} \to \mathcal{O})$, and $\mathcal{G} = \mathcal{O}$. Then $\mathop{\mathcal{H}\! \mathit{om}}\nolimits _\mathcal {O}(\mathcal{F}, \mathcal{G}) = \mathcal{O}[2]$ is equal to the $2$-torsion in $\mathcal{O}$, which is not quasi-coherent. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0GNE">
+  <p><a class="environment-identifier" href="/tag/0GNE">Lemma <span data-tag="0GNE">35.10.6</span>.</a> Let $S$ be a scheme. </p>
+  <p><ol>
+  <li><p>
+The category $\mathit{QCoh}((\mathit{Sch}/S)_{fppf}, \mathcal{O})$ has colimits and they agree with colimits in the categories $\textit{Mod}((\mathit{Sch}/S)_{Zar}, \mathcal{O})$, $\textit{Mod}((\mathit{Sch}/S)_{\acute{e}tale}, \mathcal{O})$, and $\textit{Mod}((\mathit{Sch}/S)_{fppf}, \mathcal{O})$. 
+</p>
+</li><li><p>
+Given $\mathcal{F}, \mathcal{G}$ in $\mathit{QCoh}((\mathit{Sch}/S)_{fppf}, \mathcal{O})$ the tensor products $\mathcal{F} \otimes _\mathcal {O} \mathcal{G}$ computed in $\textit{Mod}((\mathit{Sch}/S)_{Zar}, \mathcal{O})$, $\textit{Mod}((\mathit{Sch}/S)_{\acute{e}tale}, \mathcal{O})$, or $\textit{Mod}((\mathit{Sch}/S)_{fppf}, \mathcal{O})$ agree and the common value is an object of $\mathit{QCoh}((\mathit{Sch}/S)_{fppf}, \mathcal{O})$. 
+</p>
+</li><li><p>
+Given $\mathcal{F}, \mathcal{G}$ in $\mathit{QCoh}((\mathit{Sch}/S)_{fppf}, \mathcal{O})$ with $\mathcal{F}$ finite locally free (in fppf, or equivalently étale, or equivalently Zariski topology) the internal homs $\mathop{\mathcal{H}\! \mathit{om}}\nolimits _\mathcal {O}(\mathcal{F}, \mathcal{G})$ computed in $\textit{Mod}((\mathit{Sch}/S)_{Zar}, \mathcal{O})$, $\textit{Mod}((\mathit{Sch}/S)_{\acute{e}tale}, \mathcal{O})$, or $\textit{Mod}((\mathit{Sch}/S)_{fppf}, \mathcal{O})$ agree and the common value is an object of $\mathit{QCoh}((\mathit{Sch}/S)_{fppf}, \mathcal{O})$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This lemma collects the results shown above in a slightly different manner. First of all, by Lemma <a href="/tag/0GNC" data-tag="0GNC">35.10.4</a> we already know the output of the construction in (1), (2), or (3) ends up in $\mathit{QCoh}((\mathit{Sch}/S)_\tau , \mathcal{O})$. It remains to show in each case that the result is independent of the topology used. The key to this is that the equivalence $\mathit{QCoh}(\mathcal{O}_ S) \to \mathit{QCoh}((\mathit{Sch}/S)_\tau , \mathcal{O})$, $\mathcal{F} \mapsto \mathcal{F}^ a$ of Proposition <a href="/tag/03DX" data-tag="03DX">35.8.9</a> is given by the same formula independent of the choice of the topology $\tau \in \{ Zariski, {\acute{e}tale}, fppf\} $. 
+    <p>
+      Proof of (1). Let $\mathcal{I} \to \mathit{QCoh}((\mathit{Sch}/S)_{fppf}, \mathcal{O})$, $i \mapsto \mathcal{F}_ i$ be a diagram. Write $\mathcal{F}_ i = \mathcal{G}_ i^ a$ so we get a diagram $\mathcal{I} \to \mathit{QCoh}(\mathcal{O}_ S)$. Then $\mathop{\mathrm{colim}}\nolimits \mathcal{F}_ i = (\mathop{\mathrm{colim}}\nolimits \mathcal{G}_ i)^ a$ in $\textit{Mod}((\mathit{Sch}/S)_\tau , \mathcal{O})$ for $\tau \in \{ Zariski, {\acute{e}tale}, fppf\} $ by Lemma <a href="/tag/06VE" data-tag="06VE">35.10.2</a>. This proves (1). 
+    <p>
+      Proof of (2). Write $\mathcal{F} = \mathcal{H}^ a$ and $\mathcal{G} = (\mathcal{I})^ a$ with $\mathcal{H}$ and $\mathcal{I}$ quasi-coherent on $S$. Then $\mathcal{F} \otimes _\mathcal {O} \mathcal{G} = (\mathcal{H} \otimes _\mathcal {O} \mathcal{I})^ a$ in $\textit{Mod}((\mathit{Sch}/S)_\tau , \mathcal{O})$ for $\tau \in \{ Zariski, {\acute{e}tale}, fppf\} $ by Lemma <a href="/tag/06VE" data-tag="06VE">35.10.2</a>. This proves (2). 
+    <p>
+      Proof of (3). Let $\mathcal{F}$ and $\mathcal{G}$ be in $\mathit{QCoh}((\mathit{Sch}/S)_{fppf}, \mathcal{O})$. Write $\mathcal{F} = \mathcal{H}^ a$ with $\mathcal{H}$ quasi-coherent on $S$. By Lemma <a href="/tag/05VG" data-tag="05VG">35.8.10</a> we have 
+    <p>
+      <div class="equation">
+  \begin{align*}  \mathcal{F}\text{ finite locally free in fppf topology} &  \Leftrightarrow \mathcal{H}\text{ finite locally free on }S \\ &  \Leftrightarrow \mathcal{F}\text{ finite locally free in étale topology} \\ &  \Leftrightarrow \mathcal{H}\text{ finite locally free on }S \\ &  \Leftrightarrow \mathcal{F}\text{ finite locally free in Zariski topology} \end{align*}
+</div>
+    <p>
+       This explains the parenthetical statement of part (3). Now, if these equivalent conditions hold, then $\mathcal{H}$ is finite locally free. The construction of $\mathop{\mathcal{H}\! \mathit{om}}\nolimits _\mathcal {O}(\mathcal{F}, \mathcal{G})$ in Modules on Sites, Section <a href="/tag/04TT" data-tag="04TT">18.27</a> depends only on $\mathcal{F}$ and $\mathcal{G}$ as presheaves of modules (only whether the output $\mathop{\mathcal{H}\! \mathit{om}}\nolimits $ is a sheaf depends on whether $\mathcal{F}$ and $\mathcal{G}$ are sheaves). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

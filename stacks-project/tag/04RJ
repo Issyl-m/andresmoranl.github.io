@@ -1,0 +1,336 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="spaces-more-groupoids-section-etale-localize" class="tex-section"><span data-tag="04RJ">79.15</span> Étale localization of groupoid schemes</h2>
+
+<p>
+In this section we prove results similar to <span class="cite">[<span class="postnote">Proposition 4.2</span>, <a href="/bibliography/K-M">K-M</a>]</span>. We try to be a bit more general, and we try to avoid using Hilbert schemes by using the finite part of a morphism instead. The goal is to "split" a groupoid in algebraic spaces over a point after étale localization. Here is the definition (very similar to <span class="cite">[<span class="postnote">Definition 4.1</span>, <a href="/bibliography/K-M">K-M</a>]</span>). 
+</p>
+<p>
+<article class="env-definition" id="04RK">
+  <p><a class="environment-identifier" href="/tag/04RK">Definition <span data-tag="04RK">79.15.1</span>.</a> Let $S$ be a scheme. Let $B$ be an algebraic space over $S$ Let $(U, R, s, t, c)$ be a groupoid in algebraic spaces over $B$. Let $u \in |U|$ be a point. </p>
+  <p><ol>
+  <li><p>
+We say $R$ is <em>strongly split over $u$</em> if there exists an open subspace $P \subset R$ such that 
+</p>
+<ol>
+  <li><p>
+$(U, P, s|_ P, t|_ P, c|_{P \times _{s, U, t} P})$ is a groupoid in algebraic spaces over $B$, 
+</p>
+</li><li><p>
+$s|_ P$, $t|_ P$ are finite, and 
+</p>
+</li><li><p>
+$\{ r \in |R| : s(r) = u, t(r) = u\}  \subset |P|$. 
+</p>
+</li>
+</ol>
+<p>
+ The choice of such a $P$ will be called a <em>strong splitting of $R$ over $u$</em>. 
+</p>
+</li><li><p>
+We say $R$ is <em>split over $u$</em> if there exists an open subspace $P \subset R$ such that 
+</p>
+<ol>
+  <li><p>
+$(U, P, s|_ P, t|_ P, c|_{P \times _{s, U, t} P})$ is a groupoid in algebraic spaces over $B$, 
+</p>
+</li><li><p>
+$s|_ P$, $t|_ P$ are finite, and 
+</p>
+</li><li><p>
+$\{ g \in |G| : g\text{ maps to }u\}  \subset |P|$ where $G \to U$ is the stabilizer. 
+</p>
+</li>
+</ol>
+<p>
+ The choice of such a $P$ will be called a <em>splitting of $R$ over $u$</em>. 
+</p>
+</li><li><p>
+We say $R$ is <em>quasi-split over $u$</em> if there exists an open subspace $P \subset R$ such that 
+</p>
+<ol>
+  <li><p>
+$(U, P, s|_ P, t|_ P, c|_{P \times _{s, U, t} P})$ is a groupoid in algebraic spaces over $B$, 
+</p>
+</li><li><p>
+$s|_ P$, $t|_ P$ are finite, and 
+</p>
+</li><li><p>
+$e(u) \in |P|$<a class="footnotemark" href="#a0001495434" id="a0001495434-mark"><sup>1</sup></a>. 
+</p>
+</li>
+</ol>
+<p>
+ The choice of such a $P$ will be called a <em>quasi-splitting of $R$ over $u$</em>. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+Note the similarity of the conditions on $P$ to the conditions on pairs in (<a href="/tag/04PC" data-tag="04PC">79.12.0.1</a>). In particular, if $s, t$ are separated, then $P$ is also closed in $R$ (see Lemma <a href="/tag/04PH" data-tag="04PH">79.12.4</a>). 
+</p>
+<p>
+Suppose we start with a groupoid in algebraic spaces $(U, R, s, t, c)$ over $B$ and a point $u \in |U|$. Since the goal is to split the groupoid after étale localization we may as well replace $U$ by an affine scheme (what we mean is that this is harmless for any possible application). Moreover, the additional hypotheses we are going to have to impose will force $R$ to be a scheme at least in a neighbourhood of $\{ r \in |R| : s(r) = u, t(r) = u\} $ or $e(u)$. This is why we start with a groupoid scheme as described below. However, our technique of proof leads us outside of the category of schemes, which is why we have formulated a splitting for the case of groupoids in algebraic spaces above. On the other hand, we know of no applications but the case where the morphisms $s$, $t$ are also flat and of finite presentation, in which case we end up back in the category of schemes. 
+</p>
+<p>
+<article class="env-situation" id="04RL">
+  <p><a class="environment-identifier" href="/tag/04RL">Situation <span data-tag="04RL">79.15.2</span> <span class="named">(Strong splitting)</span>.</a>  Let $S$ be a scheme. Let $(U, R, s, t, c)$ be a groupoid scheme over $S$. Let $u \in U$ be a point. Assume that </p>
+  <p><ol>
+  <li><p>
+$s, t : R \to U$ are separated, 
+</p>
+</li><li><p>
+$s$, $t$ are locally of finite type, 
+</p>
+</li><li><p>
+the set $\{ r \in R : s(r) = u, t(r) = u\} $ is finite, and 
+</p>
+</li><li><p>
+$s$ is quasi-finite at each point of the set in (3). 
+</p>
+</li>
+</ol></p>
+  <p> Note that assumptions (3) and (4) are implied by the assumption that the fibre $s^{-1}(\{ u\} )$ is finite, see Morphisms, Lemma <a href="/tag/02NG" data-tag="02NG">29.21.7</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-situation" id="0DTB">
+  <p><a class="environment-identifier" href="/tag/0DTB">Situation <span data-tag="0DTB">79.15.3</span> <span class="named">(Splitting)</span>.</a>  Let $S$ be a scheme. Let $(U, R, s, t, c)$ be a groupoid scheme over $S$. Let $u \in U$ be a point. Assume that </p>
+  <p><ol>
+  <li><p>
+$s, t : R \to U$ are separated, 
+</p>
+</li><li><p>
+$s$, $t$ are locally of finite type, 
+</p>
+</li><li><p>
+the set $\{ g \in G : g\text{ maps to }u\} $ is finite where $G \to U$ is the stabilizer, and 
+</p>
+</li><li><p>
+$s$ is quasi-finite at each point of the set in (3). 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+<article class="env-situation" id="04RV">
+  <p><a class="environment-identifier" href="/tag/04RV">Situation <span data-tag="04RV">79.15.4</span> <span class="named">(Quasi-splitting)</span>.</a>  Let $S$ be a scheme. Let $(U, R, s, t, c)$ be a groupoid scheme over $S$. Let $u \in U$ be a point. Assume that </p>
+  <p><ol>
+  <li><p>
+$s, t : R \to U$ are separated, 
+</p>
+</li><li><p>
+$s$, $t$ are locally of finite type, and 
+</p>
+</li><li><p>
+$s$ is quasi-finite at $e(u)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+For our application to the existence theorems for algebraic spaces the case of quasi-splittings is sufficient. Moreover, the quasi-splitting case will allow us to prove an étale local structure theorem for quasi-DM stacks. The splitting case will be used to prove a version of the Keel-Mori theorem. The strong splitting case applies to give an étale local structure theorem for quasi-DM algebraic stacks with quasi-compact diagonal. 
+</p>
+<p>
+<article class="env-lemma" id="03FM">
+  <p><a class="environment-identifier" href="/tag/03FM">Lemma <span data-tag="03FM">79.15.5</span> <span class="named">(Existence of strong splitting)</span>.</a>  In Situation <a href="/tag/04RL" data-tag="04RL">79.15.2</a> there exists an algebraic space $U'$, an étale morphism $U' \to U$, and a point $u' : \mathop{\mathrm{Spec}}(\kappa (u)) \to U'$ lying over $u : \mathop{\mathrm{Spec}}(\kappa (u)) \to U$ such that the restriction $R' = R|_{U'}$ of $R$ to $U'$ is strongly split over $u'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $f : (U', Z_{univ}, s', t', c') \to (U, R, s, t, c)$ be as constructed in Lemma <a href="/tag/04RU" data-tag="04RU">79.14.1</a>. Recall that $R' = R \times _{(U \times _ S U)} (U' \times _ S U')$. Thus we get a morphism $(f, t', s') : Z_{univ} \to R'$ of groupoids in algebraic spaces 
+    <p>
+      <div class="equation">
+  \[  (U', Z_{univ}, s', t', c') \to (U', R', s', t', c')  \]
+</div>
+    <p>
+       (by abuse of notation we indicate the morphisms in the two groupoids by the same symbols). Now, as $Z_{univ} \subset R \times _{s, U, g} U'$ is open and $R' \to R \times _{s, U, g} U'$ is étale (as a base change of $U' \to U$) we see that $Z_{univ} \to R'$ is an open immersion. By construction the morphisms $s', t' : Z_{univ} \to U'$ are finite. It remains to find the point $u'$ of $U'$. 
+    <p>
+      We think of $u$ as a morphism $\mathop{\mathrm{Spec}}(\kappa (u)) \to U$ as in the statement of the lemma. Set $F_ u = R \times _{s, U} \mathop{\mathrm{Spec}}(\kappa (u))$. The set $\{ r \in R : s(r) = u, t(r) = u\} $ is finite by assumption and $F_ u \to \mathop{\mathrm{Spec}}(\kappa (u))$ is quasi-finite at each of its elements by assumption. Hence we can find a decomposition into open and closed subschemes 
+    <p>
+      <div class="equation">
+  \[  F_ u = Z_ u \amalg Rest  \]
+</div>
+    <p>
+       for some scheme $Z_ u$ finite over $\kappa (u)$ whose support is $\{ r \in R : s(r) = u, t(r) = u\} $. Note that $e(u) \in Z_ u$. Hence by the construction of $U'$ in Section <a href="/tag/04RT" data-tag="04RT">79.14</a> $(u, Z_ u)$ defines a $\mathop{\mathrm{Spec}}(\kappa (u))$-valued point $u'$ of $U'$. 
+    <p>
+      We still have to show that the set $\{ r' \in |R'| : s'(r') = u', t'(r') = u'\} $ is contained in $|Z_{univ}|$. Pick any point $r'$ in this set and represent it by a morphism $z' : \mathop{\mathrm{Spec}}(k) \to R'$. Denote $z : \mathop{\mathrm{Spec}}(k) \to R$ the composition of $z'$ with the map $R' \to R$. Clearly, $z$ defines an element of the set $\{ r \in R : s(r) = u, t(r) = u\} $. Also, the compositions $s \circ z, t \circ z : \mathop{\mathrm{Spec}}(k) \to U$ factor through $u$, so we may think of $s \circ z, t \circ z$ as a morphism $\mathop{\mathrm{Spec}}(k) \to \mathop{\mathrm{Spec}}(\kappa (u))$. Then $z' = (z, u' \circ t \circ z, u'\circ s \circ u)$ as morphisms into $R' = R \times _{(U \times _ S U)} (U' \times _ S U')$. Consider the triple 
+    <p>
+      <div class="equation">
+  \[  (s \circ z, Z_ u \times _{\mathop{\mathrm{Spec}}(\kappa (u)), s \circ z} \mathop{\mathrm{Spec}}(k), z)  \]
+</div>
+    <p>
+       where $Z_ u$ is as above. This defines a $\mathop{\mathrm{Spec}}(k)$-valued point of $Z_{univ}$ whose image via $s', t'$ in $U'$ is $u'$ and whose image via $Z_{univ} \to R'$ is the point $r'$ by the relationship between $z$ and $z'$ mentioned above. This finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DTC">
+  <p><a class="environment-identifier" href="/tag/0DTC">Lemma <span data-tag="0DTC">79.15.6</span> <span class="named">(Existence of splitting)</span>.</a>  In Situation <a href="/tag/0DTB" data-tag="0DTB">79.15.3</a> there exists an algebraic space $U'$, an étale morphism $U' \to U$, and a point $u' : \mathop{\mathrm{Spec}}(\kappa (u)) \to U'$ lying over $u : \mathop{\mathrm{Spec}}(\kappa (u)) \to U$ such that the restriction $R' = R|_{U'}$ of $R$ to $U'$ is split over $u'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $f : (U', Z_{univ}, s', t', c') \to (U, R, s, t, c)$ be as constructed in Lemma <a href="/tag/04RU" data-tag="04RU">79.14.1</a>. Recall that $R' = R \times _{(U \times _ S U)} (U' \times _ S U')$. Thus we get a morphism $(f, t', s') : Z_{univ} \to R'$ of groupoids in algebraic spaces 
+    <p>
+      <div class="equation">
+  \[  (U', Z_{univ}, s', t', c') \to (U', R', s', t', c')  \]
+</div>
+    <p>
+       (by abuse of notation we indicate the morphisms in the two groupoids by the same symbols). Now, as $Z_{univ} \subset R \times _{s, U, g} U'$ is open and $R' \to R \times _{s, U, g} U'$ is étale (as a base change of $U' \to U$) we see that $Z_{univ} \to R'$ is an open immersion. By construction the morphisms $s', t' : Z_{univ} \to U'$ are finite. It remains to find the point $u'$ of $U'$. 
+    <p>
+      We think of $u$ as a morphism $\mathop{\mathrm{Spec}}(\kappa (u)) \to U$ as in the statement of the lemma. Set $F_ u = R \times _{s, U} \mathop{\mathrm{Spec}}(\kappa (u))$. Let $G_ u \subset F_ u$ be the scheme theoretic fibre of $G \to U$ over $u$. By assumption $G_ u$ is finite and $F_ u \to \mathop{\mathrm{Spec}}(\kappa (u))$ is quasi-finite at each point of $G_ u$ by assumption. Hence we can find a decomposition into open and closed subschemes 
+    <p>
+      <div class="equation">
+  \[  F_ u = Z_ u \amalg Rest  \]
+</div>
+    <p>
+       for some scheme $Z_ u$ finite over $\kappa (u)$ whose support is $G_ u$. Note that $e(u) \in Z_ u$. Hence by the construction of $U'$ in Section <a href="/tag/04RT" data-tag="04RT">79.14</a> $(u, Z_ u)$ defines a $\mathop{\mathrm{Spec}}(\kappa (u))$-valued point $u'$ of $U'$. 
+    <p>
+      We still have to show that the set $\{ g' \in |G'| : g'\text{ maps to }u'\} $ is contained in $|Z_{univ}|$. Pick any point $g'$ in this set and represent it by a morphism $z' : \mathop{\mathrm{Spec}}(k) \to G'$. Denote $z : \mathop{\mathrm{Spec}}(k) \to G$ the composition of $z'$ with the map $G' \to G$. Clearly, $z$ defines a point of $G_ u$. In fact, let us write $\tilde u : \mathop{\mathrm{Spec}}(k) \to u \to U$ for the corresponding map to $u$ or $U$. Consider the triple 
+    <p>
+      <div class="equation">
+  \[  (\tilde u, Z_ u \times _{u, \tilde u} \mathop{\mathrm{Spec}}(k), z)  \]
+</div>
+    <p>
+       where $Z_ u$ is as above. This defines a $\mathop{\mathrm{Spec}}(k)$-valued point of $Z_{univ}$ whose image via $s', t'$ in $U'$ is $u'$ and whose image via $Z_{univ} \to R'$ is the point $z'$ (because the image in $R$ is $z$). This finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="04RW">
+  <p><a class="environment-identifier" href="/tag/04RW">Lemma <span data-tag="04RW">79.15.7</span> <span class="named">(Existence of quasi-splitting)</span>.</a>  In Situation <a href="/tag/04RV" data-tag="04RV">79.15.4</a> there exists an algebraic space $U'$, an étale morphism $U' \to U$, and a point $u' : \mathop{\mathrm{Spec}}(\kappa (u)) \to U'$ lying over $u : \mathop{\mathrm{Spec}}(\kappa (u)) \to U$ such that the restriction $R' = R|_{U'}$ of $R$ to $U'$ is quasi-split over $u'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $f : (U', Z_{univ}, s', t', c') \to (U, R, s, t, c)$ be as constructed in Lemma <a href="/tag/04RU" data-tag="04RU">79.14.1</a>. Recall that $R' = R \times _{(U \times _ S U)} (U' \times _ S U')$. Thus we get a morphism $(f, t', s') : Z_{univ} \to R'$ of groupoids in algebraic spaces 
+    <p>
+      <div class="equation">
+  \[  (U', Z_{univ}, s', t', c') \to (U', R', s', t', c')  \]
+</div>
+    <p>
+       (by abuse of notation we indicate the morphisms in the two groupoids by the same symbols). Now, as $Z_{univ} \subset R \times _{s, U, g} U'$ is open and $R' \to R \times _{s, U, g} U'$ is étale (as a base change of $U' \to U$) we see that $Z_{univ} \to R'$ is an open immersion. By construction the morphisms $s', t' : Z_{univ} \to U'$ are finite. It remains to find the point $u'$ of $U'$. 
+    <p>
+      We think of $u$ as a morphism $\mathop{\mathrm{Spec}}(\kappa (u)) \to U$ as in the statement of the lemma. Set $F_ u = R \times _{s, U} \mathop{\mathrm{Spec}}(\kappa (u))$. The morphism $F_ u \to \mathop{\mathrm{Spec}}(\kappa (u))$ is quasi-finite at $e(u)$ by assumption. Hence we can find a decomposition into open and closed subschemes 
+    <p>
+      <div class="equation">
+  \[  F_ u = Z_ u \amalg Rest  \]
+</div>
+    <p>
+       for some scheme $Z_ u$ finite over $\kappa (u)$ whose support is $e(u)$. Hence by the construction of $U'$ in Section <a href="/tag/04RT" data-tag="04RT">79.14</a> $(u, Z_ u)$ defines a $\mathop{\mathrm{Spec}}(\kappa (u))$-valued point $u'$ of $U'$. To finish the proof we have to show that $e'(u') \in Z_{univ}$ which is clear. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Finally, when we add additional assumptions we obtain schemes. 
+</p>
+<p>
+<article class="env-lemma" id="04RX">
+  <p><a class="environment-identifier" href="/tag/04RX">Lemma <span data-tag="04RX">79.15.8</span>.</a> In Situation <a href="/tag/04RL" data-tag="04RL">79.15.2</a> assume in addition that $s, t$ are flat and locally of finite presentation. Then there exists a scheme $U'$, a separated étale morphism $U' \to U$, and a point $u' \in U'$ lying over $u$ with $\kappa (u) = \kappa (u')$ such that the restriction $R' = R|_{U'}$ of $R$ to $U'$ is strongly split over $u'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from the construction of $U'$ in the proof of Lemma <a href="/tag/03FM" data-tag="03FM">79.15.5</a> because in this case $U' = (R_ s/U, e)_{fin}$ is a scheme separated over $U$ by Lemmas <a href="/tag/04RI" data-tag="04RI">79.12.14</a> and <a href="/tag/04RR" data-tag="04RR">79.12.15</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DTD">
+  <p><a class="environment-identifier" href="/tag/0DTD">Lemma <span data-tag="0DTD">79.15.9</span>.</a> In Situation <a href="/tag/0DTB" data-tag="0DTB">79.15.3</a> assume in addition that $s, t$ are flat and locally of finite presentation. Then there exists a scheme $U'$, a separated étale morphism $U' \to U$, and a point $u' \in U'$ lying over $u$ with $\kappa (u) = \kappa (u')$ such that the restriction $R' = R|_{U'}$ of $R$ to $U'$ is split over $u'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from the construction of $U'$ in the proof of Lemma <a href="/tag/0DTC" data-tag="0DTC">79.15.6</a> because in this case $U' = (R_ s/U, e)_{fin}$ is a scheme separated over $U$ by Lemmas <a href="/tag/04RI" data-tag="04RI">79.12.14</a> and <a href="/tag/04RR" data-tag="04RR">79.12.15</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="04RY">
+  <p><a class="environment-identifier" href="/tag/04RY">Lemma <span data-tag="04RY">79.15.10</span>.</a> In Situation <a href="/tag/04RV" data-tag="04RV">79.15.4</a> assume in addition that $s, t$ are flat and locally of finite presentation. Then there exists a scheme $U'$, a separated étale morphism $U' \to U$, and a point $u' \in U'$ lying over $u$ with $\kappa (u) = \kappa (u')$ such that the restriction $R' = R|_{U'}$ of $R$ to $U'$ is quasi-split over $u'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from the construction of $U'$ in the proof of Lemma <a href="/tag/04RW" data-tag="04RW">79.15.7</a> because in this case $U' = (R_ s/U, e)_{fin}$ is a scheme separated over $U$ by Lemmas <a href="/tag/04RI" data-tag="04RI">79.12.14</a> and <a href="/tag/04RR" data-tag="04RR">79.12.15</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In fact we can obtain affine schemes by applying an earlier result on finite locally free groupoids. 
+</p>
+<p>
+<article class="env-lemma" id="04RZ">
+  <p><a class="environment-identifier" href="/tag/04RZ">Lemma <span data-tag="04RZ">79.15.11</span>.</a> In Situation <a href="/tag/04RL" data-tag="04RL">79.15.2</a> assume in addition that $s, t$ are flat and locally of finite presentation and that $U$ is affine. Then there exists an affine scheme $U'$, an étale morphism $U' \to U$, and a point $u' \in U'$ lying over $u$ with $\kappa (u) = \kappa (u')$ such that the restriction $R' = R|_{U'}$ of $R$ to $U'$ is strongly split over $u'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $U' \to U$ and $u' \in U'$ be the separated étale morphism of schemes we found in Lemma <a href="/tag/04RX" data-tag="04RX">79.15.8</a>. Let $P \subset R'$ be the strong splitting of $R'$ over $u'$. By More on Groupoids, Lemma <a href="/tag/04MP" data-tag="04MP">40.9.1</a> the morphisms $s', t' : R' \to U'$ are flat and locally of finite presentation. They are finite by assumption. Hence $s', t'$ are finite locally free, see Morphisms, Lemma <a href="/tag/02KB" data-tag="02KB">29.49.2</a>. In particular $t(s^{-1}(u'))$ is a finite set of points $\{ u'_1, u'_2, \ldots , u'_ n\} $ of $U'$. Choose a quasi-compact open $W \subset U'$ containing each $u'_ i$. As $U$ is affine the morphism $W \to U$ is quasi-compact (see Schemes, Lemma <a href="/tag/01K4" data-tag="01K4">26.19.2</a>). The morphism $W \to U$ is also locally quasi-finite (see Morphisms, Lemma <a href="/tag/03WS" data-tag="03WS">29.37.6</a>) and separated. Hence by More on Morphisms, Lemma <a href="/tag/02LR" data-tag="02LR">37.43.2</a> (a version of Zariski's Main Theorem) we conclude that $W$ is quasi-affine. By Properties, Lemma <a href="/tag/01ZY" data-tag="01ZY">28.30.5</a> we see that $\{ u'_1, \ldots , u'_ n\} $ are contained in an affine open of $U'$. Thus we may apply Groupoids, Lemma <a href="/tag/03JE" data-tag="03JE">39.24.1</a> to conclude that there exists an affine $P$-invariant open $U'' \subset U'$ which contains $u'$. 
+    <p>
+      To finish the proof denote $R'' = R|_{U''}$ the restriction of $R$ to $U''$. This is the same as the restriction of $R'$ to $U''$. As $P \subset R'$ is an open and closed subscheme, so is $P|_{U''} \subset R''$. By construction the open subscheme $U'' \subset U'$ is $P$-invariant which means that $P|_{U''} = (s'|_ P)^{-1}(U'') = (t'|_ P)^{-1}(U'')$ (see discussion in Groupoids, Section <a href="/tag/03LN" data-tag="03LN">39.19</a>) so the restrictions of $s''$ and $t''$ to $P|_{U''}$ are still finite. The sub groupoid scheme $P|_{U''}$ is still a strong splitting of $R''$ over $u''$; above we verified (a), (b) and (c) holds as $\{ r' \in R': t'(r') = u', s'(r') = u'\}  = \{ r'' \in R'': t''(r'') = u', s''(r'') = u'\} $ trivially. The lemma is proved. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DTE">
+  <p><a class="environment-identifier" href="/tag/0DTE">Lemma <span data-tag="0DTE">79.15.12</span>.</a> In Situation <a href="/tag/0DTB" data-tag="0DTB">79.15.3</a> assume in addition that $s, t$ are flat and locally of finite presentation and that $U$ is affine. Then there exists an affine scheme $U'$, an étale morphism $U' \to U$, and a point $u' \in U'$ lying over $u$ with $\kappa (u) = \kappa (u')$ such that the restriction $R' = R|_{U'}$ of $R$ to $U'$ is split over $u'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The proof of this lemma is literally the same as the proof of Lemma <a href="/tag/04RZ" data-tag="04RZ">79.15.11</a> except that “strong splitting” needs to be replaced by “splitting” (2 times) and that the reference to Lemma <a href="/tag/04RX" data-tag="04RX">79.15.8</a> needs to be replaced by a reference to Lemma <a href="/tag/0DTD" data-tag="0DTD">79.15.9</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="04S0">
+  <p><a class="environment-identifier" href="/tag/04S0">Lemma <span data-tag="04S0">79.15.13</span>.</a> In Situation <a href="/tag/04RV" data-tag="04RV">79.15.4</a> assume in addition that $s, t$ are flat and locally of finite presentation and that $U$ is affine. Then there exists an affine scheme $U'$, an étale morphism $U' \to U$, and a point $u' \in U'$ lying over $u$ with $\kappa (u) = \kappa (u')$ such that the restriction $R' = R|_{U'}$ of $R$ to $U'$ is quasi-split over $u'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The proof of this lemma is literally the same as the proof of Lemma <a href="/tag/04RZ" data-tag="04RZ">79.15.11</a> except that “strong splitting” needs to be replaced by “quasi-splitting” (2 times) and that the reference to Lemma <a href="/tag/04RX" data-tag="04RX">79.15.8</a> needs to be replaced by a reference to Lemma <a href="/tag/04RY" data-tag="04RY">79.15.10</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

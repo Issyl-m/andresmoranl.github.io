@@ -1,0 +1,149 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-morphisms-section-etale-neighbourhoods" class="tex-section"><span data-tag="02LD">37.35</span> Étale neighbourhoods</h2>
+
+<p>
+It turns out that some properties of morphisms are easier to study after doing an étale base change. It is convenient to introduce the following terminology. 
+</p>
+<p>
+<article class="env-definition" id="02LE">
+  <p><a class="environment-identifier" href="/tag/02LE">Definition <span data-tag="02LE">37.35.1</span>.</a> Let $S$ be a scheme. Let $s \in S$ be a point. </p>
+  <p><ol>
+  <li><p>
+An <em>étale neighbourhood of $(S, s)$</em> is a pair $(U, u)$ together with an étale morphism of schemes $\varphi : U \to S$ such that $\varphi (u) = s$. 
+</p>
+</li><li><p>
+A <em>morphism of étale neighbourhoods</em> $f : (V, v) \to (U, u)$ of $(S, s)$ is simply a morphism of $S$-schemes $f : V \to U$ such that $f(v) = u$. 
+</p>
+</li><li><p>
+An <em>elementary étale neighbourhood</em> is an étale neighbourhood $\varphi : (U, u) \to (S, s)$ such that $\kappa (s) = \kappa (u)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+The notion of an elementary étale neighbourhood has many different names in the literature, for example these are sometimes called “étale neighbourhoods” (<span class="cite">[<span class="postnote">Page 36</span>, <a href="/bibliography/Milne">Milne</a>]</span> or “strongly étale” (<span class="cite">[<span class="postnote">Page 108</span>, <a href="/bibliography/KPR">KPR</a>]</span>). Here we follow the convention of the paper <span class="cite">[<a href="/bibliography/GruRay">GruRay</a>]</span> by calling them elementary étale neighbourhoods. 
+</p>
+<p>
+If $f : (V, v) \to (U, u)$ is a morphism of étale neighbourhoods, then $f$ is automatically étale, see Morphisms, Lemma <a href="/tag/02GW" data-tag="02GW">29.37.19</a>. Hence it turns $(V, v)$ into an étale neighbourhood of $(U, u)$. Of course, since the composition of étale morphisms is étale (Morphisms, Lemma <a href="/tag/02GN" data-tag="02GN">29.37.3</a>) we see that conversely any étale neighbourhood $(V, v)$ of $(U, u)$ is an étale neighbourhood of $(S, s)$ as well. We also remark that if $U \subset S$ is an open neighbourhood of $s$, then $(U, s) \to (S, s)$ is an étale neighbourhood. This follows from the fact that an open immersion is étale (Morphisms, Lemma <a href="/tag/02GP" data-tag="02GP">29.37.9</a>). We will use these remarks without further mention throughout this section. 
+</p>
+<p>
+Note that $\kappa (u)/\kappa (s)$ is a finite separable extension if $(U, u) \to (S, s)$ is an étale neighbourhood, see Morphisms, Lemma <a href="/tag/02GU" data-tag="02GU">29.37.15</a>. 
+</p>
+<p>
+<article class="env-lemma" id="02LF">
+  <p><a class="environment-identifier" href="/tag/02LF">Lemma <span data-tag="02LF">37.35.2</span>.</a> Let $S$ be a scheme. Let $s \in S$. Let $k/\kappa (s)$ be a finite separable field extension. Then there exists an étale neighbourhood $(U, u) \to (S, s)$ such that the field extension $\kappa (u)/\kappa (s)$ is isomorphic to $k/\kappa (s)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We may assume $S$ is affine. In this case the lemma follows from Algebra, Lemma <a href="/tag/00UD" data-tag="00UD">10.144.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="057A">
+  <p><a class="environment-identifier" href="/tag/057A">Lemma <span data-tag="057A">37.35.3</span>.</a> Let $S$ be a scheme, and let $s$ be a point of $S$. The category of étale neighborhoods has the following properties: </p>
+  <p><ol>
+  <li><p>
+Let $(U_ i, u_ i)_{i=1, 2}$ be two étale neighborhoods of $s$ in $S$. Then there exists a third étale neighborhood $(U, u)$ and morphisms $(U, u) \to (U_ i, u_ i)$, $i = 1, 2$. 
+</p>
+</li><li><p>
+Let $h_1, h_2: (U, u) \to (U', u')$ be two morphisms between étale neighborhoods of $s$. Assume $h_1$, $h_2$ induce the same map $\kappa (u') \to \kappa (u)$ of residue fields. Then there exist an étale neighborhood $(U'', u'')$ and a morphism $h : (U'', u'') \to (U, u)$ which equalizes $h_1$ and $h_2$, i.e., such that $h_1 \circ h = h_2 \circ h$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      For part (1), consider the fibre product $U = U_1 \times _ S U_2$. It is étale over both $U_1$ and $U_2$ because étale morphisms are preserved under base change, see Morphisms, Lemma <a href="/tag/02GO" data-tag="02GO">29.37.4</a>. There is a point of $U$ mapping to both $u_1$ and $u_2$ for example by the description of points of a fibre product in Schemes, Lemma <a href="/tag/01JT" data-tag="01JT">26.17.5</a>. For part (2), define $U''$ as the fibre product 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ U'' \ar[r] \ar[d] &  U \ar[d]^{(h_1, h_2)} \\  U' \ar[r]^-\Delta &  U' \times _ S U'. }  \]
+</div>
+    <p>
+       Since $h_1$ and $h_2$ induce the same map of residue fields $\kappa (u') \to \kappa (u)$ there exists a point $u'' \in U''$ lying over $u'$ with $\kappa (u'') = \kappa (u')$. In particular $U'' \not= \emptyset $. Moreover, since $U'$ is étale over $S$, so is the fibre product $U'\times _ S U'$ (see Morphisms, Lemmas <a href="/tag/02GO" data-tag="02GO">29.37.4</a> and <a href="/tag/02GN" data-tag="02GN">29.37.3</a>). Hence the vertical arrow $(h_1, h_2)$ is étale by Morphisms, Lemma <a href="/tag/02GW" data-tag="02GW">29.37.19</a>. Therefore $U''$ is étale over $U'$ by base change, and hence also étale over $S$ (because compositions of étale morphisms are étale). Thus $(U'', u'')$ is a solution to the problem. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="057B">
+  <p><a class="environment-identifier" href="/tag/057B">Lemma <span data-tag="057B">37.35.4</span>.</a> Let $S$ be a scheme, and let $s$ be a point of $S$. The category of elementary étale neighborhoods of $(S, s)$ is cofiltered (see Categories, Definition <a href="/tag/04AZ" data-tag="04AZ">4.20.1</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is immediate from the definitions and Lemma <a href="/tag/057A" data-tag="057A">37.35.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="05KS">
+  <p><a class="environment-identifier" href="/tag/05KS">Lemma <span data-tag="05KS">37.35.5</span>.</a> Let $S$ be a scheme. Let $s \in S$. Then we have </p>
+  <div class="equation">
+  \[  \mathcal{O}_{S, s}^ h = \mathop{\mathrm{colim}}\nolimits _{(U, u)} \mathcal{O}(U)  \]
+</div>
+  <p> where the colimit is over the filtered category which is opposite to the category of elementary étale neighbourhoods $(U, u)$ of $(S, s)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\mathop{\mathrm{Spec}}(A) \subset S$ be an affine neighbourhood of $s$. Let $\mathfrak p \subset A$ be the prime ideal corresponding to $s$. With these choices we have canonical isomorphisms $\mathcal{O}_{S, s} = A_{\mathfrak p}$ and $\kappa (s) = \kappa (\mathfrak p)$. A cofinal system of elementary étale neighbourhoods is given by those elementary étale neighbourhoods $(U, u)$ such that $U$ is affine and $U \to S$ factors through $\mathop{\mathrm{Spec}}(A)$. In other words, we see that the right hand side is equal to $\mathop{\mathrm{colim}}\nolimits _{(B, \mathfrak q)} B$ where the colimit is over étale $A$-algebras $B$ endowed with a prime $\mathfrak q$ lying over $\mathfrak p$ with $\kappa (\mathfrak p) = \kappa (\mathfrak q)$. Thus the lemma follows from Algebra, Lemma <a href="/tag/04GV" data-tag="04GV">10.155.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We can lift étale neighbourhoods of points on fibres to the total space. 
+</p>
+<p>
+<article class="env-lemma" id="0CAS">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0CAS">Lemma <span data-tag="0CAS">37.35.6</span>.</a> Let $X \to S$ be a morphism of schemes. Let $x \in X$ with image $s \in S$. Let $(V, v) \to (X_ s, x)$ be an étale neighbourhood. Then there exists an étale neighbourhood $(U, u) \to (X, x)$ such that there exists a morphism $(U_ s, u) \to (V, v)$ of étale neighbourhoods of $(X_ s, x)$ which is an open immersion. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We may assume $X$, $V$, and $S$ affine. Say the morphism $X \to S$ is given by $A \to B$ the point $x$ by a prime $\mathfrak q \subset B$, the point $s$ by $\mathfrak p = A \cap \mathfrak q$, and the morphism $V \to X_ s$ by $B \otimes _ A \kappa (\mathfrak p) \to C$. Since $\kappa (\mathfrak p)$ is a localization of $A/\mathfrak p$ there exists an $f \in A$, $f \not\in \mathfrak p$ and an étale ring map $B \otimes _ A (A/\mathfrak p)_ f \to D$ such that 
+    <p>
+      <div class="equation">
+  \[  C = (B \otimes _ A \kappa (\mathfrak p)) \otimes _{B \otimes _ A (A/\mathfrak p)_ f} D  \]
+</div>
+    <p>
+       See Algebra, Lemma <a href="/tag/00U2" data-tag="00U2">10.143.3</a> part (9). After replacing $A$ by $A_ f$ and $B$ by $B_ f$ we may assume $D$ is étale over $B \otimes _ A A/\mathfrak p = B/\mathfrak p B$. Then we can apply Algebra, Lemma <a href="/tag/04D1" data-tag="04D1">10.143.10</a>. This proves the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

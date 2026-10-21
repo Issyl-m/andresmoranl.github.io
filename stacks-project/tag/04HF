@@ -1,0 +1,279 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-morphisms-section-etale-localization" class="tex-section"><span data-tag="04HF">37.41</span> Étale localization of quasi-finite morphisms</h2>
+
+<p>
+Now we come to a series of lemmas around the theme “quasi-finite morphisms become finite after étale localization”. The general idea is the following. Suppose given a morphism of schemes $f : X \to S$ and a point $s \in S$. Let $\varphi : (U, u) \to (S, s)$ be an étale neighbourhood of $s$ in $S$. Consider the fibre product $X_ U = U \times _ S X$ and the basic diagram 
+</p>
+<div class="equation" id="02LJ">
+    <span class="equation-label"><a href="/tag/02LJ" data-tag="02LJ">37.41.0.1</a></span>
+  <div>\begin{equation}  \label{more-morphisms-equation-basic-diagram} \vcenter { \xymatrix{ V \ar[r] \ar[dr] &  X_ U \ar[d] \ar[r] &  X \ar[d]^ f \\  &  U \ar[r]^\varphi &  S } } \end{equation}</div>
+</div>
+<p>
+ where $V \subset X_ U$ is open. Is there some standard model for the morphism $f_ U : X_ U \to U$, or for the morphism $V \to U$ for suitable opens $V$? Of course the answer is no in general. But for quasi-finite morphisms we can say something. 
+</p>
+<p>
+<article class="env-lemma" id="02LK">
+  <p><a class="environment-identifier" href="/tag/02LK">Lemma <span data-tag="02LK">37.41.1</span>.</a> Let $f : X \to S$ be a morphism of schemes. Let $x \in X$. Set $s = f(x)$. Assume that </p>
+  <p><ol>
+  <li><p>
+$f$ is locally of finite type, and 
+</p>
+</li><li><p>
+$x \in X_ s$ is isolated<a class="footnotemark" href="#a0000838649" id="a0000838649-mark"><sup>1</sup></a>. 
+</p>
+</li>
+</ol></p>
+  <p> Then there exist </p>
+  <p><ol>
+  <li class="custom-item" data-marker="(a)"><p>
+an elementary étale neighbourhood $(U, u) \to (S, s)$, 
+</p>
+</li><li class="custom-item" data-marker="(b)"><p>
+an open subscheme $V \subset X_ U$ (see <a href="/tag/02LJ" data-tag="02LJ">37.41.0.1</a>) 
+</p>
+</li>
+</ol></p>
+  <p> such that </p>
+  <p><ol>
+  <li class="custom-item" data-marker="(i)"><p>
+$V \to U$ is a finite morphism, 
+</p>
+</li><li class="custom-item" data-marker="(ii)"><p>
+there is a unique point $v$ of $V$ mapping to $u$ in $U$, and 
+</p>
+</li><li class="custom-item" data-marker="(iii)"><p>
+the point $v$ maps to $x$ under the morphism $X_ U \to X$, inducing $\kappa (x) = \kappa (v)$. 
+</p>
+</li>
+</ol></p>
+  <p> Moreover, for any elementary étale neighbourhood $(U', u') \to (U, u)$ setting $V' = U' \times _ U V \subset X_{U'}$ the triple $(U', u', V')$ satisfies the properties (i), (ii), and (iii) as well. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $Y \subset X$, $W \subset S$ be affine opens such that $f(Y) \subset W$ and such that $x \in Y$. Note that $x$ is also an isolated point of the fibre of the morphism $f|_ Y : Y \to W$. If we can prove the theorem for $f|_ Y : Y \to W$, then the theorem follows for $f$. Hence we reduce to the case where $f$ is a morphism of affine schemes. This case is Algebra, Lemma <a href="/tag/00UJ" data-tag="00UJ">10.145.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In the preceding and following lemma we do not assume that the morphism $f$ is separated. This means that the opens $V$, $V_ i$ created in them are not necessarily closed in $X_ U$. Moreover, if we choose the neighbourhood $U$ to be affine, then each $V_ i$ is affine, but the intersections $V_ i \cap V_ j$ need not be affine (in the nonseparated case). 
+</p>
+<p>
+<article class="env-lemma" id="02LL">
+  <p><a class="environment-identifier" href="/tag/02LL">Lemma <span data-tag="02LL">37.41.2</span>.</a> Let $f : X \to S$ be a morphism of schemes. Let $x_1, \ldots , x_ n \in X$ be points having the same image $s$ in $S$. Assume that </p>
+  <p><ol>
+  <li><p>
+$f$ is locally of finite type, and 
+</p>
+</li><li><p>
+$x_ i \in X_ s$ is isolated for $i = 1, \ldots , n$. 
+</p>
+</li>
+</ol></p>
+  <p> Then there exist </p>
+  <p><ol>
+  <li class="custom-item" data-marker="(a)"><p>
+an elementary étale neighbourhood $(U, u) \to (S, s)$, 
+</p>
+</li><li class="custom-item" data-marker="(b)"><p>
+for each $i$ an open subscheme $V_ i \subset X_ U$, 
+</p>
+</li>
+</ol></p>
+  <p> such that for each $i$ we have </p>
+  <p><ol>
+  <li class="custom-item" data-marker="(i)"><p>
+$V_ i \to U$ is a finite morphism, 
+</p>
+</li><li class="custom-item" data-marker="(ii)"><p>
+there is a unique point $v_ i$ of $V_ i$ mapping to $u$ in $U$, and 
+</p>
+</li><li class="custom-item" data-marker="(iii)"><p>
+the point $v_ i$ maps to $x_ i$ in $X$ and $\kappa (x_ i) = \kappa (v_ i)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use induction on $n$. Namely, suppose $(U, u) \to (S, s)$ and $V_ i \subset X_ U$, $i = 1, \ldots , n - 1$ work for $x_1, \ldots , x_{n - 1}$. Since $\kappa (s) = \kappa (u)$ the fibre $(X_ U)_ u = X_ s$. Hence there exists a unique point $x'_ n \in X_ u \subset X_ U$ corresponding to $x_ n \in X_ s$. Also $x'_ n$ is isolated in $X_ u$. Hence by Lemma <a href="/tag/02LK" data-tag="02LK">37.41.1</a> there exists an elementary étale neighbourhood $(U', u') \to (U, u)$ and an open $V_ n \subset X_{U'}$ which works for $x'_ n$ and hence for $x_ n$. By the final assertion of Lemma <a href="/tag/02LK" data-tag="02LK">37.41.1</a> the open subschemes $V'_ i = U'\times _ U V_ i$ for $i = 1, \ldots , n - 1$ still work with respect to $x_1, \ldots , x_{n - 1}$. Hence we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+If we allow a nontrivial field extension $\kappa (u)/\kappa (s)$, i.e., general étale neighbourhoods, then we can split the points as follows. 
+</p>
+<p>
+<article class="env-lemma" id="02LM">
+  <p><a class="environment-identifier" href="/tag/02LM">Lemma <span data-tag="02LM">37.41.3</span>.</a> Let $f : X \to S$ be a morphism of schemes. Let $x_1, \ldots , x_ n \in X$ be points having the same image $s$ in $S$. Assume that </p>
+  <p><ol>
+  <li><p>
+$f$ is locally of finite type, and 
+</p>
+</li><li><p>
+$x_ i \in X_ s$ is isolated for $i = 1, \ldots , n$. 
+</p>
+</li>
+</ol></p>
+  <p> Then there exist </p>
+  <p><ol>
+  <li class="custom-item" data-marker="(a)"><p>
+an étale neighbourhood $(U, u) \to (S, s)$, 
+</p>
+</li><li class="custom-item" data-marker="(b)"><p>
+for each $i$ an integer $m_ i$ and open subschemes $V_{i, j} \subset X_ U$, $j = 1, \ldots , m_ i$ 
+</p>
+</li>
+</ol></p>
+  <p> such that we have </p>
+  <p><ol>
+  <li class="custom-item" data-marker="(i)"><p>
+each $V_{i, j} \to U$ is a finite morphism, 
+</p>
+</li><li class="custom-item" data-marker="(ii)"><p>
+there is a unique point $v_{i, j}$ of $V_{i, j}$ mapping to $u$ in $U$ with $\kappa (u) \subset \kappa (v_{i, j})$ finite purely inseparable, 
+</p>
+</li><li class="custom-item" data-marker="(iv)"><p>
+if $v_{i, j} = v_{i', j'}$, then $i = i'$ and $j = j'$, and 
+</p>
+</li><li class="custom-item" data-marker="(iii)"><p>
+the points $v_{i, j}$ map to $x_ i$ in $X$ and no other points of $(X_ U)_ u$ map to $x_ i$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This proof is a variant of the proof of Algebra, Lemma <a href="/tag/00UL" data-tag="00UL">10.145.4</a> in the language of schemes. By Morphisms, Lemma <a href="/tag/01TH" data-tag="01TH">29.21.6</a> the morphism $f$ is quasi-finite at each of the points $x_ i$. Hence $\kappa (s) \subset \kappa (x_ i)$ is finite for each $i$ (Morphisms, Lemma <a href="/tag/01TG" data-tag="01TG">29.21.5</a>). For each $i$, let $\kappa (s) \subset L_ i \subset \kappa (x_ i)$ be the subfield such that $L_ i/\kappa (s)$ is separable, and $\kappa (x_ i)/L_ i$ is purely inseparable. Choose a finite Galois extension $L/\kappa (s)$ such that there exist $\kappa (s)$-embeddings $L_ i \to L$ for $i = 1, \ldots , n$. Choose an étale neighbourhood $(U, u) \to (S, s)$ such that $L \cong \kappa (u)$ as $\kappa (s)$-extensions (Lemma <a href="/tag/02LF" data-tag="02LF">37.35.2</a>). 
+    <p>
+      Let $y_{i, j}$, $j = 1, \ldots , m_ i$ be the points of $X_ U$ lying over $x_ i \in X$ and $u \in U$. By Schemes, Lemma <a href="/tag/01JT" data-tag="01JT">26.17.5</a> these points $y_{i, j}$ correspond exactly to the primes in the rings $\kappa (u) \otimes _{\kappa (s)} \kappa (x_ i)$. This also explains why there are finitely many; in fact $m_ i = [L_ i : \kappa (s)]$ but we do not need this. By our choice of $L$ (and elementary field theory) we see that $\kappa (u) \subset \kappa (y_{i, j})$ is finite purely inseparable for each pair $i, j$. Also, by Morphisms, Lemma <a href="/tag/01TM" data-tag="01TM">29.21.13</a> for example, the morphism $X_ U \to U$ is quasi-finite at the points $y_{i, j}$ for all $i, j$. 
+    <p>
+      Apply Lemma <a href="/tag/02LL" data-tag="02LL">37.41.2</a> to the morphism $X_ U \to U$, the point $u \in U$ and the points $y_{i, j} \in (X_ U)_ u$. This gives an étale neighbourhood $(U', u') \to (U, u)$ with $\kappa (u) = \kappa (u')$ and opens $V_{i, j} \subset X_{U'}$ with the properties (i), (ii), and (iii) of that lemma. We claim that the étale neighbourhood $(U', u') \to (S, s)$ and the opens $V_{i, j} \subset X_{U'}$ are a solution to the problem posed by the lemma. We omit the verifications. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="02LN">
+  <p><a class="environment-identifier" href="/tag/02LN">Lemma <span data-tag="02LN">37.41.4</span>.</a> Let $f : X \to S$ be a morphism of schemes. Let $s \in S$. Let $x_1, \ldots , x_ n \in X_ s$. Assume that </p>
+  <p><ol>
+  <li><p>
+$f$ is locally of finite type, 
+</p>
+</li><li><p>
+$f$ is separated, and 
+</p>
+</li><li><p>
+$x_1, \ldots , x_ n$ are pairwise distinct isolated points of $X_ s$. 
+</p>
+</li>
+</ol></p>
+  <p> Then there exists an elementary étale neighbourhood $(U, u) \to (S, s)$ and a decomposition </p>
+  <div class="equation">
+  \[  U \times _ S X = W \amalg V_1 \amalg \ldots \amalg V_ n  \]
+</div>
+  <p> into open and closed subschemes such that the morphisms $V_ i \to U$ are finite, the fibres of $V_ i \to U$ over $u$ are singletons $\{ v_ i\} $, each $v_ i$ maps to $x_ i$ with $\kappa (x_ i) = \kappa (v_ i)$, and the fibre of $W \to U$ over $u$ contains no points mapping to any of the $x_ i$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose $(U, u) \to (S, s)$ and $V_ i \subset X_ U$ as in Lemma <a href="/tag/02LL" data-tag="02LL">37.41.2</a>. Since $X_ U \to U$ is separated (Schemes, Lemma <a href="/tag/01KU" data-tag="01KU">26.21.12</a>) and $V_ i \to U$ is finite hence proper (Morphisms, Lemma <a href="/tag/01WN" data-tag="01WN">29.45.11</a>) we see that $V_ i \subset X_ U$ is closed by Morphisms, Lemma <a href="/tag/01W6" data-tag="01W6">29.42.7</a>. Hence $V_ i \cap V_ j$ is a closed subset of $V_ i$ which does not contain $v_ i$. Hence the image of $V_ i \cap V_ j$ in $U$ is a closed set (because $V_ i \to U$ proper) not containing $u$. After shrinking $U$ we may therefore assume that $V_ i \cap V_ j = \emptyset $ for all $i, j$. This gives the decomposition as in the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Here is the variant where we reduce to purely inseparable field extensions. 
+</p>
+<p>
+<article class="env-lemma" id="02LO">
+  <p><a class="environment-identifier" href="/tag/02LO">Lemma <span data-tag="02LO">37.41.5</span>.</a> Let $f : X \to S$ be a morphism of schemes. Let $s \in S$. Let $x_1, \ldots , x_ n \in X_ s$. Assume that </p>
+  <p><ol>
+  <li><p>
+$f$ is locally of finite type, 
+</p>
+</li><li><p>
+$f$ is separated, and 
+</p>
+</li><li><p>
+$x_1, \ldots , x_ n$ are pairwise distinct isolated points of $X_ s$. 
+</p>
+</li>
+</ol></p>
+  <p> Then there exists an étale neighbourhood $(U, u) \to (S, s)$ and a decomposition </p>
+  <div class="equation">
+  \[  U \times _ S X = W \amalg \  \coprod \nolimits _{i = 1, \ldots , n} \  \coprod \nolimits _{j = 1, \ldots , m_ i} V_{i, j}  \]
+</div>
+  <p> into open and closed subschemes such that the morphisms $V_{i, j} \to U$ are finite, the fibres of $V_{i, j} \to U$ over $u$ are singletons $\{ v_{i, j}\} $, each $v_{i, j}$ maps to $x_ i$, $\kappa (u) \subset \kappa (v_{i, j})$ is purely inseparable, and the fibre of $W \to U$ over $u$ contains no points mapping to any of the $x_ i$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is proved in exactly the same way as the proof of Lemma <a href="/tag/02LN" data-tag="02LN">37.41.4</a> except that it uses Lemma <a href="/tag/02LM" data-tag="02LM">37.41.3</a> instead of Lemma <a href="/tag/02LL" data-tag="02LL">37.41.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following version may be a little easier to parse. 
+</p>
+<p>
+<article class="env-lemma" id="02LP">
+  <p><a class="environment-identifier" href="/tag/02LP">Lemma <span data-tag="02LP">37.41.6</span>.</a> Let $f : X \to S$ be a morphism of schemes. Let $s \in S$. Assume that </p>
+  <p><ol>
+  <li><p>
+$f$ is locally of finite type, 
+</p>
+</li><li><p>
+$f$ is separated, and 
+</p>
+</li><li><p>
+$X_ s$ has at most finitely many isolated points. 
+</p>
+</li>
+</ol></p>
+  <p> Then there exists an elementary étale neighbourhood $(U, u) \to (S, s)$ and a decomposition </p>
+  <div class="equation">
+  \[  U \times _ S X = W \amalg V  \]
+</div>
+  <p> into open and closed subschemes such that the morphism $V \to U$ is finite, and the fibre $W_ u$ of the morphism $W \to U$ contains no isolated points. In particular, if $f^{-1}(s)$ is a finite set, then $W_ u = \emptyset $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is clear from Lemma <a href="/tag/02LN" data-tag="02LN">37.41.4</a> by choosing $x_1, \ldots , x_ n$ the complete set of isolated points of $X_ s$ and setting $V = \bigcup V_ i$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

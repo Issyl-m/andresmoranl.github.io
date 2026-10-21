@@ -1,0 +1,241 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="spaces-pushouts-section-glueing-etale" class="tex-section"><span data-tag="0GFR">81.4</span> Descending étale sheaves</h2>
+
+<p>
+This section is the analogue for algebraic spaces of Étale Cohomology, Section <a href="/tag/0GEX" data-tag="0GEX">59.104</a>. 
+</p>
+<p>
+In order to conveniently express our results we need some notation. Let $S$ be a scheme. Let $\mathcal{U} = \{ f_ i : X_ i \to X\} $ be a family of morphisms of algebraic spaces over $S$ with fixed target. A <em>descent datum</em> for étale sheaves with respect to $\mathcal{U}$ is a family $((\mathcal{F}_ i)_{i \in I}, (\varphi _{ij})_{i, j \in I})$ where 
+</p>
+<ol>
+  <li><p>
+$\mathcal{F}_ i$ is in $\mathop{\mathit{Sh}}\nolimits (X_{i, {\acute{e}tale}})$, and 
+</p>
+</li><li><p>
+$\varphi _{ij} : \text{pr}_{0, small}^{-1} \mathcal{F}_ i \longrightarrow \text{pr}_{1, small}^{-1} \mathcal{F}_ j$ is an isomorphism in $\mathop{\mathit{Sh}}\nolimits ((X_ i \times _ X X_ j)_{\acute{e}tale})$ 
+</p>
+</li>
+</ol>
+<p>
+ such that the <em>cocycle condition</em> holds: the diagrams 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \text{pr}_{0, small}^{-1}\mathcal{F}_ i \ar[dr]_{\text{pr}_{02, small}^{-1}\varphi _{ik}} \ar[rr]^{\text{pr}_{01, small}^{-1}\varphi _{ij}} &  &  \text{pr}_{1, small}^{-1}\mathcal{F}_ j \ar[dl]^{\text{pr}_{12, small}^{-1}\varphi _{jk}} \\  &  \text{pr}_{2, small}^{-1}\mathcal{F}_ k }  \]
+</div>
+<p>
+ commute in $\mathop{\mathit{Sh}}\nolimits ((X_ i \times _ X X_ j \times _ X X_ k)_{\acute{e}tale})$. There is an obvious notion of <em>morphisms of descent data</em> and we obtain a category of descent data. A descent datum $((\mathcal{F}_ i)_{i \in I}, (\varphi _{ij})_{i, j \in I})$ is called <em>effective</em> if there exist a $\mathcal{F}$ in $\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale})$ and isomorphisms $\varphi _ i : f_{i, small}^{-1} \mathcal{F} \to \mathcal{F}_ i$ in $\mathop{\mathit{Sh}}\nolimits (X_{i, {\acute{e}tale}})$ compatible with the $\varphi _{ij}$, i.e., such that 
+</p>
+<div class="equation">
+  \[  \varphi _{ij} = \text{pr}_{1, small}^{-1} (\varphi _ j) \circ \text{pr}_{0, small}^{-1} (\varphi _ i^{-1})  \]
+</div>
+<p>
+ Another way to say this is the following. Given an object $\mathcal{F}$ of $\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale})$ we obtain the <em>canonical descent datum</em> $(f_{i, small}^{-1}\mathcal{F}_ i, c_{ij})$ where $c_{ij}$ is the canonical isomorphism 
+</p>
+<div class="equation">
+  \[  c_{ij} : \text{pr}_{0, small}^{-1} f_{i, small}^{-1}\mathcal{F} \longrightarrow \text{pr}_{1, small}^{-1} f_{j, small}^{-1}\mathcal{F}  \]
+</div>
+<p>
+ The descent datum $((\mathcal{F}_ i)_{i \in I}, (\varphi _{ij})_{i, j \in I})$ is effective if and only if it is isomorphic to the canonical descent datum associated to some $\mathcal{F}$ in $\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale})$. 
+</p>
+<p>
+If the family consists of a single morphism $\{ X \to Y\} $, then we think of a descent datum as a pair $(\mathcal{F}, \varphi )$ where $\mathcal{F}$ is an object of $\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale})$ and $\varphi $ is an isomorphism 
+</p>
+<div class="equation">
+  \[  \text{pr}_{0, small}^{-1} \mathcal{F} \longrightarrow \text{pr}_{1, small}^{-1} \mathcal{F}  \]
+</div>
+<p>
+ in $\mathop{\mathit{Sh}}\nolimits ((X \times _ Y X)_{\acute{e}tale})$ such that the cocycle condition holds: 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \text{pr}_{0, small}^{-1}\mathcal{F} \ar[dr]_{\text{pr}_{02, small}^{-1}\varphi } \ar[rr]^{\text{pr}_{01, small}^{-1}\varphi } &  &  \text{pr}_{1, small}^{-1}\mathcal{F} \ar[dl]^{\text{pr}_{12, small}^{-1}\varphi } \\  &  \text{pr}_{2, small}^{-1}\mathcal{F} }  \]
+</div>
+<p>
+ commutes in $\mathop{\mathit{Sh}}\nolimits ((X \times _ Y X \times _ Y X)_{\acute{e}tale})$. There is a notion of morphisms of descent data and effectivity exactly as before. 
+</p>
+<p>
+<article class="env-lemma" id="0GFS">
+  <p><a class="environment-identifier" href="/tag/0GFS">Lemma <span data-tag="0GFS">81.4.1</span>.</a> Let $S$ be a scheme. Let $\{ f_ i : X_ i \to X\} $ be an étale covering of algebraic spaces. The functor </p>
+  <div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale}) \longrightarrow \text{descent data for étale sheaves wrt }\{ f_ i : X_ i \to X\}   \]
+</div>
+  <p> is an equivalence of categories. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In Properties of Spaces, Section <a href="/tag/03EB" data-tag="03EB">66.18</a> we have defined a site $X_{spaces, {\acute{e}tale}}$ whose objects are algebraic spaces étale over $X$ with étale coverings. Moreover, we have identifications $\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale}) = \mathop{\mathit{Sh}}\nolimits (X_{spaces, {\acute{e}tale}})$ compatible with morphisms of algebraic spaces, i.e., compatible with pushforward and pullback. Hence the statement of the lemma follows from the much more general discussion in Sites, Section <a href="/tag/04TP" data-tag="04TP">7.26</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GFT">
+  <p><a class="environment-identifier" href="/tag/0GFT">Lemma <span data-tag="0GFT">81.4.2</span>.</a> Let $S$ be a scheme. Let $f : X \to Y$ be a morphism of algebraic spaces over $S$. Let $\{ Y_ i \to Y\} _{i \in I}$ be an étale covering of algebraic spaces. If for each $i \in I$ the functor </p>
+  <div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits (Y_{i, {\acute{e}tale}}) \longrightarrow \text{descent data for étale sheaves wrt }\{ X \times _ Y Y_ i \to Y_ i\}   \]
+</div>
+  <p> is an equivalence of categories and for each $i, j \in I$ the functor </p>
+  <div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits ((Y_ i \times _ Y Y_ j)_{\acute{e}tale}) \longrightarrow \text{descent data for étale sheaves wrt } \{ X \times _ Y Y_ i \times _ Y Y_ j \to Y_ i \times _ Y Y_ j\}   \]
+</div>
+  <p> is an equivalence of categories, then </p>
+  <div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale}) \longrightarrow \text{descent data for étale sheaves wrt }\{ X \to Y\}   \]
+</div>
+  <p> is an equivalence of categories. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Formal consequence of Lemma <a href="/tag/0GFS" data-tag="0GFS">81.4.1</a> and the definitions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GFU">
+  <p><a class="environment-identifier" href="/tag/0GFU">Lemma <span data-tag="0GFU">81.4.3</span>.</a> Let $S$ be a scheme. Let $f : X \to Y$ be a morphism of algebraic spaces over $S$. Assume $f$ is representable (by schemes) and $f$ has one of the following properties: surjective and integral, surjective and proper, or surjective and flat and locally of finite presentation Then </p>
+  <div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale}) \longrightarrow \text{descent data for étale sheaves wrt }\{ X \to Y\}   \]
+</div>
+  <p> is an equivalence of categories. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Each of the properties of morphisms of algebraic spaces mentioned in the statement of the lemma is preserved by arbitrary base change, see the lists in Spaces, Section <a href="/tag/02WE" data-tag="02WE">65.4</a>. Thus we can apply Lemma <a href="/tag/0GFT" data-tag="0GFT">81.4.2</a> to see that we can work étale locally on $Y$. In this way we reduce to the case where $Y$ is a scheme; some details omitted. In this case $X$ is also a scheme and the result follows from Étale Cohomology, Lemma <a href="/tag/0GEZ" data-tag="0GEZ">59.104.2</a>, <a href="/tag/0GF0" data-tag="0GF0">59.104.3</a>, or <a href="/tag/0GF2" data-tag="0GF2">59.104.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GFV">
+  <p><a class="environment-identifier" href="/tag/0GFV">Lemma <span data-tag="0GFV">81.4.4</span>.</a> Let $S$ be a scheme. Let $f : X \to Y$ be a morphism of algebraic spaces over $S$. Let $\pi : X' \to X$ be a morphism of algebraic spaces. Assume </p>
+  <p><ol>
+  <li><p>
+$f \circ \pi $ is representable (by schemes), 
+</p>
+</li><li><p>
+$f \circ \pi $ has one of the following properties: surjective and integral, surjective and proper, or surjective and flat and locally of finite presentation. 
+</p>
+</li>
+</ol></p>
+  <p> Then </p>
+  <div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale}) \longrightarrow \text{descent data for étale sheaves wrt }\{ X \to Y\}   \]
+</div>
+  <p> is an equivalence of categories. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Formal consequence of Lemma <a href="/tag/0GFU" data-tag="0GFU">81.4.3</a> and Stacks, Lemma <a href="/tag/0GEA" data-tag="0GEA">8.3.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GFW">
+  <p><a class="environment-identifier" href="/tag/0GFW">Lemma <span data-tag="0GFW">81.4.5</span>.</a> Let $S$ be a scheme. Let $f : X \to Y$ be a morphism of algebraic spaces over $S$ which has one of the following properties: surjective and integral, surjective and proper, or surjective and flat and locally of finite presentation. Then the functor </p>
+  <div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale}) \longrightarrow \text{descent data for étale sheaves wrt }\{ X \to Y\}   \]
+</div>
+  <p> is an equivalence of categories. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Observe that the base change of a proper surjective morphism is proper and surjective, see Morphisms of Spaces, Lemmas <a href="/tag/04WP" data-tag="04WP">67.40.3</a> and <a href="/tag/03MH" data-tag="03MH">67.5.5</a>. Hence by Lemma <a href="/tag/0GFT" data-tag="0GFT">81.4.2</a> we may work étale locally on $Y$. Hence we reduce to $Y$ being an affine scheme; some details omitted. 
+    <p>
+      Assume $Y$ is affine. By Lemma <a href="/tag/0GFV" data-tag="0GFV">81.4.4</a> it suffices to find a morphism $X' \to X$ where $X'$ is a scheme such that $X' \to Y$ is surjective and integral, surjective and proper, or surjective and flat and locally of finite presentation. 
+    <p>
+      In case $X \to Y$ is integral and surjective, we can take $X = X'$ as an integral morphism is representable. 
+    <p>
+      If $f$ is proper and surjective, then the algebraic space $X$ is quasi-compact and separated, see Morphisms of Spaces, Section <a href="/tag/03HC" data-tag="03HC">67.8</a> and Lemma <a href="/tag/04ZH" data-tag="04ZH">67.4.9</a>. Choose a scheme $X'$ and a surjective finite morphism $X' \to X$, see Limits of Spaces, Proposition <a href="/tag/09YC" data-tag="09YC">70.16.1</a>. Then $X' \to Y$ is surjective and proper. 
+    <p>
+      Finally, if $X \to Y$ is surjective and flat and locally of finite presentation then we can take an affine étale covering $\{ U_ i \to X\} $ and set $X'$ equal to the disjoint $\coprod U_ i$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GFX">
+  <p><a class="environment-identifier" href="/tag/0GFX">Lemma <span data-tag="0GFX">81.4.6</span>.</a> Let $S$ be a scheme. Let $\{ f_ i : X_ i \to X\} $ be an fppf covering of algebraic spaces over $S$. The functor </p>
+  <div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale}) \longrightarrow \text{descent data for étale sheaves wrt }\{ f_ i : X_ i \to X\}   \]
+</div>
+  <p> is an equivalence of categories. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We have Lemma <a href="/tag/0GFW" data-tag="0GFW">81.4.5</a> for the morphism $f : \coprod X_ i \to X$. Then a formal argument shows that descent data for $f$ are the same thing as descent data for the covering, compare with Descent, Lemma <a href="/tag/023X" data-tag="023X">35.34.5</a>. Details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GFY">
+  <p><a class="environment-identifier" href="/tag/0GFY">Lemma <span data-tag="0GFY">81.4.7</span>.</a> Let $S$ be a scheme. Let $f : Y' \to Y$ be a proper morphism of algebraic spaces over $S$. Let $i : Z \to Y$ be a closed immersion. Set $E = Z \times _ Y Y'$. Picture </p>
+  <div class="equation">
+  \[  \xymatrix{ E \ar[d]_ g \ar[r]_ j &  Y' \ar[d]^ f \\  Z \ar[r]^ i &  Y }  \]
+</div>
+  <p> If $f$ is an isomorphism over $Y \setminus Z$, then the functor </p>
+  <div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale}) \longrightarrow \mathop{\mathit{Sh}}\nolimits (Y'_{\acute{e}tale}) \times _{\mathop{\mathit{Sh}}\nolimits (E_{\acute{e}tale})} \mathop{\mathit{Sh}}\nolimits (Z_{\acute{e}tale})  \]
+</div>
+  <p> is an equivalence of categories. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Observe that $X = Y' \coprod Z \to Y$ is a proper surjective morphism. Thus it suffice to construct an equivalence of categories 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits (Y'_{\acute{e}tale}) \times _{\mathop{\mathit{Sh}}\nolimits (E_{\acute{e}tale})} \mathop{\mathit{Sh}}\nolimits (Z_{\acute{e}tale}) \longrightarrow \text{descent data for étale sheaves wrt }\{ X \to Y\}   \]
+</div>
+    <p>
+       compatible with pullback functors from $Y$ because then we can use Lemma <a href="/tag/0GFW" data-tag="0GFW">81.4.5</a> to conclude. Thus let $(\mathcal{G}', \mathcal{G}, \alpha )$ be an object of $\mathop{\mathit{Sh}}\nolimits (Y'_{\acute{e}tale}) \times _{\mathop{\mathit{Sh}}\nolimits (E_{\acute{e}tale})} \mathop{\mathit{Sh}}\nolimits (Z_{\acute{e}tale})$ with notation as in Categories, Example <a href="/tag/003R" data-tag="003R">4.31.3</a>. Then we can consider the sheaf $\mathcal{F}$ on $X$ defined by taking $\mathcal{G}'$ on the summand $Y'$ and $\mathcal{G}$ on the summand $Z$. We have 
+    <p>
+      <div class="equation">
+  \[  X \times _ Y X = Y' \times _ Y Y' \amalg Y' \times _ Y Z \amalg Z \times _ Y Y' \amalg Z \times _ Y Z = Y' \times _ Y Y' \amalg E \amalg E \amalg Z  \]
+</div>
+    <p>
+       The isomorphisms of the two pullbacks of $\mathcal{F}$ to this algebraic space are obvious over the summands $E$, $E$, $Z$. The interesting part of the proof is to find an isomorphism $\text{pr}_{0, small}^{-1}\mathcal{G}' \to \text{pr}_{1, small}^{-1}\mathcal{G}'$ over $Y' \times _ Y Y'$ satisfying the cocycle condition. However, our assumption that $Y' \to Y$ is an isomorphism over $Y \setminus Z$ implies that 
+    <p>
+      <div class="equation">
+  \[  h : Y \coprod E \times _ Z E \longrightarrow Y' \times _ Y Y'  \]
+</div>
+    <p>
+       is a surjective proper morphism. (It is in fact a finite morphism as it is the disjoint union of two closed immersions.) Hence it suffices to construct an isomorphism of the pullbacks of $\text{pr}_{0, small}^{-1}\mathcal{G}'$and $\text{pr}_{1, small}^{-1}\mathcal{G}'$ by $h_{small}$ satisfying a certain cocycle condition. For the diagonal, it is clear how to do this. And for the pullback to $E \times _ Z E$ we use that both sheaves pull back to the pullback of $\mathcal{G}$ by the morphism $E \times _ Z E \to Z$. We omit the details. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

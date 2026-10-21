@@ -1,0 +1,146 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="schemes-section-base-change" class="tex-section"><span data-tag="01JW">26.18</span> Base change in algebraic geometry</h2>
+
+<p>
+One motivation for the introduction of the language of schemes is that it gives a very precise notion of what it means to define a variety over a particular field. For example a variety $X$ over $\mathbf{Q}$ is synonymous (Varieties, Definition <a href="/tag/020D" data-tag="020D">33.3.1</a>) with $X \to \mathop{\mathrm{Spec}}(\mathbf{Q})$ which is of finite type, separated, irreducible and reduced<a class="footnotemark" href="#a0000603426" id="a0000603426-mark"><sup>1</sup></a>. In any case, the idea is more generally to work with schemes over a given <em>base scheme</em>, often denoted $S$. We use the language: “let $X$ be a scheme over $S$” to mean simply that $X$ comes equipped with a morphism $X \to S$. In diagrams we will try to picture the <em>structure morphism</em> $X \to S$ as a downward arrow from $X$ to $S$. We are often more interested in the properties of $X$ relative to $S$ rather than the internal geometry of $X$. For example, we would like to know things about the fibres of $X \to S$, what happens to $X$ after base change, and so on. 
+</p>
+<p>
+We introduce some of the language that is customarily used. Of course this language is just a special case of thinking about the category of objects over a given object in a category, see Categories, Example <a href="/tag/001G" data-tag="001G">4.2.13</a>. 
+</p>
+<p>
+<article class="env-definition" id="01JX">
+  <p><a class="environment-identifier" href="/tag/01JX">Definition <span data-tag="01JX">26.18.1</span>.</a> Let $S$ be a scheme. </p>
+  <p><ol>
+  <li><p>
+We say $X$ is a <em>scheme over $S$</em> to mean that $X$ comes equipped with a morphism of schemes $X \to S$. The morphism $X \to S$ is sometimes called the <em>structure morphism</em>. 
+</p>
+</li><li><p>
+If $R$ is a ring we say $X$ is a <em>scheme over $R$</em> instead of $X$ is a scheme over $\mathop{\mathrm{Spec}}(R)$. 
+</p>
+</li><li><p>
+A <em>morphism $f : X \to Y$ of schemes over $S$</em> is a morphism of schemes such that the composition $X \to Y \to S$ of $f$ with the structure morphism of $Y$ is equal to the structure morphism of $X$. 
+</p>
+</li><li><p>
+We denote $\mathop{\mathrm{Mor}}\nolimits _ S(X, Y)$ the set of all morphisms from $X$ to $Y$ over $S$. 
+</p>
+</li><li><p>
+Let $X$ be a scheme over $S$. Let $S' \to S$ be a morphism of schemes. The <em>base change</em> of $X$ is the scheme $X_{S'} = S' \times _ S X$ over $S'$. 
+</p>
+</li><li><p>
+Let $f : X \to Y$ be a morphism of schemes over $S$. Let $S' \to S$ be a morphism of schemes. The <em>base change</em> of $f$ is the induced morphism $f' : X_{S'} \to Y_{S'}$ (namely the morphism $\text{id}_{S'} \times _{\text{id}_ S} f$). 
+</p>
+</li><li><p>
+Let $R$ be a ring. Let $X$ be a scheme over $R$. Let $R \to R'$ be a ring map. The <em>base change</em> $X_{R'}$ is the scheme $\mathop{\mathrm{Spec}}(R') \times _{\mathop{\mathrm{Spec}}(R)} X$ over $R'$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+Here is a typical result. 
+</p>
+<p>
+<article class="env-lemma" id="01JY">
+  <p><a class="environment-identifier" href="/tag/01JY">Lemma <span data-tag="01JY">26.18.2</span>.</a> Let $S$ be a scheme. Let $f : X \to Y$ be an immersion (resp. closed immersion, resp. open immersion) of schemes over $S$. Then any base change of $f$ is an immersion (resp. closed immersion, resp. open immersion). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We can think of the base change of $f$ via the morphism $S' \to S$ as the top left vertical arrow in the following commutative diagram: 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X_{S'} \ar[r] \ar[d] &  X \ar[d] \ar@/^4ex/[dd] \\  Y_{S'} \ar[r] \ar[d] &  Y \ar[d] \\  S' \ar[r] &  S }  \]
+</div>
+    <p>
+       The diagram implies $X_{S'} \cong Y_{S'} \times _ Y X$, and the lemma follows from Lemma <a href="/tag/01JU" data-tag="01JU">26.17.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In fact this type of result is so typical that there is a piece of language to express it. Here it is. 
+</p>
+<p>
+<article class="env-definition" id="01JZ">
+  <p><a class="environment-identifier" href="/tag/01JZ">Definition <span data-tag="01JZ">26.18.3</span>.</a> Properties and base change. </p>
+  <p><ol>
+  <li><p>
+Let $\mathcal{P}$ be a property of schemes over a base. We say that $\mathcal{P}$ is <em>preserved under arbitrary base change</em>, or simply that $\mathcal{P}$ is <em>preserved under base change</em> if whenever $X/S$ has $\mathcal{P}$, any base change $X_{S'}/S'$ has $\mathcal{P}$. 
+</p>
+</li><li><p>
+Let $\mathcal{P}$ be a property of morphisms of schemes over a base. We say that $\mathcal{P}$ is <em>preserved under arbitrary base change</em>, or simply that <em>preserved under base change</em> if whenever $f : X \to Y$ over $S$ has $\mathcal{P}$, any base change $f' : X_{S'} \to Y_{S'}$ over $S'$ has $\mathcal{P}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+At this point we can say that “being a closed immersion” is preserved under arbitrary base change. 
+</p>
+<p>
+<article class="env-definition" id="01K0">
+  <p><a class="environment-identifier" href="/tag/01K0">Definition <span data-tag="01K0">26.18.4</span>.</a> Let $f : X \to S$ be a morphism of schemes. Let $s \in S$ be a point. The <em>scheme theoretic fibre $X_ s$ of $f$ over $s$</em>, or simply the <em>fibre of $f$ over $s$</em>, is the scheme fitting in the following fibre product diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ X_ s = \mathop{\mathrm{Spec}}(\kappa (s)) \times _ S X \ar[r] \ar[d] &  X \ar[d] \\  \mathop{\mathrm{Spec}}(\kappa (s)) \ar[r] &  S }  \]
+</div>
+  <p> We think of the fibre $X_ s$ always as a scheme over $\kappa (s)$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="01K1">
+  <p><a class="environment-identifier" href="/tag/01K1">Lemma <span data-tag="01K1">26.18.5</span>.</a> Let $f : X \to S$ be a morphism of schemes. Consider the diagrams </p>
+  <div class="equation">
+  \[  \vcenter { \xymatrix{ X_ s \ar[r] \ar[d] &  X \ar[d] \\  \mathop{\mathrm{Spec}}(\kappa (s)) \ar[r] &  S } } \quad \text{and}\quad \vcenter { \xymatrix{ \mathop{\mathrm{Spec}}(\mathcal{O}_{S, s}) \times _ S X \ar[r] \ar[d] &  X \ar[d] \\  \mathop{\mathrm{Spec}}(\mathcal{O}_{S, s}) \ar[r] &  S } }  \]
+</div>
+  <p> In both cases these diagrams induce fibre squares of topological spaces and in particular, the top horizontal arrow is a homeomorphism onto its image. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose an open affine $U \subset S$ that contains $s$. The bottom horizontal morphisms factor through $U$, see Lemma <a href="/tag/01J6" data-tag="01J6">26.13.1</a> for example. Thus we may assume that $S$ is affine. If $X$ is also affine, then the result follows from Algebra, Remark <a href="/tag/00E6" data-tag="00E6">10.18.5</a>. In the general case the result follows by covering $X$ by open affines. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0HA1">
+  <p><a class="environment-identifier" href="/tag/0HA1">Lemma <span data-tag="0HA1">26.18.6</span>.</a> Let $f : X \to S$ be a morphism of schemes. Let $x \in X$ with image $s \in S$. Thinking of $x$ as a point of $X_ s$ (see Lemma <a href="/tag/01K1" data-tag="01K1">26.18.5</a>) we have </p>
+  <div class="equation">
+  \[  \mathcal{O}_{X_ s, x} \cong \mathcal{O}_{X, x}/\mathfrak m_ s\mathcal{O}_{X, x} \cong \mathcal{O}_{X, x} \otimes _{\mathcal{O}_{S, s}} \kappa (s)  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      As in the proof of Lemma <a href="/tag/01K1" data-tag="01K1">26.18.5</a> this reduces to the case where $X$ and $S$ are affine. In the affine case the statement translates to Algebra, Remark <a href="/tag/0H9M" data-tag="0H9M">10.18.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

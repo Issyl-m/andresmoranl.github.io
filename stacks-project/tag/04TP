@@ -1,0 +1,278 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sites-section-glueing-sheaves" class="tex-section"><span data-tag="04TP">7.26</span> Glueing sheaves</h2>
+
+<p>
+This section is the analogue of Sheaves, Section <a href="/tag/00AK" data-tag="00AK">6.33</a>. 
+</p>
+<p>
+<article class="env-lemma" id="04TQ">
+       
+      
+  <p><a class="environment-identifier" href="/tag/04TQ">Lemma <span data-tag="04TQ">7.26.1</span>.</a> Let $\mathcal{C}$ be a site. Let $\{ U_ i \to U\} $ be a covering of $\mathcal{C}$. Let $\mathcal{F}$, $\mathcal{G}$ be sheaves on $\mathcal{C}$. Given a collection </p>
+  <div class="equation">
+  \[  \varphi _ i : \mathcal{F}|_{\mathcal{C}/U_ i} \longrightarrow \mathcal{G}|_{\mathcal{C}/U_ i}  \]
+</div>
+  <p> of maps of sheaves such that for all $i, j \in I$ the maps $\varphi _ i, \varphi _ j$ restrict to the same map $\varphi _{ij} : \mathcal{F}|_{\mathcal{C}/U_ i \times _ U U_ j} \to \mathcal{G}|_{\mathcal{C}/U_ i \times _ U U_ j}$ then there exists a unique map of sheaves </p>
+  <div class="equation">
+  \[  \varphi : \mathcal{F}|_{\mathcal{C}/U} \longrightarrow \mathcal{G}|_{\mathcal{C}/U}  \]
+</div>
+  <p> whose restriction to each $\mathcal{C}/U_ i$ agrees with $\varphi _ i$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The restrictions used in the lemma are those of Lemma <a href="/tag/03EH" data-tag="03EH">7.25.8</a>. Let $V/U$ be an object of $\mathcal{C}/U$. Set $V_ i = U_ i \times _ U V$ and denote $\mathcal{V} = \{ V_ i \to V\} $. Observe that $(U_ i \times _ U U_ j) \times _ U V = V_ i \times _ V V_ j$. Then we have $\mathcal{F}|_{\mathcal{C}/U_ i}(V_ i/U_ i) = \mathcal{F}(V_ i)$ and $\mathcal{F}|_{\mathcal{C}/U_ i \times _ U U_ j}(V_ i \times _ V V_ j/U_ i \times _ U U_ j) = \mathcal{F}(V_ i \times _ V V_ j)$ and similarly for $\mathcal{G}$. Thus we can define $\varphi $ on sections over $V$ as the dotted arrows in the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathcal{F}(V) \ar@{=}[r] &  H^0(\mathcal{V}, \mathcal{F}) \ar@{..>}[d] \ar[r] &  \prod \mathcal{F}(V_ i) \ar[d]_{\prod \varphi _ i} \ar@<1ex>[r] \ar@<-1ex>[r] &  \prod \mathcal{F}(V_ i \times _ V V_ j) \ar[d]_{\prod \varphi _{ij}} \\  \mathcal{G}(V) \ar@{=}[r] &  H^0(\mathcal{V}, \mathcal{G}) \ar[r] &  \prod \mathcal{G}(V_ i) \ar@<1ex>[r] \ar@<-1ex>[r] &  \prod \mathcal{G}(V_ i \times _ V V_ j) }  \]
+</div>
+    <p>
+       The equality signs come from the sheaf condition; see Section <a href="/tag/00W1" data-tag="00W1">7.10</a> for the notation $H^0(\mathcal{V}, -)$. We omit the verification that these maps are compatible with the restriction maps. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The previous lemma implies that given two sheaves $\mathcal{F}$, $\mathcal{G}$ on a site $\mathcal{C}$ the rule 
+</p>
+<div class="equation">
+  \[  U \longmapsto \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C}/U)}( \mathcal{F}|_{\mathcal{C}/U}, \mathcal{G}|_{\mathcal{C}/U})  \]
+</div>
+<p>
+ defines a sheaf $\mathop{\mathcal{H}\! \mathit{om}}\nolimits (\mathcal{F},\mathcal{G})$. This is a kind of <em>internal hom sheaf</em>. It is seldom used in the setting of sheaves of sets, and more usually in the setting of sheaves of modules, see Modules on Sites, Section <a href="/tag/04TT" data-tag="04TT">18.27</a>. 
+</p>
+<p>
+<article class="env-lemma" id="0BWQ">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0BWQ">Lemma <span data-tag="0BWQ">7.26.2</span>.</a> Let $\mathcal{C}$ be a site. Let $\mathcal{F}$, $\mathcal{G}$ and $\mathcal{H}$ be sheaves on $\mathcal{C}$. There is a canonical bijection </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C})}(\mathcal{F}\times \mathcal{G},\mathcal{H}) = \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C})}(\mathcal{F},\mathop{\mathcal{H}\! \mathit{om}}\nolimits (\mathcal{G},\mathcal{H}))  \]
+</div>
+  <p> which is functorial in all three entries. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The lemma says that the functors $-\times \mathcal{G}$ and $\mathop{\mathcal{H}\! \mathit{om}}\nolimits (\mathcal{G},-)$ are adjoint to each other. To show this, we use the notion of unit and counit, see Categories, Section <a href="/tag/0036" data-tag="0036">4.24</a>. The unit 
+    <p>
+      <div class="equation">
+  \[  \eta _\mathcal {F} : \mathcal{F} \longrightarrow \mathop{\mathcal{H}\! \mathit{om}}\nolimits (\mathcal{G},\mathcal{F}\times \mathcal{G})  \]
+</div>
+    <p>
+       sends $s \in \mathcal{F}(U)$ to the map $\mathcal{G}|_{\mathcal{C}/U} \to \mathcal{F}|_{\mathcal{C}/U}\times \mathcal{G}|_{\mathcal{C}/U}$ which over $V/U$ is given by 
+    <p>
+      <div class="equation">
+  \[  \mathcal{G}(V) \longrightarrow \mathcal{F}(V)\times \mathcal{G}(V), \quad t \longmapsto (s|_{V},t).  \]
+</div>
+    <p>
+       The counit 
+    <p>
+      <div class="equation">
+  \[  \epsilon _{\mathcal{H}} : \mathop{\mathcal{H}\! \mathit{om}}\nolimits (\mathcal{G}, \mathcal{H}) \times \mathcal{G} \longrightarrow \mathcal{H}  \]
+</div>
+    <p>
+       is the evaluation map. It is given by the rule 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C}/U)}( \mathcal{G}|_{\mathcal{C}/U}, \mathcal{H}|_{\mathcal{C}/U}) \times \mathcal{G}(U) \longrightarrow \mathcal{H}(U),\quad (\varphi , s) \longmapsto \varphi (s).  \]
+</div>
+    <p>
+       Then for each $\varphi : \mathcal{F} \times \mathcal{G} \to \mathcal{H}$, the corresponding morphism $\mathcal{F} \to \mathop{\mathcal{H}\! \mathit{om}}\nolimits (\mathcal{G},\mathcal{H})$ is given by mapping each section $s \in \mathcal{F}(U)$ to the morphism of sheaves on $\mathcal{C}/U$ which on sections over $V/U$ is given by 
+    <p>
+      <div class="equation">
+  \[  \mathcal{G}(V) \longrightarrow \mathcal{H}(V),\quad t \longmapsto \varphi (s|_ V, t).  \]
+</div>
+    <p>
+       Conversely, for each $\psi : \mathcal{F} \to \mathop{\mathcal{H}\! \mathit{om}}\nolimits (\mathcal{G}, \mathcal{H})$, the corresponding morphism $\mathcal{F} \times \mathcal{G} \to \mathcal{H}$ is given by 
+    <p>
+      <div class="equation">
+  \[  \mathcal{F}(U) \times \mathcal{G}(U) \longrightarrow \mathcal{H}(U),\quad (s, t) \longmapsto \psi (s)(t)  \]
+</div>
+    <p>
+       on sections over an object $U$. We omit the details of the proof showing that these constructions are mutually inverse. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0D7X">
+  <p><a class="environment-identifier" href="/tag/0D7X">Lemma <span data-tag="0D7X">7.26.3</span>.</a> Let $\mathcal{C}$ be a site and $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$. Then $\mathop{\mathcal{H}\! \mathit{om}}\nolimits (h_ U^\# , \mathcal{F}) = j_*(\mathcal{F}|_{\mathcal{C}/U})$ for $\mathcal{F}$ in $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This can be shown by directly constructing an isomorphism of sheaves. Instead we argue as follows. Let $\mathcal{G}$ be a sheaf on $\mathcal{C}$. Then 
+    <p>
+      <div class="equation">
+  \begin{align*}  \mathop{\mathrm{Mor}}\nolimits (\mathcal{G}, j_*(\mathcal{F}|_{\mathcal{C}/U})) &  = \mathop{\mathrm{Mor}}\nolimits (\mathcal{G}|_{\mathcal{C}/U}, \mathcal{F}|_{\mathcal{C}/U}) \\ &  = \mathop{\mathrm{Mor}}\nolimits (j_!(\mathcal{G}|_{\mathcal{C}/U}), \mathcal{F}) \\ &  = \mathop{\mathrm{Mor}}\nolimits (\mathcal{G} \times h_ U^\# , \mathcal{F}) \\ &  = \mathop{\mathrm{Mor}}\nolimits (\mathcal{G}, \mathop{\mathcal{H}\! \mathit{om}}\nolimits (h_ U^\# , \mathcal{F})) \end{align*}
+</div>
+    <p>
+       and we conclude by the Yoneda lemma. Here we used Lemmas <a href="/tag/0BWQ" data-tag="0BWQ">7.26.2</a> and <a href="/tag/03EE" data-tag="03EE">7.25.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $\mathcal{C}$ be a site. Let $\{ U_ i \to U\} _{i \in I}$ be a covering of $\mathcal{C}$. For each $i \in I$ let $\mathcal{F}_ i$ be a sheaf of sets on $\mathcal{C}/U_ i$. For each pair $i, j \in I$, let 
+</p>
+<div class="equation">
+  \[  \varphi _{ij} : \mathcal{F}_ i|_{\mathcal{C}/U_ i \times _ U U_ j} \longrightarrow \mathcal{F}_ j|_{\mathcal{C}/U_ i \times _ U U_ j}  \]
+</div>
+<p>
+ be an isomorphism of sheaves of sets. Assume in addition that for every triple of indices $i, j, k \in I$ the following diagram is commutative 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathcal{F}_ i|_{\mathcal{C}/U_ i \times _ U U_ j \times _ U U_ k} \ar[rr]_{\varphi _{ik}} \ar[rd]_{\varphi _{ij}} &  &  \mathcal{F}_ k|_{\mathcal{C}/U_ i \times _ U U_ j \times _ U U_ k} \\  &  \mathcal{F}_ j|_{\mathcal{C}/U_ i \times _ U U_ j \times _ U U_ k} \ar[ru]_{\varphi _{jk}} }  \]
+</div>
+<p>
+ We will call such a collection of data $(\mathcal{F}_ i, \varphi _{ij})$ a <em>glueing data for sheaves of sets with respect to the covering $\{ U_ i \to U\} _{i \in I}$</em>. 
+</p>
+<p>
+<article class="env-lemma" id="04TR">
+  <p><a class="environment-identifier" href="/tag/04TR">Lemma <span data-tag="04TR">7.26.4</span>.</a> Let $\mathcal{C}$ be a site. Let $\{ U_ i \to U\} _{i \in I}$ be a covering of $\mathcal{C}$. Given any glueing data $(\mathcal{F}_ i, \varphi _{ij})$ for sheaves of sets with respect to the covering $\{ U_ i \to U\} _{i \in I}$ there exists a sheaf of sets $\mathcal{F}$ on $\mathcal{C}/U$ together with isomorphisms </p>
+  <div class="equation">
+  \[  \varphi _ i : \mathcal{F}|_{\mathcal{C}/U_ i} \to \mathcal{F}_ i  \]
+</div>
+  <p> such that the diagrams </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{F}|_{\mathcal{C}/U_ i \times _ U U_ j} \ar[d]_{\text{id}} \ar[r]_{\varphi _ i} &  \mathcal{F}_ i|_{\mathcal{C}/U_ i \times _ U U_ j} \ar[d]^{\varphi _{ij}} \\  \mathcal{F}|_{\mathcal{C}/U_ i \times _ U U_ j} \ar[r]^{\varphi _ j} &  \mathcal{F}_ j|_{\mathcal{C}/U_ i \times _ U U_ j} }  \]
+</div>
+  <p> are commutative. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let us describe how to construct the sheaf $\mathcal{F}$ on $\mathcal{C}/U$. Let $a : V \to U$ be an object of $\mathcal{C}/U$. Then 
+    <p>
+      <div class="equation">
+  \[  \mathcal{F}(V/U) = \{  (s_ i)_{i \in I} \in \prod _{i \in I} \mathcal{F}_ i(U_ i \times _ U V/U_ i) \mid \varphi _{ij}(s_ i|_{U_ i \times _ U U_ j \times _ U V}) = s_ j|_{U_ i \times _ U U_ j \times _ U V} \}   \]
+</div>
+    <p>
+       We omit the construction of the restriction mappings. We omit the verification that this is a sheaf. We omit the construction of the isomorphisms $\varphi _ i$, and we omit proving the commutativity of the diagrams of the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $\mathcal{C}$ be a site. Let $\{ U_ i \to U\} _{i \in I}$ be a covering of $\mathcal{C}$. Let $\mathcal{F}$ be a sheaf on $\mathcal{C}/U$. Associated to $\mathcal{F}$ we have its <em>canonical glueing data</em> given by the restrictions $\mathcal{F}|_{\mathcal{C}/U_ i}$ and the canonical isomorphisms 
+</p>
+<div class="equation">
+  \[  \left(\mathcal{F}|_{\mathcal{C}/U_ i}\right)|_{\mathcal{C}/U_ i \times _ U U_ j} = \left(\mathcal{F}|_{\mathcal{C}/U_ j}\right)|_{\mathcal{C}/U_ i \times _ U U_ j}  \]
+</div>
+<p>
+ coming from the fact that the composition of the functors $\mathcal{C}/U_ i \times _ U U_ j \to \mathcal{C}/U_ i \to \mathcal{C}/U$ and $\mathcal{C}/U_ i \times _ U U_ j \to \mathcal{C}/U_ j \to \mathcal{C}/U$ are equal. 
+</p>
+<p>
+<article class="env-lemma" id="04TS">
+  <p><a class="environment-identifier" href="/tag/04TS">Lemma <span data-tag="04TS">7.26.5</span>.</a> Let $\mathcal{C}$ be a site. Let $\{ U_ i \to U\} _{i \in I}$ be a covering of $\mathcal{C}$. The category $\mathop{\mathit{Sh}}\nolimits (\mathcal{C}/U)$ is equivalent to the category of glueing data via the functor that associates to $\mathcal{F}$ on $\mathcal{C}/U$ the canonical glueing data. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In Lemma <a href="/tag/04TQ" data-tag="04TQ">7.26.1</a> we saw that the functor is fully faithful, and in Lemma <a href="/tag/04TR" data-tag="04TR">7.26.4</a> we proved that it is essentially surjective (by explicitly constructing a quasi-inverse functor). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $\mathcal{C}$ be a site. We are going to discuss a version of glueing sheaves on the entire site $\mathcal{C}$. For each object $U$ in $\mathcal{C}$, let $\mathcal{F}_ U$ be a sheaf on $\mathcal{C}/U$. Recall that there is a functor $j_ f : \mathcal{C}/V \rightarrow \mathcal{C}/U$ associated to each morphism $f : V \rightarrow U$ in $\mathcal{C}$, given by $(a : W \to V) \mapsto (f \circ a : W \to U)$. For each such $f$, let 
+</p>
+<div class="equation">
+  \[  c_ f : j_ f^{-1} \mathcal{F}_ U \to \mathcal{F}_ V  \]
+</div>
+<p>
+ be an isomorphism of sheaves. Assume that given any two arrows $f : V \to U$ and $g : W \to V$ in $\mathcal{C}$, the composition $c_ g \circ j_{g}^{-1} c_ f$ is equal to $c_{f \circ g}$. We will call such a collection of data $(\mathcal{F}_{U}, c_ f)$ an <em>absolute glueing data for sheaves of sets on $\mathcal{C}$</em>. A morphism of absolute glueing data $(\mathcal{F}_{U}, c_ f) \to (\mathcal{G}_{U}, c'_ f)$ is given by a collection $(\varphi _ U)$ of morphisms of sheaves $\varphi _ U : \mathcal{F}_ U \to \mathcal{G}_ U$, such that 
+</p>
+<div class="equation">
+  \[  \xymatrix{ j_ f^{-1} \mathcal{F}_ U \ar[r]_{c_ f} \ar[d]_{j_ f^{-1} \varphi _ U} &  \mathcal{F}_ V \ar[d]^{\varphi _ V} \\  j_ f^{-1} \mathcal{G}_ U \ar[r]^{c'_ f} &  \mathcal{G}_ V }  \]
+</div>
+<p>
+ commutes for every morphism $f : V \to U$ in $\mathcal{C}$. 
+</p>
+<p>
+Associated to any sheaf $\mathcal{F}$ on $\mathcal{C}$ is its <em>canonical absolute glueing data</em> $(\mathcal{F}|_{\mathcal{C}/U},c_ f)$, where the canonical isomorphisms $c_ f : j_ f^{-1} \mathcal{F}|_{\mathcal{C}/U} \to \mathcal{F}|_{\mathcal{C}/V}$ for $f : V \to U$ come from the relation $j_ V = j_ U \circ j_ f$ as in Lemma <a href="/tag/03EH" data-tag="03EH">7.25.8</a>. Any morphism $\varphi : \mathcal{F} \to \mathcal{G}$ of sheaves of $\mathcal{C}$ induces a morphism $(\varphi |_{\mathcal{C}/U})$ of canonical absolute glueing data. 
+</p>
+<p>
+<article class="env-lemma" id="0GWK">
+  <p><a class="environment-identifier" href="/tag/0GWK">Lemma <span data-tag="0GWK">7.26.6</span>.</a> Let $\mathcal{C}$ be a site. The category $\mathop{\mathit{Sh}}\nolimits (\mathcal{C})$ is equivalent to the category of absolute glueing data via the functor that associates to $\mathcal{F}$ on $\mathcal{C}$ the canonical absolute glueing data. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Given an absolute glueing data $(\mathcal{F}_ U, c_ f)$, we construct a sheaf $\mathcal{F}$ on $\mathcal{C}$ by setting $\mathcal{F}(U) = \mathcal{F}_ U(U)$, where restriction along $f : V \to U$ given by the commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathcal{F}_ U(U) \ar[r] \ar@{=}[d] &  \mathcal{F}_ U(V) \ar[r]^{c_ f} &  \mathcal{F}_ V(V) \ar@{=}[d] \\  \mathcal{F}(U) \ar[rr] &  &  \mathcal{F}(V) }  \]
+</div>
+    <p>
+       The compatibility condition $c_ g \circ j_{g}^{-1} c_ f = c_{f \circ g}$ ensures that $\mathcal{F}$ is a presheaf, and also ensures that the maps $c_ f : \mathcal{F}_ U(V) \to \mathcal{F}(V)$ define an isomorphism $\mathcal{F}_ U \to \mathcal{F}|_{\mathcal{C}/U}$ for each $U$. Since each $\mathcal{F}_ U$ is a sheaf, this implies that $\mathcal{F}$ is a sheaf as well. The functor $(\mathcal{F}_ U, c_ f) \mapsto \mathcal{F}$ just constructed is quasi-inverse to the functor which takes a sheaf on $\mathcal{C}$ to its canonical glueing data. Further details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0GWL">
+  <p><a class="environment-identifier" href="/tag/0GWL">Remark <span data-tag="0GWL">7.26.7</span>.</a> There is a variant of Lemma <a href="/tag/0GWK" data-tag="0GWK">7.26.6</a> which comes up in algebraic geometry. Namely, suppose that $\mathcal{C}$ is a site with all fibre products and for each $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ we are given a full subcategory $U_\tau \subset \mathcal{C}/U$ with the following properties </p>
+  <p><ol>
+  <li><p>
+$U/U$ is in $U_\tau $, 
+</p>
+</li><li><p>
+for $V/U$ in $U_\tau $ and covering $\{ V_ j \to V\} $ of $\mathcal{C}$ we have $V_ j/U$ in $U_\tau $ and 
+</p>
+</li><li><p>
+for a morphism $U' \to U$ of $\mathcal{C}$ and $V/U$ in $U_\tau $ the base change $V' = V \times _ U U'$ is in $U'_\tau $. 
+</p>
+</li>
+</ol></p>
+  <p> In this setting $U_\tau $ is a site for all $U$ in $\mathcal{C}$ and the base change functor $U_\tau \to U'_\tau $ defines a morphism $f_\tau : U_\tau \to U'_\tau $ of sites for all morphisms $f : U' \to U$ of $\mathcal{C}$. The glueing statement we obtain then reads as follows: A sheaf $\mathcal{F}$ on $\mathcal{C}$ is given by the following data: </p>
+  <p><ol>
+  <li><p>
+for every $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ a sheaf $\mathcal{F}_ U$ on $U_\tau $, 
+</p>
+</li><li><p>
+for every $f : U' \to U$ in $\mathcal{C}$ a map $c_ f : f_\tau ^{-1}\mathcal{F}_ U \to \mathcal{F}_{U'}$. 
+</p>
+</li>
+</ol></p>
+  <p> These data are subject to the following conditions: </p>
+  <p><ol>
+  <li class="custom-item" data-marker="(a)"><p>
+given $f : U' \to U$ and $g : U'' \to U'$ in $\mathcal{C}$ the composition $c_ g \circ g_\tau ^{-1}c_ f$ is equal to $c_{f \circ g}$, and 
+</p>
+</li><li class="custom-item" data-marker="(b)"><p>
+if $f : U' \to U$ is in $U_\tau $ then $c_ f$ is an isomorphism. 
+</p>
+</li>
+</ol></p>
+  <p> If we ever need this we will precisely state and prove this here. (Note that this result is slightly different from the statements above as we are not requiring all the maps $c_ f$ to be isomorphisms!) </p>
+</article> 
+</p>

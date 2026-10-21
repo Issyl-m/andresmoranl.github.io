@@ -1,0 +1,113 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-algebra-section-krasner" class="tex-section"><span data-tag="0BU9">15.115</span> Krasner's lemma</h2>
+
+<p>
+Here is Krasner's lemma in the case of discretely valued fields. 
+</p>
+<p>
+<article class="env-lemma" id="09EI">
+  <p><a class="environment-identifier" href="/tag/09EI">Lemma <span data-tag="09EI">15.115.1</span> <span class="named">(Krasner's lemma)</span>.</a>  Let $A$ be a complete local domain of dimension $1$. Let $P(t) \in A[t]$ be a polynomial with coefficients in $A$. Let $\alpha \in A$ be a root of $P$ but not a root of the derivative $P' = \text{d}P/\text{d}t$. For every $c \geq 0$ there exists an integer $n$ such that for any $Q \in A[t]$ whose coefficients are in $\mathfrak m_ A^ n$ the polynomial $P + Q$ has a root $\beta \in A$ with $\beta - \alpha \in \mathfrak m_ A^ c$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a nonzero $\pi \in \mathfrak m$. Since the dimension of $A$ is $1$ we have $\mathfrak m = \sqrt{(\pi )}$. By assumption we may write $P'(\alpha )^{-1} = \pi ^{-m} a$ for some $m \geq 0$ and $a \in A$. We may and do assume that $c \geq m + 1$. Pick $n$ such that $\mathfrak m_ A^ n \subset (\pi ^{c + m})$. Pick any $Q$ as in the statement. For later use we observe that we can write 
+    <p>
+      <div class="equation">
+  \[  P(x + y) = P(x) + P'(x)y + R(x, y)y^2  \]
+</div>
+    <p>
+       for some $R(x, y) \in A[x, y]$. We will show by induction that we can find a sequence $\alpha _ m, \alpha _{m + 1}, \alpha _{m + 2}, \ldots $ such that 
+    <p>
+      <ol>
+  <li><p>
+$\alpha _ k \equiv \alpha \bmod \pi ^ c$, 
+</p>
+</li><li><p>
+$\alpha _{k + 1} - \alpha _ k \in (\pi ^ k)$, and 
+</p>
+</li><li><p>
+$(P + Q)(\alpha _ k) \in (\pi ^{m + k})$. 
+</p>
+</li>
+</ol>
+    <p>
+       Setting $\beta = \mathop{\mathrm{lim}}\nolimits \alpha _ k$ will finish the proof. 
+    <p>
+      Base case. Since the coefficients of $Q$ are in $(\pi ^{c + m})$ we have $(P + Q)(\alpha ) \in (\pi ^{c + m})$. Hence $\alpha _ m = \alpha $ works. This choice guarantees that $\alpha _ k \equiv \alpha \bmod \pi ^ c$ for all $k \geq m$. 
+    <p>
+      Induction step. Given $\alpha _ k$ we write $\alpha _{k + 1} = \alpha _ k + \delta $ for some $\delta \in (\pi ^ k)$. Then we have 
+    <p>
+      <div class="equation">
+  \[  (P + Q)(\alpha _{k + 1}) = P(\alpha _ k + \delta ) + Q(\alpha _ k + \delta )  \]
+</div>
+    <p>
+       Because the coefficients of $Q$ are in $(\pi ^{c + m})$ we see that $Q(\alpha _ k + \delta ) \equiv Q(\alpha _ k) \bmod \pi ^{c + m + k}$. On the other hand we have 
+    <p>
+      <div class="equation">
+  \[  P(\alpha _ k + \delta ) = P(\alpha _ k) + P'(\alpha _ k)\delta + R(\alpha _ k, \delta )\delta ^2  \]
+</div>
+    <p>
+       Note that $P'(\alpha _ k) \equiv P'(\alpha ) \bmod (\pi ^{m + 1})$ as $\alpha _ k \equiv \alpha \bmod \pi ^{m + 1}$. Hence we obtain 
+    <p>
+      <div class="equation">
+  \[  P(\alpha _ k + \delta ) \equiv P(\alpha _ k) + P'(\alpha ) \delta \bmod \pi ^{k + m + 1}  \]
+</div>
+    <p>
+       Recombining the two terms we see that 
+    <p>
+      <div class="equation">
+  \[  (P + Q)(\alpha _{k + 1}) \equiv (P + Q)(\alpha _ k) + P'(\alpha ) \delta \bmod \pi ^{k + m + 1}  \]
+</div>
+    <p>
+       Thus a solution is to take $\delta = -P'(\alpha )^{-1} (P + Q)(\alpha _ k) = - \pi ^{-m} a (P + Q)(\alpha _ k)$ which is contained in $(\pi ^ k)$ by induction assumption. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09EJ">
+  <p><a class="environment-identifier" href="/tag/09EJ">Lemma <span data-tag="09EJ">15.115.2</span>.</a> Let $A$ be a discrete valuation ring with field of fractions $K$. Let $A^\wedge $ be the completion of $A$ with fraction field $K^\wedge $. If $M/K^\wedge $ is a finite separable extension, then there exists a finite separable extension $L/K$ such that $M = K^\wedge \otimes _ K L$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Note that $A^\wedge $ is a discrete valuation ring too (by Lemmas <a href="/tag/07NY" data-tag="07NY">15.44.4</a> and <a href="/tag/07NV" data-tag="07NV">15.44.1</a>). In particular $A^\wedge $ is a domain. The proof will work more generally for Noetherian local rings $A$ such that $A^\wedge $ is a local domain of dimension $1$. 
+    <p>
+      Let $\theta \in M$ be an element that generates $M$ over $K^\wedge $. (Theorem of the primitive element.) Let $P(t) \in K^\wedge [t]$ be the minimal polynomial of $\theta $ over $K^\wedge $. Let $\pi \in \mathfrak m_ A$ be a nonzero element. After replacing $\theta $ by $\pi ^ n\theta $ we may assume that the coefficients of $P(t)$ are in $A^\wedge $. Let $B = A^\wedge [\theta ] = A^\wedge [t]/(P(t))$. Note that $B$ is a complete local domain of dimension $1$ because it is finite over $A$ and contained in $M$. Since $M$ is separable over $K$ the element $\theta $ is not a root of the derivative of $P$. For any integer $n$ we can find a monic polynomial $P_1 \in A[t]$ such that $P - P_1$ has coefficients in $\pi ^ nA^\wedge [t]$. By Krasner's lemma (Lemma <a href="/tag/09EI" data-tag="09EI">15.115.1</a>) we see that $P_1$ has a root $\beta $ in $B$ for $n$ sufficiently large. Moreover, we may assume (if $n$ is chosen large enough) that $\theta - \beta \in \pi B$. Consider the map $\Phi : A^\wedge [t]/(P_1) \to B$ of $A^\wedge $-algebras which maps $t$ to $\beta $. Since $B = \pi B + \sum _{i < \deg (P)} A^\wedge \theta ^ i$, the map $\Phi $ is surjective by Nakayama's lemma. As $\deg (P_1) = \deg (P)$ it follows that $\Phi $ is an isomorphism. We conclude that the ring extension $L = K[t]/(P_1(t))$ satisfies $K^\wedge \otimes _ K L \cong M$. This implies that $L$ is a field and the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="09EK">
+  <p><a class="environment-identifier" href="/tag/09EK">Definition <span data-tag="09EK">15.115.3</span>.</a> Let $A$ be a discrete valuation ring. We say $A$ has <em>mixed characteristic</em> if the characteristic of the residue field of $A$ is $p > 0$ and the characteristic of the fraction field of $A$ is $0$. In this case we obtain an extension of discrete valuation rings $\mathbf{Z}_{(p)} \subset A$ and the <em>absolute ramification index</em> of $A$ is the ramification index of this extension. </p>
+</article> 
+</p>

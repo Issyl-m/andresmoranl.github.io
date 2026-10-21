@@ -1,0 +1,285 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="spaces-pushouts-section-formal-glueing" class="tex-section"><span data-tag="0AEP">81.10</span> Formal glueing of quasi-coherent modules</h2>
+
+<p>
+This section is the analogue of More on Algebra, Section <a href="/tag/05E5" data-tag="05E5">15.91</a>. In the case of morphisms of schemes, the result can be found in the paper by Joyet <span class="cite">[<a href="/bibliography/Joyet">Joyet</a>]</span>; this is a good place to start reading. For a discussion of applications to descent problems for stacks, see the paper by Moret-Bailly <span class="cite">[<a href="/bibliography/MB">MB</a>]</span>. In the case of an affine morphism of schemes there is a statement in the appendix of the paper <span class="cite">[<a href="/bibliography/Ferrand-Raynaud">Ferrand-Raynaud</a>]</span> but one needs to add the hypothesis that the closed subscheme is cut out by a finitely generated ideal (as in the paper by Joyet) since otherwise the result does not hold. A generalization of this material to (higher) derived categories with potential applications to nonflat situations can be found in <span class="cite">[<span class="postnote">Section 5</span>, <a href="/bibliography/Bhatt-Algebraize">Bhatt-Algebraize</a>]</span>. 
+</p>
+<p>
+We start with a lemma on abelian sheaves supported on closed subsets. 
+</p>
+<p>
+<article class="env-lemma" id="0AEQ">
+  <p><a class="environment-identifier" href="/tag/0AEQ">Lemma <span data-tag="0AEQ">81.10.1</span>.</a> Let $S$ be a scheme. Let $f : Y \to X$ be a morphism of algebraic spaces over $S$. Let $Z \subset X$ closed subspace such that $f^{-1}Z \to Z$ is integral and universally injective. Let $\overline{y}$ be a geometric point of $Y$ and $\overline{x} = f(\overline{y})$. We have </p>
+  <div class="equation">
+  \[  (Rf_*Q)_{\overline{x}} = Q_{\overline{y}}  \]
+</div>
+  <p> in $D(\textit{Ab})$ for any object $Q$ of $D(Y_{\acute{e}tale})$ supported on $|f^{-1}Z|$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider the commutative diagram of algebraic spaces 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ f^{-1}Z \ar[r]_{i'} \ar[d]_{f'} &  Y \ar[d]_ f \\  Z \ar[r]^ i &  X }  \]
+</div>
+    <p>
+       By Cohomology of Spaces, Lemma <a href="/tag/0AEI" data-tag="0AEI">69.9.4</a> we can write $Q = Ri'_*K'$ for some object $K'$ of $D(f^{-1}Z_{\acute{e}tale})$. By Morphisms of Spaces, Lemma <a href="/tag/0AEH" data-tag="0AEH">67.53.7</a> we have $K' = (f')^{-1}K$ with $K = Rf'_*K'$. Then we have $Rf_*Q = Rf_*Ri'_*K' = Ri_*Rf'_*K' = Ri_*K$. Let $\overline{z}$ be the geometric point of $Z$ corresponding to $\overline{x}$ and let $\overline{z}'$ be the geometric point of $f^{-1}Z$ corresponding to $\overline{y}$. We obtain the result of the lemma as follows 
+    <p>
+      <div class="equation">
+  \[  Q_{\overline{y}} = (Ri'_*K')_{\overline{y}} = K'_{\overline{z}'} = (f')^{-1}K_{\overline{z}'} = K_{\overline{z}} = Ri_*K_{\overline{x}} = Rf_*Q_{\overline{x}}  \]
+</div>
+    <p>
+       The middle equality holds because of the description of the stalk of a pullback given in Properties of Spaces, Lemma <a href="/tag/04K2" data-tag="04K2">66.19.9</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AER">
+  <p><a class="environment-identifier" href="/tag/0AER">Lemma <span data-tag="0AER">81.10.2</span>.</a> Let $S$ be a scheme. Let $f : Y \to X$ be a morphism of algebraic spaces over $S$. Let $Z \subset X$ closed subspace such that $f^{-1}Z \to Z$ is integral and universally injective. Let $\overline{y}$ be a geometric point of $Y$ and $\overline{x} = f(\overline{y})$. Let $\mathcal{G}$ be an abelian sheaf on $Y$. Then the map of two term complexes </p>
+  <div class="equation">
+  \[  \left(f_*\mathcal{G}_{\overline{x}} \to (f \circ j')_*(\mathcal{G}|_ V)_{\overline{x}}\right) \longrightarrow \left(\mathcal{G}_{\overline{y}} \to j'_*(\mathcal{G}|_ V)_{\overline{y}}\right)  \]
+</div>
+  <p> induces an isomorphism on kernels and an injection on cokernels. Here $V = Y \setminus f^{-1}Z$ and $j' : V \to Y$ is the inclusion. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a distinguished triangle 
+    <p>
+      <div class="equation">
+  \[  \mathcal{G} \to Rj'_*\mathcal{G}|_ V \to Q \to \mathcal{G}[1]  \]
+</div>
+    <p>
+       n $D(Y_{\acute{e}tale})$. The cohomology sheaves of $Q$ are supported on $|f^{-1}Z|$. We apply $Rf_*$ and we obtain 
+    <p>
+      <div class="equation">
+  \[  Rf_*\mathcal{G} \to Rf_*Rj'_*\mathcal{G}|_ V \to Rf_*Q \to Rf_*\mathcal{G}[1]  \]
+</div>
+    <p>
+       Taking stalks at $\overline{x}$ we obtain an exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to (R^{-1}f_*Q)_{\overline{x}} \to f_*\mathcal{G}_{\overline{x}} \to (f \circ j')_*(\mathcal{G}|_ V)_{\overline{x}} \to (R^0f_*Q)_{\overline{x}}  \]
+</div>
+    <p>
+       We can compare this with the exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to H^{-1}(Q)_{\overline{y}} \to \mathcal{G}_{\overline{y}} \to j'_*(\mathcal{G}|_ V)_{\overline{y}} \to H^0(Q)_{\overline{y}}  \]
+</div>
+    <p>
+       Thus we see that the lemma follows because $Q_{\overline{y}} = Rf_*Q_{\overline{x}}$ by Lemma <a href="/tag/0AEQ" data-tag="0AEQ">81.10.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AES">
+  <p><a class="environment-identifier" href="/tag/0AES">Lemma <span data-tag="0AES">81.10.3</span>.</a> Let $S$ be a scheme. Let $X$ be an algebraic space over $S$. Let $f : Y \to X$ be a quasi-compact and quasi-separated morphism. Let $\overline{x}$ be a geometric point of $X$ and let $\mathop{\mathrm{Spec}}(\mathcal{O}_{X, \overline{x}}) \to X$ be the canonical morphism. For a quasi-coherent module $\mathcal{G}$ on $Y$ we have </p>
+  <div class="equation">
+  \[  f_*\mathcal{G}_{\overline{x}} = \Gamma (Y \times _ X \mathop{\mathrm{Spec}}(\mathcal{O}_{X, \overline{x}}), p^*\mathcal{F})  \]
+</div>
+  <p> where $p : Y \times _ X \mathop{\mathrm{Spec}}(\mathcal{O}_{X, \overline{x}}) \to Y$ is the projection. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Observe that $f_*\mathcal{G}_{\overline{x}} = \Gamma (\mathop{\mathrm{Spec}}(\mathcal{O}_{X, \overline{x}}), h^*f_*\mathcal{G})$ where $h : \mathop{\mathrm{Spec}}(\mathcal{O}_{X, \overline{x}}) \to X$. Hence the result is true because $h$ is flat so that Cohomology of Spaces, Lemma <a href="/tag/073K" data-tag="073K">69.11.2</a> applies. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AET">
+  <p><a class="environment-identifier" href="/tag/0AET">Lemma <span data-tag="0AET">81.10.4</span>.</a> Let $S$ be a scheme. Let $X$ be an algebraic space over $S$. Let $i : Z \to X$ be a closed immersion of finite presentation. Let $Q \in D_\mathit{QCoh}(\mathcal{O}_ X)$ be supported on $|Z|$. Let $\overline{x}$ be a geometric point of $X$ and let $I_{\overline{x}} \subset \mathcal{O}_{X, \overline{x}}$ be the stalk of the ideal sheaf of $Z$. Then the cohomology modules $H^ n(Q_{\overline{x}})$ are $I_{\overline{x}}$-power torsion (see More on Algebra, Definition <a href="/tag/05E6" data-tag="05E6">15.90.1</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose an affine scheme $U$ and an étale morphism $U \to X$ such that $\overline{x}$ lifts to a geometric point $\overline{u}$ of $U$. Then we can replace $X$ by $U$, $Z$ by $U \times _ X Z$, $Q$ by the restriction $Q|_ U$, and $\overline{x}$ by $\overline{u}$. Thus we may assume that $X = \mathop{\mathrm{Spec}}(A)$ is affine. Let $I \subset A$ be the ideal defining $Z$. Since $i : Z \to X$ is of finite presentation, the ideal $I = (f_1, \ldots , f_ r)$ is finitely generated. The object $Q$ comes from a complex of $A$-modules $M^\bullet $, see Derived Categories of Spaces, Lemma <a href="/tag/071Q" data-tag="071Q">75.4.2</a> and Derived Categories of Schemes, Lemma <a href="/tag/06Z0" data-tag="06Z0">36.3.5</a>. Since the cohomology sheaves of $Q$ are supported on $Z$ we see that the localization $M^\bullet _ f$ is acyclic for each $f \in I$. Take $x \in H^ p(M^\bullet )$. By the above we can find $n_ i$ such that $f_ i^{n_ i} x = 0$ in $H^ p(M^\bullet )$ for each $i$. Then with $n = \sum n_ i$ we see that $I^ n$ annihilates $x$. Thus $H^ p(M^\bullet )$ is $I$-power torsion. Since the ring map $A \to \mathcal{O}_{X, \overline{x}}$ is flat and since $I_{\overline{x}} = I\mathcal{O}_{X, \overline{x}}$ we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AEU">
+  <p><a class="environment-identifier" href="/tag/0AEU">Lemma <span data-tag="0AEU">81.10.5</span>.</a> Let $S$ be a scheme. Let $f : Y \to X$ be a morphism of algebraic spaces over $S$. Let $Z \subset X$ be a closed subspace. Assume $f^{-1}Z \to Z$ is an isomorphism and that $f$ is flat in every point of $f^{-1}Z$. For any $Q$ in $D_\mathit{QCoh}(\mathcal{O}_ Y)$ supported on $|f^{-1}Z|$ we have $Lf^*Rf_*Q = Q$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We show the canonical map $Lf^*Rf_*Q \to Q$ is an isomorphism by checking on stalks at $\overline{y}$. If $\overline{y}$ is not in $f^{-1}Z$, then both sides are zero and the result is true. Assume the image $\overline{x}$ of $\overline{y}$ is in $Z$. By Lemma <a href="/tag/0AEQ" data-tag="0AEQ">81.10.1</a> we have $Rf_*Q_{\overline{x}} = Q_{\overline{y}}$ and since $f$ is flat at $\overline{y}$ we see that 
+    <p>
+      <div class="equation">
+  \[  (Lf^*Rf_*Q)_{\overline{y}} = (Rf_*Q)_{\overline{x}} \otimes _{\mathcal{O}_{X, \overline{x}}} \mathcal{O}_{Y, \overline{y}} = Q_{\overline{y}} \otimes _{\mathcal{O}_{X, \overline{x}}} \mathcal{O}_{Y, \overline{y}}  \]
+</div>
+    <p>
+       Thus we have to check that the canonical map 
+    <p>
+      <div class="equation">
+  \[  Q_{\overline{y}} \otimes _{\mathcal{O}_{X, \overline{x}}} \mathcal{O}_{Y, \overline{y}} \longrightarrow Q_{\overline{y}}  \]
+</div>
+    <p>
+       is an isomorphism in the derived category. Let $I_{\overline{x}} \subset \mathcal{O}_{X, \overline{x}}$ be the stalk of the ideal sheaf defining $Z$. Since $Z \to X$ is locally of finite presentation this ideal is finitely generated and the cohomology groups of $Q_{\overline{y}}$ are $I_{\overline{y}} = I_{\overline{x}}\mathcal{O}_{Y, \overline{y}}$-power torsion by Lemma <a href="/tag/0AET" data-tag="0AET">81.10.4</a> applied to $Q$ on $Y$. It follows that they are also $I_{\overline{x}}$-power torsion. The ring map $\mathcal{O}_{X, \overline{x}} \to \mathcal{O}_{Y, \overline{y}}$ is flat and induces an isomorphism after dividing by $I_{\overline{x}}$ and $I_{\overline{y}}$ because we assumed that $f^{-1}Z \to Z$ is an isomorphism. Hence we see that the cohomology modules of $Q_{\overline{y}} \otimes _{\mathcal{O}_{X, \overline{x}}} \mathcal{O}_{Y, \overline{y}}$ are equal to the cohomology modules of $Q_{\overline{y}}$ by More on Algebra, Lemma <a href="/tag/05E9" data-tag="05E9">15.91.2</a> which finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-situation" id="0AEV">
+  <p><a class="environment-identifier" href="/tag/0AEV">Situation <span data-tag="0AEV">81.10.6</span>.</a> Here $S$ is a base scheme, $f : Y \to X$ is a quasi-compact and quasi-separated morphism of algebraic spaces over $S$, and $Z \to X$ is a closed immersion of finite presentation. We assume that $f^{-1}(Z) \to Z$ is an isomorphism and that $f$ is flat in every point $x \in |f^{-1}Z|$. We set $U = X \setminus Z$ and $V = Y \setminus f^{-1}(Z)$. Picture </p>
+  <div class="equation">
+  \[  \xymatrix{ V \ar[r]_{j'} \ar[d]_{f|_ V} &  Y \ar[d]^ f \\  U \ar[r]^ j &  X }  \]
+</div>
+</article> 
+</p>
+<p>
+In Situation <a href="/tag/0AEV" data-tag="0AEV">81.10.6</a> we define $\textit{QCoh}(Y \to X, Z)$ as the category of triples $(\mathcal{H}, \mathcal{G}, \varphi )$ where $\mathcal{H}$ is a quasi-coherent sheaf of $\mathcal{O}_ U$-modules, $\mathcal{G}$ is a quasi-coherent sheaf of $\mathcal{O}_ Y$-modules, and $\varphi : f^*\mathcal{H} \to \mathcal{G}|_ V$ is an isomorphism of $\mathcal{O}_ V$-modules. There is a canonical functor 
+</p>
+<div class="equation" id="0AEW">
+    <span class="equation-label"><a href="/tag/0AEW" data-tag="0AEW">81.10.6.1</a></span>
+  <div>\begin{equation}  \label{spaces-pushouts-equation-formal-glueing-modules} \mathit{QCoh}(\mathcal{O}_ X) \longrightarrow \textit{QCoh}(Y \to X, Z) \end{equation}</div>
+</div>
+<p>
+ which maps $\mathcal{F}$ to the system $(\mathcal{F}|_ U, f^*\mathcal{F}, can)$. By analogy with the proof given in the affine case, we construct a functor in the opposite direction. To an object $(\mathcal{H}, \mathcal{G}, \varphi )$ we assign the $\mathcal{O}_ X$-module 
+</p>
+<div class="equation" id="0AEX">
+    <span class="equation-label"><a href="/tag/0AEX" data-tag="0AEX">81.10.6.2</a></span>
+  <div>\begin{equation}  \label{spaces-pushouts-equation-reverse} \mathop{\mathrm{Ker}}(j_*\mathcal{H} \oplus f_*\mathcal{G} \to (f \circ j')_*\mathcal{G}|_ V) \end{equation}</div>
+</div>
+<p>
+ Observe that $j$ and $j'$ are quasi-compact morphisms as $Z \to X$ is of finite presentation. Hence $f_*$, $j_*$, and $(f \circ j')_*$ transform quasi-coherent modules into quasi-coherent modules (Morphisms of Spaces, Lemma <a href="/tag/03M9" data-tag="03M9">67.11.2</a>). Thus the module (<a href="/tag/0AEX" data-tag="0AEX">81.10.6.2</a>) is quasi-coherent. 
+</p>
+<p>
+<article class="env-lemma" id="0AEY">
+  <p><a class="environment-identifier" href="/tag/0AEY">Lemma <span data-tag="0AEY">81.10.7</span>.</a> In Situation <a href="/tag/0AEV" data-tag="0AEV">81.10.6</a>. The functor (<a href="/tag/0AEX" data-tag="0AEX">81.10.6.2</a>) is right adjoint to the functor (<a href="/tag/0AEW" data-tag="0AEW">81.10.6.1</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows easily from the adjointness of $f^*$ to $f_*$ and $j^*$ to $j_*$. Details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AEZ">
+  <p><a class="environment-identifier" href="/tag/0AEZ">Lemma <span data-tag="0AEZ">81.10.8</span>.</a> In Situation <a href="/tag/0AEV" data-tag="0AEV">81.10.6</a>. Let $X' \to X$ be a flat morphism of algebraic spaces. Set $Z' = X' \times _ X Z$ and $Y' = X' \times _ X Y$. The pullbacks $\mathit{QCoh}(\mathcal{O}_ X) \to \mathit{QCoh}(\mathcal{O}_{X'})$ and $\mathit{QCoh}(Y \to X, Z) \to \mathit{QCoh}(Y' \to X', Z')$ are compatible with the functors (<a href="/tag/0AEX" data-tag="0AEX">81.10.6.2</a>) and <a href="/tag/0AEW" data-tag="0AEW">81.10.6.1</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is true because pullback commutes with pullback and because flat pullback commutes with pushforward along quasi-compact and quasi-separated morphisms, see Cohomology of Spaces, Lemma <a href="/tag/073K" data-tag="073K">69.11.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="0AF0">
+  <p><a class="environment-identifier" href="/tag/0AF0">Proposition <span data-tag="0AF0">81.10.9</span>.</a> In Situation <a href="/tag/0AEV" data-tag="0AEV">81.10.6</a> the functor (<a href="/tag/0AEW" data-tag="0AEW">81.10.6.1</a>) is an equivalence with quasi-inverse given by (<a href="/tag/0AEX" data-tag="0AEX">81.10.6.2</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We first treat the special case where $X$ and $Y$ are affine schemes and where the morphism $f$ is flat. Say $X = \mathop{\mathrm{Spec}}(R)$ and $Y = \mathop{\mathrm{Spec}}(S)$. Then $f$ corresponds to a flat ring map $R \to S$. Moreover, $Z \subset X$ is cut out by a finitely generated ideal $I \subset R$. Choose generators $f_1, \ldots , f_ t \in I$. By the description of quasi-coherent modules in terms of modules (Schemes, Section <a href="/tag/01I6" data-tag="01I6">26.7</a>), we see that the category $\textit{QCoh}(Y \to X, Z)$ is canonically equivalent to the category $\text{Glue}(R \to S, f_1, \ldots , f_ t)$ of More on Algebra, Remark <a href="/tag/05EL" data-tag="05EL">15.91.10</a> such that the functors (<a href="/tag/0AEW" data-tag="0AEW">81.10.6.1</a>) and (<a href="/tag/0AEX" data-tag="0AEX">81.10.6.2</a>) correspond to the functors $\text{Can}$ and $H^0$. Hence the result follows from More on Algebra, Proposition <a href="/tag/05ER" data-tag="05ER">15.91.16</a> in this case. 
+    <p>
+      We return to the general case. Let $\mathcal{F}$ be a quasi-coherent module on $X$. We will show that 
+    <p>
+      <div class="equation">
+  \[  \alpha : \mathcal{F} \longrightarrow \mathop{\mathrm{Ker}}\left(j_*\mathcal{F}|_ U \oplus f_*f^*\mathcal{F} \to (f \circ j')_*f^*\mathcal{F}|_ V\right)  \]
+</div>
+    <p>
+       is an isomorphism. Let $(\mathcal{H}, \mathcal{G}, \varphi )$ be an object of $\mathit{QCoh}(Y \to X, Z)$. We will show that 
+    <p>
+      <div class="equation">
+  \[  \beta : f^*\mathop{\mathrm{Ker}}\left( j_*\mathcal{H} \oplus f_*\mathcal{G} \to (f \circ j')_*\mathcal{G}|_ V \right) \longrightarrow \mathcal{G}  \]
+</div>
+    <p>
+       and 
+    <p>
+      <div class="equation">
+  \[  \gamma : j^*\mathop{\mathrm{Ker}}\left( j_*\mathcal{H} \oplus f_*\mathcal{G} \to (f \circ j')_*\mathcal{G}|_ V \right) \longrightarrow \mathcal{H}  \]
+</div>
+    <p>
+       are isomorphisms. To see these statements are true it suffices to look at stalks. Let $\overline{y}$ be a geometric point of $Y$ mapping to the geometric point $\overline{x}$ of $X$. 
+    <p>
+      Fix an object $(\mathcal{H}, \mathcal{G}, \varphi )$ of $\mathit{QCoh}(Y \to X, Z)$. By Lemma <a href="/tag/0AER" data-tag="0AER">81.10.2</a> and a diagram chase (omitted) the canonical map 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Ker}}(j_*\mathcal{H} \oplus f_*\mathcal{G} \to (f \circ j')_*\mathcal{G}|_ V)_{\overline{x}} \longrightarrow \mathop{\mathrm{Ker}}( j_*\mathcal{H}_{\overline{x}} \oplus \mathcal{G}_{\overline{y}} \to j'_*\mathcal{G}_{\overline{y}} )  \]
+</div>
+    <p>
+       is an isomorphism. 
+    <p>
+      In particular, if $\overline{y}$ is a geometric point of $V$, then we see that $j'_*\mathcal{G}_{\overline{y}} = \mathcal{G}_{\overline{y}}$ and hence that this kernel is equal to $\mathcal{H}_{\overline{x}}$. This easily implies that $\alpha _{\overline{x}}$, $\beta _{\overline{x}}$, and $\beta _{\overline{y}}$ are isomorphisms in this case. 
+    <p>
+      Next, assume that $\overline{y}$ is a point of $f^{-1}Z$. Let $I_{\overline{x}} \subset \mathcal{O}_{X, \overline{x}}$, resp. $I_{\overline{y}} \subset \mathcal{O}_{Y, \overline{y}}$ be the stalk of the ideal cutting out $Z$, resp. $f^{-1}Z$. Then $I_{\overline{x}}$ is a finitely generated ideal, $I_{\overline{y}} = I_{\overline{x}}\mathcal{O}_{Y, \overline{y}}$, and $\mathcal{O}_{X, \overline{x}} \to \mathcal{O}_{Y, \overline{y}}$ is a flat local homomorphism inducing an isomorphism $\mathcal{O}_{X, \overline{x}}/I_{\overline{x}} = \mathcal{O}_{Y, \overline{y}}/I_{\overline{y}}$. At this point we can bootstrap using the diagram of categories 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathit{QCoh}(\mathcal{O}_ X) \ar[r]_-{(\ref{spaces-pushouts-equation-formal-glueing-modules})} \ar[d] &  \mathit{QCoh}(Y \to X, Z) \ar[d] \ar@/_2pc/[l]^{(\ref{spaces-pushouts-equation-reverse})} \\  \text{Mod}_{\mathcal{O}_{X, \overline{x}}} \ar[r]^-{\text{Can}} &  \text{Glue}(\mathcal{O}_{X, \overline{x}} \to \mathcal{O}_{Y, \overline{y}}, f_1, \ldots , f_ t) \ar@/^2pc/[l]_{H^0} }  \]
+</div>
+    <p>
+       Namely, as in the first paragraph of the proof we identify 
+    <p>
+      <div class="equation">
+  \[  \text{Glue}(\mathcal{O}_{X, \overline{x}} \to \mathcal{O}_{Y, \overline{y}}, f_1, \ldots , f_ t) = \mathit{QCoh}(\mathop{\mathrm{Spec}}(\mathcal{O}_{Y, \overline{y}}) \to \mathop{\mathrm{Spec}}(\mathcal{O}_{X, \overline{x}}), V(I_{\overline{x}}))  \]
+</div>
+    <p>
+       The right vertical functor is given by pullback, and it is clear that the inner square is commutative. Our computation of the stalk of the kernel in the third paragraph of the proof combined with Lemma <a href="/tag/0AES" data-tag="0AES">81.10.3</a> implies that the outer square (using the curved arrows) commutes. Thus we conclude using the case of a flat morphism of affine schemes which we handled in the first paragraph of the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AFJ">
+  <p><a class="environment-identifier" href="/tag/0AFJ">Lemma <span data-tag="0AFJ">81.10.10</span>.</a> In Situation <a href="/tag/0AEV" data-tag="0AEV">81.10.6</a> the functor $Rf_*$ induces an equivalence between $D_{\mathit{QCoh}, |f^{-1}Z|}(\mathcal{O}_ Y)$ and $D_{\mathit{QCoh}, |Z|}(\mathcal{O}_ X)$ with quasi-inverse given by $Lf^*$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $f$ is quasi-compact and quasi-separated we see that $Rf_*$ defines a functor from $D_{\mathit{QCoh}, |f^{-1}Z|}(\mathcal{O}_ Y)$ to $D_{\mathit{QCoh}, |Z|}(\mathcal{O}_ X)$, see Derived Categories of Spaces, Lemma <a href="/tag/08FA" data-tag="08FA">75.6.1</a>. By Derived Categories of Spaces, Lemma <a href="/tag/08F4" data-tag="08F4">75.5.5</a> we see that $Lf^*$ maps $D_{\mathit{QCoh}, |Z|}(\mathcal{O}_ X)$ into $D_{\mathit{QCoh}, |f^{-1}Z|}(\mathcal{O}_ Y)$. In Lemma <a href="/tag/0AEU" data-tag="0AEU">81.10.5</a> we have seen that $Lf^*Rf_*Q = Q$ for $Q$ in $D_{\mathit{QCoh}, |f^{-1}Z|}(\mathcal{O}_ Y)$. By the dual of Derived Categories, Lemma <a href="/tag/09J1" data-tag="09J1">13.7.2</a> to finish the proof it suffices to show that $Lf^*K = 0$ implies $K = 0$ for $K$ in $D_{\mathit{QCoh}, |Z|}(\mathcal{O}_ X)$. This follows from the fact that $f$ is flat at all points of $f^{-1}Z$ and the fact that $f^{-1}Z \to Z$ is surjective. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AF1">
+  <p><a class="environment-identifier" href="/tag/0AF1">Lemma <span data-tag="0AF1">81.10.11</span>.</a> In Situation <a href="/tag/0AEV" data-tag="0AEV">81.10.6</a> there exists an fpqc covering $\{ X_ i \to X\} _{i \in I}$ refining the family $\{ U \to X, Y \to X\} $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      For the definition and general properties of fpqc coverings we refer to Topologies, Section <a href="/tag/022A" data-tag="022A">34.9</a>. In particular, we can first choose an étale covering $\{ X_ i \to X\} $ with $X_ i$ affine and by base changing $Y$, $Z$, and $U$ to each $X_ i$ we reduce to the case where $X$ is affine. In this case $U$ is quasi-compact and hence a finite union $U = U_1 \cup \ldots \cup U_ n$ of affine opens. Then $Z$ is quasi-compact hence also $f^{-1}Z$ is quasi-compact. Thus we can choose an affine scheme $W$ and an étale morphism $h : W \to Y$ such that $h^{-1}f^{-1}Z \to f^{-1}Z$ is surjective. Say $W = \mathop{\mathrm{Spec}}(B)$ and $h^{-1}f^{-1}Z = V(J)$ where $J \subset B$ is an ideal of finite type. By Pro-étale Cohomology, Lemma <a href="/tag/096V" data-tag="096V">61.5.1</a> there exists a localization $B \to B'$ such that points of $\mathop{\mathrm{Spec}}(B')$ correspond exactly to points of $W = \mathop{\mathrm{Spec}}(B)$ specializing to $h^{-1}f^{-1}Z = V(J)$. It follows that the composition $\mathop{\mathrm{Spec}}(B') \to \mathop{\mathrm{Spec}}(B) = W \to Y \to X$ is flat as by assumption $f : Y \to X$ is flat at all the points of $f^{-1}Z$. Then $\{ \mathop{\mathrm{Spec}}(B') \to X, U_1 \to X, \ldots , U_ n \to X\} $ is an fpqc covering by Topologies, Lemma <a href="/tag/03L7" data-tag="03L7">34.9.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

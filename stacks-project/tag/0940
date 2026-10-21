@@ -1,0 +1,411 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sites-cohomology-section-derived-limits" class="tex-section"><span data-tag="0940">21.23</span> Derived and homotopy limits</h2>
+
+<p>
+Let $\mathcal{C}$ be a site. Consider the category $\mathcal{C} \times \mathbf{N}$ with $\mathop{\mathrm{Mor}}\nolimits ((U, n), (V, m)) = \emptyset $ if $n > m$ and $\mathop{\mathrm{Mor}}\nolimits ((U, n), (V, m)) = \mathop{\mathrm{Mor}}\nolimits (U, V)$ else. We endow this with the structure of a site by letting coverings be families $\{ (U_ i, n) \to (U, n)\} $ such that $\{ U_ i \to U\} $ is a covering of $\mathcal{C}$. Then the reader verifies immediately that sheaves on $\mathcal{C} \times \mathbf{N}$ are the same thing as inverse systems of sheaves on $\mathcal{C}$. In particular $\textit{Ab}(\mathcal{C} \times \mathbf{N})$ is inverse systems of abelian sheaves on $\mathcal{C}$. Consider now the functor 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{lim}}\nolimits : \textit{Ab}(\mathcal{C} \times \mathbf{N}) \to \textit{Ab}(\mathcal{C})  \]
+</div>
+<p>
+ which takes an inverse system to its limit. This is nothing but $g_*$ where $g : \mathop{\mathit{Sh}}\nolimits (\mathcal{C} \times \mathbf{N}) \to \mathop{\mathit{Sh}}\nolimits (\mathcal{C})$ is the morphism of topoi associated to the continuous and cocontinuous functor $\mathcal{C} \times \mathbf{N} \to \mathcal{C}$. (Observe that $g^{-1}$ assigns to a sheaf on $\mathcal{C}$ the corresponding constant inverse system.) 
+</p>
+<p>
+By the general machinery explained above we obtain a derived functor 
+</p>
+<div class="equation">
+  \[  R\mathop{\mathrm{lim}}\nolimits = Rg_* : D(\mathcal{C} \times \mathbf{N}) \to D(\mathcal{C}).  \]
+</div>
+<p>
+ As indicated this functor is often denoted $R\mathop{\mathrm{lim}}\nolimits $. 
+</p>
+<p>
+On the other hand, the continuous and cocontinuous functors $\mathcal{C} \to \mathcal{C} \times \mathbf{N}$, $U \mapsto (U, n)$ define morphisms of topoi $i_ n : \mathop{\mathit{Sh}}\nolimits (\mathcal{C}) \to \mathop{\mathit{Sh}}\nolimits (\mathcal{C} \times \mathbf{N})$. Of course $i_ n^{-1}$ is the functor which picks the $n$th term of the inverse system. Thus there are transformations of functors $i_{n + 1}^{-1} \to i_ n^{-1}$. Hence given $K \in D(\mathcal{C} \times \mathbf{N})$ we get $K_ n = i_ n^{-1}K \in D(\mathcal{C})$ and maps $K_{n + 1} \to K_ n$. In Derived Categories, Definition <a href="/tag/08TC" data-tag="08TC">13.34.1</a> we have defined the notion of a homotopy limit 
+</p>
+<div class="equation">
+  \[  R\mathop{\mathrm{lim}}\nolimits K_ n \in D(\mathcal{C})  \]
+</div>
+<p>
+ We claim the two notions agree (as far as it makes sense). 
+</p>
+<p>
+<article class="env-lemma" id="0941">
+  <p><a class="environment-identifier" href="/tag/0941">Lemma <span data-tag="0941">21.23.1</span>.</a> Let $\mathcal{C}$ be a site. Let $K$ be an object of $D(\mathcal{C} \times \mathbf{N})$. Set $K_ n = i_ n^{-1}K$ as above. Then </p>
+  <div class="equation">
+  \[  R\mathop{\mathrm{lim}}\nolimits K \cong R\mathop{\mathrm{lim}}\nolimits K_ n  \]
+</div>
+  <p> in $D(\mathcal{C})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      To calculate $R\mathop{\mathrm{lim}}\nolimits $ on an object $K$ of $D(\mathcal{C} \times \mathbf{N})$ we choose a K-injective representative $\mathcal{I}^\bullet $ whose terms are injective objects of $\textit{Ab}(\mathcal{C} \times \mathbf{N})$, see Injectives, Theorem <a href="/tag/079P" data-tag="079P">19.12.6</a>. We may and do think of $\mathcal{I}^\bullet $ as an inverse system of complexes $(\mathcal{I}_ n^\bullet )$ and then we see that 
+    <p>
+      <div class="equation">
+  \[  R\mathop{\mathrm{lim}}\nolimits K = \mathop{\mathrm{lim}}\nolimits \mathcal{I}_ n^\bullet  \]
+</div>
+    <p>
+       where the right hand side is the termwise inverse limit. 
+    <p>
+      Let $\mathcal{J} = (\mathcal{J}_ n)$ be an injective object of $\textit{Ab}(\mathcal{C} \times \mathbf{N})$. The morphisms $(U, n) \to (U, n + 1)$ are monomorphisms of $\mathcal{C} \times \mathbf{N}$, hence $\mathcal{J}(U, n + 1) \to \mathcal{J}(U, n)$ is surjective (Lemma <a href="/tag/093X" data-tag="093X">21.12.6</a>). It follows that $\mathcal{J}_{n + 1} \to \mathcal{J}_ n$ is surjective as a map of presheaves. 
+    <p>
+      Note that the functor $i_ n^{-1}$ has an exact left adjoint $i_{n, !}$. Namely, $i_{n, !}\mathcal{F}$ is the inverse system $\ldots 0 \to 0 \to \mathcal{F} \to \ldots \to \mathcal{F}$. Thus the complexes $i_ n^{-1}\mathcal{I}^\bullet = \mathcal{I}_ n^\bullet $ are K-injective by Derived Categories, Lemma <a href="/tag/08BJ" data-tag="08BJ">13.31.9</a>. 
+    <p>
+      Because we chose our K-injective complex to have injective terms we conclude that 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathop{\mathrm{lim}}\nolimits \mathcal{I}_ n^\bullet \to \prod \mathcal{I}_ n^\bullet \to \prod \mathcal{I}_ n^\bullet \to 0  \]
+</div>
+    <p>
+       is a short exact sequence of complexes of abelian sheaves as it is a short exact sequence of complexes of abelian presheaves. Moreover, the products in the middle and the right represent the products in $D(\mathcal{C})$, see Injectives, Lemma <a href="/tag/07D9" data-tag="07D9">19.13.4</a> and its proof (this is where we use that $\mathcal{I}_ n^\bullet $ is K-injective). Thus $R\mathop{\mathrm{lim}}\nolimits K$ is a homotopy limit of the inverse system $(K_ n)$ by definition of homotopy limits in triangulated categories. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0D6K">
+  <p><a class="environment-identifier" href="/tag/0D6K">Lemma <span data-tag="0D6K">21.23.2</span>.</a> Let $(\mathcal{C}, \mathcal{O})$ be a ringed site. The functors $R\Gamma (\mathcal{C}, -)$ and $R\Gamma (U, -)$ for $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ commute with $R\mathop{\mathrm{lim}}\nolimits $. Moreover, there are short exact sequences </p>
+  <div class="equation">
+  \[  0 \to R^1\mathop{\mathrm{lim}}\nolimits H^{m - 1}(U, K_ n) \to H^ m(U, R\mathop{\mathrm{lim}}\nolimits K_ n) \to \mathop{\mathrm{lim}}\nolimits H^ m(U, K_ n) \to 0  \]
+</div>
+  <p> for any inverse system $(K_ n)$ in $D(\mathcal{O})$ and $m \in \mathbf{Z}$. Similar for $H^ m(\mathcal{C}, R\mathop{\mathrm{lim}}\nolimits K_ n)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The first statement follows from Injectives, Lemma <a href="/tag/08U1" data-tag="08U1">19.13.6</a>. Then we may apply More on Algebra, Remark <a href="/tag/08U5" data-tag="08U5">15.88.12</a> to $R\mathop{\mathrm{lim}}\nolimits R\Gamma (U, K_ n) = R\Gamma (U, R\mathop{\mathrm{lim}}\nolimits K_ n)$ to get the short exact sequences. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0A07">
+  <p><a class="environment-identifier" href="/tag/0A07">Lemma <span data-tag="0A07">21.23.3</span>.</a> Let $f : (\mathop{\mathit{Sh}}\nolimits (\mathcal{C}), \mathcal{O}) \to (\mathop{\mathit{Sh}}\nolimits (\mathcal{C}'), \mathcal{O}')$ be a morphism of ringed topoi. Then $Rf_*$ commutes with $R\mathop{\mathrm{lim}}\nolimits $, i.e., $Rf_*$ commutes with derived limits. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $(K_ n)$ be an inverse system of objects of $D(\mathcal{O})$. By induction on $n$ we may choose actual complexes $\mathcal{K}_ n^\bullet $ of $\mathcal{O}$-modules and maps of complexes $\mathcal{K}_{n + 1}^\bullet \to \mathcal{K}_ n^\bullet $ representing the maps $K_{n + 1} \to K_ n$ in $D(\mathcal{O})$. In other words, there exists an object $K$ in $D(\mathcal{C} \times \mathbf{N})$ whose associated inverse system is the given one. Next, consider the commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathop{\mathit{Sh}}\nolimits (\mathcal{C} \times \mathbf{N}) \ar[r]_ g \ar[d]_{f \times 1} &  \mathop{\mathit{Sh}}\nolimits (\mathcal{C}) \ar[d]_ f \\  \mathop{\mathit{Sh}}\nolimits (\mathcal{C}' \times \mathbf{N}) \ar[r]^{g'} &  \mathop{\mathit{Sh}}\nolimits (\mathcal{C}') }  \]
+</div>
+    <p>
+       of morphisms of topoi. It follows that $R\mathop{\mathrm{lim}}\nolimits R(f \times 1)_*K = Rf_* R\mathop{\mathrm{lim}}\nolimits K$. Working through the definitions and using Lemma <a href="/tag/0941" data-tag="0941">21.23.1</a> we obtain that $R\mathop{\mathrm{lim}}\nolimits (Rf_*K_ n) = Rf_*(R\mathop{\mathrm{lim}}\nolimits K_ n)$. 
+    <p>
+      Alternate proof in case $\mathcal{C}$ has enough points. Consider the defining distinguished triangle 
+    <p>
+      <div class="equation">
+  \[  R\mathop{\mathrm{lim}}\nolimits K_ n \to \prod K_ n \to \prod K_ n  \]
+</div>
+    <p>
+       in $D(\mathcal{O})$. Applying the exact functor $Rf_*$ we obtain the distinguished triangle 
+    <p>
+      <div class="equation">
+  \[  Rf_*(R\mathop{\mathrm{lim}}\nolimits K_ n) \to Rf_*\left(\prod K_ n\right) \to Rf_*\left(\prod K_ n\right)  \]
+</div>
+    <p>
+       in $D(\mathcal{O}')$. Thus we see that it suffices to prove that $Rf_*$ commutes with products in the derived category (which are not just given by products of complexes, see Injectives, Lemma <a href="/tag/07D9" data-tag="07D9">19.13.4</a>). However, since $Rf_*$ is a right adjoint by Lemma <a href="/tag/07A6" data-tag="07A6">21.19.1</a> this follows formally (see Categories, Lemma <a href="/tag/0038" data-tag="0038">4.24.5</a>). Caution: Note that we cannot apply Categories, Lemma <a href="/tag/0038" data-tag="0038">4.24.5</a> directly as $R\mathop{\mathrm{lim}}\nolimits K_ n$ is not a limit in $D(\mathcal{O})$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0BKW">
+  <p><a class="environment-identifier" href="/tag/0BKW">Remark <span data-tag="0BKW">21.23.4</span>.</a> Let $(\mathcal{C}, \mathcal{O})$ be a ringed site. Let $(K_ n)$ be an inverse system in $D(\mathcal{O})$. Set $K = R\mathop{\mathrm{lim}}\nolimits K_ n$. For each $n$ and $m$ let $\mathcal{H}^ m_ n = H^ m(K_ n)$ be the $m$th cohomology sheaf of $K_ n$ and similarly set $\mathcal{H}^ m = H^ m(K)$. Let us denote $\underline{\mathcal{H}}^ m_ n$ the presheaf </p>
+  <div class="equation">
+  \[  U \longmapsto \underline{\mathcal{H}}^ m_ n(U) = H^ m(U, K_ n)  \]
+</div>
+  <p> Similarly we set $\underline{\mathcal{H}}^ m(U) = H^ m(U, K)$. By Lemma <a href="/tag/0BKV" data-tag="0BKV">21.20.3</a> we see that $\mathcal{H}^ m_ n$ is the sheafification of $\underline{\mathcal{H}}^ m_ n$ and $\mathcal{H}^ m$ is the sheafification of $\underline{\mathcal{H}}^ m$. Here is a diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ K \ar@{=}[d] &  \underline{\mathcal{H}}^ m \ar[d] \ar[r] &  \mathcal{H}^ m \ar[d] \\  R\mathop{\mathrm{lim}}\nolimits K_ n &  \mathop{\mathrm{lim}}\nolimits \underline{\mathcal{H}}^ m_ n \ar[r] &  \mathop{\mathrm{lim}}\nolimits \mathcal{H}^ m_ n }  \]
+</div>
+  <p> In general it may not be the case that $\mathop{\mathrm{lim}}\nolimits \mathcal{H}^ m_ n$ is the sheafification of $\mathop{\mathrm{lim}}\nolimits \underline{\mathcal{H}}^ m_ n$. If $U \in \mathcal{C}$, then we have short exact sequences </p>
+  <div class="equation" id="0BKX">
+    <span class="equation-label"><a href="/tag/0BKX" data-tag="0BKX">21.23.4.1</a></span>
+  <div>\begin{equation}  \label{sites-cohomology-equation-ses-Rlim-over-U} 0 \to R^1\mathop{\mathrm{lim}}\nolimits \underline{\mathcal{H}}^{m - 1}_ n(U) \to \underline{\mathcal{H}}^ m(U) \to \mathop{\mathrm{lim}}\nolimits \underline{\mathcal{H}}^ m_ n(U) \to 0 \end{equation}</div>
+</div>
+  <p> by Lemma <a href="/tag/0D6K" data-tag="0D6K">21.23.2</a>. </p>
+</article> 
+</p>
+<p>
+The following lemma applies to an inverse system of quasi-coherent modules with surjective transition maps on an algebraic space or an algebraic stack. 
+</p>
+<p>
+<article class="env-lemma" id="0BKY">
+  <p><a class="environment-identifier" href="/tag/0BKY">Lemma <span data-tag="0BKY">21.23.5</span>.</a> Let $(\mathcal{C}, \mathcal{O})$ be a ringed site. Let $(\mathcal{F}_ n)$ be an inverse system of $\mathcal{O}$-modules. Let $\mathcal{B} \subset \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ be a subset. Assume </p>
+  <p><ol>
+  <li><p>
+every object of $\mathcal{C}$ has a covering whose members are elements of $\mathcal{B}$, 
+</p>
+</li><li><p>
+$H^ p(U, \mathcal{F}_ n) = 0$ for $p > 0$ and $U \in \mathcal{B}$, 
+</p>
+</li><li><p>
+the inverse system $\mathcal{F}_ n(U)$ has vanishing $R^1\mathop{\mathrm{lim}}\nolimits $ for $U \in \mathcal{B}$. 
+</p>
+</li>
+</ol></p>
+  <p> Then $R\mathop{\mathrm{lim}}\nolimits \mathcal{F}_ n = \mathop{\mathrm{lim}}\nolimits \mathcal{F}_ n$ and we have $H^ p(U, \mathop{\mathrm{lim}}\nolimits \mathcal{F}_ n) = 0$ for $p > 0$ and $U \in \mathcal{B}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Set $K_ n = \mathcal{F}_ n$ and $K = R\mathop{\mathrm{lim}}\nolimits \mathcal{F}_ n$. Using the notation of Remark <a href="/tag/0BKW" data-tag="0BKW">21.23.4</a> and assumption (2) we see that for $U \in \mathcal{B}$ we have $\underline{\mathcal{H}}_ n^ m(U) = 0$ when $m \not= 0$ and $\underline{\mathcal{H}}_ n^0(U) = \mathcal{F}_ n(U)$. From Equation (<a href="/tag/0BKX" data-tag="0BKX">21.23.4.1</a>) and assumption (3) we see that $\underline{\mathcal{H}}^ m(U) = 0$ when $m \not= 0$ and equal to $\mathop{\mathrm{lim}}\nolimits \mathcal{F}_ n(U)$ when $m = 0$. Sheafifying using (1) we find that $\mathcal{H}^ m = 0$ when $m \not= 0$ and equal to $\mathop{\mathrm{lim}}\nolimits \mathcal{F}_ n$ when $m = 0$. Hence $K = \mathop{\mathrm{lim}}\nolimits \mathcal{F}_ n$. Since $H^ m(U, K) = \underline{\mathcal{H}}^ m(U) = 0$ for $m > 0$ (see above) we see that the second assertion holds. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0D6L">
+  <p><a class="environment-identifier" href="/tag/0D6L">Lemma <span data-tag="0D6L">21.23.6</span>.</a> Let $(\mathcal{C}, \mathcal{O})$ be a ringed site. Let $(K_ n)$ be an inverse system in $D(\mathcal{O})$. Let $V \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and $m \in \mathbf{Z}$. Assume there exist an integer $n(V)$ and a cofinal system $\text{Cov}_ V$ of coverings of $V$ such that for $\{ V_ i \to V\}  \in \text{Cov}_ V$ </p>
+  <p><ol>
+  <li><p>
+$R^1\mathop{\mathrm{lim}}\nolimits H^{m - 1}(V_ i, K_ n) = 0$, and 
+</p>
+</li><li><p>
+$H^ m(V_ i, K_ n) \to H^ m(V_ i, K_{n(V)})$ is injective for $n \geq n(V)$. 
+</p>
+</li>
+</ol></p>
+  <p> Then the map on sections $H^ m(R\mathop{\mathrm{lim}}\nolimits K_ n)(V) \to H^ m(K_{n(V)})(V)$ is injective. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\gamma \in H^ m(R\mathop{\mathrm{lim}}\nolimits K_ n)(V)$ map to zero in $H^ m(K_{n(V)})(V)$. Since $H^ m(R\mathop{\mathrm{lim}}\nolimits K_ n)$ is the sheafification of $U \mapsto H^ m(U, R\mathop{\mathrm{lim}}\nolimits K_ n)$ (by Lemma <a href="/tag/0BKV" data-tag="0BKV">21.20.3</a>) we can choose $\{ V_ i \to V\}  \in \text{Cov}_ V$ and elements $\tilde\gamma _ i \in H^ m(V_ i, R\mathop{\mathrm{lim}}\nolimits K_ n)$ mapping to $\gamma |_{V_ i}$. Then $\tilde\gamma _ i$ maps to $\tilde\gamma _{i, n(V)} \in H^ m(V_ i, K_{n(V)})$. Using that $H^ m(K_{n(V)})$ is the sheafification of $U \mapsto H^ m(U, K_{n(V)})$ (by Lemma <a href="/tag/0BKV" data-tag="0BKV">21.20.3</a> again) we see that after replacing $\{ V_ i \to V\} $ by a refinement we may assume that $\tilde\gamma _{i, n(V)} = 0$ for all $i$. For this covering we consider the short exact sequences 
+    <p>
+      <div class="equation">
+  \[  0 \to R^1\mathop{\mathrm{lim}}\nolimits H^{m - 1}(V_ i, K_ n) \to H^ m(V_ i, R\mathop{\mathrm{lim}}\nolimits K_ n) \to \mathop{\mathrm{lim}}\nolimits H^ m(V_ i, K_ n) \to 0  \]
+</div>
+    <p>
+       of Lemma <a href="/tag/0D6K" data-tag="0D6K">21.23.2</a>. By assumption (1) the group on the left is zero and by assumption (2) the group on the right maps injectively into $H^ m(V_ i, K_{n(V)})$. We conclude $\tilde\gamma _ i = 0$ and hence $\gamma = 0$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0D6M">
+  <p><a class="environment-identifier" href="/tag/0D6M">Lemma <span data-tag="0D6M">21.23.7</span>.</a> Let $(\mathcal{C}, \mathcal{O})$ be a ringed site. Let $E \in D(\mathcal{O})$. Let $\mathcal{B} \subset \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ be a subset. Assume </p>
+  <p><ol>
+  <li><p>
+every object of $\mathcal{C}$ has a covering whose members are elements of $\mathcal{B}$, and 
+</p>
+</li><li><p>
+for every $V \in \mathcal{B}$ there exist a function $p(V, -) : \mathbf{Z} \to \mathbf{Z}$ and a cofinal system $\text{Cov}_ V$ of coverings of $V$ such that 
+</p>
+<div class="equation">
+  \[  H^ p(V_ i, H^{m - p}(E)) = 0  \]
+</div>
+<p>
+ for all $\{ V_ i \to V\}  \in \text{Cov}_ V$ and all integers $p, m$ satisfying $p > p(V, m)$. 
+</p>
+</li>
+</ol></p>
+  <p> Then the map $E \to R\mathop{\mathrm{lim}}\nolimits \tau _{\geq -n} E$ of Derived Categories, Remark <a href="/tag/0H72" data-tag="0H72">13.34.5</a> is an isomorphism in $D(\mathcal{O})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Set $K_ n = \tau _{\geq -n}E$ and $K = R\mathop{\mathrm{lim}}\nolimits K_ n$. The canonical map $E \to K$ comes from the canonical maps $E \to K_ n = \tau _{\geq -n}E$. We have to show that $E \to K$ induces an isomorphism $H^ m(E) \to H^ m(K)$ of cohomology sheaves. In the rest of the proof we fix $m$. If $n \geq -m$, then the map $E \to \tau _{\geq -n}E = K_ n$ induces an isomorphism $H^ m(E) \to H^ m(K_ n)$. To finish the proof it suffices to show that for every $V \in \mathcal{B}$ there exists an integer $n(V) \geq -m$ such that the map $H^ m(K)(V) \to H^ m(K_{n(V)})(V)$ is injective. Namely, then the composition 
+    <p>
+      <div class="equation">
+  \[  H^ m(E)(V) \to H^ m(K)(V) \to H^ m(K_{n(V)})(V)  \]
+</div>
+    <p>
+       is a bijection and the second arrow is injective, hence the first arrow is bijective. By property (1) this will imply $H^ m(E) \to H^ m(K)$ is an isomorphism. Set 
+    <p>
+      <div class="equation">
+  \[  n(V) = 1 + \max \{ -m, p(V, m - 1) - m, -1 + p(V, m) - m, -2 + p(V, m + 1) - m\} .  \]
+</div>
+    <p>
+       so that in any case $n(V) \geq -m$. Claim: the maps 
+    <p>
+      <div class="equation">
+  \[  H^{m - 1}(V_ i, K_{n + 1}) \to H^{m - 1}(V_ i, K_ n) \quad \text{and}\quad H^ m(V_ i, K_{n + 1}) \to H^ m(V_ i, K_ n)  \]
+</div>
+    <p>
+       are isomorphisms for $n \geq n(V)$ and $\{ V_ i \to V\}  \in \text{Cov}_ V$. The claim implies conditions (1) and (2) of Lemma <a href="/tag/0D6L" data-tag="0D6L">21.23.6</a> are satisfied and hence implies the desired injectivity. Recall (Derived Categories, Remark <a href="/tag/08J5" data-tag="08J5">13.12.4</a>) that we have distinguished triangles 
+    <p>
+      <div class="equation">
+  \[  H^{-n - 1}(E)[n + 1] \to K_{n + 1} \to K_ n \to H^{-n - 1}(E)[n + 2]  \]
+</div>
+    <p>
+       Looking at the associated long exact cohomology sequence the claim follows if 
+    <p>
+      <div class="equation">
+  \[  H^{m + n}(V_ i, H^{-n - 1}(E)),\quad H^{m + n + 1}(V_ i, H^{-n - 1}(E)),\quad H^{m + n + 2}(V_ i, H^{-n - 1}(E))  \]
+</div>
+    <p>
+       are zero for $n \geq n(V)$ and $\{ V_ i \to V\}  \in \text{Cov}_ V$. This follows from our choice of $n(V)$ and the assumption in the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0D6N">
+  <p><a class="environment-identifier" href="/tag/0D6N">Lemma <span data-tag="0D6N">21.23.8</span>.</a> Let $(\mathcal{C}, \mathcal{O})$ be a ringed site. Let $E \in D(\mathcal{O})$. Let $\mathcal{B} \subset \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ be a subset. Assume </p>
+  <p><ol>
+  <li><p>
+every object of $\mathcal{C}$ has a covering whose members are elements of $\mathcal{B}$, and 
+</p>
+</li><li><p>
+for every $V \in \mathcal{B}$ there exist an integer $d_ V \geq 0$ and a cofinal system $\text{Cov}_ V$ of coverings of $V$ such that 
+</p>
+<div class="equation">
+  \[  H^ p(V_ i, H^ q(E)) = 0 \text{ for } \{ V_ i \to V\}  \in \text{Cov}_ V,\  p > d_ V, \text{ and }q < 0  \]
+</div>
+</li>
+</ol></p>
+  <p> Then the map $E \to R\mathop{\mathrm{lim}}\nolimits \tau _{\geq -n} E$ of Derived Categories, Remark <a href="/tag/0H72" data-tag="0H72">13.34.5</a> is an isomorphism in $D(\mathcal{O})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from Lemma <a href="/tag/0D6M" data-tag="0D6M">21.23.7</a> with $p(V, m) = d_ V + \max (0, m)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08U3">
+  <p><a class="environment-identifier" href="/tag/08U3">Lemma <span data-tag="08U3">21.23.9</span>.</a> Let $(\mathcal{C}, \mathcal{O})$ be a ringed site. Let $E \in D(\mathcal{O})$. Assume there exists a function $p(-) : \mathbf{Z} \to \mathbf{Z}$ and a subset $\mathcal{B} \subset \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ such that </p>
+  <p><ol>
+  <li><p>
+every object of $\mathcal{C}$ has a covering whose members are elements of $\mathcal{B}$, 
+</p>
+</li><li><p>
+$H^ p(V, H^{m - p}(E)) = 0$ for $p > p(m)$ and $V \in \mathcal{B}$. 
+</p>
+</li>
+</ol></p>
+  <p> Then the map $E \to R\mathop{\mathrm{lim}}\nolimits \tau _{\geq -n} E$ of Derived Categories, Remark <a href="/tag/0H72" data-tag="0H72">13.34.5</a> is an isomorphism in $D(\mathcal{O})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Apply Lemma <a href="/tag/0D6M" data-tag="0D6M">21.23.7</a> with $p(V, m) = p(m)$ and $\text{Cov}_ V$ equal to the set of coverings $\{ V_ i \to V\} $ with $V_ i \in \mathcal{B}$ for all $i$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0D6P">
+  <p><a class="environment-identifier" href="/tag/0D6P">Lemma <span data-tag="0D6P">21.23.10</span>.</a> Let $(\mathcal{C}, \mathcal{O})$ be a ringed site. Let $E \in D(\mathcal{O})$. Assume there exists an integer $d \geq 0$ and a subset $\mathcal{B} \subset \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ such that </p>
+  <p><ol>
+  <li><p>
+every object of $\mathcal{C}$ has a covering whose members are elements of $\mathcal{B}$, 
+</p>
+</li><li><p>
+$H^ p(V, H^ q(E)) = 0$ for $p > d$, $q < 0$, and $V \in \mathcal{B}$. 
+</p>
+</li>
+</ol></p>
+  <p> Then the map $E \to R\mathop{\mathrm{lim}}\nolimits \tau _{\geq -n} E$ of Derived Categories, Remark <a href="/tag/0H72" data-tag="0H72">13.34.5</a> is an isomorphism in $D(\mathcal{O})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Apply Lemma <a href="/tag/0D6N" data-tag="0D6N">21.23.8</a> with $d_ V = d$ and $\text{Cov}_ V$ equal to the set of coverings $\{ V_ i \to V\} $ with $V_ i \in \mathcal{B}$ for all $i$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The lemmas above can be used to compute cohomology in certain situations. 
+</p>
+<p>
+<article class="env-lemma" id="0BKZ">
+  <p><a class="environment-identifier" href="/tag/0BKZ">Lemma <span data-tag="0BKZ">21.23.11</span>.</a> Let $(\mathcal{C}, \mathcal{O})$ be a ringed site. Let $K$ be an object of $D(\mathcal{O})$. Let $\mathcal{B} \subset \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ be a subset. Assume </p>
+  <p><ol>
+  <li><p>
+every object of $\mathcal{C}$ has a covering whose members are elements of $\mathcal{B}$, 
+</p>
+</li><li><p>
+$H^ p(U, H^ q(K)) = 0$ for all $p > 0$, $q \in \mathbf{Z}$, and $U \in \mathcal{B}$. 
+</p>
+</li>
+</ol></p>
+  <p> Then $H^ q(U, K) = H^0(U, H^ q(K))$ for $q \in \mathbf{Z}$ and $U \in \mathcal{B}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Observe that $K = R\mathop{\mathrm{lim}}\nolimits \tau _{\geq -n} K$ by Lemma <a href="/tag/0D6P" data-tag="0D6P">21.23.10</a> with $d = 0$. Let $U \in \mathcal{B}$. By Equation (<a href="/tag/0BKX" data-tag="0BKX">21.23.4.1</a>) we get a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to R^1\mathop{\mathrm{lim}}\nolimits H^{q - 1}(U, \tau _{\geq -n}K) \to H^ q(U, K) \to \mathop{\mathrm{lim}}\nolimits H^ q(U, \tau _{\geq -n}K) \to 0  \]
+</div>
+    <p>
+       Condition (2) implies $H^ q(U, \tau _{\geq -n} K) = H^0(U, H^ q(\tau _{\geq -n} K))$ for all $q$ by using the spectral sequence of Derived Categories, Lemma <a href="/tag/015J" data-tag="015J">13.21.3</a>. The spectral sequence converges because $\tau _{\geq -n}K$ is bounded below. If $n > -q$ then we have $H^ q(\tau _{\geq -n}K) = H^ q(K)$. Thus the systems on the left and the right of the displayed short exact sequence are eventually constant with values $H^0(U, H^{q - 1}(K))$ and $H^0(U, H^ q(K))$ and the lemma follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Here is another case where we can describe the derived limit. 
+</p>
+<p>
+<article class="env-lemma" id="0A09">
+  <p><a class="environment-identifier" href="/tag/0A09">Lemma <span data-tag="0A09">21.23.12</span>.</a> Let $(\mathcal{C}, \mathcal{O})$ be a ringed site. Let $(K_ n)$ be an inverse system of objects of $D(\mathcal{O})$. Let $\mathcal{B} \subset \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ be a subset. Assume </p>
+  <p><ol>
+  <li><p>
+every object of $\mathcal{C}$ has a covering whose members are elements of $\mathcal{B}$, 
+</p>
+</li><li><p>
+for all $U \in \mathcal{B}$ and all $q \in \mathbf{Z}$ we have 
+</p>
+<ol>
+  <li><p>
+$H^ p(U, H^ q(K_ n)) = 0$ for $p > 0$, 
+</p>
+</li><li><p>
+the inverse system $H^0(U, H^ q(K_ n))$ has vanishing $R^1\mathop{\mathrm{lim}}\nolimits $. 
+</p>
+</li>
+</ol>
+</li>
+</ol></p>
+  <p> Then $H^ q(R\mathop{\mathrm{lim}}\nolimits K_ n) = \mathop{\mathrm{lim}}\nolimits H^ q(K_ n)$ for $q \in \mathbf{Z}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Set $K = R\mathop{\mathrm{lim}}\nolimits K_ n$. We will use notation as in Remark <a href="/tag/0BKW" data-tag="0BKW">21.23.4</a>. Let $U \in \mathcal{B}$. By Lemma <a href="/tag/0BKZ" data-tag="0BKZ">21.23.11</a> and (2)(a) we have $H^ q(U, K_ n) = H^0(U, H^ q(K_ n))$. Using that the functor $R\Gamma (U, -)$ commutes with derived limits we have 
+    <p>
+      <div class="equation">
+  \[  H^ q(U, K) = H^ q(R\mathop{\mathrm{lim}}\nolimits R\Gamma (U, K_ n)) = \mathop{\mathrm{lim}}\nolimits H^0(U, H^ q(K_ n))  \]
+</div>
+    <p>
+       where the final equality follows from More on Algebra, Remark <a href="/tag/08U5" data-tag="08U5">15.88.12</a> and assumption (2)(b). Thus $H^ q(U, K)$ is the inverse limit the sections of the sheaves $H^ q(K_ n)$ over $U$. Since $\mathop{\mathrm{lim}}\nolimits H^ q(K_ n)$ is a sheaf we find using assumption (1) that $H^ q(K)$, which is the sheafification of the presheaf $U \mapsto H^ q(U, K)$, is equal to $\mathop{\mathrm{lim}}\nolimits H^ q(K_ n)$. This proves the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

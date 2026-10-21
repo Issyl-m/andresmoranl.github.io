@@ -1,0 +1,190 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="etale-section-etale-morphisms" class="tex-section"><span data-tag="0257">41.11</span> Étale morphisms</h2>
+
+<p>
+In this section, we will define étale morphisms and prove a number of important properties about them. The most important one, no doubt, is the functorial characterization presented in Theorem <a href="/tag/025K" data-tag="025K">41.16.1</a>. Following this, we will also discuss a few properties of rings which are insensitive to an étale extension (properties which hold for a ring if and only if they hold for all its étale extensions) to motivate the basic tenet of étale cohomology – étale morphisms are the algebraic analogue of local isomorphisms. 
+</p>
+<p>
+As the title suggests, we will define the class of étale morphisms – the class of morphisms (whose surjective families) we shall deem to be coverings in the category of schemes over a base scheme $S$ in order to define the étale site $S_{\acute{e}tale}$. Intuitively, an étale morphism is supposed to capture the idea of a covering space and, therefore, should be close to a local isomorphism. If we're working with varieties over algebraically closed fields, this last statement can be made into a definition provided we replace “local isomorphism” with “formal local isomorphism” (isomorphism after completion). One can then give a definition over any base field by asking that the base change to the algebraic closure be étale (in the aforementioned sense). But, rather than proceeding via such aesthetically displeasing constructions, we will adopt a cleaner, albeit slightly more abstract, algebraic approach. 
+</p>
+<p>
+We first define “étale homomorphisms of local rings” for Noetherian local rings. We cannot use the term “étale”, as there already is a notion of an étale ring map (Algebra, Section <a href="/tag/00U0" data-tag="00U0">10.143</a>) and it is different. 
+</p>
+<p>
+<article class="env-definition" id="0258">
+  <p><a class="environment-identifier" href="/tag/0258">Definition <span data-tag="0258">41.11.1</span>.</a> Let $A$, $B$ be Noetherian local rings. A local homomorphism $f : A \to B$ is said to be an <em>étale homomorphism of local rings</em> if it is flat and an unramified homomorphism of local rings (please see Definition <a href="/tag/024M" data-tag="024M">41.3.1</a>). </p>
+</article> 
+</p>
+<p>
+This is the local version of the definition of an étale ring map in Algebra, Section <a href="/tag/00U0" data-tag="00U0">10.143</a>. The exact definition given in that section is that it is a smooth ring map of relative dimension $0$. It is shown (in Algebra, Lemma <a href="/tag/00U9" data-tag="00U9">10.143.2</a>) that an étale $R$-algebra $S$ always has a presentation 
+</p>
+<div class="equation">
+  \[  S = R[x_1, \ldots , x_ n]/(f_1, \ldots , f_ n)  \]
+</div>
+<p>
+ such that 
+</p>
+<div class="equation">
+  \[  g = \det \left( \begin{matrix}  \partial f_1/\partial x_1 
+
+&  \partial f_2/\partial x_1 
+
+&  \ldots 
+
+&  \partial f_ n/\partial x_1 
+
+\\  \partial f_1/\partial x_2 
+
+&  \partial f_2/\partial x_2 
+
+&  \ldots 
+
+&  \partial f_ n/\partial x_2 
+
+\\  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+\\  \partial f_1/\partial x_ n 
+
+&  \partial f_2/\partial x_ n 
+
+&  \ldots 
+
+&  \partial f_ n/\partial x_ n 
+
+\end{matrix} \right)  \]
+</div>
+<p>
+ maps to an invertible element in $S$. The following two lemmas link the two notions. 
+</p>
+<p>
+<article class="env-lemma" id="039L">
+  <p><a class="environment-identifier" href="/tag/039L">Lemma <span data-tag="039L">41.11.2</span>.</a> Let $A \to B$ be of finite type with $A$ a Noetherian ring. Let $\mathfrak q$ be a prime of $B$ lying over $\mathfrak p \subset A$. Then $A \to B$ is étale at $\mathfrak q$ if and only if $A_{\mathfrak p} \to B_{\mathfrak q}$ is an étale homomorphism of local rings. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See Algebra, Lemmas <a href="/tag/00U2" data-tag="00U2">10.143.3</a> (flatness of étale maps), <a href="/tag/00U4" data-tag="00U4">10.143.5</a> (étale maps are unramified) and <a href="/tag/00U6" data-tag="00U6">10.143.7</a> (flat and unramified maps are étale). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="039M">
+  <p><a class="environment-identifier" href="/tag/039M">Lemma <span data-tag="039M">41.11.3</span>.</a> Let $A$, $B$ be Noetherian local rings. Let $A \to B$ be a local homomorphism such that $B$ is essentially of finite type over $A$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$A \to B$ is an étale homomorphism of local rings 
+</p>
+</li><li><p>
+$A^\wedge \to B^\wedge $ is an étale homomorphism of local rings, and 
+</p>
+</li><li><p>
+$A^\wedge \to B^\wedge $ is étale. 
+</p>
+</li>
+</ol></p>
+  <p> Moreover, in this case $B^\wedge \cong (A^\wedge )^{\oplus n}$ as $A^\wedge $-modules for some $n \geq 1$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      To see the equivalences of (1), (2) and (3), as we have the corresponding results for unramified ring maps (Lemma <a href="/tag/039I" data-tag="039I">41.3.4</a>) it suffices to prove that $A \to B$ is flat if and only if $A^\wedge \to B^\wedge $ is flat. This is clear from our lists of properties of flat maps since the ring maps $A \to A^\wedge $ and $B \to B^\wedge $ are faithfully flat. For the final statement, by Lemma <a href="/tag/039H" data-tag="039H">41.3.3</a> we see that $B^\wedge $ is a finite flat $A^\wedge $ module. Hence it is finite free by our list of properties on flat modules in Section <a href="/tag/0250" data-tag="0250">41.9</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The integer $n$ which occurs in the lemma above is nothing other than the degree $[\kappa (\mathfrak m_ B) : \kappa (\mathfrak m_ A)]$ of the residue field extension. In particular, if $\kappa (\mathfrak m_ A)$ is separably closed, we see that $A^\wedge \to B^\wedge $ is an isomorphism, which vindicates our earlier claims. 
+</p>
+<p>
+<article class="env-definition" id="0259">
+  <p><a class="environment-identifier" href="/tag/0259">Definition <span data-tag="0259">41.11.4</span>.</a> (See Morphisms, Definition <a href="/tag/02GI" data-tag="02GI">29.37.1</a>.) Let $Y$ be a locally Noetherian scheme. Let $f : X \to Y$ be a morphism of schemes which is locally of finite type. </p>
+  <p><ol>
+  <li><p>
+Let $x \in X$. We say $f$ is <em>étale at $x \in X$</em> if $\mathcal{O}_{Y, f(x)} \to \mathcal{O}_{X, x}$ is an étale homomorphism of local rings. 
+</p>
+</li><li><p>
+The morphism is said to be <em>étale</em> if it is étale at all its points. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+Let us prove that this definition agrees with the definition in the chapter on morphisms of schemes. This in particular guarantees that the set of points where a morphism is étale is open. 
+</p>
+<p>
+<article class="env-lemma" id="039N">
+  <p><a class="environment-identifier" href="/tag/039N">Lemma <span data-tag="039N">41.11.5</span>.</a> Let $Y$ be a locally Noetherian scheme. Let $f : X \to Y$ be locally of finite type. Let $x \in X$. The morphism $f$ is étale at $x$ in the sense of Definition <a href="/tag/0259" data-tag="0259">41.11.4</a> if and only if it is étale at $x$ in the sense of Morphisms, Definition <a href="/tag/02GI" data-tag="02GI">29.37.1</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from Lemma <a href="/tag/039L" data-tag="039L">41.11.2</a> and the definitions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Here are some results on étale morphisms. The formulations as given in this list apply only to morphisms locally of finite type between locally Noetherian schemes. In each case we give a reference to the general result as proved earlier in the project, but in some cases one can prove the result more easily in the Noetherian case. Here is the list: 
+</p>
+<ol>
+  <li><p>
+An étale morphism is unramified. (Clear from our definitions.) 
+</p>
+</li><li><p>
+Étaleness is local on the source and the target in the Zariski topology. 
+</p>
+</li><li><p>
+Étale morphisms are stable under base change and composition. See Morphisms, Lemmas <a href="/tag/02GO" data-tag="02GO">29.37.4</a> and <a href="/tag/02GN" data-tag="02GN">29.37.3</a>. 
+</p>
+</li><li><p>
+Étale morphisms of schemes are locally quasi-finite and quasi-compact étale morphisms are quasi-finite. (This is true because it holds for unramified morphisms as seen earlier.) 
+</p>
+</li><li><p>
+Étale morphisms have relative dimension $0$. See Morphisms, Definition <a href="/tag/02NJ" data-tag="02NJ">29.30.1</a> and Morphisms, Lemma <a href="/tag/0397" data-tag="0397">29.30.5</a>. 
+</p>
+</li><li><p>
+A morphism is étale if and only if it is flat and all its fibres are étale. See Morphisms, Lemma <a href="/tag/02GM" data-tag="02GM">29.37.8</a>. 
+</p>
+</li><li><p>
+Étale morphisms are open. This is true because an étale morphism is flat, and Theorem <a href="/tag/039K" data-tag="039K">41.10.2</a>. 
+</p>
+</li><li><p>
+Let $X$ and $Y$ be étale over a base scheme $S$. Any $S$-morphism from $X$ to $Y$ is étale. See Morphisms, Lemma <a href="/tag/02GW" data-tag="02GW">29.37.19</a>. 
+</p>
+</li>
+</ol>

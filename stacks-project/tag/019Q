@@ -1,0 +1,96 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="simplicial-section-homotopy-abelian" class="tex-section"><span data-tag="019Q">14.27</span> Homotopies in abelian categories</h2>
+
+<p>
+Let $\mathcal{A}$ be an additive category. Let $U$, $V$ be simplicial objects of $\mathcal{A}$. Let $a, b : U \to V$ be morphisms. Further, suppose that $h : U \times \Delta [1] \to V$ is a homotopy from $a$ to $b$. Let us prove the two morphisms of chain complexes $s(a), s(b) : s(U) \longrightarrow s(V)$ are homotopic in the sense of Homology, Section <a href="/tag/010V" data-tag="010V">12.13</a>. Using the notation introduced in Section <a href="/tag/019J" data-tag="019J">14.26</a> we define 
+</p>
+<div class="equation">
+  \[  s(h)_ n : U_ n \longrightarrow V_{n + 1}  \]
+</div>
+<p>
+ by the formula 
+</p>
+<div class="equation" id="019R">
+    <span class="equation-label"><a href="/tag/019R" data-tag="019R">14.27.0.1</a></span>
+  <div>\begin{equation}  \label{simplicial-equation-homotopy-to-homotopy} s(h)_ n = \sum \nolimits _{i = 0}^ n (-1)^{i + 1} h_{n + 1, i + 1} \circ s^ n_ i. \end{equation}</div>
+</div>
+<p>
+ Let us compute $d_{n + 1} \circ s(h)_ n + s(h)_{n - 1} \circ d_ n$. We first compute 
+</p>
+<div class="equation">
+  \begin{eqnarray*}  d_{n + 1} \circ s(h)_ n &  = &  \sum \nolimits _{j = 0}^{n + 1} \sum \nolimits _{i = 0}^ n (-1)^{j + i + 1} d^{n + 1}_ j \circ h_{n + 1, i + 1} \circ s^ n_ i \\ &  = &  \sum \nolimits _{1 \leq i + 1 \leq j \leq n + 1} (-1)^{j + i + 1} h_{n, i + 1} \circ d^{n + 1}_ j \circ s^ n_ i \\ & &  + \sum \nolimits _{n \geq i \geq j \geq 0} (-1)^{i + j + 1} h_{n, i} \circ d^{n + 1}_ j \circ s^ n_ i \\ &  = &  \sum \nolimits _{1 \leq i + 1 < j \leq n + 1} (-1)^{j + i + 1} h_{n, i + 1} \circ s^{n - 1}_ i \circ d^ n_{j - 1} \\ & &  + \sum \nolimits _{1 \leq i + 1 = j \leq n + 1} (-1)^{j + i + 1} h_{n, i + 1} \\ & &  + \sum \nolimits _{n \geq i = j \geq 0} (-1)^{i + j + 1} h_{n, i} \\ & &  + \sum \nolimits _{n \geq i > j \geq 0} (-1)^{i + j + 1} h_{n, i} \circ s^{n - 1}_{i - 1} \circ d^ n_ j \end{eqnarray*}
+</div>
+<p>
+ We leave it to the reader to see that the first and the last of the four sums cancel exactly against all the terms of 
+</p>
+<div class="equation">
+  \[  s(h)_{n - 1} \circ d_ n = \sum _{i = 0}^{n - 1} \sum _{j = 0}^ n (-1)^{i + 1 + j} h_{n, i + 1} \circ s^{n - 1}_ i \circ d^ n_ j.  \]
+</div>
+<p>
+ Hence we obtain 
+</p>
+<div class="equation">
+  \begin{eqnarray*}  d_{n + 1} \circ s(h)_ n + s(h)_{n - 1} \circ d_ n &  = &  \sum _{j = 1}^{n + 1} (-1)^{2j} h_{n, j} + \sum _{i = 0}^ n (-1)^{2i + 1} h_{n, i} \\ &  = &  h_{n, n + 1} - h_{n , 0} \\ &  = &  a_ n - b_ n \end{eqnarray*}
+</div>
+<p>
+ as desired. 
+</p>
+<p>
+<article class="env-lemma" id="019S">
+  <p><a class="environment-identifier" href="/tag/019S">Lemma <span data-tag="019S">14.27.1</span>.</a> Let $\mathcal{A}$ be an additive category. Let $a, b : U \to V$ be morphisms of simplicial objects of $\mathcal{A}$. If $a$, $b$ are homotopic, then $s(a), s(b) : s(U) \to s(V)$ are homotopic maps of chain complexes. If $\mathcal{A}$ is abelian, then also $N(a), N(b) : N(U) \to N(V)$ are homotopic maps of chain complexes. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We may choose a sequence $a = a_0, a_1, \ldots , a_ n = b$ of morphisms from $U$ to $V$ such that for each $i = 1, \ldots , n$ either there is a homotopy from $a_ i$ to $a_{i - 1}$ or there is a homotopy from $a_{i - 1}$ to $a_ i$. The calculation above shows that in this case either $s(a_ i)$ is homotopic to $s(a_{i - 1})$ as a map of chain complexes or $s(a_{i - 1})$ is homotopic to $s(a_ i)$ as a map of chain complexes. Of course, these things are equivalent and moreover being homotopic is an equivalence relation on the set of maps of chain complexes, see Homology, Section <a href="/tag/010V" data-tag="010V">12.13</a>. This proves that $s(a)$ and $s(b)$ are homotopic as maps of chain complexes. 
+    <p>
+      Next, we turn to $N(a)$ and $N(b)$. It follows from Lemma <a href="/tag/019A" data-tag="019A">14.23.6</a> that $N(a)$, $N(b)$ are compositions 
+    <p>
+      <div class="equation">
+  \[  N(U) \to s(U) \to s(V) \to N(V)  \]
+</div>
+    <p>
+       where we use $s(a)$, $s(b)$ in the middle. Hence the assertion follows from Homology, Lemma <a href="/tag/010W" data-tag="010W">12.13.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="019T">
+  <p><a class="environment-identifier" href="/tag/019T">Lemma <span data-tag="019T">14.27.2</span>.</a> Let $\mathcal{A}$ be an additive category. Let $a : U \to V$ be a morphism of simplicial objects of $\mathcal{A}$. If $a$ is a homotopy equivalence, then $s(a) : s(U) \to s(V)$ is a homotopy equivalence of chain complexes. If in addition $\mathcal{A}$ is abelian, then also $N(a) : N(U) \to N(V)$ is a homotopy equivalence of chain complexes. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. See Lemma <a href="/tag/019S" data-tag="019S">14.27.1</a> above. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

@@ -1,0 +1,591 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="algebra-section-flat" class="tex-section"><span data-tag="00H9">10.39</span> Flat modules and flat ring maps</h2>
+
+<p>
+One often used result is that if $M = \mathop{\mathrm{colim}}\nolimits _{i\in \mathcal{I}} M_ i$ is a colimit of $R$-modules and if $N$ is an $R$-module then 
+</p>
+<div class="equation">
+  \[  M \otimes N = \mathop{\mathrm{colim}}\nolimits _{i\in \mathcal{I}} M_ i \otimes _ R N,  \]
+</div>
+<p>
+ see Lemma <a href="/tag/00DD" data-tag="00DD">10.12.9</a>. This property is usually expressed by saying that <em>$\otimes $ commutes with colimits</em>. Another often used result is that if $0 \to N_1 \to N_2 \to N_3 \to 0$ is an exact sequence and if $M$ is any $R$-module, then 
+</p>
+<div class="equation">
+  \[  M \otimes _ R N_1 \to M \otimes _ R N_2 \to M \otimes _ R N_3 \to 0  \]
+</div>
+<p>
+ is still exact, see Lemma <a href="/tag/00DF" data-tag="00DF">10.12.10</a>. Both of these properties tell us that the functor $N \mapsto M \otimes _ R N$ <em>is right exact</em>. See Categories, Section <a href="/tag/0033" data-tag="0033">4.23</a> and Homology, Section <a href="/tag/010M" data-tag="010M">12.7</a>. An $R$-module $M$ is flat if $N \mapsto N \otimes _ R M$ is also left exact, i.e., if it is exact. Here is the precise definition. 
+</p>
+<p>
+<article class="env-definition" id="00HB">
+  <p><a class="environment-identifier" href="/tag/00HB">Definition <span data-tag="00HB">10.39.1</span>.</a> Let $R$ be a ring. </p>
+  <p><ol>
+  <li><p>
+An $R$-module $M$ is called <em>flat</em> if whenever $N_1 \to N_2 \to N_3$ is an exact sequence of $R$-modules the sequence $M \otimes _ R N_1 \to M \otimes _ R N_2 \to M \otimes _ R N_3$ is exact as well. 
+</p>
+</li><li><p>
+An $R$-module $M$ is called <em>faithfully flat</em> if the complex of $R$-modules $N_1 \to N_2 \to N_3$ is exact if and only if the sequence $M \otimes _ R N_1 \to M \otimes _ R N_2 \to M \otimes _ R N_3$ is exact. 
+</p>
+</li><li><p>
+A ring map $R \to S$ is called <em>flat</em> if $S$ is flat as an $R$-module. 
+</p>
+</li><li><p>
+A ring map $R \to S$ is called <em>faithfully flat</em> if $S$ is faithfully flat as an $R$-module. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+Here is an example of how you can use the flatness condition. 
+</p>
+<p>
+<article class="env-lemma" id="0BBY">
+  <p><a class="environment-identifier" href="/tag/0BBY">Lemma <span data-tag="0BBY">10.39.2</span>.</a> Let $R$ be a ring. Let $I, J \subset R$ be ideals. Let $M$ be a flat $R$-module. Then $IM \cap JM = (I \cap J)M$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider the exact sequence $0 \to I \cap J \to R \to R/I \oplus R/J$. Tensoring with the flat module $M$ we obtain an exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to (I \cap J) \otimes _ R M \to M \to M/IM \oplus M/JM  \]
+</div>
+    <p>
+       Since the kernel of $M \to M/IM \oplus M/JM$ is equal to $IM \cap JM$ we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="05UT">
+  <p><a class="environment-identifier" href="/tag/05UT">Lemma <span data-tag="05UT">10.39.3</span>.</a> Let $R$ be a ring. Let $\{ M_ i, \varphi _{ii'}\} $ be a directed system of flat $R$-modules. Then $\mathop{\mathrm{colim}}\nolimits _ i M_ i$ is a flat $R$-module. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows as $\otimes $ commutes with colimits and because directed colimits are exact, see Lemma <a href="/tag/00DB" data-tag="00DB">10.8.8</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00HC">
+  <p><a class="environment-identifier" href="/tag/00HC">Lemma <span data-tag="00HC">10.39.4</span>.</a> A composition of (faithfully) flat ring maps is (faithfully) flat. If $R \to R'$ is (faithfully) flat, and $M'$ is a (faithfully) flat $R'$-module, then $M'$ is a (faithfully) flat $R$-module. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The first statement of the lemma is a particular case of the second, so it is clearly enough to prove the latter. Let $R \to R'$ be a flat ring map, and $M'$ a flat $R'$-module. We need to prove that $M'$ is a flat $R$-module. Let $N_1 \to N_2 \to N_3$ be an exact complex of $R$-modules. Then, the complex $R' \otimes _ R N_1 \to R' \otimes _ R N_2 \to R' \otimes _ R N_3$ is exact (since $R'$ is flat as an $R$-module), and so the complex $M' \otimes _{R'} \left(R' \otimes _ R N_1\right) \to M' \otimes _{R'} \left(R' \otimes _ R N_2\right) \to M' \otimes _{R'} \left(R' \otimes _ R N_3\right)$ is exact (since $M'$ is a flat $R'$-module). Since $M' \otimes _{R'} \left(R' \otimes _ R N\right) \cong \left(M' \otimes _{R'} R'\right) \otimes _ R N \cong M' \otimes _ R N$ for any $R$-module $N$ functorially (by Lemmas <a href="/tag/00D2" data-tag="00D2">10.12.7</a> and <a href="/tag/00CY" data-tag="00CY">10.12.3</a>), this complex is isomorphic to the complex $M' \otimes _ R N_1 \to M' \otimes _ R N_2 \to M' \otimes _ R N_3$, which is therefore also exact. This shows that $M'$ is a flat $R$-module. Tracing this argument backwards, we can show that if $R \to R'$ is faithfully flat, and if $M'$ is faithfully flat as an $R'$-module, then $M'$ is faithfully flat as an $R$-module. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00HD">
+  <p><a class="environment-identifier" href="/tag/00HD">Lemma <span data-tag="00HD">10.39.5</span>.</a> Let $M$ be an $R$-module. The following are equivalent: </p>
+  <p><ol>
+  <li class="custom-item" id="00HE"><p>
+ $M$ is flat over $R$. 
+</p>
+</li><li class="custom-item" id="00HF"><p>
+ for every injection of $R$-modules $N \subset N'$ the map $N \otimes _ R M \to N'\otimes _ R M$ is injective. 
+</p>
+</li><li class="custom-item" id="00HG"><p>
+ for every ideal $I \subset R$ the map $I \otimes _ R M \to R \otimes _ R M = M$ is injective. 
+</p>
+</li><li class="custom-item" id="00HH"><p>
+ for every finitely generated ideal $I \subset R$ the map $I \otimes _ R M \to R \otimes _ R M = M$ is injective. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The implications (<a href="/tag/00HE" data-tag="00HE">1</a>) implies (<a href="/tag/00HF" data-tag="00HF">2</a>) implies (<a href="/tag/00HG" data-tag="00HG">3</a>) implies (<a href="/tag/00HH" data-tag="00HH">4</a>) are all trivial. Thus we prove (<a href="/tag/00HH" data-tag="00HH">4</a>) implies (<a href="/tag/00HE" data-tag="00HE">1</a>). Suppose that $N_1 \to N_2 \to N_3$ is exact. Let $K = \mathop{\mathrm{Ker}}(N_2 \to N_3)$ and $Q = \mathop{\mathrm{Im}}(N_2 \to N_3)$. Then we get maps 
+    <p>
+      <div class="equation">
+  \[  N_1 \otimes _ R M \to K \otimes _ R M \to N_2 \otimes _ R M \to Q \otimes _ R M \to N_3 \otimes _ R M  \]
+</div>
+    <p>
+       Observe that the first and third arrows are surjective. Thus if we show that the second and fourth arrows are injective, then we are done<a class="footnotemark" href="#a0000125752" id="a0000125752-mark"><sup>1</sup></a>. Hence it suffices to show that $- \otimes _ R M$ transforms injective $R$-module maps into injective $R$-module maps. 
+    <p>
+      Assume $K \to N$ is an injective $R$-module map and let $x \in \mathop{\mathrm{Ker}}(K \otimes _ R M \to N \otimes _ R M)$. We have to show that $x$ is zero. The $R$-module $K$ is the union of its finite $R$-submodules; hence, $K \otimes _ R M$ is the colimit of $R$-modules of the form $K_ i \otimes _ R M$ where $K_ i$ runs over all finite $R$-submodules of $K$ (because tensor product commutes with colimits). Thus, for some $i$ our $x$ comes from an element $x_ i \in K_ i \otimes _ R M$. Thus we may assume that $K$ is a finite $R$-module. Assume this. We regard the injection $K \to N$ as an inclusion, so that $K \subset N$. 
+    <p>
+      The $R$-module $N$ is the union of its finite $R$-submodules that contain $K$. Hence, $N \otimes _ R M$ is the colimit of $R$-modules of the form $N_ i \otimes _ R M$ where $N_ i$ runs over all finite $R$-submodules of $N$ that contain $K$ (again since tensor product commutes with colimits). Notice that this is a colimit over a directed system (since the sum of two finite submodules of $N$ is again finite). Hence, (by Lemma <a href="/tag/00D7" data-tag="00D7">10.8.4</a>) the element $x \in K \otimes _ R M$ maps to zero in at least one of these $R$-modules $N_ i \otimes _ R M$ (since $x$ maps to zero in $N \otimes _ R M$). Thus we may assume $N$ is a finite $R$-module. 
+    <p>
+      Assume $N$ is a finite $R$-module. Write $N = R^{\oplus n}/L$ and $K = L'/L$ for some $L \subset L' \subset R^{\oplus n}$. For any $R$-submodule $G \subset R^{\oplus n}$, we have a canonical map $G \otimes _ R M \to M^{\oplus n}$ obtained by composing $G \otimes _ R M \to R^ n \otimes _ R M = M^{\oplus n}$. It suffices to prove that $L \otimes _ R M \to M^{\oplus n}$ and $L' \otimes _ R M \to M^{\oplus n}$ are injective. Namely, if so, then we see that $K \otimes _ R M = L' \otimes _ R M/L \otimes _ R M \to M^{\oplus n}/L \otimes _ R M$ is injective too<a class="footnotemark" href="#a0000126021" id="a0000126021-mark"><sup>2</sup></a>. 
+    <p>
+      Thus it suffices to show that $L \otimes _ R M \to M^{\oplus n}$ is injective when $L \subset R^{\oplus n}$ is an $R$-submodule. We do this by induction on $n$. The base case $n = 1$ we handle below. For the induction step assume $n > 1$ and set $L' = L \cap R \oplus 0^{\oplus n - 1}$. Then $L'' = L/L'$ is a submodule of $R^{\oplus n - 1}$. We obtain a diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ &  L' \otimes _ R M \ar[r] \ar[d] &  L \otimes _ R M \ar[r] \ar[d] &  L'' \otimes _ R M \ar[r] \ar[d] &  0 \\  0 \ar[r] &  M \ar[r] &  M^{\oplus n} \ar[r] &  M^{\oplus n - 1} \ar[r] &  0 }  \]
+</div>
+    <p>
+       By induction hypothesis and the base case the left and right vertical arrows are injective. The rows are exact. It follows that the middle vertical arrow is injective too. 
+    <p>
+      The base case of the induction above is when $L \subset R$ is an ideal. In other words, we have to show that $I \otimes _ R M \to M$ is injective for any ideal $I$ of $R$. We know this is true when $I$ is finitely generated. However, $I = \bigcup I_\alpha $ is the union of the finitely generated ideals $I_\alpha $ contained in it. In other words, $I = \mathop{\mathrm{colim}}\nolimits I_\alpha $. Since $\otimes $ commutes with colimits we see that $I \otimes _ R M = \mathop{\mathrm{colim}}\nolimits I_\alpha \otimes _ R M$ and since all the morphisms $I_\alpha \otimes _ R M \to M$ are injective by assumption, the same is true for $I \otimes _ R M \to M$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="05UU">
+  <p><a class="environment-identifier" href="/tag/05UU">Lemma <span data-tag="05UU">10.39.6</span>.</a> Let $\{ R_ i, \varphi _{ii'}\} $ be a system of rings over the directed set $I$. Let $R = \mathop{\mathrm{colim}}\nolimits _ i R_ i$. </p>
+  <p><ol>
+  <li><p>
+If $M$ is an $R$-module such that $M$ is flat as an $R_ i$-module for all $i$, then $M$ is flat as an $R$-module. 
+</p>
+</li><li><p>
+For $i \in I$ let $M_ i$ be a flat $R_ i$-module and for $i' \geq i$ let $f_{ii'} : M_ i \to M_{i'}$ be a $\varphi _{ii'}$-linear map such that $f_{i' i''} \circ f_{i i'} = f_{i i''}$. Then $M = \mathop{\mathrm{colim}}\nolimits _{i \in I} M_ i$ is a flat $R$-module. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Part (1) is a special case of part (2) with $M_ i = M$ for all $i$ and $f_{i i'} = \text{id}_ M$. Proof of (2). Let $\mathfrak a \subset R$ be a finitely generated ideal. By Lemma <a href="/tag/00HD" data-tag="00HD">10.39.5</a> it suffices to show that $\mathfrak a \otimes _ R M \to M$ is injective. We can find an $i \in I$ and a finitely generated ideal $\mathfrak a' \subset R_ i$ such that $\mathfrak a = \mathfrak a'R$. Then $\mathfrak a = \mathop{\mathrm{colim}}\nolimits _{i' \geq i} \mathfrak a'R_{i'}$. Since $\otimes $ commutes with colimits the map $\mathfrak a \otimes _ R M \to M$ is the colimit of the maps 
+    <p>
+      <div class="equation">
+  \[  \mathfrak a'R_{i'} \otimes _{R_{i'}} M_{i'} \longrightarrow M_{i'}  \]
+</div>
+    <p>
+       These maps are all injective by assumption. Since colimits over $I$ are exact by Lemma <a href="/tag/00DB" data-tag="00DB">10.8.8</a> we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00HI">
+  <p><a class="environment-identifier" href="/tag/00HI">Lemma <span data-tag="00HI">10.39.7</span>.</a> Suppose that $M$ is (faithfully) flat over $R$, and that $R \to R'$ is a ring map. Then $M \otimes _ R R'$ is (faithfully) flat over $R'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      For any $R'$-module $N$ we have a canonical isomorphism $N \otimes _{R'} (R'\otimes _ R M) = N \otimes _ R M$. Hence the desired exactness properties of the functor $-\otimes _{R'}(R'\otimes _ R M)$ follow from the corresponding exactness properties of the functor $-\otimes _ R M$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00HJ">
+  <p><a class="environment-identifier" href="/tag/00HJ">Lemma <span data-tag="00HJ">10.39.8</span>.</a> Let $R \to R'$ be a faithfully flat ring map. Let $M$ be a module over $R$, and set $M' = R' \otimes _ R M$. Then $M$ is flat over $R$ if and only if $M'$ is flat over $R'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/00HI" data-tag="00HI">10.39.7</a> we see that if $M$ is flat then $M'$ is flat. For the converse, suppose that $M'$ is flat. Let $N_1 \to N_2 \to N_3$ be an exact sequence of $R$-modules. We want to show that $N_1 \otimes _ R M \to N_2 \otimes _ R M \to N_3 \otimes _ R M$ is exact. We know that $N_1 \otimes _ R R' \to N_2 \otimes _ R R' \to N_3 \otimes _ R R'$ is exact, because $R \to R'$ is flat. Flatness of $M'$ implies that $N_1 \otimes _ R R' \otimes _{R'} M' \to N_2 \otimes _ R R' \otimes _{R'} M' \to N_3 \otimes _ R R' \otimes _{R'} M'$ is exact. We may write this as $N_1 \otimes _ R M \otimes _ R R' \to N_2 \otimes _ R M \otimes _ R R' \to N_3 \otimes _ R M \otimes _ R R'$. Finally, faithful flatness implies that $N_1 \otimes _ R M \to N_2 \otimes _ R M \to N_3 \otimes _ R M$ is exact. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0584">
+  <p><a class="environment-identifier" href="/tag/0584">Lemma <span data-tag="0584">10.39.9</span>.</a> Let $R$ be a ring. Let $S \to S'$ be a flat map of $R$-algebras. Let $M$ be a module over $S$, and set $M' = S' \otimes _ S M$. </p>
+  <p><ol>
+  <li><p>
+If $M$ is flat over $R$, then $M'$ is flat over $R$. 
+</p>
+</li><li><p>
+If $S \to S'$ is faithfully flat, then $M$ is flat over $R$ if and only if $M'$ is flat over $R$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $N \to N'$ be an injection of $R$-modules. By the flatness of $S \to S'$ we have 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Ker}}(N \otimes _ R M \to N' \otimes _ R M) \otimes _ S S' = \mathop{\mathrm{Ker}}(N \otimes _ R M' \to N' \otimes _ R M')  \]
+</div>
+    <p>
+       If $M$ is flat over $R$, then the left hand side is zero and we find that $M'$ is flat over $R$ by the second characterization of flatness in Lemma <a href="/tag/00HD" data-tag="00HD">10.39.5</a>. If $M'$ is flat over $R$ then we have the vanishing of the right hand side and if in addition $S \to S'$ is faithfully flat, this implies that $\mathop{\mathrm{Ker}}(N \otimes _ R M \to N' \otimes _ R M)$ is zero which in turn shows that $M$ is flat over $R$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="039V">
+  <p><a class="environment-identifier" href="/tag/039V">Lemma <span data-tag="039V">10.39.10</span>.</a> Let $R \to S$ be a ring map. Let $M$ be an $S$-module. If $M$ is flat as an $R$-module and faithfully flat as an $S$-module, then $R \to S$ is flat. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $N_1 \to N_2 \to N_3$ be an exact sequence of $R$-modules. By assumption $N_1 \otimes _ R M \to N_2 \otimes _ R M \to N_3 \otimes _ R M$ is exact. We may write this as 
+    <p>
+      <div class="equation">
+  \[  N_1 \otimes _ R S \otimes _ S M \to N_2 \otimes _ R S \otimes _ S M \to N_3 \otimes _ R S \otimes _ S M.  \]
+</div>
+    <p>
+       By faithful flatness of $M$ over $S$ we conclude that $N_1 \otimes _ R S \to N_2 \otimes _ R S \to N_3 \otimes _ R S$ is exact. Hence $R \to S$ is flat. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $R$ be a ring. Let $M$ be an $R$-module. Let $\sum f_ i x_ i = 0$ be a relation in $M$. We say the relation $\sum f_ i x_ i$ is <em>trivial</em> if there exist an integer $m \geq 0$, elements $y_ j \in M$, $j = 1, \ldots , m$, and elements $a_{ij} \in R$, $i = 1, \ldots , n$, $j = 1, \ldots , m$ such that 
+</p>
+<div class="equation">
+  \[  x_ i = \sum \nolimits _ j a_{ij} y_ j, \forall i, \quad \text{and}\quad 0 = \sum \nolimits _ i f_ ia_{ij}, \forall j.  \]
+</div>
+<p>
+<article class="env-lemma" id="00HK">
+  <p><a class="environment-identifier" href="/tag/00HK">Lemma <span data-tag="00HK">10.39.11</span> <span class="named">(Equational criterion of flatness)</span>.</a>  A module $M$ over $R$ is flat if and only if every relation in $M$ is trivial. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume $M$ is flat and let $\sum f_ i x_ i = 0$ be a relation in $M$. Let $I = (f_1, \ldots , f_ n)$, and let $K = \mathop{\mathrm{Ker}}(R^ n \to I, (a_1, \ldots , a_ n) \mapsto \sum _ i a_ i f_ i)$. So we have the short exact sequence $0 \to K \to R^ n \to I \to 0$. Then $\sum f_ i \otimes x_ i$ is an element of $I \otimes _ R M$ which maps to zero in $R \otimes _ R M = M$. By flatness $\sum f_ i \otimes x_ i$ is zero in $I \otimes _ R M$. Thus there exists an element of $K \otimes _ R M$ mapping to $\sum e_ i \otimes x_ i \in R^ n \otimes _ R M$ where $e_ i$ is the $i$th basis element of $R^ n$. Write this element as $\sum k_ j \otimes y_ j$ and then write the image of $k_ j$ in $R^ n$ as $\sum a_{ij} e_ i$ to get the result. 
+    <p>
+      Assume every relation is trivial, let $I$ be a finitely generated ideal, and let $x = \sum f_ i \otimes x_ i$ be an element of $I \otimes _ R M$ mapping to zero in $R \otimes _ R M = M$. This just means exactly that $\sum f_ i x_ i$ is a relation in $M$. And the fact that it is trivial implies easily that $x$ is zero, because 
+    <p>
+      <div class="equation">
+  \[  x = \sum f_ i \otimes x_ i = \sum f_ i \otimes \left(\sum a_{ij}y_ j\right) = \sum \left(\sum f_ i a_{ij}\right) \otimes y_ j = 0  \]
+</div>
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00HL">
+  <p><a class="environment-identifier" href="/tag/00HL">Lemma <span data-tag="00HL">10.39.12</span>.</a> Suppose that $R$ is a ring, $0 \to M'' \to M' \to M \to 0$ a short exact sequence, and $N$ an $R$-module. If $M$ is flat then $N \otimes _ R M'' \to N \otimes _ R M'$ is injective, i.e., the sequence </p>
+  <div class="equation">
+  \[  0 \to N \otimes _ R M'' \to N \otimes _ R M' \to N \otimes _ R M \to 0  \]
+</div>
+  <p> is a short exact sequence. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $R^{(I)} \to N$ be a surjection from a free module onto $N$ with kernel $K$. The result follows from the snake lemma applied to the following diagram 
+    <p>
+      <div class="equation">
+  \[  \begin{matrix} & &  0 
+
+& &  0 
+
+& &  0 
+
+& & \\ & &  \uparrow 
+
+& &  \uparrow 
+
+& &  \uparrow 
+
+& & \\ & &  M''\otimes _ R N 
+
+&  \to 
+
+&  M' \otimes _ R N 
+
+&  \to 
+
+&  M \otimes _ R N 
+
+&  \to 
+
+&  0 
+
+\\ & &  \uparrow 
+
+& &  \uparrow 
+
+& &  \uparrow 
+
+& & \\  0 
+
+&  \to 
+
+&  (M'')^{(I)} 
+
+&  \to 
+
+&  (M')^{(I)} 
+
+&  \to 
+
+&  M^{(I)} 
+
+&  \to 
+
+&  0 
+
+\\ & &  \uparrow 
+
+& &  \uparrow 
+
+& &  \uparrow 
+
+& & \\ & &  M''\otimes _ R K 
+
+&  \to 
+
+&  M' \otimes _ R K 
+
+&  \to 
+
+&  M \otimes _ R K 
+
+&  \to 
+
+&  0 
+
+\\ & & & & & &  \uparrow 
+
+& & \\ & & & & & &  0 
+
+& & \end{matrix}  \]
+</div>
+    <p>
+       with exact rows and columns. The middle row is exact because tensoring with the free module $R^{(I)}$ is exact. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00HM">
+  <p><a class="environment-identifier" href="/tag/00HM">Lemma <span data-tag="00HM">10.39.13</span>.</a> Suppose that $0 \to M' \to M \to M'' \to 0$ is a short exact sequence of $R$-modules. If $M'$ and $M''$ are flat so is $M$. If $M$ and $M''$ are flat so is $M'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use the criterion that a module $N$ is flat if for every ideal $I \subset R$ the map $N \otimes _ R I \to N$ is injective, see Lemma <a href="/tag/00HD" data-tag="00HD">10.39.5</a>. Consider an ideal $I \subset R$. Consider the diagram 
+    <p>
+      <div class="equation">
+  \[  \begin{matrix}  0 
+
+&  \to 
+
+&  M' 
+
+&  \to 
+
+&  M 
+
+&  \to 
+
+&  M'' 
+
+&  \to 
+
+&  0 
+
+\\ & &  \uparrow 
+
+& &  \uparrow 
+
+& &  \uparrow 
+
+& & \\ & &  M'\otimes _ R I 
+
+&  \to 
+
+&  M \otimes _ R I 
+
+&  \to 
+
+&  M''\otimes _ R I 
+
+&  \to 
+
+&  0 
+
+\end{matrix}  \]
+</div>
+    <p>
+       with exact rows. This immediately proves the first assertion. The second follows because if $M''$ is flat then the lower left horizontal arrow is injective by Lemma <a href="/tag/00HL" data-tag="00HL">10.39.12</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00HO">
+  <p><a class="environment-identifier" href="/tag/00HO">Lemma <span data-tag="00HO">10.39.14</span>.</a> Let $R$ be a ring. Let $M$ be an $R$-module. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$M$ is faithfully flat, and 
+</p>
+</li><li><p>
+$M$ is flat and for all $R$-module homomorphisms $\alpha : N \to N'$ we have $\alpha = 0$ if and only if $\alpha \otimes \text{id}_ M = 0$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $M$ is faithfully flat, then $0 \to \mathop{\mathrm{Ker}}(\alpha ) \to N \to N'$ is exact if and only if the same holds after tensoring with $M$. This proves (1) implies (2). For the other, assume (2). Let $N_1 \to N_2 \to N_3$ be a complex, and assume the complex $N_1 \otimes _ R M \to N_2 \otimes _ R M \to N_3\otimes _ R M$ is exact. Take $x \in \mathop{\mathrm{Ker}}(N_2 \to N_3)$, and consider the map $\alpha : R \to N_2/\mathop{\mathrm{Im}}(N_1)$, $r \mapsto rx + \mathop{\mathrm{Im}}(N_1)$. By the exactness of the complex $-\otimes _ R M$ we see that $\alpha \otimes \text{id}_ M$ is zero. By assumption we get that $\alpha $ is zero. Hence $x $ is in the image of $N_1 \to N_2$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00HP">
+       
+      
+  <p><a class="environment-identifier" href="/tag/00HP">Lemma <span data-tag="00HP">10.39.15</span>.</a> Let $M$ be a flat $R$-module. The following are equivalent: </p>
+  <p><ol>
+  <li><p>
+$M$ is faithfully flat, 
+</p>
+</li><li><p>
+for every nonzero $R$-module $N$, then tensor product $M \otimes _ R N$ is nonzero, 
+</p>
+</li><li><p>
+for all $\mathfrak p \in \mathop{\mathrm{Spec}}(R)$ the tensor product $M \otimes _ R \kappa (\mathfrak p)$ is nonzero, and 
+</p>
+</li><li><p>
+for all maximal ideals $\mathfrak m$ of $R$ the tensor product $M \otimes _ R \kappa (\mathfrak m) = M/{\mathfrak m}M$ is nonzero. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume $M$ faithfully flat and $N \not= 0$. By Lemma <a href="/tag/00HO" data-tag="00HO">10.39.14</a> the nonzero map $1 : N \to N$ induces a nonzero map $M \otimes _ R N \to M \otimes _ R N$, so $M \otimes _ R N \not= 0$. Thus (1) implies (2). The implications (2) $\Rightarrow $ (3) $\Rightarrow $ (4) are immediate. 
+    <p>
+      Assume (4). Suppose that $N_1 \to N_2 \to N_3$ is a complex and suppose that $N_1 \otimes _ R M \to N_2\otimes _ R M \to N_3\otimes _ R M$ is exact. Let $H$ be the cohomology of the complex, so $H = \mathop{\mathrm{Ker}}(N_2 \to N_3)/\mathop{\mathrm{Im}}(N_1 \to N_2)$. To finish the proof we will show $H = 0$. By flatness we see that $H \otimes _ R M = 0$. Take $x \in H$ and let $I = \{ f \in R \mid fx = 0 \} $ be its annihilator. Since $R/I \subset H$ we get $M/IM \subset H \otimes _ R M = 0$ by flatness of $M$. If $I \not= R$ we may choose a maximal ideal $I \subset \mathfrak m \subset R$. This immediately gives a contradiction. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00HQ">
+  <p><a class="environment-identifier" href="/tag/00HQ">Lemma <span data-tag="00HQ">10.39.16</span>.</a> Let $R \to S$ be a flat ring map. The following are equivalent: </p>
+  <p><ol>
+  <li><p>
+$R \to S$ is faithfully flat, 
+</p>
+</li><li><p>
+the induced map on $\mathop{\mathrm{Spec}}$ is surjective, and 
+</p>
+</li><li><p>
+any closed point $x \in \mathop{\mathrm{Spec}}(R)$ is in the image of the map $\mathop{\mathrm{Spec}}(S) \to \mathop{\mathrm{Spec}}(R)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows quickly from Lemma <a href="/tag/00HP" data-tag="00HP">10.39.15</a>, because we saw in Remark <a href="/tag/00E6" data-tag="00E6">10.18.5</a> that $\mathfrak p$ is in the image if and only if the ring $S \otimes _ R \kappa (\mathfrak p)$ is nonzero. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00HR">
+  <p><a class="environment-identifier" href="/tag/00HR">Lemma <span data-tag="00HR">10.39.17</span>.</a> A flat local ring homomorphism of local rings is faithfully flat. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Immediate from Lemma <a href="/tag/00HQ" data-tag="00HQ">10.39.16</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Flatness meshes well with localization. 
+</p>
+<p>
+<article class="env-lemma" id="00HT">
+  <p><a class="environment-identifier" href="/tag/00HT">Lemma <span data-tag="00HT">10.39.18</span>.</a> Let $R$ be a ring. Let $S \subset R$ be a multiplicative subset. </p>
+  <p><ol>
+  <li><p>
+The localization $S^{-1}R$ is a flat $R$-algebra. 
+</p>
+</li><li><p>
+If $M$ is an $S^{-1}R$-module, then $M$ is a flat $R$-module if and only if $M$ is a flat $S^{-1}R$-module. 
+</p>
+</li><li><p>
+Suppose $M$ is an $R$-module. Then $M$ is a flat $R$-module if and only if $M_{\mathfrak p}$ is a flat $R_{\mathfrak p}$-module for all primes $\mathfrak p$ of $R$. 
+</p>
+</li><li><p>
+Suppose $M$ is an $R$-module. Then $M$ is a flat $R$-module if and only if $M_{\mathfrak m}$ is a flat $R_{\mathfrak m}$-module for all maximal ideals $\mathfrak m$ of $R$. 
+</p>
+</li><li><p>
+Suppose $R \to A$ is a ring map, $M$ is an $A$-module, and $g_1, \ldots , g_ m \in A$ are elements generating the unit ideal of $A$. Then $M$ is flat over $R$ if and only if each localization $M_{g_ i}$ is flat over $R$. 
+</p>
+</li><li><p>
+Suppose $R \to A$ is a ring map, and $M$ is an $A$-module. Then $M$ is a flat $R$-module if and only if the localization $M_{\mathfrak q}$ is a flat $R_{\mathfrak p}$-module (with $\mathfrak p$ the prime of $R$ lying under $\mathfrak q$) for all primes $\mathfrak q$ of $A$. 
+</p>
+</li><li><p>
+Suppose $R \to A$ is a ring map, and $M$ is an $A$-module. Then $M$ is a flat $R$-module if and only if the localization $M_{\mathfrak m}$ is a flat $R_{\mathfrak p}$-module (with $\mathfrak p = R \cap \mathfrak m$) for all maximal ideals $\mathfrak m$ of $A$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let us prove the last statement of the lemma. In the proof we will use repeatedly that localization is exact and commutes with tensor product, see Sections <a href="/tag/00CM" data-tag="00CM">10.9</a> and <a href="/tag/00CV" data-tag="00CV">10.12</a>. 
+    <p>
+      Suppose $R \to A$ is a ring map, and $M$ is an $A$-module. Assume that $M_{\mathfrak m}$ is a flat $R_{\mathfrak p}$-module for all maximal ideals $\mathfrak m$ of $A$ (with $\mathfrak p = R \cap \mathfrak m$). Let $I \subset R$ be an ideal. We have to show the map $I \otimes _ R M \to M$ is injective. We can think of this as a map of $A$-modules. By assumption the localization $(I \otimes _ R M)_{\mathfrak m} \to M_{\mathfrak m}$ is injective because $(I \otimes _ R M)_{\mathfrak m} = I_{\mathfrak p} \otimes _{R_{\mathfrak p}} M_{\mathfrak m}$. Hence the kernel of $I \otimes _ R M \to M$ is zero by Lemma <a href="/tag/00HN" data-tag="00HN">10.23.1</a>. Hence $M$ is flat over $R$. 
+    <p>
+      Conversely, assume $M$ is flat over $R$. Pick a prime $\mathfrak q$ of $A$ lying over the prime $\mathfrak p$ of $R$. Suppose that $I \subset R_{\mathfrak p}$ is an ideal. We have to show that $I \otimes _{R_{\mathfrak p}} M_{\mathfrak q} \to M_{\mathfrak q}$ is injective. We can write $I = J_{\mathfrak p}$ for some ideal $J \subset R$. Then the map $I \otimes _{R_{\mathfrak p}} M_{\mathfrak q} \to M_{\mathfrak q}$ is just the localization (at $\mathfrak q$) of the map $J \otimes _ R M \to M$ which is injective. Since localization is exact we see that $M_{\mathfrak q}$ is a flat $R_{\mathfrak p}$-module. 
+    <p>
+      This proves (7) and (6). The other statements follow in a straightforward way from the last statement (proofs omitted). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00HS">
+  <p><a class="environment-identifier" href="/tag/00HS">Lemma <span data-tag="00HS">10.39.19</span>.</a> Let $R \to S$ be flat. Let $\mathfrak p \subset \mathfrak p'$ be primes of $R$. Let $\mathfrak q' \subset S$ be a prime of $S$ mapping to $\mathfrak p'$. Then there exists a prime $\mathfrak q \subset \mathfrak q'$ mapping to $\mathfrak p$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/00HT" data-tag="00HT">10.39.18</a> the local ring map $R_{\mathfrak p'} \to S_{\mathfrak q'}$ is flat. By Lemma <a href="/tag/00HR" data-tag="00HR">10.39.17</a> this local ring map is faithfully flat. By Lemma <a href="/tag/00HQ" data-tag="00HQ">10.39.16</a> there is a prime mapping to $\mathfrak p R_{\mathfrak p'}$. The inverse image of this prime in $S$ does the job. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The property of $R \to S$ described in the lemma is called the “going down property”. See Definition <a href="/tag/00HV" data-tag="00HV">10.41.1</a>. 
+</p>
+<p>
+<article class="env-lemma" id="090N">
+  <p><a class="environment-identifier" href="/tag/090N">Lemma <span data-tag="090N">10.39.20</span>.</a> Let $R$ be a ring. Let $\{ S_ i, \varphi _{ii'}\} $ be a directed system of faithfully flat $R$-algebras. Then $S = \mathop{\mathrm{colim}}\nolimits _ i S_ i$ is a faithfully flat $R$-algebra. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/05UT" data-tag="05UT">10.39.3</a> we see that $S$ is flat. Let $\mathfrak m \subset R$ be a maximal ideal. By Lemma <a href="/tag/00HQ" data-tag="00HQ">10.39.16</a> none of the rings $S_ i/\mathfrak m S_ i$ is zero. Hence $S/\mathfrak mS = \mathop{\mathrm{colim}}\nolimits S_ i/\mathfrak mS_ i$ is nonzero as well because $1$ is not equal to zero. Thus the image of $\mathop{\mathrm{Spec}}(S) \to \mathop{\mathrm{Spec}}(R)$ contains $\mathfrak m$ and we see that $R \to S$ is faithfully flat by Lemma <a href="/tag/00HQ" data-tag="00HQ">10.39.16</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

@@ -1,0 +1,169 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="bootstrap-section-bootstrap-diagonal" class="tex-section"><span data-tag="046I">80.5</span> Bootstrapping the diagonal</h2>
+
+<p>
+In this section we prove that the diagonal of a sheaf $F$ on $(\mathit{Sch}/S)_{fppf}$ is representable as soon as there exists an “fppf cover” of $F$ by a scheme or by an algebraic space, see Lemma <a href="/tag/046K" data-tag="046K">80.5.3</a>. 
+</p>
+<p>
+<article class="env-lemma" id="03Y2">
+       
+      
+  <p><a class="environment-identifier" href="/tag/03Y2">Lemma <span data-tag="03Y2">80.5.1</span>.</a> Let $S$ be a scheme. If $F$ is a presheaf on $(\mathit{Sch}/S)_{fppf}$. The following are equivalent: </p>
+  <p><ol>
+  <li><p>
+$\Delta _ F : F \to F \times F$ is representable by algebraic spaces, 
+</p>
+</li><li><p>
+for every scheme $T$ any map $T \to F$ is representable by algebraic spaces, and 
+</p>
+</li><li><p>
+for every algebraic space $X$ any map $X \to F$ is representable by algebraic spaces. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume (1). Let $X \to F$ be as in (3). Let $T$ be a scheme, and let $T \to F$ be a morphism. Then we have 
+    <p>
+      <div class="equation">
+  \[  T \times _ F X = (T \times _ S X) \times _{F \times F, \Delta } F  \]
+</div>
+    <p>
+       which is an algebraic space by Lemma <a href="/tag/03XY" data-tag="03XY">80.3.7</a> and (1). Hence $X \to F$ is representable, i.e., (3) holds. The implication (3) $\Rightarrow $ (2) is trivial. Assume (2). Let $T$ be a scheme, and let $(a, b) : T \to F \times F$ be a morphism. Then 
+    <p>
+      <div class="equation">
+  \[  F \times _{\Delta _ F, F \times F} T = (T \times _{a, F, b} T) \times _{T \times T, \Delta _ T} T  \]
+</div>
+    <p>
+       which is an algebraic space by assumption. Hence $\Delta _ F$ is representable by algebraic spaces, i.e., (1) holds. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In particular if $F$ is a presheaf satisfying the equivalent conditions of the lemma, then for any morphism $X \to F$ where $X$ is an algebraic space it makes sense to say that $X \to F$ is surjective (resp. étale, flat, locally of finite presentation) by using Definition <a href="/tag/03XZ" data-tag="03XZ">80.4.1</a>. 
+</p>
+<p>
+Before we actually do the bootstrap we prove a fun lemma. 
+</p>
+<p>
+<article class="env-lemma" id="046J">
+  <p><a class="environment-identifier" href="/tag/046J">Lemma <span data-tag="046J">80.5.2</span>.</a> Let $S$ be a scheme. Let </p>
+  <div class="equation">
+  \[  \xymatrix{ E \ar[r]_ a \ar[d]_ f &  F \ar[d]^ g \\  H \ar[r]^ b &  G }  \]
+</div>
+  <p> be a cartesian diagram of sheaves on $(\mathit{Sch}/S)_{fppf}$, so $E = H \times _ G F$. If </p>
+  <p><ol>
+  <li><p>
+$g$ is representable by algebraic spaces, surjective, flat, and locally of finite presentation, and 
+</p>
+</li><li><p>
+$a$ is representable by algebraic spaces, separated, and locally quasi-finite 
+</p>
+</li>
+</ol></p>
+  <p> then $b$ is representable (by schemes) as well as separated and locally quasi-finite. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $T$ be a scheme, and let $T \to G$ be a morphism. We have to show that $T \times _ G H$ is a scheme, and that the morphism $T \times _ G H \to T$ is separated and locally quasi-finite. Thus we may base change the whole diagram to $T$ and assume that $G$ is a scheme. In this case $F$ is an algebraic space. Let $U$ be a scheme, and let $U \to F$ be a surjective étale morphism. Then $U \to F$ is representable, surjective, flat and locally of finite presentation by Morphisms of Spaces, Lemmas <a href="/tag/0467" data-tag="0467">67.39.7</a> and <a href="/tag/0468" data-tag="0468">67.39.8</a>. By Lemma <a href="/tag/03Y1" data-tag="03Y1">80.3.8</a> $U \to G$ is surjective, flat and locally of finite presentation also. Note that the base change $E \times _ F U \to U$ of $a$ is still separated and locally quasi-finite (by Lemma <a href="/tag/046F" data-tag="046F">80.4.2</a>). Hence we may replace the upper part of the diagram of the lemma by $E \times _ F U \to U$. In other words, we may assume that $F \to G$ is a surjective, flat morphism of schemes which is locally of finite presentation. In particular, $\{ F \to G\} $ is an fppf covering of schemes. By Morphisms of Spaces, Proposition <a href="/tag/03XX" data-tag="03XX">67.50.2</a> we conclude that $E$ is a scheme also. By Descent, Lemma <a href="/tag/02W5" data-tag="02W5">35.39.1</a> the fact that $E = H \times _ G F$ means that we get a descent datum on $E$ relative to the fppf covering $\{ F \to G\} $. By More on Morphisms, Lemma <a href="/tag/02W8" data-tag="02W8">37.57.1</a> this descent datum is effective. By Descent, Lemma <a href="/tag/02W5" data-tag="02W5">35.39.1</a> again this implies that $H$ is a scheme. By Descent, Lemmas <a href="/tag/02KU" data-tag="02KU">35.23.6</a> and <a href="/tag/02VI" data-tag="02VI">35.23.26</a> it now follows that $b$ is separated and locally quasi-finite. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Here is the result that the section title refers to. 
+</p>
+<p>
+<article class="env-lemma" id="046K">
+  <p><a class="environment-identifier" href="/tag/046K">Lemma <span data-tag="046K">80.5.3</span>.</a> Let $S$ be a scheme. Let $F : (\mathit{Sch}/S)_{fppf}^{opp} \to \textit{Sets}$ be a functor. Assume that </p>
+  <p><ol>
+  <li><p>
+the presheaf $F$ is a sheaf, 
+</p>
+</li><li><p>
+there exists an algebraic space $X$ and a map $X \to F$ which is representable by algebraic spaces, surjective, flat and locally of finite presentation. 
+</p>
+</li>
+</ol></p>
+  <p> Then $\Delta _ F$ is representable (by schemes). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $U \to X$ be a surjective étale morphism from a scheme towards $X$. Then $U \to X$ is representable, surjective, flat and locally of finite presentation by Morphisms of Spaces, Lemmas <a href="/tag/0467" data-tag="0467">67.39.7</a> and <a href="/tag/0468" data-tag="0468">67.39.8</a>. By Lemma <a href="/tag/046G" data-tag="046G">80.4.3</a> the composition $U \to F$ is representable by algebraic spaces, surjective, flat and locally of finite presentation also. Thus we see that $R = U \times _ F U$ is an algebraic space, see Lemma <a href="/tag/03XY" data-tag="03XY">80.3.7</a>. The morphism of algebraic spaces $R \to U \times _ S U$ is a monomorphism, hence separated (as the diagonal of a monomorphism is an isomorphism, see Morphisms of Spaces, Lemma <a href="/tag/042M" data-tag="042M">67.10.2</a>). Since $U \to F$ is locally of finite presentation, both morphisms $R \to U$ are locally of finite presentation, see Lemma <a href="/tag/046F" data-tag="046F">80.4.2</a>. Hence $R \to U \times _ S U$ is locally of finite type (use Morphisms of Spaces, Lemmas <a href="/tag/0464" data-tag="0464">67.28.5</a> and <a href="/tag/0462" data-tag="0462">67.23.6</a>). Altogether this means that $R \to U \times _ S U$ is a monomorphism which is locally of finite type, hence a separated and locally quasi-finite morphism, see Morphisms of Spaces, Lemma <a href="/tag/0463" data-tag="0463">67.27.10</a>. 
+    <p>
+      Now we are ready to prove that $\Delta _ F$ is representable. Let $T$ be a scheme, and let $(a, b) : T \to F \times F$ be a morphism. Set 
+    <p>
+      <div class="equation">
+  \[  T' = (U \times _ S U) \times _{F \times F} T.  \]
+</div>
+    <p>
+       Note that $U \times _ S U \to F \times F$ is representable by algebraic spaces, surjective, flat and locally of finite presentation by Lemma <a href="/tag/046H" data-tag="046H">80.4.4</a>. Hence $T'$ is an algebraic space, and the projection morphism $T' \to T$ is surjective, flat, and locally of finite presentation. Consider $Z = T \times _{F \times F} F$ (this is a sheaf) and 
+    <p>
+      <div class="equation">
+  \[  Z' = T' \times _{U \times _ S U} R = T' \times _ T Z.  \]
+</div>
+    <p>
+       We see that $Z'$ is an algebraic space, and $Z' \to T'$ is separated and locally quasi-finite by the discussion in the first paragraph of the proof which showed that $R$ is an algebraic space and that the morphism $R \to U \times _ S U$ has those properties. Hence we may apply Lemma <a href="/tag/046J" data-tag="046J">80.5.2</a> to the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ Z' \ar[r] \ar[d] &  T' \ar[d] \\  Z \ar[r] &  T }  \]
+</div>
+    <p>
+       and we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Here is a variant of the result above. 
+</p>
+<p>
+<article class="env-lemma" id="0AHV">
+  <p><a class="environment-identifier" href="/tag/0AHV">Lemma <span data-tag="0AHV">80.5.4</span>.</a> Let $S$ be a scheme. Let $F : (\mathit{Sch}/S)_{fppf}^{opp} \to \textit{Sets}$ be a functor. Let $X$ be a scheme and let $X \to F$ be representable by algebraic spaces and locally quasi-finite. Then $X \to F$ is representable (by schemes). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $T$ be a scheme and let $T \to F$ be a morphism. We have to show that the algebraic space $X \times _ F T$ is representable by a scheme. Consider the morphism 
+    <p>
+      <div class="equation">
+  \[  X \times _ F T \longrightarrow X \times _{\mathop{\mathrm{Spec}}(\mathbf{Z})} T  \]
+</div>
+    <p>
+       Since $X \times _ F T \to T$ is locally quasi-finite, so is the displayed arrow (Morphisms of Spaces, Lemma <a href="/tag/03XN" data-tag="03XN">67.27.8</a>). On the other hand, the displayed arrow is a monomorphism and hence separated (Morphisms of Spaces, Lemma <a href="/tag/042N" data-tag="042N">67.10.3</a>). Thus $X \times _ F T$ is a scheme by Morphisms of Spaces, Proposition <a href="/tag/03XX" data-tag="03XX">67.50.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

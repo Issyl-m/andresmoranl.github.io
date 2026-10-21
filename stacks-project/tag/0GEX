@@ -1,0 +1,314 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="etale-cohomology-section-glueing-etale" class="tex-section"><span data-tag="0GEX">59.104</span> Descending étale sheaves</h2>
+
+<p>
+We prove that étale sheaves “glue” in the fppf and h topology and related results. We have already shown the following related results 
+</p>
+<ol>
+  <li><p>
+Lemma <a href="/tag/09XN" data-tag="09XN">59.39.2</a> tells us that a sheaf on the small étale site of a scheme $S$ determines a sheaf on the big étale site of $S$ satisfying the sheaf condition for fpqc coverings (and a fortiori for Zariski, étale, smooth, syntomic, and fppf coverings), 
+</p>
+</li><li><p>
+Lemma <a href="/tag/0DDL" data-tag="0DDL">59.100.1</a> is a restatement of the previous point for the fppf topology, 
+</p>
+</li><li><p>
+Lemma <a href="/tag/0DDW" data-tag="0DDW">59.102.1</a> proves the same for the ph topology, 
+</p>
+</li><li><p>
+Lemma <a href="/tag/0EW8" data-tag="0EW8">59.103.1</a> proves the same for the h topology, 
+</p>
+</li><li><p>
+Lemma <a href="/tag/0DEU" data-tag="0DEU">59.100.4</a> is a version of fppf descent for étale sheaves, and 
+</p>
+</li><li><p>
+Remark <a href="/tag/09Z3" data-tag="09Z3">59.55.6</a> tells us that we have descent of étale sheaves for finite surjective morphisms (we will clarify and strengthen this below). 
+</p>
+</li>
+</ol>
+<p>
+ In the chapter on simplicial spaces we will prove some additional results on this, see for example Simplicial Spaces, Sections <a href="/tag/0DH4" data-tag="0DH4">85.33</a> and <a href="/tag/0DHI" data-tag="0DHI">85.36</a>. 
+</p>
+<p>
+In order to conveniently express our results we need some notation. Let $\mathcal{U} = \{ f_ i : X_ i \to X\} $ be a family of morphisms of schemes with fixed target. A <em>descent datum</em> for étale sheaves with respect to $\mathcal{U}$ is a family $((\mathcal{F}_ i)_{i \in I}, (\varphi _{ij})_{i, j \in I})$ where 
+</p>
+<ol>
+  <li><p>
+$\mathcal{F}_ i$ is in $\mathop{\mathit{Sh}}\nolimits (X_{i, {\acute{e}tale}})$, and 
+</p>
+</li><li><p>
+$\varphi _{ij} : \text{pr}_{0, small}^{-1} \mathcal{F}_ i \longrightarrow \text{pr}_{1, small}^{-1} \mathcal{F}_ j$ is an isomorphism in $\mathop{\mathit{Sh}}\nolimits ((X_ i \times _ X X_ j)_{\acute{e}tale})$ 
+</p>
+</li>
+</ol>
+<p>
+ such that the <em>cocycle condition</em> holds: the diagrams 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \text{pr}_{0, small}^{-1}\mathcal{F}_ i \ar[dr]_{\text{pr}_{02, small}^{-1}\varphi _{ik}} \ar[rr]^{\text{pr}_{01, small}^{-1}\varphi _{ij}} &  &  \text{pr}_{1, small}^{-1}\mathcal{F}_ j \ar[dl]^{\text{pr}_{12, small}^{-1}\varphi _{jk}} \\  &  \text{pr}_{2, small}^{-1}\mathcal{F}_ k }  \]
+</div>
+<p>
+ commute in $\mathop{\mathit{Sh}}\nolimits ((X_ i \times _ X X_ j \times _ X X_ k)_{\acute{e}tale})$. There is an obvious notion of <em>morphisms of descent data</em> and we obtain a category of descent data. A descent datum $((\mathcal{F}_ i)_{i \in I}, (\varphi _{ij})_{i, j \in I})$ is called <em>effective</em> if there exist a $\mathcal{F}$ in $\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale})$ and isomorphisms $\varphi _ i : f_{i, small}^{-1} \mathcal{F} \to \mathcal{F}_ i$ in $\mathop{\mathit{Sh}}\nolimits (X_{i, {\acute{e}tale}})$ compatible with the $\varphi _{ij}$, i.e., such that 
+</p>
+<div class="equation">
+  \[  \varphi _{ij} = \text{pr}_{1, small}^{-1} (\varphi _ j) \circ \text{pr}_{0, small}^{-1} (\varphi _ i^{-1})  \]
+</div>
+<p>
+ Another way to say this is the following. Given an object $\mathcal{F}$ of $\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale})$ we obtain the <em>canonical descent datum</em> $(f_{i, small}^{-1}\mathcal{F}_ i, c_{ij})$ where $c_{ij}$ is the canonical isomorphism 
+</p>
+<div class="equation">
+  \[  c_{ij} : \text{pr}_{0, small}^{-1} f_{i, small}^{-1}\mathcal{F} \longrightarrow \text{pr}_{1, small}^{-1} f_{j, small}^{-1}\mathcal{F}  \]
+</div>
+<p>
+ The descent datum $((\mathcal{F}_ i)_{i \in I}, (\varphi _{ij})_{i, j \in I})$ is effective if and only if it is isomorphic to the canonical descent datum associated to some $\mathcal{F}$ in $\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale})$. 
+</p>
+<p>
+If the family consists of a single morphism $\{ X \to Y\} $, then we think of a descent datum as a pair $(\mathcal{F}, \varphi )$ where $\mathcal{F}$ is an object of $\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale})$ and $\varphi $ is an isomorphism 
+</p>
+<div class="equation">
+  \[  \text{pr}_{0, small}^{-1} \mathcal{F} \longrightarrow \text{pr}_{1, small}^{-1} \mathcal{F}  \]
+</div>
+<p>
+ in $\mathop{\mathit{Sh}}\nolimits ((X \times _ Y X)_{\acute{e}tale})$ such that the cocycle condition holds: 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \text{pr}_{0, small}^{-1}\mathcal{F} \ar[dr]_{\text{pr}_{02, small}^{-1}\varphi } \ar[rr]^{\text{pr}_{01, small}^{-1}\varphi } &  &  \text{pr}_{1, small}^{-1}\mathcal{F} \ar[dl]^{\text{pr}_{12, small}^{-1}\varphi } \\  &  \text{pr}_{2, small}^{-1}\mathcal{F} }  \]
+</div>
+<p>
+ commutes in $\mathop{\mathit{Sh}}\nolimits ((X \times _ Y X \times _ Y X)_{\acute{e}tale})$. There is a notion of morphisms of descent data and effectivity exactly as before. 
+</p>
+<p>
+We first prove effective descent for surjective integral morphisms. 
+</p>
+<p>
+<article class="env-lemma" id="0GEY">
+  <p><a class="environment-identifier" href="/tag/0GEY">Lemma <span data-tag="0GEY">59.104.1</span>.</a> Let $f : X \to Y$ be a morphism of schemes which has a section. Then the functor </p>
+  <div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale}) \longrightarrow \text{descent data for étale sheaves wrt }\{ X \to Y\}   \]
+</div>
+  <p> sending $\mathcal{G}$ in $\mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale})$ to the canonical descent datum is an equivalence of categories. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is formal and depends only on functoriality of the pullback functors. We omit the details. Hint: If $s : Y \to X$ is a section, then a quasi-inverse is the functor sending $(\mathcal{F}, \varphi )$ to $s_{small}^{-1}\mathcal{F}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GEZ">
+  <p><a class="environment-identifier" href="/tag/0GEZ">Lemma <span data-tag="0GEZ">59.104.2</span>.</a> Let $f : X \to Y$ be a surjective integral morphism of schemes. The functor </p>
+  <div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale}) \longrightarrow \text{descent data for étale sheaves wrt }\{ X \to Y\}   \]
+</div>
+  <p> is an equivalence of categories. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In this proof we drop the subscript ${}_{small}$ from our pullback and pushforward functors. Denote $X_1 = X \times _ Y X$ and denote $f_1 : X_1 \to Y$ the morphism $f \circ \text{pr}_0 = f \circ \text{pr}_1$. Let $(\mathcal{F}, \varphi )$ be a descent datum for $\{ X \to Y\} $. Let us set $\mathcal{F}_1 = \text{pr}_0^{-1}\mathcal{F}$. We may think of $\varphi $ as defining an isomorphism $\mathcal{F}_1 \to \text{pr}_1^{-1}\mathcal{F}$. We claim that the rule which sends a descent datum $(\mathcal{F}, \varphi )$ to the sheaf 
+    <p>
+      <div class="equation">
+  \[  \mathcal{G} = \text{Equalizer}\left( \xymatrix{ f_*\mathcal{F} \ar@<1ex>[r] \ar@<-1ex>[r] &  f_{1, *}\mathcal{F}_1 } \right)  \]
+</div>
+    <p>
+       is a quasi-inverse to the functor in the statement of the lemma. The first of the two arrows comes from the map 
+    <p>
+      <div class="equation">
+  \[  f_*\mathcal{F} \to f_*\text{pr}_{0, *}\text{pr}_0^{-1}\mathcal{F} = f_{1, *}\mathcal{F}_1  \]
+</div>
+    <p>
+       and the second arrow comes from the map 
+    <p>
+      <div class="equation">
+  \[  f_*\mathcal{F} \to f_* \text{pr}_{1, *}\text{pr}_1^{-1}\mathcal{F} \xleftarrow {\varphi } f_* \text{pr}_{0, *} \text{pr}_0^{-1}\mathcal{F} = f_{1, *}\mathcal{F}_1  \]
+</div>
+    <p>
+       where the arrow pointing left is invertible. To prove this works we have to show that the canonical map $f^{-1}\mathcal{G} \to \mathcal{F}$ is an isomorphism; details omitted. In order to prove this it suffices to check after pulling back by any collection of morphisms $\mathop{\mathrm{Spec}}(k) \to Y$ where $k$ is an algebraically closed field. Namely, the corresponding base changes $X_ k \to X$ are jointly surjective and we can check whether a map of sheaves on $X_{\acute{e}tale}$ is an isomorphism by looking at stalks on geometric points, see Theorem <a href="/tag/03PU" data-tag="03PU">59.29.10</a>. By Lemma <a href="/tag/0EYP" data-tag="0EYP">59.55.4</a> the construction of $\mathcal{G}$ from the descent datum $(\mathcal{F}, \varphi )$ commutes with any base change. Thus we may assume $Y$ is the spectrum of an algebraically closed field (note that base change preserves the properties of the morphism $f$, see Morphisms, Lemma <a href="/tag/01S1" data-tag="01S1">29.9.4</a> and <a href="/tag/01WL" data-tag="01WL">29.45.6</a>). In this case the morphism $X \to Y$ has a section, so we know that the functor is an equivalence by Lemma <a href="/tag/0GEY" data-tag="0GEY">59.104.1</a>. However, the reader may show that the functor is an equivalence if and only if the construction above is a quasi-inverse; details omitted. This finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GF0">
+  <p><a class="environment-identifier" href="/tag/0GF0">Lemma <span data-tag="0GF0">59.104.3</span>.</a> Let $f : X \to Y$ be a surjective proper morphism of schemes. The functor </p>
+  <div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale}) \longrightarrow \text{descent data for étale sheaves wrt }\{ X \to Y\}   \]
+</div>
+  <p> is an equivalence of categories. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The exact same proof as given in Lemma <a href="/tag/0GEZ" data-tag="0GEZ">59.104.2</a> works, except the appeal to Lemma <a href="/tag/0EYP" data-tag="0EYP">59.55.4</a> should be replaced by an appeal to Lemma <a href="/tag/0A3U" data-tag="0A3U">59.91.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GF1">
+  <p><a class="environment-identifier" href="/tag/0GF1">Lemma <span data-tag="0GF1">59.104.4</span>.</a> Let $f : X \to Y$ be a morphism of schemes. Let $Z \to Y$ be a surjective integral morphism of schemes or a surjective proper morphism of schemes. If the functors </p>
+  <div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits (Z_{\acute{e}tale}) \longrightarrow \text{descent data for étale sheaves wrt }\{ X \times _ Y Z \to Z\}   \]
+</div>
+  <p> and </p>
+  <div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits ((Z \times _ Y Z)_{\acute{e}tale}) \longrightarrow \text{descent data for étale sheaves wrt } \{ X \times _ Y (Z \times _ Y Z) \to Z \times _ Y Z\}   \]
+</div>
+  <p> are equivalences of categories, then </p>
+  <div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale}) \longrightarrow \text{descent data for étale sheaves wrt }\{ X \to Y\}   \]
+</div>
+  <p> is an equivalence. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Formal consequence of the definitions and Lemmas <a href="/tag/0GEZ" data-tag="0GEZ">59.104.2</a> and <a href="/tag/0GF0" data-tag="0GF0">59.104.3</a>. Details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GF2">
+  <p><a class="environment-identifier" href="/tag/0GF2">Lemma <span data-tag="0GF2">59.104.5</span>.</a> Let $f : X \to Y$ be a morphism of schemes which is surjective, flat, locally of finite presentation. The functor </p>
+  <div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale}) \longrightarrow \text{descent data for étale sheaves wrt }\{ X \to Y\}   \]
+</div>
+  <p> is an equivalence of categories. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Exactly as in the proof of Lemma <a href="/tag/0GEZ" data-tag="0GEZ">59.104.2</a> we claim a quasi-inverse is given by the functor sending $(\mathcal{F}, \varphi )$ to 
+    <p>
+      <div class="equation">
+  \[  \mathcal{G} = \text{Equalizer}\left( \xymatrix{ f_*\mathcal{F} \ar@<1ex>[r] \ar@<-1ex>[r] &  f_{1, *}\mathcal{F}_1 } \right)  \]
+</div>
+    <p>
+       and in order to prove this it suffices to show that $f^{-1}\mathcal{G} \to \mathcal{F}$ is an isomorphism. This we may check locally, hence we may and do assume $Y$ is affine. Then we can find a finite surjective morphism $Z \to Y$ such that there exists an open covering $Z = \bigcup W_ i$ such that $W_ i \to Y$ factors through $X$. See More on Morphisms, Lemma <a href="/tag/0CP0" data-tag="0CP0">37.48.6</a>. Applying Lemma <a href="/tag/0GF1" data-tag="0GF1">59.104.4</a> we see that it suffices to prove the lemma after replacing $Y$ by $Z$ and $Z \times _ Y Z$ and $f$ by its base change. Thus we may assume $f$ has sections Zariski locally. Of course, using that the problem is local on $Y$ we reduce to the case where we have a section which is Lemma <a href="/tag/0GEY" data-tag="0GEY">59.104.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GF3">
+  <p><a class="environment-identifier" href="/tag/0GF3">Lemma <span data-tag="0GF3">59.104.6</span>.</a> Let $\{ f_ i : X_ i \to X\} $ be an fppf covering of schemes. The functor </p>
+  <div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale}) \longrightarrow \text{descent data for étale sheaves wrt }\{ f_ i : X_ i \to X\}   \]
+</div>
+  <p> is an equivalence of categories. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We have Lemma <a href="/tag/0GF2" data-tag="0GF2">59.104.5</a> for the morphism $f : \coprod X_ i \to X$. Then a formal argument shows that descent data for $f$ are the same thing as descent data for the covering, compare with Descent, Lemma <a href="/tag/023X" data-tag="023X">35.34.5</a>. Details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GF4">
+  <p><a class="environment-identifier" href="/tag/0GF4">Lemma <span data-tag="0GF4">59.104.7</span>.</a> Let $f : X' \to X$ be a proper morphism of schemes. Let $i : Z \to X$ be a closed immersion. Set $E = Z \times _ X X'$. Picture </p>
+  <div class="equation">
+  \[  \xymatrix{ E \ar[d]_ g \ar[r]_ j &  X' \ar[d]^ f \\  Z \ar[r]^ i &  X }  \]
+</div>
+  <p> If $f$ is an isomorphism over $X \setminus Z$, then the functor </p>
+  <div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale}) \longrightarrow \mathop{\mathit{Sh}}\nolimits (X'_{\acute{e}tale}) \times _{\mathop{\mathit{Sh}}\nolimits (E_{\acute{e}tale})} \mathop{\mathit{Sh}}\nolimits (Z_{\acute{e}tale})  \]
+</div>
+  <p> is an equivalence of categories. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will work with the $2$-fibre product category as constructed in Categories, Example <a href="/tag/003R" data-tag="003R">4.31.3</a>. The functor sends $\mathcal{F}$ to the triple $(f^{-1}\mathcal{F}, i^{-1}\mathcal{F}, c)$ where $c : j^{-1}f^{-1}\mathcal{F} \to g^{-1}i^{-1}\mathcal{F}$ is the canonical isomorphism. We will construct a quasi-inverse functor. Let $(\mathcal{F}', \mathcal{G}, \alpha )$ be an object of the right hand side of the arrow. We obtain an isomorphism 
+    <p>
+      <div class="equation">
+  \[  i^{-1}f_*\mathcal{F}' = g_*j^{-1}\mathcal{F}' \xrightarrow {g_*\alpha } g_*g^{-1}\mathcal{G}  \]
+</div>
+    <p>
+       The first equality is Lemma <a href="/tag/0A3U" data-tag="0A3U">59.91.5</a>. Using this we obtain maps $i_*\mathcal{G} \to i_*g_*g^{-1}\mathcal{G}$ and $f'_*\mathcal{F}' \to i_*g_*g^{-1}\mathcal{G}$. We set 
+    <p>
+      <div class="equation">
+  \[  \mathcal{F} = f_*\mathcal{F}' \times _{i_*g_*g^{-1}\mathcal{G}} i_*\mathcal{G}  \]
+</div>
+    <p>
+       and we claim that $\mathcal{F}$ is an object of the left hand side of the arrow whose image in the right hand side is isomorphic to the triple we started out with. Let us compute the stalk of $\mathcal{F}$ at a geometric point $\overline{x}$ of $X$. 
+    <p>
+      If $\overline{x}$ is not in $Z$, then on the one hand $\overline{x}$ comes from a unique geometric point $\overline{x}'$ of $X'$ and $\mathcal{F}'_{\overline{x}'} = (f_*\mathcal{F}')_{\overline{x}}$ and on the other hand we have $(i_*\mathcal{G})_{\overline{x}}$ and $(i_*g_*g^{-1}\mathcal{G})_{\overline{x}}$ are singletons. Hence we see that $\mathcal{F}_{\overline{x}}$ equals $\mathcal{F}'_{\overline{x}'}$. 
+    <p>
+      If $\overline{x}$ is in $Z$, i.e., $\overline{x}$ is the image of a geometric point $\overline{z}$ of $Z$, then we obtain $(i_*\mathcal{G})_{\overline{x}} = \mathcal{G}_{\overline{z}}$ and 
+    <p>
+      <div class="equation">
+  \[  (i_*g_*g^{-1}\mathcal{G})_{\overline{x}} = (g_*g^{-1}\mathcal{G})_{\overline{z}} = \Gamma (E_{\overline{z}}, g^{-1}\mathcal{G}|_{E_{\overline{z}}})  \]
+</div>
+    <p>
+       (by the proper base change for pushforward used above) and similarly 
+    <p>
+      <div class="equation">
+  \[  (f_*\mathcal{F}')_{\overline{x}} = \Gamma (X'_{\overline{x}}, \mathcal{F}'|_{X'_{\overline{x}}})  \]
+</div>
+    <p>
+       Since we have the identification $E_{\overline{z}} = X'_{\overline{x}}$ and since $\alpha $ defines an isomorphism between the sheaves $\mathcal{F}'|_{X'_{\overline{x}}}$ and $g^{-1}\mathcal{G}|_{E_{\overline{z}}}$ we conclude that we get 
+    <p>
+      <div class="equation">
+  \[  \mathcal{F}_{\overline{x}} = \mathcal{G}_{\overline{z}}  \]
+</div>
+    <p>
+       in this case. 
+    <p>
+      To finish the proof, we observe that there are canonical maps $i^{-1}\mathcal{F} \to \mathcal{G}$ and $f^{-1}\mathcal{F} \to \mathcal{F}'$ compatible with $\alpha $ which on stalks produce the isomorphisms we saw above. We omit the careful construction of these maps. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GF5">
+  <p><a class="environment-identifier" href="/tag/0GF5">Lemma <span data-tag="0GF5">59.104.8</span>.</a> Let $S$ be a scheme. Then the category fibred in groupoids </p>
+  <div class="equation">
+  \[  p : \mathcal{S} \longrightarrow (\mathit{Sch}/S)_ h  \]
+</div>
+  <p> whose fibre category over $U$ is the category $\mathop{\mathit{Sh}}\nolimits (U_{\acute{e}tale})$ of sheaves on the small étale site of $U$ is a stack in groupoids. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      To prove the lemma we will check conditions (1), (2), and (3) of More on Flatness, Lemma <a href="/tag/0EX9" data-tag="0EX9">38.37.13</a>. 
+    <p>
+      Condition (1) holds because we have glueing for sheaves (and Zariski coverings are étale coverings). See Sites, Lemma <a href="/tag/04TR" data-tag="04TR">7.26.4</a>. 
+    <p>
+      To see condition (2), suppose that $f : X \to Y$ is a surjective, flat, proper morphism of finite presentation over $S$ with $Y$ affine. Then we have descent for $\{ X \to Y\} $ by either Lemma <a href="/tag/0GF2" data-tag="0GF2">59.104.5</a> or Lemma <a href="/tag/0GF0" data-tag="0GF0">59.104.3</a>. 
+    <p>
+      Condition (3) follows immediately from the more general Lemma <a href="/tag/0GF4" data-tag="0GF4">59.104.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

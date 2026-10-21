@@ -1,0 +1,479 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-algebra-section-reflexive" class="tex-section"><span data-tag="0AUY">15.24</span> Reflexive modules</h2>
+
+<p>
+Here is our definition. 
+</p>
+<p>
+<article class="env-definition" id="0AUZ">
+  <p><a class="environment-identifier" href="/tag/0AUZ">Definition <span data-tag="0AUZ">15.24.1</span>.</a> Let $R$ be a domain. We say an $R$-module $M$ is <em>reflexive</em> if the natural map </p>
+  <div class="equation">
+  \[  j : M \longrightarrow \mathop{\mathrm{Hom}}\nolimits _ R(\mathop{\mathrm{Hom}}\nolimits _ R(M, R), R)  \]
+</div>
+  <p> which sends $m \in M$ to the map sending $\varphi \in \mathop{\mathrm{Hom}}\nolimits _ R(M, R)$ to $\varphi (m) \in R$ is an isomorphism. </p>
+</article> 
+</p>
+<p>
+We can make this definition for more general rings, but already the definition above has drawbacks. It would be wise to restrict to Noetherian domains and finite torsion free modules and (perhaps) impose some regularity conditions on $R$ (e.g., $R$ is normal). 
+</p>
+<p>
+<article class="env-lemma" id="0AV0">
+  <p><a class="environment-identifier" href="/tag/0AV0">Lemma <span data-tag="0AV0">15.24.2</span>.</a> Let $R$ be a domain and let $M$ be an $R$-module. </p>
+  <p><ol>
+  <li><p>
+If $M$ is reflexive, then $M$ is torsion free. 
+</p>
+</li><li><p>
+If $M$ is finite, then the kernel and cokernel of $j : M \to \mathop{\mathrm{Hom}}\nolimits _ R(\mathop{\mathrm{Hom}}\nolimits _ R(M, R), R)$ are torsion modules. 
+</p>
+</li><li><p>
+If $M$ is finite, then $j$ is injective if and only if $M$ is torsion free. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      To see (1) use that the double dual of $M$ is torsion free by Lemma <a href="/tag/0AUX" data-tag="0AUX">15.22.12</a>. Assume that $M$ is finite. Choose generators $x_1, \ldots , x_ n$ of $M$ over $R$. Let $K$ be the fraction field of $R$. After renumbering we may assume that for some $0 \leq r \leq n$ the elements $x_1, \ldots , x_ r$ map to a basis of $M \otimes _ R K$ over $K$. For $r < i \leq n$ write $x_ i \otimes 1 = \sum _{1 \leq j \leq r} x_ j \otimes k_{ij}$ with $k_{ij} \in K$. Choose $c \in R$ such that $a_{ij} = ck_{ij} \in R$ and such that $cx_ i = \sum _{1 \leq j \leq r} a_{ij} x_ j$ in $M$ (small detail omitted). Then we get maps 
+    <p>
+      <div class="equation">
+  \[  R^{\oplus r} \xrightarrow {\alpha } M \xrightarrow {\beta } R^{\oplus r} \xrightarrow {\alpha } M  \]
+</div>
+    <p>
+       with both $\alpha \circ \beta $ and $\beta \circ \alpha $ given by multiplication with $c$. Here $\alpha $ uses $x_1, \ldots , x_ r$ and $\beta $ sends $x_ i$ to $c$ times the $i$th basis vector for $1 \leq i \leq r$ and to the vector $(a_{i1}, \ldots , a_{ir})$ for $r < i \leq n$. Consider the commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ R^{\oplus r} \ar[r] \ar[d]^{\text{id}} &  M \ar[r] \ar[d]^ j &  R^{\oplus r} \ar[d]^{\text{id}} \ar[r] &  M \ar[d]^ j \\  R^{\oplus r} \ar[r] &  \mathop{\mathrm{Hom}}\nolimits _ R(\mathop{\mathrm{Hom}}\nolimits _ R(M, R), R) \ar[r] &  R^{\oplus r} \ar[r] &  \mathop{\mathrm{Hom}}\nolimits _ R(\mathop{\mathrm{Hom}}\nolimits _ R(M, R), R) }  \]
+</div>
+    <p>
+       Of course the compositions of consecutive arrows on the bottom row are equal to multiplication by $c$. The diagram shows that the kernel and cokernel of $j$ are annihilated by $c$ which proves (2). For (3) note that if $M$ is torsion free, then $\beta $ is injective which implies that $j$ is injective. The converse is clear because we've seen already that the double dual of $M$ is torsion free. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0B36">
+  <p><a class="environment-identifier" href="/tag/0B36">Lemma <span data-tag="0B36">15.24.3</span>.</a> Let $R$ be a discrete valuation ring and let $M$ be a finite $R$-module. Then the map $j : M \to \mathop{\mathrm{Hom}}\nolimits _ R(\mathop{\mathrm{Hom}}\nolimits _ R(M, R), R)$ is surjective. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $M_{tors} \subset M$ be the torsion submodule. Then we have $\mathop{\mathrm{Hom}}\nolimits _ R(M, R) = \mathop{\mathrm{Hom}}\nolimits _ R(M/M_{tors}, R)$ (holds over any domain). Hence we may assume that $M$ is torsion free. Then $M$ is free by Lemma <a href="/tag/0AUW" data-tag="0AUW">15.22.11</a> and the lemma is clear. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AV1">
+  <p><a class="environment-identifier" href="/tag/0AV1">Lemma <span data-tag="0AV1">15.24.4</span>.</a> Let $R$ be a Noetherian domain. Let $M$ be a finite $R$-module. The following are equivalent: </p>
+  <p><ol>
+  <li><p>
+$M$ is reflexive, 
+</p>
+</li><li><p>
+$M_\mathfrak p$ is a reflexive $R_\mathfrak p$-module for all primes $\mathfrak p \subset R$, and 
+</p>
+</li><li><p>
+$M_\mathfrak m$ is a reflexive $R_\mathfrak m$-module for all maximal ideals $\mathfrak m$ of $R$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The localization of $j : M \to \mathop{\mathrm{Hom}}\nolimits _ R(\mathop{\mathrm{Hom}}\nolimits _ R(M, R), R)$ at a prime $\mathfrak p$ is the corresponding map for the module $M_\mathfrak p$ over the Noetherian local domain $R_\mathfrak p$. See Algebra, Lemma <a href="/tag/0583" data-tag="0583">10.10.2</a>. Thus the lemma holds by Algebra, Lemma <a href="/tag/00HN" data-tag="00HN">10.23.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0EB8">
+  <p><a class="environment-identifier" href="/tag/0EB8">Lemma <span data-tag="0EB8">15.24.5</span>.</a> Let $R$ be a Noetherian domain. Let $0 \to M \to M' \to M''$ an exact sequence of finite $R$-modules. If $M'$ is reflexive and $M''$ is torsion free, then $M$ is reflexive. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use without further mention that $\mathop{\mathrm{Hom}}\nolimits _ R(N, N')$ is a finite $R$-module for any finite $R$-modules $N$ and $N'$, see Algebra, Lemma <a href="/tag/08YR" data-tag="08YR">10.71.9</a>. We take duals to get a sequence 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _ R(M, R) \leftarrow \mathop{\mathrm{Hom}}\nolimits _ R(M', R) \leftarrow \mathop{\mathrm{Hom}}\nolimits _ R(M'', R)  \]
+</div>
+    <p>
+       Dualizing again we obtain a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{Hom}}\nolimits _ R(\mathop{\mathrm{Hom}}\nolimits _ R(M, R), R) \ar[r]_ j &  \mathop{\mathrm{Hom}}\nolimits _ R(\mathop{\mathrm{Hom}}\nolimits _ R(M', R), R) \ar[r] &  \mathop{\mathrm{Hom}}\nolimits _ R(\mathop{\mathrm{Hom}}\nolimits _ R(M'', R), R) \\  M \ar[u] \ar[r] &  M' \ar[u] \ar[r] &  M'' \ar[u] }  \]
+</div>
+    <p>
+       We do not know the top row is exact. But, by assumption the middle vertical arrow is an isomorphism and the right vertical arrow is injective (Lemma <a href="/tag/0AV0" data-tag="0AV0">15.24.2</a>). We claim $j$ is injective. Assuming the claim a diagram chase shows that the left vertical arrow is an isomorphism, i.e., $M$ is reflexive. 
+    <p>
+      Proof of the claim. Consider the exact sequence $\mathop{\mathrm{Hom}}\nolimits _ R(M',R)\to \mathop{\mathrm{Hom}}\nolimits _ R(M,R)\to Q \to 0$ defining $Q$. One applies Algebra, Lemma <a href="/tag/0583" data-tag="0583">10.10.2</a> to obtain 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _ K(M'\otimes _ R K,K) \to \mathop{\mathrm{Hom}}\nolimits _ K(M\otimes _ R K,K) \to Q\otimes _ R K\to 0  \]
+</div>
+    <p>
+       But $M \otimes _ R K \to M' \otimes _ R K$ is an injective map of vector spaces, hence split injective, so $Q \otimes _ R K = 0$, that is, $Q$ is torsion. Then one gets the exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathop{\mathrm{Hom}}\nolimits _ R(Q,R) \to \mathop{\mathrm{Hom}}\nolimits _ R(\mathop{\mathrm{Hom}}\nolimits _ R(M,R),R) \to \mathop{\mathrm{Hom}}\nolimits _ R(\mathop{\mathrm{Hom}}\nolimits _ R(M',R),R)  \]
+</div>
+    <p>
+       and $\mathop{\mathrm{Hom}}\nolimits _ R(Q,R)=0$ because $Q$ is torsion. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AV2">
+  <p><a class="environment-identifier" href="/tag/0AV2">Lemma <span data-tag="0AV2">15.24.6</span>.</a> Let $R$ be a Noetherian domain. Let $M$ be a finite $R$-module. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$M$ is reflexive, 
+</p>
+</li><li><p>
+there exists a short exact sequence $0 \to M \to F \to N \to 0$ with $F$ finite free and $N$ torsion free. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Observe that a finite free module is reflexive. By Lemma <a href="/tag/0EB8" data-tag="0EB8">15.24.5</a> we see that (2) implies (1). Assume $M$ is reflexive. Choose a presentation $R^{\oplus m} \to R^{\oplus n} \to \mathop{\mathrm{Hom}}\nolimits _ R(M, R) \to 0$. Dualizing we get an exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathop{\mathrm{Hom}}\nolimits _ R(\mathop{\mathrm{Hom}}\nolimits _ R(M, R), R) \to R^{\oplus n} \to N \to 0  \]
+</div>
+    <p>
+       with $N = \mathop{\mathrm{Im}}(R^{\oplus n} \to R^{\oplus m})$ a torsion free module. As $M = \mathop{\mathrm{Hom}}\nolimits _ R(\mathop{\mathrm{Hom}}\nolimits _ R(M, R), R)$ we get an exact sequence as in (2). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0EB9">
+  <p><a class="environment-identifier" href="/tag/0EB9">Lemma <span data-tag="0EB9">15.24.7</span>.</a> Let $R \to R'$ be a flat homomorphism of Noetherian domains. If $M$ is a finite reflexive $R$-module, then $M \otimes _ R R'$ is a finite reflexive $R'$-module. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a short exact sequence $0 \to M \to F \to N \to 0$ with $F$ finite free and $N$ torsion free, see Lemma <a href="/tag/0AV2" data-tag="0AV2">15.24.6</a>. Since $R \to R'$ is flat we obtain a short exact sequence $0 \to M \otimes _ R R' \to F \otimes _ R R' \to N \otimes _ R R' \to 0$ with $F \otimes _ R R'$ finite free and $N \otimes _ R R'$ torsion free (Lemma <a href="/tag/0AXM" data-tag="0AXM">15.22.4</a>). Thus $M \otimes _ R R'$ is reflexive by Lemma <a href="/tag/0AV2" data-tag="0AV2">15.24.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AV3">
+  <p><a class="environment-identifier" href="/tag/0AV3">Lemma <span data-tag="0AV3">15.24.8</span>.</a> Let $R$ be a Noetherian domain. Let $M$ be a finite $R$-module. Let $N$ be a finite reflexive $R$-module. Then $\mathop{\mathrm{Hom}}\nolimits _ R(M, N)$ is reflexive. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a presentation $R^{\oplus m} \to R^{\oplus n} \to M \to 0$. Then we obtain 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathop{\mathrm{Hom}}\nolimits _ R(M, N) \to N^{\oplus n} \to N' \to 0  \]
+</div>
+    <p>
+       with $N' = \mathop{\mathrm{Im}}(N^{\oplus n} \to N^{\oplus m})$ torsion free. We conclude by Lemma <a href="/tag/0EB8" data-tag="0EB8">15.24.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="0AV4">
+  <p><a class="environment-identifier" href="/tag/0AV4">Definition <span data-tag="0AV4">15.24.9</span>.</a> Let $R$ be a Noetherian domain. Let $M$ be a finite $R$-module. The module $M^{**} = \mathop{\mathrm{Hom}}\nolimits _ R(\mathop{\mathrm{Hom}}\nolimits _ R(M, R), R)$ is called the <em>reflexive hull</em> of $M$. </p>
+</article> 
+</p>
+<p>
+This makes sense because the reflexive hull is reflexive by Lemma <a href="/tag/0AV3" data-tag="0AV3">15.24.8</a>. The assignment $M \mapsto M^{**}$ is a functor. If $\varphi : M \to N$ is an $R$-module map into a reflexive $R$-module $N$, then $\varphi $ factors $M \to M^{**} \to N$ through the reflexive hull of $M$. Another way to say this is that taking the reflexive hull is the left adjoint to the inclusion functor 
+</p>
+<div class="equation">
+  \[  \text{finite reflexive modules} \subset \text{finite modules}  \]
+</div>
+<p>
+ over a Noetherian domain $R$. 
+</p>
+<p>
+<article class="env-lemma" id="0AV5">
+  <p><a class="environment-identifier" href="/tag/0AV5">Lemma <span data-tag="0AV5">15.24.10</span>.</a> Let $R$ be a Noetherian local ring. Let $M$, $N$ be finite $R$-modules. </p>
+  <p><ol>
+  <li><p>
+If $N$ has depth $\geq 1$, then $\mathop{\mathrm{Hom}}\nolimits _ R(M, N)$ has depth $\geq 1$. 
+</p>
+</li><li><p>
+If $N$ has depth $\geq 2$, then $\mathop{\mathrm{Hom}}\nolimits _ R(M, N)$ has depth $\geq 2$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a presentation $R^{\oplus m} \to R^{\oplus n} \to M \to 0$. Dualizing we get an exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathop{\mathrm{Hom}}\nolimits _ R(M, N) \to N^{\oplus n} \to N' \to 0  \]
+</div>
+    <p>
+       with $N' = \mathop{\mathrm{Im}}(N^{\oplus n} \to N^{\oplus m})$. A submodule of a module with depth $\geq 1$ has depth $\geq 1$; this follows immediately from the definition. Thus part (1) is clear. For (2) note that here the assumption and the previous remark implies $N'$ has depth $\geq 1$. The module $N^{\oplus n}$ has depth $\geq 2$. From Algebra, Lemma <a href="/tag/00LX" data-tag="00LX">10.72.6</a> we conclude $\mathop{\mathrm{Hom}}\nolimits _ R(M, N)$ has depth $\geq 2$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AV6">
+  <p><a class="environment-identifier" href="/tag/0AV6">Lemma <span data-tag="0AV6">15.24.11</span>.</a> Let $R$ be a Noetherian ring. Let $M$, $N$ be finite $R$-modules. </p>
+  <p><ol>
+  <li><p>
+If $N$ has property $(S_1)$, then $\mathop{\mathrm{Hom}}\nolimits _ R(M, N)$ has property $(S_1)$. 
+</p>
+</li><li><p>
+If $N$ has property $(S_2)$, then $\mathop{\mathrm{Hom}}\nolimits _ R(M, N)$ has property $(S_2)$. 
+</p>
+</li><li><p>
+If $R$ is a domain, $N$ is torsion free and $(S_2)$, then $\mathop{\mathrm{Hom}}\nolimits _ R(M, N)$ is torsion free and has property $(S_2)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since localizing at primes commutes with taking $\mathop{\mathrm{Hom}}\nolimits _ R$ for finite $R$-modules (Algebra, Lemma <a href="/tag/08YR" data-tag="08YR">10.71.9</a>) parts (1) and (2) follow immediately from Lemma <a href="/tag/0AV5" data-tag="0AV5">15.24.10</a>. Part (3) follows from (2) and Lemma <a href="/tag/0AUX" data-tag="0AUX">15.22.12</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AV7">
+  <p><a class="environment-identifier" href="/tag/0AV7">Lemma <span data-tag="0AV7">15.24.12</span>.</a> Let $R$ be a Noetherian ring. Let $\varphi : M \to N$ be a map of $R$-modules. Assume that for every prime $\mathfrak p$ of $R$ at least one of the following happens </p>
+  <p><ol>
+  <li><p>
+$M_\mathfrak p \to N_\mathfrak p$ is injective, or 
+</p>
+</li><li><p>
+$\mathfrak p \not\in \text{Ass}(M)$. 
+</p>
+</li>
+</ol></p>
+  <p> Then $\varphi $ is injective. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\mathfrak p$ be an associated prime of $\mathop{\mathrm{Ker}}(\varphi )$. Then there exists an element $x \in M_\mathfrak p$ which is in the kernel of $M_\mathfrak p \to N_\mathfrak p$ and whose annihilator is $\mathfrak pR_\mathfrak p$ (Algebra, Lemma <a href="/tag/0310" data-tag="0310">10.63.15</a>). This is impossible in both cases. Hence $\text{Ass}(\mathop{\mathrm{Ker}}(\varphi )) = \emptyset $ and we conclude $\mathop{\mathrm{Ker}}(\varphi ) = 0$ by Algebra, Lemma <a href="/tag/0587" data-tag="0587">10.63.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AV8">
+  <p><a class="environment-identifier" href="/tag/0AV8">Lemma <span data-tag="0AV8">15.24.13</span>.</a> Let $R$ be a Noetherian ring. Let $\varphi : M \to N$ be a map of $R$-modules. Assume $M$ is finite and that for every prime $\mathfrak p$ of $R$ one of the following happens </p>
+  <p><ol>
+  <li><p>
+$M_\mathfrak p \to N_\mathfrak p$ is an isomorphism, or 
+</p>
+</li><li><p>
+$\text{depth}(M_\mathfrak p) \geq 2$ and $\mathfrak p \not\in \text{Ass}(N)$. 
+</p>
+</li>
+</ol></p>
+  <p> Then $\varphi $ is an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/0AV7" data-tag="0AV7">15.24.12</a> we see that $\varphi $ is injective. Let $N' \subset N$ be an finitely generated $R$-module containing the image of $M$. Then $\text{Ass}(N_\mathfrak p) = \emptyset $ implies $\text{Ass}(N'_\mathfrak p) = \emptyset $. Hence the assumptions of the lemma hold for $M \to N'$. In order to prove that $\varphi $ is an isomorphism, it suffices to prove the same thing for every such $N' \subset N$. Thus we may assume $N$ is a finite $R$-module. In this case, $\mathfrak p \not\in \text{Ass}(N) \Rightarrow \text{depth}(N_\mathfrak p) \geq 1$, see Algebra, Lemma <a href="/tag/00LL" data-tag="00LL">10.63.18</a>. Consider the short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to M \to N \to Q \to 0  \]
+</div>
+    <p>
+       defining $Q$. Looking at the conditions we see that either $Q_\mathfrak p = 0$ in case (1) or $\text{depth}(Q_\mathfrak p) \geq 1$ in case (2) by Algebra, Lemma <a href="/tag/00LX" data-tag="00LX">10.72.6</a>. This implies that $Q$ does not have any associated primes, hence $Q = 0$ by Algebra, Lemma <a href="/tag/0587" data-tag="0587">10.63.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AV9">
+  <p><a class="environment-identifier" href="/tag/0AV9">Lemma <span data-tag="0AV9">15.24.14</span>.</a> Let $R$ be a Noetherian domain. Let $\varphi : M \to N$ be a map of $R$-modules. Assume $M$ is finite, $N$ is torsion free, and that for every prime $\mathfrak p$ of $R$ one of the following happens </p>
+  <p><ol>
+  <li><p>
+$M_\mathfrak p \to N_\mathfrak p$ is an isomorphism, or 
+</p>
+</li><li><p>
+$\text{depth}(M_\mathfrak p) \geq 2$. 
+</p>
+</li>
+</ol></p>
+  <p> Then $\varphi $ is an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a special case of Lemma <a href="/tag/0AV8" data-tag="0AV8">15.24.13</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AVA">
+  <p><a class="environment-identifier" href="/tag/0AVA">Lemma <span data-tag="0AVA">15.24.15</span>.</a> Let $R$ be a Noetherian domain. Let $M$ be a finite $R$-module. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$M$ is reflexive, 
+</p>
+</li><li><p>
+for every prime $\mathfrak p$ of $R$ one of the following happens 
+</p>
+<ol>
+  <li><p>
+$M_\mathfrak p$ is a reflexive $R_\mathfrak p$-module, or 
+</p>
+</li><li><p>
+$\text{depth}(M_\mathfrak p) \geq 2$. 
+</p>
+</li>
+</ol>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If (1) is true, then $M_\mathfrak p$ is a reflexive module for all primes of $\mathfrak p$ by Lemma <a href="/tag/0AV1" data-tag="0AV1">15.24.4</a>. Thus (1) $\Rightarrow $ (2). Assume (2). Set $N = \mathop{\mathrm{Hom}}\nolimits _ R(\mathop{\mathrm{Hom}}\nolimits _ R(M, R), R)$ so that 
+    <p>
+      <div class="equation">
+  \[  N_\mathfrak p = \mathop{\mathrm{Hom}}\nolimits _{R_\mathfrak p}( \mathop{\mathrm{Hom}}\nolimits _{R_\mathfrak p}(M_\mathfrak p, R_\mathfrak p), R_\mathfrak p)  \]
+</div>
+    <p>
+       for every prime $\mathfrak p$ of $R$. See Algebra, Lemma <a href="/tag/0583" data-tag="0583">10.10.2</a>. We apply Lemma <a href="/tag/0AV9" data-tag="0AV9">15.24.14</a> to the map $j : M \to N$. This is allowed because $M$ is finite and $N$ is torsion free by Lemma <a href="/tag/0AUX" data-tag="0AUX">15.22.12</a>. In case (2)(a) the map $M_\mathfrak p \to N_\mathfrak p$ is an isomorphism and in case (2)(b) we have $\text{depth}(M_\mathfrak p) \geq 2$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0EBA">
+  <p><a class="environment-identifier" href="/tag/0EBA">Lemma <span data-tag="0EBA">15.24.16</span>.</a> Let $R$ be a Noetherian domain. Let $M$ be a finite reflexive $R$-module. Let $\mathfrak p \subset R$ be a prime ideal. </p>
+  <p><ol>
+  <li><p>
+If $\text{depth}(R_\mathfrak p) \geq 2$, then $\text{depth}(M_\mathfrak p) \geq 2$. 
+</p>
+</li><li><p>
+If $R$ is $(S_2)$, then $M$ is $(S_2)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since formation of reflexive hull $\mathop{\mathrm{Hom}}\nolimits _ R(\mathop{\mathrm{Hom}}\nolimits _ R(M, R), R)$ commutes with localization (Algebra, Lemma <a href="/tag/0583" data-tag="0583">10.10.2</a>) part (1) follows from Lemma <a href="/tag/0AV5" data-tag="0AV5">15.24.10</a>. Part (2) is immediate from Lemma <a href="/tag/0AV6" data-tag="0AV6">15.24.11</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-example" id="0EBB">
+  <p><a class="environment-identifier" href="/tag/0EBB">Example <span data-tag="0EBB">15.24.17</span>.</a> The results above and below suggest reflexivity is related to the $(S_2)$ condition; here is an example to prevent too optimistic conjectures. Let $k$ be a field. Let $R$ be the $k$-subalgebra of $k[x, y]$ generated by $1, y, x^2, xy, x^3$. Then $R$ is not $(S_2)$. So $R$ as an $R$-module is an example of a reflexive $R$-module which is not $(S_2)$. Let $M = k[x, y]$ viewed as an $R$-module. Then $M$ is a reflexive $R$-module because </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _ R(M, R) = \mathfrak m = (y, x^2, xy, x^3) \quad \text{and}\quad \mathop{\mathrm{Hom}}\nolimits _ R(\mathfrak m, R) = M  \]
+</div>
+  <p> and $M$ is $(S_2)$ as an $R$-module (computations omitted). Thus $R$ is a Noetherian domain possessing a reflexive $(S_2)$ module but $R$ is not $(S_2)$ itself. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0AVB">
+  <p><a class="environment-identifier" href="/tag/0AVB">Lemma <span data-tag="0AVB">15.24.18</span>.</a> Let $R$ be a Noetherian normal domain with fraction field $K$. Let $M$ be a finite $R$-module. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$M$ is reflexive, 
+</p>
+</li><li><p>
+$M$ is torsion free and has property $(S_2)$, 
+</p>
+</li><li><p>
+$M$ is torsion free and $M = \bigcap _{\text{height}(\mathfrak p) = 1} M_{\mathfrak p}$ where the intersection happens in $M_ K = M \otimes _ R K$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Algebra, Lemma <a href="/tag/031S" data-tag="031S">10.157.4</a> we see that $R$ satisfies $(R_1)$ and $(S_2)$. 
+    <p>
+      Assume (1). Then $M$ is torsion free by Lemma <a href="/tag/0AV0" data-tag="0AV0">15.24.2</a> and satisfies $(S_2)$ by Lemma <a href="/tag/0EBA" data-tag="0EBA">15.24.16</a>. Thus (2) holds. 
+    <p>
+      Assume (2). By definition $M' = \bigcap _{\text{height}(\mathfrak p) = 1} M_{\mathfrak p}$ is the kernel of the map 
+    <p>
+      <div class="equation">
+  \[  M_ K \longrightarrow \bigoplus \nolimits _{\text{height}(\mathfrak p) = 1} M_ K/M_\mathfrak p \subset \prod \nolimits _{\text{height}(\mathfrak p) = 1} M_ K/M_\mathfrak p  \]
+</div>
+    <p>
+       Observe that our map indeed factors through the direct sum as indicated since given $a/b \in K$ there are at most finitely many height $1$ primes $\mathfrak p$ with $b \in \mathfrak p$. Let $\mathfrak p_0$ be a prime of height $1$. Then $(M_ K/M_\mathfrak p)_{\mathfrak p_0} = 0$ unless $\mathfrak p = \mathfrak p_0$ in which case we get $(M_ K/M_\mathfrak p)_{\mathfrak p_0} = M_ K/M_{\mathfrak p_0}$. Thus by exactness of localization and the fact that localization commutes with direct sums, we see that $M'_{\mathfrak p_0} = M_{\mathfrak p_0}$. Since $M$ has depth $\geq 2$ at primes of height $> 1$, we see that $M \to M'$ is an isomorphism by Lemma <a href="/tag/0AV9" data-tag="0AV9">15.24.14</a>. Hence (3) holds. 
+    <p>
+      Assume (3). Let $\mathfrak p$ be a prime of height $1$. Then $R_\mathfrak p$ is a discrete valuation ring by $(R_1)$. By Lemma <a href="/tag/0AUW" data-tag="0AUW">15.22.11</a> we see that $M_\mathfrak p$ is finite free, in particular reflexive. Hence the map $M \to M^{**}$ induces an isomorphism at all the primes $\mathfrak p$ of height $1$. Thus the condition $M = \bigcap _{\text{height}(\mathfrak p) = 1} M_{\mathfrak p}$ implies that $M = M^{**}$ and (1) holds. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AVC">
+  <p><a class="environment-identifier" href="/tag/0AVC">Lemma <span data-tag="0AVC">15.24.19</span>.</a> Let $R$ be a Noetherian normal domain. Let $M$ be a finite $R$-module. Then the reflexive hull of $M$ is the intersection </p>
+  <div class="equation">
+  \[  M^{**} = \bigcap \nolimits _{\text{height}(\mathfrak p) = 1} M_{\mathfrak p}/(M_\mathfrak p)_{tors} = \bigcap \nolimits _{\text{height}(\mathfrak p) = 1} (M/M_{tors})_\mathfrak p  \]
+</div>
+  <p> taken in $M \otimes _ R K$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\mathfrak p$ be a prime of height $1$. The kernel of $M_\mathfrak p \to M \otimes _ R K$ is the torsion submodule $(M_\mathfrak p)_{tors}$ of $M_\mathfrak p$. Moreover, we have $(M/M_{tors})_\mathfrak p = M_\mathfrak p/(M_\mathfrak p)_{tors}$ and this is a finite free module over the discrete valuation ring $R_\mathfrak p$ (Lemma <a href="/tag/0AUW" data-tag="0AUW">15.22.11</a>). Then $M_\mathfrak p/(M_\mathfrak p)_{tors} \to (M_\mathfrak p)^{**} = (M^{**})_\mathfrak p$ is an isomorphism, hence the lemma is a consequence of Lemma <a href="/tag/0AVB" data-tag="0AVB">15.24.18</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BM4">
+  <p><a class="environment-identifier" href="/tag/0BM4">Lemma <span data-tag="0BM4">15.24.20</span>.</a> Let $A$ be a Noetherian normal domain with fraction field $K$. Let $L$ be a finite extension of $K$. If the integral closure $B$ of $A$ in $L$ is finite over $A$, then $B$ is reflexive as an $A$-module. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It suffices to show that $B = \bigcap B_\mathfrak p$ where the intersection is over height $1$ primes $\mathfrak p \subset A$, see Lemma <a href="/tag/0AVB" data-tag="0AVB">15.24.18</a>. Let $b \in \bigcap B_\mathfrak p$. Let $x^ d + a_1x^{d - 1} + \ldots + a_ d$ be the minimal polynomial of $b$ over $K$. We want to show $a_ i \in A$. By Algebra, Lemma <a href="/tag/00H7" data-tag="00H7">10.38.6</a> we see that $a_ i \in A_\mathfrak p$ for all $i$ and all height one primes $\mathfrak p$. Hence we get what we want from Algebra, Lemma <a href="/tag/031T" data-tag="031T">10.157.6</a> (or the lemma already cited as $A$ is a reflexive module over itself). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

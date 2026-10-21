@@ -1,0 +1,289 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="equiv-section-fully-faithful" class="tex-section"><span data-tag="0G07">57.13</span> Fully faithful functors</h2>
+
+<p>
+Our goal is to prove fully faithful functors between derived categories are siblings of Fourier-Mukai functors, following <span class="cite">[<a href="/bibliography/Orlov-K3">Orlov-K3</a>]</span> and <span class="cite">[<a href="/bibliography/Ballard">Ballard</a>]</span>. 
+</p>
+<p>
+<article class="env-situation" id="0G08">
+  <p><a class="environment-identifier" href="/tag/0G08">Situation <span data-tag="0G08">57.13.1</span>.</a> Here $k$ is a field. We have proper smooth schemes $X$ and $Y$ over $k$. We have a $k$-linear, exact, fully faithful functor $F : D_{perf}(\mathcal{O}_ X) \to D_{perf}(\mathcal{O}_ Y)$. </p>
+</article> 
+</p>
+<p>
+Before reading on, it makes sense to read at least some of Derived Categories, Section <a href="/tag/0D7Y" data-tag="0D7Y">13.41</a>. 
+</p>
+<p>
+Recall that $X$ is regular and hence has the resolution property (Varieties, Lemma <a href="/tag/056S" data-tag="056S">33.25.3</a> and Derived Categories of Schemes, Lemma <a href="/tag/0F8A" data-tag="0F8A">36.36.8</a>). Thus on $X \times X$ we may choose a resolution 
+</p>
+<div class="equation">
+  \[  \ldots \to \mathcal{E}_2 \boxtimes \mathcal{G}_2 \to \mathcal{E}_1 \boxtimes \mathcal{G}_1 \to \mathcal{E}_0 \boxtimes \mathcal{G}_0 \to \mathcal{O}_\Delta \to 0  \]
+</div>
+<p>
+ where each $\mathcal{E}_ i$ and $\mathcal{G}_ i$ is a finite locally free $\mathcal{O}_ X$-module, see Lemma <a href="/tag/0FZ2" data-tag="0FZ2">57.9.3</a>. Using the complex 
+</p>
+<div class="equation" id="0G09">
+    <span class="equation-label"><a href="/tag/0G09" data-tag="0G09">57.13.1.1</a></span>
+  <div>\begin{equation}  \label{equiv-equation-original-complex} \ldots \to \mathcal{E}_2 \boxtimes \mathcal{G}_2 \to \mathcal{E}_1 \boxtimes \mathcal{G}_1 \to \mathcal{E}_0 \boxtimes \mathcal{G}_0 \end{equation}</div>
+</div>
+<p>
+ in $D_{perf}(\mathcal{O}_{X \times X})$ as in Derived Categories, Example <a href="/tag/0D8Z" data-tag="0D8Z">13.41.2</a> if for each $n$ we denote 
+</p>
+<div class="equation">
+  \[  M_ n = (\mathcal{E}_ n \boxtimes \mathcal{G}_ n \to \ldots \to \mathcal{E}_0 \boxtimes \mathcal{G}_0)[-n]  \]
+</div>
+<p>
+ we obtain an infinite Postnikov system for the complex (<a href="/tag/0G09" data-tag="0G09">57.13.1.1</a>). This means the morphisms $M_0 \to M_1[1] \to M_2[2] \to \ldots $ and $M_ n \to \mathcal{E}_ n \boxtimes \mathcal{G}_ n$ and $\mathcal{E}_ n \boxtimes \mathcal{G}_ n \to M_{n - 1}$ satisfy certain conditions documented in Derived Categories, Definition <a href="/tag/0D7Z" data-tag="0D7Z">13.41.1</a>. Set 
+</p>
+<div class="equation">
+  \[  \mathcal{F}_ n = \mathop{\mathrm{Ker}}(\mathcal{E}_ n \boxtimes \mathcal{G}_ n \to \mathcal{E}_{n - 1} \boxtimes \mathcal{G}_{n - 1})  \]
+</div>
+<p>
+ Observe that since $\mathcal{O}_\Delta $ is flat over $X$ via $\text{pr}_1$ the same is true for $\mathcal{F}_ n$ for all $n$ (this is a convenient though not essential observation). We have 
+</p>
+<div class="equation">
+  \[  H^ q(M_ n[n]) = \left\{  \begin{matrix}  \mathcal{O}_\Delta 
+
+&  \text{if} 
+
+&  q = 0 
+
+\\  \mathcal{F}_ n 
+
+&  \text{if} 
+
+&  q = -n 
+
+\\  0 
+
+&  \text{if} 
+
+&  q \not= 0, -n 
+
+\end{matrix} \right.  \]
+</div>
+<p>
+ Thus for $n \geq \dim (X \times X)$ we have 
+</p>
+<div class="equation">
+  \[  M_ n[n] \cong \mathcal{O}_\Delta \oplus \mathcal{F}_ n[n]  \]
+</div>
+<p>
+ in $D_{perf}(\mathcal{O}_{X \times X})$ by Lemma <a href="/tag/0FZ4" data-tag="0FZ4">57.9.5</a>. 
+</p>
+<p>
+We are interested in the complex 
+</p>
+<div class="equation" id="0G0A">
+    <span class="equation-label"><a href="/tag/0G0A" data-tag="0G0A">57.13.1.2</a></span>
+  <div>\begin{equation}  \label{equiv-equation-complex} \ldots \to \mathcal{E}_2 \boxtimes F(\mathcal{G}_2) \to \mathcal{E}_1 \boxtimes F(\mathcal{G}_1) \to \mathcal{E}_0 \boxtimes F(\mathcal{G}_0) \end{equation}</div>
+</div>
+<p>
+ in $D_{perf}(\mathcal{O}_{X \times Y})$ as the “totalization” of this complex should give us the kernel of the Fourier-Mukai functor we are trying to construct. For all $i, j \geq 0$ we have 
+</p>
+<div class="equation">
+  \begin{align*}  \mathop{\mathrm{Ext}}\nolimits ^ q_{X \times Y}(\mathcal{E}_ i \boxtimes F(\mathcal{G}_ i), \mathcal{E}_ j \boxtimes F(\mathcal{G}_ j)) &  = \bigoplus \nolimits _ p \mathop{\mathrm{Ext}}\nolimits ^{q + p}_ X(\mathcal{E}_ i, \mathcal{E}_ j) \otimes _ k \mathop{\mathrm{Ext}}\nolimits ^{-p}_ Y(F(\mathcal{G}_ i), F(\mathcal{G}_ j)) \\ &  = \bigoplus \nolimits _ p \mathop{\mathrm{Ext}}\nolimits ^{q + p}_ X(\mathcal{E}_ i, \mathcal{E}_ j) \otimes _ k \mathop{\mathrm{Ext}}\nolimits ^{-p}_ X(\mathcal{G}_ i, \mathcal{G}_ j) \end{align*}
+</div>
+<p>
+ The second equality holds because $F$ is fully faithful and the first by Derived Categories of Schemes, Lemma <a href="/tag/0FXZ" data-tag="0FXZ">36.25.1</a>. We find these $\mathop{\mathrm{Ext}}\nolimits ^ q$ are zero for $q < 0$. Hence by Derived Categories, Lemma <a href="/tag/0D83" data-tag="0D83">13.41.6</a> we can build an infinite Postnikov system $K_0, K_1, K_2, \ldots $ in $D_{perf}(\mathcal{O}_{X \times Y})$ for the complex (<a href="/tag/0G0A" data-tag="0G0A">57.13.1.2</a>). Parallel to what happens with $M_0, M_1, M_2, \ldots $ this means we obtain morphisms $K_0 \to K_1[1] \to K_2[2] \to \ldots $ and $K_ n \to \mathcal{E}_ n \boxtimes F(\mathcal{G}_ n)$ and $\mathcal{E}_ n \boxtimes F(\mathcal{G}_ n) \to K_{n - 1}$ in $D_{perf}(\mathcal{O}_{X \times Y})$ satisfying certain conditions documented in Derived Categories, Definition <a href="/tag/0D7Z" data-tag="0D7Z">13.41.1</a>. 
+</p>
+<p>
+Let $\mathcal{F}$ be a coherent $\mathcal{O}_ X$-module whose support has a finite number of points, i.e., with $\dim (\text{Supp}(\mathcal{F})) = 0$. Consider the exact functor of triangulated categories 
+</p>
+<div class="equation">
+  \[  D_{perf}(\mathcal{O}_{X \times Y}) \longrightarrow D_{perf}(\mathcal{O}_ Y),\quad N \longmapsto R\text{pr}_{2, *}(\text{pr}_1^*\mathcal{F} \otimes ^\mathbf {L}_{\mathcal{O}_{X \times Y}} N)  \]
+</div>
+<p>
+ It follows that the objects $R\text{pr}_{2, *}(\text{pr}_1^*\mathcal{F} \otimes ^\mathbf {L}_{\mathcal{O}_{X \times Y}} K_ i)$ form a Postnikov system for the complex in $D_{perf}(\mathcal{O}_ Y)$ with terms 
+</p>
+<div class="equation">
+  \[  R\text{pr}_{2, *}( (\mathcal{F} \otimes \mathcal{E}_ i) \boxtimes F(\mathcal{G}_ i)) = \Gamma (X, \mathcal{F} \otimes \mathcal{E}_ i) \otimes _ k F(\mathcal{G}_ i) = F(\Gamma (X, \mathcal{F} \otimes \mathcal{E}_ i) \otimes _ k \mathcal{G}_ i)  \]
+</div>
+<p>
+ Here we have used that $\mathcal{F} \otimes \mathcal{E}_ i$ has vanishing higher cohomology as its support has dimension $0$. On the other hand, applying the exact functor 
+</p>
+<div class="equation">
+  \[  D_{perf}(\mathcal{O}_{X \times X}) \longrightarrow D_{perf}(\mathcal{O}_ Y),\quad N \longmapsto F(R\text{pr}_{2, *}(\text{pr}_1^*\mathcal{F} \otimes ^\mathbf {L}_{\mathcal{O}_{X \times X}} N))  \]
+</div>
+<p>
+ we find that the objects $F(R\text{pr}_{2, *}(\text{pr}_1^*\mathcal{F} \otimes ^\mathbf {L}_{\mathcal{O}_{X \times X}} M_ n))$ form a second infinite Postnikov system for the complex in $D_{perf}(\mathcal{O}_ Y)$ with terms 
+</p>
+<div class="equation">
+  \[  F(R\text{pr}_{2, *}( (\mathcal{F} \otimes \mathcal{E}_ i) \boxtimes \mathcal{G}_ i)) = F(\Gamma (X, \mathcal{F} \otimes \mathcal{E}_ i) \otimes _ k \mathcal{G}_ i)  \]
+</div>
+<p>
+ This is the same as before! By uniqueness of Postnikov systems (Derived Categories, Lemma <a href="/tag/0D83" data-tag="0D83">13.41.6</a>) which applies because 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Ext}}\nolimits ^ q_ Y( F(\Gamma (X, \mathcal{F} \otimes \mathcal{E}_ i) \otimes _ k \mathcal{G}_ i), F(\Gamma (X, \mathcal{F} \otimes \mathcal{E}_ j) \otimes _ k \mathcal{G}_ j)) = 0, \quad q < 0  \]
+</div>
+<p>
+ as $F$ is fully faithful, we find a system of isomorphisms 
+</p>
+<div class="equation">
+  \[  F(R\text{pr}_{2, *}(\text{pr}_1^*\mathcal{F} \otimes ^\mathbf {L}_{\mathcal{O}_{X \times X}} M_ n[n])) \cong R\text{pr}_{2, *}(\text{pr}_1^*\mathcal{F} \otimes ^\mathbf {L}_{\mathcal{O}_{X \times Y}} K_ n[n])  \]
+</div>
+<p>
+ in $D_{perf}(\mathcal{O}_ Y)$ compatible with the morphisms in $D_{perf}(\mathcal{O}_ Y)$ induced by the morphisms 
+</p>
+<div class="equation">
+  \[  M_{n - 1}[n - 1] \to M_ n[n] \quad \text{and}\quad K_{n - 1}[n - 1] \to K_ n[n]  \]
+</div>
+<div class="equation">
+  \[  M_ n \to \mathcal{E}_ n \boxtimes \mathcal{G}_ n \quad \text{and}\quad K_ n \to \mathcal{E}_ n \boxtimes F(\mathcal{G}_ n)  \]
+</div>
+<div class="equation">
+  \[  \mathcal{E}_ n \boxtimes \mathcal{G}_ n \to M_{n - 1} \quad \text{and}\quad \mathcal{E}_ n \boxtimes F(\mathcal{G}_ n) \to K_{n - 1}  \]
+</div>
+<p>
+ which are part of the structure of Postnikov systems. For $n$ sufficiently large we obtain a direct sum decomposition 
+</p>
+<div class="equation">
+  \[  F(R\text{pr}_{2, *}(\text{pr}_1^*\mathcal{F} \otimes ^\mathbf {L}_{\mathcal{O}_{X \times X}} M_ n[n])) = F(\mathcal{F}) \oplus F(R\text{pr}_{2, *}( \text{pr}_1^*\mathcal{F} \otimes _{\mathcal{O}_{X \times Y}} \mathcal{F}_ n ))[n]  \]
+</div>
+<p>
+ corresponding to the direct sum decomposition of $M_ n$ constructed above (we are using the flatness of $\mathcal{F}_ n$ over $X$ via $\text{pr}_1$ to write a usual tensor product in the formula above, but this isn't essential for the argument). By Lemma <a href="/tag/0FZ8" data-tag="0FZ8">57.9.9</a> we find there exists an integer $m \geq 0$ such that the first summand in this direct sum decomposition has nonzero cohomology sheaves only in the interval $[-m, m]$ and the second summand in this direct sum decomposition has nonzero cohomology sheaves only in the interval $[-m - n, m + \dim (X) - n]$. We conclude the system $K_0 \to K_1[1] \to K_2[2] \to \ldots $ in $D_{perf}(\mathcal{O}_{X \times Y})$ satisfies the assumptions of Lemma <a href="/tag/0FZ9" data-tag="0FZ9">57.9.10</a> after possibly replacing $m$ by a larger integer. We conclude we can write 
+</p>
+<div class="equation">
+  \[  K_ n[n] = K \oplus C_ n  \]
+</div>
+<p>
+ for $n \gg 0$ compatible with transition maps and with $C_ n$ having nonzero cohomology sheaves only in the range $[-m - n, m - n]$. Denote $G$ the Fourier-Mukai functor corresponding to $K$. Putting everything together we find 
+</p>
+<div class="equation">
+  \[  \begin{matrix}  G(\mathcal{F}) \oplus R\text{pr}_{2, *}( \text{pr}_1^*\mathcal{F} \otimes _{\mathcal{O}_{X \times Y}}^\mathbf {L} C_ n) \cong 
+
+\\  R\text{pr}_{2, *}(\text{pr}_1^*\mathcal{F} \otimes ^\mathbf {L}_{\mathcal{O}_{X \times Y}} K_ n[n]) \cong 
+
+\\  F(R\text{pr}_{2, *}(\text{pr}_1^*\mathcal{F} \otimes ^\mathbf {L}_{\mathcal{O}_{X \times X}} M_ n[n])) \cong 
+
+\\  F(\mathcal{F}) \oplus F(R\text{pr}_{2, *}( \text{pr}_1^*\mathcal{F} \otimes _{\mathcal{O}_{X \times Y}} \mathcal{F}_ n ))[n] 
+
+\end{matrix}  \]
+</div>
+<p>
+ Looking at the degrees that objects live in we conclude that for $n \gg m$ we obtain an isomorphism 
+</p>
+<div class="equation">
+  \[  F(\mathcal{F}) \cong G(\mathcal{F})  \]
+</div>
+<p>
+ Moreover, recall that this holds for every coherent $\mathcal{F}$ on $X$ whose support has dimension $0$. 
+</p>
+<p>
+<article class="env-lemma" id="0G0B">
+  <p><a class="environment-identifier" href="/tag/0G0B">Lemma <span data-tag="0G0B">57.13.2</span>.</a> Let $k$ be a field. Let $X$ and $Y$ be smooth proper schemes over $k$. Given a $k$-linear, exact, fully faithful functor $F : D_{perf}(\mathcal{O}_ X) \to D_{perf}(\mathcal{O}_ Y)$ there exists a Fourier-Mukai functor $F' : D_{perf}(\mathcal{O}_ X) \to D_{perf}(\mathcal{O}_ Y)$ whose kernel is in $D_{perf}(\mathcal{O}_{X \times Y})$ which is a sibling to $F$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Apply Lemma <a href="/tag/0G06" data-tag="0G06">57.12.6</a> to $F$ and the functor $G$ constructed above. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following theorem is also true without assuming $X$ is projective, see <span class="cite">[<a href="/bibliography/Noah">Noah</a>]</span>. 
+</p>
+<p>
+<article class="env-theorem" id="0G0C">
+        
+      
+  <p><a class="environment-identifier" href="/tag/0G0C">Theorem <span data-tag="0G0C">57.13.3</span> <span class="named">(Orlov)</span>.</a> Let $k$ be a field. Let $X$ and $Y$ be smooth proper schemes over $k$ with $X$ projective over $k$. Any $k$-linear fully faithful exact functor $F : D_{perf}(\mathcal{O}_ X) \to D_{perf}(\mathcal{O}_ Y)$ is a Fourier-Mukai functor for some kernel in $D_{perf}(\mathcal{O}_{X \times Y})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $F'$ be the Fourier-Mukai functor which is a sibling of $F$ as in Lemma <a href="/tag/0G0B" data-tag="0G0B">57.13.2</a>. By Proposition <a href="/tag/0FZW" data-tag="0FZW">57.10.6</a> we have $F \cong F'$ provided we can show that $\textit{Coh}(\mathcal{O}_ X)$ has enough negative objects. However, if $X = \mathop{\mathrm{Spec}}(k)$ for example, then this isn't true. Thus we first decompose $X = \coprod X_ i$ into its connected (and irreducible) components and we argue that it suffices to prove the result for each of the (fully faithful) composition functors 
+    <p>
+      <div class="equation">
+  \[  F_ i : D_{perf}(\mathcal{O}_{X_ i}) \to D_{perf}(\mathcal{O}_ X) \to D_{perf}(\mathcal{O}_ Y)  \]
+</div>
+    <p>
+       Details omitted. Thus we may assume $X$ is irreducible. 
+    <p>
+      The case $\dim (X) = 0$. Here $X$ is the spectrum of a finite (separable) extension $k'/k$ and hence $D_{perf}(\mathcal{O}_ X)$ is equivalent to the category of graded $k'$-vector spaces such that $\mathcal{O}_ X$ corresponds to the trivial $1$-dimensional vector space in degree $0$. It is straightforward to see that any two siblings $F, F' : D_{perf}(\mathcal{O}_ X) \to D_{perf}(\mathcal{O}_ Y)$ are isomorphic. Namely, we are given an isomorphism $F(\mathcal{O}_ X) \cong F'(\mathcal{O}_ X)$ compatible the action of the $k$-algebra $k' = \text{End}_{D_{perf}(\mathcal{O}_ X)}(\mathcal{O}_ X)$ which extends canonically to an isomorphism on any graded $k'$-vector space. 
+    <p>
+      The case $\dim (X) > 0$. Here $X$ is a projective smooth variety of dimension $> 1$. Let $\mathcal{F}$ be a coherent $\mathcal{O}_ X$-module. We have to show there exists a coherent module $\mathcal{N}$ such that 
+    <p>
+      <ol>
+  <li><p>
+there is a surjection $\mathcal{N} \to \mathcal{F}$ and 
+</p>
+</li><li><p>
+$\mathop{\mathrm{Hom}}\nolimits (\mathcal{F}, \mathcal{N}) = 0$. 
+</p>
+</li>
+</ol>
+    <p>
+       Choose an ample invertible $\mathcal{O}_ X$-module $\mathcal{L}$. We claim that $\mathcal{N} = (\mathcal{L}^{\otimes n})^{\oplus r}$ will work for $n \ll 0$ and $r$ large enough. Condition (1) follows from Properties, Proposition <a href="/tag/01Q3" data-tag="01Q3">28.27.13</a>. Finally, we have 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits (\mathcal{F}, \mathcal{L}^{\otimes n}) = H^0(X, \mathop{\mathcal{H}\! \mathit{om}}\nolimits (\mathcal{F}, \mathcal{L}^{\otimes n})) = H^0(X, \mathop{\mathcal{H}\! \mathit{om}}\nolimits (\mathcal{F}, \mathcal{O}_ X) \otimes \mathcal{L}^{\otimes n})  \]
+</div>
+    <p>
+       Since the dual $\mathop{\mathcal{H}\! \mathit{om}}\nolimits (\mathcal{F}, \mathcal{O}_ X)$ is torsion free, this vanishes for $n \ll 0$ by Varieties, Lemma <a href="/tag/0FD7" data-tag="0FD7">33.48.1</a>. This finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="0G0D">
+  <p><a class="environment-identifier" href="/tag/0G0D">Proposition <span data-tag="0G0D">57.13.4</span>.</a> Let $k$ be a field. Let $X$ and $Y$ be smooth proper schemes over $k$. If $F : D_{perf}(\mathcal{O}_ X) \to D_{perf}(\mathcal{O}_ Y)$ is a $k$-linear exact equivalence of triangulated categories then there exists a Fourier-Mukai functor $F' : D_{perf}(\mathcal{O}_ X) \to D_{perf}(\mathcal{O}_ Y)$ whose kernel is in $D_{perf}(\mathcal{O}_{X \times Y})$ which is an equivalence and a sibling of $F$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The functor $F'$ of Lemma <a href="/tag/0G0B" data-tag="0G0B">57.13.2</a> is an equivalence by Lemma <a href="/tag/0FZV" data-tag="0FZV">57.10.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0G0E">
+  <p><a class="environment-identifier" href="/tag/0G0E">Lemma <span data-tag="0G0E">57.13.5</span>.</a> Let $k$ be a field. Let $X$ be a smooth proper scheme over $k$. Let $K \in D_{perf}(\mathcal{O}_{X \times X})$. If the Fourier-Mukai functor $\Phi _ K : D_{perf}(\mathcal{O}_ X) \to D_{perf}(\mathcal{O}_ X)$ is isomorphic to the identity functor, then $K \cong \Delta _*\mathcal{O}_ X$ in $_{perf}(\mathcal{O}_{X \times X})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $i$ be the minimal integer such that the cohomology sheaf $H^ i(K)$ is nonzero. Let $\mathcal{E}$ and $\mathcal{G}$ be finite locally free $\mathcal{O}_ X$-modules. Then 
+    <p>
+      <div class="equation">
+  \begin{align*}  H^ i(X \times X, K \otimes _{\mathcal{O}_{X \times X}}^\mathbf {L} (\mathcal{E} \boxtimes \mathcal{G})) &  = H^ i(X, R\text{pr}_{2, *}(K \otimes _{\mathcal{O}_{X \times X}}^\mathbf {L} (\mathcal{E} \boxtimes \mathcal{G}))) \\ &  = H^ i(X, \Phi _ K(\mathcal{E}) \otimes _{\mathcal{O}_ X}^\mathbf {L} \mathcal{G}) \\ &  \cong H^ i(X, \mathcal{E} \otimes \mathcal{G}) \end{align*}
+</div>
+    <p>
+       which is zero if $i < 0$. On the other hand, we can choose $\mathcal{E}$ and $\mathcal{G}$ such that there is a surjection $\mathcal{E}^\vee \boxtimes \mathcal{G}^\vee \to H^ i(K)$ by Lemma <a href="/tag/0FZ0" data-tag="0FZ0">57.9.1</a>. In this case the left hand side of the equalities is nonzero. Hence we conclude that $H^ i(K) = 0$ for $i < 0$. 
+    <p>
+      Let $i$ be the maximal integer such that $H^ i(K)$ is nonzero. The same argument with $\mathcal{E}$ and $\mathcal{G}$ support of dimension $0$ shows that $i \leq 0$. Hence we conclude that $K$ is given by a single coherent $\mathcal{O}_{X \times X}$-module $\mathcal{K}$ sitting in degree $0$. 
+    <p>
+      Since $R\text{pr}_{2, *}(\text{pr}_1^*\mathcal{F} \otimes \mathcal{K})$ is $\mathcal{F}$, by taking $\mathcal{F}$ supported at closed points we see that the support of $\mathcal{K}$ is finite over $X$ via $\text{pr}_2$. Since $R\text{pr}_{2, *}(\mathcal{K}) \cong \mathcal{O}_ X$ we conclude by Functors and Morphisms, Lemma <a href="/tag/0FZP" data-tag="0FZP">56.7.6</a> that $\mathcal{K} = s_*\mathcal{O}_ X$ for some section $s : X \to X \times X$ of the second projection. Then $\Phi _ K(M) = f^*M$ where $f = \text{pr}_1 \circ s$ and this can happen only if $s$ is the diagonal morphism as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

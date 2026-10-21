@@ -1,0 +1,133 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="descent-section-equivalence" class="tex-section"><span data-tag="023A">35.2</span> Descent data for quasi-coherent sheaves</h2>
+
+<p>
+In this chapter we will use the convention where the projection maps $\text{pr}_ i : X \times \ldots \times X \to X$ are labeled starting with $i = 0$. Hence we have $\text{pr}_0, \text{pr}_1 : X \times X \to X$, $\text{pr}_0, \text{pr}_1, \text{pr}_2 : X \times X \times X \to X$, etc. 
+</p>
+<p>
+<article class="env-definition" id="023B">
+  <p><a class="environment-identifier" href="/tag/023B">Definition <span data-tag="023B">35.2.1</span>.</a> Let $S$ be a scheme. Let $\{ f_ i : S_ i \to S\} _{i \in I}$ be a family of morphisms with target $S$. </p>
+  <p><ol>
+  <li><p>
+A <em>descent datum $(\mathcal{F}_ i, \varphi _{ij})$ for quasi-coherent sheaves</em> with respect to the given family is given by a quasi-coherent sheaf $\mathcal{F}_ i$ on $S_ i$ for each $i \in I$, an isomorphism of quasi-coherent $\mathcal{O}_{S_ i \times _ S S_ j}$-modules $\varphi _{ij} : \text{pr}_0^*\mathcal{F}_ i \to \text{pr}_1^*\mathcal{F}_ j$ for each pair $(i, j) \in I^2$ such that for every triple of indices $(i, j, k) \in I^3$ the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \text{pr}_0^*\mathcal{F}_ i \ar[rd]_{\text{pr}_{01}^*\varphi _{ij}} \ar[rr]_{\text{pr}_{02}^*\varphi _{ik}} &  &  \text{pr}_2^*\mathcal{F}_ k \\  &  \text{pr}_1^*\mathcal{F}_ j \ar[ru]_{\text{pr}_{12}^*\varphi _{jk}} &  }  \]
+</div>
+<p>
+ of $\mathcal{O}_{S_ i \times _ S S_ j \times _ S S_ k}$-modules commutes. This is called the <em>cocycle condition</em>. 
+</p>
+</li><li><p>
+A <em>morphism $\psi : (\mathcal{F}_ i, \varphi _{ij}) \to (\mathcal{F}'_ i, \varphi '_{ij})$ of descent data</em> is given by a family $\psi = (\psi _ i)_{i\in I}$ of morphisms of $\mathcal{O}_{S_ i}$-modules $\psi _ i : \mathcal{F}_ i \to \mathcal{F}'_ i$ such that all the diagrams 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \text{pr}_0^*\mathcal{F}_ i \ar[r]_{\varphi _{ij}} \ar[d]_{\text{pr}_0^*\psi _ i} &  \text{pr}_1^*\mathcal{F}_ j \ar[d]^{\text{pr}_1^*\psi _ j} \\  \text{pr}_0^*\mathcal{F}'_ i \ar[r]^{\varphi '_{ij}} &  \text{pr}_1^*\mathcal{F}'_ j \\  }  \]
+</div>
+<p>
+ commute. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+A good example to keep in mind is the following. Suppose that $S = \bigcup S_ i$ is an open covering. In that case we have seen descent data for sheaves of sets in Sheaves, Section <a href="/tag/00AK" data-tag="00AK">6.33</a> where we called them “glueing data for sheaves of sets with respect to the given covering”. Moreover, we proved that the category of glueing data is equivalent to the category of sheaves on $S$. We will show the analogue in the setting above when $\{ S_ i \to S\} _{i\in I}$ is an fpqc covering. 
+</p>
+<p>
+In the extreme case where the covering $\{ S \to S\} $ is given by $\text{id}_ S$ a descent datum is necessarily of the form $(\mathcal{F}, \text{id}_\mathcal {F})$. The cocycle condition guarantees that the identity on $\mathcal{F}$ is the only permitted map in this case. The following lemma shows in particular that to every quasi-coherent sheaf of $\mathcal{O}_ S$-modules there is associated a unique descent datum with respect to any given family. 
+</p>
+<p>
+<article class="env-lemma" id="023C">
+  <p><a class="environment-identifier" href="/tag/023C">Lemma <span data-tag="023C">35.2.2</span>.</a> Let $\mathcal{U} = \{ U_ i \to U\} _{i \in I}$ and $\mathcal{V} = \{ V_ j \to V\} _{j \in J}$ be families of morphisms of schemes with fixed target. Let $(g, \alpha : I \to J, (g_ i)) : \mathcal{U} \to \mathcal{V}$ be a morphism of families of maps with fixed target, see Sites, Definition <a href="/tag/00VT" data-tag="00VT">7.8.1</a>. Let $(\mathcal{F}_ j, \varphi _{jj'})$ be a descent datum for quasi-coherent sheaves with respect to the family $\{ V_ j \to V\} _{j \in J}$. Then </p>
+  <p><ol>
+  <li><p>
+The system 
+</p>
+<div class="equation">
+  \[  \left(g_ i^*\mathcal{F}_{\alpha (i)}, (g_ i \times g_{i'})^*\varphi _{\alpha (i)\alpha (i')}\right)  \]
+</div>
+<p>
+ is a descent datum with respect to the family $\{ U_ i \to U\} _{i \in I}$. 
+</p>
+</li><li><p>
+This construction is functorial in the descent datum $(\mathcal{F}_ j, \varphi _{jj'})$. 
+</p>
+</li><li><p>
+Given a second morphism $(g', \alpha ' : I \to J, (g'_ i))$ of families of maps with fixed target with $g = g'$ there exists a functorial isomorphism of descent data 
+</p>
+<div class="equation">
+  \[  (g_ i^*\mathcal{F}_{\alpha (i)}, (g_ i \times g_{i'})^*\varphi _{\alpha (i)\alpha (i')}) \cong ((g'_ i)^*\mathcal{F}_{\alpha '(i)}, (g'_ i \times g'_{i'})^*\varphi _{\alpha '(i)\alpha '(i')}).  \]
+</div>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. Hint: The maps $g_ i^*\mathcal{F}_{\alpha (i)} \to (g'_ i)^*\mathcal{F}_{\alpha '(i)}$ which give the isomorphism of descent data in part (3) are the pullbacks of the maps $\varphi _{\alpha (i)\alpha '(i)}$ by the morphisms $(g_ i, g'_ i) : U_ i \to V_{\alpha (i)} \times _ V V_{\alpha '(i)}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Any family $\mathcal{U} = \{ S_ i \to S\} _{i \in I}$ is a refinement of the trivial covering $\{ S \to S\} $ in a unique way. For a quasi-coherent sheaf $\mathcal{F}$ on $S$ we denote simply $(\mathcal{F}|_{S_ i}, can)$ the descent datum with respect to $\mathcal{U}$ obtained by the procedure above. 
+</p>
+<p>
+<article class="env-definition" id="023D">
+  <p><a class="environment-identifier" href="/tag/023D">Definition <span data-tag="023D">35.2.3</span>.</a> Let $S$ be a scheme. Let $\{ S_ i \to S\} _{i \in I}$ be a family of morphisms with target $S$. </p>
+  <p><ol>
+  <li><p>
+Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_ S$-module. We call the unique descent on $\mathcal{F}$ datum with respect to the covering $\{ S \to S\} $ the <em>trivial descent datum</em>. 
+</p>
+</li><li><p>
+The pullback of the trivial descent datum to $\{ S_ i \to S\} $ is called the <em>canonical descent datum</em>. Notation: $(\mathcal{F}|_{S_ i}, can)$. 
+</p>
+</li><li><p>
+A descent datum $(\mathcal{F}_ i, \varphi _{ij})$ for quasi-coherent sheaves with respect to the given covering is said to be <em>effective</em> if there exists a quasi-coherent sheaf $\mathcal{F}$ on $S$ such that $(\mathcal{F}_ i, \varphi _{ij})$ is isomorphic to $(\mathcal{F}|_{S_ i}, can)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="023E">
+  <p><a class="environment-identifier" href="/tag/023E">Lemma <span data-tag="023E">35.2.4</span>.</a> Let $S$ be a scheme. Let $S = \bigcup U_ i$ be an open covering. Any descent datum on quasi-coherent sheaves for the family $\mathcal{U} = \{ U_ i \to S\} $ is effective. Moreover, the functor from the category of quasi-coherent $\mathcal{O}_ S$-modules to the category of descent data with respect to $\mathcal{U}$ is fully faithful. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows immediately from Sheaves, Section <a href="/tag/00AK" data-tag="00AK">6.33</a> and the fact that being quasi-coherent is a local property, see Modules, Definition <a href="/tag/01BE" data-tag="01BE">17.10.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+To prove more we first need to study the case of modules over rings. 
+</p>

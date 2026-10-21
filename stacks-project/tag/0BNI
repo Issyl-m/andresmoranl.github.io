@@ -1,0 +1,470 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-algebra-section-beauville-laszlo" class="tex-section"><span data-tag="0BNI">15.92</span> The Beauville-Laszlo theorem</h2>
+
+<p>
+Let $R$ be a ring and let $f$ be an element of $R$. Denote $R^\wedge = \mathop{\mathrm{lim}}\nolimits R/f^ n R$ the $f$-adic completion of $R$. In this section we discuss and slightly generalize a theorem of Beauville and Laszlo, see <span class="cite">[<a href="/bibliography/Beauville-Laszlo">Beauville-Laszlo</a>]</span>. The theorem asserts that under suitable conditions, a module over $R$ can be constructed by “glueing together” modules over $R^\wedge $ and $R_ f$ along an isomorphism between the base extensions to $(R^\wedge )_ f$. 
+</p>
+<p>
+In <span class="cite">[<a href="/bibliography/Beauville-Laszlo">Beauville-Laszlo</a>]</span> it is assumed that $f$ is a nonzerodivisor on both $R$ and $M$. In fact, one only needs to assume that 
+</p>
+<div class="equation">
+  \[  R[f^\infty ] \longrightarrow R^\wedge [f^\infty ]  \]
+</div>
+<p>
+ is bijective and that 
+</p>
+<div class="equation">
+  \[  M[f^\infty ] \longrightarrow M \otimes _ R R^\wedge  \]
+</div>
+<p>
+ is injective. This optimization was partly inspired by an alternate approach to glueing introduced in <span class="cite">[<span class="postnote">§1.3</span>, <a href="/bibliography/Kedlaya-Liu-I">Kedlaya-Liu-I</a>]</span> for use in the theory of nonarchimedean analytic spaces. 
+</p>
+<p>
+In fact, we will establish the Beauville-Laszlo theorem in the more general setting of a ring map 
+</p>
+<div class="equation">
+  \[  R \longrightarrow R'  \]
+</div>
+<p>
+ which induces isomorphisms $R/f^ nR \to R'/f^ nR'$ for every $n > 0$ and an isomorphism $R[f^\infty ] \to R'[f^\infty ]$. This is better suited for globalizing and does not formally follow from the case when $R'$ is the completion of $R$ because, for instance, the condition that $R[f^\infty ] \to R'[f^\infty ]$ is a bijection does not imply that $R[f^\infty ] \to R^\wedge [f^\infty ]$ is a bijection. 
+</p>
+<p>
+The theorem of Beauville and Laszlo as proved in this section can be viewed as a non-flat version of Theorem <a href="/tag/05ES" data-tag="05ES">15.91.18</a> and in the case where $R' = R^\wedge $ can be viewed as a non-Noetherian version of Proposition <a href="/tag/05ET" data-tag="05ET">15.91.19</a>. For a comparison with flat descent, please see Remark <a href="/tag/0BNP" data-tag="0BNP">15.92.5</a>. 
+</p>
+<p>
+One can establish even stronger results (without imposing restrictions on $M$ for example) but for this one must work at the level of derived categories. See <span class="cite">[<span class="postnote">§5</span>, <a href="/bibliography/Bhatt-Algebraize">Bhatt-Algebraize</a>]</span> for more details. 
+</p>
+<p>
+<article class="env-lemma" id="0BNJ">
+  <p><a class="environment-identifier" href="/tag/0BNJ">Lemma <span data-tag="0BNJ">15.92.1</span>.</a> Let $R$ be a ring and let $f \in R$. For every positive integer $n$ the map $R/f^ nR \to R^\wedge /f^ n R^\wedge $ is an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a special case of Algebra, Lemma <a href="/tag/05GG" data-tag="05GG">10.96.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We will use the notation introduced in Section <a href="/tag/0ALX" data-tag="0ALX">15.90</a>. Thus for an $R$-module $M$, we denote $M[f^ n]$ the submodule of $M$ annihilated by $f^ n$ and we put 
+</p>
+<div class="equation">
+  \[  M[f^\infty ] = \bigcup \nolimits _{n = 1}^\infty M[f^ n] = \mathop{\mathrm{Ker}}(M \to M_ f).  \]
+</div>
+<p>
+ If $M = M[f^\infty ]$, we say that $M$ is an $f$-power torsion module. 
+</p>
+<p>
+<article class="env-lemma" id="0BNL">
+  <p><a class="environment-identifier" href="/tag/0BNL">Lemma <span data-tag="0BNL">15.92.2</span>.</a> Let $R$ be a ring, let $f \in R$, and let $R \to R'$ be a ring map which induces isomorphisms $R/f^ nR \to R'/f^ nR'$ for $n > 0$. The $R$-module $R' \oplus R_ f$ is faithful: for every nonzero $R$-module $M$, the module $M \otimes _ R (R' \oplus R_ f)$ is also nonzero. For example, if $M$ is nonzero, then $M \otimes _ R (R^\wedge \oplus R_ f)$ is nonzero. </p>
+</article> 
+</p>
+<p>
+However, the map $M \to M \otimes _ R (R' \oplus R_ f)$ need not be injective; see Example <a href="/tag/0BNU" data-tag="0BNU">15.92.9</a>. 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $M \neq 0$ but $M \otimes _ R R_ f = 0$, then $M$ is $f$-power torsion. By Lemma <a href="/tag/0BNK" data-tag="0BNK">15.90.9</a> we find that $M \otimes _ R R' \cong M \neq 0$. The last statement is a special case of the first statement by Lemma <a href="/tag/0BNJ" data-tag="0BNJ">15.92.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BNM">
+  <p><a class="environment-identifier" href="/tag/0BNM">Lemma <span data-tag="0BNM">15.92.3</span>.</a> Let $R$ be a ring, let $f \in R$, and let $R \to R'$ be a ring map which induces an isomorphism $R/fR \to R'/fR'$. The map $\mathop{\mathrm{Spec}}(R') \amalg \mathop{\mathrm{Spec}}(R_ f) \to \mathop{\mathrm{Spec}}(R)$ is surjective. For example, the map $\mathop{\mathrm{Spec}}(R^\wedge ) \amalg \mathop{\mathrm{Spec}}(R_ f) \to \mathop{\mathrm{Spec}}(R)$ is surjective. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Recall that $\mathop{\mathrm{Spec}}(R) = V(f) \amalg D(f)$ where $V(f) = \mathop{\mathrm{Spec}}(R/fR)$ and $D(f) = \mathop{\mathrm{Spec}}(R_ f)$, see Algebra, Section <a href="/tag/00DY" data-tag="00DY">10.17</a> and especially Lemmas <a href="/tag/00E5" data-tag="00E5">10.17.7</a> and <a href="/tag/00E4" data-tag="00E4">10.17.6</a>. Thus the lemma follows as the map $R \to R/fR$ factors through $R'$. The last statement is a special case of the first statement by Lemma <a href="/tag/0BNJ" data-tag="0BNJ">15.92.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BNN">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0BNN">Lemma <span data-tag="0BNN">15.92.4</span>.</a> Let $R$ be a ring, let $f \in R$, and let $R \to R'$ be a ring map which induces isomorphisms $R/f^ nR \to R'/f^ nR'$ for $n > 0$. An $R$-module $M$ is finitely generated if and only if the ($R' \oplus R_ f$)-module $M \otimes _ R (R' \oplus R_ f)$ is finitely generated. For example, if $M \otimes _ R (R^\wedge \oplus R_ f)$ is finitely generated as a module over $R^\wedge \oplus R_ f$, then $M$ is a finitely generated $R$-module. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The ‘only if' is clear, so we assume that $M \otimes _ R (R' \oplus R_ f)$ is finitely generated. In this case, by writing each generator as a sum of simple tensors, $M \otimes _ R (R' \oplus R_ f)$ admits a finite generating set consisting of elements of $M$. That is, there exists a morphism from a finite free $R$-module to $M$ whose cokernel is killed by tensoring with $R' \oplus R_ f$; we may thus deduce $M$ is finite generated by applying Lemma <a href="/tag/0BNL" data-tag="0BNL">15.92.2</a> to this cokernel. The last statement is a special case of the first statement by Lemma <a href="/tag/0BNJ" data-tag="0BNJ">15.92.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0BNP">
+  <p><a class="environment-identifier" href="/tag/0BNP">Remark <span data-tag="0BNP">15.92.5</span>.</a> While $R \to R_ f$ is always flat, $R \to R^\wedge $ is typically not flat unless $R$ is Noetherian (see Algebra, Lemma <a href="/tag/00MB" data-tag="00MB">10.97.2</a> and the discussion in Examples, Section <a href="/tag/0AL8" data-tag="0AL8">110.12</a>). Consequently, we cannot in general apply faithfully flat descent as discussed in Descent, Section <a href="/tag/023F" data-tag="023F">35.3</a> to the morphism $R \to R^\wedge \oplus R_ f$. Moreover, even in the Noetherian case, the usual definition of a descent datum for this morphism refers to the ring $R^\wedge \otimes _ R R^\wedge $, which we will avoid considering in this section. </p>
+</article> 
+</p>
+<p>
+<strong>Glueing pairs.</strong> Let $R \to R'$ be a ring map that induces isomorphisms $R/f^ nR \to R'/f^ nR'$ for $n > 0$. Consider the sequence 
+</p>
+<div class="equation" id="0F1Q">
+    <span class="equation-label"><a href="/tag/0F1Q" data-tag="0F1Q">15.92.5.1</a></span>
+  <div>\begin{equation}  \label{more-algebra-equation-BL-cech-re} 0 \to R \to R' \oplus R_ f \to R'_ f \to 0, \end{equation}</div>
+</div>
+<p>
+ in which the map on the right is the difference between the two canonical homomorphisms. If this sequence is exact, then we say that $(R \to R', f)$ is a <em>glueing pair</em>. We will say that $(R, f)$ is a <em>glueing pair</em> if $(R \to R^\wedge , f)$ is a glueing pair; this makes sense by Lemma <a href="/tag/0BNJ" data-tag="0BNJ">15.92.1</a>. Thus $(R, f)$ is a glueing pair if and only if the sequence 
+</p>
+<div class="equation" id="0BNQ">
+    <span class="equation-label"><a href="/tag/0BNQ" data-tag="0BNQ">15.92.5.2</a></span>
+  <div>\begin{equation}  \label{more-algebra-equation-BL-cech} 0 \to R \to R^\wedge \oplus R_ f \to (R^\wedge )_ f \to 0, \end{equation}</div>
+</div>
+<p>
+ is exact. 
+</p>
+<p>
+<article class="env-lemma" id="0BNR">
+  <p><a class="environment-identifier" href="/tag/0BNR">Lemma <span data-tag="0BNR">15.92.6</span>.</a> Let $R$ be a ring, let $f \in R$, and let $R \to R'$ be a ring map which induces isomorphisms $R/f^ nR \to R'/f^ nR'$ for $n > 0$. The sequence (<a href="/tag/0F1Q" data-tag="0F1Q">15.92.5.1</a>) is </p>
+  <p><ol>
+  <li><p>
+exact on the right, 
+</p>
+</li><li><p>
+exact on the left if and only if $R[f^\infty ] \to R'[f^\infty ]$ is injective, and 
+</p>
+</li><li><p>
+exact in the middle if and only if $R[f^\infty ] \to R'[f^\infty ]$ is surjective. 
+</p>
+</li>
+</ol></p>
+  <p> In particular, $(R \to R', f)$ is a glueing pair if and only if $R[f^\infty ] \to R'[f^\infty ]$ is bijective. For example, $(R, f)$ is a glueing pair if and only if $R[f^\infty ] \to R^\wedge [f^\infty ]$ is bijective. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $x \in R'_ f$. Write $x = x'/f^ n$ with $x' \in R'$. Write $x' = x'' + f^ n y$ with $x'' \in R$ and $y \in R'$. Then we see that $(y, -x''/f^ n)$ maps to $x$. Thus (1) holds. 
+    <p>
+      Part (2) follows from the fact that $\mathop{\mathrm{Ker}}(R \to R_ f) = R[f^\infty ]$. 
+    <p>
+      If the sequence is exact in the middle, then elements of the form $(x, 0)$ with $x \in R'[f^\infty ]$ are in the image of the first arrow. This implies that $R[f^\infty ] \to R'[f^\infty ]$ is surjective. Conversely, assume that $R[f^\infty ] \to R'[f^\infty ]$ is surjective. Let $(x, y)$ be an element in the middle which maps to zero on the right. Write $y = y'/f^ n$ for some $y' \in R$. Then we see that $f^ n x - y'$ is annihilated by some power of $f$ in $R'$. By assumption we can write $f^ nx - y' = z$ for some $z \in R[f^\infty ]$. Then $y = y''/f^ n$ where $y'' = y' + z$ is in the kernel of $R \to R/f^ nR$. Hence we see that $y$ can be represented as $y'''/1$ for some $y''' \in R$. Then $x - y'''$ is in $R'[f^\infty ]$. Thus $x - y''' = z' \in R[f^\infty ]$. Then $(x, y'''/1) = (y''' + z', (y''' + z')/1)$ as desired. 
+    <p>
+      The last statement of the lemma is a special case of the penultimate statement by Lemma <a href="/tag/0BNJ" data-tag="0BNJ">15.92.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0BNS">
+  <p><a class="environment-identifier" href="/tag/0BNS">Remark <span data-tag="0BNS">15.92.7</span>.</a> Suppose that $f$ is a nonzerodivisor. Then Algebra, Lemma <a href="/tag/0BNG" data-tag="0BNG">10.96.4</a> shows that $f$ is a nonzerodivisor in $R^\wedge $. Hence $(R, f)$ is a glueing pair. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="0BNT">
+  <p><a class="environment-identifier" href="/tag/0BNT">Remark <span data-tag="0BNT">15.92.8</span>.</a> If $R \to R^\wedge $ is flat, then for each positive integer $n$ tensoring the sequence $0 \to R[f^ n] \to R \to R$ with $R^\wedge $ gives the sequence $0 \to R[f^ n] \otimes _ R R^\wedge \to R^\wedge \to R^\wedge $. Combined with Lemma <a href="/tag/0BNK" data-tag="0BNK">15.90.9</a> we conclude that $R[f^ n] \to R^\wedge [f^ n]$ is an isomorphism. Thus $(R, f)$ is a glueing pair. This holds in particular if $R$ is Noetherian, see Algebra, Lemma <a href="/tag/00MB" data-tag="00MB">10.97.2</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="0BNU">
+  <p><a class="environment-identifier" href="/tag/0BNU">Example <span data-tag="0BNU">15.92.9</span>.</a> Let $k$ be a field and put </p>
+  <div class="equation">
+  \[  R = k[f, T_1, T_2, \ldots ]/(fT_1, fT_2 - T_1, fT_3 - T_2, \ldots ).  \]
+</div>
+  <p> Then $(R, f)$ is not a glueing pair because the map $R[f^\infty ] \to R^\wedge [f^\infty ]$ is not injective as the image of $T_1$ is $f$-divisible in $R^\wedge $. For </p>
+  <div class="equation">
+  \[  R = k[f, T_1, T_2, \ldots ]/(fT_1, f^2T_2, \ldots ),  \]
+</div>
+  <p> the map $R[f^\infty ] \to R^\wedge [f^\infty ]$ is not surjective as the element $T_1 + fT_2 + f^2 T_3 + \ldots $ is not in the image. In particular, by Remark <a href="/tag/0BNT" data-tag="0BNT">15.92.8</a>, these are both examples where $R \to R^\wedge $ is not flat. </p>
+</article> 
+</p>
+<p>
+<strong>Glueable modules.</strong> Let $R \to R'$ be a ring map which induces isomorphisms $R/f^ nR \to R'/f^ nR'$ for $n > 0$. For any $R$-module $M$, we may tensor (<a href="/tag/0F1Q" data-tag="0F1Q">15.92.5.1</a>) with $M$ to obtain a sequence 
+</p>
+<div class="equation" id="0F1R">
+    <span class="equation-label"><a href="/tag/0F1R" data-tag="0F1R">15.92.9.1</a></span>
+  <div>\begin{equation}  \label{more-algebra-equation-BL-cech-mod-re} 0 \to M \to (M \otimes _ R R') \oplus (M \otimes _ R R_ f) \to M \otimes _ R R'_ f \to 0 \end{equation}</div>
+</div>
+<p>
+ Observe that $M \otimes _ R R_ f = M_ f$ and that $M \otimes _ R R'_ f = (M \otimes _ R R')_ f$. If this sequence is exact, we say that $M$ is <em>glueable for $(R \to R', f)$</em>. If $R$ is a ring and $f \in R$, then we say an $R$-module is <em>glueable</em> if $M$ is glueable for $(R \to R^\wedge , f)$. Thus $M$ is glueable if and only if the sequence 
+</p>
+<div class="equation" id="0BNV">
+    <span class="equation-label"><a href="/tag/0BNV" data-tag="0BNV">15.92.9.2</a></span>
+  <div>\begin{equation}  \label{more-algebra-equation-BL-cech-mod} 0 \to M \to (M \otimes _ R R^\wedge ) \oplus (M \otimes _ R R_ f) \to M \otimes _ R (R^\wedge )_ f \to 0 \end{equation}</div>
+</div>
+<p>
+ is exact. 
+</p>
+<p>
+<article class="env-lemma" id="0BNW">
+  <p><a class="environment-identifier" href="/tag/0BNW">Lemma <span data-tag="0BNW">15.92.10</span>.</a> Let $R$ be a ring, let $f \in R$, and let $R \to R'$ be a ring map which induces isomorphisms $R/f^ nR \to R'/f^ nR'$ for $n > 0$. The sequence (<a href="/tag/0F1R" data-tag="0F1R">15.92.9.1</a>) is </p>
+  <p><ol>
+  <li><p>
+exact on the right, 
+</p>
+</li><li><p>
+exact on the left if and only if $M[f^\infty ] \to (M \otimes _ R R')[f^\infty ]$ is injective, and 
+</p>
+</li><li><p>
+exact in the middle if and only if $M[f^\infty ] \to (M \otimes _ R R')[f^\infty ]$ is surjective. 
+</p>
+</li>
+</ol></p>
+  <p> Thus $M$ is glueable for $(R \to R', f)$ if and only if $M[f^\infty ] \to (M \otimes _ R R')[f^\infty ]$ is bijective. If $(R \to R', f)$ is a glueing pair, then $M$ is glueable for $(R \to R', f)$ if and only if $M[f^\infty ] \to (M \otimes _ R R')[f^\infty ]$ is injective. For example, if $(R, f)$ is a glueing pair, then $M$ is glueable if and only if $M[f^\infty ] \to (M \otimes _ R R^\wedge )[f^\infty ]$ is injective. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use the results of Lemma <a href="/tag/0BNR" data-tag="0BNR">15.92.6</a> without further mention. The functor $M \otimes _ R -$ is right exact (Algebra, Lemma <a href="/tag/00DF" data-tag="00DF">10.12.10</a>) hence we get (1). 
+    <p>
+      The kernel of $M \to M \otimes _ R R_ f = M_ f$ is $M[f^\infty ]$. Thus (2) follows. 
+    <p>
+      If the sequence is exact in the middle, then elements of the form $(x, 0)$ with $x \in (M \otimes _ R R')[f^\infty ]$ are in the image of the first arrow. This implies that $M[f^\infty ] \to (M \otimes _ R R')[f^\infty ]$ is surjective. Conversely, assume that $M[f^\infty ] \to (M \otimes _ R R')[f^\infty ]$ is surjective. Let $(x, y)$ be an element in the middle which maps to zero on the right. Write $y = y'/f^ n$ for some $y' \in M$. Then we see that $f^ n x - y'$ is annihilated by some power of $f$ in $M \otimes _ R R'$. By assumption we can write $f^ nx - y' = z$ for some $z \in M[f^\infty ]$. Then $y = y''/f^ n$ where $y'' = y' + z$ is in the kernel of $M \to M/f^ nM$. Hence we see that $y$ can be represented as $y'''/1$ for some $y''' \in M$. Then $x - y'''$ is in $(M \otimes _ R R')[f^\infty ]$. Thus $x - y''' = z' \in M[f^\infty ]$. Then $(x, y'''/1) = (y''' + z', (y''' + z')/1)$ as desired. 
+    <p>
+      If $(R \to R', f)$ is a glueing pair, then (<a href="/tag/0F1R" data-tag="0F1R">15.92.9.1</a>) is exact in the middle for any $M$ by Algebra, Lemma <a href="/tag/00DF" data-tag="00DF">10.12.10</a>. This gives the penultimate statement of the lemma. The final statement of the lemma follows from this and the fact that $(R, f)$ is a glueing pair if and only if $(R \to R^\wedge , f)$ is a glueing pair. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0BNX">
+  <p><a class="environment-identifier" href="/tag/0BNX">Remark <span data-tag="0BNX">15.92.11</span>.</a> Let $(R \to R', f)$ be a glueing pair and let $M$ be an $R$-module. Here are some observations which can be used to determine whether $M$ is glueable for $(R \to R', f)$. </p>
+  <p><ol>
+  <li><p>
+By Lemma <a href="/tag/0BNW" data-tag="0BNW">15.92.10</a> we see that $M$ is glueable for $(R \to R^\wedge , f)$ if and only if $M[f^\infty ] \to M \otimes _ R R^\wedge $ is injective. This holds if $M[f] \to M^\wedge $ is injective, i.e., when $M[f] \cap \bigcap _{n = 1}^\infty f^ n M = 0$. 
+</p>
+</li><li><p>
+If $\text{Tor}_1^ R(M, R'_ f) = 0$, then $M$ is glueable for $(R \to R', f)$ (use Algebra, Lemma <a href="/tag/00M0" data-tag="00M0">10.75.2</a>). This is equivalent to saying that $\text{Tor}_1^ R(M, R')$ is $f$-power torsion. In particular, any flat $R$-module is glueable for $(R \to R', f)$. 
+</p>
+</li><li><p>
+If $R \to R'$ is flat, then $\text{Tor}_1^ R(M, R') = 0$ for every $R$-module so every $R$-module is glueable for $(R \to R', f)$. This holds in particular when $R$ is Noetherian and $R' = R^\wedge $, see Algebra, Lemma <a href="/tag/00MB" data-tag="00MB">10.97.2</a> 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="0BNY">
+        
+      
+  <p><a class="environment-identifier" href="/tag/0BNY">Example <span data-tag="0BNY">15.92.12</span> <span class="named">(Non glueable module)</span>.</a> Let $R$ be the ring of germs at $0$ of $C^\infty $ functions on $\mathbf{R}$. Let $f \in R$ be the function $f(x) = x$. Then $f$ is a nonzerodivisor in $R$, so $(R, f)$ is a glueing pair and $R^\wedge \cong \mathbf{R}[[x]]$. Let $\varphi \in R$ be the function $\varphi (x) = \text{exp}(-1/x^2)$. Then $\varphi $ has zero Taylor series, so $\varphi \in \mathop{\mathrm{Ker}}(R \to R^\wedge )$. Since $\varphi (x) \neq 0$ for $x \neq 0$, we see that $\varphi $ is a nonzerodivisor in $R$. The function $\varphi /f$ also has zero Taylor series, so its image in $M = R/\varphi R$ is a nonzero element of $M[f]$ which maps to zero in $M \otimes _ R R^\wedge = R^\wedge /\varphi R^\wedge = R^\wedge $. Hence $M$ is not glueable. </p>
+</article> 
+</p>
+<p>
+We next make some calculations of Tor groups. 
+</p>
+<p>
+<article class="env-lemma" id="0BNZ">
+  <p><a class="environment-identifier" href="/tag/0BNZ">Lemma <span data-tag="0BNZ">15.92.13</span>.</a> Let $(R \to R', f)$ be a glueing pair. Then $\text{Tor}^ R_1(R', f^ n R) = 0$ for each $n > 0$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      From the exact sequence $0 \to R[f^ n] \to R \to f^ n R \to 0$ we see that it suffices to check that $R[f^ n] \otimes _ R R' \to R'$ is injective. By Lemma <a href="/tag/0BNK" data-tag="0BNK">15.90.9</a> we have $R[f^ n] \otimes _ R R' = R[f^ n]$ and by Lemma <a href="/tag/0BNR" data-tag="0BNR">15.92.6</a> we see that $R[f^ n] \to R'$ is injective as $(R \to R', f)$ is a glueing pair. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BP0">
+  <p><a class="environment-identifier" href="/tag/0BP0">Lemma <span data-tag="0BP0">15.92.14</span>.</a> Let $(R \to R',f)$ be a glueing pair. Then $\text{Tor}^ R_1(R', R/R[f^\infty ]) = 0$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We have $R/R[f^\infty ] = \mathop{\mathrm{colim}}\nolimits R/R[f^ n] = \mathop{\mathrm{colim}}\nolimits f^ nR$. As formation of Tor groups commutes with filtered colimits (Algebra, Lemma <a href="/tag/0BNF" data-tag="0BNF">10.76.2</a>) we may apply Lemma <a href="/tag/0BNZ" data-tag="0BNZ">15.92.13</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BP1">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0BP1">Lemma <span data-tag="0BP1">15.92.15</span>.</a> Let $(R \to R', f)$ be a glueing pair. For every $R$-module $M$, we have $\text{Tor}^ R_1(R', \mathop{\mathrm{Coker}}(M \to M_ f)) = 0$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Set $\overline{M} = M/M[f^\infty ]$. Then $\mathop{\mathrm{Coker}}(M \to M_ f) \cong \mathop{\mathrm{Coker}}(\overline{M} \to \overline{M}_ f)$ hence we may and do assume that $f$ is a nonzerodivisor on $M$. In this case $M \subset M_ f$ and $M_ f/M = \mathop{\mathrm{colim}}\nolimits M/f^ nM$ where the transition maps are given by multiplication by $f$. Since formation of Tor groups commutes with colimits (Algebra, Lemma <a href="/tag/0BNF" data-tag="0BNF">10.76.2</a>) it suffices to show that $\text{Tor}^ R_1(R', M/f^ n M) = 0$. 
+    <p>
+      We first treat the case $M = R/R[f^\infty ]$. By Lemma <a href="/tag/0BNR" data-tag="0BNR">15.92.6</a> we have $M \otimes _ R R' = R'/R'[f^\infty ]$. From the short exact sequence $0 \to M \to M \to M/f^ nM \to 0$ we obtain the exact sequence 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \text{Tor}_1^ R(R', R/R[f^\infty ]) \ar[r] &  \text{Tor}_1^ R(R', M/f^ n M) \ar[r] &  R'/R'[f^\infty ] \ar[dll]_{f^ n} \\  R'/R'[f^\infty ] \ar[r] &  (R'/R'[f^\infty ])/(f^ n (R'/R'[f^\infty ])) \ar[r] &  0 }  \]
+</div>
+    <p>
+       by Algebra, Lemma <a href="/tag/00M0" data-tag="00M0">10.75.2</a>. Here the diagonal arrow is injective. Since the first group $\text{Tor}_1^ R(R', R/R[f^\infty ])$ is zero by Lemma <a href="/tag/0BP0" data-tag="0BP0">15.92.14</a>, we deduce that $\text{Tor}_1^ R(R', M/f^ nM) = 0$ as desired. 
+    <p>
+      To treat the general case, choose a surjection $F \to M$ with $F$ a free $R/R[f^\infty ]$-module, and form an exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to N \to F/f^ n F \to M/f^ n M \to 0.  \]
+</div>
+    <p>
+       By Lemma <a href="/tag/0BNK" data-tag="0BNK">15.90.9</a> this sequence remains unchanged, and hence exact, upon tensoring with $R'$. Since $\text{Tor}^ R_1(R', F/f^ n F) = 0$ by the previous paragraph, we deduce that $\text{Tor}^ R_1(R', M/f^ n M) = 0$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $(R \to R', f)$ be a glueing pair. This means that $R/f^ nR \to R'/f^ nR'$ is an isomorphism for $n > 0$ and the sequence 
+</p>
+<div class="equation">
+  \[  0 \to R \to R' \oplus R_ f \to R_ f' \to 0  \]
+</div>
+<p>
+ is exact. Consider the category $\text{Glue}(R \to R', f)$ introduced in Remark <a href="/tag/05EL" data-tag="05EL">15.91.10</a>. We will call an object $(M', M_1, \alpha _1)$ of $\text{Glue}(R \to R', f)$ a <em>glueing datum</em>. It consists of an $R'$-module $M'$, an $R_ f$-module $M_1$, and an isomorphism $\alpha _1 : (M')_ f \to M_1 \otimes _ R R'$. There is an obvious functor 
+</p>
+<div class="equation">
+  \[  \text{Can} : \text{Mod}_ R \longrightarrow \text{Glue}(R \to R', f),\quad M \longmapsto (M \otimes _ R R', M_ f, \text{can}),  \]
+</div>
+<p>
+ and there is a functor 
+</p>
+<div class="equation">
+  \[  H^0 : \text{Glue}(R \to R', f) \longrightarrow \text{Mod}_ R,\quad (M', M_1, \alpha _1) \longmapsto \mathop{\mathrm{Ker}}(M' \oplus M_1 \to (M')_ f)  \]
+</div>
+<p>
+ in the reverse direction, see Remark <a href="/tag/05EL" data-tag="05EL">15.91.10</a> for the precise definition. 
+</p>
+<p>
+<article class="env-theorem" id="0BP2">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0BP2">Theorem <span data-tag="0BP2">15.92.16</span>.</a> Let $(R \to R',f)$ be a glueing pair. The functor $\text{Can} : \text{Mod}_ R \longrightarrow \text{Glue}(R \to R', f)$ determines an equivalence of the category of $R$-modules glueable for $(R \to R', f)$ and the category $\text{Glue}(R \to R', f)$ of glueing data. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $(M', M_1, \alpha _1)$ be a glueing datum. We will show that $M = H^0((M', M_1, \alpha _1))$ is a glueable module for $(R \to R', f)$ and that $(M', M_1, \alpha _1) \cong \text{Can}(M)$. 
+    <p>
+      We first check that the map $\text{d} : M' \oplus M_1 \to (M')_ f$ used in the definition of the functor $H^0$ is surjective. Observe that $(x, y) \in M' \oplus M_1$ maps to $\text{d}(x, y) = x/1 - \alpha _1^{-1}(y \otimes 1)$ in $(M')_ f$. If $z \in (M')_ f$, then we can write $\alpha _1(z) = \sum y_ i \otimes g_ i$ with $g_ i \in R'$ and $y_ i \in M_1$. Write $\alpha _1^{-1}(y_ i \otimes 1) = y_ i'/f^ n$ for some $y'_ i \in M'$ and $n \geq 0$ (we can pick the same $n$ for all $i$). Write $g_ i = a_ i + f^ n b_ i$ with $a_ i \in R$ and $b_ i \in R'$. Then with $y = \sum a_ i y_ i \in M_1$ and $x = \sum b_ i y'_ i \in M'$ we have $\text{d}(x, -y) = z$ as desired. 
+    <p>
+      Since $M = H^0((M', M_1, \alpha _1)) = \mathop{\mathrm{Ker}}(\text{d})$ we obtain an exact sequence of $R$-modules 
+    <p>
+      <div class="equation" id="0BP3">
+    <span class="equation-label"><a href="/tag/0BP3" data-tag="0BP3">15.92.16.1</a></span>
+  <div>\begin{equation}  \label{more-algebra-equation-define-M} 0 \to M \to M' \oplus M_1 \to (M')_ f \to 0. \end{equation}</div>
+</div>
+    <p>
+       We will prove that the maps $M \to M'$ and $M \to M_1$ induce isomorphisms $M \otimes _ R R' \to M'$ and $M \otimes _ R R_ f \to M_1$. This will imply that $M$ is glueable for $(R \to R', f)$ and $\text{Can}(M) \cong (M', M_1, \alpha _1)$ as desired. 
+    <p>
+      Since $f$ is a nonzerodivisor on $M_1$, we have $M[f^\infty ] \cong M'[f^\infty ]$. This yields an exact sequence 
+    <p>
+      <div class="equation" id="0BP4">
+    <span class="equation-label"><a href="/tag/0BP4" data-tag="0BP4">15.92.16.2</a></span>
+  <div>\begin{equation}  \label{more-algebra-equation-exact-mod-torsion} 0 \to M/M[f^\infty ] \to M_1 \to (M')_ f/M' \to 0. \end{equation}</div>
+</div>
+    <p>
+       Since $R \to R_ f$ is flat, we may tensor this exact sequence with $R_ f$ to deduce that $M \otimes _ R R_ f = (M/M[f^\infty ]) \otimes _ R R_ f \to M_1$ is an isomorphism. 
+    <p>
+      By Lemma <a href="/tag/0BP1" data-tag="0BP1">15.92.15</a> we have $\text{Tor}_1^ R(R', \mathop{\mathrm{Coker}}(M' \to (M')_ f)) = 0$. The sequence (<a href="/tag/0BP4" data-tag="0BP4">15.92.16.2</a>) thus remains exact upon tensoring over $R$ with $R'$. Using $\alpha _1$ and Lemma <a href="/tag/0BNK" data-tag="0BNK">15.90.9</a> the resulting exact sequence can be written as 
+    <p>
+      <div class="equation" id="0BP5">
+    <span class="equation-label"><a href="/tag/0BP5" data-tag="0BP5">15.92.16.3</a></span>
+  <div>\begin{equation}  \label{more-algebra-equation-mod-torsion-sequence} 0 \to (M/M[f^\infty ]) \otimes _ R R' \to (M')_ f \to (M')_ f/M' \to 0 \end{equation}</div>
+</div>
+    <p>
+       This yields an isomorphism $(M/M[f^\infty ]) \otimes _ R R' \cong M'/M'[f^\infty ]$. This implies that in the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ &  M[f^\infty ] \otimes _ R R' \ar[r] \ar[d] &  M \otimes _ R R' \ar[r] \ar[d] &  (M/M[f^\infty ]) \otimes _ R R' \ar[r] \ar[d] &  0 \\  0 \ar[r] &  M'[f^\infty ] \ar[r] &  M' \ar[r] &  M'/M'[f^\infty ] \ar[r] &  0, }  \]
+</div>
+    <p>
+       the third vertical arrow is an isomorphism. Since the rows are exact and the first vertical arrow is an isomorphism by Lemma <a href="/tag/0BNK" data-tag="0BNK">15.90.9</a> and $M[f^\infty ] = M'[f^\infty ]$, the five lemma implies that $M \otimes _ R R' \to M'$ is an isomorphism. 
+    <p>
+      The above shows that $\text{Can}$ is essentially surjective and that the functor $H^0$ maps into the category of glueable modules. Due to the exactness of (<a href="/tag/0F1R" data-tag="0F1R">15.92.9.1</a>) for glueable modules we have $H^0 \circ \text{Can} = \text{id}$ on the category of glueable modules. This implies $\text{Can}$ is fully faithful by Lemma <a href="/tag/0H77" data-tag="0H77">15.91.11</a> combined with Categories, Lemma <a href="/tag/07RB" data-tag="07RB">4.24.4</a>. This finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0BP9">
+  <p><a class="environment-identifier" href="/tag/0BP9">Remark <span data-tag="0BP9">15.92.17</span>.</a> Let $(R \to R', f)$ be a glueing pair. Let $M$ be an $R$-module that is not necessarily glueable for $(R \to R', f)$. Setting $M' = M \otimes _ R R'$ and $M_1 = M_ f$ we obtain the glueing datum $\text{Can}(M) = (M', M_1, \text{can})$. Then $\tilde M = H^0(M', M_1, \text{can})$ is an $R$-module that is glueable for $(R \to R', f)$ and the canonical map $M \to \tilde M$ gives isomorphisms $M \otimes _ R R' \to \tilde M \otimes _ R R'$ and $M_ f \to \tilde M_ f$, see Theorem <a href="/tag/0BP2" data-tag="0BP2">15.92.16</a>. From the exactness of the sequences </p>
+  <div class="equation">
+  \[  M \to (M \otimes _ R R' )\oplus M_ f \to M \otimes _ R (R')_ f \to 0  \]
+</div>
+  <p> and </p>
+  <div class="equation">
+  \[  0 \to \tilde M \to (\tilde M \otimes _ R R') \oplus \tilde M_ f \to \tilde M \otimes _ R (R')_ f \to 0  \]
+</div>
+  <p> we conclude that the map $M \to \tilde M$ is surjective. </p>
+</article> 
+</p>
+<p>
+Recall that flat $R$-modules over a glueing pair $(R \to R', f)$ are glueable (Remark <a href="/tag/0BNX" data-tag="0BNX">15.92.11</a>). Hence the following lemma shows that Theorem <a href="/tag/0BP2" data-tag="0BP2">15.92.16</a> determines an equivalence between the category of flat $R$-modules and the category of glueing data $(M', M_1, \alpha _1)$ where $M'$ and $M_1$ are flat over $R'$ and $R_ f$. 
+</p>
+<p>
+<article class="env-lemma" id="0BP7">
+  <p><a class="environment-identifier" href="/tag/0BP7">Lemma <span data-tag="0BP7">15.92.18</span>.</a> Let $(R \to R', f)$ be a glueing pair. Let $M$ be an $R$-module which is not necessarily glueable for $(R \to R', f)$. Then $M$ is flat over $R$ if and only if $M \otimes _ R R'$ is flat over $R'$ and $M_ f$ is flat over $R_ f$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      One direction of the lemma follows from Algebra, Lemma <a href="/tag/00HI" data-tag="00HI">10.39.7</a>. For the other direction, assume $M \otimes _ R R'$ is flat over $R'$ and $M_ f$ is flat over $R_ f$. Let $\tilde M$ be as in Remark <a href="/tag/0BP9" data-tag="0BP9">15.92.17</a>. If $\tilde M$ is flat over $R$, then applying Algebra, Lemma <a href="/tag/00HL" data-tag="00HL">10.39.12</a> to the short exact sequence $0 \to \mathop{\mathrm{Ker}}(M \to \tilde M) \to M \to \tilde M \to 0$ we find that $\mathop{\mathrm{Ker}}(M \to \tilde M) \otimes _ R (R' \oplus R_ f)$ is zero. Hence $M = \tilde M$ by Lemma <a href="/tag/0BNL" data-tag="0BNL">15.92.2</a> and we conclude. In other words, we may replace $M$ by $\tilde M$ and assume $M$ is glueable for $(R \to R', f)$. Let $N$ be a second $R$-module. It suffices to prove that $\text{Tor}_1^ R(M, N) = 0$, see Algebra, Lemma <a href="/tag/00M5" data-tag="00M5">10.75.8</a>. 
+    <p>
+      The long exact sequence of Tors associated to the short exact sequence $0 \to R \to R' \oplus R_ f \to (R')_ f \to 0$ and $N$ gives an exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \text{Tor}_1^ R(R', N) \to \text{Tor}_1^ R((R')_ f, N)  \]
+</div>
+    <p>
+       and isomorphisms $\text{Tor}_ i^ R(R', N) = \text{Tor}_ i^ R((R')_ f, N)$ for $i \geq 2$. Since $\text{Tor}_ i^ R((R')_ f, N) = \text{Tor}_ i^ R(R', N)_ f$ we conclude that $f$ is a nonzerodivisor on $\text{Tor}_1^ R(R', N)$ and invertible on $\text{Tor}_ i^ R(R', N)$ for $i \geq 2$. Since $M \otimes _ R R'$ is flat over $R'$ we have 
+    <p>
+      <div class="equation">
+  \[  \text{Tor}_ i^ R(M \otimes _ R R', N) = (M \otimes _ R R') \otimes _{R'} \text{Tor}_ i^ R(R', N)  \]
+</div>
+    <p>
+       by the spectral sequence of Example <a href="/tag/068F" data-tag="068F">15.63.2</a>. Writing $M \otimes _ R R'$ as a filtered colimit of finite free $R'$-modules (Algebra, Theorem <a href="/tag/058G" data-tag="058G">10.81.4</a>) we conclude that $f$ is a nonzerodivisor on $\text{Tor}_1^ R(M \otimes _ R R', N)$ and invertible on $\text{Tor}_ i^ R(M \otimes _ R R', N)$. Next, we consider the exact sequence $0 \to M \to M \otimes _ R R' \oplus M_ f \to M \otimes _ R (R')_ f \to 0$ coming from the fact that $M$ is glueable and the associated long exact sequence of $\text{Tor}$. The relevant part is 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \text{Tor}_1^ R(M, N) \ar[r] &  \text{Tor}_1^ R(M \otimes _ R R', N) \ar[r] &  \text{Tor}_1^ R(M \otimes _ R (R')_ f, N) \\  &  \text{Tor}_2^ R(M \otimes _ R R', N) \ar[r] &  \text{Tor}_2^ R(M \otimes _ R (R')_ f, N) \ar[llu] }  \]
+</div>
+    <p>
+       We conclude that $\text{Tor}_1^ R(M, N) = 0$ by our remarks above on the action on $f$ on $\text{Tor}_ i^ R(M \otimes _ R R', N)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Observe that we have seen the result of the following lemma for “finitely generated” in Lemma <a href="/tag/0BNN" data-tag="0BNN">15.92.4</a>. 
+</p>
+<p>
+<article class="env-lemma" id="0BP6">
+  <p><a class="environment-identifier" href="/tag/0BP6">Lemma <span data-tag="0BP6">15.92.19</span>.</a> Let $(R \to R', f)$ be a glueing pair. Let $M$ be an $R$-module which is not necessarily glueable for $(R \to R', f)$. Then $M$ is a finite projective $R$-module if and only if $M \otimes _ R R'$ is finite projective over $R'$ and $M_ f$ is finite projective over $R_ f$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume that $M \otimes _ R R'$ is a finite projective module over $R'$ and that $M_ f$ is a finite projective module over $R_ f$. Our task is to prove that $M$ is finite projective over $R$. We will use Algebra, Lemma <a href="/tag/00NX" data-tag="00NX">10.78.2</a> without further mention. By Lemma <a href="/tag/0BP7" data-tag="0BP7">15.92.18</a> we see that $M$ is flat. By Lemma <a href="/tag/0BNN" data-tag="0BNN">15.92.4</a> we see that $M$ is finite. Choose a short exact sequence $0 \to K \to R^{\oplus n} \to M \to 0$. Since a finite projective module is of finite presentation and since the sequence remains exact after tensoring with $R'$ (by Algebra, Lemma <a href="/tag/00HL" data-tag="00HL">10.39.12</a>) and $R_ f$, we conclude that $K \otimes _ R R'$ and $K_ f$ are finite modules. Using the lemma above we conclude that $K$ is finitely generated. Hence $M$ is finitely presented and hence finite projective. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0BP8">
+  <p><a class="environment-identifier" href="/tag/0BP8">Remark <span data-tag="0BP8">15.92.20</span>.</a> In <span class="cite">[<a href="/bibliography/Beauville-Laszlo">Beauville-Laszlo</a>]</span> it is assumed that $f$ is a nonzerodivisor in $R$ and $R' = R^\wedge $, which gives a glueing pair by Lemma <a href="/tag/0BNR" data-tag="0BNR">15.92.6</a>. Even in this setting Theorem <a href="/tag/0BP2" data-tag="0BP2">15.92.16</a> says something new: the results of <span class="cite">[<a href="/bibliography/Beauville-Laszlo">Beauville-Laszlo</a>]</span> only apply to modules on which $f$ is a nonzerodivisor (and hence glueable in our sense, see Lemma <a href="/tag/0BNW" data-tag="0BNW">15.92.10</a>). Lemma <a href="/tag/0BP6" data-tag="0BP6">15.92.19</a> also provides a slight extension of the results of <span class="cite">[<a href="/bibliography/Beauville-Laszlo">Beauville-Laszlo</a>]</span>: not only can we allow $M$ to have nonzero $f$-power torsion, we do not even require it to be glueable. </p>
+</article> 
+</p>

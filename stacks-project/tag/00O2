@@ -1,0 +1,335 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="algebra-section-ring-finite-gl-dim" class="tex-section"><span data-tag="00O2">10.109</span> Rings of finite global dimension</h2>
+
+<p>
+The following lemma is often used to compare different projective resolutions of a given module. 
+</p>
+<p>
+<article class="env-lemma" id="00O3">
+  <p><a class="environment-identifier" href="/tag/00O3">Lemma <span data-tag="00O3">10.109.1</span> <span class="named">(Schanuel's lemma)</span>.</a>  Let $R$ be a ring. Let $M$ be an $R$-module. Suppose that </p>
+  <div class="equation">
+  \[  0 \to K \xrightarrow {c_1} P_1 \xrightarrow {p_1} M \to 0 \quad \text{and}\quad 0 \to L \xrightarrow {c_2} P_2 \xrightarrow {p_2} M \to 0  \]
+</div>
+  <p> are two short exact sequences, with $P_ i$ projective. Then $K \oplus P_2 \cong L \oplus P_1$. More precisely, there exist a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ 0 \ar[r] &  K \oplus P_2 \ar[r]_{(c_1, \text{id})} \ar[d] &  P_1 \oplus P_2 \ar[r]_{(p_1, 0)} \ar[d] &  M \ar[r] \ar@{=}[d] &  0 \\  0 \ar[r] &  P_1 \oplus L \ar[r]^{(\text{id}, c_2)} &  P_1 \oplus P_2 \ar[r]^{(0, p_2)} &  M \ar[r] &  0 }  \]
+</div>
+  <p> whose vertical arrows are isomorphisms. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider the module $N$ defined by the short exact sequence $0 \to N \to P_1 \oplus P_2 \to M \to 0$, where the last map is the sum of the two maps $P_ i \to M$. It is easy to see that the projection $N \to P_1$ is surjective with kernel $L$, and that $N \to P_2$ is surjective with kernel $K$. Since $P_ i$ are projective we have $N \cong K \oplus P_2 \cong L \oplus P_1$. This proves the first statement. 
+    <p>
+      To prove the second statement (and to reprove the first), choose $a : P_1 \to P_2$ and $b : P_2 \to P_1$ such that $p_1 = p_2 \circ a$ and $p_2 = p_1 \circ b$. This is possible because $P_1$ and $P_2$ are projective. Then we get a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ 0 \ar[r] &  K \oplus P_2 \ar[r]_{(c_1, \text{id})} &  P_1 \oplus P_2 \ar[r]_{(p_1, 0)} &  M \ar[r] &  0 \\  0 \ar[r] &  N \ar[r] \ar[d] \ar[u] &  P_1 \oplus P_2 \ar[r]_{(p_1, p_2)} \ar[d]_ S \ar[u]^ T &  M \ar[r] \ar@{=}[d] \ar@{=}[u] &  0 \\  0 \ar[r] &  P_1 \oplus L \ar[r]^{(\text{id}, c_2)} &  P_1 \oplus P_2 \ar[r]^{(0, p_2)} &  M \ar[r] &  0 }  \]
+</div>
+    <p>
+       with $T$ and $S$ given by the matrices 
+    <p>
+      <div class="equation">
+  \[  S = \left( \begin{matrix}  \text{id} 
+
+&  0 
+
+\\  a 
+
+&  \text{id} 
+
+\end{matrix} \right) \quad \text{and}\quad T = \left( \begin{matrix}  \text{id} 
+
+&  b 
+
+\\  0 
+
+&  \text{id} 
+
+\end{matrix} \right)  \]
+</div>
+    <p>
+       Then $S$, $T$ and the maps $N \to P_1 \oplus L$ and $N \to K \oplus P_2$ are isomorphisms as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="00O4">
+  <p><a class="environment-identifier" href="/tag/00O4">Definition <span data-tag="00O4">10.109.2</span>.</a> Let $R$ be a ring. Let $M$ be an $R$-module. We say $M$ has <em>finite projective dimension</em> if it has a finite length resolution by projective $R$-modules. The minimal length of such a resolution is called the <em>projective dimension</em> of $M$. </p>
+</article> 
+</p>
+<p>
+It is clear that the projective dimension of $M$ is $0$ if and only if $M$ is a projective module. The following lemma explains to what extent the projective dimension is independent of the choice of a projective resolution. 
+</p>
+<p>
+<article class="env-lemma" id="00O5">
+  <p><a class="environment-identifier" href="/tag/00O5">Lemma <span data-tag="00O5">10.109.3</span>.</a> Let $R$ be a ring. Suppose that $M$ is an $R$-module of projective dimension $d$. Suppose that $F_ e \to F_{e-1} \to \ldots \to F_0 \to M \to 0$ is exact with $F_ i$ projective and $e \geq d - 1$. Then the kernel of $F_ e \to F_{e-1}$ is projective (or the kernel of $F_0 \to M$ is projective in case $e = 0$). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We prove this by induction on $d$. If $d = 0$, then $M$ is projective. In this case there is a splitting $F_0 = \mathop{\mathrm{Ker}}(F_0 \to M) \oplus M$, and hence $\mathop{\mathrm{Ker}}(F_0 \to M)$ is projective. This finishes the proof if $e = 0$, and if $e > 0$, then replacing $M$ by $\mathop{\mathrm{Ker}}(F_0 \to M)$ we decrease $e$. 
+    <p>
+      Next assume $d > 0$. Let $0 \to P_ d \to P_{d-1} \to \ldots \to P_0 \to M \to 0$ be a minimal length finite resolution with $P_ i$ projective. According to Schanuel's Lemma <a href="/tag/00O3" data-tag="00O3">10.109.1</a> we have $P_0 \oplus \mathop{\mathrm{Ker}}(F_0 \to M) \cong F_0 \oplus \mathop{\mathrm{Ker}}(P_0 \to M)$. This proves the case $d = 1$, $e = 0$, because then the right hand side is $F_0 \oplus P_1$ which is projective. Hence now we may assume $e > 0$. The module $F_0 \oplus \mathop{\mathrm{Ker}}(P_0 \to M)$ has the finite projective resolution 
+    <p>
+      <div class="equation">
+  \[  0 \to P_ d \to P_{d-1} \to \ldots \to P_2 \to P_1 \oplus F_0 \to \mathop{\mathrm{Ker}}(P_0 \to M) \oplus F_0 \to 0  \]
+</div>
+    <p>
+       of length $d - 1$. By induction applied to the exact sequence 
+    <p>
+      <div class="equation">
+  \[  F_ e \to F_{e-1} \to \ldots \to F_2 \to P_0 \oplus F_1 \to P_0 \oplus \mathop{\mathrm{Ker}}(F_0 \to M) \to 0  \]
+</div>
+    <p>
+       of length $e - 1$ we conclude $\mathop{\mathrm{Ker}}(F_ e \to F_{e - 1})$ is projective (if $e \geq 2$) or that $\mathop{\mathrm{Ker}}(F_1 \oplus P_0 \to F_0 \oplus P_0)$ is projective. This implies the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CXC">
+  <p><a class="environment-identifier" href="/tag/0CXC">Lemma <span data-tag="0CXC">10.109.4</span>.</a> Let $R$ be a ring. Let $M$ be an $R$-module. Let $d \geq 0$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$M$ has projective dimension $\leq d$, 
+</p>
+</li><li><p>
+there exists a resolution $0 \to P_ d \to P_{d - 1} \to \ldots \to P_0 \to M \to 0$ with $P_ i$ projective, 
+</p>
+</li><li><p>
+for some resolution $\ldots \to P_2 \to P_1 \to P_0 \to M \to 0$ with $P_ i$ projective we have $\mathop{\mathrm{Ker}}(P_{d - 1} \to P_{d - 2})$ is projective if $d \geq 2$, or $\mathop{\mathrm{Ker}}(P_0 \to M)$ is projective if $d = 1$, or $M$ is projective if $d = 0$, 
+</p>
+</li><li><p>
+for any resolution $\ldots \to P_2 \to P_1 \to P_0 \to M \to 0$ with $P_ i$ projective we have $\mathop{\mathrm{Ker}}(P_{d - 1} \to P_{d - 2})$ is projective if $d \geq 2$, or $\mathop{\mathrm{Ker}}(P_0 \to M)$ is projective if $d = 1$, or $M$ is projective if $d = 0$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The equivalence of (1) and (2) is the definition of projective dimension, see Definition <a href="/tag/00O4" data-tag="00O4">10.109.2</a>. We have (2) $\Rightarrow $ (4) by Lemma <a href="/tag/00O5" data-tag="00O5">10.109.3</a>. The implications (4) $\Rightarrow $ (3) and (3) $\Rightarrow $ (2) are immediate. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CXD">
+  <p><a class="environment-identifier" href="/tag/0CXD">Lemma <span data-tag="0CXD">10.109.5</span>.</a> Let $R$ be a local ring. Let $M$ be an $R$-module. Let $d \geq 0$. The equivalent conditions (1) – (4) of Lemma <a href="/tag/0CXC" data-tag="0CXC">10.109.4</a> are also equivalent to </p>
+  <p><ol>
+  <li class="custom-item" data-marker="(5)"><p>
+there exists a resolution $0 \to P_ d \to P_{d - 1} \to \ldots \to P_0 \to M \to 0$ with $P_ i$ free. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows from Lemma <a href="/tag/0CXC" data-tag="0CXC">10.109.4</a> and Theorem <a href="/tag/0593" data-tag="0593">10.85.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CXE">
+  <p><a class="environment-identifier" href="/tag/0CXE">Lemma <span data-tag="0CXE">10.109.6</span>.</a> Let $R$ be a Noetherian ring. Let $M$ be a finite $R$-module. Let $d \geq 0$. The equivalent conditions (1) – (4) of Lemma <a href="/tag/0CXC" data-tag="0CXC">10.109.4</a> are also equivalent to </p>
+  <p><ol>
+  <li class="custom-item" data-marker="(6)"><p>
+there exists a resolution $0 \to P_ d \to P_{d - 1} \to \ldots \to P_0 \to M \to 0$ with $P_ i$ finite projective. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a resolution $\ldots \to F_2 \to F_1 \to F_0 \to M \to 0$ with $F_ i$ finite free (Lemma <a href="/tag/00LP" data-tag="00LP">10.71.1</a>). By Lemma <a href="/tag/0CXC" data-tag="0CXC">10.109.4</a> we see that $P_ d = \mathop{\mathrm{Ker}}(F_{d - 1} \to F_{d - 2})$ is projective at least if $d \geq 2$. Then $P_ d$ is a finite $R$-module as $R$ is Noetherian and $P_ d \subset F_{d - 1}$ which is finite free. Whence $0 \to P_ d \to F_{d - 1} \to \ldots \to F_1 \to F_0 \to M \to 0$ is the desired resolution. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CXF">
+  <p><a class="environment-identifier" href="/tag/0CXF">Lemma <span data-tag="0CXF">10.109.7</span>.</a> Let $R$ be a local Noetherian ring. Let $M$ be a finite $R$-module. Let $d \geq 0$. The equivalent conditions (1) – (4) of Lemma <a href="/tag/0CXC" data-tag="0CXC">10.109.4</a>, condition (5) of Lemma <a href="/tag/0CXD" data-tag="0CXD">10.109.5</a>, and condition (6) of Lemma <a href="/tag/0CXE" data-tag="0CXE">10.109.6</a> are also equivalent to </p>
+  <p><ol>
+  <li class="custom-item" data-marker="(7)"><p>
+there exists a resolution $0 \to F_ d \to F_{d - 1} \to \ldots \to F_0 \to M \to 0$ with $F_ i$ finite free. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from Lemmas <a href="/tag/0CXC" data-tag="0CXC">10.109.4</a>, <a href="/tag/0CXD" data-tag="0CXD">10.109.5</a>, and <a href="/tag/0CXE" data-tag="0CXE">10.109.6</a> and because a finite projective module over a local ring is finite free, see Lemma <a href="/tag/00NX" data-tag="00NX">10.78.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="065R">
+  <p><a class="environment-identifier" href="/tag/065R">Lemma <span data-tag="065R">10.109.8</span>.</a> Let $R$ be a ring. Let $M$ be an $R$-module. Let $n \geq 0$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$M$ has projective dimension $\leq n$, 
+</p>
+</li><li><p>
+$\mathop{\mathrm{Ext}}\nolimits ^ i_ R(M, N) = 0$ for all $R$-modules $N$ and all $i \geq n + 1$, and 
+</p>
+</li><li><p>
+$\mathop{\mathrm{Ext}}\nolimits ^{n + 1}_ R(M, N) = 0$ for all $R$-modules $N$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume (1). Choose a free resolution $F_\bullet \to M$ of $M$. Denote $d_ e : F_ e \to F_{e - 1}$. By Lemma <a href="/tag/00O5" data-tag="00O5">10.109.3</a> we see that $P_ e = \mathop{\mathrm{Ker}}(d_ e)$ is projective for $e \geq n - 1$. This implies that $F_ e \cong P_ e \oplus P_{e - 1}$ for $e \geq n$ where $d_ e$ maps the summand $P_{e - 1}$ isomorphically to $P_{e - 1}$ in $F_{e - 1}$. Hence, for any $R$-module $N$ the complex $\mathop{\mathrm{Hom}}\nolimits _ R(F_\bullet , N)$ is split exact in degrees $\geq n + 1$. Whence (2) holds. The implication (2) $\Rightarrow $ (3) is trivial. 
+    <p>
+      Assume (3) holds. If $n = 0$ then $M$ is projective by Lemma <a href="/tag/05CF" data-tag="05CF">10.77.2</a> and we see that (1) holds. If $n > 0$ choose a free $R$-module $F$ and a surjection $F \to M$ with kernel $K$. By Lemma <a href="/tag/065P" data-tag="065P">10.71.7</a> and the vanishing of $\mathop{\mathrm{Ext}}\nolimits _ R^ i(F, N)$ for all $i > 0$ by part (1) we see that $\mathop{\mathrm{Ext}}\nolimits _ R^ n(K, N) = 0$ for all $R$-modules $N$. Hence by induction we see that $K$ has projective dimension $\leq n - 1$. Then $M$ has projective dimension $\leq n$ as any finite projective resolution of $K$ gives a projective resolution of length one more for $M$ by adding $F$ to the front. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="065S">
+  <p><a class="environment-identifier" href="/tag/065S">Lemma <span data-tag="065S">10.109.9</span>.</a> Let $R$ be a ring. Let $0 \to M' \to M \to M'' \to 0$ be a short exact sequence of $R$-modules. </p>
+  <p><ol>
+  <li><p>
+If $M$ has projective dimension $\leq n$ and $M''$ has projective dimension $\leq n + 1$, then $M'$ has projective dimension $\leq n$. 
+</p>
+</li><li><p>
+If $M'$ and $M''$ have projective dimension $\leq n$ then $M$ has projective dimension $\leq n$. 
+</p>
+</li><li><p>
+If $M'$ has projective dimension $\leq n$ and $M$ has projective dimension $\leq n + 1$ then $M''$ has projective dimension $\leq n + 1$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Combine the characterization of projective dimension in Lemma <a href="/tag/065R" data-tag="065R">10.109.8</a> with the long exact sequence of ext groups in Lemma <a href="/tag/065P" data-tag="065P">10.71.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="00O6">
+  <p><a class="environment-identifier" href="/tag/00O6">Definition <span data-tag="00O6">10.109.10</span>.</a> Let $R$ be a ring. The ring $R$ is said to have <em>finite global dimension</em> if there exists an integer $n$ such that every $R$-module has a resolution by projective $R$-modules of length at most $n$. The minimal such $n$ is then called the <em>global dimension</em> of $R$. </p>
+</article> 
+</p>
+<p>
+The argument in the proof of the following lemma can be found in the paper <span class="cite">[<a href="/bibliography/Auslander">Auslander</a>]</span> by Auslander. 
+</p>
+<p>
+<article class="env-lemma" id="0D1U">
+  <p><a class="environment-identifier" href="/tag/0D1U">Lemma <span data-tag="0D1U">10.109.11</span>.</a> Let $R$ be a ring. Suppose we have a module $M = \bigcup _{e \in E} M_ e$ where the $M_ e$ are submodules well-ordered by inclusion. Assume the quotients $M_ e/\bigcup \nolimits _{e' < e} M_{e'}$ have projective dimension $\leq n$. Then $M$ has projective dimension $\leq n$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will prove this by induction on $n$. 
+    <p>
+      Base case: $n = 0$. Then $P_ e = M_ e/\bigcup _{e' < e} M_{e'}$ is projective. Thus we may choose a section $P_ e \to M_ e$ of the projection $M_ e \to P_ e$. We claim that the induced map $\psi : \bigoplus _{e \in E} P_ e \to M$ is an isomorphism. Namely, if $x = \sum x_ e \in \bigoplus P_ e$ is nonzero, then we let $e_{max}$ be maximal such that $x_{e_{max}}$ is nonzero and we conclude that $y = \psi (x) = \psi (\sum x_ e)$ is nonzero because $y \in M_{e_{max}}$ has nonzero image $x_{e_{max}}$ in $P_{e_{max}}$. On the other hand, let $y \in M$. Then $y \in M_ e$ for some $e$. We show that $y \in \mathop{\mathrm{Im}}(\psi )$ by transfinite induction on $e$. Let $x_ e \in P_ e$ be the image of $y$. Then $y - \psi (x_ e) \in \bigcup _{e' < e} M_{e'}$. By induction hypothesis we conclude that $y - \psi (x_ e) \in \mathop{\mathrm{Im}}(\psi )$ hence $y \in \mathop{\mathrm{Im}}(\psi )$. Thus the claim is true and $\psi $ is an isomorphism. We conclude that $M$ is projective as a direct sum of projectives, see Lemma <a href="/tag/065Q" data-tag="065Q">10.77.4</a>. 
+    <p>
+      If $n > 0$, then for $e \in E$ we denote $F_ e$ the free $R$-module on the set of elements of $M_ e$. Then we have a system of short exact sequences 
+    <p>
+      <div class="equation">
+  \[  0 \to K_ e \to F_ e \to M_ e \to 0  \]
+</div>
+    <p>
+       over the well-ordered set $E$. Note that the transition maps $F_{e'} \to F_ e$ and $K_{e'} \to K_ e$ are injective too. Set $F = \bigcup F_ e$ and $K = \bigcup K_ e$. Then 
+    <p>
+      <div class="equation">
+  \[  0 \to K_ e/\bigcup \nolimits _{e' < e} K_{e'} \to F_ e/\bigcup \nolimits _{e' < e} F_{e'} \to M_ e/\bigcup \nolimits _{e' < e} M_{e'} \to 0  \]
+</div>
+    <p>
+       is a short exact sequence of $R$-modules too and $F_ e/\bigcup _{e' < e} F_{e'}$ is the free $R$-module on the set of elements in $M_ e$ which are not contained in $\bigcup _{e' < e} M_{e'}$. Hence by Lemma <a href="/tag/065S" data-tag="065S">10.109.9</a> we see that the projective dimension of $K_ e/\bigcup _{e' < e} K_{e'}$ is at most $n - 1$. By induction we conclude that $K$ has projective dimension at most $n - 1$. Whence $M$ has projective dimension at most $n$ and we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="065T">
+  <p><a class="environment-identifier" href="/tag/065T">Lemma <span data-tag="065T">10.109.12</span>.</a> Let $R$ be a ring. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$R$ has finite global dimension $\leq n$, 
+</p>
+</li><li><p>
+every finite $R$-module has projective dimension $\leq n$, and 
+</p>
+</li><li><p>
+every cyclic $R$-module $R/I$ has projective dimension $\leq n$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It is clear that (1) $\Rightarrow $ (2) and (2) $\Rightarrow $ (3). Assume (3). Choose a set $E \subset M$ of generators of $M$. Choose a well ordering on $E$. For $e \in E$ denote $M_ e$ the submodule of $M$ generated by the elements $e' \in E$ with $e' \leq e$. Then $M = \bigcup _{e \in E} M_ e$. Note that for each $e \in E$ the quotient 
+    <p>
+      <div class="equation">
+  \[  M_ e/\bigcup \nolimits _{e' < e} M_{e'}  \]
+</div>
+    <p>
+       is either zero or generated by one element, hence has projective dimension $\leq n$ by (3). By Lemma <a href="/tag/0D1U" data-tag="0D1U">10.109.11</a> this means that $M$ has projective dimension $\leq n$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00O8">
+  <p><a class="environment-identifier" href="/tag/00O8">Lemma <span data-tag="00O8">10.109.13</span>.</a> Let $R$ be a ring. Let $M$ be an $R$-module. Let $S \subset R$ be a multiplicative subset. </p>
+  <p><ol>
+  <li><p>
+If $M$ has projective dimension $\leq n$, then $S^{-1}M$ has projective dimension $\leq n$ over $S^{-1}R$. 
+</p>
+</li><li><p>
+If $R$ has finite global dimension $\leq n$, then $S^{-1}R$ has finite global dimension $\leq n$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $0 \to P_ n \to P_{n - 1} \to \ldots \to P_0 \to M \to 0$ be a projective resolution. As localization is exact, see Proposition <a href="/tag/00CS" data-tag="00CS">10.9.12</a>, and as each $S^{-1}P_ i$ is a projective $S^{-1}R$-module, see Lemma <a href="/tag/05A3" data-tag="05A3">10.94.1</a>, we see that $0 \to S^{-1}P_ n \to \ldots \to S^{-1}P_0 \to S^{-1}M \to 0$ is a projective resolution of $S^{-1}M$. This proves (1). Let $M'$ be an $S^{-1}R$-module. Note that $M' = S^{-1}M'$. Hence we see that (2) follows from (1). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

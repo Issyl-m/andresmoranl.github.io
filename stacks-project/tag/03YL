@@ -1,0 +1,106 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="examples-stacks-section-stack-of-quasi-coherent-sheaves" class="tex-section"><span data-tag="03YL">95.4</span> Quasi-coherent sheaves</h2>
+
+<p>
+We define a category $\mathcal{QC}\! \mathit{oh}$ as follows: 
+</p>
+<ol>
+  <li><p>
+An object of $\mathcal{QC}\! \mathit{oh}$ is a pair $(X, \mathcal{F})$, where $X/S$ is an object of $(\mathit{Sch}/S)_{fppf}$, and $\mathcal{F}$ is a quasi-coherent $\mathcal{O}_ X$-module, and 
+</p>
+</li><li><p>
+a morphism $(f, \varphi ) : (Y, \mathcal{G}) \to (X, \mathcal{F})$ is a pair consisting of a morphism $f : Y \to X$ of schemes over $S$ and an $f$-map (see Sheaves, Section <a href="/tag/0094" data-tag="0094">6.26</a>) $\varphi : \mathcal{F} \to \mathcal{G}$. 
+</p>
+</li><li><p>
+The composition of morphisms 
+</p>
+<div class="equation">
+  \[  (Z, \mathcal{H}) \xrightarrow {(g, \psi )} (Y, \mathcal{G}) \xrightarrow {(f, \phi )} (X, \mathcal{F})  \]
+</div>
+<p>
+ is $(f \circ g, \psi \circ \phi )$ where $\psi \circ \phi $ is the composition of $f$-maps. 
+</p>
+</li>
+</ol>
+<p>
+ Thus $\mathcal{QC}\! \mathit{oh}$ is a category and 
+</p>
+<div class="equation">
+  \[  p : \mathcal{QC}\! \mathit{oh}\to (\mathit{Sch}/S)_{fppf}, \quad (X, \mathcal{F}) \mapsto X  \]
+</div>
+<p>
+ is a functor. Note that the fibre category of $\mathcal{QC}\! \mathit{oh}$ over a scheme $X$ is the opposite of the category $\mathit{QCoh}(\mathcal{O}_ X)$ of quasi-coherent $\mathcal{O}_ X$-modules. We remark for later use that given $(X, \mathcal{F}), (Y, \mathcal{G}) \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{QC}\! \mathit{oh})$ we have 
+</p>
+<div class="equation" id="04U2">
+    <span class="equation-label"><a href="/tag/04U2" data-tag="04U2">95.4.0.1</a></span>
+  <div>\begin{equation}  \label{examples-stacks-equation-morphisms-qcoh} \mathop{\mathrm{Mor}}\nolimits _{\mathcal{QC}\! \mathit{oh}}((Y, \mathcal{G}), (X, \mathcal{F})) = \coprod \nolimits _{f \in \mathop{\mathrm{Mor}}\nolimits _ S(Y, X)} \mathop{\mathrm{Mor}}\nolimits _{\mathit{QCoh}(\mathcal{O}_ Y)}(f^*\mathcal{F}, \mathcal{G}) \end{equation}</div>
+</div>
+<p>
+ See the discussion on $f$-maps of modules in Sheaves, Section <a href="/tag/0094" data-tag="0094">6.26</a>. 
+</p>
+<p>
+The category $\mathcal{QC}\! \mathit{oh}$ is not a stack over $(\mathit{Sch}/S)_{fppf}$ because its collection of objects is a proper class. On the other hand we will see that it does satisfy all the axioms of a stack. We will get around the set theoretical issue in Section <a href="/tag/0404" data-tag="0404">95.5</a>. 
+</p>
+<p>
+<article class="env-lemma" id="04U3">
+  <p><a class="environment-identifier" href="/tag/04U3">Lemma <span data-tag="04U3">95.4.1</span>.</a> A morphism $(f, \varphi ) : (Y, \mathcal{G}) \to (X, \mathcal{F})$ of $\mathcal{QC}\! \mathit{oh}$ is strongly cartesian if and only if the map $\varphi $ induces an isomorphism $f^*\mathcal{F} \to \mathcal{G}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $(X, \mathcal{F}) \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{QC}\! \mathit{oh})$. Let $f : Y \to X$ be a morphism of $(\mathit{Sch}/S)_{fppf}$. Note that there is a canonical $f$-map $c : \mathcal{F} \to f^*\mathcal{F}$ and hence we get a morphism $(f, c) : (Y, f^*\mathcal{F}) \to (X, \mathcal{F})$. We claim that $(f, c)$ is strongly cartesian. Namely, for any object $(Z, \mathcal{H})$ of $\mathcal{QC}\! \mathit{oh}$ we have 
+    <p>
+      <div class="equation">
+  \begin{align*}  \mathop{\mathrm{Mor}}\nolimits _{\mathcal{QC}\! \mathit{oh}}((Z, \mathcal{H}), (Y, f^*\mathcal{F})) &  = \coprod \nolimits _{g \in \mathop{\mathrm{Mor}}\nolimits _ S(Z, Y)} \mathop{\mathrm{Mor}}\nolimits _{\mathit{QCoh}(\mathcal{O}_ Z)}(g^*f^*\mathcal{F}, \mathcal{H}) \\ &  = \coprod \nolimits _{g \in \mathop{\mathrm{Mor}}\nolimits _ S(Z, Y)} \mathop{\mathrm{Mor}}\nolimits _{\mathit{QCoh}(\mathcal{O}_ Z)}((f \circ g)^*\mathcal{F}, \mathcal{H}) \\ &  = \mathop{\mathrm{Mor}}\nolimits _{\mathcal{QC}\! \mathit{oh}}((Z, \mathcal{H}), (X, \mathcal{F})) \times _{\mathop{\mathrm{Mor}}\nolimits _ S(Z, X)} \mathop{\mathrm{Mor}}\nolimits _ S(Z, Y) \end{align*}
+</div>
+    <p>
+       where we have used Equation (<a href="/tag/04U2" data-tag="04U2">95.4.0.1</a>) twice. This proves that the condition of Categories, Definition <a href="/tag/02XK" data-tag="02XK">4.33.1</a> holds for $(f, c)$, and hence our claim is true. Now by Categories, Lemma <a href="/tag/02XL" data-tag="02XL">4.33.2</a> we see that isomorphisms are strongly cartesian and compositions of strongly cartesian morphisms are strongly cartesian which proves the “if” part of the lemma. For the converse, note that given $(X, \mathcal{F})$ and $f : Y \to X$, if there exists a strongly cartesian morphism lifting $f$ with target $(X, \mathcal{F})$ then it has to be isomorphic to $(f, c)$ (see discussion following Categories, Definition <a href="/tag/02XK" data-tag="02XK">4.33.1</a>). Hence the "only if" part of the lemma holds. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03YM">
+  <p><a class="environment-identifier" href="/tag/03YM">Lemma <span data-tag="03YM">95.4.2</span>.</a> The functor $p : \mathcal{QC}\! \mathit{oh}\to (\mathit{Sch}/S)_{fppf}$ satisfies conditions (1), (2) and (3) of Stacks, Definition <a href="/tag/026F" data-tag="026F">8.4.1</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It is clear from Lemma <a href="/tag/04U3" data-tag="04U3">95.4.1</a> that $\mathcal{QC}\! \mathit{oh}$ is a fibred category over $(\mathit{Sch}/S)_{fppf}$. Given covering $\mathcal{U} = \{ X_ i \to X\} _{i \in I}$ of $(\mathit{Sch}/S)_{fppf}$ the functor 
+    <p>
+      <div class="equation">
+  \[  \mathit{QCoh}(\mathcal{O}_ X) \longrightarrow DD(\mathcal{U})  \]
+</div>
+    <p>
+       is fully faithful and essentially surjective, see Descent, Proposition <a href="/tag/023T" data-tag="023T">35.5.2</a>. Hence Stacks, Lemma <a href="/tag/02ZF" data-tag="02ZF">8.4.2</a> applies to show that $\mathcal{QC}\! \mathit{oh}$ satisfies all the axioms of a stack. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

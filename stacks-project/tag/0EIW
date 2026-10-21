@@ -1,0 +1,257 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="algebraization-section-distance" class="tex-section"><span data-tag="0EIW">52.18</span> A distance function</h2>
+
+<p>
+Let $Y$ be a Noetherian scheme and let $Z \subset Y$ be a closed subset. We define a function 
+</p>
+<div class="equation" id="0EIX">
+    <span class="equation-label"><a href="/tag/0EIX" data-tag="0EIX">52.18.0.1</a></span>
+  <div>\begin{equation}  \label{algebraization-equation-delta-Z} \delta ^ Y_ Z = \delta _ Z : Y \longrightarrow \mathbf{Z}_{\geq 0} \cup \{ \infty \}  \end{equation}</div>
+</div>
+<p>
+ which measures the “distance” of a point of $Y$ from $Z$. For an informal discussion, please see Remark <a href="/tag/0EJ0" data-tag="0EJ0">52.18.3</a>. Let $y \in Y$. We set $\delta _ Z(y) = \infty $ if $y$ is contained in a connected component of $Y$ which does not meet $Z$. If $y$ is contained in a connected component of $Y$ which meets $Z$, then we can find $k \geq 0$ and a system 
+</p>
+<div class="equation">
+  \[  V_0 \subset W_0 \supset V_1 \subset W_1 \supset \ldots \supset V_ k \subset W_ k  \]
+</div>
+<p>
+ of integral closed subschemes of $Y$ such that $V_0 \subset Z$ and $y \in W_ k$ is the generic point. Set $c_ i = \text{codim}(V_ i, W_ i)$ for $i = 0, \ldots , k$ and $b_ i = \text{codim}(V_{i + 1}, W_ i)$ for $i = 0, \ldots , k - 1$. For such a system we set 
+</p>
+<div class="equation">
+  \[  \delta (V_0, W_0, V_1, \ldots , W_ k) = k + \max _{i = 0, 1, \ldots , k} (c_ i + c_{i + 1} + \ldots + c_ k - b_ i - b_{i + 1} - \ldots - b_{k - 1})  \]
+</div>
+<p>
+ This is $\geq k$ as we can take $i = k$ and we have $c_ k \geq 0$. Finally, we set 
+</p>
+<div class="equation">
+  \[  \delta _ Z(y) = \min \delta (V_0, W_0, V_1, \ldots , W_ k)  \]
+</div>
+<p>
+ where the minimum is over all systems of integral closed subschemes of $Y$ as above. 
+</p>
+<p>
+<article class="env-lemma" id="0EIY">
+  <p><a class="environment-identifier" href="/tag/0EIY">Lemma <span data-tag="0EIY">52.18.1</span>.</a> Let $Y$ be a Noetherian scheme and let $Z \subset Y$ be a closed subset. </p>
+  <p><ol>
+  <li><p>
+For $y \in Y$ we have $\delta _ Z(y) = 0 \Leftrightarrow y \in Z$. 
+</p>
+</li><li><p>
+The subsets $\{ y \in Y \mid \delta _ Z(y) \leq k\} $ are stable under specialization. 
+</p>
+</li><li><p>
+For $y \in Y$ and $z \in \overline{\{ y\} } \cap Z$ we have $\dim (\mathcal{O}_{\overline{\{ y\} }, z}) \geq \delta _ Z(y)$. 
+</p>
+</li><li><p>
+If $\delta $ is a dimension function on $Y$, then $\delta _ Z(y) \geq \delta (y) - \delta _{max}$ where $\delta _{max}$ is the maximum value of $\delta $ on $Z$. 
+</p>
+</li><li><p>
+If $Y = \mathop{\mathrm{Spec}}(A)$ is the spectrum of a catenary Noetherian local ring with maximal ideal $\mathfrak m$ and $Z = \{ \mathfrak m\} $, then $\delta _ Z(y) = \dim (\overline{\{ y\} })$. 
+</p>
+</li><li><p>
+If $Y' \subset Y$ is an open subscheme, then $\delta ^{Y'}_{Y' \cap Z}(y') \geq \delta ^ Y_ Z(y')$ for $y' \in Y'$. 
+</p>
+</li>
+</ol></p>
+  <p> Assume $Y$ is catenary. Then </p>
+  <p><ol>
+  <li><p>
+Let $y' \leadsto y$ be an immediate specialization of points of $Y$. If $Y$ is catenary, then $\delta _ Z(y') \leq \delta _ Z(y) + 1$. 
+</p>
+</li><li><p>
+Given a pattern of specializations 
+</p>
+<div class="equation">
+  \[  \xymatrix{ &  y'_0 \ar@{~>}[ld] \ar@{~>}[rd] &  &  y'_1 \ar@{~>}[ld] &  \ldots &  y'_{k - 1} \ar@{~>}[rd] &  \\  y_0 &  &  y_1 &  &  \ldots &  &  y_ k = y }  \]
+</div>
+<p>
+ between points of $Y$ with $y_0 \in Z$ and $y_ i' \leadsto y_ i$ an immediate specialization, then $\delta _ Z(y_ k) \leq k$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Proof of (1). If $y \in Z$, then we can take $k = 0$ and $V_0 = W_0 = \overline{\{ y\} }$ and we get $\delta (V_0, W_0) = 0$ so $\delta _ Z(y) = 0$. If $y \not\in Z$, then for every system $V_0 \subset W_0 \supset V_1 \subset W_1 \supset \ldots \subset W_ k$ for $y$ we either have $k = 0$ and $V_0 \not= W_0$ or $k > 0$. In both cases $\delta (V_0, W_0, \ldots , W_ k) > 0$. Hence $\delta _ Z(y) > 0$. 
+    <p>
+      Proof of (2). Let $y \leadsto y'$ be a nontrivial specialization and let $V_0 \subset W_0 \supset V_1 \subset W_1 \supset \ldots \subset W_ k$ is a system for $y$. Here there are two cases. Case I: $V_ k = W_ k$, i.e., $c_ k = 0$. In this case we can set $V'_ k = W'_ k = \overline{\{ y'\} }$. An easy computation shows that $\delta (V_0, W_0, \ldots , V'_ k, W'_ k) \leq \delta (V_0, W_0, \ldots , V_ k, W_ k)$ because only $b_{k - 1}$ is changed into a bigger integer. Case II: $V_ k \not= W_ k$, i.e., $c_ k > 0$. In this case, setting $V_{k + 1} = W_{k + 1} = \overline{\{ y'\} }$ we see that $V_0 \subset W_0 \supset \ldots \subset W_ k \supset V_{k + 1} \subset W_{k + 1}$ is a system for $y'$. Then $c_{k + 1} = 0$ and $b_ k > 0$ so we get 
+    <p>
+      <div class="equation">
+  \begin{align*} &  \delta (V_0, \ldots , W_{k + 1}) \\ &  = k + 1 + \max _{i = 0, 1, \ldots , k + 1} (c_ i + c_{i + 1} + \ldots + c_ k + c_{k + 1} - b_ i - b_{i + 1} - \ldots - b_{k - 1} - b_ k) \\ &  = k + 1 + \max _{i = 0, 1, \ldots , k + 1} (c_ i + c_{i + 1} + \ldots + c_ k - b_ i - b_{i + 1} - \ldots - b_{k - 1} - b_ k) \\ &  \leq k + \max _{i = 0, 1, \ldots , k} (c_ i + c_{i + 1} + \ldots + c_ k - b_ i - b_{i + 1} - \ldots - b_{k - 1}) \\ &  = \delta (V_0, \ldots , W_ k) \end{align*}
+</div>
+    <p>
+       The inequality holds because $c_ k > 0$ and $b_ k > 0$ which in particular implies that $\delta (V_0, \ldots , W_ k) \geq k + c_ k \geq k + 1$. 
+    <p>
+      Proof of (3). Given $y \in Y$ and $z \in \overline{\{ y\} } \cap Z$ we get the system 
+    <p>
+      <div class="equation">
+  \[  V_0 = \overline{\{ z\} } \subset W_0 = \overline{\{ y\} }  \]
+</div>
+    <p>
+       and $c_0 = \text{codim}(V_0, W_0) = \dim (\mathcal{O}_{\overline{\{ y\} }, z})$ by Properties, Lemma <a href="/tag/02IZ" data-tag="02IZ">28.10.3</a>. Thus we see that $\delta (V_0, W_0) = 0 + c_0 = c_0$ which proves what we want. 
+    <p>
+      Proof of (4). Let $\delta $ be a dimension function on $Y$. Let $V_0 \subset W_0 \supset V_1 \subset W_1 \supset \ldots \subset W_ k$ be a system for $y$. Let $y'_ i \in W_ i$ and $y_ i \in V_ i$ be the generic points, so $y_0 \in Z$ and $y_ k = y$. Then we see that 
+    <p>
+      <div class="equation">
+  \[  \delta (y_ i) - \delta (y_{i - 1}) = \delta (y'_{i - 1}) - \delta (y_{i - 1}) - \delta (y'_{i - 1}) + \delta (y_ i) = c_{i - 1} - b_{i - 1}  \]
+</div>
+    <p>
+       Finally, we have $\delta (y'_ k) - \delta (y_{k - 1}) = c_ k$. Thus we see that 
+    <p>
+      <div class="equation">
+  \[  \delta (y) - \delta (y_0) = c_0 + \ldots + c_ k - b_0 - \ldots - b_{k - 1}  \]
+</div>
+    <p>
+       We conclude $\delta (V_0, W_0, \ldots , W_ k) \geq k + \delta (y) - \delta (y_0)$ which proves what we want. 
+    <p>
+      Proof of (5). The function $\delta (y) = \dim (\overline{\{ y\} })$ is a dimension function. Hence $\delta (y) \leq \delta _ Z(y)$ by part (4). By part (3) we have $\delta _ Z(y) \leq \delta (y)$ and we are done. 
+    <p>
+      Proof of (6). This is clear as their are fewer systems to consider in the computation of $\delta ^{Y'}_{Y' \cap Z}$. 
+    <p>
+      Proof of (7). Let $V_0 \subset W_0 \supset V_1 \subset W_1 \supset \ldots \subset W_ k$ be a system for $y$. Set $W'_ k = \overline{\{ y'\} }$. Since $Y$ is catenary, we see that $\text{codim}(V_ k, W'_ k) = \text{codim}(V_ k, W_ k) + 1$. It follows easily that $\delta (V_0, \ldots , V_ k, W'_ k) \leq \delta (V_0, \ldots , V_ k, W_ k) + 1$ which proves what we want. 
+    <p>
+      Proof of (8): combine (7) and (2). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0EIZ">
+  <p><a class="environment-identifier" href="/tag/0EIZ">Lemma <span data-tag="0EIZ">52.18.2</span>.</a> Let $Y$ be a universally catenary Noetherian scheme. Let $Z \subset Y$ be a closed subscheme. Let $f : Y' \to Y$ be a finite type morphism all of whose fibres have dimension $\leq e$. Set $Z' = f^{-1}(Z)$. Then </p>
+  <div class="equation">
+  \[  \delta _ Z(y) \leq \delta _{Z'}(y') + e - \text{trdeg}_{\kappa (y)}(\kappa (y'))  \]
+</div>
+  <p> for $y' \in Y'$ with image $y \in Y$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $\delta _{Z'}(y') = \infty $, then there is nothing to prove. If $\delta _{Z'}(y') < \infty $, then we choose a system of integral closed subschemes 
+    <p>
+      <div class="equation">
+  \[  V'_0 \subset W'_0 \supset V'_1 \subset W'_1 \supset \ldots \subset W'_ k  \]
+</div>
+    <p>
+       of $Y'$ with $V'_0 \subset Z'$ and $y'$ the generic point of $W'_ k$ such that $\delta _{Z'}(y') = \delta (V'_0, W'_0, \ldots , W'_ k)$. Denote 
+    <p>
+      <div class="equation">
+  \[  V_0 \subset W_0 \supset V_1 \subset W_1 \supset \ldots \subset W_ k  \]
+</div>
+    <p>
+       the scheme theoretic images of the above schemes in $Y$. Observe that $y$ is the generic point of $W_ k$ and that $V_0 \subset Z$. For each $i$ we look at the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ V'_ i \ar[r] \ar[d] &  W'_ i \ar[d] &  V'_{i + 1} \ar[l] \ar[d] \\  V_ i \ar[r] &  W_ i &  V_{i + 1} \ar[l] }  \]
+</div>
+    <p>
+       Denote $n_ i$ the relative dimension of $V'_ i/V_ i$ and $m_ i$ the relative dimension of $W'_ i/W_ i$; more precisely these are the transcendence degrees of the corresponding extensions of the function fields. Set $c_ i = \text{codim}(V_ i, W_ i)$, $c'_ i = \text{codim}(V'_ i, W'_ i)$, $b_ i = \text{codim}(V_{i + 1}, W_ i)$, and $b'_ i = \text{codim}(V'_{i + 1}, W'_ i)$. By the dimension formula we have 
+    <p>
+      <div class="equation">
+  \[  c_ i = c'_ i + n_ i - m_ i \quad \text{and}\quad b_ i = b'_ i + n_{i + 1} - m_ i  \]
+</div>
+    <p>
+       See Morphisms, Lemma <a href="/tag/02JU" data-tag="02JU">29.53.1</a>. Hence $c_ i - b_ i = c'_ i - b'_ i + n_ i - n_{i + 1}$. Thus we see that 
+    <p>
+      <div class="equation">
+  \begin{align*} &  c_ i + c_{i + 1} + \ldots + c_ k - b_ i - b_{i + 1} - \ldots - b_{k - 1} \\ &  = c'_ i + c'_{i + 1} + \ldots + c'_ k - b'_ i - b'_{i + 1} - \ldots - b'_{k - 1} + n_ i - n_ k + c_ k - c'_ k \\ &  = c'_ i + c'_{i + 1} + \ldots + c'_ k - b'_ i - b'_{i + 1} - \ldots - b'_{k - 1} + n_ i - m_ k \end{align*}
+</div>
+    <p>
+       Thus we see that 
+    <p>
+      <div class="equation">
+  \begin{align*}  \max _{i = 0, \ldots , k} &  (c_ i + c_{i + 1} + \ldots + c_ k - b_ i - b_{i + 1} - \ldots - b_{k - 1}) \\ &  = \max _{i = 0, \ldots , k} (c'_ i + c'_{i + 1} + \ldots + c'_ k - b'_ i - b'_{i + 1} - \ldots - b'_{k - 1} + n_ i - m_ k) \\ &  = \max _{i = 0, \ldots , k} (c'_ i + c'_{i + 1} + \ldots + c'_ k - b'_ i - b'_{i + 1} - \ldots - b'_{k - 1} + n_ i) - m_ k \\ &  \leq \max _{i = 0, \ldots , k} (c'_ i + c'_{i + 1} + \ldots + c'_ k - b'_ i - b'_{i + 1} - \ldots - b'_{k - 1}) + e - m_ k \end{align*}
+</div>
+    <p>
+       Since $m_ k = \text{trdeg}_{\kappa (y)}(\kappa (y'))$ we conclude that 
+    <p>
+      <div class="equation">
+  \[  \delta (V_0, W_0, \ldots , W_ k) \leq \delta (V'_0, W'_0, \ldots , W'_ k) + e - \text{trdeg}_{\kappa (y)}(\kappa (y'))  \]
+</div>
+    <p>
+       as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0EJ0">
+  <p><a class="environment-identifier" href="/tag/0EJ0">Remark <span data-tag="0EJ0">52.18.3</span>.</a> Let $Y$ be a catenary Noetherian scheme and let $Z \subset Y$ be a closed subset. By Lemma <a href="/tag/0EIY" data-tag="0EIY">52.18.1</a> we have </p>
+  <div class="equation">
+  \[  \delta _ Z(y) \leq \min \left\{  k \middle | \begin{matrix}  \text{ there exist specializations in }Y 
+
+\\  y_0 \leftarrow y'_0 \rightarrow y_1 \leftarrow y'_1 \rightarrow \ldots \leftarrow y'_{k - 1} \rightarrow y_ k = y 
+
+\\  \text{ with }y_0 \in Z\text{ and }y_ i' \leadsto y_ i \text{ immediate} 
+
+\end{matrix} \right\}   \]
+</div>
+  <p> We claim that if $Y$ is of finite type over a field, then equality holds. If we ever need this result we will formulate a precise result and prove it here. However, in general if we define $\delta _ Z$ by the right hand side of this inequality, then we don't know if Lemma <a href="/tag/0EIZ" data-tag="0EIZ">52.18.2</a> remains true. </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="0EJ1">
+  <p><a class="environment-identifier" href="/tag/0EJ1">Example <span data-tag="0EJ1">52.18.4</span>.</a> Let $k$ be a field and $Y = \mathbf{A}^ n_ k$. Denote $\delta : Y \to \mathbf{Z}_{\geq 0}$ the usual dimension function. </p>
+  <p><ol>
+  <li><p>
+If $Z = \{ z\} $ for some closed point $z$, then 
+</p>
+<ol>
+  <li><p>
+$\delta _ Z(y) = \delta (y)$ if $y \leadsto z$ and 
+</p>
+</li><li><p>
+$\delta _ Z(y) = \delta (y) + 1$ if $y \not\leadsto z$. 
+</p>
+</li>
+</ol>
+</li><li><p>
+If $Z$ is a closed subvariety and $W = \overline{\{ y\} }$, then 
+</p>
+<ol>
+  <li><p>
+$\delta _ Z(y) = 0$ if $W \subset Z$, 
+</p>
+</li><li><p>
+$\delta _ Z(y) = \dim (W) - \dim (Z)$ if $Z$ is contained in $W$, 
+</p>
+</li><li><p>
+$\delta _ Z(y) = 1$ if $\dim (W) \leq \dim (Z)$ and $W \not\subset Z$, 
+</p>
+</li><li><p>
+$\delta _ Z(y) = \dim (W) - \dim (Z) + 1$ if $\dim (W) > \dim (Z)$ and $Z \not\subset W$. 
+</p>
+</li>
+</ol>
+</li>
+</ol></p>
+  <p> A generalization of case (1) is if $Y$ is of finite type over a field and $Z = \{ z\} $ is a closed point. Then $\delta _ Z(y) = \delta (y) + t$ where $t$ is the minimum length of a chain of curves connecting $z$ to a closed point of $\overline{\{ y\} }$. </p>
+</article> 
+</p>

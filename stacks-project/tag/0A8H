@@ -1,0 +1,388 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-algebra-section-hom-complexes" class="tex-section"><span data-tag="0A8H">15.73</span> Hom complexes</h2>
+
+<p>
+Let $R$ be a ring. Let $L^\bullet $ and $M^\bullet $ be two complexes of $R$-modules. We construct a complex $\mathop{\mathrm{Hom}}\nolimits ^\bullet (L^\bullet , M^\bullet )$. Namely, for each $n$ we set 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits ^ n(L^\bullet , M^\bullet ) = \prod \nolimits _{n = p + q} \mathop{\mathrm{Hom}}\nolimits _ R(L^{-q}, M^ p)  \]
+</div>
+<p>
+ It is a good idea to think of $\mathop{\mathrm{Hom}}\nolimits ^ n$ as the $R$-module of all $R$-linear maps from $L^\bullet $ to $M^\bullet $ (viewed as graded modules) which are homogeneous of degree $n$. In this terminology, we define the differential by the rule 
+</p>
+<div class="equation">
+  \[  \text{d}(f) = \text{d}_ M \circ f - (-1)^ n f \circ \text{d}_ L  \]
+</div>
+<p>
+ for $f \in \mathop{\mathrm{Hom}}\nolimits ^ n(L^\bullet , M^\bullet )$. We omit the verification that $\text{d}^2 = 0$. See Section <a href="/tag/0FNG" data-tag="0FNG">15.74</a> for sign rules. This construction is a special case of Differential Graded Algebra, Example <a href="/tag/09L9" data-tag="09L9">22.26.6</a>. It follows immediately from the construction that we have 
+</p>
+<div class="equation" id="0A5X">
+    <span class="equation-label"><a href="/tag/0A5X" data-tag="0A5X">15.73.0.1</a></span>
+  <div>\begin{equation}  \label{more-algebra-equation-cohomology-hom-complex} H^ n(\mathop{\mathrm{Hom}}\nolimits ^\bullet (L^\bullet , M^\bullet )) = \mathop{\mathrm{Hom}}\nolimits _{K(R)}(L^\bullet , M^\bullet [n]) \end{equation}</div>
+</div>
+<p>
+ for all $n \in \mathbf{Z}$. 
+</p>
+<p>
+<article class="env-lemma" id="0A5Y">
+  <p><a class="environment-identifier" href="/tag/0A5Y">Lemma <span data-tag="0A5Y">15.73.1</span>.</a> Let $R$ be a ring. Given complexes $K^\bullet , L^\bullet , M^\bullet $ of $R$-modules there is a canonical isomorphism </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits ^\bullet (K^\bullet , \mathop{\mathrm{Hom}}\nolimits ^\bullet (L^\bullet , M^\bullet )) = \mathop{\mathrm{Hom}}\nolimits ^\bullet (\text{Tot}(K^\bullet \otimes _ R L^\bullet ), M^\bullet )  \]
+</div>
+  <p> of complexes of $R$-modules. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\alpha $ be an element of degree $n$ on the left hand side. Thus 
+    <p>
+      <div class="equation">
+  \[  \alpha = (\alpha ^{p, q}) \in \prod \nolimits _{p + q = n} \mathop{\mathrm{Hom}}\nolimits _ R(K^{-q}, \mathop{\mathrm{Hom}}\nolimits ^ p(L^\bullet , M^\bullet ))  \]
+</div>
+    <p>
+       Each $\alpha ^{p, q}$ is an element 
+    <p>
+      <div class="equation">
+  \[  \alpha ^{p, q} = (\alpha ^{r, s, q}) \in \prod \nolimits _{r + s + q = n} \mathop{\mathrm{Hom}}\nolimits _ R(K^{-q}, \mathop{\mathrm{Hom}}\nolimits _ R(L^{-s}, M^ r))  \]
+</div>
+    <p>
+       If we make the identifications 
+    <p>
+      <div class="equation" id="0A5Z">
+    <span class="equation-label"><a href="/tag/0A5Z" data-tag="0A5Z">15.73.1.1</a></span>
+  <div>\begin{equation}  \label{more-algebra-equation-identification} \mathop{\mathrm{Hom}}\nolimits _ R(K^{-q}, \mathop{\mathrm{Hom}}\nolimits _ R(L^{-s}, M^ r)) = \mathop{\mathrm{Hom}}\nolimits _ R(K^{-q} \otimes _ R L^{-s}, M^ r) \end{equation}</div>
+</div>
+    <p>
+       then by our sign rules we get 
+    <p>
+      <div class="equation">
+  \begin{align*}  \text{d}(\alpha ^{r, s, q}) &  = \text{d}_{\mathop{\mathrm{Hom}}\nolimits ^\bullet (L^\bullet , M^\bullet )} \circ \alpha ^{r, s, q} - (-1)^ n \alpha ^{r, s, q} \circ \text{d}_ K \\ &  = \text{d}_ M \circ \alpha ^{r, s, q} - (-1)^{r + s} \alpha ^{r, s, q} \circ \text{d}_ L - (-1)^{r + s + q} \alpha ^{r, s, q} \circ \text{d}_ K \end{align*}
+</div>
+    <p>
+       On the other hand, if $\beta $ is an element of degree $n$ of the right hand side, then 
+    <p>
+      <div class="equation">
+  \[  \beta = (\beta ^{r, s, q}) \in \prod \nolimits _{r + s + q = n} \mathop{\mathrm{Hom}}\nolimits _ R(K^{-q} \otimes _ R L^{-s}, M^ r)  \]
+</div>
+    <p>
+       and by our sign rule (Homology, Definition <a href="/tag/012Z" data-tag="012Z">12.18.3</a>) we get 
+    <p>
+      <div class="equation">
+  \begin{align*}  \text{d}(\beta ^{r, s, q}) &  = \text{d}_ M \circ \beta ^{r, s, q} - (-1)^ n \beta ^{r, s, q} \circ \text{d}_{\text{Tot}(K^\bullet \otimes L^\bullet )} \\ &  = \text{d}_ M \circ \beta ^{r, s, q} - (-1)^{r + s + q} \left( \beta ^{r, s, q} \circ \text{d}_ K + (-1)^{-q} \beta ^{r, s, q} \circ \text{d}_ L \right) \end{align*}
+</div>
+    <p>
+       Thus we see that the map induced by the identifications (<a href="/tag/0A5Z" data-tag="0A5Z">15.73.1.1</a>) indeed is a morphism of complexes. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0GWQ">
+  <p><a class="environment-identifier" href="/tag/0GWQ">Remark <span data-tag="0GWQ">15.73.2</span>.</a> Let $R$ be a ring. The category $\text{Comp}(R)$ of complexes of $R$-modules is a symmetric monoidal category with tensor product given by $\text{Tot}(- \otimes _ R -)$, see Lemma <a href="/tag/0FNI" data-tag="0FNI">15.59.1</a>. Given $L^\bullet $ and $M^\bullet $ in $\text{Comp}(R)$ an element $f \in \mathop{\mathrm{Hom}}\nolimits ^0(L^\bullet , M^\bullet )$ defines a map of complexes $f : L^\bullet \to M^\bullet $ if and only if $\text{d}(f) = 0$. Hence Lemma <a href="/tag/0A5Y" data-tag="0A5Y">15.73.1</a> also tells us that </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\text{Comp}(R)}(K^\bullet , \mathop{\mathrm{Hom}}\nolimits ^\bullet (L^\bullet , M^\bullet )) = \mathop{\mathrm{Mor}}\nolimits _{\text{Comp}(R)}(\text{Tot}(K^\bullet \otimes _ R L^\bullet ), M^\bullet )  \]
+</div>
+  <p> functorially in $K^\bullet , L^\bullet , M^\bullet $ in $\text{Comp}(R)$. This means that $\mathop{\mathrm{Hom}}\nolimits ^\bullet ( - , -)$ is an internal hom for the symmetric monoidal category $\text{Comp}(R)$ as discussed in Categories, Remark <a href="/tag/0GWJ" data-tag="0GWJ">4.43.16</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0A8I">
+  <p><a class="environment-identifier" href="/tag/0A8I">Lemma <span data-tag="0A8I">15.73.3</span>.</a> Let $R$ be a ring. Given complexes $K^\bullet , L^\bullet , M^\bullet $ of $R$-modules there is a canonical morphism </p>
+  <div class="equation">
+  \[  \text{Tot}\left( \mathop{\mathrm{Hom}}\nolimits ^\bullet (L^\bullet , M^\bullet ) \otimes _ R \mathop{\mathrm{Hom}}\nolimits ^\bullet (K^\bullet , L^\bullet ) \right) \longrightarrow \mathop{\mathrm{Hom}}\nolimits ^\bullet (K^\bullet , M^\bullet )  \]
+</div>
+  <p> of complexes of $R$-modules. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Via the discussion in Remark <a href="/tag/0GWQ" data-tag="0GWQ">15.73.2</a> the existence of such a canonical map follows from Categories, Remark <a href="/tag/0GWJ" data-tag="0GWJ">4.43.16</a>. We also give a direct construction. 
+    <p>
+      An element $\alpha $ of degree $n$ of the left hand side is 
+    <p>
+      <div class="equation">
+  \[  \alpha = (\alpha ^{p, q}) \in \bigoplus \nolimits _{p + q = n} \mathop{\mathrm{Hom}}\nolimits ^ p(L^\bullet , M^\bullet ) \otimes _ R \mathop{\mathrm{Hom}}\nolimits ^ q(K^\bullet , L^\bullet )  \]
+</div>
+    <p>
+       The element $\alpha ^{p, q}$ is a finite sum $\alpha ^{p, q} = \sum \beta ^ p_ i \otimes \gamma ^ q_ i$ with 
+    <p>
+      <div class="equation">
+  \[  \beta ^ p_ i = (\beta ^{r, s}_ i) \in \prod \nolimits _{r + s = p} \mathop{\mathrm{Hom}}\nolimits _ R(L^{-s}, M^ r)  \]
+</div>
+    <p>
+       and 
+    <p>
+      <div class="equation">
+  \[  \gamma ^ q_ i = (\gamma ^{u, v}_ i) \in \prod \nolimits _{u + v = q} \mathop{\mathrm{Hom}}\nolimits _ R(K^{-v}, L^ u)  \]
+</div>
+    <p>
+       The map is given by sending $\alpha $ to $\delta = (\delta ^{r, v})$ with 
+    <p>
+      <div class="equation">
+  \[  \delta ^{r, v} = \sum \nolimits _{i, s} \beta ^{r, s}_ i \circ \gamma ^{-s, v}_ i \in \mathop{\mathrm{Hom}}\nolimits _ R(K^{-v}, M^ r)  \]
+</div>
+    <p>
+       For given $r + v = n$ this sum is finite as there are only finitely many nonzero $\alpha ^{p, q}$, hence only finitely many nonzero $\beta ^ p_ i$ and $\gamma ^ q_ i$. By our sign rules we have 
+    <p>
+      <div class="equation">
+  \begin{align*}  \text{d}(\alpha ^{p, q}) &  = \text{d}_{\mathop{\mathrm{Hom}}\nolimits ^\bullet (L^\bullet , M^\bullet )}(\alpha ^{p, q}) + (-1)^ p \text{d}_{\mathop{\mathrm{Hom}}\nolimits ^\bullet (K^\bullet , L^\bullet )}(\alpha ^{p, q}) \\ &  = \sum \Big( \text{d}_ M \circ \beta ^ p_ i \circ \gamma ^ q_ i - (-1)^ p \beta ^ p_ i \circ \text{d}_ L \circ \gamma ^ q_ i \Big) \\ &  \quad + (-1)^ p \sum \Big( \beta ^ p_ i \circ \text{d}_ L \circ \gamma ^ q_ i - (-1)^ q \beta ^ p_ i \circ \gamma ^ q_ i \circ \text{d}_ K \Big) \\ &  = \sum \Big( \text{d}_ M \circ \beta ^ p_ i \circ \gamma ^ q_ i -(-1)^ n \beta ^ p_ i \circ \gamma ^ q_ i \circ \text{d}_ K \Big) \end{align*}
+</div>
+    <p>
+       It follows that the rules $\alpha \mapsto \delta $ is compatible with differentials and the lemma is proved. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BYM">
+  <p><a class="environment-identifier" href="/tag/0BYM">Lemma <span data-tag="0BYM">15.73.4</span>.</a> Let $R$ be a ring. Given complexes $K^\bullet , L^\bullet , M^\bullet $ of $R$-modules there is a canonical morphism </p>
+  <div class="equation">
+  \[  \text{Tot}(K^\bullet \otimes _ R \mathop{\mathrm{Hom}}\nolimits ^\bullet (M^\bullet , L^\bullet )) \longrightarrow \mathop{\mathrm{Hom}}\nolimits ^\bullet (M^\bullet , \text{Tot}(K^\bullet \otimes _ R L^\bullet ))  \]
+</div>
+  <p> of complexes of $R$-modules functorial in all three complexes. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Via the discussion in Remark <a href="/tag/0GWQ" data-tag="0GWQ">15.73.2</a> the existence of such a canonical map follows from Categories, Remark <a href="/tag/0GWJ" data-tag="0GWJ">4.43.16</a>. We also give a direct construction. 
+    <p>
+      Let $\alpha $ be an element of degree $n$ of the right hand side. Thus 
+    <p>
+      <div class="equation">
+  \[  \alpha = (\alpha ^{p, q}) \in \prod \nolimits _{p + q = n} \mathop{\mathrm{Hom}}\nolimits _ R(M^{-q}, \text{Tot}^ p(K^\bullet \otimes _ R L^\bullet ))  \]
+</div>
+    <p>
+       Each $\alpha ^{p, q}$ is an element 
+    <p>
+      <div class="equation">
+  \[  \alpha ^{p, q} = (\alpha ^{r, s, q}) \in \mathop{\mathrm{Hom}}\nolimits _ R(M^{-q}, \bigoplus \nolimits _{r + s + q = n} K^ r \otimes _ R L^ s)  \]
+</div>
+    <p>
+       where we think of $\alpha ^{r, s, q}$ as a family of maps such that for every $x \in M^{-q}$ only a finite number of $\alpha ^{r, s, q}(x)$ are nonzero. By our sign rules we get 
+    <p>
+      <div class="equation">
+  \begin{align*}  \text{d}(\alpha ^{r, s, q}) &  = \text{d}_{\text{Tot}(K^\bullet \otimes _ R L^\bullet )} \circ \alpha ^{r, s, q} - (-1)^ n \alpha ^{r, s, q} \circ \text{d}_ M \\ &  = \text{d}_ K \circ \alpha ^{r, s, q} + (-1)^ r \text{d}_ L \circ \alpha ^{r, s, q} - (-1)^ n \alpha ^{r, s, q} \circ \text{d}_ M \end{align*}
+</div>
+    <p>
+       On the other hand, if $\beta $ is an element of degree $n$ of the left hand side, then 
+    <p>
+      <div class="equation">
+  \[  \beta = (\beta ^{p, q}) \in \bigoplus \nolimits _{p + q = n} K^ p \otimes _ R \mathop{\mathrm{Hom}}\nolimits ^ q(M^\bullet , L^\bullet )  \]
+</div>
+    <p>
+       and we can write $\beta ^{p, q} = \sum \gamma _ i^ p \otimes \delta _ i^ q$ with $\gamma _ i^ p \in K^ p$ and 
+    <p>
+      <div class="equation">
+  \[  \delta _ i^ q = (\delta _ i^{r, s}) \in \prod \nolimits _{r + s = q} \mathop{\mathrm{Hom}}\nolimits _ R(M^{-s}, L^ r)  \]
+</div>
+    <p>
+       By our sign rules we have 
+    <p>
+      <div class="equation">
+  \begin{align*}  \text{d}(\beta ^{p, q}) &  = \text{d}_ K(\beta ^{p, q}) + (-1)^ p \text{d}_{\mathop{\mathrm{Hom}}\nolimits ^\bullet (M^\bullet , L^\bullet )}(\beta ^{p, q}) \\ &  = \sum \text{d}_ K(\gamma _ i^ p) \otimes \delta _ i^ q + (-1)^ p \sum \gamma _ i^ p \otimes (\text{d}_ L \circ \delta _ i^ q - (-1)^ q \delta _ i^ q \circ \text{d}_ M) \end{align*}
+</div>
+    <p>
+       We send the element $\beta $ to $\alpha $ with 
+    <p>
+      <div class="equation">
+  \[  \alpha ^{r, s, q} = c^{r, s, q}(\sum \gamma _ i^ r \otimes \delta _ i^{s, q})  \]
+</div>
+    <p>
+       where $c^{r, s, q} : K^ r \otimes _ R \mathop{\mathrm{Hom}}\nolimits _ R(M^{-q}, L^ s) \to \mathop{\mathrm{Hom}}\nolimits _ R(M^{-q}, K^ r \otimes _ R L^ s)$ is the canonical map. For a given $\beta $ and $r$ there are only finitely many nonzero $\gamma _ i^ r$ hence only finitely many nonzero $\alpha ^{r, s, q}$ are nonzero (for a given $r$). Thus this family of maps satisfies the conditions above and the map is well defined. Comparing signs we see that this is compatible with differentials. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0A62">
+  <p><a class="environment-identifier" href="/tag/0A62">Lemma <span data-tag="0A62">15.73.5</span>.</a> Let $R$ be a ring. Given complexes $K^\bullet , L^\bullet $ of $R$-modules there is a canonical morphism </p>
+  <div class="equation">
+  \[  K^\bullet \longrightarrow \mathop{\mathrm{Hom}}\nolimits ^\bullet (L^\bullet , \text{Tot}(K^\bullet \otimes _ R L^\bullet ))  \]
+</div>
+  <p> of complexes of $R$-modules functorial in both complexes. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Via the discussion in Remark <a href="/tag/0GWQ" data-tag="0GWQ">15.73.2</a> the existence of such a canonical map follows from Categories, Remark <a href="/tag/0GWJ" data-tag="0GWJ">4.43.16</a>. We also give a direct construction. 
+    <p>
+      Let $\alpha $ be an element of degree $n$ of the right hand side. Thus 
+    <p>
+      <div class="equation">
+  \[  \alpha = (\alpha ^{p, q}) \in \prod \nolimits _{p + q = n} \mathop{\mathrm{Hom}}\nolimits _ R(L^{-q}, \text{Tot}^ p(K^\bullet \otimes _ R L^\bullet ))  \]
+</div>
+    <p>
+       Each $\alpha ^{p, q}$ is an element 
+    <p>
+      <div class="equation">
+  \[  \alpha ^{p, q} = (\alpha ^{r, s, q}) \in \mathop{\mathrm{Hom}}\nolimits _ R(L^{-q}, \bigoplus \nolimits _{r + s + q = n} K^ r \otimes _ R L^ s)  \]
+</div>
+    <p>
+       where we think of $\alpha ^{r, s, q}$ as a family of maps such that for every $x \in L^{-q}$ only a finite number of $\alpha ^{r, s, q}(x)$ are nonzero. By our sign rules we get 
+    <p>
+      <div class="equation">
+  \begin{align*}  \text{d}(\alpha ^{r, s, q}) &  = \text{d}_{\text{Tot}(K^\bullet \otimes _ R L^\bullet )} \circ \alpha ^{r, s, q} - (-1)^ n \alpha ^{r, s, q} \circ \text{d}_ L \\ &  = \text{d}_ K \circ \alpha ^{r, s, q} + (-1)^ r \text{d}_ L \circ \alpha ^{r, s, q} - (-1)^ n \alpha ^{r, s, q} \circ \text{d}_ L \end{align*}
+</div>
+    <p>
+       Now an element $\beta \in K^ n$ we send to $\alpha $ with $\alpha ^{n, -q, q} = \beta \otimes \text{id}_{L^{-q}}$ and $\alpha ^{r, s, q} = 0$ if $r \not= n$. This is indeed an element as above, as for fixed $q$ there is only one nonzero $\alpha ^{r, s, q}$. The description of the differential shows this is compatible with differentials. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0A60">
+  <p><a class="environment-identifier" href="/tag/0A60">Lemma <span data-tag="0A60">15.73.6</span>.</a> Let $R$ be a ring. Given complexes $K^\bullet , L^\bullet , M^\bullet $ of $R$-modules there is a canonical morphism </p>
+  <div class="equation">
+  \[  \text{Tot}(\mathop{\mathrm{Hom}}\nolimits ^\bullet (L^\bullet , M^\bullet ) \otimes _ R K^\bullet ) \longrightarrow \mathop{\mathrm{Hom}}\nolimits ^\bullet (\mathop{\mathrm{Hom}}\nolimits ^\bullet (K^\bullet , L^\bullet ), M^\bullet )  \]
+</div>
+  <p> of complexes of $R$-modules functorial in all three complexes. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Via the discussion in Remark <a href="/tag/0GWQ" data-tag="0GWQ">15.73.2</a> the existence of such a canonical map follows from Categories, Remark <a href="/tag/0GWJ" data-tag="0GWJ">4.43.16</a>. We also give a direct construction. 
+    <p>
+      Consider an element $\beta $ of degree $n$ of the right hand side. Then 
+    <p>
+      <div class="equation">
+  \[  \beta = (\beta ^{p, s}) \in \prod \nolimits _{p + s = n} \mathop{\mathrm{Hom}}\nolimits _ R(\mathop{\mathrm{Hom}}\nolimits ^{-s}(K^\bullet , L^\bullet ), M^ p)  \]
+</div>
+    <p>
+       Our sign rules tell us that 
+    <p>
+      <div class="equation">
+  \begin{align*}  \text{d}(\beta ^{p, s}) &  = \text{d}_ M \circ \beta ^{p, s} - (-1)^ n \beta ^{p, s} \circ \text{d}_{\mathop{\mathrm{Hom}}\nolimits ^\bullet (K^\bullet , L^\bullet )} \end{align*}
+</div>
+    <p>
+       We can describe the last term as follows 
+    <p>
+      <div class="equation">
+  \[  (\beta ^{p, s} \circ \text{d}_{\mathop{\mathrm{Hom}}\nolimits ^\bullet (K^\bullet , L^\bullet )})(f) = \beta ^{p, s}(\text{d}_ L \circ f - (-1)^{s + 1} f \circ \text{d}_ K)  \]
+</div>
+    <p>
+       if $f \in \mathop{\mathrm{Hom}}\nolimits ^{-s - 1}(K^\bullet , L^\bullet )$. We conclude that in some unspecified sense $\text{d}(\beta ^{p, s})$ is a sum of three terms with signs as follows 
+    <p>
+      <div class="equation" id="0FNE">
+    <span class="equation-label"><a href="/tag/0FNE" data-tag="0FNE">15.73.6.1</a></span>
+  <div>\begin{equation}  \label{more-algebra-equation-beta} \text{d}(\beta ^{p, s}) = \text{d}_ M(\beta ^{p, s}) -(-1)^ n\text{d}_ L(\beta ^{p, s}) + (-1)^{p + 1}\text{d}_ K(\beta ^{p, s}) \end{equation}</div>
+</div>
+    <p>
+      Next, we consider an element $\alpha $ of degree $n$ of the left hand side. We can write it like so 
+    <p>
+      <div class="equation">
+  \[  \alpha = (\alpha ^{t, r}) \in \bigoplus \nolimits _{t + r = n} \mathop{\mathrm{Hom}}\nolimits ^ t(L^\bullet , M^\bullet ) \otimes K^ r  \]
+</div>
+    <p>
+       Each $\alpha ^{t, r}$ maps to an element 
+    <p>
+      <div class="equation">
+  \[  \alpha ^{t, r} \mapsto (\alpha ^{p, q, r}) \in \prod \nolimits _{p + q = t} \mathop{\mathrm{Hom}}\nolimits _ R(L^{-q}, M^ p) \otimes _ R K^ r  \]
+</div>
+    <p>
+       Our sign rules tell us that 
+    <p>
+      <div class="equation">
+  \begin{align*}  \text{d}(\alpha ^{p, q, r}) &  = \text{d}_{\mathop{\mathrm{Hom}}\nolimits ^\bullet (L^\bullet , M^\bullet )}(\alpha ^{p, q, r}) + (-1)^{p + q} \text{d}_ K(\alpha ^{p, q, r}) \end{align*}
+</div>
+    <p>
+       where if we further write $\alpha ^{p, q, r} = \sum g_ i^{p, q} \otimes k_ i^ r$ then we have 
+    <p>
+      <div class="equation">
+  \[  \text{d}_{\mathop{\mathrm{Hom}}\nolimits ^\bullet (L^\bullet , M^\bullet )}(\alpha ^{p, q, r}) = \sum (\text{d}_ M \circ g_ i^{p, q}) \otimes k_ i^ r - (-1)^{p + q} \sum (g_ i^{p, q} \circ \text{d}_ L) \otimes k_ i^ r  \]
+</div>
+    <p>
+       We conclude that in some unspecified sense $\text{d}(\alpha ^{p, q, r})$ is a sum of three terms with signs as follows 
+    <p>
+      <div class="equation" id="0FNF">
+    <span class="equation-label"><a href="/tag/0FNF" data-tag="0FNF">15.73.6.2</a></span>
+  <div>\begin{equation}  \label{more-algebra-equation-alpha} \text{d}(\alpha ^{p, q, r}) = \text{d}_ M(\alpha ^{p, q, r}) -(-1)^{p + q}\text{d}_ L(\alpha ^{p, q, r}) + (-1)^{p + q}\text{d}_ K(\alpha ^{p, q, r}) \end{equation}</div>
+</div>
+    <p>
+      To define our map we will use the canonical maps 
+    <p>
+      <div class="equation">
+  \[  c_{p, q, r} : \mathop{\mathrm{Hom}}\nolimits _ R(L^{-q}, M^ p) \otimes _ R K^ r \longrightarrow \mathop{\mathrm{Hom}}\nolimits _ R(\mathop{\mathrm{Hom}}\nolimits _ R(K^ r, L^{-q}), M^ p)  \]
+</div>
+    <p>
+       which sends $\varphi \otimes k$ to the map $\psi \mapsto \varphi (\psi (k))$. This is functorial in all three variables. With $s = q + r$ there is an inclusion 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _ R(\mathop{\mathrm{Hom}}\nolimits _ R(K^ r, L^{-q}), M^ p) \subset \mathop{\mathrm{Hom}}\nolimits _ R(\mathop{\mathrm{Hom}}\nolimits ^{-s}(K^\bullet , L^\bullet ), M^ p)  \]
+</div>
+    <p>
+       coming from the projection $\mathop{\mathrm{Hom}}\nolimits ^{-s}(K^\bullet , L^\bullet ) \to \mathop{\mathrm{Hom}}\nolimits _ R(K^ r, L^{-q})$. Since $\alpha ^{p, q, r}$ is nonzero only for a finite number of $r$ we see that for a given $s$ there is only a finite number of $q, r$ with $q + r = s$. Thus we can send $\alpha $ to the element $\beta $ with 
+    <p>
+      <div class="equation">
+  \[  \beta ^{p, s} = \sum \nolimits _{q + r = s} \epsilon _{p, q, r} c_{p, q, r}(\alpha ^{p, q, r})  \]
+</div>
+    <p>
+       where where the sum uses the inclusions given above and where $\epsilon _{p, q, r} \in \{ \pm 1\} $. Comparing signs in the equations (<a href="/tag/0FNE" data-tag="0FNE">15.73.6.1</a>) and (<a href="/tag/0FNF" data-tag="0FNF">15.73.6.2</a>) we see that 
+    <p>
+      <ol>
+  <li><p>
+$\epsilon _{p, q, r} = \epsilon _{p + 1, q, r}$ 
+</p>
+</li><li><p>
+$-(-1)^ n\epsilon _{p, q, r} = -(-1)^{p + q}\epsilon _{p, q - 1, r}$ or equivalently $\epsilon _{p, q, r} = (-1)^ r\epsilon _{p, q - 1, r}$ 
+</p>
+</li><li><p>
+$(-1)^{p + 1}\epsilon _{p, q, r} = (-1)^{p + q}\epsilon _{p, q, r + 1}$ or equivalently $(-1)^{q + 1}\epsilon _{p, q, r} = \epsilon _{p, q, r + 1}$. 
+</p>
+</li>
+</ol>
+    <p>
+       A good solution is to take 
+    <p>
+      <div class="equation">
+  \[  \epsilon _{p, r, s} = (-1)^{r + qr}  \]
+</div>
+    <p>
+       The choice of this sign is explained in the remark following the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0A61">
+  <p><a class="environment-identifier" href="/tag/0A61">Remark <span data-tag="0A61">15.73.7</span>.</a> Let us explain why the sign used in the direct construction in the proof of Lemma <a href="/tag/0A60" data-tag="0A60">15.73.6</a> agrees with the sign we get from the construction using the discussion in Remark <a href="/tag/0GWQ" data-tag="0GWQ">15.73.2</a> and Categories, Remark <a href="/tag/0GWJ" data-tag="0GWJ">4.43.16</a>. Denote $- \otimes - = \text{Tot}(- \otimes _ R -)$ and $hom(-, -) = \mathop{\mathrm{Hom}}\nolimits ^\bullet (-, -)$. The construction using monoidal category language tells us to use the arrow </p>
+  <div class="equation">
+  \[  hom(L^\bullet , M^\bullet ) \otimes K^\bullet \longrightarrow hom(hom(K^\bullet , L^\bullet ), M^\bullet )  \]
+</div>
+  <p> in $\text{Comp}(R)$ corresponding to the arrow </p>
+  <div class="equation">
+  \[  hom(L^\bullet , M^\bullet ) \otimes K^\bullet \otimes hom(K^\bullet , L^\bullet ) \longrightarrow M^\bullet  \]
+</div>
+  <p> gotten by swapping the order of the last two tensor products and then using the evaluation maps $hom(K^\bullet , L^\bullet ) \otimes K^\bullet \to L^\bullet $ and $hom(L^\bullet , K^\bullet ) \otimes L^\bullet \to M^\bullet $. Only in swapping does a sign intervene. Namely, in the isomorphism </p>
+  <div class="equation">
+  \[  K^\bullet \otimes hom(K^\bullet , L^\bullet ) \to hom(K^\bullet , L^\bullet ) \otimes K^\bullet  \]
+</div>
+  <p> there is a sign $(-1)^{r(q + r')}$ on $K^ r \otimes _ R \mathop{\mathrm{Hom}}\nolimits _ R(K^{-r'}, L^ q)$, see Section <a href="/tag/0FNG" data-tag="0FNG">15.74</a> item (<a href="/tag/0GWR" data-tag="0GWR">9</a>). The reader can convince themselves that, because of the correspondence we are using to describe maps into an internal hom, this sign only matters if $r = r'$ and in this case we obtain $(-1)^{r(q + r)} = (-1)^{r + qr}$ as in the direct proof. </p>
+</article> 
+</p>

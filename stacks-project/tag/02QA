@@ -1,0 +1,355 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h3 id="chow-subsection-length-determinant" class="tex-subsection"><span data-tag="02QA">42.68.40</span> Lengths and determinants</h3>
+
+<p>
+In this section we use the determinant to compare lattices. The key lemma is the following. 
+</p>
+<p>
+<article class="env-lemma" id="02QB">
+  <p><a class="environment-identifier" href="/tag/02QB">Lemma <span data-tag="02QB">42.68.41</span>.</a> Let $R$ be a Noetherian local ring. Let $\mathfrak q \subset R$ be a prime with $\dim (R/\mathfrak q) = 1$. Let $\varphi : M \to N$ be a homomorphism of finite $R$-modules. Assume there exist $x_1, \ldots , x_ l \in M$ and $y_1, \ldots , y_ l \in M$ with the following properties </p>
+  <p><ol>
+  <li><p>
+$M = \langle x_1, \ldots , x_ l\rangle $, 
+</p>
+</li><li><p>
+$\langle x_1, \ldots , x_ i\rangle / \langle x_1, \ldots , x_{i - 1}\rangle \cong R/\mathfrak q$ for $i = 1, \ldots , l$, 
+</p>
+</li><li><p>
+$N = \langle y_1, \ldots , y_ l\rangle $, and 
+</p>
+</li><li><p>
+$\langle y_1, \ldots , y_ i\rangle / \langle y_1, \ldots , y_{i - 1}\rangle \cong R/\mathfrak q$ for $i = 1, \ldots , l$. 
+</p>
+</li>
+</ol></p>
+  <p> Then $\varphi $ is injective if and only if $\varphi _{\mathfrak q}$ is an isomorphism, and in this case we have </p>
+  <div class="equation">
+  \[  \text{length}_ R(\mathop{\mathrm{Coker}}(\varphi )) = \text{ord}_{R/\mathfrak q}(f)  \]
+</div>
+  <p> where $f \in \kappa (\mathfrak q)$ is the element such that </p>
+  <div class="equation">
+  \[  [\varphi (x_1), \ldots , \varphi (x_ l)] = f [y_1, \ldots , y_ l]  \]
+</div>
+  <p> in $\det _{\kappa (\mathfrak q)}(N_{\mathfrak q})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      First, note that the lemma holds in case $l = 1$. Namely, in this case $x_1$ is a basis of $M$ over $R/\mathfrak q$ and $y_1$ is a basis of $N$ over $R/\mathfrak q$ and we have $\varphi (x_1) = fy_1$ for some $f \in R$. Thus $\varphi $ is injective if and only if $f \not\in \mathfrak q$. Moreover, $\mathop{\mathrm{Coker}}(\varphi ) = R/(f, \mathfrak q)$ and hence the lemma holds by definition of $\text{ord}_{R/q}(f)$ (see Algebra, Definition <a href="/tag/02MD" data-tag="02MD">10.121.2</a>). 
+    <p>
+      In fact, suppose more generally that $\varphi (x_ i) = f_ iy_ i$ for some $f_ i \in R$, $f_ i \not\in \mathfrak q$. Then the induced maps 
+    <p>
+      <div class="equation">
+  \[  \langle x_1, \ldots , x_ i\rangle / \langle x_1, \ldots , x_{i - 1}\rangle \longrightarrow \langle y_1, \ldots , y_ i\rangle / \langle y_1, \ldots , y_{i - 1}\rangle  \]
+</div>
+    <p>
+       are all injective and have cokernels isomorphic to $R/(f_ i, \mathfrak q)$. Hence we see that 
+    <p>
+      <div class="equation">
+  \[  \text{length}_ R(\mathop{\mathrm{Coker}}(\varphi )) = \sum \text{ord}_{R/\mathfrak q}(f_ i).  \]
+</div>
+    <p>
+       On the other hand it is clear that 
+    <p>
+      <div class="equation">
+  \[  [\varphi (x_1), \ldots , \varphi (x_ l)] = f_1 \ldots f_ l [y_1, \ldots , y_ l]  \]
+</div>
+    <p>
+       in this case from the admissible relation (b) for symbols. Hence we see the result holds in this case also. 
+    <p>
+      We prove the general case by induction on $l$. Assume $l > 1$. Let $i \in \{ 1, \ldots , l\} $ be minimal such that $\varphi (x_1) \in \langle y_1, \ldots , y_ i\rangle $. We will argue by induction on $i$. If $i = 1$, then we get a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ 0 \ar[r] &  \langle x_1 \rangle \ar[r] \ar[d] &  \langle x_1, \ldots , x_ l \rangle \ar[r] \ar[d] &  \langle x_1, \ldots , x_ l \rangle / \langle x_1 \rangle \ar[r] \ar[d] &  0 \\  0 \ar[r] &  \langle y_1 \rangle \ar[r] &  \langle y_1, \ldots , y_ l \rangle \ar[r] &  \langle y_1, \ldots , y_ l \rangle / \langle y_1 \rangle \ar[r] &  0 }  \]
+</div>
+    <p>
+       and the lemma follows from the snake lemma and induction on $l$. Assume now that $i > 1$. Write $\varphi (x_1) = a_1 y_1 + \ldots + a_{i - 1} y_{i - 1} + a y_ i$ with $a_ j, a \in R$ and $a \not\in \mathfrak q$ (since otherwise $i$ was not minimal). Set 
+    <p>
+      <div class="equation">
+  \[  x'_ j = \left\{  \begin{matrix}  x_ j 
+
+&  \text{if} 
+
+&  j = 1 
+
+\\  ax_ j 
+
+&  \text{if} 
+
+&  j \geq 2 
+
+\end{matrix} \right. \quad \text{and}\quad y'_ j = \left\{  \begin{matrix}  y_ j 
+
+&  \text{if} 
+
+&  j < i 
+
+\\  ay_ j 
+
+&  \text{if} 
+
+&  j \geq i 
+
+\end{matrix} \right.  \]
+</div>
+    <p>
+       Let $M' = \langle x'_1, \ldots , x'_ l \rangle $ and $N' = \langle y'_1, \ldots , y'_ l \rangle $. Since $\varphi (x'_1) = a_1 y'_1 + \ldots + a_{i - 1} y'_{i - 1} + y'_ i$ by construction and since for $j > 1$ we have $\varphi (x'_ j) = a\varphi (x_ i) \in \langle y'_1, \ldots , y'_ l\rangle $ we get a commutative diagram of $R$-modules and maps 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ M' \ar[d] \ar[r]_{\varphi '} &  N' \ar[d] \\  M \ar[r]^\varphi &  N }  \]
+</div>
+    <p>
+       By the result of the second paragraph of the proof we know that $\text{length}_ R(M/M') = (l - 1)\text{ord}_{R/\mathfrak q}(a)$ and similarly $\text{length}_ R(M/M') = (l - i + 1)\text{ord}_{R/\mathfrak q}(a)$. By a diagram chase this implies that 
+    <p>
+      <div class="equation">
+  \[  \text{length}_ R(\mathop{\mathrm{Coker}}(\varphi ')) = \text{length}_ R(\mathop{\mathrm{Coker}}(\varphi )) + i\  \text{ord}_{R/\mathfrak q}(a).  \]
+</div>
+    <p>
+       On the other hand, it is clear that writing 
+    <p>
+      <div class="equation">
+  \[  [\varphi (x_1), \ldots , \varphi (x_ l)] = f [y_1, \ldots , y_ l], \quad [\varphi '(x'_1), \ldots , \varphi (x'_ l)] = f' [y'_1, \ldots , y'_ l]  \]
+</div>
+    <p>
+       we have $f' = a^ if$. Hence it suffices to prove the lemma for the case that $\varphi (x_1) = a_1y_1 + \ldots a_{i - 1}y_{i - 1} + y_ i$, i.e., in the case that $a = 1$. Next, recall that 
+    <p>
+      <div class="equation">
+  \[  [y_1, \ldots , y_ l] = [y_1, \ldots , y_{i - 1}, a_1y_1 + \ldots a_{i - 1}y_{i - 1} + y_ i, y_{i + 1}, \ldots , y_ l]  \]
+</div>
+    <p>
+       by the admissible relations for symbols. The sequence $y_1, \ldots , y_{i - 1}, a_1y_1 + \ldots + a_{i - 1}y_{i - 1} + y_ i, y_{i + 1}, \ldots , y_ l$ satisfies the conditions (3), (4) of the lemma also. Hence, we may actually assume that $\varphi (x_1) = y_ i$. In this case, note that we have $\mathfrak q x_1 = 0$ which implies also $\mathfrak q y_ i = 0$. We have 
+    <p>
+      <div class="equation">
+  \[  [y_1, \ldots , y_ l] = - [y_1, \ldots , y_{i - 2}, y_ i, y_{i - 1}, y_{i + 1}, \ldots , y_ l]  \]
+</div>
+    <p>
+       by the third of the admissible relations defining $\det _{\kappa (\mathfrak q)}(N_{\mathfrak q})$. Hence we may replace $y_1, \ldots , y_ l$ by the sequence $y'_1, \ldots , y'_ l = y_1, \ldots , y_{i - 2}, y_ i, y_{i - 1}, y_{i + 1}, \ldots , y_ l$ (which also satisfies conditions (3) and (4) of the lemma). Clearly this decreases the invariant $i$ by $1$ and we win by induction on $i$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+To use the previous lemma we show that often sequences of elements with the required properties exist. 
+</p>
+<p>
+<article class="env-lemma" id="02QC">
+  <p><a class="environment-identifier" href="/tag/02QC">Lemma <span data-tag="02QC">42.68.42</span>.</a> Let $R$ be a local Noetherian ring. Let $\mathfrak q \subset R$ be a prime ideal. Let $M$ be a finite $R$-module such that $\mathfrak q$ is one of the minimal primes of the support of $M$. Then there exist $x_1, \ldots , x_ l \in M$ such that </p>
+  <p><ol>
+  <li><p>
+the support of $M / \langle x_1, \ldots , x_ l\rangle $ does not contain $\mathfrak q$, and 
+</p>
+</li><li><p>
+$\langle x_1, \ldots , x_ i\rangle / \langle x_1, \ldots , x_{i - 1}\rangle \cong R/\mathfrak q$ for $i = 1, \ldots , l$. 
+</p>
+</li>
+</ol></p>
+  <p> Moreover, in this case $l = \text{length}_{R_\mathfrak q}(M_\mathfrak q)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The condition that $\mathfrak q$ is a minimal prime in the support of $M$ implies that $l = \text{length}_{R_\mathfrak q}(M_\mathfrak q)$ is finite (see Algebra, Lemma <a href="/tag/00L5" data-tag="00L5">10.62.3</a>). Hence we can find $y_1, \ldots , y_ l \in M_{\mathfrak q}$ such that $\langle y_1, \ldots , y_ i\rangle / \langle y_1, \ldots , y_{i - 1}\rangle \cong \kappa (\mathfrak q)$ for $i = 1, \ldots , l$. We can find $f_ i \in R$, $f_ i \not\in \mathfrak q$ such that $f_ i y_ i$ is the image of some element $z_ i \in M$. Moreover, as $R$ is Noetherian we can write $\mathfrak q = (g_1, \ldots , g_ t)$ for some $g_ j \in R$. By assumption $g_ j y_ i \in \langle y_1, \ldots , y_{i - 1} \rangle $ inside the module $M_{\mathfrak q}$. By our choice of $z_ i$ we can find some further elements $f_{ji} \in R$, $f_{ij} \not\in \mathfrak q$ such that $f_{ij} g_ j z_ i \in \langle z_1, \ldots , z_{i - 1} \rangle $ (equality in the module $M$). The lemma follows by taking 
+    <p>
+      <div class="equation">
+  \[  x_1 = f_{11}f_{12}\ldots f_{1t}z_1, \quad x_2 = f_{11}f_{12}\ldots f_{1t}f_{21}f_{22}\ldots f_{2t}z_2,  \]
+</div>
+    <p>
+       and so on. Namely, since all the elements $f_ i, f_{ij}$ are invertible in $R_{\mathfrak q}$ we still have that $R_{\mathfrak q}x_1 + \ldots + R_{\mathfrak q}x_ i / R_{\mathfrak q}x_1 + \ldots + R_{\mathfrak q}x_{i - 1} \cong \kappa (\mathfrak q)$ for $i = 1, \ldots , l$. By construction, $\mathfrak q x_ i \in \langle x_1, \ldots , x_{i - 1}\rangle $. Thus $\langle x_1, \ldots , x_ i\rangle / \langle x_1, \ldots , x_{i - 1}\rangle $ is an $R$-module generated by one element, annihilated $\mathfrak q$ such that localizing at $\mathfrak q$ gives a $q$-dimensional vector space over $\kappa (\mathfrak q)$. Hence it is isomorphic to $R/\mathfrak q$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Here is the main result of this section. We will see below the various different consequences of this proposition. The reader is encouraged to first prove the easier Lemma <a href="/tag/02QE" data-tag="02QE">42.68.44</a> his/herself. 
+</p>
+<p>
+<article class="env-proposition" id="02QD">
+  <p><a class="environment-identifier" href="/tag/02QD">Proposition <span data-tag="02QD">42.68.43</span>.</a> Let $R$ be a local Noetherian ring with residue field $\kappa $. Suppose that $(M, \varphi , \psi )$ is a $(2, 1)$-periodic complex over $R$. Assume </p>
+  <p><ol>
+  <li><p>
+$M$ is a finite $R$-module, 
+</p>
+</li><li><p>
+the cohomology modules of $(M, \varphi , \psi )$ are of finite length, and 
+</p>
+</li><li><p>
+$\dim (\text{Supp}(M)) = 1$. 
+</p>
+</li>
+</ol></p>
+  <p> Let $\mathfrak q_ i$, $i = 1, \ldots , t$ be the minimal primes of the support of $M$. Then we have<a class="footnotemark" href="#a0000975362" id="a0000975362-mark"><sup>1</sup></a> </p>
+  <div class="equation">
+  \[  - e_ R(M, \varphi , \psi ) = \sum \nolimits _{i = 1, \ldots , t} \text{ord}_{R/\mathfrak q_ i}\left( \det \nolimits _{\kappa (\mathfrak q_ i)} (M_{\mathfrak q_ i}, \varphi _{\mathfrak q_ i}, \psi _{\mathfrak q_ i}) \right)  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We first reduce to the case $t = 1$ in the following way. Note that $\text{Supp}(M) = \{ \mathfrak m, \mathfrak q_1, \ldots , \mathfrak q_ t\} $, where $\mathfrak m \subset R$ is the maximal ideal. Let $M_ i$ denote the image of $M \to M_{\mathfrak q_ i}$, so $\text{Supp}(M_ i) = \{ \mathfrak m, \mathfrak q_ i\} $. The map $\varphi $ (resp. $\psi $) induces an $R$-module map $\varphi _ i : M_ i \to M_ i$ (resp. $\psi _ i : M_ i \to M_ i$). Thus we get a morphism of $(2, 1)$-periodic complexes 
+    <p>
+      <div class="equation">
+  \[  (M, \varphi , \psi ) \longrightarrow \bigoplus \nolimits _{i = 1, \ldots , t} (M_ i, \varphi _ i, \psi _ i).  \]
+</div>
+    <p>
+       The kernel and cokernel of this map have support contained in $\{ \mathfrak m\} $. Hence by Lemma <a href="/tag/0EA9" data-tag="0EA9">42.2.5</a> we have 
+    <p>
+      <div class="equation">
+  \[  e_ R(M, \varphi , \psi ) = \sum \nolimits _{i = 1, \ldots , t} e_ R(M_ i, \varphi _ i, \psi _ i)  \]
+</div>
+    <p>
+       On the other hand we clearly have $M_{\mathfrak q_ i} = M_{i, \mathfrak q_ i}$, and hence the terms of the right hand side of the formula of the lemma are equal to the expressions 
+    <p>
+      <div class="equation">
+  \[  \text{ord}_{R/\mathfrak q_ i}\left( \det \nolimits _{\kappa (\mathfrak q_ i)} (M_{i, \mathfrak q_ i}, \varphi _{i, \mathfrak q_ i}, \psi _{i, \mathfrak q_ i}) \right)  \]
+</div>
+    <p>
+       In other words, if we can prove the lemma for each of the modules $M_ i$, then the lemma holds. This reduces us to the case $t = 1$. 
+    <p>
+      Assume we have a $(2, 1)$-periodic complex $(M, \varphi , \psi )$ over a Noetherian local ring with $M$ a finite $R$-module, $\text{Supp}(M) = \{ \mathfrak m, \mathfrak q\} $, and finite length cohomology modules. The proof in this case follows from Lemma <a href="/tag/02QB" data-tag="02QB">42.68.41</a> and careful bookkeeping. Denote $K_\varphi = \mathop{\mathrm{Ker}}(\varphi )$, $I_\varphi = \mathop{\mathrm{Im}}(\varphi )$, $K_\psi = \mathop{\mathrm{Ker}}(\psi )$, and $I_\psi = \mathop{\mathrm{Im}}(\psi )$. Since $R$ is Noetherian these are all finite $R$-modules. Set 
+    <p>
+      <div class="equation">
+  \[  a = \text{length}_{R_{\mathfrak q}}(I_{\varphi , \mathfrak q}) = \text{length}_{R_{\mathfrak q}}(K_{\psi , \mathfrak q}), \quad b = \text{length}_{R_{\mathfrak q}}(I_{\psi , \mathfrak q}) = \text{length}_{R_{\mathfrak q}}(K_{\varphi , \mathfrak q}).  \]
+</div>
+    <p>
+       Equalities because the complex becomes exact after localizing at $\mathfrak q$. Note that $l = \text{length}_{R_{\mathfrak q}}(M_{\mathfrak q})$ is equal to $l = a + b$. 
+    <p>
+      We are going to use Lemma <a href="/tag/02QC" data-tag="02QC">42.68.42</a> to choose sequences of elements in finite $R$-modules $N$ with support contained in $\{ \mathfrak m, \mathfrak q\} $. In this case $N_{\mathfrak q}$ has finite length, say $n \in \mathbf{N}$. Let us call a sequence $w_1, \ldots , w_ n \in N$ with properties (1) and (2) of Lemma <a href="/tag/02QC" data-tag="02QC">42.68.42</a> a “good sequence”. Note that the quotient $N/\langle w_1, \ldots , w_ n \rangle $ of $N$ by the submodule generated by a good sequence has support (contained in) $\{ \mathfrak m\} $ and hence has finite length (Algebra, Lemma <a href="/tag/00L5" data-tag="00L5">10.62.3</a>). Moreover, the symbol $[w_1, \ldots , w_ n] \in \det _{\kappa (\mathfrak q)}(N_{\mathfrak q})$ is a generator, see Lemma <a href="/tag/02P9" data-tag="02P9">42.68.5</a>. 
+    <p>
+      Having said this we choose good sequences 
+    <p>
+      <div class="equation">
+  \[  \begin{matrix}  x_1, \ldots , x_ b 
+
+&  \text{in} 
+
+&  K_\varphi , 
+
+&  t_1, \ldots , t_ a 
+
+&  \text{in} 
+
+&  K_\psi , 
+
+\\  y_1, \ldots , y_ a 
+
+&  \text{in} 
+
+&  I_\varphi \cap \langle t_1, \ldots t_ a\rangle , 
+
+&  s_1, \ldots , s_ b 
+
+&  \text{in} 
+
+&  I_\psi \cap \langle x_1, \ldots , x_ b\rangle . 
+
+\end{matrix}  \]
+</div>
+    <p>
+       We will adjust our choices a little bit as follows. Choose lifts $\tilde y_ i \in M$ of $y_ i \in I_\varphi $ and $\tilde s_ i \in M$ of $s_ i \in I_\psi $. It may not be the case that $\mathfrak q \tilde y_1 \subset \langle x_1, \ldots , x_ b\rangle $ and it may not be the case that $\mathfrak q \tilde s_1 \subset \langle t_1, \ldots , t_ a\rangle $. However, using that $\mathfrak q$ is finitely generated (as in the proof of Lemma <a href="/tag/02QC" data-tag="02QC">42.68.42</a>) we can find a $d \in R$, $d \not\in \mathfrak q$ such that $\mathfrak q d\tilde y_1 \subset \langle x_1, \ldots , x_ b\rangle $ and $\mathfrak q d\tilde s_1 \subset \langle t_1, \ldots , t_ a\rangle $. Thus after replacing $y_ i$ by $dy_ i$, $\tilde y_ i$ by $d\tilde y_ i$, $s_ i$ by $ds_ i$ and $\tilde s_ i$ by $d\tilde s_ i$ we see that we may assume also that $x_1, \ldots , x_ b, \tilde y_1, \ldots , \tilde y_ b$ and $t_1, \ldots , t_ a, \tilde s_1, \ldots , \tilde s_ b$ are good sequences in $M$. 
+    <p>
+      Finally, we choose a good sequence $z_1, \ldots , z_ l$ in the finite $R$-module 
+    <p>
+      <div class="equation">
+  \[  \langle x_1, \ldots , x_ b, \tilde y_1, \ldots , \tilde y_ a \rangle \cap \langle t_1, \ldots , t_ a, \tilde s_1, \ldots , \tilde s_ b \rangle .  \]
+</div>
+    <p>
+       Note that this is also a good sequence in $M$. 
+    <p>
+      Since $I_{\varphi , \mathfrak q} = K_{\psi , \mathfrak q}$ there is a unique element $h \in \kappa (\mathfrak q)$ such that $[y_1, \ldots , y_ a] = h [t_1, \ldots , t_ a]$ inside $\det _{\kappa (\mathfrak q)}(K_{\psi , \mathfrak q})$. Similarly, as $I_{\psi , \mathfrak q} = K_{\varphi , \mathfrak q}$ there is a unique element $h \in \kappa (\mathfrak q)$ such that $[s_1, \ldots , s_ b] = g [x_1, \ldots , x_ b]$ inside $\det _{\kappa (\mathfrak q)}(K_{\varphi , \mathfrak q})$. We can also do this with the three good sequences we have in $M$. All in all we get the following identities 
+    <p>
+      <div class="equation">
+  \begin{align*}  [y_1, \ldots , y_ a] &  = h [t_1, \ldots , t_ a] \\  [s_1, \ldots , s_ b] &  = g [x_1, \ldots , x_ b] \\  [z_1, \ldots , z_ l] &  = f_\varphi [x_1, \ldots , x_ b, \tilde y_1, \ldots , \tilde y_ a] \\  [z_1, \ldots , z_ l] &  = f_\psi [t_1, \ldots , t_ a, \tilde s_1, \ldots , \tilde s_ b] \end{align*}
+</div>
+    <p>
+       for some $g, h, f_\varphi , f_\psi \in \kappa (\mathfrak q)$. 
+    <p>
+      Having set up all this notation let us compute $\det _{\kappa (\mathfrak q)}(M, \varphi , \psi )$. Namely, consider the element $[z_1, \ldots , z_ l]$. Under the map $\gamma _\psi \circ \sigma \circ \gamma _\varphi ^{-1}$ of Definition <a href="/tag/02PJ" data-tag="02PJ">42.68.13</a> we have 
+    <p>
+      <div class="equation">
+  \begin{eqnarray*}  [z_1, \ldots , z_ l] &  = &  f_\varphi [x_1, \ldots , x_ b, \tilde y_1, \ldots , \tilde y_ a] \\ &  \mapsto &  f_\varphi [x_1, \ldots , x_ b] \otimes [y_1, \ldots , y_ a] \\ &  \mapsto &  f_\varphi h/g [t_1, \ldots , t_ a] \otimes [s_1, \ldots , s_ b] \\ &  \mapsto &  f_\varphi h/g [t_1, \ldots , t_ a, \tilde s_1, \ldots , \tilde s_ b] \\ &  = &  f_\varphi h/f_\psi g [z_1, \ldots , z_ l] \end{eqnarray*}
+</div>
+    <p>
+       This means that $\det _{\kappa (\mathfrak q)} (M_{\mathfrak q}, \varphi _{\mathfrak q}, \psi _{\mathfrak q})$ is equal to $f_\varphi h/f_\psi g$ up to a sign. 
+    <p>
+      We abbreviate the following quantities 
+    <p>
+      <div class="equation">
+  \begin{eqnarray*}  k_\varphi &  = &  \text{length}_ R(K_\varphi /\langle x_1, \ldots , x_ b\rangle ) \\  k_\psi &  = &  \text{length}_ R(K_\psi /\langle t_1, \ldots , t_ a\rangle ) \\  i_\varphi &  = &  \text{length}_ R(I_\varphi /\langle y_1, \ldots , y_ a\rangle ) \\  i_\psi &  = &  \text{length}_ R(I_\psi /\langle s_1, \ldots , s_ a\rangle ) \\  m_\varphi &  = &  \text{length}_ R(M/ \langle x_1, \ldots , x_ b, \tilde y_1, \ldots , \tilde y_ a\rangle ) \\  m_\psi &  = &  \text{length}_ R(M/ \langle t_1, \ldots , t_ a, \tilde s_1, \ldots , \tilde s_ b\rangle ) \\  \delta _\varphi &  = &  \text{length}_ R( \langle x_1, \ldots , x_ b, \tilde y_1, \ldots , \tilde y_ a\rangle \langle z_1, \ldots , z_ l\rangle ) \\  \delta _\psi &  = &  \text{length}_ R( \langle t_1, \ldots , t_ a, \tilde s_1, \ldots , \tilde s_ b\rangle \langle z_1, \ldots , z_ l\rangle ) \end{eqnarray*}
+</div>
+    <p>
+       Using the exact sequences $0 \to K_\varphi \to M \to I_\varphi \to 0$ we get $m_\varphi = k_\varphi + i_\varphi $. Similarly we have $m_\psi = k_\psi + i_\psi $. We have $\delta _\varphi + m_\varphi = \delta _\psi + m_\psi $ since this is equal to the colength of $\langle z_1, \ldots , z_ l \rangle $ in $M$. Finally, we have 
+    <p>
+      <div class="equation">
+  \[  \delta _\varphi = \text{ord}_{R/\mathfrak q}(f_\varphi ), \quad \delta _\psi = \text{ord}_{R/\mathfrak q}(f_\psi )  \]
+</div>
+    <p>
+       by our first application of the key Lemma <a href="/tag/02QB" data-tag="02QB">42.68.41</a>. 
+    <p>
+      Next, let us compute the multiplicity of the periodic complex 
+    <p>
+      <div class="equation">
+  \begin{eqnarray*}  e_ R(M, \varphi , \psi ) &  = &  \text{length}_ R(K_\varphi /I_\psi ) - \text{length}_ R(K_\psi /I_\varphi ) \\ &  = &  \text{length}_ R( \langle x_1, \ldots , x_ b\rangle / \langle s_1, \ldots , s_ b\rangle ) + k_\varphi - i_\psi \\ & &  - \text{length}_ R( \langle t_1, \ldots , t_ a\rangle / \langle y_1, \ldots , y_ a\rangle ) - k_\psi + i_\varphi \\ &  = &  \text{ord}_{R/\mathfrak q}(g/h) + k_\varphi - i_\psi - k_\psi + i_\varphi \\ &  = &  \text{ord}_{R/\mathfrak q}(g/h) + m_\varphi - m_\psi \\ &  = &  \text{ord}_{R/\mathfrak q}(g/h) + \delta _\psi - \delta _\varphi \\ &  = &  \text{ord}_{R/\mathfrak q}(f_\psi g/f_\varphi h) \end{eqnarray*}
+</div>
+    <p>
+       where we used the key Lemma <a href="/tag/02QB" data-tag="02QB">42.68.41</a> twice in the third equality. By our computation of $\det _{\kappa (\mathfrak q)} (M_{\mathfrak q}, \varphi _{\mathfrak q}, \psi _{\mathfrak q})$ this proves the proposition. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In most applications the following lemma suffices. 
+</p>
+<p>
+<article class="env-lemma" id="02QE">
+  <p><a class="environment-identifier" href="/tag/02QE">Lemma <span data-tag="02QE">42.68.44</span>.</a> Let $R$ be a Noetherian local ring with maximal ideal $\mathfrak m$. Let $M$ be a finite $R$-module, and let $\psi : M \to M$ be an $R$-module map. Assume that </p>
+  <p><ol>
+  <li><p>
+$\mathop{\mathrm{Ker}}(\psi )$ and $\mathop{\mathrm{Coker}}(\psi )$ have finite length, and 
+</p>
+</li><li><p>
+$\dim (\text{Supp}(M)) \leq 1$. 
+</p>
+</li>
+</ol></p>
+  <p> Write $\text{Supp}(M) = \{ \mathfrak m, \mathfrak q_1, \ldots , \mathfrak q_ t\} $ and denote $f_ i \in \kappa (\mathfrak q_ i)^*$ the element such that $\det _{\kappa (\mathfrak q_ i)}(\psi _{\mathfrak q_ i}) : \det _{\kappa (\mathfrak q_ i)}(M_{\mathfrak q_ i}) \to \det _{\kappa (\mathfrak q_ i)}(M_{\mathfrak q_ i})$ is multiplication by $f_ i$. Then we have </p>
+  <div class="equation">
+  \[  \text{length}_ R(\mathop{\mathrm{Coker}}(\psi )) - \text{length}_ R(\mathop{\mathrm{Ker}}(\psi )) = \sum \nolimits _{i = 1, \ldots , t} \text{ord}_{R/\mathfrak q_ i}(f_ i).  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Recall that $H^0(M, 0, \psi ) = \mathop{\mathrm{Coker}}(\psi )$ and $H^1(M, 0, \psi ) = \mathop{\mathrm{Ker}}(\psi )$, see remarks above Definition <a href="/tag/02PH" data-tag="02PH">42.2.2</a>. The lemma follows by combining Proposition <a href="/tag/02QD" data-tag="02QD">42.68.43</a> with Lemma <a href="/tag/02PN" data-tag="02PN">42.68.17</a>. 
+    <p>
+      Alternative proof. Reduce to the case $\text{Supp}(M) = \{ \mathfrak m, \mathfrak q\} $ as in the proof of Proposition <a href="/tag/02QD" data-tag="02QD">42.68.43</a>. Then directly combine Lemmas <a href="/tag/02QB" data-tag="02QB">42.68.41</a> and <a href="/tag/02QC" data-tag="02QC">42.68.42</a> to prove this specific case of Proposition <a href="/tag/02QD" data-tag="02QD">42.68.43</a>. There is much less bookkeeping in this case, and the reader is encouraged to work this out. Details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

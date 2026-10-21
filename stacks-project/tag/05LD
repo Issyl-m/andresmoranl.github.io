@@ -1,0 +1,125 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="examples-section-sheaves" class="tex-section"><span data-tag="05LD">110.58</span> Sheaves and specializations</h2>
+
+<p>
+In the following we fix a big étale site $\mathit{Sch}_{\acute{e}tale}$ as constructed in Topologies, Definition <a href="/tag/021A" data-tag="021A">34.4.6</a>. Moreover, a scheme will be an object of this site. Recall that if $x, x'$ are points of a scheme $X$ we say $x$ is a <em>specialization</em> of $x'$ or we write $x' \leadsto x$ if $x \in \overline{\{ x'\} }$. This is true in particular if $x = x'$. 
+</p>
+<p>
+Consider the functor $F : \mathit{Sch}_{\acute{e}tale}\to \textit{Ab}$ defined by the following rules: 
+</p>
+<div class="equation">
+  \[  F(X) = \prod \nolimits _{x \in X} \prod \nolimits _{x' \in X, x' \leadsto x, x' \not= x} \mathbf{Z}/2\mathbf{Z}  \]
+</div>
+<p>
+ Given a scheme $X$ we denote $|X|$ the underlying set of points. An element $a \in F(X)$ will be viewed as a map of sets $|X| \times |X| \to \mathbf{Z}/2\mathbf{Z}$, $(x, x') \mapsto a(x, x')$ which is zero if $x = x'$ or if $x$ is not a specialization of $x'$. Given a morphism of schemes $f : X \to Y$ we define 
+</p>
+<div class="equation">
+  \[  F(f) : F(Y) \longrightarrow F(X)  \]
+</div>
+<p>
+ by the rule that for $b \in F(Y)$ we set 
+</p>
+<div class="equation">
+  \[  F(f)(b)(x, x') = \left\{  \begin{matrix}  0 
+
+&  \text{if }x\text{ is not a specialization of }x' 
+
+\\  b(f(x), f(x')) 
+
+&  \text{else.} 
+
+\end{matrix} \right.  \]
+</div>
+<p>
+ Note that this really does define an element of $F(X)$. We claim that if $f : X \to Y$ and $g : Y \to Z$ are composable morphisms then $F(f) \circ F(g) = F(g \circ f)$. Namely, let $c \in F(Z)$ and let $x' \leadsto x$ be a specialization of points in $X$, then 
+</p>
+<div class="equation">
+  \[  F(g \circ f)(x, x') = c(g(f(x)), g(f(x'))) = F(g)(F(f)(c))(x, x')  \]
+</div>
+<p>
+ because $f(x') \leadsto f(x)$. (This also works if $f(x) = f(x')$.) 
+</p>
+<p>
+Let $G$ be the sheafification of $F$ in the étale topology. 
+</p>
+<p>
+I claim that if $X$ is a scheme and $x' \leadsto x$ is a specialization and $x' \not= x$, then $G(X) \not= 0$. Namely, let $a \in F(X)$ be an element such that when we think of $a$ as a function $|X| \times |X| \to \mathbf{Z}/2\mathbf{Z}$ it is nonzero at $(x, x')$. Let $\{ f_ i : U_ i \to X\} $ be an étale covering of $X$. Then we can pick an $i$ and a point $u_ i \in U_ i$ with $f_ i(u_ i) = x$. Since generalizations lift along flat morphisms (see Morphisms, Lemma <a href="/tag/03HV" data-tag="03HV">29.26.9</a>) we can find a specialization $u'_ i \leadsto u_ i$ with $f_ i(u'_ i) = x'$. By our construction above we see that $F(f_ i)(a) \not= 0$. Hence $a$ determines a nonzero element of $G(X)$. 
+</p>
+<p>
+Note that if $X = \mathop{\mathrm{Spec}}(k)$ where $k$ is a field (or more generally a ring all of whose prime ideals are maximal), then $F(X) = 0$ and for every étale morphism $U \to X$ we have $F(U) = 0$ because there are no specializations between distinct points in fibres of an étale morphism. Hence $G(X) = 0$. 
+</p>
+<p>
+Suppose that $X \subset X'$ is a thickening, see More on Morphisms, Definition <a href="/tag/04EX" data-tag="04EX">37.2.1</a>. Then the category of schemes étale over $X'$ is equivalent to the category of schemes étale over $X$ by the base change functor $U' \mapsto U = U' \times _{X'} X$, see Étale Cohomology, Theorem <a href="/tag/04DZ" data-tag="04DZ">59.45.2</a>. Since it is always the case that $F(U) = F(U')$ in this situation we see that also $G(X) = G(X')$. 
+</p>
+<p>
+As a variant we can consider the presheaf $F_ n$ which associates to a scheme $X$ the collection of maps $a : |X|^{n + 1} \to \mathbf{Z}/2\mathbf{Z}$ where $a(x_0, \ldots , x_ n)$ is nonzero only if $x_ n \leadsto \ldots \leadsto x_0$ is a sequence of specializations and $x_ n \not= x_{n - 1} \not= \ldots \not= x_0$. Let $G_ n$ be the sheaf associated to $F_ n$. In exactly the same way as above one shows that $G_ n$ is nonzero if $\dim (X) \geq n$ and is zero if $\dim (X) < n$. 
+</p>
+<p>
+<article class="env-lemma" id="05LE">
+  <p><a class="environment-identifier" href="/tag/05LE">Lemma <span data-tag="05LE">110.58.1</span>.</a> There exists a sheaf of abelian groups $G$ on $\mathit{Sch}_{\acute{e}tale}$ with the following properties </p>
+  <p><ol>
+  <li><p>
+$G(X) = 0$ whenever $\dim (X) < n$, 
+</p>
+</li><li><p>
+$G(X)$ is not zero if $\dim (X) \geq n$, and 
+</p>
+</li><li><p>
+if $X \subset X'$ is a thickening, then $G(X) = G(X')$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      See the discussion above. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="05LF">
+  <p><a class="environment-identifier" href="/tag/05LF">Remark <span data-tag="05LF">110.58.2</span>.</a> Here are some remarks: </p>
+  <p><ol>
+  <li><p>
+The presheaves $F$ and $F_ n$ are separated presheaves. 
+</p>
+</li><li><p>
+It turns out that $F$, $F_ n$ are not sheaves. 
+</p>
+</li><li><p>
+One can show that $G$, $G_ n$ is actually a sheaf for the fppf topology. 
+</p>
+</li>
+</ol></p>
+  <p> We will prove these results if we need them. </p>
+</article> 
+</p>

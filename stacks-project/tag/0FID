@@ -1,0 +1,657 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="weil-section-c1" class="tex-section"><span data-tag="0FID">45.14</span> Weil cohomology theories, III</h2>
+
+<p>
+Let $k$ be a field. Let $F$ be a field of characteristic zero. Suppose we are given the following data 
+</p>
+<ol>
+  <li class="custom-item" data-marker="(D0)"><p>
+A $1$-dimensional $F$-vector space $F(1)$. 
+</p>
+</li><li class="custom-item" data-marker="(D1)"><p>
+A contravariant functor $H^*(-)$ from the category of smooth projective schemes over $k$ to the category of graded commutative $F$-algebras. 
+</p>
+</li><li class="custom-item" data-marker="(D2')"><p>
+For every smooth projective scheme $X$ over $k$ a homomorphism $c_1^ H : \mathop{\mathrm{Pic}}\nolimits (X) \to H^2(X)(1)$ of abelian groups. 
+</p>
+</li>
+</ol>
+<p>
+ We will use the terminology, notation, and conventions regarding (D0) and (D1) as discussed in Section <a href="/tag/0FHA" data-tag="0FHA">45.9</a>. Given a smooth projective scheme $X$ over $k$ and an invertible $\mathcal{O}_ X$-module $\mathcal{L}$ the cohomology class $c_1^ H(\mathcal{L}) \in H^2(X)(1)$ of (D2') is sometimes called the <em>first Chern class of $\mathcal{L}$ in cohomology</em>. 
+</p>
+<p>
+Here is the list of axioms. 
+</p>
+<ol>
+  <li class="custom-item" data-marker="(A1)"><p>
+$H^*$ is compatible with finite coproducts 
+</p>
+</li><li class="custom-item" data-marker="(A2)"><p>
+$c_1^ H$ is compatible with pullbacks 
+</p>
+</li><li class="custom-item" data-marker="(A3)"><p>
+Let $X$ be a smooth projective scheme over $k$. Let $\mathcal{E}$ be a locally free $\mathcal{O}_ X$-module of rank $r \geq 1$. Consider the morphism $p : P = \mathbf{P}(\mathcal{E}) \to X$. Then the map 
+</p>
+<div class="equation">
+  \[  \bigoplus \nolimits _{i = 0, \ldots , r - 1} H^*(X)(-i) \longrightarrow H^*(P),\quad (a_0, \ldots , a_{r - 1}) \longmapsto \sum c_1^ H(\mathcal{O}_ P(1))^ i \cup p^*(a_ i)  \]
+</div>
+<p>
+ is an isomorphism of $F$-vector spaces. 
+</p>
+</li><li class="custom-item" data-marker="(A4)"><p>
+Let $i : Y \to X$ be the inclusion of an effective Cartier divisor over $k$ with both $X$ and $Y$ smooth and projective over $k$. For $a \in H^*(X)$ with $i^*a = 0$ we have $a \cup c_1^ H(\mathcal{O}_ X(Y)) = 0$. 
+</p>
+</li><li class="custom-item" data-marker="(A5)"><p>
+$H^*$ is compatible with finite products 
+</p>
+</li><li class="custom-item" data-marker="(A6)"><p>
+Let $X$ be a nonempty smooth, projective scheme over $k$ equidimensional of dimension $d$. Then there exists an $F$-linear map $\lambda : H^{2d}(X)(d) \to F$ such that $(\text{id} \otimes \lambda ) \gamma ([\Delta ]) = 1$ in $H^*(X)$. 
+</p>
+</li><li class="custom-item" data-marker="(A7)"><p>
+If $b : X' \to X$ is the blowing up of a smooth center in a smooth projective scheme $X$ over $k$<a class="footnotemark" href="#a0001003204" id="a0001003204-mark"><sup>1</sup></a>, then $b^* : H^*(X) \to H^*(X')$ is injective. 
+</p>
+</li><li class="custom-item" data-marker="(A8)"><p>
+If $X$ is a smooth projective scheme over $k$ and $k' = \Gamma (X, \mathcal{O}_ X)$, then the map $H^0(\mathop{\mathrm{Spec}}(k')) \to H^0(X)$ is an isomorphism. 
+</p>
+</li><li class="custom-item" data-marker="(A9)"><p>
+Let $X$ be a nonempty smooth projective scheme over $k$ equidimensional of dimension $d$. Let $i : Y \to X$ be a nonempty effective Cartier divisor smooth over $k$. For $a \in H^{2d - 2}(X)(d - 1)$ we have $\lambda _ Y(i^*(a)) = \lambda _ X(a \cup c_1^ H(\mathcal{O}_ X(Y))$ where $\lambda _ Y$ and $\lambda _ X$ are as in axiom (A6) for $X$ and $Y$. 
+</p>
+</li>
+</ol>
+<p>
+ Let us explain more precisely what we mean by each of these axioms. Axioms (A3), (A4), and (A7) are clear as stated. 
+</p>
+<p>
+Ad (A1). This means that $H^*(\emptyset ) = 0$ and that $(i^*, j^*) : H^*(X \amalg Y) \to H^*(X) \times H^*(Y)$ is an isomorphism where $i$ and $j$ are the coprojections. 
+</p>
+<p>
+Ad (A2). This means that given a morphism $f : X \to Y$ of smooth projective schemes over $k$ and an invertible $\mathcal{O}_ Y$-module $\mathcal{N}$ we have $f^*c_1^ H(\mathcal{L}) = c_1^ H(f^*\mathcal{L})$. 
+</p>
+<p>
+Ad (A5). This means that $H^*(\mathop{\mathrm{Spec}}(k)) = F$ and that for $X$ and $Y$ smooth projective over $k$ the map $H^*(X) \otimes _ F H^*(Y) \to H^*(X \times Y)$, $a \otimes b \mapsto p^*(a) \cup q^*(b)$ is an isomorphism where $p$ and $q$ are the projections. 
+</p>
+<p>
+Ad (A6). Let $X$ be a nonempty smooth projective scheme over $k$ which is equidimensional of dimension $d$. By Lemma <a href="/tag/0FIF" data-tag="0FIF">45.14.2</a> if we have axioms (A1) – (A4) we can consider the class of the diagonal 
+</p>
+<div class="equation">
+  \[  \gamma ([\Delta ]) \in H^{2d}(X \times X)(d) = \bigoplus \nolimits _ i H^ i(X) \otimes _ F H^{2d - i}(X)(d)  \]
+</div>
+<p>
+ where the tensor decomposition comes from axiom (A5). Given an $F$-linear map $\lambda : H^{2d}(X)(d) \to F$ we may also view $\lambda $ as an $F$-linear map $\lambda : H^*(X)(d) \to F$ by precomposing with the projection onto $H^{2d}(X)(d)$. Having said this axiom (A6) makes sense. 
+</p>
+<p>
+Ad (A8). Let $X$ be a smooth projective scheme over $k$. Then $k' = \Gamma (X, \mathcal{O}_ X)$ is a finite separable $k$-algebra (Varieties, Lemma <a href="/tag/0BUG" data-tag="0BUG">33.9.3</a>) and hence $\mathop{\mathrm{Spec}}(k')$ is smooth and projective over $k$. Thus we may apply $H^*$ to $\mathop{\mathrm{Spec}}(k')$ and axiom (A8) makes sense. 
+</p>
+<p>
+Ad (A9). We will see in Remark <a href="/tag/0FIK" data-tag="0FIK">45.14.6</a> that if we have axioms (A1) – (A7) then the map $\lambda $ of axiom (A6) is unique. 
+</p>
+<p>
+<article class="env-lemma" id="0FIE">
+  <p><a class="environment-identifier" href="/tag/0FIE">Lemma <span data-tag="0FIE">45.14.1</span>.</a> Assume given (D0), (D1), and (D2') satisfying axioms (A1), (A2), (A3), and (A4). There is a unique rule which assigns to every smooth projective $X$ over $k$ a ring homomorphism </p>
+  <div class="equation">
+  \[  ch^ H : K_0(\textit{Vect}(X)) \longrightarrow \prod \nolimits _{i \geq 0} H^{2i}(X)(i)  \]
+</div>
+  <p> compatible with pullbacks such that $ch^ H(\mathcal{L}) = \exp (c_1^ H(\mathcal{L}))$ for any invertible $\mathcal{O}_ X$-module $\mathcal{L}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Immediate from Proposition <a href="/tag/0FI9" data-tag="0FI9">45.12.4</a> applied to the category of smooth projective schemes over $k$, the functor $A : X \mapsto \bigoplus _{i \geq 0} H^{2i}(X)(i)$, and the map $c_1^ H$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FIF">
+  <p><a class="environment-identifier" href="/tag/0FIF">Lemma <span data-tag="0FIF">45.14.2</span>.</a> Assume given (D0), (D1), and (D2') satisfying axioms (A1), (A2), (A3), and (A4). There is a unique rule which assigns to every smooth projective $X$ over $k$ a graded ring homomorphism </p>
+  <div class="equation">
+  \[  \gamma : \mathop{\mathrm{CH}}\nolimits ^*(X) \longrightarrow \bigoplus \nolimits _{i \geq 0} H^{2i}(X)(i)  \]
+</div>
+  <p> compatible with pullbacks such that $ch^ H(\alpha ) = \gamma (ch(\alpha ))$ for $\alpha $ in $K_0(\textit{Vect}(X))$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Recall that we have an isomorphism 
+    <p>
+      <div class="equation">
+  \[  K_0(\textit{Vect}(X)) \otimes \mathbf{Q} \longrightarrow \mathop{\mathrm{CH}}\nolimits ^*(X) \otimes \mathbf{Q},\quad \alpha \longmapsto ch(\alpha ) \cap [X]  \]
+</div>
+    <p>
+       see Chow Homology, Lemma <a href="/tag/0FEY" data-tag="0FEY">42.58.1</a>. It is an isomorphism of rings by Chow Homology, Remark <a href="/tag/0FEM" data-tag="0FEM">42.56.5</a>. We define $\gamma $ by the formula $\gamma (\alpha ) = ch^ H(\alpha ')$ where $ch^ H$ is as in Lemma <a href="/tag/0FIE" data-tag="0FIE">45.14.1</a> and $\alpha ' \in K_0(\textit{Vect}(X))$ is such that $ch(\alpha ') \cap [X] = \alpha $ in $\mathop{\mathrm{CH}}\nolimits ^*(X) \otimes \mathbf{Q}$. 
+    <p>
+      The construction $\alpha \mapsto \gamma (\alpha )$ is compatible with pullbacks because both $ch^ H$ and taking Chern classes is compatible with pullbacks, see Lemma <a href="/tag/0FIE" data-tag="0FIE">45.14.1</a> and Chow Homology, Remark <a href="/tag/0FF8" data-tag="0FF8">42.59.9</a>. 
+    <p>
+      We still have to see that $\gamma $ is graded. Let $\psi ^2 : K_0(\textit{Vect}(X)) \to K_0(\textit{Vect}(X))$ be the second Adams operator, see Chow Homology, Lemma <a href="/tag/0FEJ" data-tag="0FEJ">42.56.1</a>. If $\alpha \in \mathop{\mathrm{CH}}\nolimits ^ i(X)$ and $\alpha ' \in K_0(\textit{Vect}(X)) \otimes \mathbf{Q}$ is the unique element with $ch(\alpha ') \cap [X] = \alpha $, then we have seen in Chow Homology, Section <a href="/tag/0FEX" data-tag="0FEX">42.58</a> that $\psi ^2(\alpha ') = 2^ i \alpha '$. Hence we conclude that $ch^ H(\alpha ') \in H^{2i}(X)(i)$ by Lemma <a href="/tag/0FIA" data-tag="0FIA">45.12.5</a> as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FIH">
+  <p><a class="environment-identifier" href="/tag/0FIH">Lemma <span data-tag="0FIH">45.14.3</span>.</a> Let $b : X' \to X$ be the blowing up of a smooth projective scheme over $k$ in a smooth closed subscheme $Z \subset X$. Picture </p>
+  <div class="equation">
+  \[  \xymatrix{ E \ar[r]_ j \ar[d]_\pi &  X' \ar[d]^ b \\  Z \ar[r]^ i &  X }  \]
+</div>
+  <p> Assume there exists an element of $K_0(X)$ whose restriction to $Z$ is equal to the class of $\mathcal{C}_{Z/X}$ in $K_0(Z)$. Assume every irreducible component of $Z$ has codimension $r$ in $X$. Then there exists a cycle $\theta \in \mathop{\mathrm{CH}}\nolimits ^{r - 1}(X')$ such that $b^![Z] = [E] \cdot \theta $ in $\mathop{\mathrm{CH}}\nolimits ^ r(X')$ and $\pi _*j^!(\theta ) = [Z]$ in $\mathop{\mathrm{CH}}\nolimits ^ r(Z)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The scheme $X$ is smooth and projective over $k$ and hence we have $K_0(X) = K_0(\textit{Vect}(X))$. See Derived Categories of Schemes, Lemmas <a href="/tag/0F87" data-tag="0F87">36.36.2</a> and <a href="/tag/0FDJ" data-tag="0FDJ">36.38.5</a>. Let $\alpha \in K_0(\text{Vect}(X))$ be an element whose restriction to $Z$ is $\mathcal{C}_{Z/X}$. By Chow Homology, Lemma <a href="/tag/0FV8" data-tag="0FV8">42.56.3</a> there exists an element $\alpha ^\vee $ which restricts to $\mathcal{C}_{Z/X}^\vee $. By the blow up formula (Chow Homology, Lemma <a href="/tag/0FVA" data-tag="0FVA">42.59.11</a>) we have 
+    <p>
+      <div class="equation">
+  \[  b^![Z] = b^!i_*[Z] = j_* res(b^!)([Z]) = j_*(c_{r - 1}(\mathcal{F}^\vee ) \cap \pi ^*[Z]) = j_*(c_{r - 1}(\mathcal{F}^\vee ) \cap [E])  \]
+</div>
+    <p>
+       where $\mathcal{F}$ is the kernel of the surjection $\pi ^*\mathcal{C}_{Z/X} \to \mathcal{C}_{E/X'}$. Observe that $b^*\alpha ^\vee - [\mathcal{O}_{X'}(E)]$ is an element of $K_0(\text{Vect}(X'))$ which restricts to $[\pi ^*\mathcal{C}_{Z/X}^\vee ] - [\mathcal{C}_{E/X'}^\vee ] = [\mathcal{F}^\vee ]$ on $E$. Since capping with Chern classes commutes with $j_*$ we conclude that the above is equal to 
+    <p>
+      <div class="equation">
+  \[  c_{r - 1}(b^*\alpha ^\vee - [\mathcal{O}_{X'}(E)]) \cap [E]  \]
+</div>
+    <p>
+       in the chow group of $X'$. Hence we see that setting 
+    <p>
+      <div class="equation">
+  \[  \theta = c_{r - 1}(b^*\alpha ^\vee - [\mathcal{O}_{X'}(E)]) \cap [X']  \]
+</div>
+    <p>
+       we get the first relation $\theta \cdot [E] = b^![Z]$ for example by Chow Homology, Lemma <a href="/tag/0FC2" data-tag="0FC2">42.62.2</a>. For the second relation observe that 
+    <p>
+      <div class="equation">
+  \[  j^!\theta = j^!(c_{r - 1}(b^*\alpha ^\vee - [\mathcal{O}_{X'}(E)]) \cap [X']) = c_{r - 1}(\mathcal{F}^\vee ) \cap j^![X'] = c_{r - 1}(\mathcal{F}^\vee ) \cap [E]  \]
+</div>
+    <p>
+       in the chow groups of $E$. To prove that $\pi _*$ of this is equal to $[Z]$ it suffices to prove that the degree of the codimension $r - 1$ cycle $(-1)^{r - 1}c_{r - 1}(\mathcal{F}) \cap [E]$ on the fibres of $\pi $ is $1$. This is a computation we omit. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FII">
+  <p><a class="environment-identifier" href="/tag/0FII">Lemma <span data-tag="0FII">45.14.4</span>.</a> Assume given data (D0), (D1), and (D2') satisfying axioms (A1) – (A4) and (A7). Let $X$ be a smooth projective scheme over $k$. Let $Z \subset X$ be a smooth closed subscheme such that every irreducible component of $Z$ has codimension $r$ in $X$. Assume the class of $\mathcal{C}_{Z/X}$ in $K_0(Z)$ is the restriction of an element of $K_0(X)$. If $a \in H^*(X)$ and $a|_ Z = 0$ in $H^*(Z)$, then $\gamma ([Z]) \cup a = 0$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $b : X' \to X$ be the blowing up. By (A7) it suffices to show that 
+    <p>
+      <div class="equation">
+  \[  b^*(\gamma ([Z]) \cup a) = b^*\gamma ([Z]) \cup b^*a = 0  \]
+</div>
+    <p>
+       By Lemma <a href="/tag/0FIH" data-tag="0FIH">45.14.3</a> we have 
+    <p>
+      <div class="equation">
+  \[  b^*\gamma ([Z]) = \gamma (b^*[Z]) = \gamma ([E] \cdot \theta ) = \gamma ([E]) \cup \gamma (\theta )  \]
+</div>
+    <p>
+       Hence because $b^*a$ restricts to zero on $E$ and since $\gamma ([E]) = c^ H_1(\mathcal{O}_{X'}(E))$ we get what we want from (A4). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FIJ">
+  <p><a class="environment-identifier" href="/tag/0FIJ">Lemma <span data-tag="0FIJ">45.14.5</span>.</a> Assume given data (D0), (D1), and (D2') satisfying axioms (A1) – (A7). Then axiom (A) of Section <a href="/tag/0FHA" data-tag="0FHA">45.9</a> holds with $\int _ X = \lambda $ as in axiom (A6). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $X$ be a nonempty smooth projective scheme over $k$ which is equidimensional of dimension $d$. We will show that the graded $F$-vector space $H^*(X)(d)[2d]$ is a left dual to $H^*(X)$. This will prove what we want by Homology, Lemma <a href="/tag/0FFV" data-tag="0FFV">12.17.5</a>. We are going to use axiom (A5) which in particular says that 
+    <p>
+      <div class="equation">
+  \[  H^*(X \times X)(d) = \bigoplus H^ i(X) \otimes H^ j(X)(d) = \bigoplus H^ i(X)(d) \otimes H^ j(X)  \]
+</div>
+    <p>
+       Define a map 
+    <p>
+      <div class="equation">
+  \[  \eta : F \longrightarrow H^*(X \times X)(d)  \]
+</div>
+    <p>
+       by multiplying by $\gamma ([\Delta ]) \in H^{2d}(X \times X)(d)$. On the other hand, define a map 
+    <p>
+      <div class="equation">
+  \[  \epsilon : H^*(X \times X)(d) \longrightarrow H^*(X)(d) \xrightarrow {\lambda } F  \]
+</div>
+    <p>
+       by first using pullback $\Delta ^*$ by the diagonal morphism $\Delta : X \to X \times X$ and then using the $F$-linear map $\lambda : H^{2d}(X)(d) \to F$ of axiom (A6) precomposed by the projection $H^*(X)(d) \to H^{2d}(X)(d)$. In order to show that $H^*(X)(d)$ is a left dual to $H^*(X)$ we have to show that the composition of the maps 
+    <p>
+      <div class="equation">
+  \[  \eta \otimes 1 : H^*(X) \longrightarrow H^*(X \times X \times X)(d)  \]
+</div>
+    <p>
+       and 
+    <p>
+      <div class="equation">
+  \[  1 \otimes \epsilon : H^*(X \times X \times X)(d) \longrightarrow H^*(X)  \]
+</div>
+    <p>
+       is the identity. If $a \in H^*(X)$ then we see that the composition maps $a$ to 
+    <p>
+      <div class="equation">
+  \[  (1 \otimes \lambda )(\Delta _{23}^*(q_{12}^*\gamma ([\Delta ]) \cup q_3^*a)) = (1 \otimes \lambda )(\gamma ([\Delta ]) \cup p_2^*a)  \]
+</div>
+    <p>
+       where $q_ i : X \times X \times X \to X$ and $q_{ij} : X \times X \times X \to X \times X$ are the projections, $\Delta _{23} : X \times X \to X \times X \times X$ is the diagonal, and $p_ i : X \times X \to X$ are the projections. The equality holds because $\Delta _{23}^*(q_{12}^*\gamma ([\Delta ]) = \Delta _{23}^*\gamma ([\Delta \times X]) = \gamma ([\Delta ])$ and because $\Delta _{23}^* q_3^*a = p_2^*a$. Since $\gamma ([\Delta ]) \cup p_1^*a = \gamma ([\Delta ]) \cup p_2^*a$ (see below) the above simplifies to 
+    <p>
+      <div class="equation">
+  \[  (1 \otimes \lambda )(\gamma ([\Delta ]) \cup p_1^*a) = a  \]
+</div>
+    <p>
+       by our choice of $\lambda $ as desired. The second condition $(\epsilon \otimes 1) \circ (1 \otimes \eta ) = \text{id}$ of Categories, Definition <a href="/tag/0FFP" data-tag="0FFP">4.43.8</a> is proved in exactly the same manner. 
+    <p>
+      Note that $p_1^*a$ and $\text{pr}_2^*a$ restrict to the same cohomology class on $\Delta \subset X \times X$. Moreover we have $\mathcal{C}_{\Delta /X \times X} = \Omega ^1_\Delta $ which is the restriction of $p_1^*\Omega ^1_ X$. Hence Lemma <a href="/tag/0FII" data-tag="0FII">45.14.4</a> implies $\gamma ([\Delta ]) \cup p_1^*a = \gamma ([\Delta ]) \cup p_2^*a$ and the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0FIK">
+  <p><a class="environment-identifier" href="/tag/0FIK">Remark <span data-tag="0FIK">45.14.6</span> <span class="named">(Uniqueness of trace maps)</span>.</a>  Assume given data (D0), (D1), and (D2') satisfying axioms (A1) – (A7). Let $X$ be a smooth projective scheme over $k$ which is nonempty and equidimensional of dimension $d$. Combining what was said in the proofs of Lemma <a href="/tag/0FIJ" data-tag="0FIJ">45.14.5</a> and Homology, Lemma <a href="/tag/0FFV" data-tag="0FFV">12.17.5</a> we see that </p>
+  <div class="equation">
+  \[  \gamma ([\Delta ]) \in \bigoplus \nolimits _ i H^ i(X) \otimes H^{2d - i}(X)(d)  \]
+</div>
+  <p> defines a perfect duality between $H^ i(X)$ and $H^{2d - i}(X)(d)$ for all $i$. In particular, the linear map $\int _ X = \lambda : H^{2d}(X)(d) \to F$ of axiom (A6) is unique! We will call the linear map $\int _ X$ the trace map of $X$ from now on. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0FIL">
+  <p><a class="environment-identifier" href="/tag/0FIL">Lemma <span data-tag="0FIL">45.14.7</span>.</a> Assume given data (D0), (D1), and (D2') satisfying axioms (A1) – (A7). Then axiom (B) of Section <a href="/tag/0FHA" data-tag="0FHA">45.9</a> holds. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Axiom (B)(a) is immediate from axiom (A5). Let $X$ and $Y$ be nonempty smooth projective schemes over $k$ equidimensional of dimensions $d$ and $e$. To see that axiom (B)(b) holds, observe that the diagonal $\Delta _{X \times Y}$ of $X \times Y$ is the intersection product of the pullbacks of the diagonals $\Delta _ X$ of $X$ and $\Delta _ Y$ of $Y$ by the projections $p : X \times Y \times X \times Y \to X \times X$ and $q : X \times Y \times X \times Y \to Y \times Y$. Compatibility of $\gamma $ with intersection products then gives that 
+    <p>
+      <div class="equation">
+  \[  \gamma ([\Delta _{X \times Y}]) \in H^{2d + 2e}(X \times Y \times X \times Y)(d + e)  \]
+</div>
+    <p>
+       is the cup product of the pullbacks of $\gamma ([\Delta _ X])$ and $\gamma ([\Delta _ Y])$ by $p$ and $q$. Write 
+    <p>
+      <div class="equation">
+  \[  \gamma ([\Delta _{X \times Y}]) = \sum \eta _{X \times Y, i} \text{ with } \eta _{X \times Y, i} \in H^ i(X \times Y) \otimes H^{2d + 2e - i}(X \times Y)(d + e)  \]
+</div>
+    <p>
+       and similarly $\gamma ([\Delta _ X]) = \sum \eta _{X, i}$ and $\gamma ([\Delta _ Y]) = \sum \eta _{Y, i}$. The observation above implies we have 
+    <p>
+      <div class="equation">
+  \[  \eta _{X \times Y, 0} = \sum \nolimits _{i \in \mathbf{Z}} p^*\eta _{X, i} \cup q^*\eta _{Y, -i}  \]
+</div>
+    <p>
+       (If our cohomology theory vanishes in negative degrees, which will be true in almost all cases, then only the term for $i = 0$ contributes and $\eta _{X \times Y, 0}$ lies in $H^0(X) \otimes H^0(Y) \otimes H^{2d}(X)(d) \otimes H^{2e}(Y)(e)$ as expected, but we don't need this.) Since $\lambda _ X : H^{2d}(X)(d) \to F$ and $\lambda _ Y : H^{2e}(Y)(e) \to F$ send $\eta _{X, 0}$ and $\eta _{Y, 0}$ to $1$ in $H^*(X)$ and $H^*(Y)$, we see that $\lambda _ X \otimes \lambda _ Y$ sends $\eta _{X \times Y, 0}$ to $1$ in $H^*(X) \otimes H^*(Y) = H^*(X \times Y)$ and the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FIM">
+  <p><a class="environment-identifier" href="/tag/0FIM">Lemma <span data-tag="0FIM">45.14.8</span>.</a> Assume given data (D0), (D1), and (D2') satisfying axioms (A1) – (A7). Then axiom (C)(d) of Section <a href="/tag/0FHA" data-tag="0FHA">45.9</a> holds. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We have $\gamma ([\mathop{\mathrm{Spec}}(k)]) = 1 \in H^*(\mathop{\mathrm{Spec}}(k))$ by construction. Since 
+    <p>
+      <div class="equation">
+  \[  H^0(\mathop{\mathrm{Spec}}(k)) = F,\quad H^0(\mathop{\mathrm{Spec}}(k) \times \mathop{\mathrm{Spec}}(k)) = H^0(\mathop{\mathrm{Spec}}(k)) \otimes _ F H^0(\mathop{\mathrm{Spec}}(k))  \]
+</div>
+    <p>
+       the map $\int _{\mathop{\mathrm{Spec}}(k)} = \lambda $ of axiom (A6) must send $1$ to $1$ because we have seen that $\int _{\mathop{\mathrm{Spec}}(k) \times \mathop{\mathrm{Spec}}(k)} = \int _{\mathop{\mathrm{Spec}}(k)} \int _{\mathop{\mathrm{Spec}}(k)}$ in Lemma <a href="/tag/0FIL" data-tag="0FIL">45.14.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Assume given data (D0), (D1), and (D2') satisfying axioms (A1) – (A7). Then we obtain data (D0), (D1), (D2), and (D3) of Section <a href="/tag/0FHA" data-tag="0FHA">45.9</a> satisfying axioms (A), (B) and (C)(a), (C)(c), and (C)(d) of Section <a href="/tag/0FHA" data-tag="0FHA">45.9</a>, see Lemmas <a href="/tag/0FIJ" data-tag="0FIJ">45.14.5</a>, <a href="/tag/0FIL" data-tag="0FIL">45.14.7</a>, and <a href="/tag/0FIM" data-tag="0FIM">45.14.8</a>. Moreover, we have the pushforwards $f_* : H^*(X) \to H^*(Y)$ as constructed in Section <a href="/tag/0FHA" data-tag="0FHA">45.9</a>. The only axiom of Section <a href="/tag/0FHA" data-tag="0FHA">45.9</a> which isn't clear yet is axiom (C)(b). 
+</p>
+<p>
+<article class="env-lemma" id="0FIN">
+  <p><a class="environment-identifier" href="/tag/0FIN">Lemma <span data-tag="0FIN">45.14.9</span>.</a> Assume given data (D0), (D1), and (D2') satisfying axioms (A1) – (A7). Let $p : P \to X$ be as in axiom (A3) with $X$ nonempty equidimensional. Then $\gamma $ commutes with pushforward along $p$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It suffices to prove this on generators for $\mathop{\mathrm{CH}}\nolimits _*(P)$. Thus it suffices to prove this for a cycle class of the form $\xi ^ i \cdot p^*\alpha $ where $0 \leq i \leq r - 1$ and $\alpha \in \mathop{\mathrm{CH}}\nolimits _*(X)$. Note that $p_*(\xi ^ i \cdot p^*\alpha ) = 0$ if $i < r - 1$ and $p_*(\xi ^{r - 1} \cdot p^*\alpha ) = \alpha $. On the other hand, we have $\gamma (\xi ^ i \cdot p^*\alpha ) = c^ i \cup p^*\gamma (\alpha )$ and by the projection formula (Lemma <a href="/tag/0FHB" data-tag="0FHB">45.9.1</a>) we have 
+    <p>
+      <div class="equation">
+  \[  p_*\gamma (\xi ^ i \cdot p^*\alpha ) = p_*(c^ i) \cup \gamma (\alpha )  \]
+</div>
+    <p>
+       Thus it suffices to show that $p_*c^ i = 0$ for $i < r - 1$ and $p_*c^{r - 1} = 1$. Equivalently, it suffices to prove that $\lambda _ P : H^{2d + 2r - 2}(P)(d + r - 1) \to F$ defined by the rules 
+    <p>
+      <div class="equation">
+  \[  \lambda _ P(c^ i \cup p^*(a)) = \left\{  \begin{matrix}  0 
+
+&  \text{if} 
+
+&  i < r - 1 
+
+\\  \int _ X(a) 
+
+&  \text{if} 
+
+&  i = r - 1 
+
+\end{matrix} \right.  \]
+</div>
+    <p>
+       satisfies the condition of axiom (A5). This follows from the computation of the class of the diagonal of $P$ in Lemma <a href="/tag/0FGR" data-tag="0FGR">45.6.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FVR">
+  <p><a class="environment-identifier" href="/tag/0FVR">Lemma <span data-tag="0FVR">45.14.10</span>.</a> Assume given data (D0), (D1), and (D2') satisfying axioms (A1) – (A7). If $k'/k$ is a Galois extension, then we have $\int _{\mathop{\mathrm{Spec}}(k')} 1 = [k' : k]$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We observe that 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Spec}}(k') \times \mathop{\mathrm{Spec}}(k') = \coprod \nolimits _{\sigma \in \text{Gal}(k'/k)} (\mathop{\mathrm{Spec}}(\sigma ) \times \text{id})^{-1} \Delta  \]
+</div>
+    <p>
+       as cycles on $\mathop{\mathrm{Spec}}(k') \times \mathop{\mathrm{Spec}}(k')$. Our construction of $\gamma $ always sends $[X]$ to $1$ in $H^0(X)$. Thus $1 \otimes 1 = 1 = \sum (\mathop{\mathrm{Spec}}(\sigma ) \times \text{id})^*\gamma ([\Delta ])$. Denote $\lambda : H^0(\mathop{\mathrm{Spec}}(k')) \to F$ the map from axiom (A6), in other words $(\text{id} \otimes \lambda )(\gamma (\Delta )) = 1$ in $H^0(\mathop{\mathrm{Spec}}(k'))$. We obtain 
+    <p>
+      <div class="equation">
+  \begin{align*}  \lambda (1) 1 &  = (\text{id} \otimes \lambda )(1 \otimes 1) \\ &  = (\text{id} \otimes \lambda )( \sum (\mathop{\mathrm{Spec}}(\sigma ) \times \text{id})^*\gamma ([\Delta ])) \\ &  = \sum (\mathop{\mathrm{Spec}}(\sigma ) \times \text{id})^*( (\text{id} \otimes \lambda )(\gamma ([\Delta ])) \\ &  = \sum (\mathop{\mathrm{Spec}}(\sigma ) \times \text{id})^*(1) \\ &  = [k' : k] \end{align*}
+</div>
+    <p>
+       Since $\lambda $ is another name for $\int _{\mathop{\mathrm{Spec}}(k')}$ (Remark <a href="/tag/0FIK" data-tag="0FIK">45.14.6</a>) the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FIP">
+  <p><a class="environment-identifier" href="/tag/0FIP">Lemma <span data-tag="0FIP">45.14.11</span>.</a> Assume given data (D0), (D1), and (D2') satisfying axioms (A1) – (A7). In order to show that $\gamma $ commutes with pushforward it suffices to show that $i_*(1) = \gamma ([Z])$ if $i : Z \to X$ is a closed immersion of nonempty smooth projective equidimensional schemes over $k$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use without further mention that we've constructed our cycle class map $\gamma $ in Lemma <a href="/tag/0FIF" data-tag="0FIF">45.14.2</a> compatible with intersection products and pullbacks and that we've already shown axioms (A), (B), (C)(a), (C)(c), and (C)(d) of Section <a href="/tag/0FHA" data-tag="0FHA">45.9</a>, see Lemma <a href="/tag/0FIJ" data-tag="0FIJ">45.14.5</a>, Remark <a href="/tag/0FIK" data-tag="0FIK">45.14.6</a>, and Lemmas <a href="/tag/0FIL" data-tag="0FIL">45.14.7</a> and <a href="/tag/0FIM" data-tag="0FIM">45.14.8</a>. In particular, we may use (for example) Lemma <a href="/tag/0FHB" data-tag="0FHB">45.9.1</a> to see that pushforward on $H^*$ is compatible with composition and satisfies the projection formula. 
+    <p>
+      Let $f : X \to Y$ be a morphism of nonempty equidimensional smooth projective schemes over $k$. We are trying to show $f_*\gamma (\alpha ) = \gamma (f_*\alpha )$ for any cycle class $\alpha $ on $X$. We can write $\alpha $ as a $\mathbf{Q}$-linear combination of products of Chern classes of locally free $\mathcal{O}_ X$-modules (Chow Homology, Lemma <a href="/tag/0FEY" data-tag="0FEY">42.58.1</a>). Thus we may assume $\alpha $ is a product of Chern classes of finite locally free $\mathcal{O}_ X$-modules $\mathcal{E}_1, \ldots , \mathcal{E}_ r$. Pick $p : P \to X$ as in the splitting principle (Chow Homology, Lemma <a href="/tag/02UL" data-tag="02UL">42.43.1</a>). By Chow Homology, Remark <a href="/tag/0FVE" data-tag="0FVE">42.43.2</a> we see that $p$ is a composition of projective space bundles and that $\alpha = p_*(\xi _1 \cap \ldots \cap \xi _ d \cap \cdot p^*\alpha )$ where $\xi _ i$ are first Chern classes of invertible modules. By Lemma <a href="/tag/0FIN" data-tag="0FIN">45.14.9</a> we know that $p_*$ commutes with cycle classes. Thus it suffices to prove the property for the composition $f \circ p$. Since $p^*\mathcal{E}_1, \ldots , p^*\mathcal{E}_ r$ have filtrations whose successive quotients are invertible modules, this reduces us to the case where $\alpha $ is of the form $\xi _1 \cap \ldots \cap \xi _ t \cap [X]$ for some first Chern classes $\xi _ i$ of invertible modules $\mathcal{L}_ i$. 
+    <p>
+      Assume $\alpha = c_1(\mathcal{L}_1) \cap \ldots \cap c_1(\mathcal{L}_ t) \cap [X]$ for some invertible modules $\mathcal{L}_ i$ on $X$. Let $\mathcal{L}$ be an ample invertible $\mathcal{O}_ X$-module. For $n \gg 0$ the invertible $\mathcal{O}_ X$-modules $\mathcal{L}^{\otimes n}$ and $\mathcal{L}_1 \otimes \mathcal{L}^{\otimes n}$ are both very ample on $X$ over $k$, see Morphisms, Lemma <a href="/tag/0FVC" data-tag="0FVC">29.40.8</a>. Since $c_1(\mathcal{L}_1) = c_1(\mathcal{L}_1 \otimes \mathcal{L}^{\otimes n}) - c_1(\mathcal{L}^{\otimes n})$ this reduces us to the case where $\mathcal{L}_1$ is very ample. Repeating this with $\mathcal{L}_ i$ for $i = 2, \ldots , t$ we reduce to the case where $\mathcal{L}_ i$ is very ample on $X$ over $k$ for all $i = 1, \ldots , t$. 
+    <p>
+      Assume $k$ is infinite and $\alpha = c_1(\mathcal{L}_1) \cap \ldots \cap c_1(\mathcal{L}_ t) \cap [X]$ for some very ample invertible modules $\mathcal{L}_ i$ on $X$ over $k$. By Bertini in the form of Varieties, Lemma <a href="/tag/0FD6" data-tag="0FD6">33.47.3</a> we can successively find regular sections $s_ i$ of $\mathcal{L}_ i$ such that the schemes $Z(s_1) \cap \ldots \cap Z(s_ i)$ are smooth over $k$ and of codimension $i$ in $X$. By the construction of capping with the first class of an invertible module (going back to Chow Homology, Definition <a href="/tag/02SJ" data-tag="02SJ">42.24.1</a>), this reduces us to the case where $\alpha = [Z]$ for some nonempty smooth closed subscheme $Z \subset X$ which is equidimensional. 
+    <p>
+      Assume $\alpha = [Z]$ where $Z \subset X$ is a smooth closed subscheme. Choose a closed embedding $X \to \mathbf{P}^ n$. We can factor $f$ as 
+    <p>
+      <div class="equation">
+  \[  X \to Y \times \mathbf{P}^ n \to Y  \]
+</div>
+    <p>
+       Since we know the result for the second morphism by Lemma <a href="/tag/0FIN" data-tag="0FIN">45.14.9</a> it suffices to prove the result when $\alpha = [Z]$ where $i : Z \to X$ is a closed immersion and $f$ is a closed immersion. Then $j = f \circ i$ is a closed embedding too. Using the hypothesis for $i$ and $j$ we win. 
+    <p>
+      We still have to prove the lemma in case $k$ is finite. We urge the reader to skip the rest of the proof. Everything we said above continues to work, except that we do not know we can choose the sections $s_ i$ cutting out our $Z$ over $k$ as $k$ is finite. However, we do know that we can find $s_ i$ over the algebraic closure $\overline{k}$ of $k$ (by the same lemma). This means that we can find a finite extension $k'/k$ such that our sections $s_ i$ are defined over $k'$. Denote $\pi : X_{k'} \to X$ the projection. The arguments above shows that we get the desired conclusion (from the assumption in the lemma) for the cycle $\pi ^*\alpha $ and the morphism $f \circ \pi : X_{k'} \to Y$. We have $\pi _*\pi ^*\alpha = [k' : k] \alpha $, see Chow Homology, Lemma <a href="/tag/02RH" data-tag="02RH">42.15.2</a>. On the other hand, we have 
+    <p>
+      <div class="equation">
+  \[  \pi _*\gamma (\pi ^*\alpha ) = \pi _*\pi ^*\gamma (\alpha ) = \gamma (\alpha ) \pi _*1  \]
+</div>
+    <p>
+       by the projection formula for our cohomology theory. Observe that $\pi $ is a projection (!) and hence we have $\pi _*(1) = \int _{\mathop{\mathrm{Spec}}(k')}(1) 1$ by Lemma <a href="/tag/0FHC" data-tag="0FHC">45.9.2</a>. Thus to finish the proof in the finite field case, it suffices to prove that $\int _{\mathop{\mathrm{Spec}}(k')}(1) = [k' : k]$ which we do in Lemma <a href="/tag/0FVR" data-tag="0FVR">45.14.10</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In the lemmas below we use the Grassmannians defined and constructed in Constructions, Section <a href="/tag/089R" data-tag="089R">27.22</a>. 
+</p>
+<p>
+<article class="env-lemma" id="0FIQ">
+  <p><a class="environment-identifier" href="/tag/0FIQ">Lemma <span data-tag="0FIQ">45.14.12</span>.</a> Assume given data (D0), (D1), and (D2') satisfying axioms (A1) – (A7). Given integers $0 < l < n$ and a nonempty equidimensional smooth projective scheme $X$ over $k$ consider the projection morphism $p : X \times \mathbf{G}(l, n) \to X$. Then $\gamma $ commutes with pushforward along $p$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $l = 1$ or $l = n - 1$ then $p$ is a projective bundle and the result follows from Lemma <a href="/tag/0FIN" data-tag="0FIN">45.14.9</a>. In general there exists a morphism 
+    <p>
+      <div class="equation">
+  \[  h : Y \to X \times \mathbf{G}(l, n)  \]
+</div>
+    <p>
+       such that both $h$ and $p \circ h$ are compositions of projective space bundles. Namely, denote $\mathbf{G}(1, 2, \ldots , l; n)$ the partial flag variety. Then the morphism 
+    <p>
+      <div class="equation">
+  \[  \mathbf{G}(1, 2, \ldots , l; n) \to \mathbf{G}(l, n)  \]
+</div>
+    <p>
+       is a compostion of projective space bundles and similarly the structure morphism $\mathbf{G}(1, 2, \ldots , l; n) \to \mathop{\mathrm{Spec}}(k)$ is of this form. Thus we may set $Y = X \times \mathbf{G}(1, 2, \ldots , l; n)$. Since every cycle on $X \times \mathbf{G}(l, n)$ is the pushforward of a cycle on $Y$, the result for $Y \to X$ and the result for $Y \to X \times \mathbf{G}(l, n)$ imply the result for $p$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FIR">
+  <p><a class="environment-identifier" href="/tag/0FIR">Lemma <span data-tag="0FIR">45.14.13</span>.</a> Assume given data (D0), (D1), and (D2') satisfying axioms (A1) – (A7). In order to show that $\gamma $ commutes with pushforward it suffices to show that $i_*(1) = \gamma ([Z])$ if $i : Z \to X$ is a closed immersion of nonempty smooth projective equidimensional schemes over $k$ such that the class of $\mathcal{C}_{Z/X}$ in $K_0(Z)$ is the pullback of a class in $K_0(X)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/0FIP" data-tag="0FIP">45.14.11</a> it suffices to show that $i_*(1) = \gamma ([Z])$ if $i : Z \to X$ is a closed immersion of nonempty smooth projective equidimensional schemes over $k$. Say $Z$ has codimension $r$ in $X$. Let $\mathcal{L}$ be a sufficiently ample invertible module on $X$. Choose $n > 0$ and a surjection 
+    <p>
+      <div class="equation">
+  \[  \mathcal{O}_ Z^{\oplus n} \to \mathcal{C}_{Z/X} \otimes \mathcal{L}|_ Z  \]
+</div>
+    <p>
+       This gives a morphism $g : Z \to \mathbf{G}(n - r, n)$ to the Grassmannian over $k$, see Constructions, Section <a href="/tag/089R" data-tag="089R">27.22</a>. Consider the composition 
+    <p>
+      <div class="equation">
+  \[  Z \to X \times \mathbf{G}(n - r, n) \to X  \]
+</div>
+    <p>
+       Pushforward along the second morphism is compatible with classes of cycles by Lemma <a href="/tag/0FIQ" data-tag="0FIQ">45.14.12</a>. The conormal sheaf $\mathcal{C}$ of the closed immersion $Z \to X \times \mathbf{G}(n - r, n)$ sits in a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{C}_{Z/X} \to \mathcal{C} \to g^*\Omega _{\mathbf{G}(n - r, n)} \to 0  \]
+</div>
+    <p>
+       See More on Morphisms, Lemma <a href="/tag/067W" data-tag="067W">37.11.13</a>. Since $\mathcal{C}_{Z/X} \otimes \mathcal{L}|_ Z$ is the pull back of a finite locally free sheaf on $\mathbf{G}(n - r, n)$ we conclude that the class of $\mathcal{C}$ in $K_0(Z)$ is the pullback of a class in $K_0(X \times \mathbf{G}(n - r, n))$. Hence we have the property for $Z \to X \times \mathbf{G}(n - r, n)$ and we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FVS">
+  <p><a class="environment-identifier" href="/tag/0FVS">Lemma <span data-tag="0FVS">45.14.14</span>.</a> Assume given data (D0), (D1), and (D2') satisfying axioms (A1) – (A7). If $k''/k'/k$ are finite separable field extensions, then $H^0(\mathop{\mathrm{Spec}}(k')) \to H^0(\mathop{\mathrm{Spec}}(k''))$ is injective. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We may replace $k''$ by its normal closure over $k$ which is Galois over $k$, see Fields, Lemma <a href="/tag/0EXM" data-tag="0EXM">9.21.5</a>. Then $k''$ is Galois over $k'$ as well, see Fields, Lemma <a href="/tag/09I2" data-tag="09I2">9.21.4</a>. We deduce we have an isomorphism 
+    <p>
+      <div class="equation">
+  \[  k' \otimes _ k k'' \longrightarrow \prod \nolimits _{\sigma \in \text{Gal}(k''/k')} k'',\quad \eta \otimes \zeta \longmapsto (\eta \sigma (\zeta ))_\sigma  \]
+</div>
+    <p>
+       This produces an isomorphism $\coprod _\sigma \mathop{\mathrm{Spec}}(k'') \to \mathop{\mathrm{Spec}}(k') \times \mathop{\mathrm{Spec}}(k'')$ which on cohomology produces the isomorphism 
+    <p>
+      <div class="equation">
+  \[  H^*(\mathop{\mathrm{Spec}}(k')) \otimes _ F H^*(\mathop{\mathrm{Spec}}(k'')) \to \prod \nolimits _\sigma H^*(\mathop{\mathrm{Spec}}(k'')),\quad a' \otimes a'' \longmapsto (\pi ^*a' \cup \mathop{\mathrm{Spec}}(\sigma )^*a'')_\sigma  \]
+</div>
+    <p>
+       where $\pi : \mathop{\mathrm{Spec}}(k'') \to \mathop{\mathrm{Spec}}(k')$ is the morphism corresponding to the inclusion of $k'$ in $k''$. We conclude the lemma is true by taking $a'' = 1$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FIS">
+  <p><a class="environment-identifier" href="/tag/0FIS">Lemma <span data-tag="0FIS">45.14.15</span>.</a> Assume given data (D0), (D1), and (D2') satisfying axioms (A1) – (A8). Let $b : X' \to X$ be a blowing up of a smooth projective scheme $X$ over $k$ which is nonempty equidimensional of dimension $d$ in a nonwhere dense smooth center $Z$. Then $b_*(1) = 1$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We may replace $X$ by a connected component of $X$ (some details omitted). Thus we may assume $X$ is connected and hence irreducible. Set $k' = \Gamma (X, \mathcal{O}_ X) = \Gamma (X', \mathcal{O}_{X'})$; we omit the proof of the equality. Choose a closed point $x' \in X'$ which isn't contained in the exceptional divisor and whose residue field $k''$ is separable over $k$; this is possible by Varieties, Lemma <a href="/tag/056U" data-tag="056U">33.25.6</a>. Denote $x \in X$ the image (whose residue field is equal to $k''$ as well of course). Consider the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ x' \times X' \ar[r] \ar[d] &  X' \times X' \ar[d] \\  x \times X \ar[r] &  X \times X }  \]
+</div>
+    <p>
+       The class of the diagonal $\Delta = \Delta _ X$ pulls back to the class of the “diagonal point” $\delta _ x : x \to x \times X$ and similarly for the class of the diagonal $\Delta '$. On the other hand, the diagonal point $\delta _ x$ pulls back to the diagonal point $\delta _{x'}$ by the left vertical arrow. Write $\gamma ([\Delta ]) = \sum \eta _ i$ with $\eta _ i \in H^ i(X) \otimes H^{2d - i}(X)(d)$ and $\gamma ([\Delta ']) = \sum \eta '_ i$ with $\eta '_ i \in H^ i(X') \otimes H^{2d - i}(X')(d)$. The arguments above show that $\eta _0$ and $\eta '_0$ map to the same class in 
+    <p>
+      <div class="equation">
+  \[  H^0(x') \otimes _ F H^{2d}(X')(d)  \]
+</div>
+    <p>
+       We have $H^0(\mathop{\mathrm{Spec}}(k')) = H^0(X) = H^0(X')$ by axiom (A8). By Lemma <a href="/tag/0FVS" data-tag="0FVS">45.14.14</a> this common value maps injectively into $H^0(x')$. We conclude that $\eta _0$ maps to $\eta '_0$ by the map 
+    <p>
+      <div class="equation">
+  \[  H^0(X) \otimes _ F H^{2d}(X)(d) \longrightarrow H^0(X') \otimes _ F H^{2d}(X')(d)  \]
+</div>
+    <p>
+       This means that $\int _ X$ is equal to $\int _{X'}$ composed with the pullback map. This proves the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FIT">
+  <p><a class="environment-identifier" href="/tag/0FIT">Lemma <span data-tag="0FIT">45.14.16</span>.</a> Assume given data (D0), (D1), and (D2') satisfying axioms (A1) – (A8). Then the cycle class map $\gamma $ commutes with pushforward. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $i : Z \to X$ be as in Lemma <a href="/tag/0FIR" data-tag="0FIR">45.14.13</a>. Consider the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ E \ar[r]_ j \ar[d]_\pi &  X' \ar[d]^ b \\  Z \ar[r]^ i &  X }  \]
+</div>
+    <p>
+       Let $\theta \in \mathop{\mathrm{CH}}\nolimits ^{r - 1}(X')$ be as in Lemma <a href="/tag/0FIH" data-tag="0FIH">45.14.3</a>. Then $\pi _*j^!\theta = [Z]$ in $\mathop{\mathrm{CH}}\nolimits _*(Z)$ implies that $\pi _*\gamma (j^!\theta ) = 1$ by Lemma <a href="/tag/0FIN" data-tag="0FIN">45.14.9</a> because $\pi $ is a projective space bundle. Hence we see that 
+    <p>
+      <div class="equation">
+  \[  i_*(1) = i_*(\pi _*(\gamma (j^!\theta ))) = b_*j_*(j^*\gamma (\theta )) = b_*(j_*(1) \cup \gamma (\theta ))  \]
+</div>
+    <p>
+       We have $j_*(1) = \gamma ([E])$ by (A9). Thus this is equal to 
+    <p>
+      <div class="equation">
+  \[  b_*(\gamma ([E]) \cup \gamma (\theta )) = b_*(\gamma ([E] \cdot \theta )) = b_*(\gamma (b^*[Z])) = b_*b^*\gamma ([Z]) = b_*(1) \cup \gamma ([Z])  \]
+</div>
+    <p>
+       Since $b_*(1) = 1$ by Lemma <a href="/tag/0FIS" data-tag="0FIS">45.14.15</a> the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="0FIU">
+  <p><a class="environment-identifier" href="/tag/0FIU">Proposition <span data-tag="0FIU">45.14.17</span>.</a> Assume given data (D0), (D1), and (D2') satisfying axioms (A1) – (A8). Then we have a Weil cohomology theory. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We have axioms (A), (B) and (C)(a), (C)(c), and (C)(d) of Section <a href="/tag/0FHA" data-tag="0FHA">45.9</a> by Lemmas <a href="/tag/0FIJ" data-tag="0FIJ">45.14.5</a>, <a href="/tag/0FIL" data-tag="0FIL">45.14.7</a>, and <a href="/tag/0FIM" data-tag="0FIM">45.14.8</a>. We have axiom (C)(b) by Lemma <a href="/tag/0FIT" data-tag="0FIT">45.14.16</a>. Finally, the additional condition of Definition <a href="/tag/0FI2" data-tag="0FI2">45.11.4</a> holds because it is the same as our axiom (A8). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma is sometimes useful to show that we get a Weil cohomology theory over a nonclosed field by reducing to a closed one. 
+</p>
+<p>
+<article class="env-lemma" id="0FVT">
+  <p><a class="environment-identifier" href="/tag/0FVT">Lemma <span data-tag="0FVT">45.14.18</span>.</a> Let $k'/k$ be an extension of fields. Let $F'/F$ be an extension of fields of characteristic $0$. Assume given </p>
+  <p><ol>
+  <li><p>
+data (D0), (D1), (D2') for $k$ and $F$ denoted $F(1), H^*, c_1^ H$, 
+</p>
+</li><li><p>
+data (D0), (D1), (D2') for $k'$ and $F'$ denoted $F'(1), (H')^*, c_1^{H'}$, and 
+</p>
+</li><li><p>
+an isomorphism $F(1) \otimes _ F F' \to F'(1)$, functorial isomorphisms $H^*(X) \otimes _ F F' \to (H')^*(X_{k'})$ on the category of smooth projective schemes $X$ over $k$ such that the diagrams 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{Pic}}\nolimits (X) \ar[r]_{c_1^ H} \ar[d] &  H^2(X)(1) \ar[d] \\  \mathop{\mathrm{Pic}}\nolimits (X_{k'}) \ar[r]^{c_1^{H'}} &  (H')^2(X_{k'})(1) }  \]
+</div>
+<p>
+ commute. 
+</p>
+</li>
+</ol></p>
+  <p> In this case, if $F'(1), (H')^*, c_1^{H'}$ satisfy axioms (A1) – (A9), then the same is true for $F(1), H^*, c_1^ H$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We go by the axioms one by one. 
+    <p>
+      Axiom (A1). We have to show $H^*(\emptyset ) = 0$ and that $(i^*, j^*) : H^*(X \amalg Y) \to H^*(X) \times H^*(Y)$ is an isomorphism where $i$ and $j$ are the coprojections. By the functorial nature of the isomorphisms $H^*(X) \otimes _ F F' \to (H')^*(X_{k'})$ this follows from linear algebra: if $\varphi : V \to W$ is an $F$-linear map of $F$-vector spaces, then $\varphi $ is an isomorphism if and only if $\varphi _{F'} : V \otimes _ F F' \to W \otimes _ F F'$ is an isomorphism. 
+    <p>
+      Axiom (A2). This means that given a morphism $f : X \to Y$ of smooth projective schemes over $k$ and an invertible $\mathcal{O}_ Y$-module $\mathcal{N}$ we have $f^*c_1^ H(\mathcal{L}) = c_1^ H(f^*\mathcal{L})$. This is immediately clear from the corresponding property for $c_1^{H'}$, the commutative diagrams in the lemma, and the fact that the canonical map $V \to V \otimes _ F F'$ is injective for any $F$-vector space $V$. 
+    <p>
+      Axiom (A3). This follows from the principle stated in the proof of axiom (A1) and compatibility of $c_1^ H$ and $c_1^{H'}$. 
+    <p>
+      Axiom (A4). Let $i : Y \to X$ be the inclusion of an effective Cartier divisor over $k$ with both $X$ and $Y$ smooth and projective over $k$. For $a \in H^*(X)$ with $i^*a = 0$ we have to show $a \cup c_1^ H(\mathcal{O}_ X(Y)) = 0$. Denote $a' \in (H')^*(X_{k'})$ the image of $a$. The assumption implies that $(i')^*a' = 0$ where $i' : Y_{k'} \to X_{k'}$ is the base change of $i$. Hence we get $a' \cup c_1^{H'}(\mathcal{O}_{X_{k'}}(Y_{k'})) = 0$ by the axiom for $(H')^*$. Since $a' \cup c_1^{H'}(\mathcal{O}_{X_{k'}}(Y_{k'}))$ is the image of $a \cup c_1^ H(\mathcal{O}_ X(Y))$ we conclude by the princple stated in the proof of axiom (A2). 
+    <p>
+      Axiom (A5). This means that $H^*(\mathop{\mathrm{Spec}}(k)) = F$ and that for $X$ and $Y$ smooth projective over $k$ the map $H^*(X) \otimes _ F H^*(Y) \to H^*(X \times Y)$, $a \otimes b \mapsto p^*(a) \cup q^*(b)$ is an isomorphism where $p$ and $q$ are the projections. This follows from the principle stated in the proof of axiom (A1). 
+    <p>
+      We interrupt the flow of the arguments to show that for every smooth projective scheme $X$ over $k$ the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{CH}}\nolimits ^*(X) \ar[r]_-\gamma \ar[d]_{g^*} &  \bigoplus H^{2i}(X)(i) \ar[d] \\  \mathop{\mathrm{CH}}\nolimits ^*(X_{k'}) \ar[r]^-{\gamma '} &  \bigoplus (H')^{2i}(X_{k'})(i) }  \]
+</div>
+    <p>
+       commutes. Observe that we have $\gamma $ as we know axioms (A1) – (A4) already; see Lemma <a href="/tag/0FIF" data-tag="0FIF">45.14.2</a>. Also, the left vertical arrow is the one discussed in Chow Homology, Section <a href="/tag/0FVF" data-tag="0FVF">42.67</a> for the morphism of base schemes $g : \mathop{\mathrm{Spec}}(k') \to \mathop{\mathrm{Spec}}(k)$. More precisely, it is the map given in Chow Homology, Lemma <a href="/tag/0FVJ" data-tag="0FVJ">42.67.4</a>. Pick $\alpha \in \mathop{\mathrm{CH}}\nolimits ^*(X)$. Write $\alpha = ch(\beta ) \cap [X]$ in $\mathop{\mathrm{CH}}\nolimits ^*(X) \otimes \mathbf{Q}$ for some $\beta \in K_0(\textit{Vect}(X)) \otimes \mathbf{Q}$ so that $\gamma (\alpha ) = ch^{H}(\beta )$; this is our construction of $\gamma $. Since the map of Chow Homology, Lemma <a href="/tag/0FVJ" data-tag="0FVJ">42.67.4</a> is compatible with capping with Chern classes by Chow Homology, Lemma <a href="/tag/0FVN" data-tag="0FVN">42.67.8</a> we see that $g^*\alpha = ch((X_{k'} \to X)^*\beta ) \cap [X_{k'}]$. Hence $\gamma '(g^*\alpha ) = ch^{H'}((X_{k'} \to X)^*\beta )$. Thus commutativity of the diagram will hold if for any locally free $\mathcal{O}_ X$-module $\mathcal{E}$ of rank $r$ and $0 \leq i \leq r$ the element $c_ i^ H(\mathcal{E})$ of $H^{2i}(X)(i)$ maps to the element $c_ i^{H'}(\mathcal{E}_{k'})$ in $(H')^{2i}(X_{k'})(i)$. Because we have the projective space bundle formula for both $X$ and $X'$ we may replace $X$ by a projective space bundle over $X$ finitely many times to show this. Thus we may assume $\mathcal{E}$ has a filtration whose graded pieces are invertible $\mathcal{O}_ X$-modules $\mathcal{L}_1, \ldots , \mathcal{L}_ r$. See Chow Homology, Lemma <a href="/tag/02UL" data-tag="02UL">42.43.1</a> and Remark <a href="/tag/0FVE" data-tag="0FVE">42.43.2</a>. Then $c^ H_ i(\mathcal{E}$ is the $i$th elementary symmetric polynomial in $c^ H_1(\mathcal{L}_1), \ldots , c^ H_1(\mathcal{L}_ r)$ and we conclude by our assumption that we have agreement for first Chern classes. 
+    <p>
+      Axiom (A6). Suppose given $F$-vector spaces $V$, $W$, an element $v \in V$, and a tensor $\xi \in V \otimes _ F W$. Denote $V' = V \otimes _ F F'$, $W' = W \otimes _ F F'$ and $v'$, $\xi '$ the images of $v$, $\xi $ in $V'$, $V' \otimes _{F'} W'$. The linear algebra principle we will use in the proof of axiom (A6) is the following: there exists an $F$-linear map $\lambda : W \to F$ such that $(1 \otimes \lambda )\xi = v$ if and only if there exists an $F'$-linear map $\lambda ' : W \otimes _ F F' \to F'$ such that $(1 \otimes \lambda ')\xi ' = v'$. 
+    <p>
+      Let $X$ be a nonempty equidimensional smooth projective scheme over $k$ of dimension $d$. Denote $\gamma = \gamma ([\Delta ])$ in $H^{2d}(X \times X)(d)$ (unadorned fibre products will be over $k$). Observe/recall that this makes sense as we know axioms (A1) – (A4) already; see Lemma <a href="/tag/0FIF" data-tag="0FIF">45.14.2</a>. We may decompose 
+    <p>
+      <div class="equation">
+  \[  \gamma = \sum \gamma _ i, \quad \gamma _ i \in H^ i(X) \otimes _ F H^{2d - i}(X)(d)  \]
+</div>
+    <p>
+       in the Künneth decomposition. Similarly, denote $\gamma ' = \gamma ([\Delta ']) = \sum \gamma '_ i$ in $(H')^{2d}(X_{k'} \times _{k'} X_{k'})(d)$. By the linear algebra princple mentioned above, it suffices to show that $\gamma _0$ maps to $\gamma '_0$ in $(H')^0(X) \otimes _{F'} (H')^{2d}(X')(d)$. By the compatibility of Künneth decompositions we see that it suffice to show that $\gamma $ maps to $\gamma '$ in 
+    <p>
+      <div class="equation">
+  \[  (H')^{2d}(X_{k'} \times _{k'} X_{k'})(d) = (H')^{2d}((X \times X)_{k'})(d)  \]
+</div>
+    <p>
+       Since $\Delta _{k'} = \Delta '$ this follows from the discussion above. 
+    <p>
+      Axiom (A7). This follows from the linear algebra fact: a linear map $V \to W$ of $F$-vector spaces is injective if and only if $V \otimes _ F F' \to W \otimes _ F F'$ is injective. 
+    <p>
+      Axiom (A8). Follows from the linear algebra fact used in the proof of axiom (A1). 
+    <p>
+      Axiom (A9). Let $X$ be a nonempty smooth projective scheme over $k$ equidimensional of dimension $d$. Let $i : Y \to X$ be a nonempty effective Cartier divisor smooth over $k$. Let $\lambda _ Y$ and $\lambda _ X$ be as in axiom (A6) for $X$ and $Y$. We have to show: for $a \in H^{2d - 2}(X)(d - 1)$ we have $\lambda _ Y(i^*(a)) = \lambda _ X(a \cup c_1^ H(\mathcal{O}_ X(Y))$. By Remark <a href="/tag/0FIK" data-tag="0FIK">45.14.6</a> we know that $\lambda _ X : H^{2d}(X)(d) \to F$ and $\lambda _ Y : H^{2d - 2}(Y)(d - 1)$ are uniquely determined by the requirement in axiom (A6). Having said this, it follows from our proof of axiom (A6) for $H^*$ above that $\lambda _ X \otimes \text{id}_{F'}$ corresponds to $\lambda _{X_{k'}}$ via the given identification $H^{2d}(X)(d) \otimes _ F F' = H^{2d}(X_{k'})(d)$. Thus the fact that we know axiom (A9) for $F'(1), (H')^*, c_1^{H'}$ implies the axiom for $F(1), H^*, c_1^ H$ by a diagram chase. This completes the proof of the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

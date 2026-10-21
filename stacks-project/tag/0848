@@ -1,0 +1,259 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="spaces-divisors-section-relative-proj" class="tex-section"><span data-tag="0848">71.11</span> Relative Proj</h2>
+
+<p>
+This section revisits the construction of the relative proj in the setting of algebraic spaces. The material in this section corresponds to the material in Constructions, Section <a href="/tag/01NS" data-tag="01NS">27.16</a> and Divisors, Section <a href="/tag/07ZW" data-tag="07ZW">31.31</a> in the case of schemes. 
+</p>
+<p>
+<article class="env-situation" id="0849">
+  <p><a class="environment-identifier" href="/tag/0849">Situation <span data-tag="0849">71.11.1</span>.</a> Here $S$ is a scheme, $X$ is an algebraic space over $S$, and $\mathcal{A}$ is a quasi-coherent graded $\mathcal{O}_ X$-algebra. </p>
+</article> 
+</p>
+<p>
+In Situation <a href="/tag/0849" data-tag="0849">71.11.1</a> we are going to define a functor $F : (\mathit{Sch}/S)_{fppf}^{opp} \to \textit{Sets}$ which will turn out to be an algebraic space. We will follow (mutatis mutandis) the procedure of Constructions, Section <a href="/tag/01NS" data-tag="01NS">27.16</a>. First, given a scheme $T$ over $S$ we define a <em>quadruple over $T$</em> to be a system $(d, f : T \to X, \mathcal{L}, \psi )$ 
+</p>
+<ol>
+  <li><p>
+$d \geq 1$ is an integer, 
+</p>
+</li><li><p>
+$f : T \to X$ is a morphism over $S$, 
+</p>
+</li><li><p>
+$\mathcal{L}$ is an invertible $\mathcal{O}_ T$-module, and 
+</p>
+</li><li><p>
+$\psi : f^*\mathcal{A}^{(d)} \to \bigoplus _{n \geq 0}\mathcal{L}^{\otimes n}$ is a homomorphism of graded $\mathcal{O}_ T$-algebras such that $f^*\mathcal{A}_ d \to \mathcal{L}$ is surjective. 
+</p>
+</li>
+</ol>
+<p>
+ We say two quadruples $(d, f, \mathcal{L}, \psi )$ and $(d', f', \mathcal{L}', \psi ')$ are <em>equivalent</em><a class="footnotemark" href="#a0001409566" id="a0001409566-mark"><sup>1</sup></a> if and only if we have $f = f'$ and for some positive integer $m = ad = a'd'$ there exists an isomorphism $\beta : \mathcal{L}^{\otimes a} \to (\mathcal{L}')^{\otimes a'}$ with the property that $\beta \circ \psi |_{f^*\mathcal{A}^{(m)}}$ and $\psi '|_{f^*\mathcal{A}^{(m)}}$ agree as graded ring maps $f^*\mathcal{A}^{(m)} \to \bigoplus _{n \geq 0} (\mathcal{L}')^{\otimes mn}$. Given a quadruple $(d, f, \mathcal{L}, \psi )$ and a morphism $h : T' \to T$ we have the pullback $(d, f \circ h, h^*\mathcal{L}, h^*\psi )$. Pullback preserves the equivalence relation. Finally, for a <em>quasi-compact</em> scheme $T$ over $S$ we set 
+</p>
+<div class="equation">
+  \[  F(T) = \text{the set of equivalence classes of quadruples over }T  \]
+</div>
+<p>
+ and for an arbitrary scheme $T$ over $S$ we set 
+</p>
+<div class="equation">
+  \[  F(T) = \mathop{\mathrm{lim}}\nolimits _{V \subset T\text{ quasi-compact open}} F(V).  \]
+</div>
+<p>
+ In other words, an element $\xi $ of $F(T)$ corresponds to a compatible system of choices of elements $\xi _ V \in F(V)$ where $V$ ranges over the quasi-compact opens of $T$. Thus we have defined our functor 
+</p>
+<div class="equation" id="084A">
+    <span class="equation-label"><a href="/tag/084A" data-tag="084A">71.11.1.1</a></span>
+  <div>\begin{equation}  \label{spaces-divisors-equation-proj} F : \mathit{Sch}^{opp} \longrightarrow \textit{Sets} \end{equation}</div>
+</div>
+<p>
+ There is a morphism $F \to X$ of functors sending the quadruple $(d, f, \mathcal{L}, \psi )$ to $f$. 
+</p>
+<p>
+<article class="env-lemma" id="084B">
+  <p><a class="environment-identifier" href="/tag/084B">Lemma <span data-tag="084B">71.11.2</span>.</a> In Situation <a href="/tag/0849" data-tag="0849">71.11.1</a>. The functor $F$ above is an algebraic space. For any morphism $g : Z \to X$ where $Z$ is a scheme there is a canonical isomorphism $\underline{\text{Proj}}_ Z(g^*\mathcal{A}) = Z \times _ X F$ compatible with further base change. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It suffices to prove the second assertion, see Spaces, Lemma <a href="/tag/02WY" data-tag="02WY">65.11.3</a>. Let $g : Z \to X$ be a morphism where $Z$ is a scheme. Let $F'$ be the functor of quadruples associated to the graded quasi-coherent $\mathcal{O}_ Z$-algebra $g^*\mathcal{A}$. Then there is a canonical isomorphism $F' = Z \times _ X F$, sending a quadruple $(d, f : T \to Z, \mathcal{L}, \psi )$ for $F'$ to $(d, g \circ f, \mathcal{L}, \psi )$ (details omitted, see proof of Constructions, Lemma <a href="/tag/01NT" data-tag="01NT">27.16.1</a>). By Constructions, Lemmas <a href="/tag/01NW" data-tag="01NW">27.16.4</a>, <a href="/tag/01NY" data-tag="01NY">27.16.5</a>, and <a href="/tag/01NZ" data-tag="01NZ">27.16.6</a> and Definition <a href="/tag/01O0" data-tag="01O0">27.16.7</a> we see that $F'$ is representable by $\underline{\text{Proj}}_ Z(g^*\mathcal{A})$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The lemma above tells us the following definition makes sense. 
+</p>
+<p>
+<article class="env-definition" id="084C">
+  <p><a class="environment-identifier" href="/tag/084C">Definition <span data-tag="084C">71.11.3</span>.</a> Let $S$ be a scheme. Let $X$ be an algebraic space over $S$. Let $\mathcal{A}$ be a quasi-coherent sheaf of graded $\mathcal{O}_ X$-algebras. The <em>relative homogeneous spectrum of $\mathcal{A}$ over $X$</em>, or the <em>homogeneous spectrum of $\mathcal{A}$ over $X$</em>, or the <em>relative Proj of $\mathcal{A}$ over $X$</em> is the algebraic space $F$ over $X$ of Lemma <a href="/tag/084B" data-tag="084B">71.11.2</a>. We denote it $\pi : \underline{\text{Proj}}_ X(\mathcal{A}) \to X$. </p>
+</article> 
+</p>
+<p>
+In particular the structure morphism of the relative Proj is representable by construction. We can also think about the relative Proj via glueing. Let $\varphi : U \to X$ be a surjective étale morphism, where $U$ is a scheme. Set $R = U \times _ X U$ with projection morphisms $s, t : R \to U$. By Lemma <a href="/tag/084B" data-tag="084B">71.11.2</a> there exists a canonical isomorphism 
+</p>
+<div class="equation">
+  \[  \gamma : \underline{\text{Proj}}_ U(\varphi ^*\mathcal{A}) \longrightarrow \underline{\text{Proj}}_ X(\mathcal{A}) \times _ X U  \]
+</div>
+<p>
+ over $U$. Let $\alpha : t^*\varphi ^*\mathcal{A} \to s^*\varphi ^*\mathcal{A}$ be the canonical isomorphism of Properties of Spaces, Proposition <a href="/tag/03M3" data-tag="03M3">66.32.1</a>. Then the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ &  \underline{\text{Proj}}_ U(\varphi ^*\mathcal{A}) \times _{U, s} R \ar@{=}[r] &  \underline{\text{Proj}}_ R(s^*\varphi ^*\mathcal{A}) \ar[dd]_{\text{induced by }\alpha } \\  \underline{\text{Proj}}_ X(\mathcal{A}) \times _ X R \ar[ru]_{s^*\gamma } \ar[rd]^{t^*\gamma } \\  &  \underline{\text{Proj}}_ U(\varphi ^*\mathcal{A}) \times _{U, t} R \ar@{=}[r] &  \underline{\text{Proj}}_ R(t^*\varphi ^*\mathcal{A}) }  \]
+</div>
+<p>
+ is commutative (the equal signs come from Constructions, Lemma <a href="/tag/01O3" data-tag="01O3">27.16.10</a>). Thus, if we denote $\mathcal{A}_ U$, $\mathcal{A}_ R$ the pullback of $\mathcal{A}$ to $U$, $R$, then $P = \underline{\text{Proj}}_ X(\mathcal{A})$ has an étale covering by the scheme $P_ U = \underline{\text{Proj}}_ U(\mathcal{A}_ U)$ and $P_ U \times _ P P_ U$ is equal to $P_ R = \underline{\text{Proj}}_ R(\mathcal{A}_ R)$. Using these remarks we can argue in the usual fashion using étale localization to transfer results on the relative proj from the case of schemes to the case of algebraic spaces. 
+</p>
+<p>
+<article class="env-lemma" id="084D">
+  <p><a class="environment-identifier" href="/tag/084D">Lemma <span data-tag="084D">71.11.4</span>.</a> In Situation <a href="/tag/0849" data-tag="0849">71.11.1</a>. The relative Proj comes equipped with a quasi-coherent sheaf of $\mathbf{Z}$-graded algebras $\bigoplus _{n \in \mathbf{Z}} \mathcal{O}_{\underline{\text{Proj}}_ X(\mathcal{A})}(n)$ and a canonical homomorphism of graded algebras </p>
+  <div class="equation">
+  \[  \psi : \pi ^*\mathcal{A} \longrightarrow \bigoplus \nolimits _{n \geq 0} \mathcal{O}_{\underline{\text{Proj}}_ X(\mathcal{A})}(n)  \]
+</div>
+  <p> whose base change to any scheme over $X$ agrees with Constructions, Lemma <a href="/tag/01NR" data-tag="01NR">27.15.5</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      As in the discussion following Definition <a href="/tag/084C" data-tag="084C">71.11.3</a> choose a scheme $U$ and a surjective étale morphism $U \to X$, set $R = U \times _ X U$ with projections $s, t : R \to U$, $\mathcal{A}_ U = \mathcal{A}|_ U$, $\mathcal{A}_ R = \mathcal{A}|_ R$, and $\pi : P = \underline{\text{Proj}}_ X(\mathcal{A}) \to X$, $\pi _ U : P_ U = \underline{\text{Proj}}_ U(\mathcal{A}_ U)$ and $\pi _ R : P_ R = \underline{\text{Proj}}_ U(\mathcal{A}_ R)$. By the Constructions, Lemma <a href="/tag/01NR" data-tag="01NR">27.15.5</a> we have a quasi-coherent sheaf of $\mathbf{Z}$-graded $\mathcal{O}_{P_ U}$-algebras $\bigoplus _{n \in \mathbf{Z}} \mathcal{O}_{P_ U}(n)$ and a canonical map $\psi _ U : \pi _ U^*\mathcal{A}_ U \to \bigoplus _{n \geq 0} \mathcal{O}_{P_ U}(n)$ and similarly for $P_ R$. By Constructions, Lemma <a href="/tag/01O3" data-tag="01O3">27.16.10</a> the pullback of $\mathcal{O}_{P_ U}(n)$ and $\psi _ U$ by either projection $P_ R \to P_ U$ is equal to $\mathcal{O}_{P_ R}(n)$ and $\psi _ R$. By Properties of Spaces, Proposition <a href="/tag/03M3" data-tag="03M3">66.32.1</a> we obtain $\mathcal{O}_{P}(n)$ and $\psi $. We omit the verification of compatibility with pullback to arbitrary schemes over $X$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Having constructed the relative Proj we turn to some basic properties. 
+</p>
+<p>
+<article class="env-lemma" id="085C">
+  <p><a class="environment-identifier" href="/tag/085C">Lemma <span data-tag="085C">71.11.5</span>.</a> Let $S$ be a scheme. Let $g : X' \to X$ be a morphism of algebraic spaces over $S$ and let $\mathcal{A}$ be a quasi-coherent sheaf of graded $\mathcal{O}_ X$-algebras. Then there is a canonical isomorphism </p>
+  <div class="equation">
+  \[  r : \underline{\text{Proj}}_{X'}(g^*\mathcal{A}) \longrightarrow X' \times _ X \underline{\text{Proj}}_ X(\mathcal{A})  \]
+</div>
+  <p> as well as a corresponding isomorphism </p>
+  <div class="equation">
+  \[  \theta : r^*\text{pr}_2^*\left(\bigoplus \nolimits _{d \in \mathbf{Z}} \mathcal{O}_{\underline{\text{Proj}}_ X(\mathcal{A})}(d)\right) \longrightarrow \bigoplus \nolimits _{d \in \mathbf{Z}} \mathcal{O}_{\underline{\text{Proj}}_{X'}(g^*\mathcal{A})}(d)  \]
+</div>
+  <p> of $\mathbf{Z}$-graded $\mathcal{O}_{\underline{\text{Proj}}_{X'}(g^*\mathcal{A})}$-algebras. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $F$ be the functor (<a href="/tag/084A" data-tag="084A">71.11.1.1</a>) and let $F'$ be the corresponding functor defined using $g^*\mathcal{A}$ on $X'$. We claim there is a canonical isomorphism $r : F' \to X' \times _ X F$ of functors (and of course $r$ is the isomorphism of the lemma). It suffices to construct the bijection $r : F'(T) \to X'(T) \times _{X(T)} F(T)$ for quasi-compact schemes $T$ over $S$. First, if $\xi = (d', f', \mathcal{L}', \psi ')$ is a quadruple over $T$ for $F'$, then we can set $r(\xi ) = (f', (d', g \circ f', \mathcal{L}', \psi '))$. This makes sense as $(g \circ f')^*\mathcal{A}^{(d)} = (f')^*(g^*\mathcal{A})^{(d)}$. The inverse map sends the pair $(f', (d, f, \mathcal{L}, \psi ))$ to the quadruple $(d, f', \mathcal{L}, \psi )$. We omit the proof of the final assertion (hint: reduce to the case of schemes by étale localization and apply Constructions, Lemma <a href="/tag/01O3" data-tag="01O3">27.16.10</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="084E">
+  <p><a class="environment-identifier" href="/tag/084E">Lemma <span data-tag="084E">71.11.6</span>.</a> In Situation <a href="/tag/0849" data-tag="0849">71.11.1</a> the morphism $\pi : \underline{\text{Proj}}_ X(\mathcal{A}) \to X$ is separated. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Morphisms of Spaces, Lemma <a href="/tag/03KM" data-tag="03KM">67.4.12</a> and the construction of the relative Proj this follows from the case of schemes which is Constructions, Lemma <a href="/tag/01O2" data-tag="01O2">27.16.9</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="084F">
+  <p><a class="environment-identifier" href="/tag/084F">Lemma <span data-tag="084F">71.11.7</span>.</a> In Situation <a href="/tag/0849" data-tag="0849">71.11.1</a>. If one of the following holds </p>
+  <p><ol>
+  <li><p>
+$\mathcal{A}$ is of finite type as a sheaf of $\mathcal{A}_0$-algebras, 
+</p>
+</li><li><p>
+$\mathcal{A}$ is generated by $\mathcal{A}_1$ as an $\mathcal{A}_0$-algebra and $\mathcal{A}_1$ is a finite type $\mathcal{A}_0$-module, 
+</p>
+</li><li><p>
+there exists a finite type quasi-coherent $\mathcal{A}_0$-submodule $\mathcal{F} \subset \mathcal{A}_{+}$ such that $\mathcal{A}_{+}/\mathcal{F}\mathcal{A}$ is a locally nilpotent sheaf of ideals of $\mathcal{A}/\mathcal{F}\mathcal{A}$, 
+</p>
+</li>
+</ol></p>
+  <p> then $\pi : \underline{\text{Proj}}_ X(\mathcal{A}) \to X$ is quasi-compact. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Morphisms of Spaces, Lemma <a href="/tag/03KG" data-tag="03KG">67.8.8</a> and the construction of the relative Proj this follows from the case of schemes which is Divisors, Lemma <a href="/tag/07ZX" data-tag="07ZX">31.31.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="084G">
+  <p><a class="environment-identifier" href="/tag/084G">Lemma <span data-tag="084G">71.11.8</span>.</a> In Situation <a href="/tag/0849" data-tag="0849">71.11.1</a>. If $\mathcal{A}$ is of finite type as a sheaf of $\mathcal{O}_ X$-algebras, then $\pi : \underline{\text{Proj}}_ X(\mathcal{A}) \to X$ is of finite type. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Morphisms of Spaces, Lemma <a href="/tag/040Y" data-tag="040Y">67.23.4</a> and the construction of the relative Proj this follows from the case of schemes which is Divisors, Lemma <a href="/tag/07ZY" data-tag="07ZY">31.31.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="084H">
+  <p><a class="environment-identifier" href="/tag/084H">Lemma <span data-tag="084H">71.11.9</span>.</a> In Situation <a href="/tag/0849" data-tag="0849">71.11.1</a>. If $\mathcal{O}_ X \to \mathcal{A}_0$ is an integral algebra map<a class="footnotemark" href="#a0001410205" id="a0001410205-mark"><sup>2</sup></a> and $\mathcal{A}$ is of finite type as an $\mathcal{A}_0$-algebra, then $\pi : \underline{\text{Proj}}_ X(\mathcal{A}) \to X$ is universally closed. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Morphisms of Spaces, Lemma <a href="/tag/03IT" data-tag="03IT">67.9.5</a> and the construction of the relative Proj this follows from the case of schemes which is Divisors, Lemma <a href="/tag/07ZZ" data-tag="07ZZ">31.31.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="084I">
+  <p><a class="environment-identifier" href="/tag/084I">Lemma <span data-tag="084I">71.11.10</span>.</a> In Situation <a href="/tag/0849" data-tag="0849">71.11.1</a>. The following conditions are equivalent </p>
+  <p><ol>
+  <li><p>
+$\mathcal{A}_0$ is a finite type $\mathcal{O}_ X$-module and $\mathcal{A}$ is of finite type as an $\mathcal{A}_0$-algebra, 
+</p>
+</li><li><p>
+$\mathcal{A}_0$ is a finite type $\mathcal{O}_ X$-module and $\mathcal{A}$ is of finite type as an $\mathcal{O}_ X$-algebra. 
+</p>
+</li>
+</ol></p>
+  <p> If these conditions hold, then $\pi : \underline{\text{Proj}}_ X(\mathcal{A}) \to X$ is proper. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Morphisms of Spaces, Lemma <a href="/tag/083R" data-tag="083R">67.40.2</a> and the construction of the relative Proj this follows from the case of schemes which is Divisors, Lemma <a href="/tag/07ZZ" data-tag="07ZZ">31.31.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="085D">
+  <p><a class="environment-identifier" href="/tag/085D">Lemma <span data-tag="085D">71.11.11</span>.</a> Let $S$ be a scheme. Let $X$ be an algebraic space over $S$. Let $\mathcal{A}$ be a quasi-coherent sheaf of graded $\mathcal{O}_ X$-modules generated as an $\mathcal{A}_0$-algebra by $\mathcal{A}_1$. With $P = \underline{\text{Proj}}_ X(\mathcal{A})$ we have </p>
+  <p><ol>
+  <li><p>
+$P$ represents the functor $F_1$ which associates to $T$ over $S$ the set of isomorphism classes of triples $(f, \mathcal{L}, \psi )$, where $f : T \to X$ is a morphism over $S$, $\mathcal{L}$ is an invertible $\mathcal{O}_ T$-module, and $\psi : f^*\mathcal{A} \to \bigoplus _{n \geq 0} \mathcal{L}^{\otimes n}$ is a map of graded $\mathcal{O}_ T$-algebras inducing a surjection $f^*\mathcal{A}_1 \to \mathcal{L}$, 
+</p>
+</li><li><p>
+the canonical map $\pi ^*\mathcal{A}_1 \to \mathcal{O}_ P(1)$ is surjective, and 
+</p>
+</li><li><p>
+each $\mathcal{O}_ P(n)$ is invertible and the multiplication maps induce isomorphisms $\mathcal{O}_ P(n) \otimes _{\mathcal{O}_ P} \mathcal{O}_ P(m) = \mathcal{O}_ P(n + m)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. See Constructions, Lemma <a href="/tag/01O4" data-tag="01O4">27.16.11</a> for the case of schemes. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

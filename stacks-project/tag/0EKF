@@ -1,0 +1,210 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-morphisms-section-proj-spec" class="tex-section"><span data-tag="0EKF">37.51</span> Proj and Spec</h2>
+
+<p>
+In this section we clarify the relationship between the Proj and the spectrum of a graded ring. 
+</p>
+<p>
+Let $R$ be a ring. Let $A$ be a graded $R$-algebra, see Algebra, Section <a href="/tag/00JL" data-tag="00JL">10.56</a>. For $m \geq 0$ we denote $A_{\geq m} = \bigoplus _{d \geq m} A_ d$. Consider the graded ring 
+</p>
+<div class="equation">
+  \[  B = \bigoplus \nolimits _{d \geq 0} A_{\geq d}  \]
+</div>
+<p>
+ For $d' \geq d$ and $a \in A_{d'}$ let us denote $a^{(d)} \in B$ the element in $B_ d$ corresponding to $a$. Let us denote $\sigma : A \to B$ and $\psi : A \to B$ the two obvious ring maps: if $a \in A_ d$, then $\sigma (a) = a^{(0)}$ and $\psi (a) = a^{(d)}$. Then $\psi $ is a graded ring map and $\sigma $ turns $B$ into a graded algebra over $A$. There is also a surjective graded ring map $\tau : B \to A$ which for $d' \geq d$ and $a \in A_{d'}$ sends $a^{(d)}$ to $0$ if $d' > d$ and to $a$ if $d' = d$. 
+</p>
+<p>
+Affine schemes and spectra. We set $X = \mathop{\mathrm{Spec}}(A)$. The irrelevant ideal $A_+$ cuts out a closed subscheme $Z = V(A_+) = \mathop{\mathrm{Spec}}(A/A_+) = \mathop{\mathrm{Spec}}(A_0)$. Set $U = X \setminus Z$. 
+</p>
+<div class="equation">
+  \[  U \longrightarrow X \longrightarrow Z  \]
+</div>
+<p>
+ Projective schemes and Proj. Set $P = \text{Proj}(A)$. We may and do view $P$ as a scheme over $\mathop{\mathrm{Spec}}(A_0) = Z$. Set $L = \text{Proj}(B)$. We may and do view $L$ as a scheme over $\mathop{\mathrm{Spec}}(B_0) = \mathop{\mathrm{Spec}}(A) = X$; observe that the identification of $B_0$ with $A$ is given by $\sigma $. The surjection $\tau $ defines a closed immersion $0 : P \to L$. Since $A \xrightarrow {\sigma } B \to A$ is equal to the map $A \to A_0 \to A$ we conclude that 
+</p>
+<div class="equation">
+  \[  \xymatrix{ P \ar[d] \ar[r]_0 &  L \ar[d] \\  Z \ar[r] &  X }  \]
+</div>
+<p>
+ is commutative. 
+</p>
+<p>
+We claim that $\psi $ defines a morphism $L \to P$. To see this, by Constructions, Lemma <a href="/tag/01MY" data-tag="01MY">27.11.1</a>, it suffices to check $\psi (A_+) \not\subset \mathfrak p$ for every homogeneous prime ideal $\mathfrak p \subset B$ with $B_+ \not\subset \mathfrak p$. First, pick $g \in B_+$ homogeneous $g \not\in \mathfrak p$. Then we can write $g$ as a finite sum $g = \sum a_ i^{(d)}$ with $a_ i \in A_{d_ i}$ for some $d_ i \geq d$. We conclude that there exist $d' \geq d$ and $a \in A_{d'}$ such that $a^{(d)} \not\in \mathfrak p$. Then 
+</p>
+<div class="equation">
+  \[  (a^{(d)})^{d'} = (a^{d'})^{(d'd)} = a^{(d)} (a^{d' - 1})^{(d(d' - 1))} = \psi (a) (a^{d' - 1})^{(d(d' - 1))}  \]
+</div>
+<p>
+ (the notation leaves something to be desired) is not in $\mathfrak p$. Hence $\psi (a) \not\in \mathfrak p$, proving the claim. Thus we can extend our diagram above to a commutative diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ P \ar[d] \ar[r]_0 &  L \ar[d] \ar[r]_\pi &  P \ar[d] \\  Z \ar[r] &  X \ar[r] &  Z }  \]
+</div>
+<p>
+ where $X \to Z$ is given by $A_0 \to A$. Since $\tau \circ \psi = \text{id}_ A$ we see $\pi \circ 0 = \text{id}_ P$. 
+</p>
+<p>
+Observe that $\pi $ is an affine morphism. This is clear from the construction in Constructions, Lemma <a href="/tag/01MY" data-tag="01MY">27.11.1</a>. In fact, if $f \in A_ d$ for some $d > 0$, then setting $g = \psi (f)$ we have $\pi ^{-1}(D_+(f)) = D_+(g)$. In this case we have the following equality of homogeneous parts 
+</p>
+<div class="equation">
+  \[  (B[1/g])_{m'} = \bigoplus \nolimits _{m \geq m'} (A[1/f])_ m  \]
+</div>
+<p>
+ This isomorphism is compatible with further localization. Taking $m' = 0$ we see that $\pi _*\mathcal{O}_ L$ is the direct sum of $\mathcal{O}_ P(m)$ for $m \geq 0$<a class="footnotemark" href="#a0000844029" id="a0000844029-mark"><sup>1</sup></a>. We conclude $L$ is identified with the relative spectrum: 
+</p>
+<div class="equation">
+  \[  L = \underline{\mathop{\mathrm{Spec}}}_ P \left( \bigoplus \nolimits _{m \geq 0} \mathcal{O}_ P(m) \right)  \]
+</div>
+<p>
+ In particular $L \to P$ is a cone<a class="footnotemark" href="#a0000844058" id="a0000844058-mark"><sup>2</sup></a>, see Constructions, Section <a href="/tag/062P" data-tag="062P">27.7</a>. Moreover, it is clear that $0 : P \to L$ is the vertex of the cone. 
+</p>
+<p>
+Let $f \in A_ d$ for some $d > 0$ and $g = \psi (f) \in B_ d$ as in the previous paragraph. Looking at the structure of the ring maps 
+</p>
+<div class="equation">
+  \[  \xymatrix{ A_0 \ar[r] \ar[d] &  A \ar[d]^\sigma \ar[r] &  A_0 \ar[d] \\  (A[1/f])_0 \ar[r]^-\psi &  (B[1/g])_0 = \bigoplus \nolimits _{m \geq 0} (A[1/f])_ m \ar[r]^-\tau &  (A[1/f])_0 }  \]
+</div>
+<p>
+ some compuations<a class="footnotemark" href="#a0000844079" id="a0000844079-mark"><sup>3</sup></a> in graded rings will show that 
+</p>
+<ol>
+  <li><p>
+$\sigma (A_+)(B[1/g])_0 \subset \mathop{\mathrm{Ker}}(\tau : (B[1/g])_0 \to (A[1/f])_0)$, 
+</p>
+</li><li><p>
+$\sigma (f) \in (B[1/g])_0$ is a nonzerodivisor, 
+</p>
+</li><li><p>
+$\sigma (f) (B[1/g])_0 = \sigma (A_ d) (B[1/g])_0$ as ideals, 
+</p>
+</li><li><p>
+$\sigma (f) (B[1/g])_0$ and $\mathop{\mathrm{Ker}}(\tau : (B[1/g])_0 \to (A[1/f])_0)$ have the same radical, 
+</p>
+</li><li><p>
+if $d = 1$, then $\sigma (f) (B[1/g])_0 = \mathop{\mathrm{Ker}}(\tau : (B[1/g])_0 \to (A[1/f])_0)$. 
+</p>
+</li>
+</ol>
+<p>
+ We see in particular that 
+</p>
+<div class="equation">
+  \[  0(D_+(f)) = V(\sigma (f)) \subset D_+(g) = \mathop{\mathrm{Spec}}((B[1/g])_0)  \]
+</div>
+<p>
+ set theoretically. In other words, the ideal generated by $\sigma (A_ d)$ cuts out an effective Cartier divisor on $D_+(g)$ which is set theoretically equal to the image of the closed immersion $0 : P \to L$. 
+</p>
+<p>
+We claim that $L \to X$ is an isomorphism over $U$. Namely, if $f \in A_ d$ for some $d > 0$, then 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Spec}}(A_ f) \times _ X L = \text{Proj}(A_ f \otimes _ A B) = \text{Proj}(B_{\sigma (f)})  \]
+</div>
+<p>
+ For each $e$ we have $(B_{\sigma (f)})_ e = A_ f \otimes _ B B_ e = A_ f \otimes _ A A_{\geq e} = A_ f$, the final equality induced by the injection $A_{\geq e} \subset A$. Hence $B_{\sigma (f)} \cong A_ f[T]$ with $T$ in degree $1$. This proves the claim as $\text{Proj}(A_ f[T]) \to \mathop{\mathrm{Spec}}(A_ f)$ is an isomorphism. From now on we identify $U$ with the corresponding open of $L$. 
+</p>
+<p>
+The identification made in the previous paragraph lets us consider the restriction $\pi |_ U : U \to P$. Pick $f \in A_ d$ for some $d > 0$ and $g = \psi (f) \in B_ d$ as we have done above several times. Then 
+</p>
+<div class="equation">
+  \[  U \cap \pi ^{-1}(D_+(f)) = U \cap D_+(g)  \]
+</div>
+<p>
+ is the complement of the zero locus of $\sigma (f) \in (B[1/g])_0$ via the identification of $D_+(g)$ with the spectrum of $(B[1/g])_0$. This is assertion (4) above. Therefore $U \cap D_+(g)$ is affine and 
+</p>
+<div class="equation">
+  \[  \mathcal{O}_ L(U \cap D_+(g)) = (B[1/g])_0[1/\sigma (f)] = \bigoplus \nolimits _{m \in \mathbf{Z}} (A[1/f])_ m  \]
+</div>
+<p>
+ where the last equal sign is the natural extension of the identification $(B[1/g])_0 = \bigoplus _{m \geq 0} (A[1/f])_ m$ made above. Exactly as we did before with $\pi : L \to P$ we conclude that $\pi |_ U : U \to P$ is affine and 
+</p>
+<div class="equation">
+  \[  U = \underline{\mathop{\mathrm{Spec}}}_ P \left( \bigoplus \nolimits _{m \in \mathbf{Z}} \mathcal{O}_ P(m) \right)  \]
+</div>
+<p>
+ as schemes over $P$. 
+</p>
+<p>
+Summarising the above, our constructions produce a commutative diagram 
+</p>
+<div class="equation" id="0EKG">
+    <span class="equation-label"><a href="/tag/0EKG" data-tag="0EKG">37.51.0.1</a></span>
+  <div>\begin{equation}  \label{more-morphisms-equation-proj-and-spec} \vcenter { \xymatrix{ \underline{\mathop{\mathrm{Spec}}}_ P \left( \bigoplus \nolimits _{m \in \mathbf{Z}} \mathcal{O}_ P(m) \right) \ar[r] \ar@{=}[d] &  L = \underline{\mathop{\mathrm{Spec}}}_ P \left( \bigoplus \nolimits _{m \geq 0} \mathcal{O}_ P(m) \right) \ar[d]^\sigma \ar[r]_-\pi &  P \ar[d] \\  U \ar[r] &  X \ar[r] &  Z } } \end{equation}</div>
+</div>
+<p>
+ of schemes where $\pi $ is a cone whose zero section $0 : P \to L$ maps set theoretically onto the inverse image of $Z$ in $L$. 
+</p>
+<p>
+Let $W \subset P$ be the largest open such that $\mathcal{O}_ P(1)|_ W$ is invertible and the natural maps induce isomorphisms $\mathcal{O}_ P(m)|_ W \cong \mathcal{O}_ P(1)^{\otimes m}|_ W$ for all $m \in \mathbf{Z}$, i.e., the open of Constructions, Lemma <a href="/tag/01MU" data-tag="01MU">27.10.4</a> for $d = 1$. Then we see that $L|_ W = \pi ^{-1}(W) \to W$ is a vector bundle (Constructions, Section <a href="/tag/01M1" data-tag="01M1">27.6</a>) of rank $1$, namely, 
+</p>
+<div class="equation">
+  \[  L|_ W = \mathbf{V}(\mathcal{O}_ P(1)|_ W)  \]
+</div>
+<p>
+ in Grothendieckian notation. This is immediate from the above showing that $L|_ W$ is equal to the relative spectrum of the symmetric algebra over $\mathcal{O}_ W$ on $\mathcal{O}_ P(1)|_ W$. Then clearly the morphism $0|_ W : W \to L|_ W$ is the zero section of this vector bundle. In particular $0(W)$ is an effective Cartier divisor on $L|_ W$. Moreover, the open $U|_ W = (\pi |_ U)^{-1}(W)$ is the complement of the zero section. 
+</p>
+<p>
+If $A$ is generated by $f_1, \ldots , f_ r \in A_1$ over $A_0$, then $(f_1, \ldots , f_ r)^ m = A_{\geq m}$ for all $m \geq 0$ and hence our $B$ above is the Rees algebra for $A_+ = (f_1, \ldots , f_ r)$. Thus in this case $L \to X$ is the blowup of $Z$ and $W = P$ where $W$ is as in the preceding paragraph. 
+</p>
+<p>
+If $P$ is quasi-compact, then for $d$ sufficiently divisible, the closed subscheme $D \subset L$ cut out by $\sigma (A_ d)\mathcal{O}_ L$ is an effective Cartier divisor, $0 : P \to L$ factors through $D$, and $0(P) = D$ set theoretically. This follows from Constructions, Lemma <a href="/tag/01MD" data-tag="01MD">27.8.9</a> and (1), (2), (3), and (4) proved above. (Take any $d$ divisible by the lcm of the degrees of the elements found in the lemma.) 
+</p>
+<p>
+We continue to assume $P$ is quasi-compact. Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_ P$-module. Let us set $\mathcal{F}_ U = \pi ^*\mathcal{F}|_ U$. Then we have 
+</p>
+<div class="equation" id="0EKH">
+    <span class="equation-label"><a href="/tag/0EKH" data-tag="0EKH">37.51.0.2</a></span>
+  <div>\begin{equation}  \label{more-morphisms-equation-cohomology-torsor} R\Gamma (U, \mathcal{F}_ U) = \bigoplus \nolimits _{m \in \mathbf{Z}} R\Gamma (P, \mathcal{F} \otimes _{\mathcal{O}_ P} \mathcal{O}_ P(m)) \end{equation}</div>
+</div>
+<p>
+ Moreover, this direct sum decomposition is functorial in $\mathcal{F}$ and the induced $A$-module structure on the right is the same as the $A$-module structure on the left coming from $U \subset X$. To prove the formula, since $\pi |_ U$ is affine and $(\pi |_ U)_*\mathcal{O}_ U = \bigoplus _{m \in \mathbf{Z}} \mathcal{O}_ P(m)$ we get 
+</p>
+<div class="equation">
+  \begin{align*}  R(\pi |_ U)_*\mathcal{F}_ U &  = (\pi |_ U)_*\mathcal{F}_ U \\ &  = (\pi |_ U)_*(\pi |_ U)^*\mathcal{F} \\ &  = \mathcal{F} \otimes _{\mathcal{O}_ P} \bigoplus \nolimits _{m \in \mathbf{Z}} \mathcal{O}_ P(m) \\ &  = \bigoplus \nolimits _{m \in \mathbf{Z}} \mathcal{F} \otimes _{\mathcal{O}_ P} \mathcal{O}_ P(m) \end{align*}
+</div>
+<p>
+ By Leray we find that $R\Gamma (U, \mathcal{F}_ U) = R\Gamma (P, R(\pi |_ U)_*\mathcal{F}_ U)$, see Cohomology, Lemma <a href="/tag/01F4" data-tag="01F4">20.13.6</a>. The proof is finished because taking cohomology commutes with direct sums in this case, see Derived Categories of Schemes, Lemma <a href="/tag/08DZ" data-tag="08DZ">36.4.5</a>. This is where we use that $P$ is quasi-compact; $P$ is separated by Constructions, Lemma <a href="/tag/01MC" data-tag="01MC">27.8.8</a>. 
+</p>
+<p>
+<article class="env-lemma" id="0EKI">
+  <p><a class="environment-identifier" href="/tag/0EKI">Lemma <span data-tag="0EKI">37.51.1</span>.</a> Let $R$ be a ring. Let $P$ be a proper scheme over $R$ and let $\mathcal{L}$ be an ample invertible $\mathcal{O}_ P$-module. Set $A = \bigoplus _{m \geq 0} \Gamma (P, \mathcal{L}^{\otimes m})$. Then $P = \text{Proj}(A)$ and diagram (<a href="/tag/0EKG" data-tag="0EKG">37.51.0.1</a>) becomes the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \underline{\mathop{\mathrm{Spec}}}_ P \left( \bigoplus \nolimits _{m \in \mathbf{Z}} \mathcal{L}^{\otimes m} \right) \ar[r] \ar@{=}[d] &  L = \underline{\mathop{\mathrm{Spec}}}_ P \left( \bigoplus \nolimits _{m \geq 0} \mathcal{L}^{\otimes m} \right) \ar[d]^\sigma \ar[r]_-\pi &  P \ar[d] \\  U \ar[r] &  X \ar[r] &  Z }  \]
+</div>
+  <p> having the properties explained above. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We have $P = \text{Proj}(A)$ by Morphisms, Lemma <a href="/tag/0C6J" data-tag="0C6J">29.44.17</a>. Moreover, by Properties, Lemma <a href="/tag/01QI" data-tag="01QI">28.29.2</a> via this identification we have $\mathcal{O}_ P(m) = \mathcal{L}^{\otimes m}$ for all $m \in \mathbf{Z}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

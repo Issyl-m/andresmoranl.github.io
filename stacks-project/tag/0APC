@@ -1,0 +1,113 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="groupoids-section-groupoids-descent" class="tex-section"><span data-tag="0APC">39.21</span> Descent in terms of groupoids</h2>
+
+<p>
+Cartesian morphisms are defined as follows. 
+</p>
+<p>
+<article class="env-definition" id="0APD">
+  <p><a class="environment-identifier" href="/tag/0APD">Definition <span data-tag="0APD">39.21.1</span>.</a> Let $S$ be a scheme. Let $f : (U', R', s', t', c') \to (U, R, s, t, c)$ be a morphism of groupoid schemes over $S$. We say $f$ is <em>cartesian</em>, or that <em>$(U', R', s', t', c')$ is cartesian over $(U, R, s, t, c)$</em>, if the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ R' \ar[r]_ f \ar[d]_{s'} &  R \ar[d]^ s \\  U' \ar[r]^ f &  U }  \]
+</div>
+  <p> is a fibre square in the category of schemes. A <em>morphism of groupoid schemes cartesian over $(U, R, s, t, c)$</em> is a morphism of groupoid schemes compatible with the structure morphisms towards $(U, R, s, t, c)$. </p>
+</article> 
+</p>
+<p>
+Cartesian morphisms are related to descent data. First we prove a general lemma describing the category of cartesian groupoid schemes over a fixed groupoid scheme. 
+</p>
+<p>
+<article class="env-lemma" id="0APE">
+  <p><a class="environment-identifier" href="/tag/0APE">Lemma <span data-tag="0APE">39.21.2</span>.</a> Let $S$ be a scheme. Let $(U, R, s, t, c)$ be a groupoid scheme over $S$. The category of groupoid schemes cartesian over $(U, R, s, t, c)$ is equivalent to the category of pairs $(V, \varphi )$ where $V$ is a scheme over $U$ and </p>
+  <div class="equation">
+  \[  \varphi : V \times _{U, t} R \longrightarrow R \times _{s, U} V  \]
+</div>
+  <p> is an isomorphism over $R$ such that $e^*\varphi = \text{id}_ V$ and such that </p>
+  <div class="equation">
+  \[  c^*\varphi = \text{pr}_1^*\varphi \circ \text{pr}_0^*\varphi  \]
+</div>
+  <p> as morphisms of schemes over $R \times _{s, U, t} R$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The pullback notation in the lemma signifies base change. The displayed formula makes sense because 
+    <p>
+      <div class="equation">
+  \[  (R \times _{s, U, t} R) \times _{\text{pr}_1, R, \text{pr}_1} (V \times _{U, t} R) = (R \times _{s, U, t} R) \times _{\text{pr}_0, R, \text{pr}_0} (R \times _{s, U} V)  \]
+</div>
+    <p>
+       as schemes over $R \times _{s, U, t} R$. 
+    <p>
+      Given $(V, \varphi )$ we set $U' = V$ and $R' = V \times _{U, t} R$. We set $t' : R' \to U'$ equal to the projection $V \times _{U, t} R \to V$. We set $s'$ equal to $\varphi $ followed by the projection $R \times _{s, U} V \to V$. We set $c'$ equal to the composition 
+    <p>
+      <div class="equation">
+  \begin{align*}  R' \times _{s', U', t'} R' &  \xrightarrow {\varphi , 1} (R \times _{s, U} V) \times _ V (V \times _{U, t} R) \\ &  \xrightarrow {} R \times _{s, U} V \times _{U, t} R \\ &  \xrightarrow {\varphi ^{-1}, 1} V \times _{U, t} (R \times _{s, U, t} R) \\ &  \xrightarrow {1, c} V \times _{U, t} R = R' \end{align*}
+</div>
+    <p>
+       A computation, which we omit shows that we obtain a groupoid scheme over $(U, R, s, t, c)$. It is clear that this groupoid scheme is cartesian over $(U, R, s, t, c)$. 
+    <p>
+      Conversely, given $f : (U', R', s', t', c') \to (U, R, s, t, c)$ cartesian then the morphisms 
+    <p>
+      <div class="equation">
+  \[  U' \times _{U, t} R \xleftarrow {t', f} R' \xrightarrow {f, s'} R \times _{s, U} U'  \]
+</div>
+    <p>
+       are isomorphisms and we can set $V = U'$ and $\varphi $ equal to the composition $(f, s') \circ (t', f)^{-1}$. We omit the proof that $\varphi $ satisfies the conditions in the lemma. We omit the proof that these constructions are mutually inverse. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $S$ be a scheme. Let $f : X \to Y$ be a morphism of schemes over $S$. Then we obtain a groupoid scheme $(X, X \times _ Y X, \text{pr}_1, \text{pr}_0, c)$ over $S$. Namely, $j : X \times _ Y X \to X \times _ S X$ is an equivalence relation and we can take the associated groupoid, see Lemma <a href="/tag/0233" data-tag="0233">39.13.3</a>. 
+</p>
+<p>
+<article class="env-lemma" id="0APF">
+  <p><a class="environment-identifier" href="/tag/0APF">Lemma <span data-tag="0APF">39.21.3</span>.</a> Let $S$ be a scheme. Let $f : X \to Y$ be a morphism of schemes over $S$. The construction of Lemma <a href="/tag/0APE" data-tag="0APE">39.21.2</a> determines an equivalence </p>
+  <div class="equation">
+  \[  \begin{matrix}  \text{category of groupoid schemes} 
+
+\\  \text{cartesian over } (X, X \times _ Y X, \ldots ) 
+
+\end{matrix} \longrightarrow \begin{matrix}  \text{ category of descent data} 
+
+\\  \text{ relative to } X/Y 
+
+\end{matrix}  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is clear from Lemma <a href="/tag/0APE" data-tag="0APE">39.21.2</a> and the definition of descent data on schemes in Descent, Definition <a href="/tag/023V" data-tag="023V">35.34.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

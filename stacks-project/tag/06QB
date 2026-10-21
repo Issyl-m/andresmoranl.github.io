@@ -1,0 +1,379 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="stacks-morphisms-section-gerbes" class="tex-section"><span data-tag="06QB">101.28</span> Gerbes</h2>
+
+<p>
+An important type of algebraic stack are the stacks of the form $[B/G]$ where $B$ is an algebraic space and $G$ is a flat and locally finitely presented group algebraic space over $B$ (acting trivially on $B$), see Criteria for Representability, Lemma <a href="/tag/06PL" data-tag="06PL">97.18.3</a>. It turns out that an algebraic stack is a gerbe when it locally in the fppf topology is of this form, see Lemma <a href="/tag/06QH" data-tag="06QH">101.28.7</a>. In this section we briefly discuss this notion and the corresponding relative notion. 
+</p>
+<p>
+<article class="env-definition" id="06QC">
+  <p><a class="environment-identifier" href="/tag/06QC">Definition <span data-tag="06QC">101.28.1</span>.</a> Let $f : \mathcal{X} \to \mathcal{Y}$ be a morphism of algebraic stacks. We say $\mathcal{X}$ is a <em>gerbe over</em> $\mathcal{Y}$ if $\mathcal{X}$ is a gerbe over $\mathcal{Y}$ as stacks in groupoids over $(\mathit{Sch}/S)_{fppf}$, see Stacks, Definition <a href="/tag/06P2" data-tag="06P2">8.11.4</a>. We say an algebraic stack $\mathcal{X}$ is a <em>gerbe</em> if there exists a morphism $\mathcal{X} \to X$ where $X$ is an algebraic space which turns $\mathcal{X}$ into a gerbe over $X$. </p>
+</article> 
+</p>
+<p>
+The condition that $\mathcal{X}$ be a gerbe over $\mathcal{Y}$ is defined purely in terms of the topology and category theory underlying the given algebraic stacks; but as we will see later this condition has geometric consequences. For example it implies that $\mathcal{X} \to \mathcal{Y}$ is surjective, flat, and locally of finite presentation, see Lemma <a href="/tag/06QI" data-tag="06QI">101.28.8</a>. The absolute notion is trickier to parse, because it may not be at first clear that $X$ is well determined. Actually, it is. 
+</p>
+<p>
+<article class="env-lemma" id="06QD">
+  <p><a class="environment-identifier" href="/tag/06QD">Lemma <span data-tag="06QD">101.28.2</span>.</a> Let $\mathcal{X}$ be an algebraic stack. If $\mathcal{X}$ is a gerbe, then the sheafification of the presheaf </p>
+  <div class="equation">
+  \[  (\mathit{Sch}/S)_{fppf}^{opp} \to \textit{Sets}, \quad U \mapsto \mathop{\mathrm{Ob}}\nolimits (\mathcal{X}_ U)/\! \! \cong  \]
+</div>
+  <p> is an algebraic space and $\mathcal{X}$ is a gerbe over it. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      (In this proof the abuse of language introduced in Section <a href="/tag/04XP" data-tag="04XP">101.2</a> really pays off.) Choose a morphism $\pi : \mathcal{X} \to X$ where $X$ is an algebraic space which turns $\mathcal{X}$ into a gerbe over $X$. It suffices to prove that $X$ is the sheafification of the presheaf $\mathcal{F}$ displayed in the lemma. It is clear that there is a map $c : \mathcal{F} \to X$. We will use Stacks, Lemma <a href="/tag/06P1" data-tag="06P1">8.11.3</a> properties (2)(a) and (2)(b) to see that the map $c^\#  : \mathcal{F}^\#  \to X$ is surjective and injective, hence an isomorphism, see Sites, Lemma <a href="/tag/00WN" data-tag="00WN">7.11.2</a>. Surjective: Let $T$ be a scheme and let $f : T \to X$. By property (2)(a) there exists an fppf covering $\{ h_ i : T_ i \to T\} $ and morphisms $x_ i : T_ i \to \mathcal{X}$ such that $f \circ h_ i$ corresponds to $\pi \circ x_ i$. Hence we see that $f|_{T_ i}$ is in the image of $c$. Injective: Let $T$ be a scheme and let $x, y : T \to \mathcal{X}$ be morphisms such that $c \circ x = c \circ y$. By (2)(b) we can find a covering $\{ T_ i \to T\} $ and morphisms $x|_{T_ i} \to y|_{T_ i}$ in the fibre category $\mathcal{X}_{T_ i}$. Hence the restrictions $x|_{T_ i}, y|_{T_ i}$ are equal in $\mathcal{F}(T_ i)$. This proves that $x, y$ give the same section of $\mathcal{F}^\# $ over $T$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06QE">
+  <p><a class="environment-identifier" href="/tag/06QE">Lemma <span data-tag="06QE">101.28.3</span>.</a> Let </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{X}' \ar[r] \ar[d] &  \mathcal{X} \ar[d] \\  \mathcal{Y}' \ar[r] &  \mathcal{Y} }  \]
+</div>
+  <p> be a fibre product of algebraic stacks. If $\mathcal{X}$ is a gerbe over $\mathcal{Y}$, then $\mathcal{X}'$ is a gerbe over $\mathcal{Y}'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Immediate from the definitions and Stacks, Lemma <a href="/tag/06P3" data-tag="06P3">8.11.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06R8">
+  <p><a class="environment-identifier" href="/tag/06R8">Lemma <span data-tag="06R8">101.28.4</span>.</a> Let $\mathcal{X} \to \mathcal{Y}$ and $\mathcal{Y} \to \mathcal{Z}$ be morphisms of algebraic stacks. If $\mathcal{X}$ is a gerbe over $\mathcal{Y}$ and $\mathcal{Y}$ is a gerbe over $\mathcal{Z}$, then $\mathcal{X}$ is a gerbe over $\mathcal{Z}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Immediate from Stacks, Lemma <a href="/tag/06R3" data-tag="06R3">8.11.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06QF">
+  <p><a class="environment-identifier" href="/tag/06QF">Lemma <span data-tag="06QF">101.28.5</span>.</a> Let </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathcal{X}' \ar[r] \ar[d] &  \mathcal{X} \ar[d] \\  \mathcal{Y}' \ar[r] &  \mathcal{Y} }  \]
+</div>
+  <p> be a fibre product of algebraic stacks. If $\mathcal{Y}' \to \mathcal{Y}$ is surjective, flat, and locally of finite presentation and $\mathcal{X}'$ is a gerbe over $\mathcal{Y}'$, then $\mathcal{X}$ is a gerbe over $\mathcal{Y}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows immediately from Lemma <a href="/tag/06QA" data-tag="06QA">101.27.13</a> and Stacks, Lemma <a href="/tag/06P4" data-tag="06P4">8.11.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06QG">
+  <p><a class="environment-identifier" href="/tag/06QG">Lemma <span data-tag="06QG">101.28.6</span>.</a> Let $\pi : \mathcal{X} \to U$ be a morphism from an algebraic stack to an algebraic space and let $x : U \to \mathcal{X}$ be a section of $\pi $. Set $G = \mathit{Isom}_\mathcal {X}(x, x)$, see Definition <a href="/tag/06PP" data-tag="06PP">101.5.3</a>. If $\mathcal{X}$ is a gerbe over $U$, then </p>
+  <p><ol>
+  <li><p>
+there is a canonical equivalence of stacks in groupoids 
+</p>
+<div class="equation">
+  \[  x_{can} : [U/G] \longrightarrow \mathcal{X}.  \]
+</div>
+<p>
+ where $[U/G]$ is the quotient stack for the trivial action of $G$ on $U$, 
+</p>
+</li><li><p>
+$G \to U$ is flat and locally of finite presentation, and 
+</p>
+</li><li><p>
+$U \to \mathcal{X}$ is surjective, flat, and locally of finite presentation. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Set $R = U \times _{x, \mathcal{X}, x} U$. The morphism $R \to U \times U$ factors through the diagonal $\Delta _ U : U \to U \times U$ as it factors through $U \times _ U U = U$. Hence $R = G$ because 
+    <p>
+      <div class="equation">
+  \begin{align*}  G &  = \mathit{Isom}_\mathcal {X}(x, x) \\ &  = U \times _{x, \mathcal{X}} \mathcal{I}_\mathcal {X} \\ &  = U \times _{x, \mathcal{X}} (\mathcal{X} \times _{\Delta , \mathcal{X} \times _ S \mathcal{X}, \Delta } \mathcal{X}) \\ &  = (U \times _{x, \mathcal{X}, x} U) \times _{U \times U, \Delta _ U} U \\ &  = R \times _{U \times U, \Delta _ U} U \\ &  = R \end{align*}
+</div>
+    <p>
+       for the fourth equality use Categories, Lemma <a href="/tag/02XF" data-tag="02XF">4.31.12</a>. Let $t, s : R \to U$ be the projections. The composition law $c : R \times _{s, U, t} R \to R$ constructed on $R$ in Algebraic Stacks, Lemma <a href="/tag/04T4" data-tag="04T4">94.16.1</a> agrees with the group law on $G$ (proof omitted). Thus Algebraic Stacks, Lemma <a href="/tag/04T4" data-tag="04T4">94.16.1</a> shows we obtain a canonical fully faithful $1$-morphism 
+    <p>
+      <div class="equation">
+  \[  x_{can} : [U/G] \longrightarrow \mathcal{X}  \]
+</div>
+    <p>
+       of stacks in groupoids over $(\mathit{Sch}/S)_{fppf}$. To see that it is an equivalence it suffices to show that it is essentially surjective. To do this it suffices to show that any object of $\mathcal{X}$ over a scheme $T$ comes fppf locally from $x$ via a morphism $T \to U$, see Stacks, Lemma <a href="/tag/046N" data-tag="046N">8.4.8</a>. However, this follows the condition that $\pi $ turns $\mathcal{X}$ into a gerbe over $U$, see property (2)(a) of Stacks, Lemma <a href="/tag/06P1" data-tag="06P1">8.11.3</a>. 
+    <p>
+      By Criteria for Representability, Lemma <a href="/tag/06PL" data-tag="06PL">97.18.3</a> we conclude that $G \to U$ is flat and locally of finite presentation. Finally, $U \to \mathcal{X}$ is surjective, flat, and locally of finite presentation by Criteria for Representability, Lemma <a href="/tag/06FH" data-tag="06FH">97.17.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06QH">
+  <p><a class="environment-identifier" href="/tag/06QH">Lemma <span data-tag="06QH">101.28.7</span>.</a> Let $\pi : \mathcal{X} \to \mathcal{Y}$ be a morphism of algebraic stacks. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$\mathcal{X}$ is a gerbe over $\mathcal{Y}$, and 
+</p>
+</li><li><p>
+there exists an algebraic space $U$, a group algebraic space $G$ flat and locally of finite presentation over $U$, and a surjective, flat, and locally finitely presented morphism $U \to \mathcal{Y}$ such that $\mathcal{X} \times _\mathcal {Y} U \cong [U/G]$ over $U$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume (2). By Lemma <a href="/tag/06QF" data-tag="06QF">101.28.5</a> to prove (1) it suffices to show that $[U/G]$ is a gerbe over $U$. This is immediate from Groupoids in Spaces, Lemma <a href="/tag/06PF" data-tag="06PF">78.27.2</a>. 
+    <p>
+      Assume (1). Any base change of $\pi $ is a gerbe, see Lemma <a href="/tag/06QE" data-tag="06QE">101.28.3</a>. As a first step we choose a scheme $V$ and a surjective smooth morphism $V \to \mathcal{Y}$. Thus we may assume that $\pi : \mathcal{X} \to V$ is a gerbe over a scheme. This means that there exists an fppf covering $\{ V_ i \to V\} $ such that the fibre category $\mathcal{X}_{V_ i}$ is nonempty, see Stacks, Lemma <a href="/tag/06P1" data-tag="06P1">8.11.3</a> (2)(a). Note that $U = \coprod V_ i \to V$ is surjective, flat, and locally of finite presentation. Hence we may replace $V$ by $U$ and assume that $\pi : \mathcal{X} \to U$ is a gerbe over a scheme $U$ and that there exists an object $x$ of $\mathcal{X}$ over $U$. By Lemma <a href="/tag/06QG" data-tag="06QG">101.28.6</a> we see that $\mathcal{X} = [U/G]$ over $U$ for some flat and locally finitely presented group algebraic space $G$ over $U$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06QI">
+  <p><a class="environment-identifier" href="/tag/06QI">Lemma <span data-tag="06QI">101.28.8</span>.</a> Let $\pi : \mathcal{X} \to \mathcal{Y}$ be a morphism of algebraic stacks. If $\mathcal{X}$ is a gerbe over $\mathcal{Y}$, then $\pi $ is surjective, flat, and locally of finite presentation. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Properties of Stacks, Lemma <a href="/tag/06PM" data-tag="06PM">100.5.4</a> and Lemmas <a href="/tag/06PZ" data-tag="06PZ">101.25.4</a> and <a href="/tag/06Q8" data-tag="06Q8">101.27.11</a> it suffices to prove to the lemma after replacing $\pi $ by a base change with a surjective, flat, locally finitely presented morphism $\mathcal{Y}' \to \mathcal{Y}$. By Lemma <a href="/tag/06QH" data-tag="06QH">101.28.7</a> we may assume $\mathcal{Y} = U$ is an algebraic space and $\mathcal{X} = [U/G]$ over $U$. Then $U \to [U/G]$ is surjective, flat, and locally of finite presentation, see Lemma <a href="/tag/06QG" data-tag="06QG">101.28.6</a>. This implies that $\pi $ is surjective, flat, and locally of finite presentation by Properties of Stacks, Lemma <a href="/tag/06PN" data-tag="06PN">100.5.5</a> and Lemmas <a href="/tag/06Q0" data-tag="06Q0">101.25.5</a> and <a href="/tag/06Q9" data-tag="06Q9">101.27.12</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="06QJ">
+  <p><a class="environment-identifier" href="/tag/06QJ">Proposition <span data-tag="06QJ">101.28.9</span>.</a> Let $\mathcal{X}$ be an algebraic stack. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$\mathcal{X}$ is a gerbe, and 
+</p>
+</li><li><p>
+$\mathcal{I}_\mathcal {X} \to \mathcal{X}$ is flat and locally of finite presentation. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume (1). Choose a morphism $\mathcal{X} \to X$ into an algebraic space $X$ which turns $\mathcal{X}$ into a gerbe over $X$. Let $X' \to X$ be a surjective, flat, locally finitely presented morphism and set $\mathcal{X}' = X' \times _ X \mathcal{X}$. Note that $\mathcal{X}'$ is a gerbe over $X'$ by Lemma <a href="/tag/06QE" data-tag="06QE">101.28.3</a>. Then both squares in 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathcal{I}_{\mathcal{X}'} \ar[r] \ar[d] &  \mathcal{X}' \ar[r] \ar[d] &  X' \ar[d] \\  \mathcal{I}_\mathcal {X} \ar[r] &  \mathcal{X} \ar[r] &  X }  \]
+</div>
+    <p>
+       are fibre product squares, see Lemma <a href="/tag/06PQ" data-tag="06PQ">101.5.5</a>. Hence to prove $\mathcal{I}_\mathcal {X} \to \mathcal{X}$ is flat and locally of finite presentation it suffices to do so after such a base change by Lemmas <a href="/tag/06PZ" data-tag="06PZ">101.25.4</a> and <a href="/tag/06Q8" data-tag="06Q8">101.27.11</a>. Thus we can apply Lemma <a href="/tag/06QH" data-tag="06QH">101.28.7</a> to assume that $\mathcal{X} = [U/G]$. By Lemma <a href="/tag/06QG" data-tag="06QG">101.28.6</a> we see $G$ is flat and locally of finite presentation over $U$ and that $x : U \to [U/G]$ is surjective, flat, and locally of finite presentation. Moreover, the pullback of $\mathcal{I}_\mathcal {X}$ by $x$ is $G$ and we conclude that (2) holds by descent again, i.e., by Lemmas <a href="/tag/06PZ" data-tag="06PZ">101.25.4</a> and <a href="/tag/06Q8" data-tag="06Q8">101.27.11</a>. 
+    <p>
+      Conversely, assume (2). Choose a smooth presentation $\mathcal{X} = [U/R]$, see Algebraic Stacks, Section <a href="/tag/04T3" data-tag="04T3">94.16</a>. Denote $G \to U$ the stabilizer group algebraic space of the groupoid $(U, R, s, t, c, e, i)$, see Groupoids in Spaces, Definition <a href="/tag/0448" data-tag="0448">78.16.2</a>. By Lemma <a href="/tag/06PR" data-tag="06PR">101.5.7</a> we see that $G \to U$ is flat and locally of finite presentation as a base change of $\mathcal{I}_\mathcal {X} \to \mathcal{X}$, see Lemmas <a href="/tag/06PY" data-tag="06PY">101.25.3</a> and <a href="/tag/06Q4" data-tag="06Q4">101.27.3</a>. Consider the following action 
+    <p>
+      <div class="equation">
+  \[  a : G \times _{U, t} R \to R, \quad (g, r) \mapsto c(g, r)  \]
+</div>
+    <p>
+       of $G$ on $R$. This action is free on $T$-valued points for any scheme $T$ as $R$ is a groupoid. Hence $R' = R/G$ is an algebraic space and the quotient morphism $\pi : R \to R'$ is surjective, flat, and locally of finite presentation by Bootstrap, Lemma <a href="/tag/06PH" data-tag="06PH">80.11.7</a>. The projections $s, t : R \to U$ are $G$-invariant, hence we obtain morphisms $s' , t' : R' \to U$ such that $s = s' \circ \pi $ and $t = t' \circ \pi $. Since $s, t : R \to U$ are flat and locally of finite presentation we conclude that $s', t'$ are flat and locally of finite presentation, see Morphisms of Spaces, Lemmas <a href="/tag/05VY" data-tag="05VY">67.31.5</a> and Descent on Spaces, Lemma <a href="/tag/06EV" data-tag="06EV">74.16.1</a>. Consider the morphism 
+    <p>
+      <div class="equation">
+  \[  j' = (t', s') : R' \longrightarrow U \times U.  \]
+</div>
+    <p>
+       We claim this is a monomorphism. Namely, suppose that $T$ is a scheme and that $a, b : T \to R'$ are morphisms which have the same image in $U \times U$. By definition of the quotient $R' = R/G$ there exists an fppf covering $\{ h_ j : T_ j \to T\} $ such that $a \circ h_ j = \pi \circ a_ j$ and $b \circ h_ j = \pi \circ b_ j$ for some morphisms $a_ j, b_ j : T_ j \to R$. Since $a_ j, b_ j$ have the same image in $U \times U$ we see that $g_ j = c(a_ j, i(b_ j))$ is a $T_ j$-valued point of $G$ such that $c(g_ j, b_ j) = a_ j$. In other words, $a_ j$ and $b_ j$ have the same image in $R'$ and the claim is proved. Since $j : R \to U \times U$ is a pre-equivalence relation (see Groupoids in Spaces, Lemma <a href="/tag/043X" data-tag="043X">78.11.2</a>) and $R \to R'$ is surjective (as a map of sheaves) we see that $j' : R' \to U \times U$ is an equivalence relation. Hence Bootstrap, Theorem <a href="/tag/04S6" data-tag="04S6">80.10.1</a> shows that $X = U/R'$ is an algebraic space. Finally, we claim that the morphism 
+    <p>
+      <div class="equation">
+  \[  \mathcal{X} = [U/R] \longrightarrow X = U/R'  \]
+</div>
+    <p>
+       turns $\mathcal{X}$ into a gerbe over $X$. This follows from Groupoids in Spaces, Lemma <a href="/tag/06PE" data-tag="06PE">78.27.1</a> as $R \to R'$ is surjective, flat, and locally of finite presentation (if needed use Bootstrap, Lemma <a href="/tag/04S1" data-tag="04S1">80.4.6</a> to see this implies the required hypothesis). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CPR">
+  <p><a class="environment-identifier" href="/tag/0CPR">Lemma <span data-tag="0CPR">101.28.10</span>.</a> Let $f : \mathcal{X} \to \mathcal{Y}$ be a morphism of algebraic stacks which makes $\mathcal{X}$ a gerbe over $\mathcal{Y}$. Then </p>
+  <p><ol>
+  <li><p>
+$\mathcal{I}_{\mathcal{X}/\mathcal{Y}} \to \mathcal{X}$ is flat and locally of finite presentation, 
+</p>
+</li><li><p>
+$\mathcal{X} \to \mathcal{X} \times _\mathcal {Y} \mathcal{X}$ is surjective, flat, and locally of finite presentation, 
+</p>
+</li><li><p>
+given algebraic spaces $T_ i$, $i = 1, 2$ and morphisms $x_ i : T_ i \to \mathcal{X}$, with $y_ i = f \circ x_ i$ the morphism 
+</p>
+<div class="equation">
+  \[  T_1 \times _{x_1, \mathcal{X}, x_2} T_2 \longrightarrow T_1 \times _{y_1, \mathcal{Y}, y_2} T_2  \]
+</div>
+<p>
+ is surjective, flat, and locally of finite presentation, 
+</p>
+</li><li><p>
+given an algebraic space $T$ and morphisms $x_ i : T \to \mathcal{X}$, $i = 1, 2$, with $y_ i = f \circ x_ i$ the morphism 
+</p>
+<div class="equation">
+  \[  \mathit{Isom}_\mathcal {X}(x_1, x_2) \longrightarrow \mathit{Isom}_\mathcal {Y}(y_1, y_2)  \]
+</div>
+<p>
+ is surjective, flat, and locally of finite presentation. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Proof of (1). Choose a scheme $Y$ and a surjective smooth morphism $Y \to \mathcal{Y}$. Set $\mathcal{X}' = \mathcal{X} \times _\mathcal {Y} Y$. By Lemma <a href="/tag/06PQ" data-tag="06PQ">101.5.5</a> we obtain cartesian squares 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathcal{I}_{\mathcal{X}'} \ar[r] \ar[d] &  \mathcal{X}' \ar[r] \ar[d] &  Y \ar[d] \\  \mathcal{I}_{\mathcal{X}/\mathcal{Y}} \ar[r] &  \mathcal{X} \ar[r] &  \mathcal{Y} }  \]
+</div>
+    <p>
+       By Lemmas <a href="/tag/06PZ" data-tag="06PZ">101.25.4</a> and <a href="/tag/06Q8" data-tag="06Q8">101.27.11</a> it suffices to prove that $\mathcal{I}_{\mathcal{X}'} \to \mathcal{X}'$ is flat and locally of finite presentation. This follows from Proposition <a href="/tag/06QJ" data-tag="06QJ">101.28.9</a> (because $\mathcal{X}'$ is a gerbe over $Y$ by Lemma <a href="/tag/06QE" data-tag="06QE">101.28.3</a>). 
+    <p>
+      Proof of (2). With notation as above, note that we may assume that $\mathcal{X}' = [Y/G]$ for some group algebraic space $G$ flat and locally of finite presentation over $Y$, see Lemma <a href="/tag/06QH" data-tag="06QH">101.28.7</a>. The base change of the morphism $\Delta : \mathcal{X} \to \mathcal{X} \times _\mathcal {Y} \mathcal{X}$ over $\mathcal{Y}$ by the morphism $Y \to \mathcal{Y}$ is the morphism $\Delta ' : \mathcal{X}' \to \mathcal{X}' \times _ Y \mathcal{X}'$. Hence it suffices to show that $\Delta '$ is surjective, flat, and locally of finite presentation (see Lemmas <a href="/tag/06PZ" data-tag="06PZ">101.25.4</a> and <a href="/tag/06Q8" data-tag="06Q8">101.27.11</a>). In other words, we have to show that 
+    <p>
+      <div class="equation">
+  \[  [Y/G] \longrightarrow [Y/G \times _ Y G]  \]
+</div>
+    <p>
+       is surjective, flat, and locally of finite presentation. This is true because the base change by the surjective, flat, locally finitely presented morphism $Y \to [Y/G \times _ Y G]$ is the morphism $G \to Y$. 
+    <p>
+      Proof of (3). Observe that the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ T_1 \times _{x_1, \mathcal{X}, x_2} T_2 \ar[d] \ar[r] &  T_1 \times _{y_1, \mathcal{Y}, y_2} T_2 \ar[d] \\  \mathcal{X} \ar[r] &  \mathcal{X} \times _\mathcal {Y} \mathcal{X} }  \]
+</div>
+    <p>
+       is cartesian. Hence (3) follows from (2). 
+    <p>
+      Proof of (4). This is true because 
+    <p>
+      <div class="equation">
+  \[  \mathit{Isom}_\mathcal {X}(x_1, x_2) = (T \times _{x_1, \mathcal{X}, x_2} T) \times _{T \times T, \Delta _ T} T  \]
+</div>
+    <p>
+       hence the morphism in (4) is a base change of the morphism in (3). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="0CPS">
+  <p><a class="environment-identifier" href="/tag/0CPS">Proposition <span data-tag="0CPS">101.28.11</span>.</a> Let $f : \mathcal{X} \to \mathcal{Y}$ be a morphism of algebraic stacks. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$\mathcal{X}$ is a gerbe over $\mathcal{Y}$, and 
+</p>
+</li><li><p>
+$f : \mathcal{X} \to \mathcal{Y}$ and $\Delta : \mathcal{X} \to \mathcal{X} \times _\mathcal {Y} \mathcal{X}$ are surjective, flat, and locally of finite presentation. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The implication (1) $\Rightarrow $ (2) follows from Lemmas <a href="/tag/06QI" data-tag="06QI">101.28.8</a> and <a href="/tag/0CPR" data-tag="0CPR">101.28.10</a>. 
+    <p>
+      Assume (2). It suffices to prove (1) for the base change of $f$ by a surjective, flat, and locally finitely presented morphism $\mathcal{Y}' \to \mathcal{Y}$, see Lemma <a href="/tag/06QF" data-tag="06QF">101.28.5</a> (note that the base change of the diagonal of $f$ is the diagonal of the base change). Thus we may assume $\mathcal{Y}$ is a scheme $Y$. In this case $\mathcal{I}_\mathcal {X} \to \mathcal{X}$ is a base change of $\Delta $ and we conclude that $\mathcal{X}$ is a gerbe by Proposition <a href="/tag/06QJ" data-tag="06QJ">101.28.9</a>. We still have to show that $\mathcal{X}$ is a gerbe over $Y$. Let $\mathcal{X} \to X$ be the morphism of Lemma <a href="/tag/06QD" data-tag="06QD">101.28.2</a> turning $\mathcal{X}$ into a gerbe over the algebraic space $X$ classifying isomorphism classes of objects of $\mathcal{X}$. It is clear that $f : \mathcal{X} \to Y$ factors as $\mathcal{X} \to X \to Y$. Since $f$ is surjective, flat, and locally of finite presentation, we conclude that $X \to Y$ is surjective as a map of fppf sheaves (for example use Lemma <a href="/tag/06QA" data-tag="06QA">101.27.13</a>). On the other hand, $X \to Y$ is injective too: for any scheme $T$ and any two $T$-valued points $x_1, x_2$ of $X$ which map to the same point of $Y$, we can first fppf locally on $T$ lift $x_1, x_2$ to objects $\xi _1, \xi _2$ of $\mathcal{X}$ over $T$ and second deduce that $\xi _1$ and $\xi _2$ are fppf locally isomorphic by our assumption that $\Delta : \mathcal{X} \to \mathcal{X} \times _ Y \mathcal{X}$ is surjective, flat, and locally of finite presentation. Whence $x_1 = x_2$ by construction of $X$. Thus $X = Y$ and the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+At this point we have developed enough machinery to prove that residual gerbes (when they exist) are gerbes. 
+</p>
+<p>
+<article class="env-lemma" id="06QK">
+  <p><a class="environment-identifier" href="/tag/06QK">Lemma <span data-tag="06QK">101.28.12</span>.</a> Let $\mathcal{Z}$ be a reduced, locally Noetherian algebraic stack such that $|\mathcal{Z}|$ is a singleton. Then $\mathcal{Z}$ is a gerbe over a reduced, locally Noetherian algebraic space $Z$ with $|Z|$ a singleton. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Properties of Stacks, Lemma <a href="/tag/06MP" data-tag="06MP">100.11.3</a> there exists a surjective, flat, locally finitely presented morphism $\mathop{\mathrm{Spec}}(k) \to \mathcal{Z}$ where $k$ is a field. Then $\mathcal{I}_ Z \times _\mathcal {Z} \mathop{\mathrm{Spec}}(k) \to \mathop{\mathrm{Spec}}(k)$ is representable by algebraic spaces and locally of finite type (as a base change of $\mathcal{I}_\mathcal {Z} \to \mathcal{Z}$, see Lemmas <a href="/tag/050Q" data-tag="050Q">101.5.1</a> and <a href="/tag/06FU" data-tag="06FU">101.17.3</a>). Therefore it is locally of finite presentation, see Morphisms of Spaces, Lemma <a href="/tag/06G4" data-tag="06G4">67.28.7</a>. Of course it is also flat as $k$ is a field. Hence we may apply Lemmas <a href="/tag/06PZ" data-tag="06PZ">101.25.4</a> and <a href="/tag/06Q8" data-tag="06Q8">101.27.11</a> to see that $\mathcal{I}_\mathcal {Z} \to \mathcal{Z}$ is flat and locally of finite presentation. We conclude that $\mathcal{Z}$ is a gerbe by Proposition <a href="/tag/06QJ" data-tag="06QJ">101.28.9</a>. Let $\pi : \mathcal{Z} \to Z$ be a morphism to an algebraic space such that $\mathcal{Z}$ is a gerbe over $Z$. Then $\pi $ is surjective, flat, and locally of finite presentation by Lemma <a href="/tag/06QI" data-tag="06QI">101.28.8</a>. Hence $\mathop{\mathrm{Spec}}(k) \to Z$ is surjective, flat, and locally of finite presentation as a composition, see Properties of Stacks, Lemma <a href="/tag/04ZT" data-tag="04ZT">100.5.2</a> and Lemmas <a href="/tag/06PX" data-tag="06PX">101.25.2</a> and <a href="/tag/06Q3" data-tag="06Q3">101.27.2</a>. Hence by Properties of Stacks, Lemma <a href="/tag/06MP" data-tag="06MP">100.11.3</a> we see that $|Z|$ is a singleton and that $Z$ is locally Noetherian and reduced. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06R9">
+  <p><a class="environment-identifier" href="/tag/06R9">Lemma <span data-tag="06R9">101.28.13</span>.</a> Let $f : \mathcal{X} \to \mathcal{Y}$ be a morphism of algebraic stacks. If $\mathcal{X}$ is a gerbe over $\mathcal{Y}$ then $f$ is a universal homeomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/06QE" data-tag="06QE">101.28.3</a> the assumption on $f$ is preserved under base change. Hence it suffices to show that the map $|\mathcal{X}| \to |\mathcal{Y}|$ is a homeomorphism of topological spaces. Let $k$ be a field and let $y$ be an object of $\mathcal{Y}$ over $\mathop{\mathrm{Spec}}(k)$. By Stacks, Lemma <a href="/tag/06P1" data-tag="06P1">8.11.3</a> property (2)(a) there exists an fppf covering $\{ T_ i \to \mathop{\mathrm{Spec}}(k)\} $ and objects $x_ i$ of $\mathcal{X}$ over $T_ i$ with $f(x_ i) \cong y|_{T_ i}$. Choose an $i$ such that $T_ i \not= \emptyset $. Choose a morphism $\mathop{\mathrm{Spec}}(K) \to T_ i$ for some field $K$. Then $k \subset K$ and $x_ i|_ K$ is an object of $\mathcal{X}$ lying over $y|_ K$. Thus we see that $|\mathcal{Y}| \to |\mathcal{X}|$. is surjective. The map $|\mathcal{Y}| \to |\mathcal{X}|$ is also injective. Namely, if $x, x'$ are objects of $\mathcal{X}$ over $\mathop{\mathrm{Spec}}(k)$ whose images $f(x), f(x')$ become isomorphic (over an extension) in $\mathcal{Y}$, then Stacks, Lemma <a href="/tag/06P1" data-tag="06P1">8.11.3</a> property (2)(b) guarantees the existence of an extension of $k$ over which $x$ and $x'$ become isomorphic (details omitted). Hence $|\mathcal{X}| \to |\mathcal{Y}|$ is continuous and bijective and it suffices to show that it is also open. This follows from Lemmas <a href="/tag/06QI" data-tag="06QI">101.28.8</a> and <a href="/tag/06R7" data-tag="06R7">101.27.15</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0DQL">
+  <p><a class="environment-identifier" href="/tag/0DQL">Lemma <span data-tag="0DQL">101.28.14</span>.</a> Let $f : \mathcal{X} \to \mathcal{Y}$ be a morphism of algebraic stacks such that $\mathcal{X}$ is a gerbe over $\mathcal{Y}$. If $\Delta _\mathcal {X}$ is quasi-compact, so is $\Delta _\mathcal {Y}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathcal{X} \ar[r] &  \mathcal{X} \times _\mathcal {Y} \mathcal{X} \ar[r] \ar[d] &  \mathcal{X} \times \mathcal{X} \ar[d] \\  &  \mathcal{Y} \ar[r] &  \mathcal{Y} \times \mathcal{Y} }  \]
+</div>
+    <p>
+       By Proposition <a href="/tag/0CPS" data-tag="0CPS">101.28.11</a> we find that the arrow on the top left is surjective. Since the composition of the top horizontal arrows is quasi-compact, we conclude that the top right arrow is quasi-compact by Lemma <a href="/tag/050X" data-tag="050X">101.7.6</a>. The square is cartesian and the right vertical arrow is surjective, flat, and locally of finite presentation. Thus we conclude by Lemma <a href="/tag/0DQK" data-tag="0DQK">101.27.16</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma tells us that residual gerbes exist for all points on any algebraic stack which is a gerbe. 
+</p>
+<p>
+<article class="env-lemma" id="06RA">
+  <p><a class="environment-identifier" href="/tag/06RA">Lemma <span data-tag="06RA">101.28.15</span>.</a> Let $\mathcal{X}$ be an algebraic stack. If $\mathcal{X}$ is a gerbe then for every $x \in |\mathcal{X}|$ the residual gerbe of $\mathcal{X}$ at $x$ exists. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\pi : \mathcal{X} \to X$ be a morphism from $\mathcal{X}$ into an algebraic space $X$ which turns $\mathcal{X}$ into a gerbe over $X$. Let $Z_ x \to X$ be the residual space of $X$ at $x$, see Decent Spaces, Definition <a href="/tag/06R0" data-tag="06R0">68.13.6</a>. Let $\mathcal{Z} = \mathcal{X} \times _ X Z_ x$. By Lemma <a href="/tag/06QE" data-tag="06QE">101.28.3</a> the algebraic stack $\mathcal{Z}$ is a gerbe over $Z_ x$. Hence $|\mathcal{Z}| = |Z_ x|$ (Lemma <a href="/tag/06R9" data-tag="06R9">101.28.13</a>) is a singleton. Since $\mathcal{Z} \to Z_ x$ is locally of finite presentation as a base change of $\pi $ (see Lemmas <a href="/tag/06QI" data-tag="06QI">101.28.8</a> and <a href="/tag/06Q4" data-tag="06Q4">101.27.3</a>) we see that $\mathcal{Z}$ is locally Noetherian, see Lemma <a href="/tag/06R6" data-tag="06R6">101.17.5</a>. Thus the residual gerbe $\mathcal{Z}_ x$ of $\mathcal{X}$ at $x$ exists and is equal to $\mathcal{Z}_ x = \mathcal{Z}_{red}$ the reduction of the algebraic stack $\mathcal{Z}$. Namely, we have seen above that $|\mathcal{Z}_{red}|$ is a singleton mapping to $x \in |\mathcal{X}|$, it is reduced by construction, and it is locally Noetherian (as the reduction of a locally Noetherian algebraic stack is locally Noetherian, details omitted). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

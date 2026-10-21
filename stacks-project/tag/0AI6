@@ -1,0 +1,275 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="formal-spaces-section-affine-formal-algebraic-spaces" class="tex-section"><span data-tag="0AI6">87.9</span> Affine formal algebraic spaces</h2>
+
+<p>
+In this section we introduce affine formal algebraic spaces. These will in fact be the same as what are called affine formal schemes in <span class="cite">[<a href="/bibliography/BVGD">BVGD</a>]</span>. However, we will call them affine formal algebraic spaces, in order to prevent confusion with the notion of an affine formal scheme as defined in <span class="cite">[<a href="/bibliography/EGA">EGA</a>]</span>. 
+</p>
+<p>
+Recall that a thickening of schemes is a closed immersion which induces a surjection on underlying topological spaces, see More on Morphisms, Definition <a href="/tag/04EX" data-tag="04EX">37.2.1</a>. 
+</p>
+<p>
+<article class="env-definition" id="0AI7">
+  <p><a class="environment-identifier" href="/tag/0AI7">Definition <span data-tag="0AI7">87.9.1</span>.</a> Let $S$ be a scheme. We say a sheaf $X$ on $(\mathit{Sch}/S)_{fppf}$ is an <em>affine formal algebraic space</em> if there exist </p>
+  <p><ol>
+  <li><p>
+a directed set $\Lambda $, 
+</p>
+</li><li><p>
+a system $(X_\lambda , f_{\lambda \mu })$ over $\Lambda $ in $(\mathit{Sch}/S)_{fppf}$ where 
+</p>
+<ol>
+  <li><p>
+each $X_\lambda $ is affine, 
+</p>
+</li><li><p>
+each $f_{\lambda \mu } : X_\lambda \to X_\mu $ is a thickening, 
+</p>
+</li>
+</ol>
+</li>
+</ol></p>
+  <p> such that </p>
+  <div class="equation">
+  \[  X \cong \mathop{\mathrm{colim}}\nolimits _{\lambda \in \Lambda } X_\lambda  \]
+</div>
+  <p> as fppf sheaves and $X$ satisfies a set theoretic condition (see Remark <a href="/tag/0AIS" data-tag="0AIS">87.11.5</a>). A <em>morphism of affine formal algebraic spaces</em> over $S$ is a map of sheaves. </p>
+</article> 
+</p>
+<p>
+Observe that the system $(X_\lambda , f_{\lambda \mu })$ is not part of the data. Suppose that $U$ is a quasi-compact scheme over $S$. Since the transition maps are monomorphisms, we see that 
+</p>
+<div class="equation">
+  \[  X(U) = \mathop{\mathrm{colim}}\nolimits X_\lambda (U)  \]
+</div>
+<p>
+ by Sites, Lemma <a href="/tag/0738" data-tag="0738">7.17.7</a>. Thus the fppf sheafification inherent in the colimit of the definition is a Zariski sheafification which does not do anything for quasi-compact schemes. 
+</p>
+<p>
+<article class="env-lemma" id="0AI8">
+  <p><a class="environment-identifier" href="/tag/0AI8">Lemma <span data-tag="0AI8">87.9.2</span>.</a> Let $S$ be a scheme. If $X$ is an affine formal algebraic space over $S$, then the diagonal morphism $\Delta : X \to X \times _ S X$ is representable and a closed immersion. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose given $U \to X$ and $V \to X$ where $U, V$ are schemes over $S$. Let us show that $U \times _ X V$ is representable. Write $X = \mathop{\mathrm{colim}}\nolimits X_\lambda $ as in Definition <a href="/tag/0AI7" data-tag="0AI7">87.9.1</a>. The discussion above shows that Zariski locally on $U$ and $V$ the morphisms factors through some $X_\lambda $. In this case $U \times _ X V = U \times _{X_\lambda } V$ which is a scheme. Thus the diagonal is representable, see Spaces, Lemma <a href="/tag/025W" data-tag="025W">65.5.10</a>. Given $(a, b) : W \to X \times _ S X$ where $W$ is a scheme over $S$ consider the map $X \times _{\Delta , X \times _ S X, (a, b)} W \to W$. As before locally on $W$ the morphisms $a$ and $b$ map into the affine scheme $X_\lambda $ for some $\lambda $ and then we get the morphism $X_\lambda \times _{\Delta _\lambda , X_\lambda \times _ S X_\lambda , (a, b)} W \to W$. This is the base change of $\Delta _\lambda : X_\lambda \to X_\lambda \times _ S X_\lambda $ which is a closed immersion as $X_\lambda \to S$ is separated (because $X_\lambda $ is affine). Thus $X \to X \times _ S X$ is a closed immersion. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+A morphism of schemes $X \to X'$ is a thickening if it is a closed immersion and induces a surjection on underlying sets of points, see (More on Morphisms, Definition <a href="/tag/04EX" data-tag="04EX">37.2.1</a>). Hence the property of being a thickening is preserved under arbitrary base change and fpqc local on the target, see Spaces, Section <a href="/tag/02WE" data-tag="02WE">65.4</a>. Thus Spaces, Definition <a href="/tag/025V" data-tag="025V">65.5.1</a> applies to “thickening” and we know what it means for a representable transformation $F \to G$ of presheaves on $(\mathit{Sch}/S)_{fppf}$ to be a thickening. We observe that this does not clash with our definition (More on Morphisms of Spaces, Definition <a href="/tag/05ZK" data-tag="05ZK">76.9.1</a>) of thickenings in case $F$ and $G$ are algebraic spaces. 
+</p>
+<p>
+<article class="env-lemma" id="0AI9">
+  <p><a class="environment-identifier" href="/tag/0AI9">Lemma <span data-tag="0AI9">87.9.3</span>.</a> Let $X_\lambda , \lambda \in \Lambda $ and $X = \mathop{\mathrm{colim}}\nolimits X_\lambda $ be as in Definition <a href="/tag/0AI7" data-tag="0AI7">87.9.1</a>. Then $X_\lambda \to X$ is representable and a thickening. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The statement makes sense by the discussion in Spaces, Section <a href="/tag/025U" data-tag="025U">65.3</a> and <a href="/tag/02WI" data-tag="02WI">65.5</a>. By Lemma <a href="/tag/0AI8" data-tag="0AI8">87.9.2</a> the morphisms $X_\lambda \to X$ are representable. Given $U \to X$ where $U$ is a scheme, then the discussion following Definition <a href="/tag/0AI7" data-tag="0AI7">87.9.1</a> shows that Zariski locally on $U$ the morphism factors through some $X_\mu $ with $\lambda \leq \mu $. In this case $U \times _ X X_\lambda = U \times _{X_\mu } X_\lambda $ so that $U \times _ X X_\lambda \to U$ is a base change of the thickening $X_\lambda \to X_\mu $. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AIA">
+  <p><a class="environment-identifier" href="/tag/0AIA">Lemma <span data-tag="0AIA">87.9.4</span>.</a> Let $X_\lambda , \lambda \in \Lambda $ and $X = \mathop{\mathrm{colim}}\nolimits X_\lambda $ be as in Definition <a href="/tag/0AI7" data-tag="0AI7">87.9.1</a>. If $Y$ is a quasi-compact algebraic space over $S$, then any morphism $Y \to X$ factors through an $X_\lambda $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose an affine scheme $V$ and a surjective étale morphism $V \to Y$. The composition $V \to Y \to X$ factors through $X_\lambda $ for some $\lambda $ by the discussion following Definition <a href="/tag/0AI7" data-tag="0AI7">87.9.1</a>. Since $V \to Y$ is a surjection of sheaves, we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AIB">
+  <p><a class="environment-identifier" href="/tag/0AIB">Lemma <span data-tag="0AIB">87.9.5</span>.</a> Let $S$ be a scheme. Let $X$ be a sheaf on $(\mathit{Sch}/S)_{fppf}$. Then $X$ is an affine formal algebraic space if and only if the following hold </p>
+  <p><ol>
+  <li><p>
+any morphism $U \to X$ where $U$ is an affine scheme over $S$ factors through a morphism $T \to X$ which is representable and a thickening with $T$ an affine scheme over $S$, and 
+</p>
+</li><li><p>
+a set theoretic condition as in Remark <a href="/tag/0AIS" data-tag="0AIS">87.11.5</a>. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It follows from Lemmas <a href="/tag/0AI9" data-tag="0AI9">87.9.3</a> and <a href="/tag/0AIA" data-tag="0AIA">87.9.4</a> that an affine formal algebraic space satisfies (1) and (2). In order to prove the converse we may assume $X$ is not empty. Let $\Lambda $ be the category of representable morphisms $T \to X$ which are thickenings where $T$ is an affine scheme over $S$. This category is directed. Since $X$ is not empty, $\Lambda $ contains at least one object. If $T \to X$ and $T' \to X$ are in $\Lambda $, then we can factor $T \amalg T' \to X$ through $T'' \to X$ in $\Lambda $. Between any two objects of $\Lambda $ there is a unique arrow or none. Thus $\Lambda $ is a directed set and by assumption $X = \mathop{\mathrm{colim}}\nolimits _{T \to X\text{ in }\Lambda } T$. To finish the proof we need to show that any arrow $T \to T'$ in $\Lambda $ is a thickening. This is true because $T' \to X$ is a monomorphism of sheaves, so that $T = T \times _{T'} T' = T \times _ X T'$ and hence the morphism $T \to T'$ equals the projection $T \times _ X T' \to T'$ which is a thickening because $T \to X$ is a thickening. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+For a general affine formal algebraic space $X$ there is no guarantee that $X$ has enough functions to separate points (for example). See Examples, Section <a href="/tag/0ANY" data-tag="0ANY">110.77</a>. To characterize those that do we offer the following lemma. 
+</p>
+<p>
+<article class="env-lemma" id="0AIC">
+  <p><a class="environment-identifier" href="/tag/0AIC">Lemma <span data-tag="0AIC">87.9.6</span>.</a> Let $S$ be a scheme. Let $X$ be an fppf sheaf on $(\mathit{Sch}/S)_{fppf}$ which satisfies the set theoretic condition of Remark <a href="/tag/0AIS" data-tag="0AIS">87.11.5</a>. The following are equivalent: </p>
+  <p><ol>
+  <li><p>
+there exists a weakly admissible topological ring $A$ over $S$ (see Remark <a href="/tag/0AI3" data-tag="0AI3">87.2.3</a>) such that $X = \mathop{\mathrm{colim}}\nolimits _{I \subset A\text{ weak ideal of definition}} \mathop{\mathrm{Spec}}(A/I)$, 
+</p>
+</li><li><p>
+$X$ is an affine formal algebraic space and there exists an $S$-algebra $A$ and a map $X \to \mathop{\mathrm{Spec}}(A)$ such that for a closed immersion $T \to X$ with $T$ an affine scheme the composition $T \to \mathop{\mathrm{Spec}}(A)$ is a closed immersion, 
+</p>
+</li><li><p>
+$X$ is an affine formal algebraic space and there exists an $S$-algebra $A$ and a map $X \to \mathop{\mathrm{Spec}}(A)$ such that for a closed immersion $T \to X$ with $T$ a scheme the composition $T \to \mathop{\mathrm{Spec}}(A)$ is a closed immersion, 
+</p>
+</li><li><p>
+$X$ is an affine formal algebraic space and for some choice of $X = \mathop{\mathrm{colim}}\nolimits X_\lambda $ as in Definition <a href="/tag/0AI7" data-tag="0AI7">87.9.1</a> the projections $\mathop{\mathrm{lim}}\nolimits \Gamma (X_\lambda , \mathcal{O}_{X_\lambda }) \to \Gamma (X_\lambda , \mathcal{O}_{X_\lambda })$ are surjective, 
+</p>
+</li><li><p>
+$X$ is an affine formal algebraic space and for any choice of $X = \mathop{\mathrm{colim}}\nolimits X_\lambda $ as in Definition <a href="/tag/0AI7" data-tag="0AI7">87.9.1</a> the projections $\mathop{\mathrm{lim}}\nolimits \Gamma (X_\lambda , \mathcal{O}_{X_\lambda }) \to \Gamma (X_\lambda , \mathcal{O}_{X_\lambda })$ are surjective. 
+</p>
+</li>
+</ol></p>
+  <p> Moreover, the weakly admissible topological ring is $A = \mathop{\mathrm{lim}}\nolimits \Gamma (X_\lambda , \mathcal{O}_{X_\lambda })$ endowed with its limit topology and the weak ideals of definition classify exactly the morphisms $T \to X$ which are representable and thickenings. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It is clear that (5) implies (4). 
+    <p>
+      Assume (4) for $X = \mathop{\mathrm{colim}}\nolimits X_\lambda $ as in Definition <a href="/tag/0AI7" data-tag="0AI7">87.9.1</a>. Set $A = \mathop{\mathrm{lim}}\nolimits \Gamma (X_\lambda , \mathcal{O}_{X_\lambda })$. Let $T \to X$ be a closed immersion with $T$ a scheme (note that $T \to X$ is representable by Lemma <a href="/tag/0AI8" data-tag="0AI8">87.9.2</a>). Since $X_\lambda \to X$ is a thickening, so is $X_\lambda \times _ X T \to T$. On the other hand, $X_\lambda \times _ X T \to X_\lambda $ is a closed immersion, hence $X_\lambda \times _ X T$ is affine. Hence $T$ is affine by Limits, Proposition <a href="/tag/05YU" data-tag="05YU">32.11.2</a>. Then $T \to X$ factors through $X_\lambda $ for some $\lambda $ by Lemma <a href="/tag/0AIA" data-tag="0AIA">87.9.4</a>. Thus $A \to \Gamma (X_\lambda , \mathcal{O}) \to \Gamma (T, \mathcal{O})$ is surjective. In this way we see that (3) holds. 
+    <p>
+      It is clear that (3) implies (2). 
+    <p>
+      Assume (2) for $A$ and $X \to \mathop{\mathrm{Spec}}(A)$. Write $X = \mathop{\mathrm{colim}}\nolimits X_\lambda $ as in Definition <a href="/tag/0AI7" data-tag="0AI7">87.9.1</a>. Then $A_\lambda = \Gamma (X_\lambda , \mathcal{O})$ is a quotient of $A$ by assumption (2). Hence $A^\wedge = \mathop{\mathrm{lim}}\nolimits A_\lambda $ is a complete topological ring, see discussion in More on Algebra, Section <a href="/tag/07E7" data-tag="07E7">15.37</a>. The maps $A^\wedge \to A_\lambda $ are surjective as $A \to A_\lambda $ is. We claim that for any $\lambda $ the kernel $I_\lambda \subset A^\wedge $ of $A^\wedge \to A_\lambda $ is a weak ideal of definition. Namely, it is open by definition of the limit topology. If $f \in I_\lambda $, then for any $\mu \in \Lambda $ the image of $f$ in $A_\mu $ is zero in all the residue fields of the points of $X_\mu $. Hence it is a nilpotent element of $A_\mu $. Hence some power $f^ n \in I_\mu $. Thus $f^ n \to 0$ as $n \to 0$. Thus $A^\wedge $ is weakly admissible. Finally, suppose that $I \subset A^\wedge $ is a weak ideal of definition. Then $I \subset A^\wedge $ is open and hence there exists some $\lambda $ such that $I \supset I_\lambda $. Thus we obtain a morphism $\mathop{\mathrm{Spec}}(A^\wedge /I) \to \mathop{\mathrm{Spec}}(A_\lambda ) \to X$. Then it follows that $X = \mathop{\mathrm{colim}}\nolimits \mathop{\mathrm{Spec}}(A^\wedge /I)$ where now the colimit is over all weak ideals of definition. Thus (1) holds. 
+    <p>
+      Assume (1). In this case it is clear that $X$ is an affine formal algebraic space. Let $X = \mathop{\mathrm{colim}}\nolimits X_\lambda $ be any presentation as in Definition <a href="/tag/0AI7" data-tag="0AI7">87.9.1</a>. For each $\lambda $ we can find a weak ideal of definition $I \subset A$ such that $X_\lambda \to X$ factors through $\mathop{\mathrm{Spec}}(A/I) \to X$, see Lemma <a href="/tag/0AIA" data-tag="0AIA">87.9.4</a>. Then $X_\lambda = \mathop{\mathrm{Spec}}(A/I_\lambda )$ with $I \subset I_\lambda $. Conversely, for any weak ideal of definition $I \subset A$ the morphism $\mathop{\mathrm{Spec}}(A/I) \to X$ factors through $X_\lambda $ for some $\lambda $, i.e., $I_\lambda \subset I$. It follows that each $I_\lambda $ is a weak ideal of definition and that they form a cofinal subset of the set of weak ideals of definition. Hence $A = \mathop{\mathrm{lim}}\nolimits A/I = \mathop{\mathrm{lim}}\nolimits A/I_\lambda $ and we see that (5) is true and moreover that $A = \mathop{\mathrm{lim}}\nolimits \Gamma (X_\lambda , \mathcal{O}_{X_\lambda })$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+With this lemma in hand we can make the following definition. 
+</p>
+<p>
+<article class="env-definition" id="0AID">
+  <p><a class="environment-identifier" href="/tag/0AID">Definition <span data-tag="0AID">87.9.7</span>.</a> Let $S$ be a scheme. Let $X$ be an affine formal algebraic space over $S$. We say $X$ is <em>McQuillan</em> if $X$ satisfies the equivalent conditions of Lemma <a href="/tag/0AIC" data-tag="0AIC">87.9.6</a>. Let $A$ be the weakly admissible topological ring associated to $X$. We say </p>
+  <p><ol>
+  <li><p>
+$X$ is <em>classical</em> if $X$ is McQuillan and $A$ is admissible (More on Algebra, Definition <a href="/tag/07E8" data-tag="07E8">15.37.1</a>), 
+</p>
+</li><li><p>
+$X$ is <em>weakly adic</em> if $X$ is McQuillan and $A$ is weakly adic (Definition <a href="/tag/0GXE" data-tag="0GXE">87.7.1</a>), 
+</p>
+</li><li><p>
+$X$ is <em>adic</em> if $X$ is McQuillan and $A$ is adic (More on Algebra, Definition <a href="/tag/07E8" data-tag="07E8">15.37.1</a>), 
+</p>
+</li><li><p>
+$X$ is <em>adic*</em> if $X$ is McQuillan, $A$ is adic, and $A$ has a finitely generated ideal of definition, and 
+</p>
+</li><li><p>
+$X$ is <em>Noetherian</em> if $X$ is McQuillan and $A$ is both Noetherian and adic. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+In <span class="cite">[<a href="/bibliography/Fujiwara-Kato">Fujiwara-Kato</a>]</span> they use the terminology “of finite ideal type” for the property that an adic topological ring $A$ contains a finitely generated ideal of definition. Given an affine formal algebraic space $X$ here are the implications among the notions introduced in the definition: 
+</p>
+<div class="equation">
+  \[  \xymatrix{ X\text{ Noetherian} \ar@{=>}[r] &  X\text{ adic*} \ar@{=>}[r] &  X\text{ adic} \ar@{=>}[lld] \\  X\text{ weakly adic} \ar@{=>}[r] &  X\text{ classical} \ar@{=>}[r] &  X\text{ McQuillan} }  \]
+</div>
+<p>
+ See discussion in Section <a href="/tag/0GXD" data-tag="0GXD">87.7</a> and for a precise statement see Lemma <a href="/tag/0AIK" data-tag="0AIK">87.10.3</a>. 
+</p>
+<p>
+<article class="env-remark" id="0AIE">
+  <p><a class="environment-identifier" href="/tag/0AIE">Remark <span data-tag="0AIE">87.9.8</span>.</a> The classical affine formal algebraic spaces correspond to the affine formal schemes considered in EGA (<span class="cite">[<a href="/bibliography/EGA">EGA</a>]</span>). To explain this we assume our base scheme is $\mathop{\mathrm{Spec}}(\mathbf{Z})$. Let $\mathfrak X = \text{Spf}(A)$ be an affine formal scheme. Let $h_\mathfrak X$ be its functor of points as in Lemma <a href="/tag/0AI1" data-tag="0AI1">87.2.1</a>. Then $h_\mathfrak X = \mathop{\mathrm{colim}}\nolimits h_{\mathop{\mathrm{Spec}}(A/I)}$ where the colimit is over the collection of ideals of definition of the admissible topological ring $A$. This follows from (<a href="/tag/0AHZ" data-tag="0AHZ">87.2.0.1</a>) when evaluating on affine schemes and it suffices to check on affine schemes as both sides are fppf sheaves, see Lemma <a href="/tag/0AI2" data-tag="0AI2">87.2.2</a>. Thus $h_\mathfrak X$ is an affine formal algebraic space. In fact, it is a classical affine formal algebraic space by Definition <a href="/tag/0AID" data-tag="0AID">87.9.7</a>. Thus Lemma <a href="/tag/0AI1" data-tag="0AI1">87.2.1</a> tells us the category of affine formal schemes is equivalent to the category of classical affine formal algebraic spaces. </p>
+</article> 
+</p>
+<p>
+Having made the connection with affine formal schemes above, it seems natural to make the following definition. 
+</p>
+<p>
+<article class="env-definition" id="0AIF">
+  <p><a class="environment-identifier" href="/tag/0AIF">Definition <span data-tag="0AIF">87.9.9</span>.</a> Let $S$ be a scheme. Let $A$ be a weakly admissible topological ring over $S$, see Definition <a href="/tag/0AMV" data-tag="0AMV">87.4.8</a><a class="footnotemark" href="#a0001561895" id="a0001561895-mark"><sup>1</sup></a>. The <em>formal spectrum</em> of $A$ is the affine formal algebraic space </p>
+  <div class="equation">
+  \[  \text{Spf}(A) = \mathop{\mathrm{colim}}\nolimits \mathop{\mathrm{Spec}}(A/I)  \]
+</div>
+  <p> where the colimit is over the set of weak ideals of definition of $A$ and taken in the category $\mathop{\mathit{Sh}}\nolimits ((\mathit{Sch}/S)_{fppf})$. </p>
+</article> 
+</p>
+<p>
+Such a formal spectrum is McQuillan by construction and conversely every McQuillan affine formal algebraic space is isomorphic to a formal spectrum. To be sure, in our theory there exist affine formal algebraic spaces which are not the formal spectrum of any weakly admissible topological ring. Following <span class="cite">[<a href="/bibliography/Yasuda">Yasuda</a>]</span> we could introduce $S$-pro-rings to be pro-objects in the category of $S$-algebras, see Categories, Remark <a href="/tag/05PX" data-tag="05PX">4.22.5</a>. Then every affine formal algebraic space over $S$ would be the formal spectrum of such an $S$-pro-ring. We will not do this and instead we will work directly with the corresponding affine formal algebraic spaces. 
+</p>
+<p>
+The construction of the formal spectrum is functorial. To explain this let $\varphi : B \to A$ be a continuous map of weakly admissible topological rings over $S$. Then 
+</p>
+<div class="equation">
+  \[  \text{Spf}(\varphi ) : \text{Spf}(B) \to \text{Spf}(A)  \]
+</div>
+<p>
+ is the unique morphism of affine formal algebraic spaces such that the diagrams 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{Spec}}(B/J) \ar[d] \ar[r] &  \mathop{\mathrm{Spec}}(A/I) \ar[d] \\  \text{Spf}(B) \ar[r] &  \text{Spf}(A) }  \]
+</div>
+<p>
+ commute for all weak ideals of definition $I \subset A$ and $J \subset B$ with $\varphi (I) \subset J$. Since continuity of $\varphi $ implies that for every weak ideal of definition $J \subset B$ there is a weak ideal of definition $I \subset A$ with the required property, we see that the required commutativities uniquely determine and define $\text{Spf}(\varphi )$. 
+</p>
+<p>
+<article class="env-lemma" id="0AN0">
+  <p><a class="environment-identifier" href="/tag/0AN0">Lemma <span data-tag="0AN0">87.9.10</span>.</a> Let $S$ be a scheme. Let $A$, $B$ be weakly admissible topological rings over $S$. Any morphism $f : \text{Spf}(B) \to \text{Spf}(A)$ of affine formal algebraic spaces over $S$ is equal to $\text{Spf}(f^\sharp )$ for a unique continuous $S$-algebra map $f^\sharp : A \to B$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $f : \text{Spf}(B) \to \text{Spf}(A)$ be as in the lemma. Let $J \subset B$ be a weak ideal of definition. By Lemma <a href="/tag/0AIA" data-tag="0AIA">87.9.4</a> there exists a weak ideal of definition $I \subset A$ such that $\mathop{\mathrm{Spec}}(B/J) \to \text{Spf}(B) \to \text{Spf}(A)$ factors through $\mathop{\mathrm{Spec}}(A/I)$. By Schemes, Lemma <a href="/tag/01I1" data-tag="01I1">26.6.4</a> we obtain an $S$-algebra map $A/I \to B/J$. These maps are compatible for varying $J$ and define the map $f^\sharp : A \to B$. This map is continuous because for every weak ideal of definition $J \subset B$ there is a weak ideal of definition $I \subset A$ such that $f^\sharp (I) \subset J$. The equality $f = \text{Spf}(f^\sharp )$ holds by our choice of the ring maps $A/I \to B/J$ which make up $f^\sharp $. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AIG">
+  <p><a class="environment-identifier" href="/tag/0AIG">Lemma <span data-tag="0AIG">87.9.11</span>.</a> Let $S$ be a scheme. Let $f : X \to Y$ be a map of presheaves on $(\mathit{Sch}/S)_{fppf}$. If $X$ is an affine formal algebraic space and $f$ is representable by algebraic spaces and locally quasi-finite, then $f$ is representable (by schemes). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $T$ be a scheme over $S$ and $T \to Y$ a map. We have to show that the algebraic space $X \times _ Y T$ is a scheme. Write $X = \mathop{\mathrm{colim}}\nolimits X_\lambda $ as in Definition <a href="/tag/0AI7" data-tag="0AI7">87.9.1</a>. Let $W \subset X \times _ Y T$ be a quasi-compact open subspace. The restriction of the projection $X \times _ Y T \to X$ to $W$ factors through $X_\lambda $ for some $\lambda $. Then 
+    <p>
+      <div class="equation">
+  \[  W \to X_\lambda \times _ S T  \]
+</div>
+    <p>
+       is a monomorphism (hence separated) and locally quasi-finite (because $W \to X \times _ Y T \to T$ is locally quasi-finite by our assumption on $X \to Y$, see Morphisms of Spaces, Lemma <a href="/tag/03XN" data-tag="03XN">67.27.8</a>). Hence $W$ is a scheme by Morphisms of Spaces, Proposition <a href="/tag/03XX" data-tag="03XX">67.50.2</a>. Thus $X \times _ Y T$ is a scheme by Properties of Spaces, Lemma <a href="/tag/03JH" data-tag="03JH">66.13.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

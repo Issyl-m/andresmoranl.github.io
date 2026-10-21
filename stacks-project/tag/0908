@@ -1,0 +1,81 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="topology-section-stone-cech" class="tex-section"><span data-tag="0908">5.25</span> Stone-Čech compactification</h2>
+
+<p>
+The Stone-Čech compactification of a topological space $X$ is a map $X \to \beta (X)$ from $X$ to a Hausdorff quasi-compact space $\beta (X)$ which is universal for such maps. We prove this exists by a standard argument using the following simple lemma. 
+</p>
+<p>
+<article class="env-lemma" id="0909">
+  <p><a class="environment-identifier" href="/tag/0909">Lemma <span data-tag="0909">5.25.1</span>.</a> Let $f : X \to Y$ be a continuous map of topological spaces. Assume that $f(X)$ is dense in $Y$ and that $Y$ is Hausdorff. Then the cardinality of $Y$ is at most the cardinality of $P(P(X))$ where $P$ is the power set operation. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $S = f(X) \subset Y$. Let $\mathcal{D}$ be the set of all closed domains of $Y$, i.e., subsets $D \subset Y$ which equal the closure of its interior. Note that the closure of an open subset of $Y$ is a closed domain. For $y \in Y$ consider the set 
+    <p>
+      <div class="equation">
+  \[  I_ y = \{ T \subset S \mid \text{ there exists } D \in \mathcal{D}\text{ with }T = S \cap D\text{ and }y \in D\} .  \]
+</div>
+    <p>
+       Since $S$ is dense in $Y$ for every closed domain $D$ we see that $S \cap D$ is dense in $D$. Hence, if $D \cap S = D' \cap S$ for $D, D' \in \mathcal{D}$, then $D = D'$. Thus $I_ y = I_{y'}$ implies that $y = y'$ because the Hausdorff condition assures us that we can find a closed domain containing $y$ but not $y'$. The result follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $X$ be a topological space. By Lemma <a href="/tag/0909" data-tag="0909">5.25.1</a>, there is a set $I$ of isomorphism classes of continuous maps $f : X \to Y$ which have dense image and where $Y$ is Hausdorff and quasi-compact. For $i \in I$ choose a representative $f_ i : X \to Y_ i$. Consider the map 
+</p>
+<div class="equation">
+  \[  \prod f_ i : X \longrightarrow \prod \nolimits _{i \in I} Y_ i  \]
+</div>
+<p>
+ and denote $\beta (X)$ the closure of the image. Since each $Y_ i$ is Hausdorff, so is $\beta (X)$. Since each $Y_ i$ is quasi-compact, so is $\beta (X)$ (use Theorem <a href="/tag/08ZU" data-tag="08ZU">5.14.4</a> and Lemma <a href="/tag/005C" data-tag="005C">5.12.3</a>). 
+</p>
+<p>
+Let us show the canonical map $X \to \beta (X)$ satisfies the universal property with respect to maps to Hausdorff, quasi-compact spaces. Namely, let $f : X \to Y$ be such a morphism. Let $Z \subset Y$ be the closure of $f(X)$. Then $X \to Z$ is isomorphic to one of the maps $f_ i : X \to Y_ i$, say $f_{i_0} : X \to Y_{i_0}$. Thus $f$ factors as $X \to \beta (X) \to \prod Y_ i \to Y_{i_0} \cong Z \to Y$ as desired. 
+</p>
+<p>
+<article class="env-lemma" id="090A">
+  <p><a class="environment-identifier" href="/tag/090A">Lemma <span data-tag="090A">5.25.2</span>.</a> Let $X$ be a Hausdorff, locally quasi-compact space. There exists a map $X \to X^*$ which identifies $X$ as an open subspace of a quasi-compact Hausdorff space $X^*$ such that $X^* \setminus X$ is a singleton (one point compactification). In particular, the map $X \to \beta (X)$ identifies $X$ with an open subspace of $\beta (X)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Set $X^* = X \amalg \{ \infty \} $. We declare a subset $V$ of $X^*$ to be open if either $V \subset X$ is open in $X$, or $\infty \in V$ and $U = V \cap X$ is an open of $X$ such that $X \setminus U$ is quasi-compact. We omit the verification that this defines a topology. It is clear that $X \to X^*$ identifies $X$ with an open subspace of $X$. 
+    <p>
+      Since $X$ is locally quasi-compact, every point $x \in X$ has a quasi-compact neighbourhood $x \in E \subset X$. Then $E$ is closed (Lemma <a href="/tag/08YB" data-tag="08YB">5.12.4</a> part (1)) and $V = (X \setminus E) \amalg \{ \infty \} $ is an open neighbourhood of $\infty $ disjoint from the interior of $E$. Thus $X^*$ is Hausdorff. 
+    <p>
+      Let $X^* = \bigcup V_ i$ be an open covering. Then for some $i$, say $i_0$, we have $\infty \in V_{i_0}$. By construction $Z = X^* \setminus V_{i_0}$ is quasi-compact. Hence the covering $Z \subset \bigcup _{i \not= i_0} Z \cap V_ i$ has a finite refinement which implies that the given covering of $X^*$ has a finite refinement. Thus $X^*$ is quasi-compact. 
+    <p>
+      The map $X \to X^*$ factors as $X \to \beta (X) \to X^*$ by the universal property of the Stone-Čech compactification. Let $\varphi : \beta (X) \to X^*$ be this factorization. Then $X \to \varphi ^{-1}(X)$ is a section to $\varphi ^{-1}(X) \to X$ hence has closed image (Lemma <a href="/tag/08ZG" data-tag="08ZG">5.3.3</a>). Since the image of $X \to \beta (X)$ is dense we conclude that $X = \varphi ^{-1}(X)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

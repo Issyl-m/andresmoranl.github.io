@@ -1,0 +1,223 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sites-cohomology-section-cech-functor" class="tex-section"><span data-tag="03AO">21.9</span> Čech cohomology as a functor on presheaves</h2>
+
+<p>
+Warning: In this section we work exclusively with abelian presheaves on a category. The results are completely wrong in the setting of sheaves and categories of sheaves! 
+</p>
+<p>
+Let $\mathcal{C}$ be a category. Let $\mathcal{U} = \{ U_ i \to U\} _{i \in I}$ be a family of morphisms with fixed target such that all fibre products $U_{i_0} \times _ U \ldots \times _ U U_{i_ p}$ exist in $\mathcal{C}$. Let $\mathcal{F}$ be an abelian presheaf on $\mathcal{C}$. The construction 
+</p>
+<div class="equation">
+  \[  \mathcal{F} \longmapsto \check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{F})  \]
+</div>
+<p>
+ is functorial in $\mathcal{F}$. In fact, it is a functor 
+</p>
+<div class="equation" id="03AP">
+    <span class="equation-label"><a href="/tag/03AP" data-tag="03AP">21.9.0.1</a></span>
+  <div>\begin{equation}  \label{sites-cohomology-equation-cech-functor} \check{\mathcal{C}}^\bullet (\mathcal{U}, -) : \textit{PAb}(\mathcal{C}) \longrightarrow \text{Comp}^{+}(\textit{Ab}) \end{equation}</div>
+</div>
+<p>
+ see Derived Categories, Definition <a href="/tag/013H" data-tag="013H">13.8.1</a> for notation. Recall that the category of bounded below complexes in an abelian category is an abelian category, see Homology, Lemma <a href="/tag/0114" data-tag="0114">12.13.9</a>. 
+</p>
+<p>
+<article class="env-lemma" id="03AQ">
+  <p><a class="environment-identifier" href="/tag/03AQ">Lemma <span data-tag="03AQ">21.9.1</span>.</a> The functor given by Equation (<a href="/tag/03AP" data-tag="03AP">21.9.0.1</a>) is an exact functor (see Homology, Lemma <a href="/tag/010N" data-tag="010N">12.7.2</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      For any object $W$ of $\mathcal{C}$ the functor $\mathcal{F} \mapsto \mathcal{F}(W)$ is an additive exact functor from $\textit{PAb}(\mathcal{C})$ to $\textit{Ab}$. The terms $\check{\mathcal{C}}^ p(\mathcal{U}, \mathcal{F})$ of the complex are products of these exact functors and hence exact. Moreover a sequence of complexes is exact if and only if the sequence of terms in a given degree is exact. Hence the lemma follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03AR">
+  <p><a class="environment-identifier" href="/tag/03AR">Lemma <span data-tag="03AR">21.9.2</span>.</a> Let $\mathcal{C}$ be a category. Let $\mathcal{U} = \{ U_ i \to U\} _{i \in I}$ be a family of morphisms with fixed target such that all fibre products $U_{i_0} \times _ U \ldots \times _ U U_{i_ p}$ exist in $\mathcal{C}$. The functors $\mathcal{F} \mapsto \check{H}^ n(\mathcal{U}, \mathcal{F})$ form a $\delta $-functor from the abelian category $\textit{PAb}(\mathcal{C})$ to the category of $\mathbf{Z}$-modules (see Homology, Definition <a href="/tag/010Q" data-tag="010Q">12.12.1</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/03AQ" data-tag="03AQ">21.9.1</a> a short exact sequence of abelian presheaves $0 \to \mathcal{F}_1 \to \mathcal{F}_2 \to \mathcal{F}_3 \to 0$ is turned into a short exact sequence of complexes of $\mathbf{Z}$-modules. Hence we can use Homology, Lemma <a href="/tag/0117" data-tag="0117">12.13.12</a> to get the boundary maps $\delta _{\mathcal{F}_1 \to \mathcal{F}_2 \to \mathcal{F}_3} : \check{H}^ n(\mathcal{U}, \mathcal{F}_3) \to \check{H}^{n + 1}(\mathcal{U}, \mathcal{F}_1)$ and a corresponding long exact sequence. We omit the verification that these maps are compatible with maps between short exact sequences of presheaves. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03AS">
+  <p><a class="environment-identifier" href="/tag/03AS">Lemma <span data-tag="03AS">21.9.3</span>.</a> Let $\mathcal{C}$ be a category. Let $\mathcal{U} = \{ U_ i \to U\} _{i \in I}$ be a family of morphisms with fixed target such that all fibre products $U_{i_0} \times _ U \ldots \times _ U U_{i_ p}$ exist in $\mathcal{C}$. Consider the chain complex $\mathbf{Z}_{\mathcal{U}, \bullet }$ of abelian presheaves </p>
+  <div class="equation">
+  \[  \ldots \to \bigoplus _{i_0i_1i_2} \mathbf{Z}_{U_{i_0} \times _ U U_{i_1} \times _ U U_{i_2}} \to \bigoplus _{i_0i_1} \mathbf{Z}_{U_{i_0} \times _ U U_{i_1}} \to \bigoplus _{i_0} \mathbf{Z}_{U_{i_0}} \to 0 \to \ldots  \]
+</div>
+  <p> where the last nonzero term is placed in degree $0$ and where the map </p>
+  <div class="equation">
+  \[  \mathbf{Z}_{U_{i_0} \times _ U \ldots \times _ u U_{i_{p + 1}}} \longrightarrow \mathbf{Z}_{U_{i_0} \times _ U \ldots \widehat{U_{i_ j}} \ldots \times _ U U_{i_{p + 1}}}  \]
+</div>
+  <p> is given by $(-1)^ j$ times the canonical map. Then there is an isomorphism </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _{\textit{PAb}(\mathcal{C})}(\mathbf{Z}_{\mathcal{U}, \bullet }, \mathcal{F}) = \check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{F})  \]
+</div>
+  <p> functorial in $\mathcal{F} \in \mathop{\mathrm{Ob}}\nolimits (\textit{PAb}(\mathcal{C}))$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a tautology based on the fact that 
+    <p>
+      <div class="equation">
+  \begin{align*}  \mathop{\mathrm{Hom}}\nolimits _{\textit{PAb}(\mathcal{C})}( \bigoplus _{i_0 \ldots i_ p} \mathbf{Z}_{U_{i_0} \times _ U \ldots \times _ U U_{i_ p}}, \mathcal{F}) &  = \prod _{i_0 \ldots i_ p} \mathop{\mathrm{Hom}}\nolimits _{\textit{PAb}(\mathcal{C})}( \mathbf{Z}_{U_{i_0} \times _ U \ldots \times _ U U_{i_ p}}, \mathcal{F}) \\ &  = \prod _{i_0 \ldots i_ p} \mathcal{F}(U_{i_0} \times _ U \ldots \times _ U U_{i_ p}) \end{align*}
+</div>
+    <p>
+       see Modules on Sites, Lemma <a href="/tag/03A8" data-tag="03A8">18.4.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03AT">
+  <p><a class="environment-identifier" href="/tag/03AT">Lemma <span data-tag="03AT">21.9.4</span>.</a> Let $\mathcal{C}$ be a category. Let $\mathcal{U} = \{ f_ i : U_ i \to U\} _{i \in I}$ be a family of morphisms with fixed target such that all fibre products $U_{i_0} \times _ U \ldots \times _ U U_{i_ p}$ exist in $\mathcal{C}$. The chain complex $\mathbf{Z}_{\mathcal{U}, \bullet }$ of presheaves of Lemma <a href="/tag/03AS" data-tag="03AS">21.9.3</a> above is exact in positive degrees, i.e., the homology presheaves $H_ i(\mathbf{Z}_{\mathcal{U}, \bullet })$ are zero for $i > 0$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $V$ be an object of $\mathcal{C}$. We have to show that the chain complex of abelian groups $\mathbf{Z}_{\mathcal{U}, \bullet }(V)$ is exact in degrees $> 0$. This is the complex 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \ldots \ar[d] \\  \bigoplus _{i_0i_1i_2} \mathbf{Z}[ \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(V, U_{i_0} \times _ U U_{i_1} \times _ U U_{i_2}) ] \ar[d] \\  \bigoplus _{i_0i_1} \mathbf{Z}[ \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(V, U_{i_0} \times _ U U_{i_1}) ] \ar[d] \\  \bigoplus _{i_0} \mathbf{Z}[ \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(V, U_{i_0}) ] \ar[d] \\  0 }  \]
+</div>
+    <p>
+       For any morphism $\varphi : V \to U$ denote $\mathop{\mathrm{Mor}}\nolimits _\varphi (V, U_ i) = \{ \varphi _ i : V \to U_ i \mid f_ i \circ \varphi _ i = \varphi \} $. We will use a similar notation for $\mathop{\mathrm{Mor}}\nolimits _\varphi (V, U_{i_0} \times _ U \ldots \times _ U U_{i_ p})$. Note that composing with the various projection maps between the fibred products $U_{i_0} \times _ U \ldots \times _ U U_{i_ p}$ preserves these morphism sets. Hence we see that the complex above is the same as the complex 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \ldots \ar[d] \\  \bigoplus _\varphi \bigoplus _{i_0i_1i_2} \mathbf{Z}[ \mathop{\mathrm{Mor}}\nolimits _\varphi (V, U_{i_0} \times _ U U_{i_1} \times _ U U_{i_2}) ] \ar[d] \\  \bigoplus _\varphi \bigoplus _{i_0i_1} \mathbf{Z}[ \mathop{\mathrm{Mor}}\nolimits _\varphi (V, U_{i_0} \times _ U U_{i_1}) ] \ar[d] \\  \bigoplus _\varphi \bigoplus _{i_0} \mathbf{Z}[ \mathop{\mathrm{Mor}}\nolimits _\varphi (V, U_{i_0}) ] \ar[d] \\  0 }  \]
+</div>
+    <p>
+       Next, we make the remark that we have 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _\varphi (V, U_{i_0} \times _ U \ldots \times _ U U_{i_ p}) = \mathop{\mathrm{Mor}}\nolimits _\varphi (V, U_{i_0}) \times \ldots \times \mathop{\mathrm{Mor}}\nolimits _\varphi (V, U_{i_ p})  \]
+</div>
+    <p>
+       Using this and the fact that $\mathbf{Z}[A] \oplus \mathbf{Z}[B] = \mathbf{Z}[A \amalg B]$ we see that the complex becomes 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \ldots \ar[d] \\  \bigoplus _\varphi \mathbf{Z}\left[ \coprod _{i_0i_1i_2} \mathop{\mathrm{Mor}}\nolimits _\varphi (V, U_{i_0}) \times \mathop{\mathrm{Mor}}\nolimits _\varphi (V, U_{i_1}) \times \mathop{\mathrm{Mor}}\nolimits _\varphi (V, U_{i_2}) \right] \ar[d] \\  \bigoplus _\varphi \mathbf{Z}\left[ \coprod _{i_0i_1} \mathop{\mathrm{Mor}}\nolimits _\varphi (V, U_{i_0}) \times \mathop{\mathrm{Mor}}\nolimits _\varphi (V, U_{i_1}) \right] \ar[d] \\  \bigoplus _\varphi \mathbf{Z}\left[ \coprod _{i_0} \mathop{\mathrm{Mor}}\nolimits _\varphi (V, U_{i_0}) \right] \ar[d] \\  0 }  \]
+</div>
+    <p>
+       Finally, on setting $S_\varphi = \coprod _{i \in I} \mathop{\mathrm{Mor}}\nolimits _\varphi (V, U_ i)$ we see that we get 
+    <p>
+      <div class="equation">
+  \[  \bigoplus \nolimits _\varphi \left(\ldots \to \mathbf{Z}[S_\varphi \times S_\varphi \times S_\varphi ] \to \mathbf{Z}[S_\varphi \times S_\varphi ] \to \mathbf{Z}[S_\varphi ] \to 0 \to \ldots \right)  \]
+</div>
+    <p>
+       Thus we have simplified our task. Namely, it suffices to show that for any nonempty set $S$ the (extended) complex of free abelian groups 
+    <p>
+      <div class="equation">
+  \[  \ldots \to \mathbf{Z}[S \times S \times S] \to \mathbf{Z}[S \times S] \to \mathbf{Z}[S] \xrightarrow {\Sigma } \mathbf{Z} \to 0 \to \ldots  \]
+</div>
+    <p>
+       is exact in all degrees. To see this fix an element $s \in S$, and use the homotopy 
+    <p>
+      <div class="equation">
+  \[  n_{(s_0, \ldots , s_ p)} \longmapsto n_{(s, s_0, \ldots , s_ p)}  \]
+</div>
+    <p>
+       with obvious notations. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03F5">
+       
+      
+  <p><a class="environment-identifier" href="/tag/03F5">Lemma <span data-tag="03F5">21.9.5</span>.</a> Let $\mathcal{C}$ be a category. Let $\mathcal{U} = \{ f_ i : U_ i \to U\} _{i \in I}$ be a family of morphisms with fixed target such that all fibre products $U_{i_0} \times _ U \ldots \times _ U U_{i_ p}$ exist in $\mathcal{C}$. Let $\mathcal{O}$ be a presheaf of rings on $\mathcal{C}$. The chain complex </p>
+  <div class="equation">
+  \[  \mathbf{Z}_{\mathcal{U}, \bullet } \otimes _{p, \mathbf{Z}} \mathcal{O}  \]
+</div>
+  <p> is exact in positive degrees. Here $\mathbf{Z}_{\mathcal{U}, \bullet }$ is the chain complex of Lemma <a href="/tag/03AS" data-tag="03AS">21.9.3</a>, and the tensor product is over the constant presheaf of rings with value $\mathbf{Z}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $V$ be an object of $\mathcal{C}$. In the proof of Lemma <a href="/tag/03AT" data-tag="03AT">21.9.4</a> we saw that $\mathbf{Z}_{\mathcal{U}, \bullet }(V)$ is isomorphic as a complex to a direct sum of complexes which are homotopic to $\mathbf{Z}$ placed in degree zero. Hence also $\mathbf{Z}_{\mathcal{U}, \bullet }(V) \otimes _\mathbf {Z} \mathcal{O}(V)$ is isomorphic as a complex to a direct sum of complexes which are homotopic to $\mathcal{O}(V)$ placed in degree zero. Or you can use Modules on Sites, Lemma <a href="/tag/03EZ" data-tag="03EZ">18.28.11</a>, which applies since the presheaves $\mathbf{Z}_{\mathcal{U}, i}$ are flat, and the proof of Lemma <a href="/tag/03AT" data-tag="03AT">21.9.4</a> shows that $H_0(\mathbf{Z}_{\mathcal{U}, \bullet })$ is a flat presheaf also. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="03AU">
+  <p><a class="environment-identifier" href="/tag/03AU">Lemma <span data-tag="03AU">21.9.6</span>.</a> Let $\mathcal{C}$ be a category. Let $\mathcal{U} = \{ f_ i : U_ i \to U\} _{i \in I}$ be a family of morphisms with fixed target such that all fibre products $U_{i_0} \times _ U \ldots \times _ U U_{i_ p}$ exist in $\mathcal{C}$. The Čech cohomology functors $\check{H}^ p(\mathcal{U}, -)$ are canonically isomorphic as a $\delta $-functor to the right derived functors of the functor </p>
+  <div class="equation">
+  \[  \check{H}^0(\mathcal{U}, -) : \textit{PAb}(\mathcal{C}) \longrightarrow \textit{Ab}.  \]
+</div>
+  <p> Moreover, there is a functorial quasi-isomorphism </p>
+  <div class="equation">
+  \[  \check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{F}) \longrightarrow R\check{H}^0(\mathcal{U}, \mathcal{F})  \]
+</div>
+  <p> where the right hand side indicates the derived functor </p>
+  <div class="equation">
+  \[  R\check{H}^0(\mathcal{U}, -) : D^{+}(\textit{PAb}(\mathcal{C})) \longrightarrow D^{+}(\mathbf{Z})  \]
+</div>
+  <p> of the left exact functor $\check{H}^0(\mathcal{U}, -)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Note that the category of abelian presheaves has enough injectives, see Injectives, Proposition <a href="/tag/01DK" data-tag="01DK">19.6.1</a>. Note that $\check{H}^0(\mathcal{U}, -)$ is a left exact functor from the category of abelian presheaves to the category of $\mathbf{Z}$-modules. Hence the derived functor and the right derived functor exist, see Derived Categories, Section <a href="/tag/0156" data-tag="0156">13.20</a>. 
+    <p>
+      Let $\mathcal{I}$ be an injective abelian presheaf. In this case the functor $\mathop{\mathrm{Hom}}\nolimits _{\textit{PAb}(\mathcal{C})}(-, \mathcal{I})$ is exact on $\textit{PAb}(\mathcal{C})$. By Lemma <a href="/tag/03AS" data-tag="03AS">21.9.3</a> we have 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _{\textit{PAb}(\mathcal{C})}( \mathbf{Z}_{\mathcal{U}, \bullet }, \mathcal{I}) = \check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{I}).  \]
+</div>
+    <p>
+       By Lemma <a href="/tag/03AT" data-tag="03AT">21.9.4</a> we have that $\mathbf{Z}_{\mathcal{U}, \bullet }$ is exact in positive degrees. Hence by the exactness of Hom into $\mathcal{I}$ mentioned above we see that $\check{H}^ i(\mathcal{U}, \mathcal{I}) = 0$ for all $i > 0$. Thus the $\delta $-functor $(\check{H}^ n, \delta )$ (see Lemma <a href="/tag/03AR" data-tag="03AR">21.9.2</a>) satisfies the assumptions of Homology, Lemma <a href="/tag/010T" data-tag="010T">12.12.4</a>, and hence is a universal $\delta $-functor. 
+    <p>
+      By Derived Categories, Lemma <a href="/tag/015B" data-tag="015B">13.20.4</a> also the sequence $R^ i\check{H}^0(\mathcal{U}, -)$ forms a universal $\delta $-functor. By the uniqueness of universal $\delta $-functors, see Homology, Lemma <a href="/tag/010U" data-tag="010U">12.12.5</a> we conclude that $R^ i\check{H}^0(\mathcal{U}, -) = \check{H}^ i(\mathcal{U}, -)$. This is enough for most applications and the reader is suggested to skip the rest of the proof. 
+    <p>
+      Let $\mathcal{F}$ be any abelian presheaf on $\mathcal{C}$. Choose an injective resolution $\mathcal{F} \to \mathcal{I}^\bullet $ in the category $\textit{PAb}(\mathcal{C})$. Consider the double complex $\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{I}^\bullet )$ with terms $\check{\mathcal{C}}^ p(\mathcal{U}, \mathcal{I}^ q)$. Next, consider the total complex $\text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{I}^\bullet ))$ associated to this double complex, see Homology, Section <a href="/tag/0FNB" data-tag="0FNB">12.18</a>. There is a map of complexes 
+    <p>
+      <div class="equation">
+  \[  \check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{F}) \longrightarrow \text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{I}^\bullet ))  \]
+</div>
+    <p>
+       coming from the maps $\check{\mathcal{C}}^ p(\mathcal{U}, \mathcal{F}) \to \check{\mathcal{C}}^ p(\mathcal{U}, \mathcal{I}^0)$ and there is a map of complexes 
+    <p>
+      <div class="equation">
+  \[  \check{H}^0(\mathcal{U}, \mathcal{I}^\bullet ) \longrightarrow \text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{I}^\bullet ))  \]
+</div>
+    <p>
+       coming from the maps $\check{H}^0(\mathcal{U}, \mathcal{I}^ q) \to \check{\mathcal{C}}^0(\mathcal{U}, \mathcal{I}^ q)$. Both of these maps are quasi-isomorphisms by an application of Homology, Lemma <a href="/tag/0133" data-tag="0133">12.25.4</a>. Namely, the columns of the double complex are exact in positive degrees because the Čech complex as a functor is exact (Lemma <a href="/tag/03AQ" data-tag="03AQ">21.9.1</a>) and the rows of the double complex are exact in positive degrees since as we just saw the higher Čech cohomology groups of the injective presheaves $\mathcal{I}^ q$ are zero. Since quasi-isomorphisms become invertible in $D^{+}(\mathbf{Z})$ this gives the last displayed morphism of the lemma. We omit the verification that this morphism is functorial. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

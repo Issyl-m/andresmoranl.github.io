@@ -1,0 +1,162 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="bootstrap-section-dividing" class="tex-section"><span data-tag="04S3">80.9</span> Quotient by a subgroupoid</h2>
+
+<p>
+We need one more lemma before we can do our final bootstrap. Let us discuss what is going on in terms of “plain” groupoids before embarking on the scheme theoretic version. 
+</p>
+<p>
+Let $\mathcal{C}$ be a groupoid, see Categories, Definition <a href="/tag/0018" data-tag="0018">4.2.5</a>. As discussed in Groupoids, Section <a href="/tag/0230" data-tag="0230">39.13</a> this corresponds to a quintuple $(\text{Ob}, \text{Arrows}, s, t, c)$. Suppose we are given a subset $P \subset \text{Arrows}$ such that $(\text{Ob}, P, s|_ P, t|_ P, c|_ P)$ is also a groupoid and such that there are no nontrivial automorphisms in $P$. Then we can construct the quotient groupoid $(\overline{\text{Ob}}, \overline{\text{Arrows}}, \overline{s}, \overline{t}, \overline{c})$ as follows: 
+</p>
+<ol>
+  <li><p>
+$\overline{\text{Ob}} = \text{Ob}/P$ is the set of $P$-isomorphism classes, 
+</p>
+</li><li><p>
+$\overline{\text{Arrows}} = P\backslash \text{Arrows}/P$ is the set of arrows in $\mathcal{C}$ up to pre-composing and post-composing by arrows of $P$, 
+</p>
+</li><li><p>
+the source and target maps $\overline{s}, \overline{t} : P\backslash \text{Arrows}/P \to \text{Ob}/P$ are induced by $s, t$, 
+</p>
+</li><li><p>
+composition is defined by the rule $\overline{c}(\overline{a}, \overline{b}) = \overline{c(a, b)}$ which is well defined. 
+</p>
+</li>
+</ol>
+<p>
+ In fact, it turns out that the original groupoid $(\text{Ob}, \text{Arrows}, s, t, c)$ is canonically isomorphic to the restriction (see discussion in Groupoids, Section <a href="/tag/02VA" data-tag="02VA">39.18</a>) of the groupoid $(\overline{\text{Ob}}, \overline{\text{Arrows}}, \overline{s}, \overline{t}, \overline{c})$ via the quotient map $g : \text{Ob} \to \overline{\text{Ob}}$. Recall that this means that 
+</p>
+<div class="equation">
+  \[  \text{Arrows} = \text{Ob} \times _{g, \overline{\text{Ob}}, \overline{t}} \overline{\text{Arrows}} \times _{\overline{s}, \overline{\text{Ob}}, g} \text{Ob}  \]
+</div>
+<p>
+ which holds as $P$ has no nontrivial automorphisms. We omit the details. 
+</p>
+<p>
+The following lemma holds in much greater generality, but this is the version we use in the proof of the final bootstrap (after which we can more easily prove the more general versions of this lemma). 
+</p>
+<p>
+<article class="env-lemma" id="04S4">
+  <p><a class="environment-identifier" href="/tag/04S4">Lemma <span data-tag="04S4">80.9.1</span>.</a> Let $S$ be a scheme. Let $(U, R, s, t, c)$ be a groupoid scheme over $S$. Let $P \to R$ be monomorphism of schemes. Assume that </p>
+  <p><ol>
+  <li><p>
+$(U, P, s|_ P, t|_ P, c|_{P \times _{s, U, t}P})$ is a groupoid scheme, 
+</p>
+</li><li><p>
+$s|_ P, t|_ P : P \to U$ are finite locally free, 
+</p>
+</li><li><p>
+$j|_ P : P \to U \times _ S U$ is a monomorphism. 
+</p>
+</li><li><p>
+$U$ is affine, and 
+</p>
+</li><li><p>
+$j : R \to U \times _ S U$ is separated and locally quasi-finite, 
+</p>
+</li>
+</ol></p>
+  <p> Then $U/P$ is representable by an affine scheme $\overline{U}$, the quotient morphism $U \to \overline{U}$ is finite locally free, and $P = U \times _{\overline{U}} U$. Moreover, $R$ is the restriction of a groupoid scheme $(\overline{U}, \overline{R}, \overline{s}, \overline{t}, \overline{c})$ on $\overline{U}$ via the quotient morphism $U \to \overline{U}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Conditions (1), (2), (3), and (4) and Groupoids, Proposition <a href="/tag/03BM" data-tag="03BM">39.23.9</a> imply the affine scheme $\overline{U}$ representing $U/P$ exists, the morphism $U \to \overline{U}$ is finite locally free, and $P = U \times _{\overline{U}} U$. The identification $P = U \times _{\overline{U}} U$ is such that $t|_ P = \text{pr}_0$ and $s|_ P = \text{pr}_1$, and such that composition is equal to $\text{pr}_{02} : U \times _{\overline{U}} U \times _{\overline{U}} U \to U \times _{\overline{U}} U$. A product of finite locally free morphisms is finite locally free (see Spaces, Lemma <a href="/tag/02WM" data-tag="02WM">65.5.7</a> and Morphisms, Lemmas <a href="/tag/02KD" data-tag="02KD">29.49.4</a> and <a href="/tag/02KC" data-tag="02KC">29.49.3</a>). To get $\overline{R}$ we are going to descend the scheme $R$ via the finite locally free morphism $U \times _ S U \to \overline{U} \times _ S \overline{U}$. Namely, note that 
+    <p>
+      <div class="equation">
+  \[  (U \times _ S U) \times _{(\overline{U} \times _ S \overline{U})} (U \times _ S U) = P \times _ S P  \]
+</div>
+    <p>
+       by the above. Thus giving a descent datum (see Descent, Definition <a href="/tag/023V" data-tag="023V">35.34.1</a>) for $R / U \times _ S U / \overline{U} \times _ S \overline{U}$ consists of an isomorphism 
+    <p>
+      <div class="equation">
+  \[  \varphi : R \times _{(U \times _ S U), t \times t} (P \times _ S P) \longrightarrow (P \times _ S P) \times _{s \times s, (U \times _ S U)} R  \]
+</div>
+    <p>
+       over $P \times _ S P$ satisfying a cocycle condition. We define $\varphi $ on $T$-valued points by the rule 
+    <p>
+      <div class="equation">
+  \[  \varphi : (r, (p, p')) \longmapsto ((p, p'), p^{-1} \circ r \circ p')  \]
+</div>
+    <p>
+       where the composition is taken in the groupoid category $(U(T), R(T), s, t, c)$. This makes sense because for $(r, (p, p'))$ to be a $T$-valued point of the source of $\varphi $ it needs to be the case that $t(r) = t(p)$ and $s(r) = t(p')$. Note that this map is an isomorphism with inverse given by $((p, p'), r') \mapsto (p \circ r' \circ (p')^{-1}, (p, p'))$. To check the cocycle condition we have to verify that $\varphi _{02} = \varphi _{12} \circ \varphi _{01}$ as maps over 
+    <p>
+      <div class="equation">
+  \[  (U \times _ S U) \times _{(\overline{U} \times _ S \overline{U})} (U \times _ S U) \times _{(\overline{U} \times _ S \overline{U})} (U \times _ S U) = (P \times _ S P) \times _{s \times s, (U \times _ S U), t \times t} (P \times _ S P)  \]
+</div>
+    <p>
+       By explicit calculation we see that 
+    <p>
+      <div class="equation">
+  \[  \begin{matrix}  \varphi _{02} 
+
+&  (r, (p_1, p_1'), (p_2, p_2')) 
+
+&  \mapsto 
+
+&  ((p_1, p_1'), (p_2, p_2'), (p_1 \circ p_2)^{-1} \circ r \circ (p_1' \circ p_2')) 
+
+\\  \varphi _{01} 
+
+&  (r, (p_1, p_1'), (p_2, p_2')) 
+
+&  \mapsto 
+
+&  ((p_1, p_1'), p_1^{-1} \circ r \circ p_1', (p_2, p_2')) 
+
+\\  \varphi _{12} 
+
+&  ((p_1, p_1'), r, (p_2, p_2')) 
+
+&  \mapsto 
+
+&  ((p_1, p_1'), (p_2, p_2'), p_2^{-1} \circ r \circ p_2') 
+
+\end{matrix}  \]
+</div>
+    <p>
+       (with obvious notation) which implies what we want. As $j$ is separated and locally quasi-finite by (5) we may apply More on Morphisms, Lemma <a href="/tag/02W8" data-tag="02W8">37.57.1</a> to get a scheme $\overline{R} \to \overline{U} \times _ S \overline{U}$ and an isomorphism 
+    <p>
+      <div class="equation">
+  \[  R \to \overline{R} \times _{(\overline{U} \times _ S \overline{U})} (U \times _ S U)  \]
+</div>
+    <p>
+       which identifies the descent datum $\varphi $ with the canonical descent datum on $\overline{R} \times _{(\overline{U} \times _ S \overline{U})} (U \times _ S U)$, see Descent, Definition <a href="/tag/023Z" data-tag="023Z">35.34.10</a>. 
+    <p>
+      Since $U \times _ S U \to \overline{U} \times _ S \overline{U}$ is finite locally free we conclude that $R \to \overline{R}$ is finite locally free as a base change. Hence $R \to \overline{R}$ is surjective as a map of sheaves on $(\mathit{Sch}/S)_{fppf}$. Our choice of $\varphi $ implies that given $T$-valued points $r, r' \in R(T)$ these have the same image in $\overline{R}$ if and only if $p^{-1} \circ r \circ p'$ for some $p, p' \in P(T)$. Thus $\overline{R}$ represents the sheaf 
+    <p>
+      <div class="equation">
+  \[  T \longmapsto \overline{R(T)} = P(T)\backslash R(T)/P(T)  \]
+</div>
+    <p>
+       with notation as in the discussion preceding the lemma. Hence we can define the groupoid structure on $(\overline{U} = U/P, \overline{R} = P\backslash R/P)$ exactly as in the discussion of the “plain” groupoid case. It follows from this that $(U, R, s, t, c)$ is the pullback of this groupoid structure via the morphism $U \to \overline{U}$. This concludes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

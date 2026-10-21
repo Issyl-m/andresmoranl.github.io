@@ -1,0 +1,224 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="algebra-section-complex-exact" class="tex-section"><span data-tag="00MR">10.102</span> What makes a complex exact?</h2>
+
+<p>
+Some of this material can be found in the paper <span class="cite">[<a href="/bibliography/WhatExact">WhatExact</a>]</span> by Buchsbaum and Eisenbud. 
+</p>
+<p>
+<article class="env-situation" id="00MS">
+  <p><a class="environment-identifier" href="/tag/00MS">Situation <span data-tag="00MS">10.102.1</span>.</a> Here $R$ is a ring, and we have a complex </p>
+  <div class="equation">
+  \[  0 \to R^{n_ e} \xrightarrow {\varphi _ e} R^{n_{e-1}} \xrightarrow {\varphi _{e-1}} \ldots \xrightarrow {\varphi _{i + 1}} R^{n_ i} \xrightarrow {\varphi _ i} R^{n_{i-1}} \xrightarrow {\varphi _{i-1}} \ldots \xrightarrow {\varphi _1} R^{n_0}  \]
+</div>
+  <p> In other words we require $\varphi _ i \circ \varphi _{i + 1} = 0$ for $i = 1, \ldots , e - 1$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="00MT">
+  <p><a class="environment-identifier" href="/tag/00MT">Lemma <span data-tag="00MT">10.102.2</span>.</a> Suppose $R$ is a ring. Let </p>
+  <div class="equation">
+  \[  \ldots \xrightarrow {\varphi _{i + 1}} R^{n_ i} \xrightarrow {\varphi _ i} R^{n_{i-1}} \xrightarrow {\varphi _{i-1}} \ldots  \]
+</div>
+  <p> be a complex of finite free $R$-modules. Suppose that for some $i$ some matrix coefficient of the map $\varphi _ i$ is invertible. Then the displayed complex is isomorphic to the direct sum of a complex </p>
+  <div class="equation">
+  \[  \ldots \to R^{n_{i + 2}} \xrightarrow {\varphi _{i + 2}} R^{n_{i + 1}} \to R^{n_ i - 1} \to R^{n_{i - 1} - 1} \to R^{n_{i - 2}} \xrightarrow {\varphi _{i - 2}} R^{n_{i - 3}} \to \ldots  \]
+</div>
+  <p> and the complex $\ldots \to 0 \to R \to R \to 0 \to \ldots $ where the map $R \to R$ is the identity map. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The assumption means, after a change of basis of $R^{n_ i}$ and $R^{n_{i-1}}$ that the first basis vector of $R^{n_ i}$ is mapped via $\varphi _ i$ to the first basis vector of $R^{n_{i-1}}$. Let $e_ j$ denote the $j$th basis vector of $R^{n_ i}$ and $f_ k$ the $k$th basis vector of $R^{n_{i-1}}$. Write $\varphi _ i(e_ j) = \sum a_{jk} f_ k$. So $a_{1k} = 0$ unless $k = 1$ and $a_{11} = 1$. Change basis on $R^{n_ i}$ again by setting $e'_ j = e_ j - a_{j1} e_1$ for $j > 1$. After this change of coordinates we have $a_{j1} = 0$ for $j > 1$. Note the image of $R^{n_{i + 1}} \to R^{n_ i}$ is contained in the subspace spanned by $e_ j$, $j > 1$. Note also that $R^{n_{i-1}} \to R^{n_{i-2}}$ has to annihilate $f_1$ since it is in the image. These conditions and the shape of the matrix $(a_{jk})$ for $\varphi _ i$ imply the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In Situation <a href="/tag/00MS" data-tag="00MS">10.102.1</a> we say a complex of the form 
+</p>
+<div class="equation">
+  \[  0 \to \ldots \to 0 \to R \xrightarrow {1} R \to 0 \to \ldots \to 0  \]
+</div>
+<p>
+ or of the form 
+</p>
+<div class="equation">
+  \[  0 \to \ldots \to 0 \to R  \]
+</div>
+<p>
+ is <em>trivial</em>. More precisely, we say $0 \to R^{n_ e} \to R^{n_{e-1}} \to \ldots \to R^{n_0}$ is trivial if either there exists an $e \geq i \geq 1$ with $n_ i = n_{i - 1} = 1$, $\varphi _ i = \text{id}_ R$, and $n_ j = 0$ for $j \not\in \{ i, i - 1\} $ or $n_0 = 1$ and $n_ i = 0$ for $i > 0$. The lemma above clearly says that any finite complex of finite free modules over a local ring is up to direct sums with trivial complexes the same as a complex all of whose maps have all matrix coefficients in the maximal ideal. 
+</p>
+<p>
+<article class="env-lemma" id="00MY">
+  <p><a class="environment-identifier" href="/tag/00MY">Lemma <span data-tag="00MY">10.102.3</span>.</a> In Situation <a href="/tag/00MS" data-tag="00MS">10.102.1</a>. Suppose $R$ is a local Noetherian ring with maximal ideal $\mathfrak m$. Assume $\mathfrak m \in \text{Ass}(R)$, in other words $R$ has depth $0$. Suppose that $0 \to R^{n_ e} \to R^{n_{e-1}} \to \ldots \to R^{n_0}$ is exact at $R^{n_ e}, \ldots , R^{n_1}$. Then the complex is isomorphic to a direct sum of trivial complexes. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Pick $x \in R$, $x \not= 0$, with $\mathfrak m x = 0$. Let $i$ be the biggest index such that $n_ i > 0$. If $i = 0$, then the statement is true. If $i > 0$ denote $f_1$ the first basis vector of $R^{n_ i}$. Since $xf_1$ is not mapped to zero by exactness of the complex we deduce that some matrix coefficient of the map $R^{n_ i} \to R^{n_{i - 1}}$ is not in $\mathfrak m$. Lemma <a href="/tag/00MT" data-tag="00MT">10.102.2</a> then allows us to decrease $n_ e + \ldots + n_1$. Induction finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00MU">
+  <p><a class="environment-identifier" href="/tag/00MU">Lemma <span data-tag="00MU">10.102.4</span>.</a> In Situation <a href="/tag/00MS" data-tag="00MS">10.102.1</a>. Let $R$ be a Artinian local ring. Suppose that $0 \to R^{n_ e} \to R^{n_{e-1}} \to \ldots \to R^{n_0}$ is exact at $R^{n_ e}, \ldots , R^{n_1}$. Then the complex is isomorphic to a direct sum of trivial complexes. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a special case of Lemma <a href="/tag/00MY" data-tag="00MY">10.102.3</a> because an Artinian local ring has depth $0$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Below we define the rank of a map of finite free modules. This is just one possible definition of rank. It is just the definition that works in this section; there are others that may be more convenient in other settings. 
+</p>
+<p>
+<article class="env-definition" id="00MV">
+  <p><a class="environment-identifier" href="/tag/00MV">Definition <span data-tag="00MV">10.102.5</span>.</a> Let $R$ be a ring. Suppose that $\varphi : R^ m \to R^ n$ is a map of finite free modules. </p>
+  <p><ol>
+  <li><p>
+The <em>rank</em> of $\varphi $ is the maximal $r$ such that $\wedge ^ r \varphi : \wedge ^ r R^ m \to \wedge ^ r R^ n$ is nonzero. 
+</p>
+</li><li><p>
+We let $I(\varphi ) \subset R$ be the ideal generated by the $r \times r$ minors of the matrix of $\varphi $, where $r$ is the rank as defined above. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+The rank of $\varphi : R^ m \to R^ n$ is $0$ if and only if $\varphi = 0$ and in this case $I(\varphi ) = R$. 
+</p>
+<p>
+<article class="env-lemma" id="00MW">
+  <p><a class="environment-identifier" href="/tag/00MW">Lemma <span data-tag="00MW">10.102.6</span>.</a> In Situation <a href="/tag/00MS" data-tag="00MS">10.102.1</a>, suppose the complex is isomorphic to a direct sum of trivial complexes. Then we have </p>
+  <p><ol>
+  <li><p>
+the maps $\varphi _ i$ have rank $r_ i = n_ i - n_{i + 1} + \ldots + (-1)^{e-i-1} n_{e-1} + (-1)^{e-i} n_ e$, 
+</p>
+</li><li><p>
+for all $i$, $1 \leq i \leq e - 1$ we have $\text{rank}(\varphi _{i + 1}) + \text{rank}(\varphi _ i) = n_ i$, 
+</p>
+</li><li><p>
+each $I(\varphi _ i) = R$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We may assume the complex is the direct sum of trivial complexes. Then for each $i$ we can split the standard basis elements of $R^{n_ i}$ into those that map to a basis element of $R^{n_{i-1}}$ and those that are mapped to zero (and these are mapped onto by basis elements of $R^{n_{i + 1}}$ if $i > 0$). Using descending induction starting with $i = e$ it is easy to prove that there are $r_{i + 1}$-basis elements of $R^{n_ i}$ which are mapped to zero and $r_ i$ which are mapped to basis elements of $R^{n_{i-1}}$. From this the result follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00MZ">
+  <p><a class="environment-identifier" href="/tag/00MZ">Lemma <span data-tag="00MZ">10.102.7</span>.</a> In Situation <a href="/tag/00MS" data-tag="00MS">10.102.1</a>. Suppose $R$ is a local ring with maximal ideal $\mathfrak m$. Suppose that $0 \to R^{n_ e} \to R^{n_{e-1}} \to \ldots \to R^{n_0}$ is exact at $R^{n_ e}, \ldots , R^{n_1}$. Let $x \in \mathfrak m$ be a nonzerodivisor. The complex $0 \to (R/xR)^{n_ e} \to \ldots \to (R/xR)^{n_1}$ is exact at $(R/xR)^{n_ e}, \ldots , (R/xR)^{n_2}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Denote $F_\bullet $ the complex with terms $F_ i = R^{n_ i}$ and differential given by $\varphi _ i$. Then we have a short exact sequence of complexes 
+    <p>
+      <div class="equation">
+  \[  0 \to F_\bullet \xrightarrow {x} F_\bullet \to F_\bullet /xF_\bullet \to 0  \]
+</div>
+    <p>
+       Applying the snake lemma we get a long exact sequence 
+    <p>
+      <div class="equation">
+  \[  H_ i(F_\bullet ) \xrightarrow {x} H_ i(F_\bullet ) \to H_ i(F_\bullet /xF_\bullet ) \to H_{i - 1}(F_\bullet ) \xrightarrow {x} H_{i - 1}(F_\bullet )  \]
+</div>
+    <p>
+       The lemma follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00N0">
+        
+      
+  <p><a class="environment-identifier" href="/tag/00N0">Lemma <span data-tag="00N0">10.102.8</span> <span class="named">(Acyclicity lemma)</span>.</a> Let $R$ be a local Noetherian ring. Let $0 \to M_ e \to M_{e-1} \to \ldots \to M_0$ be a complex of finite $R$-modules. Assume $\text{depth}(M_ i) \geq i$. Let $i$ be the largest index such that the complex is not exact at $M_ i$. If $i > 0$ then $\mathop{\mathrm{Ker}}(M_ i \to M_{i-1})/\mathop{\mathrm{Im}}(M_{i + 1} \to M_ i)$ has depth $\geq 1$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $H = \mathop{\mathrm{Ker}}(M_ i \to M_{i-1})/\mathop{\mathrm{Im}}(M_{i + 1} \to M_ i)$ be the cohomology group in question. We may break the complex into short exact sequences $0 \to M_ e \to M_{e-1} \to K_{e-2} \to 0$, $0 \to K_ j \to M_ j \to K_{j-1} \to 0$, for $i + 2 \leq j \leq e-2 $, $0 \to K_{i + 1} \to M_{i + 1} \to B_ i \to 0$, $0 \to K_ i \to M_ i \to M_{i-1}$, and $0 \to B_ i \to K_ i \to H \to 0$. We proceed up through these complexes to prove the statements about depths, repeatedly using Lemma <a href="/tag/00LX" data-tag="00LX">10.72.6</a>. First of all, since $\text{depth}(M_ e) \geq e$, and $\text{depth}(M_{e-1}) \geq e-1$ we deduce that $\text{depth}(K_{e-2}) \geq e - 1$. At this point the sequences $0 \to K_ j \to M_ j \to K_{j-1} \to 0$ for $i + 2 \leq j \leq e-2 $ imply similarly that $\text{depth}(K_{j-1}) \geq j$ for $i + 2 \leq j \leq e-2$. The sequence $0 \to K_{i + 1} \to M_{i + 1} \to B_ i \to 0$ then shows that $\text{depth}(B_ i) \geq i + 1$. The sequence $0 \to K_ i \to M_ i \to M_{i-1}$ shows that $\text{depth}(K_ i) \geq 1$ since $M_ i$ has depth $\geq i \geq 1$ by assumption. The sequence $0 \to B_ i \to K_ i \to H \to 0$ then implies the result. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="00N1">
+       
+      
+  <p><a class="environment-identifier" href="/tag/00N1">Proposition <span data-tag="00N1">10.102.9</span>.</a> In Situation <a href="/tag/00MS" data-tag="00MS">10.102.1</a>, suppose $R$ is a local Noetherian ring. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$0 \to R^{n_ e} \to R^{n_{e-1}} \to \ldots \to R^{n_0}$ is exact at $R^{n_ e}, \ldots , R^{n_1}$, and 
+</p>
+</li><li><p>
+for all $i$, $1 \leq i \leq e$ the following two conditions are satisfied: 
+</p>
+<ol>
+  <li><p>
+$\text{rank}(\varphi _ i) = r_ i$ where $r_ i = n_ i - n_{i + 1} + \ldots + (-1)^{e-i-1} n_{e-1} + (-1)^{e-i} n_ e$, 
+</p>
+</li><li><p>
+$I(\varphi _ i) = R$, or $I(\varphi _ i)$ contains a regular sequence of length $i$. 
+</p>
+</li>
+</ol>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If for some $i$ some matrix coefficient of $\varphi _ i$ is not in $\mathfrak m$, then we apply Lemma <a href="/tag/00MT" data-tag="00MT">10.102.2</a>. It is easy to see that the proposition for a complex and for the same complex with a trivial complex added to it are equivalent. Thus we may assume that all matrix entries of each $\varphi _ i$ are elements of the maximal ideal. We may also assume that $e \geq 1$. 
+    <p>
+      Assume the complex is exact at $R^{n_ e}, \ldots , R^{n_1}$. Let $\mathfrak q \in \text{Ass}(R)$. Note that the ring $R_{\mathfrak q}$ has depth $0$ and that the complex remains exact after localization at $\mathfrak q$. We apply Lemmas <a href="/tag/00MY" data-tag="00MY">10.102.3</a> and <a href="/tag/00MW" data-tag="00MW">10.102.6</a> to the localized complex over $R_{\mathfrak q}$. We conclude that $\varphi _{i, \mathfrak q}$ has rank $r_ i$ for all $i$. Since $R \to \bigoplus _{\mathfrak q \in \text{Ass}(R)} R_\mathfrak q$ is injective (Lemma <a href="/tag/0311" data-tag="0311">10.63.19</a>), we conclude that $\varphi _ i$ has rank $r_ i$ over $R$ by the definition of rank as given in Definition <a href="/tag/00MV" data-tag="00MV">10.102.5</a>. Therefore we see that $I(\varphi _ i)_\mathfrak q = I(\varphi _{i, \mathfrak q})$ as the ranks do not change. Since all of the ideals $I(\varphi _ i)_{\mathfrak q}$, $e \geq i \geq 1$ are equal to $R_{\mathfrak q}$ (by the lemmas referenced above) we conclude none of the ideals $I(\varphi _ i)$ is contained in $\mathfrak q$. This implies that $I(\varphi _ e)I(\varphi _{e-1})\ldots I(\varphi _1)$ is not contained in any of the associated primes of $R$. By Lemma <a href="/tag/00DS" data-tag="00DS">10.15.2</a> we may choose $x \in I(\varphi _ e)I(\varphi _{e - 1})\ldots I(\varphi _1)$, $x \not\in \mathfrak q$ for all $\mathfrak q \in \text{Ass}(R)$. Observe that $x$ is a nonzerodivisor (Lemma <a href="/tag/00LD" data-tag="00LD">10.63.9</a>). According to Lemma <a href="/tag/00MZ" data-tag="00MZ">10.102.7</a> the complex $0 \to (R/xR)^{n_ e} \to \ldots \to (R/xR)^{n_1}$ is exact at $(R/xR)^{n_ e}, \ldots , (R/xR)^{n_2}$. By induction on $e$ all the ideals $I(\varphi _ i)/xR$ have a regular sequence of length $i - 1$. This proves that $I(\varphi _ i)$ contains a regular sequence of length $i$. 
+    <p>
+      Assume (2)(a) and (2)(b) hold. We will prove that (1) holds by induction on $\dim (R)$. If $\dim (R) = 0$, then we must have $I(\varphi _ i) = R$ for $1 \leq i \leq e$ by (2)(b). Since the coefficients of $\varphi _ i$ are contained in the maximal ideal this can happen only if $r_ i = 0$ for all $i$. By (2)(a) we conclude that $e = 0$ and (1) holds. Assume $\dim (R) > 0$. We claim that for any prime $\mathfrak p \subset R$ conditions (2)(a) and (2)(b) hold for the complex $0 \to R_\mathfrak p^{n_ e} \to R_\mathfrak p^{n_{e - 1}} \to \ldots \to R_\mathfrak p^{n_0}$ with maps $\varphi _{i, \mathfrak p}$ over $R_\mathfrak p$. Namely, since $I(\varphi _ i)$ contains a nonzero divisor, the image of $I(\varphi _ i)$ in $R_\mathfrak p$ is nonzero. This implies that the rank of $\varphi _{i, \mathfrak p}$ is the same as the rank of $\varphi _ i$: the rank as defined above of a matrix $\varphi $ over a ring $R$ can only drop when passing to an $R$-algebra $R'$ and this happens if and only if $I(\varphi )$ maps to zero in $R'$. Thus (2)(a) holds. Having said this we know that $I(\varphi _{i, \mathfrak p}) = I(\varphi _ i)_\mathfrak p$ and we see that (2)(b) is preserved under localization as well. By induction on the dimension of $R$ we may assume the complex is exact when localized at any nonmaximal prime $\mathfrak p$ of $R$. Thus $\mathop{\mathrm{Ker}}(\varphi _ i)/\mathop{\mathrm{Im}}(\varphi _{i + 1})$ has support contained in $\{ \mathfrak m\} $ and hence if nonzero has depth $0$. As $I(\varphi _ i) \subset \mathfrak m$ for all $i$ because of what was said in the first paragraph of the proof, we see that (2)(b) implies $\text{depth}(R) \geq e$. By Lemma <a href="/tag/00N0" data-tag="00N0">10.102.8</a> we see that the complex is exact at $R^{n_ e}, \ldots , R^{n_1}$ concluding the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0GLM">
+  <p><a class="environment-identifier" href="/tag/0GLM">Remark <span data-tag="0GLM">10.102.10</span>.</a> If in Proposition <a href="/tag/00N1" data-tag="00N1">10.102.9</a> the equivalent conditions (1) and (2) are satisfied, then there exists a $j$ such that $I(\varphi _ i) = R$ if and only if $i \geq j$. As in the proof of the proposition, it suffices to see this when all the matrices have coefficients in the maximal ideal $\mathfrak m$ of $R$. In this case we see that $I(\varphi _ j) = R$ if and only if $\varphi _ j = 0$. But if $\varphi _ j = 0$, then we get arbitrarily long exact complexes $0 \to R^{n_ e} \to R^{n_{e-1}} \to \ldots \to R^{n_ j} \to 0 \to 0 \to \ldots \to 0$ and hence by the proposition we see that $I(\varphi _ i)$ for $i > j$ has to be $R$ (since otherwise it is a proper ideal of a Noetherian local ring containing arbitrary long regular sequences which is impossible). </p>
+</article> 
+</p>

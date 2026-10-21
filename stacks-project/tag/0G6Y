@@ -1,0 +1,312 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="cohomology-section-cohomology-support-bis" class="tex-section"><span data-tag="0G6Y">20.34</span> Cohomology with support in a closed subset, II</h2>
+
+<p>
+We continue the discussion started in Section <a href="/tag/0A39" data-tag="0A39">20.21</a>. 
+</p>
+<p>
+Let $(X, \mathcal{O}_ X)$ be a ringed space. Let $Z \subset X$ be a closed subset. In this situation we can consider the functor $\textit{Mod}(\mathcal{O}_ X) \to \textit{Mod}(\mathcal{O}_ X(X))$ given by $\mathcal{F} \mapsto \Gamma _ Z(X, \mathcal{F})$. See Modules, Definition <a href="/tag/01AT" data-tag="01AT">17.5.1</a> and Modules, Lemma <a href="/tag/01AU" data-tag="01AU">17.5.2</a>. Using K-injective resolutions, see Section <a href="/tag/079V" data-tag="079V">20.28</a>, we obtain the right derived functor 
+</p>
+<div class="equation">
+  \[  R\Gamma _ Z(X, - ) : D(\mathcal{O}_ X) \to D(\mathcal{O}_ X(X))  \]
+</div>
+<p>
+ Given an object $K$ in $D(\mathcal{O}_ X)$ we denote $H^ q_ Z(X, K) = H^ q(R\Gamma _ Z(X, K))$ the cohomology module with support in $Z$. We will see later (Lemma <a href="/tag/0G74" data-tag="0G74">20.34.8</a>) that this agrees with the construction in Section <a href="/tag/0A39" data-tag="0A39">20.21</a>. 
+</p>
+<p>
+For an $\mathcal{O}_ X$-module $\mathcal{F}$ we can consider the <em>subsheaf of sections with support in $Z$</em>, denoted $\mathcal{H}_ Z(\mathcal{F})$, defined by the rule 
+</p>
+<div class="equation">
+  \[  \mathcal{H}_ Z(\mathcal{F})(U) = \{ s \in \mathcal{F}(U) \mid \text{Supp}(s) \subset U \cap Z\}  = \Gamma _{Z \cap U}(U, \mathcal{F}|_ U)  \]
+</div>
+<p>
+ As discussed in Modules, Remark <a href="/tag/0G6N" data-tag="0G6N">17.13.5</a> we may view $\mathcal{H}_ Z(\mathcal{F})$ as an $\mathcal{O}_ X|_ Z$-module on $Z$ and we obtain a functor 
+</p>
+<div class="equation">
+  \[  \textit{Mod}(\mathcal{O}_ X) \longrightarrow \textit{Mod}(\mathcal{O}_ X|_ Z), \quad \mathcal{F} \longmapsto \mathcal{H}_ Z(\mathcal{F}) \text{ viewed as an }\mathcal{O}_ X|_ Z\text{-module on }Z  \]
+</div>
+<p>
+ This functor is left exact, but in general not exact. Exactly as above we obtain a right derived functor 
+</p>
+<div class="equation">
+  \[  R\mathcal{H}_ Z : D(\mathcal{O}_ X) \longrightarrow D(\mathcal{O}_ X|_ Z)  \]
+</div>
+<p>
+ We set $\mathcal{H}^ q_ Z(K) = H^ q(R\mathcal{H}_ Z(K))$ so that $\mathcal{H}^0_ Z(\mathcal{F}) = \mathcal{H}_ Z(\mathcal{F})$ for any sheaf of $\mathcal{O}_ X$-modules $\mathcal{F}$. 
+</p>
+<p>
+<article class="env-lemma" id="0A3B">
+  <p><a class="environment-identifier" href="/tag/0A3B">Lemma <span data-tag="0A3B">20.34.1</span>.</a> Let $(X, \mathcal{O}_ X)$ be a ringed space. Let $i : Z \to X$ be the inclusion of a closed subset. </p>
+  <p><ol>
+  <li><p>
+$R\mathcal{H}_ Z : D(\mathcal{O}_ X) \to D(\mathcal{O}_ X|_ Z)$ is right adjoint to $i_* : D(\mathcal{O}_ X|_ Z) \to D(\mathcal{O}_ X)$. 
+</p>
+</li><li><p>
+For $K$ in $D(\mathcal{O}_ X|_ Z)$ we have $R\mathcal{H}_ Z(i_*K) = K$. 
+</p>
+</li><li><p>
+Let $\mathcal{G}$ be a sheaf of $\mathcal{O}_ X|_ Z$-modules on $Z$. Then $\mathcal{H}^ p_ Z(i_*\mathcal{G}) = 0$ for $p > 0$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The functor $i_*$ is exact, so $i_* = Ri_* = Li_*$. Hence part (1) of the lemma follows from Modules, Lemma <a href="/tag/0G6P" data-tag="0G6P">17.13.6</a> and Derived Categories, Lemma <a href="/tag/09T5" data-tag="09T5">13.30.3</a>. Let $K$ be as in (2). We can represent $K$ by a K-injective complex $\mathcal{I}^\bullet $ of $\mathcal{O}_ X|_ Z$-modules. By Lemma <a href="/tag/0D5Z" data-tag="0D5Z">20.32.9</a> the complex $i_*\mathcal{I}^\bullet $, which represents $i_*K$, is a K-injective complex of $\mathcal{O}_ X$-modules. Thus $R\mathcal{H}_ Z(i_*K)$ is computed by $\mathcal{H}_ Z(i_*\mathcal{I}^\bullet ) = \mathcal{I}^\bullet $ which proves (2). Part (3) is a special case of (2). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $(X, \mathcal{O}_ X)$ be a ringed space and let $Z \subset X$ be a closed subset. The category of $\mathcal{O}_ X$-modules whose support is contained in $Z$ is a Serre subcategory of the category of all $\mathcal{O}_ X$-modules, see Homology, Definition <a href="/tag/02MO" data-tag="02MO">12.10.1</a> and Modules, Lemma <a href="/tag/01AU" data-tag="01AU">17.5.2</a>. We denote $D_ Z(\mathcal{O}_ X)$ the strictly full saturated triangulated subcategory of $D(\mathcal{O}_ X)$ consisting of complexes whose cohomology sheaves are supported on $Z$, see Derived Categories, Section <a href="/tag/06UP" data-tag="06UP">13.17</a>. 
+</p>
+<p>
+<article class="env-lemma" id="0AEF">
+  <p><a class="environment-identifier" href="/tag/0AEF">Lemma <span data-tag="0AEF">20.34.2</span>.</a> Let $(X, \mathcal{O}_ X)$ be a ringed space. Let $i : Z \to X$ be the inclusion of a closed subset. </p>
+  <p><ol>
+  <li><p>
+For $K$ in $D(\mathcal{O}_ X|_ Z)$ we have $i_*K$ in $D_ Z(\mathcal{O}_ X)$. 
+</p>
+</li><li><p>
+The functor $i_* : D(\mathcal{O}_ X|_ Z) \to D_ Z(\mathcal{O}_ X)$ is an equivalence with quasi-inverse $i^{-1}|_{D_ Z(\mathcal{O}_ X)} = R\mathcal{H}_ Z|_{D_ Z(\mathcal{O}_ X)}$. 
+</p>
+</li><li><p>
+The functor $i_* \circ R\mathcal{H}_ Z : D(\mathcal{O}_ X) \to D_ Z(\mathcal{O}_ X)$ is right adjoint to the inclusion functor $D_ Z(\mathcal{O}_ X) \to D(\mathcal{O}_ X)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Part (1) is immediate from the definitions. Part (3) is a formal consequence of part (2) and Lemma <a href="/tag/0A3B" data-tag="0A3B">20.34.1</a>. In the rest of the proof we prove part (2). 
+    <p>
+      Let us think of $i$ as the morphism of ringed spaces $i : (Z, \mathcal{O}_ X|_ Z) \to (X, \mathcal{O}_ X)$. Recall that $i^*$ and $i_*$ is an adjoint pair of functors. Since $i$ is a closed immersion, $i_*$ is exact. Since $i^{-1}\mathcal{O}_ X = \mathcal{O}_ X|_ Z$ is the structure sheaf of $(Z, \mathcal{O}_ X|_ Z)$ we see that $i^* = i^{-1}$ is exact and we see that that $i^*i_* = i^{-1}i_*$ is isomorphic to the identify functor. See Modules, Lemmas <a href="/tag/01AJ" data-tag="01AJ">17.3.3</a> and <a href="/tag/01AX" data-tag="01AX">17.6.1</a>. Thus $i_* : D(\mathcal{O}_ X|_ Z) \to D_ Z(\mathcal{O}_ X)$ is fully faithful and $i^{-1}$ determines a left inverse. On the other hand, suppose that $K$ is an object of $D_ Z(\mathcal{O}_ X)$ and consider the adjunction map $K \to i_*i^{-1}K$. Using exactness of $i_*$ and $i^{-1}$ this induces the adjunction maps $H^ n(K) \to i_*i^{-1}H^ n(K)$ on cohomology sheaves. Since these cohomology sheaves are supported on $Z$ we see these adjunction maps are isomorphisms and we conclude that $i_* : D(\mathcal{O}_ X|_ Z) \to D_ Z(\mathcal{O}_ X)$ is an equivalence. 
+    <p>
+      To finish the proof it suffices to show that $R\mathcal{H}_ Z(K) = i^{-1}K$ if $K$ is an object of $D_ Z(\mathcal{O}_ X)$. To do this we can use that $K = i_*i^{-1}K$ as we've just proved this is the case. Then Lemma <a href="/tag/0A3B" data-tag="0A3B">20.34.1</a> tells us what we want. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0G6Z">
+  <p><a class="environment-identifier" href="/tag/0G6Z">Lemma <span data-tag="0G6Z">20.34.3</span>.</a> Let $(X, \mathcal{O}_ X)$ be a ringed space. Let $i : Z \to X$ be the inclusion of a closed subset. If $\mathcal{I}^\bullet $ is a K-injective complex of $\mathcal{O}_ X$-modules, then $\mathcal{H}_ Z(\mathcal{I}^\bullet )$ is K-injective complex of $\mathcal{O}_ X|_ Z$-modules. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $i_* : \textit{Mod}(\mathcal{O}_ X|_ Z) \to \textit{Mod}(\mathcal{O}_ X)$ is exact and left adjoint to $\mathcal{H}_ Z$ (Modules, Lemma <a href="/tag/0G6P" data-tag="0G6P">17.13.6</a>) this follows from Derived Categories, Lemma <a href="/tag/08BJ" data-tag="08BJ">13.31.9</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0G70">
+  <p><a class="environment-identifier" href="/tag/0G70">Lemma <span data-tag="0G70">20.34.4</span>.</a> Let $(X, \mathcal{O}_ X)$ be a ringed space. Let $i : Z \to X$ be the inclusion of a closed subset. Then $R\Gamma (Z, - ) \circ R\mathcal{H}_ Z = R\Gamma _ Z(X, - )$ as functors $D(\mathcal{O}_ X) \to D(\mathcal{O}_ X(X))$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows from the construction of right derived functors using K-injective resolutions, Lemma <a href="/tag/0G6Z" data-tag="0G6Z">20.34.3</a>, and the fact that $\Gamma _ Z(X, -) = \Gamma (Z, -) \circ \mathcal{H}_ Z$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0G71">
+  <p><a class="environment-identifier" href="/tag/0G71">Lemma <span data-tag="0G71">20.34.5</span>.</a> Let $(X, \mathcal{O}_ X)$ be a ringed space. Let $i : Z \to X$ be the inclusion of a closed subset. Let $U = X \setminus Z$. There is a distinguished triangle </p>
+  <div class="equation">
+  \[  R\Gamma _ Z(X, K) \to R\Gamma (X, K) \to R\Gamma (U, K) \to R\Gamma _ Z(X, K)[1]  \]
+</div>
+  <p> in $D(\mathcal{O}_ X(X))$ functorial for $K$ in $D(\mathcal{O}_ X)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a K-injective complex $\mathcal{I}^\bullet $ all of whose terms are injective $\mathcal{O}_ X$-modules representing $K$. See Section <a href="/tag/079V" data-tag="079V">20.28</a>. Recall that $\mathcal{I}^\bullet |_ U$ is a K-injective complex of $\mathcal{O}_ U$-modules, see Lemma <a href="/tag/08BS" data-tag="08BS">20.32.1</a>. Hence each of the derived functors in the distinguished triangle is gotten by applying the underlying functor to $\mathcal{I}^\bullet $. Hence we find that it suffices to prove that for an injective $\mathcal{O}_ X$-module $\mathcal{I}$ we have a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \Gamma _ Z(X, \mathcal{I}) \to \Gamma (X, \mathcal{I}) \to \Gamma (U, \mathcal{I}) \to 0  \]
+</div>
+    <p>
+       This follows from Lemma <a href="/tag/01EA" data-tag="01EA">20.8.1</a> and the definitions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0G72">
+  <p><a class="environment-identifier" href="/tag/0G72">Lemma <span data-tag="0G72">20.34.6</span>.</a> Let $(X, \mathcal{O}_ X)$ be a ringed space. Let $i : Z \to X$ be the inclusion of a closed subset. Denote $j : U = X \setminus Z \to X$ the inclusion of the complement. There is a distinguished triangle </p>
+  <div class="equation">
+  \[  i_*R\mathcal{H}_ Z(K) \to K \to Rj_*(K|_ U) \to i_*R\mathcal{H}_ Z(K)[1]  \]
+</div>
+  <p> in $D(\mathcal{O}_ X)$ functorial for $K$ in $D(\mathcal{O}_ X)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a K-injective complex $\mathcal{I}^\bullet $ all of whose terms are injective $\mathcal{O}_ X$-modules representing $K$. See Section <a href="/tag/079V" data-tag="079V">20.28</a>. Recall that $\mathcal{I}^\bullet |_ U$ is a K-injective complex of $\mathcal{O}_ U$-modules, see Lemma <a href="/tag/08BS" data-tag="08BS">20.32.1</a>. Hence each of the derived functors in the distinguished triangle is gotten by applying the underlying functor to $\mathcal{I}^\bullet $. Hence it suffices to prove that for an injective $\mathcal{O}_ X$-module $\mathcal{I}$ we have a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to i_*\mathcal{H}_ Z(\mathcal{I}) \to \mathcal{I} \to j_*(\mathcal{I}|_ U) \to 0  \]
+</div>
+    <p>
+       This follows from Lemma <a href="/tag/01EA" data-tag="01EA">20.8.1</a> and the definitions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0G73">
+  <p><a class="environment-identifier" href="/tag/0G73">Lemma <span data-tag="0G73">20.34.7</span>.</a> Let $(X, \mathcal{O}_ X)$ be a ringed space. Let $Z \subset X$ be a closed subset. Let $j : U \to X$ be the inclusion of an open subset with $U \cap Z = \emptyset $. Then $R\mathcal{H}_ Z(Rj_*K) = 0$ for all $K$ in $D(\mathcal{O}_ U)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a K-injective complex $\mathcal{I}^\bullet $ of $\mathcal{O}_ U$-modules representing $K$. Then $j_*\mathcal{I}^\bullet $ represents $Rj_*K$. By Lemma <a href="/tag/0D5Z" data-tag="0D5Z">20.32.9</a> the complex $j_*\mathcal{I}^\bullet $ is a K-injective complex of $\mathcal{O}_ X$-modules. Hence $\mathcal{H}_ Z(j_*\mathcal{I}^\bullet )$ represents $R\mathcal{H}_ Z(Rj_*K)$. Thus it suffices to show that $\mathcal{H}_ Z(j_*\mathcal{G}) = 0$ for any abelian sheaf $\mathcal{G}$ on $U$. Thus we have to show that a section $s$ of $j_*\mathcal{G}$ over some open $W$ which is supported on $W \cap Z$ is zero. The support condition means that $s|_{W \setminus W \cap Z} = 0$. Since $j_*\mathcal{G}(W) = \mathcal{G}(U \cap W) = j_*\mathcal{G}(W \setminus W \cap Z)$ this implies that $s$ is zero as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0G74">
+  <p><a class="environment-identifier" href="/tag/0G74">Lemma <span data-tag="0G74">20.34.8</span>.</a> Let $(X, \mathcal{O}_ X)$ be a ringed space. Let $Z \subset X$ be a closed subset. Let $K$ be an object of $D(\mathcal{O}_ X)$ and denote $K_{ab}$ its image in $D(\underline{\mathbf{Z}}_ X)$. </p>
+  <p><ol>
+  <li><p>
+There is a canonical map $R\Gamma _ Z(X, K) \to R\Gamma _ Z(X, K_{ab})$ which is an isomorphism in $D(\textit{Ab})$. 
+</p>
+</li><li><p>
+There is a canonical map $R\mathcal{H}_ Z(K) \to R\mathcal{H}_ Z(K_{ab})$ which is an isomorphism in $D(\underline{\mathbf{Z}}_ Z)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Proof of (1). The map is constructed as follows. Choose a K-injective complex of $\mathcal{O}_ X$-modules $\mathcal{I}^\bullet $ representing $K$. Choose a quasi-isomorpism $\mathcal{I}^\bullet \to \mathcal{J}^\bullet $ where $\mathcal{J}^\bullet $ is a K-injective complex of abelian groups. Then the map in (1) is given by 
+    <p>
+      <div class="equation">
+  \[  \Gamma _ Z(X, \mathcal{I}^\bullet ) \to \Gamma _ Z(X, \mathcal{J}^\bullet )  \]
+</div>
+    <p>
+       determined by the fact that $\Gamma _ Z$ is a functor on abelian sheaves. An easy check shows that the resulting map combined with the canonical maps of Lemma <a href="/tag/0D5Y" data-tag="0D5Y">20.32.7</a> fit into a morphism of distinguished triangles 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ R\Gamma _ Z(X, K) \ar[r] \ar[d] &  R\Gamma (X, K) \ar[r] \ar[d] &  R\Gamma (U, K) \ar[d] \\  R\Gamma _ Z(X, K_{ab}) \ar[r] &  R\Gamma (X, K_{ab}) \ar[r] &  R\Gamma (U, K_{ab}) }  \]
+</div>
+    <p>
+       of Lemma <a href="/tag/0G71" data-tag="0G71">20.34.5</a>. Since two of the three arrows are isomorphisms by the lemma cited, we conclude by Derived Categories, Lemma <a href="/tag/014A" data-tag="014A">13.4.3</a>. 
+    <p>
+      The proof of (2) is omitted. Hint: use the same argument with Lemma <a href="/tag/0G72" data-tag="0G72">20.34.6</a> for the distinguished triangle. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0G75">
+  <p><a class="environment-identifier" href="/tag/0G75">Remark <span data-tag="0G75">20.34.9</span>.</a> Let $(X, \mathcal{O}_ X)$ be a ringed space. Let $i : Z \to X$ be the inclusion of a closed subset. Given $K$ and $M$ in $D(\mathcal{O}_ X)$ there is a canonical map </p>
+  <div class="equation">
+  \[  K|_ Z \otimes _{\mathcal{O}_ X|_ Z}^\mathbf {L} R\mathcal{H}_ Z(M) \longrightarrow R\mathcal{H}_ Z(K \otimes _{\mathcal{O}_ X}^\mathbf {L} M)  \]
+</div>
+  <p> in $D(\mathcal{O}_ X|_ Z)$. Here $K|_ Z = i^{-1}K$ is the restriction of $K$ to $Z$ viewed as an object of $D(\mathcal{O}_ X|_ Z)$. By adjointness of $i_*$ and $R\mathcal{H}_ Z$ of Lemma <a href="/tag/0A3B" data-tag="0A3B">20.34.1</a> to construct this map it suffices to produce a canonical map </p>
+  <div class="equation">
+  \[  i_*\left(K|_ Z \otimes _{\mathcal{O}_ X|_ Z}^\mathbf {L} R\mathcal{H}_ Z(M)\right) \longrightarrow K \otimes _{\mathcal{O}_ X}^\mathbf {L} M  \]
+</div>
+  <p> To construct this map, we choose a K-injective complex $\mathcal{I}^\bullet $ of $\mathcal{O}_ X$-modules representing $M$ and a K-flat complex $\mathcal{K}^\bullet $ of $\mathcal{O}_ X$-modules representing $K$. Observe that $\mathcal{K}^\bullet |_ Z$ is a K-flat complex of $\mathcal{O}_ X|_ Z$-modules representing $K|_ Z$, see Lemma <a href="/tag/06YC" data-tag="06YC">20.26.8</a>. Hence we need to produce a map of complexes </p>
+  <div class="equation">
+  \[  i_*\text{Tot}\left( \mathcal{K}^\bullet |_ Z \otimes _{\mathcal{O}_ X|_ Z} \mathcal{H}_ Z(\mathcal{I}^\bullet )\right) \longrightarrow \text{Tot}(\mathcal{K}^\bullet \otimes _{\mathcal{O}_ X} \mathcal{I}^\bullet )  \]
+</div>
+  <p> of $\mathcal{O}_ X$-modules. For this it suffices to produce maps </p>
+  <div class="equation">
+  \[  i_*(\mathcal{K}^ a|_ Z \otimes _{\mathcal{O}_ X|_ Z} \mathcal{H}_ Z(\mathcal{I}^ b)) \longrightarrow \mathcal{K}^ a \otimes _{\mathcal{O}_ X} \mathcal{I}^ b  \]
+</div>
+  <p> Looking at stalks (for example), we see that the left hand side of this formula is equal to $\mathcal{K}^ a \otimes _{\mathcal{O}_ X} i_*\mathcal{H}_ Z(\mathcal{I}^ b)$ and we can use the inclusion $\mathcal{H}_ Z(\mathcal{I}^ b) \to \mathcal{I}^ b$ to get our map. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="0G76">
+  <p><a class="environment-identifier" href="/tag/0G76">Remark <span data-tag="0G76">20.34.10</span>.</a> With notation as in Remark <a href="/tag/0G75" data-tag="0G75">20.34.9</a> we obtain a canonical cup product </p>
+  <div class="equation">
+  \begin{align*}  H^ a(X, K) \times H^ b_ Z(X, M) &  = H^ a(X, K) \times H^ b(Z, R\mathcal{H}_ Z(M)) \\ &  \to H^ a(Z, K|_ Z) \times H^ b(Z, R\mathcal{H}_ Z(M)) \\ &  \to H^{a + b}(Z, K|_ Z \otimes _{\mathcal{O}_ X|_ Z}^\mathbf {L} R\mathcal{H}_ Z(M)) \\ &  \to H^{a + b}(Z, R\mathcal{H}_ Z(K \otimes _{\mathcal{O}_ X}^\mathbf {L} M)) \\ &  = H^{a + b}_ Z(X, K \otimes _{\mathcal{O}_ X}^\mathbf {L} M) \end{align*}
+</div>
+  <p> Here the equal signs are given by Lemma <a href="/tag/0G70" data-tag="0G70">20.34.4</a>, the first arrow is restriction to $Z$, the second arrow is the cup product (Section <a href="/tag/0FKU" data-tag="0FKU">20.31</a>), and the third arrow is the map from Remark <a href="/tag/0G75" data-tag="0G75">20.34.9</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0G77">
+  <p><a class="environment-identifier" href="/tag/0G77">Lemma <span data-tag="0G77">20.34.11</span>.</a> With notation as in Remark <a href="/tag/0G75" data-tag="0G75">20.34.9</a> the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ H^ i(X, K) \times H^ j_ Z(X, M) \ar[r] \ar[d] &  H^{i + j}_ Z(X, K \otimes _{\mathcal{O}_ X}^\mathbf {L} M) \ar[d] \\  H^ i(X, K) \times H^ j(X, M) \ar[r] &  H^{i + j}(X, K \otimes _{\mathcal{O}_ X}^\mathbf {L} M) }  \]
+</div>
+  <p> commutes where the top horizontal arrow is the cup product of Remark <a href="/tag/0G76" data-tag="0G76">20.34.10</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0G78">
+  <p><a class="environment-identifier" href="/tag/0G78">Remark <span data-tag="0G78">20.34.12</span>.</a> Let $f : (X', \mathcal{O}_{X'}) \to (X, \mathcal{O}_ X)$ be a morphism of ringed spaces. Let $Z \subset X$ be a closed subset and $Z' = f^{-1}(Z)$. Denote $f|_{Z'} : (Z', \mathcal{O}_{X'}|_{Z'}) \to (Z, \mathcal{O}_ X|Z)$ be the induced morphism of ringed spaces. For any $K$ in $D(\mathcal{O}_ X)$ there is a canonical map </p>
+  <div class="equation">
+  \[  L(f|_{Z'})^*R\mathcal{H}_ Z(K) \longrightarrow R\mathcal{H}_{Z'}(Lf^*K)  \]
+</div>
+  <p> in $D(\mathcal{O}_{X'}|_{Z'})$. Denote $i : Z \to X$ and $i' : Z' \to X'$ the inclusion maps. By Lemma <a href="/tag/0AEF" data-tag="0AEF">20.34.2</a> part (2) applied to $i'$ it is the same thing to give a map </p>
+  <div class="equation">
+  \[  i'_* L(f|_{Z'})^* R\mathcal{H}_ Z(K) \longrightarrow i'_*R\mathcal{H}_{Z'}(Lf^*K)  \]
+</div>
+  <p> in $D_{Z'}(\mathcal{O}_{X'})$. The map of functors $Lf^* \circ i_* \to i'_* \circ L(f|_{Z'})^*$ of Remark <a href="/tag/08HY" data-tag="08HY">20.28.3</a> is an isomorphism in this case (follows by checking what happens on stalks using that $i_*$ and $i'_*$ are exact and that $\mathcal{O}_{Z, z} = \mathcal{O}_{X, z}$ and similarly for $Z'$). Hence it suffices to construct a the top horizontal arrow in the following diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ Lf^* i_* R\mathcal{H}_ Z(K) \ar[rr] \ar[rd] &  &  i'_* R\mathcal{H}_{Z'}(Lf^*K) \ar[ld] \\  &  Lf^*K }  \]
+</div>
+  <p> The complex $Lf^* i_* R\mathcal{H}_ Z(K)$ is supported on $Z'$. The south-east arrow comes from the adjunction mapping $i_*R\mathcal{H}_ Z(K) \to K$ (Lemma <a href="/tag/0A3B" data-tag="0A3B">20.34.1</a>). Since the adjunction mapping $i'_* R\mathcal{H}_{Z'}(Lf^*K) \to Lf^*K$ is universal by Lemma <a href="/tag/0AEF" data-tag="0AEF">20.34.2</a> part (3), we find that the south-east arrow factors uniquely over the south-west arrow and we obtain the desired arrow. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0G79">
+  <p><a class="environment-identifier" href="/tag/0G79">Lemma <span data-tag="0G79">20.34.13</span>.</a> With notation and assumptions as in Remark <a href="/tag/0G78" data-tag="0G78">20.34.12</a> the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ H^ p_ Z(X, K) \ar[r] \ar[d] &  H^ p_{Z'}(X', Lf^*K) \ar[d] \\  H^ p(X, K) \ar[r] &  H^ p(X', Lf^*K) }  \]
+</div>
+  <p> commutes. Here the top horizontal arrow comes from the identifications $H^ p_ Z(X, K) = H^ p(Z, R\mathcal{H}_ Z(K))$ and $H^ p_{Z'}(X', Lf^*K) = H^ p(Z', R\mathcal{H}_{Z'}(K'))$, the pullback map $H^ p(Z, R\mathcal{H}_ Z(K)) \to H^ p(Z', L(f|_{Z'})^*R\mathcal{H}_ Z(K))$, and the map constructed in Remark <a href="/tag/0G78" data-tag="0G78">20.34.12</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. Hints: Using that $H^ p(Z, R\mathcal{H}_ Z(K)) = H^ p(X, i_*R\mathcal{H}_ Z(K))$ and similarly for $R\mathcal{H}_{Z'}(Lf^*K)$ this follows from the functoriality of the pullback maps and the commutative diagram used to define the map of Remark <a href="/tag/0G78" data-tag="0G78">20.34.12</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

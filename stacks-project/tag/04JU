@@ -1,0 +1,316 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="spaces-properties-section-points-small-etale-site" class="tex-section"><span data-tag="04JU">66.19</span> Points of the small étale site</h2>
+
+<p>
+This section is the analogue of Étale Cohomology, Section <a href="/tag/03PN" data-tag="03PN">59.29</a>. 
+</p>
+<p>
+<article class="env-definition" id="0486">
+  <p><a class="environment-identifier" href="/tag/0486">Definition <span data-tag="0486">66.19.1</span>.</a> Let $S$ be a scheme. Let $X$ be an algebraic space over $S$. </p>
+  <p><ol>
+  <li><p>
+A <em>geometric point</em> of $X$ is a morphism $\overline{x} : \mathop{\mathrm{Spec}}(k) \to X$, where $k$ is an algebraically closed field. We often abuse notation and write $\overline{x} = \mathop{\mathrm{Spec}}(k)$. 
+</p>
+</li><li><p>
+For every geometric point $\overline{x}$ we have the corresponding “image” point $x \in |X|$. We say that $\overline{x}$ is a <em>geometric point lying over $x$</em>. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+It turns out that we can take stalks of sheaves on $X_{\acute{e}tale}$ at geometric points exactly in the same way as was done in the case of the small étale site of a scheme. In order to do this we define the notion of an étale neighbourhood as follows. 
+</p>
+<p>
+<article class="env-definition" id="04JV">
+  <p><a class="environment-identifier" href="/tag/04JV">Definition <span data-tag="04JV">66.19.2</span>.</a> Let $S$ be a scheme. Let $X$ be an algebraic space over $S$. Let $\overline{x}$ be a geometric point of $X$. </p>
+  <p><ol>
+  <li><p>
+An <em>étale neighborhood</em> of $\overline{x}$ of $X$ is a commutative diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ &  U \ar[d]^\varphi \\  {\bar x} \ar[r]^{\bar x} \ar[ur]^{\bar u} &  X }  \]
+</div>
+<p>
+ where $\varphi $ is an étale morphism of algebraic spaces over $S$. We will use the notation $\varphi : (U, \overline{u}) \to (X, \overline{x})$ to indicate this situation. 
+</p>
+</li><li><p>
+A <em>morphism of étale neighborhoods</em> $(U, \overline{u}) \to (U', \overline{u}')$ is an $X$-morphism $h : U \to U'$ such that $\overline{u}' = h \circ \overline{u}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+Note that we allow $U$ to be an algebraic space. When we take stalks of a sheaf on $X_{\acute{e}tale}$ we have to restrict to those $U$ which are in $X_{\acute{e}tale}$, and so in this case we will only consider the case where $U$ is a scheme. Alternately we can work with the site $X_{space, {\acute{e}tale}}$ and consider all étale neighbourhoods. And there won't be any difference because of the last assertion in the following lemma. 
+</p>
+<p>
+<article class="env-lemma" id="04JW">
+  <p><a class="environment-identifier" href="/tag/04JW">Lemma <span data-tag="04JW">66.19.3</span>.</a> Let $S$ be a scheme. Let $X$ be an algebraic space over $S$. Let $\overline{x}$ be a geometric point of $X$. The category of étale neighborhoods is cofiltered. More precisely: </p>
+  <p><ol>
+  <li><p>
+Let $(U_ i, \overline{u}_ i)_{i = 1, 2}$ be two étale neighborhoods of $\overline{x}$ in $X$. Then there exists a third étale neighborhood $(U, \overline{u})$ and morphisms $(U, \overline{u}) \to (U_ i, \overline{u}_ i)$, $i = 1, 2$. 
+</p>
+</li><li><p>
+Let $h_1, h_2: (U, \overline{u}) \to (U', \overline{u}')$ be two morphisms between étale neighborhoods of $\overline{s}$. Then there exist an étale neighborhood $(U'', \overline{u}'')$ and a morphism $h : (U'', \overline{u}'') \to (U, \overline{u})$ which equalizes $h_1$ and $h_2$, i.e., such that $h_1 \circ h = h_2 \circ h$. 
+</p>
+</li>
+</ol></p>
+  <p> Moreover, given any étale neighbourhood $(U, \overline{u}) \to (X, \overline{x})$ there exists a morphism of étale neighbourhoods $(U', \overline{u}') \to (U, \overline{u})$ where $U'$ is a scheme. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      For part (1), consider the fibre product $U = U_1 \times _ X U_2$. It is étale over both $U_1$ and $U_2$ because étale morphisms are preserved under base change and composition, see Lemmas <a href="/tag/03FU" data-tag="03FU">66.16.5</a> and <a href="/tag/03FT" data-tag="03FT">66.16.4</a>. The map $\overline{u} \to U$ defined by $(\overline{u}_1, \overline{u}_2)$ gives it the structure of an étale neighborhood mapping to both $U_1$ and $U_2$. 
+    <p>
+      For part (2), define $U''$ as the fibre product 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ U'' \ar[r] \ar[d] &  U \ar[d]^{(h_1, h_2)} \\  U' \ar[r]^-\Delta &  U' \times _ X U'. }  \]
+</div>
+    <p>
+       Since $\overline{u}$ and $\overline{u}'$ agree over $X$ with $\overline{x}$, we see that $\overline{u}'' = (\overline{u}, \overline{u}')$ is a geometric point of $U''$. In particular $U'' \not= \emptyset $. Moreover, since $U'$ is étale over $X$, so is the fibre product $U'\times _ X U'$ (as seen above in the case of $U_1 \times _ X U_2$). Hence the vertical arrow $(h_1, h_2)$ is étale by Lemma <a href="/tag/03FV" data-tag="03FV">66.16.6</a>. Therefore $U''$ is étale over $U'$ by base change, and hence also étale over $X$ (because compositions of étale morphisms are étale). Thus $(U'', \overline{u}'')$ is a solution to the problem posed by (2). 
+    <p>
+      To see the final assertion, choose any surjective étale morphism $U' \to U$ where $U'$ is a scheme. Then $U' \times _ U \overline{u}$ is a scheme surjective and étale over $\overline{u} = \mathop{\mathrm{Spec}}(k)$ with $k$ algebraically closed. It follows (see Morphisms, Lemma <a href="/tag/02GL" data-tag="02GL">29.37.7</a>) that $U' \times _ U \overline{u} \to \overline{u}$ has a section which gives us the desired $\overline{u}'$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="05VN">
+  <p><a class="environment-identifier" href="/tag/05VN">Lemma <span data-tag="05VN">66.19.4</span>.</a> Let $S$ be a scheme. Let $X$ be an algebraic space over $S$. Let $\overline{x} : \mathop{\mathrm{Spec}}(k) \to X$ be a geometric point of $X$ lying over $x \in |X|$. Let $\varphi : U \to X$ be an étale morphism of algebraic spaces and let $u \in |U|$ with $\varphi (u) = x$. Then there exists a geometric point $\overline{u} : \mathop{\mathrm{Spec}}(k) \to U$ lying over $u$ with $\overline{x} = \varphi \circ \overline{u}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose an affine scheme $U'$ with $u' \in U'$ and an étale morphism $U' \to U$ which maps $u'$ to $u$. If we can prove the lemma for $(U', u') \to (X, x)$ then the lemma follows. Hence we may assume that $U$ is a scheme, in particular that $U \to X$ is representable. Then look at the cartesian diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{Spec}}(k) \times _{\overline{x}, X, \varphi } U \ar[d]_{\text{pr}_1} \ar[r]_-{\text{pr}_2} &  U \ar[d]^\varphi \\  \mathop{\mathrm{Spec}}(k) \ar[r]^-{\overline{x}} &  X }  \]
+</div>
+    <p>
+       The projection $\text{pr}_1$ is the base change of an étale morphisms so it is étale, see Lemma <a href="/tag/03FU" data-tag="03FU">66.16.5</a>. Therefore, the scheme $\mathop{\mathrm{Spec}}(k) \times _{\overline{x}, X, \varphi } U$ is a disjoint union of finite separable extensions of $k$, see Morphisms, Lemma <a href="/tag/02GL" data-tag="02GL">29.37.7</a>. But $k$ is algebraically closed, so all these extensions are trivial, so $\mathop{\mathrm{Spec}}(k) \times _{\overline{x}, X, \varphi } U$ is a disjoint union of copies of $\mathop{\mathrm{Spec}}(k)$ and each of these corresponds to a geometric point $\overline{u}$ with $\varphi \circ \overline{u} = \overline{x}$. By Lemma <a href="/tag/03H4" data-tag="03H4">66.4.3</a> the map 
+    <p>
+      <div class="equation">
+  \[  |\mathop{\mathrm{Spec}}(k) \times _{\overline{x}, X, \varphi } U| \longrightarrow |\mathop{\mathrm{Spec}}(k)| \times _{|X|} |U|  \]
+</div>
+    <p>
+       is surjective, hence we can pick $\overline{u}$ to lie over $u$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="04JX">
+  <p><a class="environment-identifier" href="/tag/04JX">Lemma <span data-tag="04JX">66.19.5</span>.</a> Let $S$ be a scheme. Let $X$ be an algebraic space over $S$. Let $\overline{x}$ be a geometric point of $X$. Let $(U, \overline{u})$ an étale neighborhood of $\overline{x}$. Let $\{ \varphi _ i : U_ i \to U\} _{i \in I}$ be an étale covering in $X_{spaces, {\acute{e}tale}}$. Then there exist $i \in I$ and $\overline{u}_ i : \overline{x} \to U_ i$ such that $\varphi _ i : (U_ i, \overline{u}_ i) \to (U, \overline{u})$ is a morphism of étale neighborhoods. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $u \in |U|$ be the image of $\overline{u}$. As $|U| = \bigcup _{i \in I} \varphi _ i(|U_ i|)$ there exists an $i$ and a point $u_ i \in U_ i$ mapping to $x$. Apply Lemma <a href="/tag/05VN" data-tag="05VN">66.19.4</a> to $(U_ i, u_ i) \to (U, u)$ and $\overline{u}$ to get the desired geometric point. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="04JY">
+  <p><a class="environment-identifier" href="/tag/04JY">Definition <span data-tag="04JY">66.19.6</span>.</a> Let $S$ be a scheme. Let $X$ be an algebraic space over $S$. Let $\mathcal{F}$ be a presheaf on $X_{\acute{e}tale}$. Let $\overline{x}$ be a geometric point of $X$. The <em>stalk</em> of $\mathcal{F}$ at $\overline{x}$ is </p>
+  <div class="equation">
+  \[  \mathcal{F}_{\bar x} = \mathop{\mathrm{colim}}\nolimits _{(U, \overline{u})} \mathcal{F}(U)  \]
+</div>
+  <p> where $(U, \overline{u})$ runs over all étale neighborhoods of $\overline{x}$ in $X$ with $U \in \mathop{\mathrm{Ob}}\nolimits (X_{\acute{e}tale})$. </p>
+</article> 
+</p>
+<p>
+By Lemma <a href="/tag/04JW" data-tag="04JW">66.19.3</a>, this colimit is over a filtered index category, namely the opposite of the category of étale neighborhoods in $X_{\acute{e}tale}$. More precisely Lemma <a href="/tag/04JW" data-tag="04JW">66.19.3</a> says the opposite of the category of all étale neighbourhoods is filtered, and the full subcategory of those which are in $X_{\acute{e}tale}$ is a cofinal subcategory hence also filtered. 
+</p>
+<p>
+This means an element of $\mathcal{F}_{\overline{x}}$ can be thought of as a triple $(U, \overline{u}, \sigma )$ where $U \in \mathop{\mathrm{Ob}}\nolimits (X_{\acute{e}tale})$ and $\sigma \in \mathcal{F}(U)$. Two triples $(U, \overline{u}, \sigma )$, $(U', \overline{u}', \sigma ')$ define the same element of the stalk if there exists a third étale neighbourhood $(U'', \overline{u}'')$, $U'' \in \mathop{\mathrm{Ob}}\nolimits (X_{\acute{e}tale})$ and morphisms of étale neighbourhoods $h : (U'', \overline{u}'') \to (U, \overline{u})$, $h' : (U'', \overline{u}'') \to (U', \overline{u}')$ such that $h^*\sigma = (h')^*\sigma '$ in $\mathcal{F}(U'')$. See Categories, Section <a href="/tag/04AX" data-tag="04AX">4.19</a>. 
+</p>
+<p>
+This also implies that if $\mathcal{F}'$ is the sheaf on $X_{spaces, {\acute{e}tale}}$ corresponding to $\mathcal{F}$ on $X_{\acute{e}tale}$, then 
+</p>
+<div class="equation" id="04JZ">
+    <span class="equation-label"><a href="/tag/04JZ" data-tag="04JZ">66.19.6.1</a></span>
+  <div>\begin{equation}  \label{spaces-properties-equation-stalk-spaces-etale} \mathcal{F}_{\overline{x}} = \mathop{\mathrm{colim}}\nolimits _{(U, \overline{u})} \mathcal{F}'(U) \end{equation}</div>
+</div>
+<p>
+ where now the colimit is over all the étale neighbourhoods of $\overline{x}$. We will often jump between the point of view of using $X_{\acute{e}tale}$ and $X_{spaces, {\acute{e}tale}}$ without further mention. 
+</p>
+<p>
+In particular this means that if $\mathcal{F}$ is a presheaf of abelian groups, rings, etc then $\mathcal{F}_{\overline{x}}$ is an abelian group, ring, etc simply by the usual way of defining the group structure on a directed colimit of abelian groups, rings, etc. 
+</p>
+<p>
+<article class="env-lemma" id="04K0">
+       
+      
+  <p><a class="environment-identifier" href="/tag/04K0">Lemma <span data-tag="04K0">66.19.7</span>.</a> Let $S$ be a scheme. Let $X$ be an algebraic space over $S$. Let $\overline{x}$ be a geometric point of $X$. Consider the functor </p>
+  <div class="equation">
+  \[  u : X_{\acute{e}tale}\longrightarrow \textit{Sets}, \quad U \longmapsto |U_{\overline{x}}|  \]
+</div>
+  <p> Then $u$ defines a point $p$ of the site $X_{\acute{e}tale}$ (Sites, Definition <a href="/tag/00Y5" data-tag="00Y5">7.32.2</a>) and its associated stalk functor $\mathcal{F} \mapsto \mathcal{F}_ p$ (Sites, Equation <a href="/tag/04EH" data-tag="04EH">7.32.1.1</a>) is the functor $\mathcal{F} \mapsto \mathcal{F}_{\overline{x}}$ defined above. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In the proof of Lemma <a href="/tag/05VN" data-tag="05VN">66.19.4</a> we have seen that the scheme $U_{\overline{x}} = \overline{x} \times _ X U$ is a disjoint union of schemes isomorphic to $\overline{x}$. Thus we can also think of $|U_{\overline{x}}|$ as the set of geometric points of $U$ lying over $\overline{x}$, i.e., as the collection of morphisms $\overline{u} : \overline{x} \to U$ fitting into the diagram of Definition <a href="/tag/04JV" data-tag="04JV">66.19.2</a>. From this it follows that $u(X)$ is a singleton, and that $u(U \times _ V W) = u(U) \times _{u(V)} u(W)$ whenever $U \to V$ and $W \to V$ are morphisms in $X_{\acute{e}tale}$. And, given a covering $\{ U_ i \to U\} _{i \in I}$ in $X_{\acute{e}tale}$ we see that $\coprod u(U_ i) \to u(U)$ is surjective by Lemma <a href="/tag/04JX" data-tag="04JX">66.19.5</a>. Hence Sites, Proposition <a href="/tag/00YC" data-tag="00YC">7.33.3</a> applies, so $p$ is a point of the site $X_{\acute{e}tale}$. Finally, the our functor $\mathcal{F} \mapsto \mathcal{F}_{\overline{s}}$ is given by exactly the same colimit as the functor $\mathcal{F} \mapsto \mathcal{F}_ p$ associated to $p$ in Sites, Equation <a href="/tag/04EH" data-tag="04EH">7.32.1.1</a> which proves the final assertion. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="04K1">
+  <p><a class="environment-identifier" href="/tag/04K1">Lemma <span data-tag="04K1">66.19.8</span>.</a> Let $S$ be a scheme. Let $X$ be an algebraic space over $S$. Let $\overline{x}$ be a geometric point of $X$. </p>
+  <p><ol>
+  <li><p>
+The stalk functor $\textit{PAb}(X_{\acute{e}tale}) \to \textit{Ab}$, $\mathcal{F} \mapsto \mathcal{F}_{\overline{x}}$ is exact. 
+</p>
+</li><li><p>
+We have $(\mathcal{F}^\# )_{\overline{x}} = \mathcal{F}_{\overline{x}}$ for any presheaf of sets $\mathcal{F}$ on $X_{\acute{e}tale}$. 
+</p>
+</li><li><p>
+The functor $\textit{Ab}(X_{\acute{e}tale}) \to \textit{Ab}$, $\mathcal{F} \mapsto \mathcal{F}_{\overline{x}}$ is exact. 
+</p>
+</li><li><p>
+Similarly the functors $\textit{PSh}(X_{\acute{e}tale}) \to \textit{Sets}$ and $\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale}) \to \textit{Sets}$ given by the stalk functor $\mathcal{F} \mapsto \mathcal{F}_{\overline{x}}$ are exact (see Categories, Definition <a href="/tag/0034" data-tag="0034">4.23.1</a>) and commute with arbitrary colimits. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This result follows from the general material in Modules on Sites, Section <a href="/tag/04EM" data-tag="04EM">18.36</a>. This is true because $\mathcal{F} \mapsto \mathcal{F}_{\overline{x}}$ comes from a point of the small étale site of $X$, see Lemma <a href="/tag/04K0" data-tag="04K0">66.19.7</a>. See the proof of Étale Cohomology, Lemma <a href="/tag/03PT" data-tag="03PT">59.29.9</a> for a direct proof of some of these statements in the setting of the small étale site of a scheme. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We will see below that the stalk functor $\mathcal{F} \mapsto \mathcal{F}_{\overline{x}}$ is really the pullback along the morphism $\overline{x}$. In that sense the following lemma is a generalization of the lemma above. 
+</p>
+<p>
+<article class="env-lemma" id="04K2">
+  <p><a class="environment-identifier" href="/tag/04K2">Lemma <span data-tag="04K2">66.19.9</span>.</a> Let $S$ be a scheme. Let $f : X \to Y$ be a morphism of algebraic spaces over $S$. </p>
+  <p><ol>
+  <li><p>
+The functor $f_{small}^{-1} : \textit{Ab}(Y_{\acute{e}tale}) \to \textit{Ab}(X_{\acute{e}tale})$ is exact. 
+</p>
+</li><li><p>
+The functor $f_{small}^{-1} : \mathop{\mathit{Sh}}\nolimits (Y_{\acute{e}tale}) \to \mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale})$ is exact, i.e., it commutes with finite limits and colimits, see Categories, Definition <a href="/tag/0034" data-tag="0034">4.23.1</a>. 
+</p>
+</li><li><p>
+For any étale morphism $V \to Y$ of algebraic spaces we have $f_{small}^{-1}h_ V = h_{X \times _ Y V}$. 
+</p>
+</li><li><p>
+Let $\overline{x} \to X$ be a geometric point. Let $\mathcal{G}$ be a sheaf on $Y_{\acute{e}tale}$. Then there is a canonical identification 
+</p>
+<div class="equation">
+  \[  (f_{small}^{-1}\mathcal{G})_{\overline{x}} = \mathcal{G}_{\overline{y}}.  \]
+</div>
+<p>
+ where $\overline{y} = f \circ \overline{x}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Recall that $f_{small}$ is defined via $f_{spaces, small}$ in Lemma <a href="/tag/03G2" data-tag="03G2">66.18.8</a>. Parts (1), (2) and (3) are general consequences of the fact that $f_{spaces, {\acute{e}tale}} : X_{spaces, {\acute{e}tale}} \to Y_{spaces, {\acute{e}tale}}$ is a morphism of sites, see Sites, Definition <a href="/tag/00X1" data-tag="00X1">7.14.1</a> for (2), Modules on Sites, Lemma <a href="/tag/04JC" data-tag="04JC">18.31.2</a> for (1), and Sites, Lemma <a href="/tag/04D3" data-tag="04D3">7.13.5</a> for (3). 
+    <p>
+      Proof of (4). This statement is a special case of Sites, Lemma <a href="/tag/05V1" data-tag="05V1">7.34.2</a> via Lemma <a href="/tag/04K0" data-tag="04K0">66.19.7</a>. We also provide a direct proof. Note that by Lemma <a href="/tag/04K1" data-tag="04K1">66.19.8</a>. taking stalks commutes with sheafification. Let $\mathcal{G}'$ be the sheaf on $Y_{spaces, {\acute{e}tale}}$ whose restriction to $Y_{\acute{e}tale}$ is $\mathcal{G}$. Recall that $f_{spaces, {\acute{e}tale}}^{-1}\mathcal{G}'$ is the sheaf associated to the presheaf 
+    <p>
+      <div class="equation">
+  \[  U \longrightarrow \mathop{\mathrm{colim}}\nolimits _{U \to X \times _ Y V} \mathcal{G}'(V),  \]
+</div>
+    <p>
+       see Sites, Sections <a href="/tag/00WU" data-tag="00WU">7.13</a> and <a href="/tag/00VC" data-tag="00VC">7.5</a>. Thus we have 
+    <p>
+      <div class="equation">
+  \begin{align*}  (f_{spaces, {\acute{e}tale}}^{-1}\mathcal{G}')_{\overline{x}} &  = \mathop{\mathrm{colim}}\nolimits _{(U, \overline{u})} f_{spaces, {\acute{e}tale}}^{-1}\mathcal{G}'(U) \\ &  = \mathop{\mathrm{colim}}\nolimits _{(U, \overline{u})} \mathop{\mathrm{colim}}\nolimits _{a : U \to X \times _ Y V} \mathcal{G}'(V) \\ &  = \mathop{\mathrm{colim}}\nolimits _{(V, \overline{v})} \mathcal{G}'(V) \\ &  = \mathcal{G}'_{\overline{y}} \end{align*}
+</div>
+    <p>
+       in the third equality the pair $(U, \overline{u})$ and the map $a : U \to X \times _ Y V$ corresponds to the pair $(V, a \circ \overline{u})$. Since the stalk of $\mathcal{G}'$ (resp. $f_{spaces, {\acute{e}tale}}^{-1}\mathcal{G}'$) agrees with the stalk of $\mathcal{G}$ (resp. $f_{small}^{-1}\mathcal{G}$), see Equation (<a href="/tag/04JZ" data-tag="04JZ">66.19.6.1</a>) the result follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="04K3">
+  <p><a class="environment-identifier" href="/tag/04K3">Remark <span data-tag="04K3">66.19.10</span>.</a> This remark is the analogue of Étale Cohomology, Remark <a href="/tag/04JN" data-tag="04JN">59.56.6</a>. Let $S$ be a scheme. Let $X$ be an algebraic space over $S$. Let $\overline{x} : \mathop{\mathrm{Spec}}(k) \to X$ be a geometric point of $X$. By Étale Cohomology, Theorem <a href="/tag/03QT" data-tag="03QT">59.56.3</a> the category of sheaves on $\mathop{\mathrm{Spec}}(k)_{\acute{e}tale}$ is equivalent to the category of sets (by taking a sheaf to its global sections). Hence it follows from Lemma <a href="/tag/04K2" data-tag="04K2">66.19.9</a> part (4) applied to the morphism $\overline{x}$ that the functor </p>
+  <div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale}) \longrightarrow \textit{Sets}, \quad \mathcal{F} \longmapsto \mathcal{F}_{\overline{x}}  \]
+</div>
+  <p> is isomorphic to the functor </p>
+  <div class="equation">
+  \[  \mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale}) \longrightarrow \mathop{\mathit{Sh}}\nolimits (\mathop{\mathrm{Spec}}(k)_{\acute{e}tale}) = \textit{Sets}, \quad \mathcal{F} \longmapsto \overline{x}^*\mathcal{F}  \]
+</div>
+  <p> Hence we may view the stalk functors as pullback functors along geometric morphisms (and not just some abstract morphisms of topoi as in the result of Lemma <a href="/tag/04K0" data-tag="04K0">66.19.7</a>). </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="04K4">
+  <p><a class="environment-identifier" href="/tag/04K4">Remark <span data-tag="04K4">66.19.11</span>.</a> Let $S$ be a scheme. Let $X$ be an algebraic space over $S$. Let $x \in |X|$. We claim that for any pair of geometric points $\overline{x}$ and $\overline{x}'$ lying over $x$ the stalk functors are isomorphic. By definition of $|X|$ we can find a third geometric point $\overline{x}''$ so that there exists a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \overline{x}'' \ar[r] \ar[d] \ar[rd]^{\overline{x}''} &  \overline{x}' \ar[d]^{\overline{x}'} \\  \overline{x} \ar[r]^{\overline{x}} &  X. }  \]
+</div>
+  <p> Since the stalk functor $\mathcal{F} \mapsto \mathcal{F}_{\overline{x}}$ is given by pullback along the morphism $\overline{x}$ (and similarly for the others) we conclude by functoriality of pullbacks. </p>
+</article> 
+</p>
+<p>
+The following theorem says that the small étale site of an algebraic space has enough points. 
+</p>
+<p>
+<article class="env-theorem" id="04K5">
+  <p><a class="environment-identifier" href="/tag/04K5">Theorem <span data-tag="04K5">66.19.12</span>.</a> Let $S$ be a scheme. Let $X$ be an algebraic space over $S$. A map $a : \mathcal{F} \to \mathcal{G}$ of sheaves of sets is injective (resp. surjective) if and only if the map on stalks $a_{\overline{x}} : \mathcal{F}_{\overline{x}} \to \mathcal{G}_{\overline{x}}$ is injective (resp. surjective) for all geometric points of $X$. A sequence of abelian sheaves on $X_{\acute{e}tale}$ is exact if and only if it is exact on all stalks at geometric points of $S$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We know the theorem is true if $X$ is a scheme, see Étale Cohomology, Theorem <a href="/tag/03PU" data-tag="03PU">59.29.10</a>. Choose a surjective étale morphism $f : U \to X$ where $U$ is a scheme. Since $\{ U \to X\} $ is a covering (in $X_{spaces, {\acute{e}tale}}$) we can check whether a map of sheaves is injective, or surjective by restricting to $U$. Now if $\overline{u} : \mathop{\mathrm{Spec}}(k) \to U$ is a geometric point of $U$, then $(\mathcal{F}|_ U)_{\overline{u}} = \mathcal{F}_{\overline{x}}$ where $\overline{x} = f \circ \overline{u}$. (This is clear from the colimits defining the stalks at $\overline{u}$ and $\overline{x}$, but it also follows from Lemma <a href="/tag/04K2" data-tag="04K2">66.19.9</a>.) Hence the result for $U$ implies the result for $X$ and we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma should be skipped on a first reading. 
+</p>
+<p>
+<article class="env-lemma" id="04K6">
+  <p><a class="environment-identifier" href="/tag/04K6">Lemma <span data-tag="04K6">66.19.13</span>.</a> Let $S$ be a scheme. Let $X$ be an algebraic space over $S$. Let $p : \mathop{\mathit{Sh}}\nolimits (pt) \to \mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale})$ be a point of the small étale topos of $X$. Then there exists a geometric point $\overline{x}$ of $X$ such that the stalk functor $\mathcal{F} \mapsto \mathcal{F}_ p$ is isomorphic to the stalk functor $\mathcal{F} \mapsto \mathcal{F}_{\overline{x}}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Sites, Lemma <a href="/tag/00YA" data-tag="00YA">7.32.7</a> there is a one to one correspondence between points of the site and points of the associated topos. Hence we may assume that $p$ is given by a functor $u : X_{\acute{e}tale}\to \textit{Sets}$ which defines a point of the site $X_{\acute{e}tale}$. Let $U \in \mathop{\mathrm{Ob}}\nolimits (X_{\acute{e}tale})$ be an object whose structure morphism $j : U \to X$ is surjective. Note that $h_ U$ is a sheaf which surjects onto the final sheaf. Since taking stalks is exact we see that $(h_ U)_ p = u(U)$ is not empty (use Sites, Lemma <a href="/tag/00Y6" data-tag="00Y6">7.32.3</a>). Pick $x \in u(U)$. By Sites, Lemma <a href="/tag/04H2" data-tag="04H2">7.35.1</a> we obtain a point $q : \mathop{\mathit{Sh}}\nolimits (pt) \to \mathop{\mathit{Sh}}\nolimits (U_{\acute{e}tale})$ such that $p = j_{small} \circ q$, so that $\mathcal{F}_ p = (\mathcal{F}|_ U)_ q$ functorially. By Étale Cohomology, Lemma <a href="/tag/04HU" data-tag="04HU">59.29.12</a> there is a geometric point $\overline{u}$ of $U$ and a functorial isomorphism $\mathcal{G}_ q = \mathcal{G}_{\overline{u}}$ for $\mathcal{G} \in \mathop{\mathit{Sh}}\nolimits (U_{\acute{e}tale})$. Set $\overline{x} = j \circ \overline{u}$. Then we see that $\mathcal{F}_{\overline{x}} \cong (\mathcal{F}|_ U)_{\overline{u}}$ functorially in $\mathcal{F}$ on $X_{\acute{e}tale}$ by Lemma <a href="/tag/04K2" data-tag="04K2">66.19.9</a> and we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

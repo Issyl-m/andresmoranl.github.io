@@ -1,0 +1,138 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="derham-section-kunneth" class="tex-section"><span data-tag="0FM9">50.8</span> Künneth formula</h2>
+
+<p>
+An important feature of de Rham cohomology is that there is a Künneth formula. 
+</p>
+<p>
+Let $a : X \to S$ and $b : Y \to S$ be morphisms of schemes with the same target. Let $p : X \times _ S Y \to X$ and $q : X \times _ S Y \to Y$ be the projection morphisms and $f = a \circ p = b \circ q$. Here is a picture 
+</p>
+<div class="equation">
+  \[  \xymatrix{ &  X \times _ S Y \ar[ld]^ p \ar[rd]_ q \ar[dd]^ f \\  X \ar[rd]_ a &  &  Y \ar[ld]^ b \\  &  S }  \]
+</div>
+<p>
+ In this section, given an $\mathcal{O}_ X$-module $\mathcal{F}$ and an $\mathcal{O}_ Y$-module $\mathcal{G}$ let us set 
+</p>
+<div class="equation">
+  \[  \mathcal{F} \boxtimes \mathcal{G} = p^*\mathcal{F} \otimes _{\mathcal{O}_{X \times _ S Y}} q^*\mathcal{G}  \]
+</div>
+<p>
+ The bifunctor $(\mathcal{F}, \mathcal{G}) \mapsto \mathcal{F} \boxtimes \mathcal{G}$ on quasi-coherent modules extends to a bifunctor on quasi-coherent modules and differential operators of finite order over $S$, see Morphisms, Remark <a href="/tag/0G46" data-tag="0G46">29.34.3</a>. The differentials of the de Rham complexes $\Omega ^\bullet _{X/S}$ and $\Omega ^\bullet _{Y/S}$ are differential operators of order $1$ over $S$ by Modules, Lemma <a href="/tag/0G3Z" data-tag="0G3Z">17.30.5</a>. Thus it makes sense to consider the complex 
+</p>
+<div class="equation">
+  \[  \text{Tot}(\Omega ^\bullet _{X/S} \boxtimes \Omega ^\bullet _{Y/S})  \]
+</div>
+<p>
+ Please see the discussion in Derived Categories of Schemes, Section <a href="/tag/0G4A" data-tag="0G4A">36.24</a>. 
+</p>
+<p>
+<article class="env-lemma" id="0FMA">
+  <p><a class="environment-identifier" href="/tag/0FMA">Lemma <span data-tag="0FMA">50.8.1</span>.</a> In the situation above there is a canonical isomorphism </p>
+  <div class="equation">
+  \[  \text{Tot}(\Omega ^\bullet _{X/S} \boxtimes \Omega ^\bullet _{Y/S}) \longrightarrow \Omega ^\bullet _{X \times _ S Y/S}  \]
+</div>
+  <p> of complexes of $f^{-1}\mathcal{O}_ S$-modules. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We know that $ \Omega _{X \times _ S Y/S} = p^*\Omega _{X/S} \oplus q^*\Omega _{Y/S} $ by Morphisms, Lemma <a href="/tag/01V1" data-tag="01V1">29.33.11</a>. Taking exterior powers we obtain 
+    <p>
+      <div class="equation">
+  \[  \Omega ^ n_{X \times _ S Y/S} = \bigoplus \nolimits _{i + j = n} p^*\Omega ^ i_{X/S} \otimes _{\mathcal{O}_{X \times _ S Y}} q^*\Omega ^ j_{Y/S} = \bigoplus \nolimits _{i + j = n} \Omega ^ i_{X/S} \boxtimes \Omega ^ j_{Y/S}  \]
+</div>
+    <p>
+       by elementary properties of exterior powers. These identifications determine isomorphisms between the terms of the complexes on the left and the right of the arrow in the lemma. We omit the verification that these maps are compatible with differentials. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Set $A = \Gamma (S, \mathcal{O}_ S)$. Combining the result of Lemma <a href="/tag/0FMA" data-tag="0FMA">50.8.1</a> with the map Derived Categories of Schemes, Equation (<a href="/tag/0FLR" data-tag="0FLR">36.24.0.2</a>) we obtain a cup product 
+</p>
+<div class="equation">
+  \[  R\Gamma (X, \Omega ^\bullet _{X/S}) \otimes _ A^\mathbf {L} R\Gamma (Y, \Omega ^\bullet _{Y/S}) \longrightarrow R\Gamma (X \times _ S Y, \Omega ^\bullet _{X \times _ S Y/S})  \]
+</div>
+<p>
+ On the level of cohomology, using the discussion in More on Algebra, Section <a href="/tag/068G" data-tag="068G">15.64</a>, we obtain a canonical map 
+</p>
+<div class="equation">
+  \[  H^ i_{dR}(X/S) \otimes _ A H^ j_{dR}(Y/S) \longrightarrow H^{i + j}_{dR}(X \times _ S Y/S),\quad (\xi , \zeta ) \longmapsto p^*\xi \cup q^*\zeta  \]
+</div>
+<p>
+ We note that the construction above indeed proceeds by first pulling back and then taking the cup product. 
+</p>
+<p>
+<article class="env-lemma" id="0FMB">
+  <p><a class="environment-identifier" href="/tag/0FMB">Lemma <span data-tag="0FMB">50.8.2</span>.</a> Assume $X$ and $Y$ are smooth, quasi-compact, with affine diagonal over $S = \mathop{\mathrm{Spec}}(A)$. Then the map </p>
+  <div class="equation">
+  \[  R\Gamma (X, \Omega ^\bullet _{X/S}) \otimes _ A^\mathbf {L} R\Gamma (Y, \Omega ^\bullet _{Y/S}) \longrightarrow R\Gamma (X \times _ S Y, \Omega ^\bullet _{X \times _ S Y/S})  \]
+</div>
+  <p> is an isomorphism in $D(A)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Morphisms, Lemma <a href="/tag/02G1" data-tag="02G1">29.35.12</a> the sheaves $\Omega ^ n_{X/S}$ and $\Omega ^ m_{Y/S}$ are finite locally free $\mathcal{O}_ X$ and $\mathcal{O}_ Y$-modules. On the other hand, $X$ and $Y$ are flat over $S$ (Morphisms, Lemma <a href="/tag/01VF" data-tag="01VF">29.35.9</a>) and hence we find that $\Omega ^ n_{X/S}$ and $\Omega ^ m_{Y/S}$ are flat over $S$. Also, observe that $\Omega ^\bullet _{X/S}$ is a locally bounded. Thus the result by Lemma <a href="/tag/0FMA" data-tag="0FMA">50.8.1</a> and Derived Categories of Schemes, Lemma <a href="/tag/0FLT" data-tag="0FLT">36.24.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+There is a relative version of the cup product, namely a map 
+</p>
+<div class="equation">
+  \[  Ra_*\Omega ^\bullet _{X/S} \otimes _{\mathcal{O}_ S}^\mathbf {L} Rb_*\Omega ^\bullet _{Y/S} \longrightarrow Rf_*\Omega ^\bullet _{X \times _ S Y/S}  \]
+</div>
+<p>
+ in $D(\mathcal{O}_ S)$. The construction combines Lemma <a href="/tag/0FMA" data-tag="0FMA">50.8.1</a> with the map Derived Categories of Schemes, Equation (<a href="/tag/0G4B" data-tag="0G4B">36.24.0.1</a>). The construction shows that this map is given by the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ Ra_*\Omega ^\bullet _{X/S} \otimes _{\mathcal{O}_ S}^\mathbf {L} Rb_*\Omega ^\bullet _{Y/S} \ar[d]^{\text{units of adjunction}} \\  Rf_*(p^{-1}\Omega ^\bullet _{X/S}) \otimes _{\mathcal{O}_ S}^\mathbf {L} Rf_*(q^{-1}\Omega ^\bullet _{Y/S}) \ar[r] \ar[d]^{\text{relative cup product}} &  Rf_*(\Omega ^\bullet _{X \times _ S Y/S}) \otimes _{\mathcal{O}_ S}^\mathbf {L} Rf_*(\Omega ^\bullet _{X \times _ S Y/S}) \ar[d]^{\text{relative cup product}} \\  Rf_*(p^{-1}\Omega ^\bullet _{X/S} \otimes _{f^{-1}\mathcal{O}_ S}^\mathbf {L} q^{-1}\Omega ^\bullet _{Y/S}) \ar[d]^{\text{from derived to usual}} \ar[r] &  Rf_*(\Omega ^\bullet _{X \times _ S Y/S} \otimes _{f^{-1}\mathcal{O}_ S}^\mathbf {L} \Omega ^\bullet _{X \times _ S Y/S}) \ar[d]^{\text{from derived to usual}} \\  Rf_*\text{Tot}(p^{-1}\Omega ^\bullet _{X/S} \otimes _{f^{-1}\mathcal{O}_ S} q^{-1}\Omega ^\bullet _{Y/S}) \ar[r] \ar[d]^{\text{canonical map}} &  Rf_*\text{Tot}(\Omega ^\bullet _{X \times _ S Y/S} \otimes _{f^{-1}\mathcal{O}_ S} \Omega ^\bullet _{X \times _ S Y/S}) \ar[d]^{\eta \otimes \omega \mapsto \eta \wedge \omega } \\  Rf_*\text{Tot}(\Omega ^\bullet _{X/S} \boxtimes \Omega ^\bullet _{Y/S}) \ar@{=}[r] &  Rf_*\Omega ^\bullet _{X \times _ S Y/S} }  \]
+</div>
+<p>
+ Here the first arrow uses the units $\text{id} \to Rp_* p^{-1}$ and $\text{id} \to Rq_* q^{-1}$ of adjunction as well as the identifications $Rf_* p^{-1} = Ra_* Rp_* p^{-1}$ and $Rf_* q^{-1} = Rb_* Rq_* q^{-1}$. The second arrow is the relative cup product of Cohomology, Remark <a href="/tag/0B68" data-tag="0B68">20.28.7</a>. The third arrow is the map sending a derived tensor product of complexes to the totalization of the tensor product of complexes. The final equality is Lemma <a href="/tag/0FMA" data-tag="0FMA">50.8.1</a>. This construction recovers on global section the construction given earlier. 
+</p>
+<p>
+<article class="env-lemma" id="0FMC">
+  <p><a class="environment-identifier" href="/tag/0FMC">Lemma <span data-tag="0FMC">50.8.3</span>.</a> Assume $X \to S$ and $Y \to S$ are smooth and quasi-compact and the morphisms $X \to X \times _ S X$ and $Y \to Y \times _ S Y$ are affine. Then the relative cup product </p>
+  <div class="equation">
+  \[  Ra_*\Omega ^\bullet _{X/S} \otimes _{\mathcal{O}_ S}^\mathbf {L} Rb_*\Omega ^\bullet _{Y/S} \longrightarrow Rf_*\Omega ^\bullet _{X \times _ S Y/S}  \]
+</div>
+  <p> is an isomorphism in $D(\mathcal{O}_ S)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Immediate consequence of Lemma <a href="/tag/0FMB" data-tag="0FMB">50.8.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

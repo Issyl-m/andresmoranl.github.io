@@ -1,0 +1,94 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="etale-cohomology-section-etale-topology" class="tex-section"><span data-tag="03N4">59.4</span> The étale topology</h2>
+
+<p>
+It is very hard to simply “add” extra open sets to refine the Zariski topology. One efficient way to define a topology is to consider not only open sets, but also some schemes that lie over them. To define the étale topology, one considers all morphisms $\varphi : U \to X$ which are étale. If $X$ is a smooth projective variety over $\mathbf{C}$, then this means 
+</p>
+<ol>
+  <li><p>
+$U$ is a disjoint union of smooth varieties, and 
+</p>
+</li><li><p>
+$\varphi $ is (analytically) locally an isomorphism. 
+</p>
+</li>
+</ol>
+<p>
+ The word “analytically” refers to the usual (transcendental) topology over $\mathbf{C}$. So the second condition means that the derivative of $\varphi $ has full rank everywhere (and in particular all the components of $U$ have the same dimension as $X$). 
+</p>
+<p>
+A double cover – loosely defined as a finite degree $2$ map between varieties – for example 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Spec}}(\mathbf{C}[t]) \longrightarrow \mathop{\mathrm{Spec}}(\mathbf{C}[t]), \quad t \longmapsto t^2  \]
+</div>
+<p>
+ will not be an étale morphism if it has a fibre consisting of a single point. In the example this happens when $t = 0$. For a finite map between varieties over $\mathbf{C}$ to be étale all the fibers should have the same number of points. Removing the point $t = 0$ from the source of the map in the example will make the morphism étale. But we can remove other points from the source of the morphism also, and the morphism will still be étale. To consider the étale topology, we have to look at all such morphisms. Unlike the Zariski topology, these need not be merely open subsets of $X$, even though their images always are. 
+</p>
+<p>
+<article class="env-definition" id="03N5">
+  <p><a class="environment-identifier" href="/tag/03N5">Definition <span data-tag="03N5">59.4.1</span>.</a> A family of morphisms $\{  \varphi _ i : U_ i \to X\} _{i \in I}$ is called an <em>étale covering</em> if each $\varphi _ i$ is an étale morphism and their images cover $X$, i.e., $X = \bigcup _{i \in I} \varphi _ i(U_ i)$. </p>
+</article> 
+</p>
+<p>
+This “defines” the étale topology. In other words, we can now say what the sheaves are. An <em>étale sheaf</em> $\mathcal{F}$ of sets (resp. abelian groups, vector spaces, etc) on $X$ is the data: 
+</p>
+<ol>
+  <li><p>
+for each étale morphism $\varphi : U \to X$ a set (resp. abelian group, vector space, etc) $\mathcal{F}(U)$, 
+</p>
+</li><li><p>
+for each pair $U, \  U'$ of étale schemes over $X$, and each morphism $U \to U'$ over $X$ (which is automatically étale) a restriction map $\rho ^{U'}_ U : \mathcal{F}(U') \to \mathcal{F}(U)$ 
+</p>
+</li>
+</ol>
+<p>
+ These data have to satisfy the condition that $\rho ^ U_ U = \text{id}$ in case of the identity morphism $U \to U$ and that $\rho ^{U'}_ U \circ \rho ^{U''}_{U'} = \rho ^{U''}_ U$ when we have morphisms $U \to U' \to U''$ of schemes étale over $X$ as well as the following <em>sheaf axiom</em>: 
+</p>
+<ul>
+  <li class="custom-item" data-marker="(*)"><p>
+for every étale covering $\{  \varphi _ i : U_ i \to U\} _{i \in I}$, the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathcal{F} (U) \ar[r] &  \Pi _{i \in I} \mathcal{F} (U_ i) \ar@<1ex>[r] \ar@<-1ex>[r] &  \Pi _{i, j \in I} \mathcal{F} (U_ i \times _ U U_ j) }  \]
+</div>
+<p>
+ is an equalizer diagram in the category of sets (resp. abelian groups, vector spaces, etc). 
+</p>
+</li>
+</ul>
+<p>
+<article class="env-remark" id="03N6">
+  <p><a class="environment-identifier" href="/tag/03N6">Remark <span data-tag="03N6">59.4.2</span>.</a> In the last statement, it is essential not to forget the case where $i = j$ which is in general a highly nontrivial condition (unlike in the Zariski topology). In fact, frequently important coverings have only one element. </p>
+</article> 
+</p>
+<p>
+Since the identity is an étale morphism, we can compute the global sections of an étale sheaf, and cohomology will simply be the corresponding right-derived functors. In other words, once more theory has been developed and statements have been made precise, there will be no obstacle to defining cohomology. 
+</p>

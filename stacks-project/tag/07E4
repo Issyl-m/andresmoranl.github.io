@@ -1,0 +1,136 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-algebra-section-geometrically-regular" class="tex-section"><span data-tag="07E4">15.36</span> Geometric regularity</h2>
+
+<p>
+Let $k$ be a field. Let $(A, \mathfrak m, K)$ be a Noetherian local $k$-algebra. The Jacobi-Zariski sequence (Algebra, Lemma <a href="/tag/00S2" data-tag="00S2">10.134.4</a>) is a canonical exact sequence 
+</p>
+<div class="equation">
+  \[  H_1(L_{K/k}) \to \mathfrak m/\mathfrak m^2 \to \Omega _{A/k} \otimes _ A K \to \Omega _{K/k} \to 0  \]
+</div>
+<p>
+ because $H_1(L_{K/A}) = \mathfrak m/\mathfrak m^2$ by Algebra, Lemma <a href="/tag/07BP" data-tag="07BP">10.134.6</a>. We will show that exactness on the left of this sequence characterizes whether or not a regular local ring $A$ is geometrically regular over $k$. We will link this to the notion of formal smoothness in Section <a href="/tag/07EK" data-tag="07EK">15.41</a>. 
+</p>
+<p>
+<article class="env-proposition" id="07E5">
+  <p><a class="environment-identifier" href="/tag/07E5">Proposition <span data-tag="07E5">15.36.1</span>.</a> Let $k$ be a field of characteristic $p > 0$. Let $(A, \mathfrak m, K)$ be a Noetherian local $k$-algebra. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$A$ is geometrically regular over $k$, 
+</p>
+</li><li><p>
+for all $k \subset k' \subset k^{1/p}$ finite over $k$ the ring $A \otimes _ k k'$ is regular, 
+</p>
+</li><li><p>
+$A$ is regular and the canonical map $H_1(L_{K/k}) \to \mathfrak m/\mathfrak m^2$ is injective, and 
+</p>
+</li><li><p>
+$A$ is regular and the map $\Omega _{k/\mathbf{F}_ p} \otimes _ k K \to \Omega _{A/\mathbf{F}_ p} \otimes _ A K$ is injective. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Proof of (3) $\Rightarrow $ (1). Assume (3). Let $k'/k$ be a finite purely inseparable extension. Set $A' = A \otimes _ k k'$. This is a local ring with maximal ideal $\mathfrak m'$. Set $K' = A'/\mathfrak m'$. We get a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ 0 \ar[r] &  H_1(L_{K/k}) \otimes K' \ar[r] \ar[d]_\beta &  \mathfrak m/\mathfrak m^2 \otimes K' \ar[r] \ar[d] &  \Omega _{A/k} \otimes _ A K' \ar[r] \ar[d]_{\cong } &  \Omega _{K/k} \otimes K' \ar[r] \ar[d]_\alpha &  0 \\  &  H_1(L_{K'/k'}) \ar[r] &  \mathfrak m'/(\mathfrak m')^2 \ar[r] &  \Omega _{A'/k'} \otimes _{A'} K' \ar[r] &  \Omega _{K'/k'} \ar[r] &  0 }  \]
+</div>
+    <p>
+       with exact rows. The third vertical arrow is an isomorphism by base change for modules of differentials (Algebra, Lemma <a href="/tag/00RV" data-tag="00RV">10.131.12</a>). Thus $\alpha $ is surjective. By Lemma <a href="/tag/07E3" data-tag="07E3">15.35.3</a> we have 
+    <p>
+      <div class="equation">
+  \[  \dim \mathop{\mathrm{Ker}}(\alpha ) - \dim \mathop{\mathrm{Ker}}(\beta ) + \dim \mathop{\mathrm{Coker}}(\beta ) = 0  \]
+</div>
+    <p>
+       (and these dimensions are all finite). A diagram chase shows that $\dim \mathfrak m'/(\mathfrak m')^2 \leq \dim \mathfrak m/\mathfrak m^2$. However, since $A \to A'$ is finite flat we see that $\dim (A) = \dim (A')$, see Algebra, Lemma <a href="/tag/00OM" data-tag="00OM">10.112.6</a>. Hence $A'$ is regular by definition. 
+    <p>
+      Equivalence of (3) and (4). Consider the Jacobi-Zariski sequences for rows of the commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathbf{F}_ p \ar[r] &  A \ar[r] &  K \\  \mathbf{F}_ p \ar[r] \ar[u] &  k \ar[r] \ar[u] &  K \ar[u] }  \]
+</div>
+    <p>
+       to get a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ 0 \ar[r] &  \mathfrak m/\mathfrak m^2 \ar[r] &  \Omega _{A/\mathbf{F}_ p} \otimes _ A K \ar[r] &  \Omega _{K/\mathbf{F}_ p} \ar[r] &  0 &  \\  0 \ar[r] &  H_1(L_{K/k}) \ar[r] \ar[u] &  \Omega _{k/\mathbf{F}_ p} \otimes _ k K \ar[r] \ar[u] &  \Omega _{K/\mathbf{F}_ p} \ar[r] \ar[u] &  \Omega _{K/k} \ar[r] \ar[u] &  0 }  \]
+</div>
+    <p>
+       with exact rows. We have used that $H_1(L_{K/A}) = \mathfrak m/\mathfrak m^2$ and that $H_1(L_{K/\mathbf{F}_ p}) = 0$ as $K/\mathbf{F}_ p$ is separable, see Algebra, Proposition <a href="/tag/0322" data-tag="0322">10.158.9</a>. Thus it is clear that the kernels of $H_1(L_{K/k}) \to \mathfrak m/\mathfrak m^2$ and $\Omega _{k/\mathbf{F}_ p} \otimes _ k K \to \Omega _{A/\mathbf{F}_ p} \otimes _ A K$ have the same dimension. 
+    <p>
+      Proof of (2) $\Rightarrow $ (4) following Faltings, see <span class="cite">[<a href="/bibliography/Faltings-einfacher">Faltings-einfacher</a>]</span>. Let $a_1, \ldots , a_ n \in k$ be elements such that $\text{d}a_1, \ldots , \text{d}a_ n$ are linearly independent in $\Omega _{k/\mathbf{F}_ p}$. Consider the field extension $k' = k(a_1^{1/p}, \ldots , a_ n^{1/p})$. By Algebra, Lemma <a href="/tag/07DZ" data-tag="07DZ">10.158.3</a> we see that $k' = k[x_1, \ldots , x_ n]/(x_1^ p - a_1, \ldots , x_ n^ p - a_ n)$. In particular we see that the naive cotangent complex of $k'/k$ is homotopic to the complex $\bigoplus _{j = 1, \ldots , n} k' \rightarrow \bigoplus _{i = 1, \ldots , n} k'$ with the zero differential as $\text{d}(x_ j^ p - a_ j) = 0$ in $\Omega _{k[x_1, \ldots , x_ n]/k}$. Set $A' = A \otimes _ k k'$ and $K' = A'/\mathfrak m'$ as above. By Algebra, Lemma <a href="/tag/00S4" data-tag="00S4">10.134.8</a> we see that $\mathop{N\! L}\nolimits _{A'/A}$ is homotopy equivalent to the complex $\bigoplus _{j = 1, \ldots , n} A' \rightarrow \bigoplus _{i = 1, \ldots , n} A'$ with the zero differential, i.e., $H_1(L_{A'/A})$ and $\Omega _{A'/A}$ are free of rank $n$. The Jacobi-Zariski sequence for $\mathbf{F}_ p \to A \to A'$ is 
+    <p>
+      <div class="equation">
+  \[  H_1(L_{A'/A}) \to \Omega _{A/\mathbf{F}_ p} \otimes _ A A' \to \Omega _{A'/\mathbf{F}_ p} \to \Omega _{A'/A} \to 0  \]
+</div>
+    <p>
+       Using the presentation $A[x_1, \ldots , x_ n] \to A'$ with kernel $(x_ j^ p - a_ j)$ we see, unwinding the maps in Algebra, Lemma <a href="/tag/00S2" data-tag="00S2">10.134.4</a>, that the $j$th basis vector of $H_1(L_{A'/A})$ maps to $\text{d}a_ j \otimes 1$ in $\Omega _{A/\mathbf{F}_ p} \otimes A'$. As $\Omega _{A'/A}$ is free (hence flat) we get on tensoring with $K'$ an exact sequence 
+    <p>
+      <div class="equation">
+  \[  K'^{\oplus n} \to \Omega _{A/\mathbf{F}_ p} \otimes _ A K' \xrightarrow {\beta } \Omega _{A'/\mathbf{F}_ p} \otimes _{A'} K' \to K'^{\oplus n} \to 0  \]
+</div>
+    <p>
+       We conclude that the elements $\text{d}a_ j \otimes 1$ generate $\mathop{\mathrm{Ker}}(\beta )$ and we have to show that are linearly independent, i.e., we have to show $\dim (\mathop{\mathrm{Ker}}(\beta )) = n$. Consider the following big diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ 0 \ar[r] &  \mathfrak m'/(\mathfrak m')^2 \ar[r] &  \Omega _{A'/\mathbf{F}_ p} \otimes K' \ar[r] &  \Omega _{K'/\mathbf{F}_ p} \ar[r] &  0 \\  0 \ar[r] &  \mathfrak m/\mathfrak m^2 \otimes K' \ar[r] \ar[u]^\alpha &  \Omega _{A/\mathbf{F}_ p} \otimes K' \ar[r] \ar[u]^\beta &  \Omega _{K/\mathbf{F}_ p} \otimes K' \ar[r] \ar[u]^\gamma &  0 }  \]
+</div>
+    <p>
+       By Lemma <a href="/tag/07E1" data-tag="07E1">15.35.1</a> and the Jacobi-Zariski sequence for $\mathbf{F}_ p \to K \to K'$ we see that the kernel and cokernel of $\gamma $ have the same finite dimension. By assumption $A'$ is regular (and of the same dimension as $A$, see above) hence the kernel and cokernel of $\alpha $ have the same dimension. It follows that the kernel and cokernel of $\beta $ have the same dimension which is what we wanted to show. 
+    <p>
+      The implication (1) $\Rightarrow $ (2) is trivial. This finishes the proof of the proposition. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="07E6">
+  <p><a class="environment-identifier" href="/tag/07E6">Lemma <span data-tag="07E6">15.36.2</span>.</a> Let $k$ be a field of characteristic $p > 0$. Let $(A, \mathfrak m, K)$ be a Noetherian local $k$-algebra. Assume $A$ is geometrically regular over $k$. Let $K/F/k$ be a finitely generated subextension. Let $\varphi : k[y_1, \ldots , y_ m] \to A$ be a $k$-algebra map such that $y_ i$ maps to an element of $F$ in $K$ and such that $\text{d}y_1, \ldots , \text{d}y_ m$ map to a basis of $\Omega _{F/k}$. Set $\mathfrak p = \varphi ^{-1}(\mathfrak m)$. Then </p>
+  <div class="equation">
+  \[  k[y_1, \ldots , y_ m]_\mathfrak p \to A  \]
+</div>
+  <p> is flat and $A/\mathfrak pA$ is regular. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Set $A_0 = k[y_1, \ldots , y_ m]_\mathfrak p$ with maximal ideal $\mathfrak m_0$ and residue field $K_0$. Note that $\Omega _{A_0/k}$ is free of rank $m$ and $\Omega _{A_0/k} \otimes K_0 \to \Omega _{K_0/k}$ is an isomorphism. It is clear that $A_0$ is geometrically regular over $k$. Hence $H_1(L_{K_0/k}) \to \mathfrak m_0/\mathfrak m_0^2$ is an isomorphism, see Proposition <a href="/tag/07E5" data-tag="07E5">15.36.1</a>. Now consider 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ H_1(L_{K_0/k}) \otimes K \ar[d] \ar[r] &  \mathfrak m_0/\mathfrak m_0^2 \otimes K \ar[d] \\  H_1(L_{K/k}) \ar[r] &  \mathfrak m/\mathfrak m^2 }  \]
+</div>
+    <p>
+       Since the left vertical arrow is injective by Lemma <a href="/tag/07E2" data-tag="07E2">15.35.2</a> and the lower horizontal by Proposition <a href="/tag/07E5" data-tag="07E5">15.36.1</a> we conclude that the right vertical one is too. Hence a regular system of parameters in $A_0$ maps to part of a regular system of parameters in $A$. We win by Algebra, Lemmas <a href="/tag/07DY" data-tag="07DY">10.128.2</a> and <a href="/tag/00NQ" data-tag="00NQ">10.106.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

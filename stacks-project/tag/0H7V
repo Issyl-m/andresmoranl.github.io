@@ -1,0 +1,337 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-algebra-section-kunneth-spectral-sequence" class="tex-section"><span data-tag="0H7V">15.65</span> Künneth spectral sequence</h2>
+
+<p>
+Let $R$ be a ring. Let $K^\bullet $ and $L^\bullet $ be filtered complexes of $R$-modules (see Homology, Definition <a href="/tag/012L" data-tag="012L">12.24.1</a>; note that our filtrations are decreasing). Then the complex 
+</p>
+<div class="equation">
+  \[  T^\bullet = \text{Tot}(K^\bullet \otimes _ R L^\bullet )  \]
+</div>
+<p>
+ also has a decreasing filtration defined by the formula 
+</p>
+<div class="equation">
+  \[  F^ nT^\bullet = \mathop{\mathrm{Im}}\left( \bigoplus \nolimits _{i + j = n} \text{Tot}(F^ iK^\bullet \otimes _ R F^ jL^\bullet ) \to \text{Tot}(K^\bullet \otimes _ R L^\bullet ) \right)  \]
+</div>
+<p>
+ Under some assumptions on our filtered complexes, we will determine the spectral sequence that arises from this by the construction in Homology, Section <a href="/tag/012K" data-tag="012K">12.24</a>. 
+</p>
+<p>
+Assume that each $K^ n$, $F^ iK^ n$, $\text{gr}^ iK^ n$, $L^ m$, $F^ jL^ m$, and $\text{gr}^ jL^ m$ is a flat $R$-module. In this case the modules $F^ iK^ n \otimes _ R L^ m$, $K^ n \otimes _ R F^ jL^ m$, and $F^ iK^ n \otimes _ R F^ jL^ m$ are submodules of $K^ n \otimes _ R L^ m$. Similarly, the module $\text{gr}^ iK^ n \otimes _ R \text{gr}^ jL^ m$ is a submodule of $K^ n/F^{i + 1}K^ n \otimes _ R L^ m/F^{j + 1}L^ m$. Consider the map 
+</p>
+<div class="equation">
+  \[  F^ nT^ n \longrightarrow \bigoplus \nolimits _{i + j = n} \text{Tot}(K^\bullet / F^{i + 1}K^\bullet \otimes _ R L^\bullet / F^{j + 1}L^\bullet )  \]
+</div>
+<p>
+ We leave it to the reader to show that we do indeed end up in the direct sum and not the direct product, due to our definition of $F^ nT^\bullet $. For $a + b = n$, the restriction of the displayed arrow to the subcomplex $\text{Tot}(F^ aK^\bullet \otimes _ R F^ bL^\bullet )$ of $F^ nT^\bullet $ maps into the summand with $i = a$ and $j = b$. Moreover, by our flatness assumptions, the image is isomorphic to $\text{Tot}(\text{gr}^ iK^\bullet \otimes _ R \text{gr}^ jL^\bullet )$ and the kernel of $\text{Tot}(F^ iK^\bullet \otimes _ R F^ jL^\bullet ) \to \text{Tot}(\text{gr}^ iK^\bullet \otimes _ R \text{gr}^ jL^\bullet )$ is $\text{Tot}(F^{i + 1}K^\bullet \otimes _ R F^ jL^\bullet ) + \text{Tot}(F^ iK^\bullet \otimes _ R F^{j + 1}L^\bullet )$. It follows that we have a short exact sequence of complexes 
+</p>
+<div class="equation">
+  \[  0 \to F^{n + 1}T^\bullet \to F^ nT^\bullet \to \bigoplus \nolimits _{i + j = n} \text{Tot}(\text{gr}^ iK^\bullet \otimes _ R \text{gr}^ jL^\bullet ) \to 0  \]
+</div>
+<p>
+ under our assumptions. In other words, this tells us that $\text{gr}^ nT^\bullet $ is a direct sum of the complexes $\text{Tot}(\text{gr}^ iK^\bullet \otimes _ R \text{gr}^ jL^\bullet )$ for $i + j = n$. 
+</p>
+<p>
+Assume in addition that the complexes of $R$-modules $K^\bullet $, $F^ iK^\bullet $, $\text{gr}^ iK^\bullet $, $L^\bullet $, $F^ jL^\bullet $, and $\text{gr}^ jL^\bullet $ are K-flat. In this case we conclude that the spectral sequence of Homology, Section <a href="/tag/012K" data-tag="012K">12.24</a> associated to the filtered complex $T^\bullet $ has terms 
+</p>
+<div class="equation">
+  \[  E_1^{p, q} = \bigoplus \nolimits _{i + j = p} H^{p + q}(\text{gr}^ iK^\bullet \otimes _ R^\mathbf {L} \text{gr}^ jL^\bullet )  \]
+</div>
+<p>
+ with differentials induced from the short exact sequences 
+</p>
+<div class="equation">
+  \[  0 \to \text{gr}^{n + 1}T^\bullet \to F^ nT^\bullet /F^{n + 2}T^\bullet \to \text{gr}^ nT^\bullet \to 0  \]
+</div>
+<p>
+ as explained in Homology, Lemma <a href="/tag/012N" data-tag="012N">12.24.3</a>. In particular, the reader can show this means that the summand $H^{p + q}(\text{gr}^ iK^\bullet \otimes _ R^\mathbf {L} \text{gr}^ jL^\bullet )$ of $E_1^{p, q}$ maps into the sum 
+</p>
+<div class="equation">
+  \[  H^{p + q + 1}(\text{gr}^{i + 1}K^\bullet \otimes _ R^\mathbf {L} \text{gr}^ jL^\bullet ) \oplus H^{p + q + 1}(\text{gr}^ iK^\bullet \otimes _ R^\mathbf {L} \text{gr}^{j + 1}L^\bullet )  \]
+</div>
+<p>
+ inside $E_1^{p + 1, q}$. 
+</p>
+<p>
+<article class="env-lemma" id="0H7W">
+  <p><a class="environment-identifier" href="/tag/0H7W">Lemma <span data-tag="0H7W">15.65.1</span>.</a> Under the assumptions above, if in addition </p>
+  <p><ol>
+  <li><p>
+the filtration on $K^\bullet $ is finite and the filtration on $L^\bullet $ is finite, or 
+</p>
+</li><li><p>
+more generally the following are true 
+</p>
+<ol>
+  <li><p>
+$F^ iK^\bullet $ is acyclic for $i \gg 0$, 
+</p>
+</li><li><p>
+$F^ iK^\bullet \to K^\bullet $ is a quasi-isomorphism for $i \ll 0$, 
+</p>
+</li><li><p>
+$F^ jL^\bullet $ is acyclic for $j \gg 0$, and 
+</p>
+</li><li><p>
+$F^ jL^\bullet \to L^\bullet $ is a quasi-isomorphism for $j \ll 0$. 
+</p>
+</li>
+</ol>
+</li>
+</ol></p>
+  <p> Then the spectral sequence is bounded, the associated filtration on each $H^ n(T^\bullet ) = H^ n(K^\bullet \otimes _ R^\mathbf {L} L^\bullet )$ is finite and we have convergence </p>
+  <div class="equation">
+  \[  E_1^{p, q} = \bigoplus \nolimits _{i + j = p} H^{p + q}(\text{gr}^ iK^\bullet \otimes _ R^\mathbf {L} \text{gr}^ jL^\bullet ) \Rightarrow H^ n(K^\bullet \otimes _ R^\mathbf {L} L^\bullet )  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In case (1) the filtration on $T^\bullet $ is finite and the lemma follows immediately from Homology, Lemma <a href="/tag/012W" data-tag="012W">12.24.11</a>. In case (2) choose $a < b$ such that $F^ iK^\bullet $ and $F^ jL^\bullet $ are acyclic for $i, j > b$ and $F^ iK^\bullet \to K^\bullet $ and $F^ jL^\bullet \to L^\bullet $ are quasi-isomorphisms for $i, j < a$. We claim that in this case the complex $F^ nT^\bullet $ is acyclic for $n > 2b$ and that $F^ nT^\bullet \to T^\bullet $ is a quasi-isomorphism for $n < 2a - 1$. Since the claim shows that Homology, Lemma <a href="/tag/0BK5" data-tag="0BK5">12.24.13</a> applies we see that our lemma is true. 
+    <p>
+      Proof of the claim. Given $n$ and integers $i_1 \leq i_2$ consider 
+    <p>
+      <div class="equation">
+  \[  S^{n, i_1, i_2} = \mathop{\mathrm{Im}}\left( \bigoplus \nolimits _{i_1 \leq i \leq i_2} \text{Tot}(F^ iK^\bullet \otimes _ R F^{n - i}L^\bullet ) \to \text{Tot}(K^\bullet \otimes _ R L^\bullet ) \right)  \]
+</div>
+    <p>
+       viewed as a subcomplex of $\text{Tot}(K^\bullet \otimes _ R L^\bullet )$. Observe that $F^ nT^\bullet = \mathop{\mathrm{colim}}\nolimits S^{n, i_1, i_2}$ is a filtered colimit. Thus to show the claim it suffices to show that $S^{n, i_1, i_2}$ is acyclic for $n > 2b$ and that $S^{n, i_1, i_2} \to \text{Tot}(K^\bullet \otimes L^\bullet )$ is a quasi-isomorphism for $n < 2a - 1$ and a cofinal set of choices of pairs $i_1, i_2$. 
+    <p>
+      If $i_1 = i_2 = i$ and $n > 2b$, then 
+    <p>
+      <div class="equation">
+  \[  S^{n, i, i} = \text{Tot}(F^ iK^\bullet \otimes _ R F^{n - i}L^\bullet )  \]
+</div>
+    <p>
+       is acyclic: either $i > b$ and this complex is acyclic by our assumption that $F^{n - i}L^\bullet $ is K-flat, or $i \leq b$ and then $n - i \geq n - b > b$ and the same holds. Using our flatness assumptions the reader shows that there is a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to S^{n + 1, i_2 + 1, i_2 + 1} \to S^{n, i_1, i_2} \oplus S^{n, i_2 + 1, i_2 + 1} \to S^{n, i_1, i_2 + 1} \to 0  \]
+</div>
+    <p>
+       of complexes. Thus we see by induction on $i_2 - i_1$ that all of the complexes $S^{n, i_1, i_2}$ for $n > 2b$ are acyclic. 
+    <p>
+      Assume $n < 2a - 1$. Observe that 
+    <p>
+      <div class="equation">
+  \[  S^{n, a - 1, a - 1} = \text{Tot}(F^{a - 1}K^\bullet \otimes _ R F^{n - a + 1}L^\bullet ) \to \text{Tot}(K^\bullet \otimes _ R L^\bullet )  \]
+</div>
+    <p>
+       is a quasi-isomorphism because both $a - 1 < a$ and $n - a + 1 < a$ and all our complexes are K-flat hence both sides compute the same object of $D(R)$. Observe that for $i_2 \geq a - 1$ and $n < 2a - 1$ the map 
+    <p>
+      <div class="equation">
+  \[  S^{n + 1, i_2 + 1, i_2 + 1} \to S^{n, i_2 + 1, i_2 + 1}  \]
+</div>
+    <p>
+       is a quasi-isomorphism because left and right hand side are quasi-isomorphic to $\text{Tot}(F^{i_2 + 1}K^\bullet \otimes L^\bullet )$. Thus using the short exact sequence of complexes in the previous paragraph we find that $S^{n, a - 1, a - 1} \to S^{n, a - 1, t}$ is a quasi-isomorphism for all $t \geq a - 1$. On the other hand, there are similarly short exact sequences 
+    <p>
+      <div class="equation">
+  \[  0 \to S^{n + 1, i_1, i_1} \to S^{n, i_1 - 1, i_1 - 1} \oplus S^{n, i_1, i_2} \to S^{n, i_1 - 1, i_2} \to 0  \]
+</div>
+    <p>
+       of complexes. Similarly to the above, we note that for $i_1 \leq a - 1$ the map 
+    <p>
+      <div class="equation">
+  \[  S^{n + 1, i_1, i_1} \to S^{n, i_1 - 1, i_1 - 1}  \]
+</div>
+    <p>
+       is a quasi-isomorphism because left and right hand side are quasi-isomorphic to $\text{Tot}(K^\bullet \otimes F^{n - i_1 + 1}L^\bullet )$. Thus we conclude that $S^{n, s, t} \to S^{n, a - 1, t}$ is a quasi-isomorphism for all $s \leq a - 1$. Combined we find that $S^{n, s, t}$ for $s \leq a - 1$ and $t \geq a - 1$ maps quasi-isomorphically to $\text{Tot}(K^\bullet \otimes _ R L^\bullet )$. This finishes the proof of the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0H7X">
+  <p><a class="environment-identifier" href="/tag/0H7X">Lemma <span data-tag="0H7X">15.65.2</span>.</a> Let $R$ be a ring. Let $K^\bullet $ be a filtered complex. There exists a map $f : P^\bullet \to K^\bullet $ of filtered complexes such that </p>
+  <p><ol>
+  <li><p>
+each $P^ n$, $F^ iP^ n$, $\text{gr}^ iP^ n$ is a free $R$-module, 
+</p>
+</li><li><p>
+the complexes of $R$-modules $P^\bullet $, $F^ iP^\bullet $, and $\text{gr}^ iP^\bullet $ are K-flat, 
+</p>
+</li><li><p>
+$f$ induces quasi-isomorphisms $P^\bullet \to K^\bullet $, $F^ iP^\bullet \to F^ iK^\bullet $, and $\text{gr}^ iP^\bullet \to \text{gr}^ iK^\bullet $. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let us say a filtered complex $L^\bullet $ is <em>basic</em> if each $L^ n$, $F^ iL^ n$, $\text{gr}^ iL^ n$ is a free $R$-module and if all differentials are zero. 
+    <p>
+      There exists a basic filtered complex $P_0^\bullet $ and a map $f_0 : P_0^\bullet \to K^\bullet $ of filtered complexes such that $f_0$ and $F^ if_0$, $i \in \mathbf{Z}$ are surjective on cohomology. To see this set 
+    <p>
+      <div class="equation">
+  \[  P_0^ n = \bigoplus \nolimits _{z \in \mathop{\mathrm{Ker}}(d_ K^ n)} R \xi _ z \oplus \bigoplus \nolimits _{j \in \mathbf{Z}} \bigoplus \nolimits _{z \in \mathop{\mathrm{Ker}}(d_{F^ jK}^ n)} R \xi _ z  \]
+</div>
+    <p>
+       with zero differentials and the map $f_0$ defined by $f_0(\xi _ z) = z$. As for the filtration, we set 
+    <p>
+      <div class="equation">
+  \[  F^ iP_0^ n = \bigoplus \nolimits _{j \geq i \in \mathbf{Z}} \bigoplus \nolimits _{z \in \mathop{\mathrm{Ker}}(d_{F^ jK}^ n)} R \xi _ z  \]
+</div>
+    <p>
+       We leave it to the reader to check that this gives $f_0 : P_0^\bullet \to K^\bullet $ as claimed. 
+    <p>
+      By induction on $m \geq 0$ we are going to construct embeddings 
+    <p>
+      <div class="equation">
+  \[  P_0^\bullet \subset \ldots P_ m^\bullet \subset P_{m + 1}^\bullet  \]
+</div>
+    <p>
+       of filtered complexes and maps $f_ m : P_ m^\bullet \to K^\bullet $ with the following properties 
+    <p>
+      <ol>
+  <li><p>
+the filtered complex $P_{m + 1}^\bullet / P_ m^\bullet $ is basic, 
+</p>
+</li><li><p>
+the kernel of $H^ n(f_ m)$ and $H^ n(F^ if_ m)$ maps to zero in $H^ n(P_{m + 1}^\bullet )$ and $H^ n(F^ iP_{m + 1}^\bullet )$, 
+</p>
+</li><li><p>
+the map $f_{m + 1} : P_{m + 1}^\bullet \to K^\bullet $ extends the map $f_ m$. 
+</p>
+</li>
+</ol>
+    <p>
+       To to this, set 
+    <p>
+      <div class="equation">
+  \[  \Omega _{n, m} = \mathop{\mathrm{Ker}}\left(\mathop{\mathrm{Ker}}(d^ n_{P_ m}) \to H^ n(K^\bullet )\right), \text{ resp. } \Omega _{n, i, m} = \mathop{\mathrm{Ker}}\left(\mathop{\mathrm{Ker}}(d^ n_{F^ iP_ m}) \to H^ n(F^ iK^\bullet )\right),  \]
+</div>
+    <p>
+       Note that $\Omega _{n, m}$ surjects onto the kernel of $H^ n(f_ m)$ and that $\Omega _{n, i, m}$ surjects onto the kernel of $H^ n(F^ if_ n)$. For each $z \in \Omega _{n, m}$, resp. $z \in \Omega _{n, i, m}$ we choose a $y_ z \in K^{n - 1}$, resp. $y_ z \in F^ iK^{n - 1}$ such that $d_ K(y_ z) = f_ m(z)$. Then we set 
+    <p>
+      <div class="equation">
+  \[  P^ n_{m + 1} = P_ m^ n \oplus \bigoplus \nolimits _{z \in \Omega _{n + 1, m}} R \eta _ z \oplus \bigoplus \nolimits _{j \in \mathbf{Z}} \bigoplus \nolimits _{z \in \Omega _{n + 1, j, m}} R \eta _ z  \]
+</div>
+    <p>
+       We set $d_{P_ m}(\eta _ z) = z$ and we set $f_{m + 1}(\eta _ z) = y_ z$. Finally, we set 
+    <p>
+      <div class="equation">
+  \[  F^ iP_{m + 1}^ n = F^ iP_ m^ n \oplus \bigoplus \nolimits _{j \geq i} \bigoplus \nolimits _{z \in \Omega _{n + 1, j, m}} R \eta _ z  \]
+</div>
+    <p>
+       We leave it to the reader to check that this gives $P_ m^\bullet \subset P_{m + 1}^\bullet $ and $f_{m + 1} : P_{m + 1}^\bullet \to K^\bullet $ as claimed. 
+    <p>
+      At this point we simply take 
+    <p>
+      <div class="equation">
+  \[  P^\bullet = \bigcup P_ m^\bullet  \]
+</div>
+    <p>
+       as a filtered complex with map $f : P^\bullet \to K^\bullet $ given by $\bigcup f_ m$. 
+    <p>
+      Part (1) of the statement of the lemma holds because $P^ n$ as a filtered module is isomorphic to the direct sum of $P_0^ n$ and $P_{m + 1}^ n/P_ m^ n$ for $m \geq 0$. Small detail omitted. 
+    <p>
+      Part (3) of the statement. Observe that $H^ n(P^\bullet ) = \mathop{\mathrm{colim}}\nolimits H^ n(P_ m^\bullet )$. The map $f_0$ is surjective on cohomology; whence the same holds for each $f_ m$. For each $m$ by construction the embedding $P_ m^\bullet \subset P_{m + 1}^\bullet $ kills the kernel of $H^ n(f_ m)$. Combining these facts the reader easily concludes that $H^ n(f)$ is an isomorphism. Similarly for $H^ n(F^ if_ n)$. Then also $H^ n(\text{gr}^ if)$ must be an isomorphism because of the short exact sequence $0 \to F^{i + 1} \to F^ i \to \text{gr}^ i \to 0$ (of functors on the category of filtered complexes, say). Small detail omitted. 
+    <p>
+      Part (2) of the statement. To see that $P^\bullet $ is K-flat, by Lemma <a href="/tag/06Y3" data-tag="06Y3">15.60.8</a>, it suffices to show that $P_ m^\bullet $ is K-flat. By Lemma <a href="/tag/0BYH" data-tag="0BYH">15.60.6</a> and induction it suffices to note that a complex with zero differentials and free terms is K-flat. The same argument works to show that $F^ iP^\bullet $ is K-flat for all $i \in \mathbf{Z}$. Finally, we see that $\text{gr}^ iP^\bullet $ is K-flat by another application of Lemma <a href="/tag/0BYH" data-tag="0BYH">15.60.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="0H7Y">
+  <p><a class="environment-identifier" href="/tag/0H7Y">Proposition <span data-tag="0H7Y">15.65.3</span>.</a> Let $R$ be a ring. Let $K^\bullet $ and $L^\bullet $ be filtered complexes of $R$-modules. Then there exists a filtered complex $T^\bullet $ representing $K^\bullet \otimes _ R^\mathbf {L} L^\bullet $ in $D(R)$ such that the associated spectral sequence has $E_1$-page </p>
+  <div class="equation">
+  \[  E_1^{p, q} = \bigoplus \nolimits _{i + j = p} H^{p + q}(\text{gr}^ iK^\bullet \otimes _ R^\mathbf {L} \text{gr}^ jL^\bullet )  \]
+</div>
+  <p> If </p>
+  <p><ol>
+  <li><p>
+$F^ iK^\bullet $ is acyclic for $i \gg 0$, 
+</p>
+</li><li><p>
+$F^ iK^\bullet \to K^\bullet $ is a quasi-isomorphism for $i \ll 0$, 
+</p>
+</li><li><p>
+$F^ jL^\bullet $ is acyclic for $j \gg 0$, and 
+</p>
+</li><li><p>
+$F^ jL^\bullet \to L^\bullet $ is a quasi-isomorphism for $j \ll 0$. 
+</p>
+</li>
+</ol></p>
+  <p> then the spectral sequence is bounded, the associated filtration on each $H^ n(K^\bullet \otimes _ R^\mathbf {L} L^\bullet )$ is finite and the spectral sequence convergences. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose $P^\bullet \to K^\bullet $ and $Q^\bullet \to L^\bullet $ as in Lemma <a href="/tag/0H7X" data-tag="0H7X">15.65.2</a>. Then we use the spectral sequence for the filtered complex 
+    <p>
+      <div class="equation">
+  \[  T^\bullet = \text{Tot}(P^\bullet \otimes _ R Q^\bullet )  \]
+</div>
+    <p>
+       described in the text of this section and in Lemma <a href="/tag/0H7W" data-tag="0H7W">15.65.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0H7Z">
+  <p><a class="environment-identifier" href="/tag/0H7Z">Lemma <span data-tag="0H7Z">15.65.4</span> <span class="named">(Künneth Spectral Sequence)</span>.</a>  Let $R$ be a ring. Let $K$ and $L$ be objects of $D^ b(R)$. There exists a bigraded bounded spectral sequence $\{ E_ r\} _{r \geq 2}$ with </p>
+  <div class="equation">
+  \[  E_2^{p, q} = \bigoplus \nolimits _{i + j = q} \text{Tor}^ R_{-p}(H^ i(K), H^ j(L))  \]
+</div>
+  <p> and $d_ r$ of bidegree $(r, -r + 1)$ converging to $H^{p + q}(K \otimes _ R^\mathbf {L} L)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $K^\bullet $ be a complex of $R$-modules representing $K$ and let $L^\bullet $ be a complex of $R$-modules representing $L$. Set $F^ iK^\bullet = \tau _{\leq -i}K^\bullet $ and similarly for $L$, see Homology, Section <a href="/tag/0118" data-tag="0118">12.15</a>. Apply Proposition <a href="/tag/0H7Y" data-tag="0H7Y">15.65.3</a> noting that $\text{gr}^ iK^\bullet = H^{-i}(K)[i]$ to get a bounded spectral sequence $\{ (E')_ r\} _{r \geq 1}$ with 
+    <p>
+      <div class="equation">
+  \[  (E')^{p, q}_1 = \bigoplus \nolimits _{i + j = p} \text{Tor}^ R_{-2p - q}(H^{-i}(K), H^{-j}(L))  \]
+</div>
+    <p>
+       converging to the cohomology of $K \otimes _ R^\mathbf {L} L$. By construction this spectral sequence has differentials $d_ r^{p, q} : (E')_ r^{p, q} \to (E')_ r^{p + r, q - r + 1}$ for $r \geq 1$. To get the spectral sequence of the lemma we set for $r \geq 2$ 
+    <p>
+      <div class="equation">
+  \[  E_ r^{p, q} = (E')_{r - 1}^{-q, p + 2q}  \]
+</div>
+    <p>
+       We leave it to the reader to show that this works. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-example" id="0H80">
+  <p><a class="environment-identifier" href="/tag/0H80">Example <span data-tag="0H80">15.65.5</span>.</a> If $R = \mathbf{Z}$ or more generally if $R$ is a Dedekind domain, then $\text{Tor}_ i^ R(M, N) = 0$ for $i \not\in \{ 0, 1\} $ for all $R$-modules $M$ and $N$. Hence the spectral sequence of Lemma <a href="/tag/0H7Z" data-tag="0H7Z">15.65.4</a> degenerates at the $E_2$ page and we get short exact sequences </p>
+  <div class="equation">
+  \[  0 \to \bigoplus _{i + j = n} H^ i(K) \otimes _ R H^ j(L) \to H^ n(K \otimes _ R^\mathbf {L} L) \to \bigoplus _{i + j = n + 1} \text{Tor}^ R_1(H^ i(K), H^ j(L)) \to 0  \]
+</div>
+  <p> for all $n \in \mathbf{Z}$. </p>
+</article> 
+</p>

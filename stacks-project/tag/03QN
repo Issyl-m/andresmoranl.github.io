@@ -1,0 +1,196 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="etale-cohomology-section-vanishing-finite-morphism" class="tex-section"><span data-tag="03QN">59.55</span> Vanishing of finite higher direct images</h2>
+
+<p>
+The next goal is to prove that the higher direct images of a finite morphism of schemes vanish. 
+</p>
+<p>
+<article class="env-lemma" id="03QO">
+  <p><a class="environment-identifier" href="/tag/03QO">Lemma <span data-tag="03QO">59.55.1</span>.</a> Let $R$ be a strictly henselian local ring. Set $S = \mathop{\mathrm{Spec}}(R)$ and let $\overline{s}$ be its closed point. Then the global sections functor $\Gamma (S, -) : \textit{Ab}(S_{\acute{e}tale}) \to \textit{Ab}$ is exact. In fact we have $\Gamma (S, \mathcal{F}) = \mathcal{F}_{\overline{s}}$ for any sheaf of sets $\mathcal{F}$. In particular </p>
+  <div class="equation">
+  \[  \forall p\geq 1, \quad H_{\acute{e}tale}^ p(S, \mathcal{F})=0  \]
+</div>
+  <p> for all $\mathcal{F}\in \textit{Ab}(S_{\acute{e}tale})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If we show that $\Gamma (S, \mathcal{F}) = \mathcal{F}_{\overline{s}}$ then $\Gamma (S, -)$ is exact as the stalk functor is exact. Let $(U, \overline{u})$ be an étale neighbourhood of $\overline{s}$. Pick an affine open neighborhood $\mathop{\mathrm{Spec}}(A)$ of $\overline{u}$ in $U$. Then $R \to A$ is étale and $\kappa (\overline{s}) = \kappa (\overline{u})$. By Theorem <a href="/tag/03QH" data-tag="03QH">59.32.4</a> we see that $A \cong R \times A'$ as an $R$-algebra compatible with maps to $\kappa (\overline{s}) = \kappa (\overline{u})$. Hence we get a section 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{Spec}}(A) \ar[r] &  U \ar[d]\\  &  S \ar[ul] }  \]
+</div>
+    <p>
+       It follows that in the system of étale neighbourhoods of $\overline{s}$ the identity map $(S, \overline{s}) \to (S, \overline{s})$ is cofinal. Hence $\Gamma (S, \mathcal{F}) = \mathcal{F}_{\overline{s}}$. The final statement of the lemma follows as the higher derived functors of an exact functor are zero, see Derived Categories, Lemma <a href="/tag/015F" data-tag="015F">13.16.9</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="03QP">
+  <p><a class="environment-identifier" href="/tag/03QP">Proposition <span data-tag="03QP">59.55.2</span>.</a> Let $f : X \to Y$ be a finite morphism of schemes. </p>
+  <p><ol>
+  <li><p>
+For any geometric point $\overline{y} : \mathop{\mathrm{Spec}}(k) \to Y$ we have 
+</p>
+<div class="equation">
+  \[  (f_*\mathcal{F})_{\overline{y}} = \prod \nolimits _{\overline{x} : \mathop{\mathrm{Spec}}(k) \to X,\  f(\overline{x}) = \overline{y}} \mathcal{F}_{\overline{x}}.  \]
+</div>
+<p>
+ for $\mathcal{F}$ in $\mathop{\mathit{Sh}}\nolimits (X_{\acute{e}tale})$ and 
+</p>
+<div class="equation">
+  \[  (f_*\mathcal{F})_{\overline{y}} = \bigoplus \nolimits _{\overline{x} : \mathop{\mathrm{Spec}}(k) \to X,\  f(\overline{x}) = \overline{y}} \mathcal{F}_{\overline{x}}.  \]
+</div>
+<p>
+ for $\mathcal{F}$ in $\textit{Ab}(X_{\acute{e}tale})$. 
+</p>
+</li><li><p>
+For any $q \geq 1$ we have $R^ q f_*\mathcal{F} = 0$ for $\mathcal{F}$ in $\textit{Ab}(X_{\acute{e}tale})$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $X_{\overline{y}}^{sh}$ denote the fiber product $X \times _ Y \mathop{\mathrm{Spec}}(\mathcal{O}_{Y, \overline{y}}^{sh})$. By Theorem <a href="/tag/03Q9" data-tag="03Q9">59.53.1</a> the stalk of $R^ qf_*\mathcal{F}$ at $\overline{y}$ is computed by $H_{\acute{e}tale}^ q(X_{\overline{y}}^{sh}, \mathcal{F})$. Since $f$ is finite, $X_{\bar y}^{sh}$ is finite over $\mathop{\mathrm{Spec}}(\mathcal{O}_{Y, \overline{y}}^{sh})$, thus $X_{\bar y}^{sh} = \mathop{\mathrm{Spec}}(A)$ for some ring $A$ finite over $\mathcal{O}_{Y, \bar y}^{sh}$. Since the latter is strictly henselian, Lemma <a href="/tag/03QJ" data-tag="03QJ">59.32.5</a> implies that $A$ is a finite product of henselian local rings $A = A_1 \times \ldots \times A_ r$. Since the residue field of $\mathcal{O}_{Y, \overline{y}}^{sh}$ is separably closed the same is true for each $A_ i$. Hence $A_ i$ is strictly henselian. This implies that $X_{\overline{y}}^{sh} = \coprod _{i = 1}^ r \mathop{\mathrm{Spec}}(A_ i)$. The vanishing of Lemma <a href="/tag/03QO" data-tag="03QO">59.55.1</a> implies that $(R^ qf_*\mathcal{F})_{\overline{y}} = 0$ for $q > 0$ which implies (2) by Theorem <a href="/tag/03PU" data-tag="03PU">59.29.10</a>. Part (1) follows from the corresponding statement of Lemma <a href="/tag/03QO" data-tag="03QO">59.55.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0959">
+  <p><a class="environment-identifier" href="/tag/0959">Lemma <span data-tag="0959">59.55.3</span>.</a> Consider a cartesian square </p>
+  <div class="equation">
+  \[  \xymatrix{ X' \ar[r]_{g'} \ar[d]_{f'} &  X \ar[d]^ f \\  Y' \ar[r]^ g &  Y }  \]
+</div>
+  <p> of schemes with $f$ a finite morphism. For any sheaf of sets $\mathcal{F}$ on $X_{\acute{e}tale}$ we have $f'_*(g')^{-1}\mathcal{F} = g^{-1}f_*\mathcal{F}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In great generality there is a pullback map $g^{-1}f_*\mathcal{F} \to f'_*(g')^{-1}\mathcal{F}$, see Sites, Section <a href="/tag/06UM" data-tag="06UM">7.45</a>. It suffices to check on stalks (Theorem <a href="/tag/03PU" data-tag="03PU">59.29.10</a>). Let $\overline{y}' : \mathop{\mathrm{Spec}}(k) \to Y'$ be a geometric point. We have 
+    <p>
+      <div class="equation">
+  \begin{align*}  (f'_*(g')^{-1}\mathcal{F})_{\overline{y}'} &  = \prod \nolimits _{\overline{x}' : \mathop{\mathrm{Spec}}(k) \to X',\  f' \circ \overline{x}' = \overline{y}'} ((g')^{-1}\mathcal{F})_{\overline{x}'} \\ &  = \prod \nolimits _{\overline{x}' : \mathop{\mathrm{Spec}}(k) \to X',\  f' \circ \overline{x}' = \overline{y}'} \mathcal{F}_{g' \circ \overline{x}'} \\ &  = \prod \nolimits _{\overline{x} : \mathop{\mathrm{Spec}}(k) \to X,\  f \circ \overline{x} = g \circ \overline{y}'} \mathcal{F}_{\overline{x}} \\ &  = (f_*\mathcal{F})_{g \circ \overline{y}'} \\ &  = (g^{-1}f_*\mathcal{F})_{\overline{y}'} \end{align*}
+</div>
+    <p>
+       The first equality by Proposition <a href="/tag/03QP" data-tag="03QP">59.55.2</a>. The second equality by Lemma <a href="/tag/03Q1" data-tag="03Q1">59.36.2</a>. The third equality holds because the diagram is a cartesian square and hence the map 
+    <p>
+      <div class="equation">
+  \[  \{ \overline{x}' : \mathop{\mathrm{Spec}}(k) \to X',\  f' \circ \overline{x}' = \overline{y}'\}  \longrightarrow \{ \overline{x} : \mathop{\mathrm{Spec}}(k) \to X,\  f \circ \overline{x} = g \circ \overline{y}'\}   \]
+</div>
+    <p>
+       sending $\overline{x}'$ to $g' \circ \overline{x}'$ is a bijection. The fourth equality by Proposition <a href="/tag/03QP" data-tag="03QP">59.55.2</a>. The fifth equality by Lemma <a href="/tag/03Q1" data-tag="03Q1">59.36.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0EYP">
+  <p><a class="environment-identifier" href="/tag/0EYP">Lemma <span data-tag="0EYP">59.55.4</span>.</a> Consider a cartesian square </p>
+  <div class="equation">
+  \[  \xymatrix{ X' \ar[r]_{g'} \ar[d]_{f'} &  X \ar[d]^ f \\  Y' \ar[r]^ g &  Y }  \]
+</div>
+  <p> of schemes with $f$ an integral morphism. For any sheaf of sets $\mathcal{F}$ on $X_{\acute{e}tale}$ we have $f'_*(g')^{-1}\mathcal{F} = g^{-1}f_*\mathcal{F}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The question is local on $Y$ and hence we may assume $Y$ is affine. Then we can write $X = \mathop{\mathrm{lim}}\nolimits X_ i$ with $f_ i : X_ i \to Y$ finite (this is easy in the affine case, but see Limits, Lemma <a href="/tag/09YZ" data-tag="09YZ">32.7.3</a> for a reference). Denote $p_{i'i} : X_{i'} \to X_ i$ the transition morphisms and $p_ i : X \to X_ i$ the projections. Setting $\mathcal{F}_ i = p_{i, *}\mathcal{F}$ we obtain from Lemma <a href="/tag/0EYN" data-tag="0EYN">59.51.9</a> a system $(\mathcal{F}_ i, \varphi _{i'i})$ with $\mathcal{F} = \mathop{\mathrm{colim}}\nolimits p_ i^{-1}\mathcal{F}_ i$. We get $f_*\mathcal{F} = \mathop{\mathrm{colim}}\nolimits f_{i, *}\mathcal{F}_ i$ from Lemma <a href="/tag/09Z1" data-tag="09Z1">59.51.7</a>. Set $X'_ i = Y' \times _ Y X_ i$ with projections $f'_ i$ and $g'_ i$. Then $X' = \mathop{\mathrm{lim}}\nolimits X'_ i$ as limits commute with limits. Denote $p'_ i : X' \to X'_ i$ the projections. We have 
+    <p>
+      <div class="equation">
+  \begin{align*}  g^{-1}f_*\mathcal{F} &  = g^{-1} \mathop{\mathrm{colim}}\nolimits f_{i, *}\mathcal{F}_ i \\ &  = \mathop{\mathrm{colim}}\nolimits g^{-1}f_{i, *}\mathcal{F}_ i \\ &  = \mathop{\mathrm{colim}}\nolimits f'_{i, *}(g'_ i)^{-1}\mathcal{F}_ i \\ &  = f'_*(\mathop{\mathrm{colim}}\nolimits (p'_ i)^{-1}(g'_ i)^{-1}\mathcal{F}_ i) \\ &  = f'_*(\mathop{\mathrm{colim}}\nolimits (g')^{-1}p_ i^{-1}\mathcal{F}_ i) \\ &  = f'_*(g')^{-1} \mathop{\mathrm{colim}}\nolimits p_ i^{-1}\mathcal{F}_ i \\ &  = f'_*(g')^{-1}\mathcal{F} \end{align*}
+</div>
+    <p>
+       as desired. For the first equality see above. For the second use that pullback commutes with colimits. For the third use the finite case, see Lemma <a href="/tag/0959" data-tag="0959">59.55.3</a>. For the fourth use Lemma <a href="/tag/09Z1" data-tag="09Z1">59.51.7</a>. For the fifth use that $g'_ i \circ p'_ i = p_ i \circ g'$. For the sixth use that pullback commutes with colimits. For the seventh use $\mathcal{F} = \mathop{\mathrm{colim}}\nolimits p_ i^{-1}\mathcal{F}_ i$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma is a case of cohomological descent dealing with étale sheaves and finite surjective morphisms. We will significantly generalize this result once we prove the proper base change theorem. 
+</p>
+<p>
+<article class="env-lemma" id="09Z2">
+  <p><a class="environment-identifier" href="/tag/09Z2">Lemma <span data-tag="09Z2">59.55.5</span>.</a> Let $f : X \to Y$ be a surjective finite morphism of schemes. Set $f_ n : X_ n \to Y$ equal to the $(n + 1)$-fold fibre product of $X$ over $Y$. For $\mathcal{F} \in \textit{Ab}(Y_{\acute{e}tale})$ set $\mathcal{F}_ n = f_{n, *}f_ n^{-1}\mathcal{F}$. There is an exact sequence </p>
+  <div class="equation">
+  \[  0 \to \mathcal{F} \to \mathcal{F}_0 \to \mathcal{F}_1 \to \mathcal{F}_2 \to \ldots  \]
+</div>
+  <p> on $Y_{\acute{e}tale}$. Moreover, there is a spectral sequence </p>
+  <div class="equation">
+  \[  E_1^{p, q} = H^ q_{\acute{e}tale}(X_ p, f_ p^{-1}\mathcal{F})  \]
+</div>
+  <p> converging to $H^{p + q}(Y_{\acute{e}tale}, \mathcal{F})$. This spectral sequence is functorial in $\mathcal{F}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If we prove the first statement of the lemma, then we obtain a spectral sequence with $E_1^{p, q} = H^ q_{\acute{e}tale}(Y, \mathcal{F}_ p)$ converging to $H^{p + q}(Y_{\acute{e}tale}, \mathcal{F})$, see Derived Categories, Lemma <a href="/tag/015J" data-tag="015J">13.21.3</a>. On the other hand, since $R^ if_{p, *}f_ p^{-1}\mathcal{F} = 0$ for $i > 0$ (Proposition <a href="/tag/03QP" data-tag="03QP">59.55.2</a>) we get 
+    <p>
+      <div class="equation">
+  \[  H^ q_{\acute{e}tale}(X_ p, f_ p^{-1}\mathcal{F}) = H^ q_{\acute{e}tale}(Y, f_{p, *}f_ p^{-1} \mathcal{F}) = H^ q_{\acute{e}tale}(Y, \mathcal{F}_ p)  \]
+</div>
+    <p>
+       by Proposition <a href="/tag/03QC" data-tag="03QC">59.54.2</a> and we get the spectral sequence of the lemma. 
+    <p>
+      To prove the first statement of the lemma, observe that $X_ n$ forms a simplicial scheme over $Y$, see Simplicial, Example <a href="/tag/016E" data-tag="016E">14.3.5</a>. Observe moreover, that for each of the projections $d_ j : X_{n + 1} \to X_ n$ there is a map $d_ j^{-1} f_ n^{-1}\mathcal{F} \to f_{n + 1}^{-1}\mathcal{F}$. These maps induce maps 
+    <p>
+      <div class="equation">
+  \[  \delta _ j : \mathcal{F}_ n \to \mathcal{F}_{n + 1}  \]
+</div>
+    <p>
+       for $j = 0, \ldots , n + 1$. We use the alternating sum of these maps to define the differentials $\mathcal{F}_ n \to \mathcal{F}_{n + 1}$. Similarly, there is a canonical augmentation $\mathcal{F} \to \mathcal{F}_0$, namely this is just the canonical map $\mathcal{F} \to f_*f^{-1}\mathcal{F}$. To check that this sequence of sheaves is an exact complex it suffices to check on stalks at geometric points (Theorem <a href="/tag/03PU" data-tag="03PU">59.29.10</a>). Thus we let $\overline{y} : \mathop{\mathrm{Spec}}(k) \to Y$ be a geometric point. Let $E = \{ \overline{x} : \mathop{\mathrm{Spec}}(k) \to X \mid f(\overline{x}) = \overline{y}\} $. Then $E$ is a finite nonempty set and we see that 
+    <p>
+      <div class="equation">
+  \[  (\mathcal{F}_ n)_{\overline{y}} = \bigoplus \nolimits _{e \in E^{n + 1}} \mathcal{F}_{\overline{y}}  \]
+</div>
+    <p>
+       by Proposition <a href="/tag/03QP" data-tag="03QP">59.55.2</a> and Lemma <a href="/tag/03Q1" data-tag="03Q1">59.36.2</a>. Thus we have to see that given an abelian group $M$ the sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to M \to \bigoplus \nolimits _{e \in E} M \to \bigoplus \nolimits _{e \in E^2} M \to \ldots  \]
+</div>
+    <p>
+       is exact. Here the first map is the diagonal map and the map $\bigoplus _{e \in E^{n + 1}} M \to \bigoplus _{e \in E^{n + 2}} M$ is the alternating sum of the maps induced by the $(n + 2)$ projections $E^{n + 2} \to E^{n + 1}$. This can be shown directly or deduced by applying Simplicial, Lemma <a href="/tag/019P" data-tag="019P">14.26.9</a> to the map $E \to \{ *\} $. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="09Z3">
+  <p><a class="environment-identifier" href="/tag/09Z3">Remark <span data-tag="09Z3">59.55.6</span>.</a> In the situation of Lemma <a href="/tag/09Z2" data-tag="09Z2">59.55.5</a> if $\mathcal{G}$ is a sheaf of sets on $Y_{\acute{e}tale}$, then we have </p>
+  <div class="equation">
+  \[  \Gamma (Y, \mathcal{G}) = \text{Equalizer}( \xymatrix{ \Gamma (X_0, f_0^{-1}\mathcal{G}) \ar@<1ex>[r] \ar@<-1ex>[r] &  \Gamma (X_1, f_1^{-1}\mathcal{G}) } )  \]
+</div>
+  <p> This is proved in exactly the same way, by showing that the sheaf $\mathcal{G}$ is the equalizer of the two maps $f_{0, *}f_0^{-1}\mathcal{G} \to f_{1, *}f_1^{-1}\mathcal{G}$. </p>
+</article> 
+</p>

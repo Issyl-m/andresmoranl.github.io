@@ -1,0 +1,155 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="algebra-section-ind-etale" class="tex-section"><span data-tag="0BSG">10.154</span> Filtered colimits of étale ring maps</h2>
+
+<p>
+This section is a precursor to the section on ind-étale ring maps (Pro-étale Cohomology, Section <a href="/tag/097H" data-tag="097H">61.7</a>). The material will also be useful to prove uniqueness properties of the henselization and strict henselization of a local ring. 
+</p>
+<p>
+<article class="env-lemma" id="0BSH">
+  <p><a class="environment-identifier" href="/tag/0BSH">Lemma <span data-tag="0BSH">10.154.1</span>.</a> Let $R \to A$ and $R \to R'$ be ring maps. If $A$ is a filtered colimit of étale $R$-algebras, then so is $R' \otimes _ R A$ is a filtered colimit of étale $R'$-algebras. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is true because colimits commute with tensor products and étale ring maps are preserved under base change (Lemma <a href="/tag/00U2" data-tag="00U2">10.143.3</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BSI">
+  <p><a class="environment-identifier" href="/tag/0BSI">Lemma <span data-tag="0BSI">10.154.2</span>.</a> Let $A \to B \to C$ be ring maps. If $B$ is a filtered colimit of étale $A$-algebras and $C$ is a filtered colimit of étale $B$-algebras, then $C$ is a filtered colimit of étale $A$-algebras. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use the criterion of Lemma <a href="/tag/07C3" data-tag="07C3">10.127.4</a>. Let $A \to P \to C$ be a factorization of $A \to C$ with $P$ of finite presentation over $A$. Write $B = \mathop{\mathrm{colim}}\nolimits _{i \in I} B_ i$ where $I$ is a directed set and where $B_ i$ is an étale $A$-algebra. Write $C = \mathop{\mathrm{colim}}\nolimits _{j \in J} C_ j$ where $J$ is a directed set and where $C_ j$ is an étale $B$-algebra. We can factor $P \to C$ as $P \to C_ j \to C$ for some $j$ by Lemma <a href="/tag/00QO" data-tag="00QO">10.127.3</a>. By Lemma <a href="/tag/00U2" data-tag="00U2">10.143.3</a> we can find an $i \in I$ and an étale ring map $B_ i \to C'_ j$ such that $C_ j = B \otimes _{B_ i} C'_ j$. Then $C_ j = \mathop{\mathrm{colim}}\nolimits _{i' \geq i} B_{i'} \otimes _{B_ i} C'_ j$ and again we see that $P \to C_ j$ factors as $P \to B_{i'} \otimes _{B_ i} C'_ j \to C$. As $A \to C' = B_{i'} \otimes _{B_ i} C'_ j$ is étale as compositions and tensor products of étale ring maps are étale. Hence we have factored $P \to C$ as $P \to C' \to C$ with $C'$ étale over $A$ and the criterion of Lemma <a href="/tag/07C3" data-tag="07C3">10.127.4</a> applies. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BSJ">
+  <p><a class="environment-identifier" href="/tag/0BSJ">Lemma <span data-tag="0BSJ">10.154.3</span>.</a> Let $R$ be a ring. Let $A = \mathop{\mathrm{colim}}\nolimits A_ i$ be a filtered colimit of $R$-algebras such that each $A_ i$ is a filtered colimit of étale $R$-algebras. Then $A$ is a filtered colimit of étale $R$-algebras. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Write $A_ i = \mathop{\mathrm{colim}}\nolimits _{j \in J_ i} A_ j$ where $J_ i$ is a directed set and $A_ j$ is an étale $R$-algebra. For each $i \leq i'$ and $j \in J_ i$ there exists an $j' \in J_{i'}$ and an $R$-algebra map $\varphi _{jj'} : A_ j \to A_{j'}$ making the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ A_ i \ar[r] &  A_{i'} \\  A_ j \ar[u] \ar[r]^{\varphi _{jj'}} &  A_{j'} \ar[u] }  \]
+</div>
+    <p>
+       commute. This is true because $R \to A_ j$ is of finite presentation so that Lemma <a href="/tag/00QO" data-tag="00QO">10.127.3</a> applies. Let $\mathcal{J}$ be the category with objects $\coprod _{i \in I} J_ i$ and morphisms triples $(j, j', \varphi _{jj'})$ as above (and obvious composition law). Then $\mathcal{J}$ is a filtered category and $A = \mathop{\mathrm{colim}}\nolimits _\mathcal {J} A_ j$. Details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GIM">
+  <p><a class="environment-identifier" href="/tag/0GIM">Lemma <span data-tag="0GIM">10.154.4</span>.</a> Let $I$ be a directed set. Let $i \mapsto (R_ i \to A_ i)$ be a system of arrows of rings over $I$. Set $R = \mathop{\mathrm{colim}}\nolimits R_ i$ and $A = \mathop{\mathrm{colim}}\nolimits A_ i$. If each $A_ i$ is a filtered colimit of étale $R_ i$-algebras, then $A$ is a filtered colimit of étale $R$-algebras. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is true because $A = A \otimes _ R R = \mathop{\mathrm{colim}}\nolimits A_ i \otimes _{R_ i} R$ and hence we can apply Lemma <a href="/tag/0BSJ" data-tag="0BSJ">10.154.3</a> because $R \to A_ i \otimes _{R_ i} R$ is a filtered colimit of étale ring maps by Lemma <a href="/tag/0BSH" data-tag="0BSH">10.154.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08HS">
+  <p><a class="environment-identifier" href="/tag/08HS">Lemma <span data-tag="08HS">10.154.5</span>.</a> Let $R$ be a ring. Let $A \to B$ be an $R$-algebra homomorphism. If $A$ and $B$ are filtered colimits of étale $R$-algebras, then $B$ is a filtered colimit of étale $A$-algebras. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Write $A = \mathop{\mathrm{colim}}\nolimits A_ i$ and $B = \mathop{\mathrm{colim}}\nolimits B_ j$ as filtered colimits with $A_ i$ and $B_ j$ étale over $R$. For each $i$ we can find a $j$ such that $A_ i \to B$ factors through $B_ j$, see Lemma <a href="/tag/00QO" data-tag="00QO">10.127.3</a>. The factorization $A_ i \to B_ j$ is étale by Lemma <a href="/tag/00U7" data-tag="00U7">10.143.8</a>. Since $A \to A \otimes _{A_ i} B_ j$ is étale (Lemma <a href="/tag/00U2" data-tag="00U2">10.143.3</a>) it suffices to prove that $B = \mathop{\mathrm{colim}}\nolimits A \otimes _{A_ i} B_ j$ where the colimit is over pairs $(i, j)$ and factorizations $A_ i \to B_ j \to B$ of $A_ i \to B$ (this is a directed system; details omitted). This is clear because colimits commute with tensor products and hence $\mathop{\mathrm{colim}}\nolimits A \otimes _{A_ i} B_ j = A \otimes _ A B = B$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08HR">
+  <p><a class="environment-identifier" href="/tag/08HR">Lemma <span data-tag="08HR">10.154.6</span>.</a> Let $R \to S$ be a ring map with $S$ henselian local. Given </p>
+  <p><ol>
+  <li><p>
+an $R$-algebra $A$ which is a filtered colimit of étale $R$-algebras, 
+</p>
+</li><li><p>
+a prime $\mathfrak q$ of $A$ lying over $\mathfrak p = R \cap \mathfrak m_ S$, 
+</p>
+</li><li><p>
+a $\kappa (\mathfrak p)$-algebra map $\tau : \kappa (\mathfrak q) \to S/\mathfrak m_ S$, 
+</p>
+</li>
+</ol></p>
+  <p> then there exists a unique homomorphism of $R$-algebras $f : A \to S$ such that $\mathfrak q = f^{-1}(\mathfrak m_ S)$ and $f \bmod \mathfrak q = \tau $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Write $A = \mathop{\mathrm{colim}}\nolimits A_ i$ as a filtered colimit of étale $R$-algebras. Set $\mathfrak q_ i = A_ i \cap \mathfrak q$. We obtain $f_ i : A_ i \to S$ by applying Lemma <a href="/tag/08HQ" data-tag="08HQ">10.153.11</a>. Set $f = \mathop{\mathrm{colim}}\nolimits f_ i$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08HT">
+  <p><a class="environment-identifier" href="/tag/08HT">Lemma <span data-tag="08HT">10.154.7</span>.</a> Let $R$ be a ring. Given a commutative diagram of ring maps </p>
+  <div class="equation">
+  \[  \xymatrix{ S \ar[r] &  K \\  R \ar[u] \ar[r] &  S' \ar[u] }  \]
+</div>
+  <p> where $S$, $S'$ are henselian local, $S$, $S'$ are filtered colimits of étale $R$-algebras, $K$ is a field and the arrows $S \to K$ and $S' \to K$ identify $K$ with the residue field of both $S$ and $S'$. Then there exists a unique $R$-algebra isomorphism $S \to S'$ compatible with the maps to $K$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows immediately from Lemma <a href="/tag/08HR" data-tag="08HR">10.154.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma is not strictly speaking about colimits of étale ring maps. 
+</p>
+<p>
+<article class="env-lemma" id="04GI">
+  <p><a class="environment-identifier" href="/tag/04GI">Lemma <span data-tag="04GI">10.154.8</span>.</a> A filtered colimit of (strictly) henselian local rings along local homomorphisms is (strictly) henselian. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Categories, Lemma <a href="/tag/0032" data-tag="0032">4.21.5</a> says that this is really just a question about a colimit of (strictly) henselian local rings over a directed set. Let $(R_ i, \varphi _{ii'})$ be such a system with each $\varphi _{ii'}$ local. Then $R = \mathop{\mathrm{colim}}\nolimits _ i R_ i$ is local, and its residue field $\kappa $ is $\mathop{\mathrm{colim}}\nolimits \kappa _ i$ (argument omitted). It is easy to see that $\mathop{\mathrm{colim}}\nolimits \kappa _ i$ is separably algebraically closed if each $\kappa _ i$ is so; thus it suffices to prove $R$ is henselian if each $R_ i$ is henselian. Suppose that $f \in R[T]$ is monic and that $a_0 \in \kappa $ is a simple root of $\overline{f}$. Then for some large enough $i$ there exists an $f_ i \in R_ i[T]$ mapping to $f$ and an $a_{0, i} \in \kappa _ i$ mapping to $a_0$. Since $\overline{f_ i}(a_{0, i}) \in \kappa _ i$, resp. $\overline{f_ i'}(a_{0, i}) \in \kappa _ i$ maps to $0 = \overline{f}(a_0) \in \kappa $, resp. $0 \not= \overline{f'}(a_0) \in \kappa $ we conclude that $a_{0, i}$ is a simple root of $\overline{f_ i}$. As $R_ i$ is henselian we can find $a_ i \in R_ i$ such that $f_ i(a_ i) = 0$ and $a_{0, i} = \overline{a_ i}$. Then the image $a \in R$ of $a_ i$ is the desired solution. Thus $R$ is henselian. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

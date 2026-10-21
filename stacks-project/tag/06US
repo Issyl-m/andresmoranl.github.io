@@ -1,0 +1,494 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="adequate-section-quasi-coherent" class="tex-section"><span data-tag="06US">46.3</span> Adequate functors</h2>
+
+<p>
+In this section we discuss a topic closely related to direct images of quasi-coherent sheaves. Most of this material was taken from the paper <span class="cite">[<a href="/bibliography/Jaffe">Jaffe</a>]</span>. 
+</p>
+<p>
+<article class="env-definition" id="06Z4">
+  <p><a class="environment-identifier" href="/tag/06Z4">Definition <span data-tag="06Z4">46.3.1</span>.</a> Let $A$ be a ring. A <em>module-valued functor</em> is a functor $F : \textit{Alg}_ A \to \textit{Ab}$ such that </p>
+  <p><ol>
+  <li><p>
+for every object $B$ of $\textit{Alg}_ A$ the group $F(B)$ is endowed with the structure of a $B$-module, and 
+</p>
+</li><li><p>
+for any morphism $B \to B'$ of $\textit{Alg}_ A$ the map $F(B) \to F(B')$ is $B$-linear. 
+</p>
+</li>
+</ol></p>
+  <p> A <em>morphism of module-valued functors</em> is a transformation of functors $\varphi : F \to G$ such that $F(B) \to G(B)$ is $B$-linear for all $B \in \mathop{\mathrm{Ob}}\nolimits (\textit{Alg}_ A)$. </p>
+</article> 
+</p>
+<p>
+Let $S = \mathop{\mathrm{Spec}}(A)$ be an affine scheme. The category of module-valued functors on $\textit{Alg}_ A$ is equivalent to the category $\textit{PMod}((\textit{Aff}/S)_\tau , \mathcal{O})$ of presheaves of $\mathcal{O}$-modules. The equivalence is given by the rule which assigns to the module-valued functor $F$ the presheaf $\mathcal{F}$ defined by the rule $\mathcal{F}(U) = F(\mathcal{O}(U))$. This is clear from the equivalence $(\textit{Aff}/S)_\tau \to \textit{Alg}_ A$, $U \mapsto \mathcal{O}(U)$ given in Section <a href="/tag/06Z3" data-tag="06Z3">46.2</a>. The quasi-inverse sets $F(B) = \mathcal{F}(\mathop{\mathrm{Spec}}(B))$. 
+</p>
+<p>
+An important special case of a module-valued functor comes about as follows. Let $M$ be an $A$-module. Then we will denote $\underline{M}$ the module-valued functor $B \mapsto M \otimes _ A B$ (with obvious $B$-module structure). Note that if $M \to N$ is a map of $A$-modules then there is an associated morphism $\underline{M} \to \underline{N}$ of module-valued functors. Conversely, any morphism of module-valued functors $\underline{M} \to \underline{N}$ comes from an $A$-module map $M \to N$ as the reader can see by evaluating on $B = A$. In other words $\text{Mod}_ A$ is a full subcategory of the category of module-valued functors on $\textit{Alg}_ A$. 
+</p>
+<p>
+Given and $A$-module map $\varphi : M \to N$ then $\mathop{\mathrm{Coker}}(\underline{M} \to \underline{N}) = \underline{Q}$ where $Q = \mathop{\mathrm{Coker}}(M \to N)$ because $\otimes $ is right exact. But this isn't the case for the kernel in general: for example an injective map of $A$-modules need not be injective after base change. Thus the following definition makes sense. 
+</p>
+<p>
+<article class="env-definition" id="06UT">
+  <p><a class="environment-identifier" href="/tag/06UT">Definition <span data-tag="06UT">46.3.2</span>.</a> Let $A$ be a ring. A module-valued functor $F$ on $\textit{Alg}_ A$ is called </p>
+  <p><ol>
+  <li><p>
+<em>adequate</em> if there exists a map of $A$-modules $M \to N$ such that $F$ is isomorphic to $\mathop{\mathrm{Ker}}(\underline{M} \to \underline{N})$. 
+</p>
+</li><li><p>
+<em>linearly adequate</em> if $F$ is isomorphic to the kernel of a map $\underline{A^{\oplus n}} \to \underline{A^{\oplus m}}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+Note that $F$ is adequate if and only if there exists an exact sequence $0 \to F \to \underline{M} \to \underline{N}$ and $F$ is linearly adequate if and only if there exists an exact sequence $0 \to F \to \underline{A^{\oplus n}} \to \underline{A^{\oplus m}}$. 
+</p>
+<p>
+Let $A$ be a ring. In this section we will show the category of adequate functors on $\textit{Alg}_ A$ is abelian (Lemmas <a href="/tag/06V2" data-tag="06V2">46.3.10</a> and <a href="/tag/06V3" data-tag="06V3">46.3.11</a>) and has a set of generators (Lemma <a href="/tag/06UX" data-tag="06UX">46.3.6</a>). We will also see that it is a weak Serre subcategory of the category of all module-valued functors on $\textit{Alg}_ A$ (Lemma <a href="/tag/06V8" data-tag="06V8">46.3.16</a>) and that it has arbitrary colimits (Lemma <a href="/tag/06V4" data-tag="06V4">46.3.12</a>). 
+</p>
+<p>
+<article class="env-lemma" id="06UU">
+  <p><a class="environment-identifier" href="/tag/06UU">Lemma <span data-tag="06UU">46.3.3</span>.</a> Let $A$ be a ring. Let $F$ be an adequate functor on $\textit{Alg}_ A$. If $B = \mathop{\mathrm{colim}}\nolimits B_ i$ is a filtered colimit of $A$-algebras, then $F(B) = \mathop{\mathrm{colim}}\nolimits F(B_ i)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This holds because for any $A$-module $M$ we have $M \otimes _ A B = \mathop{\mathrm{colim}}\nolimits M \otimes _ A B_ i$ (see Algebra, Lemma <a href="/tag/00DD" data-tag="00DD">10.12.9</a>) and because filtered colimits commute with exact sequences, see Algebra, Lemma <a href="/tag/00DB" data-tag="00DB">10.8.8</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="06UV">
+  <p><a class="environment-identifier" href="/tag/06UV">Remark <span data-tag="06UV">46.3.4</span>.</a> Consider the category $\textit{Alg}_{fp, A}$ whose objects are $A$-algebras $B$ of the form $B = A[x_1, \ldots , x_ n]/(f_1, \ldots , f_ m)$ and whose morphisms are $A$-algebra maps. Every $A$-algebra $B$ is a filtered colimit of finitely presented $A$-algebra, i.e., a filtered colimit of objects of $\textit{Alg}_{fp, A}$. By Lemma <a href="/tag/06UU" data-tag="06UU">46.3.3</a> we conclude every adequate functor $F$ is determined by its restriction to $\textit{Alg}_{fp, A}$. For some questions we can therefore restrict to functors on $\textit{Alg}_{fp, A}$. For example, the category of adequate functors does not depend on the choice of the big $\tau $-site chosen in Section <a href="/tag/06Z3" data-tag="06Z3">46.2</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="06UW">
+  <p><a class="environment-identifier" href="/tag/06UW">Lemma <span data-tag="06UW">46.3.5</span>.</a> Let $A$ be a ring. Let $F$ be an adequate functor on $\textit{Alg}_ A$. If $B \to B'$ is flat, then $F(B) \otimes _ B B' \to F(B')$ is an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose an exact sequence $0 \to F \to \underline{M} \to \underline{N}$. This gives the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ 0 \ar[r] &  F(B) \otimes _ B B' \ar[r] \ar[d] &  (M \otimes _ A B)\otimes _ B B' \ar[r] \ar[d] &  (N \otimes _ A B)\otimes _ B B' \ar[d] \\  0 \ar[r] &  F(B') \ar[r] &  M \otimes _ A B' \ar[r] &  N \otimes _ A B' }  \]
+</div>
+    <p>
+       where the rows are exact (the top one because $B \to B'$ is flat). Since the right two vertical arrows are isomorphisms, so is the left one. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06UX">
+  <p><a class="environment-identifier" href="/tag/06UX">Lemma <span data-tag="06UX">46.3.6</span>.</a> Let $A$ be a ring. Let $F$ be an adequate functor on $\textit{Alg}_ A$. Then there exists a surjection $L \to F$ with $L$ a direct sum of linearly adequate functors. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose an exact sequence $0 \to F \to \underline{M} \to \underline{N}$ where $\underline{M} \to \underline{N}$ is given by $\varphi : M \to N$. By Lemma <a href="/tag/06UU" data-tag="06UU">46.3.3</a> it suffices to construct $L \to F$ such that $L(B) \to F(B)$ is surjective for every finitely presented $A$-algebra $B$. Hence it suffices to construct, given a finitely presented $A$-algebra $B$ and an element $\xi \in F(B)$ a map $L \to F$ with $L$ linearly adequate such that $\xi $ is in the image of $L(B) \to F(B)$. (Because there is a set worth of such pairs $(B, \xi )$ up to isomorphism.) 
+    <p>
+      To do this write $\sum _{i = 1, \ldots , n} m_ i \otimes b_ i$ the image of $\xi $ in $\underline{M}(B) = M \otimes _ A B$. We know that $\sum \varphi (m_ i) \otimes b_ i = 0$ in $N \otimes _ A B$. As $N$ is a filtered colimit of finitely presented $A$-modules, we can find a finitely presented $A$-module $N'$, a commutative diagram of $A$-modules 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ A^{\oplus n} \ar[r] \ar[d]_{m_1, \ldots , m_ n} &  N' \ar[d] \\  M \ar[r] &  N }  \]
+</div>
+    <p>
+       such that $(b_1, \ldots , b_ n)$ maps to zero in $N' \otimes _ A B$. Choose a presentation $A^{\oplus l} \to A^{\oplus k} \to N' \to 0$. Choose a lift $A^{\oplus n} \to A^{\oplus k}$ of the map $A^{\oplus n} \to N'$ of the diagram. Then we see that there exist $(c_1, \ldots , c_ l) \in B^{\oplus l}$ such that $(b_1, \ldots , b_ n, c_1, \ldots , c_ l)$ maps to zero in $B^{\oplus k}$ under the map $B^{\oplus n} \oplus B^{\oplus l} \to B^{\oplus k}$. Consider the commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ A^{\oplus n} \oplus A^{\oplus l} \ar[r] \ar[d] &  A^{\oplus k} \ar[d] \\  M \ar[r] &  N }  \]
+</div>
+    <p>
+       where the left vertical arrow is zero on the summand $A^{\oplus l}$. Then we see that $L$ equal to the kernel of $\underline{A^{\oplus n + l}} \to \underline{A^{\oplus k}}$ works because the element $(b_1, \ldots , b_ n, c_1, \ldots , c_ l) \in L(B)$ maps to $\xi $. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Consider a graded $A$-algebra $B = \bigoplus _{d \geq 0} B_ d$. Then there are two $A$-algebra maps $p, a : B \to B[t, t^{-1}]$, namely $p : b \mapsto b$ and $a : b \mapsto t^{\deg (b)} b$ where $b$ is homogeneous. If $F$ is a module-valued functor on $\textit{Alg}_ A$, then we define 
+</p>
+<div class="equation" id="06UY">
+    <span class="equation-label"><a href="/tag/06UY" data-tag="06UY">46.3.6.1</a></span>
+  <div>\begin{equation}  \label{adequate-equation-weight-k} F(B)^{(k)} = \{ \xi \in F(B) \mid t^ k F(p)(\xi ) = F(a)(\xi )\} . \end{equation}</div>
+</div>
+<p>
+ For functors which behave well with respect to flat ring extensions this gives a direct sum decomposition. This amounts to the fact that representations of $\mathbf{G}_ m$ are completely reducible. 
+</p>
+<p>
+<article class="env-lemma" id="06UZ">
+  <p><a class="environment-identifier" href="/tag/06UZ">Lemma <span data-tag="06UZ">46.3.7</span>.</a> Let $A$ be a ring. Let $F$ be a module-valued functor on $\textit{Alg}_ A$. Assume that for $B \to B'$ flat the map $F(B) \otimes _ B B' \to F(B')$ is an isomorphism. Let $B$ be a graded $A$-algebra. Then </p>
+  <p><ol>
+  <li><p>
+$F(B) = \bigoplus _{k \in \mathbf{Z}} F(B)^{(k)}$, and 
+</p>
+</li><li><p>
+the map $B \to B_0 \to B$ induces map $F(B) \to F(B)$ whose image is contained in $F(B)^{(0)}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $x \in F(B)$. The map $p : B \to B[t, t^{-1}]$ is free hence we know that 
+    <p>
+      <div class="equation">
+  \[  F(B[t, t^{-1}]) = \bigoplus \nolimits _{k \in \mathbf{Z}} F(p)(F(B)) \cdot t^ k = \bigoplus \nolimits _{k \in \mathbf{Z}} F(B) \cdot t^ k  \]
+</div>
+    <p>
+       as indicated we drop the $F(p)$ in the rest of the proof. Write $F(a)(x) = \sum t^ k x_ k$ for some $x_ k \in F(B)$. Denote $\epsilon : B[t, t^{-1}] \to B$ the $B$-algebra map $t \mapsto 1$. Note that the compositions $\epsilon \circ p, \epsilon \circ a : B \to B[t, t^{-1}] \to B$ are the identity. Hence we see that 
+    <p>
+      <div class="equation">
+  \[  x = F(\epsilon )(F(a)(x)) = F(\epsilon )(\sum t^ k x_ k) = \sum x_ k.  \]
+</div>
+    <p>
+       On the other hand, we claim that $x_ k \in F(B)^{(k)}$. Namely, consider the commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ B \ar[r]_ a \ar[d]_{a'} &  B[t, t^{-1}] \ar[d]^ f \\  B[s, s^{-1}] \ar[r]^-g &  B[t, s, t^{-1}, s^{-1}] }  \]
+</div>
+    <p>
+       where $a'(b) = s^{\deg (b)}b$, $f(b) = b$, $f(t) = st$ and $g(b) = t^{\deg (b)}b$ and $g(s) = s$. Then 
+    <p>
+      <div class="equation">
+  \[  F(g)(F(a'))(x) = F(g)(\sum s^ k x_ k) = \sum s^ k F(a)(x_ k)  \]
+</div>
+    <p>
+       and going the other way we see 
+    <p>
+      <div class="equation">
+  \[  F(f)(F(a))(x) = F(f)(\sum t^ k x_ k) = \sum (st)^ k x_ k.  \]
+</div>
+    <p>
+       Since $B \to B[s, t, s^{-1}, t^{-1}]$ is free we see that $F(B[t, s, t^{-1}, s^{-1}]) = \bigoplus _{k, l \in \mathbf{Z}} F(B) \cdot t^ ks^ l$ and comparing coefficients in the expressions above we find $F(a)(x_ k) = t^ k x_ k$ as desired. 
+    <p>
+      Finally, the image of $F(B_0) \to F(B)$ is contained in $F(B)^{(0)}$ because $B_0 \to B \xrightarrow {a} B[t, t^{-1}]$ is equal to $B_0 \to B \xrightarrow {p} B[t, t^{-1}]$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+As a particular case of Lemma <a href="/tag/06UZ" data-tag="06UZ">46.3.7</a> note that 
+</p>
+<div class="equation">
+  \[  \underline{M}(B)^{(k)} = M \otimes _ A B_ k  \]
+</div>
+<p>
+ where $B_ k$ is the degree $k$ part of the graded $A$-algebra $B$. 
+</p>
+<p>
+<article class="env-lemma" id="06V0">
+  <p><a class="environment-identifier" href="/tag/06V0">Lemma <span data-tag="06V0">46.3.8</span>.</a> Let $A$ be a ring. Given a solid diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ 0 \ar[r] &  L \ar[d]_\varphi \ar[r] &  \underline{A^{\oplus n}} \ar[r] \ar@{..>}[ld] &  \underline{A^{\oplus m}} \\  &  \underline{M} }  \]
+</div>
+  <p> of module-valued functors on $\textit{Alg}_ A$ with exact row there exists a dotted arrow making the diagram commute. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose that the map $A^{\oplus n} \to A^{\oplus m}$ is given by the $m \times n$-matrix $(a_{ij})$. Consider the ring $B = A[x_1, \ldots , x_ n]/(\sum a_{ij}x_ j)$. The element $(x_1, \ldots , x_ n) \in \underline{A^{\oplus n}}(B)$ maps to zero in $\underline{A^{\oplus m}}(B)$ hence is the image of a unique element $\xi \in L(B)$. Note that $\xi $ has the following universal property: for any $A$-algebra $C$ and any $\xi ' \in L(C)$ there exists an $A$-algebra map $B \to C$ such that $\xi $ maps to $\xi '$ via the map $L(B) \to L(C)$. 
+    <p>
+      Note that $B$ is a graded $A$-algebra, hence we can use Lemmas <a href="/tag/06UZ" data-tag="06UZ">46.3.7</a> and <a href="/tag/06UW" data-tag="06UW">46.3.5</a> to decompose the values of our functors on $B$ into graded pieces. Note that $\xi \in L(B)^{(1)}$ as $(x_1, \ldots , x_ n)$ is an element of degree one in $\underline{A^{\oplus n}}(B)$. Hence we see that $\varphi (\xi ) \in \underline{M}(B)^{(1)} = M \otimes _ A B_1$. Since $B_1$ is generated by $x_1, \ldots , x_ n$ as an $A$-module we can write $\varphi (\xi ) = \sum m_ i \otimes x_ i$. Consider the map $A^{\oplus n} \to M$ which maps the $i$th basis vector to $m_ i$. By construction the associated map $\underline{A^{\oplus n}} \to \underline{M}$ maps the element $\xi $ to $\varphi (\xi )$. It follows from the universal property mentioned above that the diagram commutes. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06V1">
+  <p><a class="environment-identifier" href="/tag/06V1">Lemma <span data-tag="06V1">46.3.9</span>.</a> Let $A$ be a ring. Let $\varphi : F \to \underline{M}$ be a map of module-valued functors on $\textit{Alg}_ A$ with $F$ adequate. Then $\mathop{\mathrm{Coker}}(\varphi )$ is adequate. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/06UX" data-tag="06UX">46.3.6</a> we may assume that $F = \bigoplus L_ i$ is a direct sum of linearly adequate functors. Choose exact sequences $0 \to L_ i \to \underline{A^{\oplus n_ i}} \to \underline{A^{\oplus m_ i}}$. For each $i$ choose a map $A^{\oplus n_ i} \to M$ as in Lemma <a href="/tag/06V0" data-tag="06V0">46.3.8</a>. Consider the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ 0 \ar[r] &  \bigoplus L_ i \ar[r] \ar[d] &  \bigoplus \underline{A^{\oplus n_ i}} \ar[r] \ar[ld] &  \bigoplus \underline{A^{\oplus m_ i}} \\  &  \underline{M} }  \]
+</div>
+    <p>
+       Consider the $A$-modules 
+    <p>
+      <div class="equation">
+  \[  Q = \mathop{\mathrm{Coker}}(\bigoplus A^{\oplus n_ i} \to M \oplus \bigoplus A^{\oplus m_ i}) \quad \text{and}\quad P = \mathop{\mathrm{Coker}}(\bigoplus A^{\oplus n_ i} \to \bigoplus A^{\oplus m_ i}).  \]
+</div>
+    <p>
+       Then we see that $\mathop{\mathrm{Coker}}(\varphi )$ is isomorphic to the kernel of $\underline{Q} \to \underline{P}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06V2">
+       
+      
+  <p><a class="environment-identifier" href="/tag/06V2">Lemma <span data-tag="06V2">46.3.10</span>.</a> Let $A$ be a ring. Let $\varphi : F \to G$ be a map of adequate functors on $\textit{Alg}_ A$. Then $\mathop{\mathrm{Coker}}(\varphi )$ is adequate. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose an injection $G \to \underline{M}$. Then we have an injection $G/F \to \underline{M}/F$. By Lemma <a href="/tag/06V1" data-tag="06V1">46.3.9</a> we see that $\underline{M}/F$ is adequate, hence we can find an injection $\underline{M}/F \to \underline{N}$. Composing we obtain an injection $G/F \to \underline{N}$. By Lemma <a href="/tag/06V1" data-tag="06V1">46.3.9</a> the cokernel of the induced map $G \to \underline{N}$ is adequate hence we can find an injection $\underline{N}/G \to \underline{K}$. Then $0 \to G/F \to \underline{N} \to \underline{K}$ is exact and we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06V3">
+  <p><a class="environment-identifier" href="/tag/06V3">Lemma <span data-tag="06V3">46.3.11</span>.</a> Let $A$ be a ring. Let $\varphi : F \to G$ be a map of adequate functors on $\textit{Alg}_ A$. Then $\mathop{\mathrm{Ker}}(\varphi )$ is adequate. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose an injection $F \to \underline{M}$ and an injection $G \to \underline{N}$. Denote $F \to \underline{M \oplus N}$ the diagonal map so that 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ F \ar[d] \ar[r] &  G \ar[d] \\  \underline{M \oplus N} \ar[r] &  \underline{N} }  \]
+</div>
+    <p>
+       commutes. By Lemma <a href="/tag/06V2" data-tag="06V2">46.3.10</a> we can find a module map $M \oplus N \to K$ such that $F$ is the kernel of $\underline{M \oplus N} \to \underline{K}$. Then $\mathop{\mathrm{Ker}}(\varphi )$ is the kernel of $\underline{M \oplus N} \to \underline{K \oplus N}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06V4">
+  <p><a class="environment-identifier" href="/tag/06V4">Lemma <span data-tag="06V4">46.3.12</span>.</a> Let $A$ be a ring. An arbitrary direct sum of adequate functors on $\textit{Alg}_ A$ is adequate. A colimit of adequate functors is adequate. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The statement on direct sums is immediate. A general colimit can be written as a kernel of a map between direct sums, see Categories, Lemma <a href="/tag/002P" data-tag="002P">4.14.12</a>. Hence this follows from Lemma <a href="/tag/06V3" data-tag="06V3">46.3.11</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06V5">
+  <p><a class="environment-identifier" href="/tag/06V5">Lemma <span data-tag="06V5">46.3.13</span>.</a> Let $A$ be a ring. Let $F, G$ be module-valued functors on $\textit{Alg}_ A$. Let $\varphi : F \to G$ be a transformation of functors. Assume </p>
+  <p><ol>
+  <li><p>
+$\varphi $ is additive, 
+</p>
+</li><li><p>
+for every $A$-algebra $B$ and $\xi \in F(B)$ and unit $u \in B^*$ we have $\varphi (u\xi ) = u\varphi (\xi )$ in $G(B)$, and 
+</p>
+</li><li><p>
+for any flat ring map $B \to B'$ we have $G(B) \otimes _ B B' = G(B')$. 
+</p>
+</li>
+</ol></p>
+  <p> Then $\varphi $ is a morphism of module-valued functors. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $B$ be an $A$-algebra, $\xi \in F(B)$, and $b \in B$. We have to show that $\varphi (b \xi ) = b \varphi (\xi )$. Consider the ring map 
+    <p>
+      <div class="equation">
+  \[  B \to B' = B[x, y, x^{-1}, y^{-1}]/(x + y - b).  \]
+</div>
+    <p>
+       This ring map is faithfully flat, hence $G(B) \subset G(B')$. On the other hand 
+    <p>
+      <div class="equation">
+  \[  \varphi (b\xi ) = \varphi ((x + y)\xi ) = \varphi (x\xi ) + \varphi (y\xi ) = x\varphi (\xi ) + y\varphi (\xi ) = (x + y)\varphi (\xi ) = b\varphi (\xi )  \]
+</div>
+    <p>
+       because $x, y$ are units in $B'$. Hence we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06V6">
+  <p><a class="environment-identifier" href="/tag/06V6">Lemma <span data-tag="06V6">46.3.14</span>.</a> Let $A$ be a ring. Let $0 \to \underline{M} \to G \to L \to 0$ be a short exact sequence of module-valued functors on $\textit{Alg}_ A$ with $L$ linearly adequate. Then $G$ is adequate. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We first point out that for any flat $A$-algebra map $B \to B'$ the map $G(B) \otimes _ B B' \to G(B')$ is an isomorphism. Namely, this holds for $\underline{M}$ and $L$, see Lemma <a href="/tag/06UW" data-tag="06UW">46.3.5</a> and hence follows for $G$ by the five lemma. In particular, by Lemma <a href="/tag/06UZ" data-tag="06UZ">46.3.7</a> we see that $G(B) = \bigoplus _{k \in \mathbf{Z}} G(B)^{(k)}$ for any graded $A$-algebra $B$. 
+    <p>
+      Choose an exact sequence $0 \to L \to \underline{A^{\oplus n}} \to \underline{A^{\oplus m}}$. Suppose that the map $A^{\oplus n} \to A^{\oplus m}$ is given by the $m \times n$-matrix $(a_{ij})$. Consider the graded $A$-algebra $B = A[x_1, \ldots , x_ n]/(\sum a_{ij}x_ j)$. The element $(x_1, \ldots , x_ n) \in \underline{A^{\oplus n}}(B)$ maps to zero in $\underline{A^{\oplus m}}(B)$ hence is the image of a unique element $\xi \in L(B)$. Observe that $\xi \in L(B)^{(1)}$. The map 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _ A(B, C) \longrightarrow L(C), \quad f \longmapsto L(f)(\xi )  \]
+</div>
+    <p>
+       defines an isomorphism of functors. The reason is that $f$ is determined by the images $c_ i = f(x_ i) \in C$ which have to satisfy the relations $\sum a_{ij}c_ j = 0$. And $L(C)$ is the set of $n$-tuples $(c_1, \ldots , c_ n)$ satisfying the relations $\sum a_{ij} c_ j = 0$. 
+    <p>
+      Since the value of each of the functors $\underline{M}$, $G$, $L$ on $B$ is a direct sum of its weight spaces (by the lemma mentioned above) exactness of $0 \to \underline{M} \to G \to L \to 0$ implies the sequence $0 \to \underline{M}(B)^{(1)} \to G(B)^{(1)} \to L(B)^{(1)} \to 0$ is exact. Thus we may choose an element $\theta \in G(B)^{(1)}$ mapping to $\xi $. 
+    <p>
+      Consider the graded $A$-algebra 
+    <p>
+      <div class="equation">
+  \[  C = A[x_1, \ldots , x_ n, y_1, \ldots , y_ n]/ (\sum a_{ij}x_ j, \sum a_{ij}y_ j)  \]
+</div>
+    <p>
+       There are three graded $A$-algebra homomorphisms $p_1, p_2, m : B \to C$ defined by the rules 
+    <p>
+      <div class="equation">
+  \[  p_1(x_ i) = x_ i, \quad p_1(x_ i) = y_ i, \quad m(x_ i) = x_ i + y_ i.  \]
+</div>
+    <p>
+       We will show that the element 
+    <p>
+      <div class="equation">
+  \[  \tau = G(m)(\theta ) - G(p_1)(\theta ) - G(p_2)(\theta ) \in G(C)  \]
+</div>
+    <p>
+       is zero. First, $\tau $ maps to zero in $L(C)$ by a direct calculation. Hence $\tau $ is an element of $\underline{M}(C)$. Moreover, since $m$, $p_1$, $p_2$ are graded algebra maps we see that $\tau \in G(C)^{(1)}$ and since $\underline{M} \subset G$ we conclude 
+    <p>
+      <div class="equation">
+  \[  \tau \in \underline{M}(C)^{(1)} = M \otimes _ A C_1.  \]
+</div>
+    <p>
+       We may write uniquely $\tau = \underline{M}(p_1)(\tau _1) + \underline{M}(p_2)(\tau _2)$ with $\tau _ i \in M \otimes _ A B_1 = \underline{M}(B)^{(1)}$ because $C_1 = p_1(B_1) \oplus p_2(B_1)$. Consider the ring map $q_1 : C \to B$ defined by $x_ i \mapsto x_ i$ and $y_ i \mapsto 0$. Then $\underline{M}(q_1)(\tau ) = \underline{M}(q_1)(\underline{M}(p_1)(\tau _1) + \underline{M}(p_2)(\tau _2)) = \tau _1$. On the other hand, because $q_1 \circ m = q_1 \circ p_1$ we see that $G(q_1)(\tau ) = - G(q_1 \circ p_2)(\tau )$. Since $q_1 \circ p_2$ factors as $B \to A \to B$ we see that $G(q_1 \circ p_2)(\tau )$ is in $G(B)^{(0)}$, see Lemma <a href="/tag/06UZ" data-tag="06UZ">46.3.7</a>. Hence $\tau _1 = 0$ because it is in $G(B)^{(0)} \cap \underline{M}(B)^{(1)} \subset G(B)^{(0)} \cap G(B)^{(1)} = 0$. Similarly $\tau _2 = 0$, whence $\tau = 0$. 
+    <p>
+      Since $\theta \in G(B)$ we obtain a transformation of functors 
+    <p>
+      <div class="equation">
+  \[  \psi : L(-) = \mathop{\mathrm{Hom}}\nolimits _ A(B, - ) \longrightarrow G(-)  \]
+</div>
+    <p>
+       by mapping $f : B \to C$ to $G(f)(\theta )$. Since $\theta $ is a lift of $\xi $ the map $\psi $ is a right inverse of $G \to L$. In terms of $\psi $ the statements proved above have the following meaning: $\tau = 0$ means that $\psi $ is additive and $\theta \in G(B)^{(1)}$ implies that for any $A$-algebra $D$ we have $\psi (ul) = u\psi (l)$ in $G(D)$ for $l \in L(D)$ and $u \in D^*$ a unit. This implies that $\psi $ is a morphism of module-valued functors, see Lemma <a href="/tag/06V5" data-tag="06V5">46.3.13</a>. Clearly this implies that $G \cong \underline{M} \oplus L$ and we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="06V7">
+  <p><a class="environment-identifier" href="/tag/06V7">Remark <span data-tag="06V7">46.3.15</span>.</a> Let $A$ be a ring. The proof of Lemma <a href="/tag/06V6" data-tag="06V6">46.3.14</a> shows that any extension $0 \to \underline{M} \to E \to L \to 0$ of module-valued functors on $\textit{Alg}_ A$ with $L$ linearly adequate splits. It uses only the following properties of the module-valued functor $F = \underline{M}$: </p>
+  <p><ol>
+  <li><p>
+$F(B) \otimes _ B B' \to F(B')$ is an isomorphism for a flat ring map $B \to B'$, and 
+</p>
+</li><li><p>
+$F(C)^{(1)} = F(p_1)(F(B)^{(1)}) \oplus F(p_2)(F(B)^{(1)})$ where $B = A[x_1, \ldots , x_ n]/(\sum a_{ij}x_ j)$ and $C = A[x_1, \ldots , x_ n, y_1, \ldots , y_ n]/ (\sum a_{ij}x_ j, \sum a_{ij}y_ j)$. 
+</p>
+</li>
+</ol></p>
+  <p> These two properties hold for any adequate functor $F$; details omitted. Hence we see that $L$ is a projective object of the abelian category of adequate functors. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="06V8">
+  <p><a class="environment-identifier" href="/tag/06V8">Lemma <span data-tag="06V8">46.3.16</span>.</a> Let $A$ be a ring. Let $0 \to F \to G \to H \to 0$ be a short exact sequence of module-valued functors on $\textit{Alg}_ A$. If $F$ and $H$ are adequate, so is $G$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose an exact sequence $0 \to F \to \underline{M} \to \underline{N}$. If we can show that $(\underline{M} \oplus G)/F$ is adequate, then $G$ is the kernel of the map of adequate functors $(\underline{M} \oplus G)/F \to \underline{N}$, hence adequate by Lemma <a href="/tag/06V3" data-tag="06V3">46.3.11</a>. Thus we may assume $F = \underline{M}$. 
+    <p>
+      We can choose a surjection $L \to H$ where $L$ is a direct sum of linearly adequate functors, see Lemma <a href="/tag/06UX" data-tag="06UX">46.3.6</a>. If we can show that the pullback $G \times _ H L$ is adequate, then $G$ is the cokernel of the map $\mathop{\mathrm{Ker}}(L \to H) \to G \times _ H L$ hence adequate by Lemma <a href="/tag/06V2" data-tag="06V2">46.3.10</a>. Thus we may assume that $H = \bigoplus L_ i$ is a direct sum of linearly adequate functors. By Lemma <a href="/tag/06V6" data-tag="06V6">46.3.14</a> each of the pullbacks $G \times _ H L_ i$ is adequate. By Lemma <a href="/tag/06V4" data-tag="06V4">46.3.12</a> we see that $\bigoplus G \times _ H L_ i$ is adequate. Then $G$ is the cokernel of 
+    <p>
+      <div class="equation">
+  \[  \bigoplus \nolimits _{i \not= i'} F \longrightarrow \bigoplus G \times _ H L_ i  \]
+</div>
+    <p>
+       where $\xi $ in the summand $(i, i')$ maps to $(0, \ldots , 0, \xi , 0, \ldots , 0, -\xi , 0, \ldots , 0)$ with nonzero entries in the summands $i$ and $i'$. Thus $G$ is adequate by Lemma <a href="/tag/06V2" data-tag="06V2">46.3.10</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06V9">
+  <p><a class="environment-identifier" href="/tag/06V9">Lemma <span data-tag="06V9">46.3.17</span>.</a> Let $A \to A'$ be a ring map. If $F$ is an adequate functor on $\textit{Alg}_ A$, then its restriction $F'$ to $\textit{Alg}_{A'}$ is adequate too. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose an exact sequence $0 \to F \to \underline{M} \to \underline{N}$. Then $F'(B') = F(B') = \mathop{\mathrm{Ker}}(M \otimes _ A B' \to N \otimes _ A B')$. Since $M \otimes _ A B' = M \otimes _ A A' \otimes _{A'} B'$ and similarly for $N$ we see that $F'$ is the kernel of $\underline{M \otimes _ A A'} \to \underline{N \otimes _ A A'}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06VA">
+  <p><a class="environment-identifier" href="/tag/06VA">Lemma <span data-tag="06VA">46.3.18</span>.</a> Let $A \to A'$ be a ring map. If $F'$ is an adequate functor on $\textit{Alg}_{A'}$, then the module-valued functor $F : B \mapsto F'(A' \otimes _ A B)$ on $\textit{Alg}_ A$ is adequate too. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose an exact sequence $0 \to F' \to \underline{M'} \to \underline{N'}$. Then 
+    <p>
+      <div class="equation">
+  \begin{align*}  F(B) &  = F'(A' \otimes _ A B) \\ &  = \mathop{\mathrm{Ker}}(M' \otimes _{A'} ( A' \otimes _ A B) \to N' \otimes _{A'} (A' \otimes _ A B)) \\ &  = \mathop{\mathrm{Ker}}(M' \otimes _ A B \to N' \otimes _ A B) \end{align*}
+</div>
+    <p>
+       Thus $F$ is the kernel of $\underline{M} \to \underline{N}$ where $M = M'$ and $N = N'$ viewed as $A$-modules. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06VB">
+  <p><a class="environment-identifier" href="/tag/06VB">Lemma <span data-tag="06VB">46.3.19</span>.</a> Let $A = A_1 \times \ldots \times A_ n$ be a product of rings. An adequate functor over $A$ is the same thing as a sequence $F_1, \ldots , F_ n$ of adequate functors $F_ i$ over $A_ i$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is true because an $A$-algebra $B$ is canonically a product $B_1 \times \ldots \times B_ n$ and the same thing holds for $A$-modules. Setting $F(B) = \coprod F_ i(B_ i)$ gives the correspondence. Details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06VH">
+  <p><a class="environment-identifier" href="/tag/06VH">Lemma <span data-tag="06VH">46.3.20</span>.</a> Let $A \to A'$ be a ring map and let $F$ be a module-valued functor on $\textit{Alg}_ A$ such that </p>
+  <p><ol>
+  <li><p>
+the restriction $F'$ of $F$ to the category of $A'$-algebras is adequate, and 
+</p>
+</li><li><p>
+for any $A$-algebra $B$ the sequence 
+</p>
+<div class="equation">
+  \[  0 \to F(B) \to F(B \otimes _ A A') \to F(B \otimes _ A A' \otimes _ A A')  \]
+</div>
+<p>
+ is exact. 
+</p>
+</li>
+</ol></p>
+  <p> Then $F$ is adequate. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The functors $B \to F(B \otimes _ A A')$ and $B \mapsto F(B \otimes _ A A' \otimes _ A A')$ are adequate, see Lemmas <a href="/tag/06VA" data-tag="06VA">46.3.18</a> and <a href="/tag/06V9" data-tag="06V9">46.3.17</a>. Hence $F$ as a kernel of a map of adequate functors is adequate, see Lemma <a href="/tag/06V3" data-tag="06V3">46.3.11</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

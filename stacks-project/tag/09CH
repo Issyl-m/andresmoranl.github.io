@@ -1,0 +1,346 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="algebra-section-differential-operators" class="tex-section"><span data-tag="09CH">10.133</span> Finite order differential operators</h2>
+
+<p>
+In this section we introduce differential operators of finite order. 
+</p>
+<p>
+<article class="env-definition" id="09CI">
+  <p><a class="environment-identifier" href="/tag/09CI">Definition <span data-tag="09CI">10.133.1</span>.</a> Let $R \to S$ be a ring map. Let $M$, $N$ be $S$-modules. Let $k \geq 0$ be an integer. We inductively define a <em>differential operator $D : M \to N$ of order $k$</em> to be an $R$-linear map such that for all $g \in S$ the map $m \mapsto D(gm) - gD(m)$ is a differential operator of order $k - 1$. For the base case $k = 0$ we define a differential operator of order $0$ to be an $S$-linear map. </p>
+</article> 
+</p>
+<p>
+If $D : M \to N$ is a differential operator of order $k$, then for all $g \in S$ the map $gD$ is a differential operator of order $k$. The sum of two differential operators of order $k$ is another. Hence the set of all these 
+</p>
+<div class="equation">
+  \[  \text{Diff}^ k(M, N) = \text{Diff}^ k_{S/R}(M, N)  \]
+</div>
+<p>
+ is an $S$-module. We have 
+</p>
+<div class="equation">
+  \[  \text{Diff}^0(M, N) \subset \text{Diff}^1(M, N) \subset \text{Diff}^2(M, N) \subset \ldots  \]
+</div>
+<p>
+<article class="env-lemma" id="09CJ">
+  <p><a class="environment-identifier" href="/tag/09CJ">Lemma <span data-tag="09CJ">10.133.2</span>.</a> Let $R \to S$ be a ring map. Let $L, M, N$ be $S$-modules. If $D : L \to M$ and $D' : M \to N$ are differential operators of order $k$ and $k'$, then $D' \circ D$ is a differential operator of order $k + k'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $g \in S$. Then the map which sends $x \in L$ to 
+    <p>
+      <div class="equation">
+  \[  D'(D(gx)) - gD'(D(x)) = D'(D(gx)) - D'(gD(x)) + D'(gD(x)) - gD'(D(x))  \]
+</div>
+    <p>
+       is a sum of two compositions of differential operators of lower order. Hence the lemma follows by induction on $k + k'$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09CK">
+  <p><a class="environment-identifier" href="/tag/09CK">Lemma <span data-tag="09CK">10.133.3</span>.</a> Let $R \to S$ be a ring map. Let $M$ be an $S$-module. Let $k \geq 0$. There exists an $S$-module $P^ k_{S/R}(M)$ and a canonical isomorphism </p>
+  <div class="equation">
+  \[  \text{Diff}^ k_{S/R}(M, N) = \mathop{\mathrm{Hom}}\nolimits _ S(P^ k_{S/R}(M), N)  \]
+</div>
+  <p> functorial in the $S$-module $N$. </p>
+</article> 
+</p>
+<p>
+Via the Yoneda lemma this tells us there exists a “universal” differential operator $D_{univ} : M \to P^ k_{S/R}(M)$ of order $k$ such that for every differential operator $D : M \to N$ of order $k$ there is a unique $S$-linear map $\alpha : P^ k_{S/R}(M) \to N$ with $D = D_{univ} \circ \alpha $. The pair $(P^ k_{S/R}(M), D_{univ})$ is unique up to unique isomorphism. 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The existence of $P^ k_{S/R}(M)$ follows from general category theoretic arguments (insert future reference here), but we will also give a construction. Set $F = \bigoplus _{m \in M} S[m]$ where $[m]$ is a symbol indicating the basis element in the summand corresponding to $m$. Given any differential operator $D : M \to N$ we obtain an $S$-linear map $L_ D : F \to N$ sending $[m]$ to $D(m)$. If $D$ has order $0$, then $L_ D$ annihilates the elements 
+    <p>
+      <div class="equation">
+  \[  [m + m'] - [m] - [m'],\quad g_0[m] - [g_0m]  \]
+</div>
+    <p>
+       where $g_0 \in S$ and $m, m' \in M$. If $D$ has order $1$, then $L_ D$ annihilates the elements 
+    <p>
+      <div class="equation">
+  \[  [m + m'] - [m] - [m'],\quad f[m] - [fm], \quad g_0g_1[m] - g_0[g_1m] - g_1[g_0m] + [g_1g_0m]  \]
+</div>
+    <p>
+       where $f \in R$, $g_0, g_1 \in S$, and $m \in M$. If $D$ has order $k$, then $L_ D$ annihilates the elements $[m + m'] - [m] - [m']$, $f[m] - [fm]$, and the elements 
+    <p>
+      <div class="equation">
+  \[  g_0g_1\ldots g_ k[m] - \sum g_0 \ldots \hat g_ i \ldots g_ k[g_ im] + \ldots +(-1)^{k + 1}[g_0\ldots g_ km]  \]
+</div>
+    <p>
+       Conversely, if $L : F \to N$ is an $S$-linear map annihilating all the elements listed in the previous sentence, then $m \mapsto L([m])$ is a differential operator of order $k$. Thus we see that $P^ k_{S/R}(M)$ is the quotient of $F$ by the submodule generated by these elements. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="09CL">
+  <p><a class="environment-identifier" href="/tag/09CL">Definition <span data-tag="09CL">10.133.4</span>.</a> Let $R \to S$ be a ring map. Let $M$ be an $S$-module. The module $P^ k_{S/R}(M)$ constructed in Lemma <a href="/tag/09CK" data-tag="09CK">10.133.3</a> is called the <em>module of principal parts of order $k$</em> of $M$. </p>
+</article> 
+</p>
+<p>
+Note that the inclusions 
+</p>
+<div class="equation">
+  \[  \text{Diff}^0(M, N) \subset \text{Diff}^1(M, N) \subset \text{Diff}^2(M, N) \subset \ldots  \]
+</div>
+<p>
+ correspond via Yoneda's lemma (Categories, Lemma <a href="/tag/001P" data-tag="001P">4.3.5</a>) to surjections 
+</p>
+<div class="equation">
+  \[  \ldots \to P^2_{S/R}(M) \to P^1_{S/R}(M) \to P^0_{S/R}(M) = M  \]
+</div>
+<p>
+<article class="env-example" id="09CM">
+  <p><a class="environment-identifier" href="/tag/09CM">Example <span data-tag="09CM">10.133.5</span>.</a> Let $R \to S$ be a ring map and let $N$ be an $S$-module. Observe that $\text{Diff}^1(S, N) = \text{Der}_ R(S, N) \oplus N$. Namely, if $D : S \to N$ is a differential operator of order $1$ then $\sigma _ D : S \to N$ defined by $\sigma _ D(g) := D(g) - gD(1)$ is an $R$-derivation and $D = \sigma _ D + \lambda _{D(1)}$ where $\lambda _ x : S \to N$ is the linear map sending $g$ to $gx$. It follows that $P^1_{S/R} = \Omega _{S/R} \oplus S$ by the universal property of $\Omega _{S/R}$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="09CN">
+  <p><a class="environment-identifier" href="/tag/09CN">Lemma <span data-tag="09CN">10.133.6</span>.</a> Let $R \to S$ be a ring map. Let $M$ be an $S$-module. There is a canonical short exact sequence </p>
+  <div class="equation">
+  \[  0 \to \Omega _{S/R} \otimes _ S M \to P^1_{S/R}(M) \to M \to 0  \]
+</div>
+  <p> functorial in $M$ called the <em>sequence of principal parts</em>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The map $P^1_{S/R}(M) \to M$ is given above. Let $N$ be an $S$-module and let $D : M \to N$ be a differential operator of order $1$. For $m \in M$ the map 
+    <p>
+      <div class="equation">
+  \[  g \longmapsto D(gm) - gD(m)  \]
+</div>
+    <p>
+       is an $R$-derivation $S \to N$ by the axioms for differential operators of order $1$. Thus it corresponds to a linear map $D_ m : \Omega _{S/R} \to N$ determined by the rule $a\text{d}b \mapsto aD(bm) - abD(m)$ (see Lemma <a href="/tag/00RO" data-tag="00RO">10.131.3</a>). The map 
+    <p>
+      <div class="equation">
+  \[  \Omega _{S/R} \times M \longrightarrow N,\quad (\eta , m) \longmapsto D_ m(\eta )  \]
+</div>
+    <p>
+       is $S$-bilinear (details omitted) and hence determines an $S$-linear map 
+    <p>
+      <div class="equation">
+  \[  \sigma _ D : \Omega _{S/R} \otimes _ S M \to N  \]
+</div>
+    <p>
+       In this way we obtain a map $\text{Diff}^1(M, N) \to \mathop{\mathrm{Hom}}\nolimits _ S(\Omega _{S/R} \otimes _ S M, N)$, $D \mapsto \sigma _ D$ functorial in $N$. By the Yoneda lemma this corresponds a map $\Omega _{S/R} \otimes _ S M \to P^1_{S/R}(M)$. It is immediate from the construction that this map is functorial in $M$. The sequence 
+    <p>
+      <div class="equation">
+  \[  \Omega _{S/R} \otimes _ S M \to P^1_{S/R}(M) \to M \to 0  \]
+</div>
+    <p>
+       is exact because for every module $N$ the sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathop{\mathrm{Hom}}\nolimits _ S(M, N) \to \text{Diff}^1(M, N) \to \mathop{\mathrm{Hom}}\nolimits _ S(\Omega _{S/R} \otimes _ S M, N)  \]
+</div>
+    <p>
+       is exact by inspection. 
+    <p>
+      To see that $\Omega _{S/R} \otimes _ S M \to P^1_{S/R}(M)$ is injective we argue as follows. Choose an exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to M' \to F \to M \to 0  \]
+</div>
+    <p>
+       with $F$ a free $S$-module. This induces an exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \text{Diff}^1(M, N) \to \text{Diff}^1(F, N) \to \text{Diff}^1(M', N)  \]
+</div>
+    <p>
+       for all $N$. This proves that in the commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ 0 \ar[r] &  \Omega _{S/R} \otimes _ S M' \ar[r] \ar[d] &  P^1_{S/R}(M') \ar[r] \ar[d] &  M' \ar[r] \ar[d] &  0 \\  0 \ar[r] &  \Omega _{S/R} \otimes _ S F \ar[r] \ar[d] &  P^1_{S/R}(F) \ar[r] \ar[d] &  F \ar[r] \ar[d] &  0 \\  0 \ar[r] &  \Omega _{S/R} \otimes _ S M \ar[r] \ar[d] &  P^1_{S/R}(M) \ar[r] \ar[d] &  M \ar[r] \ar[d] &  0 \\  &  0 &  0 &  0 }  \]
+</div>
+    <p>
+       the middle column is exact. The left column is exact by right exactness of $\Omega _{S/R} \otimes _ S -$. By the snake lemma (see Section <a href="/tag/07JV" data-tag="07JV">10.4</a>) it suffices to prove exactness on the left for the free module $F$. Using that $P^1_{S/R}(-)$ commutes with direct sums we reduce to the case $M = S$. This case is a consequence of the discussion in Example <a href="/tag/09CM" data-tag="09CM">10.133.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="09CP">
+  <p><a class="environment-identifier" href="/tag/09CP">Remark <span data-tag="09CP">10.133.7</span>.</a> Suppose given a commutative diagram of rings </p>
+  <div class="equation">
+  \[  \xymatrix{ B \ar[r] &  B' \\  A \ar[u] \ar[r] &  A' \ar[u] }  \]
+</div>
+  <p> a $B$-module $M$, a $B'$-module $M'$, and a $B$-linear map $M \to M'$. Then we get a compatible system of module maps </p>
+  <div class="equation">
+  \[  \xymatrix{ \ldots \ar[r] &  P^2_{B'/A'}(M') \ar[r] &  P^1_{B'/A'}(M') \ar[r] &  P^0_{B'/A'}(M') \\  \ldots \ar[r] &  P^2_{B/A}(M) \ar[r] \ar[u] &  P^1_{B/A}(M) \ar[r] \ar[u] &  P^0_{B/A}(M) \ar[u] }  \]
+</div>
+  <p> These maps are compatible with further composition of maps of this type. The easiest way to see this is to use the description of the modules $P^ k_{B/A}(M)$ in terms of generators and relations in the proof of Lemma <a href="/tag/09CK" data-tag="09CK">10.133.3</a> but it can also be seen directly from the universal property of these modules. Moreover, these maps are compatible with the short exact sequences of Lemma <a href="/tag/09CN" data-tag="09CN">10.133.6</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0H8Z">
+  <p><a class="environment-identifier" href="/tag/0H8Z">Lemma <span data-tag="0H8Z">10.133.8</span>.</a> Suppose that we have ring maps $A \to A'$ and $A \to B$ and a $B$-module $M$. Set $B' = B \otimes _ A A'$ and view $M' = M \otimes _ A A'$ as a $B'$-module. The map of Remark <a href="/tag/09CP" data-tag="09CP">10.133.7</a> induces an isomorphism $P^ k_{B/A}(M) \otimes _ A A' = P^ k_{B'/A'}(M')$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $D_{univ} : M \to P^ k_{B/A}(M)$ be the universal differential operator. The induced $A'$-linear map $D_{univ} \otimes 1 : M' = M \otimes _ A A' \to P^ k_{B/A}(M) \otimes _ A A'$ is easily verified to be an order $k$ differential operator for $M'/B'/A'$. We will show that $D_{univ} \otimes 1$ satisfies the universal property. Let $D' : M' \to N'$ be a differential operator of order $k$ into a $B'$-module $N'$. Then the composition $D : M \to M' \to N'$ is a differential operator into $N'$ viewed as a $B$-module. Hence there is a $B$-linear map $\gamma : P^ k_{B/A}(M) \to N'$ such that $D = \gamma \circ D_{univ}$. The reader checks easily that the induced $B'$-linear map $\gamma ' : P^ k_{B/A}(M) \otimes _ A A' \to N'$ satisfies $\gamma ' \circ (D_{univ} \otimes 1) = D'$. We omit the proof that $\gamma '$ is unique. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0H90">
+  <p><a class="environment-identifier" href="/tag/0H90">Lemma <span data-tag="0H90">10.133.9</span>.</a> Let $R \to S$ be a ring map. Let $M$ be an $S$-module. Let $J = \mathop{\mathrm{Ker}}(S \otimes _ R S \to S)$ be the kernel of the multiplication map. There is a canonical isomorphism of $S$-modules </p>
+  <div class="equation">
+  \[  P^ k_{S/R}(M) \longrightarrow (S \otimes _ R M)/J^{k + 1}(S \otimes _ R M)  \]
+</div>
+  <p> where $s \in S$ acts on the target via multiplication by $s \otimes 1$ and such that the universal differential operators of order $k$ to the map given by $m \mapsto \text{class of }1 \otimes m$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider the map $T : M \to S \otimes M$, $m \mapsto 1 \otimes m$ Since $T$ is $R$-linear and since 
+    <p>
+      <div class="equation">
+  \begin{align*}  g_0g_1\ldots g_ k T(m) - \sum g_0 \ldots \hat g_ i \ldots g_ k T(g_ im) + \ldots +(-1)^{k + 1}T(g_0\ldots g_ km) \\  = \prod _{i = 0,\ldots ,k} (g_ i \otimes 1 - 1 \otimes g_ i) 1 \otimes m \end{align*}
+</div>
+    <p>
+       for $m \in M$ and $g_0, \ldots , g_ k \in S$, we conclude that the rule $m \mapsto \text{class of }1 \otimes m$ in the statement of the lemma is a differential operator of order $k$ (see proof of Lemma <a href="/tag/09CK" data-tag="09CK">10.133.3</a>). By the universal property of $P^ k_{S/R}(M)$ we obtain the arrow in the statement of the lemma. On the other hand, if $D : M \to N$ is a differential operator of order $k$, then we can consider the $S$-linear map $L : S \otimes _ R M \to N$, $g \otimes m \mapsto gD(m)$. The reader checks, by a computation similar to the one above and using that $J$ is generated by elements of the form $g \otimes 1 - 1 \otimes g$, that $L$ annihilates $J^{k + 1}(S \otimes _ R M)$. In particular, if we apply this to the universal differential operator $D_{univ} : M \to P^ k_{S/R}(M)$, then we obtain an $S$-linear map $(S \otimes _ R M)/J^{k + 1}(S \otimes _ R M) \to P^ k_{S/R}(M)$. We leave it to the reader to see that this map is the inverse to the map in the statement of the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0G34">
+  <p><a class="environment-identifier" href="/tag/0G34">Lemma <span data-tag="0G34">10.133.10</span>.</a> Let $A \to B$ be a ring map. The differentials $\text{d} : \Omega ^ i_{B/A} \to \Omega ^{i + 1}_{B/A}$ are differential operators of order $1$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Given $b \in B$ we have to show that $\text{d} \circ b - b \circ \text{d}$ is a linear operator. Thus we have to show that 
+    <p>
+      <div class="equation">
+  \[  \text{d} \circ b \circ b' - b \circ \text{d} \circ b' - b' \circ \text{d} \circ b + b' \circ b \circ \text{d} = 0  \]
+</div>
+    <p>
+       To see this it suffices to check this on additive generators for $\Omega ^ i_{B/A}$. Thus it suffices to show that 
+    <p>
+      <div class="equation">
+  \[  \text{d}(bb'b_0\text{d}b_1 \wedge \ldots \wedge \text{d}b_ i) - b\text{d}(b'b_0\text{d}b_1 \wedge \ldots \wedge \text{d}b_ i) - b'\text{d}(bb_0\text{d}b_1 \wedge \ldots \wedge \text{d}b_ i) + bb'\text{d}(b_0\text{d}b_1 \wedge \ldots \wedge \text{d}b_ i)  \]
+</div>
+    <p>
+       is zero. This is a pleasant calculation using the Leibniz rule which is left to the reader. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0G35">
+  <p><a class="environment-identifier" href="/tag/0G35">Lemma <span data-tag="0G35">10.133.11</span>.</a> Let $A \to B$ be a ring map. Let $g_ i \in B$, $i \in I$ be a set of generators for $B$ as an $A$-algebra. Let $M, N$ be $B$-modules. Let $D : M \to N$ be an $A$-linear map. In order to show that $D$ is a differential operator of order $k$ it suffices to show that $D \circ g_ i - g_ i \circ D$ is a differential operator of order $k - 1$ for $i \in I$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Namely, we claim that the set of elements $g \in B$ such that $D \circ g - g \circ D$ is a differential operator of order $k - 1$ is an $A$-subalgebra of $B$. This follows from the relations 
+    <p>
+      <div class="equation">
+  \[  D \circ (g + g') - (g + g') \circ D = (D \circ g - g \circ D) + (D \circ g' - g' \circ D)  \]
+</div>
+    <p>
+       and 
+    <p>
+      <div class="equation">
+  \[  D \circ gg' - gg' \circ D = (D \circ g - g \circ D) \circ g' + g \circ (D \circ g' - g' \circ D)  \]
+</div>
+    <p>
+       Strictly speaking, to conclude for products we also use Lemma <a href="/tag/09CJ" data-tag="09CJ">10.133.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0G36">
+  <p><a class="environment-identifier" href="/tag/0G36">Lemma <span data-tag="0G36">10.133.12</span>.</a> Let $A \to B$ be a ring map. Let $M, N$ be $B$-modules. Let $S \subset B$ be a multiplicative subset. Any differential operator $D : M \to N$ of order $k$ extends uniquely to a differential operator $E : S^{-1}M \to S^{-1}N$ of order $k$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By induction on $k$. If $k = 0$, then $D$ is $B$-linear and hence we get the extension by the functoriality of localization. Given $b \in B$ the operator $L_ b : m \mapsto D(bm) - bD(m)$ has order $k - 1$. Hence it has a unique extension to a differential operator $E_ b : S^{-1}M \to S^{-1}N$ of order $k - 1$ by induction. Moreover, a computation shows that $L_{b'b} = L_{b'} \circ b + b' \circ L_ b$ hence by uniqueness we obtain $E_{b'b} = E_{b'} \circ b + b' \circ E_ b$. Similarly, we obtain $E_{b'} \circ b - b \circ E_{b'} = E_ b \circ b' - b' \circ E_ b$. Now for $m \in M$ and $g \in S$ we set 
+    <p>
+      <div class="equation">
+  \[  E(m/g) = (1/g)(D(m) - E_ g(m/g))  \]
+</div>
+    <p>
+       To show that this is well defined it suffices to show that for $g' \in S$ if we use the representative $g'm/g'g$ we get the same result. We compute 
+    <p>
+      <div class="equation">
+  \begin{align*}  (1/g'g)(D(g'm) - E_{g'g}(g'm/gg')) &  = (1/gg')(g'D(m) + E_{g'}(m) - E_{g'g}(g'm/gg')) \\ &  = (1/g'g)(g'D(m) - g' E_ g(m/g)) \end{align*}
+</div>
+    <p>
+       which is the same as before. It is clear that $E$ is $R$-linear as $D$ and $E_ g$ are $R$-linear. Taking $g = 1$ and using that $E_1 = 0$ we see that $E$ extends $D$. By Lemma <a href="/tag/0G35" data-tag="0G35">10.133.11</a> it now suffices to show that $E \circ b - b \circ E$ for $b \in B$ and $E \circ 1/g' - 1/g' \circ E$ for $g' \in S$ are differential operators of order $k - 1$ in order to show that $E$ is a differential operator of order $k$. For the first, choose an element $m/g$ in $S^{-1}M$ and observe that 
+    <p>
+      <div class="equation">
+  \begin{align*}  E(b m/g) - bE(m/g) &  = (1/g)(D(bm) - bD(m) - E_ g(bm/g) + bE_ g(m/g)) \\ &  = (1/g)(L_ b(m) - E_ b(m) + gE_ b(m/g)) \\ &  = E_ b(m/g) \end{align*}
+</div>
+    <p>
+       which is a differential operator of order $k - 1$. Finally, we have 
+    <p>
+      <div class="equation">
+  \begin{align*}  E(m/g'g) - (1/g')E(m/g) &  = (1/g'g)(D(m) - E_{g'g}(m/g'g)) - (1/g'g)(D(m) - E_ g(m/g)) \\ &  = -(1/g')E_{g'}(m/g'g) \end{align*}
+</div>
+    <p>
+       which also is a differential operator of order $k - 1$ as the composition of linear maps (multiplication by $1/g'$ and signs) and $E_{g'}$. We omit the proof of uniqueness. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0G37">
+  <p><a class="environment-identifier" href="/tag/0G37">Lemma <span data-tag="0G37">10.133.13</span>.</a> Let $R \to A$ and $R \to B$ be ring maps. Let $M$ and $M'$ be $A$-modules. Let $D : M \to M'$ be a differential operator of order $k$ with respect to $R \to A$. Let $N$ be any $B$-module. Then the map </p>
+  <div class="equation">
+  \[  D \otimes \text{id}_ N : M \otimes _ R N \to M' \otimes _ R N  \]
+</div>
+  <p> is a differential operator of order $k$ with respect to $B \to A \otimes _ R B$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It is clear that $D' = D \otimes \text{id}_ N$ is $B$-linear. By Lemma <a href="/tag/0G35" data-tag="0G35">10.133.11</a> it suffices to show that 
+    <p>
+      <div class="equation">
+  \[  D' \circ a \otimes 1 - a \otimes 1 \circ D' = (D \circ a - a \circ D) \otimes \text{id}_ N  \]
+</div>
+    <p>
+       is a differential operator of order $k - 1$ which follows by induction on $k$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

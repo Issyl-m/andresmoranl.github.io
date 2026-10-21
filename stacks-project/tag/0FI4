@@ -1,0 +1,369 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="weil-section-chern" class="tex-section"><span data-tag="0FI4">45.12</span> Chern classes</h2>
+
+<p>
+In this section we discuss how given a first Chern class and a projective space bundle formula we can get all Chern classes. A reference for this section is <span class="cite">[<a href="/bibliography/Grothendieck-chern">Grothendieck-chern</a>]</span> although our axioms are slightly different. 
+</p>
+<p>
+Let $\mathcal{C}$ be a category of schemes with the following properties 
+</p>
+<ol>
+  <li><p>
+Every $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ is quasi-compact and quasi-separated. 
+</p>
+</li><li><p>
+If $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and $U \subset X$ is open and closed, then $U \to X$ is a morphism of $\mathcal{C}$. If $X' \to X$ is a morphism of $\mathcal{C}$ factoring through $U$, then $X' \to U$ is a morphism of $\mathcal{C}$. 
+</p>
+</li><li><p>
+If $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and if $\mathcal{E}$ is a finite locally free $\mathcal{O}_ X$-module, then 
+</p>
+<ol>
+  <li><p>
+$p : \mathbf{P}(\mathcal{E}) \to X$ is a morphism of $\mathcal{C}$, 
+</p>
+</li><li><p>
+for a morphism $f : X' \to X$ in $\mathcal{C}$ the induced morphism $\mathbf{P}(f^*\mathcal{E}) \to \mathbf{P}(\mathcal{E})$ is a morphism of $\mathcal{C}$, 
+</p>
+</li><li><p>
+if $\mathcal{E} \to \mathcal{F}$ is a surjection onto another finite locally free $\mathcal{O}_ X$-module then the closed immersion $\mathbf{P}(\mathcal{F}) \to \mathbf{P}(\mathcal{E})$ is a morphism of $\mathcal{C}$. 
+</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>
+ Next, assume given a contravariant functor $A$ from the category $\mathcal{C}$ to the category of graded algebras. Here a graded algebra $A$ is a unital, associative, not necessarily commutative $\mathbf{Z}$-algebra $A$ endowed with a grading $A = \bigoplus _{i \geq 0} A^ i$. Given a morphism $f : X' \to X$ of $\mathcal{C}$ we denote $f^* : A(X) \to A(X')$ the induced algebra map. We will denote the product of $a, b \in A(X)$ by $a \cup b$. Finally, we assume given for every object $X$ of $\mathcal{C}$ an additive map 
+</p>
+<div class="equation">
+  \[  c_1^ A : \mathop{\mathrm{Pic}}\nolimits (X) \longrightarrow A^1(X)  \]
+</div>
+<p>
+ We assume the following axioms are satisfied 
+</p>
+<ol>
+  <li><p>
+Given $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and $\mathcal{L} \in \mathop{\mathrm{Pic}}\nolimits (X)$ the element $c_1^ A(\mathcal{L})$ is in the center of the algebra $A(X)$. 
+</p>
+</li><li><p>
+If $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and $X = U \amalg V$ with $U$ and $V$ open and closed, then $A(X) = A(U) \times A(V)$ via the induced maps $A(X) \to A(U)$ and $A(X) \to A(V)$. 
+</p>
+</li><li><p>
+If $f : X' \to X$ is a morphism of $\mathcal{C}$ and $\mathcal{L}$ is an invertible $\mathcal{O}_ X$-module, then $f^*c_1^ A(\mathcal{L}) = c_1^ A(f^*\mathcal{L})$. 
+</p>
+</li><li><p>
+Given $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and locally free $\mathcal{O}_ X$-module $\mathcal{E}$ of constant rank $r$ consider the morphism $p : P = \mathbf{P}(\mathcal{E}) \to X$ of $\mathcal{C}$. Then the map 
+</p>
+<div class="equation">
+  \[  \bigoplus \nolimits _{i = 0, \ldots , r - 1} A(X) \longrightarrow A(P),\quad (a_0, \ldots , a_{r - 1}) \longmapsto \sum c_1^ A(\mathcal{O}_ P(1))^ i \cup p^*(a_ i)  \]
+</div>
+<p>
+ is bijective. 
+</p>
+</li><li><p>
+Let $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and let $\mathcal{E} \to \mathcal{F}$ be a surjection of finite locally free $\mathcal{O}_ X$-modules of ranks $r + 1$ and $r$. Denote $i : P' = \mathbf{P}(\mathcal{F}) \to \mathbf{P}(\mathcal{E}) = P$ the corresponding incusion morphism. This is a morphism of $\mathcal{C}$ which exhibits $P'$ as an effective Cartier divisor on $P$. Then for $a \in A(P)$ with $i^*a = 0$ we have $a \cup c_1^ A(\mathcal{O}_ P(P')) = 0$. 
+</p>
+</li>
+</ol>
+<p>
+ To formulate our result recall that $\textit{Vect}(X)$ denotes the (exact) category of finite locally free $\mathcal{O}_ X$-modules. In Derived Categories of Schemes, Section <a href="/tag/0FDE" data-tag="0FDE">36.38</a> we have defined the zeroth $K$-group $K_0(\textit{Vect}(X))$ of this category. Moreover, we have seen that $K_0(\textit{Vect}(X))$ is a ring, see Derived Categories of Schemes, Remark <a href="/tag/0FDK" data-tag="0FDK">36.38.6</a>. 
+</p>
+<p>
+<article class="env-proposition" id="0FI5">
+  <p><a class="environment-identifier" href="/tag/0FI5">Proposition <span data-tag="0FI5">45.12.1</span>.</a> In the situation above there is a unique rule which assigns to every $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ a “total Chern class” </p>
+  <div class="equation">
+  \[  c^ A : K_0(\textit{Vect}(X)) \longrightarrow \prod \nolimits _{i \geq 0} A^ i(X)  \]
+</div>
+  <p> with the following properties </p>
+  <p><ol>
+  <li><p>
+For $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ we have $c^ A(\alpha + \beta ) = c^ A(\alpha ) c^ A(\beta )$ and $c^ A(0) = 1$. 
+</p>
+</li><li><p>
+If $f : X' \to X$ is a morphism of $\mathcal{C}$, then $f^* \circ c^ A = c^ A \circ f^*$. 
+</p>
+</li><li><p>
+Given $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and $\mathcal{L} \in \mathop{\mathrm{Pic}}\nolimits (X)$ we have $c^ A([\mathcal{L}]) = 1 + c_1^ A(\mathcal{L})$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and let $\mathcal{E}$ be a finite locally free $\mathcal{O}_ X$-module. We first show how to define an element $c^ A(\mathcal{E}) \in A(X)$. 
+    <p>
+      As a first step, let $X = \bigcup X_ r$ be the decomposition into open and closed subschemes such that $\mathcal{E}|_{X_ r}$ has constant rank $r$. Since $X$ is quasi-compact, this decomposition is finite. Hence $A(X) = \prod A(X_ r)$. Thus it suffices to define $c^ A(\mathcal{E})$ when $\mathcal{E}$ has constant rank $r$. In this case let $p : P \to X$ be the projective bundle of $\mathcal{E}$. We can uniquely define elements $c_ i^ A(\mathcal{E}) \in A^ i(X)$ for $i \geq 0$ such that $c_0^ A(\mathcal{E}) = 1$ and the equation 
+    <p>
+      <div class="equation" id="0FI6">
+    <span class="equation-label"><a href="/tag/0FI6" data-tag="0FI6">45.12.1.1</a></span>
+  <div>\begin{equation}  \label{weil-equation-chern-classes} \sum \nolimits _{i = 0}^ r (-1)^ i c_1(\mathcal{O}_ P(1))^ i \cup p^*c^ A_{r - i}(\mathcal{E}) = 0 \end{equation}</div>
+</div>
+    <p>
+       is true. As usual we set $c^ A(\mathcal{E}) = c_0^ A(\mathcal{E}) + c_1^ A(\mathcal{E}) + \ldots + c_ r^ A(\mathcal{E})$ in $A(X)$. 
+    <p>
+      If $\mathcal{E}$ is invertible, then $c^ A(\mathcal{E}) = 1 + c_1^ A(\mathcal{L})$. This follows immediately from the construction above. 
+    <p>
+      The elements $c_ i^ A(\mathcal{E})$ are in the center of $A(X)$. Namely, to prove this we may assume $\mathcal{E}$ has constant rank $r$. Let $p : P \to X$ be the corresponding projective bundle. if $a \in A(X)$ then $p^*a \cup (-1)^ r c_1(\mathcal{O}_ P(1))^ r = (-1)^ r c_1(\mathcal{O}_ P(1))^ r \cup p^*a$ and hence we must have the same for all the other terms in the expression defining $c_ i^ A(\mathcal{E})$ as well and we conclude. 
+    <p>
+      If $f : X' \to X$ is a morphism of $\mathcal{C}$, then $f^*c_ i^ A(\mathcal{E}) = c_ i^ A(f^*\mathcal{E})$. Namely, to prove this we may assume $\mathcal{E}$ has constant rank $r$. Let $p : P \to X$ and $p' : P' \to X'$ be the projective bundles corresponding to $\mathcal{E}$ and $f^*\mathcal{E}$. The induced morphism $g : P' \to P$ is a morphism of $\mathcal{C}$. The pullback by $g$ of the equality defining $c_ i^ A(\mathcal{E})$ is the corresponding equation for $f^*\mathcal{E}$ and we conclude. 
+    <p>
+      Let $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$. Consider a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{L} \to \mathcal{E} \to \mathcal{F} \to 0  \]
+</div>
+    <p>
+       of finite locally free $\mathcal{O}_ X$-modules with $\mathcal{L}$ invertible. Then 
+    <p>
+      <div class="equation">
+  \[  c^ A(\mathcal{E}) = c^ A(\mathcal{L}) c^ A(\mathcal{F})  \]
+</div>
+    <p>
+       Namely, by the construction of $c^ A_ i$ we may assume $\mathcal{E}$ has constant rank $r + 1$ and $\mathcal{F}$ has constant rank $r$. The inclusion 
+    <p>
+      <div class="equation">
+  \[  i : P' = \mathbf{P}(\mathcal{F}) \longrightarrow \mathbf{P}(\mathcal{E}) = P  \]
+</div>
+    <p>
+       is a morphism of $\mathcal{C}$ and it is the zero scheme of a regular section of the invertible module $\mathcal{L}^{\otimes -1} \otimes \mathcal{O}_ P(1)$. The element 
+    <p>
+      <div class="equation">
+  \[  \sum \nolimits _{i = 0}^ r (-1)^ i c_1^ A(\mathcal{O}_ P(1))^ i \cup p^*c^ A_ i(\mathcal{F})  \]
+</div>
+    <p>
+       pulls back to zero on $P'$ by definition. Hence we see that 
+    <p>
+      <div class="equation">
+  \[  \left(c_1^ A(\mathcal{O}_ P(1)) - c_1^ A(\mathcal{L})\right) \cup \left(\sum \nolimits _{i = 0}^ r (-1)^ i c_1^ A(\mathcal{O}_ P(1))^ i \cup p^*c^ A_ i(\mathcal{F})\right) = 0  \]
+</div>
+    <p>
+       in $A^*(P)$ by assumption (5) on our cohomology $A$. By definition of $c_1^ A(\mathcal{E})$ this gives the desired equality. 
+    <p>
+      Let $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$. Consider a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{E} \to \mathcal{F} \to \mathcal{G} \to 0  \]
+</div>
+    <p>
+       of finite locally free $\mathcal{O}_ X$-modules. Then 
+    <p>
+      <div class="equation">
+  \[  c^ A(\mathcal{F}) = c^ A(\mathcal{E}) c^ A(\mathcal{G})  \]
+</div>
+    <p>
+       Namely, by the construction of $c^ A_ i$ we may assume $\mathcal{E}$, $\mathcal{F}$, and $\mathcal{G}$ have constant ranks $r$, $s$, and $t$. We prove it by induction on $r$. The case $r = 1$ was done above. If $r > 1$, then it suffices to check this after pulling back by the morphism $\mathbf{P}(\mathcal{E}^\vee ) \to X$. Thus we may assume we have an invertible submodule $\mathcal{L} \subset \mathcal{E}$ such that both $\mathcal{E}' = \mathcal{E}/\mathcal{L}$ and $\mathcal{F}' = \mathcal{E}/\mathcal{L}$ are finite locally free (of ranks $s - 1$ and $t - 1$). Then we have 
+    <p>
+      <div class="equation">
+  \[  c^ A(\mathcal{E}) = c^ A(\mathcal{L}) c^ A(\mathcal{E}') \quad \text{and}\quad c^ A(\mathcal{F}) = c^ A(\mathcal{L}) c^ A(\mathcal{F}')  \]
+</div>
+    <p>
+       Since we have the short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{E}' \to \mathcal{F}' \to \mathcal{G} \to 0  \]
+</div>
+    <p>
+       we see by induction hypothesis that 
+    <p>
+      <div class="equation">
+  \[  c^ A(\mathcal{F}') = c^ A(\mathcal{E}') c^ A(\mathcal{G})  \]
+</div>
+    <p>
+       Thus the result follows from a formal calculation. 
+    <p>
+      At this point for $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ we can define $c^ A : K_0(\textit{Vect}(X)) \to A(X)$. Namely, we send a generator $[\mathcal{E}]$ to $c^ A(\mathcal{E})$ and we extend multiplicatively. Thus for example $c^ A(-[\mathcal{E}]) = c^ A(\mathcal{E})^{-1}$ is the formal inverse of $a^ A([\mathcal{E}])$. The multiplicativity in short exact sequences shown above guarantees that this works. 
+    <p>
+      Uniqueness. Suppose $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and $\mathcal{E}$ is a finite locally free $\mathcal{O}_ X$-module. We want to show that conditions (1), (2), and (3) of the lemma uniquely determine $c^ A([\mathcal{E}])$. To prove this we may assume $\mathcal{E}$ has constant rank $r$; this already uses (2). Then we may use induction on $r$. If $r = 1$, then uniqueness follows from (3). If $r > 1$ we pullback using (2) to the projective bundle $p : P \to X$ and we see that we may assume we have a short exact sequence $0 \to \mathcal{E}' \to \mathcal{E} \to \mathcal{E}'' \to 0$ with $\mathcal{E}'$ and $\mathcal{E}''$ having lower rank. By induction hypothesis $c^ A(\mathcal{E}')$ and $c^ A(\mathcal{E}'')$ are uniquely determined. Thus uniqueness for $\mathcal{E}$ by the axiom (1). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FI7">
+  <p><a class="environment-identifier" href="/tag/0FI7">Lemma <span data-tag="0FI7">45.12.2</span>.</a> In the situation above. Let $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$. Let $\mathcal{E}_ i$ be a finite collection of locally free $\mathcal{O}_ X$-modules of rank $r_ i$. There exists a morphism $p : P \to X$ in $\mathcal{C}$ such that </p>
+  <p><ol>
+  <li><p>
+$p^* : A(X) \to A(P)$ is injective, 
+</p>
+</li><li><p>
+each $p^*\mathcal{E}_ i$ has a filtration whose successive quotients $\mathcal{L}_{i, 1}, \ldots , \mathcal{L}_{i, r_ i}$ are invertible $\mathcal{O}_ P$-modules. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We may assume $r_ i \geq 1$ for all $i$. We will prove the lemma by induction on $\sum (r_ i - 1)$. If this integer is $0$, then $\mathcal{E}_ i$ is invertible for all $i$ and we conclude by taking $\pi = \text{id}_ X$. If not, then we can pick an $i$ such that $r_ i > 1$ and consider the projective bundle $p : P \to X$ associated to $\mathcal{E}_ i$. We have a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{F} \to p^*\mathcal{E}_ i \to \mathcal{O}_ P(1) \to 0  \]
+</div>
+    <p>
+       of finite locally free $\mathcal{O}_ P$-modules of ranks $r_ i - 1$, $r_ i$, and $1$. Observe that $p^* : A(X) \to A(P)$ is injective by assumption. By the induction hypothesis applied to the finite locally free $\mathcal{O}_ P$-modules $\mathcal{F}$ and $p^*\mathcal{E}_{i'}$ for $i' \not= i$, we find a morphism $p' : P' \to P$ with properties stated as in the lemma. Then the composition $p \circ p' : P' \to X$ does the job. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FI8">
+  <p><a class="environment-identifier" href="/tag/0FI8">Lemma <span data-tag="0FI8">45.12.3</span>.</a> Let $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$. Let $\mathcal{E}$ be a finite locally free $\mathcal{O}_ X$-module. Let $\mathcal{L}$ be an invertible $\mathcal{O}_ X$-module. Then </p>
+  <div class="equation">
+  \[  c^ A_ i({\mathcal E} \otimes {\mathcal L}) = \sum \nolimits _{j = 0}^ i \binom {r - i + j}{j} c^ A_{i - j}({\mathcal E}) \cup c^ A_1({\mathcal L})^ j  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By the construction of $c^ A_ i$ we may assume $\mathcal{E}$ has constant rank $r$. Let $p : P \to X$ and $p' : P' \to X$ be the projective bundle associated to $\mathcal{E}$ and $\mathcal{E} \otimes \mathcal{L}$. Then there is an isomorphism $g : P \to P'$ such that $g^*\mathcal{O}_{P'}(1) = \mathcal{O}_ P(1) \otimes p^*\mathcal{L}$. See Constructions, Lemma <a href="/tag/02NC" data-tag="02NC">27.20.1</a>. Thus 
+    <p>
+      <div class="equation">
+  \[  g^*c_1^ A(\mathcal{O}_{P'}(1)) = c_1^ A(\mathcal{O}_ P(1)) + p^*c_1^ A(\mathcal{L})  \]
+</div>
+    <p>
+       The desired equality follows formally from this and the definition of Chern classes using equation (<a href="/tag/0FI6" data-tag="0FI6">45.12.1.1</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="0FI9">
+  <p><a class="environment-identifier" href="/tag/0FI9">Proposition <span data-tag="0FI9">45.12.4</span>.</a> In the situation above assume $A(X)$ is a $\mathbf{Q}$-algebra for all $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$. Then there is a unique rule which assigns to every $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ a “chern character” </p>
+  <div class="equation">
+  \[  ch^ A : K_0(\textit{Vect}(X)) \longrightarrow \prod \nolimits _{i \geq 0} A^ i(X)  \]
+</div>
+  <p> with the following properties </p>
+  <p><ol>
+  <li><p>
+$ch^ A$ is a ring map for all $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$. 
+</p>
+</li><li><p>
+If $f : X' \to X$ is a morphism of $\mathcal{C}$, then $f^* \circ ch^ A = ch^ A \circ f^*$. 
+</p>
+</li><li><p>
+Given $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and $\mathcal{L} \in \mathop{\mathrm{Pic}}\nolimits (X)$ we have $ch^ A([\mathcal{L}]) = \exp (c_1^ A(\mathcal{L}))$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and let $\mathcal{E}$ be a finite locally free $\mathcal{O}_ X$-module. We first show how to define the rank $r^ A(\mathcal{E}) \in A^0(X)$. Namely, let $X = \bigcup X_ r$ be the decomposition into open and closed subschemes such that $\mathcal{E}|_{X_ r}$ has constant rank $r$. Since $X$ is quasi-compact, this decomposition is finite, say $X = X_0 \amalg X_1 \amalg \ldots \amalg X_ n$. Then $A(X) = A(X_0) \times A(X_1) \times \ldots \times A(X_ n)$. Thus we can define $r^ A(\mathcal{E}) = (0, 1, \ldots , n) \in A^0(X)$. 
+    <p>
+      Let $P_ p(c_1, \ldots , c_ p)$ be the polynomials constructed in Chow Homology, Example <a href="/tag/0F9B" data-tag="0F9B">42.43.6</a>. Then we can define 
+    <p>
+      <div class="equation">
+  \[  ch^ A(\mathcal{E}) = r^ A(\mathcal{E}) + \sum \nolimits _{i \geq 1} (1/i!) P_ i(c^ A_1(\mathcal{E}), \ldots , c^ A_ i(\mathcal{E})) \in \prod \nolimits _{i \geq 0} A^ i(X)  \]
+</div>
+    <p>
+       where $ci^ A$ are the Chern classes of Proposition <a href="/tag/0FI5" data-tag="0FI5">45.12.1</a>. It follows immediately that we have property (2) and (3) of the lemma. 
+    <p>
+      We still have to show the following three statements 
+    <p>
+      <ol>
+  <li><p>
+If $0 \to \mathcal{E}_1 \to \mathcal{E} \to \mathcal{E}_2 \to 0$ is a short exact sequence of finite locally free $\mathcal{O}_ X$-modules on $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$, then $ch^ A(\mathcal{E}) = ch^ A(\mathcal{E}_1) + ch^ A(\mathcal{E}_2)$. 
+</p>
+</li><li><p>
+If $\mathcal{E}_1$ and $\mathcal{E}_2 \to 0$ are finite locally free $\mathcal{O}_ X$-modules on $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$, then $ch^ A(\mathcal{E}_1 \otimes \mathcal{E}_2) = ch^ A(\mathcal{E}_1) ch^ A(\mathcal{E}_2)$. 
+</p>
+</li>
+</ol>
+    <p>
+       Namely, the first will prove that $ch^ A$ factors through $K_0(\textit{Vect}(X))$ and the first and the second will combined show that $ch^ A$ is a ring map. 
+    <p>
+      To prove these statements we can reduce to the case where $\mathcal{E}_1$ and $\mathcal{E}_2$ have constant ranks $r_1$ and $r_2$. In this case the equalities in $A^0(X)$ are immediate. To prove the equalities in higher degrees, by Lemma <a href="/tag/0FI7" data-tag="0FI7">45.12.2</a> we may assume that $\mathcal{E}_1$ and $\mathcal{E}_2$ have filtrations whose graded pieces are invertible modules $\mathcal{L}_{1, j}$, $j = 1, \ldots , r_1$ and $\mathcal{L}_{2, j}$, $j = 1, \ldots , r_2$. Using the multiplicativity of Chern classes we get 
+    <p>
+      <div class="equation">
+  \[  c_ i^ A(\mathcal{E}_1) = s_ i(c_1^ A(\mathcal{L}_{1, 1}), \ldots , c_1^ A(\mathcal{L}_{1, r_1}))  \]
+</div>
+    <p>
+       where $s_ i$ is the $i$th elementary symmetric function as in Chow Homology, Example <a href="/tag/0F9B" data-tag="0F9B">42.43.6</a>. Similarly for $c_ i^ A(\mathcal{E}_2)$. In case (1) we get 
+    <p>
+      <div class="equation">
+  \[  c_ i^ A(\mathcal{E}) = s_ i(c_1^ A(\mathcal{L}_{1, 1}), \ldots , c_1^ A(\mathcal{L}_{1, r_1}), c_1^ A(\mathcal{L}_{2, 1}), \ldots , c_1^ A(\mathcal{L}_{2, r_2}))  \]
+</div>
+    <p>
+       and for case (2) we get 
+    <p>
+      <div class="equation">
+  \[  c_ i^ A(\mathcal{E}_1 \otimes \mathcal{E}_2) = s_ i(c_1^ A(\mathcal{L}_{1, 1}) + c_1^ A(\mathcal{L}_{2, 1}), \ldots , c_1^ A(\mathcal{L}_{1, r_1}) + c_1^ A(\mathcal{L}_{2, r_2}))  \]
+</div>
+    <p>
+       By the definition of the polynomials $P_ i$ we see that this means 
+    <p>
+      <div class="equation">
+  \[  P_ i(c^ A_1(\mathcal{E}_1), \ldots , c^ A_ i(\mathcal{E}_1)) = \sum \nolimits _{j = 1, \ldots , r_1} c_1^ A(\mathcal{L}_{1, j})^ i  \]
+</div>
+    <p>
+       and similarly for $\mathcal{E}_2$. In case (1) we have also 
+    <p>
+      <div class="equation">
+  \[  P_ i(c^ A_1(\mathcal{E}), \ldots , c^ A_ i(\mathcal{E})) = \sum \nolimits _{j = 1, \ldots , r_1} c_1^ A(\mathcal{L}_{1, j})^ i + \sum \nolimits _{j = 1, \ldots , r_2} c_1^ A(\mathcal{L}_{2, j})^ i  \]
+</div>
+    <p>
+       In case (2) we get accordingly 
+    <p>
+      <div class="equation">
+  \[  P_ i(c^ A_1(\mathcal{E}_1 \otimes \mathcal{E}_2), \ldots , c^ A_ i(\mathcal{E}_1 \otimes \mathcal{E}_2)) = \sum \nolimits _{j = 1, \ldots , r_1} \sum \nolimits _{j' = 1, \ldots , r_2} (c_1^ A(\mathcal{L}_{1, j}) + c_1^ A(\mathcal{L}_{2, j'}))^ i  \]
+</div>
+    <p>
+       Thus the desired equalities are now consequences of elementary identities between symmetric polynomials. 
+    <p>
+      We omit the proof of uniqueness. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FIA">
+  <p><a class="environment-identifier" href="/tag/0FIA">Lemma <span data-tag="0FIA">45.12.5</span>.</a> In the situation above let $X \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$. If $\psi ^2$ is as in Chow Homology, Lemma <a href="/tag/0FEJ" data-tag="0FEJ">42.56.1</a> and $c^ A$ and $ch^ A$ are as in Propositions <a href="/tag/0FI5" data-tag="0FI5">45.12.1</a> and <a href="/tag/0FI9" data-tag="0FI9">45.12.4</a> then we have $c^ A_ i(\psi ^2(\alpha )) = 2^ i c^ A_ i(\alpha )$ and $ch^ A_ i(\psi ^2(\alpha )) = 2^ i ch^ A_ i(\alpha )$ for all $\alpha \in K_0(\textit{Vect}(X))$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Observe that the map $\prod _{i \geq 0} A^ i(X) \to \prod _{i \geq 0} A^ i(X)$ multiplying by $2^ i$ on $A^ i(X)$ is a ring map. Hence, since $\psi ^2$ is also a ring map, it suffices to prove the formulas for additive generators of $K_0(\textit{Vect}(X))$. Thus we may assume $\alpha = [\mathcal{E}]$ for some finite locally free $\mathcal{O}_ X$-module $\mathcal{E}$. By construction of the Chern classes of $\mathcal{E}$ we immediately reduce to the case where $\mathcal{E}$ has constant rank $r$. In this case, we can choose a projective smooth morphism $p : P \to X$ such that restriction $A^*(X) \to A^*(P)$ is injective and such that $p^*\mathcal{E}$ has a finite filtration whose graded parts are invertible $\mathcal{O}_ P$-modules $\mathcal{L}_ j$, see Lemma <a href="/tag/0FI7" data-tag="0FI7">45.12.2</a>. Then $[p^*\mathcal{E}] = \sum [\mathcal{L}_ j]$ and hence $\psi ^2([p^*\mathcal{E}]) = \sum [\mathcal{L}_ j^{\otimes 2}]$ by definition of $\psi ^2$. Setting $x_ j = c^ A_1(\mathcal{L}_ j)$ we have 
+    <p>
+      <div class="equation">
+  \[  c^ A(\alpha ) = \prod (1 + x_ j) \quad \text{and}\quad c^ A(\psi ^2(\alpha )) = \prod (1 + 2 x_ j)  \]
+</div>
+    <p>
+       in $\prod A^ i(P)$ and we have 
+    <p>
+      <div class="equation">
+  \[  ch^ A(\alpha ) = \sum \exp (x_ j) \quad \text{and}\quad ch^ A(\psi ^2(\alpha )) = \sum \exp (2 x_ j)  \]
+</div>
+    <p>
+       in $\prod A^ i(P)$. From these formulas the desired result follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

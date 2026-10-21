@@ -1,0 +1,296 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="homology-section-double-complexes" class="tex-section"><span data-tag="0FNB">12.18</span> Double complexes and associated total complexes</h2>
+
+<p>
+We discuss double complexes and associated total complexes. 
+</p>
+<p>
+<article class="env-definition" id="012Y">
+  <p><a class="environment-identifier" href="/tag/012Y">Definition <span data-tag="012Y">12.18.1</span>.</a> Let $\mathcal{A}$ be an additive category. A <em>double complex</em> in $\mathcal{A}$ is given by a system $(\{ A^{p, q}, d_1^{p, q}, d_2^{p, q}\} _{p, q\in \mathbf{Z}})$, where each $A^{p, q}$ is an object of $\mathcal{A}$ and $d_1^{p, q} : A^{p, q} \to A^{p + 1, q}$ and $d_2^{p, q} : A^{p, q} \to A^{p, q + 1}$ are morphisms of $\mathcal{A}$ such that the following rules hold: </p>
+  <p><ol>
+  <li><p>
+$d_1^{p + 1, q} \circ d_1^{p, q} = 0$ 
+</p>
+</li><li><p>
+$d_2^{p, q + 1} \circ d_2^{p, q} = 0$ 
+</p>
+</li><li><p>
+$d_1^{p, q + 1} \circ d_2^{p, q} = d_2^{p + 1, q} \circ d_1^{p, q}$ 
+</p>
+</li>
+</ol></p>
+  <p> for all $p, q \in \mathbf{Z}$. </p>
+</article> 
+</p>
+<p>
+This is just the cochain version of the definition. It says that each $A^{p, \bullet }$ is a cochain complex and that each $d_1^{p, \bullet }$ is a morphism of complexes $A^{p, \bullet } \to A^{p + 1, \bullet }$ such that $d_1^{p + 1, \bullet } \circ d_1^{p, \bullet } = 0$ as morphisms of complexes. In other words a double complex can be seen as a complex of complexes. So in the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \ldots &  \ldots &  \ldots &  \ldots \\  \ldots \ar[r] &  A^{p, q + 1} \ar[r]^{d_1^{p, q + 1}} \ar[u] &  A^{p + 1, q + 1} \ar[r] \ar[u] &  \ldots \\  \ldots \ar[r] &  A^{p, q} \ar[r]^{d_1^{p, q}} \ar[u]^{d_2^{p, q}} &  A^{p + 1, q} \ar[r] \ar[u]_{d_2^{p + 1, q}} &  \ldots \\  \ldots &  \ldots \ar[u] &  \ldots \ar[u] &  \ldots }  \]
+</div>
+<p>
+ any square commutes. Warning: In the literature one encounters a different definition where a “bicomplex” or a “double complex” has the property that the squares in the diagram anti-commute. 
+</p>
+<p>
+<article class="env-example" id="0A5J">
+  <p><a class="environment-identifier" href="/tag/0A5J">Example <span data-tag="0A5J">12.18.2</span>.</a> Let $\mathcal{A}$, $\mathcal{B}$, $\mathcal{C}$ be additive categories. Suppose that </p>
+  <div class="equation">
+  \[  \otimes : \mathcal{A} \times \mathcal{B} \longrightarrow \mathcal{C}, \quad (X, Y) \longmapsto X \otimes Y  \]
+</div>
+  <p> is a functor which is bilinear on morphisms, see Categories, Definition <a href="/tag/001K" data-tag="001K">4.2.20</a> for the definition of $\mathcal{A} \times \mathcal{B}$. Given complexes $X^\bullet $ of $\mathcal{A}$ and $Y^\bullet $ of $\mathcal{B}$ we obtain a double complex </p>
+  <div class="equation">
+  \[  K^{\bullet , \bullet } = X^\bullet \otimes Y^\bullet  \]
+</div>
+  <p> in $\mathcal{C}$. Here the first differential $K^{p, q} \to K^{p + 1, q}$ is the morphism $X^ p \otimes Y^ q \to X^{p + 1} \otimes Y^ q$ induced by the morphism $X^ p \to X^{p + 1}$ and the identity on $Y^ q$. Similarly for the second differential. </p>
+</article> 
+</p>
+<p>
+<article class="env-definition" id="012Z">
+  <p><a class="environment-identifier" href="/tag/012Z">Definition <span data-tag="012Z">12.18.3</span>.</a> Let $\mathcal{A}$ be an additive category. Let $A^{\bullet , \bullet }$ be a double complex. The <em>associated simple complex</em>, denoted $sA^\bullet $, also often called the <em>associated total complex</em>, denoted $\text{Tot}(A^{\bullet , \bullet })$, is given by </p>
+  <div class="equation">
+  \[  sA^ n = \text{Tot}^ n(A^{\bullet , \bullet }) = \bigoplus \nolimits _{n = p + q} A^{p, q}  \]
+</div>
+  <p> (if it exists) with differential </p>
+  <div class="equation">
+  \[  d_{sA^\bullet }^ n = d_{\text{Tot}(A^{\bullet , \bullet })}^ n = \sum \nolimits _{n = p + q} (d_1^{p, q} + (-1)^ p d_2^{p, q})  \]
+</div>
+</article> 
+</p>
+<p>
+If countable direct sums exist in $\mathcal{A}$ or if for each $n$ at most finitely many $A^{p, n - p}$ are nonzero, then $\text{Tot}(A^{\bullet , \bullet })$ exists. Note that the definition is <em>not</em> symmetric in the indices $(p, q)$. 
+</p>
+<p>
+<article class="env-remark" id="08BI">
+  <p><a class="environment-identifier" href="/tag/08BI">Remark <span data-tag="08BI">12.18.4</span>.</a> Let $\mathcal{A}$ be an additive category. Let $A^{\bullet , \bullet , \bullet }$ be a triple complex. The associated total complex is the complex with terms </p>
+  <div class="equation">
+  \[  \text{Tot}^ n(A^{\bullet , \bullet , \bullet }) = \bigoplus \nolimits _{p + q + r = n} A^{p, q, r}  \]
+</div>
+  <p> and differential </p>
+  <div class="equation">
+  \[  d^ n_{\text{Tot}(A^{\bullet , \bullet , \bullet })} = \sum \nolimits _{p + q + r = n} d_1^{p, q, r} + (-1)^ pd_2^{p, q, r} + (-1)^{p + q}d_3^{p, q, r}  \]
+</div>
+  <p> With this definition a simple calculation shows that the associated total complex is equal to </p>
+  <div class="equation">
+  \[  \text{Tot}(A^{\bullet , \bullet , \bullet }) = \text{Tot}(\text{Tot}_{12}(A^{\bullet , \bullet , \bullet })) = \text{Tot}(\text{Tot}_{23}(A^{\bullet , \bullet , \bullet }))  \]
+</div>
+  <p> In other words, we can either first combine the first two of the variables and then combine sum of those with the last, or we can first combine the last two variables and then combine the first with the sum of the last two. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="0FLG">
+  <p><a class="environment-identifier" href="/tag/0FLG">Remark <span data-tag="0FLG">12.18.5</span>.</a> Let $\mathcal{A}$ be an additive category. Let $A^{\bullet , \bullet }$ be a double complex with differentials $d_1^{p, q}$ and $d_2^{p, q}$. Denote $A^{\bullet , \bullet }[a, b]$ the double complex with </p>
+  <div class="equation">
+  \[  (A^{\bullet , \bullet }[a, b])^{p, q} = A^{p + a, q + b}  \]
+</div>
+  <p> and differentials </p>
+  <div class="equation">
+  \[  d_{A^{\bullet , \bullet }[a, b], 1}^{p, q} = (-1)^ a d_1^{p + a, q + b} \quad \text{and}\quad d_{A^{\bullet , \bullet }[a, b], 2}^{p, q} = (-1)^ b d_2^{p + a, q + b}  \]
+</div>
+  <p> In this situation there is a well defined isomorphism </p>
+  <div class="equation">
+  \[  \gamma : \text{Tot}(A^{\bullet , \bullet })[a + b] \longrightarrow \text{Tot}(A^{\bullet , \bullet }[a, b])  \]
+</div>
+  <p> which in degree $n$ is given by the map </p>
+  <div class="equation">
+  \[  \xymatrix{ (\text{Tot}(A^{\bullet , \bullet })[a + b])^ n = \bigoplus _{p + q = n + a + b} A^{p, q} \ar[d]^{\epsilon (p, q, a, b)\text{id}_{A^{p, q}}} \\  \text{Tot}(A^{\bullet , \bullet }[a, b])^ n = \bigoplus _{p' + q' = n} A^{p' + a, q' + b} }  \]
+</div>
+  <p> for some sign $\epsilon (p, q, a, b)$. Of course the summand $A^{p, q}$ maps to the summand $A^{p' + a, q' + b}$ when $p = p' + a$ and $q = q' + b$. To figure out the conditions on these signs observe that on the source we have </p>
+  <div class="equation">
+  \[  d|_{A^{p, q}} = (-1)^{a + b}\left(d_1^{p, q} + (-1)^ pd_2^{p, q}\right)  \]
+</div>
+  <p> whereas on the target we have </p>
+  <div class="equation">
+  \[  d|_{A^{p' + a, q' + b}} = (-1)^ ad_1^{p' + a, q' + b} + (-1)^{p'}(-1)^ bd_2^{p' + a, q' + b}  \]
+</div>
+  <p> Thus our constraints are that </p>
+  <div class="equation">
+  \[  (-1)^ a \epsilon (p, q, a, b) = \epsilon (p + 1, q, a, b)(-1)^{a + b} \Leftrightarrow \epsilon (p + 1, q, a, b) = (-1)^ b \epsilon (p, q, a, b)  \]
+</div>
+  <p> and </p>
+  <div class="equation">
+  \[  (-1)^{p' + b}\epsilon (p, q, a, b) = \epsilon (p, q + 1, a, b) (-1)^{a + b + p} \Leftrightarrow \epsilon (p, q, a, b) = \epsilon (p, q + 1, a, b)  \]
+</div>
+  <p> Thus we choose $\epsilon (p, q, a, b) = (-1)^{pb}$. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="0G6A">
+  <p><a class="environment-identifier" href="/tag/0G6A">Remark <span data-tag="0G6A">12.18.6</span>.</a> Let $\mathcal{A}$ be an additive category with countable direct sums. Let $\text{DoubleComp}(\mathcal{A})$ denote the category of double complexes. We can consider an object $A^{\bullet , \bullet }$ of $\text{DoubleComp}(\mathcal{A})$ as a complex of complexes as follows </p>
+  <div class="equation">
+  \[  \ldots \to A^{\bullet , -1} \to A^{\bullet , 0} \to A^{\bullet , 1} \to \ldots  \]
+</div>
+  <p> For the variant where we switch the role of the indices, see Remark <a href="/tag/0G6B" data-tag="0G6B">12.18.7</a>. In this remark we show that taking the associated total complex is compatible with all the structures on complexes we have studied in the chapter so far. </p>
+  <p>First, observe that the shift functor on double complexes viewed as complexes of complexes in the manner given above is the functor $[0, 1]$ defined in Remark <a href="/tag/0FLG" data-tag="0FLG">12.18.5</a>. By Remark <a href="/tag/0FLG" data-tag="0FLG">12.18.5</a> the functor </p>
+  <div class="equation">
+  \[  \text{Tot} : \text{DoubleComp}(\mathcal{A}) \to \text{Comp}(\mathcal{A})  \]
+</div>
+  <p> is compatible with shift functors, in the sense that we have a functorial isomorphism $\gamma : \text{Tot}(A^{\bullet , \bullet })[1] \to \text{Tot}(A^{\bullet , \bullet }[0, 1])$. </p>
+  <p>Second, if </p>
+  <div class="equation">
+  \[  f, g : A^{\bullet , \bullet } \to B^{\bullet , \bullet }  \]
+</div>
+  <p> are homotopic when $f$ and $g$ are viewed as morphisms of complexes of complexes in the manner given above, then </p>
+  <div class="equation">
+  \[  \text{Tot}(f), \text{Tot}(g) : \text{Tot}(A^{\bullet , \bullet }) \to \text{Tot}(B^{\bullet , \bullet })  \]
+</div>
+  <p> are homotopic maps of complexes. Indeed, let $h = (h^ q)$ be a homotopy between $f$ and $g$. If we denote $h^{p, q} : A^{p, q} \to B^{p, q - 1}$ the component in degree $p$ of $h^ q$, then this means that </p>
+  <div class="equation">
+  \[  f^{p, q} - g^{p, q} = d_2^{p, q - 1} \circ h^{p, q} + h^{p, q + 1} \circ d_2^{p, q}  \]
+</div>
+  <p> The fact that $h^ q : A^{\bullet , q} \to B^{\bullet , q - 1}$ is a map of complexes means that </p>
+  <div class="equation">
+  \[  d_1^{p, q - 1} \circ h^{p, q} = h^{p + 1, q} \circ d_1^{p, q}  \]
+</div>
+  <p> Let us define $h' = ((h')^ n)$ the homotopy given by the maps $(h')^ n : \text{Tot}^ n(A^{\bullet , \bullet }) \to \text{Tot}^{n - 1}(B^{\bullet , \bullet })$ using $(-1)^ ph^{p, q}$ on the summand $A^{p, q}$ for $p + q = n$. Then we see that </p>
+  <div class="equation">
+  \[  d_{\text{Tot}(B^{\bullet , \bullet })} \circ h' + h' \circ d_{\text{Tot}(A^{\bullet , \bullet })}  \]
+</div>
+  <p> restricted to the summand $A^{p, q}$ is equal to </p>
+  <div class="equation">
+  \[  d_1^{p, q - 1} \circ (-1)^ p h^{p, q} + (-1)^ p d_2^{p, q - 1} \circ (-1)^ p h^{p, q} + (-1)^{p + 1} h^{p + 1, q} \circ d_1^{p, q} + (-1)^ p h^{p, q + 1} \circ (-1)^ p d_2^{p, q}  \]
+</div>
+  <p> which evaluates to $f^{p, q} - g^{p, q}$ by the equations given above. This proves the second compatibility. </p>
+  <p>Third, suppose that in the paragraph above we have $f = g$. Then the assignment $h \leadsto h'$ above is compatible with the identification of Lemma <a href="/tag/011I" data-tag="011I">12.14.9</a>. More precisely, if we view $h$ as a morphism of complexes of complexes $A^{\bullet , \bullet } \to B^{\bullet , \bullet }[0, -1]$ via this lemma then </p>
+  <div class="equation">
+  \[  \text{Tot}(A^{\bullet , \bullet }) \xrightarrow {\text{Tot}(h)} \text{Tot}(B^{\bullet , \bullet }[0, -1]) \xrightarrow {\gamma ^{-1}} \text{Tot}(B^{\bullet , \bullet })[-1]  \]
+</div>
+  <p> is equal to $h'$ viewed as a morphism of complexes via the lemma. Here $\gamma $ is the identification of Remark <a href="/tag/0FLG" data-tag="0FLG">12.18.5</a>. The verification of this third point is immediate. </p>
+  <p>Fourth, let </p>
+  <div class="equation">
+  \[  0 \to A^{\bullet , \bullet } \to B^{\bullet , \bullet } \to C^{\bullet , \bullet } \to 0  \]
+</div>
+  <p> be a complex of double complexes and suppose we are given splittings $s^ q : C^{\bullet , q} \to B^{\bullet , q}$ and $\pi ^ q : B^{\bullet , q} \to A^{\bullet , q}$ of this as in Lemma <a href="/tag/011J" data-tag="011J">12.14.10</a> when we view double complexes as complexes of complexes in the manner given above. This on the one hand produces a map </p>
+  <div class="equation">
+  \[  \delta : C^{\bullet , \bullet } \longrightarrow A^{\bullet , \bullet }[0, 1]  \]
+</div>
+  <p> by the procedure in Lemma <a href="/tag/011J" data-tag="011J">12.14.10</a>. On the other hand taking $\text{Tot}$ we obtain a complex </p>
+  <div class="equation">
+  \[  0 \to \text{Tot}(A^{\bullet , \bullet }) \to \text{Tot}(B^{\bullet , \bullet }) \to \text{Tot}(C^{\bullet , \bullet }) \to 0  \]
+</div>
+  <p> which is termwise split (see below) and hence comes with a morphism </p>
+  <div class="equation">
+  \[  \delta ' : \text{Tot}(C^{\bullet , \bullet }) \longrightarrow \text{Tot}(A^{\bullet , \bullet })[1]  \]
+</div>
+  <p> well defined up to homotopy by Lemmas <a href="/tag/011J" data-tag="011J">12.14.10</a> and <a href="/tag/011L" data-tag="011L">12.14.12</a>. Claim: these maps agree in the sense that </p>
+  <div class="equation">
+  \[  \text{Tot}(C^{\bullet , \bullet }) \xrightarrow {\text{Tot}(\delta )} \text{Tot}(A^{\bullet , \bullet }[0, 1]) \xrightarrow {\gamma ^{-1}} \text{Tot}(A^{\bullet , \bullet })[1]  \]
+</div>
+  <p> is equal to $\delta '$ where $\gamma $ is as in Remark <a href="/tag/0FLG" data-tag="0FLG">12.18.5</a>. To see this denote $s^{p, q} : C^{p, q} \to B^{\bullet , q}$ and $\pi ^{p, q} : B^{p, q} \to A^{p, q}$ the components of $s^ q$ and $\pi ^ q$. As splittings $(s')^ n : \text{Tot}^ n(C^{\bullet , \bullet }) \to \text{Tot}^ n(B^{\bullet , \bullet })$ and $(\pi ')^ n : \text{Tot}^ n(B^{\bullet , \bullet }) \to \text{Tot}^ n(A^{\bullet , \bullet })$ we use the maps whose components are $s^{p, q}$ and $\pi ^{p, q}$ for $p + q = n$. We recall that </p>
+  <div class="equation">
+  \[  (\delta ')^ n = (\pi ')^{n + 1} \circ d_{\text{Tot}(B^{\bullet , \bullet })}^ n \circ (s')^ n : \text{Tot}^ n(C^{\bullet , \bullet }) \to \text{Tot}^{n + 1}(A^{\bullet , \bullet })  \]
+</div>
+  <p> The restriction of this to the summand $C^{p, q}$ is equal to </p>
+  <div class="equation">
+  \[  \pi ^{p + 1, q} \circ d_1^{p, q} \circ s^{p, q} + \pi ^{p, q + 1} \circ (-1)^ p d_2^{p, q} \circ s^{p, q} = \pi ^{p, q + 1} \circ (-1)^ p d_2^{p, q} \circ s^{p, q}  \]
+</div>
+  <p> The equality holds because $s^ q$ is a morphism of complexes (with $d_1$ as differential) and because $\pi ^{p + 1, q} \circ s^{p + 1, q} = 0$ as $s$ and $\pi $ correspond to a direct sum decomposition of $B$ in every bidegree. On the other hand, for $\delta $ we have </p>
+  <div class="equation">
+  \[  \delta ^ q = \pi ^ q \circ d_2 \circ s^ q : C^{\bullet , q} \to A^{\bullet , q + 1}  \]
+</div>
+  <p> whose restriction to the summand $C^{p, q}$ is equal to $\pi ^{p, q + 1} \circ d_2^{p, q} \circ s^{p, q}$. The difference in signs is exactly canceled out by the sign of $(-1)^ p$ in the isomorphism $\gamma $ and the fourth claim is proven. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="0G6B">
+  <p><a class="environment-identifier" href="/tag/0G6B">Remark <span data-tag="0G6B">12.18.7</span>.</a> Let $\mathcal{A}$ be an additive category with countable direct sums. Let $\text{DoubleComp}(\mathcal{A})$ denote the category of double complexes. We can consider an object $A^{\bullet , \bullet }$ of $\text{DoubleComp}(\mathcal{A})$ as a complex of complexes as follows </p>
+  <div class="equation">
+  \[  \ldots \to A^{-1, \bullet } \to A^{0, \bullet } \to A^{1, \bullet } \to \ldots  \]
+</div>
+  <p> For the variant where we switch the role of the indices, see Remark <a href="/tag/0G6A" data-tag="0G6A">12.18.6</a>. In this remark we show that taking the associated total complex is compatible with all the structures on complexes we have studied in the chapter so far. </p>
+  <p>First, observe that the shift functor on double complexes viewed as complexes of complexes in the manner given above is the functor $[1, 0]$ defined in Remark <a href="/tag/0FLG" data-tag="0FLG">12.18.5</a>. By Remark <a href="/tag/0FLG" data-tag="0FLG">12.18.5</a> the functor </p>
+  <div class="equation">
+  \[  \text{Tot} : \text{DoubleComp}(\mathcal{A}) \to \text{Comp}(\mathcal{A})  \]
+</div>
+  <p> is compatible with shift functors, in the sense that we have a functorial isomorphism $\gamma : \text{Tot}(A^{\bullet , \bullet })[1] \to \text{Tot}(A^{\bullet , \bullet }[1, 0])$. </p>
+  <p>Second, if </p>
+  <div class="equation">
+  \[  f, g : A^{\bullet , \bullet } \to B^{\bullet , \bullet }  \]
+</div>
+  <p> are homotopic when $f$ and $g$ are viewed as morphisms of complexes of complexes in the manner given above, then </p>
+  <div class="equation">
+  \[  \text{Tot}(f), \text{Tot}(g) : \text{Tot}(A^{\bullet , \bullet }) \to \text{Tot}(B^{\bullet , \bullet })  \]
+</div>
+  <p> are homotopic maps of complexes. Indeed, let $h = (h^ p)$ be a homotopy between $f$ and $g$. If we denote $h^{p, q} : A^{p, q} \to B^{p - 1, q}$ the component in degree $p$ of $h^ q$, then this means that </p>
+  <div class="equation">
+  \[  f^{p, q} - g^{p, q} = d_1^{p - 1, q} \circ h^{p, q} + h^{p + 1, q} \circ d_1^{p, q}  \]
+</div>
+  <p> The fact that $h^ p : A^{p, \bullet } \to B^{p - 1, \bullet }$ is a map of complexes means that </p>
+  <div class="equation">
+  \[  d_2^{p - 1, q} \circ h^{p, q} = h^{p, q + 1} \circ d_2^{p, q}  \]
+</div>
+  <p> Let us define $h' = ((h')^ n)$ the homotopy given by the maps $(h')^ n : \text{Tot}^ n(A^{\bullet , \bullet }) \to \text{Tot}^{n - 1}(B^{\bullet , \bullet })$ using $h^{p, q}$ on the summand $A^{p, q}$ for $p + q = n$. Then we see that </p>
+  <div class="equation">
+  \[  d_{\text{Tot}(B^{\bullet , \bullet })} \circ h' + h' \circ d_{\text{Tot}(A^{\bullet , \bullet })}  \]
+</div>
+  <p> restricted to the summand $A^{p, q}$ is equal to </p>
+  <div class="equation">
+  \[  d_1^{p - 1, q} \circ h^{p, q} + (-1)^{p - 1} d_2^{p - 1, q} \circ h^{p, q} + h^{p + 1, q} \circ d_1^{p, q} + h^{p, q + 1} \circ (-1)^ p d_2^{p, q}  \]
+</div>
+  <p> which evaluates to $f^{p, q} - g^{p, q}$ by the equations given above. This proves the second compatibility. </p>
+  <p>Third, suppose that in the paragraph above we have $f = g$. Then the assignment $h \leadsto h'$ above is compatible with the identification of Lemma <a href="/tag/011I" data-tag="011I">12.14.9</a>. More precisely, if we view $h$ as a morphism of complexes of complexes $A^{\bullet , \bullet } \to B^{\bullet , \bullet }[-1, 0]$ via this lemma then </p>
+  <div class="equation">
+  \[  \text{Tot}(A^{\bullet , \bullet }) \xrightarrow {\text{Tot}(h)} \text{Tot}(B^{\bullet , \bullet }[-1, 0]) \xrightarrow {\gamma ^{-1}} \text{Tot}(B^{\bullet , \bullet })[-1]  \]
+</div>
+  <p> is equal to $h'$ viewed as a morphism of complexes via the lemma. Here $\gamma $ is the identification of Remark <a href="/tag/0FLG" data-tag="0FLG">12.18.5</a>. The verification of this third point is immediate. </p>
+  <p>Fourth, let </p>
+  <div class="equation">
+  \[  0 \to A^{\bullet , \bullet } \to B^{\bullet , \bullet } \to C^{\bullet , \bullet } \to 0  \]
+</div>
+  <p> be a complex of double complexes and suppose we are given splittings $s^ p : C^{p, \bullet } \to B^{p, \bullet }$ and $\pi ^ p : B^{p, \bullet } \to A^{p, \bullet }$ of this as in Lemma <a href="/tag/011J" data-tag="011J">12.14.10</a> when we view double complexes as complexes of complexes in the manner given above. This on the one hand produces a map </p>
+  <div class="equation">
+  \[  \delta : C^{\bullet , \bullet } \longrightarrow A^{\bullet , \bullet }[0, 1]  \]
+</div>
+  <p> by the procedure in Lemma <a href="/tag/011J" data-tag="011J">12.14.10</a>. On the other hand taking $\text{Tot}$ we obtain a complex </p>
+  <div class="equation">
+  \[  0 \to \text{Tot}(A^{\bullet , \bullet }) \to \text{Tot}(B^{\bullet , \bullet }) \to \text{Tot}(C^{\bullet , \bullet }) \to 0  \]
+</div>
+  <p> which is termwise split (see below) and hence comes with a morphism </p>
+  <div class="equation">
+  \[  \delta ' : \text{Tot}(C^{\bullet , \bullet }) \longrightarrow \text{Tot}(A^{\bullet , \bullet })[1]  \]
+</div>
+  <p> well defined up to homotopy by Lemmas <a href="/tag/011J" data-tag="011J">12.14.10</a> and <a href="/tag/011L" data-tag="011L">12.14.12</a>. Claim: these maps agree in the sense that </p>
+  <div class="equation">
+  \[  \text{Tot}(C^{\bullet , \bullet }) \xrightarrow {\text{Tot}(\delta )} \text{Tot}(A^{\bullet , \bullet }[1, 0]) \xrightarrow {\gamma ^{-1}} \text{Tot}(A^{\bullet , \bullet })[1]  \]
+</div>
+  <p> is equal to $\delta '$ where $\gamma $ is as in Remark <a href="/tag/0FLG" data-tag="0FLG">12.18.5</a>. To see this denote $s^{p, q} : C^{p, q} \to B^{\bullet , q}$ and $\pi ^{p, q} : B^{p, q} \to A^{p, q}$ the components of $s^ q$ and $\pi ^ q$. As splittings $(s')^ n : \text{Tot}^ n(C^{\bullet , \bullet }) \to \text{Tot}^ n(B^{\bullet , \bullet })$ and $(\pi ')^ n : \text{Tot}^ n(B^{\bullet , \bullet }) \to \text{Tot}^ n(A^{\bullet , \bullet })$ we use the maps whose components are $s^{p, q}$ and $\pi ^{p, q}$ for $p + q = n$. We recall that </p>
+  <div class="equation">
+  \[  (\delta ')^ n = (\pi ')^{n + 1} \circ d_{\text{Tot}(B^{\bullet , \bullet })}^ n \circ (s')^ n : \text{Tot}^ n(C^{\bullet , \bullet }) \to \text{Tot}^{n + 1}(A^{\bullet , \bullet })  \]
+</div>
+  <p> The restriction of this to the summand $C^{p, q}$ is equal to </p>
+  <div class="equation">
+  \[  \pi ^{p + 1, q} \circ d_1^{p, q} \circ s^{p, q} + \pi ^{p, q + 1} \circ (-1)^ p d_2^{p, q} \circ s^{p, q} = \pi ^{p + 1, q} \circ d_1^{p, q} \circ s^{p, q}  \]
+</div>
+  <p> The equality holds because $s^ p$ is a morphism of complexes (with $d_2$ as differential) and because $\pi ^{p, q + 1} \circ s^{p, q + 1} = 0$ as $s$ and $\pi $ correspond to a direct sum decomposition of $B$ in every bidegree. On the other hand, for $\delta $ we have </p>
+  <div class="equation">
+  \[  \delta ^ p = \pi ^ p \circ d_1 \circ s^ p : C^{p, \bullet } \to A^{p + 1, \bullet }  \]
+</div>
+  <p> whose restriction to the summand $C^{p, q}$ is equal to $\pi ^{p + 1, q} \circ d_1^{p, q} \circ s^{p, q}$. Thus we get the same as before which matches with the fact that the isomorphism $\gamma : \text{Tot}(A^{\bullet , \bullet })[1] \to \text{Tot}(A^{\bullet , \bullet }[1, 0])$ is defined without the intervention of signs. </p>
+</article> 
+</p>

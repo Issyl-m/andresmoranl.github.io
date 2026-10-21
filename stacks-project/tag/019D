@@ -1,0 +1,212 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="simplicial-section-dold-kan" class="tex-section"><span data-tag="019D">14.24</span> Dold-Kan</h2>
+
+<p>
+In this section we prove the Dold-Kan theorem relating simplicial objects in an abelian category with chain complexes. 
+</p>
+<p>
+<article class="env-lemma" id="019E">
+  <p><a class="environment-identifier" href="/tag/019E">Lemma <span data-tag="019E">14.24.1</span>.</a> Let $\mathcal{A}$ be an abelian category. The functor $N$ is faithful, and reflects isomorphisms, injections and surjections. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The faithfulness is immediate from the canonical splitting of Lemma <a href="/tag/017V" data-tag="017V">14.18.6</a>. The statement on reflecting injections, surjections, and isomorphisms follows from Lemma <a href="/tag/017W" data-tag="017W">14.18.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="019F">
+  <p><a class="environment-identifier" href="/tag/019F">Lemma <span data-tag="019F">14.24.2</span>.</a> Let $\mathcal{A}$ and $\mathcal{B}$ be abelian categories. Let $N : \mathcal{A} \to \mathcal{B}$, and $S : \mathcal{B} \to \mathcal{A}$ be functors. Suppose that </p>
+  <p><ol>
+  <li><p>
+the functors $S$ and $N$ are exact, 
+</p>
+</li><li><p>
+there is an isomorphism $g : N \circ S \to \text{id}_\mathcal {B}$ to the identity functor of $\mathcal{B}$, 
+</p>
+</li><li><p>
+$N$ is faithful, and 
+</p>
+</li><li><p>
+$S$ is essentially surjective. 
+</p>
+</li>
+</ol></p>
+  <p> Then $S$ and $N$ are quasi-inverse equivalences of categories. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It suffices to construct a functorial isomorphism $S(N(A)) \cong A$. To do this choose $B$ and an isomorphism $f : A \to S(B)$. Consider the map 
+    <p>
+      <div class="equation">
+  \[  f^{-1} \circ g_{S(B)} \circ S(N(f)) : S(N(A)) \to S(N(S(B))) \to S(B) \to A.  \]
+</div>
+    <p>
+       It is easy to show this does not depend on the choice of $f, B$ and gives the desired isomorphism $S \circ N \to \text{id}_\mathcal {A}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-theorem" id="019G">
+  <p><a class="environment-identifier" href="/tag/019G">Theorem <span data-tag="019G">14.24.3</span>.</a> Let $\mathcal{A}$ be an abelian category. The functor $N$ induces an equivalence of categories </p>
+  <div class="equation">
+  \[  N : \text{Simp}(\mathcal{A}) \longrightarrow \text{Ch}_{\geq 0}(\mathcal{A})  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will describe a functor in the reverse direction inspired by the construction of Lemma <a href="/tag/0192" data-tag="0192">14.22.4</a> (except that we throw in a sign to get the boundaries right). Let $A_\bullet $ be a chain complex with boundary maps $d_{A, n} : A_ n \to A_{n - 1}$. For each $n \geq 0$ denote 
+    <p>
+      <div class="equation">
+  \[  I_ n = \Big\{  \alpha : [n] \to \{ 0, 1, 2, \ldots \}  \mid \mathop{\mathrm{Im}}(\alpha ) = [k]\text{ for some }k \Big\} .  \]
+</div>
+    <p>
+       For $\alpha \in I_ n$ we denote $k(\alpha )$ the unique integer such that $\mathop{\mathrm{Im}}(\alpha ) = [k]$. We define a simplicial object $S(A_\bullet )$ as follows: 
+    <p>
+      <ol>
+  <li><p>
+$S(A_\bullet )_ n = \bigoplus _{\alpha \in I_ n} A_{k(\alpha )}$, which we will write as $\bigoplus _{\alpha \in I_ n} A_{k(\alpha )} \cdot \alpha $ to suggest thinking of “$\alpha $” as a basis vector for the summand corresponding to it, 
+</p>
+</li><li><p>
+given $\varphi : [m] \to [n]$ we define $S(A_\bullet )(\varphi )$ by its restriction to the direct summand $A_{k(\alpha )} \cdot \alpha $ of $S(A_\bullet )_ n$ as follows 
+</p>
+<ol>
+  <li><p>
+$\alpha \circ \varphi \not\in I_ m$ then we set it equal to zero, 
+</p>
+</li><li><p>
+$\alpha \circ \varphi \in I_ m$ but $k(\alpha \circ \varphi )$ not equal to either $k(\alpha )$ or $k(\alpha ) - 1$ then we set it equal to zero as well, 
+</p>
+</li><li><p>
+if $\alpha \circ \varphi \in I_ m$ and $k(\alpha \circ \varphi ) = k(\alpha )$ then we use the identity map to the summand $A_{k(\alpha \circ \varphi )} \cdot (\alpha \circ \varphi )$ of $S(A_\bullet )_ m$, and 
+</p>
+</li><li><p>
+if $\alpha \circ \varphi \in I_ m$ and $k(\alpha \circ \varphi ) = k(\alpha ) - 1$ then we use $(-1)^{k(\alpha )} d_{A, k(\alpha )}$ to the summand $A_{k(\alpha \circ \varphi )}\cdot (\alpha \circ \varphi )$ of $S(A_\bullet )_ m$. 
+</p>
+</li>
+</ol>
+</li>
+</ol>
+    <p>
+       Let us show that $S(A_\bullet )$ is a simplicial object of $\mathcal{A}$. To do this, assume we have maps $\varphi : [m] \to [n]$ and $\psi : [n] \to [p]$. We will show that $S(A_\bullet )(\varphi ) \circ S(A_\bullet )(\psi ) = S(A_\bullet )(\psi \circ \varphi )$. Choose $\beta \in I_ p$ and set $\alpha = \beta \circ \psi $ and $\gamma = \alpha \circ \varphi $ viewed as maps $\alpha : [n] \to \{ 0, 1, 2, \ldots \} $ and $\gamma : [m] \to \{ 0, 1, 2, \ldots \} $. Picture 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ [m] \ar[r]_\varphi \ar[d]_\gamma &  [n] \ar[r]_\psi \ar[d]_\alpha &  [p] \ar[d]^\beta \\  \mathop{\mathrm{Im}}(\gamma ) \ar[r] &  \mathop{\mathrm{Im}}(\alpha ) \ar[r] &  [k(\beta )] }  \]
+</div>
+    <p>
+       We will show that the restriction of the maps $S(A_\bullet )(\varphi ) \circ S(A_\bullet )(\psi )$ and $S(A_\bullet )(\psi \circ \varphi )$. to the summand $A_{k(\beta )} \cdot \beta $ agree. There are several cases to consider 
+    <p>
+      <ol>
+  <li><p>
+Say $\alpha \not\in I_ n$ so the restriction of $S(A_\bullet )(\psi )$ to $A_{k(\beta )} \cdot \beta $ is zero. Then either $\gamma \not\in I_ m$ or we have $[k(\gamma )] = \mathop{\mathrm{Im}}(\gamma ) \subset \mathop{\mathrm{Im}}(\alpha ) \subset [k(\beta )]$ and the subset $\mathop{\mathrm{Im}}(\alpha )$ of $[k(\beta )]$ has a gap so $k(\gamma ) < k(\beta ) - 1$. In both cases we see that the restriction of $S(A_\bullet )(\psi \circ \varphi )$ to $A_{k(\beta )} \cdot \beta $ is zero as well. 
+</p>
+</li><li><p>
+Say $\alpha \in I_ n$ and $k(\alpha ) < k(\beta ) - 1$ so the restriction of $S(A_\bullet )(\psi )$ to $A_{k(\beta )} \cdot \beta $ is zero. Then either $\gamma \not\in I_ m$ or we have $[k(\gamma )] \subset [k(\alpha )] \subset [k(\beta )]$ and it follows that $k(\gamma ) < k(\beta ) - 1$. In both cases we see that the restriction of $S(A_\bullet )(\psi \circ \varphi )$ to $A_{k(\beta )} \cdot \beta $ is zero as well. 
+</p>
+</li><li><p>
+Say $\alpha \in I_ n$ and $k(\alpha ) = k(\beta )$ so the restriction of $S(A_\bullet )(\psi )$ to $A_{k(\beta )} \cdot \beta $ is the identity map from $A_{k(\beta )} \cdot \beta $ to $A_{k(\alpha )} \cdot \alpha $. In this case because $\mathop{\mathrm{Im}}(\alpha ) =[k(\beta )]$ the rule describing the restriction of $S(A_\bullet )(\psi \circ \varphi )$ to the summand $A_{k(\beta )} \cdot \beta $ is exactly the same as the rule describing the restriction of $S(A_\bullet )(\varphi )$ to the summand $A_{k(\alpha )} \cdot \alpha $ and hence agreement holds. 
+</p>
+</li><li><p>
+Say $\alpha \in I_ n$ and $k(\alpha ) = k(\beta ) - 1$ so the restriction of $S(A_\bullet )(\psi )$ to $A_{k(\beta )} \cdot \beta $ is given by $(-1)^{k(\beta )}d_{A, k(\beta )}$ to $A_{k(\alpha )} \cdot \alpha $. Subcases 
+</p>
+<ol>
+  <li><p>
+If $\gamma \not\in I_ m$, then both the restriction of $S(A_\bullet )(\psi \circ \varphi )$ to the summand $A_{k(\beta )} \cdot \beta $ and the restriction of $S(A_\bullet )(\varphi )$ to the summand $A_{k(\alpha )} \cdot \alpha $ are zero and we get agreement. 
+</p>
+</li><li><p>
+If $\gamma \in I_ m$ but $k(\gamma ) < k(\alpha ) - 1$, then again both restrictions are zero and we get agreement. 
+</p>
+</li><li><p>
+If $\gamma \in I_ m$ and $k(\gamma ) = k(\alpha )$ then $\mathop{\mathrm{Im}}(\gamma ) = \mathop{\mathrm{Im}}(\alpha )$. In this case the restriction of $S(A_\bullet )(\psi \circ \varphi )$ to the summand $A_{k(\beta )} \cdot \beta $ is given by $(-1)^{k(\beta )}d_{A, k(\beta )}$ to $A_{k(\gamma )} \cdot \gamma $ and the restriction of $S(A_\bullet )(\varphi )$ to the summand $A_{k(\alpha )} \cdot \alpha $ is the identity map $A_{k(\alpha )} \cdot \alpha \to A_{k(\gamma )} \cdot \gamma $. Hence agreement holds. 
+</p>
+</li><li><p>
+Finally, if $\gamma \in I_ m$ and $k(\gamma ) = k(\alpha ) - 1$ then the restriction of $S(A_\bullet )(\varphi )$ to the summand $A_{k(\alpha )} \cdot \alpha $ is given by $(-1)^{k(\alpha )} d_{A, k(\alpha )}$ as a map $A_{k(\alpha )} \cdot \alpha \to A_{k(\beta )} \cdot \beta $. Since $A_\bullet $ is a complex we see that the composition $A_{k(\beta )} \cdot \beta \to A_{k(\alpha )} \cdot \alpha \to A_{k(\gamma )} \cdot \gamma $ is zero which matches what we get for the restriction of $S(A_\bullet )(\psi \circ \varphi )$ to the summand $A_{k(\beta )} \cdot \beta $ because $k(\gamma ) = k(\beta ) - 2 < k(\beta ) - 1$. 
+</p>
+</li>
+</ol>
+</li>
+</ol>
+    <p>
+       Thus $S(A_\bullet )$ is a simplicial object of $\mathcal{A}$. 
+    <p>
+      Let us construct an isomorphism $A_\bullet \to N(S(A_\bullet ))$ functorial in $A_\bullet $. Recall that 
+    <p>
+      <div class="equation">
+  \[  S(A_\bullet ) = N(S(A_\bullet )) \oplus D(S(A_\bullet ))  \]
+</div>
+    <p>
+       as chain complexes by Lemma <a href="/tag/019A" data-tag="019A">14.23.6</a>. On the other hand it follows from Remark <a href="/tag/0FKI" data-tag="0FKI">14.23.7</a> and the construction of $S(A_\bullet )$ that 
+    <p>
+      <div class="equation">
+  \[  D(S(A_\bullet ))_ n = \bigoplus \nolimits _{\alpha \in I_ n,\  k(\alpha ) < n} A_{k(\alpha )} \cdot \alpha \subset \bigoplus \nolimits _{\alpha \in I_ n} A_{k(\alpha )} \cdot \alpha  \]
+</div>
+    <p>
+       However, if $\alpha \in I_ n$ then we have $k(\alpha ) \geq n \Leftrightarrow \alpha = \text{id}_{[n]} : [n] \to [n]$. Thus the summand $A_ n \cdot \text{id}_{[n]}$ of $S(A_\bullet )_ n$ is a complement to the summand $D(S(A_\bullet ))_ n$. All the maps $d^ n_ i : S(A_\bullet )_ n \to S(A_\bullet )_ n$ restrict to zero on the summand $A_ n \cdot \text{id}_{[n]}$ except for $d^ n_ n$ which produces $(-1)^ n d_{A, n}$ from $A_ n \cdot \text{id}_{[n]}$ to $A_{n - 1} \cdot \text{id}_{[n - 1]}$. We conclude that $A_ n \cdot \text{id}_{[n]}$ must be equal to the summand $N(S(A_\bullet ))_ n$ and moreover the restriction of the differential $d_ n = \sum (-1)^ id^ n_ i : S(A_\bullet )_ n \to S(A_\bullet )_{n - 1}$ to the summand $A_ n \cdot \text{id}_{[n]}$ gives what we want! 
+    <p>
+      Finally, we have to show that $S \circ N$ is isomorphic to the identity functor. Let $U$ be a simplicial object of $\mathcal{A}$. Then we can define an obvious map 
+    <p>
+      <div class="equation">
+  \[  S(N(U))_ n = \bigoplus \nolimits _{\alpha \in I_ n} N(U)_{k(\alpha )} \cdot \alpha \longrightarrow U_ n  \]
+</div>
+    <p>
+       by using $U(\alpha ) : N(U)_{k(\alpha )} \to U_ n$ on the summand corresponding to $\alpha $. By Definition <a href="/tag/017P" data-tag="017P">14.18.1</a> this is an isomorphism. To finish the proof we have to show that this is compatible with the maps in the simplicial objects. Thus let $\varphi : [m] \to [n]$ and let $\alpha \in I_ n$. Set $\beta = \alpha \circ \varphi $. Picture 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ [m] \ar[r]_\varphi \ar[d]_\beta &  [n] \ar[d]_\alpha \\  \mathop{\mathrm{Im}}(\beta ) \ar[r] &  [k(\alpha )] }  \]
+</div>
+    <p>
+       There are several cases to consider 
+    <p>
+      <ol>
+  <li><p>
+Say $\beta \not\in I_ m$. Then there exists an index $0 \leq j < k(\alpha )$ with $j \not\in \mathop{\mathrm{Im}}(\alpha \circ \varphi )$ and hence we can choose a factorization $\alpha \circ \varphi = \delta ^{k(\alpha )}_ j \circ \psi $ for some $\psi : [m] \to [k(\alpha ) - 1]$. It follows that $U(\varphi )$ is zero on the image of the summand $N(U)_{k(\alpha )} \cdot \alpha $ because $U(\varphi ) \circ U(\alpha ) = U(\alpha \circ \varphi ) = U(\psi ) \circ d^{k(\alpha )}_ j$ is zero on $N(U)_{k(\alpha )}$ by construction of $N$. This matches our rule for $S(N(U))$ given above. 
+</p>
+</li><li><p>
+Say $\beta \in I_ m$ and $k(\beta ) < k(\alpha ) - 1$. Here we argue exactly as in case (1) with $j = k(\alpha ) - 1$. 
+</p>
+</li><li><p>
+Say $\beta \in I_ m$ and $k(\beta ) = k(\alpha )$. Here the summand $N(U)_{k(\alpha )} \cdot \alpha $ is mapped by the identity to the summand $N(U)_{k(\beta )} \cdot \beta $. This is the same as the effect of $U(\varphi )$ since in this case $U(\varphi ) \circ U(\alpha ) = U(\beta )$. 
+</p>
+</li><li><p>
+Say $\beta \in I_ m$ and $k(\beta ) = k(\alpha ) - 1$. Here we use the differential $(-1)^{k(\alpha )} d_{N(U), k(\alpha )}$ to map the summand $N(U)_{k(\alpha )} \cdot \alpha $ to the summand $N(U)_{k(\beta )} \cdot \beta $. On the other hand, since $\mathop{\mathrm{Im}}(\beta ) = [k(\beta )]$ in this case we get $\alpha \circ \varphi = \delta ^{k(\alpha )}_{k(\alpha )} \circ \beta $. Thus we see that $U(\varphi )$ composed with the restriction of $U(\alpha )$ to $N(U)_{k(\alpha )}$ is equal to $U(\beta )$ precomposed with $d^{k(\alpha )}_{k(\alpha )}$ restricted to $N(U)_{k(\alpha )}$. Since $d_{N(U), k(\alpha )} = \sum (-1)^ i d^{k(\alpha )}_ i$ and since $d^{k(\alpha )}_ i$ restricts to zero on $N(U)_{k(\alpha )}$ for $i < k(\alpha )$ we see that equality holds. 
+</p>
+</li>
+</ol>
+    <p>
+       This finishes the proof of the theorem. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

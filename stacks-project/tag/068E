@@ -1,0 +1,524 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-morphisms-section-lci" class="tex-section"><span data-tag="068E">37.62</span> Local complete intersection morphisms</h2>
+
+<p>
+In Divisors, Section <a href="/tag/0638" data-tag="0638">31.22</a> we have defined 4 different types of regular immersions: regular, Koszul-regular, $H_1$-regular, and quasi-regular. In this section we consider morphisms $f : X \to S$ which locally on $X$ factor as 
+</p>
+<div class="equation">
+  \[  \xymatrix{ X \ar[rr]_ i \ar[rd] &  &  \mathbf{A}^ n_ S \ar[ld] \\  &  S }  \]
+</div>
+<p>
+ where $i$ is a $*$-regular immersion for $* \in \{ \emptyset , Koszul, H_1, quasi\} $. However, we don't know how to prove that this condition is independent of the factorization if $* = \emptyset $, i.e., when we require $i$ to be a regular immersion. On the other hand, we want a local complete intersection morphism to be perfect, which is only going to be true if $* = Koszul$ or $* = \emptyset $. Hence we will define a <em>local complete intersection morphism</em> or <em>Koszul morphism</em> to be a morphism of schemes $f : X \to S$ that locally on $X$ has a factorization as above with $i$ a Koszul-regular immersion. To see that this works we first prove this is independent of the chosen factorizations. 
+</p>
+<p>
+<article class="env-lemma" id="069E">
+  <p><a class="environment-identifier" href="/tag/069E">Lemma <span data-tag="069E">37.62.1</span>.</a> Let $S$ be a scheme. Let $U$, $P$, $P'$ be schemes over $S$. Let $u \in U$. Let $i : U \to P$, $i' : U \to P'$ be immersions over $S$. Assume $P$ and $P'$ smooth over $S$. Then the following are equivalent </p>
+  <p><ol>
+  <li><p>
+$i$ is a Koszul-regular immersion in a neighbourhood of $u$, and 
+</p>
+</li><li><p>
+$i'$ is a Koszul-regular immersion in a neighbourhood of $u$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume $i$ is a Koszul-regular immersion in a neighbourhood of $u$. Consider the morphism $j = (i, i') : U \to P \times _ S P' = P''$. Since $P'' = P \times _ S P' \to P$ is smooth, it follows from Divisors, Lemma <a href="/tag/067S" data-tag="067S">31.23.9</a> that $j$ is a Koszul-regular immersion, whereupon it follows from Divisors, Lemma <a href="/tag/0693" data-tag="0693">31.23.12</a> that $i'$ is a Koszul-regular immersion. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Before we state the definition, let us make the following simple remark. Let $f : X \to S$ be a morphism of schemes which is locally of finite type. Let $x \in X$. Then there exist an open neighbourhood $U \subset X$ and a factorization of $f|_ U$ as the composition of an immersion $i : U \to \mathbf{A}^ n_ S$ followed by the projection $\mathbf{A}^ n_ S \to S$ which is smooth. Picture 
+</p>
+<div class="equation">
+  \[  \xymatrix{ X \ar[rd] &  U \ar[l] \ar[d] \ar[r]_-i &  \mathbf{A}^ n_ S = P \ar[ld]^\pi \\  &  S }  \]
+</div>
+<p>
+ In fact you can do this with any affine open neighbourhood $U$ of $x$ in $X$, see Morphisms, Lemma <a href="/tag/04II" data-tag="04II">29.40.2</a>. 
+</p>
+<p>
+<article class="env-definition" id="069F">
+  <p><a class="environment-identifier" href="/tag/069F">Definition <span data-tag="069F">37.62.2</span>.</a> Let $f : X \to S$ be a morphism of schemes. </p>
+  <p><ol>
+  <li><p>
+Let $x \in X$. We say that $f$ is <em>Koszul at $x$</em> if $f$ is of finite type at $x$ and there exists an open neighbourhood and a factorization of $f|_ U$ as $\pi \circ i$ where $i : U \to P$ is a Koszul-regular immersion and $\pi : P \to S$ is smooth. 
+</p>
+</li><li><p>
+We say $f$ is a <em>Koszul morphism</em>, or that $f$ is a <em>local complete intersection morphism</em> if $f$ is Koszul at every point. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+We have seen above that the choice of the factorization $f|_ U = \pi \circ i$ is irrelevant, i.e., given a factorization of $f|_ U$ as an immersion $i$ followed by a smooth morphism $\pi $, whether or not $i$ is Koszul regular in a neighbourhood of $x$ is an intrinsic property of $f$ at $x$. Let us record this here explicitly as a lemma so that we can refer to it 
+</p>
+<p>
+<article class="env-lemma" id="069G">
+  <p><a class="environment-identifier" href="/tag/069G">Lemma <span data-tag="069G">37.62.3</span>.</a> Let $f : X \to S$ be a local complete intersection morphism. Let $P$ be a scheme smooth over $S$. Let $U \subset X$ be an open subscheme and $i : U \to P$ an immersion of schemes over $S$. Then $i$ is a Koszul-regular immersion. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is the defining property of a local complete intersection morphism. See discussion above. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+It seems like a good idea to collect here some properties in common with all Koszul morphisms. 
+</p>
+<p>
+<article class="env-lemma" id="069H">
+  <p><a class="environment-identifier" href="/tag/069H">Lemma <span data-tag="069H">37.62.4</span>.</a> Let $f : X \to S$ be a local complete intersection morphism. Then </p>
+  <p><ol>
+  <li><p>
+$f$ is locally of finite presentation, 
+</p>
+</li><li><p>
+$f$ is pseudo-coherent, and 
+</p>
+</li><li><p>
+$f$ is perfect. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since a perfect morphism is pseudo-coherent (because a perfect ring map is pseudo-coherent) and a pseudo-coherent morphism is locally of finite presentation (because a pseudo-coherent ring map is of finite presentation) it suffices to prove the last statement. Being perfect is a local property, hence we may assume that $f$ factors as $\pi \circ i$ where $\pi $ is smooth and $i$ is a Koszul-regular immersion. A Koszul-regular immersion is perfect, see Lemma <a href="/tag/068C" data-tag="068C">37.61.7</a>. A smooth morphism is perfect as it is flat and locally of finite presentation, see Lemma <a href="/tag/068A" data-tag="068A">37.61.5</a>. Finally a composition of perfect morphisms is perfect, see Lemma <a href="/tag/0689" data-tag="0689">37.61.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="07DB">
+  <p><a class="environment-identifier" href="/tag/07DB">Lemma <span data-tag="07DB">37.62.5</span>.</a> Let $f : X = \mathop{\mathrm{Spec}}(B) \to S = \mathop{\mathrm{Spec}}(A)$ be a morphism of affine schemes. Then $f$ is a local complete intersection morphism if and only if $A \to B$ is a local complete intersection homomorphism, see More on Algebra, Definition <a href="/tag/07D0" data-tag="07D0">15.34.2</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows immediately from the definitions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Beware that a base change of a Koszul morphism is not Koszul in general. 
+</p>
+<p>
+<article class="env-lemma" id="069I">
+  <p><a class="environment-identifier" href="/tag/069I">Lemma <span data-tag="069I">37.62.6</span>.</a> A flat base change of a local complete intersection morphism is a local complete intersection morphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. Hint: This is true because a base change of a smooth morphism is smooth and a flat base change of a Koszul-regular immersion is a Koszul-regular immersion, see Divisors, Lemma <a href="/tag/063L" data-tag="063L">31.22.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="069J">
+  <p><a class="environment-identifier" href="/tag/069J">Lemma <span data-tag="069J">37.62.7</span>.</a> A composition of local complete intersection morphisms is a local complete intersection morphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $g : Y \to S$ and $f : X \to Y$ be local complete intersection morphisms. Let $x \in X$ and set $y = f(x)$. Choose an open neighbourhood $V \subset Y$ of $y$ and a factorization $g|_ V = \pi \circ i$ for some Koszul-regular immersion $i : V \to P$ and smooth morphism $\pi : P \to S$. Next choose an open neighbourhood $U$ of $x \in X$ and a factorization $f|_ U = \pi ' \circ i'$ for some Koszul-regular immersion $i' : U \to P'$ and smooth morphism $\pi ' : P' \to Y$. In fact, we may assume that $P' = \mathbf{A}^ n_ V$, see discussion preceding and following Definition <a href="/tag/069F" data-tag="069F">37.62.2</a>. Picture: 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X \ar[d] &  U \ar[l] \ar[r]_-{i'} &  P' = \mathbf{A}^ n_ V \ar[d] \\  Y \ar[d] &  &  V \ar[ll] \ar[r]_ i &  P \ar[d] \\  S &  &  &  S \ar[lll] }  \]
+</div>
+    <p>
+       Set $P'' = \mathbf{A}^ n_ P$. Then $U \to P' \to P''$ is a Koszul-regular immersion as a composition of Koszul-regular immersions, namely $i'$ and the flat base change of $i$ via $P'' \to P$, see Divisors, Lemma <a href="/tag/063L" data-tag="063L">31.22.3</a> and Divisors, Lemma <a href="/tag/067Q" data-tag="067Q">31.22.7</a>. Also $P'' \to P \to S$ is smooth as a composition of smooth morphisms, see Morphisms, Lemma <a href="/tag/01VA" data-tag="01VA">29.35.4</a>. Hence we conclude that $X \to S$ is Koszul at $x$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="069K">
+       
+      
+  <p><a class="environment-identifier" href="/tag/069K">Lemma <span data-tag="069K">37.62.8</span>.</a> Let $f : X \to S$ be a morphism of schemes. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$f$ is flat and a local complete intersection morphism, and 
+</p>
+</li><li><p>
+$f$ is syntomic. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Working affine locally this is More on Algebra, Lemma <a href="/tag/07D3" data-tag="07D3">15.34.5</a>. We also give a more geometric proof. 
+    <p>
+      Assume (2). By Morphisms, Lemma <a href="/tag/01UE" data-tag="01UE">29.31.10</a> for every point $x$ of $X$ there exist affine open neighbourhoods $U$ of $x$ and $V$ of $f(x)$ such that $f|_ U : U \to V$ is standard syntomic. This means that $U = \mathop{\mathrm{Spec}}(R[x_1, \ldots , x_ n]/(f_1, \ldots , f_ c)) \to V = \mathop{\mathrm{Spec}}(R)$ where $R[x_1, \ldots , x_ n]/(f_1, \ldots , f_ c)$ is a relative global complete intersection over $R$. By Algebra, Lemma <a href="/tag/00SV" data-tag="00SV">10.136.12</a> the sequence $f_1, \ldots , f_ c$ is a regular sequence in each local ring $R[x_1, \ldots , x_ n]_{\mathfrak q}$ for every prime $\mathfrak q \supset (f_1, \ldots , f_ c)$. Consider the Koszul complex $K_\bullet = K_\bullet (R[x_1, \ldots , x_ n], f_1, \ldots , f_ c)$ with homology groups $H_ i = H_ i(K_\bullet )$. By More on Algebra, Lemma <a href="/tag/062F" data-tag="062F">15.31.2</a> we see that $(H_ i)_{\mathfrak q} = 0$, $i > 0$ for every $\mathfrak q$ as above. On the other hand, by More on Algebra, Lemma <a href="/tag/0663" data-tag="0663">15.29.6</a> we see that $H_ i$ is annihilated by $(f_1, \ldots , f_ c)$. Hence we see that $H_ i = 0$, $i > 0$ and $f_1, \ldots , f_ c$ is a Koszul-regular sequence. This proves that $U \to V$ factors as a Koszul-regular immersion $U \to \mathbf{A}^ n_ V$ followed by a smooth morphism as desired. 
+    <p>
+      Assume (1). Then $f$ is a flat and locally of finite presentation (Lemma <a href="/tag/069H" data-tag="069H">37.62.4</a>). Hence, according to Morphisms, Lemma <a href="/tag/01UE" data-tag="01UE">29.31.10</a> it suffices to show that the local rings $\mathcal{O}_{X_ s, x}$ are local complete intersection rings. Choose, locally on $X$, a factorization $f = \pi \circ i$ for some Koszul-regular immersion $i : X \to P$ and smooth morphism $\pi : P \to S$. Note that $X \to P$ is a relative quasi-regular immersion over $S$, see Divisors, Definition <a href="/tag/063S" data-tag="063S">31.23.2</a>. Hence according to Divisors, Lemma <a href="/tag/063U" data-tag="063U">31.23.4</a> we see that $X \to P$ is a regular immersion and the same remains true after any base change. Thus each fibre is a regular immersion, whence all the local rings of all the fibres of $X$ are local complete intersections. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="069L">
+  <p><a class="environment-identifier" href="/tag/069L">Lemma <span data-tag="069L">37.62.9</span>.</a> A regular immersion of schemes is a local complete intersection morphism. A Koszul-regular immersion of schemes is a local complete intersection morphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since a regular immersion is a Koszul-regular immersion, see Divisors, Lemma <a href="/tag/063K" data-tag="063K">31.22.2</a>, it suffices to prove the second statement. The second statement follows immediately from the definition. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="069M">
+  <p><a class="environment-identifier" href="/tag/069M">Lemma <span data-tag="069M">37.62.10</span>.</a> Let </p>
+  <div class="equation">
+  \[  \xymatrix{ X \ar[rr]_ f \ar[rd] &  &  Y \ar[ld] \\  &  S }  \]
+</div>
+  <p> be a commutative diagram of morphisms of schemes. Assume $Y \to S$ smooth and $X \to S$ is a local complete intersection morphism. Then $f : X \to Y$ is a local complete intersection morphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Immediate from the definitions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0E9K">
+  <p><a class="environment-identifier" href="/tag/0E9K">Lemma <span data-tag="0E9K">37.62.11</span>.</a> Let $f : X \to Y$ be a morphism of schemes. If $f$ is locally of finite type and $X$ and $Y$ are regular, then $f$ is a local complete intersection morphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We may assume there is a factorization $X \to \mathbf{A}^ n_ Y \to Y$ where the first arrow is an immersion. As $Y$ is regular also $\mathbf{A}^ n_ Y$ is regular by Algebra, Lemma <a href="/tag/07NF" data-tag="07NF">10.163.10</a>. Hence $X \to \mathbf{A}^ n_ Y$ is a regular immersion by Divisors, Lemma <a href="/tag/0E9J" data-tag="0E9J">31.22.12</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma is of a different nature. 
+</p>
+<p>
+<article class="env-lemma" id="09RL">
+  <p><a class="environment-identifier" href="/tag/09RL">Lemma <span data-tag="09RL">37.62.12</span>.</a> Let </p>
+  <div class="equation">
+  \[  \xymatrix{ X \ar[rr]_ f \ar[rd] &  &  Y \ar[ld] \\  &  S }  \]
+</div>
+  <p> be a commutative diagram of morphisms of schemes. Assume </p>
+  <p><ol>
+  <li><p>
+$S$ is locally Noetherian, 
+</p>
+</li><li><p>
+$Y \to S$ is locally of finite type, 
+</p>
+</li><li><p>
+$f : X \to Y$ is perfect, 
+</p>
+</li><li><p>
+$X \to S$ is a local complete intersection morphism. 
+</p>
+</li>
+</ol></p>
+  <p> Then $X \to Y$ is a local complete intersection morphism and $Y \to S$ is Koszul at $f(x)$ for all $x \in X$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In the course of this proof all schemes will be locally Noetherian and all rings will be Noetherian. We will use without further mention that regular sequences and Koszul regular sequences agree in this setting, see More on Algebra, Lemma <a href="/tag/09CC" data-tag="09CC">15.31.7</a>. Moreover, whether an ideal (resp. ideal sheaf) is regular may be checked on local rings (resp. stalks), see Algebra, Lemma <a href="/tag/061L" data-tag="061L">10.68.6</a> (resp. Divisors, Lemma <a href="/tag/063I" data-tag="063I">31.21.8</a>) 
+    <p>
+      The question is local. Hence we may assume $S$, $X$, $Y$ are affine. In this situation we may choose a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathbf{A}^{n + m}_ S \ar[d] &  X \ar[l] \ar[d] \\  \mathbf{A}^ n_ S \ar[d] &  Y \ar[l] \ar[ld] \\  S }  \]
+</div>
+    <p>
+       whose horizontal arrows are closed immersions. Let $x \in X$ be a point and consider the corresponding commutative diagram of local rings 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ J \ar[r] &  \mathcal{O}_{\mathbf{A}^{n + m}_ S, x} \ar[r] &  \mathcal{O}_{X, x} \\  I \ar[r] \ar[u] &  \mathcal{O}_{\mathbf{A}^ n_ S, f(x)} \ar[r] \ar[u] &  \mathcal{O}_{Y, f(x)} \ar[u] }  \]
+</div>
+    <p>
+       where $J$ and $I$ are the kernels of the horizontal arrows. Since $X \to S$ is a local complete intersection morphism, the ideal $J$ is generated by a regular sequence. Since $X \to Y$ is perfect the ring $\mathcal{O}_{X, x}$ has finite tor dimension over $\mathcal{O}_{Y, f(x)}$. Hence we may apply Divided Power Algebra, Lemma <a href="/tag/09PX" data-tag="09PX">23.7.6</a> to conclude that $I$ and $J/I$ are generated by regular sequences. By our initial remarks, this finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FJ2">
+  <p><a class="environment-identifier" href="/tag/0FJ2">Lemma <span data-tag="0FJ2">37.62.13</span>.</a> Let </p>
+  <div class="equation">
+  \[  \xymatrix{ X \ar[rr]_ f \ar[rd] &  &  Y \ar[ld] \\  &  S }  \]
+</div>
+  <p> be a commutative diagram of morphisms of schemes. Assume $S$ is locally Noetherian, $Y \to S$ is locally of finite type, $Y$ is regular, and $X \to S$ is a local complete intersection morphism. Then $f : X \to Y$ is a local complete intersection morphism and $Y \to S$ is Koszul at $f(x)$ for all $x \in X$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a special case of Lemma <a href="/tag/09RL" data-tag="09RL">37.62.12</a> in view of Lemma <a href="/tag/068B" data-tag="068B">37.61.6</a> (and Morphisms, Lemma <a href="/tag/01T8" data-tag="01T8">29.15.8</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FK1">
+  <p><a class="environment-identifier" href="/tag/0FK1">Lemma <span data-tag="0FK1">37.62.14</span>.</a> Let $i : X \to Y$ be an immersion. If </p>
+  <p><ol>
+  <li><p>
+$i$ is perfect, 
+</p>
+</li><li><p>
+$Y$ is locally Noetherian, and 
+</p>
+</li><li><p>
+the conormal sheaf $\mathcal{C}_{X/Y}$ is finite locally free, 
+</p>
+</li>
+</ol></p>
+  <p> then $i$ is a regular immersion. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Translated into algebra, this is Divided Power Algebra, Proposition <a href="/tag/0FJS" data-tag="0FJS">23.11.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FV6">
+  <p><a class="environment-identifier" href="/tag/0FV6">Lemma <span data-tag="0FV6">37.62.15</span>.</a> Let $f : X \to Y$ be a local complete intersection homomorphism. Then the naive cotangent complex $\mathop{N\! L}\nolimits _{X/Y}$ is a perfect object of $D(\mathcal{O}_ X)$ of tor-amplitude in $[-1, 0]$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Translated into algebra this is More on Algebra, Lemma <a href="/tag/0FV0" data-tag="0FV0">15.87.4</a>. To do the translation use Lemmas <a href="/tag/07DB" data-tag="07DB">37.62.5</a> and <a href="/tag/0D0I" data-tag="0D0I">37.13.2</a> as well as Derived Categories of Schemes, Lemmas <a href="/tag/06Z0" data-tag="06Z0">36.3.5</a>, <a href="/tag/08E9" data-tag="08E9">36.10.4</a> and <a href="/tag/08EB" data-tag="08EB">36.10.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FK2">
+  <p><a class="environment-identifier" href="/tag/0FK2">Lemma <span data-tag="0FK2">37.62.16</span>.</a> Let $f : X \to Y$ be a perfect morphism of locally Noetherian schemes. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$f$ is a local complete intersection morphism, 
+</p>
+</li><li><p>
+$\mathop{N\! L}\nolimits _{X/Y}$ has tor-amplitude in $[-1, 0]$, and 
+</p>
+</li><li><p>
+$\mathop{N\! L}\nolimits _{X/Y}$ is perfect with tor-amplitude in $[-1, 0]$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Translated into algebra this is Divided Power Algebra, Lemma <a href="/tag/0FJT" data-tag="0FJT">23.11.4</a>. To do the translation use Lemmas <a href="/tag/07DB" data-tag="07DB">37.62.5</a> and <a href="/tag/0D0I" data-tag="0D0I">37.13.2</a> as well as Derived Categories of Schemes, Lemmas <a href="/tag/06Z0" data-tag="06Z0">36.3.5</a>, <a href="/tag/08E9" data-tag="08E9">36.10.4</a> and <a href="/tag/08EB" data-tag="08EB">36.10.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FK3">
+  <p><a class="environment-identifier" href="/tag/0FK3">Lemma <span data-tag="0FK3">37.62.17</span>.</a> Let $f : X \to Y$ be a flat morphism of finite presentation. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$f$ is a local complete intersection morphism, 
+</p>
+</li><li><p>
+$f$ is syntomic, 
+</p>
+</li><li><p>
+$\mathop{N\! L}\nolimits _{X/Y}$ has tor-amplitude in $[-1, 0]$, and 
+</p>
+</li><li><p>
+$\mathop{N\! L}\nolimits _{X/Y}$ is perfect with tor-amplitude in $[-1, 0]$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Translated into algebra this is Divided Power Algebra, Lemma <a href="/tag/0FJV" data-tag="0FJV">23.11.5</a>. To do the translation use Lemmas <a href="/tag/07DB" data-tag="07DB">37.62.5</a> and <a href="/tag/0D0I" data-tag="0D0I">37.13.2</a> as well as Derived Categories of Schemes, Lemmas <a href="/tag/06Z0" data-tag="06Z0">36.3.5</a>, <a href="/tag/08E9" data-tag="08E9">36.10.4</a> and <a href="/tag/08EB" data-tag="08EB">36.10.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma gives a characterization of smooth morphisms as flat morphisms whose diagonal is perfect. 
+</p>
+<p>
+<article class="env-lemma" id="0FDP">
+  <p><a class="environment-identifier" href="/tag/0FDP">Lemma <span data-tag="0FDP">37.62.18</span>.</a> Let $f : X \to Y$ be a finite type morphism of locally Noetherian schemes. Denote $\Delta : X \to X \times _ Y X$ the diagonal morphism. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$f$ is smooth, 
+</p>
+</li><li><p>
+$f$ is flat and $\Delta : X \to X \times _ Y X$ is a regular immersion, 
+</p>
+</li><li><p>
+$f$ is flat and $\Delta : X \to X \times _ Y X$ is a local complete intersection morphism, 
+</p>
+</li><li><p>
+$f$ is flat and $\Delta : X \to X \times _ Y X$ is perfect. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume (1). Then $f$ is flat by Morphisms, Lemma <a href="/tag/01VF" data-tag="01VF">29.35.9</a>. The projections $X \times _ Y X \to X$ are smooth by Morphisms, Lemma <a href="/tag/01VB" data-tag="01VB">29.35.5</a>. Hence the diagonal is a section to a smooth morphism and hence a regular immersion, see Divisors, Lemma <a href="/tag/067R" data-tag="067R">31.23.8</a>. Hence (1) $\Rightarrow $ (2). The implication (2) $\Rightarrow $ (3) is Lemma <a href="/tag/069L" data-tag="069L">37.62.9</a>. The implication (3) $\Rightarrow $ (4) is Lemma <a href="/tag/069H" data-tag="069H">37.62.4</a>. The interesting implication (4) $\Rightarrow $ (1) follows immediately from Divided Power Algebra, Lemma <a href="/tag/0FCX" data-tag="0FCX">23.10.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="069N">
+  <p><a class="environment-identifier" href="/tag/069N">Lemma <span data-tag="069N">37.62.19</span>.</a> The property $\mathcal{P}(f) =$“$f$ is a local complete intersection morphism” is fpqc local on the base. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $f : X \to S$ be a morphism of schemes. Let $\{ S_ i \to S\} $ be an fpqc covering of $S$. Assume that each base change $f_ i : X_ i \to S_ i$ of $f$ is a local complete intersection morphism. Note that this implies in particular that $f$ is locally of finite type, see Lemma <a href="/tag/069H" data-tag="069H">37.62.4</a> and Descent, Lemma <a href="/tag/02KX" data-tag="02KX">35.23.12</a>. Let $x \in X$. Choose an open neighbourhood $U$ of $x$ and an immersion $j : U \to \mathbf{A}^ n_ S$ over $S$ (see discussion preceding Definition <a href="/tag/069F" data-tag="069F">37.62.2</a>). We have to show that $j$ is a Koszul-regular immersion. Since $f_ i$ is a local complete intersection morphism, we see that the base change $j_ i : U \times _ S S_ i \to \mathbf{A}^ n_{S_ i}$ is a Koszul-regular immersion, see Lemma <a href="/tag/069G" data-tag="069G">37.62.3</a>. Because $\{ \mathbf{A}^ n_{S_ i} \to \mathbf{A}^ n_ S\} $ is a fpqc covering we see from Descent, Lemma <a href="/tag/0694" data-tag="0694">35.23.34</a> that $j$ is a Koszul-regular immersion as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="069P">
+  <p><a class="environment-identifier" href="/tag/069P">Lemma <span data-tag="069P">37.62.20</span>.</a> The property $\mathcal{P}(f) =$“$f$ is a local complete intersection morphism” is syntomic local on the source. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use the criterion of Descent, Lemma <a href="/tag/036H" data-tag="036H">35.26.4</a> to prove this. It follows from Lemmas <a href="/tag/069K" data-tag="069K">37.62.8</a> and <a href="/tag/069J" data-tag="069J">37.62.7</a> that being a local complete intersection morphism is preserved under precomposing with syntomic morphisms. It is clear from Definition <a href="/tag/069F" data-tag="069F">37.62.2</a> that being a local complete intersection morphism is Zariski local on the source and target. Hence, according to the aforementioned Descent, Lemma <a href="/tag/036H" data-tag="036H">35.26.4</a> it suffices to prove the following: Suppose $X' \to X \to Y$ are morphisms of affine schemes with $X' \to X$ syntomic and $X' \to Y$ a local complete intersection morphism. Then $X \to Y$ is a local complete intersection morphism. To see this, note that in any case $X \to Y$ is of finite presentation by Descent, Lemma <a href="/tag/02KK" data-tag="02KK">35.14.1</a>. Choose a closed immersion $X \to \mathbf{A}^ n_ Y$. By Algebra, Lemma <a href="/tag/00T0" data-tag="00T0">10.136.18</a> we can find an affine open covering $X' = \bigcup _{i = 1, \ldots , n} X'_ i$ and syntomic morphisms $W_ i \to \mathbf{A}^ n_ Y$ lifting the morphisms $X'_ i \to X$, i.e., such that there are fibre product diagrams 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X'_ i \ar[d] \ar[r] &  W_ i \ar[d] \\  X \ar[r] &  \mathbf{A}^ n_ Y }  \]
+</div>
+    <p>
+       After replacing $X'$ by $\coprod X'_ i$ and setting $W = \coprod W_ i$ we obtain a fibre product diagram of affine schemes 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X' \ar[d] \ar[r] &  W \ar[d]^ h \\  X \ar[r] &  \mathbf{A}^ n_ Y }  \]
+</div>
+    <p>
+       with $h : W \to \mathbf{A}^ n_ Y$ syntomic and $X' \to Y$ still a local complete intersection morphism. Since $W \to \mathbf{A}^ n_ Y$ is open (see Morphisms, Lemma <a href="/tag/01UA" data-tag="01UA">29.26.10</a>) and $X' \to X$ is surjective we see that $X$ is contained in the image of $W \to \mathbf{A}^ n_ Y$. Choose a closed immersion $W \to \mathbf{A}^{n + m}_ Y$ over $\mathbf{A}^ n_ Y$. Now the diagram looks like 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ X' \ar[d] \ar[r] &  W \ar[d]^ h \ar[r] &  \mathbf{A}^{n + m}_ Y \ar[ld] \\  X \ar[r] &  \mathbf{A}^ n_ Y }  \]
+</div>
+    <p>
+       Because $h$ is syntomic and hence a local complete intersection morphism (see above) the morphism $W \to \mathbf{A}^{n + m}_ Y$ is a Koszul-regular immersion. Because $X' \to Y$ is a local complete intersection morphism the morphism $X' \to \mathbf{A}^{n + m}_ Y$ is a Koszul-regular immersion. We conclude from Divisors, Lemma <a href="/tag/068Z" data-tag="068Z">31.22.8</a> that $X' \to W$ is a Koszul-regular immersion. Hence, since being a Koszul-regular immersion is fpqc local on the target (see Descent, Lemma <a href="/tag/0694" data-tag="0694">35.23.34</a>) we conclude that $X \to \mathbf{A}^ n_ Y$ is a Koszul-regular immersion which is what we had to show. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06B8">
+  <p><a class="environment-identifier" href="/tag/06B8">Lemma <span data-tag="06B8">37.62.21</span>.</a> Let $S$ be a scheme. Let $f : X \to Y$ be a morphism of schemes over $S$. Assume both $X$ and $Y$ are flat and locally of finite presentation over $S$. Then the set </p>
+  <div class="equation">
+  \[  \{ x \in X \mid f\text{ Koszul at }x\} .  \]
+</div>
+  <p> is open in $X$ and its formation commutes with arbitrary base change $S' \to S$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The set is open by definition (see Definition <a href="/tag/069F" data-tag="069F">37.62.2</a>). Let $S' \to S$ be a morphism of schemes. Set $X' = S' \times _ S X$, $Y' = S' \times _ S Y$, and denote $f' : X' \to Y'$ the base change of $f$. Let $x' \in X'$ be a point such that $f'$ is Koszul at $x'$. Denote $s' \in S'$, $x \in X$, $y' \in Y'$ , $y \in Y$, $s \in S$ the image of $x'$. Note that $f$ is locally of finite presentation, see Morphisms, Lemma <a href="/tag/02FV" data-tag="02FV">29.22.11</a>. Hence we may choose an affine neighbourhood $U \subset X$ of $x$ and an immersion $i : U \to \mathbf{A}^ n_ Y$. Denote $U' = S' \times _ S U$ and $i' : U' \to \mathbf{A}^ n_{Y'}$ the base change of $i$. The assumption that $f'$ is Koszul at $x'$ implies that $i'$ is a Koszul-regular immersion in a neighbourhood of $x'$, see Lemma <a href="/tag/069G" data-tag="069G">37.62.3</a>. The scheme $X'$ is flat and locally of finite presentation over $S'$ as a base change of $X$ (see Morphisms, Lemmas <a href="/tag/01U9" data-tag="01U9">29.26.8</a> and <a href="/tag/01TS" data-tag="01TS">29.22.4</a>). Hence $i'$ is a relative $H_1$-regular immersion over $S'$ in a neighbourhood of $x'$ (see Divisors, Definition <a href="/tag/063S" data-tag="063S">31.23.2</a>). Thus the base change $i'_{s'} : U'_{s'} \to \mathbf{A}^ n_{Y'_{s'}}$ is a $H_1$-regular immersion in an open neighbourhood of $x'$, see Divisors, Lemma <a href="/tag/063R" data-tag="063R">31.23.1</a> and the discussion following Divisors, Definition <a href="/tag/063S" data-tag="063S">31.23.2</a>. Since $s' = \mathop{\mathrm{Spec}}(\kappa (s')) \to \mathop{\mathrm{Spec}}(\kappa (s)) = s$ is a surjective flat universally open morphism (see Morphisms, Lemma <a href="/tag/0383" data-tag="0383">29.24.4</a>) we conclude that the base change $i_ s : U_ s \to \mathbf{A}^ n_{Y_ s}$ is an $H_1$-regular immersion in a neighbourhood of $x$, see Descent, Lemma <a href="/tag/0694" data-tag="0694">35.23.34</a>. Finally, note that $\mathbf{A}^ n_ Y$ is flat and locally of finite presentation over $S$, hence Divisors, Lemma <a href="/tag/063W" data-tag="063W">31.23.7</a> implies that $i$ is a (Koszul-)regular immersion in a neighbourhood of $x$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06B9">
+  <p><a class="environment-identifier" href="/tag/06B9">Lemma <span data-tag="06B9">37.62.22</span>.</a> Let $f : X \to Y$ be a local complete intersection morphism of schemes. Then $f$ is unramified if and only if $f$ is formally unramified and in this case the conormal sheaf $\mathcal{C}_{X/Y}$ is finite locally free on $X$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The first assertion follows immediately from Lemma <a href="/tag/02HE" data-tag="02HE">37.6.9</a> and the fact that a local complete intersection morphism is locally of finite type. To compute the conormal sheaf of $f$ we choose, locally on $X$, a factorization of $f$ as $f = p \circ i$ where $i : X \to V$ is a Koszul-regular immersion and $V \to Y$ is smooth. By Lemma <a href="/tag/067W" data-tag="067W">37.11.13</a> we see that $\mathcal{C}_{X/Y}$ is a locally direct summand of $\mathcal{C}_{X/V}$ which is finite locally free as $i$ is a Koszul-regular (hence quasi-regular) immersion, see Divisors, Lemma <a href="/tag/063M" data-tag="063M">31.22.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06BA">
+  <p><a class="environment-identifier" href="/tag/06BA">Lemma <span data-tag="06BA">37.62.23</span>.</a> Let $Z \to Y \to X$ be formally unramified morphisms of schemes. Assume that $Z \to Y$ is a local complete intersection morphism. The exact sequence </p>
+  <div class="equation">
+  \[  0 \to i^*\mathcal{C}_{Y/X} \to \mathcal{C}_{Z/X} \to \mathcal{C}_{Z/Y} \to 0  \]
+</div>
+  <p> of Lemma <a href="/tag/06AE" data-tag="06AE">37.7.12</a> is short exact. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The question is local on $Z$ hence we may assume there exists a factorization $Z \to \mathbf{A}^ n_ Y \to Y$ of the morphism $Z \to Y$. Then we get a commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ Z \ar[r]_{i'} \ar@{=}[d] &  \mathbf{A}^ n_ Y \ar[r] \ar[d] &  \mathbf{A}^ n_ X \ar[d] \\  Z \ar[r]^ i &  Y \ar[r] &  X }  \]
+</div>
+    <p>
+       As $Z \to Y$ is a local complete intersection morphism, we see that $Z \to \mathbf{A}^ n_ Y$ is a Koszul-regular immersion. Hence by Divisors, Lemma <a href="/tag/063N" data-tag="063N">31.22.6</a> the sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to (i')^*\mathcal{C}_{\mathbf{A}^ n_ Y/\mathbf{A}^ n_ X} \to \mathcal{C}_{Z/\mathbf{A}^ n_ X} \to \mathcal{C}_{Z/\mathbf{A}^ n_ Y} \to 0  \]
+</div>
+    <p>
+       is exact and locally split. Note that $i^*\mathcal{C}_{Y/X} = (i')^*\mathcal{C}_{\mathbf{A}^ n_ Y/\mathbf{A}^ n_ X}$ by Lemma <a href="/tag/04F9" data-tag="04F9">37.7.7</a> and note that the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ (i')^*\mathcal{C}_{\mathbf{A}^ n_ Y/\mathbf{A}^ n_ X} \ar[r] &  \mathcal{C}_{Z/\mathbf{A}^ n_ X} \\  i^*\mathcal{C}_{Y/X} \ar[u]^{\cong } \ar[r] &  \mathcal{C}_{Z/X} \ar[u] }  \]
+</div>
+    <p>
+       is commutative. Hence the lower horizontal arrow is a locally split injection. This proves the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

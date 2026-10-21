@@ -1,0 +1,145 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="schemes-section-glueing-schemes" class="tex-section"><span data-tag="01JA">26.14</span> Glueing schemes</h2>
+
+<p>
+Let $I$ be a set. For each $i \in I$ let $(X_ i, \mathcal{O}_ i)$ be a locally ringed space. (Actually the construction that follows works equally well for ringed spaces.) For each pair $i, j \in I$ let $U_{ij} \subset X_ i$ be an open subspace. For each pair $i, j \in I$, let 
+</p>
+<div class="equation">
+  \[  \varphi _{ij} : U_{ij} \to U_{ji}  \]
+</div>
+<p>
+ be an isomorphism of locally ringed spaces. For convenience we assume that $U_{ii} = X_ i$. For each triple $i, j, k \in I$ assume that 
+</p>
+<ol>
+  <li><p>
+we have $\varphi _{ij}^{-1}(U_{ji} \cap U_{jk}) = U_{ij} \cap U_{ik}$, and 
+</p>
+</li><li><p>
+the diagram 
+</p>
+<div class="equation">
+  \[  \xymatrix{ U_{ij} \cap U_{ik} \ar[rr]_{\varphi _{ik}} \ar[rd]_{\varphi _{ij}} &  &  U_{ki} \cap U_{kj} \\  &  U_{ji} \cap U_{jk} \ar[ru]_{\varphi _{jk}} }  \]
+</div>
+<p>
+ is commutative. 
+</p>
+</li>
+</ol>
+<p>
+ (In particular, it follows that $\varphi _{ii} = \text{id}_{X_ i}$.) Let us call a collection $(I, (X_ i)_{i\in I}, (U_{ij})_{i, j\in I}, (\varphi _{ij})_{i, j\in I})$ satisfying the conditions above a glueing data. 
+</p>
+<p>
+<article class="env-lemma" id="01JB">
+       
+      
+  <p><a class="environment-identifier" href="/tag/01JB">Lemma <span data-tag="01JB">26.14.1</span>.</a> Given any glueing data of locally ringed spaces there exists a locally ringed space $X$ and open subspaces $U_ i \subset X$ together with isomorphisms $\varphi _ i : X_ i \to U_ i$ of locally ringed spaces such that </p>
+  <p><ol>
+  <li><p>
+$X=\bigcup _{i\in I} U_ i$, 
+</p>
+</li><li><p>
+$\varphi _ i(U_{ij}) = U_ i \cap U_ j$, and 
+</p>
+</li><li><p>
+$\varphi _{ij} = \varphi _ j^{-1}|_{U_ i \cap U_ j} \circ \varphi _ i|_{U_{ij}}$. 
+</p>
+</li>
+</ol></p>
+  <p> The locally ringed space $X$ is characterized by the following mapping properties: Given a locally ringed space $Y$ we have </p>
+  <div class="equation">
+  \begin{eqnarray*}  \mathop{\mathrm{Mor}}\nolimits (X, Y) &  = &  \{  (f_ i)_{i\in I} \mid f_ i : X_ i \to Y, \  f_ j \circ \varphi _{ij} = f_ i|_{U_{ij}}\}  \\  f &  \mapsto &  (f|_{U_ i} \circ \varphi _ i)_{i \in I} \\  \mathop{\mathrm{Mor}}\nolimits (Y, X) &  = &  \left\{  \begin{matrix}  \text{open covering }Y = \bigcup \nolimits _{i \in I} V_ i\text{ and } (g_ i : V_ i \to X_ i)_{i \in I} \text{ such that}
+
+\\  g_ i^{-1}(U_{ij}) = V_ i \cap V_ j \text{ and } g_ j|_{V_ i \cap V_ j} = \varphi _{ij} \circ g_ i|_{V_ i \cap V_ j} 
+
+\end{matrix} \right\}  \\  g &  \mapsto &  V_ i = g^{-1}(U_ i), \  g_ i = \varphi _ i^{-1} \circ g|_{V_ i} \end{eqnarray*}
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We construct $X$ in stages. As a set we take 
+    <p>
+      <div class="equation">
+  \[  X = (\coprod X_ i) / \sim .  \]
+</div>
+    <p>
+       Here given $x \in X_ i$ and $x' \in X_ j$ we say $x \sim x'$ if and only if $x \in U_{ij}$, $x' \in U_{ji}$ and $\varphi _{ij}(x) = x'$. This is an equivalence relation since if $x \in X_ i$, $x' \in X_ j$, $x'' \in X_ k$, and $x \sim x'$ and $x' \sim x''$, then $x' \in U_{ji} \cap U_{jk}$, hence by condition (1) of a glueing data also $x \in U_{ij} \cap U_{ik}$ and $x'' \in U_{ki} \cap U_{kj}$ and by condition (2) we see that $\varphi _{ik}(x) = x''$. (Reflexivity and symmetry follows from our assumptions that $U_{ii} = X_ i$ and $\varphi _{ii} = \text{id}_{X_ i}$.) Denote $\varphi _ i : X_ i \to X$ the natural maps. Denote $U_ i = \varphi _ i(X_ i) \subset X$. Note that $\varphi _ i : X_ i \to U_ i$ is a bijection. 
+    <p>
+      The topology on $X$ is defined by the rule that $U \subset X$ is open if and only if $\varphi _ i^{-1}(U)$ is open for all $i$. We leave it to the reader to verify that this does indeed define a topology. Note that in particular $U_ i$ is open since $\varphi _ j^{-1}(U_ i) = U_{ji}$ which is open in $X_ j$ for all $j$. Moreover, for any open set $W \subset X_ i$ the image $\varphi _ i(W) \subset U_ i$ is open because $\varphi _ j^{-1}(\varphi _ i(W)) = \varphi _{ji}^{-1}(W \cap U_{ij})$. Therefore $\varphi _ i : X_ i \to U_ i$ is a homeomorphism. 
+    <p>
+      To obtain a locally ringed space we have to construct the sheaf of rings $\mathcal{O}_ X$. We do this by glueing the sheaves of rings $\mathcal{O}_{U_ i} := \varphi _{i, *} \mathcal{O}_ i$. Namely, in the commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ U_{ij} \ar[rr]_{\varphi _{ij}} \ar[rd]_{\varphi _ i|_{U_{ij}}} &  &  U_{ji} \ar[ld]^{\varphi _ j|_{U_{ji}}} \\  &  U_ i \cap U_ j &  }  \]
+</div>
+    <p>
+       the arrow on top is an isomorphism of ringed spaces, and hence we get unique isomorphisms of sheaves of rings 
+    <p>
+      <div class="equation">
+  \[  \mathcal{O}_{U_ i}|_{U_ i \cap U_ j} \longrightarrow \mathcal{O}_{U_ j}|_{U_ i \cap U_ j}.  \]
+</div>
+    <p>
+       These satisfy a cocycle condition as in Sheaves, Section <a href="/tag/00AK" data-tag="00AK">6.33</a>. By the results of that section we obtain a sheaf of rings $\mathcal{O}_ X$ on $X$ such that $\mathcal{O}_ X|_{U_ i}$ is isomorphic to $\mathcal{O}_{U_ i}$ compatibly with the glueing maps displayed above. In particular $(X, \mathcal{O}_ X)$ is a locally ringed space since the stalks of $\mathcal{O}_ X$ are equal to the stalks of $\mathcal{O}_ i$ at corresponding points. 
+    <p>
+      The proof of the mapping properties is omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01JC">
+       
+      
+  <p><a class="environment-identifier" href="/tag/01JC">Lemma <span data-tag="01JC">26.14.2</span>.</a> In Lemma <a href="/tag/01JB" data-tag="01JB">26.14.1</a> above, assume that all $X_ i$ are schemes. Then the resulting locally ringed space $X$ is a scheme. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is clear since each of the $U_ i$ is a scheme and hence every $x \in X$ has an affine neighbourhood. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+It is customary to think of $X_ i$ as an open subspace of $X$ via the isomorphisms $\varphi _ i$. We will do this in the next two examples. 
+</p>
+<p>
+<article class="env-example" id="01JD">
+  <p><a class="environment-identifier" href="/tag/01JD">Example <span data-tag="01JD">26.14.3</span> <span class="named">(Affine space with zero doubled)</span>.</a>  Let $k$ be a field. Let $n \geq 1$. Let $X_1 = \mathop{\mathrm{Spec}}(k[x_1, \ldots , x_ n])$, let $X_2 = \mathop{\mathrm{Spec}}(k[y_1, \ldots , y_ n])$. Let $0_1 \in X_1$ be the point corresponding to the maximal ideal $(x_1, \ldots , x_ n) \subset k[x_1, \ldots , x_ n]$. Let $0_2 \in X_2$ be the point corresponding to the maximal ideal $(y_1, \ldots , y_ n) \subset k[y_1, \ldots , y_ n]$. Let $U_{12} = X_1 \setminus \{ 0_1\} $ and let $U_{21} = X_2 \setminus \{ 0_2\} $. Let $\varphi _{12} : U_{12} \to U_{21}$ be the isomorphism coming from the isomorphism of $k$-algebras $k[y_1, \ldots , y_ n] \to k[x_1, \ldots , x_ n]$ mapping $y_ i$ to $x_ i$ (which induces $X_1 \cong X_2$ mapping $0_1$ to $0_2$). Let $X$ be the scheme obtained from the glueing data $(X_1, X_2, U_{12}, U_{21}, \varphi _{12}, \varphi _{21} = \varphi _{12}^{-1})$. Via the slight abuse of notation introduced above the example we think of $X_1, X_2 \subset X$ as open subschemes. There is a morphism $f : X \to \mathop{\mathrm{Spec}}(k[t_1, \ldots , t_ n])$ which on $X_1$ (resp. $X_2$) corresponds to $k$ algebra map $k[t_1, \ldots , t_ n] \to k[x_1, \ldots , x_ n]$ (resp. $k[t_1, \ldots , t_ n] \to k[y_1, \ldots , y_ n]$) mapping $t_ i$ to $x_ i$ (resp.  $t_ i$ to $y_ i$). It is easy to see that this morphism identifies $k[t_1, \ldots , t_ n]$ with $\Gamma (X, \mathcal{O}_ X)$. Since $f(0_1) = f(0_2)$ we see that $X$ is not affine. </p>
+  <p>Note that $X_1$ and $X_2$ are affine opens of $X$. But, if $n = 2$, then $X_1 \cap X_2$ is the scheme described in Example <a href="/tag/01IL" data-tag="01IL">26.9.3</a> and hence not affine. Thus in general the intersection of affine opens of a scheme is not affine. (This fact holds more generally for any $n > 1$.) </p>
+  <p>Another curious feature of this example is the following. If $n > 1$ there are many irreducible closed subsets $T \subset X$ (take the closure of any non closed point in $X_1$ for example). But unless $T = \{ 0_1\} $, or $T = \{ 0_2\} $ we have $0_1 \in T \Leftrightarrow 0_2 \in T$. Proof omitted. </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="01JE">
+  <p><a class="environment-identifier" href="/tag/01JE">Example <span data-tag="01JE">26.14.4</span> <span class="named">(Projective line)</span>.</a>  Let $k$ be a field. Let $X_1 = \mathop{\mathrm{Spec}}(k[x])$, let $X_2 = \mathop{\mathrm{Spec}}(k[y])$. Let $0 \in X_1$ be the point corresponding to the maximal ideal $(x) \subset k[x]$. Let $\infty \in X_2$ be the point corresponding to the maximal ideal $(y) \subset k[y]$. Let $U_{12} = X_1 \setminus \{ 0\}  = D(x) = \mathop{\mathrm{Spec}}(k[x, 1/x])$ and let $U_{21} = X_2 \setminus \{ \infty \}  = D(y) = \mathop{\mathrm{Spec}}(k[y, 1/y])$. Let $\varphi _{12} : U_{12} \to U_{21}$ be the isomorphism coming from the isomorphism of $k$-algebras $k[y, 1/y] \to k[x, 1/x]$ mapping $y$ to $1/x$. Let $\mathbf{P}^1_ k$ be the scheme obtained from the glueing data $(X_1, X_2, U_{12}, U_{21}, \varphi _{12}, \varphi _{21} = \varphi _{12}^{-1})$. Via the slight abuse of notation introduced above the example we think of $X_ i \subset \mathbf{P}^1_ k$ as open subschemes. In this case we see that $\Gamma (\mathbf{P}^1_ k, \mathcal{O}) = k$ because the only polynomials $g(x)$ in $x$ such that $g(1/y)$ is also a polynomial in $y$ are constant polynomials. Since $\mathbf{P}^1_ k$ is infinite we see that $\mathbf{P}^1_ k$ is not affine. </p>
+  <p>We claim that there exists an affine open $U \subset \mathbf{P}^1_ k$ which contains both $0$ and $\infty $. Namely, let $U = \mathbf{P}^1_ k \setminus \{ 1\} $, where $1$ is the point of $X_1$ corresponding to the maximal ideal $(x - 1)$ and also the point of $X_2$ corresponding to the maximal ideal $(y - 1)$. Then it is easy to see that $s = 1/(x - 1) = y/(1 - y) \in \Gamma (U, \mathcal{O}_ U)$. In fact you can show that $\Gamma (U, \mathcal{O}_ U)$ is equal to the polynomial ring $k[s]$ and that the corresponding morphism $U \to \mathop{\mathrm{Spec}}(k[s])$ is an isomorphism of schemes. Details omitted. </p>
+</article> 
+</p>

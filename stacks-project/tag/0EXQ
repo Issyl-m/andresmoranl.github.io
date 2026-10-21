@@ -1,0 +1,197 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="more-algebra-section-discrete-valuation-rings" class="tex-section"><span data-tag="0EXQ">15.113</span> Extensions of discrete valuation rings</h2>
+
+<p>
+In this section and the next few we use the following definitions. 
+</p>
+<p>
+<article class="env-definition" id="09E4">
+  <p><a class="environment-identifier" href="/tag/09E4">Definition <span data-tag="09E4">15.113.1</span>.</a> We say that $A \to B$ or $A \subset B$ is an <em>extension of discrete valuation rings</em> if $A$ and $B$ are discrete valuation rings and $A \to B$ is injective and local. In particular, if $\pi _ A$ and $\pi _ B$ are uniformizers of $A$ and $B$, then $\pi _ A = u \pi _ B^ e$ for some $e \geq 1$ and unit $u$ of $B$. The integer $e$ does not depend on the choice of the uniformizers as it is also the unique integer $\geq 1$ such that </p>
+  <div class="equation">
+  \[  \mathfrak m_ A B = \mathfrak m_ B^ e  \]
+</div>
+  <p> The integer $e$ is called the <em>ramification index</em> of $B$ over $A$. We say that $B$ is <em>weakly unramified</em> over $A$ if $e = 1$. If the extension of residue fields $\kappa _ A = A/\mathfrak m_ A \subset \kappa _ B = B/\mathfrak m_ B$ is finite, then we set $f = [\kappa _ B : \kappa _ A]$ and we call it the <em>residual degree</em> or <em>residue degree</em> of the extension $A \subset B$. </p>
+</article> 
+</p>
+<p>
+Note that we do not require the extension of fraction fields to be finite. 
+</p>
+<p>
+<article class="env-lemma" id="09E5">
+  <p><a class="environment-identifier" href="/tag/09E5">Lemma <span data-tag="09E5">15.113.2</span>.</a> Let $A \subset B$ be an extension of discrete valuation rings with fraction fields $K \subset L$. If the extension $L/K$ is finite, then the residue field extension is finite and we have $ef \leq [L : K]$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Finiteness of the residue field extension is Algebra, Lemma <a href="/tag/031F" data-tag="031F">10.119.10</a>. The inequality follows from Algebra, Lemmas <a href="/tag/00PE" data-tag="00PE">10.119.9</a> and <a href="/tag/02M0" data-tag="02M0">10.52.12</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BRL">
+  <p><a class="environment-identifier" href="/tag/0BRL">Lemma <span data-tag="0BRL">15.113.3</span>.</a> Let $A \subset B \subset C$ be extensions of discrete valuation rings. Then the ramification indices of $B/A$ and $C/B$ multiply to give the ramification index of $C/A$. In a formula $e_{C/A} = e_{B/A} e_{C/B}$. Similarly for the residual degrees in case they are finite. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is immediate from the definitions and Fields, Lemma <a href="/tag/09G9" data-tag="09G9">9.7.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09E6">
+  <p><a class="environment-identifier" href="/tag/09E6">Lemma <span data-tag="09E6">15.113.4</span>.</a> Let $A \subset B$ be an extension of discrete valuation rings inducing the field extension $K \subset L$. If the characteristic of $K$ is $p > 0$ and $L$ is purely inseparable over $K$, then the ramification index $e$ is a power of $p$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Write $\pi _ A = u \pi _ B^ e$ for some $u \in B^*$. On the other hand, we have $\pi _ B^ q \in K$ for some $p$-power $q$. Write $\pi _ B^ q = v \pi _ A^ k$ for some $v \in A^*$ and $k \in \mathbf{Z}$. Then $\pi _ A^ q = u^ q \pi _ B^{qe} = u^ q v^ e \pi _ A^{ke}$. Taking valuations in $B$ we conclude that $ke = q$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In the following lemma we discuss what it means for an extension $A \subset B$ of discrete valuation rings to be “unramified”, i.e., have ramification index $1$ and separable (possibly nonalgebraic) extension of residue fields. However, we cannot use the term “unramified” itself because there already exists a notion of an unramified ring map, see Algebra, Section <a href="/tag/00US" data-tag="00US">10.151</a>. 
+</p>
+<p>
+<article class="env-lemma" id="09E7">
+  <p><a class="environment-identifier" href="/tag/09E7">Lemma <span data-tag="09E7">15.113.5</span>.</a> Let $A \subset B$ be an extension of discrete valuation rings. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$A \to B$ is formally smooth in the $\mathfrak m_ B$-adic topology, and 
+</p>
+</li><li><p>
+$A \to B$ is weakly unramified and $\kappa _ B/\kappa _ A$ is a separable field extension. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from Proposition <a href="/tag/07NQ" data-tag="07NQ">15.41.5</a> and Algebra, Proposition <a href="/tag/0322" data-tag="0322">10.158.9</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="09E8">
+  <p><a class="environment-identifier" href="/tag/09E8">Remark <span data-tag="09E8">15.113.6</span>.</a> Let $A$ be a discrete valuation ring with fraction field $K$. Let $L/K$ be a finite separable field extension. Let $B \subset L$ be the integral closure of $A$ in $L$. Picture: </p>
+  <div class="equation">
+  \[  \xymatrix{ B \ar[r] &  L \\  A \ar[u] \ar[r] &  K \ar[u] }  \]
+</div>
+  <p> By Algebra, Lemma <a href="/tag/032L" data-tag="032L">10.161.8</a> the ring extension $A \subset B$ is finite, hence $B$ is Noetherian. By Algebra, Lemma <a href="/tag/00OK" data-tag="00OK">10.112.4</a> the dimension of $B$ is $1$, hence $B$ is a Dedekind domain, see Algebra, Lemma <a href="/tag/034X" data-tag="034X">10.120.17</a>. Let $\mathfrak m_1, \ldots , \mathfrak m_ n$ be the maximal ideals of $B$ (i.e., the primes lying over $\mathfrak m_ A$). We obtain extensions of discrete valuation rings </p>
+  <div class="equation">
+  \[  A \subset B_{\mathfrak m_ i}  \]
+</div>
+  <p> and hence ramification indices $e_ i$ and residue degrees $f_ i$. We have </p>
+  <div class="equation">
+  \[  [L : K] = \sum \nolimits _{i = 1, \ldots , n} e_ i f_ i  \]
+</div>
+  <p> by Algebra, Lemma <a href="/tag/02MJ" data-tag="02MJ">10.121.8</a> applied to a uniformizer in $A$. We observe that $n = 1$ if $A$ is henselian (by Algebra, Lemma <a href="/tag/04GH" data-tag="04GH">10.153.4</a>), e.g. if $A$ is complete. </p>
+</article> 
+</p>
+<p>
+<article class="env-definition" id="09E9">
+  <p><a class="environment-identifier" href="/tag/09E9">Definition <span data-tag="09E9">15.113.7</span>.</a> Let $A$ be a discrete valuation ring with fraction field $K$. Let $L/K$ be a finite separable extension. With $B$ and $\mathfrak m_ i$, $i = 1, \ldots , n$ as in Remark <a href="/tag/09E8" data-tag="09E8">15.113.6</a> we say the extension $L/K$ is </p>
+  <p><ol>
+  <li><p>
+<em>unramified with respect to $A$</em> if $e_ i = 1$ and the extension $\kappa (\mathfrak m_ i)/\kappa _ A$ is separable for all $i$, 
+</p>
+</li><li><p>
+<em>tamely ramified with respect to $A$</em> if either the characteristic of $\kappa _ A$ is $0$ or the characteristic of $\kappa _ A$ is $p > 0$, the field extensions $\kappa (\mathfrak m_ i)/\kappa _ A$ are separable, and the ramification indices $e_ i$ are prime to $p$, and 
+</p>
+</li><li><p>
+<em>totally ramified with respect to $A$</em> if $n = 1$ and the residue field extension $\kappa (\mathfrak m_1)/\kappa _ A$ is trivial. 
+</p>
+</li>
+</ol></p>
+  <p> If the discrete valuation ring $A$ is clear from context, then we sometimes say $L/K$ is unramified, totally ramified, or tamely ramified for short. </p>
+</article> 
+</p>
+<p>
+For unramified extensions we have the following basic lemma. 
+</p>
+<p>
+<article class="env-lemma" id="0EXR">
+  <p><a class="environment-identifier" href="/tag/0EXR">Lemma <span data-tag="0EXR">15.113.8</span>.</a> Let $A$ be a discrete valuation ring with fraction field $K$. </p>
+  <p><ol>
+  <li><p>
+If $M/L/K$ are finite separable extensions and $M$ is unramified with respect to $A$, then $L$ is unramified with respect to $A$. 
+</p>
+</li><li><p>
+If $L/K$ is a finite separable extension which is unramified with respect to $A$, then there exists a Galois extension $M/K$ containing $L$ which is unramified with respect to $A$. 
+</p>
+</li><li><p>
+If $L_1/K$, $L_2/K$ are finite separable extensions which are unramified with respect to $A$, then there exists a a finite separable extension $L/K$ which is unramified with respect to $A$ containing $L_1$ and $L_2$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use the results of the discussion in Remark <a href="/tag/09E8" data-tag="09E8">15.113.6</a> without further mention. 
+    <p>
+      Proof of (1). Let $C/B/A$ be the integral closures of $A$ in $M/L/K$. Since $C$ is a finite ring extension of $B$, we see that $\mathop{\mathrm{Spec}}(C) \to \mathop{\mathrm{Spec}}(B)$ is surjective. Hence for ever maximal ideal $\mathfrak m \subset B$ there is a maximal ideal $\mathfrak m' \subset C$ lying over $\mathfrak m$. By the multiplicativity of ramification indices (Lemma <a href="/tag/0BRL" data-tag="0BRL">15.113.3</a>) and the assumption, we conclude that the ramification index of $B_\mathfrak m$ over $A$ is $1$. Since $\kappa (\mathfrak m')/\kappa _ A$ is finite separable, the same is true for $\kappa (\mathfrak m)/\kappa _ A$. 
+    <p>
+      Proof of (2). Let $M$ be the normal closure of $L$ over $K$, see Fields, Definition <a href="/tag/0BMF" data-tag="0BMF">9.16.4</a>. Then $M/K$ is Galois by Fields, Lemma <a href="/tag/0EXM" data-tag="0EXM">9.21.5</a>. On the other hand, there is a surjection 
+    <p>
+      <div class="equation">
+  \[  L \otimes _ K \ldots \otimes _ K L \longrightarrow M  \]
+</div>
+    <p>
+       of $K$-algebras, see Fields, Lemma <a href="/tag/0EXL" data-tag="0EXL">9.16.6</a>. Let $B$ be the integral closure of $A$ in $L$ as in Remark <a href="/tag/09E8" data-tag="09E8">15.113.6</a>. The condition that $L$ is unramified with respect to $A$ exactly means that $A \to B$ is an étale ring map, see Algebra, Lemma <a href="/tag/00U6" data-tag="00U6">10.143.7</a>. By permanence properties of étale ring maps we see that 
+    <p>
+      <div class="equation">
+  \[  B \otimes _ A \ldots \otimes _ A B  \]
+</div>
+    <p>
+       is étale over $A$, see Algebra, Lemma <a href="/tag/00U2" data-tag="00U2">10.143.3</a>. Hence the displayed ring is a product of Dedekind domains, see Lemma <a href="/tag/0AP2" data-tag="0AP2">15.45.4</a>. We conclude that $M$ is the fraction field of a Dedekind domain finite étale over $A$. This means that $M$ is unramified with respect to $A$ as desired. 
+    <p>
+      Proof of (3). Let $B_ i \subset L_ i$ be the integral closure of $A$. Argue in the same manner as above to show that $B_1 \otimes _ A B_2$ is finite étale over $A$. Details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0EXS">
+  <p><a class="environment-identifier" href="/tag/0EXS">Lemma <span data-tag="0EXS">15.113.9</span>.</a> Let $A$ be a discrete valuation ring with fraction field $K$. Let $M/L/K$ be finite separable extensions. Let $B$ be the integral closure of $A$ in $L$. If $L/K$ is unramified with respect to $A$ and $M/L$ is unramified with respect to $B_\mathfrak m$ for every maximal ideal $\mathfrak m$ of $B$, then $M/K$ is unramified with respect to $A$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $C$ be the integral closure of $A$ in $M$. Every maximal ideal $\mathfrak m'$ of $C$ lies over a maximal ideal $\mathfrak m$ of $B$. Then the lemma follows from the multiplicativity of ramification indices (Lemma <a href="/tag/0BRL" data-tag="0BRL">15.113.3</a>) and the fact that we have the tower $\kappa (\mathfrak m')/\kappa (\mathfrak m)/\kappa _ A$ of finite extensions of fields. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

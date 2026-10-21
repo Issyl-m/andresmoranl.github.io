@@ -1,0 +1,187 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="homology-section-functors" class="tex-section"><span data-tag="010M">12.7</span> Additive functors</h2>
+
+<p>
+First a completely silly lemma characterizing additive functors between additive categories. 
+</p>
+<p>
+<article class="env-lemma" id="0DLP">
+  <p><a class="environment-identifier" href="/tag/0DLP">Lemma <span data-tag="0DLP">12.7.1</span>.</a> Let $\mathcal{A}$ and $\mathcal{B}$ be additive categories. Let $F : \mathcal{A} \to \mathcal{B}$ be a functor. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$F$ is additive, 
+</p>
+</li><li><p>
+$F(A) \oplus F(B) \to F(A \oplus B)$ is an isomorphism for all $A, B \in \mathcal{A}$, and 
+</p>
+</li><li><p>
+$F(A \oplus B) \to F(A) \oplus F(B)$ is an isomorphism for all $A, B \in \mathcal{A}$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Additive functors commute with direct sums by Lemma <a href="/tag/0105" data-tag="0105">12.3.7</a> hence (1) implies (2) and (3). If (2) holds and $0$ denotes the zero object of $\mathcal{A}$, then the map $F(0) \oplus F(0) \to F(0 \oplus 0) \cong F(0)$ being an isomorphism implies that the diagonal map $\mathop{\mathrm{Hom}}\nolimits (F(0), C) \to \mathop{\mathrm{Hom}}\nolimits (F(0), C) \oplus \mathop{\mathrm{Hom}}\nolimits (F(0), C)$ is bijective for all $C$ in $\mathcal{B}$. Thus $F(0)$ is the zero object of $\mathcal{B}$ and $F$ maps the zero morphism between any two objects to the zero morphism. Similarly holds if (3) holds. It follows that (2) and (3) are equivalent because the composition $F(A) \oplus F(B) \to F(A \oplus B) \to F(A) \oplus F(B)$ is given by the matrix 
+    <p>
+      <div class="equation">
+  \[  \left( \begin{matrix}  F(1) 
+
+&  F(0) 
+
+\\  F(0) 
+
+&  F(1) 
+
+\end{matrix} \right)  \]
+</div>
+    <p>
+       and therefore is the identity map. Assume (2) and (3) hold. Let $f, g : A \to B$ be maps. Then $f + g$ is equal to the composition 
+    <p>
+      <div class="equation">
+  \[  A \to A \oplus A \xrightarrow {\text{diag}(f, g)} B \oplus B \to B  \]
+</div>
+    <p>
+       Apply the functor $F$ and consider the following diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ F(A) \ar[r] \ar[rd] &  F(A \oplus A) \ar[rr]_{F(\text{diag}(f, g))} &  &  F(B \oplus B) \ar[r] \ar[d] &  F(B) \\  &  F(A) \oplus F(A) \ar[u] \ar[rr]^{\text{diag}(F(f), F(g))} &  &  F(B) \oplus F(B) \ar[ru] }  \]
+</div>
+    <p>
+       We claim this is commutative. For the middle square we can verify it separately for each of the four induced maps $F(A) \to F(B)$ where it follows from the fact that $F$ is a functor and transforms zero morphisms into zero morphisms. For the triangle on the left, we use that $F(A \oplus A) \to F(A) \oplus F(A)$ is an isomorphism to see that it suffice to check after composition with this map and this check is trivial. Dually for the other triangle. Thus going around the bottom is equal to $F(f + g)$ and we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Recall that we defined, in Categories, Definition <a href="/tag/0034" data-tag="0034">4.23.1</a> the notion of a “right exact”, “left exact” and “exact” functor in the setting of a functor between categories that have finite (co)limits. Thus this applies in particular to functors between abelian categories. 
+</p>
+<p>
+<article class="env-lemma" id="010N">
+  <p><a class="environment-identifier" href="/tag/010N">Lemma <span data-tag="010N">12.7.2</span>.</a> Let $\mathcal{A}$ and $\mathcal{B}$ be abelian categories. Let $F : \mathcal{A} \to \mathcal{B}$ be a functor. </p>
+  <p><ol>
+  <li><p>
+If $F$ is either left or right exact, then it is additive. 
+</p>
+</li><li><p>
+$F$ is left exact if and only if for every short exact sequence $0 \to A \to B \to C \to 0$ the sequence $0 \to F(A) \to F(B) \to F(C)$ is exact. 
+</p>
+</li><li><p>
+$F$ is right exact if and only if for every short exact sequence $0 \to A \to B \to C \to 0$ the sequence $F(A) \to F(B) \to F(C) \to 0$ is exact. 
+</p>
+</li><li><p>
+$F$ is exact if and only if for every short exact sequence $0 \to A \to B \to C \to 0$ the sequence $0 \to F(A) \to F(B) \to F(C) \to 0$ is exact. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $F$ is left exact, i.e., $F$ commutes with finite limits, then $F$ sends products to products, hence $F$ preserved direct sums, hence $F$ is additive by Lemma <a href="/tag/0DLP" data-tag="0DLP">12.7.1</a>. On the other hand, suppose that for every short exact sequence $0 \to A \to B \to C \to 0$ the sequence $0 \to F(A) \to F(B) \to F(C)$ is exact. Let $A, B$ be two objects. Then we have a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to A \to A \oplus B \to B \to 0  \]
+</div>
+    <p>
+       see for example Lemma <a href="/tag/09QG" data-tag="09QG">12.3.10</a>. By assumption, the lower row in the commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ 0 \ar[r] &  F(A) \ar[d] \ar[r] &  F(A) \oplus F(B) \ar[r] \ar[d] &  F(B) \ar[d] \ar[r] &  0 \\  0 \ar[r] &  F(A) \ar[r] &  F(A \oplus B) \ar[r] &  F(B) }  \]
+</div>
+    <p>
+       is exact. Hence by the snake lemma (Lemma <a href="/tag/010H" data-tag="010H">12.5.17</a>) we conclude that $F(A) \oplus F(B) \to F(A \oplus B)$ is an isomorphism. Hence $F$ is additive in this case as well. Thus for the rest of the proof we may assume $F$ is additive. 
+    <p>
+      Denote $f : B \to C$ a map from $B$ to $C$. Exactness of $0 \to A \to B \to C$ just means that $A = \mathop{\mathrm{Ker}}(f)$. Clearly the kernel of $f$ is the equalizer of the two maps $f$ and $0$ from $B$ to $C$. Hence if $F$ commutes with limits, then $F(\mathop{\mathrm{Ker}}(f)) = \mathop{\mathrm{Ker}}(F(f))$ which exactly means that $0 \to F(A) \to F(B) \to F(C)$ is exact. 
+    <p>
+      Conversely, suppose that $F$ is additive and transforms any short exact sequence $0 \to A \to B \to C \to 0$ into an exact sequence $0 \to F(A) \to F(B) \to F(C)$. Because it is additive it commutes with direct sums and hence finite products in $\mathcal{A}$. To show it commutes with finite limits it therefore suffices to show that it commutes with equalizers. But equalizers in an abelian category are the same as the kernel of the difference map, hence it suffices to show that $F$ commutes with taking kernels. Let $f : A \to B$ be a morphism. Factor $f$ as $A \to I \to B$ with $f' : A \to I$ surjective and $i : I \to B$ injective. (This is possible by the definition of an abelian category.) Then it is clear that $\mathop{\mathrm{Ker}}(f) = \mathop{\mathrm{Ker}}(f')$. Also $0 \to \mathop{\mathrm{Ker}}(f') \to A \to I \to 0$ and $0 \to I \to B \to B/I \to 0$ are short exact. By the condition imposed on $F$ we see that $0 \to F(\mathop{\mathrm{Ker}}(f')) \to F(A) \to F(I)$ and $0 \to F(I) \to F(B) \to F(B/I)$ are exact. Hence it is also the case that $F(\mathop{\mathrm{Ker}}(f'))$ is the kernel of the map $F(A) \to F(B)$, and we win. 
+    <p>
+      The proof of (3) is similar to the proof of (2). Statement (4) is a combination of (2) and (3). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="010O">
+  <p><a class="environment-identifier" href="/tag/010O">Lemma <span data-tag="010O">12.7.3</span>.</a> Let $\mathcal{A}$ and $\mathcal{B}$ be abelian categories. Let $F : \mathcal{A} \to \mathcal{B}$ be an exact functor. For every pair of objects $A, B$ of $\mathcal{A}$ the functor $F$ induces an abelian group homomorphism </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Ext}}\nolimits _\mathcal {A}(B, A) \longrightarrow \mathop{\mathrm{Ext}}\nolimits _\mathcal {B}(F(B), F(A))  \]
+</div>
+  <p> which maps the extension $E$ to $F(E)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma is used in the proof that the category of abelian sheaves on a site is abelian, where the functor $b$ is sheafification. 
+</p>
+<p>
+<article class="env-lemma" id="03A3">
+  <p><a class="environment-identifier" href="/tag/03A3">Lemma <span data-tag="03A3">12.7.4</span>.</a> Let $a : \mathcal{A} \to \mathcal{B}$ and $b : \mathcal{B} \to \mathcal{A}$ be functors. Assume that </p>
+  <p><ol>
+  <li><p>
+$\mathcal{A}$, $\mathcal{B}$ are additive categories, $a$, $b$ are additive functors, and $a$ is right adjoint to $b$, 
+</p>
+</li><li><p>
+$\mathcal{B}$ is abelian and $b$ is left exact, and 
+</p>
+</li><li><p>
+$ba \cong \text{id}_\mathcal {A}$. 
+</p>
+</li>
+</ol></p>
+  <p> Then $\mathcal{A}$ is abelian. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      As $\mathcal{B}$ is abelian we see that all finite limits and colimits exist in $\mathcal{B}$ by Lemma <a href="/tag/010D" data-tag="010D">12.5.5</a>. Since $b$ is a left adjoint we see that $b$ is also right exact and hence exact, see Categories, Lemma <a href="/tag/0039" data-tag="0039">4.24.6</a>. Let $\varphi : B_1 \to B_2$ be a morphism of $\mathcal{B}$. In particular, if $K = \mathop{\mathrm{Ker}}(B_1 \to B_2)$, then $K$ is the equalizer of $0$ and $\varphi $ and hence $bK$ is the equalizer of $0$ and $b\varphi $, hence $bK$ is the kernel of $b\varphi $. Similarly, if $Q = \mathop{\mathrm{Coker}}(B_1 \to B_2)$, then $Q$ is the coequalizer of $0$ and $\varphi $ and hence $bQ$ is the coequalizer of $0$ and $b\varphi $, hence $bQ$ is the cokernel of $b\varphi $. Thus we see that every morphism of the form $b\varphi $ in $\mathcal{A}$ has a kernel and a cokernel. However, since $ba \cong \text{id}$ we see that every morphism of $\mathcal{A}$ is of this form, and we conclude that kernels and cokernels exist in $\mathcal{A}$. In fact, the argument shows that if $\psi : A_1 \to A_2$ is a morphism then 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Ker}}(\psi ) = b\mathop{\mathrm{Ker}}(a\psi ), \quad \text{and}\quad \mathop{\mathrm{Coker}}(\psi ) = b\mathop{\mathrm{Coker}}(a\psi ).  \]
+</div>
+    <p>
+       Now we still have to show that $\mathop{\mathrm{Coim}}(\psi )= \mathop{\mathrm{Im}}(\psi )$. We do this as follows. First note that since $\mathcal{A}$ has kernels and cokernels it has all finite limits and colimits (see proof of Lemma <a href="/tag/010D" data-tag="010D">12.5.5</a>). Hence we see by Categories, Lemma <a href="/tag/0039" data-tag="0039">4.24.6</a> that $a$ is left exact and hence transforms kernels (=equalizers) into kernels. 
+    <p>
+      <div class="equation">
+  \begin{align*}  \mathop{\mathrm{Coim}}(\psi ) &  = \mathop{\mathrm{Coker}}(\mathop{\mathrm{Ker}}(\psi ) \to A_1) &  \text{by definition} \\ &  = b\mathop{\mathrm{Coker}}(a(\mathop{\mathrm{Ker}}(\psi ) \to A_1)) &  \text{by formula above} \\ &  = b\mathop{\mathrm{Coker}}(\mathop{\mathrm{Ker}}(a\psi ) \to aA_1)) &  a\text{ preserves kernels} \\ &  = b\mathop{\mathrm{Coim}}(a\psi ) &  \text{by definition} \\ &  = b\mathop{\mathrm{Im}}(a\psi ) &  \mathcal{B}\text{ is abelian} \\ &  = b\mathop{\mathrm{Ker}}(aA_2 \to \mathop{\mathrm{Coker}}(a\psi )) &  \text{by definition} \\ &  = \mathop{\mathrm{Ker}}(baA_2 \to b\mathop{\mathrm{Coker}}(a\psi )) &  b\text{ preserves kernels} \\ &  = \mathop{\mathrm{Ker}}(A_2 \to b\mathop{\mathrm{Coker}}(a\psi )) &  ba = \text{id}_\mathcal {A} \\ &  = \mathop{\mathrm{Ker}}(A_2 \to \mathop{\mathrm{Coker}}(\psi )) &  \text{by formula above} \\ &  = \mathop{\mathrm{Im}}(\psi ) &  \text{by definition} \end{align*}
+</div>
+    <p>
+       Thus the lemma holds. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

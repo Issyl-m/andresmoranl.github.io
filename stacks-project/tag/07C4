@@ -1,0 +1,154 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="smoothing-section-singular-ideal" class="tex-section"><span data-tag="07C4">16.2</span> Singular ideals</h2>
+
+<p>
+Let $R \to A$ be a ring map. The singular ideal of $A$ over $R$ is the radical ideal in $A$ cutting out the singular locus of the morphism $\mathop{\mathrm{Spec}}(A) \to \mathop{\mathrm{Spec}}(R)$. Here is a formal definition. 
+</p>
+<p>
+<article class="env-definition" id="07C5">
+  <p><a class="environment-identifier" href="/tag/07C5">Definition <span data-tag="07C5">16.2.1</span>.</a> Let $R \to A$ be a ring map. The <em>singular ideal of $A$ over $R$</em>, denoted $H_{A/R}$ is the unique radical ideal $H_{A/R} \subset A$ with </p>
+  <div class="equation">
+  \[  V(H_{A/R}) = \{ \mathfrak q \in \mathop{\mathrm{Spec}}(A) \mid R \to A \text{ not smooth at }\mathfrak q\}   \]
+</div>
+</article> 
+</p>
+<p>
+This makes sense because the set of primes where $R \to A$ is smooth is open, see Algebra, Definition <a href="/tag/00TB" data-tag="00TB">10.137.10</a>. In order to find an explicit set of generators for the singular ideal we first prove the following lemma. 
+</p>
+<p>
+<article class="env-lemma" id="07C6">
+  <p><a class="environment-identifier" href="/tag/07C6">Lemma <span data-tag="07C6">16.2.2</span>.</a> Let $R$ be a ring. Let $A = R[x_1, \ldots , x_ n]/(f_1, \ldots , f_ m)$. Let $\mathfrak q \subset A$ be a prime ideal. Assume $R \to A$ is smooth at $\mathfrak q$. Then there exists an $a \in A$, $a \not\in \mathfrak q$, an integer $c$, $0 \leq c \leq \min (n, m)$, subsets $U \subset \{ 1, \ldots , n\} $, $V \subset \{ 1, \ldots , m\} $ of cardinality $c$ such that </p>
+  <div class="equation">
+  \[  a = a' \det (\partial f_ j/\partial x_ i)_{j \in V, i \in U}  \]
+</div>
+  <p> for some $a' \in A$ and </p>
+  <div class="equation">
+  \[  a f_\ell \in (f_ j, j \in V) + (f_1, \ldots , f_ m)^2  \]
+</div>
+  <p> for all $\ell \in \{ 1, \ldots , m\} $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Set $I = (f_1, \ldots , f_ m)$ so that the naive cotangent complex of $A$ over $R$ is homotopy equivalent to $I/I^2 \to \bigoplus A\text{d}x_ i$, see Algebra, Lemma <a href="/tag/00S1" data-tag="00S1">10.134.2</a>. We will use the formation of the naive cotangent complex commutes with localization, see Algebra, Section <a href="/tag/00S0" data-tag="00S0">10.134</a>, especially Algebra, Lemma <a href="/tag/00S7" data-tag="00S7">10.134.13</a>. By Algebra, Definitions <a href="/tag/00T2" data-tag="00T2">10.137.1</a> and <a href="/tag/00TB" data-tag="00TB">10.137.10</a> we see that $(I/I^2)_ a \to \bigoplus A_ a\text{d}x_ i$ is a split injection for some $a \in A$, $a \not\in \mathfrak q$. After renumbering $x_1, \ldots , x_ n$ and $f_1, \ldots , f_ m$ we may assume that $f_1, \ldots , f_ c$ form a basis for the vector space $I/I^2 \otimes _ A \kappa (\mathfrak q)$ and that $\text{d}x_{c + 1}, \ldots , \text{d}x_ n$ map to a basis of $\Omega _{A/R} \otimes _ A \kappa (\mathfrak q)$. Hence after replacing $a$ by $aa'$ for some $a' \in A$, $a' \not\in \mathfrak q$ we may assume $f_1, \ldots , f_ c$ form a basis for $(I/I^2)_ a$ and that $\text{d}x_{c + 1}, \ldots , \text{d}x_ n$ map to a basis of $(\Omega _{A/R})_ a$. In this situation $a^ N$ for some large integer $N$ satisfies the conditions of the lemma (with $U = V = \{ 1, \ldots , c\} $). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We will use the notion of a <em>strictly standard</em> element in $A$ over $R$. Our notion is slightly weaker than the one in Swan's paper <span class="cite">[<a href="/bibliography/swan">swan</a>]</span>. We also define an <em>elementary standard</em> element to be one of the type we found in the lemma above. We compare the different types of elements in Lemma <a href="/tag/07EZ" data-tag="07EZ">16.3.7</a>. 
+</p>
+<p>
+<article class="env-definition" id="07C7">
+  <p><a class="environment-identifier" href="/tag/07C7">Definition <span data-tag="07C7">16.2.3</span>.</a> Let $R \to A$ be a ring map of finite presentation. We say an element $a \in A$ is <em>elementary standard in $A$ over $R$</em> if there exists a presentation $A = R[x_1, \ldots , x_ n]/(f_1, \ldots , f_ m)$ and $0 \leq c \leq \min (n, m)$ such that </p>
+  <div class="equation" id="07C8">
+    <span class="equation-label"><a href="/tag/07C8" data-tag="07C8">16.2.3.1</a></span>
+  <div>\begin{equation}  \label{smoothing-equation-elementary-standard-one} a = a' \det (\partial f_ j/\partial x_ i)_{i, j = 1, \ldots , c} \end{equation}</div>
+</div>
+  <p> for some $a' \in A$ and </p>
+  <div class="equation" id="07C9">
+    <span class="equation-label"><a href="/tag/07C9" data-tag="07C9">16.2.3.2</a></span>
+  <div>\begin{equation}  \label{smoothing-equation-elementary-standard-two} a f_{c + j} \in (f_1, \ldots , f_ c) + (f_1, \ldots , f_ m)^2 \end{equation}</div>
+</div>
+  <p> for $j = 1, \ldots , m - c$. We say $a \in A$ is <em>strictly standard in $A$ over $R$</em> if there exists a presentation $A = R[x_1, \ldots , x_ n]/(f_1, \ldots , f_ m)$ and $0 \leq c \leq \min (n, m)$ such that </p>
+  <div class="equation" id="07ER">
+    <span class="equation-label"><a href="/tag/07ER" data-tag="07ER">16.2.3.3</a></span>
+  <div>\begin{equation}  \label{smoothing-equation-strictly-standard-one} a = \sum \nolimits _{I \subset \{ 1, \ldots , n\} ,\  |I| = c} a_ I \det (\partial f_ j/\partial x_ i)_{j = 1, \ldots , c,\  i \in I} \end{equation}</div>
+</div>
+  <p> for some $a_ I \in A$ and </p>
+  <div class="equation" id="07ES">
+    <span class="equation-label"><a href="/tag/07ES" data-tag="07ES">16.2.3.4</a></span>
+  <div>\begin{equation}  \label{smoothing-equation-strictly-standard-two} a f_{c + j} \in (f_1, \ldots , f_ c) + (f_1, \ldots , f_ m)^2 \end{equation}</div>
+</div>
+  <p> for $j = 1, \ldots , m - c$. </p>
+</article> 
+</p>
+<p>
+The following lemma is useful to find implications of (<a href="/tag/07ER" data-tag="07ER">16.2.3.3</a>). 
+</p>
+<p>
+<article class="env-lemma" id="07ET">
+  <p><a class="environment-identifier" href="/tag/07ET">Lemma <span data-tag="07ET">16.2.4</span>.</a> Let $R$ be a ring. Let $A = R[x_1, \ldots , x_ n]/(f_1, \ldots , f_ m)$ and write $I = (f_1, \ldots , f_ m)$. Let $a \in A$. Then (<a href="/tag/07ER" data-tag="07ER">16.2.3.3</a>) implies there exists an $A$-linear map $\psi : \bigoplus \nolimits _{i = 1, \ldots , n} A \text{d}x_ i \to A^{\oplus c}$ such that the composition </p>
+  <div class="equation">
+  \[  A^{\oplus c} \xrightarrow {(f_1, \ldots , f_ c)} I/I^2 \xrightarrow {f \mapsto \text{d}f} \bigoplus \nolimits _{i = 1, \ldots , n} A \text{d}x_ i \xrightarrow {\psi } A^{\oplus c}  \]
+</div>
+  <p> is multiplication by $a$. Conversely, if such a $\psi $ exists, then $a^ c$ satisfies (<a href="/tag/07ER" data-tag="07ER">16.2.3.3</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a special case of Algebra, Lemma <a href="/tag/07DQ" data-tag="07DQ">10.15.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="07CA">
+  <p><a class="environment-identifier" href="/tag/07CA">Lemma <span data-tag="07CA">16.2.5</span> <span class="named">(Elkik)</span>.</a>  Let $R \to A$ be a ring map of finite presentation. The singular ideal $H_{A/R}$ is the radical of the ideal generated by strictly standard elements in $A$ over $R$ and also the radical of the ideal generated by elementary standard elements in $A$ over $R$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume $a$ is strictly standard in $A$ over $R$. We claim that $A_ a$ is smooth over $R$, which proves that $a \in H_{A/R}$. Namely, let $A = R[x_1, \ldots , x_ n]/(f_1, \ldots , f_ m)$, $c$, and $a' \in A$ be as in Definition <a href="/tag/07C7" data-tag="07C7">16.2.3</a>. Write $I = (f_1, \ldots , f_ m)$ so that the naive cotangent complex of $A$ over $R$ is given by $I/I^2 \to \bigoplus A\text{d}x_ i$. Assumption (<a href="/tag/07ES" data-tag="07ES">16.2.3.4</a>) implies that $(I/I^2)_ a$ is generated by the classes of $f_1, \ldots , f_ c$. Assumption (<a href="/tag/07ER" data-tag="07ER">16.2.3.3</a>) implies that the differential $(I/I^2)_ a \to \bigoplus A_ a\text{d}x_ i$ has a left inverse, see Lemma <a href="/tag/07ET" data-tag="07ET">16.2.4</a>. Hence $R \to A_ a$ is smooth by definition and Algebra, Lemma <a href="/tag/00S7" data-tag="00S7">10.134.13</a>. 
+    <p>
+      Let $H_ e, H_ s \subset A$ be the radical of the ideal generated by elementary, resp. strictly standard elements of $A$ over $R$. By definition and what we just proved we have $H_ e \subset H_ s \subset H_{A/R}$. The inclusion $H_{A/R} \subset H_ e$ follows from Lemma <a href="/tag/07C6" data-tag="07C6">16.2.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-example" id="07CB">
+  <p><a class="environment-identifier" href="/tag/07CB">Example <span data-tag="07CB">16.2.6</span>.</a> The set of points where a finitely presented ring map is smooth needn't be a quasi-compact open. For example, let $R = k[x, y_1, y_2, y_3, \ldots ]/(xy_ i)$ and $A = R/(x)$. Then the smooth locus of $R \to A$ is $\bigcup D(y_ i)$ which is not quasi-compact. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="07CC">
+  <p><a class="environment-identifier" href="/tag/07CC">Lemma <span data-tag="07CC">16.2.7</span>.</a> Let $R \to A$ be a ring map of finite presentation. Let $R \to R'$ be a ring map. If $a \in A$ is elementary, resp. strictly standard in $A$ over $R$, then $a \otimes 1$ is elementary, resp. strictly standard in $A \otimes _ R R'$ over $R'$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $A = R[x_1, \ldots , x_ n]/(f_1, \ldots , f_ m)$ is a presentation of $A$ over $R$, then $A \otimes _ R R' = R'[x_1, \ldots , x_ n]/(f'_1, \ldots , f'_ m)$ is a presentation of $A \otimes _ R R'$ over $R'$. Here $f'_ j$ is the image of $f_ j$ in $R'[x_1, \ldots , x_ n]$. Hence the result follows from the definitions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="07EU">
+  <p><a class="environment-identifier" href="/tag/07EU">Lemma <span data-tag="07EU">16.2.8</span>.</a> Let $R \to A \to \Lambda $ be ring maps with $A$ of finite presentation over $R$. Assume that $H_{A/R} \Lambda = \Lambda $. Then there exists a factorization $A \to B \to \Lambda $ with $B$ smooth over $R$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose $f_1, \ldots , f_ r \in H_{A/R}$ and $\lambda _1, \ldots , \lambda _ r \in \Lambda $ such that $\sum f_ i\lambda _ i = 1$ in $\Lambda $. Set $B = A[x_1, \ldots , x_ r]/(f_1x_1 + \ldots + f_ rx_ r - 1)$ and define $B \to \Lambda $ by mapping $x_ i$ to $\lambda _ i$. To check that $B$ is smooth over $R$ use that $A_{f_ i}$ is smooth over $R$ by definition of $H_{A/R}$ and that $B_{f_ i}$ is smooth over $A_{f_ i}$. Details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

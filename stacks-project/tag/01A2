@@ -1,0 +1,91 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<article class="env-lemma" id="01A2">
+  <p><a class="environment-identifier" href="/tag/01A2">Lemma <span data-tag="01A2">14.29.1</span>.</a> Let $\mathcal{A}$ be an abelian category. Let $A$ be a chain complex. Consider the covariant functor </p>
+  <div class="equation">
+  \[  B \longmapsto \{  (a, b, h) \mid a, b : A \to B\text{ and }h\text{ a homotopy between }a, b \}   \]
+</div>
+  <p> There exists a chain complex $\diamond A$ such that $\mathop{\mathrm{Mor}}\nolimits _{\text{Ch}(\mathcal{A})}(\diamond A, -)$ is isomorphic to the displayed functor. The construction $A \mapsto \diamond A$ is functorial. </p>
+</article><article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We set $\diamond A_ n = A_ n \oplus A_ n \oplus A_{n - 1}$, and we define $d_{\diamond A, n}$ by the matrix 
+    <p>
+      <div class="equation">
+  \[  d_{\diamond A, n} = \left( \begin{matrix}  d_{A, n} 
+
+&  0 
+
+&  \text{id}_{A_{n - 1}} 
+
+\\  0 
+
+&  d_{A, n} 
+
+&  -\text{id}_{A_{n - 1}} 
+
+\\  0 
+
+&  0 
+
+&  -d_{A, n - 1} 
+
+\end{matrix} \right) : A_ n \oplus A_ n \oplus A_{n - 1} \to A_{n - 1} \oplus A_{n - 1} \oplus A_{n - 2}  \]
+</div>
+    <p>
+       If $\mathcal{A}$ is the category of abelian groups, and $(x, y, z) \in A_ n \oplus A_ n \oplus A_{n - 1}$ then $d_{\diamond A, n}(x, y, z) = (d_ n(x) + z, d_ n(y) - z, -d_{n - 1}(z))$. It is easy to verify that $d^2 = 0$. Clearly, there are two maps $\diamond a, \diamond b : A \to \diamond A$ (first summand and second summand), and a map $\diamond A \to A[-1]$ which give a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to A \oplus A \to \diamond A \to A[-1] \to 0  \]
+</div>
+    <p>
+       which is termwise split. Moreover, there is a sequence of maps $\diamond h_ n : A_ n \to \diamond A_{n + 1}$, namely the identity from $A_ n$ to the summand $A_ n$ of $\diamond A_{n + 1}$, such that $\diamond h$ is a homotopy between $\diamond a$ and $\diamond b$. 
+    <p>
+      We conclude that any morphism $f : \diamond A \to B$ gives rise to a triple $(a, b, h)$ by setting $a = f \circ \diamond a$, $b = f \circ \diamond b$ and $h_ n = f_{n + 1} \circ \diamond h_ n$. Conversely, given a triple $(a, b, h)$ we get a morphism $f : \diamond A \to B$ by taking 
+    <p>
+      <div class="equation">
+  \[  f_ n = (a_ n, b_ n, h_{n - 1}).  \]
+</div>
+    <p>
+       To see that this is a morphism of chain complexes you have to do a calculation. We only do this in case $\mathcal{A}$ is the category of abelian groups: Say $(x, y, z) \in \diamond A_ n = A_ n \oplus A_ n \oplus A_{n - 1}$. Then 
+    <p>
+      <div class="equation">
+  \begin{eqnarray*}  f_{n - 1}(d_ n(x, y, z)) &  = &  f_{n - 1}(d_ n(x) + z, d_ n(y) - z, -d_{n - 1}(z)) \\ &  = &  a_ n(d_ n(x)) + a_ n(z) + b_ n(d_ n(y)) - b_ n(z) - h_{n - 2}(d_{n - 1}(z)) \end{eqnarray*}
+</div>
+    <p>
+       and 
+    <p>
+      <div class="equation">
+  \begin{eqnarray*}  d_ n(f_ n(x, y, z) &  = &  d_ n(a_ n(x) + b_ n(y) + h_{n - 1}(z)) \\ &  = &  d_ n(a_ n(x)) + d_ n(b_ n(y)) + d_ n(h_{n - 1}(z)) \end{eqnarray*}
+</div>
+    <p>
+       which are the same by definition of a homotopy. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

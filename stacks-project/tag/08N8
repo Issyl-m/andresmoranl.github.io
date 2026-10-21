@@ -1,0 +1,225 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="simplicial-section-standard" class="tex-section"><span data-tag="08N8">14.34</span> Standard resolutions</h2>
+
+<p>
+Some of the material in this section can be found in <span class="cite">[<span class="postnote">Appendix 1</span>, <a href="/bibliography/Godement">Godement</a>]</span> and <span class="cite">[<span class="postnote">I 1.5</span>, <a href="/bibliography/cotangent">cotangent</a>]</span>. 
+</p>
+<p>
+<article class="env-situation" id="08N9">
+  <p><a class="environment-identifier" href="/tag/08N9">Situation <span data-tag="08N9">14.34.1</span>.</a> Let $\mathcal{A}$, $\mathcal{S}$ be categories and let $V : \mathcal{A} \to \mathcal{S}$ be a functor with a left adjoint $U : \mathcal{S} \to \mathcal{A}$. </p>
+</article> 
+</p>
+<p>
+In this very general situation we will construct a simplicial object $X$ in the category of functors from $\mathcal{A}$ to $\mathcal{A}$. We suggest looking at the examples presented later on before reading the text of this section. 
+</p>
+<p>
+For the construction we will use the horizontal composition as defined in Categories, Section <a href="/tag/003D" data-tag="003D">4.28</a>. The definition of the adjunction morphisms<a class="footnotemark" href="#a0000298963" id="a0000298963-mark"><sup>1</sup></a> 
+</p>
+<div class="equation">
+  \[  d : U \circ V \to \text{id}_\mathcal {A} \quad (\text{counit}) \quad \text{and}\quad \eta : \text{id}_\mathcal {S} \to V \circ U \quad (\text{unit})  \]
+</div>
+<p>
+ in Categories, Section <a href="/tag/0036" data-tag="0036">4.24</a> shows that the compositions 
+</p>
+<div class="equation" id="08NB">
+    <span class="equation-label"><a href="/tag/08NB" data-tag="08NB">14.34.1.1</a></span>
+  <div>\begin{equation}  \label{simplicial-equation-composition} V \xrightarrow {\eta \star 1_ V} V \circ U \circ V \xrightarrow {1_ V \star d} V \quad \text{and}\quad U \xrightarrow {1_ U \star \eta } U \circ V \circ U \xrightarrow {d \star 1_ U} U \end{equation}</div>
+</div>
+<p>
+ are the identity morphisms. Here to define the morphism $\eta \star 1_ V$ we silently identify $V$ with $\text{id}_\mathcal {S} \circ V$ and $1_ V$ stands for $\text{id}_ V : V \to V$. We will use this notation and these relations repeatedly in what follows. For $n \geq 0$ we set 
+</p>
+<div class="equation">
+  \[  X_ n = (U \circ V)^{\circ (n + 1)} = U \circ V \circ U \circ \ldots \circ U \circ V  \]
+</div>
+<p>
+ In other words, $X_ n$ is the $(n + 1)$-fold composition of $U \circ V$ with itself. We also set $X_{-1} = \text{id}_\mathcal {A}$. We have $X_{n + m + 1} = X_ n \circ X_ m$ for all $n, m \geq -1$. We will endow this sequence of functors with the structure of a simplicial object of $\text{Fun}(\mathcal{A}, \mathcal{A})$ by constructing the morphisms of functors 
+</p>
+<div class="equation">
+  \[  d^ n_ j : X_ n \to X_{n - 1},\quad s^ n_ j : X_ n \to X_{n + 1}  \]
+</div>
+<p>
+ satisfying the relations displayed in Lemma <a href="/tag/0167" data-tag="0167">14.2.3</a>. Namely, we set 
+</p>
+<div class="equation">
+  \[  d^ n_ j = 1_{X_{j - 1}} \star d \star 1_{X_{n - j - 1}} \quad \text{and}\quad s^ n_ j = 1_{X_{j - 1} \circ U} \star \eta \star 1_{V \circ X_{n - j - 1}}  \]
+</div>
+<p>
+ Finally, write $\epsilon _0 = d : X_0 \to X_{-1}$. 
+</p>
+<p>
+<article class="env-lemma" id="08NC">
+  <p><a class="environment-identifier" href="/tag/08NC">Lemma <span data-tag="08NC">14.34.2</span>.</a> In Situation <a href="/tag/08N9" data-tag="08N9">14.34.1</a> the system $X = (X_ n, d^ n_ j, s^ n_ j)$ is a simplicial object of $\text{Fun}(\mathcal{A}, \mathcal{A})$ and $\epsilon _0$ defines an augmentation $\epsilon $ from $X$ to the constant simplicial object with value $X_{-1} = \text{id}_\mathcal {A}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider $Y = U \circ V : \mathcal{A} \to \mathcal{A}$. We already have the transformation $d : Y = U \circ V \to \text{id}_\mathcal {A}$. Let us denote 
+    <p>
+      <div class="equation">
+  \[  s = 1_ U \star \eta \star 1_ V : Y = U \circ \text{id}_\mathcal {S} \circ V \longrightarrow U \circ V \circ U \circ V = Y \circ Y  \]
+</div>
+    <p>
+       This places us in the situation of Example <a href="/tag/0G5M" data-tag="0G5M">14.33.1</a>. It is immediate from the formulas that the $X, d^ n_ i, s^ n_ i$ constructed above and the $X, s^ n_ i, s^ n_ i$ constructed from $Y, d, s$ in Example <a href="/tag/0G5M" data-tag="0G5M">14.33.1</a> agree. Thus, according to Lemma <a href="/tag/0G5N" data-tag="0G5N">14.33.2</a> it suffices to prove that 
+    <p>
+      <div class="equation">
+  \[  1_ Y = (d \star 1_ Y) \circ s = (1_ Y \star d) \circ s \quad \text{and}\quad (s \star 1) \circ s = (1 \star s) \circ s  \]
+</div>
+    <p>
+       The first equal sign translates into the equality 
+    <p>
+      <div class="equation">
+  \[  1_ U \star 1_ V = (d \star 1_ U \star 1_ V) \circ (1_ U \star \eta \star 1_ V)  \]
+</div>
+    <p>
+       which holds if we have $1_ U = (d \star 1_ U) \circ (1_ U \star \eta )$ which in turn holds by (<a href="/tag/08NB" data-tag="08NB">14.34.1.1</a>). Similarly for the second equal sign. For the last equation we need to prove 
+    <p>
+      <div class="equation">
+  \[  (1_ U \star \eta \star 1_ V \star 1_ U \star 1_ V) \circ (1_ U \star \eta \star 1_ V) = (1_ U \star 1_ V \star 1_ U \star \eta \star 1_ V) \circ (1_ U \star \eta \star 1_ V)  \]
+</div>
+    <p>
+       For this it suffices to prove $(\eta \star 1_ V \star 1_ U) \circ \eta = (1_ V \star 1_ U \star \eta ) \circ \eta $ which is true because both sides are the same as $\eta \star \eta $. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Before reading the proof of the following lemma, we advise the reader to look at the example discussed in Example <a href="/tag/08NE" data-tag="08NE">14.34.8</a> in order to understand the purpose of the lemma. 
+</p>
+<p>
+<article class="env-lemma" id="08ND">
+  <p><a class="environment-identifier" href="/tag/08ND">Lemma <span data-tag="08ND">14.34.3</span>.</a> In Situation <a href="/tag/08N9" data-tag="08N9">14.34.1</a> the maps </p>
+  <div class="equation">
+  \[  1_ V \star \epsilon : V \circ X \to V, \quad \text{and}\quad \epsilon \star 1_ U : X \circ U \to U  \]
+</div>
+  <p> are homotopy equivalences. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      As in the proof of Lemma <a href="/tag/08NC" data-tag="08NC">14.34.2</a> we set $Y = U \circ V$ so that we are in the situation of Example <a href="/tag/0G5M" data-tag="0G5M">14.33.1</a>. 
+    <p>
+      Proof of the first homotopy equivalence. By Lemma <a href="/tag/0G5Q" data-tag="0G5Q">14.33.4</a> to construct a map $h : V \to V \circ X$ right inverse to $1_ V \star \epsilon $ it suffices to construct a map $h_0 : V \to V \circ Y = V \circ U \circ V$ such that $1_ V = (1_ V \star d) \circ h_0$. Of course we take $h_0 = \eta \star 1_ V$ and the equality holds by (<a href="/tag/08NB" data-tag="08NB">14.34.1.1</a>). To finish the proof we need to show the two maps 
+    <p>
+      <div class="equation">
+  \[  (1_ V \star \epsilon ) \circ h, 1_ V \star \text{id}_ X : V \circ X \longrightarrow V \circ X  \]
+</div>
+    <p>
+       are homotopic. This follows immediately from Lemma <a href="/tag/0G5R" data-tag="0G5R">14.33.5</a> (with $G = G' = V$ and $F = F' = \text{id}_\mathcal {S}$). 
+    <p>
+      The proof of the second homotopy equivalence. By Lemma <a href="/tag/0G5Q" data-tag="0G5Q">14.33.4</a> to construct a map $h : U \to X \circ U$ right inverse to $\epsilon \star 1_ U$ it suffices to construct a map $h_0 : U \to Y \circ U = U \circ V \circ U$ such that $1_ U = (d \star 1_ U) \circ h_0$. Of course we take $h_0 = 1_ U \star \eta $ and the equality holds by (<a href="/tag/08NB" data-tag="08NB">14.34.1.1</a>). To finish the proof we need to show the two maps 
+    <p>
+      <div class="equation">
+  \[  (\epsilon \star 1_ U) \circ h, \text{id}_ X \star 1_ U : X \circ U \longrightarrow X \circ U  \]
+</div>
+    <p>
+       are homotopic. This follows immediately from Lemma <a href="/tag/0G5R" data-tag="0G5R">14.33.5</a> (with $G = G' = \text{id}_\mathcal {A}$ and $F = F' = U$). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-example" id="0G5T">
+  <p><a class="environment-identifier" href="/tag/0G5T">Example <span data-tag="0G5T">14.34.4</span>.</a> Let $R$ be a ring. As an example of the above we can take $i : \text{Mod}_ R \to \textit{Sets}$ to be the forgetful functor and $F : \textit{Sets} \to \text{Mod}_ R$ to be the functor that associates to a set $E$ the free $R$-module $R[E]$ on $E$. For an $R$-module $M$ the simplicial $R$-module $X(M)$ will have the following shape </p>
+  <div class="equation">
+  \[  X(M) = \left( \ldots \xymatrix{ R[R[R[M]]] \ar@<2ex>[r] \ar@<0ex>[r] \ar@<-2ex>[r] &  R[R[M]] \ar@<1ex>[r] \ar@<-1ex>[r] \ar@<1ex>[l] \ar@<-1ex>[l] &  R[M] \ar@<0ex>[l] } \right)  \]
+</div>
+  <p> which comes with an augmentation towards $M$. We will also show this augmentation is a homotopy equivalence of sets. By Lemmas <a href="/tag/08NS" data-tag="08NS">14.30.8</a>, <a href="/tag/08P2" data-tag="08P2">14.31.9</a>, and <a href="/tag/08P1" data-tag="08P1">14.31.8</a> this is equivalent to asking $M$ to be the only nonzero cohomology group of the chain complex associated to the simplicial module $X(M)$. </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="08NA">
+  <p><a class="environment-identifier" href="/tag/08NA">Example <span data-tag="08NA">14.34.5</span>.</a> Let $A$ be a ring. Let $\textit{Alg}_ A$ be the category of commutative $A$-algebras. As an example of the above we can take $i : \textit{Alg}_ A \to \textit{Sets}$ to be the forgetful functor and $F : \textit{Sets} \to \textit{Alg}_ A$ to be the functor that associates to a set $E$ the polynomial algebra $A[E]$ on $E$ over $A$. (We apologize for the overlap in notation between this example and Example <a href="/tag/0G5T" data-tag="0G5T">14.34.4</a>.) For an $A$-algebra $B$ the simplicial $A$-algebra $X(B)$ will have the following shape </p>
+  <div class="equation">
+  \[  X(B) = \left( \ldots \xymatrix{ A[A[A[B]]] \ar@<2ex>[r] \ar@<0ex>[r] \ar@<-2ex>[r] &  A[A[B]] \ar@<1ex>[r] \ar@<-1ex>[r] \ar@<1ex>[l] \ar@<-1ex>[l] &  A[B] \ar@<0ex>[l] } \right)  \]
+</div>
+  <p> which comes with an augmentation towards $B$. We will also show this augmentation is a homotopy equivalence of sets. By Lemmas <a href="/tag/08NS" data-tag="08NS">14.30.8</a>, <a href="/tag/08P2" data-tag="08P2">14.31.9</a>, and <a href="/tag/08P1" data-tag="08P1">14.31.8</a> this is equivalent to asking $B$ to be the only nonzero cohomology group of the chain complex of $A$-modules associated to $X(B)$ viewed as a simplicial $A$-module. </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="0G5U">
+  <p><a class="environment-identifier" href="/tag/0G5U">Example <span data-tag="0G5U">14.34.6</span>.</a> In Example <a href="/tag/0G5T" data-tag="0G5T">14.34.4</a> we have $X_ n(M) = R[R[\ldots [M]\ldots ]]$ with $n + 1$ brackets. We describe the maps constructed above using a typical element </p>
+  <div class="equation">
+  \[  \xi = \sum \nolimits _ i r_ i\left[\sum \nolimits _ j r_{ij}[m_{ij}]\right]  \]
+</div>
+  <p> of $X_1(M)$. The maps $d_0, d_1 : R[R[M]] \to R[M]$ are given by </p>
+  <div class="equation">
+  \[  d_0(\xi ) = \sum \nolimits _{i, j} r_ ir_{ij}[m_{ij}] \quad \text{and}\quad d_1(\xi ) = \sum \nolimits _ i r_ i\left[\sum \nolimits _ j r_{ij}m_{ij}\right].  \]
+</div>
+  <p> The maps $s_0, s_1 : R[R[M]] \to R[R[R[M]]]$ are given by </p>
+  <div class="equation">
+  \[  s_0(\xi ) = \sum \nolimits _ i r_ i\left[\left[\sum \nolimits _ j r_{ij}[m_{ij}]\right]\right] \quad \text{and}\quad s_1(\xi ) = \sum \nolimits _ i r_ i\left[\sum \nolimits _ j r_{ij}[[m_{ij}]]\right].  \]
+</div>
+</article> 
+</p>
+<p>
+<article class="env-example" id="09CB">
+  <p><a class="environment-identifier" href="/tag/09CB">Example <span data-tag="09CB">14.34.7</span>.</a> In Example <a href="/tag/08NA" data-tag="08NA">14.34.5</a> we have $X_ n(B) = A[A[\ldots [B]\ldots ]]$ with $n + 1$ brackets. We describe the maps constructed above using a typical element </p>
+  <div class="equation">
+  \[  \xi = \sum \nolimits _ i a_ i [x_{i, 1}] \ldots [x_{i, m_ i}] \in A[A[B]] = X_1(B)  \]
+</div>
+  <p> where for each $i, j$ we can write </p>
+  <div class="equation">
+  \[  x_{i, j} = \sum a_{i, j, k} [b_{i, j, k, 1}] \ldots [b_{i, j, k, n_{i, j, k}}] \in A[B]  \]
+</div>
+  <p> Obviously this is horrendous! To ease the notation, to see what the $A$-algebra maps $d_0, d_1 : A[A[B]] \to A[B]$ are doing it suffices to see what happens to the variables $[x]$ where </p>
+  <div class="equation">
+  \[  x = \sum a_ k [b_{k, 1}] \ldots [b_{k, n_ k}] \in A[B]  \]
+</div>
+  <p> is a general element. For these we get </p>
+  <div class="equation">
+  \[  d_0([x]) = x = \sum a_ k [b_{k, 1}] \ldots [b_{k, n_ k}] \quad \text{and}\quad d_1([x]) = \left[\sum a_ k b_{k, 1} \ldots b_{k, n_ k}\right]  \]
+</div>
+  <p> The maps $s_0, s_1 : A[A[B]] \to A[A[A[B]]]$ are given by </p>
+  <div class="equation">
+  \[  s_0([x]) = \left[\left[\sum a_ k [b_{k, 1}] \ldots [b_{k, n_ k}]\right]\right] \quad \text{and}\quad s_1([x]) = \left[\sum a_ k [[b_{k, 1}]] \ldots [[b_{k, n_ k}]]\right]  \]
+</div>
+</article> 
+</p>
+<p>
+<article class="env-example" id="08NE">
+  <p><a class="environment-identifier" href="/tag/08NE">Example <span data-tag="08NE">14.34.8</span>.</a> Going back to the example discussed in Example <a href="/tag/08NA" data-tag="08NA">14.34.5</a> our Lemma <a href="/tag/08ND" data-tag="08ND">14.34.3</a> signifies that for any ring map $A \to B$ the map of simplicial rings </p>
+  <div class="equation">
+  \[  \xymatrix{ A[A[A[B]]] \ar[d] \ar@<2ex>[r] \ar@<0ex>[r] \ar@<-2ex>[r] &  A[A[B]] \ar[d] \ar@<1ex>[r] \ar@<-1ex>[r] \ar@<1ex>[l] \ar@<-1ex>[l] &  A[B] \ar[d] \ar@<0ex>[l] \\  B \ar@<2ex>[r] \ar@<0ex>[r] \ar@<-2ex>[r] &  B \ar@<1ex>[r] \ar@<-1ex>[r] \ar@<1ex>[l] \ar@<-1ex>[l] &  B \ar@<0ex>[l] }  \]
+</div>
+  <p> is a homotopy equivalence on underlying simplicial sets. Moreover, the inverse map constructed in Lemma <a href="/tag/08ND" data-tag="08ND">14.34.3</a> is in degree $n$ given by </p>
+  <div class="equation">
+  \[  b \longmapsto [\ldots [b]\ldots ]  \]
+</div>
+  <p> with obvious notation. In the other direction the lemma tells us that for every set $E$ there is a homotopy equivalence </p>
+  <div class="equation">
+  \[  \xymatrix{ A[A[A[A[E]]]] \ar[d] \ar@<2ex>[r] \ar@<0ex>[r] \ar@<-2ex>[r] &  A[A[A[E]]] \ar[d] \ar@<1ex>[r] \ar@<-1ex>[r] \ar@<1ex>[l] \ar@<-1ex>[l] &  A[A[E]] \ar[d] \ar@<0ex>[l] \\  A[E] \ar@<2ex>[r] \ar@<0ex>[r] \ar@<-2ex>[r] &  A[E] \ar@<1ex>[r] \ar@<-1ex>[r] \ar@<1ex>[l] \ar@<-1ex>[l] &  A[E] \ar@<0ex>[l] }  \]
+</div>
+  <p> of rings. The inverse map constructed in the lemma is in degree $n$ given by the ring map </p>
+  <div class="equation">
+  \[  \sum a_{e_1,\ldots ,e_ p}[e_1][e_2] \ldots [e_ p] \longmapsto \sum a_{e_1,\ldots ,e_ p}[\ldots [e_1]\ldots ][\ldots [e_2]\ldots ] \ldots [\ldots [e_ p]\ldots ]  \]
+</div>
+  <p> (with obvious notation). </p>
+</article> 
+</p>

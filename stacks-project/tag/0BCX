@@ -1,0 +1,265 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="divisors-section-norms" class="tex-section"><span data-tag="0BCX">31.18</span> Norms</h2>
+
+<p>
+Let $\pi : X \to Y$ be a finite morphism of schemes and let $d \geq 1$ be an integer. Let us say there exists a <em>norm of degree $d$ for $\pi $</em><a class="footnotemark" href="#a0000693487" id="a0000693487-mark"><sup>1</sup></a> if there exists a multiplicative map 
+</p>
+<div class="equation">
+  \[  \text{Norm}_\pi : \pi _*\mathcal{O}_ X \to \mathcal{O}_ Y  \]
+</div>
+<p>
+ of sheaves such that 
+</p>
+<ol>
+  <li><p>
+the composition $\mathcal{O}_ Y \xrightarrow {\pi ^\sharp } \pi _*\mathcal{O}_ X \xrightarrow {\text{Norm}_\pi } \mathcal{O}_ Y$ equals $g \mapsto g^ d$, and 
+</p>
+</li><li><p>
+for $V \subset Y$ open if $f \in \mathcal{O}_ X(\pi ^{-1}V)$ is zero at $x \in \pi ^{-1}(V)$, then $\text{Norm}_\pi (f)$ is zero at $\pi (x)$. 
+</p>
+</li>
+</ol>
+<p>
+ We observe that condition (1) forces $\pi $ to be surjective. Since $\text{Norm}_\pi $ is multiplicative it sends units to units hence, given $y \in Y$, if $f$ is a regular function on $X$ defined at but nonvanishing at any $x \in X$ with $\pi (x) = y$, then $\text{Norm}_\pi (f)$ is defined and does not vanish at $y$. This holds without requiring (2); in fact, the constructions in this section will only require condition (1) and only certain vanishing properties (which are used in particular in the proof of Lemma <a href="/tag/0BD0" data-tag="0BD0">31.18.4</a>) will require property (2). 
+</p>
+<p>
+<article class="env-lemma" id="0BUT">
+  <p><a class="environment-identifier" href="/tag/0BUT">Lemma <span data-tag="0BUT">31.18.1</span>.</a> Let $\pi : X \to Y$ be a finite morphism of schemes. Let $\mathcal{L}$ be an invertible $\mathcal{O}_ X$-module. Let $y \in Y$. There exists an open neighbourhood $V \subset Y$ of $y$ such that $\mathcal{L}|_{\pi ^{-1}(V)}$ is trivial. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Clearly we may assume $Y$ and hence $X$ affine. Since $\pi $ is finite the fibre $\pi ^{-1}(\{ y\} )$ over $y$ is finite. Since $X$ is affine, we can pick $s \in \Gamma (X, \mathcal{L})$ not vanishing in any point of $\pi ^{-1}(\{ y\} )$. This follows from Properties, Lemma <a href="/tag/0F20" data-tag="0F20">28.30.7</a> but we also give a direct argument. Namely, we can pick a finite set $E \subset X$ of closed points such that every $x \in \pi ^{-1}(\{ y\} )$ specializes to some point of $E$. For $x \in E$ denote $i_ x : x \to X$ the closed immersion. Then $\mathcal{L} \to \bigoplus _{x \in E} i_{x, *}i_ x^*\mathcal{L}$ is a surjective map of quasi-coherent $\mathcal{O}_ X$-modules, and hence the map 
+    <p>
+      <div class="equation">
+  \[  \Gamma (X, \mathcal{L}) \to \bigoplus \nolimits _{x \in E} \mathcal{L}_ x/\mathfrak m_ x\mathcal{L}_ x  \]
+</div>
+    <p>
+       is surjective (as taking global sections is an exact functor on the category of quasi-coherent $\mathcal{O}_ X$-modules, see Schemes, Lemma <a href="/tag/01IB" data-tag="01IB">26.7.5</a>). Thus we can find an $s \in \Gamma (X, \mathcal{L})$ not vanishing at any point specializing to a point of $E$. Then $X_ s \subset X$ is an open neighbourhood of $\pi ^{-1}(\{ y\} )$. Since $\pi $ is finite, hence closed, we conclude that there is an open neighbourhood $V \subset Y$ of $y$ whose inverse image is contained in $X_ s$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BCY">
+  <p><a class="environment-identifier" href="/tag/0BCY">Lemma <span data-tag="0BCY">31.18.2</span>.</a> Let $\pi : X \to Y$ be a finite morphism of schemes. If there exists a norm of degree $d$ for $\pi $, then there exists a homomorphism of abelian groups </p>
+  <div class="equation">
+  \[  \text{Norm}_\pi : \mathop{\mathrm{Pic}}\nolimits (X) \to \mathop{\mathrm{Pic}}\nolimits (Y)  \]
+</div>
+  <p> such that $\text{Norm}_\pi (\pi ^*\mathcal{N}) \cong \mathcal{N}^{\otimes d}$ for all invertible $\mathcal{O}_ Y$-modules $\mathcal{N}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use the correspondence between isomorphism classes of invertible $\mathcal{O}_ X$-modules and elements of $H^1(X, \mathcal{O}_ X^*)$ given in Cohomology, Lemma <a href="/tag/09NU" data-tag="09NU">20.6.1</a> without further mention. We explain how to take the norm of an invertible $\mathcal{O}_ X$-module $\mathcal{L}$. Namely, by Lemma <a href="/tag/0BUT" data-tag="0BUT">31.18.1</a> there exists an open covering $Y = \bigcup V_ j$ such that $\mathcal{L}|_{\pi ^{-1}V_ j}$ is trivial. Choose a generating section $s_ j \in \mathcal{L}(\pi ^{-1}V_ j)$ for each $j$. On the overlaps $\pi ^{-1}V_ j \cap \pi ^{-1}V_{j'}$ we can write 
+    <p>
+      <div class="equation">
+  \[  s_ j = u_{jj'} s_{j'}  \]
+</div>
+    <p>
+       for a unique $u_{jj'} \in \mathcal{O}^*_ X(\pi ^{-1}V_ j \cap \pi ^{-1}V_{j'})$. Thus we can consider the elements 
+    <p>
+      <div class="equation">
+  \[  v_{jj'} = \text{Norm}_\pi (u_{jj'}) \in \mathcal{O}_ Y^*(V_ j \cap V_{j'})  \]
+</div>
+    <p>
+       These elements satisfy the cocycle condition (because the $u_{jj'}$ do and $\text{Norm}_\pi $ is multiplicative) and therefore define an invertible $\mathcal{O}_ Y$-module. We omit the verification that: this is well defined, additive on Picard groups, and satisfies the property $\text{Norm}_\pi (\pi ^*\mathcal{N}) \cong \mathcal{N}^{\otimes d}$ for all invertible $\mathcal{O}_ Y$-modules $\mathcal{N}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BCZ">
+  <p><a class="environment-identifier" href="/tag/0BCZ">Lemma <span data-tag="0BCZ">31.18.3</span>.</a> Let $\pi : X \to Y$ be a finite morphism of schemes. Assume there exists a norm of degree $d$ for $\pi $. For any $\mathcal{O}_ X$-linear map $\varphi : \mathcal{L} \to \mathcal{L}'$ of invertible $\mathcal{O}_ X$-modules there is an $\mathcal{O}_ Y$-linear map </p>
+  <div class="equation">
+  \[  \text{Norm}_\pi (\varphi ) : \text{Norm}_\pi (\mathcal{L}) \longrightarrow \text{Norm}_\pi (\mathcal{L}')  \]
+</div>
+  <p> with $\text{Norm}_\pi (\mathcal{L})$, $\text{Norm}_\pi (\mathcal{L}')$ as in Lemma <a href="/tag/0BCY" data-tag="0BCY">31.18.2</a>. Moreover, for $y \in Y$ the following are equivalent </p>
+  <p><ol>
+  <li><p>
+$\varphi $ is zero at a point of $x \in X$ with $\pi (x) = y$, and 
+</p>
+</li><li><p>
+$\text{Norm}_\pi (\varphi )$ is zero at $y$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We choose an open covering $Y = \bigcup V_ j$ such that $\mathcal{L}$ and $\mathcal{L}'$ are trivial over the opens $\pi ^{-1}V_ j$. This is possible by Lemma <a href="/tag/0BUT" data-tag="0BUT">31.18.1</a>. Choose generating sections $s_ j$ and $s'_ j$ of $\mathcal{L}$ and $\mathcal{L}'$ over the opens $\pi ^{-1}V_ j$. Then $\varphi (s_ j) = f_ js'_ j$ for some $f_ j \in \mathcal{O}_ X(\pi ^{-1}V_ j)$. Define $\text{Norm}_\pi (\varphi )$ to be multiplication by $\text{Norm}_\pi (f_ j)$ on $V_ j$. A simple calculation involving the cocycles used to construct $\text{Norm}_\pi (\mathcal{L})$, $\text{Norm}_\pi (\mathcal{L}')$ in the proof of Lemma <a href="/tag/0BCY" data-tag="0BCY">31.18.2</a> shows that this defines a map as stated in the lemma. The final statement follows from condition (2) in the definition of a norm map of degree $d$. Some details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BD0">
+  <p><a class="environment-identifier" href="/tag/0BD0">Lemma <span data-tag="0BD0">31.18.4</span>.</a> Let $\pi : X \to Y$ be a finite morphism of schemes. Assume $X$ has an ample invertible sheaf and there exists a norm of degree $d$ for $\pi $. Then $Y$ has an ample invertible sheaf. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\mathcal{L}$ be the ample invertible sheaf on $X$ given to us by assumption. We will prove that $\mathcal{N} = \text{Norm}_\pi (\mathcal{L})$ is ample on $Y$. 
+    <p>
+      Since $X$ is quasi-compact (Properties, Definition <a href="/tag/01PS" data-tag="01PS">28.27.1</a>) and $X \to Y$ surjective (by the existence of $\text{Norm}_\pi $) we see that $Y$ is quasi-compact. Let $y \in Y$ be a point. To finish the proof we will show that there exists a section $t$ of some positive tensor power of $\mathcal{N}$ which does not vanish at $y$ such that $Y_ t$ is affine. To do this, choose an affine open neighbourhood $V \subset Y$ of $y$. Choose $n \gg 0$ and a section $s \in \Gamma (X, \mathcal{L}^{\otimes n})$ such that 
+    <p>
+      <div class="equation">
+  \[  \pi ^{-1}(\{ y\} ) \subset X_ s \subset \pi ^{-1}V  \]
+</div>
+    <p>
+       by Properties, Lemma <a href="/tag/09NV" data-tag="09NV">28.30.6</a>. Then $t = \text{Norm}_\pi (s)$ is a section of $\mathcal{N}^{\otimes n}$ which does not vanish at $x$ and with $Y_ t \subset V$, see Lemma <a href="/tag/0BCZ" data-tag="0BCZ">31.18.3</a>. Then $Y_ t$ is affine by Properties, Lemma <a href="/tag/01PV" data-tag="01PV">28.27.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BD1">
+  <p><a class="environment-identifier" href="/tag/0BD1">Lemma <span data-tag="0BD1">31.18.5</span>.</a> Let $\pi : X \to Y$ be a finite morphism of schemes. Assume $X$ is quasi-affine and there exists a norm of degree $d$ for $\pi $. Then $Y$ is quasi-affine. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Properties, Lemma <a href="/tag/01QE" data-tag="01QE">28.28.1</a> we see that $\mathcal{O}_ X$ is an ample invertible sheaf on $X$. The proof of Lemma <a href="/tag/0BD0" data-tag="0BD0">31.18.4</a> shows that $\text{Norm}_\pi (\mathcal{O}_ X) = \mathcal{O}_ Y$ is an ample invertible $\mathcal{O}_ Y$-module. Hence Properties, Lemma <a href="/tag/01QE" data-tag="01QE">28.28.1</a> shows that $Y$ is quasi-affine. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BD2">
+  <p><a class="environment-identifier" href="/tag/0BD2">Lemma <span data-tag="0BD2">31.18.6</span>.</a> Let $\pi : X \to Y$ be a finite locally free morphism of degree $d \geq 1$. Then there exists a canonical norm of degree $d$ whose formation commutes with arbitrary base change. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $V \subset Y$ be an affine open such that $(\pi _*\mathcal{O}_ X)|_ V$ is finite free of rank $d$. Choosing a basis we obtain an isomorphism 
+    <p>
+      <div class="equation">
+  \[  \mathcal{O}_ V^{\oplus d} \cong (\pi _*\mathcal{O}_ X)|_ V  \]
+</div>
+    <p>
+       For every $f \in \pi _*\mathcal{O}_ X(V) = \mathcal{O}_ X(\pi ^{-1}(V))$ multiplication by $f$ defines a $\mathcal{O}_ V$-linear endomorphism $m_ f$ of the displayed free vector bundle. Thus we get a $d \times d$ matrix $M_ f \in \text{Mat}(d \times d, \mathcal{O}_ Y(V))$ and we can set 
+    <p>
+      <div class="equation">
+  \[  \text{Norm}_\pi (f) = \det (M_ f)  \]
+</div>
+    <p>
+       Since the determinant of a matrix is independent of the choice of the basis chosen we see that this is well defined which also means that this construction will glue to a global map as desired. Compatibility with base change is straightforward from the construction. 
+    <p>
+      Property (1) follows from the fact that the determinant of a $d \times d$ diagonal matrix with entries $g, g, \ldots , g$ is $g^ d$. To see property (2) we may base change and assume that $Y$ is the spectrum of a field $k$. Then $X = \mathop{\mathrm{Spec}}(A)$ with $A$ a $k$-algebra with $\dim _ k(A) = d$. If there exists an $x \in X$ such that $f \in A$ vanishes at $x$, then there exists a map $A \to \kappa $ into a field such that $f$ maps to zero in $\kappa $. Then $f : A \to A$ cannot be surjective, hence $\det (f : A \to A) = 0$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BD3">
+  <p><a class="environment-identifier" href="/tag/0BD3">Lemma <span data-tag="0BD3">31.18.7</span>.</a> Let $\pi : X \to Y$ be a finite surjective morphism with $X$ and $Y$ integral and $Y$ normal. Then there exists a norm of degree $[R(X) : R(Y)]$ for $\pi $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\mathop{\mathrm{Spec}}(B) \subset Y$ be an affine open subset and let $\mathop{\mathrm{Spec}}(A) \subset X$ be its inverse image. Then $A$ and $B$ are domains. Let $K$ be the fraction field of $A$ and $L$ the fraction field of $B$. Picture: 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ L \ar[r] &  K \\  B \ar[u] \ar[r] &  A \ar[u] }  \]
+</div>
+    <p>
+       Since $K/L$ is a finite extension, there is a norm map $\text{Norm}_{K/L} : K^* \to L^*$ of degree $d = [K : L]$; this is given by mapping $f \in K$ to $\det _ L(f : K \to K)$ as in the proof of Lemma <a href="/tag/0BD2" data-tag="0BD2">31.18.6</a>. Observe that the characteristic polynomial of $f : K \to K$ is a power of the minimal polynomial of $f$ over $L$; in particular $\text{Norm}_{K/L}(f)$ is a power of the constant coefficient of the minimal polynomial of $f$ over $L$. Hence by Algebra, Lemma <a href="/tag/00H7" data-tag="00H7">10.38.6</a> $\text{Norm}_{K/L}$ maps $A$ into $B$. This determines a compatible system of maps on sections over affines and hence a global norm map $\text{Norm}_\pi $ of degree $d$. 
+    <p>
+      Property (1) is immediate from the construction. To see property (2) let $f \in A$ be contained in the prime ideal $\mathfrak p \subset A$. Let $f^ m + b_1 f^{m - 1} + \ldots + b_ m$ be the minimal polynomial of $f$ over $L$. By Algebra, Lemma <a href="/tag/00H7" data-tag="00H7">10.38.6</a> we have $b_ i \in B$. Hence $b_0 \in B \cap \mathfrak p$. Since $\text{Norm}_{K/L}(f) = b_0^{d/m}$ (see above) we conclude that the norm vanishes in the image point of $\mathfrak p$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BDZ">
+  <p><a class="environment-identifier" href="/tag/0BDZ">Lemma <span data-tag="0BDZ">31.18.8</span>.</a> Let $X$ be a Noetherian scheme. Let $p$ be a prime number such that $p\mathcal{O}_ X = 0$. Then for some $e > 0$ there exists a norm of degree $p^ e$ for $X_{red} \to X$ where $X_{red}$ is the reduction of $X$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $A$ be a Noetherian ring with $pA = 0$. Let $I \subset A$ be the ideal of nilpotent elements. Then $I^ n = 0$ for some $n$ (Algebra, Lemma <a href="/tag/00IM" data-tag="00IM">10.32.5</a>). Pick $e$ such that $p^ e \geq n$. Then 
+    <p>
+      <div class="equation">
+  \[  A/I \longrightarrow A,\quad f \bmod I \longmapsto f^{p^ e}  \]
+</div>
+    <p>
+       is well defined. This produces a norm of degree $p^ e$ for $\mathop{\mathrm{Spec}}(A/I) \to \mathop{\mathrm{Spec}}(A)$. Now if $X$ is obtained by glueing some affine schemes $\mathop{\mathrm{Spec}}(A_ i)$ then for some $e \gg 0$ these maps glue to a norm map for $X_{red} \to X$. Details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="0BD4">
+  <p><a class="environment-identifier" href="/tag/0BD4">Proposition <span data-tag="0BD4">31.18.9</span>.</a> Let $\pi : X \to Y$ be a finite surjective morphism of schemes. Assume that $X$ has an ample invertible $\mathcal{O}_ X$-module. If </p>
+  <p><ol>
+  <li><p>
+$\pi $ is finite locally free, or 
+</p>
+</li><li><p>
+$Y$ is an integral normal scheme, or 
+</p>
+</li><li><p>
+$Y$ is Noetherian, $p\mathcal{O}_ Y = 0$, and $X = Y_{red}$, 
+</p>
+</li>
+</ol></p>
+  <p> then $Y$ has an ample invertible $\mathcal{O}_ Y$-module. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Case (1) follows from a combination of Lemmas <a href="/tag/0BD2" data-tag="0BD2">31.18.6</a> and <a href="/tag/0BD0" data-tag="0BD0">31.18.4</a>. Case (3) follows from a combination of Lemmas <a href="/tag/0BDZ" data-tag="0BDZ">31.18.8</a> and <a href="/tag/0BD0" data-tag="0BD0">31.18.4</a>. In case (2) we first replace $X$ by an irreducible component of $X$ which dominates $Y$ (viewed as a reduced closed subscheme of $X$). Then we can apply Lemma <a href="/tag/0BD3" data-tag="0BD3">31.18.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BD5">
+  <p><a class="environment-identifier" href="/tag/0BD5">Lemma <span data-tag="0BD5">31.18.10</span>.</a> Let $\pi : X \to Y$ be a finite surjective morphism of schemes. Assume that $X$ is quasi-affine. If either </p>
+  <p><ol>
+  <li><p>
+$\pi $ is finite locally free, or 
+</p>
+</li><li><p>
+$Y$ is an integral normal scheme 
+</p>
+</li>
+</ol></p>
+  <p> then $Y$ is quasi-affine. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Case (1) follows from a combination of Lemmas <a href="/tag/0BD2" data-tag="0BD2">31.18.6</a> and <a href="/tag/0BD1" data-tag="0BD1">31.18.5</a>. In case (2) we first replace $X$ by an irreducible component of $X$ which dominates $Y$ (viewed as a reduced closed subscheme of $X$). Then we can apply Lemma <a href="/tag/0BD3" data-tag="0BD3">31.18.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

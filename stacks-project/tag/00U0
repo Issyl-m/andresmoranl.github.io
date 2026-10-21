@@ -1,0 +1,488 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="algebra-section-etale" class="tex-section"><span data-tag="00U0">10.143</span> Étale ring maps</h2>
+
+<p>
+An étale ring map is a smooth ring map whose relative dimension is equal to zero. This is the same as the following slightly more direct definition. 
+</p>
+<p>
+<article class="env-definition" id="00U1">
+  <p><a class="environment-identifier" href="/tag/00U1">Definition <span data-tag="00U1">10.143.1</span>.</a> Let $R \to S$ be a ring map. We say $R \to S$ is <em>étale</em> if it is of finite presentation and the naive cotangent complex $\mathop{N\! L}\nolimits _{S/R}$ is quasi-isomorphic to zero: this means that $H_1(\mathop{N\! L}\nolimits _{S/R}) = 0$ and $\Omega _{S/R} = 0$. Given a prime $\mathfrak q$ of $S$ we say that $R \to S$ is <em>étale at $\mathfrak q$</em> if there exists a $g \in S$, $g \not\in \mathfrak q$ such that $R \to S_ g$ is étale. </p>
+</article> 
+</p>
+<p>
+In particular we see that $\Omega _{S/R} = 0$ if $S$ is étale over $R$. If $R \to S$ is smooth, then $R \to S$ is étale if and only if $\Omega _{S/R} = 0$. From our results on smooth ring maps we automatically get a whole host of results for étale maps. We summarize these in Lemma <a href="/tag/00U2" data-tag="00U2">10.143.3</a> below. But before we do so we prove that <em>any</em> étale ring map is standard smooth. 
+</p>
+<p>
+<article class="env-lemma" id="00U9">
+  <p><a class="environment-identifier" href="/tag/00U9">Lemma <span data-tag="00U9">10.143.2</span>.</a> Any étale ring map is standard smooth. More precisely, if $R \to S$ is étale, then there exists a presentation $S = R[x_1, \ldots , x_ n]/(f_1, \ldots , f_ n)$ such that the image of $\det (\partial f_ j/\partial x_ i)$ is invertible in $S$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $R \to S$ be étale. Choose a presentation $S = R[x_1, \ldots , x_ n]/I$. As $R \to S$ is étale we know that 
+    <p>
+      <div class="equation">
+  \[  \text{d} : I/I^2 \longrightarrow \bigoplus \nolimits _{i = 1, \ldots , n} S\text{d}x_ i  \]
+</div>
+    <p>
+       is an isomorphism, in particular $I/I^2$ is a free $S$-module. Thus by Lemma <a href="/tag/07CF" data-tag="07CF">10.136.6</a> we may assume (after possibly changing the presentation), that $I = (f_1, \ldots , f_ c)$ such that the classes $f_ i \bmod I^2$ form a basis of $I/I^2$. It follows immediately from the fact that the displayed map above is an isomorphism that $c = n$ and that $\det (\partial f_ j/\partial x_ i)$ is invertible in $S$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00U2">
+  <p><a class="environment-identifier" href="/tag/00U2">Lemma <span data-tag="00U2">10.143.3</span>.</a> Results on étale ring maps. </p>
+  <p><ol>
+  <li><p>
+The ring map $R \to R_ f$ is étale for any ring $R$ and any $f \in R$. 
+</p>
+</li><li><p>
+Compositions of étale ring maps are étale. 
+</p>
+</li><li><p>
+A base change of an étale ring map is étale. 
+</p>
+</li><li><p>
+The property of being étale is local: Given a ring map $R \to S$ and elements $g_1, \ldots , g_ m \in S$ which generate the unit ideal such that $R \to S_{g_ j}$ is étale for $j = 1, \ldots , m$ then $R \to S$ is étale. 
+</p>
+</li><li><p>
+Given $R \to S$ of finite presentation, and a flat ring map $R \to R'$, set $S' = R' \otimes _ R S$. The set of primes where $R' \to S'$ is étale is the inverse image via $\mathop{\mathrm{Spec}}(S') \to \mathop{\mathrm{Spec}}(S)$ of the set of primes where $R \to S$ is étale. 
+</p>
+</li><li><p>
+An étale ring map is syntomic, in particular flat. 
+</p>
+</li><li><p>
+If $S$ is finite type over a field $k$, then $S$ is étale over $k$ if and only if $\Omega _{S/k} = 0$. 
+</p>
+</li><li><p>
+Any étale ring map $R \to S$ is the base change of an étale ring map $R_0 \to S_0$ with $R_0$ of finite type over $\mathbf{Z}$. 
+</p>
+</li><li><p>
+Let $A = \mathop{\mathrm{colim}}\nolimits A_ i$ be a filtered colimit of rings. Let $A \to B$ be an étale ring map. Then there exists an étale ring map $A_ i \to B_ i$ for some $i$ such that $B \cong A \otimes _{A_ i} B_ i$. 
+</p>
+</li><li><p>
+Let $A$ be a ring. Let $S$ be a multiplicative subset of $A$. Let $S^{-1}A \to B'$ be étale. Then there exists an étale ring map $A \to B$ such that $B' \cong S^{-1}B$. 
+</p>
+</li><li><p>
+Let $A$ be a ring. Let $B = B' \times B''$ be a product of $A$-algebras. Then $B$ is étale over $A$ if and only if both $B'$ and $B''$ are étale over $A$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In each case we use the corresponding result for smooth ring maps with a small argument added to show that $\Omega _{S/R}$ is zero. 
+    <p>
+      Proof of (1). The ring map $R \to R_ f$ is smooth and $\Omega _{R_ f/R} = 0$. 
+    <p>
+      Proof of (2). The composition $A \to C$ of smooth maps $A \to B$ and $B \to C$ is smooth, see Lemma <a href="/tag/00TD" data-tag="00TD">10.137.13</a>. By Lemma <a href="/tag/00RS" data-tag="00RS">10.131.7</a> we see that $\Omega _{C/A}$ is zero as both $\Omega _{C/B}$ and $\Omega _{B/A}$ are zero. 
+    <p>
+      Proof of (3). Let $R \to S$ be étale and $R \to R'$ be arbitrary. Then $R' \to S' = R' \otimes _ R S$ is smooth, see Lemma <a href="/tag/00T4" data-tag="00T4">10.137.3</a>. Since $\Omega _{S'/R'} = S' \otimes _ S \Omega _{S/R}$ by Lemma <a href="/tag/00RV" data-tag="00RV">10.131.12</a> we conclude that $\Omega _{S'/R'} = 0$. Hence $R' \to S'$ is étale. 
+    <p>
+      Proof of (4). Assume the hypotheses of (4). By Lemma <a href="/tag/00TC" data-tag="00TC">10.137.12</a> we see that $R \to S$ is smooth. We are also given that $\Omega _{S_{g_ i}/R} = (\Omega _{S/R})_{g_ i} = 0$ for all $i$. Then $\Omega _{S/R} = 0$, see Lemma <a href="/tag/00EO" data-tag="00EO">10.23.2</a>. 
+    <p>
+      Proof of (5). The result for smooth maps is Lemma <a href="/tag/00TG" data-tag="00TG">10.137.17</a>. In the proof of that lemma we used that $\mathop{N\! L}\nolimits _{S/R} \otimes _ S S'$ is homotopy equivalent to $\mathop{N\! L}\nolimits _{S'/R'}$. This reduces us to showing that if $M$ is a finitely presented $S$-module the set of primes $\mathfrak q'$ of $S'$ such that $(M \otimes _ S S')_{\mathfrak q'} = 0$ is the inverse image of the set of primes $\mathfrak q$ of $S$ such that $M_{\mathfrak q} = 0$. This follows from Lemma <a href="/tag/0BUR" data-tag="0BUR">10.40.6</a>. 
+    <p>
+      Proof of (6). Follows directly from the corresponding result for smooth ring maps (Lemma <a href="/tag/00TA" data-tag="00TA">10.137.9</a>). 
+    <p>
+      Proof of (7). Follows from Lemma <a href="/tag/00TT" data-tag="00TT">10.140.3</a> and the definitions. 
+    <p>
+      Proof of (8). Lemma <a href="/tag/00TP" data-tag="00TP">10.138.14</a> gives the result for smooth ring maps. The resulting smooth ring map $R_0 \to S_0$ satisfies the hypotheses of Lemma <a href="/tag/00RL" data-tag="00RL">10.130.8</a>, and hence we may replace $S_0$ by the factor of relative dimension $0$ over $R_0$. 
+    <p>
+      Proof of (9). Follows from (8) since $R_0 \to A$ will factor through $A_ i$ for some $i$ by Lemma <a href="/tag/00QO" data-tag="00QO">10.127.3</a>. 
+    <p>
+      Proof of (10). Follows from (9), (1), and (2) since $S^{-1}A$ is a filtered colimit of principal localizations of $A$. 
+    <p>
+      Proof of (11). Use Lemma <a href="/tag/0GIF" data-tag="0GIF">10.137.14</a> to see the result for smoothness and then use that $\Omega _{B/A}$ is zero if and only if both $\Omega _{B'/A}$ and $\Omega _{B''/A}$ are zero. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Next we work out in more detail what it means to be étale over a field. 
+</p>
+<p>
+<article class="env-lemma" id="00U3">
+  <p><a class="environment-identifier" href="/tag/00U3">Lemma <span data-tag="00U3">10.143.4</span>.</a> Let $k$ be a field. A ring map $k \to S$ is étale if and only if $S$ is isomorphic as a $k$-algebra to a finite product of finite separable extensions of $k$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We are going to use without further mention: if $S = S_1 \times \ldots \times S_ n$ is a finite product of $k$-algebras, then $S$ is étale over $k$ if and only if each $S_ i$ is étale over $k$. See Lemma <a href="/tag/00U2" data-tag="00U2">10.143.3</a> part (11). 
+    <p>
+      If $k'/k$ is a finite separable field extension then we can write $k' = k(\alpha ) \cong k[x]/(f)$. Here $f$ is the minimal polynomial of the element $\alpha $. Since $k'$ is separable over $k$ we have $\gcd (f, f') = 1$. This implies that $\text{d} : k'\cdot f \to k' \cdot \text{d}x$ is an isomorphism. Hence $k \to k'$ is étale. Thus if $S$ is a finite product of finite separable extensions of $k$, then $S$ is étale over $k$. 
+    <p>
+      Conversely, suppose that $k \to S$ is étale. Then $S$ is smooth over $k$ and $\Omega _{S/k} = 0$. By Lemma <a href="/tag/00TT" data-tag="00TT">10.140.3</a> we see that $\dim _\mathfrak m \mathop{\mathrm{Spec}}(S) = 0$ for every maximal ideal $\mathfrak m$ of $S$. Thus $\dim (S) = 0$. By Proposition <a href="/tag/00KJ" data-tag="00KJ">10.60.7</a> we find that $S$ is a finite product of Artinian local rings. By the already used Lemma <a href="/tag/00TT" data-tag="00TT">10.140.3</a> these local rings are fields. Hence we may assume $S = k'$ is a field. By the Hilbert Nullstellensatz (Theorem <a href="/tag/00FV" data-tag="00FV">10.34.1</a>) we see that the extension $k'/k$ is finite. The smoothness of $k \to k'$ implies by Lemma <a href="/tag/07ND" data-tag="07ND">10.140.9</a> that $k'/k$ is a separable extension and the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00U4">
+  <p><a class="environment-identifier" href="/tag/00U4">Lemma <span data-tag="00U4">10.143.5</span>.</a> Let $R \to S$ be a ring map. Let $\mathfrak q \subset S$ be a prime lying over $\mathfrak p$ in $R$. If $S/R$ is étale at $\mathfrak q$ then </p>
+  <p><ol>
+  <li><p>
+we have $\mathfrak p S_{\mathfrak q} = \mathfrak qS_{\mathfrak q}$ is the maximal ideal of the local ring $S_{\mathfrak q}$, and 
+</p>
+</li><li><p>
+the field extension $\kappa (\mathfrak q)/\kappa (\mathfrak p)$ is finite separable. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      First we may replace $S$ by $S_ g$ for some $g \in S$, $g \not\in \mathfrak q$ and assume that $R \to S$ is étale. Then the lemma follows from Lemma <a href="/tag/00U3" data-tag="00U3">10.143.4</a> by unwinding the fact that $S \otimes _ R \kappa (\mathfrak p)$ is étale over $\kappa (\mathfrak p)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00U5">
+  <p><a class="environment-identifier" href="/tag/00U5">Lemma <span data-tag="00U5">10.143.6</span>.</a> An étale ring map is quasi-finite. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $R \to S$ be an étale ring map. By definition $R \to S$ is of finite type. For any prime $\mathfrak p \subset R$ the fibre ring $S \otimes _ R \kappa (\mathfrak p)$ is étale over $\kappa (\mathfrak p)$ and hence a finite products of fields finite separable over $\kappa (\mathfrak p)$, in particular finite over $\kappa (\mathfrak p)$. Thus $R \to S$ is quasi-finite by Lemma <a href="/tag/00PM" data-tag="00PM">10.122.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00U6">
+  <p><a class="environment-identifier" href="/tag/00U6">Lemma <span data-tag="00U6">10.143.7</span>.</a> Let $R \to S$ be a ring map. Let $\mathfrak q$ be a prime of $S$ lying over a prime $\mathfrak p$ of $R$. If </p>
+  <p><ol>
+  <li><p>
+$R \to S$ is of finite presentation, 
+</p>
+</li><li><p>
+$R_{\mathfrak p} \to S_{\mathfrak q}$ is flat 
+</p>
+</li><li><p>
+$\mathfrak p S_{\mathfrak q}$ is the maximal ideal of the local ring $S_{\mathfrak q}$, and 
+</p>
+</li><li><p>
+the field extension $\kappa (\mathfrak q)/\kappa (\mathfrak p)$ is finite separable, 
+</p>
+</li>
+</ol></p>
+  <p> then $R \to S$ is étale at $\mathfrak q$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Apply Lemma <a href="/tag/00PK" data-tag="00PK">10.122.2</a> to find a $g \in S$, $g \not\in \mathfrak q$ such that $\mathfrak q$ is the only prime of $S_ g$ lying over $\mathfrak p$. We may and do replace $S$ by $S_ g$. Then $S \otimes _ R \kappa (\mathfrak p)$ has a unique prime, hence is a local ring, hence is equal to $S_{\mathfrak q}/\mathfrak pS_{\mathfrak q} \cong \kappa (\mathfrak q)$. By Lemma <a href="/tag/00TF" data-tag="00TF">10.137.16</a> there exists a $g \in S$, $g \not\in \mathfrak q$ such that $R \to S_ g$ is smooth. Replace $S$ by $S_ g$ again we may assume that $R \to S$ is smooth. By Lemma <a href="/tag/00TA" data-tag="00TA">10.137.9</a> we may even assume that $R \to S$ is standard smooth, say $S = R[x_1, \ldots , x_ n]/(f_1, \ldots , f_ c)$. Since $S \otimes _ R \kappa (\mathfrak p) = \kappa (\mathfrak q)$ has dimension $0$ we conclude that $n = c$, i.e., $R \to S$ is étale. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Here is a completely new phenomenon. 
+</p>
+<p>
+<article class="env-lemma" id="00U7">
+  <p><a class="environment-identifier" href="/tag/00U7">Lemma <span data-tag="00U7">10.143.8</span>.</a> Let $R \to S$ and $R \to S'$ be étale. Then any $R$-algebra map $S' \to S$ is étale. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      First of all we note that $S' \to S$ is of finite presentation by Lemma <a href="/tag/00F4" data-tag="00F4">10.6.2</a>. Let $\mathfrak q \subset S$ be a prime ideal lying over the primes $\mathfrak q' \subset S'$ and $\mathfrak p \subset R$. By Lemma <a href="/tag/00U4" data-tag="00U4">10.143.5</a> the ring map $S'_{\mathfrak q'}/\mathfrak p S'_{\mathfrak q'} \to S_{\mathfrak q}/\mathfrak p S_{\mathfrak q}$ is a map of finite separable extensions of $\kappa (\mathfrak p)$. In particular it is flat. Hence by Lemma <a href="/tag/00R7" data-tag="00R7">10.128.8</a> we see that $S'_{\mathfrak q'} \to S_{\mathfrak q}$ is flat. Thus $S' \to S$ is flat. Moreover, the above also shows that $\mathfrak q'S_{\mathfrak q}$ is the maximal ideal of $S_{\mathfrak q}$ and that the residue field extension of $S'_{\mathfrak q'} \to S_{\mathfrak q}$ is finite separable. Hence from Lemma <a href="/tag/00U6" data-tag="00U6">10.143.7</a> we conclude that $S' \to S$ is étale at $\mathfrak q$. Since being étale is local (see Lemma <a href="/tag/00U2" data-tag="00U2">10.143.3</a>) we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00U8">
+  <p><a class="environment-identifier" href="/tag/00U8">Lemma <span data-tag="00U8">10.143.9</span>.</a> Let $\varphi : R \to S$ be a ring map. If $R \to S$ is surjective, flat and finitely presented then there exist an idempotent $e \in R$ such that $S = R_ e$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>First proof.</strong>
+       Let $I$ be the kernel of $\varphi $. We have that $I$ is finitely generated by Lemma <a href="/tag/00R2" data-tag="00R2">10.6.3</a> since $\varphi $ is of finite presentation. Moreover, since $S$ is flat over $R$, tensoring the exact sequence $0 \to I \to R \to S \to 0$ over $R$ with $S$ gives $I/I^2 = 0$. Now we conclude by Lemma <a href="/tag/00EH" data-tag="00EH">10.21.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<article class="env-proof">
+    <p>
+      <strong>Second proof.</strong>
+       Since $\mathop{\mathrm{Spec}}(S) \to \mathop{\mathrm{Spec}}(R)$ is a homeomorphism onto a closed subset (see Lemma <a href="/tag/00E5" data-tag="00E5">10.17.7</a>) and is open (see Proposition <a href="/tag/00I1" data-tag="00I1">10.41.8</a>) we see that the image is $D(e)$ for some idempotent $e \in R$ (see Lemma <a href="/tag/00EE" data-tag="00EE">10.21.3</a>). Thus $R_ e \to S$ induces a bijection on spectra. Now this map induces an isomorphism on all local rings for example by Lemmas <a href="/tag/00NZ" data-tag="00NZ">10.78.5</a> and <a href="/tag/00DV" data-tag="00DV">10.20.1</a>. Then it follows that $R_ e \to S$ is also injective, for example see Lemma <a href="/tag/00HN" data-tag="00HN">10.23.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="04D1">
+       
+      
+  <p><a class="environment-identifier" href="/tag/04D1">Lemma <span data-tag="04D1">10.143.10</span>.</a> Let $R$ be a ring and let $I \subset R$ be an ideal. Let $R/I \to \overline{S}$ be an étale ring map. Then there exists an étale ring map $R \to S$ such that $\overline{S} \cong S/IS$ as $R/I$-algebras. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/00U9" data-tag="00U9">10.143.2</a> we can write $\overline{S} = (R/I)[x_1, \ldots , x_ n]/(\overline{f}_1, \ldots , \overline{f}_ n)$ as in Definition <a href="/tag/00T6" data-tag="00T6">10.137.5</a> with $\overline{\Delta } = \det (\frac{\partial \overline{f}_ i}{\partial x_ j})_{i, j = 1, \ldots , n}$ invertible in $\overline{S}$. Just take some lifts $f_ i$ and set $S = R[x_1, \ldots , x_ n, x_{n+1}]/(f_1, \ldots , f_ n, x_{n + 1}\Delta - 1)$ where $\Delta = \det (\frac{\partial f_ i}{\partial x_ j})_{i, j = 1, \ldots , n}$ as in Example <a href="/tag/00T8" data-tag="00T8">10.137.7</a>. This proves the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="05YT">
+  <p><a class="environment-identifier" href="/tag/05YT">Lemma <span data-tag="05YT">10.143.11</span>.</a> Consider a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ 0 \ar[r] &  J \ar[r] &  B' \ar[r] &  B \ar[r] &  0 \\  0 \ar[r] &  I \ar[r] \ar[u] &  A' \ar[r] \ar[u] &  A \ar[r] \ar[u] &  0 }  \]
+</div>
+  <p> with exact rows where $B' \to B$ and $A' \to A$ are surjective ring maps whose kernels are ideals of square zero. If $A \to B$ is étale, and $J = I \otimes _ A B$, then $A' \to B'$ is étale. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/04D1" data-tag="04D1">10.143.10</a> there exists an étale ring map $A' \to C$ such that $C/IC = B$. Then $A' \to C$ is formally smooth (by Proposition <a href="/tag/00TN" data-tag="00TN">10.138.13</a>) hence we get an $A'$-algebra map $\varphi : C \to B'$. Since $A' \to C$ is flat we have $I \otimes _ A B = I \otimes _ A C/IC = IC$. Hence the assumption that $J = I \otimes _ A B$ implies that $\varphi $ induces an isomorphism $IC \to J$ and an isomorphism $C/IC \to B'/IB'$, whence $\varphi $ is an isomorphism. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-example" id="00UA">
+  <p><a class="environment-identifier" href="/tag/00UA">Example <span data-tag="00UA">10.143.12</span>.</a> Let $n , m \geq 1$ be integers. Consider the ring map </p>
+  <div class="equation">
+  \begin{eqnarray*}  R = \mathbf{Z}[a_1, \ldots , a_{n + m}] &  \longrightarrow &  S = \mathbf{Z}[b_1, \ldots , b_ n, c_1, \ldots , c_ m] \\  a_1 &  \longmapsto &  b_1 + c_1 \\  a_2 &  \longmapsto &  b_2 + b_1 c_1 + c_2 \\  \ldots &  \ldots &  \ldots \\  a_{n + m} &  \longmapsto &  b_ n c_ m \end{eqnarray*}
+</div>
+  <p> of Example <a href="/tag/00SQ" data-tag="00SQ">10.136.7</a>. Write symbolically </p>
+  <div class="equation">
+  \[  S = R[b_1, \ldots , c_ m]/(\{ a_ k(b_ i, c_ j) - a_ k\} _{k = 1, \ldots , n + m})  \]
+</div>
+  <p> where for example $a_1(b_ i, c_ j) = b_1 + c_1$. The matrix of partial derivatives is </p>
+  <div class="equation">
+  \[  \left( \begin{matrix}  1 
+
+&  c_1 
+
+&  \ldots 
+
+&  c_ m 
+
+&  0 
+
+&  \ldots 
+
+&  \ldots 
+
+&  0 
+
+\\  0 
+
+&  1 
+
+&  c_1 
+
+&  \ldots 
+
+&  c_ m 
+
+&  0 
+
+&  \ldots 
+
+&  0 
+
+\\  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+\\  0 
+
+&  \ldots 
+
+&  0 
+
+&  1 
+
+&  c_1 
+
+&  c_2 
+
+&  \ldots 
+
+&  c_ m 
+
+\\  1 
+
+&  b_1 
+
+&  \ldots 
+
+&  b_{n - 1} 
+
+&  b_ n 
+
+&  0 
+
+&  \ldots 
+
+&  0 
+
+\\  0 
+
+&  1 
+
+&  b_1 
+
+&  \ldots 
+
+&  b_{n - 1} 
+
+&  b_ n 
+
+&  \ldots 
+
+&  0 
+
+\\  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+\\  0 
+
+&  \ldots 
+
+&  \ldots 
+
+&  0 
+
+&  1 
+
+&  b_1 
+
+&  \ldots 
+
+&  b_ n 
+
+\end{matrix} \right)  \]
+</div>
+  <p> The determinant $\Delta $ of this matrix is better known as the <em>resultant</em> of the polynomials $g = x^ n + b_1 x^{n - 1} + \ldots + b_ n$ and $h = x^ m + c_1 x^{m - 1} + \ldots + c_ m$, and the matrix above is known as the <em>Sylvester matrix</em> associated to $g, h$. In a formula $\Delta = \text{Res}_ x(g, h)$. The Sylvester matrix is the transpose of the matrix of the linear map </p>
+  <div class="equation">
+  \begin{eqnarray*}  S[x]_{< m} \oplus S[x]_{< n} &  \longrightarrow &  S[x]_{< n + m} \\  a \oplus b &  \longmapsto &  ag + bh \end{eqnarray*}
+</div>
+  <p> Let $\mathfrak q \subset S$ be any prime. By the above the following are equivalent: </p>
+  <p><ol>
+  <li><p>
+$R \to S$ is étale at $\mathfrak q$, 
+</p>
+</li><li><p>
+$\Delta = \text{Res}_ x(g, h) \not\in \mathfrak q$, 
+</p>
+</li><li><p>
+the images $\overline{g}, \overline{h} \in \kappa (\mathfrak q)[x]$ of the polynomials $g, h$ are relatively prime in $\kappa (\mathfrak q)[x]$. 
+</p>
+</li>
+</ol></p>
+  <p> The equivalence of (2) and (3) holds because the image of the Sylvester matrix in $\text{Mat}(n + m, \kappa (\mathfrak q))$ has a kernel if and only if the polynomials $\overline{g}, \overline{h}$ have a factor in common. We conclude that the ring map </p>
+  <div class="equation">
+  \[  R \longrightarrow S[\frac{1}{\Delta }] = S[\frac{1}{\text{Res}_ x(g, h)}]  \]
+</div>
+  <p> is étale. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="00UH">
+  <p><a class="environment-identifier" href="/tag/00UH">Lemma <span data-tag="00UH">10.143.13</span>.</a> Let $R$ be a ring. Let $f \in R[x]$ be a monic polynomial. Let $\mathfrak p$ be a prime of $R$. Let $f \bmod \mathfrak p = \overline{g} \overline{h}$ be a factorization of the image of $f$ in $\kappa (\mathfrak p)[x]$. If $\gcd (\overline{g}, \overline{h}) = 1$, then there exist </p>
+  <p><ol>
+  <li><p>
+an étale ring map $R \to R'$, 
+</p>
+</li><li><p>
+a prime $\mathfrak p' \subset R'$ lying over $\mathfrak p$, and 
+</p>
+</li><li><p>
+a factorization $f = g h$ in $R'[x]$ 
+</p>
+</li>
+</ol></p>
+  <p> such that </p>
+  <p><ol>
+  <li><p>
+$\kappa (\mathfrak p) = \kappa (\mathfrak p')$, 
+</p>
+</li><li><p>
+$\overline{g} = g \bmod \mathfrak p'$, $\overline{h} = h \bmod \mathfrak p'$, and 
+</p>
+</li><li><p>
+the polynomials $g, h$ generate the unit ideal in $R'[x]$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose $\overline{g} = \overline{b}_0 x^ n + \overline{b}_1 x^{n - 1} + \ldots + \overline{b}_ n$, and $\overline{h} = \overline{c}_0 x^ m + \overline{c}_1 x^{m - 1} + \ldots + \overline{c}_ m$ with $\overline{b}_0, \overline{c}_0 \in \kappa (\mathfrak p)$ nonzero. After localizing $R$ at some element of $R$ not contained in $\mathfrak p$ we may assume $\overline{b}_0$ is the image of an invertible element $b_0 \in R$. Replacing $\overline{g}$ by $\overline{g}/b_0$ and $\overline{h}$ by $b_0\overline{h}$ we reduce to the case where $\overline{g}$, $\overline{h}$ are monic (verification omitted). Say $\overline{g} = x^ n + \overline{b}_1 x^{n - 1} + \ldots + \overline{b}_ n$, and $\overline{h} = x^ m + \overline{c}_1 x^{m - 1} + \ldots + \overline{c}_ m$. Write $f = x^{n + m} + a_1 x^{n + m - 1} + \ldots + a_{n + m}$. Consider the fibre product 
+    <p>
+      <div class="equation">
+  \[  R' = R \otimes _{\mathbf{Z}[a_1, \ldots , a_{n + m}]} \mathbf{Z}[b_1, \ldots , b_ n, c_1, \ldots , c_ m]  \]
+</div>
+    <p>
+       where the map $\mathbf{Z}[a_ k] \to \mathbf{Z}[b_ i, c_ j]$ is as in Examples <a href="/tag/00SQ" data-tag="00SQ">10.136.7</a> and <a href="/tag/00UA" data-tag="00UA">10.143.12</a>. By construction there is an $R$-algebra map 
+    <p>
+      <div class="equation">
+  \[  R' = R \otimes _{\mathbf{Z}[a_1, \ldots , a_{n + m}]} \mathbf{Z}[b_1, \ldots , b_ n, c_1, \ldots , c_ m] \longrightarrow \kappa (\mathfrak p)  \]
+</div>
+    <p>
+       which maps $b_ i$ to $\overline{b}_ i$ and $c_ j$ to $\overline{c}_ j$. Denote $\mathfrak p' \subset R'$ the kernel of this map. Since by assumption the polynomials $\overline{g}, \overline{h}$ are relatively prime we see that the element $\Delta = \text{Res}_ x(g, h) \in \mathbf{Z}[b_ i, c_ j]$ (see Example <a href="/tag/00UA" data-tag="00UA">10.143.12</a>) does not map to zero in $\kappa (\mathfrak p)$ under the displayed map. We conclude that $R \to R'$ is étale at $\mathfrak p'$. In fact a solution to the problem posed in the lemma is the ring map $R \to R'[1/\Delta ]$ and the prime $\mathfrak p' R'[1/\Delta ]$. Because $\text{Res}_ x(f, g)$ is invertible in this ring the Sylvester matrix is invertible over $R'[1/\Delta ]$ and hence $1 = a g + b h$ for some $a, b \in R'[1/\Delta ][x]$ see Example <a href="/tag/00UA" data-tag="00UA">10.143.12</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

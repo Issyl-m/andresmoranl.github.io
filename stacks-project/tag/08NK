@@ -1,0 +1,149 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="simplicial-section-trivial-kan" class="tex-section"><span data-tag="08NK">14.30</span> Trivial Kan fibrations</h2>
+
+<p>
+Recall that for $n \geq 0$ the simplicial set $\Delta [n]$ is given by the rule $[k] \mapsto \mathop{\mathrm{Mor}}\nolimits _\Delta ([k], [n])$, see Example <a href="/tag/0176" data-tag="0176">14.11.2</a>. Recall that $\Delta [n]$ has a unique nondegenerate $n$-simplex and all nondegenerate simplices are faces of this $n$-simplex. In fact, the nondegenerate simplices of $\Delta [n]$ correspond exactly to injective morphisms $[k] \to [n]$, which we may identify with subsets of $[n]$. Moreover, recall that $\mathop{\mathrm{Mor}}\nolimits (\Delta [n], X) = X_ n$ for any simplicial set $X$ (Lemma <a href="/tag/0177" data-tag="0177">14.11.3</a>). We set 
+</p>
+<div class="equation">
+  \[  \partial \Delta [n] = i_{(n - 1)!}\text{sk}_{n - 1}\Delta [n]  \]
+</div>
+<p>
+ and we call it the <em>boundary</em> of $\Delta [n]$. From Lemma <a href="/tag/018P" data-tag="018P">14.21.5</a> we see that $\partial \Delta [n] \subset \Delta [n]$ is the simplicial subset having the same nondegenerate simplices in degrees $\leq n - 1$ but not containing the nondegenerate $n$-simplex. 
+</p>
+<p>
+<article class="env-definition" id="08NL">
+  <p><a class="environment-identifier" href="/tag/08NL">Definition <span data-tag="08NL">14.30.1</span>.</a> A map $X \to Y$ of simplicial sets is called a <em>trivial Kan fibration</em> if $X_0 \to Y_0$ is surjective and for all $n \geq 1$ and any commutative solid diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ \partial \Delta [n] \ar[r] \ar[d] &  X \ar[d] \\  \Delta [n] \ar[r] \ar@{-->}[ru] &  Y }  \]
+</div>
+  <p> a dotted arrow exists making the diagram commute. </p>
+</article> 
+</p>
+<p>
+A trivial Kan fibration satisfies a very general lifting property. 
+</p>
+<p>
+<article class="env-lemma" id="08NM">
+  <p><a class="environment-identifier" href="/tag/08NM">Lemma <span data-tag="08NM">14.30.2</span>.</a> Let $f : X \to Y$ be a trivial Kan fibration of simplicial sets. For any solid commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ Z \ar[r]_ b \ar[d] &  X \ar[d] \\  W \ar[r]^ a \ar@{-->}[ru] &  Y }  \]
+</div>
+  <p> of simplicial sets with $Z \to W$ (termwise) injective a dotted arrow exists making the diagram commute. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose that $Z \not= W$. Let $n$ be the smallest integer such that $Z_ n \not= W_ n$. Let $x \in W_ n$, $x \not\in Z_ n$. Denote $Z' \subset W$ the simplicial subset containing $Z$, $x$, and all degeneracies of $x$. Let $\varphi : \Delta [n] \to Z'$ be the morphism corresponding to $x$ (Lemma <a href="/tag/0177" data-tag="0177">14.11.3</a>). Then $\varphi |_{\partial \Delta [n]}$ maps into $Z$ as all the nondegenerate simplices of $\partial \Delta [n]$ end up in $Z$. By assumption we can extend $b \circ \varphi |_{\partial \Delta [n]}$ to $\beta : \Delta [n] \to X$. By Lemma <a href="/tag/018R" data-tag="018R">14.21.7</a> the simplicial set $Z'$ is the pushout of $\Delta [n]$ and $Z$ along $\partial \Delta [n]$. Hence $b$ and $\beta $ define a morphism $b' : Z' \to X$. In other words, we have extended the morphism $b$ to a bigger simplicial subset of $Z$. 
+    <p>
+      The proof is finished by an application of Zorn's lemma (omitted). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08NN">
+  <p><a class="environment-identifier" href="/tag/08NN">Lemma <span data-tag="08NN">14.30.3</span>.</a> Let $f : X \to Y$ be a trivial Kan fibration of simplicial sets. Let $Y' \to Y$ be a morphism of simplicial sets. Then $X \times _ Y Y' \to Y'$ is a trivial Kan fibration. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows immediately from the functorial properties of the fibre product (Lemma <a href="/tag/016U" data-tag="016U">14.7.2</a>) and the definitions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08NP">
+  <p><a class="environment-identifier" href="/tag/08NP">Lemma <span data-tag="08NP">14.30.4</span>.</a> The composition of two trivial Kan fibrations is a trivial Kan fibration. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08NQ">
+  <p><a class="environment-identifier" href="/tag/08NQ">Lemma <span data-tag="08NQ">14.30.5</span>.</a> Let $\ldots \to U^2 \to U^1 \to U^0$ be a sequence of trivial Kan fibrations. Let $U = \mathop{\mathrm{lim}}\nolimits U^ t$ defined by taking $U_ n = \mathop{\mathrm{lim}}\nolimits U_ n^ t$. Then $U \to U^0$ is a trivial Kan fibration. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. Hint: use that for a countable sequence of surjections of sets the inverse limit is nonempty. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08NR">
+       
+      
+  <p><a class="environment-identifier" href="/tag/08NR">Lemma <span data-tag="08NR">14.30.6</span>.</a> Let $X_ i \to Y_ i$ be a set of trivial Kan fibrations. Then $\prod X_ i \to \prod Y_ i$ is a trivial Kan fibration. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08Q5">
+  <p><a class="environment-identifier" href="/tag/08Q5">Lemma <span data-tag="08Q5">14.30.7</span>.</a> A filtered colimit of trivial Kan fibrations is a trivial Kan fibration. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. Hint: See description of filtered colimits of sets in Categories, Section <a href="/tag/04AX" data-tag="04AX">4.19</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08NS">
+  <p><a class="environment-identifier" href="/tag/08NS">Lemma <span data-tag="08NS">14.30.8</span>.</a> Let $f : X \to Y$ be a trivial Kan fibration of simplicial sets. Then $f$ is a homotopy equivalence. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/08NM" data-tag="08NM">14.30.2</a> we can choose an right inverse $g : Y \to X$ to $f$. Consider the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \partial \Delta [1] \times X \ar[d] \ar[r] &  X \ar[d] \\  \Delta [1] \times X \ar[r] \ar@{-->}[ru] &  Y }  \]
+</div>
+    <p>
+       Here the top horizontal arrow is given by $\text{id}_ X$ and $g \circ f$ where we use that $(\partial \Delta [1] \times X)_ n = X_ n \amalg X_ n$ for all $n \geq 0$. The bottom horizontal arrow is given by the map $\Delta [1] \to \Delta [0]$ and $f : X \to Y$. The diagram commutes as $f \circ g \circ f = f$. By Lemma <a href="/tag/08NM" data-tag="08NM">14.30.2</a> we can fill in the dotted arrow and we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

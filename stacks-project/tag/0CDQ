@@ -1,0 +1,175 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="descent-section-galois-descent" class="tex-section"><span data-tag="0CDQ">35.6</span> Galois descent for quasi-coherent sheaves</h2>
+
+<p>
+Galois descent for quasi-coherent sheaves is just a special case of fpqc descent for quasi-coherent sheaves. In this section we will explain how to translate from a Galois descent to an fpqc descent and then apply earlier results to conclude. 
+</p>
+<p>
+Let $k'/k$ be a field extension. Then $\{ \mathop{\mathrm{Spec}}(k') \to \mathop{\mathrm{Spec}}(k)\} $ is an fpqc covering. Let $X$ be a scheme over $k$. For a $k$-algebra $A$ we set $X_ A = X \times _{\mathop{\mathrm{Spec}}(k)} \mathop{\mathrm{Spec}}(A)$. By Topologies, Lemma <a href="/tag/022D" data-tag="022D">34.9.8</a> we see that $\{ X_{k'} \to X\} $ is an fpqc covering. Observe that 
+</p>
+<div class="equation">
+  \[  X_{k'} \times _ X X_{k'} = X_{k' \otimes _ k k'} \quad \text{and}\quad X_{k'} \times _ X X_{k'} \times _ X X_{k'} = X_{k' \otimes _ k k' \otimes _ k k'}  \]
+</div>
+<p>
+ Thus a descent datum for quasi-coherent sheaves with respect to $\{ X_{k'} \to X\} $ is given by a quasi-coherent sheaf $\mathcal{F}$ on $X_{k'}$, an isomorphism $\varphi : \text{pr}_0^*\mathcal{F} \to \text{pr}_1^*\mathcal{F}$ on $X_{k' \otimes _ k k'}$ which satisfies an obvious cocycle condition on $X_{k' \otimes _ k k' \otimes _ k k'}$. We will work out what this means in the case of a Galois extension below. 
+</p>
+<p>
+Let $k'/k$ be a finite Galois extension with Galois group $G = \text{Gal}(k'/k)$. Then there are $k$-algebra isomorphisms 
+</p>
+<div class="equation">
+  \[  k' \otimes _ k k' \longrightarrow \prod \nolimits _{\sigma \in G} k',\quad a \otimes b \longrightarrow \prod a\sigma (b)  \]
+</div>
+<p>
+ and 
+</p>
+<div class="equation">
+  \[  k' \otimes _ k k' \otimes _ k k' \longrightarrow \prod \nolimits _{(\sigma , \tau ) \in G \times G} k',\quad a \otimes b \otimes c \longrightarrow \prod a\sigma (b)\sigma (\tau (c))  \]
+</div>
+<p>
+ The reason for choosing here $a\sigma (b)\sigma (\tau (c))$ and not $a\sigma (b)\tau (c)$ is that the formulas below simplify but it isn't strictly necessary. Given $\sigma \in G$ we denote 
+</p>
+<div class="equation">
+  \[  f_\sigma = \text{id}_ X \times \mathop{\mathrm{Spec}}(\sigma ) : X_{k'} \longrightarrow X_{k'}  \]
+</div>
+<p>
+ Please keep in mind that because $\mathop{\mathrm{Spec}}(-)$ is a contravariant functor we have $f_{\sigma \tau } = f_\tau \circ f_\sigma $ and not the other way around. Using the first isomorphism above we obtain an identification 
+</p>
+<div class="equation">
+  \[  X_{k' \otimes _ k k'} = \coprod \nolimits _{\sigma \in G} X_{k'}  \]
+</div>
+<p>
+ such that $\text{pr}_0$ corresponds to the map 
+</p>
+<div class="equation">
+  \[  \coprod \nolimits _{\sigma \in G} X_{k'} \xrightarrow {\coprod \text{id}} X_{k'}  \]
+</div>
+<p>
+ and such that $\text{pr}_1$ corresponds to the map 
+</p>
+<div class="equation">
+  \[  \coprod \nolimits _{\sigma \in G} X_{k'} \xrightarrow {\coprod f_\sigma } X_{k'}  \]
+</div>
+<p>
+ Thus we see that a descent datum $\varphi $ on $\mathcal{F}$ over $X_{k'}$ corresponds to a family of isomorphisms $\varphi _\sigma : \mathcal{F} \to f_\sigma ^*\mathcal{F}$. To work out the cocycle condition we use the identification 
+</p>
+<div class="equation">
+  \[  X_{k' \otimes _ k k' \otimes _ k k'} = \coprod \nolimits _{(\sigma , \tau ) \in G \times G} X_{k'}.  \]
+</div>
+<p>
+ we get from our isomorphism of algebras above. Via this identification the map $\text{pr}_{01}$ corresponds to the map 
+</p>
+<div class="equation">
+  \[  \coprod \nolimits _{(\sigma , \tau ) \in G \times G} X_{k'} \longrightarrow \coprod \nolimits _{\sigma \in G} X_{k'}  \]
+</div>
+<p>
+ which maps the summand with index $(\sigma , \tau )$ to the summand with index $\sigma $ via the identity morphism. The map $\text{pr}_{12}$ corresponds to the map 
+</p>
+<div class="equation">
+  \[  \coprod \nolimits _{(\sigma , \tau ) \in G \times G} X_{k'} \longrightarrow \coprod \nolimits _{\sigma \in G} X_{k'}  \]
+</div>
+<p>
+ which maps the summand with index $(\sigma , \tau )$ to the summand with index $\tau $ via the morphism $f_\sigma $. Finally, the map $\text{pr}_{02}$ corresponds to the map 
+</p>
+<div class="equation">
+  \[  \coprod \nolimits _{(\sigma , \tau ) \in G \times G} X_{k'} \longrightarrow \coprod \nolimits _{\sigma \in G} X_{k'}  \]
+</div>
+<p>
+ which maps the summand with index $(\sigma , \tau )$ to the summand with index $\sigma \tau $ via the identity morphism. Thus the cocycle condition 
+</p>
+<div class="equation">
+  \[  \text{pr}_{02}^*\varphi = \text{pr}_{12}^*\varphi \circ \text{pr}_{01}^*\varphi  \]
+</div>
+<p>
+ translates into one condition for each pair $(\sigma , \tau )$, namely 
+</p>
+<div class="equation">
+  \[  \varphi _{\sigma \tau } = f_\sigma ^*\varphi _\tau \circ \varphi _\sigma  \]
+</div>
+<p>
+ as maps $\mathcal{F} \to f_{\sigma \tau }^*\mathcal{F}$. (Everything works out beautifully; for example the target of $\varphi _\sigma $ is $f_\sigma ^*\mathcal{F}$ and the source of $f_\sigma ^*\varphi _\tau $ is $f_\sigma ^*\mathcal{F}$ as well.) 
+</p>
+<p>
+<article class="env-lemma" id="0CDR">
+  <p><a class="environment-identifier" href="/tag/0CDR">Lemma <span data-tag="0CDR">35.6.1</span>.</a> Let $k'/k$ be a (finite) Galois extension with Galois group $G$. Let $X$ be a scheme over $k$. The category of quasi-coherent $\mathcal{O}_ X$-modules is equivalent to the category of systems $(\mathcal{F}, (\varphi _\sigma )_{\sigma \in G})$ where </p>
+  <p><ol>
+  <li><p>
+$\mathcal{F}$ is a quasi-coherent module on $X_{k'}$, 
+</p>
+</li><li><p>
+$\varphi _\sigma : \mathcal{F} \to f_\sigma ^*\mathcal{F}$ is an isomorphism of modules, 
+</p>
+</li><li><p>
+$\varphi _{\sigma \tau } = f_\sigma ^*\varphi _\tau \circ \varphi _\sigma $ for all $\sigma , \tau \in G$. 
+</p>
+</li>
+</ol></p>
+  <p> Here $f_\sigma = \text{id}_ X \times \mathop{\mathrm{Spec}}(\sigma ) : X_{k'} \to X_{k'}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      As seen above a datum $(\mathcal{F}, (\varphi _\sigma )_{\sigma \in G})$ as in the lemma is the same thing as a descent datum for the fpqc covering $\{ X_{k'} \to X\} $. Thus the lemma follows from Proposition <a href="/tag/023T" data-tag="023T">35.5.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+A slightly more general case of the above is the following. Suppose we have a surjective finite étale morphism $X \to Y$ and a finite group $G$ together with a group homomorphism $G^{opp} \to \text{Aut}_ Y(X), \sigma \mapsto f_\sigma $ such that the map 
+</p>
+<div class="equation">
+  \[  G \times X \longrightarrow X \times _ Y X,\quad (\sigma , x) \longmapsto (x, f_\sigma (x))  \]
+</div>
+<p>
+ is an isomorphism. Then the same result as above holds. 
+</p>
+<p>
+<article class="env-lemma" id="0D1V">
+  <p><a class="environment-identifier" href="/tag/0D1V">Lemma <span data-tag="0D1V">35.6.2</span>.</a> Let $X \to Y$, $G$, and $f_\sigma : X \to X$ be as above. The category of quasi-coherent $\mathcal{O}_ Y$-modules is equivalent to the category of systems $(\mathcal{F}, (\varphi _\sigma )_{\sigma \in G})$ where </p>
+  <p><ol>
+  <li><p>
+$\mathcal{F}$ is a quasi-coherent $\mathcal{O}_ X$-module, 
+</p>
+</li><li><p>
+$\varphi _\sigma : \mathcal{F} \to f_\sigma ^*\mathcal{F}$ is an isomorphism of modules, 
+</p>
+</li><li><p>
+$\varphi _{\sigma \tau } = f_\sigma ^*\varphi _\tau \circ \varphi _\sigma $ for all $\sigma , \tau \in G$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $X \to Y$ is surjective finite étale $\{ X \to Y\} $ is an fpqc covering. Since $G \times X \to X \times _ Y X$, $(\sigma , x) \mapsto (x, f_\sigma (x))$ is an isomorphism, we see that $G \times G \times X \to X \times _ Y X \times _ Y X$, $(\sigma , \tau , x) \mapsto (x, f_\sigma (x), f_{\sigma \tau }(x))$ is an isomorphism too. Using these identifications, the category of data as in the lemma is the same as the category of descent data for quasi-coherent sheaves for the covering $\{ x \to Y\} $. Thus the lemma follows from Proposition <a href="/tag/023T" data-tag="023T">35.5.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

@@ -1,0 +1,222 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="algebra-section-depth" class="tex-section"><span data-tag="00LE">10.72</span> Depth</h2>
+
+<p>
+Here is our definition. 
+</p>
+<p>
+<article class="env-definition" id="00LI">
+  <p><a class="environment-identifier" href="/tag/00LI">Definition <span data-tag="00LI">10.72.1</span>.</a> Let $R$ be a ring, and $I \subset R$ an ideal. Let $M$ be a finite $R$-module. The <em>$I$-depth</em> of $M$, denoted $\text{depth}_ I(M)$, is defined as follows: </p>
+  <p><ol>
+  <li><p>
+if $IM \not= M$, then $\text{depth}_ I(M)$ is the supremum in $\{ 0, 1, 2, \ldots , \infty \} $ of the lengths of $M$-regular sequences in $I$, 
+</p>
+</li><li><p>
+if $IM = M$ we set $\text{depth}_ I(M) = \infty $. 
+</p>
+</li>
+</ol></p>
+  <p> If $(R, \mathfrak m)$ is local we call $\text{depth}_{\mathfrak m}(M)$ simply the <em>depth</em> of $M$. </p>
+</article> 
+</p>
+<p>
+Explanation. By Definition <a href="/tag/00LF" data-tag="00LF">10.68.1</a> the empty sequence is not a regular sequence on the zero module, but for practical purposes it turns out to be convenient to set the depth of the $0$ module equal to $+\infty $. Note that if $I = R$, then $\text{depth}_ I(M) = \infty $ for all finite $R$-modules $M$. If $I$ is contained in the Jacobson radical of $R$ (e.g., if $R$ is local and $I \subset \mathfrak m_ R$), then $M \not= 0 \Rightarrow IM \not= M$ by Nakayama's lemma. A module $M$ has $I$-depth $0$ if and only if $M$ is nonzero and $I$ does not contain a nonzerodivisor on $M$. 
+</p>
+<p>
+Example <a href="/tag/00LG" data-tag="00LG">10.68.2</a> shows depth does not behave well even if the ring is Noetherian, and Example <a href="/tag/00LH" data-tag="00LH">10.68.3</a> shows that it does not behave well if the ring is local but non-Noetherian. We will see depth behaves well if the ring is local Noetherian. 
+</p>
+<p>
+<article class="env-lemma" id="0AUI">
+  <p><a class="environment-identifier" href="/tag/0AUI">Lemma <span data-tag="0AUI">10.72.2</span>.</a> Let $R$ be a ring, $I \subset R$ an ideal, and $M$ a finite $R$-module. Then $\text{depth}_ I(M)$ is equal to the supremum of the lengths of sequences $f_1, \ldots , f_ r \in I$ such that $f_ i$ is a nonzerodivisor on $M/(f_1, \ldots , f_{i - 1})M$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose that $IM = M$. Then Lemma <a href="/tag/00DV" data-tag="00DV">10.20.1</a> shows there exists an $f \in I$ such that $f : M \to M$ is $\text{id}_ M$. Hence $f, 0, 0, 0, \ldots $ is an infinite sequence of successive nonzerodivisors and we see agreement holds in this case. If $IM \not= M$, then we see that a sequence as in the lemma is an $M$-regular sequence and we conclude that agreement holds as well. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00LK">
+  <p><a class="environment-identifier" href="/tag/00LK">Lemma <span data-tag="00LK">10.72.3</span>.</a> Let $(R, \mathfrak m)$ be a Noetherian local ring. Let $M$ be a nonzero finite $R$-module. Then $\dim (\text{Supp}(M)) \geq \text{depth}(M)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The proof is by induction on $\dim (\text{Supp}(M))$. If $\dim (\text{Supp}(M)) = 0$, then $\text{Supp}(M) = \{ \mathfrak m\} $, whence $\text{Ass}(M) = \{ \mathfrak m\} $ (by Lemmas <a href="/tag/0586" data-tag="0586">10.63.2</a> and <a href="/tag/0587" data-tag="0587">10.63.7</a>), and hence the depth of $M$ is zero for example by Lemma <a href="/tag/00LL" data-tag="00LL">10.63.18</a>. For the induction step we assume $\dim (\text{Supp}(M)) > 0$. Let $f_1, \ldots , f_ d$ be a sequence of elements of $\mathfrak m$ such that $f_ i$ is a nonzerodivisor on $M/(f_1, \ldots , f_{i - 1})M$. According to Lemma <a href="/tag/0AUI" data-tag="0AUI">10.72.2</a> it suffices to prove $\dim (\text{Supp}(M)) \geq d$. We may assume $d > 0$ otherwise the lemma holds. By Lemma <a href="/tag/0B52" data-tag="0B52">10.63.10</a> we have $\dim (\text{Supp}(M/f_1M)) = \dim (\text{Supp}(M)) - 1$. By induction we conclude $\dim (\text{Supp}(M/f_1M)) \geq d - 1$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AUJ">
+  <p><a class="environment-identifier" href="/tag/0AUJ">Lemma <span data-tag="0AUJ">10.72.4</span>.</a> Let $R$ be a Noetherian ring, $I \subset R$ an ideal, and $M$ a finite nonzero $R$-module such that $IM \not= M$. Then $\text{depth}_ I(M) < \infty $. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $M/IM$ is nonzero we can choose $\mathfrak p \in \text{Supp}(M/IM)$ by Lemma <a href="/tag/0585" data-tag="0585">10.40.2</a>. Then $(M/IM)_\mathfrak p \not= 0$ which implies $I \subset \mathfrak p$ and moreover implies $M_\mathfrak p \not= IM_\mathfrak p$ as localization is exact. Let $f_1, \ldots , f_ r \in I$ be an $M$-regular sequence. Then $M_\mathfrak p/(f_1, \ldots , f_ r)M_\mathfrak p$ is nonzero as $(f_1, \ldots , f_ r) \subset I$. As localization is flat we see that the images of $f_1, \ldots , f_ r$ form a $M_\mathfrak p$-regular sequence in $I_\mathfrak p$. Since this works for every $M$-regular sequence in $I$ we conclude that $\text{depth}_ I(M) \leq \text{depth}_{I_\mathfrak p}(M_\mathfrak p)$. The latter is $\leq \text{depth}(M_\mathfrak p)$ which is $< \infty $ by Lemma <a href="/tag/00LK" data-tag="00LK">10.72.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00LW">
+  <p><a class="environment-identifier" href="/tag/00LW">Lemma <span data-tag="00LW">10.72.5</span>.</a> Let $R$ be a Noetherian local ring with maximal ideal $\mathfrak m$. Let $M$ be a nonzero finite $R$-module. Then $\text{depth}(M)$ is equal to the smallest integer $i$ such that $\mathop{\mathrm{Ext}}\nolimits ^ i_ R(R/\mathfrak m, M)$ is nonzero. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\delta (M)$ denote the depth of $M$ and let $i(M)$ denote the smallest integer $i$ such that $\mathop{\mathrm{Ext}}\nolimits ^ i_ R(R/\mathfrak m, M)$ is nonzero. We will see in a moment that $i(M) < \infty $. By Lemma <a href="/tag/00LL" data-tag="00LL">10.63.18</a> we have $\delta (M) = 0$ if and only if $i(M) = 0$, because $\mathfrak m \in \text{Ass}(M)$ exactly means that $i(M) = 0$. Hence if $\delta (M)$ or $i(M)$ is $> 0$, then we may choose $x \in \mathfrak m$ such that (a) $x$ is a nonzerodivisor on $M$, and (b) $\text{depth}(M/xM) = \delta (M) - 1$. Consider the long exact sequence of Ext-groups associated to the short exact sequence $0 \to M \to M \to M/xM \to 0$ by Lemma <a href="/tag/00LU" data-tag="00LU">10.71.6</a>: 
+    <p>
+      <div class="equation">
+  \[  \begin{matrix}  0 \to \mathop{\mathrm{Hom}}\nolimits _ R(\kappa , M) \to \mathop{\mathrm{Hom}}\nolimits _ R(\kappa , M) \to \mathop{\mathrm{Hom}}\nolimits _ R(\kappa , M/xM) 
+
+\\  \phantom{0\  } \to \mathop{\mathrm{Ext}}\nolimits ^1_ R(\kappa , M) \to \mathop{\mathrm{Ext}}\nolimits ^1_ R(\kappa , M) \to \mathop{\mathrm{Ext}}\nolimits ^1_ R(\kappa , M/xM) \to \ldots 
+
+\end{matrix}  \]
+</div>
+    <p>
+       Since $x \in \mathfrak m$ all the maps $\mathop{\mathrm{Ext}}\nolimits ^ i_ R(\kappa , M) \to \mathop{\mathrm{Ext}}\nolimits ^ i_ R(\kappa , M)$ are zero, see Lemma <a href="/tag/00LV" data-tag="00LV">10.71.8</a>. Thus it is clear that $i(M/xM) = i(M) - 1$. Induction on $\delta (M)$ finishes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="00LX">
+  <p><a class="environment-identifier" href="/tag/00LX">Lemma <span data-tag="00LX">10.72.6</span>.</a> Let $R$ be a local Noetherian ring. Let $0 \to N' \to N \to N'' \to 0$ be a short exact sequence of nonzero finite $R$-modules. </p>
+  <p><ol>
+  <li><p>
+$\text{depth}(N) \geq \min \{ \text{depth}(N'), \text{depth}(N'')\} $ 
+</p>
+</li><li><p>
+$\text{depth}(N'') \geq \min \{ \text{depth}(N), \text{depth}(N') - 1\} $ 
+</p>
+</li><li><p>
+$\text{depth}(N') \geq \min \{ \text{depth}(N), \text{depth}(N'') + 1\} $ 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Use the characterization of depth using the Ext groups $\mathop{\mathrm{Ext}}\nolimits ^ i(\kappa , N)$, see Lemma <a href="/tag/00LW" data-tag="00LW">10.72.5</a>, and use the long exact cohomology sequence 
+    <p>
+      <div class="equation">
+  \[  \begin{matrix}  0 \to \mathop{\mathrm{Hom}}\nolimits _ R(\kappa , N') \to \mathop{\mathrm{Hom}}\nolimits _ R(\kappa , N) \to \mathop{\mathrm{Hom}}\nolimits _ R(\kappa , N'') 
+
+\\  \phantom{0\  } \to \mathop{\mathrm{Ext}}\nolimits ^1_ R(\kappa , N') \to \mathop{\mathrm{Ext}}\nolimits ^1_ R(\kappa , N) \to \mathop{\mathrm{Ext}}\nolimits ^1_ R(\kappa , N'') \to \ldots 
+
+\end{matrix}  \]
+</div>
+    <p>
+       from Lemma <a href="/tag/00LU" data-tag="00LU">10.71.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="090R">
+  <p><a class="environment-identifier" href="/tag/090R">Lemma <span data-tag="090R">10.72.7</span>.</a> Let $R$ be a local Noetherian ring and $M$ a nonzero finite $R$-module. </p>
+  <p><ol>
+  <li><p>
+If $x \in \mathfrak m$ is a nonzerodivisor on $M$, then $\text{depth}(M/xM) = \text{depth}(M) - 1$. 
+</p>
+</li><li><p>
+Any $M$-regular sequence $x_1, \ldots , x_ r$ can be extended to an $M$-regular sequence of length $\text{depth}(M)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Part (2) is a formal consequence of part (1). Let $x \in R$ be as in (1). By the short exact sequence $0 \to M \to M \to M/xM \to 0$ and Lemma <a href="/tag/00LX" data-tag="00LX">10.72.6</a> we see that the depth drops by at most 1. On the other hand, if $x_1, \ldots , x_ r \in \mathfrak m$ is a regular sequence for $M/xM$, then $x, x_1, \ldots , x_ r$ is a regular sequence for $M$. Hence we see that the depth drops by at least 1. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CN5">
+  <p><a class="environment-identifier" href="/tag/0CN5">Lemma <span data-tag="0CN5">10.72.8</span>.</a> Let $(R, \mathfrak m)$ be a local Noetherian ring and $M$ a finite $R$-module. Let $x \in \mathfrak m$, $\mathfrak p \in \text{Ass}(M)$, and $\mathfrak q$ minimal over $\mathfrak p + (x)$. Then $\mathfrak q \in \text{Ass}(M/x^ nM)$ for some $n \geq 1$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Pick a submodule $N \subset M$ with $N \cong R/\mathfrak p$. By the Artin-Rees lemma (Lemma <a href="/tag/00IN" data-tag="00IN">10.51.2</a>) we can pick $n > 0$ such that $N \cap x^ nM \subset xN$. Let $\overline{N} \subset M/x^ nM$ be the image of $N \to M \to M/x^ nM$. By Lemma <a href="/tag/02M3" data-tag="02M3">10.63.3</a> it suffices to show $\mathfrak q \in \text{Ass}(\overline{N})$. By our choice of $n$ there is a surjection $\overline{N} \to N/xN = R/\mathfrak p + (x)$ and hence $\mathfrak q$ is in the support of $\overline{N}$. Since $\overline{N}$ is annihilated by $x^ n$ and $\mathfrak p$ we see that $\mathfrak q$ is minimal among the primes in the support of $\overline{N}$. Thus $\mathfrak q$ is an associated prime of $\overline{N}$ by Lemma <a href="/tag/05BV" data-tag="05BV">10.63.8</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0BK4">
+  <p><a class="environment-identifier" href="/tag/0BK4">Lemma <span data-tag="0BK4">10.72.9</span>.</a> Let $(R, \mathfrak m)$ be a local Noetherian ring and $M$ a finite $R$-module. For $\mathfrak p \in \text{Ass}(M)$ we have $\dim (R/\mathfrak p) \geq \text{depth}(M)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $\mathfrak m \in \text{Ass}(M)$ then there is a nonzero element $x \in M$ which is annihilated by all elements of $\mathfrak m$. Thus $\text{depth}(M) = 0$. In particular the lemma holds in this case. 
+    <p>
+      If $\text{depth}(M) = 1$, then by the first paragraph we find that $\mathfrak m \not\in \text{Ass}(M)$. Hence $\dim (R/\mathfrak p) \geq 1$ for all $\mathfrak p \in \text{Ass}(M)$ and the lemma is true in this case as well. 
+    <p>
+      We will prove the lemma in general by induction on $\text{depth}(M)$ which we may and do assume to be $> 1$. Pick $x \in \mathfrak m$ which is a nonzerodivisor on $M$. Note $x \not\in \mathfrak p$ (Lemma <a href="/tag/00LD" data-tag="00LD">10.63.9</a>). By Lemma <a href="/tag/00KW" data-tag="00KW">10.60.13</a> we have $\dim (R/\mathfrak p + (x)) = \dim (R/\mathfrak p) - 1$. Thus there exists a prime $\mathfrak q$ minimal over $\mathfrak p + (x)$ with $\dim (R/\mathfrak q) = \dim (R/\mathfrak p) - 1$ (small argument omitted; hint: the dimension of a Noetherian local ring $A$ is the maximum of the dimensions of $A/\mathfrak r$ taken over the minimal primes $\mathfrak r$ of $A$). Pick $n$ as in Lemma <a href="/tag/0CN5" data-tag="0CN5">10.72.8</a> so that $\mathfrak q$ is an associated prime of $M/x^ nM$. We may apply induction hypothesis to $M/x^ nM$ and $\mathfrak q$ because $\text{depth}(M/x^ nM) = \text{depth}(M) - 1$ by Lemma <a href="/tag/090R" data-tag="090R">10.72.7</a>. We find $\dim (R/\mathfrak q) \geq \text{depth}(M/x^ nM)$ and we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0FCC">
+  <p><a class="environment-identifier" href="/tag/0FCC">Lemma <span data-tag="0FCC">10.72.10</span>.</a> Let $R$ be a local Noetherian ring and $M$ a finite $R$-module. For a prime ideal $\mathfrak p \subset R$ we have $\text{depth}(M_\mathfrak p) + \dim (R/\mathfrak p) \geq \text{depth}(M)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $M_\mathfrak p = 0$, then $\text{depth}(M_\mathfrak p) = \infty $ and the lemma holds. If $\text{depth}(M) \leq \dim (R/\mathfrak p)$, then the lemma is true. If $\text{depth}(M) > \dim (R/\mathfrak p)$, then $\mathfrak p$ is not contained in any associated prime $\mathfrak q$ of $M$ by Lemma <a href="/tag/0BK4" data-tag="0BK4">10.72.9</a>. Hence we can find an $x \in \mathfrak p$ not contained in any associated prime of $M$ by Lemma <a href="/tag/00DS" data-tag="00DS">10.15.2</a> and Lemma <a href="/tag/00LC" data-tag="00LC">10.63.5</a>. Then $x$ is a nonzerodivisor on $M$, see Lemma <a href="/tag/00LD" data-tag="00LD">10.63.9</a>. Hence $\text{depth}(M/xM) = \text{depth}(M) - 1$ and $\text{depth}(M_\mathfrak p / x M_\mathfrak p) = \text{depth}(M_\mathfrak p) - 1$ provided $M_\mathfrak p$ is nonzero, see Lemma <a href="/tag/090R" data-tag="090R">10.72.7</a>. Thus we conclude by induction on $\text{depth}(M)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AUK">
+  <p><a class="environment-identifier" href="/tag/0AUK">Lemma <span data-tag="0AUK">10.72.11</span>.</a> Let $(R, \mathfrak m)$ be a Noetherian local ring. Let $R \to S$ be a finite ring map. Let $\mathfrak m_1, \ldots , \mathfrak m_ n$ be the maximal ideals of $S$. Let $N$ be a finite $S$-module. Then </p>
+  <div class="equation">
+  \[  \min \nolimits _{i = 1, \ldots , n} \text{depth}(N_{\mathfrak m_ i}) = \text{depth}_\mathfrak m(N)  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemmas <a href="/tag/00GT" data-tag="00GT">10.36.20</a>, <a href="/tag/00GU" data-tag="00GU">10.36.22</a>, and Lemma <a href="/tag/05DR" data-tag="05DR">10.36.21</a> the maximal ideals of $S$ are exactly the primes of $S$ lying over $\mathfrak m$ and there are finitely many of them. Hence the statement of the lemma makes sense. We will prove the lemma by induction on $k = \min \nolimits _{i = 1, \ldots , n} \text{depth}(N_{\mathfrak m_ i})$. If $k = 0$, then $\text{depth}(N_{\mathfrak m_ i}) = 0$ for some $i$. By Lemma <a href="/tag/00LW" data-tag="00LW">10.72.5</a> this means $\mathfrak m_ i S_{\mathfrak m_ i}$ is an associated prime of $N_{\mathfrak m_ i}$ and hence $\mathfrak m_ i$ is an associated prime of $N$ (Lemma <a href="/tag/05BZ" data-tag="05BZ">10.63.16</a>). By Lemma <a href="/tag/05DZ" data-tag="05DZ">10.63.13</a> we see that $\mathfrak m$ is an associated prime of $N$ as an $R$-module. Whence $\text{depth}_\mathfrak m(N) = 0$. This proves the base case. If $k > 0$, then we see that $\mathfrak m_ i \not\in \text{Ass}_ S(N)$. Hence $\mathfrak m \not\in \text{Ass}_ R(N)$, again by Lemma <a href="/tag/05DZ" data-tag="05DZ">10.63.13</a>. Thus we can find $f \in \mathfrak m$ which is not a zerodivisor on $N$, see Lemma <a href="/tag/00LL" data-tag="00LL">10.63.18</a>. By Lemma <a href="/tag/090R" data-tag="090R">10.72.7</a> all the depths drop exactly by $1$ when passing from $N$ to $N/fN$ and the induction hypothesis does the rest. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

@@ -1,0 +1,169 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="dga-section-homotopy-triangulated" class="tex-section"><span data-tag="09KG">22.10</span> The homotopy category is triangulated</h2>
+
+<p>
+We first prove that it is pre-triangulated. 
+</p>
+<p>
+<article class="env-lemma" id="09KH">
+  <p><a class="environment-identifier" href="/tag/09KH">Lemma <span data-tag="09KH">22.10.1</span>.</a> Let $(A, \text{d})$ be a differential graded algebra. The homotopy category $K(\text{Mod}_{(A, \text{d})})$ with its natural translation functors and distinguished triangles is a pre-triangulated category. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Proof of TR1. By definition every triangle isomorphic to a distinguished one is distinguished. Also, any triangle $(K, K, 0, 1, 0, 0)$ is distinguished since $0 \to K \to K \to 0 \to 0$ is an admissible short exact sequence. Finally, given any homomorphism $f : K \to L$ of differential graded $A$-modules the triangle $(K, L, C(f), f, i, -p)$ is distinguished by Lemma <a href="/tag/09KF" data-tag="09KF">22.9.4</a>. 
+    <p>
+      Proof of TR2. Let $(X, Y, Z, f, g, h)$ be a triangle. Assume $(Y, Z, X[1], g, h, -f[1])$ is distinguished. Then there exists an admissible short exact sequence $0 \to K \to L \to M \to 0$ such that the associated triangle $(K, L, M, \alpha , \beta , \delta )$ is isomorphic to $(Y, Z, X[1], g, h, -f[1])$. Rotating back we see that $(X, Y, Z, f, g, h)$ is isomorphic to $(M[-1], K, L, -\delta [-1], \alpha , \beta )$. It follows from Lemma <a href="/tag/09KC" data-tag="09KC">22.9.2</a> that the triangle $(M[-1], K, L, \delta [-1], \alpha , \beta )$ is isomorphic to $(M[-1], K, C(\delta [-1]), \delta [-1], i, p)$. Precomposing the previous isomorphism of triangles with $-1$ on $Y$ it follows that $(X, Y, Z, f, g, h)$ is isomorphic to $(M[-1], K, C(\delta [-1]), \delta [-1], i, -p)$. Hence it is distinguished by Lemma <a href="/tag/09KF" data-tag="09KF">22.9.4</a>. On the other hand, suppose that $(X, Y, Z, f, g, h)$ is distinguished. By Lemma <a href="/tag/09KF" data-tag="09KF">22.9.4</a> this means that it is isomorphic to a triangle of the form $(K, L, C(f), f, i, -p)$ for some morphism $f$ of $\text{Mod}_{(A, \text{d})}$. Then the rotated triangle $(Y, Z, X[1], g, h, -f[1])$ is isomorphic to $(L, C(f), K[1], i, -p, -f[1])$ which is isomorphic to the triangle $(L, C(f), K[1], i, p, f[1])$. By Lemma <a href="/tag/09KB" data-tag="09KB">22.9.1</a> this triangle is distinguished. Hence $(Y, Z, X[1], g, h, -f[1])$ is distinguished as desired. 
+    <p>
+      Proof of TR3. Let $(X, Y, Z, f, g, h)$ and $(X', Y', Z', f', g', h')$ be distinguished triangles of $K(\mathcal{A})$ and let $a : X \to X'$ and $b : Y \to Y'$ be morphisms such that $f' \circ a = b \circ f$. By Lemma <a href="/tag/09KF" data-tag="09KF">22.9.4</a> we may assume that $(X, Y, Z, f, g, h) = (X, Y, C(f), f, i, -p)$ and $(X', Y', Z', f', g', h') = (X', Y', C(f'), f', i', -p')$. At this point we simply apply Lemma <a href="/tag/09KD" data-tag="09KD">22.6.2</a> to the commutative diagram given by $f, f', a, b$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Before we prove TR4 in general we prove it in a special case. 
+</p>
+<p>
+<article class="env-lemma" id="09KI">
+  <p><a class="environment-identifier" href="/tag/09KI">Lemma <span data-tag="09KI">22.10.2</span>.</a> Let $(A, \text{d})$ be a differential graded algebra. Suppose that $\alpha : K \to L$ and $\beta : L \to M$ are admissible monomorphisms of differential graded $A$-modules. Then there exist distinguished triangles $(K, L, Q_1, \alpha , p_1, d_1)$, $(K, M, Q_2, \beta \circ \alpha , p_2, d_2)$ and $(L, M, Q_3, \beta , p_3, d_3)$ for which TR4 holds. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Say $\pi _1 : L \to K$ and $\pi _3 : M \to L$ are homomorphisms of graded $A$-modules which are left inverse to $\alpha $ and $\beta $. Then also $K \to M$ is an admissible monomorphism with left inverse $\pi _2 = \pi _1 \circ \pi _3$. Let us write $Q_1$, $Q_2$ and $Q_3$ for the cokernels of $K \to L$, $K \to M$, and $L \to M$. Then we obtain identifications (as graded $A$-modules) $Q_1 = \mathop{\mathrm{Ker}}(\pi _1)$, $Q_3 = \mathop{\mathrm{Ker}}(\pi _3)$ and $Q_2 = \mathop{\mathrm{Ker}}(\pi _2)$. Then $L = K \oplus Q_1$ and $M = L \oplus Q_3$ as graded $A$-modules. This implies $M = K \oplus Q_1 \oplus Q_3$. Note that $\pi _2 = \pi _1 \circ \pi _3$ is zero on both $Q_1$ and $Q_3$. Hence $Q_2 = Q_1 \oplus Q_3$. Consider the commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \begin{matrix}  0 
+
+&  \to 
+
+&  K 
+
+&  \to 
+
+&  L 
+
+&  \to 
+
+&  Q_1 
+
+&  \to 
+
+&  0 
+
+\\ & &  \downarrow 
+
+& &  \downarrow 
+
+& &  \downarrow 
+
+& \\  0 
+
+&  \to 
+
+&  K 
+
+&  \to 
+
+&  M 
+
+&  \to 
+
+&  Q_2 
+
+&  \to 
+
+&  0 
+
+\\ & &  \downarrow 
+
+& &  \downarrow 
+
+& &  \downarrow 
+
+& \\  0 
+
+&  \to 
+
+&  L 
+
+&  \to 
+
+&  M 
+
+&  \to 
+
+&  Q_3 
+
+&  \to 
+
+&  0 
+
+\end{matrix}  \]
+</div>
+    <p>
+       The rows of this diagram are admissible short exact sequences, and hence determine distinguished triangles by definition. Moreover downward arrows in the diagram above are compatible with the chosen splittings and hence define morphisms of triangles 
+    <p>
+      <div class="equation">
+  \[  (K \to L \to Q_1 \to K[1]) \longrightarrow (K \to M \to Q_2 \to K[1])  \]
+</div>
+    <p>
+       and 
+    <p>
+      <div class="equation">
+  \[  (K \to M \to Q_2 \to K[1]) \longrightarrow (L \to M \to Q_3 \to L[1]).  \]
+</div>
+    <p>
+       Note that the splittings $Q_3 \to M$ of the bottom sequence in the diagram provides a splitting for the split sequence $0 \to Q_1 \to Q_2 \to Q_3 \to 0$ upon composing with $M \to Q_2$. It follows easily from this that the morphism $\delta : Q_3 \to Q_1[1]$ in the corresponding distinguished triangle 
+    <p>
+      <div class="equation">
+  \[  (Q_1 \to Q_2 \to Q_3 \to Q_1[1])  \]
+</div>
+    <p>
+       is equal to the composition $Q_3 \to L[1] \to Q_1[1]$. Hence we get a structure as in the conclusion of axiom TR4. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Here is the final result. 
+</p>
+<p>
+<article class="env-proposition" id="09KJ">
+  <p><a class="environment-identifier" href="/tag/09KJ">Proposition <span data-tag="09KJ">22.10.3</span>.</a> Let $(A, \text{d})$ be a differential graded algebra. The homotopy category $K(\text{Mod}_{(A, \text{d})})$ of differential graded $A$-modules with its natural translation functors and distinguished triangles is a triangulated category. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We know that $K(\text{Mod}_{(A, \text{d})})$ is a pre-triangulated category. Hence it suffices to prove TR4 and to prove it we can use Derived Categories, Lemma <a href="/tag/014C" data-tag="014C">13.4.15</a>. Let $K \to L$ and $L \to M$ be composable morphisms of $K(\text{Mod}_{(A, \text{d})})$. By Lemma <a href="/tag/09JX" data-tag="09JX">22.7.5</a> we may assume that $K \to L$ and $L \to M$ are admissible monomorphisms. In this case the result follows from Lemma <a href="/tag/09KI" data-tag="09KI">22.10.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

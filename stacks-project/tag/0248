@@ -1,0 +1,158 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="spaces-simplicial-section-simplicial-descent" class="tex-section"><span data-tag="0248">85.27</span> Descent in terms of simplicial schemes</h2>
+
+<p>
+Cartesian morphisms are defined as follows. 
+</p>
+<p>
+<article class="env-definition" id="0249">
+  <p><a class="environment-identifier" href="/tag/0249">Definition <span data-tag="0249">85.27.1</span>.</a> Let $a : Y \to X$ be a morphism of simplicial schemes. We say $a$ is <em>cartesian</em>, or that <em>$Y$ is cartesian over $X$</em>, if for every morphism $\varphi : [n] \to [m]$ of $\Delta $ the corresponding diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ Y_ m \ar[r]_ a \ar[d]_{Y(\varphi )} &  X_ m \ar[d]^{X(\varphi )}\\  Y_ n \ar[r]^{a} &  X_ n }  \]
+</div>
+  <p> is a fibre square in the category of schemes. </p>
+</article> 
+</p>
+<p>
+Cartesian morphisms are related to descent data. First we prove a general lemma describing the category of cartesian simplicial schemes over a fixed simplicial scheme. In this lemma we denote $f^* : \mathit{Sch}/X \to \mathit{Sch}/Y$ the base change functor associated to a morphism of schemes $f :Y \to X$. 
+</p>
+<p>
+<article class="env-lemma" id="07TC">
+  <p><a class="environment-identifier" href="/tag/07TC">Lemma <span data-tag="07TC">85.27.2</span>.</a> Let $X$ be a simplicial scheme. The category of simplicial schemes cartesian over $X$ is equivalent to the category of pairs $(V, \varphi )$ where $V$ is a scheme over $X_0$ and </p>
+  <div class="equation">
+  \[  \varphi : V \times _{X_0, d^1_1} X_1 \longrightarrow X_1 \times _{d^1_0, X_0} V  \]
+</div>
+  <p> is an isomorphism over $X_1$ such that $(s_0^0)^*\varphi = \text{id}_ V$ and such that </p>
+  <div class="equation">
+  \[  (d^2_1)^*\varphi = (d^2_0)^*\varphi \circ (d^2_2)^*\varphi  \]
+</div>
+  <p> as morphisms of schemes over $X_2$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The statement of the displayed equality makes sense because $d^1_1 \circ d^2_2 = d^1_1 \circ d^2_1$, $d^1_1 \circ d^2_0 = d^1_0 \circ d^2_2$, and $d^1_0 \circ d^2_0 = d^1_0 \circ d^2_1$ as morphisms $X_2 \to X_0$, see Simplicial, Remark <a href="/tag/016C" data-tag="016C">14.3.3</a> hence we can picture these maps as follows 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ &  X_2 \times _{d^1_1 \circ d^2_0, X_0} V \ar[r]_-{(d^2_0)^*\varphi } &  X_2 \times _{d^1_0 \circ d^2_0, X_0} V \ar@{=}[rd] &  \\  X_2 \times _{d^1_0 \circ d^2_2, X_0} V \ar@{=}[ru] &  &  &  X_2 \times _{d^1_0 \circ d^2_1, X_0} V \\  &  X_2 \times _{d^1_1 \circ d^2_2, X_0} V \ar[lu]^{(d^2_2)^*\varphi } \ar@{=}[r] &  X_2 \times _{d^1_1 \circ d^2_1, X_0} V \ar[ru]_{(d^2_1)^*\varphi } }  \]
+</div>
+    <p>
+       and the condition signifies the diagram is commutative. It is clear that given a simplicial scheme $Y$ cartesian over $X$ we can set $V = Y_0$ and $\varphi $ equal to the composition 
+    <p>
+      <div class="equation">
+  \[  V \times _{X_0, d^1_1} X_1 = Y_0 \times _{X_0, d^1_1} X_1 = Y_1 = X_1 \times _{X_0, d^1_0} Y_0 = X_1 \times _{X_0, d^1_0} V  \]
+</div>
+    <p>
+       of identifications given by the cartesian structure. To prove this functor is an equivalence we construct a quasi-inverse. The construction of the quasi-inverse is analogous to the construction discussed in Descent, Section <a href="/tag/023F" data-tag="023F">35.3</a> from which we borrow the notation $\tau ^ n_ i : [0] \to [n]$, $0 \mapsto i$ and $\tau ^ n_{ij} : [1] \to [n]$, $0 \mapsto i$, $1 \mapsto j$. Namely, given a pair $(V, \varphi )$ as in the lemma we set $Y_ n = X_ n \times _{X(\tau ^ n_ n), X_0} V$. Then given $\beta : [n] \to [m]$ we define $V(\beta ) : Y_ m \to Y_ n$ as the pullback by $X(\tau ^ m_{\beta (n)m})$ of the map $\varphi $ postcomposed by the projection $X_ m \times _{X(\beta ), X_ n} Y_ n \to Y_ n$. This makes sense because 
+    <p>
+      <div class="equation">
+  \[  X_ m \times _{X(\tau ^ m_{\beta (n)m}), X_1} X_1 \times _{d^1_1, X_0} V = X_ m \times _{X(\tau ^ m_ m), X_0} V = Y_ m  \]
+</div>
+    <p>
+       and 
+    <p>
+      <div class="equation">
+  \[  X_ m \times _{X(\tau ^ m_{\beta (n)m}), X_1} X_1 \times _{d^1_0, X_0} V = X_ m \times _{X(\tau ^ m_{\beta (n)}), X_0} V = X_ m \times _{X(\beta ), X_ n} Y_ n.  \]
+</div>
+    <p>
+       We omit the verification that the commutativity of the displayed diagram above implies the maps compose correctly. We also omit the verification that the two functors are quasi-inverse to each other. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="024A">
+  <p><a class="environment-identifier" href="/tag/024A">Definition <span data-tag="024A">85.27.3</span>.</a> Let $f : X \to S$ be a morphism of schemes. The <em>simplicial scheme associated to $f$</em>, denoted $(X/S)_\bullet $, is the functor $\Delta ^{opp} \to \mathit{Sch}$, $[n] \mapsto X \times _ S \ldots \times _ S X$ described in Simplicial, Example <a href="/tag/016E" data-tag="016E">14.3.5</a>. </p>
+</article> 
+</p>
+<p>
+Thus $(X/S)_ n$ is the $(n + 1)$-fold fibre product of $X$ over $S$. The morphism $d^1_0 : X \times _ S X \to X$ is the map $(x_0, x_1) \mapsto x_1$ and the morphism $d^1_1$ is the other projection. The morphism $s^0_0$ is the diagonal morphism $X \to X \times _ S X$. 
+</p>
+<p>
+<article class="env-lemma" id="024B">
+  <p><a class="environment-identifier" href="/tag/024B">Lemma <span data-tag="024B">85.27.4</span>.</a> Let $f : X \to S$ be a morphism of schemes. Let $\pi : Y \to (X/S)_\bullet $ be a cartesian morphism of simplicial schemes. Set $V = Y_0$ considered as a scheme over $X$. The morphisms $d^1_0, d^1_1 : Y_1 \to Y_0$ and the morphism $\pi _1 : Y_1 \to X \times _ S X$ induce isomorphisms </p>
+  <div class="equation">
+  \[  \xymatrix{ V \times _ S X &  &  Y_1 \ar[ll]_-{(d^1_1, \text{pr}_1 \circ \pi _1)} \ar[rr]^-{(\text{pr}_0 \circ \pi _1, d^1_0)} &  &  X \times _ S V. }  \]
+</div>
+  <p> Denote $\varphi : V \times _ S X \to X \times _ S V$ the resulting isomorphism. Then the pair $(V, \varphi )$ is a descent datum relative to $X \to S$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a special case of (part of) Lemma <a href="/tag/07TC" data-tag="07TC">85.27.2</a> as the displayed equation of that lemma is equivalent to the cocycle condition of Descent, Definition <a href="/tag/023V" data-tag="023V">35.34.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="024C">
+  <p><a class="environment-identifier" href="/tag/024C">Lemma <span data-tag="024C">85.27.5</span>.</a> Let $f : X \to S$ be a morphism of schemes. The construction </p>
+  <div class="equation">
+  \[  \begin{matrix}  \text{category of cartesian } 
+
+\\  \text{schemes over } (X/S)_\bullet 
+
+\end{matrix} \longrightarrow \begin{matrix}  \text{ category of descent data} 
+
+\\  \text{ relative to } X/S 
+
+\end{matrix}  \]
+</div>
+  <p> of Lemma <a href="/tag/024B" data-tag="024B">85.27.4</a> is an equivalence of categories. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The functor from left to right is given in Lemma <a href="/tag/024B" data-tag="024B">85.27.4</a>. Hence this is a special case of Lemma <a href="/tag/07TC" data-tag="07TC">85.27.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+We may reinterpret the pullback of Descent, Lemma <a href="/tag/023Y" data-tag="023Y">35.34.6</a> as follows. Suppose given a morphism of simplicial schemes $f : X' \to X$ and a cartesian morphism of simplicial schemes $Y \to X$. Then the fibre product (viewed as a “pullback”) 
+</p>
+<div class="equation">
+  \[  f^*Y = Y \times _ X X'  \]
+</div>
+<p>
+ of simplicial schemes is a simplicial scheme cartesian over $X'$. Suppose given a commutative diagram of morphisms of schemes 
+</p>
+<div class="equation">
+  \[  \xymatrix{ X' \ar[r]_ f \ar[d] &  X \ar[d] \\  S' \ar[r] &  S. }  \]
+</div>
+<p>
+ This gives rise to a morphism of simplicial schemes 
+</p>
+<div class="equation">
+  \[  f_\bullet : (X'/S')_\bullet \longrightarrow (X/S)_\bullet .  \]
+</div>
+<p>
+ We claim that the “pullback” $f_\bullet ^*$ along the morphism $f_\bullet : (X'/S')_\bullet \to (X/S)_\bullet $ corresponds via Lemma <a href="/tag/024C" data-tag="024C">85.27.5</a> with the pullback defined in terms of descent data in the aforementioned Descent, Lemma <a href="/tag/023Y" data-tag="023Y">35.34.6</a>. 
+</p>

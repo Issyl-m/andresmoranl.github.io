@@ -1,0 +1,125 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="etale-cohomology-section-trace-method" class="tex-section"><span data-tag="03SH">59.66</span> Méthode de la trace</h2>
+
+<p>
+A reference for this section is <span class="cite">[<span class="postnote">Exposé IX, §5</span>, <a href="/bibliography/SGA4">SGA4</a>]</span>. The material here will be used in the proof of Lemma <a href="/tag/03SD" data-tag="03SD">59.83.9</a> below. 
+</p>
+<p>
+Let $f : Y \to X$ be an étale morphism of schemes. There is a sequence 
+</p>
+<div class="equation">
+  \[  f_!, f^{-1}, f_*  \]
+</div>
+<p>
+ of adjoint functors between $\textit{Ab}(X_{\acute{e}tale})$ and $\textit{Ab}(Y_{\acute{e}tale})$. The functor $f_!$ is discussed in Section <a href="/tag/03S2" data-tag="03S2">59.70</a>. The adjunction map $\text{id} \to f_* f^{-1}$ is called <em>restriction</em>. The adjunction map $f_! f^{-1} \to \text{id}$ is often called the <em>trace map</em>. If $f$ is finite étale, then $f_* = f_!$ (Lemma <a href="/tag/03S7" data-tag="03S7">59.70.7</a>) and we can view this as a map $f_*f^{-1} \to \text{id}$. 
+</p>
+<p>
+<article class="env-definition" id="03SE">
+  <p><a class="environment-identifier" href="/tag/03SE">Definition <span data-tag="03SE">59.66.1</span>.</a> Let $f : Y \to X$ be a finite étale morphism of schemes. The map $f_* f^{-1} \to \text{id}$ described above and explicitly below is called the <em>trace</em>. </p>
+</article> 
+</p>
+<p>
+Let $f : Y \to X$ be a finite étale morphism of schemes. The trace map is characterized by the following two properties: 
+</p>
+<ol>
+  <li><p>
+it commutes with étale localization on $X$ and 
+</p>
+</li><li><p>
+if $Y = \coprod _{i = 1}^ d X$ then the trace map is the sum map $f_*f^{-1} \mathcal{F} = \mathcal{F}^{\oplus d} \to \mathcal{F}$. 
+</p>
+</li>
+</ol>
+<p>
+ By Étale Morphisms, Lemma <a href="/tag/04HN" data-tag="04HN">41.18.3</a> every finite étale morphism $f : Y \to X$ is étale locally on $X$ of the form given in (2) for some integer $d \geq 0$. Hence we can define the trace map using the characterization given; in particular we do not need to know about the existence of $f_!$ and the agreement of $f_!$ with $f_*$ in order to construct the trace map. This description shows that if $f$ has constant degree $d$, then the composition 
+</p>
+<div class="equation">
+  \[  \mathcal{F} \xrightarrow {res} f_* f^{-1} \mathcal{F} \xrightarrow {trace} \mathcal{F}  \]
+</div>
+<p>
+ is multiplication by $d$. The “méthode de la trace” is the following observation: if $\mathcal{F}$ is an abelian sheaf on $X_{\acute{e}tale}$ such that multiplication by $d$ on $\mathcal{F}$ is an isomorphism, then the map 
+</p>
+<div class="equation">
+  \[  H^ n_{\acute{e}tale}(X, \mathcal{F}) \longrightarrow H^ n_{\acute{e}tale}(Y, f^{-1}\mathcal{F})  \]
+</div>
+<p>
+ is injective. Namely, we have 
+</p>
+<div class="equation">
+  \[  H^ n_{\acute{e}tale}(Y, f^{-1}\mathcal{F}) = H^ n_{\acute{e}tale}(X, f_*f^{-1}\mathcal{F})  \]
+</div>
+<p>
+ by the vanishing of the higher direct images (Proposition <a href="/tag/03QP" data-tag="03QP">59.55.2</a>) and the Leray spectral sequence (Proposition <a href="/tag/03QC" data-tag="03QC">59.54.2</a>). Thus we can consider the maps 
+</p>
+<div class="equation">
+  \[  H^ n_{\acute{e}tale}(X, \mathcal{F}) \to H^ n_{\acute{e}tale}(Y, f^{-1}\mathcal{F})= H^ n_{\acute{e}tale}(X, f_*f^{-1}\mathcal{F}) \xrightarrow {trace} H^ n_{\acute{e}tale}(X, \mathcal{F})  \]
+</div>
+<p>
+ and the composition is an isomorphism (under our assumption on $\mathcal{F}$ and $f$). In particular, if $H_{\acute{e}tale}^ q(Y, f^{-1}\mathcal{F}) = 0$ then $H_{\acute{e}tale}^ q(X, \mathcal{F}) = 0$ as well. Indeed, multiplication by $d$ induces an isomorphism on $H_{\acute{e}tale}^ q(X, \mathcal{F})$ which factors through $H_{\acute{e}tale}^ q(Y, f^{-1}\mathcal{F})= 0$. 
+</p>
+<p>
+This is often combined with the following. 
+</p>
+<p>
+<article class="env-lemma" id="0A3R">
+  <p><a class="environment-identifier" href="/tag/0A3R">Lemma <span data-tag="0A3R">59.66.2</span>.</a> Let $S$ be a connected scheme. Let $\ell $ be a prime number. Let $\mathcal{F}$ be a finite type, locally constant sheaf of $\mathbf{F}_\ell $-vector spaces on $S_{\acute{e}tale}$. Then there exists a finite étale morphism $f : T \to S$ of degree prime to $\ell $ such that $f^{-1}\mathcal{F}$ has a finite filtration whose successive quotients are $\underline{\mathbf{Z}/\ell \mathbf{Z}}_ T$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a geometric point $\overline{s}$ of $S$. Via the equivalence of Lemma <a href="/tag/0DV5" data-tag="0DV5">59.65.1</a> the sheaf $\mathcal{F}$ corresponds to a finite dimensional $\mathbf{F}_\ell $-vector space $V$ with a continuous $\pi _1(S, \overline{s})$-action. Let $G \subset \text{Aut}(V)$ be the image of the homomorphism $\rho : \pi _1(S, \overline{s}) \to \text{Aut}(V)$ giving the action. Observe that $G$ is finite. The surjective continuous homomorphism $\overline{\rho } : \pi _1(S, \overline{s}) \to G$ corresponds to a Galois object $Y \to S$ of $\textit{FÉt}_ S$ with automorphism group $G = \text{Aut}(Y/S)$, see Fundamental Groups, Section <a href="/tag/03SF" data-tag="03SF">58.7</a>. Let $H \subset G$ be an $\ell $-Sylow subgroup. We claim that $T = Y/H \to S$ works. Namely, let $\overline{t} \in T$ be a geometric point over $\overline{s}$. The image of $\pi _1(T, \overline{t}) \to \pi _1(S, \overline{s})$ is $(\overline{\rho })^{-1}(H)$ as follows from the functorial nature of fundamental groups. Hence the action of $\pi _1(T, \overline{t})$ on $V$ corresponding to $f^{-1}\mathcal{F}$ is through the map $\pi _1(T, \overline{t}) \to H$, see Remark <a href="/tag/0DV6" data-tag="0DV6">59.65.3</a>. As $H$ is a finite $\ell $-group, the irreducible constituents of the representation $\rho |_{\pi _1(T, \overline{t})}$ are each trivial of rank $1$ (this is a simple lemma on representation theory of finite groups; insert future reference here). Via the equivalence of Lemma <a href="/tag/0DV5" data-tag="0DV5">59.65.1</a> this means $f^{-1}\mathcal{F}$ is a successive extension of constant sheaves with value $\underline{\mathbf{Z}/\ell \mathbf{Z}}_ T$. Moreover the degree of $T = Y/H \to S$ is prime to $\ell $ as it is equal to the index of $H$ in $G$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GIZ">
+  <p><a class="environment-identifier" href="/tag/0GIZ">Lemma <span data-tag="0GIZ">59.66.3</span>.</a> Let $\Lambda $ be a Noetherian ring. Let $\ell $ be a prime number and $n \geq 1$. Let $H$ be a finite $\ell $-group. Let $M$ be a finite $\Lambda [H]$-module annihilated by $\ell ^ n$. Then there is a finite filtration $0 = M_0 \subset M_1 \subset \ldots \subset M_ t = M$ by $\Lambda [H]$-submodules such that $H$ acts trivially on $M_{i + 1}/M_ i$ for all $i = 0, \ldots , t - 1$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. Hint: Show that the augmentation ideal $\mathfrak m$ of the noncommutative ring $\mathbf{Z}/\ell ^ n\mathbf{Z}[H]$ is nilpotent. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GJ0">
+  <p><a class="environment-identifier" href="/tag/0GJ0">Lemma <span data-tag="0GJ0">59.66.4</span>.</a> Let $S$ be an irreducible, geometrically unibranch scheme. Let $\ell $ be a prime number and $n \geq 1$. Let $\Lambda $ be a Noetherian ring. Let $\mathcal{F}$ be a finite type, locally constant sheaf of $\Lambda $-modules on $S_{\acute{e}tale}$ which is annihilated by $\ell ^ n$. Then there exists a finite étale morphism $f : T \to S$ of degree prime to $\ell $ such that $f^{-1}\mathcal{F}$ has a finite filtration whose successive quotients are of the form $\underline{M}_ T$ for some finite $\Lambda $-modules $M$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a geometric point $\overline{s}$ of $S$. Via the equivalence of Lemma <a href="/tag/0GIY" data-tag="0GIY">59.65.2</a> the sheaf $\mathcal{F}$ corresponds to a finite $\Lambda $-module $M$ with a continuous $\pi _1(S, \overline{s})$-action. Let $G \subset \text{Aut}(V)$ be the image of the homomorphism $\rho : \pi _1(S, \overline{s}) \to \text{Aut}(M)$ giving the action. Observe that $G$ is finite as $M$ is a finite $\Lambda $-module (see proof of Lemma <a href="/tag/0GIY" data-tag="0GIY">59.65.2</a>). The surjective continuous homomorphism $\overline{\rho } : \pi _1(S, \overline{s}) \to G$ corresponds to a Galois object $Y \to S$ of $\textit{FÉt}_ S$ with automorphism group $G = \text{Aut}(Y/S)$, see Fundamental Groups, Section <a href="/tag/03SF" data-tag="03SF">58.7</a>. Let $H \subset G$ be an $\ell $-Sylow subgroup. We claim that $T = Y/H \to S$ works. Namely, let $\overline{t} \in T$ be a geometric point over $\overline{s}$. The image of $\pi _1(T, \overline{t}) \to \pi _1(S, \overline{s})$ is $(\overline{\rho })^{-1}(H)$ as follows from the functorial nature of fundamental groups. Hence the action of $\pi _1(T, \overline{t})$ on $M$ corresponding to $f^{-1}\mathcal{F}$ is through the map $\pi _1(T, \overline{t}) \to H$, see Remark <a href="/tag/0DV6" data-tag="0DV6">59.65.3</a>. Let $0 = M_0 \subset M_1 \subset \ldots \subset M_ t = M$ be as in Lemma <a href="/tag/0GIZ" data-tag="0GIZ">59.66.3</a>. This induces a filtration $0 = \mathcal{F}_0 \subset \mathcal{F}_1 \subset \ldots \subset \mathcal{F}_ t = f^{-1}\mathcal{F}$ such that the successive quotients are constant with value $M_{i + 1}/M_ i$. Finally, the degree of $T = Y/H \to S$ is prime to $\ell $ as it is equal to the index of $H$ in $G$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

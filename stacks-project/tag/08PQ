@@ -1,0 +1,194 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="cotangent-section-compute-L-pi-shriek" class="tex-section"><span data-tag="08PQ">92.4</span> Simplicial resolutions and derived lower shriek</h2>
+
+<p>
+Let $A \to B$ be a ring map. Consider the category whose objects are $A$-algebra maps $\alpha : P \to B$ where $P$ is a polynomial algebra over $A$ (in some set<a class="footnotemark" href="#a0001631968" id="a0001631968-mark"><sup>1</sup></a> of variables) and whose morphisms $s : (\alpha : P \to B) \to (\alpha ' : P' \to B)$ are $A$-algebra homomorphisms $s : P \to P'$ with $\alpha ' \circ s = \alpha $. Let $\mathcal{C} = \mathcal{C}_{B/A}$ denote the <strong>opposite</strong> of this category. The reason for taking the opposite is that we want to think of objects $(P, \alpha )$ as corresponding to the diagram of affine schemes 
+</p>
+<div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{Spec}}(B) \ar[d] \ar[r] &  \mathop{\mathrm{Spec}}(P) \ar[ld] \\  \mathop{\mathrm{Spec}}(A) }  \]
+</div>
+<p>
+ We endow $\mathcal{C}$ with the chaotic topology (Sites, Example <a href="/tag/07GE" data-tag="07GE">7.6.6</a>), i.e., we endow $\mathcal{C}$ with the structure of a site where coverings are given by identities so that all presheaves are sheaves. Moreover, we endow $\mathcal{C}$ with two sheaves of rings. The first is the sheaf $\mathcal{O}$ which sends to object $(P, \alpha )$ to $P$. Then second is the constant sheaf $B$, which we will denote $\underline{B}$. We obtain the following diagram of morphisms of ringed topoi 
+</p>
+<div class="equation" id="08PR">
+    <span class="equation-label"><a href="/tag/08PR" data-tag="08PR">92.4.0.1</a></span>
+  <div>\begin{equation}  \label{cotangent-equation-pi} \vcenter { \xymatrix{ (\mathop{\mathit{Sh}}\nolimits (\mathcal{C}), \underline{B}) \ar[r]_ i \ar[d]_\pi &  (\mathop{\mathit{Sh}}\nolimits (\mathcal{C}), \mathcal{O}) \\  (\mathop{\mathit{Sh}}\nolimits (*), B) } } \end{equation}</div>
+</div>
+<p>
+ The morphism $i$ is the identity on underlying topoi and $i^\sharp : \mathcal{O} \to \underline{B}$ is the obvious map. The map $\pi $ is as in Cohomology on Sites, Example <a href="/tag/08PF" data-tag="08PF">21.39.1</a>. An important role will be played in the following by the derived functors $ Li^* : D(\mathcal{O}) \longrightarrow D(\underline{B}) $ left adjoint to $Ri_* = i_* : D(\underline{B}) \to D(\mathcal{O})$ and $ L\pi _! : D(\underline{B}) \longrightarrow D(B) $ left adjoint to $\pi ^* = \pi ^{-1} : D(B) \to D(\underline{B})$. 
+</p>
+<p>
+<article class="env-lemma" id="08PS">
+  <p><a class="environment-identifier" href="/tag/08PS">Lemma <span data-tag="08PS">92.4.1</span>.</a> With notation as above let $P_\bullet $ be a simplicial $A$-algebra endowed with an augmentation $\epsilon : P_\bullet \to B$. Assume each $P_ n$ is a polynomial algebra over $A$ and $\epsilon $ is a trivial Kan fibration on underlying simplicial sets. Then </p>
+  <div class="equation">
+  \[  L\pi _!(\mathcal{F}) = \mathcal{F}(P_\bullet , \epsilon )  \]
+</div>
+  <p> in $D(\textit{Ab})$, resp. $D(B)$ functorially in $\mathcal{F}$ in $\textit{Ab}(\mathcal{C})$, resp. $\textit{Mod}(\underline{B})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use the criterion of Cohomology on Sites, Lemma <a href="/tag/08Q9" data-tag="08Q9">21.39.7</a> to prove this. Given an object $U = (Q, \beta )$ of $\mathcal{C}$ we have to show that 
+    <p>
+      <div class="equation">
+  \[  S_\bullet = \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}((P_\bullet , \epsilon ), (Q, \beta ))  \]
+</div>
+    <p>
+       is homotopy equivalent to a singleton. Write $Q = A[E]$ for some set $E$ (this is possible by our choice of the category $\mathcal{C}$). We see that 
+    <p>
+      <div class="equation">
+  \[  S_\bullet = \mathop{\mathrm{Mor}}\nolimits _{\textit{Sets}}((E, \beta |_ E), (P_\bullet , \epsilon ))  \]
+</div>
+    <p>
+       Let $*$ be the constant simplicial set on a singleton. For $b \in B$ let $F_{b, \bullet }$ be the simplicial set defined by the cartesian diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ F_{b, \bullet } \ar[r] \ar[d] &  P_\bullet \ar[d]_\epsilon \\  {*} \ar[r]^ b &  B }  \]
+</div>
+    <p>
+       With this notation $S_\bullet = \prod _{e \in E} F_{\beta (e), \bullet }$. Since we assumed $\epsilon $ is a trivial Kan fibration we see that $F_{b, \bullet } \to *$ is a trivial Kan fibration (Simplicial, Lemma <a href="/tag/08NN" data-tag="08NN">14.30.3</a>). Thus $S_\bullet \to *$ is a trivial Kan fibration (Simplicial, Lemma <a href="/tag/08NR" data-tag="08NR">14.30.6</a>). Therefore $S_\bullet $ is homotopy equivalent to $*$ (Simplicial, Lemma <a href="/tag/08NS" data-tag="08NS">14.30.8</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In particular, we can use the standard resolution of $B$ over $A$ to compute derived lower shriek. 
+</p>
+<p>
+<article class="env-lemma" id="08PT">
+  <p><a class="environment-identifier" href="/tag/08PT">Lemma <span data-tag="08PT">92.4.2</span>.</a> Let $A \to B$ be a ring map. Let $\epsilon : P_\bullet \to B$ be the standard resolution of $B$ over $A$. Let $\pi $ be as in (<a href="/tag/08PR" data-tag="08PR">92.4.0.1</a>). Then </p>
+  <div class="equation">
+  \[  L\pi _!(\mathcal{F}) = \mathcal{F}(P_\bullet , \epsilon )  \]
+</div>
+  <p> in $D(\textit{Ab})$, resp. $D(B)$ functorially in $\mathcal{F}$ in $\textit{Ab}(\mathcal{C})$, resp. $\textit{Mod}(\underline{B})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>First proof.</strong>
+       We will apply Lemma <a href="/tag/08PS" data-tag="08PS">92.4.1</a>. Since the terms $P_ n$ are polynomial algebras we see the first assumption of that lemma is satisfied. The second assumption is proved as follows. By Simplicial, Lemma <a href="/tag/08ND" data-tag="08ND">14.34.3</a> the map $\epsilon $ is a homotopy equivalence of underlying simplicial sets. By Simplicial, Lemma <a href="/tag/08P2" data-tag="08P2">14.31.9</a> this implies $\epsilon $ induces a quasi-isomorphism of associated complexes of abelian groups. By Simplicial, Lemma <a href="/tag/08P1" data-tag="08P1">14.31.8</a> this implies that $\epsilon $ is a trivial Kan fibration of underlying simplicial sets. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<article class="env-proof">
+    <p>
+      <strong>Second proof.</strong>
+       We will use the criterion of Cohomology on Sites, Lemma <a href="/tag/08Q9" data-tag="08Q9">21.39.7</a>. Let $U = (Q, \beta )$ be an object of $\mathcal{C}$. We have to show that 
+    <p>
+      <div class="equation">
+  \[  S_\bullet = \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}((P_\bullet , \epsilon ), (Q, \beta ))  \]
+</div>
+    <p>
+       is homotopy equivalent to a singleton. Write $Q = A[E]$ for some set $E$ (this is possible by our choice of the category $\mathcal{C}$). Using the notation of Remark <a href="/tag/08PP" data-tag="08PP">92.3.3</a> we see that 
+    <p>
+      <div class="equation">
+  \[  S_\bullet = \mathop{\mathrm{Mor}}\nolimits _\mathcal {S}((E \to B), i(P_\bullet \to B))  \]
+</div>
+    <p>
+       By Simplicial, Lemma <a href="/tag/08ND" data-tag="08ND">14.34.3</a> the map $i(P_\bullet \to B) \to i(B \to B)$ is a homotopy equivalence in $\mathcal{S}$. Hence $S_\bullet $ is homotopy equivalent to 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _\mathcal {S}((E \to B), (B \to B)) = \{ *\}   \]
+</div>
+    <p>
+       as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08PU">
+  <p><a class="environment-identifier" href="/tag/08PU">Lemma <span data-tag="08PU">92.4.3</span>.</a> Let $A \to B$ be a ring map. Let $\pi $ and $i$ be as in (<a href="/tag/08PR" data-tag="08PR">92.4.0.1</a>). There is a canonical isomorphism </p>
+  <div class="equation">
+  \[  L_{B/A} = L\pi _!(Li^*\Omega _{\mathcal{O}/A}) = L\pi _!(i^*\Omega _{\mathcal{O}/A}) = L\pi _!(\Omega _{\mathcal{O}/A} \otimes _\mathcal {O} \underline{B})  \]
+</div>
+  <p> in $D(B)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      For an object $\alpha : P \to B$ of the category $\mathcal{C}$ the module $\Omega _{P/A}$ is a free $P$-module. Thus $\Omega _{\mathcal{O}/A}$ is a flat $\mathcal{O}$-module. Hence $Li^*\Omega _{\mathcal{O}/A} = i^*\Omega _{\mathcal{O}/A}$ is the sheaf of $\underline{B}$-modules which associates to $\alpha : P \to A$ the $B$-module $\Omega _{P/A} \otimes _{P, \alpha } B$. By Lemma <a href="/tag/08PT" data-tag="08PT">92.4.2</a> we see that the right hand side is computed by the value of this sheaf on the standard resolution which is our definition of the left hand side (Definition <a href="/tag/08PN" data-tag="08PN">92.3.2</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08QE">
+  <p><a class="environment-identifier" href="/tag/08QE">Lemma <span data-tag="08QE">92.4.4</span>.</a> If $A \to B$ is a ring map, then $L\pi _!(\pi ^{-1}M) = M$ with $\pi $ as in (<a href="/tag/08PR" data-tag="08PR">92.4.0.1</a>). </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from Lemma <a href="/tag/08PS" data-tag="08PS">92.4.1</a> which tells us $L\pi _!(\pi ^{-1}M)$ is computed by $(\pi ^{-1}M)(P_\bullet , \epsilon )$ which is the constant simplicial object on $M$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08QF">
+  <p><a class="environment-identifier" href="/tag/08QF">Lemma <span data-tag="08QF">92.4.5</span>.</a> If $A \to B$ is a ring map, then $H^0(L_{B/A}) = \Omega _{B/A}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will prove this by a direct calculation. We will use the identification of Lemma <a href="/tag/08PU" data-tag="08PU">92.4.3</a>. There is clearly a map from $\Omega _{\mathcal{O}/A} \otimes \underline{B}$ to the constant sheaf with value $\Omega _{B/A}$. Thus this map induces a map 
+    <p>
+      <div class="equation">
+  \[  H^0(L_{B/A}) = H^0(L\pi _!(\Omega _{\mathcal{O}/A} \otimes \underline{B})) = \pi _!(\Omega _{\mathcal{O}/A} \otimes \underline{B}) \to \Omega _{B/A}  \]
+</div>
+    <p>
+       By choosing an object $P \to B$ of $\mathcal{C}_{B/A}$ with $P \to B$ surjective we see that this map is surjective (by Algebra, Lemma <a href="/tag/00RR" data-tag="00RR">10.131.6</a>). To show that it is injective, suppose that $P \to B$ is an object of $\mathcal{C}_{B/A}$ and that $\xi \in \Omega _{P/A} \otimes _ P B$ is an element which maps to zero in $\Omega _{B/A}$. We first choose factorization $P \to P' \to B$ such that $P' \to B$ is surjective and $P'$ is a polynomial algebra over $A$. We may replace $P$ by $P'$. If $B = P/I$, then the kernel $\Omega _{P/A} \otimes _ P B \to \Omega _{B/A}$ is the image of $I/I^2$ (Algebra, Lemma <a href="/tag/00RU" data-tag="00RU">10.131.9</a>). Say $\xi $ is the image of $f \in I$. Then we consider the two maps $a, b : P' = P[x] \to P$, the first of which maps $x$ to $0$ and the second of which maps $x$ to $f$ (in both cases $P[x] \to B$ maps $x$ to zero). We see that $\xi $ and $0$ are the image of $\text{d}x \otimes 1$ in $\Omega _{P'/A} \otimes _{P'} B$. Thus $\xi $ and $0$ have the same image in the colimit (see Cohomology on Sites, Example <a href="/tag/08PF" data-tag="08PF">21.39.1</a>) $\pi _!(\Omega _{\mathcal{O}/A} \otimes \underline{B})$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08QG">
+  <p><a class="environment-identifier" href="/tag/08QG">Lemma <span data-tag="08QG">92.4.6</span>.</a> If $B$ is a polynomial algebra over the ring $A$, then with $\pi $ as in (<a href="/tag/08PR" data-tag="08PR">92.4.0.1</a>) we have that $\pi _!$ is exact and $\pi _!\mathcal{F} = \mathcal{F}(B \to B)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from Lemma <a href="/tag/08PS" data-tag="08PS">92.4.1</a> which tells us the constant simplicial algebra on $B$ can be used to compute $L\pi _!$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08QH">
+  <p><a class="environment-identifier" href="/tag/08QH">Lemma <span data-tag="08QH">92.4.7</span>.</a> If $B$ is a polynomial algebra over the ring $A$, then $L_{B/A}$ is quasi-isomorphic to $\Omega _{B/A}[0]$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Immediate from Lemmas <a href="/tag/08PU" data-tag="08PU">92.4.3</a> and <a href="/tag/08QG" data-tag="08QG">92.4.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

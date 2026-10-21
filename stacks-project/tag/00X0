@@ -1,0 +1,146 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sites-section-morphism-sites" class="tex-section"><span data-tag="00X0">7.14</span> Morphisms of sites</h2>
+
+<p>
+<article class="env-definition" id="00X1">
+  <p><a class="environment-identifier" href="/tag/00X1">Definition <span data-tag="00X1">7.14.1</span>.</a> Let $\mathcal{C}$ and $\mathcal{D}$ be sites. A <em>morphism of sites</em> $f : \mathcal{D} \to \mathcal{C}$ is given by a continuous functor $u : \mathcal{C} \to \mathcal{D}$ such that the functor $u_ s$ is exact. </p>
+</article> 
+</p>
+<p>
+Notice how the functor $u$ goes in the direction <em>opposite</em> the morphism $f$. If $f \leftrightarrow u$ is a morphism of sites then we use the notation $f^{-1} = u_ s$ and $f_* = u^ s$. The functor $f^{-1}$ is called the <em>pullback functor</em> and the functor $f_*$ is called the <em>pushforward functor</em>. As in topology we have the following adjointness property 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{D})}(f^{-1}\mathcal{G}, \mathcal{F}) = \mathop{\mathrm{Mor}}\nolimits _{\mathop{\mathit{Sh}}\nolimits (\mathcal{C})}(\mathcal{G}, f_*\mathcal{F})  \]
+</div>
+<p>
+ The motivation for this definition comes from the following example. 
+</p>
+<p>
+<article class="env-example" id="00X2">
+  <p><a class="environment-identifier" href="/tag/00X2">Example <span data-tag="00X2">7.14.2</span>.</a> Let $f : X \to Y$ be a continuous map of topological spaces. Recall that we have sites $X_{Zar}$ and $Y_{Zar}$, see Example <a href="/tag/00VJ" data-tag="00VJ">7.6.4</a>. Consider the functor $u : Y_{Zar} \to X_{Zar}$, $V \mapsto f^{-1}(V)$. This functor is clearly continuous because inverse images of open coverings are open coverings. (Actually, this depends on how you chose sets of coverings for $X_{Zar}$ and $Y_{Zar}$. But in any case the functor is quasi-continuous, see Remark <a href="/tag/00WZ" data-tag="00WZ">7.13.6</a>.) It is easy to verify that the functor $u^ s$ equals the usual pushforward functor $f_*$ from topology. Hence, since $u_ s$ is an adjoint and since the usual topological pullback functor $f^{-1}$ is an adjoint as well, we get a canonical isomorphism $f^{-1} \cong u_ s$. Since $f^{-1}$ is exact we deduce that $u_ s$ is exact. Hence $u$ defines a morphism of sites $f : X_{Zar} \to Y_{Zar}$, which we may denote $f$ as well since we've already seen the functors $u_ s, u^ s$ agree with their usual notions anyway. </p>
+</article> 
+</p>
+<p>
+<article class="env-example" id="0EWI">
+  <p><a class="environment-identifier" href="/tag/0EWI">Example <span data-tag="0EWI">7.14.3</span>.</a> Let $\mathcal{C}$ be a category. Let </p>
+  <div class="equation">
+  \[  \text{Cov}(\mathcal{C}) \supset \text{Cov}'(\mathcal{C})  \]
+</div>
+  <p> be two sets of families of morphisms with fixed target which turn $\mathcal{C}$ into a site. Denote $\mathcal{C}_\tau $ the site corresponding to $\text{Cov}(\mathcal{C})$ and $\mathcal{C}_{\tau '}$ the site corresponding to $\text{Cov}'(\mathcal{C})$. We claim the identity functor on $\mathcal{C}$ defines a morphism of sites </p>
+  <div class="equation">
+  \[  \epsilon : \mathcal{C}_\tau \longrightarrow \mathcal{C}_{\tau '}  \]
+</div>
+  <p> Namely, observe that $\text{id} : \mathcal{C}_{\tau '} \to \mathcal{C}_\tau $ is continuous as every $\tau '$-covering is a $\tau $-covering. Thus the functor $\epsilon _* = \text{id}^ s$ is the identity functor on underlying presheaves. Hence the left adjoint $\epsilon ^{-1}$ of $\epsilon _*$ sends a $\tau '$-sheaf $\mathcal{F}$ to the $\tau $-sheafification of $\mathcal{F}$ (by the universal property of sheafification). Finite limits of $\tau '$-sheaves agree with finite limits of presheaves (Lemma <a href="/tag/00W2" data-tag="00W2">7.10.1</a>) and $\tau $-sheafification commutes with finite limits (Lemma <a href="/tag/00WJ" data-tag="00WJ">7.10.15</a>). Thus $\epsilon ^{-1}$ is left exact. Since $\epsilon ^{-1}$ is a left adjoint it is also right exact (Categories, Lemma <a href="/tag/0039" data-tag="0039">4.24.6</a>). Thus $\epsilon ^{-1}$ is exact and we have checked all the conditions of Definition <a href="/tag/00X1" data-tag="00X1">7.14.1</a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="03CB">
+       
+      
+  <p><a class="environment-identifier" href="/tag/03CB">Lemma <span data-tag="03CB">7.14.4</span>.</a> Let $\mathcal{C}_ i$, $i = 1, 2, 3$ be sites. Let $u : \mathcal{C}_2 \to \mathcal{C}_1$ and $v : \mathcal{C}_3 \to \mathcal{C}_2$ be continuous functors which induce morphisms of sites. Then the functor $u \circ v : \mathcal{C}_3 \to \mathcal{C}_1$ is continuous and defines a morphism of sites $\mathcal{C}_1 \to \mathcal{C}_3$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It is immediate from the definitions that $u \circ v$ is a continuous functor. In addition, we clearly have $(u \circ v)^ p = v^ p \circ u^ p$, and hence $(u \circ v)^ s = v^ s \circ u^ s$. Hence functors $(u \circ v)_ s$ and $u_ s \circ v_ s$ are both left adjoints of $(u \circ v)^ s$. Therefore $(u \circ v)_ s \cong u_ s \circ v_ s$ and we conclude that $(u \circ v)_ s$ is exact as a composition of exact functors. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="03CC">
+  <p><a class="environment-identifier" href="/tag/03CC">Definition <span data-tag="03CC">7.14.5</span>.</a> Let $\mathcal{C}_ i$, $i = 1, 2, 3$ be sites. Let $f : \mathcal{C}_1 \to \mathcal{C}_2$ and $g : \mathcal{C}_2 \to \mathcal{C}_3$ be morphisms of sites given by continuous functors $u : \mathcal{C}_2 \to \mathcal{C}_1$ and $v : \mathcal{C}_3 \to \mathcal{C}_2$. The <em>composition</em> $g \circ f$ is the morphism of sites corresponding to the functor $u \circ v$. </p>
+</article> 
+</p>
+<p>
+In this situation we have $(g \circ f)_* = g_* \circ f_*$ and $(g \circ f)^{-1} = f^{-1} \circ g^{-1}$ (see proof of Lemma <a href="/tag/03CB" data-tag="03CB">7.14.4</a>). 
+</p>
+<p>
+<article class="env-lemma" id="00X5">
+  <p><a class="environment-identifier" href="/tag/00X5">Lemma <span data-tag="00X5">7.14.6</span>.</a> Let $\mathcal{C}$ and $\mathcal{D}$ be sites. Let $u : \mathcal{C} \to \mathcal{D}$ be continuous. Assume all the categories $(\mathcal{I}_ V^ u)^{opp}$ of Section <a href="/tag/00VC" data-tag="00VC">7.5</a> are filtered. Then $u$ defines a morphism of sites $\mathcal{D} \to \mathcal{C}$, in other words $u_ s$ is exact. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $u_ s$ is the left adjoint of $u^ s$ we see that $u_ s$ is right exact, see Categories, Lemma <a href="/tag/0039" data-tag="0039">4.24.6</a>. Hence it suffices to show that $u_ s$ is left exact. In other words we have to show that $u_ s$ commutes with finite limits. Because the categories $\mathcal{I}_ Y^{opp}$ are filtered we see that $u_ p$ commutes with finite limits, see Categories, Lemma <a href="/tag/002W" data-tag="002W">4.19.2</a> (this also uses the description of limits in $\textit{PSh}$, see Section <a href="/tag/00VB" data-tag="00VB">7.4</a>). And since sheafification commutes with finite limits as well (Lemma <a href="/tag/00WJ" data-tag="00WJ">7.10.15</a>) we conclude because $u_ s = \#  \circ u_ p$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="00X6">
+  <p><a class="environment-identifier" href="/tag/00X6">Proposition <span data-tag="00X6">7.14.7</span>.</a> Let $\mathcal{C}$ and $\mathcal{D}$ be sites. Let $u : \mathcal{C} \to \mathcal{D}$ be continuous. Assume furthermore the following: </p>
+  <p><ol>
+  <li><p>
+the category $\mathcal{C}$ has a final object $X$ and $u(X)$ is a final object of $\mathcal{D}$ , and 
+</p>
+</li><li><p>
+the category $\mathcal{C}$ has fibre products and $u$ commutes with them. 
+</p>
+</li>
+</ol></p>
+  <p> Then $u$ defines a morphism of sites $\mathcal{D} \to \mathcal{C}$, in other words $u_ s$ is exact. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from Lemmas <a href="/tag/00X3" data-tag="00X3">7.5.2</a> and <a href="/tag/00X5" data-tag="00X5">7.14.6</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="00X7">
+  <p><a class="environment-identifier" href="/tag/00X7">Remark <span data-tag="00X7">7.14.8</span>.</a> The conditions of Proposition <a href="/tag/00X6" data-tag="00X6">7.14.7</a> above are equivalent to saying that $u$ is left exact, i.e., commutes with finite limits. See Categories, Lemmas <a href="/tag/002O" data-tag="002O">4.18.4</a> and <a href="/tag/0035" data-tag="0035">4.23.2</a>. It seems more natural to phrase it in terms of final objects and fibre products since this seems to have more geometric meaning in the examples. </p>
+</article> 
+</p>
+<p>
+Lemma <a href="/tag/09VR" data-tag="09VR">7.22.4</a> will provide another way to prove a continuous functor gives rise to a morphism of sites. 
+</p>
+<p>
+<article class="env-remark" id="00X8">
+  <p><a class="environment-identifier" href="/tag/00X8">Remark <span data-tag="00X8">7.14.9</span>.</a> (Skip on first reading.) Let $\mathcal{C}$ and $\mathcal{D}$ be sites. Analogously to Definition <a href="/tag/00X1" data-tag="00X1">7.14.1</a> we say that a <em>quasi-morphism of sites $f : \mathcal{D} \to \mathcal{C}$</em> is given by a quasi-continuous functor $u : \mathcal{C} \to \mathcal{D}$ (see Remark <a href="/tag/00WZ" data-tag="00WZ">7.13.6</a>) such that $u_ s$ is exact. The analogue of Proposition <a href="/tag/00X6" data-tag="00X6">7.14.7</a> in this setting is obtained by replacing the word “continuous” by the word “quasi-continuous”, and replacing the word “morphism” by “quasi-morphism”. The proof is literally the same. </p>
+</article> 
+</p>
+<p>
+In Definition <a href="/tag/00X1" data-tag="00X1">7.14.1</a> the condition that $u_ s$ be exact cannot be omitted. For example, the conclusion of the following lemma need not hold if one only assumes that $u$ is continuous. 
+</p>
+<p>
+<article class="env-lemma" id="08H2">
+  <p><a class="environment-identifier" href="/tag/08H2">Lemma <span data-tag="08H2">7.14.10</span>.</a> Let $f : \mathcal{D} \to \mathcal{C}$ be a morphism of sites given by the functor $u : \mathcal{C} \to \mathcal{D}$. Given any object $V$ of $\mathcal{D}$ there exists a covering $\{ V_ j \to V\} $ such that for every $j$ there exists a morphism $V_ j \to u(U_ j)$ for some object $U_ j$ of $\mathcal{C}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $f^{-1} = u_ s$ is exact we have $f^{-1}* = *$ where $*$ denotes the final object of the category of sheaves (Example <a href="/tag/00W3" data-tag="00W3">7.10.2</a>). Since $f^{-1}* = u_ s*$ is the sheafification of $u_ p*$ we see there exists a covering $\{ V_ j \to V\} $ such that $(u_ p*)(V_ j)$ is nonempty. Since $(u_ p*)(V_ j)$ is a colimit over the category $\mathcal{I}^ u_{V_ j}$ whose objects are morphisms $V_ j \to u(U)$ the lemma follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

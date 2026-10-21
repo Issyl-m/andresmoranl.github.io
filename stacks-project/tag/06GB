@@ -1,0 +1,363 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="formal-defos-section-CLambda" class="tex-section"><span data-tag="06GB">90.3</span> The base category</h2>
+
+<p>
+Motivation. An important application of formal deformation theory is to criteria for representability by algebraic spaces. Suppose given a locally Noetherian base $S$ and a functor $F : (\mathit{Sch}/S)_{fppf}^{opp} \to \textit{Sets}$. Let $k$ be a finite type field over $S$, i.e., we are given a finite type morphism $\mathop{\mathrm{Spec}}(k) \to S$. One of Artin's criteria is that for any element $x \in F(\mathop{\mathrm{Spec}}(k))$ the predeformation functor associated to the triple $(S, k, x)$ should be prorepresentable. By Morphisms, Lemma <a href="/tag/01TA" data-tag="01TA">29.16.1</a> the condition that $k$ is of finite type over $S$ means that there exists an affine open $\mathop{\mathrm{Spec}}(\Lambda ) \subset S$ such that $k$ is a finite $\Lambda $-algebra. This motivates why we work throughout this chapter with a base category as follows. 
+</p>
+<p>
+<article class="env-definition" id="06GC">
+  <p><a class="environment-identifier" href="/tag/06GC">Definition <span data-tag="06GC">90.3.1</span>.</a> Let $\Lambda $ be a Noetherian ring and let $\Lambda \to k$ be a finite ring map where $k$ is a field. We define <em>$\mathcal{C}_\Lambda $</em> to be the category with </p>
+  <p><ol>
+  <li><p>
+objects are pairs $(A, \varphi )$ where $A$ is an Artinian local $\Lambda $-algebra and where $\varphi : A/\mathfrak m_ A \to k$ is a $\Lambda $-algebra isomorphism, and 
+</p>
+</li><li><p>
+morphisms $f : (B, \psi ) \to (A, \varphi )$ are local $\Lambda $-algebra homomorphisms such that $\varphi \circ (f \bmod \mathfrak m) = \psi $. 
+</p>
+</li>
+</ol></p>
+  <p> We say we are in the <em>classical case</em> if $\Lambda $ is a Noetherian complete local ring and $k$ is its residue field. </p>
+</article> 
+</p>
+<p>
+Note that if $\Lambda \to k$ is surjective and if $A$ is an Artinian local $\Lambda $-algebra, then the identification $\varphi $, if it exists, is unique. Moreover, in this case any $\Lambda $-algebra map $A \to B$ is going to be compatible with the identifications. Hence in this case $\mathcal{C}_\Lambda $ is just the category of local Artinian $\Lambda $-algebras whose residue field “is” $k$. By abuse of notation we also denote objects of $\mathcal{C}_\Lambda $ simply $A$ in the general case. Moreover, we will often write $A/\mathfrak m = k$, i.e., we will pretend all rings in $\mathcal{C}_\Lambda $ have residue field $k$ (since all ring maps in $\mathcal{C}_\Lambda $ are compatible with the given identifications this should never cause any problems). Throughout the rest of this chapter the base ring $\Lambda $ and the field $k$ are fixed. The category $\mathcal{C}_\Lambda $ will be the base category for the cofibered categories considered below. 
+</p>
+<p>
+<article class="env-definition" id="06GD">
+  <p><a class="environment-identifier" href="/tag/06GD">Definition <span data-tag="06GD">90.3.2</span>.</a> Let $f: B \to A$ be a ring map in $\mathcal{C}_\Lambda $. We say $f$ is a <em>small extension</em> if it is surjective and $\mathop{\mathrm{Ker}}(f)$ is a nonzero principal ideal which is annihilated by $\mathfrak {m}_ B$. </p>
+</article> 
+</p>
+<p>
+By the following lemma we can often reduce arguments involving surjective ring maps in $\mathcal{C}_\Lambda $ to the case of small extensions. 
+</p>
+<p>
+<article class="env-lemma" id="06GE">
+  <p><a class="environment-identifier" href="/tag/06GE">Lemma <span data-tag="06GE">90.3.3</span>.</a> Let $f: B \to A$ be a surjective ring map in $\mathcal{C}_\Lambda $. Then $f$ can be factored as a composition of small extensions. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $I$ be the kernel of $f$. The maximal ideal $\mathfrak {m}_ B$ is nilpotent since $B$ is Artinian, say $\mathfrak {m}_ B^ n = 0$. Hence we get a factorization 
+    <p>
+      <div class="equation">
+  \[  B = B/I\mathfrak {m}_ B^{n-1} \to B/I\mathfrak {m}_ B^{n-2} \to \ldots \to B/I \cong A  \]
+</div>
+    <p>
+       of $f$ into a composition of surjective maps whose kernels are annihilated by the maximal ideal. Thus it suffices to prove the lemma when $f$ itself is such a map, i.e. when $I$ is annihilated by $\mathfrak {m}_ B$. In this case $I$ is a $k$-vector space, which has finite dimension, see Algebra, Lemma <a href="/tag/00JB" data-tag="00JB">10.53.6</a>. Take a basis $x_1, \ldots , x_ n$ of $I$ as a $k$-vector space to get a factorization 
+    <p>
+      <div class="equation">
+  \[  B \to B/(x_1) \to \ldots \to B/(x_1, \ldots , x_ n) \cong A  \]
+</div>
+    <p>
+       of $f$ into a composition of small extensions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The next lemma says that we can compute the length of a module over a local $\Lambda $-algebra with residue field $k$ in terms of the length over $\Lambda $. To explain the notation in the statement, let $k' \subset k$ be the image of our fixed finite ring map $\Lambda \to k$. Note that $k' \subset k$ is a finite extension of rings. Hence $k'$ is a field and $k/k'$ is a finite extension of fields, see Algebra, Lemma <a href="/tag/00GR" data-tag="00GR">10.36.18</a>. Moreover, as $\Lambda \to k'$ is surjective we see that its kernel is a maximal ideal $\mathfrak m_\Lambda $. Thus 
+</p>
+<div class="equation" id="06S2">
+    <span class="equation-label"><a href="/tag/06S2" data-tag="06S2">90.3.3.1</a></span>
+  <div>\begin{equation}  \label{formal-defos-equation-k-prime} [k : k'] = [k : \Lambda /\mathfrak m_\Lambda ] < \infty \end{equation}</div>
+</div>
+<p>
+ and in the classical case we have $k = k'$. The notation $k' = \Lambda /\mathfrak m_\Lambda $ will be fixed throughout this chapter. 
+</p>
+<p>
+<article class="env-lemma" id="06GG">
+  <p><a class="environment-identifier" href="/tag/06GG">Lemma <span data-tag="06GG">90.3.4</span>.</a> Let $A$ be a local $\Lambda $-algebra with residue field $k$. Let $M$ be an $A$-module. Then $[k : k'] \text{length}_ A(M) = \text{length}_\Lambda (M)$. In the classical case we have $\text{length}_ A(M) = \text{length}_\Lambda (M)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $M$ is a simple $A$-module then $M \cong k$ as an $A$-module, see Algebra, Lemma <a href="/tag/00J2" data-tag="00J2">10.52.10</a>. In this case $\text{length}_ A(M) = 1$ and $\text{length}_\Lambda (M) = [k' : k]$, see Algebra, Lemma <a href="/tag/00IY" data-tag="00IY">10.52.6</a>. If $\text{length}_ A(M)$ is finite, then the result follows on choosing a filtration of $M$ by $A$-submodules with simple quotients using additivity, see Algebra, Lemma <a href="/tag/00IV" data-tag="00IV">10.52.3</a>. If $\text{length}_ A(M)$ is infinite, the result follows from the obvious inequality $\text{length}_ A(M) \leq \text{length}_\Lambda (M)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06S3">
+  <p><a class="environment-identifier" href="/tag/06S3">Lemma <span data-tag="06S3">90.3.5</span>.</a> Let $A \to B$ be a ring map in $\mathcal{C}_\Lambda $. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$f$ is surjective, 
+</p>
+</li><li><p>
+$\mathfrak m_ A/\mathfrak m_ A^2 \to \mathfrak m_ B/\mathfrak m_ B^2$ is surjective, and 
+</p>
+</li><li><p>
+$\mathfrak m_ A/(\mathfrak m_\Lambda A + \mathfrak m_ A^2) \to \mathfrak m_ B/(\mathfrak m_\Lambda B + \mathfrak m_ B^2)$ is surjective. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      For any ring map $f : A \to B$ in $\mathcal{C}_\Lambda $ we have $f(\mathfrak m_ A) \subset \mathfrak m_ B$ for example because $\mathfrak m_ A$, $\mathfrak m_ B$ is the set of nilpotent elements of $A$, $B$. Suppose $f$ is surjective. Let $y \in \mathfrak m_ B$. Choose $x \in A$ with $f(x) = y$. Since $f$ induces an isomorphism $A/\mathfrak m_ A \to B/\mathfrak m_ B$ we see that $x \in \mathfrak m_ A$. Hence the induced map $\mathfrak m_ A/\mathfrak m_ A^2 \to \mathfrak m_ B/\mathfrak m_ B^2$ is surjective. In this way we see that (1) implies (2). 
+    <p>
+      It is clear that (2) implies (3). The map $A \to B$ gives rise to a canonical commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathfrak m_\Lambda /\mathfrak m_\Lambda ^2 \otimes _{k'} k \ar[r] \ar[d] &  \mathfrak m_ A/\mathfrak m_ A^2 \ar[r] \ar[d] &  \mathfrak m_ A/(\mathfrak m_\Lambda A + \mathfrak m_ A^2) \ar[r] \ar[d] &  0 \\  \mathfrak m_\Lambda /\mathfrak m_\Lambda ^2 \otimes _{k'} k \ar[r] &  \mathfrak m_ B/\mathfrak m_ B^2 \ar[r] &  \mathfrak m_ B/(\mathfrak m_\Lambda B + \mathfrak m_ B^2) \ar[r] &  0 }  \]
+</div>
+    <p>
+       with exact rows. Hence if (3) holds, then so does (2). 
+    <p>
+      Assume (2). To show that $A \to B$ is surjective it suffices by Nakayama's lemma (Algebra, Lemma <a href="/tag/00DV" data-tag="00DV">10.20.1</a>) to show that $A/\mathfrak m_ A \to B/\mathfrak m_ AB$ is surjective. (Note that $\mathfrak m_ A$ is a nilpotent ideal.) As $k = A/\mathfrak m_ A = B/\mathfrak m_ B$ it suffices to show that $\mathfrak m_ AB \to \mathfrak m_ B$ is surjective. Applying Nakayama's lemma once more we see that it suffices to see that $\mathfrak m_ AB/\mathfrak m_ A\mathfrak m_ B \to \mathfrak m_ B/\mathfrak m_ B^2$ is surjective which is what we assumed. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+If $A \to B$ is a ring map in $\mathcal{C}_\Lambda $, then the map $\mathfrak m_ A/(\mathfrak m_\Lambda A + \mathfrak m_ A^2) \to \mathfrak m_ B/(\mathfrak m_\Lambda B + \mathfrak m_ B^2)$ is the map on relative cotangent spaces. Here is a formal definition. 
+</p>
+<p>
+<article class="env-definition" id="06GY">
+  <p><a class="environment-identifier" href="/tag/06GY">Definition <span data-tag="06GY">90.3.6</span>.</a> Let $R \to S$ be a local homomorphism of local rings. The <em>relative cotangent space</em><a class="footnotemark" href="#a0001596516" id="a0001596516-mark"><sup>1</sup></a> of $R$ over $S$ is the $S/\mathfrak m_ S$-vector space $\mathfrak m_ S/(\mathfrak m_ R S + \mathfrak m_ S^2)$. </p>
+</article> 
+</p>
+<p>
+If $f_1: A_1 \to A$ and $f_2: A_2 \to A$ are two ring maps, then the fiber product $A_1 \times _ A A_2$ is the subring of $A_1 \times A_2$ consisting of elements whose two projections to $A$ are equal. Throughout this chapter we will be considering conditions involving such a fiber product when $f_1$ and $f_2$ are in $\mathcal{C}_\Lambda $. It isn't always the case that the fibre product is an object of $\mathcal{C}_\Lambda $. 
+</p>
+<p>
+<article class="env-example" id="06S4">
+  <p><a class="environment-identifier" href="/tag/06S4">Example <span data-tag="06S4">90.3.7</span>.</a> Let $p$ be a prime number and let $n \in \mathbf{N}$. Let $\Lambda = \mathbf{F}_ p(t_1, t_2, \ldots , t_ n)$ and let $k = \mathbf{F}_ p(x_1, \ldots , x_ n)$ with map $\Lambda \to k$ given by $t_ i \mapsto x_ i^ p$. Let $A = k[\epsilon ] = k[x]/(x^2)$. Then $A$ is an object of $\mathcal{C}_\Lambda $. Suppose that $D : k \to k$ is a derivation of $k$ over $\Lambda $, for example $D = \partial /\partial x_ i$. Then the map </p>
+  <div class="equation">
+  \[  f_ D : k \longrightarrow k[\epsilon ], \quad a \mapsto a + D(a)\epsilon  \]
+</div>
+  <p> is a morphism of $\mathcal{C}_\Lambda $. Set $A_1 = A_2 = k$ and set $f_1 = f_{\partial /\partial x_1}$ and $f_2(a) = a$. Then $A_1 \times _ A A_2 = \{ a \in k \mid \partial /\partial x_1(a) = 0\} $ which does not surject onto $k$. Hence the fibre product isn't an object of $\mathcal{C}_\Lambda $. </p>
+</article> 
+</p>
+<p>
+It turns out that this problem can only occur if the residue field extension $k/k'$ (<a href="/tag/06S2" data-tag="06S2">90.3.3.1</a>) is inseparable and neither $f_1$ nor $f_2$ is surjective. 
+</p>
+<p>
+<article class="env-lemma" id="06GH">
+  <p><a class="environment-identifier" href="/tag/06GH">Lemma <span data-tag="06GH">90.3.8</span>.</a> Let $f_1 : A_1 \to A$ and $f_2 : A_2 \to A$ be ring maps in $\mathcal{C}_\Lambda $. Then: </p>
+  <p><ol>
+  <li><p>
+If $f_1$ or $f_2$ is surjective, then $A_1 \times _ A A_2$ is in $\mathcal{C}_\Lambda $. 
+</p>
+</li><li><p>
+If $f_2$ is a small extension, then so is $A_1 \times _ A A_2 \to A_1$. 
+</p>
+</li><li><p>
+If the field extension $k/k'$ is separable, then $A_1 \times _ A A_2$ is in $\mathcal{C}_\Lambda $. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The ring $A_1 \times _ A A_2$ is a $\Lambda $-algebra via the map $\Lambda \to A_1 \times _ A A_2$ induced by the maps $\Lambda \to A_1$ and $\Lambda \to A_2$. It is a local ring with unique maximal ideal 
+    <p>
+      <div class="equation">
+  \[  \mathfrak m_{A_1} \times _{\mathfrak m_ A} \mathfrak m_{A_2} = \mathop{\mathrm{Ker}}(A_1 \times _ A A_2 \longrightarrow k)  \]
+</div>
+    <p>
+       A ring is Artinian if and only if it has finite length as a module over itself, see Algebra, Lemma <a href="/tag/00JB" data-tag="00JB">10.53.6</a>. Since $A_1$ and $A_2$ are Artinian, Lemma <a href="/tag/06GG" data-tag="06GG">90.3.4</a> implies $\text{length}_\Lambda (A_1)$ and $\text{length}_\Lambda (A_2)$, and hence $\text{length}_\Lambda (A_1 \times A_2)$, are all finite. As $A_1 \times _ A A_2 \subset A_1 \times A_2$ is a $\Lambda $-submodule, this implies $\text{length}_{A_1 \times _ A A_2}(A_1 \times _ A A_2) \leq \text{length}_\Lambda (A_1 \times _ A A_2)$ is finite. So $A_1 \times _ A A_2$ is Artinian. Thus the only thing that is keeping $A_1 \times _ A A_2$ from being an object of $\mathcal{C}_\Lambda $ is the possibility that its residue field maps to a proper subfield of $k$ via the map $A_1 \times _ A A_2 \to A \to A/\mathfrak m_ A = k$ above. 
+    <p>
+      Proof of (1). If $f_2$ is surjective, then the projection $A_1 \times _ A A_2 \to A_1$ is surjective. Hence the composition $A_1 \times _ A A_2 \to A_1 \to A_1/\mathfrak m_{A_1} = k$ is surjective and we conclude that $A_1 \times _ A A_2$ is an object of $\mathcal{C}_\Lambda $. 
+    <p>
+      Proof of (2). If $f_2$ is a small extension then $A_2 \to A$ and $A_1 \times _ A A_2 \to A_1$ are both surjective with the same kernel. Hence the kernel of $A_1 \times _ A A_2 \to A_1$ is a $1$-dimensional $k$-vector space and we see that $A_1 \times _ A A_2 \to A_1$ is a small extension. 
+    <p>
+      Proof of (3). Choose $\overline{x} \in k$ such that $k = k'(\overline{x})$ (see Fields, Lemma <a href="/tag/030N" data-tag="030N">9.19.1</a>). Let $P'(T) \in k'[T]$ be the minimal polynomial of $\overline{x}$ over $k'$. Since $k/k'$ is separable we see that $\text{d}P/\text{d}T(\overline{x}) \not= 0$. Choose a monic $P \in \Lambda [T]$ which maps to $P'$ under the surjective map $\Lambda [T] \to k'[T]$. Because $A, A_1, A_2$ are henselian, see Algebra, Lemma <a href="/tag/06RS" data-tag="06RS">10.153.10</a>, we can find $x, x_1, x_2 \in A, A_1, A_2$ with $P(x) = 0, P(x_1) = 0, P(x_2) = 0$ and such that the image of $x, x_1, x_2$ in $k$ is $\overline{x}$. Then $(x_1, x_2) \in A_1 \times _ A A_2$ because $x_1, x_2$ map to $x \in A$ by uniqueness, see Algebra, Lemma <a href="/tag/06RR" data-tag="06RR">10.153.2</a>. Hence the residue field of $A_1 \times _ A A_2$ contains a generator of $k$ over $k'$ and we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Next we define essential surjections in $\mathcal{C}_\Lambda $. A necessary and sufficient condition for a surjection in $\mathcal{C}_\Lambda $ to be essential is given in Lemma <a href="/tag/06H0" data-tag="06H0">90.3.12</a>. 
+</p>
+<p>
+<article class="env-definition" id="06GF">
+  <p><a class="environment-identifier" href="/tag/06GF">Definition <span data-tag="06GF">90.3.9</span>.</a> Let $f: B \to A$ be a ring map in $\mathcal{C}_\Lambda $. We say $f$ is an <em>essential surjection</em> if it has the following properties: </p>
+  <p><ol>
+  <li><p>
+$f$ is surjective. 
+</p>
+</li><li><p>
+If $g: C \to B$ is a ring map in $\mathcal{C}_\Lambda $ such that $f \circ g$ is surjective, then $g$ is surjective. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+Using Lemma <a href="/tag/06S3" data-tag="06S3">90.3.5</a>, we can characterize essential surjections in $\mathcal{C}_\Lambda $ as follows. 
+</p>
+<p>
+<article class="env-lemma" id="06S5">
+  <p><a class="environment-identifier" href="/tag/06S5">Lemma <span data-tag="06S5">90.3.10</span>.</a> Let $f: B \to A$ be a ring map in $\mathcal{C}_\Lambda $. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$f$ is an essential surjection, 
+</p>
+</li><li><p>
+the map $B/\mathfrak m_ B^2 \to A/\mathfrak m_ A^2$ is an essential surjection, and 
+</p>
+</li><li><p>
+the map $B/(\mathfrak m_\Lambda B + \mathfrak m_ B^2) \to A/(\mathfrak m_\Lambda A + \mathfrak m_ A^2)$ is an essential surjection. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume (3). Let $C \to B$ be a ring map in $\mathcal{C}_\Lambda $ such that $C \to A$ is surjective. Then $C \to A/(\mathfrak m_\Lambda A + \mathfrak m_ A^2)$ is surjective too. We conclude that $C \to B/(\mathfrak m_\Lambda B + \mathfrak m_ B^2)$ is surjective by our assumption. Hence $C \to B$ is surjective by applying Lemma <a href="/tag/06S3" data-tag="06S3">90.3.5</a> (2 times). 
+    <p>
+      Assume (1). Let $C \to B/(\mathfrak m_\Lambda B + \mathfrak m_ B^2)$ be a morphism of $\mathcal{C}_\Lambda $ such that $C \to A/(\mathfrak m_\Lambda A + \mathfrak m_ A^2)$ is surjective. Set $C' = C \times _{B/(\mathfrak m_\Lambda B + \mathfrak m_ B^2)} B$ which is an object of $\mathcal{C}_\Lambda $ by Lemma <a href="/tag/06GH" data-tag="06GH">90.3.8</a>. Note that $C' \to A/(\mathfrak m_\Lambda A + \mathfrak m_ A^2)$ is still surjective, hence $C' \to A$ is surjective by Lemma <a href="/tag/06S3" data-tag="06S3">90.3.5</a>. Thus $C' \to B$ is surjective by our assumption. This implies that $C' \to B/(\mathfrak m_\Lambda B + \mathfrak m_ B^2)$ is surjective, which implies by the construction of $C'$ that $C \to B/(\mathfrak m_\Lambda B + \mathfrak m_ B^2)$ is surjective. 
+    <p>
+      In the first paragraph we proved (3) $\Rightarrow $ (1) and in the second paragraph we proved (1) $\Rightarrow $ (3). The equivalence of (2) and (3) is a special case of the equivalence of (1) and (3), hence we are done. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+To analyze essential surjections in $\mathcal{C}_\Lambda $ a bit more we introduce some notation. Suppose that $A$ is an object of $\mathcal{C}_\Lambda $ or more generally any $\Lambda $-algebra equipped with a $\Lambda $-algebra surjection $A \to k$. There is a canonical exact sequence 
+</p>
+<div class="equation" id="06S6">
+    <span class="equation-label"><a href="/tag/06S6" data-tag="06S6">90.3.10.1</a></span>
+  <div>\begin{equation}  \label{formal-defos-equation-sequence} \mathfrak m_ A/\mathfrak m_ A^2 \xrightarrow {\text{d}_ A} \Omega _{A/\Lambda } \otimes _ A k \to \Omega _{k/\Lambda } \to 0 \end{equation}</div>
+</div>
+<p>
+ see Algebra, Lemma <a href="/tag/00RU" data-tag="00RU">10.131.9</a>. Note that $\Omega _{k/\Lambda } = \Omega _{k/k'}$ with $k'$ as in (<a href="/tag/06S2" data-tag="06S2">90.3.3.1</a>). Let $H_1(L_{k/\Lambda })$ be the first homology module of the naive cotangent complex of $k$ over $\Lambda $, see Algebra, Definition <a href="/tag/07BN" data-tag="07BN">10.134.1</a>. Then we can extend (<a href="/tag/06S6" data-tag="06S6">90.3.10.1</a>) to the exact sequence 
+</p>
+<div class="equation" id="06S7">
+    <span class="equation-label"><a href="/tag/06S7" data-tag="06S7">90.3.10.2</a></span>
+  <div>\begin{equation}  \label{formal-defos-equation-sequence-extended} H_1(L_{k/\Lambda }) \to \mathfrak m_ A/\mathfrak m_ A^2 \xrightarrow {\text{d}_ A} \Omega _{A/\Lambda } \otimes _ A k \to \Omega _{k/\Lambda } \to 0, \end{equation}</div>
+</div>
+<p>
+ see Algebra, Lemma <a href="/tag/00S2" data-tag="00S2">10.134.4</a>. If $B \to A$ is a ring map in $\mathcal{C}_\Lambda $ or more generally a map of $\Lambda $-algebras equipped with $\Lambda $-algebra surjections onto $k$, then we obtain a commutative diagram 
+</p>
+<div class="equation" id="06S8">
+    <span class="equation-label"><a href="/tag/06S8" data-tag="06S8">90.3.10.3</a></span>
+  <div>\begin{equation}  \label{formal-defos-equation-sequence-functorial} \vcenter { \xymatrix{ H_1(L_{k/\Lambda }) \ar[r] \ar@{=}[d] &  \mathfrak m_ B/\mathfrak m_ B^2 \ar[r]_{\text{d}_ B} \ar[d] &  \Omega _{B/\Lambda } \otimes _ B k \ar[r] \ar[d] &  \Omega _{k/\Lambda } \ar[r] \ar@{=}[d] &  0 \\  H_1(L_{k/\Lambda }) \ar[r] &  \mathfrak m_ A/\mathfrak m_ A^2 \ar[r]^{\text{d}_ A} &  \Omega _{A/\Lambda } \otimes _ A k \ar[r] &  \Omega _{k/\Lambda } \ar[r] &  0 } } \end{equation}</div>
+</div>
+<p>
+ with exact rows. 
+</p>
+<p>
+<article class="env-lemma" id="06S9">
+  <p><a class="environment-identifier" href="/tag/06S9">Lemma <span data-tag="06S9">90.3.11</span>.</a> There is a canonical map </p>
+  <div class="equation">
+  \[  \mathfrak m_\Lambda /\mathfrak m_\Lambda ^2 \longrightarrow H_1(L_{k/\Lambda }).  \]
+</div>
+  <p> If $k' \subset k$ is separable (for example if the characteristic of $k$ is zero), then this map induces an isomorphism $\mathfrak m_\Lambda /\mathfrak m_\Lambda ^2 \otimes _{k'} k = H_1(L_{k/\Lambda })$. If $k = k'$ (for example in the classical case), then $\mathfrak m_\Lambda /\mathfrak m_\Lambda ^2 = H_1(L_{k/\Lambda })$. The composition </p>
+  <div class="equation">
+  \[  \mathfrak m_\Lambda /\mathfrak m_\Lambda ^2 \longrightarrow H_1(L_{k/\Lambda }) \longrightarrow \mathfrak m_ A/\mathfrak m_ A^2  \]
+</div>
+  <p> comes from the canonical map $\mathfrak m_\Lambda \to \mathfrak m_ A$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Note that $H_1(L_{k'/\Lambda }) = \mathfrak m_\Lambda /\mathfrak m_\Lambda ^2$ as $\Lambda \to k'$ is surjective with kernel $\mathfrak m_\Lambda $. The map arises from functoriality of the naive cotangent complex. If $k' \subset k$ is separable, then $k' \to k$ is an étale ring map, see Algebra, Lemma <a href="/tag/00U3" data-tag="00U3">10.143.4</a>. Thus its naive cotangent complex has trivial homology groups, see Algebra, Definition <a href="/tag/00U1" data-tag="00U1">10.143.1</a>. Then Algebra, Lemma <a href="/tag/00S2" data-tag="00S2">10.134.4</a> applied to the ring maps $\Lambda \to k' \to k$ implies that $\mathfrak m_\Lambda /\mathfrak m_\Lambda ^2 \otimes _{k'} k = H_1(L_{k/\Lambda })$. We omit the proof of the final statement. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="06H0">
+  <p><a class="environment-identifier" href="/tag/06H0">Lemma <span data-tag="06H0">90.3.12</span>.</a> Let $f: B \to A$ be a ring map in $\mathcal{C}_\Lambda $. Notation as in (<a href="/tag/06S8" data-tag="06S8">90.3.10.3</a>). </p>
+  <p><ol>
+  <li><p>
+The equivalent conditions of Lemma <a href="/tag/06S3" data-tag="06S3">90.3.5</a> characterizing when $f$ is surjective are also equivalent to 
+</p>
+<ol>
+  <li><p>
+$\mathop{\mathrm{Im}}(\text{d}_ B) \to \mathop{\mathrm{Im}}(\text{d}_ A)$ is surjective, and 
+</p>
+</li><li><p>
+the map $\Omega _{B/\Lambda } \otimes _ B k \to \Omega _{A/\Lambda } \otimes _ A k$ is surjective. 
+</p>
+</li>
+</ol>
+</li><li><p>
+The following are equivalent 
+</p>
+<ol>
+  <li><p>
+$f$ is an essential surjection (see Lemma <a href="/tag/06S5" data-tag="06S5">90.3.10</a>), 
+</p>
+</li><li><p>
+the map $\mathop{\mathrm{Im}}(\text{d}_ B) \to \mathop{\mathrm{Im}}(\text{d}_ A)$ is an isomorphism, and 
+</p>
+</li><li><p>
+the map $\Omega _{B/\Lambda } \otimes _ B k \to \Omega _{A/\Lambda } \otimes _ A k$ is an isomorphism. 
+</p>
+</li>
+</ol>
+</li><li><p>
+If $k/k'$ is separable, then $f$ is an essential surjection if and only if the map $\mathfrak m_ B/(\mathfrak m_\Lambda B + \mathfrak m_ B^2) \to \mathfrak m_ A/(\mathfrak m_\Lambda A + \mathfrak m_ A^2)$ is an isomorphism. 
+</p>
+</li><li><p>
+If $f$ is a small extension, then $f$ is not essential if and only if $f$ has a section $s: A \to B$ in $\mathcal{C}_\Lambda $ with $f \circ s = \text{id}_ A$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Proof of (1). It follows from (<a href="/tag/06S8" data-tag="06S8">90.3.10.3</a>) that (1)(a) and (1)(b) are equivalent. Also, if $A \to B$ is surjective, then (1)(a) and (1)(b) hold. Assume (1)(a). Since the kernel of $\text{d}_ A$ is the image of $H_1(L_{k/\Lambda })$ which also maps to $\mathfrak m_ B/\mathfrak m_ B^2$ we conclude that $\mathfrak m_ B/\mathfrak m_ B^2 \to \mathfrak m_ A/\mathfrak m_ A^2$ is surjective. Hence $B \to A$ is surjective by Lemma <a href="/tag/06S3" data-tag="06S3">90.3.5</a>. This finishes the proof of (1). 
+    <p>
+      Proof of (2). The equivalence of (2)(b) and (2)(c) is immediate from (<a href="/tag/06S8" data-tag="06S8">90.3.10.3</a>). 
+    <p>
+      Assume (2)(b). Let $g : C \to B$ be a ring map in $\mathcal{C}_\Lambda $ such that $f \circ g$ is surjective. We conclude that $\mathfrak m_ C/\mathfrak m_ C^2 \to \mathfrak m_ A/\mathfrak m_ A^2$ is surjective by Lemma <a href="/tag/06S3" data-tag="06S3">90.3.5</a>. Hence $\mathop{\mathrm{Im}}(\text{d}_ C) \to \mathop{\mathrm{Im}}(\text{d}_ A)$ is surjective and by the assumption we see that $\mathop{\mathrm{Im}}(\text{d}_ C) \to \mathop{\mathrm{Im}}(\text{d}_ B)$ is surjective. It follows that $C \to B$ is surjective by (1). 
+    <p>
+      Assume (2)(a). Then $f$ is surjective and we see that $\Omega _{B/\Lambda } \otimes _ B k \to \Omega _{A/\Lambda } \otimes _ A k$ is surjective. Let $K$ be the kernel. Note that $K = \text{d}_ B(\mathop{\mathrm{Ker}}(\mathfrak m_ B/\mathfrak m_ B^2 \to \mathfrak m_ A/\mathfrak m_ A^2))$ by (<a href="/tag/06S8" data-tag="06S8">90.3.10.3</a>). Choose a splitting 
+    <p>
+      <div class="equation">
+  \[  \Omega _{B/\Lambda } \otimes _ B k = \Omega _{A/\Lambda } \otimes _ A k \oplus K  \]
+</div>
+    <p>
+       of $k$-vector space. The map $\text{d} : B \to \Omega _{B/\Lambda }$ induces via the projection onto $K$ a map $D : B \to K$. Set $C = \{ b \in B \mid D(b) = 0\} $. The Leibniz rule shows that this is a $\Lambda $-subalgebra of $B$. Let $\overline{x} \in k$. Choose $x \in B$ mapping to $\overline{x}$. If $D(x) \not= 0$, then we can find an element $y \in \mathfrak m_ B$ such that $D(y) = D(x)$. Hence $x - y \in C$ is an element which maps to $\overline{x}$. Thus $C \to k$ is surjective and $C$ is an object of $\mathcal{C}_\Lambda $. Similarly, pick $\omega \in \mathop{\mathrm{Im}}(\text{d}_ A)$. We can find $x \in \mathfrak m_ B$ such that $\text{d}_ B(x)$ maps to $\omega $ by (1). If $D(x) \not= 0$, then we can find an element $y \in \mathfrak m_ B$ which maps to zero in $\mathfrak m_ A/\mathfrak m_ A^2$ such that $D(y) = D(x)$. Hence $z = x - y$ is an element of $\mathfrak m_ C$ whose image $\text{d}_ C(z) \in \Omega _{C/k} \otimes _ C k$ maps to $\omega $. Hence $\mathop{\mathrm{Im}}(\text{d}_ C) \to \mathop{\mathrm{Im}}(\text{d}_ A)$ is surjective. We conclude that $C \to A$ is surjective by (1). Hence $C \to B$ is surjective by assumption. Hence $D = 0$, i.e., $K = 0$, i.e., (2)(c) holds. This finishes the proof of (2). 
+    <p>
+      Proof of (3). If $k'/k$ is separable, then $H_1(L_{k/\Lambda }) = \mathfrak m_\Lambda /\mathfrak m_\Lambda ^2 \otimes _{k'} k$, see Lemma <a href="/tag/06S9" data-tag="06S9">90.3.11</a>. Hence $\mathop{\mathrm{Im}}(\text{d}_ A) = \mathfrak m_ A/(\mathfrak m_\Lambda A + \mathfrak m_ A^2)$ and similarly for $B$. Thus (3) follows from (2). 
+    <p>
+      Proof of (4). A section $s$ of $f$ is not surjective (by definition a small extension has nontrivial kernel), hence $f$ is not essentially surjective. Conversely, assume $f$ is a small extension but not an essential surjection. Choose a ring map $C \to B$ in $\mathcal{C}_\Lambda $ which is not surjective, such that $C \to A$ is surjective. Let $C' \subset B$ be the image of $C \to B$. Then $C' \not= B$ but $C'$ surjects onto $A$. Since $f : B \to A$ is a small extension, $\text{length}_ C(B) = \text{length}_ C(A) + 1$. Thus $\text{length}_ C(C') \leq \text{length}_ C(A)$ since $C'$ is a proper subring of $B$. But $C' \to A$ is surjective, so in fact we must have $\text{length}_ C(C') = \text{length}_ C(A)$ and $C' \to A$ is an isomorphism which gives us our section. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-example" id="06SA">
+  <p><a class="environment-identifier" href="/tag/06SA">Example <span data-tag="06SA">90.3.13</span>.</a> Let $\Lambda = k[[x]]$ be the power series ring in $1$ variable over $k$. Set $A = k$ and $B = \Lambda /(x^2)$. Then $B \to A$ is an essential surjection by Lemma <a href="/tag/06H0" data-tag="06H0">90.3.12</a> because it is a small extension and the map $B \to A$ does not have a right inverse (in the category $\mathcal{C}_\Lambda $). But the map </p>
+  <div class="equation">
+  \[  k \cong \mathfrak m_ B/\mathfrak m_ B^2 \longrightarrow \mathfrak m_ A/\mathfrak m_ A^2 = 0  \]
+</div>
+  <p> is not an isomorphism. Thus in Lemma <a href="/tag/06H0" data-tag="06H0">90.3.12</a> (3) it is necessary to consider the map of relative cotangent spaces $\mathfrak m_ B/(\mathfrak m_\Lambda B + \mathfrak m_ B^2) \to \mathfrak m_ A/(\mathfrak m_\Lambda A + \mathfrak m_ A^2)$. </p>
+</article> 
+</p>

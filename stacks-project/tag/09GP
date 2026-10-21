@@ -1,0 +1,150 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="fields-section-algebraic-closure" class="tex-section"><span data-tag="09GP">9.10</span> Algebraic closure</h2>
+
+<p>
+The “fundamental theorem of algebra” states that $\mathbf{C}$ is algebraically closed. A beautiful proof of this result uses Liouville's theorem in complex analysis, we shall give another proof (see Lemma <a href="/tag/09I5" data-tag="09I5">9.23.1</a>). 
+</p>
+<p>
+<article class="env-definition" id="09GQ">
+  <p><a class="environment-identifier" href="/tag/09GQ">Definition <span data-tag="09GQ">9.10.1</span>.</a> A field $F$ is said to be <em>algebraically closed</em> if every algebraic extension $E/F$ is trivial, i.e., $E = F$. </p>
+</article> 
+</p>
+<p>
+This may not be the definition in every text. Here is the lemma comparing it with the other one. 
+</p>
+<p>
+<article class="env-lemma" id="09GR">
+  <p><a class="environment-identifier" href="/tag/09GR">Lemma <span data-tag="09GR">9.10.2</span>.</a> Let $F$ be a field. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$F$ is algebraically closed, 
+</p>
+</li><li><p>
+every irreducible polynomial over $F$ is linear, 
+</p>
+</li><li><p>
+every nonconstant polynomial over $F$ has a root, 
+</p>
+</li><li><p>
+every nonconstant polynomial over $F$ is a product of linear factors. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $F$ is algebraically closed, then every irreducible polynomial is linear. Namely, if there exists an irreducible polynomial of degree $> 1$, then this generates a nontrivial finite (hence algebraic) field extension, see Example <a href="/tag/09G7" data-tag="09G7">9.7.6</a>. Thus (1) implies (2). If every irreducible polynomial is linear, then every irreducible polynomial has a root, whence every nonconstant polynomial has a root. Thus (2) implies (3). 
+    <p>
+      Assume every nonconstant polynomial has a root. Let $P \in F[x]$ be nonconstant. If $P(\alpha ) = 0$ with $\alpha \in F$, then we see that $P = (x - \alpha )Q$ for some $Q \in F[x]$ (by division with remainder). Thus we can argue by induction on the degree that any nonconstant polynomial can be written as a product $c \prod (x - \alpha _ i)$. 
+    <p>
+      Finally, suppose that every nonconstant polynomial over $F$ is a product of linear factors. Let $E/F$ be an algebraic extension. Then all the simple subextensions $F(\alpha )/F$ of $E$ are necessarily trivial (because the only irreducible polynomials are linear by assumption). Thus $E = F$. We see that (4) implies (1) and we are done. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Now we want to define a “universal” algebraic extension of a field. Actually, we should be careful: the algebraic closure is <em>not</em> a universal object. That is, the algebraic closure is not unique up to <em>unique</em> isomorphism: it is only unique up to isomorphism. But still, it will be very handy, if not functorial. 
+</p>
+<p>
+<article class="env-definition" id="09GS">
+  <p><a class="environment-identifier" href="/tag/09GS">Definition <span data-tag="09GS">9.10.3</span>.</a> Let $F$ be a field. An <em>algebraic closure</em> of $F$ is a field $\overline{F}$ containing $F$ such that: </p>
+  <p><ol>
+  <li><p>
+$\overline{F}$ is algebraic over $F$. 
+</p>
+</li><li><p>
+$\overline{F}$ is algebraically closed. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+If $F$ is algebraically closed, then $F$ is its own algebraic closure. We now prove the basic existence result. 
+</p>
+<p>
+<article class="env-theorem" id="09GT">
+  <p><a class="environment-identifier" href="/tag/09GT">Theorem <span data-tag="09GT">9.10.4</span>.</a> Every field has an algebraic closure. </p>
+</article> 
+</p>
+<p>
+The proof will mostly be a red herring to the rest of the chapter. However, we will want to know that it is <em>possible</em> to embed a field inside an algebraically closed field, and we will often assume it done. 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $F$ be a field. By Lemma <a href="/tag/09GK" data-tag="09GK">9.8.9</a> the cardinality of an algebraic extension of $F$ is bounded by $\max (\aleph _0, |F|)$. Choose a set $S$ containing $F$ with $|S| > \max (\aleph _0, |F|)$. Let's consider triples $(E, \sigma _ E, \mu _ E)$ where 
+    <p>
+      <ol>
+  <li><p>
+$E$ is a set with $F \subset E \subset S$, and 
+</p>
+</li><li><p>
+$\sigma _ E : E \times E \to E$ and $\mu _ E : E \times E \to E$ are maps of sets such that $(E, \sigma _ E, \mu _ E)$ defines the structure of a field extension of $F$ (in particular $\sigma _ E(a, b) = a +_ F b$ for $a, b \in F$ and similarly for $\mu _ E$), and 
+</p>
+</li><li><p>
+$E/F$ is an algebraic field extension. 
+</p>
+</li>
+</ol>
+    <p>
+       The collection of all triples $(E, \sigma _ E, \mu _ E)$ forms a set $I$. For $i \in I$ we will denote $E_ i = (E_ i, \sigma _ i, \mu _ i)$ the corresponding field extension to $F$. We define a partial ordering on $I$ by declaring $i \leq i'$ if and only if $E_ i \subset E_{i'}$ (this makes sense as $E_ i$ and $E_{i'}$ are subsets of the same set $S$) and we have $\sigma _ i = \sigma _{i'}|_{E_ i \times E_ i}$ and $\mu _ i = \mu _{i'}|_{E_ i \times E_ i}$, in other words, $E_{i'}$ is a field extension of $E_ i$. 
+    <p>
+      Let $T \subset I$ be a totally ordered subset. Then it is clear that $E_ T = \bigcup _{i \in T} E_ i$ with induced maps $\sigma _ T = \bigcup \sigma _ i$ and $\mu _ T = \bigcup \mu _ i$ is another element of $I$. In other words every totally order subset of $I$ has a upper bound in $I$. By Zorn's lemma there exists a maximal element $(E, \sigma _ E, \mu _ E)$ in $I$. We claim that $E$ is an algebraic closure. Since by definition of $I$ the extension $E/F$ is algebraic, it suffices to show that $E$ is algebraically closed. 
+    <p>
+      To see this we argue by contradiction. Namely, suppose that $E$ is not algebraically closed. Then there exists an irreducible polynomial $P$ over $E$ of degree $> 1$, see Lemma <a href="/tag/09GR" data-tag="09GR">9.10.2</a>. By Lemma <a href="/tag/09GG" data-tag="09GG">9.8.5</a> we obtain a nontrivial finite extension $E' = E[x]/(P)$. Observe that $E'/F$ is algebraic by Lemma <a href="/tag/09GJ" data-tag="09GJ">9.8.8</a>. Thus the cardinality of $E'$ is $\leq \max (\aleph _0, |F|)$. By elementary set theory we can extend the given injection $E \subset S$ to an injection $E' \to S$. In other words, we may think of $E'$ as an element of our set $I$ contradicting the maximality of $E$. This contradiction completes the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09GU">
+  <p><a class="environment-identifier" href="/tag/09GU">Lemma <span data-tag="09GU">9.10.5</span>.</a> Let $F$ be a field. Let $\overline{F}$ be an algebraic closure of $F$. Let $M/F$ be an algebraic extension. Then there is a morphism of $F$-extensions $M \to \overline{F}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider the set $I$ of pairs $(E, \varphi )$ where $F \subset E \subset M$ is a subextension and $\varphi : E \to \overline{F}$ is a morphism of $F$-extensions. We partially order the set $I$ by declaring $(E, \varphi ) \leq (E', \varphi ')$ if and only if $E \subset E'$ and $\varphi '|_ E = \varphi $. If $T = \{ (E_ t, \varphi _ t)\}  \subset I$ is a totally ordered subset, then $\bigcup \varphi _ t : \bigcup E_ t \to \overline{F}$ is an element of $I$. Thus every totally ordered subset of $I$ has an upper bound. By Zorn's lemma there exists a maximal element $(E, \varphi )$ in $I$. We claim that $E = M$, which will finish the proof. If not, then pick $\alpha \in M$, $\alpha \not\in E$. The $\alpha $ is algebraic over $E$, see Lemma <a href="/tag/09GF" data-tag="09GF">9.8.4</a>. Let $P$ be the minimal polynomial of $\alpha $ over $E$. Let $P^\varphi $ be the image of $P$ by $\varphi $ in $\overline{F}[x]$. Since $\overline{F}$ is algebraically closed there is a root $\beta $ of $P^\varphi $ in $\overline{F}$. Then we can extend $\varphi $ to $\varphi ' : E(\alpha ) = E[x]/(P) \to \overline{F}$ by mapping $x$ to $\beta $. This contradicts the maximality of $(E, \varphi )$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09GV">
+  <p><a class="environment-identifier" href="/tag/09GV">Lemma <span data-tag="09GV">9.10.6</span>.</a> Any two algebraic closures of a field are isomorphic. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $F$ be a field. If $M$ and $\overline{F}$ are algebraic closures of $F$, then there exists a morphism of $F$-extensions $\varphi : M \to \overline{F}$ by Lemma <a href="/tag/09GU" data-tag="09GU">9.10.5</a>. Now the image $\varphi (M)$ is algebraically closed. On the other hand, the extension $\varphi (M) \subset \overline{F}$ is algebraic by Lemma <a href="/tag/09GF" data-tag="09GF">9.8.4</a>. Thus $\varphi (M) = \overline{F}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

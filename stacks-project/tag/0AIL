@@ -1,0 +1,120 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="formal-spaces-section-formal-algebraic-spaces" class="tex-section"><span data-tag="0AIL">87.11</span> Formal algebraic spaces</h2>
+
+<p>
+We take a break from our habit of introducing new concepts first for rings, then for schemes, and then for algebraic spaces, by introducing formal algebraic spaces without first introducing formal schemes. The general idea will be that a formal algebraic space is a sheaf in the fppf topology which étale locally is an affine formal scheme in the sense of <span class="cite">[<a href="/bibliography/BVGD">BVGD</a>]</span>. Related material can be found in <span class="cite">[<a href="/bibliography/Yasuda">Yasuda</a>]</span>. 
+</p>
+<p>
+In the definition of a formal algebraic space we are going to borrow some terminology from Bootstrap, Sections <a href="/tag/02YP" data-tag="02YP">80.3</a> and <a href="/tag/046E" data-tag="046E">80.4</a>. 
+</p>
+<p>
+<article class="env-definition" id="0AIM">
+  <p><a class="environment-identifier" href="/tag/0AIM">Definition <span data-tag="0AIM">87.11.1</span>.</a> Let $S$ be a scheme. We say a sheaf $X$ on $(\mathit{Sch}/S)_{fppf}$ is a <em>formal algebraic space</em> if there exist a family of maps $\{ X_ i \to X\} _{i \in I}$ of sheaves such that </p>
+  <p><ol>
+  <li><p>
+$X_ i$ is an affine formal algebraic space, 
+</p>
+</li><li><p>
+$X_ i \to X$ is representable by algebraic spaces and étale, 
+</p>
+</li><li><p>
+$\coprod X_ i \to X$ is surjective as a map of sheaves 
+</p>
+</li>
+</ol></p>
+  <p> and $X$ satisfies a set theoretic condition (see Remark <a href="/tag/0AIS" data-tag="0AIS">87.11.5</a>). A <em>morphism of formal algebraic spaces</em> over $S$ is a map of sheaves. </p>
+</article> 
+</p>
+<p>
+Discussion. Sanity check: an affine formal algebraic space is a formal algebraic space. In the situation of the definition the morphisms $X_ i \to X$ are representable (by schemes), see Lemma <a href="/tag/0AIG" data-tag="0AIG">87.9.11</a>. By Bootstrap, Lemma <a href="/tag/04S1" data-tag="04S1">80.4.6</a> we could instead of asking $\coprod X_ i \to X$ to be surjective as a map of sheaves, require that it be surjective (which makes sense because it is representable). 
+</p>
+<p>
+Our notion of a formal algebraic space is <strong>very general</strong>. In fact, even affine formal algebraic spaces as defined above are very nasty objects. 
+</p>
+<p>
+<article class="env-lemma" id="0AIP">
+  <p><a class="environment-identifier" href="/tag/0AIP">Lemma <span data-tag="0AIP">87.11.2</span>.</a> Let $S$ be a scheme. If $X$ is a formal algebraic space over $S$, then the diagonal morphism $\Delta : X \to X \times _ S X$ is representable, a monomorphism, locally quasi-finite, locally of finite type, and separated. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose given $U \to X$ and $V \to X$ with $U, V$ schemes over $S$. Then $U \times _ X V$ is a sheaf. Choose $\{ X_ i \to X\} $ as in Definition <a href="/tag/0AIM" data-tag="0AIM">87.11.1</a>. For every $i$ the morphism 
+    <p>
+      <div class="equation">
+  \[  (U \times _ X X_ i) \times _{X_ i} (V \times _ X X_ i) = (U \times _ X V) \times _ X X_ i \to U \times _ X V  \]
+</div>
+    <p>
+       is representable and étale as a base change of $X_ i \to X$ and its source is a scheme (use Lemmas <a href="/tag/0AI8" data-tag="0AI8">87.9.2</a> and <a href="/tag/0AIG" data-tag="0AIG">87.9.11</a>). These maps are jointly surjective hence $U \times _ X V$ is an algebraic space by Bootstrap, Theorem <a href="/tag/04S6" data-tag="04S6">80.10.1</a>. The morphism $U \times _ X V \to U \times _ S V$ is a monomorphism. It is also locally quasi-finite, because on precomposing with the morphism displayed above we obtain the composition 
+    <p>
+      <div class="equation">
+  \[  (U \times _ X X_ i) \times _{X_ i} (V \times _ X X_ i) \to (U \times _ X X_ i) \times _ S (V \times _ X X_ i) \to U \times _ S V  \]
+</div>
+    <p>
+       which is locally quasi-finite as a composition of a closed immersion (Lemma <a href="/tag/0AI8" data-tag="0AI8">87.9.2</a>) and an étale morphism, see Descent on Spaces, Lemma <a href="/tag/06F5" data-tag="06F5">74.19.2</a>. Hence we conclude that $U \times _ X V$ is a scheme by Morphisms of Spaces, Proposition <a href="/tag/03XX" data-tag="03XX">67.50.2</a>. Thus $\Delta $ is representable, see Spaces, Lemma <a href="/tag/025W" data-tag="025W">65.5.10</a>. 
+    <p>
+      In fact, since we've shown above that the morphisms of schemes $U \times _ X V \to U \times _ S V$ are always monomorphisms and locally quasi-finite we conclude that $\Delta : X \to X \times _ S X$ is a monomorphism and locally quasi-finite, see Spaces, Lemma <a href="/tag/0CB7" data-tag="0CB7">65.5.11</a>. Then we can use the principle of Spaces, Lemma <a href="/tag/02YO" data-tag="02YO">65.5.8</a> to see that $\Delta $ is separated and locally of finite type. Namely, a monomorphism of schemes is separated (Schemes, Lemma <a href="/tag/01L4" data-tag="01L4">26.23.3</a>) and a locally quasi-finite morphism of schemes is locally of finite type (follows from the definition in Morphisms, Section <a href="/tag/01TC" data-tag="01TC">29.21</a>). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0AIQ">
+  <p><a class="environment-identifier" href="/tag/0AIQ">Lemma <span data-tag="0AIQ">87.11.3</span>.</a> Let $S$ be a scheme. Let $f : X \to Y$ be a morphism from an algebraic space over $S$ to a formal algebraic space over $S$. Then $f$ is representable by algebraic spaces. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $Z \to Y$ be a morphism where $Z$ is a scheme over $S$. We have to show that $X \times _ Y Z$ is an algebraic space. Choose a scheme $U$ and a surjective étale morphism $U \to X$. Then $U \times _ Y Z \to X \times _ Y Z$ is representable surjective étale (Spaces, Lemma <a href="/tag/02WL" data-tag="02WL">65.5.5</a>) and $U \times _ Y Z$ is a scheme by Lemma <a href="/tag/0AIP" data-tag="0AIP">87.11.2</a>. Hence the result by Bootstrap, Theorem <a href="/tag/04S6" data-tag="04S6">80.10.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0AIR">
+  <p><a class="environment-identifier" href="/tag/0AIR">Remark <span data-tag="0AIR">87.11.4</span>.</a> Modulo set theoretic issues the category of formal schemes à la EGA (see Section <a href="/tag/0AHY" data-tag="0AHY">87.2</a>) is equivalent to a full subcategory of the category of formal algebraic spaces. To explain this we assume our base scheme is $\mathop{\mathrm{Spec}}(\mathbf{Z})$. By Lemma <a href="/tag/0AI2" data-tag="0AI2">87.2.2</a> the functor of points $h_\mathfrak X$ associated to a formal scheme $\mathfrak X$ is a sheaf in the fppf topology. By Lemma <a href="/tag/0AI1" data-tag="0AI1">87.2.1</a> the assignment $\mathfrak X \mapsto h_\mathfrak X$ is a fully faithful embedding of the category of formal schemes into the category of fppf sheaves. Given a formal scheme $\mathfrak X$ we choose an open covering $\mathfrak X = \bigcup \mathfrak X_ i$ with $\mathfrak X_ i$ affine formal schemes. Then $h_{\mathfrak X_ i}$ is an affine formal algebraic space by Remark <a href="/tag/0AIE" data-tag="0AIE">87.9.8</a>. The morphisms $h_{\mathfrak X_ i} \to h_\mathfrak X$ are representable and open immersions. Thus $\{ h_{\mathfrak X_ i} \to h_\mathfrak X\} $ is a family as in Definition <a href="/tag/0AIM" data-tag="0AIM">87.11.1</a> and we see that $h_\mathfrak X$ is a formal algebraic space. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="0AIS">
+  <p><a class="environment-identifier" href="/tag/0AIS">Remark <span data-tag="0AIS">87.11.5</span>.</a> Let $S$ be a scheme and let $(\mathit{Sch}/S)_{fppf}$ be a big fppf site as in Topologies, Definition <a href="/tag/021S" data-tag="021S">34.7.8</a>. As our set theoretic condition on $X$ in Definitions <a href="/tag/0AI7" data-tag="0AI7">87.9.1</a> and <a href="/tag/0AIM" data-tag="0AIM">87.11.1</a> we take: there exist objects $U, R$ of $(\mathit{Sch}/S)_{fppf}$, a morphism $U \to X$ which is a surjection of fppf sheaves, and a morphism $R \to U \times _ X U$ which is a surjection of fppf sheaves. In other words, we require our sheaf to be a coequalizer of two maps between representable sheaves. Here are some observations which imply this notion behaves reasonably well: </p>
+  <p><ol>
+  <li><p>
+Suppose $X = \mathop{\mathrm{colim}}\nolimits _{\lambda \in \Lambda } X_\lambda $ and the system satisfies conditions (1) and (2) of Definition <a href="/tag/0AI7" data-tag="0AI7">87.9.1</a>. Then $U = \coprod _{\lambda \in \Lambda } X_\lambda \to X$ is a surjection of fppf sheaves. Moreover, $U \times _ X U$ is a closed subscheme of $U \times _ S U$ by Lemma <a href="/tag/0AI8" data-tag="0AI8">87.9.2</a>. Hence if $U$ is representable by an object of $(\mathit{Sch}/S)_{fppf}$ then $U \times _ S U$ is too (see Sets, Lemma <a href="/tag/000R" data-tag="000R">3.9.9</a>) and the set theoretic condition is satisfied. This is always the case if $\Lambda $ is countable, see Sets, Lemma <a href="/tag/000R" data-tag="000R">3.9.9</a>. 
+</p>
+</li><li><p>
+Sanity check. Let $\{ X_ i \to X\} _{i \in I}$ be as in Definition <a href="/tag/0AIM" data-tag="0AIM">87.11.1</a> (with the set theoretic condition as formulated above) and assume that each $X_ i$ is actually an affine scheme. Then $X$ is an algebraic space. Namely, if we choose a larger big fppf site $(\mathit{Sch}'/S)_{fppf}$ such that $U' = \coprod X_ i$ and $R' = \coprod X_ i \times _ X X_ j$ are representable by objects in it, then $X' = U'/R'$ will be an object of the category of algebraic spaces for this choice. Then an application of Spaces, Lemma <a href="/tag/04W1" data-tag="04W1">65.15.2</a> shows that $X$ is an algebraic space for $(\mathit{Sch}/S)_{fppf}$. 
+</p>
+</li><li><p>
+Let $\{ X_ i \to X\} _{i \in I}$ be a family of maps of sheaves satisfying conditions (1), (2), (3) of Definition <a href="/tag/0AIM" data-tag="0AIM">87.11.1</a>. For each $i$ we can pick $U_ i \in \mathop{\mathrm{Ob}}\nolimits ((\mathit{Sch}/S)_{fppf})$ and $U_ i \to X_ i$ which is a surjection of sheaves. Thus if $I$ is not too large (for example countable) then $U = \coprod U_ i \to X$ is a surjection of sheaves and $U$ is representable by an object of $(\mathit{Sch}/S)_{fppf}$. To get $R \in \mathop{\mathrm{Ob}}\nolimits ((\mathit{Sch}/S)_{fppf})$ surjecting onto $U \times _ X U$ it suffices to assume the diagonal $\Delta : X \to X \times _ S X$ is not too wild, for example this always works if the diagonal of $X$ is quasi-compact, i.e., $X$ is quasi-separated. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>

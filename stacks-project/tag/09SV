@@ -1,0 +1,167 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="cohomology-section-flasque" class="tex-section"><span data-tag="09SV">20.12</span> Flasque sheaves</h2>
+
+<p>
+Here is the definition. 
+</p>
+<p>
+<article class="env-definition" id="09SW">
+  <p><a class="environment-identifier" href="/tag/09SW">Definition <span data-tag="09SW">20.12.1</span>.</a> Let $X$ be a topological space. We say a presheaf of sets $\mathcal{F}$ is <em>flasque</em> or <em>flabby</em> if for every $U \subset V$ open in $X$ the restriction map $\mathcal{F}(V) \to \mathcal{F}(U)$ is surjective. </p>
+</article> 
+</p>
+<p>
+We will use this terminology also for abelian sheaves and sheaves of modules if $X$ is a ringed space. Clearly it suffices to assume the restriction maps $\mathcal{F}(X) \to \mathcal{F}(U)$ is surjective for every open $U \subset X$. 
+</p>
+<p>
+<article class="env-lemma" id="09SX">
+  <p><a class="environment-identifier" href="/tag/09SX">Lemma <span data-tag="09SX">20.12.2</span>.</a> Let $(X, \mathcal{O}_ X)$ be a ringed space. Then any injective $\mathcal{O}_ X$-module is flasque. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a reformulation of Lemma <a href="/tag/01EA" data-tag="01EA">20.8.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09SY">
+  <p><a class="environment-identifier" href="/tag/09SY">Lemma <span data-tag="09SY">20.12.3</span>.</a> Let $(X, \mathcal{O}_ X)$ be a ringed space. Any flasque $\mathcal{O}_ X$-module is acyclic for $R\Gamma (X, -)$ as well as $R\Gamma (U, -)$ for any open $U$ of $X$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will prove this using Derived Categories, Lemma <a href="/tag/05T8" data-tag="05T8">13.15.6</a>. Since every injective module is flasque we see that we can embed every $\mathcal{O}_ X$-module into a flasque module, see Injectives, Lemma <a href="/tag/01DG" data-tag="01DG">19.4.1</a>. Thus it suffices to show that given a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{F} \to \mathcal{G} \to \mathcal{H} \to 0  \]
+</div>
+    <p>
+       with $\mathcal{F}$, $\mathcal{G}$ flasque, then $\mathcal{H}$ is flasque and the sequence remains short exact after taking sections on any open of $X$. In fact, the second statement implies the first. Thus, let $U \subset X$ be an open subspace. Let $s \in \mathcal{H}(U)$. We will show that we can lift $s$ to a section of $\mathcal{G}$ over $U$. To do this consider the set $T$ of pairs $(V, t)$ where $V \subset U$ is open and $t \in \mathcal{G}(V)$ is a section mapping to $s|_ V$ in $\mathcal{H}$. We put a partial ordering on $T$ by setting $(V, t) \leq (V', t')$ if and only if $V \subset V'$ and $t'|_ V = t$. If $(V_\alpha , t_\alpha )$, $\alpha \in A$ is a totally ordered subset of $T$, then $V = \bigcup V_\alpha $ is open and there is a unique section $t \in \mathcal{G}(V)$ restricting to $t_\alpha $ over $V_\alpha $ by the sheaf condition on $\mathcal{G}$. Thus by Zorn's lemma there exists a maximal element $(V, t)$ in $T$. We will show that $V = U$ thereby finishing the proof. Namely, pick any $x \in U$. We can find a small open neighbourhood $W \subset U$ of $x$ and $t' \in \mathcal{G}(W)$ mapping to $s|_ W$ in $\mathcal{H}$. Then $t'|_{W \cap V} - t|_{W \cap V}$ maps to zero in $\mathcal{H}$, hence comes from some section $r' \in \mathcal{F}(W \cap V)$. Using that $\mathcal{F}$ is flasque we find a section $r \in \mathcal{F}(W)$ restricting to $r'$ over $W \cap V$. Modifying $t'$ by the image of $r$ we may assume that $t$ and $t'$ restrict to the same section over $W \cap V$. By the sheaf condition of $\mathcal{G}$ we can find a section $\tilde t$ of $\mathcal{G}$ over $W \cup V$ restricting to $t$ and $t'$. By maximality of $(V, t)$ we see that $V \cup W = V$. Thus $x \in V$ and we are done. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma does not hold for flasque presheaves. 
+</p>
+<p>
+<article class="env-lemma" id="09SZ">
+  <p><a class="environment-identifier" href="/tag/09SZ">Lemma <span data-tag="09SZ">20.12.4</span>.</a> Let $(X, \mathcal{O}_ X)$ be a ringed space. Let $\mathcal{F}$ be a sheaf of $\mathcal{O}_ X$-modules. Let $\mathcal{U} : U = \bigcup U_ i$ be an open covering. If $\mathcal{F}$ is flasque, then $\check{H}^ p(\mathcal{U}, \mathcal{F}) = 0$ for $p > 0$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The presheaves $\underline{H}^ q(\mathcal{F})$ used in the statement of Lemma <a href="/tag/01ES" data-tag="01ES">20.11.5</a> are zero by Lemma <a href="/tag/09SY" data-tag="09SY">20.12.3</a>. Hence $\check{H}^ p(U, \mathcal{F}) = H^ p(U, \mathcal{F}) = 0$ by Lemma <a href="/tag/09SY" data-tag="09SY">20.12.3</a> again. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="09T0">
+  <p><a class="environment-identifier" href="/tag/09T0">Lemma <span data-tag="09T0">20.12.5</span>.</a> Let $f : (X, \mathcal{O}_ X) \to (Y, \mathcal{O}_ Y)$ be a morphism of ringed spaces. Let $\mathcal{F}$ be a sheaf of $\mathcal{O}_ X$-modules. If $\mathcal{F}$ is flasque, then $R^ pf_*\mathcal{F} = 0$ for $p > 0$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Immediate from Lemma <a href="/tag/01E4" data-tag="01E4">20.7.3</a> and Lemma <a href="/tag/09SY" data-tag="09SY">20.12.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma can be proved by an elementary induction argument for finite coverings, compare with the discussion of Čech cohomology in <span class="cite">[<a href="/bibliography/FOAG">FOAG</a>]</span>. 
+</p>
+<p>
+<article class="env-lemma" id="0A36">
+  <p><a class="environment-identifier" href="/tag/0A36">Lemma <span data-tag="0A36">20.12.6</span>.</a> Let $X$ be a topological space. Let $\mathcal{F}$ be an abelian sheaf on $X$. Let $\mathcal{U} : U = \bigcup _{i \in I} U_ i$ be an open covering. Assume the restriction mappings $\mathcal{F}(U) \to \mathcal{F}(U')$ are surjective for $U'$ an arbitrary union of opens of the form $U_{i_0 \ldots i_ p}$. Then $\check{H}^ p(\mathcal{U}, \mathcal{F})$ vanishes for $p > 0$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $Y$ be the set of nonempty subsets of $I$. We will use the letters $A, B, C, \ldots $ to denote elements of $Y$, i.e., nonempty subsets of $I$. For a finite nonempty subset $J \subset I$ let 
+    <p>
+      <div class="equation">
+  \[  V_ J = \{ A \in Y \mid J \subset A\}   \]
+</div>
+    <p>
+       This means that $V_{\{ i\} } = \{ A \in Y \mid i \in A\} $ and $V_ J = \bigcap _{j \in J} V_{\{ j\} }$. Then $V_ J \subset V_ K$ if and only if $J \supset K$. There is a unique topology on $Y$ such that the collection of subsets $V_ J$ is a basis for the topology on $Y$. Any open is of the form 
+    <p>
+      <div class="equation">
+  \[  V = \bigcup \nolimits _{t \in T} V_{J_ t}  \]
+</div>
+    <p>
+       for some family of finite subsets $J_ t$. If $J_ t \subset J_{t'}$ then we may remove $J_{t'}$ from the family without changing $V$. Thus we may assume there are no inclusions among the $J_ t$. In this case the minimal elements of $V$ are the sets $A = J_ t$. Hence we can read off the family $(J_ t)_{t \in T}$ from the open $V$. 
+    <p>
+      We can completely understand open coverings in $Y$. First, because the elements $A \in Y$ are nonempty subsets of $I$ we have 
+    <p>
+      <div class="equation">
+  \[  Y = \bigcup \nolimits _{i \in I} V_{\{ i\} }  \]
+</div>
+    <p>
+       To understand other coverings, let $V$ be as above and let $V_ s \subset Y$ be an open corresponding to the family $(J_{s, t})_{t \in T_ s}$. Then 
+    <p>
+      <div class="equation">
+  \[  V = \bigcup \nolimits _{s \in S} V_ s  \]
+</div>
+    <p>
+       if and only if for each $t \in T$ there exists an $s \in S$ and $t_ s \in T_ s$ such that $J_ t = J_{s, t_ s}$. Namely, as the family $(J_ t)_{t \in T}$ is minimal, the minimal element $A = J_ t$ has to be in $V_ s$ for some $s$, hence $A \in V_{J_{t_ s}}$ for some $t_ s \in T_ s$. But since $A$ is also minimal in $V_ s$ we conclude that $J_{t_ s} = J_ t$. 
+    <p>
+      Next we map the set of opens of $Y$ to opens of $X$. Namely, we send $Y$ to $U$, we use the rule 
+    <p>
+      <div class="equation">
+  \[  V_ J \mapsto U_ J = \bigcap \nolimits _{i \in J} U_ i  \]
+</div>
+    <p>
+       on the opens $V_ J$, and we extend it to arbitrary opens $V$ by the rule 
+    <p>
+      <div class="equation">
+  \[  V = \bigcup \nolimits _{t \in T} V_{J_ t} \mapsto \bigcup \nolimits _{t \in T} U_{J_ t}  \]
+</div>
+    <p>
+       The classification of open coverings of $Y$ given above shows that this rule transforms open coverings into open coverings. Thus we obtain an abelian sheaf $\mathcal{G}$ on $Y$ by setting $\mathcal{G}(Y) = \mathcal{F}(U)$ and for $V = \bigcup \nolimits _{t \in T} V_{J_ t}$ setting 
+    <p>
+      <div class="equation">
+  \[  \mathcal{G}(V) = \mathcal{F}\left(\bigcup \nolimits _{t \in T} U_{J_ t}\right)  \]
+</div>
+    <p>
+       and using the restriction maps of $\mathcal{F}$. 
+    <p>
+      With these preliminaries out of the way we can prove our lemma as follows. We have an open covering $\mathcal{V} : Y = \bigcup _{i \in I} V_{\{ i\} }$ of $Y$. By construction we have an equality 
+    <p>
+      <div class="equation">
+  \[  \check{C}^\bullet (\mathcal{V}, \mathcal{G}) = \check{C}^\bullet (\mathcal{U}, \mathcal{F})  \]
+</div>
+    <p>
+       of Čech complexes. Since the sheaf $\mathcal{G}$ is flasque on $Y$ (by our assumption on $\mathcal{F}$ in the statement of the lemma) the vanishing follows from Lemma <a href="/tag/09SZ" data-tag="09SZ">20.12.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

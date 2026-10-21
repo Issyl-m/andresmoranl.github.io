@@ -1,0 +1,260 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="perfect-section-coherator" class="tex-section"><span data-tag="08D6">36.7</span> The coherator</h2>
+
+<p>
+Let $X$ be a scheme. The <em>coherator</em> is a functor 
+</p>
+<div class="equation">
+  \[  Q_ X : \textit{Mod}(\mathcal{O}_ X) \longrightarrow \mathit{QCoh}(\mathcal{O}_ X)  \]
+</div>
+<p>
+ which is right adjoint to the inclusion functor $\mathit{QCoh}(\mathcal{O}_ X) \to \textit{Mod}(\mathcal{O}_ X)$. It exists for any scheme $X$ and moreover the adjunction mapping $Q_ X(\mathcal{F}) \to \mathcal{F}$ is an isomorphism for every quasi-coherent module $\mathcal{F}$, see Properties, Proposition <a href="/tag/077P" data-tag="077P">28.24.4</a>. Since $Q_ X$ is left exact (as a right adjoint) we can consider its right derived extension 
+</p>
+<div class="equation">
+  \[  RQ_ X : D(\mathcal{O}_ X) \longrightarrow D(\mathit{QCoh}(\mathcal{O}_ X)).  \]
+</div>
+<p>
+ Since $Q_ X$ is right adjoint to the inclusion functor $\mathit{QCoh}(\mathcal{O}_ X) \to \textit{Mod}(\mathcal{O}_ X)$ we see that $RQ_ X$ is right adjoint to the canonical functor $D(\mathit{QCoh}(\mathcal{O}_ X)) \to D(\mathcal{O}_ X)$ by Derived Categories, Lemma <a href="/tag/09T5" data-tag="09T5">13.30.3</a>. 
+</p>
+<p>
+In this section we will study the functor $RQ_ X$. In Section <a href="/tag/0CQZ" data-tag="0CQZ">36.21</a> we will study the (closely related) right adjoint to the inclusion functor $D_\mathit{QCoh}(\mathcal{O}_ X) \to D(\mathcal{O}_ X)$ (when it exists). 
+</p>
+<p>
+<article class="env-lemma" id="08D7">
+  <p><a class="environment-identifier" href="/tag/08D7">Lemma <span data-tag="08D7">36.7.1</span>.</a> Let $f : X \to Y$ be an affine morphism of schemes. Then $f_*$ defines a derived functor $f_* : D(\mathit{QCoh}(\mathcal{O}_ X)) \to D(\mathit{QCoh}(\mathcal{O}_ Y))$. This functor has the property that </p>
+  <div class="equation">
+  \[  \xymatrix{ D(\mathit{QCoh}(\mathcal{O}_ X)) \ar[d]_{f_*} \ar[r] &  D_\mathit{QCoh}(\mathcal{O}_ X) \ar[d]^{Rf_*} \\  D(\mathit{QCoh}(\mathcal{O}_ Y)) \ar[r] &  D_\mathit{QCoh}(\mathcal{O}_ Y) }  \]
+</div>
+  <p> commutes. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The functor $f_* : \mathit{QCoh}(\mathcal{O}_ X) \to \mathit{QCoh}(\mathcal{O}_ Y)$ is exact, see Cohomology of Schemes, Lemma <a href="/tag/01XC" data-tag="01XC">30.2.3</a>. Hence $f_*$ defines a derived functor $f_* : D(\mathit{QCoh}(\mathcal{O}_ X)) \to D(\mathit{QCoh}(\mathcal{O}_ Y))$ by simply applying $f_*$ to any representative complex, see Derived Categories, Lemma <a href="/tag/015F" data-tag="015F">13.16.9</a>. The diagram commutes by Lemma <a href="/tag/0G9R" data-tag="0G9R">36.5.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08D8">
+  <p><a class="environment-identifier" href="/tag/08D8">Lemma <span data-tag="08D8">36.7.2</span>.</a> Let $f : X \to Y$ be a morphism of schemes. Assume $f$ is quasi-compact, quasi-separated, and flat. Then, denoting </p>
+  <div class="equation">
+  \[  \Phi : D(\mathit{QCoh}(\mathcal{O}_ X)) \to D(\mathit{QCoh}(\mathcal{O}_ Y))  \]
+</div>
+  <p> the right derived functor of $f_* : \mathit{QCoh}(\mathcal{O}_ X) \to \mathit{QCoh}(\mathcal{O}_ Y)$ we have $RQ_ Y \circ Rf_* = \Phi \circ RQ_ X$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will prove this by showing that $RQ_ Y \circ Rf_*$ and $\Phi \circ RQ_ X$ are right adjoint to the same functor $D(\mathit{QCoh}(\mathcal{O}_ Y)) \to D(\mathcal{O}_ X)$. 
+    <p>
+      Since $f$ is quasi-compact and quasi-separated, we see that $f_*$ preserves quasi-coherence, see Schemes, Lemma <a href="/tag/01LC" data-tag="01LC">26.24.1</a>. Recall that $\mathit{QCoh}(\mathcal{O}_ X)$ is a Grothendieck abelian category (Properties, Proposition <a href="/tag/077P" data-tag="077P">28.24.4</a>). Hence any $K$ in $D(\mathit{QCoh}(\mathcal{O}_ X))$ can be represented by a K-injective complex $\mathcal{I}^\bullet $ of $\mathit{QCoh}(\mathcal{O}_ X)$, see Injectives, Theorem <a href="/tag/079P" data-tag="079P">19.12.6</a>. Then we can define $\Phi (K) = f_*\mathcal{I}^\bullet $. 
+    <p>
+      Since $f$ is flat, the functor $f^*$ is exact. Hence $f^*$ defines $f^* : D(\mathcal{O}_ Y) \to D(\mathcal{O}_ X)$ and also $f^* : D(\mathit{QCoh}(\mathcal{O}_ Y)) \to D(\mathit{QCoh}(\mathcal{O}_ X))$. The functor $f^* = Lf^* : D(\mathcal{O}_ Y) \to D(\mathcal{O}_ X)$ is left adjoint to $Rf_* : D(\mathcal{O}_ X) \to D(\mathcal{O}_ Y)$, see Cohomology, Lemma <a href="/tag/079W" data-tag="079W">20.28.1</a>. Similarly, the functor $f^* : D(\mathit{QCoh}(\mathcal{O}_ Y)) \to D(\mathit{QCoh}(\mathcal{O}_ X))$ is left adjoint to $\Phi : D(\mathit{QCoh}(\mathcal{O}_ X)) \to D(\mathit{QCoh}(\mathcal{O}_ Y))$ by Derived Categories, Lemma <a href="/tag/09T5" data-tag="09T5">13.30.3</a>. 
+    <p>
+      Let $A$ be an object of $D(\mathit{QCoh}(\mathcal{O}_ Y))$ and $E$ an object of $D(\mathcal{O}_ X)$. Then 
+    <p>
+      <div class="equation">
+  \begin{align*}  \mathop{\mathrm{Hom}}\nolimits _{D(\mathit{QCoh}(\mathcal{O}_ Y))}(A, RQ_ Y(Rf_*E)) &  = \mathop{\mathrm{Hom}}\nolimits _{D(\mathcal{O}_ Y)}(A, Rf_*E) \\ &  = \mathop{\mathrm{Hom}}\nolimits _{D(\mathcal{O}_ X)}(f^*A, E) \\ &  = \mathop{\mathrm{Hom}}\nolimits _{D(\mathit{QCoh}(\mathcal{O}_ X))}(f^*A, RQ_ X(E)) \\ &  = \mathop{\mathrm{Hom}}\nolimits _{D(\mathit{QCoh}(\mathcal{O}_ Y))}(A, \Phi (RQ_ X(E))) \end{align*}
+</div>
+    <p>
+       This implies what we want. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="08D9">
+  <p><a class="environment-identifier" href="/tag/08D9">Lemma <span data-tag="08D9">36.7.3</span>.</a> Let $X = \mathop{\mathrm{Spec}}(A)$ be an affine scheme. Then </p>
+  <p><ol>
+  <li><p>
+$Q_ X : \textit{Mod}(\mathcal{O}_ X) \to \mathit{QCoh}(\mathcal{O}_ X)$ is the functor which sends $\mathcal{F}$ to the quasi-coherent $\mathcal{O}_ X$-module associated to the $A$-module $\Gamma (X, \mathcal{F})$, 
+</p>
+</li><li><p>
+$RQ_ X : D(\mathcal{O}_ X) \to D(\mathit{QCoh}(\mathcal{O}_ X))$ is the functor which sends $E$ to the complex of quasi-coherent $\mathcal{O}_ X$-modules associated to the object $R\Gamma (X, E)$ of $D(A)$, 
+</p>
+</li><li><p>
+restricted to $D_\mathit{QCoh}(\mathcal{O}_ X)$ the functor $RQ_ X$ defines a quasi-inverse to (<a href="/tag/06VT" data-tag="06VT">36.3.0.1</a>). 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The functor $Q_ X$ is the functor 
+    <p>
+      <div class="equation">
+  \[  \mathcal{F} \mapsto \widetilde{\Gamma (X, \mathcal{F})}  \]
+</div>
+    <p>
+       by Schemes, Lemma <a href="/tag/01I7" data-tag="01I7">26.7.1</a>. This immediately implies (1) and (2). The third assertion follows from (the proof of) Lemma <a href="/tag/06Z0" data-tag="06Z0">36.3.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+At this point we are ready to prove a criterion for when the functor $D(\mathit{QCoh}(\mathcal{O}_ X)) \to D_\mathit{QCoh}(\mathcal{O}_ X)$ is an equivalence. 
+</p>
+<p>
+<article class="env-lemma" id="09T6">
+  <p><a class="environment-identifier" href="/tag/09T6">Lemma <span data-tag="09T6">36.7.4</span>.</a> Let $X$ be a quasi-compact and quasi-separated scheme. Suppose that for every affine open $U \subset X$ the right derived functor </p>
+  <div class="equation">
+  \[  \Phi : D(\mathit{QCoh}(\mathcal{O}_ U)) \to D(\mathit{QCoh}(\mathcal{O}_ X))  \]
+</div>
+  <p> of the left exact functor $j_* : \mathit{QCoh}(\mathcal{O}_ U) \to \mathit{QCoh}(\mathcal{O}_ X)$ fits into a commutative diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ D(\mathit{QCoh}(\mathcal{O}_ U)) \ar[d]_\Phi \ar[r]_{i_ U} &  D_\mathit{QCoh}(\mathcal{O}_ U) \ar[d]^{Rj_*} \\  D(\mathit{QCoh}(\mathcal{O}_ X)) \ar[r]^{i_ X} &  D_\mathit{QCoh}(\mathcal{O}_ X) }  \]
+</div>
+  <p> Then the functor (<a href="/tag/06VT" data-tag="06VT">36.3.0.1</a>) </p>
+  <div class="equation">
+  \[  D(\mathit{QCoh}(\mathcal{O}_ X)) \longrightarrow D_\mathit{QCoh}(\mathcal{O}_ X)  \]
+</div>
+  <p> is an equivalence with quasi-inverse given by $RQ_ X$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $E$ be an object of $D_\mathit{QCoh}(\mathcal{O}_ X)$ and let $A$ be an object of $D(\mathit{QCoh}(\mathcal{O}_ X))$. We have to show that the adjunction maps 
+    <p>
+      <div class="equation">
+  \[  A \to RQ_ X(i_ X(A)) \quad \text{and}\quad i_ X(RQ_ X(E)) \to E  \]
+</div>
+    <p>
+       are isomorphisms. Consider the hypothesis $H_ n$: the adjunction maps above are isomorphisms whenever $E$ and $i_ X(A)$ are supported (Definition <a href="/tag/08DA" data-tag="08DA">36.6.1</a>) on a closed subset of $X$ which is contained in the union of $n$ affine opens of $X$. We will prove $H_ n$ by induction on $n$. 
+    <p>
+      Base case: $n = 0$. In this case $E = 0$, hence the map $i_ X(RQ_ X(E)) \to E$ is an isomorphism. Similarly $i_ X(A) = 0$. Thus the cohomology sheaves of $i_ X(A)$ are zero. Since the inclusion functor $\mathit{QCoh}(\mathcal{O}_ X) \to \textit{Mod}(\mathcal{O}_ X)$ is fully faithful and exact, we conclude that the cohomology objects of $A$ are zero, i.e., $A = 0$ and $A \to RQ_ X(i_ X(A))$ is an isomorphism as well. 
+    <p>
+      Induction step. Suppose that $E$ and $i_ X(A)$ are supported on a closed subset $T$ of $X$ contained in $U_1 \cup \ldots \cup U_ n$ with $U_ i \subset X$ affine open. Set $U = U_ n$. Consider the distinguished triangles 
+    <p>
+      <div class="equation">
+  \[  A \to \Phi (A|_ U) \to A' \to A[1] \quad \text{and}\quad E \to Rj_*(E|_ U) \to E' \to E[1]  \]
+</div>
+    <p>
+       where $\Phi $ is as in the statement of the lemma. Note that $E \to Rj_*(E|_ U)$ is a quasi-isomorphism over $U = U_ n$. Since $i_ X \circ \Phi = Rj_* \circ i_ U$ by assumption and since $i_ X(A)|_ U = i_ U(A|_ U)$ we see that $i_ X(A) \to i_ X(\Phi (A|_ U))$ is a quasi-isomorphism over $U$. Hence $i_ X(A')$ and $E'$ are supported on the closed subset $T \setminus U$ of $X$ which is contained in $U_1 \cup \ldots \cup U_{n - 1}$. By induction hypothesis the statement is true for $A'$ and $E'$. By Derived Categories, Lemma <a href="/tag/014A" data-tag="014A">13.4.3</a> it suffices to prove the maps 
+    <p>
+      <div class="equation">
+  \[  \Phi (A|_ U) \to RQ_ X(i_ X(\Phi (A|_ U))) \quad \text{and}\quad i_ X(RQ_ X(Rj_*E|_ U)) \to Rj_*(E|_ U)  \]
+</div>
+    <p>
+       are isomorphisms. By assumption and by Lemma <a href="/tag/08D8" data-tag="08D8">36.7.2</a> (the inclusion morphism $j : U \to X$ is flat, quasi-compact, and quasi-separated) we have 
+    <p>
+      <div class="equation">
+  \[  RQ_ X(i_ X(\Phi (A|_ U))) = RQ_ X(Rj_*(i_ U(A|_ U))) = \Phi (RQ_ U(i_ U(A|_ U)))  \]
+</div>
+    <p>
+       and 
+    <p>
+      <div class="equation">
+  \[  i_ X(RQ_ X(Rj_*(E|_ U))) = i_ X(\Phi (RQ_ U(E|_ U))) = Rj_*(i_ U(RQ_ U(E|_ U)))  \]
+</div>
+    <p>
+       Finally, the maps 
+    <p>
+      <div class="equation">
+  \[  A|_ U \to RQ_ U(i_ U(A|_ U)) \quad \text{and}\quad i_ U(RQ_ U(E|_ U)) \to E|_ U  \]
+</div>
+    <p>
+       are isomorphisms by Lemma <a href="/tag/08D9" data-tag="08D9">36.7.3</a>. The result follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-proposition" id="08DB">
+  <p><a class="environment-identifier" href="/tag/08DB">Proposition <span data-tag="08DB">36.7.5</span>.</a> Let $X$ be a quasi-compact scheme with affine diagonal. Then the functor (<a href="/tag/06VT" data-tag="06VT">36.3.0.1</a>) </p>
+  <div class="equation">
+  \[  D(\mathit{QCoh}(\mathcal{O}_ X)) \longrightarrow D_\mathit{QCoh}(\mathcal{O}_ X)  \]
+</div>
+  <p> is an equivalence with quasi-inverse given by $RQ_ X$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $U \subset X$ be an affine open. Then the morphism $U \to X$ is affine by Morphisms, Lemma <a href="/tag/01SG" data-tag="01SG">29.11.12</a>. Thus the assumption of Lemma <a href="/tag/09T6" data-tag="09T6">36.7.4</a> holds by Lemma <a href="/tag/08D7" data-tag="08D7">36.7.1</a> and we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CRX">
+  <p><a class="environment-identifier" href="/tag/0CRX">Lemma <span data-tag="0CRX">36.7.6</span>.</a> Let $f : X \to Y$ be a morphism of schemes. Assume $X$ and $Y$ are quasi-compact and have affine diagonal. Then, denoting </p>
+  <div class="equation">
+  \[  \Phi : D(\mathit{QCoh}(\mathcal{O}_ X)) \to D(\mathit{QCoh}(\mathcal{O}_ Y))  \]
+</div>
+  <p> the right derived functor of $f_* : \mathit{QCoh}(\mathcal{O}_ X) \to \mathit{QCoh}(\mathcal{O}_ Y)$ the diagram </p>
+  <div class="equation">
+  \[  \xymatrix{ D(\mathit{QCoh}(\mathcal{O}_ X)) \ar[d]_\Phi \ar[r] &  D_\mathit{QCoh}(\mathcal{O}_ X) \ar[d]^{Rf_*} \\  D(\mathit{QCoh}(\mathcal{O}_ Y)) \ar[r] &  D_\mathit{QCoh}(\mathcal{O}_ Y) }  \]
+</div>
+  <p> is commutative. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Observe that the horizontal arrows in the diagram are equivalences of categories by Proposition <a href="/tag/08DB" data-tag="08DB">36.7.5</a>. Hence we can identify these categories (and similarly for other quasi-compact schemes with affine diagonal). The statement of the lemma is that the canonical map $\Phi (K) \to Rf_*(K)$ is an isomorphism for all $K$ in $D(\mathit{QCoh}(\mathcal{O}_ X))$. Note that if $K_1 \to K_2 \to K_3 \to K_1[1]$ is a distinguished triangle in $D(\mathit{QCoh}(\mathcal{O}_ X))$ and the statement is true for two-out-of-three, then it is true for the third. 
+    <p>
+      Let $U \subset X$ be an affine open. Since the diagonal of $X$ is affine, the inclusion morphism $j : U \to X$ is affine (Morphisms, Lemma <a href="/tag/01SG" data-tag="01SG">29.11.12</a>). Similarly, the composition $g = f \circ j : U \to Y$ is affine. Let $\mathcal{I}^\bullet $ be a K-injective complex in $\mathit{QCoh}(\mathcal{O}_ U)$. Since $j_* : \mathit{QCoh}(\mathcal{O}_ U) \to \mathit{QCoh}(\mathcal{O}_ X)$ has an exact left adjoint $j^* : \mathit{QCoh}(\mathcal{O}_ X) \to \mathit{QCoh}(\mathcal{O}_ U)$ we see that $j_*\mathcal{I}^\bullet $ is a K-injective complex in $\mathit{QCoh}(\mathcal{O}_ X)$, see Derived Categories, Lemma <a href="/tag/08BJ" data-tag="08BJ">13.31.9</a>. It follows that 
+    <p>
+      <div class="equation">
+  \[  \Phi (j_*\mathcal{I}^\bullet ) = f_*j_*\mathcal{I}^\bullet = g_*\mathcal{I}^\bullet  \]
+</div>
+    <p>
+       By Lemma <a href="/tag/08D7" data-tag="08D7">36.7.1</a> we see that $j_*\mathcal{I}^\bullet $ represents $Rj_*\mathcal{I}^\bullet $ and $g_*\mathcal{I}^\bullet $ represents $Rg_*\mathcal{I}^\bullet $. On the other hand, we have $Rf_* \circ Rj_* = Rg_*$. Hence $f_*j_*\mathcal{I}^\bullet $ represents $Rf_*(j_*\mathcal{I}^\bullet )$. We conclude that the lemma is true for any complex of the form $j_*\mathcal{G}^\bullet $ with $\mathcal{G}^\bullet $ a complex of quasi-coherent modules on $U$. (Note that if $\mathcal{G}^\bullet \to \mathcal{I}^\bullet $ is a quasi-isomorphism, then $j_*\mathcal{G}^\bullet \to j_*\mathcal{I}^\bullet $ is a quasi-isomorphism as well since $j_*$ is an exact functor on quasi-coherent modules.) 
+    <p>
+      Let $\mathcal{F}^\bullet $ be a complex of quasi-coherent $\mathcal{O}_ X$-modules. Let $T \subset X$ be a closed subset such that the support of $\mathcal{F}^ p$ is contained in $T$ for all $p$. We will use induction on the minimal number $n$ of affine opens $U_1, \ldots , U_ n$ such that $T \subset U_1 \cup \ldots \cup U_ n$. The base case $n = 0$ is trivial. If $n \geq 1$, then set $U = U_1$ and denote $j : U \to X$ the open immersion as above. We consider the map of complexes $c : \mathcal{F}^\bullet \to j_*j^*\mathcal{F}^\bullet $. We obtain two short exact sequences of complexes: 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathop{\mathrm{Ker}}(c) \to \mathcal{F}^\bullet \to \mathop{\mathrm{Im}}(c) \to 0  \]
+</div>
+    <p>
+       and 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathop{\mathrm{Im}}(c) \to j_*j^*\mathcal{F}^\bullet \to \mathop{\mathrm{Coker}}(c) \to 0  \]
+</div>
+    <p>
+       The complexes $\mathop{\mathrm{Ker}}(c)$ and $\mathop{\mathrm{Coker}}(c)$ are supported on $T \setminus U \subset U_2 \cup \ldots \cup U_ n$ and the result holds for them by induction. The result holds for $j_*j^*\mathcal{F}^\bullet $ by the discussion in the preceding paragraph. We conclude by looking at the distinguished triangles associated to the short exact sequences and using the initial remark of the proof. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0CRY">
+  <p><a class="environment-identifier" href="/tag/0CRY">Remark <span data-tag="0CRY">36.7.7</span> <span class="named">(Warning)</span>.</a>  Let $X$ be a quasi-compact scheme with affine diagonal. Even though we know that $D(\mathit{QCoh}(\mathcal{O}_ X)) = D_\mathit{QCoh}(\mathcal{O}_ X)$ by Proposition <a href="/tag/08DB" data-tag="08DB">36.7.5</a> strange things can happen and it is easy to make mistakes with this material. One pitfall is to carelessly assume that this equality means derived functors are the same. For example, suppose we have a quasi-compact open $U \subset X$. Then we can consider the higher right derived functors </p>
+  <div class="equation">
+  \[  R^ i(\mathit{QCoh})\Gamma (U, -) : \mathit{QCoh}(\mathcal{O}_ X) \to \textit{Ab}  \]
+</div>
+  <p> of the left exact functor $\Gamma (U, -)$. Since this is a universal $\delta $-functor, and since the functors $H^ i(U, -)$ (defined for all abelian sheaves on $X$) restricted to $\mathit{QCoh}(\mathcal{O}_ X)$ form a $\delta $-functor, we obtain canonical transformations </p>
+  <div class="equation">
+  \[  t^ i : R^ i(\mathit{QCoh})\Gamma (U, -) \to H^ i(U, -).  \]
+</div>
+  <p> These transformations aren't in general isomorphisms even if $X = \mathop{\mathrm{Spec}}(A)$ is affine! Namely, we have $R^1(\mathit{QCoh})\Gamma (U, \widetilde{I}) = 0$ if $I$ an injective $A$-module by construction of right derived functors and the equivalence of $\mathit{QCoh}(\mathcal{O}_ X)$ and $\text{Mod}_ A$. But Examples, Lemma <a href="/tag/0CRZ" data-tag="0CRZ">110.47.2</a> shows there exists $A$, $I$, and $U$ such that $H^1(U, \widetilde{I}) \not= 0$. </p>
+</article> 
+</p>

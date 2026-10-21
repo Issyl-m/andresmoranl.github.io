@@ -1,0 +1,261 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sites-section-topologies" class="tex-section"><span data-tag="00YW">7.47</span> Topologies</h2>
+
+<p>
+In this section we define what a topology on a category is as defined in <span class="cite">[<a href="/bibliography/SGA4">SGA4</a>]</span>. One can develop all of the machinery of sheaves and topoi in this language. A modern exposition of this material can be found in <span class="cite">[<a href="/bibliography/KS">KS</a>]</span>. However, the case of most interest for algebraic geometry is the topology defined by a site on its underlying category. Thus we strongly suggest the first time reader <strong>skip this section and all other sections of this chapter</strong>! 
+</p>
+<p>
+<article class="env-definition" id="00YX">
+  <p><a class="environment-identifier" href="/tag/00YX">Definition <span data-tag="00YX">7.47.1</span>.</a> Let $\mathcal{C}$ be a category. Let $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$. A <em>sieve $S$ on $U$</em> is a subpresheaf $S \subset h_ U$. </p>
+</article> 
+</p>
+<p>
+In other words, a sieve on $U$ picks out for each object $T \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ a subset $S(T)$ of the set of all morphisms $T \to U$. In fact, the only condition on the collection of subsets $S(T) \subset h_ U(T) = \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(T, U)$ is the following rule 
+</p>
+<div class="equation" id="00YY">
+    <span class="equation-label"><a href="/tag/00YY" data-tag="00YY">7.47.1.1</a></span>
+  <div>\begin{equation}  \label{sites-equation-property-sieve} \left. \begin{matrix}  (\alpha : T \to U) \in S(T) 
+
+\\  g : T' \to T 
+
+\end{matrix} \right\}  \Rightarrow (\alpha \circ g : T' \to U) \in S(T') \end{equation}</div>
+</div>
+<p>
+ A good mental picture to keep in mind is to think of the map $S \to h_ U$ as a “morphism from $S$ to $U$”. 
+</p>
+<p>
+<article class="env-lemma" id="00YZ">
+  <p><a class="environment-identifier" href="/tag/00YZ">Lemma <span data-tag="00YZ">7.47.2</span>.</a> Let $\mathcal{C}$ be a category. Let $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$. </p>
+  <p><ol>
+  <li><p>
+The collection of sieves on $U$ is a set. 
+</p>
+</li><li><p>
+Inclusion defines a partial ordering on this set. 
+</p>
+</li><li><p>
+Unions and intersections of sieves are sieves. 
+</p>
+</li><li class="custom-item" id="00Z0"><p>
+ Given a family of morphisms $\{ U_ i \to U\} _{i\in I}$ of $\mathcal{C}$ with target $U$ there exists a unique smallest sieve $S$ on $U$ such that each $U_ i \to U$ belongs to $S(U_ i)$. 
+</p>
+</li><li><p>
+The sieve $S = h_ U$ is the maximal sieve. 
+</p>
+</li><li><p>
+The empty subpresheaf is the minimal sieve. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By our definition of subpresheaf, the collection of all subpresheaves of a presheaf $\mathcal{F}$ is a subset of $\prod _{U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})} \mathcal{P}(\mathcal{F}(U))$. And this is a set. (Here $\mathcal{P}(A)$ denotes the powerset of $A$.) Hence the collection of sieves on $U$ is a set. 
+    <p>
+      The partial ordering is defined by: $S \leq S'$ if and only if $S(T) \subset S'(T)$ for all $T \to U$. Notation: $S \subset S'$. 
+    <p>
+      Given a collection of sieves $S_ i$, $i \in I$ on $U$ we can define $\bigcup S_ i$ as the sieve with values $(\bigcup S_ i)(T) = \bigcup S_ i(T)$ for all $T \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$. We define the intersection $\bigcap S_ i$ in the same way. 
+    <p>
+      Given $\{ U_ i \to U\} _{i\in I}$ as in the statement, consider the morphisms of presheaves $h_{U_ i} \to h_ U$. We simply define $S$ as the union of the images (Definition <a href="/tag/00VA" data-tag="00VA">7.3.5</a>) of these maps of presheaves. 
+    <p>
+      The last two statements of the lemma are obvious. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="00Z1">
+  <p><a class="environment-identifier" href="/tag/00Z1">Definition <span data-tag="00Z1">7.47.3</span>.</a> Let $\mathcal{C}$ be a category. Given a family of morphisms $\{ f_ i : U_ i \to U\} _{i\in I}$ of $\mathcal{C}$ with target $U$ we say the sieve $S$ on $U$ described in Lemma <a href="/tag/00YZ" data-tag="00YZ">7.47.2</a> part (<a href="/tag/00Z0" data-tag="00Z0">4</a>) is the <em>sieve on $U$ generated by the morphisms $f_ i$</em>. </p>
+</article> 
+</p>
+<p>
+<article class="env-definition" id="00Z2">
+  <p><a class="environment-identifier" href="/tag/00Z2">Definition <span data-tag="00Z2">7.47.4</span>.</a> Let $\mathcal{C}$ be a category. Let $f : V \to U$ be a morphism of $\mathcal{C}$. Let $S \subset h_ U$ be a sieve. We define the <em>pullback of $S$ by $f$</em> to be the sieve $S \times _ U V$ of $V$ defined by the rule </p>
+  <div class="equation">
+  \[  (\alpha : T \to V) \in (S \times _ U V)(T) \Leftrightarrow (f \circ \alpha : T \to U) \in S(T)  \]
+</div>
+</article> 
+</p>
+<p>
+We leave it to the reader to see that this is indeed a sieve (hint: use Equation <a href="/tag/00YY" data-tag="00YY">7.47.1.1</a>). We also sometimes call $S \times _ U V$ the <em>base change</em> of $S$ by $f : V \to U$. 
+</p>
+<p>
+<article class="env-lemma" id="00Z3">
+  <p><a class="environment-identifier" href="/tag/00Z3">Lemma <span data-tag="00Z3">7.47.5</span>.</a> Let $\mathcal{C}$ be a category. Let $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$. Let $S$ be a sieve on $U$. If $f : V \to U$ is in $S$, then $S \times _ U V = h_ V$ is maximal. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Trivial from the definitions. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="00Z4">
+  <p><a class="environment-identifier" href="/tag/00Z4">Definition <span data-tag="00Z4">7.47.6</span>.</a> Let $\mathcal{C}$ be a category. A <em>topology on $\mathcal{C}$</em> is given by a rule which assigns to every $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ a subset $J(U)$ of the set of all sieves on $U$ satisfying the following conditions </p>
+  <p><ol>
+  <li><p>
+For every morphism $f : V \to U$ in $\mathcal{C}$, and every element $S \in J(U)$ the pullback $S \times _ U V$ is an element of $J(V)$. 
+</p>
+</li><li><p>
+If $S$ and $S'$ are sieves on $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$, if $S \in J(U)$, and if for all $f \in S(V)$ the pullback $S' \times _ U V$ belongs to $J(V)$, then $S'$ belongs to $J(U)$. 
+</p>
+</li><li><p>
+For every $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ the maximal sieve $S = h_ U$ belongs to $J(U)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+In this case, the sieves belonging to $J(U)$ are called the <em>covering sieves</em>. 
+</p>
+<p>
+<article class="env-lemma" id="00Z5">
+  <p><a class="environment-identifier" href="/tag/00Z5">Lemma <span data-tag="00Z5">7.47.7</span>.</a> Let $\mathcal{C}$ be a category. Let $J$ be a topology on $\mathcal{C}$. Let $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$. </p>
+  <p><ol>
+  <li><p>
+Finite intersections of elements of $J(U)$ are in $J(U)$. 
+</p>
+</li><li><p>
+If $S \in J(U)$ and $S' \supset S$, then $S' \in J(U)$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Proof of (1). The intersection of the empty family follows from condition (3) of Definition <a href="/tag/00Z4" data-tag="00Z4">7.47.6</a>. Let $S, S' \in J(U)$. Consider $S'' = S \cap S'$. For every $V \to U$ in $S(V)$ we have 
+    <p>
+      <div class="equation">
+  \[  S' \times _ U V = S'' \times _ U V  \]
+</div>
+    <p>
+       simply because $V \to U$ already is in $S$. Hence by the second axiom of the definition we see that $S'' \in J(U)$. 
+    <p>
+      Proof of (2). Let $S \in J(U)$ and $S' \supset S$. For every $V \to U$ in $S(V)$ we have $S' \times _ U V = h_ V$ by Lemma <a href="/tag/00Z3" data-tag="00Z3">7.47.5</a>. Thus $S' \times _ U V \in J(V)$ by the third axiom. Hence $S' \in J(U)$ by the second axiom. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="00Z6">
+  <p><a class="environment-identifier" href="/tag/00Z6">Definition <span data-tag="00Z6">7.47.8</span>.</a> Let $\mathcal{C}$ be a category. Let $J$, $J'$ be two topologies on $\mathcal{C}$. We say that $J$ is <em>finer</em> or <em>stronger</em> than $J'$ if and only if for every object $U$ of $\mathcal{C}$ we have $J'(U) \subset J(U)$. In this case we also say that $J'$ is <em>coarser</em> or <em>weaker</em> than $J$. </p>
+</article> 
+</p>
+<p>
+In other words, any covering sieve of $J'$ is a covering sieve of $J$. There exists a finest topology on $\mathcal{C}$, namely that topology where any sieve is a covering sieve. This is called the <em>discrete topology</em> of $\mathcal{C}$. There also exists a coarsest topology. Namely, the topology where $J(U) = \{ h_ U\} $ for all objects $U$. This is called the <em>chaotic</em> or <em>indiscrete topology</em>. 
+</p>
+<p>
+<article class="env-lemma" id="00Z7">
+  <p><a class="environment-identifier" href="/tag/00Z7">Lemma <span data-tag="00Z7">7.47.9</span>.</a> Let $\mathcal{C}$ be a category. Let $\{ J_ i\} _{i\in I}$ be a set of topologies. </p>
+  <p><ol>
+  <li><p>
+The rule $J(U) = \bigcap J_ i(U)$ defines a topology on $\mathcal{C}$. 
+</p>
+</li><li><p>
+There is a coarsest topology finer than all of the topologies $J_ i$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The first part is direct from the definitions. The second follows by taking the intersection of all topologies finer than all of the $J_ i$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+At this point we can define without any motivation what a sheaf is. 
+</p>
+<p>
+<article class="env-definition" id="00Z8">
+  <p><a class="environment-identifier" href="/tag/00Z8">Definition <span data-tag="00Z8">7.47.10</span>.</a> Let $\mathcal{C}$ be a category endowed with a topology $J$. Let $\mathcal{F}$ be a presheaf of sets on $\mathcal{C}$. We say that $\mathcal{F}$ is a <em>sheaf</em> on $\mathcal{C}$ if for every $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ and for every covering sieve $S$ of $U$ the canonical map </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(h_ U, \mathcal{F}) \longrightarrow \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(S, \mathcal{F})  \]
+</div>
+  <p> is bijective. </p>
+</article> 
+</p>
+<p>
+Recall that the left hand side of the displayed formula equals $\mathcal{F}(U)$. In other words, $\mathcal{F}$ is a sheaf if and only if a section of $\mathcal{F}$ over $U$ is the same thing as a compatible collection of sections $s_{T, \alpha } \in \mathcal{F}(T)$ parametrized by $(\alpha : T \to U) \in S(T)$, and this for every covering sieve $S$ on $U$. 
+</p>
+<p>
+<article class="env-lemma" id="00Z9">
+  <p><a class="environment-identifier" href="/tag/00Z9">Lemma <span data-tag="00Z9">7.47.11</span>.</a> Let $\mathcal{C}$ be a category. Let $\{  \mathcal{F}_ i \} _{i\in I}$ be a collection of presheaves of sets on $\mathcal{C}$. For each $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ denote $J(U)$ the set of sieves $S$ on $U$ with the following property: For every morphism $V \to U$, the maps </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(h_ V, \mathcal{F}_ i) \longrightarrow \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(S \times _ U V, \mathcal{F}_ i)  \]
+</div>
+  <p> are bijective for all $i \in I$. Then $J$ defines a topology on $\mathcal{C}$. This topology is the finest topology in which all of the $\mathcal{F}_ i$ are sheaves. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      First, we note that if $J$ is a topology, then the last statement of the lemma immediately follows. 
+    <p>
+      For each $i \in I$ and $U \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ let $J_ i(U)$ be the set of sieves $S$ on $U$ with the following property: For every morphism $V \to U$, the map 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(h_ V, \mathcal{F}_ i) \longrightarrow \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(S \times _ U V, \mathcal{F}_ i)  \]
+</div>
+    <p>
+       is bijective. Note that $J(U) = \bigcap J_ i(U)$. Thus if we prove that $J_ i$ defines a topology, then we conclude by Lemma <a href="/tag/00Z7" data-tag="00Z7">7.47.9</a>. Thus we reduce to the case discussed in the next paragraph. 
+    <p>
+      Proof that $J$ is a topology when our family is given by a single presheaf $\mathcal{F}$. The first and third axioms of a topology are immediately verified. Thus, assume that we have an object $U$, and sieves $S, S'$ of $U$ such that $S \in J(U)$, and for all $V \to U$ in $S(V)$ we have $S' \times _ U V \in J(V)$. We have to show that $S' \in J(U)$. In other words, we have to show that for any $f : W \to U$, the map 
+    <p>
+      <div class="equation">
+  \[  \mathcal{F}(W) = \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(h_ W, \mathcal{F}) \longrightarrow \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(S' \times _ U W, \mathcal{F})  \]
+</div>
+    <p>
+       is bijective. Pick an element $\varphi \in \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(S' \times _ U W, \mathcal{F})$. We will construct a section $s \in \mathcal{F}(W)$ mapping to $\varphi $. 
+    <p>
+      Suppose $\alpha : V \to W$ is an element of $S \times _ U W$. According to the definition of pullbacks we see that the composition $f \circ \alpha : V \to W \to U$ is in $S$. Hence $S' \times _ U V$ is in $J(V)$ by assumption on the pair of sieves $S, S'$. Now we have a commutative diagram of presheaves 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ S' \times _ U V \ar[r] \ar[d] &  h_ V \ar[d] \\  S' \times _ U W \ar[r] &  h_ W }  \]
+</div>
+    <p>
+       The restriction of $\varphi $ to $S' \times _ U V$ corresponds to an element $s_{V, \alpha } \in \mathcal{F}(V)$. This we see from the definition of $J$, and because $S' \times _ U V$ is in $J(V)$. We leave it to the reader to check that the rule $(V, \alpha ) \mapsto s_{V, \alpha }$ defines an element $\psi \in \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(S \times _ U W, \mathcal{F})$. Since $S \in J(U)$ we see immediately from the definition of $J$ that $\psi $ corresponds to an element $s$ of $\mathcal{F}(W)$. 
+    <p>
+      We leave it to the reader to verify that the construction $\varphi \mapsto s$ is inverse to the natural map displayed above. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="00ZA">
+  <p><a class="environment-identifier" href="/tag/00ZA">Definition <span data-tag="00ZA">7.47.12</span>.</a> Let $\mathcal{C}$ be a category. The finest topology on $\mathcal{C}$ such that all representable presheaves are sheaves, see Lemma <a href="/tag/00Z9" data-tag="00Z9">7.47.11</a>, is called the <em>canonical topology</em> of $\mathcal{C}$. </p>
+</article> 
+</p>

@@ -1,0 +1,360 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="morphisms-section-sheaf-differentials" class="tex-section"><span data-tag="01UM">29.33</span> Sheaf of differentials of a morphism</h2>
+
+<p>
+We suggest the reader take a look at the corresponding section in the chapter on commutative algebra (Algebra, Section <a href="/tag/00RM" data-tag="00RM">10.131</a>) and the corresponding section in the chapter on sheaves of modules (Modules, Section <a href="/tag/08RL" data-tag="08RL">17.28</a>). 
+</p>
+<p>
+<article class="env-definition" id="01UQ">
+  <p><a class="environment-identifier" href="/tag/01UQ">Definition <span data-tag="01UQ">29.33.1</span>.</a> Let $f : X \to S$ be a morphism of schemes. The <em>sheaf of differentials $\Omega _{X/S}$ of $X$ over $S$</em> is the sheaf of differentials of $f$ viewed as a morphism of ringed spaces (Modules, Definition <a href="/tag/08RT" data-tag="08RT">17.28.10</a>) equipped with its <em>universal $S$-derivation</em> </p>
+  <div class="equation">
+  \[  \text{d}_{X/S} : \mathcal{O}_ X \longrightarrow \Omega _{X/S}.  \]
+</div>
+</article> 
+</p>
+<p>
+It turns out that $\Omega _{X/S}$ is a quasi-coherent $\mathcal{O}_ X$-module for example as it is isomorphic to the conormal sheaf of the diagonal morphism $\Delta : X \to X \times _ S X$ (Lemma <a href="/tag/08S2" data-tag="08S2">29.33.7</a>). We have defined the module of differentials of $X$ over $S$ using a universal property, namely as the receptacle of the universal derivation. If you have any other construction of the sheaf of relative differentials which satisfies this universal property then, by the Yoneda lemma, it will be canonically isomorphic to the one defined above. For convenience we restate the universal property here. 
+</p>
+<p>
+<article class="env-lemma" id="01UR">
+  <p><a class="environment-identifier" href="/tag/01UR">Lemma <span data-tag="01UR">29.33.2</span>.</a> Let $f : X \to S$ be a morphism of schemes. The map </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _{\mathcal{O}_ X}(\Omega _{X/S}, \mathcal{F}) \longrightarrow \text{Der}_ S(\mathcal{O}_ X, \mathcal{F}),\quad \alpha \longmapsto \alpha \circ \text{d}_{X/S}  \]
+</div>
+  <p> is an isomorphism of functors $\textit{Mod}(\mathcal{O}_ X) \to \textit{Sets}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is just a restatement of the definition. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01US">
+  <p><a class="environment-identifier" href="/tag/01US">Lemma <span data-tag="01US">29.33.3</span>.</a> Let $f : X \to S$ be a morphism of schemes. Let $U \subset X$, $V \subset S$ be open subschemes such that $f(U) \subset V$. Then there is a unique isomorphism $\Omega _{X/S}|_ U = \Omega _{U/V}$ of $\mathcal{O}_ U$-modules such that $\text{d}_{X/S}|_ U = \text{d}_{U/V}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a special case of Modules, Lemma <a href="/tag/08RQ" data-tag="08RQ">17.28.5</a> if we use the canonical identification $f^{-1}\mathcal{O}_ S|_ U = (f|_ U)^{-1}\mathcal{O}_ V$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+From now on we will use these canonical identifications and simply write $\Omega _{U/S}$ or $\Omega _{U/V}$ for the restriction of $\Omega _{X/S}$ to $U$. 
+</p>
+<p>
+<article class="env-lemma" id="01UO">
+  <p><a class="environment-identifier" href="/tag/01UO">Lemma <span data-tag="01UO">29.33.4</span>.</a> Let $R \to A$ be a ring map. Let $\mathcal{F}$ be a sheaf of $\mathcal{O}_ X$-modules on $X = \mathop{\mathrm{Spec}}(A)$. Set $S = \mathop{\mathrm{Spec}}(R)$. The rule which associates to an $S$-derivation on $\mathcal{F}$ its action on global sections defines a bijection between the set of $S$-derivations of $\mathcal{F}$ and the set of $R$-derivations on $M = \Gamma (X, \mathcal{F})$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $D : A \to M$ be an $R$-derivation. We have to show there exists a unique $S$-derivation on $\mathcal{F}$ which gives rise to $D$ on global sections. Let $U = D(f) \subset X$ be a standard affine open. Any element of $\Gamma (U, \mathcal{O}_ X)$ is of the form $a/f^ n$ for some $a \in A$ and $n \geq 0$. By the Leibniz rule we have 
+    <p>
+      <div class="equation">
+  \[  D(a)|_ U = a/f^ n D(f^ n)|_ U + f^ n D(a/f^ n)  \]
+</div>
+    <p>
+       in $\Gamma (U, \mathcal{F})$. Since $f$ acts invertibly on $\Gamma (U, \mathcal{F})$ this completely determines the value of $D(a/f^ n) \in \Gamma (U, \mathcal{F})$. This proves uniqueness. Existence follows by simply defining 
+    <p>
+      <div class="equation">
+  \[  D(a/f^ n) := (1/f^ n) D(a)|_ U - a/f^{2n} D(f^ n)|_ U  \]
+</div>
+    <p>
+       and proving this has all the desired properties (on the basis of standard opens of $X$). Details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01UT">
+  <p><a class="environment-identifier" href="/tag/01UT">Lemma <span data-tag="01UT">29.33.5</span>.</a> Let $f : X \to S$ be a morphism of schemes. For any pair of affine opens $\mathop{\mathrm{Spec}}(A) = U \subset X$, $\mathop{\mathrm{Spec}}(R) = V \subset S$ with $f(U) \subset V$ there is a unique isomorphism </p>
+  <div class="equation">
+  \[  \Gamma (U, \Omega _{X/S}) = \Omega _{A/R}.  \]
+</div>
+  <p> compatible with $\text{d}_{X/S}$ and $\text{d} : A \to \Omega _{A/R}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/01US" data-tag="01US">29.33.3</a> we may replace $X$ and $S$ by $U$ and $V$. Thus we may assume $X = \mathop{\mathrm{Spec}}(A)$ and $S = \mathop{\mathrm{Spec}}(R)$ and we have to show the lemma with $U = X$ and $V = S$. Consider the $A$-module $M = \Gamma (X, \Omega _{X/S})$ together with the $R$-derivation $\text{d}_{X/S} : A \to M$. Let $N$ be another $A$-module and denote $\widetilde{N}$ the quasi-coherent $\mathcal{O}_ X$-module associated to $N$, see Schemes, Section <a href="/tag/01I6" data-tag="01I6">26.7</a>. Precomposing by $\text{d}_{X/S} : A \to M$ we get an arrow 
+    <p>
+      <div class="equation">
+  \[  \alpha : \mathop{\mathrm{Hom}}\nolimits _ A(M, N) \longrightarrow \text{Der}_ R(A, N)  \]
+</div>
+    <p>
+       Using Lemmas <a href="/tag/01UR" data-tag="01UR">29.33.2</a> and <a href="/tag/01UO" data-tag="01UO">29.33.4</a> we get identifications 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _{\mathcal{O}_ X}(\Omega _{X/S}, \widetilde{N}) = \text{Der}_ S(\mathcal{O}_ X, \widetilde{N}) = \text{Der}_ R(A, N)  \]
+</div>
+    <p>
+       Taking global sections determines an arrow $\mathop{\mathrm{Hom}}\nolimits _{\mathcal{O}_ X}(\Omega _{X/S}, \widetilde{N}) \to \mathop{\mathrm{Hom}}\nolimits _ R(M, N)$. Combining this arrow and the identifications above we get an arrow 
+    <p>
+      <div class="equation">
+  \[  \beta : \text{Der}_ R(A, N) \longrightarrow \mathop{\mathrm{Hom}}\nolimits _ R(M, N)  \]
+</div>
+    <p>
+       Checking what happens on global sections, we find that $\alpha $ and $\beta $ are each others inverse. Hence we see that $\text{d}_{X/S} : A \to M$ satisfies the same universal property as $\text{d} : A \to \Omega _{A/R}$, see Algebra, Lemma <a href="/tag/00RO" data-tag="00RO">10.131.3</a>. Thus the Yoneda lemma (Categories, Lemma <a href="/tag/001P" data-tag="001P">4.3.5</a>) implies there is a unique isomorphism of $A$-modules $M \cong \Omega _{A/R}$ compatible with derivations. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="01UU">
+  <p><a class="environment-identifier" href="/tag/01UU">Remark <span data-tag="01UU">29.33.6</span>.</a> The lemma above gives a second way of constructing the module of differentials. Namely, let $f : X \to S$ be a morphism of schemes. Consider the collection of all affine opens $U \subset X$ which map into an affine open of $S$. These form a basis for the topology on $X$. Thus it suffices to define $\Gamma (U, \Omega _{X/S})$ for such $U$. We simply set $\Gamma (U, \Omega _{X/S}) = \Omega _{A/R}$ if $A$, $R$ are as in Lemma <a href="/tag/01UT" data-tag="01UT">29.33.5</a> above. This works, but it takes somewhat more algebraic preliminaries to construct the restriction mappings and to verify the sheaf condition with this ansatz. </p>
+</article> 
+</p>
+<p>
+The following lemma gives yet another way to define the sheaf of differentials and it in particular shows that $\Omega _{X/S}$ is quasi-coherent if $X$ and $S$ are schemes. 
+</p>
+<p>
+<article class="env-lemma" id="08S2">
+  <p><a class="environment-identifier" href="/tag/08S2">Lemma <span data-tag="08S2">29.33.7</span>.</a> Let $f : X \to S$ be a morphism of schemes. There is a canonical isomorphism between $\Omega _{X/S}$ and the conormal sheaf of the diagonal morphism $\Delta _{X/S} : X \longrightarrow X \times _ S X$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We first establish the existence of a couple of “global” sheaves and global maps of sheaves, and further down we describe the constructions over some affine opens. 
+    <p>
+      Recall that $\Delta = \Delta _{X/S} : X \to X \times _ S X$ is an immersion, see Schemes, Lemma <a href="/tag/01KJ" data-tag="01KJ">26.21.2</a>. Let $\mathcal{J}$ be the ideal sheaf of the immersion which lives over some open subscheme $W$ of $X \times _ S X$ such that $\Delta (X) \subset W$ is closed. Let us take the one that was found in the proof of Schemes, Lemma <a href="/tag/01KJ" data-tag="01KJ">26.21.2</a>. Note that the sheaf of rings $\mathcal{O}_ W/\mathcal{J}^2$ is supported on $\Delta (X)$. Moreover it sits in a short exact sequence of sheaves 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{J}/\mathcal{J}^2 \to \mathcal{O}_ W/\mathcal{J}^2 \to \Delta _*\mathcal{O}_ X \to 0.  \]
+</div>
+    <p>
+       Using $\Delta ^{-1}$ we can think of this as a surjection of sheaves of $f^{-1}\mathcal{O}_ S$-algebras with kernel the conormal sheaf of $\Delta $ (see Definition <a href="/tag/01R2" data-tag="01R2">29.32.1</a> and Lemma <a href="/tag/01R3" data-tag="01R3">29.32.2</a>). 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{C}_{X/X \times _ S X} \to \Delta ^{-1}(\mathcal{O}_ W/\mathcal{J}^2) \to \mathcal{O}_ X \to 0  \]
+</div>
+    <p>
+       This places us in the situation of Modules, Lemma <a href="/tag/01UP" data-tag="01UP">17.28.11</a>. The projection morphisms $p_ i : X \times _ S X \to X$, $i = 1, 2$ induce maps of sheaves of rings $(p_ i)^\sharp : (p_ i)^{-1}\mathcal{O}_ X \to \mathcal{O}_{X \times _ S X}$. We may restrict to $W$ and quotient by $\mathcal{J}^2$ to get $(p_ i)^{-1}\mathcal{O}_ X \to \mathcal{O}_ W/\mathcal{J}^2$. Since $\Delta ^{-1}p_ i^{-1}\mathcal{O}_ X = \mathcal{O}_ X$ we get maps 
+    <p>
+      <div class="equation">
+  \[  s_ i : \mathcal{O}_ X \to \Delta ^{-1}(\mathcal{O}_ W/\mathcal{J}^2).  \]
+</div>
+    <p>
+       Both $s_1$ and $s_2$ are sections to the map $\Delta ^{-1}(\mathcal{O}_ W/\mathcal{J}^2) \to \mathcal{O}_ X$, as in Modules, Lemma <a href="/tag/01UP" data-tag="01UP">17.28.11</a>. Thus we get an $S$-derivation $\text{d} = s_2 - s_1 : \mathcal{O}_ X \to \mathcal{C}_{X/X \times _ S X}$. By the universal property of the module of differentials we find a unique $\mathcal{O}_ X$-linear map 
+    <p>
+      <div class="equation">
+  \[  \Omega _{X/S} \longrightarrow \mathcal{C}_{X/X \times _ S X},\quad f\text{d}g \longmapsto fs_2(g) - fs_1(g)  \]
+</div>
+    <p>
+       To see the map is an isomorphism, let us work this out over suitable affine opens. We can cover $X$ by affine opens $\mathop{\mathrm{Spec}}(A) = U \subset X$ whose image is contained in an affine open $\mathop{\mathrm{Spec}}(R) = V \subset S$. According to the proof of Schemes, Lemma <a href="/tag/01KJ" data-tag="01KJ">26.21.2</a> $U \times _ V U \subset X \times _ S X$ is an affine open contained in the open $W$ mentioned above. Also $U \times _ V U = \mathop{\mathrm{Spec}}(A \otimes _ R A)$. The sheaf $\mathcal{J}$ corresponds to the ideal $J = \mathop{\mathrm{Ker}}(A \otimes _ R A \to A)$. The short exact sequence to the short exact sequence of $A \otimes _ R A$-modules 
+    <p>
+      <div class="equation">
+  \[  0 \to J/J^2 \to (A \otimes _ R A)/J^2 \to A \to 0  \]
+</div>
+    <p>
+       The sections $s_ i$ correspond to the ring maps 
+    <p>
+      <div class="equation">
+  \[  A \longrightarrow (A \otimes _ R A)/J^2,\quad s_1 : a \mapsto a \otimes 1,\quad s_2 : a \mapsto 1 \otimes a.  \]
+</div>
+    <p>
+       By Lemma <a href="/tag/01R3" data-tag="01R3">29.32.2</a> we have $\Gamma (U, \mathcal{C}_{X/X \times _ S X}) = J/J^2$ and by Lemma <a href="/tag/01UT" data-tag="01UT">29.33.5</a> we have $\Gamma (U, \Omega _{X/S}) = \Omega _{A/R}$. The map above is the map $a \text{d}b \mapsto a \otimes b - ab \otimes 1$ which is shown to be an isomorphism in Algebra, Lemma <a href="/tag/00RW" data-tag="00RW">10.131.13</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01UV">
+  <p><a class="environment-identifier" href="/tag/01UV">Lemma <span data-tag="01UV">29.33.8</span>.</a> Let </p>
+  <div class="equation">
+  \[  \xymatrix{ X' \ar[d] \ar[r]_ f &  X \ar[d] \\  S' \ar[r] &  S }  \]
+</div>
+  <p> be a commutative diagram of schemes. The canonical map $\mathcal{O}_ X \to f_*\mathcal{O}_{X'}$ composed with the map $f_*\text{d}_{X'/S'} : f_*\mathcal{O}_{X'} \to f_*\Omega _{X'/S'}$ is a $S$-derivation. Hence we obtain a canonical map of $\mathcal{O}_ X$-modules $\Omega _{X/S} \to f_*\Omega _{X'/S'}$, and by adjointness of $f_*$ and $f^*$ a canonical $\mathcal{O}_{X'}$-module homomorphism </p>
+  <div class="equation">
+  \[  c_ f : f^*\Omega _{X/S} \longrightarrow \Omega _{X'/S'}.  \]
+</div>
+  <p> It is uniquely characterized by the property that $f^*\text{d}_{X/S}(h)$ maps to $\text{d}_{X'/S'}(f^* h)$ for any local section $h$ of $\mathcal{O}_ X$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a special case of Modules, Lemma <a href="/tag/08RU" data-tag="08RU">17.28.12</a>. In the case of schemes we can also use the functoriality of the conormal sheaves (see Lemma <a href="/tag/01R4" data-tag="01R4">29.32.3</a>) and Lemma <a href="/tag/08S2" data-tag="08S2">29.33.7</a> to define $c_ f$. Or we can use the characterization in the last line of the lemma to glue maps defined on affine patches (see Algebra, Equation (<a href="/tag/00RQ" data-tag="00RQ">10.131.4.1</a>)). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01UX">
+  <p><a class="environment-identifier" href="/tag/01UX">Lemma <span data-tag="01UX">29.33.9</span>.</a> Let $f : X \to Y$, $g : Y \to S$ be morphisms of schemes. Then there is a canonical exact sequence </p>
+  <div class="equation">
+  \[  f^*\Omega _{Y/S} \to \Omega _{X/S} \to \Omega _{X/Y} \to 0  \]
+</div>
+  <p> where the maps come from applications of Lemma <a href="/tag/01UV" data-tag="01UV">29.33.8</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is the sheafified version of Algebra, Lemma <a href="/tag/00RS" data-tag="00RS">10.131.7</a>. Alternatively, there is a general version for morphisms of ringed spaces, see Modules, Lemma <a href="/tag/0H79" data-tag="0H79">17.28.14</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01V0">
+  <p><a class="environment-identifier" href="/tag/01V0">Lemma <span data-tag="01V0">29.33.10</span>.</a> Let $X \to S$ be a morphism of schemes. Let $g : S' \to S$ be a morphism of schemes. Let $X' = X_{S'}$ be the base change of $X$. Denote $g' : X' \to X$ the projection. Then the map </p>
+  <div class="equation">
+  \[  (g')^*\Omega _{X/S} \to \Omega _{X'/S'}  \]
+</div>
+  <p> of Lemma <a href="/tag/01UV" data-tag="01UV">29.33.8</a> is an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is the sheafified version of Algebra, Lemma <a href="/tag/00RV" data-tag="00RV">10.131.12</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01V1">
+  <p><a class="environment-identifier" href="/tag/01V1">Lemma <span data-tag="01V1">29.33.11</span>.</a> Let $f : X \to S$ and $g : Y \to S$ be morphisms of schemes with the same target. Let $p : X \times _ S Y \to X$ and $q : X \times _ S Y \to Y$ be the projection morphisms. The maps from Lemma <a href="/tag/01UV" data-tag="01UV">29.33.8</a> </p>
+  <div class="equation">
+  \[  p^*\Omega _{X/S} \oplus q^*\Omega _{Y/S} \longrightarrow \Omega _{X \times _ S Y/S}  \]
+</div>
+  <p> give an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/01V0" data-tag="01V0">29.33.10</a> the composition $p^*\Omega _{X/S} \to \Omega _{X \times _ S Y/S} \to \Omega _{X \times _ S Y/Y}$ is an isomorphism, and similarly for $q$. Moreover, the cokernel of $p^*\Omega _{X/S} \to \Omega _{X \times _ S Y/S}$ is $\Omega _{X \times _ S Y/X}$ by Lemma <a href="/tag/01UX" data-tag="01UX">29.33.9</a>. The result follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01V2">
+  <p><a class="environment-identifier" href="/tag/01V2">Lemma <span data-tag="01V2">29.33.12</span>.</a> Let $f : X \to S$ be a morphism of schemes. If $f$ is locally of finite type, then $\Omega _{X/S}$ is a finite type $\mathcal{O}_ X$-module. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Immediate from Algebra, Lemma <a href="/tag/00RZ" data-tag="00RZ">10.131.16</a>, Lemma <a href="/tag/01UT" data-tag="01UT">29.33.5</a>, Lemma <a href="/tag/01T2" data-tag="01T2">29.15.2</a>, and Properties, Lemma <a href="/tag/01PB" data-tag="01PB">28.17.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01V3">
+  <p><a class="environment-identifier" href="/tag/01V3">Lemma <span data-tag="01V3">29.33.13</span>.</a> Let $f : X \to S$ be a morphism of schemes. If $f$ is locally of finite presentation, then $\Omega _{X/S}$ is an $\mathcal{O}_ X$-module of finite presentation. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Immediate from Algebra, Lemma <a href="/tag/00RY" data-tag="00RY">10.131.15</a>, Lemma <a href="/tag/01UT" data-tag="01UT">29.33.5</a>, Lemma <a href="/tag/01TQ" data-tag="01TQ">29.22.2</a>, and Properties, Lemma <a href="/tag/01PC" data-tag="01PC">28.17.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01UY">
+  <p><a class="environment-identifier" href="/tag/01UY">Lemma <span data-tag="01UY">29.33.14</span>.</a> If $X \to S$ is an immersion, or more generally a monomorphism, then $\Omega _{X/S}$ is zero. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is true because $\Delta _{X/S}$ is an isomorphism in this case and hence has trivial conormal sheaf. Hence $\Omega _{X/S} = 0$ by Lemma <a href="/tag/08S2" data-tag="08S2">29.33.7</a>. The algebraic version is Algebra, Lemma <a href="/tag/00RP" data-tag="00RP">10.131.4</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01UZ">
+  <p><a class="environment-identifier" href="/tag/01UZ">Lemma <span data-tag="01UZ">29.33.15</span>.</a> Let $i : Z \to X$ be an immersion of schemes over $S$. There is a canonical exact sequence </p>
+  <div class="equation">
+  \[  \mathcal{C}_{Z/X} \to i^*\Omega _{X/S} \to \Omega _{Z/S} \to 0  \]
+</div>
+  <p> where the first arrow is induced by $\text{d}_{X/S}$ and the second arrow comes from Lemma <a href="/tag/01UV" data-tag="01UV">29.33.8</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is the sheafified version of Algebra, Lemma <a href="/tag/00RU" data-tag="00RU">10.131.9</a>. However we should make sure we can define the first arrow globally. Hence we explain the meaning of “induced by $\text{d}_{X/S}$” here. Namely, we may assume that $i$ is a closed immersion by shrinking $X$. Let $\mathcal{I} \subset \mathcal{O}_ X$ be the sheaf of ideals corresponding to $Z \subset X$. Then $\text{d}_{X/S} : \mathcal{I} \to \Omega _{X/S}$ maps the subsheaf $\mathcal{I}^2 \subset \mathcal{I}$ to $\mathcal{I}\Omega _{X/S}$. Hence it induces a map $\mathcal{I}/\mathcal{I}^2 \to \Omega _{X/S}/\mathcal{I}\Omega _{X/S}$ which is $\mathcal{O}_ X/\mathcal{I}$-linear. By Lemma <a href="/tag/01QY" data-tag="01QY">29.4.1</a> this corresponds to a map $\mathcal{C}_{Z/X} \to i^*\Omega _{X/S}$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0474">
+  <p><a class="environment-identifier" href="/tag/0474">Lemma <span data-tag="0474">29.33.16</span>.</a> Let $i : Z \to X$ be an immersion of schemes over $S$, and assume $i$ (locally) has a left inverse. Then the canonical sequence </p>
+  <div class="equation">
+  \[  0 \to \mathcal{C}_{Z/X} \to i^*\Omega _{X/S} \to \Omega _{Z/S} \to 0  \]
+</div>
+  <p> of Lemma <a href="/tag/01UZ" data-tag="01UZ">29.33.15</a> is (locally) split exact. In particular, if $s : S \to X$ is a section of the structure morphism $X \to S$ then the map $\mathcal{C}_{S/X} \to s^*\Omega _{X/S}$ induced by $\text{d}_{X/S}$ is an isomorphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It follows from Algebra, Lemma <a href="/tag/02HP" data-tag="02HP">10.131.10</a> that the result holds when $X, Z, S$ are affine. In general we conclude the sequence is locally split exact. If $g : X \to Z$ is a left inverse of $i$, then $i^*c_ g$ is a right inverse of the map $i^*\Omega _{X/S} \to \Omega _{Z/S}$ by Modules, Lemma <a href="/tag/01UW" data-tag="01UW">17.28.13</a>. This implies the sequence is split by Homology, Lemma <a href="/tag/010G" data-tag="010G">12.5.10</a>. Finally, if $s$ is a section, then it is an immersion $s : Z = S \to X$ over $S$ (see Schemes, Lemma <a href="/tag/01KT" data-tag="01KT">26.21.11</a>) and in that case $\Omega _{Z/S} = 0$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="060N">
+  <p><a class="environment-identifier" href="/tag/060N">Remark <span data-tag="060N">29.33.17</span>.</a> Let $X \to S$ be a morphism of schemes. According to Lemma <a href="/tag/01V1" data-tag="01V1">29.33.11</a> we have </p>
+  <div class="equation">
+  \[  \Omega _{X \times _ S X/S} = \text{pr}_1^*\Omega _{X/S} \oplus \text{pr}_2^*\Omega _{X/S}  \]
+</div>
+  <p> On the other hand, the diagonal morphism $\Delta : X \to X \times _ S X$ is an immersion, which locally has a left inverse. Hence by Lemma <a href="/tag/0474" data-tag="0474">29.33.16</a> we obtain a canonical short exact sequence </p>
+  <div class="equation">
+  \[  0 \to \mathcal{C}_{X/X \times _ S X} \to \Omega _{X/S} \oplus \Omega _{X/S} \to \Omega _{X/S} \to 0  \]
+</div>
+  <p> Note that the right arrow is $(1, 1)$ which is indeed a split surjection. On the other hand, by Lemma <a href="/tag/08S2" data-tag="08S2">29.33.7</a> we have an identification $\Omega _{X/S} = \mathcal{C}_{X/X \times _ S X}$. Because we chose $\text{d}_{X/S}(f) = s_2(f) - s_1(f)$ in this identification it turns out that the left arrow is the map $(-1, 1)$<a class="footnotemark" href="#a0000645238" id="a0000645238-mark"><sup>1</sup></a>. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="067L">
+  <p><a class="environment-identifier" href="/tag/067L">Lemma <span data-tag="067L">29.33.18</span>.</a> Let </p>
+  <div class="equation">
+  \[  \xymatrix{ Z \ar[r]_ i \ar[rd]_ j &  X \ar[d] \\  &  Y }  \]
+</div>
+  <p> be a commutative diagram of schemes where $i$ and $j$ are immersions. Then there is a canonical exact sequence </p>
+  <div class="equation">
+  \[  \mathcal{C}_{Z/Y} \to \mathcal{C}_{Z/X} \to i^*\Omega _{X/Y} \to 0  \]
+</div>
+  <p> where the first arrow comes from Lemma <a href="/tag/01R4" data-tag="01R4">29.32.3</a> and the second from Lemma <a href="/tag/01UZ" data-tag="01UZ">29.33.15</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The algebraic version of this is Algebra, Lemma <a href="/tag/065V" data-tag="065V">10.134.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

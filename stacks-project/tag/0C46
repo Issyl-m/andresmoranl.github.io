@@ -1,0 +1,553 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="curves-section-nodal" class="tex-section"><span data-tag="0C46">53.19</span> Nodal curves</h2>
+
+<p>
+We have already defined ordinary double points over algebraically closed fields, see Definition <a href="/tag/0C1W" data-tag="0C1W">53.16.2</a>. Namely, if $x \in X$ is a closed point of a $1$-dimensional algebraic scheme over an algebraically closed field $k$, then $x$ is an ordinary double point if and only if 
+</p>
+<div class="equation">
+  \[  \mathcal{O}_{X, x}^\wedge \cong k[[x, y]]/(xy)  \]
+</div>
+<p>
+ See discussion following (<a href="/tag/0C1U" data-tag="0C1U">53.16.0.1</a>) in Section <a href="/tag/0C1P" data-tag="0C1P">53.16</a>. 
+</p>
+<p>
+<article class="env-definition" id="0C47">
+  <p><a class="environment-identifier" href="/tag/0C47">Definition <span data-tag="0C47">53.19.1</span>.</a> Let $k$ be a field. Let $X$ be a $1$-dimensional locally algebraic $k$-scheme. </p>
+  <p><ol>
+  <li><p>
+We say a closed point $x \in X$ is a <em>node</em>, or an <em>ordinary double point</em>, or <em>defines a nodal singularity</em> if there exists an ordinary double point $\overline{x} \in X_{\overline{k}}$ mapping to $x$. 
+</p>
+</li><li><p>
+We say the <em>singularities of $X$ are at-worst-nodal</em> if all closed points of $X$ are either in the smooth locus of the structure morphism $X \to \mathop{\mathrm{Spec}}(k)$ or are ordinary double points. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+Often a $1$-dimensional algebraic scheme $X$ is called a <em>nodal curve</em> if the singularities of $X$ are at worst nodal. Sometimes a nodal curve is required to be proper. Since a nodal curve so defined need not be irreducible, this conflicts with our earlier definition of a curve as a variety of dimension $1$. 
+</p>
+<p>
+<article class="env-lemma" id="0C48">
+  <p><a class="environment-identifier" href="/tag/0C48">Lemma <span data-tag="0C48">53.19.2</span>.</a> Let $(A, \mathfrak m)$ be a regular local ring of dimension $2$. Let $I \subset \mathfrak m$ be an ideal. </p>
+  <p><ol>
+  <li><p>
+If $A/I$ is reduced, then $I = (0)$, $I = \mathfrak m$, or $I = (f)$ for some nonzero $f \in \mathfrak m$. 
+</p>
+</li><li><p>
+If $A/I$ has depth $1$, then $I = (f)$ for some nonzero $f \in \mathfrak m$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume $I \not= 0$. Write $I = (f_1, \ldots , f_ r)$. As $A$ is a UFD (More on Algebra, Lemma <a href="/tag/0AG0" data-tag="0AG0">15.123.2</a>) we can write $f_ i = fg_ i$ where $f$ is the gcd of $f_1, \ldots , f_ r$. Thus the gcd of $g_1, \ldots , g_ r$ is $1$ which means that there is no height $1$ prime ideal over $g_1, \ldots , g_ r$. Then either $(g_1, \ldots , g_ r) = A$ which implies $I = (f)$ or if not, then $\dim (A) = 2$ implies that $V(g_1, \ldots , g_ r) = \{ \mathfrak m\} $, i.e., $\mathfrak m = \sqrt{(g_1, \ldots , g_ r)}$. 
+    <p>
+      Assume $A/I$ reduced, i.e., $I$ radical. If $f$ is a unit, then since $I$ is radical we see that $I = \mathfrak m$. If $f \in \mathfrak m$, then we see that $f^ n$ maps to zero in $A/I$. Hence $f \in I$ by reducedness and we conclude $I = (f)$. 
+    <p>
+      Assume $A/I$ has depth $1$. Then $\mathfrak m$ is not an associated prime of $A/I$. Since the class of $f$ modulo $I$ is annihilated by $g_1, \ldots , g_ r$, this implies that the class of $f$ is zero in $A/I$. Thus $I = (f)$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $\kappa $ be a field and let $V$ be a vector space over $\kappa $. We will say $q \in \text{Sym}^2_\kappa (V)$ is <em>nondegenerate</em> if the induced $\kappa $-linear map $V^\vee \to V$ is an isomorphism. If $q = \sum _{i \leq j} a_{ij} x_ i x_ j$ for some $\kappa $-basis $x_1, \ldots , x_ n$ of $V$, then this means that the determinant of the matrix 
+</p>
+<div class="equation">
+  \[  \left( \begin{matrix}  2a_{11} 
+
+&  a_{12} 
+
+&  \ldots 
+
+\\  a_{12} 
+
+&  2a_{22} 
+
+&  \ldots 
+
+\\  \ldots 
+
+&  \ldots 
+
+&  \ldots 
+
+\end{matrix} \right)  \]
+</div>
+<p>
+ is nonzero. This is equivalent to the condition that the partial derivatives of $q$ with respect to the $x_ i$ cut out $0$ scheme theoretically. 
+</p>
+<p>
+<article class="env-lemma" id="0C49">
+  <p><a class="environment-identifier" href="/tag/0C49">Lemma <span data-tag="0C49">53.19.3</span>.</a> Let $k$ be a field. Let $(A, \mathfrak m, \kappa )$ be a Noetherian local $k$-algebra. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$\kappa /k$ is separable, $A$ is reduced, $\dim _\kappa (\mathfrak m/\mathfrak m^2) = 2$, and there exists a nondegenerate $q \in \text{Sym}^2_\kappa (\mathfrak m/\mathfrak m^2)$ which maps to zero in $\mathfrak m^2/\mathfrak m^3$, 
+</p>
+</li><li><p>
+$\kappa /k$ is separable, $\text{depth}(A) = 1$, $\dim _\kappa (\mathfrak m/\mathfrak m^2) = 2$, and there exists a nondegenerate $q \in \text{Sym}^2_\kappa (\mathfrak m/\mathfrak m^2)$ which maps to zero in $\mathfrak m^2/\mathfrak m^3$, 
+</p>
+</li><li><p>
+$\kappa /k$ is separable, $A^\wedge \cong \kappa [[x, y]]/(ax^2 + bxy + cy^2)$ as a $k$-algebra where $ax^2 + bxy + cy^2$ is a nondegenerate quadratic form over $\kappa $. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Assume (3). Then $A^\wedge $ is reduced because $ax^2 + bxy + cy^2$ is either irreducible or a product of two nonassociated prime elements. Hence $A \subset A^\wedge $ is reduced. It follows that (1) is true. 
+    <p>
+      Assume (1). Then $A$ cannot be Artinian, since it would not be reduced because $\mathfrak m \not= (0)$. Hence $\dim (A) \geq 1$, hence $\text{depth}(A) \geq 1$ by Algebra, Lemma <a href="/tag/031R" data-tag="031R">10.157.3</a>. On the other hand $\dim (A) = 2$ implies $A$ is regular which contradicts the existence of $q$ by Algebra, Lemma <a href="/tag/00NO" data-tag="00NO">10.106.1</a>. Thus $\dim (A) \leq 1$ and we conclude $\text{depth}(A) = 1$ by Algebra, Lemma <a href="/tag/00LK" data-tag="00LK">10.72.3</a>. It follows that (2) is true. 
+    <p>
+      Assume (2). Since the depth of $A$ is the same as the depth of $A^\wedge $ (More on Algebra, Lemma <a href="/tag/07NW" data-tag="07NW">15.44.2</a>) and since the other conditions are insensitive to completion, we may assume that $A$ is complete. Choose $\kappa \to A$ as in More on Algebra, Lemma <a href="/tag/0C34" data-tag="0C34">15.39.3</a>. Since $\dim _\kappa (\mathfrak m/\mathfrak m^2) = 2$ we can choose $x_0, y_0 \in \mathfrak m$ which map to a basis. We obtain a continuous $\kappa $-algebra map 
+    <p>
+      <div class="equation">
+  \[  \kappa [[x, y]] \longrightarrow A  \]
+</div>
+    <p>
+       by the rules $x \mapsto x_0$ and $y \mapsto y_0$. Let $q$ be the class of $ax_0^2 + bx_0y_0 + cy_0^2$ in $\text{Sym}^2_\kappa (\mathfrak m/\mathfrak m^2)$. Write $Q(x, y) = ax^2 + bxy + cy^2$ viewed as a polynomial in two variables. Then we see that 
+    <p>
+      <div class="equation">
+  \[  Q(x_0, y_0) = ax_0^2 + bx_0y_0 + cy_0^2 = \sum \nolimits _{i + j = 3} a_{ij} x_0^ iy_0^ j  \]
+</div>
+    <p>
+       for some $a_{ij}$ in $A$. We want to prove that we can increase the order of vanishing by changing our choice of $x_0$, $y_0$. Suppose that $x_1, y_1 \in \mathfrak m^2$. Then 
+    <p>
+      <div class="equation">
+  \[  Q(x_0 + x_1, y_0 + y_1) = Q(x_0, y_0) + (2ax_0 + by_0)x_1 + (bx_0 + 2cy_0)y_1 \bmod \mathfrak m^4  \]
+</div>
+    <p>
+       Nondegeneracy of $Q$ means exactly that $2ax_0 + by_0$ and $bx_0 + 2cy_0$ are a $\kappa $-basis for $\mathfrak m/\mathfrak m^2$, see discussion preceding the lemma. Hence we can certainly choose $x_1, y_1 \in \mathfrak m^2$ such that $Q(x_0 + x_1, y_0 + y_1) \in \mathfrak m^4$. Continuing in this fashion by induction we can find $x_ i, y_ i \in \mathfrak m^{i + 1}$ such that 
+    <p>
+      <div class="equation">
+  \[  Q(x_0 + x_1 + \ldots + x_ n, y_0 + y_1 + \ldots + y_ n) \in \mathfrak m^{n + 3}  \]
+</div>
+    <p>
+       Since $A$ is complete we can set $x_\infty = \sum x_ i$ and $y_\infty = \sum y_ i$ and we can consider the map $\kappa [[x, y]] \longrightarrow A$ sending $x$ to $x_\infty $ and $y$ to $y_\infty $. This map induces a surjection $\kappa [[x, y]]/(Q) \longrightarrow A$ by Algebra, Lemma <a href="/tag/0315" data-tag="0315">10.96.1</a>. By Lemma <a href="/tag/0C48" data-tag="0C48">53.19.2</a> the kernel of $k[[x, y]] \to A$ is principal. But the kernel cannot contain a proper divisor of $Q$ as such a divisor would have degree $1$ in $x, y$ and this would contradict $\dim (\mathfrak m/\mathfrak m^2) = 2$. Hence $Q$ generates the kernel as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0C4A">
+  <p><a class="environment-identifier" href="/tag/0C4A">Lemma <span data-tag="0C4A">53.19.4</span>.</a> Let $k$ be a field. Let $(A, \mathfrak m, \kappa )$ be a Nagata local $k$-algebra. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$k \to A$ is as in Lemma <a href="/tag/0C49" data-tag="0C49">53.19.3</a>, 
+</p>
+</li><li><p>
+$\kappa /k$ is separable, $A$ is reduced of dimension $1$, the $\delta $-invariant of $A$ is $1$, and $A$ has $2$ geometric branches. 
+</p>
+</li>
+</ol></p>
+  <p> If this holds, then the integral closure $A'$ of $A$ in its total ring of fractions has either $1$ or $2$ maximal ideals $\mathfrak m'$ and the extensions $\kappa (\mathfrak m')/k$ are separable. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In both cases $A$ and $A^\wedge $ are reduced. In case (2) because the completion of a reduced local Nagata ring is reduced (More on Algebra, Lemma <a href="/tag/07NZ" data-tag="07NZ">15.44.6</a>). In both cases $A$ and $A^\wedge $ have dimension $1$ (More on Algebra, Lemma <a href="/tag/07NV" data-tag="07NV">15.44.1</a>). The $\delta $-invariant and the number of geometric branches of $A$ and $A^\wedge $ agree by Varieties, Lemma <a href="/tag/0C3W" data-tag="0C3W">33.39.6</a> and More on Algebra, Lemma <a href="/tag/0C2D" data-tag="0C2D">15.110.7</a>. Let $A'$ be the integral closure of $A$ in its total ring of fractions as in Varieties, Lemma <a href="/tag/0C3S" data-tag="0C3S">33.39.2</a>. By Varieties, Lemma <a href="/tag/0C3V" data-tag="0C3V">33.39.5</a> we see that $A' \otimes _ A A^\wedge $ plays the same role for $A^\wedge $. Thus we may replace $A$ by $A^\wedge $ and assume $A$ is complete. 
+    <p>
+      Assume (1) holds. It suffices to show that $A$ has two geometric branches and $\delta $-invariant $1$. We may assume $A = \kappa [[x, y]]/(ax^2 + bxy + cy^2)$ with $q = ax^2 + bxy + cy^2$ nondegenerate. There are two cases. 
+    <p>
+      Case I: $q$ splits over $\kappa $. In this case we may after changing coordinates assume that $q = xy$. Then we see that 
+    <p>
+      <div class="equation">
+  \[  A' = \kappa [[x, y]]/(x) \times \kappa [[x, y]]/(y)  \]
+</div>
+    <p>
+      Case II: $q$ does not split. In this case $c \not= 0$ and nondegenerate means $b^2 - 4ac \not= 0$. Hence $\kappa ' = \kappa [t]/(a + bt + ct^2)$ is a degree $2$ separable extension of $\kappa $. Then $t = y/x$ is integral over $A$ and we conclude that 
+    <p>
+      <div class="equation">
+  \[  A' = \kappa '[[x]]  \]
+</div>
+    <p>
+       with $y$ mapping to $tx$ on the right hand side. 
+    <p>
+      In both cases one verifies by hand that the $\delta $-invariant is $1$ and the number of geometric branches is $2$. In this way we see that (1) implies (2). Moreover we conclude that the final statement of the lemma holds. 
+    <p>
+      Assume (2) holds. More on Algebra, Lemma <a href="/tag/0C37" data-tag="0C37">15.108.7</a> implies $A'$ either has two maximal ideals or $A'$ has one maximal ideal and $[\kappa (\mathfrak m') : \kappa ]_ s = 2$. 
+    <p>
+      Case I: $A'$ has two maximal ideals $\mathfrak m'_1$, $\mathfrak m'_2$ with residue fields $\kappa _1$, $\kappa _2$. Since the $\delta $-invariant is the length of $A'/A$ and since there is a surjection $A'/A \to (\kappa _1 \times \kappa _2)/\kappa $ we see that $\kappa = \kappa _1 = \kappa _2$. Since $A$ is complete (and henselian by Algebra, Lemma <a href="/tag/04GM" data-tag="04GM">10.153.9</a>) and $A'$ is finite over $A$ we see that $A' = A_1 \times A_2$ (by Algebra, Lemma <a href="/tag/04GH" data-tag="04GH">10.153.4</a>). Since $A'$ is a normal ring it follows that $A_1$ and $A_2$ are discrete valuation rings. Hence $A_1$ and $A_2$ are isomorphic to $\kappa [[t]]$ (as $k$-algebras) by More on Algebra, Lemma <a href="/tag/0C35" data-tag="0C35">15.39.4</a>. Since the $\delta $-invariant is $1$ we conclude that $A$ is the wedge of $A_1$ and $A_2$ (Varieties, Definition <a href="/tag/0C41" data-tag="0C41">33.40.4</a>). It follows easily that $A \cong \kappa [[x, y]]/(xy)$. 
+    <p>
+      Case II: $A'$ has a single maximal ideal $\mathfrak m'$ with residue field $\kappa '$ and $[\kappa ' : \kappa ]_ s = 2$. Arguing exactly as in Case I we see that $[\kappa ' : \kappa ] = 2$ and $\kappa '$ is separable over $\kappa $. Since $A'$ is normal we see that $A'$ is isomorphic to $\kappa '[[t]]$ (see reference above). Since $A'/A$ has length $1$ we conclude that 
+    <p>
+      <div class="equation">
+  \[  A = \{ f \in \kappa '[[t]] \mid f(0) \in \kappa \}   \]
+</div>
+    <p>
+       Then a simple computation shows that $A$ as in case (1). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0C4B">
+  <p><a class="environment-identifier" href="/tag/0C4B">Lemma <span data-tag="0C4B">53.19.5</span>.</a> Let $k$ be a field. Let $A = k[[x_1, \ldots , x_ n]]$. Let $I = (f_1, \ldots , f_ m) \subset A$ be an ideal. For any $r \geq 0$ the ideal in $A/I$ generated by the $r \times r$-minors of the matrix $(\partial f_ j/\partial x_ i)$ is independent of the choice of the generators of $I$ or the regular system of parameters $x_1, \ldots , x_ n$ of $A$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The “correct” proof of this lemma is to prove that this ideal is the $(n - r)$th Fitting ideal of a module of continuous differentials of $A/I$ over $k$. Here is a direct proof. If $g_1, \ldots g_ l$ is a second set of generators of $I$, then we can write $g_ s = \sum a_{sj}f_ j$ and we have the equality of matrices 
+    <p>
+      <div class="equation">
+  \[  (\partial g_ s/\partial x_ i) = (a_{sj}) (\partial f_ j/\partial x_ i) + (\partial a_{sj}/\partial x_ i f_ j)  \]
+</div>
+    <p>
+       The final term is zero in $A/I$. By the Cauchy-Binet formula we see that the ideal of minors for the $g_ s$ is contained in the ideal for the $f_ j$. By symmetry these ideals are the same. If $y_1, \ldots , y_ n \in \mathfrak m_ A$ is a second regular system of parameters, then the matrix $(\partial y_ j/\partial x_ i)$ is invertible and we can use the chain rule for differentiation. Some details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0C4C">
+  <p><a class="environment-identifier" href="/tag/0C4C">Lemma <span data-tag="0C4C">53.19.6</span>.</a> Let $k$ be a field. Let $A = k[[x_1, \ldots , x_ n]]$. Let $I = (f_1, \ldots , f_ m) \subset \mathfrak m_ A$ be an ideal. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$k \to A/I$ is as in Lemma <a href="/tag/0C49" data-tag="0C49">53.19.3</a>, 
+</p>
+</li><li><p>
+$A/I$ is reduced and the $(n - 1) \times (n - 1)$ minors of the matrix $(\partial f_ j/\partial x_ i)$ generate $I + \mathfrak m_ A$, 
+</p>
+</li><li><p>
+$\text{depth}(A/I) = 1$ and the $(n - 1) \times (n - 1)$ minors of the matrix $(\partial f_ j/\partial x_ i)$ generate $I + \mathfrak m_ A$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/0C4B" data-tag="0C4B">53.19.5</a> we may change our system of coordinates and the choice of generators during the proof. 
+    <p>
+      If (1) holds, then we may change coordinates such that $x_1, \ldots , x_{n - 2}$ map to zero in $A/I$ and $A/I = k[[x_{n - 1}, x_ n]]/(a x_{n - 1}^2 + b x_{n - 1}x_ n + c x_ n^2)$ for some nondegenerate quadric $a x_{n - 1}^2 + b x_{n - 1}x_ n + c x_ n^2$. Then we can explicitly compute to show that both (2) and (3) are true. 
+    <p>
+      Assume the $(n - 1) \times (n - 1)$ minors of the matrix $(\partial f_ j/\partial x_ i)$ generate $I + \mathfrak m_ A$. Suppose that for some $i$ and $j$ the partial derivative $\partial f_ j/\partial x_ i$ is a unit in $A$. Then we may use the system of parameters $f_ j, x_1, \ldots , x_{i - 1}, \hat x_ i, x_{i + 1}, \ldots , x_ n$ and the generators $f_ j, f_1, \ldots , f_{j - 1}, \hat f_ j, f_{j + 1}, \ldots , f_ m$ of $I$. Then we get a regular system of parameters $x_1, \ldots , x_ n$ and generators $x_1, f_2, \ldots , f_ m$ of $I$. Next, we look for an $i \geq 2$ and $j \geq 2$ such that $\partial f_ j/\partial x_ i$ is a unit in $A$. If such a pair exists, then we can make a replacement as above and assume that we have a regular system of parameters $x_1, \ldots , x_ n$ and generators $x_1, x_2, f_3, \ldots , f_ m$ of $I$. Continuing, in finitely many steps we reach the situation where we have a regular system of parameters $x_1, \ldots , x_ n$ and generators $x_1, \ldots , x_ t, f_{t + 1}, \ldots , f_ m$ of $I$ such that $\partial f_ j/\partial x_ i \in \mathfrak m_ A$ for all $i, j \geq t + 1$. 
+    <p>
+      In this case the matrix of partial derivatives has the following block shape 
+    <p>
+      <div class="equation">
+  \[  \left( \begin{matrix}  I_{t \times t} 
+
+&  * 
+
+\\  0 
+
+&  \mathfrak m_ A 
+
+\end{matrix} \right)  \]
+</div>
+    <p>
+       Hence every $(n - 1) \times (n - 1)$-minor is in $\mathfrak m_ A^{n - 1 - t}$. Note that $I \not= \mathfrak m_ A$ otherwise the ideal of minors would contain $1$. It follows that $n - 1 - t \leq 1$ because there is an element of $\mathfrak m_ A \setminus \mathfrak m_ A^2 + I$ (otherwise $I = \mathfrak m_ A$ by Nakayama). Thus $t \geq n - 2$. We have seen that $t \not= n$ above and similarly if $t = n - 1$, then there is an invertible $(n - 1) \times (n - 1)$-minor which is disallowed as well. Hence $t = n - 2$. Then $A/I$ is a quotient of $k[[x_{n - 1}, x_ n]]$ and Lemma <a href="/tag/0C48" data-tag="0C48">53.19.2</a> implies in both cases (2) and (3) that $I$ is generated by $x_1, \ldots , x_{n - 2}, f$ for some $f = f(x_{n - 1}, x_ n)$. In this case the condition on the minors exactly says that the quadratic term in $f$ is nondegenerate, i.e., $A/I$ is as in Lemma <a href="/tag/0C49" data-tag="0C49">53.19.3</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0C4D">
+  <p><a class="environment-identifier" href="/tag/0C4D">Lemma <span data-tag="0C4D">53.19.7</span>.</a> Let $k$ be a field. Let $X$ be a $1$-dimensional algebraic $k$-scheme. Let $x \in X$ be a closed point. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$x$ is a node, 
+</p>
+</li><li><p>
+$k \to \mathcal{O}_{X, x}$ is as in Lemma <a href="/tag/0C49" data-tag="0C49">53.19.3</a>, 
+</p>
+</li><li><p>
+any $\overline{x} \in X_{\overline{k}}$ mapping to $x$ defines a nodal singularity, 
+</p>
+</li><li><p>
+$\kappa (x)/k$ is separable, $\mathcal{O}_{X, x}$ is reduced, and the first Fitting ideal of $\Omega _{X/k}$ generates $\mathfrak m_ x$ in $\mathcal{O}_{X, x}$, 
+</p>
+</li><li><p>
+$\kappa (x)/k$ is separable, $\text{depth}(\mathcal{O}_{X, x}) = 1$, and the first Fitting ideal of $\Omega _{X/k}$ generates $\mathfrak m_ x$ in $\mathcal{O}_{X, x}$, 
+</p>
+</li><li><p>
+$\kappa (x)/k$ is separable and $\mathcal{O}_{X, x}$ is reduced, has $\delta $-invariant $1$, and has $2$ geometric branches. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      First assume that $k$ is algebraically closed. In this case the equivalence of (1) and (3) is trivial. The equivalence of (1) and (3) with (2) holds because the only nondegenerate quadric in two variables is $xy$ up to change in coordinates. The equivalence of (1) and (6) is Lemma <a href="/tag/0C1V" data-tag="0C1V">53.16.1</a>. After replacing $X$ by an affine neighbourhood of $x$, we may assume there is a closed immersion $X \to \mathbf{A}^ n_ k$ mapping $x$ to $0$. Let $f_1, \ldots , f_ m \in k[x_1, \ldots , x_ n]$ be generators for the ideal $I$ of $X$ in $\mathbf{A}^ n_ k$. Then $\Omega _{X/k}$ corresponds to the $R = k[x_1, \ldots , x_ n]/I$-module $\Omega _{R/k}$ which has a presentation 
+    <p>
+      <div class="equation">
+  \[  R^{\oplus m} \xrightarrow {(\partial f_ j/\partial x_ i)} R^{\oplus n} \to \Omega _{R/k} \to 0  \]
+</div>
+    <p>
+       (See Algebra, Sections <a href="/tag/00RM" data-tag="00RM">10.131</a> and <a href="/tag/00S0" data-tag="00S0">10.134</a>.) The first Fitting ideal of $\Omega _{R/k}$ is thus the ideal generated by the $(n - 1) \times (n - 1)$-minors of the matrix $(\partial f_ j/\partial x_ i)$. Hence (2), (4), (5) are equivalent by Lemma <a href="/tag/0C4C" data-tag="0C4C">53.19.6</a> applied to the completion of $k[x_1, \ldots , x_ n] \to R$ at the maximal ideal $(x_1, \ldots , x_ n)$. 
+    <p>
+      Now assume $k$ is an arbitrary field. In cases (2), (4), (5), (6) the residue field $\kappa (x)$ is separable over $k$. Let us show this holds as well in cases (1) and (3). Namely, let $Z \subset X$ be the closed subscheme of $X$ defined by the first Fitting ideal of $\Omega _{X/k}$. The formation of $Z$ commutes with field extension (Divisors, Lemma <a href="/tag/0C3I" data-tag="0C3I">31.10.1</a>). If (1) or (3) is true, then there exists a point $\overline{x}$ of $X_{\overline{k}}$ such that $\overline{x}$ is an isolated point of multiplicity $1$ of $Z_{\overline{k}}$ (as we have the equivalence of the conditions of the lemma over $\overline{k}$). In particular $Z_{\overline{x}}$ is geometrically reduced at $\overline{x}$ (because $\overline{k}$ is algebraically closed). Hence $Z$ is geometrically reduced at $x$ (Varieties, Lemma <a href="/tag/0384" data-tag="0384">33.6.6</a>). In particular, $Z$ is reduced at $x$, hence $Z = \mathop{\mathrm{Spec}}(\kappa (x))$ in a neighbourhood of $x$ and $\kappa (x)$ is geometrically reduced over $k$. This means that $\kappa (x)/k$ is separable (Algebra, Lemma <a href="/tag/030W" data-tag="030W">10.44.2</a>). 
+    <p>
+      The argument of the previous paragraph shows that if (1) or (3) holds, then the first Fitting ideal of $\Omega _{X/k}$ generates $\mathfrak m_ x$. Since $\mathcal{O}_{X, x} \to \mathcal{O}_{X_{\overline{k}}, \overline{x}}$ is flat and since $\mathcal{O}_{X_{\overline{k}}, \overline{x}}$ is reduced and has depth $1$, we see that (4) and (5) hold (use Algebra, Lemmas <a href="/tag/033F" data-tag="033F">10.164.2</a> and <a href="/tag/0337" data-tag="0337">10.163.2</a>). Conversely, (4) implies (5) by Algebra, Lemma <a href="/tag/031R" data-tag="031R">10.157.3</a>. If (5) holds, then $Z$ is geometrically reduced at $x$ (because $\kappa (x)/k$ separable and $Z$ is $x$ in a neighbourhood). Hence $Z_{\overline{k}}$ is reduced at any point $\overline{x}$ of $X_{\overline{k}}$ lying over $x$. In other words, the first fitting ideal of $\Omega _{X_{\overline{k}}/\overline{k}}$ generates $\mathfrak m_{\overline{x}}$ in $\mathcal{O}_{X_{\overline{k}, \overline{x}}}$. Moreover, since $\mathcal{O}_{X, x} \to \mathcal{O}_{X_{\overline{k}}, \overline{x}}$ is flat we see that $\text{depth}(\mathcal{O}_{X_{\overline{k}}, \overline{x}}) = 1$ (see reference above). Hence (5) holds for $\overline{x} \in X_{\overline{k}}$ and we conclude that (3) holds (because of the equivalence over algebraically closed fields). In this way we see that (1), (3), (4), (5) are equivalent. 
+    <p>
+      The equivalence of (2) and (6) follows from Lemma <a href="/tag/0C4A" data-tag="0C4A">53.19.4</a>. 
+    <p>
+      Finally, we prove the equivalence of (2) $=$ (6) with (1) $=$ (3) $=$ (4) $=$ (5). First we note that the geometric number of branches of $X$ at $x$ and the geometric number of branches of $X_{\overline{k}}$ at $\overline{x}$ are equal by Varieties, Lemma <a href="/tag/0C40" data-tag="0C40">33.40.2</a>. We conclude from the information available to us at this point that in all cases this number is equal to $2$. On the other hand, in case (1) it is clear that $X$ is geometrically reduced at $x$, and hence 
+    <p>
+      <div class="equation">
+  \[  \delta \text{-invariant of }X\text{ at }x \leq \delta \text{-invariant of }X_{\overline{k}}\text{ at }\overline{x}  \]
+</div>
+    <p>
+       by Varieties, Lemma <a href="/tag/0C3X" data-tag="0C3X">33.39.8</a>. Since in case (1) the right hand side is $1$, this forces the $\delta $-invariant of $X$ at $x$ to be $1$ (because if it were zero, then $\mathcal{O}_{X, x}$ would be a discrete valuation ring by Varieties, Lemma <a href="/tag/0C3U" data-tag="0C3U">33.39.4</a> which is unibranch, a contradiction). Thus (5) holds. Conversely, if (2) $=$ (5) is true, then assumptions (a), (b), (c) of Varieties, Lemma <a href="/tag/0C3P" data-tag="0C3P">33.27.6</a> hold for $x \in X$ by Lemma <a href="/tag/0C4A" data-tag="0C4A">53.19.4</a>. Thus Varieties, Lemma <a href="/tag/0C3Y" data-tag="0C3Y">33.39.9</a> applies and shows that we have equality in the above displayed inequality. We conclude that (5) holds for $\overline{x} \in X_{\overline{k}}$ and we are back in case (1) by the equivalence of the conditions over an algebraically closed field. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="0CBT">
+  <p><a class="environment-identifier" href="/tag/0CBT">Remark <span data-tag="0CBT">53.19.8</span> <span class="named">(The quadratic extension associated to a node)</span>.</a>  Let $k$ be a field. Let $(A, \mathfrak m, \kappa )$ be a Noetherian local $k$-algebra. Assume that either $(A, \mathfrak m, \kappa )$ is as in Lemma <a href="/tag/0C49" data-tag="0C49">53.19.3</a>, or $A$ is Nagata as in Lemma <a href="/tag/0C4A" data-tag="0C4A">53.19.4</a>, or $A$ is complete and as in Lemma <a href="/tag/0C4C" data-tag="0C4C">53.19.6</a>. Then $A$ defines canonically a degree $2$ separable $\kappa $-algebra $\kappa '$ as follows </p>
+  <p><ol>
+  <li><p>
+let $q = ax^2 + bxy + cy^2$ be a nondegenerate quadric as in Lemma <a href="/tag/0C49" data-tag="0C49">53.19.3</a> with coordinates $x, y$ chosen such that $a \not= 0$ and set $\kappa ' = \kappa [x]/(ax^2 + bx + c)$, 
+</p>
+</li><li><p>
+let $A' \supset A$ be the integral closure of $A$ in its total ring of fractions and set $\kappa ' = A'/\mathfrak m A'$, or 
+</p>
+</li><li><p>
+let $\kappa '$ be the $\kappa $-algebra such that $\text{Proj}(\bigoplus _{n \geq 0} \mathfrak m^ n/\mathfrak m^{n + 1}) = \mathop{\mathrm{Spec}}(\kappa ')$. 
+</p>
+</li>
+</ol></p>
+  <p> The equivalence of (1) and (2) was shown in the proof of Lemma <a href="/tag/0C4A" data-tag="0C4A">53.19.4</a>. We omit the equivalence of this with (3). If $X$ is a locally Noetherian $k$-scheme and $x \in X$ is a point such that $\mathcal{O}_{X, x} = A$, then (3) shows that $\mathop{\mathrm{Spec}}(\kappa ') = X^\nu \times _ X \mathop{\mathrm{Spec}}(\kappa )$ where $\nu : X^\nu \to X$ is the normalization morphism. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="0CBU">
+  <p><a class="environment-identifier" href="/tag/0CBU">Remark <span data-tag="0CBU">53.19.9</span> <span class="named">(Trivial quadratic extension)</span>.</a>  Let $k$ be a field. Let $(A, \mathfrak m, \kappa )$ be as in Remark <a href="/tag/0CBT" data-tag="0CBT">53.19.8</a> and let $\kappa '/\kappa $ be the associated separable algebra of degree $2$. Then the following are equivalent </p>
+  <p><ol>
+  <li><p>
+$\kappa ' \cong \kappa \times \kappa $ as $\kappa $-algebra, 
+</p>
+</li><li><p>
+the form $q$ of Lemma <a href="/tag/0C49" data-tag="0C49">53.19.3</a> can be chosen to be $xy$, 
+</p>
+</li><li><p>
+$A$ has two branches, 
+</p>
+</li><li><p>
+the extension $A'/A$ of Lemma <a href="/tag/0C4A" data-tag="0C4A">53.19.4</a> has two maximal ideals, and 
+</p>
+</li><li><p>
+$A^\wedge \cong \kappa [[x, y]]/(xy)$ as a $k$-algebra. 
+</p>
+</li>
+</ol></p>
+  <p> The equivalence between these conditions has been shown in the proof of Lemma <a href="/tag/0C4A" data-tag="0C4A">53.19.4</a>. If $X$ is a locally Noetherian $k$-scheme and $x \in X$ is a point such that $\mathcal{O}_{X, x} = A$, then this means exactly that there are two points $x_1, x_2$ of the normalization $X^\nu $ lying over $x$ and that $\kappa (x) = \kappa (x_1) = \kappa (x_2)$. </p>
+</article> 
+</p>
+<p>
+<article class="env-definition" id="0CBV">
+  <p><a class="environment-identifier" href="/tag/0CBV">Definition <span data-tag="0CBV">53.19.10</span>.</a> Let $k$ be a field. Let $X$ be a $1$-dimensional algebraic $k$-scheme. Let $x \in X$ be a closed point. We say $x$ is a <em>split node</em> if $x$ is a node, $\kappa (x) = k$, and the equivalent assertions of Remark <a href="/tag/0CBU" data-tag="0CBU">53.19.9</a> hold for $A = \mathcal{O}_{X, x}$. </p>
+</article> 
+</p>
+<p>
+We formulate the obligatory lemma stating what we already know about this concept. 
+</p>
+<p>
+<article class="env-lemma" id="0CBW">
+  <p><a class="environment-identifier" href="/tag/0CBW">Lemma <span data-tag="0CBW">53.19.11</span>.</a> Let $k$ be a field. Let $X$ be a $1$-dimensional algebraic $k$-scheme. Let $x \in X$ be a closed point. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$x$ is a split node, 
+</p>
+</li><li><p>
+$x$ is a node and there are exactly two points $x_1, x_2$ of the normalization $X^\nu $ lying over $x$ with $k = \kappa (x_1) = \kappa (x_2)$, 
+</p>
+</li><li><p>
+$\mathcal{O}_{X, x}^\wedge \cong k[[x, y]]/(xy)$ as a $k$-algebra, and 
+</p>
+</li><li><p>
+add more here. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This follows from the discussion in Remark <a href="/tag/0CBU" data-tag="0CBU">53.19.9</a> and Lemma <a href="/tag/0C4D" data-tag="0C4D">53.19.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0C56">
+  <p><a class="environment-identifier" href="/tag/0C56">Lemma <span data-tag="0C56">53.19.12</span>.</a> Let $K/k$ be an extension of fields. Let $X$ be a locally algebraic $k$-scheme of dimension $1$. Let $y \in X_ K$ be a point with image $x \in X$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$x$ is a closed point of $X$ and a node, and 
+</p>
+</li><li><p>
+$y$ is a closed point of $Y$ and a node. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $x$ is a closed point of $X$, then $y$ is too (look at residue fields). But conversely, this need not be the case, i.e., it can happen that a closed point of $Y$ maps to a nonclosed point of $X$. However, in this case $y$ cannot be a node. Namely, then $X$ would be geometrically unibranch at $x$ (because $x$ would be a generic point of $X$ and $\mathcal{O}_{X, x}$ would be Artinian and any Artinian local ring is geometrically unibranch), hence $Y$ is geometrically unibranch at $y$ (Varieties, Lemma <a href="/tag/0C55" data-tag="0C55">33.40.3</a>), which means that $y$ cannot be a node by Lemma <a href="/tag/0C4D" data-tag="0C4D">53.19.7</a>. Thus we may and do assume that both $x$ and $y$ are closed points. 
+    <p>
+      Choose algebraic closures $\overline{k}$, $\overline{K}$ and a map $\overline{k} \to \overline{K}$ extending the given map $k \to K$. Using the equivalence of (1) and (3) in Lemma <a href="/tag/0C4D" data-tag="0C4D">53.19.7</a> we reduce to the case where $k$ and $K$ are algebraically closed. In this case we can argue as in the proof of Lemma <a href="/tag/0C4D" data-tag="0C4D">53.19.7</a> that the geometric number of branches and $\delta $-invariants of $X$ at $x$ and $Y$ at $y$ are the same. Another argument can be given by choosing an isomorphism $k[[x_1, \ldots , x_ n]]/(g_1, \ldots , g_ m) \to \mathcal{O}_{X, x}^\wedge $ of $k$-algebras as in Varieties, Lemma <a href="/tag/0C52" data-tag="0C52">33.21.1</a>. By Varieties, Lemma <a href="/tag/0C54" data-tag="0C54">33.21.2</a> this gives an isomorphism $K[[x_1, \ldots , x_ n]]/(g_1, \ldots , g_ m) \to \mathcal{O}_{Y, y}^\wedge $ of $K$-algebras. By definition we have to show that 
+    <p>
+      <div class="equation">
+  \[  k[[x_1, \ldots , x_ n]]/(g_1, \ldots , g_ m) \cong k[[s, t]]/(st)  \]
+</div>
+    <p>
+       if and only if 
+    <p>
+      <div class="equation">
+  \[  K[[x_1, \ldots , x_ n]]/(g_1, \ldots , g_ m) \cong K[[s, t]]/(st)  \]
+</div>
+    <p>
+       We encourage the reader to prove this for themselves. Since $k$ and $K$ are algebraically closed fields, this is the same as asking these rings to be as in Lemma <a href="/tag/0C49" data-tag="0C49">53.19.3</a>. Via Lemma <a href="/tag/0C4C" data-tag="0C4C">53.19.6</a> this translates into a statement about the $(n - 1) \times (n - 1)$-minors of the matrix $(\partial g_ j/\partial x_ i)$ which is clearly independent of the field used. We omit the details. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0C57">
+  <p><a class="environment-identifier" href="/tag/0C57">Lemma <span data-tag="0C57">53.19.13</span>.</a> Let $k$ be a field. Let $X$ be a locally algebraic $k$-scheme of dimension $1$. Let $Y \to X$ be an étale morphism. Let $y \in Y$ be a point with image $x \in X$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$x$ is a closed point of $X$ and a node, and 
+</p>
+</li><li><p>
+$y$ is a closed point of $Y$ and a node. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/0C56" data-tag="0C56">53.19.12</a> we may base change to the algebraic closure of $k$. Then the residue fields of $x$ and $y$ are $k$. Hence the map $\mathcal{O}_{X, x}^\wedge \to \mathcal{O}_{Y, y}^\wedge $ is an isomorphism (for example by Étale Morphisms, Lemma <a href="/tag/039M" data-tag="039M">41.11.3</a> or More on Algebra, Lemma <a href="/tag/0AGX" data-tag="0AGX">15.44.9</a>). Thus the lemma is clear. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0CD6">
+  <p><a class="environment-identifier" href="/tag/0CD6">Lemma <span data-tag="0CD6">53.19.14</span>.</a> Let $k'/k$ be a finite separable field extension. Let $X$ be a locally algebraic $k'$-scheme of dimension $1$. Let $x \in X$ be a closed point. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$x$ is a node, and 
+</p>
+</li><li><p>
+$x$ is a node when $X$ viewed as a locally algebraic $k$-scheme. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Follows immediately from the characterization of nodes in Lemma <a href="/tag/0C4D" data-tag="0C4D">53.19.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0C4E">
+  <p><a class="environment-identifier" href="/tag/0C4E">Lemma <span data-tag="0C4E">53.19.15</span>.</a> Let $k$ be a field. Let $X$ be a locally algebraic $k$-scheme equidimensional of dimension $1$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+the singularities of $X$ are at-worst-nodal, and 
+</p>
+</li><li><p>
+$X$ is a local complete intersection over $k$ and the closed subscheme $Z \subset X$ cut out by the first fitting ideal of $\Omega _{X/k}$ is unramified over $k$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We urge the reader to find their own proof of this lemma; what follows is just putting together earlier results and may hide what is really going on. 
+    <p>
+      Assume (2). Since $Z \to \mathop{\mathrm{Spec}}(k)$ is quasi-finite (Morphisms, Lemma <a href="/tag/02V5" data-tag="02V5">29.36.10</a>) we see that the residue fields of points $x \in Z$ are finite over $k$ (as well as separable) by Morphisms, Lemma <a href="/tag/01TG" data-tag="01TG">29.21.5</a>. Hence each $x \in Z$ is a closed point of $X$ by Morphisms, Lemma <a href="/tag/01TE" data-tag="01TE">29.21.2</a>. The local ring $\mathcal{O}_{X, x}$ is Cohen-Macaulay by Algebra, Lemma <a href="/tag/00SB" data-tag="00SB">10.135.3</a>. Since $\dim (\mathcal{O}_{X, x}) = 1$ by dimension theory (Varieties, Section <a href="/tag/06LF" data-tag="06LF">33.20</a>), we conclude that $\text{depth}(\mathcal{O}_{X, x})) = 1$. Thus $x$ is a node by Lemma <a href="/tag/0C4D" data-tag="0C4D">53.19.7</a>. If $x \in X$, $x \not\in Z$, then $X \to \mathop{\mathrm{Spec}}(k)$ is smooth at $x$ by Divisors, Lemma <a href="/tag/0C3K" data-tag="0C3K">31.10.3</a>. 
+    <p>
+      Assume (1). Under this assumption $X$ is geometrically reduced at every closed point (see Varieties, Lemma <a href="/tag/0384" data-tag="0384">33.6.6</a>). Hence $X \to \mathop{\mathrm{Spec}}(k)$ is smooth on a dense open by Varieties, Lemma <a href="/tag/056V" data-tag="056V">33.25.7</a>. Thus $Z$ is closed and consists of closed points. By Divisors, Lemma <a href="/tag/0C3K" data-tag="0C3K">31.10.3</a> the morphism $X \setminus Z \to \mathop{\mathrm{Spec}}(k)$ is smooth. Hence $X \setminus Z$ is a local complete intersection by Morphisms, Lemma <a href="/tag/01VD" data-tag="01VD">29.35.7</a> and the definition of a local complete intersection in Morphisms, Definition <a href="/tag/01UC" data-tag="01UC">29.31.1</a>. By Lemma <a href="/tag/0C4D" data-tag="0C4D">53.19.7</a> for every point $x \in Z$ the local ring $\mathcal{O}_{Z, x}$ is equal to $\kappa (x)$ and $\kappa (x)$ is separable over $k$. Thus $Z \to \mathop{\mathrm{Spec}}(k)$ is unramified (Morphisms, Lemma <a href="/tag/02G7" data-tag="02G7">29.36.11</a>). Finally, Lemma <a href="/tag/0C4D" data-tag="0C4D">53.19.7</a> via part (3) of Lemma <a href="/tag/0C49" data-tag="0C49">53.19.3</a>, shows that $\mathcal{O}_{X, x}$ is a complete intersection in the sense of Divided Power Algebra, Definition <a href="/tag/09Q3" data-tag="09Q3">23.8.5</a>. However, Divided Power Algebra, Lemma <a href="/tag/09Q6" data-tag="09Q6">23.8.8</a> and Morphisms, Lemma <a href="/tag/01UG" data-tag="01UG">29.31.9</a> show that this agrees with the notion used to define a local complete intersection scheme over a field and the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0E37">
+  <p><a class="environment-identifier" href="/tag/0E37">Lemma <span data-tag="0E37">53.19.16</span>.</a> Let $k$ be a field. Let $X$ be a locally algebraic $k$-scheme equidimensional of dimension $1$ whose singularities are at-worst-nodal. Then $X$ is Gorenstein and geometrically reduced. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The Gorenstein assertion follows from Lemma <a href="/tag/0C4E" data-tag="0C4E">53.19.15</a> and Duality for Schemes, Lemma <a href="/tag/0BVA" data-tag="0BVA">48.24.5</a>. Or you can use that it suffices to check after passing to the algebraic closure (Duality for Schemes, Lemma <a href="/tag/0C03" data-tag="0C03">48.25.1</a>), then use that a Noetherian local ring is Gorenstein if and only if its completion is so (by Dualizing Complexes, Lemma <a href="/tag/0BJL" data-tag="0BJL">47.21.9</a>), and then prove that the local rings $k[[t]]$ and $k[[x, y]]/(xy)$ are Gorenstein by hand. 
+    <p>
+      To see that $X$ is geometrically reduced, it suffices to show that $X_{\overline{k}}$ is reduced (Varieties, Lemmas <a href="/tag/020I" data-tag="020I">33.6.3</a> and <a href="/tag/035X" data-tag="035X">33.6.4</a>). But $X_{\overline{k}}$ is a nodal curve over an algebraically closed field. Thus the complete local rings of $X_{\overline{k}}$ are isomorphic to either $\overline{k}[[t]]$ or $\overline{k}[[x, y]]/(xy)$ which are reduced as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0E38">
+  <p><a class="environment-identifier" href="/tag/0E38">Lemma <span data-tag="0E38">53.19.17</span>.</a> Let $k$ be a field. Let $X$ be a locally algebraic $k$-scheme equidimensional of dimension $1$ whose singularities are at-worst-nodal. If $Y \subset X$ is a reduced closed subscheme equidimensional of dimension $1$, then </p>
+  <p><ol>
+  <li><p>
+the singularities of $Y$ are at-worst-nodal, and 
+</p>
+</li><li><p>
+if $Z \subset X$ is the scheme theoretic closure of $X \setminus Y$, then 
+</p>
+<ol>
+  <li><p>
+the scheme theoretic intersection $Y \cap Z$ is the disjoint union of spectra of finite separable extensions of $k$, 
+</p>
+</li><li><p>
+each point of $Y \cap Z$ is a node of $X$, and 
+</p>
+</li><li><p>
+$Y \to \mathop{\mathrm{Spec}}(k)$ is smooth at every point of $Y \cap Z$. 
+</p>
+</li>
+</ol>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $X$ and $Y$ are reduced and equidimensional of dimension $1$, we see that $Y$ is the scheme theoretic union of a subset of the irreducible components of $X$ (in a reduced ring $(0)$ is the intersection of the minimal primes). Let $y \in Y$ be a closed point. If $y$ is in the smooth locus of $X \to \mathop{\mathrm{Spec}}(k)$, then $y$ is on a unique irreducible component of $X$ and we see that $Y$ and $X$ agree in an open neighbourhood of $y$. Hence $Y \to \mathop{\mathrm{Spec}}(k)$ is smooth at $y$. If $y$ is a node of $X$ but still lies on a unique irreducible component of $X$, then $y$ is a node on $Y$ by the same argument. Suppose that $y$ lies on more than $1$ irreducible component of $X$. Since the number of geometric branches of $X$ at $y$ is $2$ by Lemma <a href="/tag/0C4D" data-tag="0C4D">53.19.7</a>, there can be at most $2$ irreducible components passing through $y$ by Properties, Lemma <a href="/tag/0E20" data-tag="0E20">28.16.5</a>. If $Y$ contains both of these, then again $Y = X$ in an open neighbourhood of $y$ and $y$ is a node of $Y$. Finally, assume $Y$ contains only one of the irreducible components. After replacing $X$ by an open neighbourhood of $x$ we may assume $Y$ is one of the two irreducble components and $Z$ is the other. By Properties, Lemma <a href="/tag/0E20" data-tag="0E20">28.16.5</a> again we see that $X$ has two branches at $y$, i.e., the local ring $\mathcal{O}_{X, y}$ has two branches and that these branches come from $\mathcal{O}_{Y, y}$ and $\mathcal{O}_{Z, y}$. Write $\mathcal{O}_{X, y}^\wedge \cong \kappa (y)[[u, v]]/(uv)$ as in Remark <a href="/tag/0CBU" data-tag="0CBU">53.19.9</a>. The field $\kappa (y)$ is finite separable over $k$ by Lemma <a href="/tag/0C4D" data-tag="0C4D">53.19.7</a> for example. Thus, after possibly switching the roles of $u$ and $v$, the completion of the map $\mathcal{O}_{X, y} \to \mathcal{O}_{Y, Y}$ corresponds to $\kappa (y)[[u, v]]/(uv) \to \kappa (y)[[u]]$ and the completion of the map $\mathcal{O}_{X, y} \to \mathcal{O}_{Y, Y}$ corresponds to $\kappa (y)[[u, v]]/(uv) \to \kappa (y)[[v]]$. The scheme theoretic intersection of $Y \cap Z$ is cut out by the sum of their ideas which in the completion is $(u, v)$, i.e., the maximal ideal. Thus (2)(a) and (2)(b) are clear. Finally, (2)(c) holds: the completion of $\mathcal{O}_{Y, y}$ is regular, hence $\mathcal{O}_{Y, y}$ is regular (More on Algebra, Lemma <a href="/tag/07NY" data-tag="07NY">15.44.4</a>) and $\kappa (y)/k$ is separable, hence smoothness in an open neighbourhood by Algebra, Lemma <a href="/tag/00TV" data-tag="00TV">10.140.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

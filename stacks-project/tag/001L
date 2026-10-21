@@ -1,0 +1,128 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="categories-section-opposite" class="tex-section"><span data-tag="001L">4.3</span> Opposite Categories and the Yoneda Lemma</h2>
+
+<p>
+<article class="env-definition" id="001M">
+  <p><a class="environment-identifier" href="/tag/001M">Definition <span data-tag="001M">4.3.1</span>.</a> Given a category $\mathcal{C}$ the <em>opposite category</em> $\mathcal{C}^{opp}$ is the category with the same objects as $\mathcal{C}$ but all morphisms reversed. </p>
+</article> 
+</p>
+<p>
+In other words $\mathop{\mathrm{Mor}}\nolimits _{\mathcal{C}^{opp}}(x, y) = \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(y, x)$. Composition in $\mathcal{C}^{opp}$ is the same as in $\mathcal{C}$ except backwards: if $\phi : y \to z$ and $\psi : x \to y$ are morphisms in $\mathcal{C}^{opp}$, in other words arrows $z \to y$ and $y \to x$ in $\mathcal{C}$, then $\phi \circ ^{opp} \psi $ is the morphism $x \to z$ of $\mathcal{C}^{opp}$ which corresponds to the composition $z \to y \to x$ in $\mathcal{C}$. 
+</p>
+<p>
+<article class="env-definition" id="001N">
+  <p><a class="environment-identifier" href="/tag/001N">Definition <span data-tag="001N">4.3.2</span>.</a> Let $\mathcal{C}$, $\mathcal{S}$ be categories. A <em>contravariant</em> functor $F$ from $\mathcal{C}$ to $\mathcal{S}$ is a functor $\mathcal{C}^{opp}\to \mathcal{S}$. </p>
+</article> 
+</p>
+<p>
+Concretely, a contravariant functor $F$ is given by a map $F : \mathop{\mathrm{Ob}}\nolimits (\mathcal{C}) \to \mathop{\mathrm{Ob}}\nolimits (\mathcal{S})$ and for every morphism $\psi : x \to y$ in $\mathcal{C}$ a morphism $F(\psi ) : F(y) \to F(x)$. These should satisfy the property that, given another morphism $\phi : y \to z$, we have $F(\phi \circ \psi ) = F(\psi ) \circ F(\phi )$ as morphisms $F(z) \to F(x)$. (Note the reverse of order.) 
+</p>
+<p>
+<article class="env-definition" id="02X6">
+  <p><a class="environment-identifier" href="/tag/02X6">Definition <span data-tag="02X6">4.3.3</span>.</a> Let $\mathcal{C}$ be a category. </p>
+  <p><ol>
+  <li><p>
+A <em>presheaf of sets on $\mathcal{C}$</em> or simply a <em>presheaf</em> is a contravariant functor $F$ from $\mathcal{C}$ to $\textit{Sets}$. 
+</p>
+</li><li><p>
+The category of presheaves is denoted $\textit{PSh}(\mathcal{C})$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+Of course the category of presheaves is a proper class. 
+</p>
+<p>
+<article class="env-example" id="001O">
+  <p><a class="environment-identifier" href="/tag/001O">Example <span data-tag="001O">4.3.4</span>.</a> Functor of points. For any $U\in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ there is a contravariant functor </p>
+  <div class="equation">
+  \[  \begin{matrix}  h_ U 
+
+&  : 
+
+&  \mathcal{C} 
+
+&  \longrightarrow 
+
+&  \textit{Sets} 
+
+\\ & &  X 
+
+&  \longmapsto 
+
+&  \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(X, U) 
+
+\end{matrix}  \]
+</div>
+  <p> which takes an object $X$ to the set $\mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(X, U)$. In other words $h_ U$ is a presheaf. Given a morphism $f : X\to Y$ the corresponding map $h_ U(f) : \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(Y, U)\to \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(X, U)$ takes $\phi $ to $\phi \circ f$. We will always denote this presheaf $h_ U : \mathcal{C}^{opp} \to \textit{Sets}$. It is called the <em>representable presheaf</em> associated to $U$. If $\mathcal{C}$ is the category of schemes this functor is sometimes referred to as the <em>functor of points</em> of $U$. </p>
+</article> 
+</p>
+<p>
+Note that given a morphism $\phi : U \to V$ in $\mathcal{C}$ we get a corresponding natural transformation of functors $h(\phi ) : h_ U \to h_ V$ defined by composing with the morphism $U \to V$. This turns composition of morphisms in $\mathcal{C}$ into composition of transformations of functors. In other words we get a functor 
+</p>
+<div class="equation">
+  \[  h : \mathcal{C} \longrightarrow \textit{PSh}(\mathcal{C})  \]
+</div>
+<p>
+ Note that the target is a “big” category, see Remark <a href="/tag/0015" data-tag="0015">4.2.2</a>. On the other hand, $h$ is an actual mathematical object (i.e. a set), compare Remark <a href="/tag/001E" data-tag="001E">4.2.11</a>. 
+</p>
+<p>
+<article class="env-lemma" id="001P">
+        
+      
+  <p><a class="environment-identifier" href="/tag/001P">Lemma <span data-tag="001P">4.3.5</span> <span class="named">(Yoneda lemma)</span>.</a> Let $U, V \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$. Given any morphism of functors $s : h_ U \to h_ V$ there is a unique morphism $\phi : U \to V$ such that $h(\phi ) = s$. In other words the functor $h$ is fully faithful. More generally, given any contravariant functor $F$ and any object $U$ of $\mathcal{C}$ we have a natural bijection </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _{\textit{PSh}(\mathcal{C})}(h_ U, F) \longrightarrow F(U), \quad s \longmapsto s_ U(\text{id}_ U).  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      For the first statement, just take $\phi = s_ U(\text{id}_ U) \in \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(U, V)$. For the second statement, given $\xi \in F(U)$ define $s$ by $s_ V : h_ U(V) \to F(V)$ by sending the element $f : V \to U$ of $h_ U(V) = \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(V, U)$ to $F(f)(\xi )$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="001Q">
+  <p><a class="environment-identifier" href="/tag/001Q">Definition <span data-tag="001Q">4.3.6</span>.</a> A contravariant functor $F : \mathcal{C}\to \textit{Sets}$ is said to be <em>representable</em> if it is isomorphic to the functor of points $h_ U$ for some object $U$ of $\mathcal{C}$. </p>
+</article> 
+</p>
+<p>
+Let $\mathcal{C}$ be a category and let $F : \mathcal{C}^{opp} \to \textit{Sets}$ be a representable functor. Choose an object $U$ of $\mathcal{C}$ and an isomorphism $s : h_ U \to F$. The Yoneda lemma guarantees that the pair $(U, s)$ is unique up to unique isomorphism. The object $U$ is called an object <em>representing</em> $F$. By the Yoneda lemma the transformation $s$ corresponds to a unique element $\xi \in F(U)$. This element is called the <em>universal object</em>. It has the property that for $V \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{C})$ the map 
+</p>
+<div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits _\mathcal {C}(V, U) \longrightarrow F(V),\quad (f : V \to U) \longmapsto F(f)(\xi )  \]
+</div>
+<p>
+ is a bijection. Thus $\xi $ is universal in the sense that every element of $F(V)$ is equal to the image of $\xi $ via $F(f)$ for a unique morphism $f : V \to U$ in $\mathcal{C}$. 
+</p>

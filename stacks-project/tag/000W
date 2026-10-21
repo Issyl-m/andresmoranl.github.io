@@ -1,0 +1,121 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="sets-section-coverings-site" class="tex-section"><span data-tag="000W">3.11</span> Coverings of a site</h2>
+
+<p>
+Suppose that $\mathcal{C}$ is a category (as in Categories, Definition <a href="/tag/0014" data-tag="0014">4.2.1</a>) and that $\text{Cov}(\mathcal{C})$ is a proper class of coverings satisfying properties (1), (2), and (3) of Sites, Definition <a href="/tag/00VH" data-tag="00VH">7.6.2</a>. We list them here: 
+</p>
+<ol>
+  <li><p>
+If $V \to U$ is an isomorphism, then $\{ V \to U\}  \in \text{Cov}(\mathcal{C})$. 
+</p>
+</li><li><p>
+If $\{ U_ i \to U\} _{i\in I} \in \text{Cov}(\mathcal{C})$ and for each $i$ we have $\{ V_{ij} \to U_ i\} _{j\in J_ i} \in \text{Cov}(\mathcal{C})$, then $\{ V_{ij} \to U\} _{i \in I, j\in J_ i} \in \text{Cov}(\mathcal{C})$. 
+</p>
+</li><li><p>
+If $\{ U_ i \to U\} _{i\in I}\in \text{Cov}(\mathcal{C})$ and $V \to U$ is a morphism of $\mathcal{C}$, then $U_ i \times _ U V$ exists for all $i$ and $\{ U_ i \times _ U V \to V \} _{i\in I} \in \text{Cov}(\mathcal{C})$. 
+</p>
+</li>
+</ol>
+<p>
+ For an ordinal $\alpha $, we set $\text{Cov}(\mathcal{C})_\alpha = \text{Cov}(\mathcal{C}) \cap V_\alpha $. Given an ordinal $\alpha $ and a cardinal $\kappa $, we set $\text{Cov}(\mathcal{C})_{\kappa , \alpha }$ equal to the set of elements $\mathcal{U} = \{ \varphi _ i : U_ i \to U\} _{i\in I} \in \text{Cov}(\mathcal{C})_\alpha $ such that $|I| \leq \kappa $. 
+</p>
+<p>
+We recall the following notion, see Sites, Definition <a href="/tag/00VU" data-tag="00VU">7.8.2</a>. Two families of morphisms, $\{ \varphi _ i : U_ i \to U\} _{i\in I}$ and $\{ \psi _ j : W_ j \to U\} _{j\in J}$, with the same target of $\mathcal{C}$ are called <em>combinatorially equivalent</em> if there exist maps $\alpha : I \to J$ and $\beta : J\to I$ such that $\varphi _ i = \psi _{\alpha (i)}$ and $\psi _ j = \varphi _{\beta (j)}$. This defines an equivalence relation on families of morphisms having a fixed target. 
+</p>
+<p>
+<article class="env-lemma" id="000X">
+  <p><a class="environment-identifier" href="/tag/000X">Lemma <span data-tag="000X">3.11.1</span>.</a> With notations as above. Let $\text{Cov}_0 \subset \text{Cov}(\mathcal{C})$ be a set contained in $\text{Cov}(\mathcal{C})$. There exist a cardinal $\kappa $ and a limit ordinal $\alpha $ with the following properties: </p>
+  <p><ol>
+  <li><p>
+We have $\text{Cov}_0 \subset \text{Cov}(\mathcal{C})_{\kappa , \alpha }$. 
+</p>
+</li><li><p>
+The set of coverings $\text{Cov}(\mathcal{C})_{\kappa , \alpha }$ satisfies (1), (2), and (3) of Sites, Definition <a href="/tag/00VH" data-tag="00VH">7.6.2</a> (see above). In other words $(\mathcal{C}, \text{Cov}(\mathcal{C})_{\kappa , \alpha })$ is a site. 
+</p>
+</li><li><p>
+Every covering in $\text{Cov}(\mathcal{C})$ is combinatorially equivalent to a covering in $\text{Cov}(\mathcal{C})_{\kappa , \alpha }$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      To prove this, we first consider the set $\mathcal{S}$ of all sets of morphisms of $\mathcal{C}$ with fixed target. In other words, an element of $\mathcal{S}$ is a subset $T$ of $\text{Arrows}(\mathcal{C})$ such that all elements of $T$ have the same target. Given a family $\mathcal{U} = \{ \varphi _ i : U_ i \to U\} _{i\in I}$ of morphisms with fixed target, we define $Supp(\mathcal{U}) = \{  \varphi \in \text{Arrows}(\mathcal{C}) \mid \exists i\in I, \varphi = \varphi _ i\} $. Note that two families $\mathcal{U} = \{ \varphi _ i : U_ i \to U\} _{i\in I}$ and $\mathcal{V} = \{ V_ j \to V\} _{j \in J}$ are combinatorially equivalent if and only if $Supp(\mathcal{U}) = Supp(\mathcal{V})$. Next, we define $\mathcal{S}_\tau \subset \mathcal{S}$ to be the subset $\mathcal{S}_\tau = \{  T \in \mathcal{S} \mid \exists \  \mathcal{U} \in \text{Cov}(\mathcal{C}) \  T = Supp(\mathcal{U})\} $. For every element $T \in \mathcal{S}_\tau $, set $\beta (T)$ to equal the least ordinal $\beta $ such that there exists a $\mathcal{U} \in \text{Cov}(\mathcal{C})_\beta $ such that $T = \text{Supp}(\mathcal{U})$. Finally, set $\beta _0 = \sup _{T \in S_\tau } \beta (T)$. At this point it follows that every $\mathcal{U} \in \text{Cov}(\mathcal{C})$ is combinatorially equivalent to some element of $\text{Cov}(\mathcal{C})_{\beta _0}$. 
+    <p>
+      Let $\kappa $ be the maximum of $\aleph _0$, the cardinality $|\text{Arrows}(\mathcal{C})|$, 
+    <p>
+      <div class="equation">
+  \[  \sup \nolimits _{\{ U_ i \to U\} _{i\in I} \in \text{Cov}(\mathcal{C})_{\beta _0}} |I|, \quad \text{and}\quad \sup \nolimits _{\{ U_ i \to U\} _{i\in I} \in \text{Cov}_0} |I|.  \]
+</div>
+    <p>
+       Since $\kappa $ is an infinite cardinal, we have $\kappa \otimes \kappa = \kappa $. Note that obviously $\text{Cov}(\mathcal{C})_{\beta _0} = \text{Cov}(\mathcal{C})_{\kappa , \beta _0}$. 
+    <p>
+      We define, by transfinite induction, a function $f$ which associates to every ordinal an ordinal as follows. Let $f(0) = 0$. Given $f(\alpha )$, we define $f(\alpha + 1)$ to be the least ordinal $\beta $ such that the following hold: 
+    <p>
+      <ol>
+  <li><p>
+We have $\alpha + 1 \leq \beta $ and $f(\alpha ) \leq \beta $. 
+</p>
+</li><li><p>
+If $\{ U_ i \to U\} _{i\in I} \in \text{Cov}(\mathcal{C})_{\kappa , f(\alpha )}$ and for each $i$ we have $\{ W_{ij} \to U_ i\} _{j\in J_ i} \in \text{Cov}(\mathcal{C})_{\kappa , f(\alpha )}$, then $\{ W_{ij} \to U\} _{i \in I, j\in J_ i} \in \text{Cov}(\mathcal{C})_{\kappa , \beta }$. 
+</p>
+</li><li><p>
+If $\{ U_ i \to U\} _{i\in I} \in \text{Cov}(\mathcal{C})_{\kappa , \alpha }$ and $W \to U$ is a morphism of $\mathcal{C}$, then $\{ U_ i \times _ U W \to W \} _{i\in I} \in \text{Cov}(\mathcal{C})_{\kappa , \beta }$. 
+</p>
+</li>
+</ol>
+    <p>
+       To see $\beta $ exists we note that clearly the collection of all coverings $\{ W_{ij} \to U\} $ and $\{ U_ i \times _ U W \to W \} $ that occur in (2) and (3) form a set. Hence there is some ordinal $\beta $ such that $V_\beta $ contains all of these coverings. Moreover, the index set of the covering $\{ W_{ij} \to U\} $ has cardinality $\sum _{i \in I} |J_ i| \leq \kappa \otimes \kappa = \kappa $, and hence these coverings are contained in $\text{Cov}(\mathcal{C})_{\kappa , \beta }$. Since every nonempty collection of ordinals has a least element we see that $f(\alpha + 1)$ is well defined. Finally, if $\alpha $ is a limit ordinal, then we set $f(\alpha ) = \sup _{\alpha ' < \alpha } f(\alpha ')$. 
+    <p>
+      Pick an ordinal $\beta _1$ such that $\text{Arrows}(\mathcal{C}) \subset V_{\beta _1}$, $\text{Cov}_0 \subset V_{\beta _0}$, and $\beta _1 \geq \beta _0$. By construction $f(\beta _1) \geq \beta _1$ and we see that the same properties hold for $V_{f(\beta _1)}$. Moreover, as $f$ is nondecreasing this remains true for any $\beta \geq \beta _1$. Next, choose any ordinal $\beta _2 > \beta _1$ with cofinality $\text{cf}(\beta _2) > \kappa $. This is possible since the cofinality of ordinals gets arbitrarily large, see Proposition <a href="/tag/05N3" data-tag="05N3">3.7.2</a>. We claim that the pair $\kappa $, $\alpha = f(\beta _2)$ is a solution to the problem posed in the lemma. 
+    <p>
+      The first and third property of the lemma holds by our choices of $\kappa $, $\beta _2 > \beta _1 > \beta _0$ above. 
+    <p>
+      Since $\beta _2$ is a limit ordinal (as its cofinality is infinite) we get $f(\beta _2) = \sup _{\beta < \beta _2} f(\beta )$. Hence $\{ f(\beta ) \mid \beta < \beta _2\}  \subset f(\beta _2)$ is a cofinal subset. Hence we see that 
+    <p>
+      <div class="equation">
+  \[  V_\alpha = V_{f(\beta _2)} = \bigcup \nolimits _{\beta < \beta _2} V_{f(\beta )}.  \]
+</div>
+    <p>
+       Now, let $\mathcal{U} \in \text{Cov}_{\kappa , \alpha }$. We define $\beta (\mathcal{U})$ to be the least ordinal $\beta $ such that $\mathcal{U} \in \text{Cov}_{\kappa , f(\beta )}$. By the above we see that always $\beta (\mathcal{U}) < \beta _2$. 
+    <p>
+      We have to show properties (1), (2), and (3) defining a site hold for the pair $(\mathcal{C}, \text{Cov}_{\kappa , \alpha })$. The first holds because by our choice of $\beta _2$ all arrows of $\mathcal{C}$ are contained in $V_{f(\beta _2)}$. For the third, we use that given a covering $\mathcal{U} = \{ U_ i \to U\} _{i \in I} \in \text{Cov}(\mathcal{C})_{\kappa , \alpha }$ we have $\beta (\mathcal{U}) < \beta _2$ and hence any base change of $\mathcal{U}$ is by construction of $f$ contained in $\text{Cov}(\mathcal{C})_{\kappa , f(\beta + 1)}$ and hence in $\text{Cov}(\mathcal{C})_{\kappa , \alpha }$. 
+    <p>
+      Finally, for the second condition, suppose that $\{ U_ i \to U\} _{i\in I} \in \text{Cov}(\mathcal{C})_{\kappa , f(\alpha )}$ and for each $i$ we have $\mathcal{W}_ i = \{ W_{ij} \to U_ i\} _{j\in J_ i} \in \text{Cov}(\mathcal{C})_{\kappa , f(\alpha )}$. Consider the function $I \to \beta _2$, $i \mapsto \beta (\mathcal{W}_ i)$. Since the cofinality of $\beta _2$ is $> \kappa \geq |I|$ the image of this function cannot be a cofinal subset. Hence there exists a $\beta < \beta _1$ such that $\mathcal{W}_ i \in \text{Cov}_{\kappa , f(\beta )}$ for all $i \in I$. It follows that the covering $\{ W_{ij} \to U\} _{i\in I, j \in J_ i}$ is an element of $\text{Cov}(\mathcal{C})_{\kappa , f(\beta + 1)} \subset \text{Cov}(\mathcal{C})_{\kappa , \alpha }$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-remark" id="000Y">
+  <p><a class="environment-identifier" href="/tag/000Y">Remark <span data-tag="000Y">3.11.2</span>.</a> It is likely the case that, for some limit ordinal $\alpha $, the set of coverings $\text{Cov}(\mathcal{C})_\alpha $ satisfies the conditions of the lemma. This is after all what an application of the reflection principle would appear to give (modulo caveats as described at the end of Section <a href="/tag/000F" data-tag="000F">3.8</a> and in Remark <a href="/tag/000O" data-tag="000O">3.9.3</a>). </p>
+</article> 
+</p>

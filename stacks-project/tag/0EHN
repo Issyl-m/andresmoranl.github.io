@@ -1,0 +1,357 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="coherent-section-coherent-formal" class="tex-section"><span data-tag="0EHN">30.23</span> Coherent formal modules</h2>
+
+<p>
+As we do not yet have the theory of formal schemes to our disposal, we develop a bit of language that replaces the notion of a “coherent module on a Noetherian adic formal scheme”. 
+</p>
+<p>
+Let $X$ be a Noetherian scheme and let $\mathcal{I} \subset \mathcal{O}_ X$ be a quasi-coherent sheaf of ideals. We will consider inverse systems $(\mathcal{F}_ n)$ of coherent $\mathcal{O}_ X$-modules such that 
+</p>
+<ol>
+  <li><p>
+$\mathcal{F}_ n$ is annihilated by $\mathcal{I}^ n$, and 
+</p>
+</li><li><p>
+the transition maps induce isomorphisms $\mathcal{F}_{n + 1}/\mathcal{I}^ n\mathcal{F}_{n + 1} \to \mathcal{F}_ n$. 
+</p>
+</li>
+</ol>
+<p>
+ A morphism of such inverse systems is defined as usual. Let us denote the category of these inverse systems with $\textit{Coh}(X, \mathcal{I})$. We are going to proceed by proving a bunch of lemmas about objects in this category. In fact, most of the lemmas that follow are straightforward consequences of the following description of the category in the affine case. 
+</p>
+<p>
+<article class="env-lemma" id="087W">
+  <p><a class="environment-identifier" href="/tag/087W">Lemma <span data-tag="087W">30.23.1</span>.</a> If $X = \mathop{\mathrm{Spec}}(A)$ is the spectrum of a Noetherian ring and $\mathcal{I}$ is the quasi-coherent sheaf of ideals associated to the ideal $I \subset A$, then $\textit{Coh}(X, \mathcal{I})$ is equivalent to the category of finite $A^\wedge $-modules where $A^\wedge $ is the completion of $A$ with respect to $I$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\text{Mod}^{fg}_{A, I}$ be the category of inverse systems $(M_ n)$ of finite $A$-modules satisfying: (1) $M_ n$ is annihilated by $I^ n$ and (2) $M_{n + 1}/I^ nM_{n + 1} = M_ n$. By the correspondence between coherent sheaves on $X$ and finite $A$-modules (Lemma <a href="/tag/01XZ" data-tag="01XZ">30.9.1</a>) it suffices to show $\text{Mod}^{fg}_{A, I}$ is equivalent to the category of finite $A^\wedge $-modules. To see this it suffices to prove that given an object $(M_ n)$ of $\text{Mod}^{fg}_{A, I}$ the module 
+    <p>
+      <div class="equation">
+  \[  M = \mathop{\mathrm{lim}}\nolimits M_ n  \]
+</div>
+    <p>
+       is a finite $A^\wedge $-module and that $M/I^ nM = M_ n$. As the transition maps are surjective, we see that $M \to M_1$ is surjective. Pick $x_1, \ldots , x_ t \in M$ which map to generators of $M_1$. This induces a map of systems $(A/I^ n)^{\oplus t} \to M_ n$. By Nakayama's lemma (Algebra, Lemma <a href="/tag/00DV" data-tag="00DV">10.20.1</a>) these maps are surjective. Let $K_ n \subset (A/I^ n)^{\oplus t}$ be the kernel. Property (2) implies that $K_{n + 1} \to K_ n$ is surjective, in particular the system $(K_ n)$ satisfies the Mittag-Leffler condition. By Homology, Lemma <a href="/tag/02N1" data-tag="02N1">12.31.3</a> we obtain an exact sequence $0 \to K \to (A^\wedge )^{\oplus t} \to M \to 0$ with $K = \mathop{\mathrm{lim}}\nolimits K_ n$. Hence $M$ is a finite $A^\wedge $-module. As $K \to K_ n$ is surjective it follows that 
+    <p>
+      <div class="equation">
+  \[  M/I^ nM = \mathop{\mathrm{Coker}}(K \to (A/I^ n)^{\oplus t}) = (A/I^ n)^{\oplus t}/K_ n = M_ n  \]
+</div>
+    <p>
+       as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="087X">
+  <p><a class="environment-identifier" href="/tag/087X">Lemma <span data-tag="087X">30.23.2</span>.</a> Let $X$ be a Noetherian scheme and let $\mathcal{I} \subset \mathcal{O}_ X$ be a quasi-coherent sheaf of ideals. </p>
+  <p><ol>
+  <li><p>
+The category $\textit{Coh}(X, \mathcal{I})$ is abelian. 
+</p>
+</li><li><p>
+For $U \subset X$ open the restriction functor $\textit{Coh}(X, \mathcal{I}) \to \textit{Coh}(U, \mathcal{I}|_ U)$ is exact. 
+</p>
+</li><li><p>
+Exactness in $\textit{Coh}(X, \mathcal{I})$ may be checked by restricting to the members of an open covering of $X$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\alpha =(\alpha _ n) : (\mathcal{F}_ n) \to (\mathcal{G}_ n)$ be a morphism of $\textit{Coh}(X, \mathcal{I})$. The cokernel of $\alpha $ is the inverse system $(\mathop{\mathrm{Coker}}(\alpha _ n))$ (details omitted). To describe the kernel let 
+    <p>
+      <div class="equation">
+  \[  \mathcal{K}'_{l, m} = \mathop{\mathrm{Im}}(\mathop{\mathrm{Ker}}(\alpha _ l) \to \mathcal{F}_ m)  \]
+</div>
+    <p>
+       for $l \geq m$. We claim: 
+    <p>
+      <ol>
+  <li class="custom-item" data-marker="(a)"><p>
+the inverse system $(\mathcal{K}'_{l, m})_{l \geq m}$ is eventually constant, say with value $\mathcal{K}'_ m$, 
+</p>
+</li><li class="custom-item" data-marker="(b)"><p>
+the system $(\mathcal{K}'_ m/\mathcal{I}^ n\mathcal{K}'_ m)_{m \geq n}$ is eventually constant, say with value $\mathcal{K}_ n$, 
+</p>
+</li><li class="custom-item" data-marker="(c)"><p>
+the system $(\mathcal{K}_ n)$ forms an object of $\textit{Coh}(X, \mathcal{I})$, and 
+</p>
+</li><li class="custom-item" data-marker="(d)"><p>
+this object is the kernel of $\alpha $. 
+</p>
+</li>
+</ol>
+    <p>
+       To see (a), (b), and (c) we may work affine locally, say $X = \mathop{\mathrm{Spec}}(A)$ and $\mathcal{I}$ corresponds to the ideal $I \subset A$. By Lemma <a href="/tag/087W" data-tag="087W">30.23.1</a> $\alpha $ corresponds to a map $f : M \to N$ of finite $A^\wedge $-modules. Denote $K = \mathop{\mathrm{Ker}}(f)$. Note that $A^\wedge $ is a Noetherian ring (Algebra, Lemma <a href="/tag/0316" data-tag="0316">10.97.6</a>). Choose an integer $c \geq 0$ such that $K \cap I^ n M \subset I^{n - c}K$ for $n \geq c$ (Algebra, Lemma <a href="/tag/00IN" data-tag="00IN">10.51.2</a>) and which satisfies Algebra, Lemma <a href="/tag/00IO" data-tag="00IO">10.51.3</a> for the map $f$ and the ideal $I^\wedge = IA^\wedge $. Then $\mathcal{K}'_{l, m}$ corresponds to the $A$-module 
+    <p>
+      <div class="equation">
+  \[  K'_{l, m} = \frac{a^{-1}(I^ lN) + I^ mM}{I^ mM} = \frac{K + I^{l - c}f^{-1}(I^ cN) + I^ mM}{I^ mM} = \frac{K + I^ mM}{I^ mM}  \]
+</div>
+    <p>
+       where the last equality holds if $l \geq m + c$. So $\mathcal{K}'_ m$ corresponds to the $A$-module $K/K \cap I^ mM$ and $\mathcal{K}'_ m/\mathcal{I}^ n\mathcal{K}'_ m$ corresponds to 
+    <p>
+      <div class="equation">
+  \[  \frac{K}{K \cap I^ mM + I^ nK} = \frac{K}{I^ nK}  \]
+</div>
+    <p>
+       for $m \geq n + c$ by our choice of $c$ above. Hence $\mathcal{K}_ n$ corresponds to $K/I^ nK$. 
+    <p>
+      We prove (d). It is clear from the description on affines above that the composition $(\mathcal{K}_ n) \to (\mathcal{F}_ n) \to (\mathcal{G}_ n)$ is zero. Let $\beta : (\mathcal{H}_ n) \to (\mathcal{F}_ n)$ be a morphism such that $\alpha \circ \beta = 0$. Then $\mathcal{H}_ l \to \mathcal{F}_ l$ maps into $\mathop{\mathrm{Ker}}(\alpha _ l)$. Since $\mathcal{H}_ m = \mathcal{H}_ l/\mathcal{I}^ m\mathcal{H}_ l$ for $l \geq m$ we obtain a system of maps $\mathcal{H}_ m \to \mathcal{K}'_{l, m}$. Thus a map $\mathcal{H}_ m \to \mathcal{K}_ m'$. Since $\mathcal{H}_ n = \mathcal{H}_ m/\mathcal{I}^ n\mathcal{H}_ m$ we obtain a system of maps $\mathcal{H}_ n \to \mathcal{K}'_ m/\mathcal{I}^ n\mathcal{K}'_ m$ and hence a map $\mathcal{H}_ n \to \mathcal{K}_ n$ as desired. 
+    <p>
+      To finish the proof of (1) we still have to show that $\mathop{\mathrm{Coim}}= \mathop{\mathrm{Im}}$ in $\textit{Coh}(X, \mathcal{I})$. We have seen above that taking kernels and cokernels commutes, over affines, with the description of $\textit{Coh}(X, \mathcal{I})$ as a category of modules. Since $\mathop{\mathrm{Im}}= \mathop{\mathrm{Coim}}$ holds in the category of modules this gives $\mathop{\mathrm{Coim}}= \mathop{\mathrm{Im}}$ in $\textit{Coh}(X, \mathcal{I})$. Parts (2) and (3) of the lemma are immediate from our construction of kernels and cokernels. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="087Y">
+  <p><a class="environment-identifier" href="/tag/087Y">Lemma <span data-tag="087Y">30.23.3</span>.</a> Let $X$ be a Noetherian scheme and let $\mathcal{I} \subset \mathcal{O}_ X$ be a quasi-coherent sheaf of ideals. A map $(\mathcal{F}_ n) \to (\mathcal{G}_ n)$ is surjective in $\textit{Coh}(X, \mathcal{I})$ if and only if $\mathcal{F}_1 \to \mathcal{G}_1$ is surjective. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Omitted. Hint: Look on affine opens, use Lemma <a href="/tag/087W" data-tag="087W">30.23.1</a>, and use Algebra, Lemma <a href="/tag/00DV" data-tag="00DV">10.20.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $X$ be a Noetherian scheme and let $\mathcal{I} \subset \mathcal{O}_ X$ be a quasi-coherent sheaf of ideals. There is a functor 
+</p>
+<div class="equation" id="0880">
+    <span class="equation-label"><a href="/tag/0880" data-tag="0880">30.23.3.1</a></span>
+  <div>\begin{equation}  \label{coherent-equation-completion-functor} \textit{Coh}(\mathcal{O}_ X) \longrightarrow \textit{Coh}(X, \mathcal{I}), \quad \mathcal{F} \longmapsto \mathcal{F}^\wedge \end{equation}</div>
+</div>
+<p>
+ which associates to the coherent $\mathcal{O}_ X$-module $\mathcal{F}$ the object $\mathcal{F}^\wedge = (\mathcal{F}/\mathcal{I}^ n\mathcal{F})$ of $\textit{Coh}(X, \mathcal{I})$. 
+</p>
+<p>
+<article class="env-lemma" id="0881">
+  <p><a class="environment-identifier" href="/tag/0881">Lemma <span data-tag="0881">30.23.4</span>.</a> The functor (<a href="/tag/0880" data-tag="0880">30.23.3.1</a>) is exact. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It suffices to check this locally on $X$. Hence we may assume $X$ is affine, i.e., we have a situation as in Lemma <a href="/tag/087W" data-tag="087W">30.23.1</a>. The functor is the functor $\text{Mod}^{fg}_ A \to \text{Mod}^{fg}_{A^\wedge }$ which associates to a finite $A$-module $M$ the completion $M^\wedge $. Thus the result follows from Algebra, Lemma <a href="/tag/00MB" data-tag="00MB">10.97.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0882">
+  <p><a class="environment-identifier" href="/tag/0882">Lemma <span data-tag="0882">30.23.5</span>.</a> Let $X$ be a Noetherian scheme and let $\mathcal{I} \subset \mathcal{O}_ X$ be a quasi-coherent sheaf of ideals. Let $\mathcal{F}$, $\mathcal{G}$ be coherent $\mathcal{O}_ X$-modules. Set $\mathcal{H} = \mathop{\mathcal{H}\! \mathit{om}}\nolimits _{\mathcal{O}_ X}(\mathcal{G}, \mathcal{F})$. Then </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{lim}}\nolimits H^0(X, \mathcal{H}/\mathcal{I}^ n\mathcal{H}) = \mathop{\mathrm{Mor}}\nolimits _{\textit{Coh}(X, \mathcal{I})} (\mathcal{G}^\wedge , \mathcal{F}^\wedge ).  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      To prove this we may work affine locally on $X$. Hence we may assume $X = \mathop{\mathrm{Spec}}(A)$ and $\mathcal{F}$, $\mathcal{G}$ given by finite $A$-module $M$ and $N$. Then $\mathcal{H}$ corresponds to the finite $A$-module $H = \mathop{\mathrm{Hom}}\nolimits _ A(M, N)$. The statement of the lemma becomes the statement 
+    <p>
+      <div class="equation">
+  \[  H^\wedge = \mathop{\mathrm{Hom}}\nolimits _{A^\wedge }(M^\wedge , N^\wedge )  \]
+</div>
+    <p>
+       via the equivalence of Lemma <a href="/tag/087W" data-tag="087W">30.23.1</a>. By Algebra, Lemma <a href="/tag/00MB" data-tag="00MB">10.97.2</a> (used 3 times) we have 
+    <p>
+      <div class="equation">
+  \[  H^\wedge = \mathop{\mathrm{Hom}}\nolimits _ A(M, N) \otimes _ A A^\wedge = \mathop{\mathrm{Hom}}\nolimits _{A^\wedge }(M \otimes _ A A^\wedge , N \otimes _ A A^\wedge ) = \mathop{\mathrm{Hom}}\nolimits _{A^\wedge }(M^\wedge , N^\wedge )  \]
+</div>
+    <p>
+       where the second equality uses that $A^\wedge $ is flat over $A$ (see More on Algebra, Lemma <a href="/tag/087R" data-tag="087R">15.67.4</a>). The lemma follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+Let $X$ be a Noetherian scheme. Let $\mathcal{I} \subset \mathcal{O}_ X$ be a quasi-coherent sheaf of ideals. We say an object $(\mathcal{F}_ n)$ of $\textit{Coh}(X, \mathcal{I})$ is <em>$\mathcal{I}$-power torsion</em> or is <em>annihilated by a power of $\mathcal{I}$</em> if there exists a $c \geq 1$ such that $\mathcal{F}_ n = \mathcal{F}_ c$ for all $n \geq c$. If this is the case we will say that $(\mathcal{F}_ n)$ is <em>annihilated by $\mathcal{I}^ c$</em>. If $X = \mathop{\mathrm{Spec}}(A)$ is affine, then, via the equivalence of Lemma <a href="/tag/087W" data-tag="087W">30.23.1</a>, these objects corresponds exactly to the finite $A$-modules annihilated by a power of $I$ or by $I^ c$. 
+</p>
+<p>
+<article class="env-lemma" id="0889">
+  <p><a class="environment-identifier" href="/tag/0889">Lemma <span data-tag="0889">30.23.6</span>.</a> Let $X$ be a Noetherian scheme and let $\mathcal{I} \subset \mathcal{O}_ X$ be a quasi-coherent sheaf of ideals. Let $\mathcal{G}$ be a coherent $\mathcal{O}_ X$-module. Let $(\mathcal{F}_ n)$ an object of $\textit{Coh}(X, \mathcal{I})$. </p>
+  <p><ol>
+  <li><p>
+If $\alpha : (\mathcal{F}_ n) \to \mathcal{G}^\wedge $ is a map whose kernel and cokernel are annihilated by a power of $\mathcal{I}$, then there exists a unique (up to unique isomorphism) triple $(\mathcal{F}, a, \beta )$ where 
+</p>
+<ol>
+  <li><p>
+$\mathcal{F}$ is a coherent $\mathcal{O}_ X$-module, 
+</p>
+</li><li><p>
+$a : \mathcal{F} \to \mathcal{G}$ is an $\mathcal{O}_ X$-module map whose kernel and cokernel are annihilated by a power of $\mathcal{I}$, 
+</p>
+</li><li><p>
+$\beta : (\mathcal{F}_ n) \to \mathcal{F}^\wedge $ is an isomorphism, and 
+</p>
+</li><li><p>
+$\alpha = a^\wedge \circ \beta $. 
+</p>
+</li>
+</ol>
+</li><li><p>
+If $\alpha : \mathcal{G}^\wedge \to (\mathcal{F}_ n)$ is a map whose kernel and cokernel are annihilated by a power of $\mathcal{I}$, then there exists a unique (up to unique isomorphism) triple $(\mathcal{F}, a, \beta )$ where 
+</p>
+<ol>
+  <li><p>
+$\mathcal{F}$ is a coherent $\mathcal{O}_ X$-module, 
+</p>
+</li><li><p>
+$a : \mathcal{G} \to \mathcal{F}$ is an $\mathcal{O}_ X$-module map whose kernel and cokernel are annihilated by a power of $\mathcal{I}$, 
+</p>
+</li><li><p>
+$\beta : \mathcal{F}^\wedge \to (\mathcal{F}_ n)$ is an isomorphism, and 
+</p>
+</li><li><p>
+$\alpha = \beta \circ a^\wedge $. 
+</p>
+</li>
+</ol>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Proof of (1). The uniqueness implies it suffices to construct $(\mathcal{F}, a, \beta )$ Zariski locally on $X$. Thus we may assume $X = \mathop{\mathrm{Spec}}(A)$ and $\mathcal{I}$ corresponds to the ideal $I \subset A$. In this situation Lemma <a href="/tag/087W" data-tag="087W">30.23.1</a> applies. Let $M'$ be the finite $A^\wedge $-module corresponding to $(\mathcal{F}_ n)$. Let $N$ be the finite $A$-module corresponding to $\mathcal{G}$. Then $\alpha $ corresponds to a map 
+    <p>
+      <div class="equation">
+  \[  \varphi : M' \longrightarrow N^\wedge  \]
+</div>
+    <p>
+       whose kernel and cokernel are annihilated by $I^ t$ for some $t$. Recall that $N^\wedge = N \otimes _ A A^\wedge $ (Algebra, Lemma <a href="/tag/00MA" data-tag="00MA">10.97.1</a>). By More on Algebra, Lemma <a href="/tag/0ALK" data-tag="0ALK">15.91.17</a> there is an $A$-module map $\psi : M \to N$ whose kernel and cokernel are $I$-power torsion and an isomorphism $M \otimes _ A A^\wedge = M'$ compatible with $\varphi $. As $N$ and $M'$ are finite modules, we conclude that $M$ is a finite $A$-module, see More on Algebra, Remark <a href="/tag/05EU" data-tag="05EU">15.91.20</a>. Hence $M \otimes _ A A^\wedge = M^\wedge $. We omit the verification that the triple $(M, N \to M, M^\wedge \to M')$ so obtained is unique up to unique isomorphism. 
+    <p>
+      The proof of (2) is exactly the same and we omit it. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0EHP">
+  <p><a class="environment-identifier" href="/tag/0EHP">Lemma <span data-tag="0EHP">30.23.7</span>.</a> Let $X$ be a Noetherian scheme and let $\mathcal{I} \subset \mathcal{O}_ X$ be a quasi-coherent sheaf of ideals. Any object of $\textit{Coh}(X, \mathcal{I})$ which is annihilated by a power of $\mathcal{I}$ is in the essential image of (<a href="/tag/0880" data-tag="0880">30.23.3.1</a>). Moreover, if $\mathcal{F}$, $\mathcal{G}$ are in $\textit{Coh}(\mathcal{O}_ X)$ and either $\mathcal{F}$ or $\mathcal{G}$ is annihilated by a power of $\mathcal{I}$, then the maps </p>
+  <div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{Hom}}\nolimits _ X(\mathcal{F}, \mathcal{G}) \ar[d] &  \mathop{\mathrm{Ext}}\nolimits _ X(\mathcal{F}, \mathcal{G}) \ar[d] \\  \mathop{\mathrm{Hom}}\nolimits _{\textit{Coh}(X, \mathcal{I})}(\mathcal{F}^\wedge , \mathcal{G}^\wedge ) &  \mathop{\mathrm{Ext}}\nolimits _{\textit{Coh}(X, \mathcal{I})}(\mathcal{F}^\wedge , \mathcal{G}^\wedge ) }  \]
+</div>
+  <p> are isomorphisms. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose $(\mathcal{F}_ n)$ is an object of $\textit{Coh}(X, \mathcal{I})$ which is annihilated by $\mathcal{I}^ c$ for some $c \geq 1$. Then $\mathcal{F}_ n \to \mathcal{F}_ c$ is an isomorphism for $n \geq c$. Hence if we set $\mathcal{F} = \mathcal{F}_ c$, then we see that $\mathcal{F}^\wedge \cong (\mathcal{F}_ n)$. This proves the first assertion. 
+    <p>
+      Let $\mathcal{F}$, $\mathcal{G}$ be objects of $\textit{Coh}(\mathcal{O}_ X)$ such that either $\mathcal{F}$ or $\mathcal{G}$ is annihilated by $\mathcal{I}^ c$ for some $c \geq 1$. Then $\mathcal{H} = \mathop{\mathcal{H}\! \mathit{om}}\nolimits _{\mathcal{O}_ X}(\mathcal{G}, \mathcal{F})$ is a coherent $\mathcal{O}_ X$-module annihilated by $\mathcal{I}^ c$. Hence we see that 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _ X(\mathcal{G}, \mathcal{F}) = H^0(X, \mathcal{H}) = \mathop{\mathrm{lim}}\nolimits H^0(X, \mathcal{H}/\mathcal{I}^ n\mathcal{H}) = \mathop{\mathrm{Mor}}\nolimits _{\textit{Coh}(X, \mathcal{I})} (\mathcal{G}^\wedge , \mathcal{F}^\wedge ).  \]
+</div>
+    <p>
+       see Lemma <a href="/tag/0882" data-tag="0882">30.23.5</a>. This proves the statement on homomorphisms. 
+    <p>
+      The notation $\mathop{\mathrm{Ext}}\nolimits $ refers to extensions as defined in Homology, Section <a href="/tag/010I" data-tag="010I">12.6</a>. The injectivity of the map on $\mathop{\mathrm{Ext}}\nolimits $'s follows immediately from the bijectivity of the map on $\mathop{\mathrm{Hom}}\nolimits $'s. For surjectivity, assume $\mathcal{F}$ is annihilated by a power of $I$. Then part (1) of Lemma <a href="/tag/0889" data-tag="0889">30.23.6</a> shows that given an extension 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{G}^\wedge \to (\mathcal{E}_ n) \to \mathcal{F}^\wedge \to 0  \]
+</div>
+    <p>
+       in $\textit{Coh}(U, I\mathcal{O}_ U)$ the morphism $\mathcal{G}^\wedge \to (\mathcal{E}_ n)$ is isomorphic to $\mathcal{G} \to \mathcal{E}^\wedge $ for some $\mathcal{G} \to \mathcal{E}$ in $\textit{Coh}(\mathcal{O}_ U)$. Similarly in the other case. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="087Z">
+  <p><a class="environment-identifier" href="/tag/087Z">Lemma <span data-tag="087Z">30.23.8</span>.</a> Let $X$ be a Noetherian scheme and let $\mathcal{I} \subset \mathcal{O}_ X$ be a quasi-coherent sheaf of ideals. If $(\mathcal{F}_ n)$ is an object of $\textit{Coh}(X, \mathcal{I})$ then $\bigoplus \mathop{\mathrm{Ker}}(\mathcal{F}_{n + 1} \to \mathcal{F}_ n)$ is a finite type, graded, quasi-coherent $\bigoplus \mathcal{I}^ n/\mathcal{I}^{n + 1}$-module. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The question is local on $X$ hence we may assume $X$ is affine, i.e., we have a situation as in Lemma <a href="/tag/087W" data-tag="087W">30.23.1</a>. In this case, if $(\mathcal{F}_ n)$ corresponds to the finite $A^\wedge $ module $M$, then $\bigoplus \mathop{\mathrm{Ker}}(\mathcal{F}_{n + 1} \to \mathcal{F}_ n)$ corresponds to $\bigoplus I^ nM/I^{n + 1}M$ which is clearly a finite module over $\bigoplus I^ n/I^{n + 1}$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0887">
+  <p><a class="environment-identifier" href="/tag/0887">Lemma <span data-tag="0887">30.23.9</span>.</a> Let $f : X \to Y$ be a morphism of Noetherian schemes. Let $\mathcal{J} \subset \mathcal{O}_ Y$ be a quasi-coherent sheaf of ideals and set $\mathcal{I} = f^{-1}\mathcal{J} \mathcal{O}_ X$. Then there is a right exact functor </p>
+  <div class="equation">
+  \[  f^* : \textit{Coh}(Y, \mathcal{J}) \longrightarrow \textit{Coh}(X, \mathcal{I})  \]
+</div>
+  <p> which sends $(\mathcal{G}_ n)$ to $(f^*\mathcal{G}_ n)$. If $f$ is flat, then $f^*$ is an exact functor. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Since $f^* : \textit{Coh}(\mathcal{O}_ Y) \to \textit{Coh}(\mathcal{O}_ X)$ is right exact we have 
+    <p>
+      <div class="equation">
+  \[  f^*\mathcal{G}_ n = f^*(\mathcal{G}_{n + 1}/\mathcal{I}^ n\mathcal{G}_{n + 1}) = f^*\mathcal{G}_{n + 1}/f^{-1}\mathcal{I}^ nf^*\mathcal{G}_{n + 1} = f^*\mathcal{G}_{n + 1}/\mathcal{J}^ nf^*\mathcal{G}_{n + 1}  \]
+</div>
+    <p>
+       hence the pullback of a system is a system. The construction of cokernels in the proof of Lemma <a href="/tag/087X" data-tag="087X">30.23.2</a> shows that $f^* : \textit{Coh}(Y, \mathcal{J}) \to \textit{Coh}(X, \mathcal{I})$ is always right exact. If $f$ is flat, then $f^* : \textit{Coh}(\mathcal{O}_ Y) \to \textit{Coh}(\mathcal{O}_ X)$ is an exact functor. It follows from the construction of kernels in the proof of Lemma <a href="/tag/087X" data-tag="087X">30.23.2</a> that in this case $f^* : \textit{Coh}(Y, \mathcal{J}) \to \textit{Coh}(X, \mathcal{I})$ also transforms kernels into kernels. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0EHQ">
+  <p><a class="environment-identifier" href="/tag/0EHQ">Lemma <span data-tag="0EHQ">30.23.10</span>.</a> Let $f : X' \to X$ be a morphism of Noetherian schemes. Let $Z \subset X$ be a closed subscheme and denote $Z' = f^{-1}Z$ the scheme theoretic inverse image. Let $\mathcal{I} \subset \mathcal{O}_ X$, $\mathcal{I}' \subset \mathcal{O}_{X'}$ be the corresponding quasi-coherent sheaves of ideals. If $f$ is flat and the induced morphism $Z' \to Z$ is an isomorphism, then the pullback functor $f^* : \textit{Coh}(X, \mathcal{I}) \to \textit{Coh}(X', \mathcal{I}')$ (Lemma <a href="/tag/0887" data-tag="0887">30.23.9</a>) is an equivalence. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $X$ and $X'$ are affine, then this follows immediately from More on Algebra, Lemma <a href="/tag/05EC" data-tag="05EC">15.91.3</a>. To prove it in general we let $Z_ n \subset X$, $Z'_ n \subset X'$ be the $n$th infinitesimal neighbourhoods of $Z$, $Z'$. The induced morphism $Z_ n \to Z'_ n$ is a homeomorphism on underlying topological spaces. On the other hand, if $z' \in Z'$ maps to $z \in Z$, then the ring map $\mathcal{O}_{X, z} \to \mathcal{O}_{X', z'}$ is flat and induces an isomorphism $\mathcal{O}_{X, z}/\mathcal{I}_ z \to \mathcal{O}_{X', z'}/\mathcal{I}'_{z'}$. Hence it induces an isomorphism $\mathcal{O}_{X, z}/\mathcal{I}_ z^ n \to \mathcal{O}_{X', z'}/(\mathcal{I}'_{z'})^ n$ for all $n \geq 1$ for example by More on Algebra, Lemma <a href="/tag/05E9" data-tag="05E9">15.91.2</a>. Thus $Z'_ n \to Z_ n$ is an isomorphism of schemes. Thus $f^*$ induces an equivalence between the category of coherent $\mathcal{O}_ X$-modules annihilated by $\mathcal{I}^ n$ and the category of coherent $\mathcal{O}_{X'}$-modules annihilated by $(\mathcal{I}')^ n$, see Lemma <a href="/tag/087T" data-tag="087T">30.9.8</a>. This clearly implies the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0EHR">
+  <p><a class="environment-identifier" href="/tag/0EHR">Lemma <span data-tag="0EHR">30.23.11</span>.</a> Let $X$ be a Noetherian scheme. Let $\mathcal{I}, \mathcal{J} \subset \mathcal{O}_ X$ be quasi-coherent sheaves of ideals. If $V(\mathcal{I}) = V(\mathcal{J})$ is the same closed subset of $X$, then $\textit{Coh}(X, \mathcal{I})$ and $\textit{Coh}(X, \mathcal{J})$ are equivalent. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      First, assume $X = \mathop{\mathrm{Spec}}(A)$ is affine. Let $I, J \subset A$ be the ideals corresponding to $\mathcal{I}, \mathcal{J}$. Then $V(I) = V(J)$ implies we have $I^ c \subset J$ and $J^ d \subset I$ for some $c, d \geq 1$ by elementary properties of the Zariski topology (see Algebra, Section <a href="/tag/00DY" data-tag="00DY">10.17</a> and Lemma <a href="/tag/00IM" data-tag="00IM">10.32.5</a>). Hence the $I$-adic and $J$-adic completions of $A$ agree, see Algebra, Lemma <a href="/tag/0319" data-tag="0319">10.96.9</a>. Thus the equivalence follows from Lemma <a href="/tag/087W" data-tag="087W">30.23.1</a> in this case. 
+    <p>
+      In general, using what we said above and the fact that $X$ is quasi-compact, to choose $c, d \geq 1$ such that $\mathcal{I}^ c \subset \mathcal{J}$ and $\mathcal{J}^ d \subset \mathcal{I}$. Then given an object $(\mathcal{F}_ n)$ in $\textit{Coh}(X, \mathcal{I})$ we claim that the inverse system 
+    <p>
+      <div class="equation">
+  \[  (\mathcal{F}_{cn}/\mathcal{J}^ n\mathcal{F}_{cn})  \]
+</div>
+    <p>
+       is in $\textit{Coh}(X, \mathcal{J})$. This may be checked on the members of an affine covering; we omit the details. In the same manner we can construct an object of $\textit{Coh}(X, \mathcal{I})$ starting with an object of $\textit{Coh}(X, \mathcal{J})$. We omit the verification that these constructions define mutually quasi-inverse functors. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

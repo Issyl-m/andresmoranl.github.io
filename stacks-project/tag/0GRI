@@ -1,0 +1,262 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="stacks-more-morphisms-section-tensor-functors" class="tex-section"><span data-tag="0GRI">106.16</span> Tensor functors</h2>
+
+<p>
+Let $f : \mathcal{Y} \to \mathcal{X}$ be a morphism of Noetherian algebraic stacks. The pullback functor 
+</p>
+<div class="equation">
+  \[  f^* : \textit{Coh}(\mathcal{O}_\mathcal {X}) \longrightarrow \textit{Coh}(\mathcal{O}_\mathcal {Y})  \]
+</div>
+<p>
+ is a right exact tensor functor: it is additive, right exact, and commutes with tensor products of coherent modules. We can ask to what extent any right exact tensor functor $F : \textit{Coh}(\mathcal{O}_\mathcal {X}) \to \textit{Coh}(\mathcal{O}_\mathcal {Y})$ comes from a morphism $f : \mathcal{Y} \to \mathcal{X}$. The reader may consult <span class="cite">[<a href="/bibliography/Hall-Rydh-coherent">Hall-Rydh-coherent</a>]</span> for a very general result of this nature. The aim of this section is to give a short proof of Theorem <a href="/tag/0GRR" data-tag="0GRR">106.16.8</a> as an introduction to these ideas. 
+</p>
+<p>
+We begin with some lemmas. 
+</p>
+<p>
+<article class="env-lemma" id="0GRJ">
+  <p><a class="environment-identifier" href="/tag/0GRJ">Lemma <span data-tag="0GRJ">106.16.1</span>.</a> Let $\mathcal{X}$ and $\mathcal{Y}$ be Noetherian algebraic stacks. Any right exact tensor functor $F : \textit{Coh}(\mathcal{O}_\mathcal {X}) \to \textit{Coh}(\mathcal{O}_\mathcal {Y})$ extends uniquely to a right exact tensor functor $F : \mathit{QCoh}(\mathcal{O}_\mathcal {X}) \to \mathit{QCoh}(\mathcal{O}_\mathcal {Y})$ commuting with all colimits. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The existence and uniqueness of the extension is a general fact, see Categories, Lemma <a href="/tag/0FWY" data-tag="0FWY">4.26.2</a>. To see that the lemma applies observe that coherent modules on locally Noetherian algebraic stacks are by definition modules of finite presentation, see Cohomology of Stacks, Definition <a href="/tag/0GR6" data-tag="0GR6">103.17.2</a>. Hence a coherent module on $\mathcal{X}$ is a categorically compact object of $\mathit{QCoh}(\mathcal{O}_\mathcal {X})$ by Cohomology of Stacks, Lemma <a href="/tag/0GQZ" data-tag="0GQZ">103.13.5</a>. Finally, every quasi-coherent module is a filtered colimit of its coherent submodules by Cohomology of Stacks, Lemma <a href="/tag/0GRF" data-tag="0GRF">103.18.1</a>. 
+    <p>
+      Since $F$ is additive, also the extension of $F$ is additive (details omitted). Since $F$ is a tensor functor and since colimits of modules commute with taking tensor products, also the extension of $F$ is a tensor functor (details omitted). 
+    <p>
+      In this paragraph we show the extension commutes with arbitrary direct sums. If $\mathcal{F} = \bigoplus _{j \in J} \mathcal{H}_ j$ with $\mathcal{H}_ j$ quasi-coherent, then $\mathcal{F} = \mathop{\mathrm{colim}}\nolimits _{J' \subset J\text{ finite}} \bigoplus _{j \in J'} \mathcal{H}_ j$. Denoting the extension of $F$ also by $F$ we obtain 
+    <p>
+      <div class="equation">
+  \begin{align*}  F(\mathcal{F}) &  = \mathop{\mathrm{colim}}\nolimits _{J' \subset J\text{ finite}} F(\bigoplus \nolimits _{j \in J'} \mathcal{H}_ j) \\ &  = \mathop{\mathrm{colim}}\nolimits _{J' \subset J\text{ finite}} \bigoplus \nolimits _{j \in J'} F(\mathcal{H}_ j) \\ &  = \bigoplus \nolimits _{j \in J} F(\mathcal{H}_ j) \end{align*}
+</div>
+    <p>
+       Thus $F$ commutes with arbitrary direct sums. 
+    <p>
+      In this paragraph we show that the extension is right exact. Suppose $0 \to \mathcal{F} \to \mathcal{F}' \to \mathcal{F}'' \to 0$ is a short exact sequence of quasi-coherent $\mathcal{O}_\mathcal {X}$-modules. Then we write $\mathcal{F}' = \bigcup \mathcal{F}'_ i$ as the union of its coherent submodules (see reference given above). Denote $\mathcal{F}''_ i \subset \mathcal{F}''$ the image of $\mathcal{F}'_ i$ and denote $\mathcal{F}_ i = \mathcal{F} \cap \mathcal{F}'_ i = \mathop{\mathrm{Ker}}(\mathcal{F}'_ i \to \mathcal{F}''_ i)$. Then it is clear that $\mathcal{F} = \bigcup \mathcal{F}_ i$ and $\mathcal{F}'' = \bigcup \mathcal{F}''_ i$ and that we have short exact sequences 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{F}_ i \to \mathcal{F}_ i' \to \mathcal{F}_ i'' \to 0  \]
+</div>
+    <p>
+       Since the extension commutes with filtered colimits we have $F(\mathcal{F}) = \mathop{\mathrm{colim}}\nolimits _{i \in I} F(\mathcal{F}_ i)$, $F(\mathcal{F}') = \mathop{\mathrm{colim}}\nolimits _{i \in I} F(\mathcal{F}'_ i)$, and $F(\mathcal{F}'') = \mathop{\mathrm{colim}}\nolimits _{i \in I} F(\mathcal{F}''_ i)$. Since filtered colimits of sheaves of modules is exact we conclude that the extension of $F$ is right exact. 
+    <p>
+      The proof is finished as a right exact functor which commutes with all coproducts commutes with all colimits, see Categories, Lemma <a href="/tag/002P" data-tag="002P">4.14.12</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GRK">
+  <p><a class="environment-identifier" href="/tag/0GRK">Lemma <span data-tag="0GRK">106.16.2</span>.</a> Let $\mathcal{X}$ be an algebraic stack with affine diagonal. Let $B$ be a ring. Let $F : \mathit{QCoh}(\mathcal{O}_\mathcal {X}) \to \text{Mod}_ B$ be a right exact tensor functor which commutes with direct sums. Let $g : U \to \mathcal{X}$ be a morphism with $U = \mathop{\mathrm{Spec}}(A)$ affine. Then </p>
+  <p><ol>
+  <li><p>
+$C = F(g_{\mathit{QCoh}, *}\mathcal{O}_ U)$ is a commutative $B$-algebra and 
+</p>
+</li><li><p>
+there is a ring map $A \to C$ 
+</p>
+</li>
+</ol></p>
+  <p> such that $F \circ g_{\mathit{QCoh}, *} : \text{Mod}_ A \to \text{Mod}_ B$ sends $M$ to $M \otimes _ A C$ seen as $B$-module. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We note that $g$ is quasi-compact and quasi-separated, see Morphisms of Stacks, Lemma <a href="/tag/075S" data-tag="075S">101.7.8</a>. In Cohomology of Stacks, Proposition <a href="/tag/077A" data-tag="077A">103.11.1</a> we have constructed the functor $g_{\mathit{QCoh}, *} : \mathit{QCoh}(\mathcal{O}_ U) \to \mathit{QCoh}(\mathcal{O}_\mathcal {X})$. By Cohomology of Stacks, Remarks <a href="/tag/0GQR" data-tag="0GQR">103.11.3</a> and <a href="/tag/0GQM" data-tag="0GQM">103.10.6</a> we obtain a multiplication 
+    <p>
+      <div class="equation">
+  \[  \mu : g_{\mathit{QCoh}, *}\mathcal{O}_ U \otimes _{\mathcal{O}_\mathcal {X}} g_{\mathit{QCoh}, *}\mathcal{O}_ U \longrightarrow g_{\mathit{QCoh}, *}\mathcal{O}_ U  \]
+</div>
+    <p>
+       which turns $g_{\mathit{QCoh}, *}\mathcal{O}_ U$ into a commutative $\mathcal{O}_\mathcal {X}$-algebra. Hence $C = F(g_{\mathit{QCoh}, *}\mathcal{O}_ U)$ is a commutative algebra object in $\text{Mod}_ B$, in other words, $C$ is a commutative $B$-algebra. Observe that we have a map $\kappa : A \to \text{End}_{\mathcal{O}_\mathcal {X}}(g_{\mathit{QCoh}, *}\mathcal{O}_ U)$ such that for any $a \in A$ the diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ g_{\mathit{QCoh}, *}\mathcal{O}_ U \otimes _{\mathcal{O}_\mathcal {X}} g_{\mathit{QCoh}, *}\mathcal{O}_ U \ar[d]_{\kappa (r) \otimes 1} \ar[rr]_-\mu &  &  g_{\mathit{QCoh}, *}\mathcal{O}_ U \ar[d]^{\kappa (r)} \\  g_{\mathit{QCoh}, *}\mathcal{O}_ U \otimes _{\mathcal{O}_\mathcal {X}} g_{\mathit{QCoh}, *}\mathcal{O}_ U \ar[rr]^-\mu &  &  g_{\mathit{QCoh}, *}\mathcal{O}_ U }  \]
+</div>
+    <p>
+       commutes. It follows that we get a map $\kappa ' = F(\kappa ) : A \to \text{End}_ B(C)$ such that $\kappa '(a)(c) c' = \kappa '(a)(cc')$ and of course this means that $a \mapsto \kappa '(a)(1)$ is a ring map $A \to C$. 
+    <p>
+      The morphism $g : U \to \mathcal{X}$ is affine, see Morphisms of Stacks, Lemma <a href="/tag/0GQE" data-tag="0GQE">101.9.4</a>. Hence $g_{\mathit{QCoh}, *}$ is exact and commutes with direct sums by Cohomology of Stacks, Lemma <a href="/tag/0GQY" data-tag="0GQY">103.13.4</a>. Thus $F \circ g_{\mathit{QCoh}, *} : \text{Mod}_ A \to \text{Mod}_ B$ is a right exact functor which commutes with direct sums and which sends $A$ to $C$. By Functors and Morphisms, Lemma <a href="/tag/0GNS" data-tag="0GNS">56.3.1</a> we see that the functor $F \circ g_{\mathit{QCoh}, *}$ sends an $A$-module $M$ to $M \otimes _ A C$ viewed as a $B$-module. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GRL">
+  <p><a class="environment-identifier" href="/tag/0GRL">Lemma <span data-tag="0GRL">106.16.3</span>.</a> Notation as in Lemma <a href="/tag/0GRK" data-tag="0GRK">106.16.2</a>. Assume $\mathcal{X}$ is Noetherian and $g$ is surjective and flat. Then $B \to C$ is universally injective. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Consider the natural map $1 : \mathcal{O}_\mathcal {X} \to g_{\mathit{QCoh}, *}\mathcal{O}_ U$ in $\mathit{QCoh}(\mathcal{O}_\mathcal {X})$. Pulling back to $U$ and using adjunction we find that the composition 
+    <p>
+      <div class="equation">
+  \[  \mathcal{O}_ U = g^*\mathcal{O}_\mathcal {X} \xrightarrow {g^*1} g^*g_{\mathit{QCoh}, *}\mathcal{O}_ U \to \mathcal{O}_ U  \]
+</div>
+    <p>
+       is the identity in $\mathit{QCoh}(\mathcal{O}_ U)$. Write $g_{\mathit{QCoh}, *}\mathcal{O}_ U = \mathop{\mathrm{colim}}\nolimits \mathcal{F}_ i$ as a filtered colimit of coherent $\mathcal{O}_\mathcal {X}$-modules, see Cohomology of Stacks, Lemma <a href="/tag/0GRF" data-tag="0GRF">103.18.1</a>. For $i$ large enough the map $1 : \mathcal{O}_\mathcal {X} \to g_{\mathit{QCoh}, *}\mathcal{O}_ U$ factors through $\mathcal{F}_ i$, see Cohomology of Stacks, Lemma <a href="/tag/0GQZ" data-tag="0GQZ">103.13.5</a>. Say $s : \mathcal{O}_\mathcal {X} \to \mathcal{F}_ i$ is the factorization. Then 
+    <p>
+      <div class="equation">
+  \[  \mathcal{O}_ U \xrightarrow {g^*s} g^*\mathcal{F}_ i \to g^*g_{\mathit{QCoh}, *}\mathcal{O}_ U \to \mathcal{O}_ U  \]
+</div>
+    <p>
+       is the identity. In other words, we see that $s$ becomes the inclusion of a direct summand upon pullback to $U$. Set $\mathcal{F}_ i^\vee = hom(\mathcal{F}_ i, \mathcal{O}_\mathcal {X})$ with notation as in Cohomology of Stacks, Lemma <a href="/tag/0GQN" data-tag="0GQN">103.10.8</a>. In particular there is an evaluation map $ev : \mathcal{F}_ i \otimes _{\mathcal{O}_\mathcal {X}} \mathcal{F}_ i^\vee \to \mathcal{O}_\mathcal {X}$. Evaluation at $s$ defines a map $s^\vee : \mathcal{F}_ i^\vee \to \mathcal{O}_\mathcal {X}$. Dual to the statement about $s$ we see that $g^*(s^\vee )$ is surjective, see see Cohomology of Stacks, Section <a href="/tag/0GQS" data-tag="0GQS">103.12</a> for compatibility of $hom$ and $\otimes $ with restriction to $U$. Since $g$ is surjective and flat, we conclude that $s^\vee $ is surjective (see locus citatus). Since $F$ is right exact, we conclude that $F(\mathcal{F}_ i^\vee ) \to F(\mathcal{O}_\mathcal {X}) = B$ is surjective. Choose $\lambda \in F(\mathcal{F}_ i^\vee )$ mapping to $1 \in B$. Denote $e = F(s)(1) \in F(\mathcal{F}_ i)$ the image of $1$ by the map $F(s) : B = F(\mathcal{O}_\mathcal {X}) \to F(\mathcal{F}_ i)$. Then the map 
+    <p>
+      <div class="equation">
+  \[  F(ev) : F(\mathcal{F}_ i) \otimes _ B F(\mathcal{F}_ i^\vee ) = F(\mathcal{F}_ i \otimes _{\mathcal{O}_\mathcal {X}} \mathcal{F}_ i^\vee ) \longrightarrow F(\mathcal{O}_\mathcal {X}) = B  \]
+</div>
+    <p>
+       sends $e \otimes \lambda $ to $1$ by construction. Hence the map $B \to F(\mathcal{F}_ i)$, $b \mapsto be$ is universally injective because we have the one-sided inverse $F(\mathcal{F}_ i) \to B$, $\xi \mapsto F(ev)(\xi \otimes \lambda )$. Since this is true for all $i$ large enough we conclude. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GRM">
+  <p><a class="environment-identifier" href="/tag/0GRM">Lemma <span data-tag="0GRM">106.16.4</span>.</a> Let $B \to C$ be a ring map. If </p>
+  <p><ol>
+  <li><p>
+the coprojections $C \to C \otimes _ B C$ are flat and 
+</p>
+</li><li><p>
+$B \to C$ is universally injective, 
+</p>
+</li>
+</ol></p>
+  <p> then $B \to C$ is faithfully flat. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The map $\mathop{\mathrm{Spec}}(C) \to \mathop{\mathrm{Spec}}(B)$ is surjective as $B \to C$ is universally injective. Thus it suffices to show that $B \to C$ is flat which follows from Descent, Theorem <a href="/tag/08XD" data-tag="08XD">35.4.25</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following very simple version of Künneth should become obsoleted when we write a section on Künneth theorems for cohomology of quasi-coherent modules on algebraic stacks. 
+</p>
+<p>
+<article class="env-lemma" id="0GRN">
+  <p><a class="environment-identifier" href="/tag/0GRN">Lemma <span data-tag="0GRN">106.16.5</span>.</a> Let $a : \mathcal{Y} \to \mathcal{X}$ and $b : \mathcal{Z} \to \mathcal{X}$ be representable by schemes, quasi-compact, quasi-separated, and flat. Then $a_{\mathit{QCoh}, *}\mathcal{O}_\mathcal {Y} \otimes _{\mathcal{O}_\mathcal {X}} b_{\mathit{QCoh}, *}\mathcal{O}_\mathcal {Z} = f_{\mathit{QCoh}, *}\mathcal{O}_{\mathcal{Y} \times _\mathcal {X} \mathcal{Z}}$ where $f : \mathcal{Y} \times _\mathcal {X} \mathcal{Z} \to \mathcal{X}$ is the obvious morphism. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We abbreviate $\mathcal{P} = \mathcal{Y} \times _\mathcal {X} \mathcal{Z}$. Since $a \circ \text{pr}_1 = f$ and $b \circ \text{pr}_2 = f$ we obtain maps $a_*\mathcal{O}_\mathcal {Y} \to f_*\mathcal{O}_\mathcal {P}$ and $b_*\mathcal{O}_\mathcal {Z} \to f_*\mathcal{O}_\mathcal {P}$ (using relative pullback maps, see Sites, Section <a href="/tag/06UM" data-tag="06UM">7.45</a>). Hence we obtain a relative cup product 
+    <p>
+      <div class="equation">
+  \[  \mu : a_*\mathcal{O}_\mathcal {Y} \otimes _{\mathcal{O}_\mathcal {X}} b_*\mathcal{O}_\mathcal {Z} \longrightarrow f_*\mathcal{O}_{\mathcal{Y} \times _\mathcal {X} \mathcal{Z}}  \]
+</div>
+    <p>
+       Applying $Q$ and its compatibility with tensor products (Cohomology of Stacks, Remark <a href="/tag/0GQM" data-tag="0GQM">103.10.6</a>) we obtain an arrow $Q(\mu ) : a_{\mathit{QCoh}, *}\mathcal{O}_\mathcal {Y} \otimes _{\mathcal{O}_\mathcal {X}} b_{\mathit{QCoh}, *}\mathcal{O}_\mathcal {Z} \to f_{\mathit{QCoh}, *}\mathcal{O}_{\mathcal{Y} \times _\mathcal {X} \mathcal{Z}}$ in $\mathit{QCoh}(\mathcal{O}_\mathcal {X})$. Next, choose a scheme $U$ and a surjective smooth morphism $U \to \mathcal{X}$. It suffices to prove the restriction of $Q(\mu )$ to $U_{\acute{e}tale}$ is an isomorphism, see Cohomology of Stacks, Section <a href="/tag/0GQS" data-tag="0GQS">103.12</a>. In turn, by the material in the same section, it suffices to prove the restriction of $\mu $ to $U_{\acute{e}tale}$ is an isomorphism (this uses that the source and target of $\mu $ are locally quasi-coherent modules with the base change property). Moreover, we may compute pushforwards in the étale topology, see Cohomology of Stacks, Proposition <a href="/tag/0771" data-tag="0771">103.8.1</a>. Then finally, we see that $a_*\mathcal{O}_\mathcal {Y}|_{U_{\acute{e}tale}} = (V \to U)_{small, *}\mathcal{O}_ V$ where $V = U \times _\mathcal {X} \mathcal{Y}$. Similarly for $b_*$ and $f_*$. Thus the result follows from the Künneth formula for flat, quasi-compact, quasi-separated morphisms of schemes, see Derived Categories of Schemes, Lemma <a href="/tag/0FLQ" data-tag="0FLQ">36.23.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GRP">
+  <p><a class="environment-identifier" href="/tag/0GRP">Lemma <span data-tag="0GRP">106.16.6</span>.</a> Let $\mathcal{X}$ be an algebraic stack with affine diagonal. Let $B$ be a ring. Let $f_ i : \mathop{\mathrm{Spec}}(B) \to \mathcal{X}$, $i = 1, 2$ be two morphisms. Let $t : f_1^* \to f_2^*$ be an isomorphism of the tensor functors $f_ i^* : \mathit{QCoh}(\mathcal{O}_\mathcal {X}) \to \text{Mod}_ B$. Then there is a $2$-arrow $f_1 \to f_2$ inducing $t$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose an affine scheme $U = \mathop{\mathrm{Spec}}(A)$ and a surjective smooth morphism $g : U \to \mathcal{X}$, see Properties of Stacks, Lemma <a href="/tag/04YC" data-tag="04YC">100.6.2</a>. Since the diagonal of $\mathcal{X}$ is affine, we see that $U_ i = \mathop{\mathrm{Spec}}(B) \times _{f_ i, \mathcal{X}, g} U$ is affine. Say $U_ i = \mathop{\mathrm{Spec}}(C_ i)$. Then $C_ i$ is the $B$-algebra endowed with ring map $A \to C_ i$ constructed in Lemma <a href="/tag/0GRK" data-tag="0GRK">106.16.2</a> using the functor $F = f_ i^*$. Therefore $t$ induces an isomorphism $C_1 \to C_2$ of $B$-algebras, compatible with the ring maps $A \to C_1$ and $A \to C_2$. In other words, we have a commutative diagrams 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ U_ i \ar[r] \ar[d] &  U \ar[d]^ g \\  \mathop{\mathrm{Spec}}(B) \ar[r]^{f_ i} &  \mathcal{X} } \quad \quad \xymatrix{ &  U_2 \ar[ld] \ar[d]^{\cong } \ar[rd] \\  \mathop{\mathrm{Spec}}(B) &  U_1 \ar[l] \ar[r] &  U }  \]
+</div>
+    <p>
+       This already shows that the objects $f_1$ and $f_2$ of $\mathcal{X}$ over $\mathop{\mathrm{Spec}}(B)$ become isomorphic after the smooth covering $\{ U_1 \to \mathop{\mathrm{Spec}}(B)\} $. To show that this descends to an isomorphism of $f_1$ and $f_2$ over $\mathop{\mathrm{Spec}}(B)$, we have to show that our isomorphism (which comes from the commutative diagrams above) is compatible with the descent data over $U_1 \times _{\mathop{\mathrm{Spec}}(B)} U_1$. For this we observe that $U \times _\mathcal {X} U$ is affine too, that we have the morphism $g' : U \times _\mathcal {X} U \to \mathcal{X}$, and that 
+    <p>
+      <div class="equation">
+  \[  U_ i \times _{\mathop{\mathrm{Spec}}(B)} U_ i = \mathop{\mathrm{Spec}}(B) \times _{f_ i, \mathcal{X}, g'} (U \times _\mathcal {X} U)  \]
+</div>
+    <p>
+       It follows that the isomorphism $C_1 \otimes _ B C_1 \to C_2 \otimes _ B C_2$ coming from the isomorphism $C_1 \to C_2$ is compatible with the morphisms $U_ i \times _{\mathop{\mathrm{Spec}}(B)} U_ i \to U \times _\mathcal {X} U$. Some details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0GRQ">
+  <p><a class="environment-identifier" href="/tag/0GRQ">Lemma <span data-tag="0GRQ">106.16.7</span>.</a> Let $\mathcal{X}$ be a Noetherian algebraic stack with affine diagonal. Let $B$ be a ring. Let $F : \mathit{QCoh}(\mathcal{O}_\mathcal {X}) \to \text{Mod}_ B$ be a right exact tensor functor which commutes with direct sums. Then $F$ comes from a unique morphism $\mathop{\mathrm{Spec}}(B) \to \mathcal{X}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Choose a surjective smooth morphism $g : U \to \mathcal{X}$ with $U = \mathop{\mathrm{Spec}}(A)$ affine, see Properties of Stacks, Lemma <a href="/tag/04YC" data-tag="04YC">100.6.2</a>. Apply Lemma <a href="/tag/0GRK" data-tag="0GRK">106.16.2</a> to get the finite type commutative $B$-algebra $C = F(g_{\mathit{QCoh}, *}\mathcal{O}_ U)$ and the ring map $A \to C$. By Lemma <a href="/tag/0GRL" data-tag="0GRL">106.16.3</a> the ring map $B \to C$ is universally injective. Consider the algebra 
+    <p>
+      <div class="equation">
+  \[  C \otimes _ B C = F(g_{\mathit{QCoh}, *}\mathcal{O}_ U \otimes _{\mathcal{O}_\mathcal {X}} g_{\mathit{QCoh}, *}\mathcal{O}_ U)  \]
+</div>
+    <p>
+       Since $g$ is flat, quasi-compact, and quasi-separated by Lemma <a href="/tag/0GRN" data-tag="0GRN">106.16.5</a> we have the first equality in 
+    <p>
+      <div class="equation">
+  \[  g_{\mathit{QCoh}, *}\mathcal{O}_ U \otimes _{\mathcal{O}_\mathcal {X}} g_{\mathit{QCoh}, *}\mathcal{O}_ U = f_{\mathit{QCoh}, *}\mathcal{O}_{U \times _\mathcal {X} U} = g_{\mathit{QCoh}, *}(\text{pr}_{2, *}\mathcal{O}_{U \times _\mathcal {X} U})  \]
+</div>
+    <p>
+       where $f : U \times _\mathcal {X} U \to \mathcal{X}$ is the obvious morphism and $\text{pr}_2 : U \times _\mathcal {X} U \to U$ is the second projection. The second equality follows from Cohomology of Stacks, Lemma <a href="/tag/0783" data-tag="0783">103.11.5</a> and $f = g \circ \text{pr}_2$. Since the diagonal of $\mathcal{X}$ is affine, we see that $U \times _\mathcal {X} U = \mathop{\mathrm{Spec}}(R)$ is affine. Let us use $\text{pr}_2 : A \to R$ to view $R$ as an $A$-algebra. All in all we obtain 
+    <p>
+      <div class="equation">
+  \[  C \otimes _ B C = F(g_{\mathit{QCoh}, *}\mathcal{O}_ U \otimes _{\mathcal{O}_\mathcal {X}} g_{\mathit{QCoh}, *}\mathcal{O}_ U) = F(g_{\mathit{QCoh}, *}(\text{pr}_{2, *}\mathcal{O}_{U \times _\mathcal {X} U})) = R \otimes _ A C  \]
+</div>
+    <p>
+       where the final equality follows from the final statement of Lemma <a href="/tag/0GRK" data-tag="0GRK">106.16.2</a>. Since $A \to R$ is flat (because $\text{pr}_2$ is flat as a base change of $U \to \mathcal{X}$), we conclude that $C \otimes _ B C$ is flat over $C$. By Lemma <a href="/tag/0GRM" data-tag="0GRM">106.16.4</a> we conclude that $B \to C$ is faithfully flat. 
+    <p>
+      We claim there is a solid commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ \mathop{\mathrm{Spec}}(C \otimes _ B C) \ar@<1ex>[d] \ar@<-1ex>[d] \ar[r] &  U \times _\mathcal {X} U \ar@<1ex>[d] \ar@<-1ex>[d] \\  \mathop{\mathrm{Spec}}(C) \ar[d] \ar[r] &  U \ar[d] \\  \mathop{\mathrm{Spec}}(B) \ar@{..>}[r] &  \mathcal{X} }  \]
+</div>
+    <p>
+       The arrow $\mathop{\mathrm{Spec}}(C) \to U = \mathop{\mathrm{Spec}}(A)$ comes from the ring map $A \to C$ in the statement of Lemma <a href="/tag/0GRK" data-tag="0GRK">106.16.2</a>. The arrow $\mathop{\mathrm{Spec}}(C \otimes _ B C) \to U \times _\mathcal {X} U$ similarly comes from the ring map $R \to C \otimes _ B C$. To verify the top square commutes use Lemma <a href="/tag/0GRP" data-tag="0GRP">106.16.6</a>; details omitted. We conclude we get the dotted arrow $\mathop{\mathrm{Spec}}(B) \to \mathcal{X}$ by Proposition <a href="/tag/0GRH" data-tag="0GRH">106.15.1</a>. 
+    <p>
+      The statement that $F$ is the functor corresponding to pullback by the dotted arrow is also clear from this and the corresponding statement in Lemma <a href="/tag/0GRK" data-tag="0GRK">106.16.2</a>. Details omitted. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+For a ring $B$ let us denote $\text{Mod}^{fg}_ B$ the category of finitely generated $B$-modules (AKA finite $B$-modules). 
+</p>
+<p>
+<article class="env-theorem" id="0GRR">
+  <p><a class="environment-identifier" href="/tag/0GRR">Theorem <span data-tag="0GRR">106.16.8</span>.</a> Let $\mathcal{X}$ be a Noetherian algebraic stack with affine diagonal. Let $B$ be a Noetherian ring. Let $F : \text{Coh}(\mathcal{O}_\mathcal {X}) \to \text{Mod}^{fg}_ B$ be a right exact tensor functor. Then $F$ comes from a unique morphism $\mathop{\mathrm{Spec}}(B) \to \mathcal{X}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/0GRJ" data-tag="0GRJ">106.16.1</a> we can extend $F$ uniquely to a right exact tensor functor $F : \mathit{QCoh}(\mathcal{O}_\mathcal {X}) \to \text{Mod}_ B$ commuting with all direct susms. Then we can apply Lemma <a href="/tag/0GRQ" data-tag="0GRQ">106.16.7</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

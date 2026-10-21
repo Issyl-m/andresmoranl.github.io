@@ -1,0 +1,278 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="models-section-linear-algebra" class="tex-section"><span data-tag="0C5T">55.2</span> Linear algebra</h2>
+
+<p>
+A couple of lemmas we will use later on. 
+</p>
+<p>
+<article class="env-lemma" id="0C5U">
+       
+      
+  <p><a class="environment-identifier" href="/tag/0C5U">Lemma <span data-tag="0C5U">55.2.1</span>.</a> Let $A = (a_{ij})$ be a complex $n \times n$ matrix. </p>
+  <p><ol>
+  <li><p>
+If $|a_{ii}| > \sum _{j \not= i} |a_{ij}|$ for each $i$, then $\det (A)$ is nonzero. 
+</p>
+</li><li><p>
+If there exists a real vector $m = (m_1, \ldots , m_ n)$ with $m_ i > 0$ such that $|a_{ii} m_ i| > \sum _{j \not= i} |a_{ij}m_ j|$ for each $i$, then $\det (A)$ is nonzero. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      If $A$ is as in (1) and $\det (A) = 0$, then there is a nonzero vector $z$ with $Az = 0$. Choose $r$ with $|z_ r|$ maximal. Then 
+    <p>
+      <div class="equation">
+  \[  |a_{rr} z_ r| = |\sum \nolimits _{k \not= r} a_{rk}z_ k| \leq \sum \nolimits _{k \not= r} |a_{rk}||z_ k| \leq |z_ r| \sum \nolimits _{k \not= r} |a_{rk}| < |a_{rr}||z_ r|  \]
+</div>
+    <p>
+       which is a contradiction. To prove (2) apply (1) to the matrix $(a_{ij}m_ j)$ whose determinant is $m_1 \ldots m_ n \det (A)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0C5V">
+  <p><a class="environment-identifier" href="/tag/0C5V">Lemma <span data-tag="0C5V">55.2.2</span>.</a> Let $A = (a_{ij})$ be a real $n \times n$ matrix with $a_{ij} \geq 0$ for $i \not= j$. Let $m = (m_1, \ldots , m_ n)$ be a real vector with $m_ i > 0$. For $I \subset \{ 1, \ldots , n\} $ let $x_ I \in \mathbf{R}^ n$ be the vector whose $i$th coordinate is $m_ i$ if $i \in I$ and $0$ otherwise. If </p>
+  <div class="equation" id="0C5W">
+    <span class="equation-label"><a href="/tag/0C5W" data-tag="0C5W">55.2.2.1</a></span>
+  <div>\begin{equation}  \label{models-equation-ineq} -a_{ii}m_ i \geq \sum \nolimits _{j \not= i} a_{ij}m_ j \end{equation}</div>
+</div>
+  <p> for each $i$, then $\mathop{\mathrm{Ker}}(A)$ is the vector space spanned by the vectors $x_ I$ such that </p>
+  <p><ol>
+  <li><p>
+$a_{ij} = 0$ for $i \in I$, $j \not\in I$, and 
+</p>
+</li><li><p>
+equality holds in (<a href="/tag/0C5W" data-tag="0C5W">55.2.2.1</a>) for $i \in I$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      After replacing $a_{ij}$ by $a_{ij}m_ j$ we may assume $m_ i = 1$ for all $i$. If $I \subset \{ 1, \ldots , n\} $ such that (1) and (2) are true, then a simple computation shows that $x_ I$ is in the kernel of $A$. Conversely, let $x = (x_1, \ldots , x_ n) \in \mathbf{R}^ n$ be a nonzero vector in the kernel of $A$. We will show by induction on the number of nonzero coordinates of $x$ that $x$ is in the span of the vectors $x_ I$ satisfying (1) and (2). Let $I \subset \{ 1, \ldots , n\} $ be the set of indices $r$ with $|x_ r|$ maximal. For $r \in I$ we have 
+    <p>
+      <div class="equation">
+  \[  |a_{rr} x_ r| = |\sum \nolimits _{k \not= r} a_{rk}x_ k| \leq \sum \nolimits _{k \not= r} a_{rk}|x_ k| \leq |x_ r| \sum \nolimits _{k \not= r} a_{rk} \leq |a_{rr}||x_ r|  \]
+</div>
+    <p>
+       Thus equality holds everywhere. In particular, we see that $a_{rk} = 0$ if $r \in I$, $k \not\in I$ and equality holds in (<a href="/tag/0C5W" data-tag="0C5W">55.2.2.1</a>) for $r \in I$. Then we see that we can subtract a suitable multiple of $x_ I$ from $x$ to decrease the number of nonzero coordinates. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0C5X">
+  <p><a class="environment-identifier" href="/tag/0C5X">Lemma <span data-tag="0C5X">55.2.3</span>.</a> Let $A = (a_{ij})$ be a symmetric real $n \times n$ matrix with $a_{ij} \geq 0$ for $i \not= j$. Let $m = (m_1, \ldots , m_ n)$ be a real vector with $m_ i > 0$. Assume </p>
+  <p><ol>
+  <li><p>
+$Am = 0$, 
+</p>
+</li><li><p>
+there is no proper nonempty subset $I \subset \{ 1, \ldots , n\} $ such that $a_{ij} = 0$ for $i \in I$ and $j \not\in I$. 
+</p>
+</li>
+</ol></p>
+  <p> Then $x^ t A x \leq 0$ with equality if and only if $x = qm$ for some $q \in \mathbf{R}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>First proof.</strong>
+       After replacing $a_{ij}$ by $a_{ij}m_ im_ j$ we may assume $m_ i = 1$ for all $i$. Condition (1) means $-a_{ii} = \sum _{j \not= i} a_{ij}$ for all $i$. Recall that $x^ tAx = \sum _{i, j} x_ ia_{ij}x_ j$. Then 
+    <p>
+      <div class="equation">
+  \begin{align*}  \sum \nolimits _{i \not= j} -a_{ij}(x_ j - x_ i)^2 &  = \sum \nolimits _{i \not= j} -a_{ij}x_ j^2 + 2a_{ij}x_ ix_ i - a_{ij}x_ i^2 \\ &  = \sum \nolimits _ j a_{jj} x_ j^2 + \sum \nolimits _{i \not= j} 2a_{ij}x_ ix_ i + \sum \nolimits _ j a_{jj} x_ i^2 \\ &  = 2x^ tAx \end{align*}
+</div>
+    <p>
+       This is clearly $\leq 0$. If equality holds, then let $I$ be the set of indices $i$ with $x_ i \not= x_1$. Then $a_{ij} = 0$ for $i \in I$ and $j \not\in I$. Thus $I = \{ 1, \ldots , n\} $ by condition (2) and $x$ is a multiple of $m = (1, \ldots , 1)$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<article class="env-proof">
+    <p>
+      <strong>Second proof.</strong>
+       The matrix $A$ has real eigenvalues by the spectral theorem. We claim all the eigenvalues are $\leq 0$. Namely, since property (1) means $-a_{ii}m_ i = \sum _{j \not= i} a_{ij}m_ j$ for all $i$, we find that the matrix $A' = A - \lambda I$ for $\lambda > 0$ satisfies $|a'_{ii}m_ i| > \sum a'_{ij}m_ j = \sum |a'_{ij}m_ j|$ for all $i$. Hence $A'$ is invertible by Lemma <a href="/tag/0C5U" data-tag="0C5U">55.2.1</a>. This implies that the symmetric bilinear form $x^ tAy$ is semi-negative definite, i.e., $x^ tAx \leq 0$ for all $x$. It follows that the kernel of $A$ is equal to the set of vectors $x$ with $x^ tAx = 0$. The description of the kernel in Lemma <a href="/tag/0C5V" data-tag="0C5V">55.2.2</a> gives the final statement of the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0C6V">
+  <p><a class="environment-identifier" href="/tag/0C6V">Lemma <span data-tag="0C6V">55.2.4</span>.</a> Let $L$ be a finite free $\mathbf{Z}$-module endowed with an integral symmetric bilinear positive definite form $\langle \  ,\  \rangle : L \times L \to \mathbf{Z}$. Let $A \subset L$ be a submodule with $L/A$ torsion free. Set $B = \{ b \in L \mid \langle a, b\rangle = 0,\  \forall a \in A\} $. Then we have injective maps </p>
+  <div class="equation">
+  \[  A^\# /A \leftarrow L/(A \oplus B) \rightarrow B^\# /B  \]
+</div>
+  <p> whose cokernels are quotients of $L^\# /L$. Here $A^\#  = \{ a' \in A \otimes \mathbf{Q} \mid \langle a, a'\rangle \in \mathbf{Z},\  \forall a \in A\} $ and similarly for $B$ and $L$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Observe that $L \otimes \mathbf{Q} = A \otimes \mathbf{Q} \oplus B \otimes \mathbf{Q}$ because the form is nondegenerate on $A$ (by positivity). We denote $\pi _ B : L \otimes \mathbf{Q} \to B \otimes \mathbf{Q}$ the projection. Observe that $\pi _ B(x) \in B^\# $ for $x \in L$ because the form is integral. This gives an exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to A \to L \xrightarrow {\pi _ B} B^\#  \to Q \to 0  \]
+</div>
+    <p>
+       where $Q$ is the cokernel of $L \to B^\# $. Observe that $Q$ is a quotient of $L^\# /L$ as the map $L^\#  \to B^\# $ is surjective since it is the $\mathbf{Z}$-linear dual to $B \to L$ which is split as a map of $\mathbf{Z}$-modules. Dividing by $A \oplus B$ we get a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to L/(A \oplus B) \to B^\# /B \to Q \to 0  \]
+</div>
+    <p>
+       This proves the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0C6W">
+  <p><a class="environment-identifier" href="/tag/0C6W">Lemma <span data-tag="0C6W">55.2.5</span>.</a> Let $L_0$, $L_1$ be a finite free $\mathbf{Z}$-modules endowed with integral symmetric bilinear positive definite forms $\langle \  ,\  \rangle : L_ i \times L_ i \to \mathbf{Z}$. Let $\text{d} : L_0 \to L_1$ and $\text{d}^* : L_1 \to L_0$ be adjoint. If $\langle \  ,\  \rangle $ on $L_0$ is unimodular, then there is an isomorphism </p>
+  <div class="equation">
+  \[  \Phi : \mathop{\mathrm{Coker}}(\text{d}^*\text{d})_{torsion} \longrightarrow \mathop{\mathrm{Im}}(\text{d})^\# /\mathop{\mathrm{Im}}(\text{d})  \]
+</div>
+  <p> with notation as in Lemma <a href="/tag/0C6V" data-tag="0C6V">55.2.4</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $x \in L_0$ be an element representing a torsion class in $\mathop{\mathrm{Coker}}(\text{d}^*\text{d})$. Then for some $a > 0$ we can write $ax = \text{d}^*\text{d}(y)$. For any $z \in \mathop{\mathrm{Im}}(\text{d})$, say $z = \text{d}(y')$, we have 
+    <p>
+      <div class="equation">
+  \[  \langle (1/a)\text{d}(y), z \rangle = \langle (1/a)\text{d}(y), \text{d}(y') \rangle = \langle x, y' \rangle \in \mathbf{Z}  \]
+</div>
+    <p>
+       Hence $(1/a)\text{d}(y) \in \mathop{\mathrm{Im}}(\text{d})^\# $. We define $\Phi (x) = (1/a)\text{d}(y) \bmod \mathop{\mathrm{Im}}(\text{d})$. We omit the proof that $\Phi $ is well defined, additive, and injective. 
+    <p>
+      To prove $\Phi $ is surjective, let $z \in \mathop{\mathrm{Im}}(\text{d})^\# $. Then $z$ defines a linear map $L_0 \to \mathbf{Z}$ by the rule $x \mapsto \langle z, \text{d}(x)\rangle $. Since the pairing on $L_0$ is unimodular by assumption we can find an $x' \in L_0$ with $\langle x', x \rangle = \langle z, \text{d}(x)\rangle $ for all $x \in L_0$. In particular, we see that $x'$ pairs to zero with $\mathop{\mathrm{Ker}}(\text{d})$. Since $\mathop{\mathrm{Im}}(\text{d}^*\text{d}) \otimes \mathbf{Q}$ is the orthogonal complement of $\mathop{\mathrm{Ker}}(\text{d}) \otimes \mathbf{Q}$ this means that $x'$ defines a torsion class in $\mathop{\mathrm{Coker}}(\text{d}^*\text{d})$. We claim that $\Phi (x') = z$. Namely, write $a x' = \text{d}^*\text{d}(y)$ for some $y \in L_0$ and $a > 0$. For any $x \in L_0$ we get 
+    <p>
+      <div class="equation">
+  \[  \langle z, \text{d}(x)\rangle = \langle x', x \rangle = \langle (1/a)\text{d}^*\text{d}(y), x \rangle = \langle (1/a)\text{d}(y),\text{d}(x) \rangle  \]
+</div>
+    <p>
+       Hence $z = \Phi (x')$ and the proof is complete. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0C6X">
+  <p><a class="environment-identifier" href="/tag/0C6X">Lemma <span data-tag="0C6X">55.2.6</span>.</a> Let $A = (a_{ij})$ be a symmetric $n \times n$ integer matrix with $a_{ij} \geq 0$ for $i \not= j$. Let $m = (m_1, \ldots , m_ n)$ be an integer vector with $m_ i > 0$. Assume </p>
+  <p><ol>
+  <li><p>
+$Am = 0$, 
+</p>
+</li><li><p>
+there is no proper nonempty subset $I \subset \{ 1, \ldots , n\} $ such that $a_{ij} = 0$ for $i \in I$ and $j \not\in I$. 
+</p>
+</li>
+</ol></p>
+  <p> Let $e$ be the number of pairs $(i, j)$ with $i < j$ and $a_{ij} > 0$. Then for $\ell $ a prime number coprime with all $a_{ij}$ and $m_ i$ we have </p>
+  <div class="equation">
+  \[  \dim _{\mathbf{F}_\ell }(\mathop{\mathrm{Coker}}(A)[\ell ]) \leq 1 - n + e  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/0C5X" data-tag="0C5X">55.2.3</a> the rank of $A$ is $n - 1$. The composition 
+    <p>
+      <div class="equation">
+  \[  \mathbf{Z}^{\oplus n} \xrightarrow {\text{diag}(m_1, \ldots , m_ n)} \mathbf{Z}^{\oplus n} \xrightarrow {(a_{ij})} \mathbf{Z}^{\oplus n} \xrightarrow {\text{diag}(m_1, \ldots , m_ n)} \mathbf{Z}^{\oplus n}  \]
+</div>
+    <p>
+       has matrix $a_{ij}m_ im_ j$. Since the cokernel of the first and last maps are torsion of order prime to $\ell $ by our restriction on $\ell $ we see that it suffices to prove the lemma for the matrix with entries $a_{ij}m_ im_ j$. Thus we may assume $m = (1, \ldots , 1)$. 
+    <p>
+      Assume $m = (1, \ldots , 1)$. Set $V = \{ 1, \ldots , n\} $ and $E = \{ (i, j) \mid i < j\text{ and }a_{ij} > 0\} $. For $e = (i, j) \in E$ set $a_ e = a_{ij}$. Define maps $s, t : E \to V$ by setting $s(i, j) = i$ and $t(i, j) = j$. Set $\mathbf{Z}(V) = \bigoplus _{i \in V} \mathbf{Z}i$ and $\mathbf{Z}(E) = \bigoplus _{e \in E} \mathbf{Z}e$. We define symmetric positive definite integer valued pairings on $\mathbf{Z}(V)$ and $\mathbf{Z}(E)$ by setting 
+    <p>
+      <div class="equation">
+  \[  \langle i, i \rangle = 1\text{ for }i \in V, \quad \langle e, e \rangle = a_ e\text{ for }e \in E  \]
+</div>
+    <p>
+       and all other pairings zero. Consider the maps 
+    <p>
+      <div class="equation">
+  \[  \text{d} : \mathbf{Z}(V) \to \mathbf{Z}(E), \quad i \longmapsto \sum \nolimits _{e \in E,\  s(e) = i} e - \sum \nolimits _{e \in E,\  t(e) = i} e  \]
+</div>
+    <p>
+       and 
+    <p>
+      <div class="equation">
+  \[  \text{d}^*(e) = a_ e(s(e) - t(e))  \]
+</div>
+    <p>
+       A computation shows that 
+    <p>
+      <div class="equation">
+  \[  \langle d(x), y\rangle = \langle x, \text{d}^*(y) \rangle  \]
+</div>
+    <p>
+       in other words, $\text{d}$ and $\text{d}^*$ are adjoint. Next we compute 
+    <p>
+      <div class="equation">
+  \begin{align*}  \text{d}^*\text{d}(i) &  = \text{d}^*( \sum \nolimits _{e \in E,\  s(e) = i} e - \sum \nolimits _{e \in E,\  t(e) = i} e) \\ &  = \sum \nolimits _{e \in E,\  s(e) = i} a_ e(s(e) - t(e)) - \sum \nolimits _{e \in E,\  t(e) = i} a_ e(s(e) - t(e)) \end{align*}
+</div>
+    <p>
+       The coefficient of $i$ in $\text{d}^*\text{d}(i)$ is 
+    <p>
+      <div class="equation">
+  \[  \sum \nolimits _{e \in E,\  s(e) = i} a_ e + \sum \nolimits _{e \in E,\  t(e) = i} a_ e = - a_{ii}  \]
+</div>
+    <p>
+       because $\sum _ j a_{ij} = 0$ and the coefficient of $j \not= i$ in $\text{d}^*\text{d}(i)$ is $-a_{ij}$. Hence $\mathop{\mathrm{Coker}}(A) = \mathop{\mathrm{Coker}}(\text{d}^*\text{d})$. 
+    <p>
+      Consider the inclusion 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Im}}(\text{d}) \oplus \mathop{\mathrm{Ker}}(\text{d}^*) \subset \mathbf{Z}(E)  \]
+</div>
+    <p>
+       The left hand side is an orthogonal direct sum. Clearly $\mathbf{Z}(E)/\mathop{\mathrm{Ker}}(\text{d}^*)$ is torsion free. We claim $\mathbf{Z}(E)/\mathop{\mathrm{Im}}(\text{d})$ is torsion free as well. Namely, say $x = \sum x_ e e \in \mathbf{Z}(E)$ and $a > 1$ are such that $ax = \text{d}y$ for some $y = \sum y_ i i \in \mathbf{Z}(V)$. Then $a x_ e = y_{s(e)} - y_{t(e)}$. By property (2) we conclude that all $y_ i$ have the same congruence class modulo $a$. Hence we can write $y = a y' + (y_1, y_1, \ldots , y_1)$. Since $\text{d}(y_1, y_1, \ldots , y_1) = 0$ we conclude that $x = \text{d}(y')$ which is what we had to show. 
+    <p>
+      Hence we may apply Lemma <a href="/tag/0C6V" data-tag="0C6V">55.2.4</a> to get injective maps 
+    <p>
+      <div class="equation">
+  \[  \mathop{\mathrm{Im}}(\text{d})^\# /\mathop{\mathrm{Im}}(\text{d}) \leftarrow \mathbf{Z}(E)/(\mathop{\mathrm{Im}}(\text{d}) \oplus \mathop{\mathrm{Ker}}(\text{d}^*)) \rightarrow \mathop{\mathrm{Ker}}(\text{d}^*)^\# /\mathop{\mathrm{Ker}}(\text{d}^*)  \]
+</div>
+    <p>
+       whose cokernels are annihilated by the product of the $a_ e$ (which is prime to $\ell $). Since $\mathop{\mathrm{Ker}}(\text{d}^*)$ is a lattice of rank $1 - n + e$ we see that the proof is complete if we prove that there exists an isomorphism 
+    <p>
+      <div class="equation">
+  \[  \Phi : M_{torsion} \longrightarrow \mathop{\mathrm{Im}}(\text{d})^\# /\mathop{\mathrm{Im}}(\text{d})  \]
+</div>
+    <p>
+       This is proved in Lemma <a href="/tag/0C6W" data-tag="0C6W">55.2.5</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

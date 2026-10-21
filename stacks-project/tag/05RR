@@ -1,0 +1,184 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="derived-section-derived-categories" class="tex-section"><span data-tag="05RR">13.11</span> Derived categories</h2>
+
+<p>
+In this section we construct the derived category of an abelian category $\mathcal{A}$ by inverting the quasi-isomorphisms in $K(\mathcal{A})$. Before we do this recall that the functors $H^ i : \text{Comp}(\mathcal{A}) \to \mathcal{A}$ factor through $K(\mathcal{A})$, see Homology, Lemma <a href="/tag/0116" data-tag="0116">12.13.11</a>. Moreover, in Homology, Definition <a href="/tag/011H" data-tag="011H">12.14.8</a> we have defined identifications $H^ i(K^\bullet [n]) = H^{i + n}(K^\bullet )$. At this point it makes sense to redefine 
+</p>
+<div class="equation">
+  \[  H^ i(K^\bullet ) = H^0(K^\bullet [i])  \]
+</div>
+<p>
+ in order to avoid confusion and possible sign errors. 
+</p>
+<p>
+<article class="env-lemma" id="05RS">
+  <p><a class="environment-identifier" href="/tag/05RS">Lemma <span data-tag="05RS">13.11.1</span>.</a> Let $\mathcal{A}$ be an abelian category. The functor </p>
+  <div class="equation">
+  \[  H^0 : K(\mathcal{A}) \longrightarrow \mathcal{A}  \]
+</div>
+  <p> is homological. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Because $H^0$ is a functor, and by our definition of distinguished triangles it suffices to prove that given a termwise split short exact sequence of complexes $0 \to A^\bullet \to B^\bullet \to C^\bullet \to 0$ the sequence $H^0(A^\bullet ) \to H^0(B^\bullet ) \to H^0(C^\bullet )$ is exact. This follows from Homology, Lemma <a href="/tag/0117" data-tag="0117">12.13.12</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+In particular, this lemma implies that a distinguished triangle $(X, Y, Z, f, g, h)$ in $K(\mathcal{A})$ gives rise to a long exact cohomology sequence 
+</p>
+<div class="equation" id="05ST">
+    <span class="equation-label"><a href="/tag/05ST" data-tag="05ST">13.11.1.1</a></span>
+  <div>\begin{equation}  \label{derived-equation-long-exact-cohomology-sequence-D} \xymatrix{ \ldots \ar[r] &  H^ i(X) \ar[r]^{H^ i(f)} &  H^ i(Y) \ar[r]^{H^ i(g)} &  H^ i(Z) \ar[r]^{H^ i(h)} &  H^{i + 1}(X) \ar[r] &  \ldots } \end{equation}</div>
+</div>
+<p>
+ see (<a href="/tag/0148" data-tag="0148">13.3.5.1</a>). Moreover, there is a compatibility with the long exact sequence of cohomology associated to a short exact sequence of complexes (insert future reference here). For example, if $(A^\bullet , B^\bullet , C^\bullet , \alpha , \beta , \delta )$ is the distinguished triangle associated to a termwise split exact sequence of complexes (see Definition <a href="/tag/014I" data-tag="014I">13.9.9</a>), then the cohomology sequence above agrees with the one defined using the snake lemma, see Homology, Lemma <a href="/tag/0117" data-tag="0117">12.13.12</a> and for agreement of sequences, see Homology, Lemma <a href="/tag/011K" data-tag="011K">12.14.11</a>. 
+</p>
+<p>
+Recall that a complex $K^\bullet $ is <em>acyclic</em> if $H^ i(K^\bullet ) = 0$ for all $i \in \mathbf{Z}$. Moreover, recall that a morphism of complexes $f : K^\bullet \to L^\bullet $ is a <em>quasi-isomorphism</em> if and only if $H^ i(f)$ is an isomorphism for all $i$. See Homology, Definition <a href="/tag/0115" data-tag="0115">12.13.10</a>. 
+</p>
+<p>
+<article class="env-lemma" id="05RT">
+  <p><a class="environment-identifier" href="/tag/05RT">Lemma <span data-tag="05RT">13.11.2</span>.</a> Let $\mathcal{A}$ be an abelian category. The full subcategory $\text{Ac}(\mathcal{A})$ of $K(\mathcal{A})$ consisting of acyclic complexes is a strictly full saturated triangulated subcategory of $K(\mathcal{A})$. The corresponding saturated multiplicative system (see Lemma <a href="/tag/05RL" data-tag="05RL">13.6.10</a>) of $K(\mathcal{A})$ is the set $\text{Qis}(\mathcal{A})$ of quasi-isomorphisms. In particular, the kernel of the localization functor $Q : K(\mathcal{A}) \to \text{Qis}(\mathcal{A})^{-1}K(\mathcal{A})$ is $\text{Ac}(\mathcal{A})$ and the functor $H^0$ factors through $Q$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We know that $H^0$ is a homological functor by Lemma <a href="/tag/05RS" data-tag="05RS">13.11.1</a>. Thus this lemma is a special case of Lemma <a href="/tag/05RM" data-tag="05RM">13.6.11</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="05RU">
+  <p><a class="environment-identifier" href="/tag/05RU">Definition <span data-tag="05RU">13.11.3</span>.</a> Let $\mathcal{A}$ be an abelian category. Let $\text{Ac}(\mathcal{A})$ and $\text{Qis}(\mathcal{A})$ be as in Lemma <a href="/tag/05RT" data-tag="05RT">13.11.2</a>. The <em>derived category of $\mathcal{A}$</em> is the triangulated category </p>
+  <div class="equation">
+  \[  D(\mathcal{A}) = K(\mathcal{A})/\text{Ac}(\mathcal{A}) = \text{Qis}(\mathcal{A})^{-1} K(\mathcal{A}).  \]
+</div>
+  <p> We denote $H^0 : D(\mathcal{A}) \to \mathcal{A}$ the unique functor whose composition with the quotient functor gives back the functor $H^0$ defined above. Using Lemma <a href="/tag/05RE" data-tag="05RE">13.6.4</a> we introduce the strictly full saturated triangulated subcategories $D^{+}(\mathcal{A}), D^{-}(\mathcal{A}), D^ b(\mathcal{A})$ whose sets of objects are </p>
+  <div class="equation">
+  \[  \begin{matrix}  \mathop{\mathrm{Ob}}\nolimits (D^{+}(\mathcal{A})) = \{ X \in \mathop{\mathrm{Ob}}\nolimits (D(\mathcal{A})) \mid H^ n(X) = 0\text{ for all }n \ll 0\}  
+
+\\  \mathop{\mathrm{Ob}}\nolimits (D^{-}(\mathcal{A})) = \{ X \in \mathop{\mathrm{Ob}}\nolimits (D(\mathcal{A})) \mid H^ n(X) = 0\text{ for all }n \gg 0\}  
+
+\\  \mathop{\mathrm{Ob}}\nolimits (D^ b(\mathcal{A})) = \{ X \in \mathop{\mathrm{Ob}}\nolimits (D(\mathcal{A})) \mid H^ n(X) = 0\text{ for all }|n| \gg 0\}  
+
+\end{matrix}  \]
+</div>
+  <p> The category $D^ b(\mathcal{A})$ is called the <em>bounded derived category</em> of $\mathcal{A}$. </p>
+</article> 
+</p>
+<p>
+If $K^\bullet $ and $L^\bullet $ are complexes of $\mathcal{A}$ then we sometimes say “$K^\bullet $ is <em>quasi-isomorphic</em> to $L^\bullet $” to indicate that $K^\bullet $ and $L^\bullet $ are isomorphic objects of $D(\mathcal{A})$. 
+</p>
+<p>
+<article class="env-remark" id="09PA">
+  <p><a class="environment-identifier" href="/tag/09PA">Remark <span data-tag="09PA">13.11.4</span>.</a> In this chapter, we consistently work with “small” abelian categories (as is the convention in the Stacks project). For a “big” abelian category $\mathcal{A}$, it isn't clear that the derived category $D(\mathcal{A})$ exists, because it isn't clear that morphisms in the derived category are sets. In fact, in general they aren't, see Examples, Lemma <a href="/tag/07JT" data-tag="07JT">110.63.1</a>. However, if $\mathcal{A}$ is a Grothendieck abelian category, and given $K^\bullet , L^\bullet $ in $K(\mathcal{A})$, then by Injectives, Theorem <a href="/tag/079P" data-tag="079P">19.12.6</a> there exists a quasi-isomorphism $L^\bullet \to I^\bullet $ to a K-injective complex $I^\bullet $ and Lemma <a href="/tag/070I" data-tag="070I">13.31.2</a> shows that </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Hom}}\nolimits _{D(\mathcal{A})}(K^\bullet , L^\bullet ) = \mathop{\mathrm{Hom}}\nolimits _{K(\mathcal{A})}(K^\bullet , I^\bullet )  \]
+</div>
+  <p> which is a set. Some examples of Grothendieck abelian categories are the category of modules over a ring, or more generally the category of sheaves of modules on a ringed site. </p>
+</article> 
+</p>
+<p>
+Each of the variants $D^{+}(\mathcal{A}), D^{-}(\mathcal{A}), D^ b(\mathcal{A})$ can be constructed as a localization of the corresponding homotopy category. This relies on the following simple lemma. 
+</p>
+<p>
+<article class="env-lemma" id="05RV">
+  <p><a class="environment-identifier" href="/tag/05RV">Lemma <span data-tag="05RV">13.11.5</span>.</a> Let $\mathcal{A}$ be an abelian category. Let $K^\bullet $ be a complex. </p>
+  <p><ol>
+  <li><p>
+If $H^ n(K^\bullet ) = 0$ for all $n \ll 0$, then there exists a quasi-isomorphism $K^\bullet \to L^\bullet $ with $L^\bullet $ bounded below. 
+</p>
+</li><li><p>
+If $H^ n(K^\bullet ) = 0$ for all $n \gg 0$, then there exists a quasi-isomorphism $M^\bullet \to K^\bullet $ with $M^\bullet $ bounded above. 
+</p>
+</li><li><p>
+If $H^ n(K^\bullet ) = 0$ for all $|n| \gg 0$, then there exists a commutative diagram of morphisms of complexes 
+</p>
+<div class="equation">
+  \[  \xymatrix{ K^\bullet \ar[r] &  L^\bullet \\  M^\bullet \ar[u] \ar[r] &  N^\bullet \ar[u] }  \]
+</div>
+<p>
+ where all the arrows are quasi-isomorphisms, $L^\bullet $ bounded below, $M^\bullet $ bounded above, and $N^\bullet $ a bounded complex. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Pick $a \ll 0 \ll b$ and set $M^\bullet = \tau _{\leq b}K^\bullet $, $L^\bullet = \tau _{\geq a}K^\bullet $, and $N^\bullet = \tau _{\leq b}L^\bullet = \tau _{\geq a}M^\bullet $. See Homology, Section <a href="/tag/0118" data-tag="0118">12.15</a> for the truncation functors. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+To state the following lemma denote $\text{Ac}^{+}(\mathcal{A})$, $\text{Ac}^{-}(\mathcal{A})$, resp. $\text{Ac}^ b(\mathcal{A})$ the intersection of $K^{+}(\mathcal{A})$, $K^{-}(\mathcal{A})$, resp. $K^ b(\mathcal{A})$ with $\text{Ac}(\mathcal{A})$. Denote $\text{Qis}^{+}(\mathcal{A})$, $\text{Qis}^{-}(\mathcal{A})$, resp. $\text{Qis}^ b(\mathcal{A})$ the intersection of $K^{+}(\mathcal{A})$, $K^{-}(\mathcal{A})$, resp. $K^ b(\mathcal{A})$ with $\text{Qis}(\mathcal{A})$. 
+</p>
+<p>
+<article class="env-lemma" id="05RW">
+  <p><a class="environment-identifier" href="/tag/05RW">Lemma <span data-tag="05RW">13.11.6</span>.</a> Let $\mathcal{A}$ be an abelian category. The subcategories $\text{Ac}^{+}(\mathcal{A})$, $\text{Ac}^{-}(\mathcal{A})$, resp. $\text{Ac}^ b(\mathcal{A})$ are strictly full saturated triangulated subcategories of $K^{+}(\mathcal{A})$, $K^{-}(\mathcal{A})$, resp. $K^ b(\mathcal{A})$. The corresponding saturated multiplicative systems (see Lemma <a href="/tag/05RL" data-tag="05RL">13.6.10</a>) are the sets $\text{Qis}^{+}(\mathcal{A})$, $\text{Qis}^{-}(\mathcal{A})$, resp. $\text{Qis}^ b(\mathcal{A})$. </p>
+  <p><ol>
+  <li><p>
+The kernel of the functor $K^{+}(\mathcal{A}) \to D^{+}(\mathcal{A})$ is $\text{Ac}^{+}(\mathcal{A})$ and this induces an equivalence of triangulated categories 
+</p>
+<div class="equation">
+  \[  K^{+}(\mathcal{A})/\text{Ac}^{+}(\mathcal{A}) = \text{Qis}^{+}(\mathcal{A})^{-1}K^{+}(\mathcal{A}) \longrightarrow D^{+}(\mathcal{A})  \]
+</div>
+</li><li><p>
+The kernel of the functor $K^{-}(\mathcal{A}) \to D^{-}(\mathcal{A})$ is $\text{Ac}^{-}(\mathcal{A})$ and this induces an equivalence of triangulated categories 
+</p>
+<div class="equation">
+  \[  K^{-}(\mathcal{A})/\text{Ac}^{-}(\mathcal{A}) = \text{Qis}^{-}(\mathcal{A})^{-1}K^{-}(\mathcal{A}) \longrightarrow D^{-}(\mathcal{A})  \]
+</div>
+</li><li><p>
+The kernel of the functor $K^ b(\mathcal{A}) \to D^ b(\mathcal{A})$ is $\text{Ac}^ b(\mathcal{A})$ and this induces an equivalence of triangulated categories 
+</p>
+<div class="equation">
+  \[  K^ b(\mathcal{A})/\text{Ac}^ b(\mathcal{A}) = \text{Qis}^ b(\mathcal{A})^{-1}K^ b(\mathcal{A}) \longrightarrow D^ b(\mathcal{A})  \]
+</div>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The initial statements follow from Lemma <a href="/tag/05RM" data-tag="05RM">13.6.11</a> by considering the restriction of the homological functor $H^0$. The statement on kernels in (1), (2), (3) is a consequence of the definitions in each case. Each of the functors is essentially surjective by Lemma <a href="/tag/05RV" data-tag="05RV">13.11.5</a>. To finish the proof we have to show the functors are fully faithful. We first do this for the bounded below version. 
+    <p>
+      Suppose that $K^\bullet , L^\bullet $ are bounded below complexes. A morphism between these in $D(\mathcal{A})$ is of the form $s^{-1}f$ for a pair $f : K^\bullet \to (L')^\bullet $, $s : L^\bullet \to (L')^\bullet $ where $s$ is a quasi-isomorphism. This implies that $(L')^\bullet $ has cohomology bounded below. Hence by Lemma <a href="/tag/05RV" data-tag="05RV">13.11.5</a> we can choose a quasi-isomorphism $s' : (L')^\bullet \to (L'')^\bullet $ with $(L'')^\bullet $ bounded below. Then the pair $(s' \circ f, s' \circ s)$ defines a morphism in $\text{Qis}^{+}(\mathcal{A})^{-1}K^{+}(\mathcal{A})$. Hence the functor is “full”. Finally, suppose that the pair $f : K^\bullet \to (L')^\bullet $, $s : L^\bullet \to (L')^\bullet $ defines a morphism in $\text{Qis}^{+}(\mathcal{A})^{-1}K^{+}(\mathcal{A})$ which is zero in $D(\mathcal{A})$. This means that there exists a quasi-isomorphism $s' : (L')^\bullet \to (L'')^\bullet $ such that $s' \circ f = 0$. Using Lemma <a href="/tag/05RV" data-tag="05RV">13.11.5</a> once more we obtain a quasi-isomorphism $s'' : (L'')^\bullet \to (L''')^\bullet $ with $(L''')^\bullet $ bounded below. Thus we see that $s'' \circ s' \circ f = 0$ which implies that $s^{-1}f$ is zero in $\text{Qis}^{+}(\mathcal{A})^{-1}K^{+}(\mathcal{A})$. This finishes the proof that the functor in (1) is an equivalence. 
+    <p>
+      The proof of (2) is dual to the proof of (1). To prove (3) we may use the result of (2). Hence it suffices to prove that the functor $\text{Qis}^ b(\mathcal{A})^{-1}K^ b(\mathcal{A}) \to \text{Qis}^{-}(\mathcal{A})^{-1}K^{-}(\mathcal{A})$ is fully faithful. The argument given in the previous paragraph applies directly to show this where we consistently work with complexes which are already bounded above. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

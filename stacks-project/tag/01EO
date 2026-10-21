@@ -1,0 +1,333 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="cohomology-section-cech-cohomology-cohomology" class="tex-section"><span data-tag="01EO">20.11</span> Čech cohomology and cohomology</h2>
+
+<p>
+<article class="env-lemma" id="01EP">
+  <p><a class="environment-identifier" href="/tag/01EP">Lemma <span data-tag="01EP">20.11.1</span>.</a> Let $X$ be a ringed space. Let $\mathcal{U} : U = \bigcup _{i \in I} U_ i$ be an open covering. Let $\mathcal{I}$ be an injective $\mathcal{O}_ X$-module. Then </p>
+  <div class="equation">
+  \[  \check{H}^ p(\mathcal{U}, \mathcal{I}) = \left\{  \begin{matrix}  \mathcal{I}(U) 
+
+&  \text{if} 
+
+&  p = 0 
+
+\\  0 
+
+&  \text{if} 
+
+&  p > 0 
+
+\end{matrix} \right.  \]
+</div>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      An injective $\mathcal{O}_ X$-module is also injective as an object in the category $\textit{PMod}(\mathcal{O}_ X)$ (for example since sheafification is an exact left adjoint to the inclusion functor, using Homology, Lemma <a href="/tag/015Z" data-tag="015Z">12.29.1</a>). Hence we can apply Lemma <a href="/tag/01EN" data-tag="01EN">20.10.5</a> (or its proof) to see the result. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01EQ">
+  <p><a class="environment-identifier" href="/tag/01EQ">Lemma <span data-tag="01EQ">20.11.2</span>.</a> Let $X$ be a ringed space. Let $\mathcal{U} : U = \bigcup _{i \in I} U_ i$ be an open covering. There is a transformation </p>
+  <div class="equation">
+  \[  \check{\mathcal{C}}^\bullet (\mathcal{U}, -) \longrightarrow R\Gamma (U, -)  \]
+</div>
+  <p> of functors $\textit{Mod}(\mathcal{O}_ X) \to D^{+}(\mathcal{O}_ X(U))$. In particular this provides canonical maps $\check{H}^ p(\mathcal{U}, \mathcal{F}) \to H^ p(U, \mathcal{F})$ for $\mathcal{F}$ ranging over $\textit{Mod}(\mathcal{O}_ X)$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\mathcal{F}$ be an $\mathcal{O}_ X$-module. Choose an injective resolution $\mathcal{F} \to \mathcal{I}^\bullet $. Consider the double complex $\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{I}^\bullet )$ with terms $\check{\mathcal{C}}^ p(\mathcal{U}, \mathcal{I}^ q)$. There is a map of complexes 
+    <p>
+      <div class="equation">
+  \[  \alpha : \Gamma (U, \mathcal{I}^\bullet ) \longrightarrow \text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{I}^\bullet ))  \]
+</div>
+    <p>
+       coming from the maps $\mathcal{I}^ q(U) \to \check{H}^0(\mathcal{U}, \mathcal{I}^ q)$ and a map of complexes 
+    <p>
+      <div class="equation">
+  \[  \beta : \check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{F}) \longrightarrow \text{Tot}(\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{I}^\bullet ))  \]
+</div>
+    <p>
+       coming from the map $\mathcal{F} \to \mathcal{I}^0$. We can apply Homology, Lemma <a href="/tag/0133" data-tag="0133">12.25.4</a> to see that $\alpha $ is a quasi-isomorphism. Namely, Lemma <a href="/tag/01EP" data-tag="01EP">20.11.1</a> implies that the $q$th row of the double complex $\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{I}^\bullet )$ is a resolution of $\Gamma (U, \mathcal{I}^ q)$. Hence $\alpha $ becomes invertible in $D^{+}(\mathcal{O}_ X(U))$ and the transformation of the lemma is the composition of $\beta $ followed by the inverse of $\alpha $. We omit the verification that this is functorial. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0B8R">
+  <p><a class="environment-identifier" href="/tag/0B8R">Lemma <span data-tag="0B8R">20.11.3</span>.</a> Let $X$ be a topological space. Let $\mathcal{H}$ be an abelian sheaf on $X$. Let $\mathcal{U} : X = \bigcup _{i \in I} U_ i$ be an open covering. The map </p>
+  <div class="equation">
+  \[  \check{H}^1(\mathcal{U}, \mathcal{H}) \longrightarrow H^1(X, \mathcal{H})  \]
+</div>
+  <p> is injective and identifies $\check{H}^1(\mathcal{U}, \mathcal{H})$ via the bijection of Lemma <a href="/tag/02FQ" data-tag="02FQ">20.4.3</a> with the set of isomorphism classes of $\mathcal{H}$-torsors which restrict to trivial torsors over each $U_ i$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      To see this we construct an inverse map. Namely, let $\mathcal{F}$ be a $\mathcal{H}$-torsor whose restriction to $U_ i$ is trivial. By Lemma <a href="/tag/02FP" data-tag="02FP">20.4.2</a> this means there exists a section $s_ i \in \mathcal{F}(U_ i)$. On $U_{i_0} \cap U_{i_1}$ there is a unique section $s_{i_0i_1}$ of $\mathcal{H}$ such that $s_{i_0i_1} \cdot s_{i_0}|_{U_{i_0} \cap U_{i_1}} = s_{i_1}|_{U_{i_0} \cap U_{i_1}}$. A computation shows that $s_{i_0i_1}$ is a Čech cocycle and that its class is well defined (i.e., does not depend on the choice of the sections $s_ i$). The inverse maps the isomorphism class of $\mathcal{F}$ to the cohomology class of the cocycle $(s_{i_0i_1})$. We omit the verification that this map is indeed an inverse. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01ER">
+  <p><a class="environment-identifier" href="/tag/01ER">Lemma <span data-tag="01ER">20.11.4</span>.</a> Let $X$ be a ringed space. Consider the functor $i : \textit{Mod}(\mathcal{O}_ X) \to \textit{PMod}(\mathcal{O}_ X)$. It is a left exact functor with right derived functors given by </p>
+  <div class="equation">
+  \[  R^ pi(\mathcal{F}) = \underline{H}^ p(\mathcal{F}) : U \longmapsto H^ p(U, \mathcal{F})  \]
+</div>
+  <p> see discussion in Section <a href="/tag/01E0" data-tag="01E0">20.7</a>. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      It is clear that $i$ is left exact. Choose an injective resolution $\mathcal{F} \to \mathcal{I}^\bullet $. By definition $R^ pi$ is the $p$th cohomology <em>presheaf</em> of the complex $\mathcal{I}^\bullet $. In other words, the sections of $R^ pi(\mathcal{F})$ over an open $U$ are given by 
+    <p>
+      <div class="equation">
+  \[  \frac{\mathop{\mathrm{Ker}}(\mathcal{I}^ p(U) \to \mathcal{I}^{p + 1}(U))}{\mathop{\mathrm{Im}}(\mathcal{I}^{p - 1}(U) \to \mathcal{I}^ p(U))}.  \]
+</div>
+    <p>
+       which is the definition of $H^ p(U, \mathcal{F})$. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01ES">
+  <p><a class="environment-identifier" href="/tag/01ES">Lemma <span data-tag="01ES">20.11.5</span>.</a> Let $X$ be a ringed space. Let $\mathcal{U} : U = \bigcup _{i \in I} U_ i$ be an open covering. For any sheaf of $\mathcal{O}_ X$-modules $\mathcal{F}$ there is a spectral sequence $(E_ r, d_ r)_{r \geq 0}$ with </p>
+  <div class="equation">
+  \[  E_2^{p, q} = \check{H}^ p(\mathcal{U}, \underline{H}^ q(\mathcal{F}))  \]
+</div>
+  <p> converging to $H^{p + q}(U, \mathcal{F})$. This spectral sequence is functorial in $\mathcal{F}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      This is a Grothendieck spectral sequence (see Derived Categories, Lemma <a href="/tag/015N" data-tag="015N">13.22.2</a>) for the functors 
+    <p>
+      <div class="equation">
+  \[  i : \textit{Mod}(\mathcal{O}_ X) \to \textit{PMod}(\mathcal{O}_ X) \quad \text{and}\quad \check{H}^0(\mathcal{U}, - ) : \textit{PMod}(\mathcal{O}_ X) \to \text{Mod}_{\mathcal{O}_ X(U)}.  \]
+</div>
+    <p>
+       Namely, we have $\check{H}^0(\mathcal{U}, i(\mathcal{F})) = \mathcal{F}(U)$ by Lemma <a href="/tag/01EG" data-tag="01EG">20.9.2</a>. We have that $i(\mathcal{I})$ is Čech acyclic by Lemma <a href="/tag/01EP" data-tag="01EP">20.11.1</a>. And we have that $\check{H}^ p(\mathcal{U}, -) = R^ p\check{H}^0(\mathcal{U}, -)$ as functors on $\textit{PMod}(\mathcal{O}_ X)$ by Lemma <a href="/tag/01EN" data-tag="01EN">20.10.5</a>. Putting everything together gives the lemma. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01ET">
+  <p><a class="environment-identifier" href="/tag/01ET">Lemma <span data-tag="01ET">20.11.6</span>.</a> Let $X$ be a ringed space. Let $\mathcal{U} : U = \bigcup _{i \in I} U_ i$ be an open covering. Let $\mathcal{F}$ be an $\mathcal{O}_ X$-module. Assume that $H^ i(U_{i_0 \ldots i_ p}, \mathcal{F}) = 0$ for all $i > 0$, all $p \geq 0$ and all $i_0, \ldots , i_ p \in I$. Then $\check{H}^ p(\mathcal{U}, \mathcal{F}) = H^ p(U, \mathcal{F})$ as $\mathcal{O}_ X(U)$-modules. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      We will use the spectral sequence of Lemma <a href="/tag/01ES" data-tag="01ES">20.11.5</a>. The assumptions mean that $E_2^{p, q} = 0$ for all $(p, q)$ with $q \not= 0$. Hence the spectral sequence degenerates at $E_2$ and the result follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01EU">
+  <p><a class="environment-identifier" href="/tag/01EU">Lemma <span data-tag="01EU">20.11.7</span>.</a> Let $X$ be a ringed space. Let </p>
+  <div class="equation">
+  \[  0 \to \mathcal{F} \to \mathcal{G} \to \mathcal{H} \to 0  \]
+</div>
+  <p> be a short exact sequence of $\mathcal{O}_ X$-modules. Let $U \subset X$ be an open subset. If there exists a cofinal system of open coverings $\mathcal{U}$ of $U$ such that $\check{H}^1(\mathcal{U}, \mathcal{F}) = 0$, then the map $\mathcal{G}(U) \to \mathcal{H}(U)$ is surjective. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Take an element $s \in \mathcal{H}(U)$. Choose an open covering $\mathcal{U} : U = \bigcup _{i \in I} U_ i$ such that (a) $\check{H}^1(\mathcal{U}, \mathcal{F}) = 0$ and (b) $s|_{U_ i}$ is the image of a section $s_ i \in \mathcal{G}(U_ i)$. Since we can certainly find $\mathcal{U}$ such that (b) holds it follows from the assumptions of the lemma that we can find $\mathcal{U}$ such that (a) and (b) both hold. Consider the sections 
+    <p>
+      <div class="equation">
+  \[  s_{i_0i_1} = s_{i_1}|_{U_{i_0i_1}} - s_{i_0}|_{U_{i_0i_1}}.  \]
+</div>
+    <p>
+       Since $s_ i$ lifts $s$ we see that $s_{i_0i_1} \in \mathcal{F}(U_{i_0i_1})$. By the vanishing of $\check{H}^1(\mathcal{U}, \mathcal{F})$ we can find sections $t_ i \in \mathcal{F}(U_ i)$ such that 
+    <p>
+      <div class="equation">
+  \[  s_{i_0i_1} = t_{i_1}|_{U_{i_0i_1}} - t_{i_0}|_{U_{i_0i_1}}.  \]
+</div>
+    <p>
+       Then clearly the sections $s_ i - t_ i$ satisfy the sheaf condition and glue to a section of $\mathcal{G}$ over $U$ which maps to $s$. Hence we win. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01EV">
+       
+      
+  <p><a class="environment-identifier" href="/tag/01EV">Lemma <span data-tag="01EV">20.11.8</span>.</a> Let $X$ be a ringed space. Let $\mathcal{F}$ be an $\mathcal{O}_ X$-module such that </p>
+  <div class="equation">
+  \[  \check{H}^ p(\mathcal{U}, \mathcal{F}) = 0  \]
+</div>
+  <p> for all $p > 0$ and any open covering $\mathcal{U} : U = \bigcup _{i \in I} U_ i$ of an open of $X$. Then $H^ p(U, \mathcal{F}) = 0$ for all $p > 0$ and any open $U \subset X$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\mathcal{F}$ be a sheaf satisfying the assumption of the lemma. We will indicate this by saying “$\mathcal{F}$ has vanishing higher Čech cohomology for any open covering”. Choose an embedding $\mathcal{F} \to \mathcal{I}$ into an injective $\mathcal{O}_ X$-module. By Lemma <a href="/tag/01EP" data-tag="01EP">20.11.1</a> $\mathcal{I}$ has vanishing higher Čech cohomology for any open covering. Let $\mathcal{Q} = \mathcal{I}/\mathcal{F}$ so that we have a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{F} \to \mathcal{I} \to \mathcal{Q} \to 0.  \]
+</div>
+    <p>
+       By Lemma <a href="/tag/01EU" data-tag="01EU">20.11.7</a> and our assumptions this sequence is actually exact as a sequence of presheaves! In particular we have a long exact sequence of Čech cohomology groups for any open covering $\mathcal{U}$, see Lemma <a href="/tag/01EK" data-tag="01EK">20.10.2</a> for example. This implies that $\mathcal{Q}$ is also an $\mathcal{O}_ X$-module with vanishing higher Čech cohomology for all open coverings. 
+    <p>
+      Next, we look at the long exact cohomology sequence 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ 0 \ar[r] &  H^0(U, \mathcal{F}) \ar[r] &  H^0(U, \mathcal{I}) \ar[r] &  H^0(U, \mathcal{Q}) \ar[lld] \\  &  H^1(U, \mathcal{F}) \ar[r] &  H^1(U, \mathcal{I}) \ar[r] &  H^1(U, \mathcal{Q}) \ar[lld] \\  &  \ldots &  \ldots &  \ldots \\  }  \]
+</div>
+    <p>
+       for any open $U \subset X$. Since $\mathcal{I}$ is injective we have $H^ n(U, \mathcal{I}) = 0$ for $n > 0$ (see Derived Categories, Lemma <a href="/tag/015B" data-tag="015B">13.20.4</a>). By the above we see that $H^0(U, \mathcal{I}) \to H^0(U, \mathcal{Q})$ is surjective and hence $H^1(U, \mathcal{F}) = 0$. Since $\mathcal{F}$ was an arbitrary $\mathcal{O}_ X$-module with vanishing higher Čech cohomology we conclude that also $H^1(U, \mathcal{Q}) = 0$ since $\mathcal{Q}$ is another of these sheaves (see above). By the long exact sequence this in turn implies that $H^2(U, \mathcal{F}) = 0$. And so on and so forth. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01EW">
+  <p><a class="environment-identifier" href="/tag/01EW">Lemma <span data-tag="01EW">20.11.9</span>.</a> (Variant of Lemma <a href="/tag/01EV" data-tag="01EV">20.11.8</a>.) Let $X$ be a ringed space. Let $\mathcal{B}$ be a basis for the topology on $X$. Let $\mathcal{F}$ be an $\mathcal{O}_ X$-module. Assume there exists a set of open coverings $\text{Cov}$ with the following properties: </p>
+  <p><ol>
+  <li><p>
+For every $\mathcal{U} \in \text{Cov}$ with $\mathcal{U} : U = \bigcup _{i \in I} U_ i$ we have $U, U_ i \in \mathcal{B}$ and every $U_{i_0 \ldots i_ p} \in \mathcal{B}$. 
+</p>
+</li><li><p>
+For every $U \in \mathcal{B}$ the open coverings of $U$ occurring in $\text{Cov}$ is a cofinal system of open coverings of $U$. 
+</p>
+</li><li><p>
+For every $\mathcal{U} \in \text{Cov}$ we have $\check{H}^ p(\mathcal{U}, \mathcal{F}) = 0$ for all $p > 0$. 
+</p>
+</li>
+</ol></p>
+  <p> Then $H^ p(U, \mathcal{F}) = 0$ for all $p > 0$ and any $U \in \mathcal{B}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $\mathcal{F}$ and $\text{Cov}$ be as in the lemma. We will indicate this by saying “$\mathcal{F}$ has vanishing higher Čech cohomology for any $\mathcal{U} \in \text{Cov}$”. Choose an embedding $\mathcal{F} \to \mathcal{I}$ into an injective $\mathcal{O}_ X$-module. By Lemma <a href="/tag/01EP" data-tag="01EP">20.11.1</a> $\mathcal{I}$ has vanishing higher Čech cohomology for any $\mathcal{U} \in \text{Cov}$. Let $\mathcal{Q} = \mathcal{I}/\mathcal{F}$ so that we have a short exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{F} \to \mathcal{I} \to \mathcal{Q} \to 0.  \]
+</div>
+    <p>
+       By Lemma <a href="/tag/01EU" data-tag="01EU">20.11.7</a> and our assumption (2) this sequence gives rise to an exact sequence 
+    <p>
+      <div class="equation">
+  \[  0 \to \mathcal{F}(U) \to \mathcal{I}(U) \to \mathcal{Q}(U) \to 0.  \]
+</div>
+    <p>
+       for every $U \in \mathcal{B}$. Hence for any $\mathcal{U} \in \text{Cov}$ we get a short exact sequence of Čech complexes 
+    <p>
+      <div class="equation">
+  \[  0 \to \check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{F}) \to \check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{I}) \to \check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{Q}) \to 0  \]
+</div>
+    <p>
+       since each term in the Čech complex is made up out of a product of values over elements of $\mathcal{B}$ by assumption (1). In particular we have a long exact sequence of Čech cohomology groups for any open covering $\mathcal{U} \in \text{Cov}$. This implies that $\mathcal{Q}$ is also an $\mathcal{O}_ X$-module with vanishing higher Čech cohomology for all $\mathcal{U} \in \text{Cov}$. 
+    <p>
+      Next, we look at the long exact cohomology sequence 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ 0 \ar[r] &  H^0(U, \mathcal{F}) \ar[r] &  H^0(U, \mathcal{I}) \ar[r] &  H^0(U, \mathcal{Q}) \ar[lld] \\  &  H^1(U, \mathcal{F}) \ar[r] &  H^1(U, \mathcal{I}) \ar[r] &  H^1(U, \mathcal{Q}) \ar[lld] \\  &  \ldots &  \ldots &  \ldots \\  }  \]
+</div>
+    <p>
+       for any $U \in \mathcal{B}$. Since $\mathcal{I}$ is injective we have $H^ n(U, \mathcal{I}) = 0$ for $n > 0$ (see Derived Categories, Lemma <a href="/tag/015B" data-tag="015B">13.20.4</a>). By the above we see that $H^0(U, \mathcal{I}) \to H^0(U, \mathcal{Q})$ is surjective and hence $H^1(U, \mathcal{F}) = 0$. Since $\mathcal{F}$ was an arbitrary $\mathcal{O}_ X$-module with vanishing higher Čech cohomology for all $\mathcal{U} \in \text{Cov}$ we conclude that also $H^1(U, \mathcal{Q}) = 0$ since $\mathcal{Q}$ is another of these sheaves (see above). By the long exact sequence this in turn implies that $H^2(U, \mathcal{F}) = 0$. And so on and so forth. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="01EX">
+  <p><a class="environment-identifier" href="/tag/01EX">Lemma <span data-tag="01EX">20.11.10</span>.</a> Let $f : X \to Y$ be a morphism of ringed spaces. Let $\mathcal{I}$ be an injective $\mathcal{O}_ X$-module. Then </p>
+  <p><ol>
+  <li><p>
+$\check{H}^ p(\mathcal{V}, f_*\mathcal{I}) = 0$ for all $p > 0$ and any open covering $\mathcal{V} : V = \bigcup _{j \in J} V_ j$ of $Y$. 
+</p>
+</li><li><p>
+$H^ p(V, f_*\mathcal{I}) = 0$ for all $p > 0$ and every open $V \subset Y$. 
+</p>
+</li>
+</ol></p>
+  <p> In other words, $f_*\mathcal{I}$ is right acyclic for $\Gamma (V, -)$ (see Derived Categories, Definition <a href="/tag/0157" data-tag="0157">13.15.3</a>) for any $V \subset Y$ open. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Set $\mathcal{U} : f^{-1}(V) = \bigcup _{j \in J} f^{-1}(V_ j)$. It is an open covering of $X$ and 
+    <p>
+      <div class="equation">
+  \[  \check{\mathcal{C}}^\bullet (\mathcal{V}, f_*\mathcal{I}) = \check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{I}).  \]
+</div>
+    <p>
+       This is true because 
+    <p>
+      <div class="equation">
+  \[  f_*\mathcal{I}(V_{j_0 \ldots j_ p}) = \mathcal{I}(f^{-1}(V_{j_0 \ldots j_ p})) = \mathcal{I}(f^{-1}(V_{j_0}) \cap \ldots \cap f^{-1}(V_{j_ p})) = \mathcal{I}(U_{j_0 \ldots j_ p}).  \]
+</div>
+    <p>
+       Thus the first statement of the lemma follows from Lemma <a href="/tag/01EP" data-tag="01EP">20.11.1</a>. The second statement follows from the first and Lemma <a href="/tag/01EV" data-tag="01EV">20.11.8</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+The following lemma implies in particular that $f_* : \textit{Ab}(X) \to \textit{Ab}(Y)$ transforms injective abelian sheaves into injective abelian sheaves. 
+</p>
+<p>
+<article class="env-lemma" id="02N5">
+  <p><a class="environment-identifier" href="/tag/02N5">Lemma <span data-tag="02N5">20.11.11</span>.</a> Let $f : X \to Y$ be a morphism of ringed spaces. Assume $f$ is flat. Then $f_*\mathcal{I}$ is an injective $\mathcal{O}_ Y$-module for any injective $\mathcal{O}_ X$-module $\mathcal{I}$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      In this case the functor $f^*$ transforms injections into injections (Modules, Lemma <a href="/tag/02N4" data-tag="02N4">17.20.2</a>). Hence the result follows from Homology, Lemma <a href="/tag/015Z" data-tag="015Z">12.29.1</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0D0A">
+  <p><a class="environment-identifier" href="/tag/0D0A">Lemma <span data-tag="0D0A">20.11.12</span>.</a> Let $(X, \mathcal{O}_ X)$ be a ringed space. Let $I$ be a set. For $i \in I$ let $\mathcal{F}_ i$ be an $\mathcal{O}_ X$-module. Let $U \subset X$ be open. The canonical map </p>
+  <div class="equation">
+  \[  H^ p(U, \prod \nolimits _{i \in I} \mathcal{F}_ i) \longrightarrow \prod \nolimits _{i \in I} H^ p(U, \mathcal{F}_ i)  \]
+</div>
+  <p> is an isomorphism for $p = 0$ and injective for $p = 1$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      The statement for $p = 0$ is true because the product of sheaves is equal to the product of the underlying presheaves, see Sheaves, Section <a href="/tag/009E" data-tag="009E">6.29</a>. Proof for $p = 1$. Set $\mathcal{F} = \prod \mathcal{F}_ i$. Let $\xi \in H^1(U, \mathcal{F})$ map to zero in $\prod H^1(U, \mathcal{F}_ i)$. By locality of cohomology, see Lemma <a href="/tag/01E3" data-tag="01E3">20.7.2</a>, there exists an open covering $\mathcal{U} : U = \bigcup U_ j$ such that $\xi |_{U_ j} = 0$ for all $j$. By Lemma <a href="/tag/0B8R" data-tag="0B8R">20.11.3</a> this means $\xi $ comes from an element $\check\xi \in \check H^1(\mathcal{U}, \mathcal{F})$. Since the maps $\check H^1(\mathcal{U}, \mathcal{F}_ i) \to H^1(U, \mathcal{F}_ i)$ are injective for all $i$ (by Lemma <a href="/tag/0B8R" data-tag="0B8R">20.11.3</a>), and since the image of $\xi $ is zero in $\prod H^1(U, \mathcal{F}_ i)$ we see that the image $\check\xi _ i = 0$ in $\check H^1(\mathcal{U}, \mathcal{F}_ i)$. However, since $\mathcal{F} = \prod \mathcal{F}_ i$ we see that $\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{F})$ is the product of the complexes $\check{\mathcal{C}}^\bullet (\mathcal{U}, \mathcal{F}_ i)$, hence by Homology, Lemma <a href="/tag/060K" data-tag="060K">12.32.1</a> we conclude that $\check\xi = 0$ as desired. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>

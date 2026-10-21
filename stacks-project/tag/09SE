@@ -1,0 +1,351 @@
+
+<!-- MathJax Configuration (MathJax 2.7.x legacy) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ['tex2jax.js'],
+    jax: ['input/TeX','output/HTML-CSS'],
+    TeX: {
+      extensions: ['AMSmath.js', 'AMSsymbols.js', 'http://127.0.0.1:8000/xypic.js', 'extpfeil.js'],
+      Macros: {
+        linebreak: ["", 1, ""],
+        textnormal: ['\\textrm{\#1}', 1],
+      },
+      TagSide: 'left'
+    },
+    tex2jax: {
+      inlineMath: [['$','$']],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    },
+    'HTML-CSS': { scale: 95, availableFonts: [], }
+  });
+</script>
+
+<!-- MathJax Script Source -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+
+<h2 id="homology-section-additive-categories" class="tex-section"><span data-tag="09SE">12.3</span> Preadditive and additive categories</h2>
+
+<p>
+Here is the definition of a preadditive category. 
+</p>
+<p>
+<article class="env-definition" id="00ZY">
+  <p><a class="environment-identifier" href="/tag/00ZY">Definition <span data-tag="00ZY">12.3.1</span>.</a> A category $\mathcal{A}$ is called <em>preadditive</em> if each morphism set $\mathop{\mathrm{Mor}}\nolimits _\mathcal {A}(x, y)$ is endowed with the structure of an abelian group such that the compositions </p>
+  <div class="equation">
+  \[  \mathop{\mathrm{Mor}}\nolimits (x, y) \times \mathop{\mathrm{Mor}}\nolimits (y, z) \longrightarrow \mathop{\mathrm{Mor}}\nolimits (x, z)  \]
+</div>
+  <p> are bilinear. A functor $F : \mathcal{A} \to \mathcal{B}$ of preadditive categories is called <em>additive</em> if and only if $F : \mathop{\mathrm{Mor}}\nolimits (x, y) \to \mathop{\mathrm{Mor}}\nolimits (F(x), F(y))$ is a homomorphism of abelian groups for all $x, y \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{A})$. </p>
+</article> 
+</p>
+<p>
+In particular for every $x, y$ there exists at least one morphism $x \to y$, namely the zero map. 
+</p>
+<p>
+<article class="env-lemma" id="00ZZ">
+  <p><a class="environment-identifier" href="/tag/00ZZ">Lemma <span data-tag="00ZZ">12.3.2</span>.</a> Let $\mathcal{A}$ be a preadditive category. Let $x$ be an object of $\mathcal{A}$. The following are equivalent </p>
+  <p><ol>
+  <li><p>
+$x$ is an initial object, 
+</p>
+</li><li><p>
+$x$ is a final object, and 
+</p>
+</li><li><p>
+$\text{id}_ x = 0$ in $\mathop{\mathrm{Mor}}\nolimits _\mathcal {A}(x, x)$. 
+</p>
+</li>
+</ol></p>
+  <p> Furthermore, if such an object $0$ exists, then a morphism $\alpha : y \to z$ factors through $0$ if and only if $\alpha = 0$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      First assume that $x$ is either (1) initial or (2) final. In both cases, it follows that $\mathop{\mathrm{Mor}}\nolimits (x,x)$ is a trivial abelian group containing $\text{id}_ x$, thus $\text{id}_ x = 0$ in $\mathop{\mathrm{Mor}}\nolimits (x, x)$, which shows that each of (1) and (2) implies (3). 
+    <p>
+      Now assume that $\text{id}_ x = 0$ in $\mathop{\mathrm{Mor}}\nolimits (x,x)$. Let $y$ be an arbitrary object of $\mathcal{A}$ and let $f \in \mathop{\mathrm{Mor}}\nolimits (x ,y)$. Denote $C : \mathop{\mathrm{Mor}}\nolimits (x,x) \times \mathop{\mathrm{Mor}}\nolimits (x,y) \to \mathop{\mathrm{Mor}}\nolimits (x,y)$ the composition map. Then $f = C(0, f)$ and since $C$ is bilinear we have $C(0, f) = 0$. Thus $f = 0$. Hence $x$ is initial in $\mathcal{A}$. A similar argument for $f \in \mathop{\mathrm{Mor}}\nolimits (y, x)$ can be used to show that $x$ is also final. Thus (3) implies both (1) and (2). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="0100">
+  <p><a class="environment-identifier" href="/tag/0100">Definition <span data-tag="0100">12.3.3</span>.</a> In a preadditive category $\mathcal{A}$, we call an object that is both final and initial (as in Lemma <a href="/tag/00ZZ" data-tag="00ZZ">12.3.2</a>) a <em>zero object</em> and denote it $0$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0101">
+  <p><a class="environment-identifier" href="/tag/0101">Lemma <span data-tag="0101">12.3.4</span>.</a> Let $\mathcal{A}$ be a preadditive category. Let $x, y \in \mathop{\mathrm{Ob}}\nolimits (\mathcal{A})$. If the product $x \times y$ exists, then so does the coproduct $x \amalg y$. If the coproduct $x \amalg y$ exists, then so does the product $x \times y$. In this case also $x \amalg y \cong x \times y$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose that $z = x \times y$ with projections $p : z \to x$ and $q : z \to y$. Denote $i : x \to z$ the morphism corresponding to $(1, 0)$. Denote $j : y \to z$ the morphism corresponding to $(0, 1)$. Thus we have the commutative diagram 
+    <p>
+      <div class="equation">
+  \[  \xymatrix{ x \ar[rr]^1 \ar[rd]^ i &  &  x \\  &  z \ar[ru]^ p \ar[rd]^ q &  \\  y \ar[rr]^1 \ar[ru]^ j &  &  y }  \]
+</div>
+    <p>
+       where the diagonal compositions are zero. It follows that $i \circ p + j \circ q : z \to z$ is the identity since it is a morphism which upon composing with $p$ gives $p$ and upon composing with $q$ gives $q$. Suppose given morphisms $a : x \to w$ and $b : y \to w$. Then we can form the map $a \circ p + b \circ q : z \to w$. In this way we get a bijection $\mathop{\mathrm{Mor}}\nolimits (z, w) = \mathop{\mathrm{Mor}}\nolimits (x, w) \times \mathop{\mathrm{Mor}}\nolimits (y, w)$ which shows that $z = x \amalg y$. 
+    <p>
+      We leave it to the reader to construct the morphisms $p, q$ given a coproduct $x \amalg y$ instead of a product. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="0102">
+  <p><a class="environment-identifier" href="/tag/0102">Definition <span data-tag="0102">12.3.5</span>.</a> Given a pair of objects $x, y$ in a preadditive category $\mathcal{A}$, the <em>direct sum</em> $x \oplus y$ of $x$ and $y$ is the direct product $x \times y$ endowed with the morphisms $i, j, p, q$ as in Lemma <a href="/tag/0101" data-tag="0101">12.3.4</a> above. </p>
+</article> 
+</p>
+<p>
+<article class="env-remark" id="0103">
+  <p><a class="environment-identifier" href="/tag/0103">Remark <span data-tag="0103">12.3.6</span>.</a> Note that the proof of Lemma <a href="/tag/0101" data-tag="0101">12.3.4</a> shows that given $p$ and $q$ the morphisms $i$, $j$ are uniquely determined by the rules $p \circ i = \text{id}_ x$, $q \circ j = \text{id}_ y$, $p \circ j = 0$, $q \circ i = 0$. Moreover, we automatically have $i \circ p + j \circ q = \text{id}_{x \oplus y}$. Similarly, given $i$, $j$ the morphisms $p$ and $q$ are uniquely determined. Finally, given objects $x, y, z$ and morphisms $i : x \to z$, $j : y \to z$, $p : z \to x$ and $q : z \to y$ such that $p \circ i = \text{id}_ x$, $q \circ j = \text{id}_ y$, $p \circ j = 0$, $q \circ i = 0$ and $i \circ p + j \circ q = \text{id}_ z$, then $z$ is the direct sum of $x$ and $y$ with the four morphisms equal to $i, j, p, q$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0105">
+  <p><a class="environment-identifier" href="/tag/0105">Lemma <span data-tag="0105">12.3.7</span>.</a> Let $\mathcal{A}$, $\mathcal{B}$ be preadditive categories. Let $F : \mathcal{A} \to \mathcal{B}$ be an additive functor. Then $F$ transforms direct sums to direct sums and zero to zero. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Suppose $F$ is additive. A direct sum $z$ of $x$ and $y$ is characterized by having morphisms $i : x \to z$, $j : y \to z$, $p : z \to x$ and $q : z \to y$ such that $p \circ i = \text{id}_ x$, $q \circ j = \text{id}_ y$, $p \circ j = 0$, $q \circ i = 0$ and $i \circ p + j \circ q = \text{id}_ z$, according to Remark <a href="/tag/0103" data-tag="0103">12.3.6</a>. Clearly $F(x), F(y), F(z)$ and the morphisms $F(i), F(j), F(p), F(q)$ satisfy exactly the same relations (by additivity) and we see that $F(z)$ is a direct sum of $F(x)$ and $F(y)$. Hence, $F$ transforms direct sums to direct sums. 
+    <p>
+      To see that $F$ transforms zero to zero, use the characterization (3) of the zero object in Lemma <a href="/tag/00ZZ" data-tag="00ZZ">12.3.2</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-definition" id="0104">
+  <p><a class="environment-identifier" href="/tag/0104">Definition <span data-tag="0104">12.3.8</span>.</a> A category $\mathcal{A}$ is called <em>additive</em> if it is preadditive and finite products exist, in other words it has a zero object and direct sums. </p>
+</article> 
+</p>
+<p>
+Namely the empty product is a finite product and if it exists, then it is a final object. 
+</p>
+<p>
+<article class="env-definition" id="0106">
+  <p><a class="environment-identifier" href="/tag/0106">Definition <span data-tag="0106">12.3.9</span>.</a> Let $\mathcal{A}$ be a preadditive category. Let $f : x \to y$ be a morphism. </p>
+  <p><ol>
+  <li><p>
+A <em>kernel</em> of $f$ is a morphism $i : z \to x$ such that (a) $f \circ i = 0$ and (b) for any $i' : z' \to x$ such that $f \circ i' = 0$ there exists a unique morphism $g : z' \to z$ such that $i' = i \circ g$. 
+</p>
+</li><li><p>
+If the kernel of $f$ exists, then we denote this $\mathop{\mathrm{Ker}}(f) \to x$. 
+</p>
+</li><li><p>
+A <em>cokernel</em> of $f$ is a morphism $p : y \to z$ such that (a) $p \circ f = 0$ and (b) for any $p' : y \to z'$ such that $p' \circ f = 0$ there exists a unique morphism $g : z \to z'$ such that $p' = g \circ p$. 
+</p>
+</li><li><p>
+If a cokernel of $f$ exists we denote this $y \to \mathop{\mathrm{Coker}}(f)$. 
+</p>
+</li><li><p>
+If a kernel of $f$ exists, then a <em>coimage of $f$</em> is a cokernel for the morphism $\mathop{\mathrm{Ker}}(f) \to x$. 
+</p>
+</li><li><p>
+If a kernel and coimage exist then we denote this $x \to \mathop{\mathrm{Coim}}(f)$. 
+</p>
+</li><li><p>
+If a cokernel of $f$ exists, then the <em>image of $f$</em> is a kernel of the morphism $y \to \mathop{\mathrm{Coker}}(f)$. 
+</p>
+</li><li><p>
+If a cokernel and image of $f$ exist then we denote this $\mathop{\mathrm{Im}}(f) \to y$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<p>
+In the above definition, we have spoken of “the kernel” and “the cokernel”, tacitly using their uniqueness up to unique isomorphism. This follows from the Yoneda lemma (Categories, Section <a href="/tag/001L" data-tag="001L">4.3</a>) because the kernel of $f : x \to y$ represents the functor sending an object $z$ to the set $\mathop{\mathrm{Ker}}(\mathop{\mathrm{Mor}}\nolimits _\mathcal {A}(z, x) \to \mathop{\mathrm{Mor}}\nolimits _\mathcal {A}(z, y))$. The case of cokernels is dual. 
+</p>
+<p>
+We first relate the direct sum to kernels as follows. 
+</p>
+<p>
+<article class="env-lemma" id="09QG">
+  <p><a class="environment-identifier" href="/tag/09QG">Lemma <span data-tag="09QG">12.3.10</span>.</a> Let $\mathcal{C}$ be a preadditive category. Let $x \oplus y$ with morphisms $i, j, p, q$ as in Lemma <a href="/tag/0101" data-tag="0101">12.3.4</a> be a direct sum in $\mathcal{C}$. Then $i : x \to x \oplus y$ is a kernel of $q : x \oplus y \rightarrow y$. Dually, $p$ is a cokernel for $j$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Let $f : z' \to x \oplus y$ be a morphism such that $q \circ f = 0$. We have to show that there exists a unique morphism $g : z' \to x$ such that $f = i \circ g$. Since $i \circ p + j \circ q$ is the identity on $x \oplus y$ we see that 
+    <p>
+      <div class="equation">
+  \[  f = (i \circ p + j \circ q) \circ f = i \circ p \circ f  \]
+</div>
+    <p>
+       and hence $g = p \circ f$ works. Uniqueness holds because $p \circ i$ is the identity on $x$. The proof of the second statement is dual. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0E43">
+  <p><a class="environment-identifier" href="/tag/0E43">Lemma <span data-tag="0E43">12.3.11</span>.</a> Let $\mathcal{C}$ be a preadditive category. Let $f : x \to y$ be a morphism in $\mathcal{C}$. </p>
+  <p><ol>
+  <li><p>
+If a kernel of $f$ exists, then this kernel is a monomorphism. 
+</p>
+</li><li><p>
+If a cokernel of $f$ exists, then this cokernel is an epimorphism. 
+</p>
+</li><li><p>
+If a kernel and coimage of $f$ exist, then the coimage is an epimorphism. 
+</p>
+</li><li><p>
+If a cokernel and image of $f$ exist, then the image is a monomorphism. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Part (1) follows easily from the uniqueness required in the definition of a kernel. The proof of (2) is dual. Part (3) follows from (2), since the coimage is a cokernel. Similarly, (4) follows from (1). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0107">
+  <p><a class="environment-identifier" href="/tag/0107">Lemma <span data-tag="0107">12.3.12</span>.</a> Let $f : x \to y$ be a morphism in a preadditive category such that the kernel, cokernel, image and coimage all exist. Then $f$ can be factored uniquely as $x \to \mathop{\mathrm{Coim}}(f) \to \mathop{\mathrm{Im}}(f) \to y$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      There is a canonical morphism $\mathop{\mathrm{Coim}}(f) \to y$ because $\mathop{\mathrm{Ker}}(f) \to x \to y$ is zero. The composition $\mathop{\mathrm{Coim}}(f) \to y \to \mathop{\mathrm{Coker}}(f)$ is zero, because it is the unique morphism which gives rise to the morphism $x \to y \to \mathop{\mathrm{Coker}}(f)$ which is zero (the uniqueness follows from Lemma <a href="/tag/0E43" data-tag="0E43">12.3.11</a> (3)). Hence $\mathop{\mathrm{Coim}}(f) \to y$ factors uniquely through $\mathop{\mathrm{Im}}(f) \to y$, which gives us the desired map. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-example" id="0108">
+  <p><a class="environment-identifier" href="/tag/0108">Example <span data-tag="0108">12.3.13</span>.</a> Let $k$ be a field. Consider the category of filtered vector spaces over $k$. (See Definition <a href="/tag/0121" data-tag="0121">12.19.1</a>.) Consider the filtered vector spaces $(V, F)$ and $(W, F)$ with $V = W = k$ and </p>
+  <div class="equation">
+  \[  F^ iV = \left\{  \begin{matrix}  V 
+
+&  \text{if} 
+
+&  i < 0 
+
+\\  0 
+
+&  \text{if} 
+
+&  i \geq 0 
+
+\end{matrix} \right. \text{ and } F^ iW = \left\{  \begin{matrix}  W 
+
+&  \text{if} 
+
+&  i \leq 0 
+
+\\  0 
+
+&  \text{if} 
+
+&  i > 0 
+
+\end{matrix} \right.  \]
+</div>
+  <p> The map $f : V \to W$ corresponding to $\text{id}_ k$ on the underlying vector spaces has trivial kernel and cokernel but is not an isomorphism. Note also that $\mathop{\mathrm{Coim}}(f) = V$ and $\mathop{\mathrm{Im}}(f) = W$. This means that the category of filtered vector spaces over $k$ is not abelian. </p>
+</article> 
+</p>
+<p>
+We finish this section by some lemmas on splitting images of idempotent endormorphisms. Recall that an endomorphism $f$ is idempotent if $f \circ f = f$. 
+</p>
+<p>
+<article class="env-remark" id="0H9N">
+  <p><a class="environment-identifier" href="/tag/0H9N">Remark <span data-tag="0H9N">12.3.14</span>.</a> Let $\mathcal{A}$ be a preadditive category, $x$ an object of $\mathcal{A}$, and $f : x \to x$ idempotent. Writing $g = \text{id} _ x - f$, one has $f \circ g = 0$, $g \circ f = 0$, and $g \circ g = g$. </p>
+</article> 
+</p>
+<p>
+<article class="env-lemma" id="0H9P">
+  <p><a class="environment-identifier" href="/tag/0H9P">Lemma <span data-tag="0H9P">12.3.15</span>.</a> Let $\mathcal{A}$ be a preadditive category, $x$ be an object of $\mathcal{A}$, and $f : x \to x$ be idempotent. Write $g = \text{id} _ x - f$ and recall by Remark <a href="/tag/0H9N" data-tag="0H9N">12.3.14</a> that $f \circ g = g \circ f = 0$. </p>
+  <p><ol>
+  <li><p>
+If $f$ has kernel $i : \mathop{\mathrm{Ker}}(f) \to x$ and $p$ is the unique morphism such that $g = i \circ p$, then $p \circ i = \text{id} _{\mathop{\mathrm{Ker}}(f)}$ and $p$ is the cokernel of $f$. 
+</p>
+</li><li><p>
+If $f$ has cokernel $p : x \to \mathop{\mathrm{Coker}}(f)$ and $i$ is the unique morphism such that $g = i \circ p$, then $p \circ i = \text{id} _{\mathop{\mathrm{Coker}}(f)}$ and $i$ is the kernel of $f$. 
+</p>
+</li><li><p>
+If $g$ has kernel $j : \mathop{\mathrm{Ker}}(g) \to x$ and $q$ is the unique morphism such that $f = j \circ q$, then $q \circ j = \text{id} _{\mathop{\mathrm{Ker}}(g)}$ and $q$ is the cokernel of $g$. 
+</p>
+</li><li><p>
+If $g$ has cokernel $q : x \to \mathop{\mathrm{Coker}}(g)$ and $j$ is the unique morphism such that $f = j \circ q$, then $q \circ j = \text{id} _{\mathop{\mathrm{Coker}}(g)}$ and $j$ is the kernel of $g$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      As for (1), compute first that $i = (f + g) \circ i = g \circ i$. By the construction of $p$, this implies that $i \circ p \circ i = g \circ i = i \circ \text{id} _{\mathop{\mathrm{Ker}}(f)}$. By Lemma <a href="/tag/0E43" data-tag="0E43">12.3.11</a> we conclude that $p \circ i = \text{id} _{\mathop{\mathrm{Ker}}(f)}$. 
+    <p>
+      It remains to show that $p : x \to \mathop{\mathrm{Ker}}(f)$ satisfies the universal property of the cokernel of $f$, i.e., that given a morphism $a : x \to y$ satisfying $a \circ f = 0$ there exists a unique morphism $b : \mathop{\mathrm{Ker}}(f) \to y$ such that $a = b \circ p$. Existence follows by first computing that $a = a \circ (f + g) = a \circ g$ and concluding by the construction of $p$ that $a = a \circ g = a \circ i \circ p$ (so that we can take $b = a \circ i$). Uniqueness follows from that $b = b \circ p \circ i = a \circ i$ (so that $a$ determines $b$). 
+    <p>
+      By duality, symmetry (i.e., that $g$ is itself idempotent; cf. Remark <a href="/tag/0H9N" data-tag="0H9N">12.3.14</a>), and duality and symmetry respectively, (2), (3), and (4) follow as did (1). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0H9Q">
+  <p><a class="environment-identifier" href="/tag/0H9Q">Lemma <span data-tag="0H9Q">12.3.16</span>.</a> Let $\mathcal{A}$ be a preadditive category, $x$ be an object of $\mathcal{A}$, and $f : x \to x$ be idempotent. Write $g = \text{id} _ x - f$. If each of $f$ and $g$ have at least one of a kernel or cokernel and in turn morphisms $i , j , p , q$ are constructed as in the statement of Lemma <a href="/tag/0H9P" data-tag="0H9P">12.3.15</a>, then all four (co)kernels exist and </p>
+  <div class="equation">
+  \begin{align*}  x &  \simeq \mathop{\mathrm{Ker}}(f) \oplus \mathop{\mathrm{Ker}}(g) \\ &  \simeq \mathop{\mathrm{Coker}}(f) \oplus \mathop{\mathrm{Ker}}(g) \\ &  \simeq \mathop{\mathrm{Ker}}(f) \oplus \mathop{\mathrm{Coker}}(g) \\ &  \simeq \mathop{\mathrm{Coker}}(f) \oplus \mathop{\mathrm{Coker}}(g) \end{align*}
+</div>
+  <p> with the structure of each direct product given by $i , j , p , q$. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      By Lemma <a href="/tag/0H9P" data-tag="0H9P">12.3.15</a> $p \circ i = \text{id} _{\mathop{\mathrm{Ker}}(f)} = \text{id} _{\mathop{\mathrm{Coker}}(f)}$ and $q \circ j = \text{id} _{\mathop{\mathrm{Ker}}(g)} = \text{id} _{\mathop{\mathrm{Coker}}(g)}$. By construction, $i \circ p + j \circ q = f + g = \text{id} _ x$. By Remark <a href="/tag/0103" data-tag="0103">12.3.6</a> the claim follows. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0H9R">
+  <p><a class="environment-identifier" href="/tag/0H9R">Lemma <span data-tag="0H9R">12.3.17</span>.</a> Let $\mathcal{A}$ be a preadditive category, $x$ and $y$ be objects of $\mathcal{A}$, and $j : y \to x$ and $q : x \to y$ be morphisms satisfying $q \circ j = \text{id} _ y$. Then </p>
+  <p><ol>
+  <li><p>
+$\text{id} _ x - j \circ q$ has kernel $j$. 
+</p>
+</li><li><p>
+$\text{id} _ x - j \circ q$ has cokernel $q$. 
+</p>
+</li>
+</ol></p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      As for (1), compute first that $(\text{id} _ x - j \circ q) \circ j = 0$. We must show that $j$ satisfies the universal property of the kernel of $\text{id} _{x} - j \circ q$, i.e., that given a morphism $a : z \to x$ satisfying $(\text{id} _ x - j \circ q) \circ a = 0$ there exists a unique morphism $b : z \to y$ such that $a = j \circ b$. Existence follows by computing that $a = j \circ q \circ a$ (so that we can take $b = q \circ a$). Uniqueness follows from that $b = q \circ j \circ b = q \circ a$ (so that $a$ determines $b$). 
+    <p>
+      By duality, (2) follows as did (1). 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
+<p>
+<article class="env-lemma" id="0H9S">
+  <p><a class="environment-identifier" href="/tag/0H9S">Lemma <span data-tag="0H9S">12.3.18</span>.</a> Let $\mathcal{A}$ be a preadditive category, $x$ and $y$ be objects of $\mathcal{A}$, and $j : y \to x$ and $q : x \to y$ be morphisms satisfying $q \circ j = \text{id} _ y$. If $j \circ q$ has at least one of a kernel or cokernel, then both (co)kernels exist and </p>
+  <div class="equation">
+  \begin{align*}  x &  \simeq \mathop{\mathrm{Ker}}(j \circ q) \oplus y \\ &  \simeq \mathop{\mathrm{Coker}}(j \circ q) \oplus y \end{align*}
+</div>
+  <p> with the structure of either direct product including $j , q$, and the canonical (co)kernel morphism, and the remaining map uniquely determined. </p>
+</article> 
+</p>
+<article class="env-proof">
+    <p>
+      <strong>Proof.</strong>
+      Write $f = j \circ q$, compute that $f \circ f = f$, and apply Lemma <a href="/tag/0H9Q" data-tag="0H9Q">12.3.16</a> and Lemma <a href="/tag/0H9R" data-tag="0H9R">12.3.17</a>. 
+      <span class="qed">$\square$</span>
+    </p>
+</article>
